@@ -32,12 +32,12 @@
   <div class="p-strip is-shallow u-no-padding--top">
     <div class="row">
       <hr class="is-muted u-no-margin--bottom">
-      <div class="col-6">
+      <div class="col-6 col-medium-3">
         <h2>
           Ubuntu 18.04 LTS <br class="u-hide--small"/>will reach the end of standard support on 31 May 2023
         </h2>
       </div>
-      <div class="col-6">
+      <div class="col-6 col-medium-3">
         <div class="p-strip is-shallow u-no-padding--top">
           <p>
             Transitioning to a later Ubuntu release, such as <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-cloud/ubuntu-jammy">Ubuntu 22.04 LTS</a> or <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-jammy">Ubuntu Pro 22.04 LTS</a>, is important for performance, hardware enablement and to leverage the benefits of new technology and is recommended for new instances. But it might be a more complex process for existing deployments.
@@ -48,10 +48,10 @@
   </div>
   <div class="row">
     <hr class="is-muted u-no-margin--bottom" />
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>What are your options?</h3>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <p>
         You can either migrate to the next LTS or <a href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu">upgrade in-place to Ubuntu Pro</a> to expand your security maintenance and continue receiving security updates for your Ubuntu 18.04 instances, without any need to redeploy or disrupt your existing production environments. See <a href="#ubuntu-pro">more information on Upgrading to Ubuntu Pro below</a>.  
       </p>
@@ -60,7 +60,26 @@
       </p>
       <p>
         <a class="p-button--positive" href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu">In-place upgrade to Ubuntu Pro 18.04</a>
-        <a class="p-button" href="/gcp/pro">Get started with Ubuntu Pro 18.04 LTS</a>
+        <a class="p-button" href="/gcp/pro">Get started with Ubuntu Pro on Google Cloud</a>
+      </p>
+      <div class="p-strip is-shallow">
+        <hr class="is-muted" />
+      </div>
+      <a href="/engage/18-04-lts-end-of-support-webinar">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f52739bc-18.04_LTS_End_of_Standard_Support.png",
+          alt="",
+          width="1350",
+          height="758",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "bordered-thumbnail"},
+          ) | safe
+        }}
+      </a>
+      <h3 class="p-heading--5"><a href="/engage/18-04-lts-end-of-support-webinar">Watch the 18.04 End of Standard Support webinar &nbsp;&rsaquo;</a></h3>
+      <p>
+        Ubuntu 18.04 LTS 'Bionic Beaver', one of the most popular Ubuntu releases, reaches the end of the standard, five-year maintenance window for Long-Term Support (LTS) releases on 31 May 2023. Join us to learn more about your options.
       </p>
     </div>
   </div>
@@ -71,12 +90,12 @@
     <hr class="is-muted u-no-margin--bottom">
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>
         Security updates for <br class="u-hide--small u-hide--medium" />Ubuntu 18.04 LTS, with Ubuntu Pro
       </h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <div class="p-strip is-shallow u-no-padding--top">
         <p>
           The Ubuntu Security Team is dedicated to providing timely security updates for all packages on Ubuntu 18.04 LTS for <i>x86-64</i> and <i>arm64</i> architectures.
@@ -89,32 +108,32 @@
 <section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom" />
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>Upgrading to Ubuntu 20.04 LTS, <br class="u-hide--small"/>or Ubuntu 22.04 LTS fresh install</h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <p>
         Where it makes sense, you should transition workloads to later Ubuntu releases. You can either <a href="/blog/how-to-upgrade-from-ubuntu-18-04-lts-to-20-04-lts-today">upgrade existing Ubuntu 18.04 LTS instances to Ubuntu 20.04 LTS</a> or redeploy your workload onto a fresh <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-jammy">Ubuntu 22.04 LTS</a> instance. There is no direct upgrade path from 18.04 LTS to Ubuntu 22.04 LTS, so you can either move to Ubuntu 20.04 LTS and then to Ubuntu 22.04 LTS, or directly install Ubuntu 22.04 LTS.
       </p>
       <p><a href="/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a></p>
-      <hr class="is-muted u-no-margin--bottom" />
-      <h3 class="p-heading--5">Watch the 20.04 migration webinar:</h3>
-      <p>
-        This webinar explores all the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.
-      </p>
+      <div class="p-strip is-shallow">
+        <hr class="is-muted" />
+      </div>
       <a href="/engage/migrating-to-20.04">
         {{ image (
-          url="https://assets.ubuntu.com/v1/94fae5f3-20.04-migration-webinar.png",
+          url="https://assets.ubuntu.com/v1/2aceaa9c-Migrating_to_20.04_LTS.png",
           alt="",
           width="1350",
           height="758",
           hi_def=True,
-          loading="lazy"
+          loading="lazy",
+          attrs={"class": "bordered-thumbnail"},
           ) | safe
         }}
       </a>
+      <h3 class="p-heading--5"><a href="/engage/migrating-to-20.04">Watch the 20.04 migration webinar&nbsp;&rsaquo;</a></h3>
       <p>
-        <a href="/engage/migrating-to-20.04">Watch the webinar&nbsp;&rsaquo;</a>
+        This webinar explores all the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.
       </p>
     </div>
   </div>
@@ -125,18 +144,18 @@
     <hr class="is-muted u-no-margin--bottom">
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>
         Expanded Security Maintenance (ESM) for 18.04 LTS
       </h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <div class="p-strip is-shallow u-no-padding--top">
         <p>
           <a href="/security/esm">Expanded Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX. 
         </p>
         <p>
-          ESM is free on up to five machines and for broader enterprise use through an Ubuntu Pro subscription. The subscription also includes additional services such as <a href="/gcp/fips">FIPS-compliant modules</a> and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
+          ESM is free on up to five machines and for broader enterprise use through an <a href="/pro">Ubuntu Pro subscription</a>. The subscription also includes additional services such as <a href="/gcp/fips">FIPS-compliant modules</a> and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
         </p>
         <p><a href="/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a></p>
       </div>
@@ -147,12 +166,12 @@
 <section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom">
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>
         What do you get with Ubuntu Pro <br class="u-hide--small" />for 18.04 LTS?
       </h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <div class="p-strip is-shallow u-no-padding--top">
         <p>
           Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the <a href="/community/Repositories/Ubuntu">Main Ubuntu repository</a> for a period of five years. For continued security beyond the standard five-year maintenance period, Ubuntu Pro delivers security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel and <a href="/blog/ubuntu-for-google-clouds-arm-based-t2a-virtual-machines">Arm64</a> architectures for a period of five years beyond the end of standard support.
@@ -167,10 +186,10 @@
     <div class="col-9 col-start-large-4">
       <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-start-medium-2">
           <h3 class="p-muted-heading">Support kernels</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3 col-start-medium-4">
           <p>
             For continued Linux kernel security, Ubuntu Pro for Ubuntu 18.04 LTS includes support for the versions below:
           </p>
@@ -203,10 +222,10 @@
     <div class="col-9 col-start-large-4">
       <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-start-medium-2">
           <h3 class="p-muted-heading">Infrastructure packages</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3 col-medium-4">
           <p>
             For Ubuntu 18.04 LTS, where technically feasible, Canonical provides extended security maintenance to all binary packages that reside in the Ubuntu Main Repository. 
           </p>
@@ -219,10 +238,10 @@
     <div class="col-9 col-start-large-4">
       <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-start-medium-2">
           <h3 class="p-muted-heading">Application packages</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3 col-start-medium-4">
           <p>
             Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe. A few commonly-used packages include:
           </p>
@@ -243,21 +262,19 @@
     <div class="col-9 col-start-large-4">
       <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-start-medium-2">
           <h3 class="p-muted-heading" id="ubuntu-pro">Upgrading to Ubuntu Pro</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3 col-start-medium-4">
           <p>
             Canonical and Google Cloud jointly designed a smooth upgrade experience for users to <a href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu">upgrade their running Ubuntu LTS VMs to Ubuntu Pro VMs</a>. Redeployment will not be necessary, metering and billing is through your existing Google Cloud account and you can keep your workloads safely running on your current VMs.
           </p>
           <p>
             Ubuntu Pro 18.04 LTS on Google Cloud is metered by the hour, so you only pay for it as long as you need it. This makes it a perfect fit if you are planning to migrate your workload to a later Ubuntu release, as your Ubuntu estate may be varying in size over the course of the year.
           </p>
-          <hr class="is-muted u-no-margin--bottom" />
-          <h4 class="p-heading--5">Watch the Ubuntu Pro in-place upgrade video tutorial</h4>
-          <p>
-            This video tutorial explains the benefits of Ubuntu Pro and how you can step-by-step upgrade from Ubuntu LTS to Ubuntu Pro on Google Cloud.
-          </p>
+          <div class="p-strip is-shallow">
+            <hr class="is-muted" />
+          </div>
           <a href="https://youtu.be/rzcbhF809HY">
             {{ image (
               url="https://assets.ubuntu.com/v1/47374773-ubuntu-pro-in-place-upgrade-guide-gcp.png",
@@ -265,11 +282,15 @@
               width="1280",
               height="720",
               hi_def=True,
-              loading="lazy"
+              loading="lazy",
+              attrs={"class": "bordered-thumbnail"},
               ) | safe
             }}
           </a>
-          <p><a href="https://youtu.be/rzcbhF809HY">Watch the Video Tutorial&nbsp;&rsaquo;</a></p>
+          <h4 class="p-heading--5"><a href="https://youtu.be/rzcbhF809HY">Watch the Ubuntu Pro in-place upgrade video tutorial&nbsp;&rsaquo;</a></h4>
+          <p>
+            This video tutorial explains the benefits of Ubuntu Pro and how you can step-by-step upgrade from Ubuntu LTS to Ubuntu Pro on Google Cloud.
+          </p>
         </div>
       </div>
     </div>
@@ -282,7 +303,7 @@
     <div class="col-6 col-medium-3">
       <h2>What customers say <br class="u-hide--small">about ESM</h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <blockquote class="p-pull-quote">
         <p class="p-pull-quote__quote">ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.</p>
         <span class="p-pull-quote__citation">Zivago Lee, Director of DevOps Engineering, Interana</span>
