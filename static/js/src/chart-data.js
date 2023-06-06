@@ -87,6 +87,12 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
+    startDate: new Date("2016-04-01T00:00:00"),
+    endDate: new Date("2026-04-02T00:00:00"),
+    taskName: "16.04 LTS (Xenial Xerus)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
     startDate: new Date("2018-04-01T00:00:00"),
     endDate: new Date("2023-04-02T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
@@ -97,6 +103,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
     status: "ESM",
+  },
+  {
+    startDate: new Date("2018-04-01T00:00:00"),
+    endDate: new Date("2028-04-01T00:00:00"),
+    taskName: "18.04 LTS (Bionic Beaver)",
+    status: "MAIN_UNIVERSE",
   },
   {
     startDate: new Date("2020-04-01T00:00:00"),
@@ -111,10 +123,22 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
+    startDate: new Date("2020-04-01T00:00:00"),
+    endDate: new Date("2030-04-02T00:00:00"),
+    taskName: "20.04 LTS (Focal Fossa)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2022-04-01T00:00:00"),
+    endDate: new Date("2032-04-01T00:00:00"),
+    taskName: "22.04 LTS (Jammy Jellyfish)",
+    status: "MAIN_UNIVERSE",
   },
   {
     startDate: new Date("2027-04-01T00:00:00"),
@@ -1497,8 +1521,9 @@ export var kubernetesReleases = [
 export var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
-  INTERIM_RELEASE: "chart__bar--grey",
   ESM: "chart__bar--aubergine",
+  MAIN_UNIVERSE: "chart__bar--charcoal",
+  INTERIM_RELEASE: "chart__bar--grey",
 };
 
 export var kernelStatus = {

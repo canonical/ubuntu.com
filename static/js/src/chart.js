@@ -51,6 +51,15 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     })
     .attr("y", 0)
     .attr("transform", function (d) {
+      if (d.status === "MAIN_UNIVERSE") {
+        return (
+          "translate(" +
+          x(d.startDate) +
+          "," +
+          (y(d.taskName) - y.bandwidth()) +
+          ")"
+        );
+      }
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
     .attr("height", function () {
@@ -226,14 +235,22 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace("kub", "Kub");
   formattedKey = formattedKey.replace(
     "Interim release",
-    "Interim release Standard Support"
+    "Interim release Standard Support (9 months)"
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "Extended Security Maintenance (ESM)"
+    "LTS expanded support for Ubuntu Main (5 years)"
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");
+  formattedKey = formattedKey.replace(
+    "Hardware and maintenance updates",
+    "LTS standard support for Ubuntu Main"
+  );
+  formattedKey = formattedKey.replace(
+    "Main universe",
+    "LTS expanded support for Ubuntu Universe (10 years)"
+  );
   return formattedKey;
 }
 
@@ -275,7 +292,7 @@ export function createChart(
     bottom: 20,
   };
   margin.left = calculateYAxisWidth(taskTypes);
-  var rowHeight = 32;
+  var rowHeight = 34;
   var timeDomainStart;
   var timeDomainEnd;
   var earliestStartDate = d3.min(tasks, (d) => d.startDate);
@@ -312,13 +329,13 @@ export function createChart(
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.1);
+    .padding(0.6);
 
   var version = d3
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.1);
+    .padding(0.4);
 
   var xAxis = d3.axisBottom(x);
 
@@ -369,5 +386,5 @@ export function createChart(
   setTimeout(function () {
     emboldenLTSLabels(svg);
     highlightChartRow(svg, highlightVersion);
-  }, 500);
+  }, 0);
 }

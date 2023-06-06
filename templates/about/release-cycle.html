@@ -76,38 +76,26 @@
               <td>&nbsp;</td>
               <th scope="col">Released</th>
               <th scope="col">End of Standard Support</th>
-              <th scope="col">End of Life</th>
+              <th scope="col">End of Ubuntu Pro Support</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2024</td>
+              <td><strong>22.10 (Kinetic Kudu)</strong></td>
+              <td>Oct 2022</td>
+              <td>Jul 2023</td>
+              <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2026</td>
+              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
+              <td>Apr 2022</td>
+              <td>May 2027</td>
+              <td>Apr 2032</td>
             </tr>
             <tr>
-              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td>20.10 (Groovy Gorilla)</td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
+              <td>21.10 (Impish Indri)</td>
+              <td>Oct 2021</td>
+              <td>Jul 2022</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
@@ -117,22 +105,34 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>21.10 (Impish Indri)</td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
+              <td>20.10 (Groovy Gorilla)</td>
+              <td>Oct 2020</td>
+              <td>Jul 2021</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>Apr 2032</td>
+              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
+              <td>Apr 2020</td>
+              <td>May 2025</td>
+              <td>Apr 2030</td>
             </tr>
             <tr>
-              <td><strong>22.10 (Kinetic Kudu)</strong></td>
-              <td>Oct 2022</td>
-              <td>Jul 2023</td>
-              <td>&nbsp;</td>
+              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
+              <td>Apr 2018</td>
+              <td>May 2023</td>
+              <td>Apr 2028</td>
+            </tr>
+            <tr>
+              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
+              <td>Apr 2016</td>
+              <td>Apr 2021</td>
+              <td>Apr 2026</td>
+            </tr>
+            <tr>
+              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
+              <td>Apr 2014</td>
+              <td>Apr 2019</td>
+              <td>Apr 2024</td>
             </tr>
           </tbody>
         </table>
@@ -172,9 +172,7 @@
         </tbody>
       </table>
 
-      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Expanded Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/pro">Ubuntu Advantage subscription</a> or a <a href="/pro">free personal subscription</a>.</p>
-
-      <p>Customers of Canonical often ask for an expanded security maintenance commitment beyond the Ubuntu Base Packages such as the 'universe' software packages. You can <a href="/support/contact-us">contact us for more information</a>.</p>
+      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year standard security maintenance period, during which maintenance updates are publicly available without a subscription, and five years of <a href="/security/esm">Expanded Security Maintenance (ESM)</a>. Furthermore ESM also covers 10 years of security maintenance for the Universe repository, which is not provided outside of Ubuntu Pro subscription. The full 10 year Ubuntu LTS lifecycle is available with an <a href="/pro">Ubuntu Pro subscription</a> (free for personal use on up to 5 machines).</p>
 
       <div class="u-fixed-width u-hide--small">
         {{
@@ -189,12 +187,10 @@
         }}
       </div>
 
-      <p>Ubuntu LTS releases transition into Expanded Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/pro">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
-
       <p>To check the subscription status of your system, use this command:</p>
 
       <div class="p-code-snippet">
-        <pre class="p-code-snippet__block--icon"><code>ua status</code></pre>
+        <pre class="p-code-snippet__block--icon"><code>pro status</code></pre>
       </div>
 
       <p>The <a href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
