@@ -38,74 +38,29 @@
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
             <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-ElasticSearch" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-ElasticSearch">ElasticSearch</span>
-            </label>
-
-            <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="apps-using-Open-Source-Mano" class="p-checkbox__input">
               <span class="p-checkbox__label" id="apps-using-Open-Source-Mano">Open Source Mano</span>
             </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-InfluxDB" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-InfluxDB">InfluxDB</span>
-            </label>
-
             <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="apps-using-PostgreSQL" class="p-checkbox__input">
               <span class="p-checkbox__label" id="apps-using-PostgreSQL">PostgreSQL</span>
             </label>
-
+          </div>
+          <div class="col-4 u-sv3">
             <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="apps-using-Kafka" class="p-checkbox__input">
               <span class="p-checkbox__label" id="apps-using-Kafka">Kafka</span>
             </label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="apps-using-Kubeflow" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="apps-using-Kubeflow">Kubeflow</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-Graylog" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-Graylog">Graylog</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-Grafana" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-Grafana">Grafana</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-MongoDB" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-MongoDB">MongoDB</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-MySQL" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-MySQL">MySQL</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-Prometheus" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-Prometheus">Prometheus</span>
-            </label>
-
-          </div>
-          <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-cassandra" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-cassandra">Cassandra</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="apps-using-rabbitmq" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="apps-using-rabbitmq">RabbitMQ</span>
-            </label>
-
             <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="apps-using-other" class="p-checkbox__input">
               <span class="p-checkbox__label" id="apps-using-other">Other</span>
             </label>
-
           </div>
         </div>
       </div>
@@ -322,6 +277,14 @@
                 <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
               </li>
               <li class="p-list__item">
+                <label for="title">Job title:</label>
+                <input required id="title" name="title" maxlength="255" type="text" />
+              </li>
+              <li class="p-list__item">
+                <label for="company">Company:</label>
+                <input required id="company" name="company" maxlength="255" type="text"/>
+              </li>
+              <li class="p-list__item">
                 <label for="email">Work email:</label>
                 <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
@@ -329,6 +292,9 @@
                 <label for="phone">Mobile/cell phone number:</label>
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
+
+              {% include "shared/forms/_country.html" %}
+
               <li class="p-list__item">
                 <label class="p-checkbox">
                   <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
