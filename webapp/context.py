@@ -47,7 +47,6 @@ def get_meganav(section):
     """
     Set "meganav_section" as global template variable
     """
-
     sections = {}
     meganav_sections = copy.deepcopy(meganav)
 

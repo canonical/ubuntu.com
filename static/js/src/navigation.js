@@ -203,7 +203,7 @@ addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
 addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
 addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
 addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#download-content", "www.ubuntu.com-nav-1-download");
+addGANavEvents("#get-ubuntun-content", "www.ubuntu.com-nav-1-get-ubuntu");
 addGANavEvents(".p-navigation--secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");
@@ -420,21 +420,3 @@ if (accountContainer) {
       );
     });
 }
-
-// TEMP FIX - PETE F 15.05.23
-// UPDATES 'UBUNTU ADVANTAGE' TO 'UBUNTU PRO' IN THE MEGANAV UNTIL
-// WE MERGE THE NEW MEGANAV
-function replaceUbuntuAdvantage() {
-  const globalNav = document.querySelector("#canonical-global-nav");
-  const targetElementsArray = globalNav.querySelectorAll(
-    "[href='https://ubuntu.com/support']"
-  );
-  targetElementsArray.forEach(function (element) {
-    if (element.children.length) {
-      element.querySelector("h4").innerText = "Ubuntu Pro ›";
-    } else {
-      element.innerText = "Ubuntu Pro";
-    }
-  });
-}
-replaceUbuntuAdvantage();
