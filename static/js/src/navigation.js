@@ -203,7 +203,7 @@ addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
 addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
 addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
 addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#download-content", "www.ubuntu.com-nav-1-download");
+addGANavEvents("#get-ubuntun-content", "www.ubuntu.com-nav-1-get-ubuntu");
 addGANavEvents(".p-navigation--secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");
