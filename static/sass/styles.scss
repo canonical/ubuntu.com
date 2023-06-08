@@ -22,7 +22,7 @@
 
 @import "vanilla-placeholders";
 
-// import flicity
+// import flickity
 @import "flickity/dist/flickity";
 
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
@@ -1361,4 +1361,9 @@ hr.p-separator.is-shallow {
   @media screen and (max-width: calc($breakpoint-medium - 1px)) {
     margin-bottom: $sp-xxx-large;
   }
+}
+
+// utility to separate 50/50 images
+.u-image-separation {
+  margin-top: $spv--small;
 }
