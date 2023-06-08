@@ -46,10 +46,10 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Desktop
-              description: Secure Enterprise Linux
+              description: Secure enterprise Linux
               url: /desktop
             - title: Ubuntu Server
-              description: Ubuntu optimised for servers
+              description: Scalable Linux for the cloud
               url: /server
             - title: MAAS
               description: Bare metal provisioning
@@ -64,22 +64,22 @@ products:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: Ubuntu Pro
-              description: An additional layer of security and compliance
+              description: Security and compliance subscription
               url: /pro
             - title: Enteprise grade support
-              description: 24x7 phone & ticket support for the full-stack
+              description: 24/7 support for the full-stack
               url: /support
             - title: Livepatch
-              description: Secure Ubuntu without reboots
+              description: Stay patched and defer reboots
               url: /security/livepatch
             - title: Kubernetes
               description: Containerised workloads
               url: /kubernetes
             - title: Charmhub
-              description: Store for Juju operators
+              description: Marketplace for Charmed Operators
               url: https://charmhub.io/
             - title: Juju
-              description: Charmed Operator framework
+              description: Orchestration engine for operators
               url: https://juju.is/
             - title: Ubuntu Certified Hardware
               description: Machines you can trust
@@ -97,15 +97,18 @@ products:
               description: Secure Enterprise Linux
               url: /desktop
             - title: Ubuntu Server
-              description: Ubuntu optimised for servers
+              description: Scalable Linux for the cloud
               url: /server
+            - title: Ubuntu Pro
+              description: Security & compliance subscription
+              url: /pro
             - title: Ubuntu Core
-              description: Tiny embedded Linux
+              description: Embedded Linux
               url: /core
-            - title: Ubuntu FIPS
-              description: Secure Linux for Government
+            - title: FIPS for Ubuntu
+              description: Secure Linux for government
               url: /security/fips
-            - title: WSL2
+            - title: WSL
               description: Windows Subsystem for Linux
               url: /wsl
             - title: Multipass
@@ -119,40 +122,35 @@ products:
             - title: Ubuntu documentation
               url: https://help.ubuntu.com/
             - title: Desktop Install
-              url: /tutorials/install-ubuntu-desktop
+              url: /tutorials/install-ubuntu-desktop#1-overview
             - title: Server install
               url: /server/docs/installation
             - title: Server Guide
               url: /server/docs
-            - title: Security notices
-              url: /security/notices
-            - title: CVEs
-              url: /security/cves
+            - title: Ubuntu on public clouds
+              url: /cloud/public-cloud
 
     - title: Private cloud
       primary_links:
         - title: Products
           links:
+            - title: OpenStack
+              description: Enterprise Private cloud
+              url: /openstack
             - title: Ubuntu Server
-              description: Ubuntu optimised for servers
+              description: Scalable Linux for the cloud
               url: /server
             - title: Landscape
               description: Monitor and manage servers
               url: https://landscape.canonical.com/
-            - title: OpenStack
-              description: Private cloud provisioning
-              url: /openstack
-            - title: MicroStack
-              description: Small private cloud
-              url: https://microstack.run/
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
             - title: Ceph
-              description: Open source software storage
+              description: Open source storage
               url: /ceph
             - title: Anbox Cloud
-              description: Virtual Android devices on demand
+              description: Virtual Android on demand
               url: https://anbox-cloud.io/
             - title: Open Source MANO
               description: Network Functions Virtualisation
@@ -193,6 +191,9 @@ products:
               url: /azure
             - title: Ubuntu on Google Cloud
               url: /gcp
+            - title: Ubuntu WorkSpaces
+              description: Virtual desktops on AWS
+              url: /aws/workspaces
 
     - title: Virtualisation
       primary_links:
@@ -205,31 +206,31 @@ products:
               description: Linux containers
               url: https://linuxcontainers.org/
             - title: WSL
-              description: Windows subsystem for Linux
+              description: Windows Subsystem for Linux
               url: /wsl
 
       secondary_links:
         - title: Links
           links:
-            - title: What is Virtualisation?
+            - title: What is virtualisation?
               url: https://snapcraft.io/blog/what-is-virtualisation-the-basics
-            - title: Multipass Documentation
+            - title: Multipass documentation
               url: https://multipass.run/docs
             - title: Virtualisation docs in the server guide
               url: /server/docs/virtualization-multipass
             - title: What is WSL?
               url: https://wiki.ubuntu.com/WSL
-            - title: Install Ubuntu on Windows 10
-              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
             - title: Install Ubuntu on Windows 11
               url: /tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support
+            - title: Install Ubuntu on Windows 10
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
 
     - title: Support
       primary_links:
         - title: Products
           links:
             - title: Ubuntu Pro + support
-              description: Enterprise support for Ubuntu
+              description: Expert support for open source
               url: /support
             - title: ESM
               description: 10 years of security maintenance
@@ -238,16 +239,16 @@ products:
               description: Remotely manage & update servers
               url: https://landscape.canonical.com/
             - title: Livepatch
-              description: Secure Ubuntu without reboots
+              description: Stay patched without reboots
               url: /security/livepatch
-            - title: Ubuntu Pro Azure
-              description: Azure cloud support
-              url: /azure/pro
             - title: Ubuntu Pro AWS
-              description: AWS cloud support
+              description: Amazon Web Services support
               url: /aws/pro
+            - title: Ubuntu Pro Azure
+              description: Microsoft Azure cloud support
+              url: /azure/pro
             - title: Ubuntu Pro GCP
-              description: GCP cloud support
+              description: Google Cloud support
               url: /blog/introducing-ubuntu-pro-for-google-cloud
 
       secondary_links:
@@ -259,6 +260,12 @@ products:
               url: /pricing/consulting
             - title: Private cloud pricing calculator
               url: /openstack/pricing-calculator
+            - title: Certified Hardware
+              url: /certified
+            - title: CVE reports
+              url: /security/cves
+            - title: Ubuntu Security Notices (USN)
+              url: /security/notices
 
     - title: Kubernetes
       primary_links:
@@ -279,10 +286,12 @@ products:
           links:
             - title: Kubernetes documentation
               url: /kubernetes/docs
-            - title: Kubernetes Quickstart
+            - title: Kubernetes quick start
               url: /kubernetes/docs/quickstart
             - title: Distributions comparison
               url: /kubernetes/compare
+            - title: Cloud native operations report
+              url: /blog/participate-in-the-kubernetes-and-cloud-native-operations-survey-2023
             - title: MicroK8s getting started
               url: http://microk8s.io/docs/getting-started
             - title: Kubeflow installation tutorial
@@ -329,8 +338,9 @@ products:
               description: Universal Linux packages
               url: https://snapcraft.io/about
             - title: Snapcraft
+              description: Build and publish your snaps
               url: https://snapcraft.io/build
-            - title: Dedicated Snap Store
+            - title: IoT App Store
               description: Private app store for Linux and IoT
               url: /internet-of-things/appstore
 
@@ -341,11 +351,11 @@ products:
               url: http://snapcraft.io/docs/getting-started
             - title: Snap documentation
               url: https://snapcraft.io/docs
-            - title: Tutorial - create your first snap
+            - title: "Tutorial: Create your first snap"
               url: /tutorials/create-your-first-snap
             - title: Snapcraft forum
               url: https://forum.snapcraft.io/
-            - title: Snapcraft Blog
+            - title: Snapcraft blog
               url: https://snapcraft.io/blog
             - title: Build from GitHub
               url: https://snapcraft.io/build
@@ -354,22 +364,22 @@ products:
       primary_links:
         - title: Products
           links:
-            - title: Certified Hardware
-              description: Machines you can trust with Ubuntu
+            - title: Certified hardware
+              description: Machines you can trust
               url: /certified
-            - title: PC and Laptops
+            - title: PC and laptops
               description: Certified for Ubuntu
               url: /certified?q=&limit=20&category=Laptop&category=Desktop
             - title: Servers
-              description: Deploy on certified servers
+              description: Hardware for data centres
               url: /certified/servers
             - title: IoT Devices
               description: Stable and secure devices
               url: /certified/devices
-            - title: System on a Chip
-              description: Supported in Ubuntu
+            - title: SoCs
+              description: System on a Chip hardware
               url: /certified/socs
-            - title: Raspberry Pi devices
+            - title: Raspberry Pi
               description: Certified Pi devices
               url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
 
@@ -392,25 +402,32 @@ products:
         - title: Products
           links:
             - title: Ubuntu Core
-              description: Tiny Embedded Ubuntu
+              description: Minimal embedded Ubuntu
               url: /core
-            - title: Dedicated Snap Store
+            - title: IoT App Store
               description: Private app store for Linux and IoT
-              url: http://snapcraft.io/
+              url: /internet-of-things/appstore
             - title: Device management
+              description: Manage fleets of IoT devices
               url: /internet-of-things/management
             - title: Certified devices
+              description: Hardware/OS compatibility
               url: /certified/devices
             - title: Ubuntu Frame
+              description: Embedded graphical displays
               url: https://mir-server.io/ubuntu-frame
+            - title: ROS ESM
+              description: Expanded security for robots
+              url: /robotics/ros-esm
             - title: IoT Professional Services
+              description: Bring IoT devices to market
               url: /core/smartstart
 
       secondary_links:
         - title: Links
           links:
             - title: Real-time Ubuntu
-              url: /blog/real-time-ubuntu-released
+              url: /blog/real-time-ubuntu-is-now-generally-available
             - title: Guide to IoT lifecycle management
               url: /engage/a-practical-guide-to-iot-lifecycle-management
             - title: Canonical joins the CSA
