@@ -252,8 +252,11 @@ def get_user_subscription_statuses(
         ]
 
         statuses["is_trialled"] = True if active_trial else False
-        if not statuses["is_cancelled"]:
-            statuses["is_subscription_auto_renewing"] = True
+        statuses[
+            "is_subscription_auto_renewing"
+        ] = is_billing_subscription_auto_renewing(
+            subscriptions, subscription_id
+        )
 
     if type in ["yearly", "monthly"]:
         statuses["is_subscription_active"] = is_billing_subscription_active(
