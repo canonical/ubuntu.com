@@ -17,7 +17,7 @@ from webapp.context import (
     schedule_banner,
     sort_by_key_and_ordered_list,
     get_meganav,
-    split_list
+    split_list,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -180,7 +180,7 @@ def init_handlers(app, sentry):
             "http_host": flask.request.host,
             "schedule_banner": schedule_banner,
             "get_meganav": get_meganav,
-            "split_list": split_list
+            "split_list": split_list,
         }
 
     @app.context_processor
