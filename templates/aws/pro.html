@@ -11,6 +11,7 @@
       <h1>Ubuntu Pro for AWS</h1>
       <p class="p-heading--3">For production. For professionals.</p>
       <p>Ubuntu Pro for AWS is a premium image delivering the most comprehensive open source security and AWS compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing AWS invoice.</p>
+      <p>Available on AMD64 and Graviton architectures</p>
       <p class="p-heading--4">
         <a href="/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws">Upgrade Ubuntu LTS to Ubuntu Pro</a>
       </p>
@@ -136,6 +137,54 @@
   </div>
 </section>
 <section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu Pro feature coverage</h2>
+      <table class="p-table" style="width: 100%;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>AMD64</th>
+            <th>Graviton (ARM64)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ESM-Infra</td>
+            <td>All LTS</td>
+            <td>18.04, 20.04, 22.04</td>
+          </tr>
+          <tr>
+            <td>ESM-Apps</td>
+            <td>All LTS</td>
+            <td>18.04, 20.04, 22.04</td>
+          </tr>
+          <tr>
+            <td>Livepatch</td>
+            <td>All LTS</td>
+            <td>Coming soon</td>
+          </tr>
+          <tr>
+            <td>USG</td>
+            <td>All LTS</td>
+            <td>22.04 (CIS)</td>
+          </tr>
+          <tr>
+            <td>FIPS</td>
+            <td>16.04, 18.04 and 20.04</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>FIPS-Updates</td>
+            <td>16.04, 18.04 and 20.04</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h2>AWS compliance made easy</h2>
@@ -158,7 +207,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
@@ -168,7 +217,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <blockquote class="p-pull-quote--large">
@@ -179,7 +228,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Choose the right Ubuntu for you</h2>
@@ -231,59 +280,50 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Pricing for US East (N. Virginia) Region</h2>
-      <div style="overflow-x: auto;">
-        <table class="p-table" style="width: 100%;">
-          <thead>
-            <tr>
-              <th>Example instance size</th>
-              <th class="u-align--right">EC2 hourly</th>
-              <th class="u-align--right">Ubuntu Pro hourly</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>t3.nano</td>
-              <td class="u-align--right">$0.005</td>
-              <td class="u-align--right">$0.001</td>
-            </tr>
-            <tr>
-              <td>t3.medium</td>
-              <td class="u-align--right">$0.042</td>
-              <td class="u-align--right">$0.009</td>
-            </tr>
-            <tr>
-              <td>c5.large</td>
-              <td class="u-align--right">$0.085</td>
-              <td class="u-align--right">$0.019</td>
-            </tr>
-            <tr>
-              <td>r5.xlarge</td>
-              <td class="u-align--right">$0.252</td>
-              <td class="u-align--right">$0.046</td>
-            </tr>
-            <tr>
-              <td>i3.2xlarge</td>
-              <td class="u-align--right">$0.624</td>
-              <td class="u-align--right">$0.088</td>
-            </tr>
-            <tr>
-              <td>r5d.4xlarge</td>
-              <td class="u-align--right">$1.152</td>
-              <td class="u-align--right">$0.127</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>For complete pricing, <a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2">see Ubuntu Pro 18.04 LTS on the AWS Marketplace</a></p>
-      </div>
+      <table class="p-table" style="width: 100%;">
+        <thead>
+          <tr>
+            <th>Example instance size</th>
+            <th class="u-align--right">EC2 + Ubuntu Pro hourly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>t3.nano</td>
+            <td class="u-align--right">$0.009</td>
+          </tr>
+          <tr>
+            <td>t3.medium</td>
+            <td class="u-align--right">$0.045</td>
+          </tr>
+          <tr>
+            <td>c5.large</td>
+            <td class="u-align--right">$0.089</td>
+          </tr>
+          <tr>
+            <td>r5.xlarge</td>
+            <td class="u-align--right">$0.259</td>
+          </tr>
+          <tr>
+            <td>i3.2xlarge</td>
+            <td class="u-align--right">$0.638</td>
+          </tr>
+          <tr>
+            <td>r5d.4xlarge</td>
+            <td class="u-align--right">$1.180</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>For complete pricing, <a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2">see Ubuntu Pro 18.04 LTS on the AWS Marketplace</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
       <h2>Get Ubuntu Pro on AWS now:</h2>
@@ -294,16 +334,13 @@
       <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/prodview-uy7jg4dds3qjw">22.04 LTS</a></h3>
     </div>    
     <div class="col-2 p-divider__block">
-      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/B087L1R4G4">20.04 LTS</a></h3>
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/prodview-ngmnrama2krsg">20.04 LTS</a></h3>
     </div>
     <div class="col-2 p-divider__block">
-      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2">18.04 LTS</a></h3>
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/prodview-322njmk4u5jam">18.04 LTS</a></h3>
     </div>
     <div class="col-2 p-divider__block">
-      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/B0821WW873">16.04 LTS</a></h3>
-    </div>
-    <div class="col-2 p-divider__block">
-      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/B0821V7QJP">14.04 LTS</a></h3>
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/prodview-vmuff4yhmwfna">16.04 LTS</a></h3>
     </div>
   </div>
   <div class="row">
