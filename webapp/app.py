@@ -92,6 +92,7 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_filtered_webhook_responses,
     get_webhook_response,
+    issue_badges,
     rotate_activation_key,
 )
 from webapp.shop.views import (
@@ -906,6 +907,11 @@ app.add_url_rule(
     "/credentials/get_webhook_response",
     view_func=get_webhook_response,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/assessment_passed",
+    view_func=issue_badges,
+    methods=["POST"],
 )
 
 # Charmed OpenStack docs
