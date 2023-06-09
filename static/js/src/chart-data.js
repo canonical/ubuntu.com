@@ -1609,7 +1609,7 @@ export var microStackReleases = [
     taskName: "OpenStack Antelope",
     status: "PRO_SUPPORT",
   },
-]
+];
 
 export var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
@@ -1658,7 +1658,7 @@ export var microStackStatus = {
   STANDARD_SECURITY_MAINTENANCE: "chart__bar--orange",
   MICROSTACK_ESM: "chart__bar--aubergine",
   PRO_SUPPORT: "chart_bar--charcoal",
-}
+};
 
 export var smallReleaseNames = [
   "Ubuntu 22.10",
