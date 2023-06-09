@@ -42,6 +42,8 @@ def get_activate_view(advantage_mapper, **kwargs):
         account = advantage_mapper.get_purchase_account("canonical-ua")
         if account:
             name = account.name
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
 
@@ -59,6 +61,8 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
         if account:
             name = account.name
             accountId = account.id
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
 
