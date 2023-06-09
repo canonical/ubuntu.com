@@ -1518,6 +1518,99 @@ export var kubernetesReleases = [
   },
 ];
 
+export var microStackReleases = [
+  {
+    startDate: new Date("2026-04-01T00:00:00"),
+    endDate: new Date("2031-04-01T00:00:00"),
+    taskName: "OpenStack G LTS",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2031-04-01T00:00:00"),
+    endDate: new Date("2036-04-01T00:00:00"),
+    taskName: "OpenStack G LTS",
+    status: "MICROSTACK_ESM",
+  },
+  {
+    startDate: new Date("2026-04-01T00:00:00"),
+    endDate: new Date("2036-04-01T00:00:00"),
+    taskName: "OpenStack G LTS",
+    status: "PRO_SUPPORT",
+  },
+  {
+    startDate: new Date("2025-10-01T00:00:00"),
+    endDate: new Date("2026-08-01T00:00:00"),
+    taskName: "OpenStack F",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2025-04-01T00:00:00"),
+    endDate: new Date("2025-12-01T00:00:00"),
+    taskName: "OpenStack E",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2025-12-01T00:00:00"),
+    endDate: new Date("2028-04-01T00:00:00"),
+    taskName: "OpenStack E",
+    status: "MICROSTACK_ESM",
+  },
+  {
+    startDate: new Date("2025-04-01T00:00:00"),
+    endDate: new Date("2028-04-01T00:00:00"),
+    taskName: "OpenStack E",
+    status: "PRO_SUPPORT",
+  },
+  {
+    startDate: new Date("2024-10-01T00:00:00"),
+    endDate: new Date("2025-02-01T00:00:00"),
+    taskName: "OpenStack D",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2024-04-01T00:00:00"),
+    endDate: new Date("2029-04-01T00:00:00"),
+    taskName: "OpenStack C LTS",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2029-04-01T00:00:00"),
+    endDate: new Date("2034-04-01T00:00:00"),
+    taskName: "OpenStack C LTS",
+    status: "MICROSTACK_ESM",
+  },
+  {
+    startDate: new Date("2024-04-01T00:00:00"),
+    endDate: new Date("2034-04-01T00:00:00"),
+    taskName: "OpenStack C LTS",
+    status: "PRO_SUPPORT",
+  },
+  {
+    startDate: new Date("2024-04-01T00:00:00"),
+    endDate: new Date("2024-08-01T00:00:00"),
+    taskName: "OpenStack B",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2023-10-01T00:00:00"),
+    endDate: new Date("2023-12-01T00:00:00"),
+    taskName: "OpenStack Antelope",
+    status: "STANDARD_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2023-12-01T00:00:00"),
+    endDate: new Date("2026-04-01T00:00:00"),
+    taskName: "OpenStack Antelope",
+    status: "MICROSTACK_ESM",
+  },
+  {
+    startDate: new Date("2023-10-01T00:00:00"),
+    endDate: new Date("2026-04-01T00:00:00"),
+    taskName: "OpenStack Antelope",
+    status: "PRO_SUPPORT",
+  },
+]
+
 export var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
@@ -1560,6 +1653,12 @@ export var kubernetesStatus = {
   CANONICAL_KUBERNETES_SUPPORT: "chart__bar--orange",
   CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
 };
+
+export var microStackStatus = {
+  STANDARD_SECURITY_MAINTENANCE: "chart__bar--orange",
+  MICROSTACK_ESM: "chart__bar--aubergine",
+  PRO_SUPPORT: "chart_bar--charcoal",
+}
 
 export var smallReleaseNames = [
   "Ubuntu 22.10",
@@ -1747,6 +1846,16 @@ export var openStackReleaseNames = [
   "Ubuntu 18.04 LTS",
   "OpenStack Mitaka LTS",
   "Ubuntu 16.04 LTS",
+];
+
+export var microStackReleaseNames = [
+  "OpenStack G LTS",
+  "OpenStack F",
+  "OpenStack E",
+  "OpenStack D",
+  "OpenStack C LTS",
+  "OpenStack B",
+  "OpenStack Antelope",
 ];
 
 export var kubernetesReleaseNames = [
