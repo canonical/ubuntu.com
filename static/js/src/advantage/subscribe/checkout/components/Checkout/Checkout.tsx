@@ -98,6 +98,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                           quantity={quantity}
                           product={product}
                           action={action}
+                          setError={setError}
                         />
                       ),
                     },

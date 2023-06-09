@@ -63,7 +63,12 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -105,7 +110,12 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -135,7 +145,12 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -145,5 +160,39 @@ describe("Summary", () => {
     expect(screen.getByTestId("end-date")).toHaveTextContent(
       "03 February 2042"
     );
+  });
+
+  it("renders correctly with a preview error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: true,
+        error: { message: "error" },
+        isFetching: false,
+      };
+    });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={jest.fn()}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    screen.getByText("Purchase error");
   });
 });
