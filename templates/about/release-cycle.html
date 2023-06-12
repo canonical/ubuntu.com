@@ -64,80 +64,7 @@
       <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
     </div>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <h3 class="u-no-margin--bottom">Ubuntu releases</h3>
-
-        <div class="u-hide--small" id="server-desktop-eol"></div>
-
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
-              <th scope="col">Released</th>
-              <th scope="col">End of Standard Support</th>
-              <th scope="col">End of Ubuntu Pro Support</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>22.10 (Kinetic Kudu)</strong></td>
-              <td>Oct 2022</td>
-              <td>Jul 2023</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
-              <td>Apr 2022</td>
-              <td>May 2027</td>
-              <td>Apr 2032</td>
-            </tr>
-            <tr>
-              <td>21.10 (Impish Indri)</td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>21.04 (Hirsute Hippo)</td>
-              <td>Apr 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>20.10 (Groovy Gorilla)</td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
-              <td>Apr 2020</td>
-              <td>May 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
-              <td>Apr 2018</td>
-              <td>May 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2026</td>
-            </tr>
-            <tr>
-              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2024</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    {% include "/about/release_cycles/ubuntu-eol.html" %}
 
     <div class="u-fixed-width">
       <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.</p>
@@ -238,145 +165,7 @@
       <p>The Ubuntu kernel support lifecycle is as follows:</p>
     </div>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <div class="u-hide--small" id="kernel-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <th>Kernel version</th>
-              <th>Ubuntu version</th>
-              <th>Released</th>
-              <th>End of life</th>
-              <th>Expanded security maintenance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="2"><strong>22.04 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.5 LTS</strong></td>
-              <td>Aug 2022</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 22.04.0 LTS</strong></td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>Mar 2032</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.13 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.4 LTS</strong></td>
-              <td>Feb 2022</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 21.10</strong></td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.11 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.3 LTS</strong></td>
-              <td>Aug 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 21.04</strong></td>
-              <td>Apr 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.8 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.2 LTS</strong></td>
-              <td>Feb 2021</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.10</strong></td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.5 LTS</strong></td>
-              <td>Aug 2020</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.04.1 LTS</strong></td>
-              <td>Aug 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.04.0 LTS</strong></td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><strong>4.15 kernel</strong></td>
-              <td><strong>Ubuntu 16.04.5 LTS</strong></td>
-              <td>Aug 2018</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.1 LTS</strong></td>
-              <td>Jul 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.0 LTS</strong></td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><strong>4.4 kernel</strong></td>
-              <td><strong>Ubuntu 14.04.5 LTS</strong></td>
-              <td>Aug 2016</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 16.04.1 LTS</strong></td>
-              <td>Jul 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 16.04.0 LTS</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>3.13 kernel</strong></td>
-              <td><strong>Ubuntu 14.04.1 LTS</strong></td>
-              <td>Jul 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 14.04.0 LTS</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    {% include "/about/release_cycles/kernel-eol.html" %}
 
     <div class="u-fixed-width">
       <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack">Ubuntu LTS Enablement Stack wiki page</a>.</p>
@@ -402,7 +191,7 @@
     
       <p>Chramed OpenStack support lifecycle on Ubuntu can be represented in this way:</p>
 
-      {% include "/about/openstack-release-cycle.html" %}
+      {% include "/about/release_cycles/openstack-eol.html" %}
 
       <p>For more information on supported versions, see <a href="/openstack/docs/supported-versions">Charmed OpenStack documentation</a>.</p>
     </div>
@@ -415,7 +204,7 @@
 
       <p>MicroStack support lifecycle on Ubuntu can be represented this way:</p>
 
-      {% include "/about/microstack-release-cycle.html" %}
+      {% include "/about/release_cycles/microstack-eol.html" %}
 
       <p>For more information on supported versions, see <a href="https://microstack.run/docs">MicroStack documentation</a>.</p>
     </div>
@@ -435,107 +224,7 @@
       <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
     </div>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <div class="u-hide--small" id="kubernetes-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <th>Release</th>
-              <th>Released</th>
-              <th>End of N-2 Support</th>
-              <th>End of N-4 ESM Support</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1.27.x</strong></td>
-              <td align='right'>April 2023</td>
-              <td align='right'>April 2024</td>
-              <td align='right'>Dec 2024</td>
-            </tr>
-            <tr>
-              <td><strong>1.26.x</strong></td>
-              <td align='right'>Dec 2022</td>
-              <td align='right'>Dec 2023</td>
-              <td align='right'>Aug 2024</td>
-            </tr>
-            <tr>
-              <td><strong>1.25.x</strong></td>
-              <td align='right'>Sep 2022</td>
-              <td align='right'>Aug 2023</td>
-              <td align='right'>May 2024</td>
-            </tr>
-            <tr>
-              <td><strong>1.24.x</strong></td>
-              <td align='right'>May 2022</td>
-              <td align='right'>May 2023</td>
-              <td align='right'>Dec 2023</td>
-            </tr>
-            <tr>
-              <td><strong>1.23.x</strong></td>
-              <td align='right'>Dec 2021</td>
-              <td align='right'>Dec 2022</td>
-              <td align='right'>Aug 2023</td>
-            </tr>
-            <tr>
-              <td><strong>1.22.x</strong></td>
-              <td align='right'>Sep 2021</td>
-              <td align='right'>Sep 2022</td>
-              <td align='right'>May 2023</td>
-            </tr>
-            <tr>
-              <td><strong>1.21.x</strong></td>
-              <td align='right'>Apr 2021</td>
-              <td align='right'>May 2022</td>
-              <td align='right'>Dec 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.20.x</strong></td>
-              <td align='right'>Dec 2020</td>
-              <td align='right'>Dec 2021</td>
-              <td align='right'>Sep 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.19.x</strong></td>
-              <td align='right'>Sep 2020</td>
-              <td align='right'>Sep 2021</td>
-              <td align='right'>May 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.18.x</strong></td>
-              <td align='right'>Apr 2020</td>
-              <td align='right'>Apr 2021</td>
-              <td align='right'>Dec 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.17.x</strong></td>
-              <td align='right'>Dec 2019</td>
-              <td align='right'>Dec 2020</td>
-              <td align='right'>Sep 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.16.x</strong></td>
-              <td align='right'>Sep 2019</td>
-              <td align='right'>Sep 2020</td>
-              <td align='right'>Apr 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.15.x</strong></td>
-              <td>Jun 2019</td>
-              <td>Apr 2020</td>
-              <td>Dec 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.14.x</strong></td>
-              <td>Mar 2019</td>
-              <td>Dec 2019</td>
-              <td>Sep 2020</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    {% include "/about/release_cycles/k8s-eol.html" %}
 
     <div class="u-fixed-width">
       <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Charmed Kubernetes release notes</a> or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a></p>
