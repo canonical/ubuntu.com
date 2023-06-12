@@ -598,7 +598,7 @@ def openstack_install():
         blueprint_name="openstack-install-docs",
     )
 
-    singlenode_topic = openstack_install_docs.parser.api.get_topic(21427)
+    singlenode_topic = openstack_install_docs.parser.api.get_topic(35230)
     singlenode_topic_soup = BeautifulSoup(
         singlenode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
@@ -608,7 +608,7 @@ def openstack_install():
     )
     openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
 
-    multinode_topic = openstack_install_docs.parser.api.get_topic(18259)
+    multinode_topic = openstack_install_docs.parser.api.get_topic(35727)
     multinode_topic_soup = BeautifulSoup(
         multinode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
