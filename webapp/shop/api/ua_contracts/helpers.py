@@ -267,7 +267,12 @@ def get_user_subscription_statuses(
             subscriptions, subscription_id
         )
 
-        is_cancelled = True if not current_number_of_machines else False
+        is_cancelled = (
+            True
+            if not current_number_of_machines
+            or not statuses["is_subscription_active"]
+            else False
+        )
         statuses["is_cancelled"] = is_cancelled
         statuses["should_present_auto_renewal"] = (
             statuses["is_subscription_active"] and not is_cancelled
