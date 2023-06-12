@@ -555,7 +555,7 @@
       </p>
     </div>
     <div class="col-6 p-card" >
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/7f65439f-dev-at-laptop.svg" alt="">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/bc82ea7f-dev-at-laptop-icon.svg" alt="">
       <hr class="u-sv1">
       <h4>Self-managed OpenStack</h4>
       <p class="p-card__content u-sv2">You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.</p>
@@ -564,35 +564,36 @@
       </p>
     </div>
   </div>
-  <div class="u-hide" id="deployment-cards">
-    <div class="u-fixed-width">
-      <h3 class="p-heading--4">Who will deploy your OpenStack?</h3>
+</section>
+
+<section class="p-strip is-shallow u-hide" id="deployment-cards">
+  <div class="u-fixed-width">
+    <h3 class="p-heading--4">Who will deploy your OpenStack?</h3>
+  </div>
+  <div class="row">
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Canonical-deployed OpenStack</h4>
+      <p class="p-card__content u-sv2">We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.</p>
+      <p>
+        <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
+      </p>
+      <p>
+        <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;&rsaquo;</a>
+      </p>
     </div>
-    <div class="row">
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg" alt="">
-        <hr class="u-sv1">
-        <h4>Canonical-deployed OpenStack</h4>
-        <p class="p-card__content u-sv2">We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.</p>
-        <p>
-          <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
-        </p>
-        <p>
-          <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-6 p-card">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg" alt="">
-        <hr class="u-sv1">
-        <h4>Self-deployed OpenStack</h4>
-        <p class="p-card__content u-sv2">You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://microstack.run">MicroStack</a> also qualify for full commercial support undder any <a href="/pro">Ubuntu Pro + Support subscription</a>.</p>
-        <p>
-          <a class="p-button--positive" href="/openstack/contact-us">Deploy OpenStack yourself</a>
-        </p>
-      </div>
-      <div class="u-fixed-width">
-        <p>Need something else? Visit our <a href="/openstack/support">OpenStack suppoort page</a> for other possible options and plans.</p>
-      </div>
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Self-deployed OpenStack</h4>
+      <p class="p-card__content u-sv2">You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://microstack.run">MicroStack</a> also qualify for full commercial support undder any <a href="/pro">Ubuntu Pro + Support subscription</a>.</p>
+      <p>
+        <a class="p-button--positive" href="/openstack/contact-us">Deploy OpenStack yourself</a>
+      </p>
+    </div>
+    <div class="u-fixed-width">
+      <p>Need something else? Visit our <a href="/openstack/support">OpenStack suppoort page</a> for other possible options and plans.</p>
     </div>
   </div>
 </section>
@@ -821,43 +822,14 @@
   </div>
 </section>
 
-  <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
-  <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
-  <script>
-    initCarousel('#testimonials', '#testimonials-next', '#testimonials-previous');
-
-    function initCarousel(carouselSelector, nextCTAselector, previousCTAselector) {
-    console.log("here")
-    var nextCTA = document.querySelector(nextCTAselector);
-    var previousCTA = document.querySelector(previousCTAselector);
-    var carousel = new Flickity(carouselSelector, {
-      imagesLoaded: true,
-      prevNextButtons: false,
-      wrapAround: true,
-    });
-
-    if (nextCTA) {
-      nextCTA.addEventListener("click", function (e) {
-        e.preventDefault();
-        carousel.next();
-      });
-    }
-
-    if (previousCTA) {
-      previousCTA.addEventListener("click", function (e) {
-        e.preventDefault();
-        carousel.previous();
-      });
-    }
-    }
-
-    function selectSelfManaged(){
-      const deploymentCards = document.getElementById("deployment-cards")
-      deploymentCards.classList.remove("u-hide")
-      deploymentCards.scrollIntoView()
-    }
+<script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
+<script>
+  function selectSelfManaged(){
+    const deploymentCards = document.getElementById("deployment-cards")
+    deploymentCards.classList.remove("u-hide")
+    deploymentCards.scrollIntoView()
+  }
 </script>
-
 
 {% with first_item="_openstack_next_step", second_item="_openstack_documentation", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

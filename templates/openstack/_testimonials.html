@@ -49,3 +49,33 @@
     </div>
   </div>
 </div>
+
+<script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+
+<script>
+  initCarousel('#testimonials', '#testimonials-next', '#testimonials-previous');
+
+  function initCarousel(carouselSelector, nextCTAselector, previousCTAselector) {
+    var nextCTA = document.querySelector(nextCTAselector);
+    var previousCTA = document.querySelector(previousCTAselector);
+    var carousel = new Flickity(carouselSelector, {
+      imagesLoaded: true,
+      prevNextButtons: false,
+      wrapAround: true,
+    });
+
+    if (nextCTA) {
+      nextCTA.addEventListener("click", function (e) {
+        e.preventDefault();
+        carousel.next();
+      });
+    }
+
+    if (previousCTA) {
+      previousCTA.addEventListener("click", function (e) {
+        e.preventDefault();
+        carousel.previous();
+      });
+    }
+  }
+</script>
