@@ -1349,3 +1349,11 @@ hr.p-separator.is-shallow {
 .bordered-thumbnail {
   border: 1px solid $colors--light-theme--border-low-contrast;
 }
+
+.spaced-bottom {
+  margin-bottom: $sp-x-large;
+
+  @media screen and (max-width: calc($breakpoint-medium - 1px)) {
+    margin-bottom: $sp-xxxxx-large
+  }
+}
