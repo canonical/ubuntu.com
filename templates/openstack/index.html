@@ -529,7 +529,7 @@
     <div class="col-6">
       <h2>Cost-effective cloud infrastructure</h2>
       <h3 class="p-heading--4">For private clouds and public clouds.</h3>
-      <p>Learn how Nayatel &ndash; leading service provider in Pakistan &ndash; partnered with Canonical to build the country's first cost-effective enterprise-grade public cloud infrastructure on Ubuntu.</p>
+      <p>Learn how Nayatel &ndash; a leading service provider in Pakistan &ndash; partnered with Canonical to build the country's first cost-effective enterprise-grade public cloud infrastructure on Ubuntu.</p>
       <p><a href="/engage/nayatel-casestudy-charmed-openstack">Read the case study&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -539,62 +539,63 @@
   <div class="u-fixed-width">
     <h2 id="get-your-openstack">Get your OpenStack</h2>
     <p>Find the option that suits you best:</p>
-    <h3 class="p-heading--4">Who will manage your OpenStack?</h3>
-  </div>
-  <div class="row">
-    <div class="col-6 p-card" >
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg" alt="">
-      <hr class="u-sv1">
-      <h4>Canonical-managed OpenStack</h4>
-      <p class="p-card__content u-sv2">We deploy OpenStack for you and manage it 24/7. This includes typical daily maintenance tasks, incident and problem resolution, recurring upgrades and more. You will rest assured that your cloud is in good hands and benefit from a public cloud-like experience.</p>
-      <p>
-        <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
-      </p>
-      <p>
-        <a href="/openstack/managed">Learn more about Canonical-managed OpenStack&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6 p-card" >
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/bc82ea7f-dev-at-laptop-icon.svg" alt="">
-      <hr class="u-sv1">
-      <h4>Self-managed OpenStack</h4>
-      <p class="p-card__content u-sv2">You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.</p>
-      <p>
-        <button class="p-button" onclick="selectSelfManaged()">Manage OpenStack yourself</button>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-shallow u-hide" id="deployment-cards">
-  <div class="u-fixed-width">
-    <h3 class="p-heading--4">Who will deploy your OpenStack?</h3>
-  </div>
-  <div class="row">
-    <div class="col-6 p-card">
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg" alt="">
-      <hr class="u-sv1">
-      <h4>Canonical-deployed OpenStack</h4>
-      <p class="p-card__content u-sv2">We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.</p>
-      <p>
-        <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
-      </p>
-      <p>
-        <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6 p-card">
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg" alt="">
-      <hr class="u-sv1">
-      <h4>Self-deployed OpenStack</h4>
-      <p class="p-card__content u-sv2">You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://microstack.run">MicroStack</a> also qualify for full commercial support undder any <a href="/pro">Ubuntu Pro + Support subscription</a>.</p>
-      <p>
-        <a class="p-button--positive" href="/openstack/contact-us">Deploy OpenStack yourself</a>
-      </p>
-    </div>
-    <div class="u-fixed-width">
-      <p>Need something else? Visit our <a href="/openstack/support">OpenStack suppoort page</a> for other possible options and plans.</p>
-    </div>
+    <ol class="p-stepped-list">
+      <li class="p-stepped-list__item">
+        <h3 class="p-heading--4 p-stepped-list__title">Who will manage your OpenStack?</h3>
+        <div class="row">
+          <div class="col-6 p-card" >
+            <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg" alt="">
+            <hr class="u-sv1">
+            <h4>Canonical-managed OpenStack</h4>
+            <p class="p-card__content u-sv2">We deploy OpenStack for you and manage it 24/7. This includes typical daily maintenance tasks, incident and problem resolution, recurring upgrades and more. You will rest assured that your cloud is in good hands and benefit from a public cloud-like experience.</p>
+            <p>
+              <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
+            </p>
+            <p>
+              <a href="/openstack/managed">Learn more about Canonical-managed OpenStack&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+          <div class="col-6 p-card" >
+            <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/bc82ea7f-dev-at-laptop-icon.svg" alt="">
+            <hr class="u-sv1">
+            <h4>Self-managed OpenStack</h4>
+            <p class="p-card__content u-sv2">You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.</p>
+            <p>
+              <button class="p-button" onclick="selectSelfManaged()">Manage OpenStack yourself</button>
+            </p>
+          </div>
+        </div>
+      </li>
+      <li class="p-stepped-list__item u-hide" id="deployment-cards" style="padding-top: 1rem;">
+        <h3 class="p-heading--4 p-stepped-list__title">Who will deploy your OpenStack?</h3>
+        <div class="row">
+          <div class="col-6 p-card">
+            <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg" alt="">
+            <hr class="u-sv1">
+            <h4>Canonical-deployed OpenStack</h4>
+            <p class="p-card__content u-sv2">We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.</p>
+            <p>
+              <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
+            </p>
+            <p>
+              <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+          <div class="col-6 p-card">
+            <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg" alt="">
+            <hr class="u-sv1">
+            <h4>Self-deployed OpenStack</h4>
+            <p class="p-card__content u-sv2">You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://microstack.run">MicroStack</a> also qualify for full commercial support undder any <a href="/pro">Ubuntu Pro + Support subscription</a>.</p>
+            <p>
+              <a class="p-button--positive" href="/openstack/contact-us">Deploy OpenStack yourself</a>
+            </p>
+          </div>
+          <div class="u-fixed-width">
+            <p>Need something else? Visit our <a href="/openstack/support">OpenStack suppoort page</a> for other possible options and plans.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -719,7 +720,7 @@
         Secure, compliant, hardened
       </h2>
       <p>
-        Canonical provides up to ten years of security updates for Charmed OpenStack under the <a href="/pro">Ubuntu Pro subscription</a> for customers who value stability above all else. Moreover, the support package includes various EU and US regulatory compliance options. Additional hardening tools and benchmarks ensure the highest level of security.
+        Canonical provides up to ten years of security updates for Charmed OpenStack under the <a href="/pro">Ubuntu Pro subscription</a> for customers who value stability above all else. The support package includes various EU and US regulatory compliance options. Additional hardening tools and benchmarks ensure the highest level of security.
       </p>
     </div>
   </div>
