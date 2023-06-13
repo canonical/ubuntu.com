@@ -724,7 +724,7 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="guest", response=json)
 def issue_badges(trueability_api, credly_api, **kwargs):
     req = flask.request.json
     webhook_response = req["webhook_response"]
