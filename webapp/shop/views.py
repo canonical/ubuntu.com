@@ -55,26 +55,28 @@ def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
         return flask.jsonify({"error": "access forbidden"}), 403
 
     last_purchase_ids = {}
-    subscription_counter = 0
-    for marketplace in SERVICES:
-        if marketplace == "canonical-cube":
-            continue
 
-        subscriptions = advantage_mapper.get_account_subscriptions(
-            account_id=account.id,
-            marketplace=marketplace,
-        )
+    subscriptions = advantage_mapper.get_account_subscriptions(
+        account_id=account.id,
+        marketplace=marketplace,
+    )
 
-        subscription_counter += len(subscriptions)
+    active_subscriptions = [
+        subscription
+        for subscription in subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
 
-        last_purchase_ids[marketplace] = extract_last_purchase_ids(
-            subscriptions
-        )
+    can_trial = not active_subscriptions and not any(
+        sub for sub in subscriptions if sub.in_trial
+    )
+
+    last_purchase_ids[marketplace] = extract_last_purchase_ids(subscriptions)
 
     response = {
         "account": to_dict(account),
         "last_purchase_ids": last_purchase_ids,
-        "can_trial": subscription_counter == 0,
+        "can_trial": can_trial,
     }
 
     return flask.jsonify(response), 200
