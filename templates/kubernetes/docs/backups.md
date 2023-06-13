@@ -26,7 +26,7 @@ documentation for details.
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
-    <p class="p-notification__message">Snapshots can only be restored on the **same major version of etcd**.</p>
+    <p class="p-notification__message">Snapshots can only be restored on the <em>same major version of etc</em>.</p>
   </div>
 </div>
 
