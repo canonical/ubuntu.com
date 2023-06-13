@@ -36,22 +36,22 @@ As an Ubuntu Pro or Ubuntu Pro (Infra-only) customer, with or without support, y
         3. Security fixes for CVEs that are not High or Critical
         4. A guarantee to fix all High or Critical CVEs
 2. <span id="other-security-fixes">Other security fixes</span>
-    5. Security fixes for OpenStack, Ceph, MAAS
-    6. The scope of security fixes for each of those products is described in their respective sections below
+    1. Security fixes for OpenStack, Ceph, MAAS
+    2. The scope of security fixes for each of those products is described in their respective sections below
 3. <a id="uprosd-certified" href="/security/certifications">Certified components for compliance, hardening and audit</a>
-    7. FIPS 140-2 Level 1 certified modules for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
-    8. FIPS 140-3 Level 1 certified modules for Ubuntu 22.04 LTS (coming soon)
-    9. Common Criteria EAL2 for Ubuntu 18.04 LTS and 16.04 LTS
-    10. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 18.04 LTS and 16.04 LTS 
-    11. Ubuntu Security Guide (USG) for Ubuntu 20.04 LTS which includes certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
-    12. Ubuntu Security Guide (USG) Ubuntu 22.04 LTS (coming soon) which will include certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
-4. <a id="uprosd-landscape" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
-    13. Access to Canonical's Landscape systems management and the knowledge base
+    1. FIPS 140-2 Level 1 certified modules for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
+    2. FIPS 140-3 Level 1 certified modules for Ubuntu 22.04 LTS (coming soon)
+    3. Common Criteria EAL2 for Ubuntu 18.04 LTS and 16.04 LTS
+    4. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 18.04 LTS and 16.04 LTS 
+    5. Ubuntu Security Guide (USG) for Ubuntu 20.04 LTS which includes certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
+    6. Ubuntu Security Guide (USG) Ubuntu 22.04 LTS (coming soon) which will include certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
+4. <a id="uprosd-landscape" href="https://landscape.canonical.com/">Landscape and knowledge base access</a>
+    1. Access to Canonical's Landscape systems management and the knowledge base
 5. <a id="uprosd-livepatch" href="/livepatch">Kernel Livepatch</a>
-    14. Access to Canonical's kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
-    15. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
-    16. Only the [default LTS kernel](https://ubuntu.com/about/release-cycle) is available for livepatching. This includes its backport as the last HWE kernel to the previous LTS release
-    17. Access to Canonical's Livepatch on-prem server
+    1. Access to Canonical's kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
+    2. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
+    3. Only the [default LTS kernel](https://ubuntu.com/about/release-cycle) is available for livepatching. This includes its backport as the last HWE kernel to the previous LTS release
+    4. Access to Canonical's Livepatch on-prem server
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -64,65 +64,71 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     2. Apps support: weekday or 24/7 
     3. Full Stack Support (Infra & Apps): weekday or 24/7
 2. <span id="uprosd-infra-and-apps">Included in all support levels</span>:
-    4. <span id="uprosd-ubuntu-releases">Ubuntu releases</span>
+    1. <span id="uprosd-ubuntu-releases">Ubuntu releases</span>
         1. Break-fix support for standard installation, configuration, maintenance, and troubleshooting and usage of any Ubuntu LTS release when installed using official sources and within [Ubuntu lifecycle](https://www.ubuntu.com/about/release-cycle). Bug-fix support is not offered after the [End of Standard Support](https://wiki.ubuntu.com/Releases)
-    5. <span id="uprosd-certified-hardware">Certified hardware</span>
-        2. Ubuntu Certified hardware has passed Canonical's extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification](http://www.ubuntu.com/certification)
-        3. Full support applies only with respect to customer's hardware that has been certified. In the event a customer requests the services with respect to hardware, which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description
-    6. <span id="uprosd-packages-and-kernels">Supported services</span>
-        4. The following packages, kernels and services are within the scope of support:
+    2. <span id="uprosd-certified-hardware">Certified hardware</span>
+        1. Ubuntu Certified hardware has passed Canonical's extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification](http://www.ubuntu.com/certification)
+        2. Full support applies only with respect to customer's hardware that has been certified. In the event a customer requests the services with respect to hardware, which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description
+    3. <span id="uprosd-packages-and-kernels">Supported services</span>
+        1. The following packages, kernels and services are within the scope of support:
             1. Canonical maintained packages in Ubuntu Main repository
             2. Packages in the Ubuntu Cloud Archive
             3. Canonical maintained Snap packages, Charms and OCI images
             4. [Supported Kernels](https://ubuntu.com/about/release-cycle#Ubuntu%20kernel%20release%20cycle)
             5. Landscape
             6. Kernel Livepatch
-        5. Support is not provided for any packages that have been modified
-    7. <span id="uprosd-kubernetes">Kubernetes</span>
-        6. <span id="uprosd-kubernetes-cluster">Kubernetes cluster Full-Stack Support requirements</span>:
-            7. Kubernetes installations deployed via:
+        2. Support is not provided for any packages that have been modified
+    4. <span id="uprosd-kubernetes">Kubernetes</span>
+        1. <span id="uprosd-kubernetes-cluster">Kubernetes cluster Full-Stack Support requirements</span>:
+            1. Kubernetes installations deployed via:
                 1. Charmed Kubernetes in at least the minimum deployment configuration
                 2. A kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS validated by Canonical
                 3. [MicroK8s](https://microk8s.io/)
-            8. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm
-            9. Support must be purchased for all Nodes in the supported Kubernetes cluster
-            10. Supported versions of Kubernetes include:
-                4. Weekday or 24/7 Support for N-2 (the latest and previous two) releases in the stable release channel
-                5. ESM security patching for N-4 (the latest and previous four) releases in the stable release channel
-            11. For any deployment of Charmed Kubernetes carried out by Canonical while under contract for a deployment, which results in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment
-        7. <span id="uprosd-kubernetes-support">Limited Kubernetes Support</span>
-            12. Unless the Full-Stack Support requirements set out above are met, support is limited to Bug-fix Support for:
-                6. The software packages and Charms necessary for running Charmed Kubernetes
-                7. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io
+            2. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm
+            3. Support must be purchased for all Nodes in the supported Kubernetes cluster
+            4. Supported versions of Kubernetes include:
+                1. Weekday or 24/7 Support for N-2 (the latest and previous two) releases in the stable release channel
+                2. ESM security patching for N-4 (the latest and previous four) releases in the stable release channel
+            5. For any deployment of Charmed Kubernetes carried out by Canonical while under contract for a deployment, which results in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment
+        2. <span id="uprosd-kubernetes-support">Limited Kubernetes Support</span>
+            1. Unless the Full-Stack Support requirements set out above are met, support is limited to Bug-fix Support for:
+                1. The software packages and Charms necessary for running Charmed Kubernetes
+                2. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io
 3. <span id="uprosd-infra-only">Support &mdash; included in Infra and Full Stack support, but not included in Apps support</span>:
-    8. <span id="uprosd-openstack">OpenStack</span>
-        8. OpenStack software support depends on the Ubuntu release deployed on the underlying Nodes:
-            13. The [version of OpenStack provided initially in the release of a LTS version of Ubuntu ](https://www.ubuntu.com/about/release-cycle )is supported for the entire lifecycle of that Ubuntu version
-            14. Releases of OpenStack after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version
-        9. OpenStack support requires all Nodes that participate in the OpenStack Cloud to be covered under an active support agreement
-        10. OpenStack support includes access to use available Canonical provided Microsoft-certified drivers in Windows Guest instances
-        11. <span id="uprosd-full-openstack-support">Full OpenStack support</span>
-            15. Requirements:
-                8. In addition to the requirements set out above, hardware must meet the [minimum criteria](https://assets.ubuntu.com/v1/193373c7-canonical-foundation-cloud-requirements-2018-07-18.pdf) for Charmed OpenStack
-                9. The OpenStack Cloud was deployed via a Private Cloud Build or was validated through a Cloud Validation engagement
-            16. Scope:
-                10. Support for the Charms deployed
-                11. For any deployments under contract with Canonical, which result in customisation of any Charms, customisation will be valid for 90 days after the official release of the Charm which includes the customisations
-                12. Support is included for all packages required to run OpenStack as deployed
-                13. Upgrades of OpenStack components as part of the regular Ubuntu LTS maintenance cycle
-                14. Upgrades between versions of OpenStack or LTS versions of Ubuntu, Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build or Cloud Validation Package
-                15. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported
-        12. <span id="uprosd-limited-openstack-support">Limited OpenStack support</span>
-            17. OpenStack clouds not deployed through a [Private Cloud Build](https://ubuntu.com/pricing/consulting) or validated using the Cloud Validation Package are limited to Bug-fix Support
-            18. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud
-        13. <span id="uprosd-exclusions">Exclusions</span>
-            19. Full Stack Support excludes customisations which are not considered Valid Customisations
-            20. Support for workloads other than those required to run an OpenStack deployment
-            21. Support for Guest Instances other than Cloud Guests
-    9. <span id="uprosd-charms-support">Charms support</span>
-        14. Each Charm version is supported for one year from the release date
-        15. Canonical will not provide support for any Charms that have been modified from the [supported version](https://docs.openstack.org/charm-guide/latest/reference/openstack-charms.html)
-    10. <span id="uprosd-ceph-storage-support">Ceph storage support</span>
+    1. <span id="uprosd-openstack">OpenStack</span>
+        1. OpenStack software support depends on the Ubuntu release deployed on the underlying Nodes:
+            1. The [version of OpenStack provided initially in the release of a LTS version of Ubuntu](https://ubuntu.com/about/release-cycle#openstack-release-cycle) is supported for the entire lifecycle of that Ubuntu version
+            2. Releases of OpenStack after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version
+        2. OpenStack support requires all Nodes that participate in the OpenStack Cloud to be covered under an active support agreement
+        3. OpenStack support includes access to use available Canonical provided Microsoft-certified drivers in Windows Guest instances
+        4. <span id="uprosd-full-openstack-support">Full OpenStack support</span>
+            1. Requirements:
+                1. OpenStack Charms-based deployments:
+                   1. In addition to the requirements set out above, hardware must meet the minimum criteria as specified by Canonical as part of the [Private Cloud Build](https://ubuntu.com/openstack/consulting) or [Cloud Validation](https://ubuntu.com/openstack/consulting) consulting engagements
+                   2. The OpenStack Cloud was deployed by Canonical via a [Private Cloud Build](https://ubuntu.com/openstack/consulting) or was validated by Canonical through [Cloud Validation](https://ubuntu.com/openstack/consulting)
+                2. MicroStack-based deployments:
+                   1. In addition to the requirements set out above, hardware must meet the minimum criteria as specified in [MicroStack documentation](https://microstack.run/docs/enterprise-reqs)
+                   2. The OpenStack Cloud was deployed with [MicroStack](https://microstack.run/)
+            2. Scope:
+                1. Support for the Charms deployed
+                2. For any deployments under contract with Canonical, which result in customisation of any Charms, customisation will be valid for 90 days after the official release of the Charm which includes the customisations
+                3. Support is included for all Canonical-provided packages, snaps and OCI images required to run OpenStack as deployed
+                4. Any incidents found during the Upgrade of OpenStack components as part of the regular Ubuntu LTS maintenance cycle
+                5. Any incidents found during the Upgrade between versions of OpenStack or LTS versions of Ubuntu, Juju, and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build, Cloud Validation or [MicroStack documentation](https://microstack.run/docs)
+                6. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported
+            3. Covered Software
+               1. All software, including charms, snaps, images and debs required to deploy OpenStack as defined under 3.1.4. is covered by bug-fix and break-fix support.
+        5. <span id="uprosd-limited-openstack-support">Limited OpenStack support</span>
+            1. OpenStack clouds not deployed through a Private Cloud Build or MicroStack, or validated through a Cloud Validation are limited to Bug-fix Support
+            2. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud
+        6. <span id="uprosd-exclusions">Exclusions</span>
+            1. Full Stack Support excludes customisations which are not considered Valid Customisations or are not covered in [MicroStack documentation](https://microstack.run/docs)
+            2. Support for workloads other than those required to run an OpenStack deployment
+            3. Support for Guest Instances other than Ubuntu Cloud Guests
+    2. <span id="uprosd-charms-support">Charms support</span>
+        1. Each Charm version is supported for one year from the release date
+        2. Canonical will not provide support for any Charms that have been modified from the [supported version](https://docs.openstack.org/charm-guide/latest/reference/openstack-charms.html)
+    3. <span id="uprosd-ceph-storage-support">Ceph storage support</span>
         1. Ceph storage support depends on the Ubuntu release deployed on the underlying storage nodes:
             1. The [version of Ceph](https://ubuntu.com/ceph/docs/supported-ceph-versions) initially included in the release of a LTS version of Ubuntu is supported for the entire lifecycle of that Ubuntu version
             2. Updated releases of Ceph are made available in the Ubuntu Cloud Archive after an LTS version is released. Each Ceph release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable Ceph version
@@ -142,23 +148,23 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         7. Limited Ceph storage support
             1. Stand-alone storage clusters not deployed through a [Ceph Cluster Build Package](https://ubuntu.com/ceph/consulting) or cloud attached Ceph storage clusters not validated using a Cloud Validation Package are limited to Bug-fix Support only
             2. Ceph storage support does not include support beyond Bug-fix Support during the deployment or configuration of a standalone or cloud-attached storage cluster
-    11. <span id="uprosd-maas-support">MAAS support</span>
-        19. In order to be eligible for MAAS support, all machines connected to a MAAS need to be covered under a MAAS support agreement or Ubuntu Pro
-        20. To be eligible for MAAS support, MAAS support must be purchased for all machines not covered by Ubuntu Pro
-        21. Versions of MAAS are supported on a corresponding LTS version of Ubuntu for a period of two years from the date that the MAAS version is released
-        22. <span id="uprosd-maas-support-scope">MAAS support scope</span>:
-            22. Support for the ability to boot machines using operating system images provided by Canonical
-            23. Support for the tooling required to convert certified operating system images not provided by Canonical into MAAS images
-        23. <span id="uprosd-out-of-scope">Out of scope</span>. MAAS support does not provide:
-            24. Support for workloads, packages and service components other than those required to run a MAAS deployment
-            25. Support for the servers that the MAAS service runs on
-            26. Support for the Nodes deployed using MAAS but not covered under Ubuntu Pro
-            27. Support for design and implementation details of a MAAS deployment
-            28. Access to Landscape and Canonical Livepatch Service for machines deployed with MAAS
-    12. <span id="uprosd-ubuntu-assurance-program">Ubuntu Assurance Program</span>
-        24. Ubuntu Pro + support customers are entitled to the [Ubuntu Assurance Programme](http://www.ubuntu.com/legal/ubuntu-advantage/assurance). Canonical may update the Assurance Programme and its terms periodically
+    4. <span id="uprosd-maas-support">MAAS support</span>
+        1. In order to be eligible for MAAS support, all machines connected to a MAAS need to be covered under a MAAS support agreement or Ubuntu Pro
+        2. To be eligible for MAAS support, MAAS support must be purchased for all machines not covered by Ubuntu Pro
+        3. Versions of MAAS are supported on a corresponding LTS version of Ubuntu for a period of two years from the date that the MAAS version is released
+        4. <span id="uprosd-maas-support-scope">MAAS support scope</span>:
+            1. Support for the ability to boot machines using operating system images provided by Canonical
+            2. Support for the tooling required to convert certified operating system images not provided by Canonical into MAAS images
+        5. <span id="uprosd-out-of-scope">Out of scope</span>. MAAS support does not provide:
+            1. Support for workloads, packages and service components other than those required to run a MAAS deployment
+            2. Support for the servers that the MAAS service runs on
+            3. Support for the Nodes deployed using MAAS but not covered under Ubuntu Pro
+            4. Support for design and implementation details of a MAAS deployment
+            5. Access to Landscape and Canonical Livepatch Service for machines deployed with MAAS
+    5. <span id="uprosd-ubuntu-assurance-program">Ubuntu Assurance Program</span>
+        1. Ubuntu Pro + support customers are entitled to the [Ubuntu Assurance Programme](http://www.ubuntu.com/legal/ubuntu-advantage/assurance). Canonical may update the Assurance Programme and its terms periodically
 4. <span id="uprosd-apps-only">Support &mdash; included in Apps support and Full Stack support, but not included in Infra support</span>
-    13. Canonical will provide phone and ticket support to the Applications installed from Ubuntu Repositories. The list of supported applications is at: https://ubuntu.com/support
+    1. Canonical will provide phone and ticket support to the Applications installed from Ubuntu Repositories. The list of supported applications is at: https://ubuntu.com/support
 
 
 <h2 id="uprosd-support-exclusions">Support exclusions</h2>
@@ -193,10 +199,10 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         3. OpenStack or Kubernetes Charms
         4. Other software deployed as part of the Environment
     10. Administrative access. The Managed Service will provide the customer with access to the following applications and/or services:
-        5. The OpenStack or Kubernetes dashboard, API and CLI
-        6. Landscape (restricted to read only access)
-        7. Monitoring and logging system (restricted to read only access)
-        8. Only Canonical will have login access to Environment Nodes
+        1. The OpenStack or Kubernetes dashboard, API and CLI
+        2. Landscape (restricted to read only access)
+        3. Monitoring and logging system (restricted to read only access)
+        4. Only Canonical will have login access to Environment Nodes
     11. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the Minimum Size Requirement. All Environment Nodes must be covered under the service, so additional fees may apply
     12. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer's Environment remains on a supported LTS version of Ubuntu and OpenStack and/or Kubernetes
         1. Upgrades will be performed on a per-AZ basis within maintenance windows decided in concert with the client.
@@ -205,27 +211,27 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     13. Project work. The Managed Service will provide planned upgrades and maintenance Monday to Friday during Canonical working days
     14. Managed Apps. Canonical will manage Applications from its [managed applications portfolio](https://ubuntu.com/managed/apps). Canonical will expose only API and other user-level interfaces of the Applications
 4. Out of scope. The Managed Service does not provide:
-    15. For managed OpenStack and managed Kubernetes:
+    1. For managed OpenStack and managed Kubernetes:
         9. Managing, monitoring, backup or recovery of the operating system, customer generated data and any applications running within Guest Instances or Container Instances
         10. Support for the ability to run Guest Instances using images other than those provided by Canonical
-    16. Architectural changes to the Environment
-    17. Alternative scheduling of updates or upgrades
-    18. Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates to those packages delivered in the Ubuntu Cloud Archive
-    19. Unsupported versions of Ubuntu, OpenStack, Kubernetes or applications.
-    20. Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment
-    21. Adherence to the Customer's Change Management requirements/regulations without a DSE
-    22. Integration with Customer's ticketing system without a TAM
+    2. Architectural changes to the Environment
+    3. Alternative scheduling of updates or upgrades
+    4. Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates to those packages delivered in the Ubuntu Cloud Archive
+    5. Unsupported versions of Ubuntu, OpenStack, Kubernetes or applications.
+    6. Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment
+    7. Adherence to the Customer's Change Management requirements/regulations without a DSE
+    8. Integration with Customer's ticketing system without a TAM
 5. Service conclusion. At the end of the service term, the Managed Service will initiate an operational transfer. Operational transfer includes:
-    23. Hand over of all credentials of the hosts, management software, Landscape and Applications to the customer. The continued operation of Landscape is subject to purchase and agreement of appropriate license terms
-    24. Coordination of any applicable training (if purchased)
+    1. Hand over of all credentials of the hosts, management software, Landscape and Applications to the customer. The continued operation of Landscape is subject to purchase and agreement of appropriate license terms
+    2. Coordination of any applicable training (if purchased)
 6. Customer dependencies. The Managed Service requires:
-    25. Credentials to the Infrastructure being used for the Applications in the case in which such infrastructure is not managed by Canonical, i.e. Managed OpenStack
-    26. Continuous VPN access for Canonical support personnel to the Environment
-    27. Utilisation parameters per Node to be kept below the maximum specified in the design document provided by Canonical when the Environment is delivered to the customer
-    28. The facility where the Environment is hosted to comply with the minimum required measures to function, including but not limited to, connectivity, sufficient power supply, sufficient cooling system, and physical access control to the Environment
-    29. The Minimum Size Requirement for the Cloud or Kubernetes cluster maintained at all times
+    1. Credentials to the Infrastructure being used for the Applications in the case in which such infrastructure is not managed by Canonical, i.e. Managed OpenStack
+    2. Continuous VPN access for Canonical support personnel to the Environment
+    3. Utilisation parameters per Node to be kept below the maximum specified in the design document provided by Canonical when the Environment is delivered to the customer
+    4. The facility where the Environment is hosted to comply with the minimum required measures to function, including but not limited to, connectivity, sufficient power supply, sufficient cooling system, and physical access control to the Environment
+    5. The Minimum Size Requirement for the Cloud or Kubernetes cluster maintained at all times
 7. Uptime Service Level
-    30. The Managed Service includes the following uptime service levels:
+    1. The Managed Service includes the following uptime service levels:
       <table class="p-table" style="width: auto;">
         <thead>
           <tr>
@@ -244,11 +250,11 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
           </tr>
         </tbody>
       </table>
-    31. Data plane includes:
-        11. Virtualisation (for workloads that are architected to not depend on a single compute node)
-        12. Storage (block & object)
-        13. Network for instances
-    32. Downtime must be directly attributable to Canonical in order for it to count against the service level and is measured across a 12 month period. Planned maintenance windows and any requests by the customer are not taken into account when calculating uptime. Planned maintenance is carried out as required by Canonical, Monday to Friday during Canonical working days
+    2. Data plane includes:
+        1. Virtualisation (for workloads that are architected to not depend on a single compute node)
+        2. Storage (block & object)
+        3. Network for instances
+    3. Downtime must be directly attributable to Canonical in order for it to count against the service level and is measured across a 12 month period. Planned maintenance windows and any requests by the customer are not taken into account when calculating uptime. Planned maintenance is carried out as required by Canonical, Monday to Friday during Canonical working days
 
 <h3 id="uprosd-support-services">Professional Support Services</h3>
 
@@ -262,26 +268,26 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     4. The TAM will visit the customer's site annually for on-site technical review
     5. The TAM is available to respond to support cases during the TAM's working hours. Outside of such hours, support will be provided per the Ubuntu Pro Support Process
 2. Dedicated Technical Account Manager (DTAM) is an add-on service to enhance support
-    6. Canonical will provide a DTAM, who will perform all services provided by TAM and the services listed below during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during local Business Hours during the term of service:
-        4. Act as the primary point of contact for all support requests originating from the customer department for which the DTAM is responsible
-        5. Manage support escalations and prioritisation in accordance with Canonical's standard support response definitions and customer needs
-        6. Attend applicable Canonical internal training and development activities (in-person and remote)
-    7. The DTAM is available to respond to support cases during the DTAM's working hours. Outside of Business Hours, support will be provided per the Ubuntu Pro Support Process
-    8. If a DTAM is on leave for longer than five consecutive days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave
+    1. Canonical will provide a DTAM, who will perform all services provided by TAM and the services listed below during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during local Business Hours during the term of service:
+        1. Act as the primary point of contact for all support requests originating from the customer department for which the DTAM is responsible
+        2. Manage support escalations and prioritisation in accordance with Canonical's standard support response definitions and customer needs
+        3. Attend applicable Canonical internal training and development activities (in-person and remote)
+    2. The DTAM is available to respond to support cases during the DTAM's working hours. Outside of Business Hours, support will be provided per the Ubuntu Pro Support Process
+    3. If a DTAM is on leave for longer than five consecutive days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave
 3. Dedicated Support Engineer (DSE) is an add-on service to enhance support
-    9. Canonical will provide a DSE, who will perform the following services during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:
-        7. Be available onsite as required to meet the customer's requirements
-        8. Understand the products utilised in the customer's Environment that need to be integrated with Canonical's offerings and assist with those products, to the extent reasonable based on the DSE's expertise, to ensure the successful usage of offerings from Canonical
-        9. Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Pro services
-        10. Act as the primary point of contact for all support requests originating from the customer department for which the DSE is responsible
-        11. Act as a Canonical representative for Change Management protocols, in turn defending, coordinating and executing required Changes by Managed Services
-        12. Manage support escalations and prioritization in accordance with Canonical's standard support response definitions and customer needs
-        13. Participate in regular review calls addressing the customer's operational issues
-        14. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the DSE will work with the vendor for that sub-system, working to resolve the case through their normal support process
-        15. Attend applicable Canonical internal training and development activities
-    10. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement
-    11. The DSE is available to respond to support cases during the DSE's working hours. Outside of Business Hours, support will be provided per the Support Services Process
-    12. If a DSE is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DSE leave
+    1. Canonical will provide a DSE, who will perform the following services during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:
+        1. Be available onsite as required to meet the customer's requirements
+        2. Understand the products utilised in the customer's Environment that need to be integrated with Canonical's offerings and assist with those products, to the extent reasonable based on the DSE's expertise, to ensure the successful usage of offerings from Canonical
+        3. Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Pro services
+        4. Act as the primary point of contact for all support requests originating from the customer department for which the DSE is responsible
+        5. Act as a Canonical representative for Change Management protocols, in turn defending, coordinating and executing required Changes by Managed Services
+        6. Manage support escalations and prioritization in accordance with Canonical's standard support response definitions and customer needs
+        7. Participate in regular review calls addressing the customer's operational issues
+        8. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the DSE will work with the vendor for that sub-system, working to resolve the case through their normal support process
+        9. Attend applicable Canonical internal training and development activities
+    2. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement
+    3. The DSE is available to respond to support cases during the DSE's working hours. Outside of Business Hours, support will be provided per the Support Services Process
+    4. If a DSE is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DSE leave
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -292,17 +298,17 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     2. The customer, through their initial technical representative, may select their chosen technical representatives who act as primary points of contact for support requests. The customer will receive up to 5 dedicated, personalised credentials for technical representatives per every 500 Nodes under support, but not more than a total of 15 credentials
     3. The customer may change their specified technical representatives at any time by submitting a support request via the support portal
 2. Submitting support requests
-    4. The customer may open a support request once the customer account has been provisioned within the support portal
-    5. The customer may submit support cases through the support portal or by contacting the support team by telephone, unless otherwise noted
-    6. A support case should consist of a single discrete problem, issue, or request
-    7. Cases are assigned a ticket number and responded to automatically. All correspondence not entered directly into the case, including emails and telephone calls, will be logged into the case with a timestamp for quality assurance
-    8. When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact
-    9. The customer is expected to provide all information requested by Canonical as we work to resolve the case
-    10. Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases
+    1. The customer may open a support request once the customer account has been provisioned within the support portal
+    2. The customer may submit support cases through the support portal or by contacting the support team by telephone, unless otherwise noted
+    3. A support case should consist of a single discrete problem, issue, or request
+    4. Cases are assigned a ticket number and responded to automatically. All correspondence not entered directly into the case, including emails and telephone calls, will be logged into the case with a timestamp for quality assurance
+    5. When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact
+    6. The customer is expected to provide all information requested by Canonical as we work to resolve the case
+    7. Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases
 3. Support severity levels
-    11. Once a support request is opened, a Canonical support engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case
-    12. Canonical will work as described below to provide the customer with a work-around or permanent solution following the severity levels as described below.  As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.
-    13. Canonical will use reasonable efforts to respond to support requests made by the customer within the initial response times set forth below, based on the applicable service and severity level, but cannot guarantee a work-around, resolution or resolution time:
+    1. Once a support request is opened, a Canonical support engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case
+    2. Canonical will work as described below to provide the customer with a work-around or permanent solution following the severity levels as described below.  As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.
+    3. Canonical will use reasonable efforts to respond to support requests made by the customer within the initial response times set forth below, based on the applicable service and severity level, but cannot guarantee a work-around, resolution or resolution time:
       <table class="p-table" style="width: auto;">
         <thead>
           <tr>
@@ -345,8 +351,8 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 7. Remote sessions. At the discretion of a Canonical engineer, a remote access service might be offered to access a supported system. In such a case, Canonical will determine which remote access service to use. Canonical engineers do not perform any remote actions on a supported system
 8. Ask for a Peer Review. As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback
 9. Management escalation. The customer may escalate support issues following the escalation process:
-    14. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day
-    15. Urgent needs can be escalated to Canonical's Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com). If you require further escalation, email Canonical's Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com)
+    1. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day
+    2. Urgent needs can be escalated to Canonical's Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com). If you require further escalation, email Canonical's Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
