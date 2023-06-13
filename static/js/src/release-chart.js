@@ -14,6 +14,7 @@ import {
   kernelReleasesLTS,
   openStackReleases,
   kubernetesReleases,
+  microStackReleases,
   desktopServerStatus,
   kernelStatus,
   kernelReleaseScheduleStatus,
@@ -21,6 +22,7 @@ import {
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
+  microStackStatus,
   smallReleaseNames,
   desktopServerReleaseNames,
   kernelReleaseNames,
@@ -35,6 +37,7 @@ import {
   kernelReleaseNamesALL,
   openStackReleaseNames,
   kubernetesReleaseNames,
+  microStackReleaseNames,
 } from "./chart-data";
 
 function buildCharts() {
@@ -158,6 +161,14 @@ function buildCharts() {
       kernelReleaseSchedule
     );
   }
+  if (document.querySelector("#microstack-eol")) {
+    createChart(
+      "#microstack-eol",
+      microStackReleaseNames,
+      microStackStatus,
+      microStackReleases
+    );
+  }
 }
 
 function clearCharts() {
@@ -216,6 +227,10 @@ function clearCharts() {
   const kernelSchedule = document.querySelector("#kernel-schedule");
   if (kernelSchedule) {
     kernelSchedule.innerHTML = "";
+  }
+  const microstackEol = document.querySelector("#microstack-eol");
+  if (microstackEol) {
+    microstackEol.innerHTML = "";
   }
 }
 

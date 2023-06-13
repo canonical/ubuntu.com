@@ -51,7 +51,7 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     })
     .attr("y", 0)
     .attr("transform", function (d) {
-      if (d.status === "MAIN_UNIVERSE") {
+      if (d.status === "MAIN_UNIVERSE" || d.status === "PRO_SUPPORT") {
         return (
           "translate(" +
           x(d.startDate) +
@@ -250,6 +250,14 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace(
     "Main universe",
     "LTS expanded support for Ubuntu Universe (10 years)"
+  );
+  formattedKey = formattedKey.replace(
+    "Microstack esm",
+    "Expanded Security Maintenance (ESM)"
+  );
+  formattedKey = formattedKey.replace(
+    "Pro support",
+    "Ubuntu Pro + Support coverage"
   );
   return formattedKey;
 }
