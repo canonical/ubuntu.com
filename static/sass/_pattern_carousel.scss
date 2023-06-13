@@ -1,0 +1,75 @@
+@mixin openstack-carousel {
+  .p-carousel {
+    position: relative;
+
+    .p-carousel__cell {
+      width: 100%;
+    }
+
+    .p-carousel__next {
+      right: 0;
+
+      [class*="p-icon"] {
+        transform: rotate(-0.25turn);
+      }
+    }
+
+    .p-carousel__previous {
+      left: 0;
+
+      [class*="p-icon"] {
+        transform: rotate(0.25turn);
+      }
+    }
+
+    .p-carousel__next,
+    .p-carousel__previous {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      [class*="p-icon"] {
+        @extend %icon;
+
+        @include vf-icon-chevron($color-mid-light);
+
+        height: 2rem;
+        width: 2rem;
+      }
+
+      &:hover {
+        [class*="p-icon"] {
+          @include vf-icon-chevron($color-mid-dark);
+        }
+      }
+    }
+
+    // the carousels currently use https://github.com/metafizzy/flickity
+    // so style the elements it gives us out of the box
+    .flickity-page-dots {
+      bottom: 0;
+
+      .dot {
+        background: $color-mid-light;
+        height: 8px;
+        margin: 0 4px;
+        opacity: 1;
+        width: 8px;
+
+        &:hover {
+          background: $color-mid-dark;
+        }
+
+        &.is-selected,
+        &.is-selected:hover {
+          background: orange;
+        }
+      }
+    }
+
+    .flickity-slider {
+      align-items: center;
+      display: flex;
+    }
+  }
+}

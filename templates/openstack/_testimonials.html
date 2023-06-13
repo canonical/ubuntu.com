@@ -1,0 +1,76 @@
+<div class="row p-carousel">
+  <div class="col-8 col-start-large-3">
+    <a href="#" id="testimonials-next" class="p-carousel__next">
+      <i class="p-icon--chevron-down">Next testimonial</i>
+    </a>
+    <a href="#" id="testimonials-previous" class="p-carousel__previous">
+      <i class="p-icon--chevron-down">Previous testimonial</i>
+    </a>
+    <div id="testimonials">
+      <div class="p-carousel__cell u-vertically-center">
+        <blockquote class="p-pull-quote--large">
+          <p class="p-pull-quote__quote">Canonical is miles ahead of other providers where every server is manually configured. We also greatly appreciate that Ubuntu is the platform where OpenStack development occurs. This means we're not waiting half a year for rebranding and compatibility testing that other OpenStack providers require.</p>
+          <cite class="p-pull-quote__citation">Hubert Tsang, CIO, Pacific Textiles</cite>
+        </blockquote>
+      </div>
+
+      <div class="p-carousel__cell u-vertically-center">
+        <blockquote class="p-pull-quote--large">
+          <p class="p-pull-quote__quote">Most of the open source vendors we looked at charged steep per core or per server licence fees, which would have meant escalating costs as we scaled up. Canonical was the exception.</p>
+          <cite class="p-pull-quote__citation">Jahanzeb, VP Operations, Nayatel</cite>
+        </blockquote>
+      </div>
+
+      <div class="p-carousel__cell u-vertically-center">
+        <blockquote class="p-pull-quote--large">
+          <p class="p-pull-quote__quote">The level of engagement from the Canonical team was remarkable. Even before we entered into a commercial agreement, Canonical offered valuable advice around OEMs and hardware choices. They were dedicated to our project from the get-go.</p>
+          <cite class="p-pull-quote__citation">Tim Rosenfield, CEO and Co-Founder, Firmus</cite>
+        </blockquote>
+      </div>
+
+      <div class="p-carousel__cell u-vertically-center">
+        <blockquote class="p-pull-quote--large">
+          <p class="p-pull-quote__quote">Migrating our OCS application to the cloud will give us the base and agility we need in order to consistently offer best-in-class solutions for our customers. This selection [Charmed OpenStack] was an obvious choice to enable us to scale our charging capabilities to a future-proofed private cloud platform.</p>
+          <cite class="p-pull-quote__citation">Flavio Matiello, Head of PrePaid Platforms & OCS, Telefonica Brazil</cite>
+        </blockquote>
+      </div>
+
+      <div class="p-carousel__cell u-vertically-center">
+        <blockquote class="p-pull-quote--large">
+          <p class="p-pull-quote__quote">KADOKAWA is very happy with Canonical's process. Even before deployment, the level of detail provided throughout the presales and design phases was very valuable.</p>
+          <cite class="p-pull-quote__citation">Takumi Tsujishita, Manager of Datastore Division, KCS Department, KADOKAWA Connected</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+
+<script>
+  initCarousel('#testimonials', '#testimonials-next', '#testimonials-previous');
+
+  function initCarousel(carouselSelector, nextTestimonialSelector, previousTestimonialSelector) {
+    var nextTestimonial = document.querySelector(nextTestimonialSelector);
+    var previousTestimonial = document.querySelector(previousTestimonialSelector);
+    var carousel = new Flickity(carouselSelector, {
+      // TODO: Add imagesLoaded option when logos are available 
+      prevNextButtons: false,
+      wrapAround: true,
+    });
+
+    if (nextTestimonial) {
+      nextTestimonial.addEventListener("click", function (e) {
+        e.preventDefault();
+        carousel.next();
+      });
+    }
+
+    if (previousTestimonial) {
+      previousTestimonial.addEventListener("click", function (e) {
+        e.preventDefault();
+        carousel.previous();
+      });
+    }
+  }
+</script>
