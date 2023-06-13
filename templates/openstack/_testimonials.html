@@ -1,10 +1,10 @@
 <div class="row p-carousel">
   <div class="col-8 col-start-large-3">
     <a href="#" id="testimonials-next" class="p-carousel__next">
-      <i class="p-icon--chevron-down">Next page</i>
+      <i class="p-icon--chevron-down">Next testimonial</i>
     </a>
     <a href="#" id="testimonials-previous" class="p-carousel__previous">
-      <i class="p-icon--chevron-down">Previous page</i>
+      <i class="p-icon--chevron-down">Previous testimonial</i>
     </a>
     <div id="testimonials">
       <div class="p-carousel__cell u-vertically-center">
@@ -50,24 +50,24 @@
 <script>
   initCarousel('#testimonials', '#testimonials-next', '#testimonials-previous');
 
-  function initCarousel(carouselSelector, nextCTAselector, previousCTAselector) {
-    var nextCTA = document.querySelector(nextCTAselector);
-    var previousCTA = document.querySelector(previousCTAselector);
+  function initCarousel(carouselSelector, nextTestimonialSelector, previousTestimonialSelector) {
+    var nextTestimonial = document.querySelector(nextTestimonialSelector);
+    var previousTestimonial = document.querySelector(previousTestimonialSelector);
     var carousel = new Flickity(carouselSelector, {
-      imagesLoaded: true,
+      // TODO: Add imagesLoaded option when logos are available 
       prevNextButtons: false,
       wrapAround: true,
     });
 
-    if (nextCTA) {
-      nextCTA.addEventListener("click", function (e) {
+    if (nextTestimonial) {
+      nextTestimonial.addEventListener("click", function (e) {
         e.preventDefault();
         carousel.next();
       });
     }
 
-    if (previousCTA) {
-      previousCTA.addEventListener("click", function (e) {
+    if (previousTestimonial) {
+      previousTestimonial.addEventListener("click", function (e) {
         e.preventDefault();
         carousel.previous();
       });
