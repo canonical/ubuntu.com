@@ -726,16 +726,15 @@ def get_webhook_response(trueability_api, **kwargs):
 
 @shop_decorator(area="cred", permission="guest", response=json)
 def issue_badges(trueability_api, credly_api, **kwargs):
-    req = flask.request.json
-    webhook_response = req["webhook_response"]
-    assessment_id = webhook_response["associated_object_id"]
-    assessment = trueability_api.get_assessment(assessment_id)
-    assessment_score = assessment["assessment"]["score"]
-    if assessment_score >= 0.75:
-        assessment_user = assessment["assessment"]["user"]["email"]
-        first_name, last_name = get_user_first_last_name()
+    webhook_response = flask.request.json
+    assessment_score = webhook_response["assessment"]["score"]
+    print(assessment_score)
+    if assessment_score >= 0.5:
+        assessment_user = webhook_response["assessment"]["user"]["email"]
+        first_name, last_name = webhook_response["assessment"]["user"]["full_name"].rsplit(" ",1)
+        ability_screen_id = webhook_response["assessment"]["ability_screen_variant"]["ability_screen_id"]
         credly_api.issue_new_badge(
-            email=assessment_user, first_name=first_name, last_name=last_name
+            email=assessment_user, first_name=first_name, last_name=last_name, ability_screen_id=ability_screen_id
         )
         return flask.jsonify({"status": "badge_issued"}), 200
     return flask.jsonify({"status": "badge_not_issued"}), 200

@@ -53,7 +53,6 @@ class CredlyAPI:
                 data=data,
                 json=json,
                 retry=False,
-                auth=auth,
             )
 
         return response
