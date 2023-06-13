@@ -160,11 +160,19 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                           <span className="p-chip__value">Auto-renewal on</span>
                         </button>
                       ) : (
-                        <button className="p-chip--caution">
-                          <span className="p-chip__value">
-                            Auto-renewal off
-                          </span>
-                        </button>
+                        <>
+                          {!subscription.statuses.is_cancelled ? (
+                            <button className="p-chip--caution">
+                              <span className="p-chip__value">
+                                Auto-renewal off
+                              </span>
+                            </button>
+                          ) : (
+                            <button className="p-chip--negative">
+                              <span className="p-chip__value">Cancelled</span>
+                            </button>
+                          )}
+                        </>
                       )}
                     </>
                   ) : null}
