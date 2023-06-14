@@ -176,6 +176,15 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                       )}
                     </>
                   ) : null}
+                  {subscription.type == "trial" ? (
+                    <>
+                      {!subscription.statuses.is_trialled ? (
+                        <button className="p-chip--negative">
+                          <span className="p-chip__value">Cancelled</span>
+                        </button>
+                      ) : null}
+                    </>
+                  ) : null}
                 </>
               )}
             </header>
