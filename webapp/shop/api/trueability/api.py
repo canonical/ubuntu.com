@@ -218,7 +218,7 @@ class TrueAbilityAPI:
     def get_system_status(self):
         uri = "/api/v1/system_status"
         return self.make_request("GET", uri).json()
-    
+
     def get_webhook_response(self, webhook_id: int):
         uri = f"/api/v1/webhook_responses/{webhook_id}"
         return self.make_request("GET", uri).json()

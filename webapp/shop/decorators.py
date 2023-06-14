@@ -207,7 +207,6 @@ def init_credly_session(area) -> Session:
     return credly_session
 
 
-
 def init_trueability_session(area) -> Session:
     if area != "cred":
         return None
@@ -239,19 +238,21 @@ def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
         badgr_session,
     )
 
+
 def get_credly_api_instance(area, credly_session) -> CredlyAPI:
     if area != "cred":
         return None
 
     return CredlyAPI(
-        os.getenv("CREDLY_SANDBOX_URL", "https://sandbox-api.credly.com/v1"),
-        os.getenv("CREDLY_TOKEN", "dO26vW6KiCFv1sZHg1xWt5IhrehfKeYVfNrW"),
-        os.getenv(
+        base_url=os.getenv(
+            "CREDLY_SANDBOX_URL", "https://sandbox-api.credly.com/v1"
+        ),
+        auth_token=os.getenv("CREDLY_TOKEN", ""),
+        org_id=os.getenv(
             "CREDLY_ORGANIZATION_ID", "069adc37-b51e-45ee-8c9d-4a2c89ce6622"
         ),
-        credly_session,
+        session=credly_session,
     )
-
 
 
 def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:

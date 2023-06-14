@@ -1,6 +1,6 @@
 from requests.auth import HTTPBasicAuth
 from requests import Session
-import datetime
+from datetime import datetime, timezone
 
 
 class CredlyAPI:
@@ -33,7 +33,8 @@ class CredlyAPI:
     ):
         uri = f"{self.base_url}{path}"
         headers["Content-type"] = "application/json"
-        auth = HTTPBasicAuth("user", "pass")
+        auth = HTTPBasicAuth(self.auth_token, "")
+        print(self.auth_token)
 
         response = self.session.request(
             method,
@@ -71,8 +72,8 @@ class CredlyAPI:
         uri = f"/organizations/{self.org_id}/badges"
         body = {
             "recipient_email": email,
-            "issued_at": datetime.datetime.now().strftime(
-                "%Y-%m-% d %H:%M:%S %z"
+            "issued_at": datetime.now(timezone.utc).strftime(
+                "%Y-%m-%d %H:%M:%S %z"
             ),
             "badge_template_id": self.badge_template_dict[ability_screen_id],
             "issued_to_first_name": first_name,
