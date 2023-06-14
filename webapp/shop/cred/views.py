@@ -10,7 +10,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.utils import get_user_first_last_name
+from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 from webapp.views import get_user_country_by_ip
 
@@ -603,7 +603,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
             product_tags=["cue"],
         )
-        contract_id = exam_contracts[-1]["id"]
+        contract_id = get_exam_contract_id(exam_contracts[-1])
         if action == "schedule":
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
