@@ -37,7 +37,6 @@
         </div>
         <div class="p-notification__meta">
           <div class="p-notification__actions">
-            {% if notification_class == "positive" %}<a class="p-notification__action p-button" href="/pro/dashboard">Go to dashboard</a>{% endif %}
             {% if notification_message == "activation key already used" %}<a class="p-notification__action p-button" href="/pro/dashboard">Go to dashboard</a>{% endif %}
           </div>
         </div>
@@ -54,11 +53,6 @@
       const length = "The activation key is 23 characters long";
       const notification = document.querySelector("#notification");
 
-      if(e){
-        if(notification){
-          notification.style.display = "none";
-        }
-      }
       if(e.target.value.length === 0){
         validate_message.textContent = "";
       }else if(e.target.value.charAt(0) !== "K"){

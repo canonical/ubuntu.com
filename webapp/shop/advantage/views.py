@@ -83,13 +83,7 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
                     "activationKey": pro_activation_key,
                 }
             )
-            return flask.render_template(
-                "/pro/activate.html",
-                name=name,
-                notification_class="positive",
-                notification_title="Success",
-                notification_message="Your subscription has been activated.",
-            )
+            return flask.redirect("/pro/dashboard")
         except UAContractsAPIErrorView as error:
             activation_response = json.loads(error.response.text).get(
                 "message"
