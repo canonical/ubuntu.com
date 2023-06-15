@@ -72,23 +72,4 @@
   </div>
 </section>
 
-{% if related | length > 0 %}
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--3">You may also be interested in &hellip;</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    {% for page in related %}
-    <div class="col-4 p-divider__block">
-      <!-- THREE ADDITIONAL CTAs -->
-      <h4>{{page["topic_name"]}}</h4>
-      <p>{{page["subtitle"]}}</p>
-      <p><a href="{{page['path']}}">See more&nbsp;&rsaquo;</a></p>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
 {% endblock content %}
