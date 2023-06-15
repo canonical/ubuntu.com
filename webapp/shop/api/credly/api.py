@@ -1,6 +1,7 @@
 from requests.auth import HTTPBasicAuth
 from requests import Session
 from datetime import datetime, timezone
+from urllib.parse import quote_plus
 
 
 class CredlyAPI:
@@ -58,8 +59,15 @@ class CredlyAPI:
 
         return response
 
-    def get_issued_badges(self):
-        uri = f"/organizations/{self.org_id}/badges"
+    def get_issued_badges(self, filter: dict = {}):
+        print(filter)
+        filter_params = ""
+        for k, v in filter.items():
+            filter_params += f"{k}::{quote_plus(v)}"
+        if filter:
+            uri = f"/organizations/{self.org_id}/badges?filter={filter_params}"
+        else:
+            uri = f"/organizations/{self.org_id}/badges"
         return self.make_request("GET", uri).json()
 
     def issue_new_badge(

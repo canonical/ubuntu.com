@@ -724,11 +724,22 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@canonical_staff
+@canonical_staff()
 @shop_decorator(area="cred", permission="user", response=json)
 def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges()
-    return flask.jsonify(badges)
+    return flask.jsonify(badges["data"])
+
+
+@shop_decorator(area="cred", permission="user", response=html)
+def get_my_issued_badges(credly_api, **kwargs):
+    sso_user_email = user_info(flask.session)["email"]
+    response = credly_api.get_issued_badges(
+        filter={"recipient_email": sso_user_email}
+    )
+    return flask.render_template(
+        "credentials/your-badges.html", badges=response["data"]
+    )
 
 
 @shop_decorator(area="cred", permission="guest", response=json)
@@ -762,4 +773,6 @@ def issue_badges(trueability_api, credly_api, **kwargs):
                 ),
                 200,
             )
+        else:
+            return (flask.jsonify(new_badge), 418)
     return flask.jsonify({"status": "badge_not_issued"}), 200

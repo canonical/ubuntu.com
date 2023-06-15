@@ -93,6 +93,7 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_filtered_webhook_responses,
     get_issued_badges,
+    get_my_issued_badges,
     get_webhook_response,
     issue_badges,
     rotate_activation_key,
@@ -929,6 +930,12 @@ app.add_url_rule(
 app.add_url_rule(
     "/credentials/get_issued_badges",
     view_func=get_issued_badges,
+    methods=["GET"],
+)
+
+app.add_url_rule(
+    "/credentials/your-badges",
+    view_func=get_my_issued_badges,
     methods=["GET"],
 )
 
