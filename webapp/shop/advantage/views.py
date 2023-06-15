@@ -36,12 +36,12 @@ from webapp.shop.schemas import (
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def get_activate_view(advantage_mapper, **kwargs):
-    account = None
+def get_activate_view(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
     try:
-        account = advantage_mapper.get_purchase_account("canonical-ua")
-        if account:
-            name = account.name
+        if account is None:
+            account = ua_contracts_api.ensure_purchase_account()
+        name = account.name
     except UAContractsUserHasNoAccount:
         return flask.render_template("account/forbidden.html")
     except AccessForbiddenError:
@@ -68,6 +68,14 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
 
     if flask.request.method == "POST":
         pro_activation_key = flask.request.form.get("pro-activation-key")
+        if pro_activation_key[0] != "K" or len(pro_activation_key) != 23:
+            return flask.render_template(
+                "/pro/activate.html",
+                name=name,
+                notification_class="negative",
+                notification_title="Something went wrong",
+                notification_message="Activation key not found",
+            )
         try:
             activation_response = ua_contracts_api.activate_activation_key(
                 {
