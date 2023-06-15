@@ -484,6 +484,52 @@ describe("SubscriptionDetails", () => {
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal off");
   });
+
+  it("it does display the cancelled label for shop purchases", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Monthly,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: false,
+        is_cancelled: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Cancelled");
+  });
+
+  it("it does display the cancelled label for trial shop purchases", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Trial,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_trialled: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Cancelled");
+  });
+
   it("it does not display label for unactionable subs", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Legacy,

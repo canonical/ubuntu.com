@@ -257,20 +257,27 @@ def get_user_subscription_statuses(
         statuses["is_subscription_active"] = is_billing_subscription_active(
             subscriptions, subscription_id
         )
-        statuses[
-            "is_subscription_auto_renewing"
-        ] = is_billing_subscription_auto_renewing(
-            subscriptions, subscription_id
-        )
 
-        statuses["is_renewed"] = is_subscription_auto_renewing(
-            subscriptions, subscription_id
+        is_cancelled = (
+            True
+            if not current_number_of_machines
+            or not statuses["is_subscription_active"]
+            else False
         )
-
-        is_cancelled = True if not current_number_of_machines else False
         statuses["is_cancelled"] = is_cancelled
         statuses["should_present_auto_renewal"] = (
             statuses["is_subscription_active"] and not is_cancelled
+        )
+        statuses["is_subscription_auto_renewing"] = (
+            is_billing_subscription_auto_renewing(
+                subscriptions, subscription_id
+            )
+            and not is_cancelled
+        )
+
+        statuses["is_renewed"] = (
+            is_subscription_auto_renewing(subscriptions, subscription_id)
+            and not is_cancelled
         )
 
         # If the subscription is set to auto-renew, we shouldn't alarm the
