@@ -76,7 +76,7 @@ products:
               description: Containerised workloads
               url: /kubernetes
             - title: Charmhub
-              description: Marketplace for Charmed Operators
+              description: Charmed Operators marketplace
               url: https://charmhub.io/
             - title: Juju
               description: Orchestration engine for operators
@@ -135,7 +135,7 @@ products:
         - title: Products
           links:
             - title: OpenStack
-              description: Enterprise Private cloud
+              description: Enterprise private cloud
               url: /openstack
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -200,7 +200,7 @@ products:
         - title: Products
           links:
             - title: Multipass
-              description: Ubuntu VMs for Windows, macOS & Linux
+              description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: LXD
               description: Linux containers
@@ -446,14 +446,20 @@ use_case:
     - title: By solution
       links:
         - title: AI/ML
-          description: MLops tools
+          description: MLOps tools
           url: /ai
         - title: Compliance
-          description: Certifications and Hardening
+          description: Certifications and hardening
           url: /security/certifications
         - title: Containers
           description: Ubuntu for container operations
           url: /containers
+        - title: Data fabric
+          description: Deploy and operate databases
+          url: /data
+        - title: HPC and supercomputing
+          description: High-performance computing
+          url: /hpc
         - title: IoT
           description: Internet of Things
           url: /internet-of-things
@@ -461,10 +467,10 @@ use_case:
           description: Micro clouds
           url: /edge-computing
         - title: Managed applications
-          description: Performant open source
+          description: Fully managed open source
           url: /managed/apps
         - title: Managed infrastructure
-          description: Infrastructre support
+          description: Managed IT services
           url: /pricing/infra
         - title: Observability
           description: Monitoring tools
@@ -474,39 +480,34 @@ use_case:
           url: /openstack/consulting
         - title: Public cloud
           description: Ubuntu across public clouds
-          url: /cloud/public-cloud
-        - title: Automotive
-          description: Autopilots, infotainment + factories
-          url: /automotive
-        - title: Financial
-          description: Hybrid multi-cloud strategy
-          url: /financial-services
-        - title: Government
-          description: Public Sector and Federal
-          url: /gov
-        - title: Industrial
-          description: Factory of the future
-          url: /industrial
+          url: /cloud/public-clou
         - title: Robotics
           description: Build robots with Ubuntu and ROS
           url: /robotics
         - title: Security
           description: Enterprise-grade security
           url: /security
-        - title: Signage
-          description: Smart displays, kiosks and Ubuntu Frame
-          url: /internet-of-things/smart-displays
         - title: Telco
           description: Carrier-grade solutions
           url: /telco
+        - title: Automotive
+          description: Smarter vehicles and factories
+          url: /automotive
+        - title: Financial services
+          description: Innovate with open source
+          url: /financial-services
+        - title: Industrial
+          description: The factory of the future
+          url: /industrial
+        - title: Government
+          description: Public sector and federal
+          url: /gov
 
   secondary_links:
-    - title: IoT/Devices Use Cases/Verticals
+    - title: Internet of Things
       links:
         - title: Robotics
           url: /robotics
-        - title: EdgeX
-          url: /internet-of-things/edgex
         - title: Smart Home
           url: /internet-of-things/smart-home
         - title: Industrial
@@ -515,6 +516,8 @@ use_case:
           url: /automotive
         - title: Smart displays
           url: /internet-of-things/smart-displays
+        - title: Smart home
+          url: /internet-of-things/smart-home
 
 support:
   side_nav_sections:
@@ -522,25 +525,32 @@ support:
       primary_links:
         - title: Products
           links:
-            - title: Ubuntu Pro
-              description: Performant open source
+            - title: Ubuntu Pro + support
+              description: Enterprise support for Ubuntu
               url: /support
+            - title: Ubuntu Pro
+              description: Security & compliance subscription
+              url: /pro
             - title: Ubuntu Pro Azure
-              description: Support in the cloud
+              description: Microsoft Azure cloud support
               url: /azure/pro
             - title: Ubuntu Pro AWS
-              description: Support in the cloud
+              description: Amazon Web Services support
               url: /aws/pro
             - title: Ubuntu Pro GCP
-              description: Enterprise support for Ubuntu
-              url: /blog/introducing-ubuntu-pro-for-google-cloud
+              description: Google Cloud support
+              url: /gcp/pro
             - title: Managed apps
-              description: Support for open infrastructure
+              description: Fully managed open source
               url: /managed/apps
             - title: Managed Infrastructure
+              description: Managed IT services
               url: /pricing/infra
+
       secondary_links:
         - links:
+            - title: Upgrade from 18.04
+              url: /18-04
             - title: Expanded Security Maintenance
               url: /security/esm
             - title: Pricing
@@ -549,6 +559,7 @@ support:
               url: /pricing/consulting
             - title: TCO calculator
               url: /openstack/pricing-calculator
+
     - title: Resources
       primary_links:
         - title: Products
@@ -560,7 +571,7 @@ support:
               description: Blogs from Canonical
               url: /blog
             - title: Engage pages
-              description: Support literature hub
+              description: Resource hub
               url: /engage
             - title: Tutorials
               description: Guides for development activities
@@ -568,7 +579,7 @@ support:
             - title: Ask Ubuntu
               description: Q&A site for users and developers
               url: https://askubuntu.com
-            - title: Ubuntu Certified Hardware
+            - title: Ubuntu Certified hardware
               description: Hardware you can trust
               url: /certified
             - title: About Ubuntu
@@ -577,6 +588,7 @@ support:
             - title: Ubuntu forums
               description: Discuss Ubuntu with other users
               url: https://ubuntuforums.org/
+
       secondary_links:
         - links:
             - title: Webinars
@@ -586,7 +598,7 @@ support:
             - title: Whitepapers
               url: /engage?resource=whitepaper
             - title: Become an Ubuntu certified engineer
-              url: /cube
+              url: /credentials
             - title: Videos
               url: https://www.youtube.com/c/UbuntuOS
 
@@ -597,12 +609,12 @@ community:
         - title: Resources
           links:
             - title: Tutorials
-              description: Guides for development activities
+              description: Guides for development and DevOps
               url: /tutorials/
             - title: Documentation
               description: Official Ubuntu Documentation
               url: https://help.ubuntu.com/
-            - title: UbuntuOnAir
+            - title: Ubuntu on Air
               description: Community-focused videos
               url: https://www.youtube.com/ubuntuonair
             - title: Discourse
@@ -614,6 +626,10 @@ community:
             - title: Forums
               description: Discuss Ubuntu with other users
               url: https://ubuntuforums.org/
+            - title: Ubuntu Masters
+              description: Get inspired by IT practitioners
+              url: /masters-conference
+
       secondary_links:
         - title: Links
           links:
@@ -622,28 +638,27 @@ community:
             - title: Official Ubuntu documentation
               url: https://help.ubuntu.com/
             - title: Install guide
-              url: /tutorials/install-ubuntu-desktop
+              url: /tutorials/install-ubuntu-desktop#1-overview
             - title: How to write a tutorial
-              url: /tutorials/tutorial-guidelines
+              url: /tutorials/tutorial-guidelines#1-overview
+
     - title: Forums
       primary_links:
         - title: Forums
           links:
-            - title: Forums
-              description: Discuss Ubuntu with other users
-              url: https://ubuntuforums.org/
             - title: Ask Ubuntu
               description: Q&A for users and developers
               url: https://askubuntu.com/
-            - title: Local community teams
-              description: Join a community team
-              url: http://loco.ubuntu.com/teams/
-            - title: Discourse
-              description: Coordinating the Ubuntu project
-              url: https://discourse.ubuntu.com/
+            - title: Forums
+              description: Discuss Ubuntu with other users
+              url: https://ubuntuforums.org/
             - title: Chat on IRC
               description: Speak to Ubuntu users
               url: https://help.ubuntu.com/community/InternetRelayChat
+            - title: Discourse
+              description: Coordinating the Ubuntu project
+              url: https://discourse.ubuntu.com/
+
       secondary_links:
         - title: Links
           links:
@@ -655,31 +670,43 @@ community:
               url: https://ubuntuforums.org/forumdisplay.php?f=434
             - title: Discourse Community category
               url: https://discourse.ubuntu.com/c/community/78
+
     - title: Contribute to Ubuntu
       primary_links:
         - title: Ways to contribute
           links:
-            - title: Translate Ubuntu
+            - title: Translate and localise
               description: Translate into your language
-              url: https://discourse.ubuntu.com/t/translations/32
-            - title: QA
+              url: https://ubuntu.com/community/contribute/translation-localisation
+            - title: QA and testing
               description: Test releases and features
-              url: https://discourse.ubuntu.com/c/quality/10
+              url: https://ubuntu.com/community/contribute/qa-testing
             - title: Report Bugs
               description: Report bugs on Launchpad
               url: https://help.ubuntu.com/community/ReportingBugs
+            - title: Software development
+              description: Create and maintain software
+              url: https://ubuntu.com/community/contribute/software-development
             - title: Improve documentation
               description: Help write the docs
               url: https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation
+            - title: Art and design
+              description: Contribute your artwork
+              url: https://ubuntu.com/community/contribute/art-design
             - title: Local community teams
               description: Join a community team
               url: http://loco.ubuntu.com/teams/
             - title: Donate
               description: Donate to the Ubuntu project
               url: /download/desktop/thank-you
-    - title: Mission
+            - title: Local community teams
+              description: Join a community team
+              url: http://loco.ubuntu.com/teams/
+
+
+    - title: Mission and governance
       primary_links:
-        - title: Mission
+        - title: Mission and governance
           links:
             - title: Our mission
               description: What we stand for
@@ -696,6 +723,13 @@ community:
             - title: Project governace
               description: How the project is governed
               url: /community/governance
+            - title: Teams
+              description: The teams in the project
+              url: /community/governance/teams
+            - title: Local community teams
+              description: Join a community team
+              url: http://loco.ubuntu.com/teams/
+
       secondary_links:
         - title: Links
           links:
@@ -705,6 +739,7 @@ community:
               url: https://wiki.ubuntu.com/TechnicalBoard
             - title: Technical Board Agenda
               url: https://wiki.ubuntu.com/TechnicalBoardAgenda
+
     - title: Keep up to date
       primary_links:
         - title: Keep up to date
@@ -724,6 +759,7 @@ community:
             - title: Teams
               description: The teams in the project
               url: https://wiki.ubuntu.com/Teams
+
       secondary_links:
         - title: Links
           links:
