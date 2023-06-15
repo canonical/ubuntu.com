@@ -10,7 +10,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.utils import get_user_first_last_name
+from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 from webapp.views import get_user_country_by_ip
 
@@ -580,6 +580,7 @@ def cred_shop(**kwargs):
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     exam = None
+    action = flask.request.args.get("action")
 
     if flask.request.method == "POST":
         activation_key = flask.request.form.get("activation-key")
@@ -587,8 +588,10 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     else:
         activation_key = kwargs.get("code")
 
-    if not activation_key:
-        return flask.render_template("/credentials/redeem_with_form.html")
+    if not activation_key or action == "confirm":
+        return flask.render_template(
+            "/credentials/redeem_with_form.html", activation_key=activation_key
+        )
 
     try:
         activation_response = ua_contracts_api.activate_activation_key(
@@ -600,12 +603,12 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
             product_tags=["cue"],
         )
-        contract_id = exam_contracts[-1]["id"]
-        if flask.request.args.get("action") == "schedule":
+        contract_id = get_exam_contract_id(exam_contracts[-1])
+        if action == "schedule":
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
-        if flask.request.args.get("action") == "take":
+        if action == "take":
             return flask.redirect(
                 f"/credentials/provision?contractItemID={contract_id}"
             )

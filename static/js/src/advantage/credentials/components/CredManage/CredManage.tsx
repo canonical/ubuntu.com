@@ -323,17 +323,15 @@ const CredManage = () => {
                     {
                       content: (
                         <>
-                          <Tooltip message="Copy Key" position="right">
-                            <p>
-                              {keyitem["key"]} &emsp;
-                              <a
-                                onClick={() => {
-                                  copyToClipboard(keyitem.key);
-                                }}
-                              >
-                                <i className="p-icon--copy"></i>
-                              </a>
-                            </p>
+                          <span>{keyitem["key"]} &emsp;</span>
+                          <Tooltip message="Copy Key" position="btm-center">
+                            <a
+                              onClick={() => {
+                                copyToClipboard(keyitem.key);
+                              }}
+                            >
+                              <i className="p-icon--copy"></i>
+                            </a>
                           </Tooltip>
                         </>
                       ),
@@ -345,9 +343,12 @@ const CredManage = () => {
                           {keyitem["activatedBy"] ? (
                             <p>{keyitem["activatedBy"]} &emsp;</p>
                           ) : (
-                            <Tooltip message="Refresh Key" position="right">
-                              <p>
-                                N/A &emsp;
+                            <>
+                              <span>N/A &emsp;</span>
+                              <Tooltip
+                                message="Refresh Key"
+                                position="btm-center"
+                              >
                                 <a
                                   onClick={() => {
                                     rotateActivationKeys([keyitem.key]);
@@ -355,8 +356,19 @@ const CredManage = () => {
                                 >
                                   <i className="p-icon--restart"></i>
                                 </a>
-                              </p>
-                            </Tooltip>
+                              </Tooltip>
+                              <span>&emsp;</span>
+                              <Tooltip
+                                message="Redeem Key"
+                                position="btm-center"
+                              >
+                                <a
+                                  href={`/credentials/redeem/${keyitem["key"]}?action=confirm`}
+                                >
+                                  <i className="p-icon--video-play"></i>
+                                </a>
+                              </Tooltip>
+                            </>
                           )}
                         </>
                       ),

@@ -5,6 +5,10 @@ import flask
 from webapp.login import user_info
 
 
+def get_exam_contract_id(contract) -> int:
+    return contract.get("id") or contract["contractItem"]["id"]
+
+
 def get_user_first_last_name() -> Tuple[str, str]:
     sso_user = user_info(flask.session)
     name = sso_user["fullname"].rsplit(" ", maxsplit=1)
