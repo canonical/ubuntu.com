@@ -43,6 +43,7 @@ You should also make sure:
 
 -   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
 -   Your cluster is running normally
+-   Your Juju client and controller/models are running the latest versions (see the [Juju docs][juju-controller-upgrade])
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 -   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.24 which may impact your workloads.
@@ -67,6 +68,7 @@ This includes:
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
 
+<a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
@@ -92,56 +94,24 @@ the steps outlined in [this section of the upgrade notes][docker2containerd].
 
 As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of
 this data before running an upgrade. This is covered in more detail in the
-[documentation on backups][backups], but the basic steps are:
+[documentation on backups][backups] (including how to restore snapshots in case of
+problems).
 
-#### 1. Run the snapshot action on the charm
-
-```bash
-juju run-action etcd/0 snapshot --wait
-```
-You should see confirmation of the snapshot being created, and the command needed to download the snapshot
-_from the **etcd** unit_. See the following truncated, example output:
-
-```
-...
-copy:
-      cmd: juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.tar.gz
-        .
-...
-```
-
-#### 2. Fetch a local copy of the snapshot
-
-You can use the `juju scp` command from the output above to download a local copy. For example:
-
-```
-juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.tar.gz .
-```
-
-Substitute in your own etcd unit number and filename, or copy and paste the command from the previous
-output. Remember to add the ` .` at the end to copy to your local directory!
-
-
-#### 3. Upgrade the charm
-
-You can now upgrade the **etcd** charm:
+Upgrade the charm with the command:
 
 ```bash
-juju upgrade-charm etcd --switch ch:etcd --channel 1.24/stable
+juju upgrade-charm etcd
 ```
-
-#### 4. Upgrade etcd
 
 To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
 config.
 
-For 1.24, the etcd charm is configured to use the 3.4/stable channel as in the previous release, but it is worth checking the configuration:
+To determine the correct channel, go to the
+[releases section of the bundle repository][bundle-repo] page and check the relevant
+**Charmed Kubernetes** bundle. Within the bundle, you should see which channel
+the **etcd** charm is configured to use.
 
-```bash
-juju config etcd
-```
-
-If you need to update it, you can set the **etcd** charm's channel config:
+Once you know the correct channel, set the **etcd** charm's channel config:
 
 ```bash
 juju config etcd channel=3.4/stable
@@ -209,7 +179,7 @@ is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-master** units
 
-As noted at the beginning of this page, `kubernetes-master` has been renamed `kubernetes-control-plane`. Following the upgrade, the deployed charm will **STILL** be known as `kubernetes-master` to Juju, as it is impossible to change the name of deployed charms.
+As noted at the beginning of this page, `kubernetes-master` has been renamed `kubernetes-control-plane`. Following the upgrade, the deployed charm will **STILL** be known as `kubernetes-master` to Juju, as it is impossible to change the name of deployed charms. 
 
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
@@ -343,7 +313,7 @@ juju run-action kubernetes-worker/1 upgrade
 
 ## Upgrading the Machine's Series
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-the-ubuntu-series-of-a-machine).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
@@ -425,6 +395,9 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
+[docker2containerd]: /kubernetes/docs/upgrade-notes#1.15
+[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
+[bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

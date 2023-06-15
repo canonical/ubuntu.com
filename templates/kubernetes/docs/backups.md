@@ -17,19 +17,21 @@ The state of your **Kubernetes** cluster is kept in the **etcd** datastore.
 This page shows how to backup and restore the etcd included in
 **Charmed Kubernetes**.
 
-Backing up application specific data, normally stored in a persistent volume, is not currently supported by native Kubernetes. Various third party solutions are available -
-please refer to their own documentation for details.
+Backing up application specific data, normally stored in a persistent volume, is not currently supported
+by native Kubernetes. Various third party solutions are available - please refer to their own
+documentation for details.
 
 ## Creating an **etcd** snapshot
 
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
-    <p class="p-notification__message">Snapshots can only be restored on the **same version of etcd**.</p>
+    <p class="p-notification__message">Snapshots can only be restored on the <em>same major version of etc</em>.</p>
   </div>
 </div>
 
-**etcd** is a distributed key/value store. To create a snapshot, all that is required is to run the `snapshot` action on one of the units running **etcd**:
+**etcd** is a distributed key/value store. To create a snapshot, all that is required is to run the
+`snapshot` action on one of the units running **etcd**:
 
 ```bash
 juju run etcd/0 snapshot keys-version=v3
@@ -42,10 +44,10 @@ unit-etcd-0:
  id: 3d6a505e-07d7-4697-8471-60156f87b1b4
  results:
    copy:
-     cmd: juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+     cmd: juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2023-04-26-18.04.02.tar.gz
        .
    snapshot:
-     path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+     path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2023-04-26-18.04.02.tar.gz
      sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9
      size: 68K
      version: |-
@@ -53,24 +55,27 @@ unit-etcd-0:
        API version: 2
  status: completed
  timing:
-   completed: 2018-09-26 18:04:04 +0000 UTC
-   enqueued: 2018-09-26 18:04:04 +0000 UTC
-   started: 2018-09-26 18:04:03 +0000 UTC
+   completed: 2023-04-26 18:04:04 +0000 UTC
+   enqueued: 2023-04-26 18:04:04 +0000 UTC
+   started: 2023-04-26 18:04:03 +0000 UTC
  unit: etcd/0
 ```
 
 This path/filename relates to the unit where the action was run. As we will likely want to use the snapshot on a different unit, we should fetch the snapshot to the local machine. The command to perform this is also helpfully supplied in the `copy` section of the output (see above):
 
 ```bash
-  juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz .
+  juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2023-04-26-18.04.02.tar.gz .
 ```
 
 It is also wise to check the sha256 checksum of the file you have copied
 against the value in the previous output:
 
 ```bash
-sha256sum etcd-snapshot-2018-09-26-18.04.02.tar.gz
+sha256sum etcd-snapshot-2023-04-26-18.04.02.tar.gz
 ```
+
+Note that some applications (e.g. flannel) may store data using the older 'v2' format. In this case you will need to repeat the snapshot procedure above for ***both*** 'keys-version=v3' and 'keys-version=v2'.
+
 
 ## Restoring a snapshot
 
@@ -94,7 +99,7 @@ The `--config` option is required to specify the same channel of etcd as the ori
 Next we upload and identify the snapshot file to this new unit:
 
 ```bash
-juju attach-resource new-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz
+juju attach-resource new-etcd snapshot=./etcd-snapshot-2023-04-26-18.04.02.tar.gz
 ```
 
 Then run the restore action:
@@ -102,6 +107,8 @@ Then run the restore action:
 ```bash
 juju run new-etcd/0 restore
 ```
+
+If you have snapshots for both v2 and v3 data, you should repeat the last two steps and restore the additional snapshot at this time.
 
 Once the restore action has finished, you should see output confirming that the operation is `completed`. The new etcd application will need to be connected to the rest of the deployment:
 
@@ -134,9 +141,9 @@ unit-new-etcd-0:
         cluster is healthy
   status: completed
   timing:
-    completed: 2018-10-26 15:16:33 +0000 UTC
-    enqueued: 2018-10-26 15:16:32 +0000 UTC
-    started: 2018-10-26 15:16:33 +0000 UTC
+    completed: 2023-04-26 23:16:33 +0000 UTC
+    enqueued: 2023-04-26 23:16:32 +0000 UTC
+    started: 2023-04-26 23:16:33 +0000 UTC
   unit: new-etcd/0
 ```
 

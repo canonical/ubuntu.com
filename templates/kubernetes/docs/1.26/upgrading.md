@@ -52,7 +52,7 @@ You should also make sure:
 -   Your Juju client and controller/models are running the 2.9/stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.25 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.26 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -71,7 +71,7 @@ deprecated APIs.
 
 ## Upgrading the Machine's Series (required for machines currently running 18.04(Bionic))
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-the-ubuntu-series-of-a-machine).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
@@ -110,51 +110,20 @@ juju upgrade-charm containerd
 
 As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of
 this data before running an upgrade. This is covered in more detail in the
-[documentation on backups][backups], but the basic steps are:
+[documentation on backups][backups] (including how to restore snapshots in case of
+problems).
 
-#### 1. Run the snapshot action on the charm
-
-```bash
-juju run-action etcd/0 snapshot --wait
-```
-You should see confirmation of the snapshot being created, and the command needed to
-download the snapshot _from the **etcd** unit_. See the following truncated, example output:
-
-```
-...
-copy:
-      cmd: juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.tar.gz
-        .
-...
-```
-
-#### 2. Fetch a local copy of the snapshot
-
-You can use the `juju scp` command from the output above to download a local copy. For example:
-
-```
-juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.tar.gz .
-```
-
-Substitute in your own etcd unit number and filename, or copy and paste the command from the previous
-output. Remember to add the ` .` at the end to copy to your local directory!
-
-
-#### 3. Upgrade the charm
-
-You can now upgrade the **etcd** charm:
+Upgrade the charm with the command:
 
 ```bash
 juju upgrade-charm etcd
 ```
 
-#### 4. Upgrade etcd
-
 To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
 config.
 
 To determine the correct channel, go to the
-[Supported Versions][supported-versions] page and check the relevant
+[releases section of the bundle repository][bundle-repo] page and check the relevant
 **Charmed Kubernetes** bundle. Within the bundle, you should see which channel
 the **etcd** charm is configured to use.
 
@@ -163,6 +132,7 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 ```bash
 juju config etcd channel=3.4/stable
 ```
+
 
 ### Upgrading additional components
 
@@ -380,6 +350,7 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [supported-versions]: /kubernetes/docs/supported-versions
 [juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
 [inclusive-naming]: /kubernetes/docs/inclusive-naming
+[bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
