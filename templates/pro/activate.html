@@ -20,8 +20,9 @@
       <form class="p-form p-form--inline" action="{{ url_for('pro_activate_activation_key') }}" method="POST">
         <div class="p-form__group">
           <label for="pro-activation-key" class="p-form__label">Enter your code</label>
-          <div class="p-form__control" style="min-width: 15rem">
-            <input type="text" id="pro-activation-key" class="p-form__control" name="pro-activation-key" autocomplete="off" placeholder="Ex: Kv4rKbprDZohbj-Giz9H9OQ" required="" aria-describedby="pro-activate-input">
+          <div class="p-form__control is-error" style="min-width: 15rem">
+            <input type="text" id="pro-activation-key" class="activate-input" name="pro-activation-key" autocomplete="off" placeholder="Ex: Kv4rKbprDZohbj-Giz9H9OQ" required="" aria-describedby="pro-activate-input">
+            <p class="p-form-validation__message" id="pro-activatio-validation__message"></p>
           </div>
         </div>
         <button class="p-button--positive" type="submit" name="submit">Activate</button>
@@ -44,5 +45,31 @@
     </div>
     {% endif %}
   </section>
+  <script>
+    const activation_key = document.querySelector(".activate-input");
+    const validate_message =  document.querySelector(".p-form-validation__message");
+
+    function validateKey(e){
+      const firsLetter = "The activation key starts with a K.";
+      const length = "The activation key is 23 characters long";
+      const notification = document.querySelector("#notification");
+
+      if(e){
+        if(notification){
+          notification.style.display = "none";
+        }
+      }
+      if(e.target.value.length === 0){
+        validate_message.textContent = "";
+      }else if(e.target.value.charAt(0) !== "K"){
+        validate_message.textContent = firsLetter;
+      } else if (e.target.value.length !== 23){
+        validate_message.textContent = length;
+      } else if(e.target.value.charAt(0) && e.target.value.length === 23) {
+        validate_message.textContent = "";
+      }
+    }
+    activation_key.addEventListener("keyup", validateKey);
+  </script>
   {% endblock %}
 {% endblock %}
