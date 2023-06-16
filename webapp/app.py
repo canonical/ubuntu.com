@@ -90,6 +90,7 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
+    cred_beta_activation,
     get_activation_keys,
     get_filtered_webhook_responses,
     get_issued_badges,
