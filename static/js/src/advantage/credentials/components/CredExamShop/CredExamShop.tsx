@@ -12,12 +12,16 @@ import { currencyFormatter } from "advantage/react/utils";
 const CredExamShop = () => {
   const ExamProducts = [
     {
-      id: "cue-01-linux-quickcert",
-      longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
-      name: "CUE.01 Linux QuickCert",
-      price: { value: 4900, currency: "USD" },
-      productID: "cue-01-linux",
-      canBeTrialled: false,
+      id: "cue-linux-essentials",
+      longId: "lAK5jL8zvMjZOwaysIMQyGRAdOLgTQQH0xpezu2oYp74",
+      name: "CUE Linux Essentials",
+      period: "none",
+      price: {
+        currency: "USD",
+        value: 4900,
+      },
+      productID: "cue-linux-essentials",
+      status: "active",
       private: false,
       marketplace: "canonical-cube",
       metadata: [
