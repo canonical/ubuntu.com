@@ -11,6 +11,7 @@ const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation");
 
 navDropdowns.forEach(function (dropdown) {
+  console.log("navDropdowns:", dropdown)
   dropdown.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -25,6 +26,7 @@ document.addEventListener("global-nav-opened", () => {
   dropdownWindowOverlay.classList.add("fade-animation");
 
   navDropdowns.forEach((dropdown) => {
+    console.log("DROPDOWN", dropdown)
     const dropdownContent = document.getElementById(dropdown.id + "-content");
     const dropdownContentMobile = document.getElementById(
       dropdown.id + "-content-mobile"
@@ -37,6 +39,7 @@ document.addEventListener("global-nav-opened", () => {
 });
 
 function handleDropdownClick(clickedDropdown) {
+  console.log("handleDropdownClick:", clickedDropdown)
   const isActive = clickedDropdown.classList.contains("is-active");
 
   dropdownWindow.classList.remove("slide-animation");
@@ -45,10 +48,14 @@ function handleDropdownClick(clickedDropdown) {
 }
 
 function toggleNavMenu(dropdown, show) {
+  console.log("toggleNavMenu:", dropdown, "show:", show)
   const dropdownContent = document.getElementById(dropdown.id + "-content");
+  console.log("dropdownContent", dropdownContent)
   const dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
   );
+  console.log("dropdownContentMobile", dropdownContentMobile)
+
   const filteredDropdowns = navDropdowns.filter(
     (filteredDropdown) => filteredDropdown !== dropdown
   );
@@ -57,7 +64,8 @@ function toggleNavMenu(dropdown, show) {
     if (show) {
       dropdown.classList.add("is-active");
       dropdownContent.classList.remove("u-hide");
-      dropdownContentMobile.classList.remove("u-hide");
+      dropdownContentMobile.parentNode.parentNode.classList.add("is-active");
+      console.log("sibling", dropdownContentMobile.nextSibling.classList)
 
       filteredDropdowns.forEach((filteredDropdown) => {
         const filteredDropdownContent = document.getElementById(
@@ -69,7 +77,7 @@ function toggleNavMenu(dropdown, show) {
 
         filteredDropdown.classList.remove("is-active");
         filteredDropdownContent.classList.add("u-hide");
-        filteredDropdownContentMobile.classList.add("u-hide");
+        filteredDropdownContentMobile.parentNode.parentNode.classList.remove("is-active");
       });
 
       handleFocusEvents(dropdown, dropdownContent, dropdownContentMobile);

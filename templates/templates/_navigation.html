@@ -1,6 +1,6 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
 <a href="#main-content" class="p-link--skip">Jump to main content</a>
-<header id="navigation" class="p-navigation is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   {% block header_banner %}
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
@@ -31,24 +31,19 @@
     <nav class="p-navigation__nav js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseover="fetchDropdown(event, '/templates/meganav/products', 'products-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#products-content" onfocus="fetchDropdown(event, '/templates/meganav/products', 'products-content');">Products</a>
-          <div class="u-hide dropdown-content-mobile" id="products-content-mobile" onclick="event.stopPropagation()"></div>
+          <button class="p-navigation__link" href="#products-content" aria-controls="#products-content" tabindex="0" onfocus="fetchDropdown(event, '/templates/meganav/products', 'products-content');">Products</button>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseover="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#use-case-content" onfocus="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content');">Use Case</a>
-          <div class="u-hide dropdown-content-mobile" id="use-case-content-mobile" onclick="event.stopPropagation()"></div>
+          <button class="p-navigation__link" href="#use-case-content" aria-controls="#use-case-content" tabindex="0" onfocus="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content');">Use Case</button>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseover="fetchDropdown(event, '/templates/meganav/support', 'support-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#support-content" onfocus="fetchDropdown(event, '/templates/meganav/support', 'support-content');">Support</a>
-          <div class="u-hide dropdown-content-mobile" id="support-content-mobile" onclick="event.stopPropagation()"></div>
+          <button class="p-navigation__link" href="#support-content" aria-controls="#support-content" tabindex="0" onfocus="fetchDropdown(event, '/templates/meganav/support', 'support-content');">Support</button>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown(event, '/templates/meganav/community', 'community-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown(event, '/templates/meganav/community', 'community-content');">Community</a>
-          <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
+          <button class="p-navigation__link" href="#community-content" aria-controls="#community-content" tabindex="0" onfocus="fetchDropdown(event, '/templates/meganav/community', 'community-content');">Community</button>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
-          <div class="u-hide dropdown-content-mobile" id="get-ubuntu-content-mobile" onclick="event.stopPropagation()"></div>
+          <button class="p-navigation__link" href="#get-ubuntu-content" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</button>
         </li>
       </ul>
       <ul class="p-navigation__items global-nav">
@@ -80,7 +75,7 @@
 </div>
 {% if not(hide_subnav == True) %}
 {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
-<div id="secondary-navigation" class="p-navigation is-secondary is-dark">
+<div id="secondary-navigation" class="p-navigation--sliding is-secondary is-dark">
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
       <div class="p-navigation__tagged-logo">
@@ -142,7 +137,7 @@
   const nav = document.querySelector('.js-show-nav');
   const currentBubble = window.location.pathname.split('/')[1]
   const skipLink = document.querySelector('.p-link--skip');
-  const reducedNav = document.querySelector('.p-navigation.is-reduced ')
+  const reducedNav = document.querySelector('.p-navigation--sliding.is-reduced ')
 
   nav.classList.remove('u-hide')
 
@@ -194,18 +189,25 @@
   
   function fetchDropdown(event, url, id) {
     const triggerEl = event.target;
+    console.log(event.target.parentNode)
     const container = document.getElementById(id);
-    const mobileContainer = document.getElementById(id+"-mobile");
+    const mobileContainer = triggerEl.parentNode;
     if (container.innerHTML === "") {
       const req = new XMLHttpRequest();
       req.open('GET', url);
       req.send();
       req.addEventListener('load', function() {
-        container.innerHTML = this.responseText;
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = this.responseText;
+        const desktopContent = tempElement.querySelector(".desktop-dropdown-content")
+        container.appendChild(desktopContent);
         // attachNavEvents(triggerEl, container);
       });
       req.addEventListener('load', function() {
-        mobileContainer.innerHTML = this.responseText;
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = this.responseText;
+        const mobileContent = tempElement.querySelector(".dropdown-content-mobile")
+        mobileContainer.appendChild(mobileContent);
         
         const activeCTAs = mobileContainer.querySelectorAll('a.is-active');
 
@@ -235,7 +237,7 @@
 
     function toggleMenu(e) {
       e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
+      const navigation = e.target.closest('.p-navigation--sliding');
 
       if (navigation.classList.contains('has-menu-open')) {
         const mobileContent = document.querySelector('.dropdown-content-mobile')
@@ -250,7 +252,7 @@
 
     function toggleSearch(e) {
       e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
+      const navigation = e.target.closest('.p-navigation--sliding');
 
       if (navigation.classList.contains('has-search-open')) {
         closeAll();
@@ -262,7 +264,7 @@
 
     function openSearch(e) {
       e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
+      const navigation = e.target.closest('.p-navigation--sliding');
       const nav = navigation.querySelector('.p-navigation__nav');
       const searchInput = navigation.querySelector('.p-search-box__input');
       const buttons = document.querySelectorAll('.js-search-button');
@@ -282,7 +284,7 @@
 
     function openMenu(e) {
       e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
+      const navigation = e.target.closest('.p-navigation--sliding');
       const nav = navigation.querySelector('.p-navigation__nav');
       const buttons = document.querySelectorAll('.js-menu-button');
 
@@ -295,7 +297,7 @@
     }
 
     function closeSearch() {
-      const navigation = document.querySelector('.p-navigation');
+      const navigation = document.querySelector('.p-navigation--sliding');
       const nav = navigation.querySelector('.p-navigation__nav');
       const banner = document.querySelector('.p-navigation__banner');
       const buttons = document.querySelectorAll('.js-search-button');
@@ -315,7 +317,7 @@
     }
 
     function closeMenu() {
-      const navigation = document.querySelector('.p-navigation');
+      const navigation = document.querySelector('.p-navigation--sliding');
       const nav = navigation.querySelector('.p-navigation__nav');
       const banner = document.querySelector('.p-navigation__banner');
       const buttons = document.querySelectorAll('.js-menu-button');
@@ -364,7 +366,7 @@
   initNavigationSearch(navigation);
 
   function showSection(e) {
-    const nav = document.querySelector('.p-navigation');
+    const nav = document.querySelector('.p-navigation--sliding');
     const target = e.target.getAttribute('aria-controls');
     const isDesktop = e.target.closest('.dropdown-content-desktop');
     const isMobile = e.target.closest('.dropdown-content-mobile');
@@ -373,11 +375,14 @@
     e.preventDefault()
 
     if (isDesktop) {
+      console.log("here")
       el = document.querySelector(`.dropdown-content-desktop #${target}`);
     } else if (isMobile) {
-      el = document.querySelector(`.dropdown-content-mobile #${target}`);
+      console.log("or here", target)
+      el = document.querySelector(`#${target}`);
     }
     
+    console.log("el,", el)
     el.removeAttribute('hidden');
 
     setTimeout(function () {
@@ -389,7 +394,7 @@
 
   function hideSection(e) {
     e.preventDefault();
-    const nav = document.querySelector('.p-navigation');
+    const nav = document.querySelector('.p-navigation--sliding');
     const target = e.target.getAttribute('aria-controls');
     const el = document.getElementById(target)
 
