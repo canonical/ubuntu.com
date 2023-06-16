@@ -681,7 +681,7 @@ def cred_beta_activation(**_):
     return flask.render_template("credentials/beta-activation.html")
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 def get_filtered_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = flask.request.args.get("ability_screen_id", None)
     page = flask.request.args.get("page", 1)
@@ -715,7 +715,7 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 def get_webhook_response(trueability_api, **kwargs):
     webhook_id = flask.request.args.get("webhook_id", None)
     webhook_responses = trueability_api.get_webhook_response(
@@ -724,14 +724,14 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@canonical_staff()
 @shop_decorator(area="cred", permission="user", response=json)
+@canonical_staff()
 def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges()
     return flask.jsonify(badges["data"])
 
 
-@shop_decorator(area="cred", permission="user", response=html)
+@shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]
     response = credly_api.get_issued_badges(
@@ -742,7 +742,7 @@ def get_my_issued_badges(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="guest", response=json)
+@shop_decorator(area="cred", permission="guest", response="json")
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
     assessment_score = webhook_response["assessment"]["score"]
