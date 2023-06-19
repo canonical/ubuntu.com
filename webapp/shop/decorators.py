@@ -244,9 +244,7 @@ def get_credly_api_instance(area, credly_session) -> CredlyAPI:
         return None
 
     return CredlyAPI(
-        base_url=os.getenv(
-            "CREDLY_SANDBOX_URL", "https://sandbox-api.credly.com/v1"
-        ),
+        base_url=os.getenv("CREDLY_URL", "https://sandbox-api.credly.com/v1"),
         auth_token=os.getenv("CREDLY_TOKEN", ""),
         org_id=os.getenv(
             "CREDLY_ORGANIZATION_ID", "069adc37-b51e-45ee-8c9d-4a2c89ce6622"
