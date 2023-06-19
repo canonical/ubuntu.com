@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
+import { useFormikContext } from "formik";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import { FormValues, TaxInfo } from "../utils/types";
-import { useFormikContext } from "formik";
 
 type useCalculateProps = {
   marketplace: UserSubscriptionMarketplace;
@@ -59,7 +59,7 @@ const useCalculate = ({
     },
     {
       retry: false,
-      enabled: !!isTaxSaved && !!country,
+      enabled: !!isTaxSaved && !!country && !window.accountId,
     }
   );
 

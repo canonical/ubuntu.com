@@ -16,8 +16,8 @@ type Props = {
 };
 
 const usePreview = ({ quantity, product, action }: Props) => {
-  const { isError: isUserInfoError } = useCustomerInfo();
-  const { setFieldValue, values } = useFormikContext<FormValues>();
+  const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
+  const { setFieldValue } = useFormikContext<FormValues>();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["preview", product],
     async () => {
@@ -81,11 +81,12 @@ const usePreview = ({ quantity, product, action }: Props) => {
       return data;
     },
     {
+      retry: false,
       enabled:
         !!window.accountId &&
-        values.isTaxSaved &&
         !window.currentPaymentId &&
         !!product &&
+        !!userInfo?.accountInfo?.name &&
         !isUserInfoError,
     }
   );
