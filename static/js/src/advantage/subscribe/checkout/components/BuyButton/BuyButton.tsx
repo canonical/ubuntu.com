@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQueryClient } from "react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
@@ -18,11 +18,18 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+const BuyButton = ({
+  setError,
+  quantity,
+  product,
+  action,
+  isLoading,
+  setIsLoading,
+}: Props) => {
   const {
     values,
     setFieldValue,
@@ -85,7 +92,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     // to prevent page refreshes from causing accidental double purchasing
     localStorage.removeItem("ua-subscribe-state");
     setIsLoading(true);
-
+    document.querySelector(".global-nav")?.scrollIntoView();
     useFinishPurchaseMutation.mutate(
       {
         formData: values,

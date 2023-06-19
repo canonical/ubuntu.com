@@ -32,6 +32,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -49,7 +50,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
               {error}
             </Notification>
           ) : null}
-          {isUserInfoLoading ? (
+          {isLoading || isUserInfoLoading ? (
             <>
               {" "}
               <Col size={12}>
@@ -60,7 +61,8 @@ const Checkout = ({ product, quantity, action }: Props) => {
                 </div>
               </Col>
             </>
-          ) : (
+          ) : null}
+          {!isUserInfoLoading && (
             <Formik
               onSubmit={() => {}}
               initialValues={initialValues}
@@ -68,7 +70,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
                 !isGuest && !!userInfo?.customerInfo?.defaultPaymentMethod
               }
             >
-              <>
+              <div
+                style={{
+                  display: isLoading || isUserInfoLoading ? "none" : "block",
+                }}
+              >
                 <Col emptyLarge={7} size={6}>
                   <p>* indicates a mandatory field</p>
                 </Col>
@@ -134,6 +140,8 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading}
                               ></BuyButton>
                             </Col>
                           </Row>
@@ -142,7 +150,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                     },
                   ]}
                 />
-              </>
+              </div>
             </Formik>
           )}
         </Row>
