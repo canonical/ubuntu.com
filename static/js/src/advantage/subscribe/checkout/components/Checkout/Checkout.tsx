@@ -17,6 +17,7 @@ import SignIn from "../SignIn";
 import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
+import { checkoutEvent } from "advantage/ecom-events";
 
 type Props = {
   product: Product;
@@ -33,6 +34,10 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
 
+  if (!localStorage.getItem("gaEventTriggered")) {
+    localStorage.setItem("gaEventTriggered", "true");
+    checkoutEvent(window.GAFriendlyProduct, "2");
+  }
   return (
     <>
       <div className="p-strip">

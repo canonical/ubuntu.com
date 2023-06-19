@@ -244,6 +244,10 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         tax: pendingPurchase?.invoice?.taxAmount / 100,
       };
 
+      if (localStorage.getItem("gaEventTriggered") === "true") {
+        localStorage.removeItem("gaEventTriggered");
+      }
+
       purchaseEvent(purchaseInfo, window.GAFriendlyProduct);
 
       // The state of the product selector is stored in the local storage

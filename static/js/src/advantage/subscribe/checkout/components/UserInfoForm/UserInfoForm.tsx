@@ -10,7 +10,6 @@ import {
 } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import { CardElement } from "@stripe/react-stripe-js";
-import { checkoutEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
 import registerPaymentMethod from "../../hooks/postCustomerInfo";
 import { FormValues } from "../../utils/types";
@@ -80,7 +79,6 @@ const UserInfoForm = ({ setError }: Props) => {
   }, [values.isCardValid, cardFieldError, cardFieldHasFocus]);
 
   const onSaveClick = () => {
-    checkoutEvent(window.GAFriendlyProduct, "2");
     setFieldTouched("isInfoSaved", false);
     setIsButtonDisabled(true);
     setFieldValue("isInfoSaved", true);
