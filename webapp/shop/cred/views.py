@@ -745,6 +745,9 @@ def get_my_issued_badges(credly_api, **kwargs):
 @shop_decorator(area="cred", permission="guest", response="json")
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
+    api_key = flask.request.headers.get("X-API-KEY")
+    if not api_key or api_key != os.getenv(""):
+        return flask.jsonify({"status": "Invalid API Key"}), 401
     assessment_score = webhook_response["assessment"]["score"]
     print(assessment_score)
     if assessment_score >= 0.5:
