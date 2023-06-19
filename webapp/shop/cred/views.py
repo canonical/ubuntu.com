@@ -749,7 +749,6 @@ def issue_badges(trueability_api, credly_api, **kwargs):
     if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
         return flask.jsonify({"status": "Invalid API Key"}), 401
     assessment_score = webhook_response["assessment"]["score"]
-    print(assessment_score)
     if assessment_score >= 0.5:
         assessment_user = webhook_response["assessment"]["user"]["email"]
         first_name, last_name = webhook_response["assessment"]["user"][
