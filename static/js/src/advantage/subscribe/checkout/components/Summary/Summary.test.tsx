@@ -195,4 +195,127 @@ describe("Summary", () => {
 
     screen.getByText("Purchase error");
   });
+
+  it("renders trial error message preview error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: false,
+        error: new Error(
+          "cannot make a purchase while subscription is in trial"
+        ),
+        isFetching: false,
+      };
+    });
+    const setError = jest.fn();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={setError}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    const message = (
+      <>
+        You cannot make a purchase during the trial period. To make a new
+        purchase, cancel your current trial subscription.
+      </>
+    );
+
+    expect(setError).toHaveBeenCalledWith(message);
+  });
+
+  it("renders pending purchase error message preview error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: false,
+        error: new Error("can only make one purchase at a time"),
+        isFetching: false,
+      };
+    });
+    const setError = jest.fn();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={setError}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    const message = (
+      <>
+        You already have a pending purchase. Please go to{" "}
+        <a href="/account/payment-methods">payment methods</a> to retry.
+      </>
+    );
+
+    expect(setError).toHaveBeenCalledWith(message);
+  });
+
+  it("renders unexpected error message preview error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: false,
+        error: new Error("unexpected error"),
+        isFetching: false,
+      };
+    });
+    const setError = jest.fn();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              setError={setError}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    const message = <>Sorry, there was an unknown error with your purchase.</>;
+
+    expect(setError).toHaveBeenCalledWith(message);
+  });
 });
