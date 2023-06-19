@@ -21,9 +21,7 @@ import {
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { SelectedId } from "../Content/types";
 import ExpiryNotification from "../ExpiryNotification";
-import {
-  ExpiryNotificationSize,
-} from "../ExpiryNotification/ExpiryNotification";
+import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import RenewalButton from "../RenewalButton";
 import SubscriptionCancel from "../SubscriptionCancel";
 import SubscriptionEdit from "../SubscriptionEdit";
