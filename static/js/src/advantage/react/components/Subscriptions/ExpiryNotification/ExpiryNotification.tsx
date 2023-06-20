@@ -132,9 +132,8 @@ const MESSAGES: Messages = {
           </>
         ),
         [UserSubscriptionType.Trial]:
-          "You have cancelled your Ubuntu Pro trial. " +
-          "At the end of the trial period, this subscription " +
-          "will disappear and you will no longer have access to Pro services.",
+          "Your trial has expired. " +
+          "This subscription will disappear from your dashboard soon.",
       },
       title: "Your subscription has expired.",
     },
