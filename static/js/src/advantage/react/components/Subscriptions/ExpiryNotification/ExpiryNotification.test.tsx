@@ -357,7 +357,8 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Your trial has ended."
+      "Your trial has expired. " +
+        "This subscription will disappear from your dashboard soon."
     );
   });
 
@@ -379,7 +380,8 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Your trial has ended."
+      "Your trial has expired. " +
+        "This subscription will disappear from your dashboard soon."
     );
   });
 });
