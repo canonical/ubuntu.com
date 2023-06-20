@@ -103,6 +103,9 @@ env:
       key: api-key
       name: trueability
 
+  - name: CANONICAL_LOGIN_URL
+    value: https://login.ubuntu.com/
+
 memoryLimit: 512Mi
 
 extraHosts:
@@ -519,6 +522,24 @@ staging:
         key: api-key
         name: trueability
 
+    - name: TA_WEBHOOK_API_KEY
+      secretKeyRef:
+        key: webhook-secret
+        name: trueability
+
+    - name: CREDLY_URL
+      value: https://sandbox-api.credly.com/v1
+
+    - name: CREDLY_TOKEN
+      secretKeyRef:
+        key: token
+        name: credly
+
+    - name: CREDLY_ORGANIZATION_ID
+      secretKeyRef:
+        key: organization
+        name: credly
+
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
 
@@ -595,6 +616,24 @@ staging:
           secretKeyRef:
             key: api-key
             name: trueability
+
+        - name: TA_WEBHOOK_API_KEY
+          secretKeyRef:
+            key: webhook-secret
+            name: trueability
+
+        - name: CREDLY_URL
+          value: https://sandbox-api.credly.com/v1
+
+        - name: CREDLY_TOKEN
+          secretKeyRef:
+            key: token
+            name: credly
+
+        - name: CREDLY_ORGANIZATION_ID
+          secretKeyRef:
+            key: organization
+            name: credly
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
