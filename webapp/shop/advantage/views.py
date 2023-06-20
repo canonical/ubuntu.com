@@ -37,64 +37,102 @@ from webapp.shop.schemas import (
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def get_activate_view(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account("canonical-ua")
+    account = None
+    user = user_info(flask.session)
+    name = user["fullname"]
+
     try:
-        if account is None:
-            account = ua_contracts_api.ensure_purchase_account()
-        name = account.name
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+
+        if account.type == "paid":
+            return flask.render_template(
+                "pro/activate.html", name=name, not_paid_account=False
+            )
     except UAContractsUserHasNoAccount:
-        return flask.render_template("account/forbidden.html")
+        return flask.render_template(
+            "pro/activate.html", name=name, not_paid_account=True
+        )
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
-
-    return flask.render_template(
-        "pro/activate.html",
-        name=name,
-    )
+    else:
+        flask.render_template("account/forbidden.html")
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
-    account = None
+    user = user_info(flask.session)
+    name = user["fullname"]
+    email = user["email"]
+    marketplace = kwargs.get("marketplace", "canonical-ua")
     try:
-        account = advantage_mapper.get_purchase_account("canonical-ua")
-        if account:
+        if (
+            flask.request.method == "POST"
+            and flask.request.form["submit"] == "buying-for-submit"
+        ):
+            activate_buy_for = flask.request.form.get("activate-buy-for")
+            organisation_name = flask.request.form.get(
+                "activate-organisation-name"
+            )
+
+            if activate_buy_for == "myself":
+                ua_contracts_api.ensure_purchase_account(
+                    marketplace=marketplace,
+                    email=email,
+                    account_name=name,
+                )
+            elif activate_buy_for == "organisation" and organisation_name:
+                ua_contracts_api.ensure_purchase_account(
+                    marketplace=marketplace,
+                    email=email,
+                    account_name=organisation_name,
+                )
+            else:
+                return flask.render_template("account/forbidden.html")
+
+        if (
+            flask.request.method == "POST"
+            and flask.request.form["submit"] == "activate-submit"
+        ):
+            account = advantage_mapper.get_purchase_account("canonical-ua")
             name = account.name
             accountId = account.id
+            pro_activation_key = flask.request.form.get("pro-activation-key")
+            if pro_activation_key[0] != "K" or len(pro_activation_key) != 23:
+                return flask.render_template(
+                    "/pro/activate.html",
+                    name=name,
+                    notification_class="negative",
+                    notification_title="Something went wrong",
+                    notification_message="Activation key not found",
+                    not_paid_account=False,
+                )
+            try:
+                activation_response = ua_contracts_api.activate_activation_key(
+                    {
+                        "accountID": accountId,
+                        "activationKey": pro_activation_key,
+                    }
+                )
+                return flask.redirect("/pro/dashboard")
+            except UAContractsAPIErrorView as error:
+                activation_response = json.loads(error.response.text).get(
+                    "message"
+                )
+                return flask.render_template(
+                    "/pro/activate.html",
+                    name=name,
+                    notification_class="negative",
+                    notification_title="Something went wrong",
+                    notification_message=activation_response,
+                    not_paid_account=False,
+                )
+        return flask.render_template(
+            "/pro/activate.html", name=name, not_paid_account=False
+        )
     except UAContractsUserHasNoAccount:
-        return flask.render_template("account/forbidden.html")
+        pass
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
-
-    if flask.request.method == "POST":
-        pro_activation_key = flask.request.form.get("pro-activation-key")
-        if pro_activation_key[0] != "K" or len(pro_activation_key) != 23:
-            return flask.render_template(
-                "/pro/activate.html",
-                name=name,
-                notification_class="negative",
-                notification_title="Something went wrong",
-                notification_message="Activation key not found",
-            )
-        try:
-            activation_response = ua_contracts_api.activate_activation_key(
-                {
-                    "accountID": accountId,
-                    "activationKey": pro_activation_key,
-                }
-            )
-            return flask.redirect("/pro/dashboard")
-        except UAContractsAPIErrorView as error:
-            activation_response = json.loads(error.response.text).get(
-                "message"
-            )
-            return flask.render_template(
-                "/pro/activate.html",
-                name=name,
-                notification_class="negative",
-                notification_title="Something went wrong",
-                notification_message=activation_response,
-            )
 
 
 @shop_decorator(area="advantage", response="html")
