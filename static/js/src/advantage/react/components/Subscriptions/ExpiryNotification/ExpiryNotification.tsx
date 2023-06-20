@@ -62,7 +62,10 @@ const MESSAGES: Messages = {
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Yearly]:
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
-        [UserSubscriptionType.Trial]: "Your trial will end soon.",
+        [UserSubscriptionType.Trial]:
+          "You have cancelled your Ubuntu Pro trial. " +
+          "At the end of the trial period, this subscription " +
+          "will disappear and you will no longer have access to Pro services.",
       },
       title: "Your subscription is about to expire.",
     },
@@ -94,7 +97,9 @@ const MESSAGES: Messages = {
             will remain the same.
           </>
         ),
-        [UserSubscriptionType.Trial]: "Your trial has ended.",
+        [UserSubscriptionType.Trial]:
+          "Your trial has expired. " +
+          "This subscription will disappear from your dashboard soon.",
       },
       title: "Your subscription has expired.",
     },
@@ -126,7 +131,10 @@ const MESSAGES: Messages = {
             will remain the same.
           </>
         ),
-        [UserSubscriptionType.Trial]: "Your trial has ended.",
+        [UserSubscriptionType.Trial]:
+          "You have cancelled your Ubuntu Pro trial. " +
+          "At the end of the trial period, this subscription " +
+          "will disappear and you will no longer have access to Pro services.",
       },
       title: "Your subscription has expired.",
     },

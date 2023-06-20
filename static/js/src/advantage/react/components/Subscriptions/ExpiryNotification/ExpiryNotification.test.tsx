@@ -331,7 +331,9 @@ describe("ExpiryNotification", () => {
       "Your subscription is about to expire."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Your trial will end soon."
+      "You have cancelled your Ubuntu Pro trial. " +
+        "At the end of the trial period, this subscription " +
+        "will disappear and you will no longer have access to Pro services."
     );
   });
 
