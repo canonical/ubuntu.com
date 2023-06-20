@@ -3,7 +3,7 @@
 {% block title %}HPC use cases delivered through solutions from Canonical{% endblock %}
 {% block meta_description %}HPC is used throughout Automotive, Aerospace, Energy, Healthcare, Life sciences, Governmental, Research, Universities, Media, Entertainment and Financial sectors.{% endblock %}
 {% block meta_image %}https://assets.ubuntu.com/v1/f2123c59-HPC-use-cases-meta-image.png{% endblock meta_image %}
-{% block meta_copydoc %}https://docs.google.com/document/d/133bou6x0uCiZxezjjr6uroq73mSPM3MdSiWpS5WA1XM/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1yG6svTYbKBgdGih5ASsWbRDWAMPcqIJVfpQ5LGoxRCE/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -13,7 +13,9 @@
       <h1>High-performance computing use cases</h1>
       <p class="p-heading--4">How sectors and industries accelerate innovation with HPC </p>
       <p>Canonical delivers multiple solutions that help your organisation ease operations and innovate at a greater pace.</p>
-      <a class="p-button--positive" href="/hpc/contact-us">Get in touch</a>
+      <p><a class="p-button--positive" href="/hpc/contact-us">Get in touch</a></p>
+      <p><a href="/engage/a-guide-to-high-performance-computing">Download our Guide to HPC&nbsp;&rsaquo;</a></p>
+
     </div>
     <div class="col-6 u-align--center">
       <div class="u-embedded-media">
@@ -103,24 +105,34 @@
     </div>
   </div>
 </section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img src="https://assets.ubuntu.com/v1/57364a8b-e-book-icon.svg" alt="" class="p-heading-icon__img">
+          <h2 class="p-heading-icon__title">Guide to high-performance computing</h2>
+        </div>
+      </div>
+      <p>Accelerate your high-performance computing projects with our guide. Learn all about HPC cluster deployment, schedulers and workloads.</p>
+      <p><a href="/engage/a-guide-to-high-performance-computing" class="p-button--positive">Download our guide to HPC</a></p>
+    </div>
+    <div class="col-6"></div>
+  </div>
+</section>
+
 <section class="p-strip--light">
   <div class="row">
     <div class="col-6">
-      <div>
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-            ) | safe
-        }}
-        <h2>Scania simplifies HPC cluster deployments</h2>
-        <p>Scania uses Juju and Charms to deploy SLURM, a popular scheduler for HPC workloads. Find out how they simplify installation, operations, and application integration.</p>
-        <p><a class="p-button--positive" href="https://www.youtube.com/watch?v=SGrRqCuiT90">Watch the webinar</a></p>
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img src="https://assets.ubuntu.com/v1/6e184942-Webinar.svg" alt="" class="p-heading-icon__img">
+          <h2 class="p-heading-icon__title">Scania simplifies HPC cluster deployments</h2>
+        </div>
       </div>
+      <p>Scania uses Juju and Charms to deploy SLURM, a popular scheduler for HPC workloads. Find out how they simplify installation, operations, and application integration.</p>
+      <p><a class="p-button--positive" href="https://www.youtube.com/watch?v=SGrRqCuiT90">Watch the webinar</a></p>
     </div>
     <div class="col-6 u-hide--small u-hide--medioum u-align--center u-vertically-center">
         <a href="https://www.youtube.com/watch?v=SGrRqCuiT90">
@@ -141,6 +153,28 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>A new world of possibilities</h2>
+  </div>
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e2bf84de-edge-cluster.svg",
+        alt="",
+        width="156",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--5">Life sciences</h3>
+      <p class="p-heading--2">Genome sequencing and protein folding</p>
+      <p>HPC is opening new doors for genome sequencing. It can help life sciences organisations better understand genetics and diseases. These use cases depend on large high-performance computing clusters.</p>
+      <p>A more robust understanding of protein folding is now possible thanks to complex simulation workloads and advanced AI solutions such as AlphaFold.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
   </div>
   <div class="row">
     <div class="col-6">
@@ -368,27 +402,11 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <h3 class="p-heading--5">Life sciences</h3>
-      <p class="p-heading--2">Genome sequencing and protein folding</p>
-      <p>HPC is opening new doors for genome sequencing. It can help life sciences organisations better understand genetics and diseases. These use cases depend on large high-performance computing clusters.</p>
-      <p>A more robust understanding of protein folding is now possible thanks to complex simulation workloads and advanced AI solutions such as AlphaFold.</p>
+      <h3 class="p-heading--5">Manufacturing and industry</h3>
+      <p class="p-heading--2">Simulations improve assembly and components </p>
+      <p>HPC is being used to optimise materials used in manufacturing. It allows companies to create more durable components while using the lowest amount of materials, driving efficiency.</p>
+      <p>Simulations can also be used to optimise assembly lines and get a better understanding of processes.</p>
     </div>
-    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/e2bf84de-edge-cluster.svg",
-        alt="",
-        width="156",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row">
     <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/0df476e6-DevOps.svg",
@@ -400,23 +418,11 @@
         ) | safe
       }}
     </div>
-    <div class="col-6">
-      <h3 class="p-heading--5">Manufacturing and industry</h3>
-      <p class="p-heading--2">Simulations improve assembly and components </p>
-      <p>HPC is being used to optimise materials used in manufacturing. It allows companies to create more durable components while using the lowest amount of materials, driving efficiency.</p>
-      <p>Simulations can also be used to optimise assembly lines and get a better understanding of processes.</p>
-    </div>
   </div>
   <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
   <div class="row">
-    <div class="col-6">
-      <h3 class="p-heading--5">Media and entertainment</h3>
-      <p class="p-heading--2">Rendering, audio and video processing</p>
-      <p>HPC can also be highly entertaining. Movie and TV studios use HPC workloads for anything from the rendering of visual effects (VFX) to full-blown animated movies. This, along with video processing, requires large-scale rendering clusters.</p>
-      <p>Gaming companies deploy large clusters for the processing and delivery of audio, driven by player-to-player communication.</p>
-    </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
@@ -428,11 +434,23 @@
         ) | safe
       }}
     </div>
+    <div class="col-6">
+      <h3 class="p-heading--5">Media and entertainment</h3>
+      <p class="p-heading--2">Rendering, audio and video processing</p>
+      <p>HPC can also be highly entertaining. Movie and TV studios use HPC workloads for anything from the rendering of visual effects (VFX) to full-blown animated movies. This, along with video processing, requires large-scale rendering clusters.</p>
+      <p>Gaming companies deploy large clusters for the processing and delivery of audio, driven by player-to-player communication.</p>
+    </div>
   </div>
   <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
   <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--5">Research and universities</h3>
+      <p class="p-heading--2">Simulations and discovery</p>
+      <p>Science and research depend on large-scale high performance clusters for new discoveries. Anything from the discovery of new materials or properties of new compounds is made possible through physics simulations.</p>
+      <p>Within our planet and across the universe, HPC makes the analysis of instrument data possible &mdash; from particle accelerators to space telescopes.</p>
+    </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
@@ -444,22 +462,11 @@
         ) | safe
       }}
     </div>
-    <div class="col-6">
-      <h3 class="p-heading--5">Research and universities</h3>
-      <p class="p-heading--2">Simulations and discovery</p>
-      <p>Science and research depend on large-scale high performance clusters for new discoveries. Anything from the discovery of new materials or properties of new compounds is made possible through physics simulations.</p>
-      <p>Within our planet and across the universe, HPC makes the analysis of instrument data possible &mdash; from particle accelerators to space telescopes.</p>
-    </div>
   </div>
   <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
   <div class="row">
-    <div class="col-6">
-      <h3 class="p-heading--5">Weather</h3>
-      <p class="p-heading--2">Simulations and prediction</p>
-      <p>Our understanding of climate change and weather disruptions is more sophisticated thanks to HPC. Simulations deliver weather predictions through computations on large-scale high-performance clusters.</p>
-    </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/75a8a35a-cloud_orange.svg",
@@ -471,10 +478,22 @@
         ) | safe
       }}
     </div>
+    <div class="col-6">
+      <h3 class="p-heading--5">Weather</h3>
+      <p class="p-heading--2">Simulations and prediction</p>
+      <p>Our understanding of climate change and weather disruptions is more sophisticated thanks to HPC. Simulations deliver weather predictions through computations on large-scale high-performance clusters.</p>
+    </div>
   </div>
 </section>
 <section class="p-strip--light">
   <div class="row u-equal-height">
+    <div class="col-8 u-vertically-center">
+      <div>
+        <h2>Get in touch</h2>
+        <p>Find out how you can work with Canonical to ease operations and speed up innovation with HPC.</p>
+        <p><a class="p-button--positive" href="/hpc/contact-us">Get in touch</a></p>
+      </div>
+    </div>
     <div class="col-4 u-hide--medium u-hide--small u-align--left">
       {{
         image(
@@ -485,13 +504,6 @@
         hi_def=True,
         ) | safe
       }}
-    </div>
-    <div class="col-8 u-vertically-center">
-      <div>
-        <h2>Get in touch</h2>
-        <p>Find out how you can work with Canonical to ease operations and speed up innovation with HPC.</p>
-        <p><a class="p-button--positive" href="/hpc/contact-us">Get in touch</a></p>
-      </div>
     </div>
   </div>
 </section>
