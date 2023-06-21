@@ -40,10 +40,8 @@ def get_activate_view(ua_contracts_api, advantage_mapper, **kwargs):
     account = None
     user = user_info(flask.session)
     name = user["fullname"]
-
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-
         if account.type == "paid":
             return flask.render_template(
                 "pro/activate.html",
@@ -62,8 +60,6 @@ def get_activate_view(ua_contracts_api, advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
-    user = user_info(flask.session)
-    name = user["fullname"]
     marketplace = kwargs.get("marketplace", "canonical-ua")
     try:
         if (
@@ -71,7 +67,7 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
             and flask.request.form["submit"] == "buying-for-submit"
         ):
             return activate_page_buying_for_submit(
-                user, marketplace, ua_contracts_api
+                marketplace, ua_contracts_api
             )
 
         if (
@@ -81,9 +77,6 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
             return activate_page_activate_submit(
                 advantage_mapper, ua_contracts_api
             )
-        return flask.render_template(
-            "/pro/activate.html", name=name, needs_paid_account_created=False
-        )
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
@@ -124,7 +117,8 @@ def activate_page_activate_submit(advantage_mapper, ua_contracts_api):
         )
 
 
-def activate_page_buying_for_submit(user, marketplace, ua_contracts_api):
+def activate_page_buying_for_submit(marketplace, ua_contracts_api):
+    user = user_info(flask.session)
     name = user["fullname"]
     email = user["email"]
     activate_buy_for = flask.request.form.get("activate-buy-for")
