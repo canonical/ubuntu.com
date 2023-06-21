@@ -4,35 +4,35 @@
 
 {% block outer_content %}
   {% block content %}
-  {% if not_paid_account %}
-  <div class="p-modal" id="modal">
-    <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
-      <header class="p-modal__header">
-        <h2 class="p-modal__title" id="modal-title">Activating for a company or yourself?</h2>
-      </header>
-      <form action="{{ url_for('pro_activate_activation_key') }}" method="POST">
-        <div class="js-organisation-container u-sv3">
-          <div class="col-4">
-            <label class="p-radio">
-              <input class="p-radio__input radio-myself" type="radio" aria-labelledby="activate-myself-input" name="activate-buy-for" value="myself" required>
-              <span class="p-radio__label" id="activate-myself">Myself</span>
-            </label>
-          </div>
-          <div class="col-4">
-            <label class="p-radio">
-              <input class="p-radio__input radio-organisation" type="radio" aria-labelledby="activate-organisation-input" name="activate-buy-for" value="organisation">
-              <span class="p-radio__label" id="activate-organisation">Organisation</span>
-            </label>
-            <div class="p-form__group js-organisation-name-container" style="display:none">
-              <label for="activate-organisation-name" class="p-form__label">Organisation name: </label>
-              <input class="u-no-margin--bottom" type="text" id="activate-organisation-name" name="activate-organisation-name" placeholder="Ex: Canonical" style="margin-top: .25rem;" aria-label="What?">
+  {% if needs_paid_account_created %}
+    <div class="p-modal" id="modal">
+      <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <header class="p-modal__header">
+          <h2 class="p-modal__title" id="modal-title">Activating for a company or yourself?</h2>
+        </header>
+        <form action="{{ url_for('pro_activate_activation_key') }}" method="POST">
+          <div class="js-organisation-container u-sv3">
+            <div class="col-4">
+              <label class="p-radio">
+                <input class="p-radio__input radio-myself" type="radio" aria-labelledby="activate-myself-input" name="activate-buy-for" value="myself" required>
+                <span class="p-radio__label" id="activate-myself">Myself</span>
+              </label>
+            </div>
+            <div class="col-4">
+              <label class="p-radio">
+                <input class="p-radio__input radio-organisation" type="radio" aria-labelledby="activate-organisation-input" name="activate-buy-for" value="organisation">
+                <span class="p-radio__label" id="activate-organisation">Organisation</span>
+              </label>
+              <div class="p-form__group js-organisation-name-container" style="display:none">
+                <label for="activate-organisation-name" class="p-form__label">Organisation name: </label>
+                <input class="u-no-margin--bottom" type="text" id="activate-organisation-name" name="activate-organisation-name" placeholder="Ex: Canonical" style="margin-top: .25rem;" aria-label="What?">
+              </div>
             </div>
           </div>
-        </div>
-        <button class="p-button--positive" type="submit" name="submit" value="buying-for-submit">Submit</button>
-      </form>
-    </section>
-  </div>
+          <button class="p-button--positive" type="submit" name="submit" value="buying-for-submit">Submit</button>
+        </form>
+      </section>
+    </div>
   {% endif %}
 
   <section class="p-strip">
@@ -52,7 +52,7 @@
         <div class="p-form__group">
           <label for="pro-activation-key" class="p-form__label">Enter your code</label>
           <div class="p-form__control is-error" style="min-width: 15rem">
-            <input type="text" id="pro-activation-key" class="activate-input" name="pro-activation-key" autocomplete="off" placeholder="Ex: Kv4rKbprDZohbj-Giz9H9OQ" required="" aria-describedby="pro-activate-input">
+            <input type="text" id="pro-activation-key" class="activate-input" name="pro-activation-key" autocomplete="off" placeholder="Ex: Kabcedfghij12345678910-" required="" aria-describedby="pro-activate-input">
             <p class="p-form-validation__message" id="pro-activatio-validation__message"></p>
           </div>
         </div>
@@ -76,21 +76,22 @@
     {% endif %}
   </section>
   <script>
+    // validate messages for keys
     const activation_key = document.querySelector(".activate-input");
     const validate_message =  document.querySelector(".p-form-validation__message");
 
     function validateKey(e){
-      const firsLetter = "The activation key starts with a K.";
-      const length = "The activation key is 23 characters long";
+      const firstLetter = "The activation key starts with a K.";
+      const length = "The activation key is 23 characters long.";
       const notification = document.querySelector("#notification");
 
-      if(e.target.value.length === 0){
+      if (e.target.value.length === 0) {
         validate_message.textContent = "";
-      }else if(e.target.value.charAt(0) !== "K"){
-        validate_message.textContent = firsLetter;
-      } else if (e.target.value.length !== 23){
+      } else if (e.target.value.charAt(0) !== "K") {
+        validate_message.textContent = firstLetter;
+      } else if (e.target.value.length !== 23) {
         validate_message.textContent = length;
-      } else if(e.target.value.charAt(0) && e.target.value.length === 23) {
+      } else if (e.target.value.charAt(0) === "K" && e.target.value.length === 23) {
         validate_message.textContent = "";
       }
     }
@@ -99,150 +100,120 @@
 
     // JS for modal
 
-// This is an example modal implementation inspired by
-// https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html
+    (function () {
+      var currentDialog = null;
+      var lastFocus = null;
+      var ignoreFocusChanges = false;
+      var focusAfterClose = null;
 
-(function () {
-  // This is not a production ready code, just serves as an example
-  // of how the focus should be controlled within the modal dialog.
-  var currentDialog = null;
-  var lastFocus = null;
-  var ignoreFocusChanges = false;
-  var focusAfterClose = null;
+      // Traps the focus within the currently open modal dialog
+      function trapFocus(event) {
+        if (ignoreFocusChanges) return;
 
-  // Traps the focus within the currently open modal dialog
-  function trapFocus(event) {
-    if (ignoreFocusChanges) return;
-
-    if (currentDialog.contains(event.target)) {
-      lastFocus = event.target;
-    } else {
-      focusFirstDescendant(currentDialog);
-      if (lastFocus == document.activeElement) {
-        focusLastDescendant(currentDialog);
-      }
-      lastFocus = document.activeElement;
-    }
-  }
-
-  // Attempts to focus given element
-  function attemptFocus(child) {
-    if (child.focus) {
-      ignoreFocusChanges = true;
-      child.focus();
-      ignoreFocusChanges = false;
-      return document.activeElement === child;
-    }
-
-    return false;
-  }
-
-  // Focuses first child element
-  function focusFirstDescendant(element) {
-    for (var i = 0; i < element.childNodes.length; i++) {
-      var child = element.childNodes[i];
-      if (attemptFocus(child) || focusFirstDescendant(child)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Focuses last child element
-  function focusLastDescendant(element) {
-    for (var i = element.childNodes.length - 1; i >= 0; i--) {
-      var child = element.childNodes[i];
-      if (attemptFocus(child) || focusLastDescendant(child)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-    Toggles visibility of modal dialog.
-    @param {HTMLElement} modal Modal dialog to show or hide.
-    @param {HTMLElement} sourceEl Element that triggered toggling modal
-    @param {Boolean} open If defined as `true` modal will be opened, if `false` modal will be closed, undefined toggles current visibility.
-  */
-  function toggleModal(modal, sourceEl, open) {
-    if (modal && modal.classList.contains('p-modal')) {
-      if (typeof open === 'undefined') {
-        open = modal.style.display === 'none';
-      }
-
-      if (open) {
-        currentDialog = modal;
-        modal.style.display = 'flex';
-        focusFirstDescendant(modal);
-        focusAfterClose = sourceEl;
-        document.addEventListener('focus', trapFocus, true);
-      } else {
-        modal.style.display = 'none';
-        if (focusAfterClose && focusAfterClose.focus) {
-          focusAfterClose.focus();
+        if (currentDialog.contains(event.target)) {
+          lastFocus = event.target;
+        } else {
+          focusFirstDescendant(currentDialog);
+          if (lastFocus == document.activeElement) {
+            focusLastDescendant(currentDialog);
+          }
+          lastFocus = document.activeElement;
         }
-        document.removeEventListener('focus', trapFocus, true);
-        currentDialog = null;
       }
-    }
-  }
 
-  // Find and hide all modals on the page
-  function closeModals() {
-    var modals = [].slice.apply(document.querySelectorAll('.p-modal'));
-    modals.forEach(function (modal) {
-      toggleModal(modal, false, false);
+      // Attempts to focus given element
+      function attemptFocus(child) {
+        if (child.focus) {
+          ignoreFocusChanges = true;
+          child.focus();
+          ignoreFocusChanges = false;
+          return document.activeElement === child;
+        }
+
+        return false;
+      }
+
+      // Focuses first child element
+      function focusFirstDescendant(element) {
+        for (var i = 0; i < element.childNodes.length; i++) {
+          var child = element.childNodes[i];
+          if (attemptFocus(child) || focusFirstDescendant(child)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Focuses last child element
+      function focusLastDescendant(element) {
+        for (var i = element.childNodes.length - 1; i >= 0; i--) {
+          var child = element.childNodes[i];
+          if (attemptFocus(child) || focusLastDescendant(child)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      /**
+        Toggles visibility of modal dialog.
+        @param {HTMLElement} modal Modal dialog to show or hide.
+        @param {HTMLElement} sourceEl Element that triggered toggling modal
+        @param {Boolean} open If defined as `true` modal will be opened, if `false` modal will be closed, undefined toggles current visibility.
+      */
+      function toggleModal(modal, sourceEl, open) {
+        if (modal && modal.classList.contains('p-modal')) {
+          if (typeof open === 'undefined') {
+            open = modal.style.display === 'none';
+          }
+
+          if (open) {
+            currentDialog = modal;
+            modal.style.display = 'flex';
+            focusFirstDescendant(modal);
+            focusAfterClose = sourceEl;
+            document.addEventListener('focus', trapFocus, true);
+          } else {
+            modal.style.display = 'none';
+            if (focusAfterClose && focusAfterClose.focus) {
+              focusAfterClose.focus();
+            }
+            document.removeEventListener('focus', trapFocus, true);
+            currentDialog = null;
+          }
+        }
+      }
+
+
+
+
+      toggleModal(document.querySelector('#modal'), document.querySelector('[aria-controls=modal]'), true);
+    })();
+
+
+    // buying for input
+    const organisationContainer = document.querySelector(".js-organisation-container");
+    const radioMyself = organisationContainer.querySelector(
+      ".radio-myself"
+    );
+    const radioOrganisation = organisationContainer.querySelector(
+      ".radio-organisation"
+    );
+    const organisationNameContainer = organisationContainer.querySelector(".js-organisation-name-container");
+    const organisationNameInput = organisationNameContainer.querySelector('input[name="activate-organisation-name"]')
+    radioOrganisation.addEventListener("change", function (e) {
+      if (e.target.checked) {
+        organisationNameContainer.style.display = "block";
+        organisationNameContainer.focus();
+        organisationNameInput.setAttribute("required", true);
+      }
     });
-  }
-
-  // Add click handler for clicks on elements with aria-controls
-  document.addEventListener('click', function (event) {
-    var targetControls = event.target.getAttribute('aria-controls');
-    if (targetControls) {
-      toggleModal(document.getElementById(targetControls), event.target);
-    }
-  });
-
-  // Add handler for closing modals using ESC key.
-  document.addEventListener('keydown', function (e) {
-    e = e || window.event;
-
-    if (e.code === 'Escape') {
-      closeModals();
-    } else if (e.keyCode === 27) {
-      closeModals();
-    }
-  });
-
-  // init the dialog that is initially opened in the example
-  toggleModal(document.querySelector('#modal'), document.querySelector('[aria-controls=modal]'), true);
-})();
-
-
-// buying for input
-const organisationContainer = document.querySelector(".js-organisation-container");
-  const radioMyself = organisationContainer.querySelector(
-    ".radio-myself"
-  );
-  const radioOrganisation = organisationContainer.querySelector(
-    ".radio-organisation"
-  );
-  const organisationNameContainer = organisationContainer.querySelector(".js-organisation-name-container");
-  const oranisationNameInput = organisationNameContainer.querySelector('input[name="activate-organisation-name"]')
-  radioOrganisation.addEventListener("change", function (e) {
-    if (e.target.checked) {
-      organisationNameContainer.style.display = "block";
-      organisationNameContainer.focus();
-      oranisationNameInput.setAttribute("required", true);
-    } 
-  });
-  radioMyself.addEventListener("change", function (e) {
-    if (e.target.checked) {
-      organisationNameContainer.style.display = "none";
-      oranisationNameInput.removeAttribute("required");
-    } 
-  });
-</script>
+    radioMyself.addEventListener("change", function (e) {
+      if (e.target.checked) {
+        organisationNameContainer.style.display = "none";
+        organisationNameInput.removeAttribute("required");
+      }
+    });
+  </script>
   {% endblock %}
 {% endblock %}
