@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
-import { Features, ProductTypes } from "advantage/subscribe/react/utils/utils";
+import {
+  Features,
+  ProductTypes,
+  LTSVersions,
+} from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { productType, feature, setFeature } = useContext(FormContext);
+  const { productType, feature, setFeature, version } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
@@ -16,6 +20,7 @@ const Feature = () => {
   };
 
   const infraOnlyDisabled = ProductTypes.desktop === productType;
+  const proDisabled = version === LTSVersions.trusty;
 
   return (
     <div
@@ -114,6 +119,7 @@ const Feature = () => {
           >
             <label className="p-radio u-align-text--center">
               <input
+                data-testid="pro"
                 className="p-radio__input"
                 autoComplete="off"
                 type="radio"
@@ -121,6 +127,7 @@ const Feature = () => {
                 value={Features.pro}
                 checked={feature === Features.pro}
                 onChange={handleChange}
+                disabled={proDisabled}
               />
               <span className="p-radio__label" id={`pro-label`}>
                 <RadioInput
@@ -129,6 +136,7 @@ const Feature = () => {
                   checked={feature === Features.pro}
                   value={Features.pro}
                   onChange={handleChange}
+                  disabled={proDisabled}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
@@ -185,6 +193,7 @@ const Feature = () => {
           value={Features.pro}
           checked={feature === Features.pro}
           onChange={handleChange}
+          disabled={proDisabled}
         />
         <RadioInput
           label="Ubuntu Pro (Infra-only)"
