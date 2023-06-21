@@ -749,7 +749,8 @@ def issue_badges(trueability_api, credly_api, **kwargs):
     if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
         return flask.jsonify({"status": "Invalid API Key"}), 401
     assessment_score = webhook_response["assessment"]["score"]
-    if assessment_score >= 0.5:
+    cutoff_score = webhook_response["ability_screen"]["cutoff_score"]
+    if assessment_score >= cutoff_score:
         assessment_user = webhook_response["assessment"]["user"]["email"]
         first_name, last_name = webhook_response["assessment"]["user"][
             "full_name"
@@ -764,6 +765,8 @@ def issue_badges(trueability_api, credly_api, **kwargs):
             ability_screen_id=ability_screen_id,
         )
         if "data" in new_badge and "accept_badge_url" in new_badge["data"]:
+            # 201 Created.
+            # Request was valid and the server created a new badge.
             return (
                 flask.jsonify(
                     {
@@ -773,8 +776,10 @@ def issue_badges(trueability_api, credly_api, **kwargs):
                         ],
                     }
                 ),
-                200,
+                201,
             )
         else:
-            return (flask.jsonify(new_badge), 418)
-    return flask.jsonify({"status": "badge_not_issued"}), 200
+            # 500 Error. Request was valid but the server encountered an error
+            return (flask.jsonify(new_badge), 500)
+    # 403 Forbidden. Request was valid but the server is refusing action
+    return flask.jsonify({"status": "badge_not_issued"}), 403
