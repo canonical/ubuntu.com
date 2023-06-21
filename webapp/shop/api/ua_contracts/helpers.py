@@ -253,6 +253,26 @@ def get_user_subscription_statuses(
 
         statuses["is_trialled"] = True if active_trial else False
 
+        statuses[
+            "is_subscription_auto_renewing"
+        ] = is_billing_subscription_auto_renewing(
+            subscriptions, subscription_id
+        )
+
+        # If the subscription is set to auto-renew don't expire
+        if statuses["is_subscription_auto_renewing"]:
+            statuses["is_expiring"] = False
+        statuses["is_subscription_active"] = is_billing_subscription_active(
+            subscriptions, subscription_id
+        )
+
+        statuses["is_cancelled"] = not statuses["is_subscription_active"]
+
+        statuses["is_renewed"] = (
+            is_subscription_auto_renewing(subscriptions, subscription_id)
+            and not statuses["is_cancelled"]
+        )
+
     if type in ["yearly", "monthly"]:
         statuses["is_subscription_active"] = is_billing_subscription_active(
             subscriptions, subscription_id
@@ -280,8 +300,7 @@ def get_user_subscription_statuses(
             and not is_cancelled
         )
 
-        # If the subscription is set to auto-renew, we shouldn't alarm the
-        # user.
+        # If the subscription is set to auto-renew don't expire
         if statuses["is_subscription_auto_renewing"]:
             statuses["is_expiring"] = False
 

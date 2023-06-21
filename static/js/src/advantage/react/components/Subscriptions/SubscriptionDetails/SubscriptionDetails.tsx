@@ -178,9 +178,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                   ) : null}
                   {subscription.type == "trial" ? (
                     <>
-                      {!subscription.statuses.is_trialled ? (
+                      {subscription.statuses.is_cancelled ? (
                         <button className="p-chip--negative">
                           <span className="p-chip__value">Cancelled</span>
+                        </button>
+                      ) : null}
+                      {subscription.statuses.is_renewed ? (
+                        <button className="p-chip--positive">
+                          <span className="p-chip__value">Auto-renewal on</span>
                         </button>
                       ) : null}
                     </>

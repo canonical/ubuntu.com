@@ -1,13 +1,12 @@
+import React, { ReactNode } from "react";
+import type { NotificationProps } from "@canonical/react-components";
 import {
   Notification,
   NotificationSeverity,
   PropsWithSpread,
 } from "@canonical/react-components";
-import type { NotificationProps } from "@canonical/react-components";
-import React, { ReactNode } from "react";
-
-import { UserSubscriptionStatuses } from "advantage/api/types";
 import { UserSubscriptionType } from "advantage/api/enum";
+import { UserSubscriptionStatuses } from "advantage/api/types";
 
 export enum ExpiryNotificationSize {
   Small = "small",
@@ -56,14 +55,17 @@ const MESSAGES: Messages = {
   [StatusKey.IsExpiring]: {
     [ExpiryNotificationSize.Large]: {
       message: {
-        default:
-          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        default: "Check the subscription errors below for more information.",
         [UserSubscriptionType.Legacy]:
           "Click on Renew subscription to to ensure service continuity.",
         [UserSubscriptionType.Monthly]:
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Yearly]:
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        [UserSubscriptionType.Trial]:
+          "You have cancelled your Ubuntu Pro trial. " +
+          "At the end of the trial period, this subscription " +
+          "will disappear and you will no longer have access to Pro services.",
       },
       title: "Your subscription is about to expire.",
     },
@@ -76,8 +78,9 @@ const MESSAGES: Messages = {
   [StatusKey.IsExpired]: {
     [ExpiryNotificationSize.Large]: {
       message: {
-        default:
-          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        default: "Check the subscription errors below for more information.",
+        [UserSubscriptionType.Legacy]:
+          "Click on Renew subscription to to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
@@ -94,6 +97,9 @@ const MESSAGES: Messages = {
             will remain the same.
           </>
         ),
+        [UserSubscriptionType.Trial]:
+          "Your trial has expired. " +
+          "This subscription will disappear from your dashboard soon.",
       },
       title: "Your subscription has expired.",
     },
@@ -106,8 +112,9 @@ const MESSAGES: Messages = {
   [StatusKey.IsInGracePeriod]: {
     [ExpiryNotificationSize.Large]: {
       message: {
-        default:
-          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        default: "Check the subscription errors below for more information.",
+        [UserSubscriptionType.Legacy]:
+          "Click on Renew subscription to to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
@@ -124,6 +131,9 @@ const MESSAGES: Messages = {
             will remain the same.
           </>
         ),
+        [UserSubscriptionType.Trial]:
+          "Your trial has expired. " +
+          "This subscription will disappear from your dashboard soon.",
       },
       title: "Your subscription has expired.",
     },
@@ -153,13 +163,25 @@ const ExpiryNotification = ({
     // status.
     statusesToShow = [highestStatus];
   }
+
   const notifications = statusesToShow.map((statusKey) => {
     const notification = MESSAGES[statusKey][size];
+    let children = notification?.message["default"];
+
+    if (subscriptionType && notification?.message[subscriptionType]) {
+      children = notification?.message[subscriptionType];
+    }
+
+    if (
+      subscriptionType &&
+      subscriptionType == "legacy" &&
+      !statuses["is_renewal_actionable"]
+    ) {
+      children = "";
+    }
+
     return {
-      children:
-        subscriptionType && notification?.message[subscriptionType]
-          ? notification?.message[subscriptionType]
-          : notification?.message["default"],
+      children: children,
       key: `${statusKey}-${size}`,
       // Display a title for large notifications.
       title: size === ExpiryNotificationSize.Large ? notification?.title : null,
