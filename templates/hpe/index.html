@@ -348,8 +348,12 @@
       <h5 class="p-muted-heading">From our blog</h5>
     </div>
     <div class="col-9 col-medium-4">
+      {% for article in blogs %}
+      {% if loop.index > 0 %}
+      <hr class="is-fixed-width p-rule">
+      {% endif %}
       <div class="p-block">
-        <h2><a href="/blog/canonical-at-hpe-discover-2022">Canonical at HPE Discover 2022</a></h2>
+        <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></h2>
         <p>
           <button class="p-chip--information" onclick="location.href='/blog/tag/event'">
             <span class="p-chip__value">Event</span>
@@ -359,21 +363,7 @@
           </button>
         </p>
       </div>
-      <hr class="is-fixed-width p-rule">
-      <div class="p-block">
-        <h2><a href="/blog/canonical-at-hpe-apac-outcome-based-solutions-2023">Canonical at HPE APAC Outcome-Based <br class="u-hide--medium u-hide--small">Solutions 2023</a></h2>
-        <p>
-          <button class="p-chip--information" onclick="location.href='https://canonical.com/blog/tag/event'">
-            <span class="p-chip__value">Event</span>
-          </button>
-          <button class="p-chip--information" onclick="location.href='https://canonical.com/blog/tag/hpe'">
-            <span class="p-chip__value">HPE</span>
-          </button>
-          <button class="p-chip--information" onclick="location.href='https://canonical.com/blog/tag/partner'">
-            <span class="p-chip__value">Partner</span>
-          </button>
-        </p>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
