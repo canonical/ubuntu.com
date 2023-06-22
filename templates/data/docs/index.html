@@ -1,79 +1,79 @@
 {% extends "data/base_data.html" %}
 
-{% block title %}Canonical Charmed Data Fabric Suite{% endblock %}
+{% block title %}Canonical Charmed Data Fabric Suite documentation{% endblock %}
 
-{% block meta_description %}Canonical Data Fabric Suite - Documentation Hub. Innovate at scale on any cloud. Advanced open source solutions for data on IaaS and Kubernetes with flexible, enterprise-grade support.{% endblock meta_description %}
+{% block meta_description %}Canonical Data Fabric Suite documentation. Innovate at scale on any cloud. Advanced open source solutions for data on IaaS and Kubernetes with flexible, enterprise-grade support.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zidLwSBOsNPIznRO2DfFGU1N3xxnCBKRmQku-X-fc_U/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru-shape-light is-deep">
+
+<div class="p-strip is-shallow">
   <div class="row">
-    <div class="col-7">
-      <h1 class="p-heading--2 u-no-margin--bottom"><strong>Canonical Data Fabric Suite</strong></h1>
-      <h2 class="u-no-padding--top u-text--muted">Documentation Hub</h2>
+    <aside class="col-3">
+        <nav class="p-side-navigation--raw-html" id="drawer">
+        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
+          Toggle side navigation
+        </a>
+        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+        <div class="p-side-navigation__drawer">
+          <div class="p-side-navigation__drawer-header">
+            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+              Toggle side navigation
+            </a>
+          </div>
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a href="/data/docs/spark-k8s" class="p-side-navigation__link">
+                Charmed Spark
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a href="/data/docs/postgresql-k8s" class="p-side-navigation__link">
+                Charmed PostgreSQL
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a href="/data/docs/mongodb-vm" class="p-side-navigation__link">
+                Charmed MongoDB
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="col-9">
+      <h1>Canonical Data Fabric Suite documentation</h1>
       <p>Canonical's Data Fabric Suite has been engineered to deliver a rock solid operational foundation for your critical data infrastructure.</p>
       <p class="u-sv3">It offers flexible support for your database servers and other data fabric enablers, with up to 10 years of software maintenance and break-fix support on selected releases. The Canonical Data Fabric Suite is a comprehensive offering for reliable data processing at any scale.</p>
-    </div>
-    <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
 
-      {{ image (
-        url="https://assets.ubuntu.com/v1/97c081fa-Scale+data.svg",
-        alt="",
-        width="235",
-        height="150",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
+      <section class="p-strip u-no-padding--bottom">
+        <div class="p-strip u-no-padding--top">
+          <div class="row">
+            <hr class="is-fixed-width">
+            <div class="col-9 col-medium-3">
+              <h2>In this documentation</h2>
+            </div>
+            <div class="col-5 col-medium-3">
+              <p class="u-no-margin--bottom"><a href="/data/docs/spark-k8s">Charmed Spark</a></p>
+              <p>Access resources for deploying, operating and using Apache Spark<sup>&reg;</sup> on Kubernetes with Charmed Spark.</p>
+            </div>
+            <div class="col-5 col-medium-3">
+              <p class="u-no-margin--bottom"><a href="/data/docs/postgresql-k8s">Charmed PostgreSQL</a></p>
+              <p>Access resources for deploying and operating PostgreSQL on Kubernetes with Charmed PostgreSQL.</p>
+            </div>
+            <div class="col-5 col-medium-3">
+              <p class="u-no-margin--bottom"><a href="/data/docs/mongodb-vm">Charmed MongoDB</a></p>
+              <p>Access resources for deploying and operating the MongoDB database on IaaS using Charmed MongoDB.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-</section>
-
-<section class="p-strip u-no-padding--top u-no-padding--bottom" style="margin-top: -6rem;">
-  <div class="row">
-    <div class="col-4 u-equal-height">
-      <div class="p-card--highlighted">
-        <h2 class="p-card__title p-heading--3">Charmed Spark</h2>
-        <p class="p-card__content u-sv3">Access resources for deploying, operating and using Apache Spark<sup>&reg;</sup> on Kubernetes with Charmed Spark.</p>
-	      <p class="p-card__content"><a href="/data/docs/spark-k8s" class="p-button--positive">Visit the <span class="u-off-screen">Apache Spark<sup>&reg;</sup> on Kubernetes</span> documentation</a></p>
-      </div>
-    </div>
-    <div class="col-4 u-equal-height">
-      <div class="p-card--highlighted">
-        <h2 class="p-card__title p-heading--3">Charmed PostgreSQL</h2>
-        <p class="p-card__content u-sv3">Access resources for deploying and operating PostgreSQL on Kubernetes with Charmed PostgreSQL.</p>
-	      <p class="p-card__content"><a href="/data/docs/postgresql-k8s" class="p-button--positive">Visit the <span class="u-off-screen">PostgreSQL on Kubernetes</span> documentation</a></p>
-      </div>
-    </div>
-    <div class="col-4 u-equal-height">
-      <div class="p-card--highlighted">
-        <h2 class="p-card__title p-heading--3">Charmed MongoDB</h2>
-        <p class="p-card__content u-sv3">Access resources for deploying and operating the MongoDB database on IaaS using Charmed MongoDB.</p>
-        <p class="p-card__content"><a href="/data/docs/mongodb-vm" class="p-button--positive">Visit the <span class="u-off-screen">MongoDB database on IaaS</span> documentation</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="p-strip u-no-padding--top">
-    <div class="row">
-      <hr class="is-fixed-width">
-      <div class="col-6 col-medium-3">
-        <h2>Enterprise-class Support</h2>
-      </div>
-      <div class="col-6 col-medium-3">
-        <p>Streamline your operations with Canonical. Flexible support options in the data centre and on the cloud.</p>
-        <p><a href="#get-in-touch" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+</div>
 
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/data-docs.html" data-form-id="4908" data-lp-id="3828" data-return-url="https://ubuntu.com/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
