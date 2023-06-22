@@ -262,13 +262,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button--positive",
+                        "button_class": "p-button",
                     },
                     {
                         "text": "Take now",
                         "href": "/credentials/provision?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button--positive",
+                        "button_class": "p-button",
                     },
                 ]
                 exams_not_taken.append(
