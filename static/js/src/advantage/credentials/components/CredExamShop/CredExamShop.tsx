@@ -149,12 +149,7 @@ const CredExamShop = () => {
         </Row>
         {ExamProducts.map((examElement, examIndex) => {
           return (
-            <Col
-              className="u-hide u-show--small"
-              size={12}
-              key={examIndex}
-              style={{ marginBottom: "2rem" }}
-            >
+            <Col className="u-hide u-show--small" size={12} key={examIndex}>
               <div
                 className={classNames({
                   "p-card--radio--column": true,
@@ -164,20 +159,21 @@ const CredExamShop = () => {
                 onClick={() => {
                   setExam(examIndex);
                 }}
-                style={{ marginBottom: "2rem" }}
               >
                 <RadioInput
                   inline
                   label={examElement.name}
                   checked={exam == examIndex}
                   value={examIndex}
+                  onChange={handleChange}
                   disabled={examElement.private}
                 />
                 <span>
                   <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
                     {examElement.metadata[0].value}
                   </p>
-                  <hr />
+                </span>
+                <span>
                   <h5
                     className="u-align--right"
                     style={{ paddingRight: "1rem" }}
@@ -193,21 +189,36 @@ const CredExamShop = () => {
           );
         })}
       </Strip>
-      <section className="p-strip--light is-shallow p-shop-cart">
+      <section className="p-strip--light is-shallow p-shop-cart p-shop-cart--cue">
         <Row className="u-sv3">
-          <Col size={6} className="p-heading--2">
+          <Col size={6} className="p-text--small-caps">
             Your Order
           </Col>
         </Row>
-        <Row className="u-sv3">
-          <Col size={6}>{ExamProducts[exam].name}</Col>
-          <Col size={3}>
-            {currencyFormatter.format(
-              (ExamProducts[exam]?.price.value ?? 0) / 100 ?? 0
-            )}
+        <Row>
+          <Col size={6} style={{ display: "flex" }}>
+            <p className="p-heading--2" style={{ marginBlock: "auto" }}>
+              {ExamProducts[exam].name}
+            </p>
           </Col>
-          <Col size={3}>
-            <Button appearance="positive" onClick={handleSubmit}>
+          <Col size={3} small={2} style={{ display: "flex" }}>
+            <p className="p-heading--2" style={{ marginBlock: "auto" }}>
+              {currencyFormatter.format(
+                (ExamProducts[exam]?.price.value ?? 0) / 100 ?? 0
+              )}
+            </p>
+          </Col>
+          <Col
+            size={3}
+            small={2}
+            style={{ display: "flex" }}
+            className="u-align--right"
+          >
+            <Button
+              appearance="positive"
+              onClick={handleSubmit}
+              style={{ marginBlock: "auto" }}
+            >
               Buy Now
             </Button>
           </Col>
