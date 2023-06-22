@@ -1,6 +1,6 @@
 import { Button, Col, Row } from "@canonical/react-components";
 import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const CredPurchaseConfirmation = () => {
   const [queryParameters] = useSearchParams();

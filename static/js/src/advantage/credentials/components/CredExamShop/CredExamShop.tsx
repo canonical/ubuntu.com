@@ -94,7 +94,7 @@ const CredExamShop = () => {
         <Row>
           <h2>Select an exam to purchase</h2>
         </Row>
-        <Row>
+        <Row className="u-hide--small">
           {ExamProducts.map((examElement, examIndex) => {
             return (
               <Col size={4} key={examIndex}>
@@ -147,6 +147,51 @@ const CredExamShop = () => {
             );
           })}
         </Row>
+        {ExamProducts.map((examElement, examIndex) => {
+          return (
+            <Col
+              className="u-hide u-show--small"
+              size={12}
+              key={examIndex}
+              style={{ marginBottom: "2rem" }}
+            >
+              <div
+                className={classNames({
+                  "p-card--radio--column": true,
+                  "is-selected": exam == examIndex,
+                })}
+                onChange={handleChange}
+                onClick={() => {
+                  setExam(examIndex);
+                }}
+                style={{ marginBottom: "2rem" }}
+              >
+                <RadioInput
+                  inline
+                  label={examElement.name}
+                  checked={exam == examIndex}
+                  value={examIndex}
+                  disabled={examElement.private}
+                />
+                <span>
+                  <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
+                    {examElement.metadata[0].value}
+                  </p>
+                  <hr />
+                  <h5
+                    className="u-align--right"
+                    style={{ paddingRight: "1rem" }}
+                  >
+                    {examElement.private
+                      ? "Coming Soon!"
+                      : "Price: " +
+                        currencyFormatter.format(examElement.price.value / 100)}
+                  </h5>
+                </span>
+              </div>
+            </Col>
+          );
+        })}
       </Strip>
       <section className="p-strip--light is-shallow p-shop-cart">
         <Row className="u-sv3">
