@@ -208,6 +208,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
+      if (window.accountId) {
+        queryClient.invalidateQueries("customerInfo");
+      }
       setIsLoading(false);
       setFieldValue("Description", false);
       setFieldValue("TermsAndConditions", false);

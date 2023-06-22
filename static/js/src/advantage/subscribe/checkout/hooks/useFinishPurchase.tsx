@@ -95,7 +95,11 @@ const useFinishPurchase = () => {
             );
           }
         } else {
-          window.tempAccountId = accountRes.accountID;
+          if (window.loginSession) {
+            window.accountId = accountRes.accountID;
+          } else {
+            window.tempAccountId = accountRes.accountID;
+          }
         }
       }
 
