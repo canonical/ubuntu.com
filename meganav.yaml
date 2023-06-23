@@ -64,7 +64,7 @@ products:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: Ubuntu Pro
-              description: Security and compliance subscription
+              description: Security & compliance subscription
               url: /pro
             - title: Enteprise grade support
               description: 24/7 support for the full-stack
@@ -118,11 +118,11 @@ products:
         - title: Links
           links:
             - title: Upgrade Ubuntu
-              url: /tutorials/upgrading-ubuntu-desktop#1-before-you-start
+              url: /tutorials/upgrading-ubuntu-desktop
             - title: Ubuntu documentation
               url: https://help.ubuntu.com/
             - title: Desktop Install
-              url: /tutorials/install-ubuntu-desktop#1-overview
+              url: /tutorials/install-ubuntu-desktop
             - title: Server install
               url: /server/docs/installation
             - title: Server Guide
@@ -190,6 +190,7 @@ products:
               description: Microsoft Azure Marketplace
               url: /azure
             - title: Ubuntu on Google Cloud
+              description: Google Cloud Marketplace
               url: /gcp
             - title: Ubuntu WorkSpaces
               description: Virtual desktops on AWS
@@ -241,13 +242,13 @@ products:
             - title: Livepatch
               description: Stay patched without reboots
               url: /security/livepatch
-            - title: Ubuntu Pro AWS
+            - title: Ubuntu Pro for AWS
               description: Amazon Web Services support
               url: /aws/pro
-            - title: Ubuntu Pro Azure
+            - title: Ubuntu Pro for Azure
               description: Microsoft Azure cloud support
               url: /azure/pro
-            - title: Ubuntu Pro GCP
+            - title: Ubuntu Pro for GCP
               description: Google Cloud support
               url: /blog/introducing-ubuntu-pro-for-google-cloud
 
@@ -255,7 +256,7 @@ products:
         - title: Links
           links:
             - title: Ubuntu Pro pricing
-              url: /pricing/infra
+              url: /pricing/pro
             - title: Open infrastructure consulting
               url: /pricing/consulting
             - title: Private cloud pricing calculator
@@ -531,21 +532,21 @@ support:
             - title: Ubuntu Pro
               description: Security & compliance subscription
               url: /pro
-            - title: Ubuntu Pro Azure
+            - title: Ubuntu Pro for Azure
               description: Microsoft Azure cloud support
               url: /azure/pro
-            - title: Ubuntu Pro AWS
+            - title: Ubuntu Pro for AWS
               description: Amazon Web Services support
               url: /aws/pro
-            - title: Ubuntu Pro GCP
+            - title: Ubuntu Pro for GCP
               description: Google Cloud support
               url: /gcp/pro
             - title: Managed apps
               description: Fully managed open source
               url: /managed/apps
-            - title: Managed Infrastructure
+            - title: Managed infrastructure
               description: Managed IT services
-              url: /pricing/infra
+              url: /managed
 
       secondary_links:
         - links:
@@ -634,13 +635,13 @@ community:
         - title: Links
           links:
             - title: Update Ubuntu
-              url: /tutorials/upgrading-ubuntu-desktop#1-before-you-start
+              url: /tutorials/upgrading-ubuntu-desktop
             - title: Official Ubuntu documentation
               url: https://help.ubuntu.com/
             - title: Install guide
-              url: /tutorials/install-ubuntu-desktop#1-overview
+              url: /tutorials/install-ubuntu-desktop
             - title: How to write a tutorial
-              url: /tutorials/tutorial-guidelines#1-overview
+              url: /tutorials/tutorial-guidelines
 
     - title: Forums
       primary_links:
@@ -795,7 +796,7 @@ get_ubuntu:
         - title: Tutorials and docs
           links:
             - title: Upgrade Ubuntu Desktop
-              url: /tutorials/upgrading-ubuntu-desktop#1-before-you-start
+              url: /tutorials/upgrading-ubuntu-desktop
             - title: Desktop guide 22.04
               url: https://help.ubuntu.com/lts/ubuntu-help/index.html
             - title: Desktop guide 20.04
@@ -803,7 +804,7 @@ get_ubuntu:
             - title: Install tutorial
               url: /tutorials/install-ubuntu-desktop
             - title: Try before installation
-              url: /tutorials/try-ubuntu-before-you-install#1-getting-started
+              url: /tutorials/try-ubuntu-before-you-install
             - title: Case studies, whitepapers & webinars
               url: /engage
             - title: All tutorials
@@ -822,7 +823,7 @@ get_ubuntu:
               description: Machines you can trust
               url: /certified/servers
             - title: Public clouds
-              description: Server on AWS, Azure and GCP
+              description: AWS, Azure and Google Cloud
               url: /cloud/public-cloud
             - title: Multipass
               description: VMs for Windows, macOS & Linux
@@ -877,7 +878,7 @@ get_ubuntu:
       section_footer:
         cta_title: Get Ubuntu for Raspberry Pi
         cta_url: /download/raspberry-pi
-    - title: Ubuntu Core for IoT
+    - title: Ubuntu for IoT
       primary_links:
         - title: Products
           links:
@@ -914,7 +915,7 @@ get_ubuntu:
             - title: Ubuntu for Raspberry Pi
               url: /raspberry-pi
             - title: Real-time Ubuntu
-              url: /internet-of-things#beta-signup
+              url: /blog/real-time-ubuntu-is-now-generally-available
       section_footer:
         cta_title: Get Ubuntu for IoT
         cta_url: /download/iot
@@ -959,15 +960,15 @@ get_ubuntu:
       section_footer:
         cta_title: Develop Ubuntu
         cta_url: /desktop/developers
-    - title: Windows & MacOS
+    - title: Windows & macOS
       primary_links:
         - title: Products
           links:
-            - title: WSL2
+            - title: WSL
               description: Windows Subsystem for Linux
               url: /wsl
             - title: Multipass
-              description: Ubuntu VMs for Windows, macOS
+              description: Ubuntu VMs for Windows and macOS
               url: https://multipass.run/
       secondary_links:
         - title: Tutorials and docs
