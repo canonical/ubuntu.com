@@ -21,16 +21,16 @@ type ActivationKey = {
   productID: string;
 };
 
-enum KeyFilters {
-  All,
-  Unused,
-  Active,
+enum ActiveTab {
+  AllKeys,
+  UnusedKeys,
+  ActiveKeys,
 }
 
-const KeyFiltersLength = Object.keys(KeyFilters).length / 2;
+const KeyFiltersLength = Object.keys(ActiveTab).length / 2;
 
 const CredManage = () => {
-  const [tab, changeTab] = useState(0);
+  const [activeTab, setTab] = useState(0);
   const inputRefs = useRef<HTMLButtonElement[]>([]);
   const [actionLinks, updateActionLinks] = useState<
     { children: string; onClick: () => void }[]
@@ -69,11 +69,11 @@ const CredManage = () => {
   ) => {
     event.preventDefault();
     if (event.key == "ArrowLeft") {
-      changeTab((currentIndex - 1) % KeyFiltersLength);
+      setTab((currentIndex - 1) % KeyFiltersLength);
       inputRefs.current[(currentIndex - 1) % KeyFiltersLength].focus();
     }
     if (event.key == "ArrowRight") {
-      changeTab((currentIndex + 1) % KeyFiltersLength);
+      setTab((currentIndex + 1) % KeyFiltersLength);
       inputRefs.current[(currentIndex + 1) % KeyFiltersLength].focus();
     }
   };
@@ -159,27 +159,27 @@ const CredManage = () => {
   }, [selectedKeyIds]);
 
   useEffect(() => {
-    if (tab == KeyFilters.All) {
+    if (activeTab == ActiveTab.AllKeys) {
       changeTableData(filterData);
     }
-    if (tab == KeyFilters.Unused) {
+    if (activeTab == ActiveTab.UnusedKeys) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
           return keyIsUnused(keyItem["key"]);
         })
       );
     }
-    if (tab == KeyFilters.Active) {
+    if (activeTab == ActiveTab.ActiveKeys) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
           return !keyIsUnused(keyItem["key"]);
         })
       );
     }
-  }, [tab]);
+  }, [activeTab]);
 
   useEffect(() => {
-    changeTab(0);
+    setTab(0);
     changeFilterData(data);
     changeTableData(data);
   }, [data]);
@@ -207,16 +207,19 @@ const CredManage = () => {
           <Tabs
             links={[
               {
-                active: true,
+                active: activeTab === ActiveTab.AllKeys,
                 label: "All keys",
+                onClick: () => setTab(ActiveTab.AllKeys),
               },
               {
-                active: true,
+                active: activeTab === ActiveTab.UnusedKeys,
                 label: "Unused keys",
+                onClick: () => setTab(ActiveTab.UnusedKeys),
               },
               {
-                active: true,
+                active: activeTab === ActiveTab.ActiveKeys,
                 label: "Active keys",
+                onClick: () => setTab(ActiveTab.ActiveKeys),
               },
             ]}
           ></Tabs>
@@ -229,11 +232,11 @@ const CredManage = () => {
               <button
                 className="p-segmented-control__button"
                 role="tab"
-                aria-selected={tab == 0}
+                aria-selected={activeTab == 0}
                 aria-controls="all-keys-tab"
                 id="all-keys"
                 onClick={() => {
-                  changeTab(0);
+                  setTab(0);
                 }}
                 onKeyUp={(e) => {
                   switchTab(e, KeyFiltersLength);
@@ -245,12 +248,12 @@ const CredManage = () => {
               <button
                 className="p-segmented-control__button"
                 role="tab"
-                aria-selected={tab == 1}
+                aria-selected={activeTab == 1}
                 aria-controls="unused-keys-tab"
                 id="unused-keys"
                 tabIndex={-1}
                 onClick={() => {
-                  changeTab(1);
+                  setTab(1);
                 }}
                 onKeyUp={(e) => {
                   switchTab(e, 1);
@@ -262,12 +265,12 @@ const CredManage = () => {
               <button
                 className="p-segmented-control__button"
                 role="tab"
-                aria-selected={tab == 2}
+                aria-selected={activeTab == 2}
                 aria-controls="active-keys-tab"
                 id="active-keys"
                 tabIndex={-1}
                 onClick={() => {
-                  changeTab(2);
+                  setTab(2);
                 }}
                 onKeyUp={(e) => {
                   switchTab(e, 2);
