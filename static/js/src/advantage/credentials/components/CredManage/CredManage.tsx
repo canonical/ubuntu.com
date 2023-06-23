@@ -1,9 +1,12 @@
 import {
   CheckboxInput,
+  Col,
   ContextualMenu,
   MainTable,
   Row,
   Spinner,
+  Strip,
+  Tabs,
   Tooltip,
 } from "@canonical/react-components";
 import { listAllKeys, rotateKey } from "advantage/credentials/api/keys";
@@ -183,217 +186,243 @@ const CredManage = () => {
 
   return (
     <div>
-      <Row>
-        <h1>Manage exam attempts</h1>
-        <p>The table below shows exam attempts you have purchased</p>
-        <p>
-          To redeem an attempt, copy the associated key and paste it where the
-          system asks you for the attempt key
-        </p>
-      </Row>
-      <Row>
-        <div className="p-segmented-control col-6">
-          <div
-            className="p-segmented-control__list"
-            role="tablist"
-            aria-label="Activatation Keys Table Filter"
-          >
-            <button
-              className="p-segmented-control__button"
-              role="tab"
-              aria-selected={tab == 0}
-              aria-controls="all-keys-tab"
-              id="all-keys"
-              onClick={() => {
-                changeTab(0);
-              }}
-              onKeyUp={(e) => {
-                switchTab(e, KeyFiltersLength);
-              }}
-              ref={(ref: HTMLButtonElement) => (inputRefs.current[0] = ref)}
-            >
-              All Keys
-            </button>
-            <button
-              className="p-segmented-control__button"
-              role="tab"
-              aria-selected={tab == 1}
-              aria-controls="unused-keys-tab"
-              id="unused-keys"
-              tabIndex={-1}
-              onClick={() => {
-                changeTab(1);
-              }}
-              onKeyUp={(e) => {
-                switchTab(e, 1);
-              }}
-              ref={(ref: HTMLButtonElement) => (inputRefs.current[1] = ref)}
-            >
-              Unused Keys
-            </button>
-            <button
-              className="p-segmented-control__button"
-              role="tab"
-              aria-selected={tab == 2}
-              aria-controls="active-keys-tab"
-              id="active-keys"
-              tabIndex={-1}
-              onClick={() => {
-                changeTab(2);
-              }}
-              onKeyUp={(e) => {
-                switchTab(e, 2);
-              }}
-              ref={(ref: HTMLButtonElement) => (inputRefs.current[2] = ref)}
-            >
-              Active Keys
-            </button>
-          </div>
-        </div>
-        <div className="col-6 u-align--center">
-          {selectedKeyIds.length > 0 ? (
-            <ContextualMenu
-              hasToggleIcon
-              links={actionLinks}
-              position="right"
-              toggleLabel="Actions"
-            />
-          ) : (
-            ""
-          )}
-        </div>
-      </Row>
-      <Row>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <MainTable
-            headers={[
+      <Strip>
+        <Row>
+          <Col size={6}>
+            <h1>Manage exam attempts</h1>
+          </Col>
+          <Col size={6}>
+            <p>
+              {" "}
+              The table below shows exam attempts you have purchased.
+              <br />
+              To redeem an attempt, copy the associated key and paste it where
+              the system asks you for the attempt key
+            </p>
+          </Col>
+        </Row>
+      </Strip>
+      <Strip className="u-no-padding--top">
+        <Row>
+          <Tabs
+            links={[
               {
-                content: (
-                  <CheckboxInput
-                    onChange={selectAllKeys}
-                    label=""
-                    checked={
-                      tableData != undefined &&
-                      selectedKeyIds.length == tableData.length
-                    }
-                  />
-                ),
-                colSpan: 1,
+                active: true,
+                label: "All keys",
               },
               {
-                content: "Exam Key Id",
-                sortKey: "key",
-                colSpan: 2,
+                active: true,
+                label: "Unused keys",
               },
               {
-                content: "Assignee",
-                sortKey: "activatedBy",
-                colSpan: 2,
-              },
-              {
-                content: "Exam",
-                sortKey: "productID",
-              },
-              {
-                content: "Expiration Date",
-                sortKey: "expirationDate",
+                active: true,
+                label: "Active keys",
               },
             ]}
-            rows={
-              tableData &&
-              tableData.map((keyitem: ActivationKey) => {
-                return {
-                  columns: [
-                    {
-                      content: (
-                        <CheckboxInput
-                          onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                          ) => {
-                            handleCheckbox(event, keyitem["key"]);
-                          }}
-                          label=""
-                          id={keyitem["key"] + "_checkbox"}
-                          checked={selectedKeyIds.includes(keyitem["key"])}
-                        />
-                      ),
-                    },
-                    {
-                      content: (
-                        <>
-                          <span>{keyitem["key"]} &emsp;</span>
-                          <Tooltip message="Copy Key" position="btm-center">
-                            <a
-                              onClick={() => {
-                                copyToClipboard(keyitem.key);
-                              }}
-                            >
-                              <i className="p-icon--copy"></i>
-                            </a>
-                          </Tooltip>
-                        </>
-                      ),
-                      colSpan: 2,
-                    },
-                    {
-                      content: (
-                        <>
-                          {keyitem["activatedBy"] ? (
-                            <p>{keyitem["activatedBy"]} &emsp;</p>
-                          ) : (
-                            <>
-                              <span>N/A &emsp;</span>
-                              <Tooltip
-                                message="Refresh Key"
-                                position="btm-center"
+          ></Tabs>
+          <div className="p-segmented-control col-6">
+            <div
+              className="p-segmented-control__list"
+              role="tablist"
+              aria-label="Activatation Keys Table Filter"
+            >
+              <button
+                className="p-segmented-control__button"
+                role="tab"
+                aria-selected={tab == 0}
+                aria-controls="all-keys-tab"
+                id="all-keys"
+                onClick={() => {
+                  changeTab(0);
+                }}
+                onKeyUp={(e) => {
+                  switchTab(e, KeyFiltersLength);
+                }}
+                ref={(ref: HTMLButtonElement) => (inputRefs.current[0] = ref)}
+              >
+                All Keys
+              </button>
+              <button
+                className="p-segmented-control__button"
+                role="tab"
+                aria-selected={tab == 1}
+                aria-controls="unused-keys-tab"
+                id="unused-keys"
+                tabIndex={-1}
+                onClick={() => {
+                  changeTab(1);
+                }}
+                onKeyUp={(e) => {
+                  switchTab(e, 1);
+                }}
+                ref={(ref: HTMLButtonElement) => (inputRefs.current[1] = ref)}
+              >
+                Unused Keys
+              </button>
+              <button
+                className="p-segmented-control__button"
+                role="tab"
+                aria-selected={tab == 2}
+                aria-controls="active-keys-tab"
+                id="active-keys"
+                tabIndex={-1}
+                onClick={() => {
+                  changeTab(2);
+                }}
+                onKeyUp={(e) => {
+                  switchTab(e, 2);
+                }}
+                ref={(ref: HTMLButtonElement) => (inputRefs.current[2] = ref)}
+              >
+                Active Keys
+              </button>
+            </div>
+          </div>
+          <div className="col-6 u-align--center">
+            {selectedKeyIds.length > 0 ? (
+              <ContextualMenu
+                hasToggleIcon
+                links={actionLinks}
+                position="right"
+                toggleLabel="Actions"
+              />
+            ) : (
+              ""
+            )}
+          </div>
+        </Row>
+        <Row>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <MainTable
+              headers={[
+                {
+                  content: (
+                    <CheckboxInput
+                      onChange={selectAllKeys}
+                      label=""
+                      checked={
+                        tableData != undefined &&
+                        selectedKeyIds.length == tableData.length
+                      }
+                    />
+                  ),
+                  colSpan: 1,
+                },
+                {
+                  content: "Exam Key Id",
+                  sortKey: "key",
+                  colSpan: 2,
+                },
+                {
+                  content: "Assignee",
+                  sortKey: "activatedBy",
+                  colSpan: 2,
+                },
+                {
+                  content: "Exam",
+                  sortKey: "productID",
+                },
+                {
+                  content: "Expiration Date",
+                  sortKey: "expirationDate",
+                },
+              ]}
+              rows={
+                tableData &&
+                tableData.map((keyitem: ActivationKey) => {
+                  return {
+                    columns: [
+                      {
+                        content: (
+                          <CheckboxInput
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) => {
+                              handleCheckbox(event, keyitem["key"]);
+                            }}
+                            label=""
+                            id={keyitem["key"] + "_checkbox"}
+                            checked={selectedKeyIds.includes(keyitem["key"])}
+                          />
+                        ),
+                      },
+                      {
+                        content: (
+                          <>
+                            <span>{keyitem["key"]} &emsp;</span>
+                            <Tooltip message="Copy Key" position="btm-center">
+                              <a
+                                onClick={() => {
+                                  copyToClipboard(keyitem.key);
+                                }}
                               >
-                                <a
-                                  onClick={() => {
-                                    rotateActivationKeys([keyitem.key]);
-                                  }}
+                                <i className="p-icon--copy"></i>
+                              </a>
+                            </Tooltip>
+                          </>
+                        ),
+                        colSpan: 2,
+                      },
+                      {
+                        content: (
+                          <>
+                            {keyitem["activatedBy"] ? (
+                              <p>{keyitem["activatedBy"]} &emsp;</p>
+                            ) : (
+                              <>
+                                <span>N/A &emsp;</span>
+                                <Tooltip
+                                  message="Refresh Key"
+                                  position="btm-center"
                                 >
-                                  <i className="p-icon--restart"></i>
-                                </a>
-                              </Tooltip>
-                              <span>&emsp;</span>
-                              <Tooltip
-                                message="Redeem Key"
-                                position="btm-center"
-                              >
-                                <a
-                                  href={`/credentials/redeem/${keyitem["key"]}?action=confirm`}
+                                  <a
+                                    onClick={() => {
+                                      rotateActivationKeys([keyitem.key]);
+                                    }}
+                                  >
+                                    <i className="p-icon--restart"></i>
+                                  </a>
+                                </Tooltip>
+                                <span>&emsp;</span>
+                                <Tooltip
+                                  message="Redeem Key"
+                                  position="btm-center"
                                 >
-                                  <i className="p-icon--video-play"></i>
-                                </a>
-                              </Tooltip>
-                            </>
-                          )}
-                        </>
-                      ),
-                      colSpan: 2,
+                                  <a
+                                    href={`/credentials/redeem/${keyitem["key"]}?action=confirm`}
+                                  >
+                                    <i className="p-icon--video-play"></i>
+                                  </a>
+                                </Tooltip>
+                              </>
+                            )}
+                          </>
+                        ),
+                        colSpan: 2,
+                      },
+                      {
+                        content: keyitem.productID,
+                      },
+                      {
+                        content: keyitem.expirationDate.toString(),
+                      },
+                    ],
+                    sortData: {
+                      ...keyitem,
+                      checkbox: keyitem["key"],
                     },
-                    {
-                      content: keyitem.productID,
-                    },
-                    {
-                      content: keyitem.expirationDate.toString(),
-                    },
-                  ],
-                  sortData: {
-                    ...keyitem,
-                    checkbox: keyitem["key"],
-                  },
-                };
-              })
-            }
-            paginate={5}
-            sortable
-            responsive
-          />
-        )}
-      </Row>
+                  };
+                })
+              }
+              paginate={5}
+              sortable
+              responsive
+            />
+          )}
+        </Row>
+      </Strip>
     </div>
   );
 };
