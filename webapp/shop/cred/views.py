@@ -42,8 +42,17 @@ RESERVATION_STATES = {
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
-def cred_home(**_):
-    return flask.render_template("credentials/index.html")
+def cred_home(ua_contracts_api, **_):
+    available_products = ua_contracts_api.get_product_listings(
+        "canonical-cube"
+    ).get("productListings")
+    print(available_products)
+    for product in available_products:
+        if product.get("name") == "CUE Linux Essentials":
+            return flask.render_template(
+                "credentials/index.html", can_purchase=True
+            )
+    return flask.render_template("credentials/index.html", can_purchase=False)
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
