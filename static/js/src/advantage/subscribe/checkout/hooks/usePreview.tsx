@@ -56,8 +56,17 @@ const usePreview = ({ quantity, product, action }: Props) => {
       const res = await response.json();
 
       if (res.errors) {
-        console.log(res.errors);
-        throw new Error(res.errors);
+        if (res.errors != "no invoice would be issued for this purchase") {
+          console.log(res.errors);
+          throw new Error(res.errors);
+        }
+
+        return {
+          currency: "USD",
+          subtotal: 0,
+          tax: 0,
+          total: 0,
+        };
       }
 
       const data: TaxInfo = {
