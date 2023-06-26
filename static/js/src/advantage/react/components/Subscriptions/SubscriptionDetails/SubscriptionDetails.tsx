@@ -186,7 +186,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                       {subscription.statuses.is_subscription_active ? (
                         <>
                           {subscription.statuses.is_renewed &&
-                          subscription.statuses.is_cancelled ? (
+                          !subscription.statuses.is_cancelled ? (
                             <button className="p-chip--positive">
                               <span className="p-chip__value">
                                 Auto-renewal on
