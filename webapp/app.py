@@ -657,20 +657,20 @@ data_spark_k8s_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
         index_topic_id=8963,
-        url_prefix="/data/docs/spark-k8s",
+        url_prefix="/data/docs/spark/k8s",
     ),
     document_template="/data/docs/spark-k8s/document.html",
-    url_prefix="/data/docs/spark-k8s",
+    url_prefix="/data/docs/spark/k8s",
     blueprint_name="data-docs-spark-k8s",
 )
 
 # Data Platform Spark on K8s docs search
 app.add_url_rule(
-    "/data/docs/spark-k8s/search",
+    "/data/docs/spark/k8s/search",
     "data-docs-spark-k8s-search",
     build_search_view(
         session=session,
-        site="ubuntu.com/data/docs/spark-k8s",
+        site="ubuntu.com/data/docs/spark/k8s",
         template_path="/data/docs/spark-k8s/search-results.html",
         search_engine_id=search_engine_id,
     ),
@@ -683,20 +683,20 @@ data_mongodb_vm_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
         index_topic_id=7663,
-        url_prefix="/data/docs/mongodb-vm",
+        url_prefix="/data/docs/mongodb/iaas",
     ),
     document_template="/data/docs/mongodb-vm/document.html",
-    url_prefix="/data/docs/mongodb-vm",
+    url_prefix="/data/docs/mongodb/iaas",
     blueprint_name="data-docs-mongodb-vm",
 )
 
 # Data Platform MongoDB on IaaS docs search
 app.add_url_rule(
-    "/data/docs/mongodb-vm/search",
+    "/data/docs/mongodb/iaas/search",
     "data-docs-mongodb-vm-search",
     build_search_view(
         session=session,
-        site="ubuntu.com/data/docs/mongodb-vm",
+        site="ubuntu.com/data/docs/mongodb/iaas",
         template_path="/data/docs/mongodb-vm/search-results.html",
         search_engine_id=search_engine_id,
     ),
@@ -709,20 +709,20 @@ data_postgresql_k8s_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
         index_topic_id=9307,
-        url_prefix="/data/docs/postgresql-k8s",
+        url_prefix="/data/docs/postgresql/k8s",
     ),
     document_template="/data/docs/postgresql-k8s/document.html",
-    url_prefix="/data/docs/postgresql-k8s",
+    url_prefix="/data/docs/postgresql/k8s",
     blueprint_name="data-docs-postgresql-k8s",
 )
 
 # Data Platform PostgreSQL on K8s docs search
 app.add_url_rule(
-    "/data/docs/postgresql-k8s/search",
+    "/data/docs/postgresql/k8s/search",
     "data-docs-postgresql-k8s-search",
     build_search_view(
         session=session,
-        site="ubuntu.com/data/docs/postgresql-k8s",
+        site="ubuntu.com/data/docs/postgresql/k8s",
         template_path="/data/docs/postgresql-k8s/search-results.html",
         search_engine_id=search_engine_id,
     ),
