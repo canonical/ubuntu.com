@@ -663,8 +663,6 @@ data_spark_k8s_docs = Docs(
     url_prefix="/data/docs/spark/k8s",
     blueprint_name="data-docs-spark-k8s",
 )
-
-# Data Platform Spark on K8s docs search
 app.add_url_rule(
     "/data/docs/spark/k8s/search",
     "data-docs-spark-k8s-search",
@@ -675,60 +673,228 @@ app.add_url_rule(
         search_engine_id=search_engine_id,
     ),
 )
-
 data_spark_k8s_docs.init_app(app)
 
+# Data Platform MySQL on IAAS docs
+data_mysql_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9922,
+        url_prefix="/data/docs/mysql/iaas",
+    ),
+    document_template="/data/docs/mysql/iaas/document.html",
+    url_prefix="/data/docs/mysql/iaas",
+    blueprint_name="data-docs-mysql-iaas",
+)
+app.add_url_rule(
+    "/data/docs/mysql/iaas/search",
+    "data-docs-mysql-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mysql/iaas",
+        template_path="/data/docs/mysql/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mysql_iaas_docs.init_app(app)
+
+# Data Platform MySQL on K8s docs
+data_mysql_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9680,
+        url_prefix="/data/docs/mysql/k8s",
+    ),
+    document_template="/data/docs/mysql/k8s/document.html",
+    url_prefix="/data/docs/mysql/k8s",
+    blueprint_name="data-docs-mysql-k8s",
+)
+app.add_url_rule(
+    "/data/docs/mysql/k8s/search",
+    "data-docs-mysql-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mysql/k8s",
+        template_path="/data/docs/mysql/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mysql_k8s_docs.init_app(app)
+
 # Data Platform MongoDB on IaaS docs
-data_mongodb_vm_docs = Docs(
+data_mongodb_iaas_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
         index_topic_id=7663,
         url_prefix="/data/docs/mongodb/iaas",
     ),
-    document_template="/data/docs/mongodb-vm/document.html",
+    document_template="/data/docs/mongodb/iaas/document.html",
     url_prefix="/data/docs/mongodb/iaas",
-    blueprint_name="data-docs-mongodb-vm",
+    blueprint_name="data-docs-mongodb-iaas",
 )
-
-# Data Platform MongoDB on IaaS docs search
 app.add_url_rule(
     "/data/docs/mongodb/iaas/search",
     "data-docs-mongodb-vm-search",
     build_search_view(
         session=session,
         site="ubuntu.com/data/docs/mongodb/iaas",
-        template_path="/data/docs/mongodb-vm/search-results.html",
+        template_path="/data/docs/mongodb/iaas/search-results.html",
         search_engine_id=search_engine_id,
     ),
 )
+data_mongodb_iaas_docs.init_app(app)
 
-data_mongodb_vm_docs.init_app(app)
+# Data Platform MongoDB on K8s docs
+data_mongodb_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10265,
+        url_prefix="/data/docs/mongodb/k8s",
+    ),
+    document_template="/data/docs/mongodb/k8s/document.html",
+    url_prefix="/data/docs/mongodb/k8s",
+    blueprint_name="data-docs-mongodb-k8s",
+)
+app.add_url_rule(
+    "/data/docs/mongodb/k8s/search",
+    "data-docs-mongodb-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mongodb/k8s",
+        template_path="/data/docs/mongodb/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mongodb_k8s_docs.init_app(app)
 
-# Data Platform PosgreSQL on K8s docs
+# Data Platform PostgreSQL on K8s docs
 data_postgresql_k8s_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
         index_topic_id=9307,
         url_prefix="/data/docs/postgresql/k8s",
     ),
-    document_template="/data/docs/postgresql-k8s/document.html",
+    document_template="/data/docs/postgresql/k8s/document.html",
     url_prefix="/data/docs/postgresql/k8s",
     blueprint_name="data-docs-postgresql-k8s",
 )
-
-# Data Platform PostgreSQL on K8s docs search
 app.add_url_rule(
     "/data/docs/postgresql/k8s/search",
     "data-docs-postgresql-k8s-search",
     build_search_view(
         session=session,
         site="ubuntu.com/data/docs/postgresql/k8s",
-        template_path="/data/docs/postgresql-k8s/search-results.html",
+        template_path="/data/docs/postgresql/k8s/search-results.html",
         search_engine_id=search_engine_id,
     ),
 )
-
 data_postgresql_k8s_docs.init_app(app)
+
+# Data Platform PostgreSQL on IaaS docs
+data_postgresql_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9710,
+        url_prefix="/data/docs/postgresql/iaas",
+    ),
+    document_template="/data/docs/postgresql/iaas/document.html",
+    url_prefix="/data/docs/postgresql/iaas",
+    blueprint_name="data-docs-postgresql-iaas",
+)
+app.add_url_rule(
+    "/data/docs/postgresql/iaas/search",
+    "data-docs-postgresql-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/postgresql/iaas",
+        template_path="/data/docs/postgresql/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_postgresql_iaas_docs.init_app(app)
+
+# Data Platform OpenSearch on IaaS docs
+data_opensearch_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9729,
+        url_prefix="/data/docs/opensearch/iaas",
+    ),
+    document_template="/data/docs/opensearch/iaas/document.html",
+    url_prefix="/data/docs/opensearch/iaas",
+    blueprint_name="data-docs-opensearch-iaas",
+)
+app.add_url_rule(
+    "/data/docs/opensearch/iaas/search",
+    "data-docs-opensearch-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/opensearch/iaas",
+        template_path="/data/docs/opensearch/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_opensearch_iaas_docs.init_app(app)
+
+# Data Platform Kafka on IaaS docs
+data_kafka_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10288,
+        url_prefix="/data/docs/kafka/iaas",
+    ),
+    document_template="/data/docs/kafka/iaas/document.html",
+    url_prefix="/data/docs/kafka/iaas",
+    blueprint_name="data-docs-kafka-iaas",
+)
+app.add_url_rule(
+    "/data/docs/kafka/iaas/search",
+    "data-docs-kafka-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/kafka/iaas",
+        template_path="/data/docs/kafka/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_kafka_iaas_docs.init_app(app)
+
+# Data Platform Kafka on K8s docs
+data_kafka_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10296,
+        url_prefix="/data/docs/kafka/k8s",
+    ),
+    document_template="/data/docs/kafka/k8s/document.html",
+    url_prefix="/data/docs/kafka/k8s",
+    blueprint_name="data-docs-kafka-k8s",
+)
+app.add_url_rule(
+    "/data/docs/kafka/k8s/search",
+    "data-docs-kafka-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/kafka/k8s",
+        template_path="/data/docs/kafka/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_kafka_k8s_docs.init_app(app)
+
+# Data Platform index docs
+data_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10863,
+        url_prefix="/data/docs/",
+    ),
+    document_template="/data/docs/document.html",
+    url_prefix="/data/docs/",
+    blueprint_name="data_docs",
+)
+
+data_docs.init_app(app)
 
 # Server docs
 url_prefix = "/server/docs"

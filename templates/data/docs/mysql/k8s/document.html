@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/data/docs/mysql/k8s/search",
+  siteSearch="https://ubuntu.com/data/docs/mysql/k8s",
+  placeholder="Search Charmed MySQL on Kubernetes docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

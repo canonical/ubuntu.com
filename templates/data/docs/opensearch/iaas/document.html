@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/data/docs/opensearch/iaas/search",
+  siteSearch="https://ubuntu.com/data/docs/opensearch/iaas",
+  placeholder="Search Charmed OpenSearch on IaaS docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}
