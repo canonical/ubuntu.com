@@ -1362,3 +1362,15 @@ hr.p-separator.is-shallow {
     margin-bottom: $sp-xxx-large;
   }
 }
+
+.spaced-bottom--smaller{
+  margin-bottom: $sp-large;
+
+  @media screen and (max-width: calc($breakpoint-medium - 1px)) {
+    margin-bottom: $sp-xx-large;
+  }
+}
+
+.is-paper--input{
+  background-color: rgba(0, 0, 0, 0.04);
+}
