@@ -695,9 +695,12 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
         page=ta_page,
     )
     ta_webhook_responses = webhook_responses["webhook_responses"]
-    ta_webhook_responses = ta_webhook_responses[
-        page * per_page % ta_results_per_page
-        - per_page : page * per_page % ta_results_per_page
+    ta_webhook_responses = [
+        ta_webhook_responses[i]
+        for i in range(
+            page * per_page % ta_results_per_page - per_page,
+            page * per_page % ta_results_per_page,
+        )
     ]
     page_metadata = {}
     page_metadata["current_page"] = page
