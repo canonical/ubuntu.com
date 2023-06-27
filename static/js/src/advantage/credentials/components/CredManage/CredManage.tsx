@@ -189,7 +189,9 @@ const CredManage = () => {
       <Strip>
         <Row>
           <Col size={6}>
-            <h1>Manage exam attempts</h1>
+            <h1>
+              <strong>Manage exam attempts</strong>
+            </h1>
           </Col>
           <Col size={6}>
             <p>
