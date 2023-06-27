@@ -30,7 +30,7 @@ enum ActiveTab {
 const KeyFiltersLength = Object.keys(ActiveTab).length / 2;
 
 const CredManage = () => {
-  const [activeTab, setTab] = useState(0);
+  const [activeTab, setTab] = useState(ActiveTab.AllKeys);
   const inputRefs = useRef<HTMLButtonElement[]>([]);
   const [actionLinks, updateActionLinks] = useState<
     { children: string; onClick: () => void }[]
@@ -179,7 +179,7 @@ const CredManage = () => {
   }, [activeTab]);
 
   useEffect(() => {
-    setTab(0);
+    setTab(ActiveTab.AllKeys);
     changeFilterData(data);
     changeTableData(data);
   }, [data]);
@@ -223,64 +223,6 @@ const CredManage = () => {
               },
             ]}
           ></Tabs>
-          <div className="p-segmented-control col-6">
-            <div
-              className="p-segmented-control__list"
-              role="tablist"
-              aria-label="Activatation Keys Table Filter"
-            >
-              <button
-                className="p-segmented-control__button"
-                role="tab"
-                aria-selected={activeTab == 0}
-                aria-controls="all-keys-tab"
-                id="all-keys"
-                onClick={() => {
-                  setTab(0);
-                }}
-                onKeyUp={(e) => {
-                  switchTab(e, KeyFiltersLength);
-                }}
-                ref={(ref: HTMLButtonElement) => (inputRefs.current[0] = ref)}
-              >
-                All Keys
-              </button>
-              <button
-                className="p-segmented-control__button"
-                role="tab"
-                aria-selected={activeTab == 1}
-                aria-controls="unused-keys-tab"
-                id="unused-keys"
-                tabIndex={-1}
-                onClick={() => {
-                  setTab(1);
-                }}
-                onKeyUp={(e) => {
-                  switchTab(e, 1);
-                }}
-                ref={(ref: HTMLButtonElement) => (inputRefs.current[1] = ref)}
-              >
-                Unused Keys
-              </button>
-              <button
-                className="p-segmented-control__button"
-                role="tab"
-                aria-selected={activeTab == 2}
-                aria-controls="active-keys-tab"
-                id="active-keys"
-                tabIndex={-1}
-                onClick={() => {
-                  setTab(2);
-                }}
-                onKeyUp={(e) => {
-                  switchTab(e, 2);
-                }}
-                ref={(ref: HTMLButtonElement) => (inputRefs.current[2] = ref)}
-              >
-                Active Keys
-              </button>
-            </div>
-          </div>
           <div className="col-6 u-align--center">
             {selectedKeyIds.length > 0 ? (
               <ContextualMenu
