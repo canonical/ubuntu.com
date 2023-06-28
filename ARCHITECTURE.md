@@ -99,7 +99,9 @@ The [mirrors.json view](webapp/views.py#L261):
 
 ### Security pages
 
-**To be completed**
+https://ubuntu.com/security/cves ([url rule](webapp/app.py#L490), [view function](webapp/security/views.py#L290)) and https://ubuntu.com/security/notices ([url rule](webapp/app.py#L466), [view function](webapp/security/views.py#L116)) list CVEs and Ubuntu Security Notices respectively. These pages are build by pulling in information from the security API. The [local API models are here](webapp/security/api.py), and this API is documented at https://ubuntu.com/security/api/docs.
+
+The API, even though it's hosted on ubuntu.com at ubuntu.com/security/cves.json etc., is actually deployed separately in the [ubuntu-com-security-api](https://github.com/canonical/ubuntu-com-security-api/) project. This is to keep this high-traffic database-backed service separate from the main ubuntu.com application so as not to introduce stability issues.
 
 ### Pro
 
