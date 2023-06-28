@@ -42,7 +42,7 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 
 The homepage ([url rule](webapp/app.py#L637)) has no server-side dynamic functionality, so is instead served directly by the template finder view from `templates/index.html`.
 
-Since ubuntu.com is a high-traffic site, and the homepage its most popular page, it is important that the initial response for this page remains as fast as possible, so it should *not* be making database or API calls directly if it can be avoided.
+Since ubuntu.com is a high-traffic site, and the homepage its most popular page, it is important that the initial response for this page remains as fast as possible, so it should *not* be making server-side database or API calls directly if it can be avoided.
 
 #### Homepage takeovers and engage pages
 
@@ -62,7 +62,7 @@ The blog pages under https://ubuntu.com/blog make use of [the blog module](https
 
 ### Documentation
 
-There are a large number of documentation areas on ubuntu.com:
+There are a large number of documentation areas on ubuntu.com (complete at the time of writing, I think):
 
 - [ubuntu.com/servers/docs](http://ubuntu.com/servers/docs) ([code](webapp/app.py#L642-L651))
 - [ubuntu.com/core/services/guide](https://ubuntu.com/core/services/guide) ([code](webapp/app.py#L606-L616))
@@ -82,7 +82,7 @@ For more information, see the [Creating Discourse based documentation pages](htt
 
 https://ubuntu.com/search ([url rule](webapp/app.py#L412-L421)) makes use of [our Google Programmable Search account](https://programmablesearchengine.google.com/u/1/controlpanel/overview?cx=009048213575199080868%3Ai3zoqdwqk8o) to pull results through Google's API using [our search module](https://github.com/canonical/canonicalwebteam.search/). The account is configured to index many different domains that we own, and results can be displayed from all of them.
 
-We have had trouble with search spam in the past which has led to us hitting API rate limits, breaking our search. There is now rate limiting on the content-cache level which will hopefully take care of this. We've set up [some dashboard in Graylog](https://logging.comms.canonical.com/dashboards/62cb3f41363defb179345f25) for monitoring the traffic on the search engine.
+We have had trouble with search spam in the past which has led to us hitting API rate limits, breaking our search. There is now rate limiting on the content-cache level which will hopefully take care of this. We've set up [a dashboard in Graylog](https://logging.comms.canonical.com/dashboards/62cb3f41363defb179345f25) for monitoring the traffic on the search engine.
 
 ### Downloads
 
