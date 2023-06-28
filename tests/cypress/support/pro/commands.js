@@ -34,7 +34,9 @@ Cypress.Commands.add(
 
 Cypress.on("uncaught:exception", (err, runnable) => {
   // returning false here prevents Cypress from failing the test
-  return false;
+  if (err.message.includes("window.lintrk is not a function")) {
+    return false;
+  }
 });
 
 Cypress.Commands.add(
