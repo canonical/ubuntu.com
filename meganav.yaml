@@ -141,7 +141,7 @@ products:
               description: Scalable Linux for the cloud
               url: /server
             - title: Landscape
-              description: Monitor and manage servers
+              description: Monitor and manage machines
               url: https://landscape.canonical.com/
             - title: MAAS
               description: Bare metal provisioning
@@ -240,7 +240,7 @@ products:
               description: 10 years of security maintenance
               url: /security/esm
             - title: Landscape
-              description: Remotely manage & update servers
+              description: Monitor and manage machines
               url: https://landscape.canonical.com/
             - title: Livepatch
               description: Stay patched without reboots
@@ -515,7 +515,7 @@ use_case:
       links:
         - title: Robotics
           url: /robotics
-        - title: Smart Home
+        - title: Smart home
           url: /internet-of-things/smart-home
         - title: Industrial
           url: /industrial
@@ -523,8 +523,8 @@ use_case:
           url: /automotive
         - title: Smart displays
           url: /internet-of-things/smart-displays
-        - title: Smart home
-          url: /internet-of-things/smart-home
+        - title: Smart city
+          url: /internet-of-things/smart-city
 
 support:
   side_nav_sections:
@@ -818,8 +818,10 @@ get_ubuntu:
         - title: Products
           links:
             - title: Ubuntu Server
-              description: Ubuntu optimised for servers
+              description: Scalable Linux for the cloud
               url: /server
+              secondary_cta_title: Download 22.04 LTS
+              secondary_cta_url: /download/server
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
@@ -847,9 +849,6 @@ get_ubuntu:
               url: /download/server/s390x
             - title: RISC-V
               url: /download/risc-v
-      section_footer:
-        cta_title: Get Ubuntu Server
-        cta_url: /download/server
     - title: Raspberry Pi
       primary_links:
         - title: Products
@@ -977,7 +976,7 @@ get_ubuntu:
       secondary_links:
         - title: Tutorials and docs
           links:
-            - title: Install tutorial for Windows 10
-              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
             - title: Install tutorial for Windows 11
               url: /tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support
+            - title: Install tutorial for Windows 10
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
