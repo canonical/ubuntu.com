@@ -63,10 +63,11 @@ const CredManage = () => {
     );
   };
 
-  const switchTab = (
+  const switchTabOnArrowPress = (
     event: React.KeyboardEvent<HTMLButtonElement>,
     currentIndex: number
   ) => {
+    currentIndex = activeTab;
     event.preventDefault();
     if (event.key == "ArrowLeft") {
       setTab((currentIndex - 1) % KeyFiltersLength);
@@ -76,6 +77,10 @@ const CredManage = () => {
       setTab((currentIndex + 1) % KeyFiltersLength);
       inputRefs.current[(currentIndex + 1) % KeyFiltersLength].focus();
     }
+
+    // TODO
+    event.target.focus();
+    console.log(event);
   };
 
   const [selectedKeyIds, setSelectedKeyIds] = useState<string[]>([]);
@@ -209,19 +214,32 @@ const CredManage = () => {
           <Tabs
             links={[
               {
+                id: "tab-" + ActiveTab.AllKeys,
+                role: "tab",
                 active: activeTab === ActiveTab.AllKeys,
+                tabindex: 0,
                 label: "All keys",
                 onClick: () => setTab(ActiveTab.AllKeys),
+                onKeyUp: (e: React.KeyboardEvent<HTMLButtonElement>) =>
+                  switchTabOnArrowPress(e, ActiveTab.AllKeys),
               },
               {
+                id: "tab-" + ActiveTab.UnusedKeys,
+                role: "tab",
                 active: activeTab === ActiveTab.UnusedKeys,
                 label: "Unused keys",
                 onClick: () => setTab(ActiveTab.UnusedKeys),
+                onKeyUp: (e: React.KeyboardEvent<HTMLButtonElement>) =>
+                  switchTabOnArrowPress(e, ActiveTab.UnusedKeys),
               },
               {
+                id: "tab-" + ActiveTab.ActiveKeys,
+                role: "tab",
                 active: activeTab === ActiveTab.ActiveKeys,
                 label: "Active keys",
                 onClick: () => setTab(ActiveTab.ActiveKeys),
+                onKeyUp: (e: React.KeyboardEvent<HTMLButtonElement>) =>
+                  switchTabOnArrowPress(e, ActiveTab.ActiveKeys),
               },
             ]}
           ></Tabs>
@@ -238,7 +256,7 @@ const CredManage = () => {
             )}
           </div>
         </Row>
-        <Row>
+        <Row role="tabpanel" tabindex="0">
           {isLoading ? (
             <Spinner />
           ) : (
