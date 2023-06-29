@@ -8,61 +8,57 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>Download Ubuntu for RISC-V Platforms</h1>
-      <h2 class="p-heading--3">Ubuntu &mdash; now available for multiple RISC-V platforms</h2>
-      <p>Run Ubuntu with your favourite RISC-V boards. Ubuntu recently enabled SiFive Unmatched, StarFive VisionFive, Allwinner Nezha, Sipeed LicheeRV and Microchip Polarfire SoC FPGA Icicle Kit. Download the images for those boards below.</p>
-      <p>Pick the OS image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
-      <p>
-        <a href="/download/contact-us" class="js-invoke-modal p-button">Get in touch</a>
-      </p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top">
         {{
-            image (
-            url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-            alt="",
-            width="300",
-            height="48",
-            hi_def=True,
-            loading="auto"
-            ) | safe
-          }}
-    </div>
+          image (
+          url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+          alt="",
+          width="200",
+          height="32",
+          hi_def=True,
+          loading="auto",
+          attrs={"style": "padding-top: 1rem"},
+          ) | safe
+        }}
+      </div>
+  </div>
+  <div class="col-9 col-medium-4">
+    <h1 class="p-heading--2"><strong>Download Ubuntu for RISC-V Platforms</strong></h1>
+    <p>Run Ubuntu with your favourite RISC-V boards. Pick the OS image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
+    <p>All images are 64-bit developer preview builds of Ubuntu Server.</p>
+    <p>
+      <a href="/download/contact-us" class="js-invoke-modal p-button">Get in touch</a>
+    </p>
+  </div>
   </div>
 </section>
 
-<section class="p-strip is-shallow">
-  <div class="u-fixed-width">
-    <div class="p-tabs">
-      <div class="p-tabs__list js-tabbed-content" role="tablist" aria-label="Install RISC-V">
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="quemu-sifive-image-tab" id="quemu-sifive-image" tabindex="-1">SiFive Unmatched, QEMU</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="starfive-visionfive-board-tab" id="starfive-visionfive-board">StarFive VisionFive</button>
-        </div>
-        <div class="p-tabs__item">
-            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="allwinner-nezha-tab" id="allwinner-nezha">AllWinner Nezha</button>
-        </div>
-        <div class="p-tabs__item">
-            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="sipeed-licheerv-dock-tab" id="sipeed-licheerv-dock">Sipeed LicheeRV Dock</button>
-        </div>
-        <div class="p-tabs__item">
-          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="microchip-polarfire-soc-fpga-icicle-kit-tab" id="microchip-polarfire-soc-fpga-icicle-kit">Polarfire SoC FPGA Icicle</button>
-        </div>
-        <div class="p-tabs__item">
-            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="live-installer-tab" id="live-installer">Live installer</button>
-        </div>
-      </div>
+<section class="p-strip is-deep u-no-padding--top">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top"><h2 class="p-text--small-caps">Choose a board</h2></div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black" role="tablist" aria-label="Robotics features">
+        <li><button class="p-tabs__item" id="quemu-sifive-image" role="tab" aria-selected="true" tab-index="-1" aria-controls="quemu-sifive-image-tab">SiFive Unmatched</button></li>
+        <li><button class="p-tabs__item" id="starfive-visionfive-board" role="tab" aria-selected="false" aria-controls="starfive-visionfive-board-tab">StarFive VisionFive</button></li>
+        <li><button class="p-tabs__item" id="starfive-visionfive-2" role="tab" aria-selected="false" aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button></li>
+        <li><button class="p-tabs__item" id="allwinner-nezha" role="tab" aria-selected="false" aria-controls="allwinner-nezha-tab">AllWinner Nezha</button></li>
+        <li><button class="p-tabs__item" id="sipeed-licheerv-dock" role="tab" aria-selected="false" aria-controls="sipeed-licheerv-dock-tab">Sipeed LicheeRV Dock</button></li>
+        <li><button class="p-tabs__item" id="microchip-polarfire-soc-fpga-icicle-kit" role="tab" aria-selected="false" aria-controls="microchip-polarfire-soc-fpga-icicle-kit-tab">Polarfire SoC FPGA Icicle</button></li>
+        <li><button class="p-tabs__item" id="qemu" role="tab" aria-selected="false" aria-controls="qemu-tab">QEMU emulator</button></li>
+      </ul>
+    </div>
+    <div class="col-9 col-medium-4">
       {% include "download/risc-v/tab-1.html" %}
       {% include "download/risc-v/tab-2.html" %}
       {% include "download/risc-v/tab-3.html" %}
       {% include "download/risc-v/tab-4.html" %}
       {% include "download/risc-v/tab-5.html" %}
       {% include "download/risc-v/tab-6.html" %}
+      {% include "download/risc-v/tab-7.html" %}
     </div>
   </div>
 </section>

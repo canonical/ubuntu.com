@@ -3,6 +3,7 @@ import math
 import os
 import re
 import html
+import datetime
 
 # Packages
 import dateutil
@@ -509,7 +510,6 @@ def engage_thank_you(engage_pages):
             path = f"/engage/{page}"
 
         metadata = engage_pages.get_engage_page(path)
-        all_engage_pages = engage_pages.get_index()
         if not metadata:
             flask.abort(404)
 
@@ -523,26 +523,6 @@ def engage_thank_you(engage_pages):
             return flask.abort(404)
 
         language = metadata["language"]
-        # Filter engage pages by language and tags
-        total_num_related = 3
-        related = []
-        for item in all_engage_pages:
-            # Skip related engage page
-            # missing metadata
-            if "language" not in item:
-                continue
-
-            check_match = match_tags(
-                item["tags"].split(","), metadata["tags"].split(",")
-            )
-
-            # Match language and match tags
-            if item["language"] == language and check_match:
-                related.append(item)
-            if len(related) > total_num_related:
-                # we can only fit 3 related posts, no need to finish the loop
-                break
-
         if language and language != "en":
             template_language = f"engage/shared/_{language}_thank-you.html"
         else:
@@ -559,7 +539,6 @@ def engage_thank_you(engage_pages):
             metadata=metadata,
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
-            related=related,
             form_details=form_details,
         )
 
@@ -597,7 +576,7 @@ def openstack_install():
         blueprint_name="openstack-install-docs",
     )
 
-    singlenode_topic = openstack_install_docs.parser.api.get_topic(21427)
+    singlenode_topic = openstack_install_docs.parser.api.get_topic(35230)
     singlenode_topic_soup = BeautifulSoup(
         singlenode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
@@ -607,7 +586,7 @@ def openstack_install():
     )
     openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
 
-    multinode_topic = openstack_install_docs.parser.api.get_topic(18259)
+    multinode_topic = openstack_install_docs.parser.api.get_topic(35727)
     multinode_topic_soup = BeautifulSoup(
         multinode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
@@ -676,6 +655,18 @@ def openstack_engage(engage_pages):
     return openstack_resource_data
 
 
+def german_why_openstack():
+    return flask.render_template("engage/de_why-openstack.html")
+
+
+def french_why_openstack():
+    return flask.render_template("engage/fr_why-openstack.html")
+
+
+def spanish_why_openstack():
+    return flask.render_template("engage/es_why-openstack.html")
+
+
 def build_tutorials_query(tutorials_docs):
     def tutorials_query():
         topic = flask.request.args.get("topic", default="", type=str)
@@ -717,6 +708,37 @@ class BlogRedirects(BlogView):
         group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        # Set blog notice date
+        blog_notice = {}
+        created_at, updated_at = dateutil.parser.parse(
+            context["article"]["date_gmt"]
+        ), dateutil.parser.parse(context["article"]["modified_gmt"])
+
+        date_now = datetime.datetime.now()
+
+        created_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, created_at
+        ).years
+
+        updated_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, updated_at
+        ).years
+
+        # Check if date was published or updated over a year
+        if created_at_difference >= 1 and updated_at_difference >= 1:
+            #  Decide whether to show updated or published date difference
+            if (
+                updated_at
+                > dateutil.relativedelta.relativedelta(days=+1) + created_at
+            ):
+                blog_notice["updated"] = True
+                blog_notice["difference_in_years"] = updated_at_difference
+            else:
+                blog_notice["updated"] = False
+                blog_notice["difference_in_years"] = created_at_difference
+
+        context["blog_notice"] = blog_notice
 
         return flask.render_template("blog/article.html", **context)
 
@@ -830,6 +852,25 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
+    enrichment_fields = None
+
+    # Enrichment data for global enrichment form (id:4198)
+    if "email" in form_fields:
+        enrichment_fields = {
+            "email": form_fields["email"],
+            "acquisition_url": referrer,
+        }
+
+    if "preferredLanguage" in form_fields:
+        enrichment_fields["preferredLanguage"] = form_fields[
+            "preferredLanguage"
+        ]
+        form_fields.pop("preferredLanguage")
+
+    if "country" in form_fields:
+        enrichment_fields["country"] = form_fields["country"]
+        form_fields.pop("country")
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -840,15 +881,6 @@ def marketo_submit():
             }
         ],
     }
-
-    enrichment_fields = None
-
-    if "email" in form_fields:
-        # Enrichment data for global enrichment form (id:4198)
-        enrichment_fields = {
-            "email": form_fields["email"],
-            "acquisition_url": referrer,
-        }
 
     try:
         ip_location = ip_reader.get(client_ip)
@@ -918,7 +950,7 @@ def marketo_submit():
 
         sheet = service.spreadsheets()
         sheet.values().append(
-            spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
+            spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
             range="Sheet1",
             valueInputOption="RAW",
             body={

@@ -199,9 +199,31 @@ class TestRoutes(VCRTestCase):
         """
         response = self.client.get("/security/certifications/docs")
         self.assertEqual(response.status_code, 200)
-
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertIsNotNone(soup.find("meta", {"name": "description"}))
+
+    def test_18_04_bubble(self):
+        """
+        When given the 18-04 page,
+        we should return a 200 status code
+        """
+        response = self.client.get("/18-04")
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get("/18-04/oci")
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get("/18-04/aws")
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get("/18-04/azure")
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get("/18-04/gcp")
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get("/18-04/ibm")
+        self.assertEqual(response.status_code, 200)
 
 
 if __name__ == "__main__":

@@ -48,7 +48,7 @@ This will deploy a storage node, and attach two 32GB devices for storage and
 default storage class is for the cloud (e.g., on AWS this will be EBS volumes).
 
 ```bash
-juju add-relation ceph-osd ceph-mon
+juju integrate ceph-osd ceph-mon
 ```
 
 <div class="p-notification--information is-inline">
@@ -64,7 +64,7 @@ juju add-relation ceph-osd ceph-mon
 Making **Charmed Kubernetes** aware of your **Ceph** cluster just requires a **Juju** relation.
 
 ```bash
-juju add-relation ceph-mon kubernetes-control-plane
+juju integrate ceph-mon kubernetes-control-plane
 ```
 
 Note that the **Ceph** CSI containers require privileged access:
@@ -76,7 +76,7 @@ juju config kubernetes-control-plane allow-privileged=true
 And finally, you need the pools that are defined in the storage class:
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=xfs-pool --wait
+juju run ceph-mon/0 create-pool name=xfs-pool
 ```
 
 ```yaml
@@ -91,7 +91,7 @@ unit-ceph-mon-0:
 ```
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=ext4-pool --wait
+juju run ceph-mon/0 create-pool name=ext4-pool
 ```
 
 ```yaml

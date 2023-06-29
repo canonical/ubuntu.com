@@ -536,20 +536,24 @@ meta_copydoc %}
   </div>
   <div class="u-fixed-width">
     <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Linux 5.19 kernel</li>
-      <li class="p-list__item is-ticked">GNOME 43 desktop environment
+      <li class="p-list__item is-ticked">Linux 6.2 kernel</li>
+      <li class="p-list__item is-ticked">GNOME 44 desktop environment
         <ul>
-          <li>New quick settings interface</li>
-          <li>New spread effect for multitasking</li>
-          <li>Dynamic UI for the file manager</li>
+          <li>New quick settings UI for bluetooth devices and dark mode</li>
         </ul>
       </li>
-      <li class="p-list__item is-ticked">Pipewire as the default audio system delivering improve bluetooth performance
+      <li class="p-list__item is-ticked">Up to date toolchains including .Net 7, Java 17, Go 1.20,
+        Rust 1.67, Python 3.11, GCC 12.3, Ruby 3.1</li>
+      <li class="p-list__item is-ticked">New installer built on Subiquity with a refreshed user experience</li>
+      <li class="p-list__item is-ticked">Snap refresh awareness for improved update management</li>
+      <li class="p-list__item is-ticked">Support for user authentication with Azure Active Directory</li>
+      <li class="p-list__item is-ticked">New ADsys features:
+        <ul>
+          <li>Winbind support in addition to SSSD</li>
+          <li>Group Policy Object support for network shares and app confinement</li>
+        </ul>
       </li>
-      <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.1, Perl 5.34, Go
-        1.19, GCC 12.2, Rust 1.61</li>
-      <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.4, Thunderbird 102, and Firefox 105</li>
-      <li class="p-list__item is-ticked">Multi-threaded CPU squashfs decompression for faster Snap startup</li>
+      <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.5.2, Thunderbird 102.9.0 and Firefox 111</li>
     </ul>
   </div>
   <div class="u-fixed-width">
@@ -634,40 +638,14 @@ meta_copydoc %}
   </div>
 </section>
 <section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
-      <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling,
-        and extended support for developers and organisations.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
-        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a>
-          and LDAP integration</li>
-        <li class="p-list__item is-ticked">Estate <a
-            href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
-        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and
-          <a href="/security/certifications#cis">CIS hardening</a>
-        </li>
-        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
-        <li class="p-list__item is-ticked">Optional weekday or 24x7 support tiers</li>
-      </ul>
-      <p class="p-heading--4">Free for personal use on up to five machines</p>
-      <p>Secure your open source stack with a personal Ubuntu Pro license and get access to security patching for over
-        23,000 packages in the Ubuntu Universe repository.</p>
-      <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
-      <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 u-align--center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
-        alt="",
-        width="250",
-        height="270",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
+  {% include "shared/_pro_strip.html" %}
+  <div class="u-fixed-width">
+    <p class="p-heading--4">Free for personal use on up to five machines</p>
+    <p>Secure your open source stack with a personal Ubuntu Pro license and get access to security patching for over
+      23,000 packages in the Ubuntu Universe repository.</p>
+    <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
+    <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
+  </div>
   </div>
 </section>
 

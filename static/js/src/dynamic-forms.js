@@ -1,3 +1,4 @@
+import "infer-preferred-language.js";
 import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
@@ -524,6 +525,21 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       // Setup dial code dropdown options (intlTelInput.js)
       setupIntlTelInput(phoneInput);
+
+      // Set preferredLanguage hidden input
+      function setpreferredLanguage() {
+        // eslint-disable-next-line
+        const preferredLanguage = getPrimaryParentLanguage();
+        const preferredLanguageInput = contactModal.querySelector(
+          "#preferredLanguage"
+        );
+
+        if (preferredLanguageInput) {
+          preferredLanguageInput.value = preferredLanguage || "";
+        }
+      }
+
+      setpreferredLanguage();
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");

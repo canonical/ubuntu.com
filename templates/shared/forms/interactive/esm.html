@@ -1,3 +1,4 @@
+
 <div class="p-modal" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
@@ -65,8 +66,8 @@
             </label>
 
             <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="mission-critical" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="mission-critical">Mission-critical</span>
+              <input type="checkbox" aria-labelledby="Desktops" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Desktops">Desktops</span>
             </label>
 
             <label class="p-checkbox">
@@ -79,83 +80,99 @@
       </div>
 
       <div class="js-formfield">
-        <h3 class="p-heading--5">Tell us more about your estate:</h3>
+        <h3 class="p-heading--5">How many machines?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <span class="p-active-reveal">
-              <label class="p-checkbox">
-                <input class="p-checkbox__input p-active-reveal__switch" type="checkbox" aria-labelledby="less-5-machines">
-                <span class="p-checkbox__label" id="less-5-machines">&lt; 5 machines</span>
+              <label class="p-radio">
+                <input class="p-radio__input p-active-reveal__switch" type="radio" aria-labelledby="less-5-machines" name="how-many-machines-do-you-have" value="less than 5">
+                <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
                 <p class="p-form-help-text is-tick-element p-active-reveal__item"><a href="/pro">Ubuntu Pro</a> is free for personal use, on up to 5 machines.</p>
               </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="less-50-machines" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="less-50-machines">&lt;50 machines</span>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="5-to-50-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="5 to 50 machines">
+                <span class="p-radio__label" id="5-to-50-machines">5&nbsp;&ndash;&nbsp;50 machines</span>
               </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="less-than-500-machines" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="less-than-500-machines">&lt;500 machines</span>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="51-to-500-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="51 to 500 machines">
+                <span class="p-radio__label" id="51-to-500-machines">51&nbsp;&ndash;&nbsp;500 machines</span>
               </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="more-than-500-machines" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="more-than-500-machines">&gt;500 machines</span>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="501-to-1000-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="501 to 1000 machines">
+                <span class="p-radio__label" id="501-to-1000-machines">501&nbsp;&ndash;&nbsp;1000 machines</span>
               </label>
-
-            </div>
-            <div class="col-4 u-sv3">
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="desktops" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="desktops">Desktops</span>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="greater-than-1000" class="p-radio__input" name="how-many-machines-do-you-have" value="greater than 1000">
+                <span class="p-radio__label" id="greater-than-1000">&gt;&nbsp;100 machines</span>
               </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="containers" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="containers">Containers</span>
-              </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="aws-only" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="aws-only">AWS only</span>
-              </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="azure-only" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="azure-only">Azure only</span>
-              </label>
-
-            </div>
-            <div class="col-4 u-sv3">
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="multiple-public-cloud" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="multiple-public-cloud">Multiple public cloud</span>
-              </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="private-or-edge-cloud" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="private-or-edge-cloud">Private or edge cloud</span>
-              </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="openstack" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="openstack">OpenStack</span>
-              </label>
-
-              <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="ceph" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="ceph">Ceph</span>
-              </label>
-
-            </div>
+            </span>
           </div>
         </div>
+      </div>
+      <div class="js-formfield">
+        <h3 class="p-heading--5">Tell us more about your estate:</h3>
+        <div class="row u-no-padding u-sv3">
+          <div class="col-4">
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="aws" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="aws">AWS</span>
+            </label>
 
-        <div class="pagination">
-          <a class="p-button--positive pagination__link--next" href="">Next</a>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="azure" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="azure">Azure</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="Google-Cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Google-Cloud">Google Cloud</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="Oracle-Cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Oracle-Cloud">Oracle Cloud</span>
+            </label>
+          </div>
+
+          <div class="col-4">
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="IBM-Cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="IBM-Cloud">IBM Cloud</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="Other-public-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Other-public-cloud">Other public cloud</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="Private-or-edge-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Private-or-edge-cloud">Private or edge cloud</span>
+            </label>
+          </div>
+          
+          <div class="col-4">
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="openstack" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="openstack">OpenStack</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="containers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="containers">Containers</span>
+            </label>
+
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="Storage" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="Storage">Storage</span>
+            </label>
+          </div>
         </div>
       </div>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
 
       <div class="js-pagination js-pagination--2 u-hide">
         <h3 class="p-heading--5">How should we get in touch?</h3>
@@ -217,6 +234,7 @@
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
               </div>
 
               <div class="pagination">

@@ -1,34 +1,17 @@
-<div tabindex="0" role="tabpanel" id="starfive-visionfive-board-tab" aria-labelledby="starfive-visionfive-board" hidden="true">
-	<div class="row u-vertically-center u-no-padding">
+<div tabindex="0" role="tabpanel" id="starfive-visionfive-board-tab" aria-labelledby="starfive-visionfive-board" aria-hidden="true">
+	<div class="row">
 		<div class="col-6">
-			<h2>Download Ubuntu Server</h2>
-			<h3 class="p-heading--4">Ubuntu Server 22.10</h3>
-			<div class="p-notification--information is-inline">
-				<div class="p-notification__content">
-					<h4 class="p-notification__title">Note:</h4>
-					<p class="p-notification__message">It is an early RISC-V developer access through Ubuntu 22.10.</p>
-				</div>
+			<div class="p-strip is-shallow u-no-padding--top">
+				<h2>StarFive VisionFive</h2>
+				<h3>Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
 			</div>
 			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/22.10/release/ubuntu-22.10-preinstalled-server-riscv64+visionfive.img.xz">Download 64-bit</a>
-			</p>			
-			<h3 class="p-heading--4">Ubuntu Server 22.04.2</h3>
-			<div class="p-notification--information is-inline">
-				<div class="p-notification__content">
-					<h4 class="p-notification__title">Note:</h4>
-					<p class="p-notification__message">It is an early RISC-V developer access through Ubuntu 22.04.2.</p>
-				</div>
-			</div>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+visionfive.img.xz">Download 64-bit</a>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+visionfive.img.xz">Download 23.04</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+visionfive.img.xz">Download 22.04.2</a>
 			</p>
-			<p>Works on:</p>
-			<ul class="p-list">
-				<li class="p-list__item is-ticked">The VisionFive board</li>
-			</ul>
+			<p><a href="https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive">How to install Ubuntu on the VisionFive</a></p>
 		</div>
-		<div class="col-2 u-hide--medium u-hide--small">&nbsp;</div>
-		<div class="col-4 u-hide--medium u-hide--small u-align--center">
+		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
 			{{ image (
 				url="https://assets.ubuntu.com/v1/470a2398-StarFive+VisionFive+Board-NoBg.png",
 				alt="",
@@ -38,12 +21,6 @@
 				loading="auto"
 				) | safe
 			  }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6 u-vertically-center u-no-padding">
-			<h4>First time installing Ubuntu on the VisionFive?</h4>
-			<p>Please see the <a href="https://discourse.ubuntu.com/t/ubuntu-on-the-visionfive-and-the-nezha-boards/29858	">How to install Ubuntu on the VisionFive</a> for more information.</p>
 		</div>
 	</div>
 </div>

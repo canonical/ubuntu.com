@@ -22,6 +22,9 @@
 
 @import "vanilla-placeholders";
 
+// import flicity
+@import "flickity/dist/flickity";
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
@@ -36,6 +39,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_carousel";
 @import "pattern_checkout";
 @import "pattern_certification-results";
 @import "pattern_chart";
@@ -137,6 +141,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include openstack-carousel;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -511,7 +516,8 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {
   .lazyloaded {
-    @extend .p-heading-icon__img;
+    // make sure icon is not squashed, replicating the behaviour of the .p-heading-icon__img class
+    flex-shrink: 0;
   }
 }
 
@@ -1180,11 +1186,11 @@ hr.p-separator.is-shallow {
   background-size: 70%;
 }
 
-// silicon custom styles
-.p-heading--silicon-bold {
+.p-heading--bold {
   font-weight: $font-weight-bold;
 }
 
+// silicon custom styles
 .p-heading--silicon-light {
   font-weight: $font-weight-display-heading;
 }
@@ -1283,5 +1289,76 @@ hr.p-separator.is-shallow {
     &::before {
       top: 0.6rem;
     }
+  }
+}
+
+.p-stepped-list--grid {
+  @extend .row;
+
+  counter-reset: count;
+
+  .p-step-counter {
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &::after {
+      content: counter(count);
+      counter-increment: count;
+      font-size: 1.3rem;
+      position: relative;
+      top: 1.14rem;
+    }
+  }
+}
+
+.p-card__thumbnail--large {
+  max-height: 3rem;
+}
+
+// XXX Ochuko 11/04/2023
+// Removed separator from the first item on the list. This is a temporary fix
+// this is used on the /data/mongodb and /data/opensearch pages
+.p-list--articles {
+  @extend .p-list--divided;
+
+  .p-list__item:first-child {
+    box-shadow: none;
+  }
+}
+
+// XXX Ochuko 13/04/2023
+// Custom styles for 2 by 3 aspect ratio containers
+// will propose to Vanilla to add this to the framework
+.u-aspect-ratio--3-2 {
+  aspect-ratio: 3/2;
+}
+
+// XXX Pete
+// Custom styles for paper background
+.is-paper {
+  background: #f3f3f3;
+}
+
+.amd-xilinx-table {
+  th:nth-child(2) {
+    width: 65%;
+  }
+
+  @media screen and (max-width: $breakpoint-small - 1) {
+    th:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
+
+.bordered-thumbnail {
+  border: 1px solid $colors--light-theme--border-low-contrast;
+}
+
+.spaced-bottom {
+  margin-bottom: $sp-x-large;
+
+  @media screen and (max-width: calc($breakpoint-medium - 1px)) {
+    margin-bottom: $sp-xxx-large;
   }
 }

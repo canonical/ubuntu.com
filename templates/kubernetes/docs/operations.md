@@ -37,7 +37,7 @@ as soon as the installation has settled. You should use the following command to
 **.kube** directory if it was not created after kubectl installation):
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -114,7 +114,7 @@ juju expose kubernetes-worker
 
 In Kubernetes, workloads are declared using pod, service, and ingress
 definitions. An ingress controller is provided to you by default and deployed into
-the [default namespace](https://kubernetes.io/docs/user-guide/namespaces/) of the
+the [default namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) of the
 cluster. If one is not available, you may deploy it with:
 
 ```
@@ -122,7 +122,7 @@ juju config kubernetes-worker ingress=true
 ```
 
 Ingress resources are DNS mappings to your containers, routed through
-[endpoints](https://kubernetes.io/docs/user-guide/services/).
+[endpoints](https://kubernetes.io/docs/concepts/services-networking/).
 
 ## Configuring DNS
 
@@ -164,7 +164,7 @@ To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
 
 ```bash
-juju run-action kubernetes-worker/0 microbot replicas=3 --wait
+juju run kubernetes-worker/0 microbot replicas=3
 ```
 
 This should result, after a few moments, in output similar to the following (Your FQDN
@@ -248,7 +248,7 @@ done using the microbot application you can delete them from the pods with
 one Juju action:
 
 ```bash
-juju run-action kubernetes-worker/0 microbot delete=true
+juju run kubernetes-worker/0 microbot delete=true
 ```
 
 If you no longer need Internet access to your workers, remember to unexpose the
@@ -283,7 +283,7 @@ things you may wish to try:
 
 ## Additional Resources
 
-- [Kubernetes User Guide](https://kubernetes.io/docs/user-guide/)
+- [Kubernetes User Guide](https://kubernetes.io/docs/home/)
 - [The Charmed Kubernetes page on Charmhub.io](https://charmhub.io/charmed-kubernetes/)
 - [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 

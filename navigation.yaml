@@ -361,6 +361,10 @@ data:
       path: /data/kafka
     - title: Spark
       path: /data/spark
+    - title: MongoDB
+      path: /data/mongodb
+    - title: OpenSearch
+      path: /data/opensearch
 
 download:
   title: Downloads
@@ -537,6 +541,8 @@ robotics:
       path: /robotics/what-is-ros
     - title: Community
       path: /robotics/community
+    - title: Docs
+      path: /robotics/docs
 
 credentials:
   title: Credentials
@@ -577,12 +583,22 @@ ubuntu1604:
       path: /16-04/azure
 
 ubuntu1804:
-  title: 18-04
+  title: 18.04
   path: /18-04
 
   children:
     - title: Overview
       path: /18-04
+    - title: Azure
+      path: /18-04/azure
+    - title: Google Cloud
+      path: /18-04/gcp
+    - title: AWS
+      path: /18-04/aws
+    - title: IBM
+      path: /18-04/ibm
+    - title: OCI
+      path: /18-04/oci
 
 telco:
   title: Telco
@@ -639,14 +655,14 @@ landscape:
       path: /landscape
     - title: Features
       path: /landscape/features
+    - title: Managed
+      path: /landscape/managed
     - title: Pricing
       path: /landscape/pricing
     - title: Install
       path: /landscape/install
     - title: Docs
       path: /landscape/docs
-    - title: Forums
-      path: https://discourse.ubuntu.com/c/landscape/89
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
 

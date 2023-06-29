@@ -97,6 +97,7 @@ def build_trial_item_groups(
                             "listing": listing,
                             "marketplace": listing.marketplace,
                             "subscriptions": user_details.get("subscriptions"),
+                            "subscription_id": item.subscription_id,
                             "type": "trial",
                         }
                     )

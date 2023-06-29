@@ -66,7 +66,7 @@ Node,RBAC
 For further verification, the runtime arguments for the `kube-apiserver` can be determined:
 
 ```bash
-juju run --unit kubernetes-control-plane/0 "ps -ef | grep apiserver"
+juju exec --unit kubernetes-control-plane/0 "ps -ef | grep apiserver"
 ```
 
 ... from which we can see the `--authorization-mode=Node,RBAC` argument:
@@ -170,7 +170,7 @@ action also creates a kubeconfig file that can be retrieved and used to
 authenticate with the cluster. For example:
 
 ```bash
-juju run-action --wait kubernetes-control-plane/0 user-create name='alice'
+juju run kubernetes-control-plane/0 user-create name='alice'
 ```
 
 Example output:
@@ -191,7 +191,7 @@ If specified, the `groups` parameter should be a comma-separated list of Kuberne
 `Groups` that this user should belong to. For example:
 
 ```bash
-juju run-action --wait kubernetes-control-plane/0 user-create name='bob' groups='system:masters,devs'
+juju run kubernetes-control-plane/0 user-create name='bob' groups='system:masters,devs'
 ```
 
 Example output:
@@ -213,7 +213,7 @@ unit-kubernetes-control-plane-0:
 Lists usernames from all secrets created by **Charmed Kubernetes**. For example:
 
 ```bash
-juju run-action --wait kubernetes-control-plane/0 user-list
+juju run kubernetes-control-plane/0 user-list
 ```
 
 Example output:
@@ -233,7 +233,7 @@ unit-kubernetes-control-plane-0:
 Deletes the secret associated with an existing user. For example:
 
 ```bash
-juju run-action --wait kubernetes-control-plane/0 user-delete name=bob
+juju run kubernetes-control-plane/0 user-delete name=bob
 ```
 
 Example output:

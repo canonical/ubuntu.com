@@ -7,7 +7,7 @@
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width">Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster.</p>
       <p class="u-no-max-width u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
-      
+
       <form>
         <div class="js-formfield">
           <h3 class="p-heading--5">Do you have a commercial project?</h3>
@@ -174,11 +174,11 @@
               </li>
               <li class="p-list__item">
                 <label for="title">Job title:</label>
-                <input data-testid="form-jobTitle" required id="title" name="title" maxlength="255" type="text">
+                <input required id="title" name="title" maxlength="255" type="text">
               </li>
               <li class="p-list__item">
                 <label for="email">Email:</label>
-                <input data-testid="form-email" required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
               <li class="p-list__item">
                 <label for="phone">Mobile/cell phone number:</label>
@@ -191,7 +191,7 @@
                 </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              
+
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
                 <label class="website" for="website">Website:</label>
@@ -203,7 +203,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-            
+
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -222,9 +222,10 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-            
+
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -233,7 +234,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">

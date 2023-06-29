@@ -29,7 +29,7 @@ your Charmed Kubernetes cluster, you may already have performed the step of
 retrieving the cluster information from Charmed Kubernetes:
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 This fetches the cluster information directly from Charmed Kubernetes and stores

@@ -68,7 +68,7 @@ last Sunday of every month (`sun5`):
 ```bash
 juju config etcd snapd_refresh
 max
-juju run --unit etcd/0 'snap get system refresh.timer'
+juju exec --unit etcd/0 'snap get system refresh.timer'
 sun5
 ```
 
@@ -88,14 +88,14 @@ applicable cluster components. For example, refresh all snaps on all `etcd`
 units with:
 
 ```bash
-juju run --application etcd 'snap refresh'
+juju exec --application etcd 'snap refresh'
 ```
 
 As another example, only refresh the `cdk-addons` snap on the
 `kubernetes-control-plane/0` unit with:
 
 ```bash
-juju run --unit kubernetes-control-plane/0 'snap refresh cdk-addons'
+juju exec --unit kubernetes-control-plane/0 'snap refresh cdk-addons'
 ```
 
 <!-- LINKS -->

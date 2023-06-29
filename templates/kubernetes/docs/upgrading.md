@@ -22,9 +22,9 @@ toc: False
   </div>
   <div class="p-notification__meta">
     <div class="p-notification__actions">
+      <a class='p-notification__action' href='/kubernetes/docs/1.27/upgrading'>Upgrade to 1.27 </a>
       <a class='p-notification__action' href='/kubernetes/docs/1.26/upgrading'>Upgrade to 1.26 </a>
       <a class='p-notification__action' href='/kubernetes/docs/1.25/upgrading'>Upgrade to 1.25 </a>
-      <a class='p-notification__action' href='/kubernetes/docs/1.24/upgrading'>Upgrade to 1.24 </a>
     </div>
   </div>
 </div>
@@ -82,12 +82,15 @@ documentation for the version you are upgrading to.
 
 ### Supported versions
 
-- [Upgrading from 1.23.x to 1.24.x](/kubernetes/docs/1.24/upgrading)
-- [Upgrading from 1.22.x to 1.23.x](/kubernetes/docs/1.23/upgrading)
-- [Upgrading from 1.21.x to 1.22.x](/kubernetes/docs/1.22/upgrading)
+- [Upgrading from 1.26.x to 1.27.x](/kubernetes/docs/1.27/upgrading)
+- [Upgrading from 1.25.x to 1.26.x](/kubernetes/docs/1.26/upgrading)
+- [Upgrading from 1.24.x to 1.25.x](/kubernetes/docs/1.25/upgrading)
 
 ### Older versions
 
+- [Upgrading from 1.23.x to 1.24.x](/kubernetes/docs/1.24/upgrading)
+- [Upgrading from 1.22.x to 1.23.x](/kubernetes/docs/1.23/upgrading)
+- [Upgrading from 1.21.x to 1.22.x](/kubernetes/docs/1.22/upgrading)
 - [Upgrading from 1.20.x to 1.21.x](/kubernetes/docs/1.21/upgrading)
 - [Upgrading from 1.19.x to 1.20.x](/kubernetes/docs/1.20/upgrading)
 - [Upgrading from 1.18.x to 1.19.x](/kubernetes/docs/1.19/upgrading)

@@ -1,0 +1,107 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Talk to our OpenSearch&reg; experts</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <h3 class="p-heading--5">Let's get in touch</h3>
+      <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form p-form p-form--stacked">
+        <div class="u-sv2">
+          <h3 class="p-heading--5">Tell us more about your OpenSearch&reg; use case</h3>
+          <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="Anything you'd like to communicate about your needs or interests?" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
+        </div>
+        <div class="row u-no-padding">
+          <div class="col-6">
+            <h3 class="p-heading--5">How should we get in touch?</h3>
+            <ul class="p-list">
+              <li class="p-list__item">
+                <label for="firstName">First name:</label>
+                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="lastName">Last name:</label>
+                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="company">Company name:</label>
+                <input required id="company" name="company" maxlength="255" type="text">
+              </li>
+              <li class="p-list__item">
+                <label for="title">Job title:</label>
+                <input data-testid="form-jobTitle" required id="title" name="title" maxlength="255" type="text">
+              </li>
+              <li class="p-list__item">
+                <label for="email">Work email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="phone">Phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to Canonical's <a href="/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.</li>
+              {# These are honey pot fields to catch bots #}
+              <li class="u-off-screen">
+                <label class="website" for="website">Website:</label>
+                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+              </li>
+              <li class="u-off-screen">
+                <label class="name" for="name">Name:</label>
+                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              </li>
+              {# End of honey pots #}
+            </ul>
+
+            <div class="u-hide">
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+            </div>
+
+            <div class="pagination">
+              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--2">Thank you for enquiring about Canonical Charmed OpenSearch</h3>
+            <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+              alt="smile",
+              width="200",
+              height="200",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button" href="">Close</a>
+    </div>
+  </div>
+</div>

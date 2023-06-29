@@ -71,9 +71,9 @@ Deploy the Kata charm and add the necessary relations using the following comman
 
 ```bash
 juju deploy kata
-juju add-relation kata kubernetes-control-plane
-juju add-relation kata kubernetes-worker
-juju add-relation kata:untrusted containerd:untrusted
+juju integrate kata kubernetes-control-plane
+juju integrate kata kubernetes-worker
+juju integrate kata:untrusted containerd:untrusted
 ```
 
 ### Deploying to AWS

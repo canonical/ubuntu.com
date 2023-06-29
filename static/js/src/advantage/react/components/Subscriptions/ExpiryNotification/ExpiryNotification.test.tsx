@@ -1,12 +1,11 @@
 import React from "react";
 import { mount } from "enzyme";
-
+import { Notification } from "@canonical/react-components";
+import { UserSubscriptionType } from "advantage/api/enum";
+import { userSubscriptionStatusesFactory } from "advantage/tests/factories/api";
 import ExpiryNotification, {
   ExpiryNotificationSize,
 } from "./ExpiryNotification";
-import { UserSubscriptionType } from "advantage/api/enum";
-import { userSubscriptionStatusesFactory } from "advantage/tests/factories/api";
-import { Notification } from "@canonical/react-components";
 
 describe("ExpiryNotification", () => {
   it("can display an expiring notification", () => {
@@ -175,13 +174,14 @@ describe("ExpiryNotification", () => {
       "Your subscription is about to expire."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
+      "Check the subscription errors below for more information."
     );
   });
 
   it("is expiring shows legacy message", () => {
     const statuses = userSubscriptionStatusesFactory.build({
       is_expiring: true,
+      is_renewal_actionable: true,
     });
     const onDismiss = jest.fn();
     const wrapper = mount(
@@ -200,10 +200,31 @@ describe("ExpiryNotification", () => {
       "Click on Renew subscription to to ensure service continuity."
     );
   });
+  it("is expiring shows not legacy message if not actionable", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expiring: true,
+      is_renewal_actionable: false,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription is about to expire."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe("");
+  });
 
-  it("is in grace period shows default message", () => {
+  it("is in grace period shows legacy message", () => {
     const statuses = userSubscriptionStatusesFactory.build({
       is_in_grace_period: true,
+      is_renewal_actionable: true,
     });
     const onDismiss = jest.fn();
     const wrapper = mount(
@@ -221,13 +242,37 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
+      "Click on Renew subscription to to ensure service continuity."
     );
   });
 
-  it("is expired shows default message", () => {
+  it("is in grace period shows no message if legacy unactionable", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_in_grace_period: true,
+      is_renewal_actionable: false,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(
+      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+    ).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe("");
+  });
+
+  it("is expired shows legacy message if actionable", () => {
     const statuses = userSubscriptionStatusesFactory.build({
       is_expired: true,
+      is_renewal_actionable: true,
     });
     const onDismiss = jest.fn();
     const wrapper = mount(
@@ -243,7 +288,100 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
+      "Click on Renew subscription to to ensure service continuity."
+    );
+  });
+
+  it("is expired shows not legacy message if not actionable", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expired: true,
+      is_renewal_actionable: false,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe("");
+  });
+
+  it("is expiring shows trial message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expiring: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Trial}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription is about to expire."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "You have cancelled your Ubuntu Pro trial. " +
+        "At the end of the trial period, this subscription " +
+        "will disappear and you will no longer have access to Pro services."
+    );
+  });
+
+  it("is in grace period shows trial message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_in_grace_period: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Trial}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(
+      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+    ).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "Your trial has expired. " +
+        "This subscription will disappear from your dashboard soon."
+    );
+  });
+
+  it("is expired period shows trial message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expired: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Trial}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "Your trial has expired. " +
+        "This subscription will disappear from your dashboard soon."
     );
   });
 });

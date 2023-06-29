@@ -30,7 +30,7 @@ Notable fixes in this release include:
 
   Restrict non-root access to etcd snap data directory.
 
-- Kubernetes Control Plane [LP#2007174](https://bugs.launchpad.net/bugs/2007174)
+- Kubernetes Control Plane 
 
   Restrict non-root access to the script responsible for synchronizing control-plane leader files to followers.
 

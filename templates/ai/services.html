@@ -16,7 +16,7 @@
       <p class="p-heading--4">Consulting, support, training and managed services for AI/ML at scale</p>
       <p>Accelerate your artificial intelligence strategy with data science + infra + ops expertise, delivered by Canonical and trusted partners.</p>
       <p>
-        <a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/ai/contact-us?product=ai-index">Talk to experts</a>
+        <a class="p-button--positive js-invoke-modal" href="/ai/contact-us?product=ai-index">Talk to experts</a>
         <a href="/engage/starting-with-ai?utm_source=bubble&utm_campaign=CY19_DC_AI_Whitepaper_AIConsulting">Download whitepaper</a>
       </p>
     </div>
@@ -316,10 +316,11 @@
 
   {% include "ai/shared/_learn-more.html" %}
 
-  {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_kubeflow_news_signup" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
+
+  {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_kubeflow_news_signup" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
 
   {% endblock content %}

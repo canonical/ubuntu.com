@@ -110,7 +110,7 @@ kubernetes-control-plane unit will have a user named `aws-iam-user` that uses th
 First, copy the config:
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 The config file will need to be edited in order to add the desired
@@ -246,7 +246,7 @@ Charmed Kubernetes installed and may generally be upgraded at any
 time with the following command:
 
 ```bash
-juju upgrade-charm aws-iam
+juju refresh aws-iam
 ```
 
 ### Troubleshooting
@@ -275,8 +275,8 @@ between calls.
  * Check verbose output of `kubectl` command by adding `--v=9` such as
 `kubectl get po --v=9`
  * Check the logs of the `aws-iam-authenticator` deployment with
-`juju run --unit kubernetes-control-plane/0 -- /snap/bin/kubectl --kubeconfig /root/.kube/config -n kube-system logs deploy/aws-iam-authenticator`
- * Check the logs of the API server with `juju run --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service`
+`juju exec --unit kubernetes-control-plane/0 -- /snap/bin/kubectl --kubeconfig /root/.kube/config -n kube-system logs deploy/aws-iam-authenticator`
+ * Check the logs of the API server with `juju exec --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service`
 
 <!-- LINKS -->
 

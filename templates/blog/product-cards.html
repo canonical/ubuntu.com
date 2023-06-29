@@ -1,7 +1,15 @@
 <div id="product-card">
+    {# Real-time Linux tag cards #}
+  {% if article.tags and 4296 in article.tags %}
+    {% include "blog/product-cards/_real-time_linux.html" %}
+
     {# Multi-cloud tag cards #}
-  {% if article.tags and 2976 in article.tags %}
+  {% elif article.tags and 2976 in article.tags %}
     {% include "blog/product-cards/_multi_cloud.html" %}
+
+    {# Ubuntu 18.04 tag cards #}
+  {% elif article.tags and 3486 in article.tags %}
+    {% include "blog/product-cards/_ubuntu_18.04_end_of_support.html" %}
 
     {# Hybrid-cloud tag cards #}
   {% elif article.tags and 3150 in article.tags %}

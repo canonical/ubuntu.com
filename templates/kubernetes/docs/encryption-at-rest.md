@@ -85,7 +85,7 @@ vault operator init -key-shares=5 -key-threshold=3  # outputs 5 keys and a root 
  vault operator unseal {key3}
  VAULT_TOKEN={root token} vault token create -ttl 10m  # outputs a {charm token} to auth the charm
 exit
-juju run-action vault/0 authorize-charm token={charm token} --wait
+juju run vault/0 authorize-charm token={charm token}
 ```
 
 <div class="p-notification--information">

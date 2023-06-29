@@ -30,7 +30,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          env: UBUNTU_USERNAME=peter.makowski+cy@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq
+          # This is a dummy account that contains no sensitive information and is only used for testing
+          # This is to workaround the fact that GitHub secrets cannot be used in pull requests from forks
+          env: UBUNTU_USERNAME=peter.makowski+dummy-cypress-account@canonical.com,UBUNTU_PASSWORD=9BKfSNo2&2Zs
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"

@@ -17,6 +17,15 @@ type ActivationKey = {
   activatedBy?: string;
   productID: string;
 };
+
+enum KeyFilters {
+  All,
+  Unused,
+  Active,
+}
+
+const KeyFiltersLength = Object.keys(KeyFilters).length / 2;
+
 const CredManage = () => {
   const [tab, changeTab] = useState(0);
   const inputRefs = useRef<HTMLButtonElement[]>([]);
@@ -57,12 +66,12 @@ const CredManage = () => {
   ) => {
     event.preventDefault();
     if (event.key == "ArrowLeft") {
-      changeTab((currentIndex - 1) % 4);
-      inputRefs.current[(currentIndex - 1) % 4].focus();
+      changeTab((currentIndex - 1) % KeyFiltersLength);
+      inputRefs.current[(currentIndex - 1) % KeyFiltersLength].focus();
     }
     if (event.key == "ArrowRight") {
-      changeTab((currentIndex + 1) % 4);
-      inputRefs.current[(currentIndex + 1) % 4].focus();
+      changeTab((currentIndex + 1) % KeyFiltersLength);
+      inputRefs.current[(currentIndex + 1) % KeyFiltersLength].focus();
     }
   };
 
@@ -103,23 +112,6 @@ const CredManage = () => {
     navigator.clipboard.writeText(value);
   };
 
-  const keyIsArchivable = (keyItemId: string) => {
-    const tempKey = getKey(keyItemId);
-    if ("activatedBy" in tempKey) {
-      return true;
-    }
-    return false;
-  };
-
-  const isArchiveable = () => {
-    for (let i = 0; i < selectedKeyIds.length; i++) {
-      if (!keyIsArchivable(selectedKeyIds[i])) {
-        return false;
-      }
-    }
-    return true;
-  };
-
   const keyIsUnused = (keyItemId: string) => {
     const tempKey = getKey(keyItemId);
     if ("activatedBy" in tempKey) {
@@ -139,12 +131,6 @@ const CredManage = () => {
 
   useEffect(() => {
     const newList = [];
-    if (isArchiveable()) {
-      newList.push({
-        children: "Archive",
-        onClick: () => {},
-      });
-    }
     if (isUnused()) {
       newList.push({
         children: "Copy List",
@@ -167,24 +153,23 @@ const CredManage = () => {
       });
     }
     updateActionLinks(newList);
-    console.log(isArchiveable());
   }, [selectedKeyIds]);
 
   useEffect(() => {
-    if (tab == 0) {
+    if (tab == KeyFilters.All) {
       changeTableData(filterData);
     }
-    if (tab == 1) {
+    if (tab == KeyFilters.Unused) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
           return keyIsUnused(keyItem["key"]);
         })
       );
     }
-    if (tab == 2) {
+    if (tab == KeyFilters.Active) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
-          return !keyIsArchivable(keyItem["key"]);
+          return !keyIsUnused(keyItem["key"]);
         })
       );
     }
@@ -223,7 +208,7 @@ const CredManage = () => {
                 changeTab(0);
               }}
               onKeyUp={(e) => {
-                switchTab(e, 4);
+                switchTab(e, KeyFiltersLength);
               }}
               ref={(ref: HTMLButtonElement) => (inputRefs.current[0] = ref)}
             >
@@ -262,23 +247,6 @@ const CredManage = () => {
               ref={(ref: HTMLButtonElement) => (inputRefs.current[2] = ref)}
             >
               Active Keys
-            </button>
-            <button
-              className="p-segmented-control__button"
-              role="tab"
-              aria-selected={tab == 3}
-              aria-controls="archived-keys-tab"
-              id="archived-keys"
-              tabIndex={-1}
-              onClick={() => {
-                changeTab(3);
-              }}
-              onKeyUp={(e) => {
-                switchTab(e, 3);
-              }}
-              ref={(ref: HTMLButtonElement) => (inputRefs.current[3] = ref)}
-            >
-              Archived Keys
             </button>
           </div>
         </div>
@@ -355,17 +323,15 @@ const CredManage = () => {
                     {
                       content: (
                         <>
-                          <Tooltip message="Copy Key" position="right">
-                            <p>
-                              {keyitem["key"]} &emsp;
-                              <a
-                                onClick={() => {
-                                  copyToClipboard(keyitem.key);
-                                }}
-                              >
-                                <i className="p-icon--copy"></i>
-                              </a>
-                            </p>
+                          <span>{keyitem["key"]} &emsp;</span>
+                          <Tooltip message="Copy Key" position="btm-center">
+                            <a
+                              onClick={() => {
+                                copyToClipboard(keyitem.key);
+                              }}
+                            >
+                              <i className="p-icon--copy"></i>
+                            </a>
                           </Tooltip>
                         </>
                       ),
@@ -375,18 +341,14 @@ const CredManage = () => {
                       content: (
                         <>
                           {keyitem["activatedBy"] ? (
-                            <Tooltip message="Archive Key" position="right">
-                              <p>
-                                {keyitem["activatedBy"]} &emsp;
-                                <a onClick={() => {}}>
-                                  <i className="p-icon--delete"></i>
-                                </a>
-                              </p>
-                            </Tooltip>
+                            <p>{keyitem["activatedBy"]} &emsp;</p>
                           ) : (
-                            <Tooltip message="Refresh Key" position="right">
-                              <p>
-                                N/A &emsp;
+                            <>
+                              <span>N/A &emsp;</span>
+                              <Tooltip
+                                message="Refresh Key"
+                                position="btm-center"
+                              >
                                 <a
                                   onClick={() => {
                                     rotateActivationKeys([keyitem.key]);
@@ -394,8 +356,19 @@ const CredManage = () => {
                                 >
                                   <i className="p-icon--restart"></i>
                                 </a>
-                              </p>
-                            </Tooltip>
+                              </Tooltip>
+                              <span>&emsp;</span>
+                              <Tooltip
+                                message="Redeem Key"
+                                position="btm-center"
+                              >
+                                <a
+                                  href={`/credentials/redeem/${keyitem["key"]}?action=confirm`}
+                                >
+                                  <i className="p-icon--video-play"></i>
+                                </a>
+                              </Tooltip>
+                            </>
                           )}
                         </>
                       ),

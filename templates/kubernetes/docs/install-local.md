@@ -60,7 +60,8 @@ You can now move on to the [next step](#step2)
 
 ### If **LXD** is already installed
 
-If you installed LXD from a snap, you can skip this step (but if necessary, you may need to alter the [default profile](#profile)). If your system
+If you installed LXD from a snap, you can skip this step (but if necessary, you
+may need to alter the [default profile](#profile)). If your system
 had LXD pre-installed, or you have installed it from the archive (i.e. with
 `apt install`), you will need to migrate to the snap version.
 
@@ -219,7 +220,8 @@ juju add-unit kubernetes-worker
 
 ### Kubelet fails to start with errors related to inotify_add_watch
 
-For example, `systemctl status snap.kubelet.daemon.service` may report the following error:
+For example, `systemctl status snap.kubelet.daemon.service` may report the
+following error:
 
 ```bash
 kubelet.go:1414] "Failed to start cAdvisor" err="inotify_add_watch /sys/fs/cgroup/cpu,cpuacct: no space left on device"

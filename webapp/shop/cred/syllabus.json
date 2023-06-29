@@ -1,33 +1,42 @@
 [
   {
     "exam_name": "CUE.01: Linux",
-    "exam_description": "Prove your knowledge of the Linux community, history, and philosophy. Topics include common Linux commands, open source and software licensing, and basic knowledge of Linux architecture and file hierarchy.",
+    "exam_description": "Prove your basic operational knowledge of Linux by demonstrating your ability to secure, operate and maintain basic system resources. Topics include user and group management, file and filesystem navigation, and logs and installation tasks related to system maintenance.",
     "syllabus": [
       {
-        "chapter_title": "Identify and execute common Linux commands",
+        "chapter_title": "Secure System Access",
         "chapter_sections": [
-          "Navigation commands",
-          "System information commands",
-          "Regular expressions and their functions"
+          "Create a directory and assign a group with read and write permissions",
+          "Determine necessary permissions for an existing user to access a file or directory", 
+          "Configure password complexity rules",
+          "Demonstrate an understanding of sudo use, configuration, and restriction",
+          "Understand creation of user accounts with login restrictions, specific group membership, or access privileges",
+          "Create a private/public SSH key pair",
+          "Modify the group membership of a user"
         ]
       },
       {
-        "chapter_title": "Manipulate files using the command line",
+        "chapter_title": "Use the Filesystem",
         "chapter_sections": [
-          "Understand basic shell syntax",
           "Create, read, move, delete, copy, and convert files",
-          "Locate files on a system",
-          "Compare files",
-          "Modify file contents",
-          "Search through files"
+          "Search the contents of a file using regular expressions",
+          "Modify file contents in multiple ways: appending, replacing, terminal editing, sorting, without opening the file, etc.",
+          "Compare the contents of two files",
+          "Understand and navigate Linux file systems effectively",
+          "Understand filesystem operation and maintenance, including quotas, and disk capacity",
+          "Find software licence files and understand ramifications of open source and copyleft licence types"
         ]
       },
       {
-        "chapter_title": "Understand the fundamentals of Linux architecture",
+        "chapter_title": "Maintain System Resources",
         "chapter_sections": [
-          "Packaging styles",
-          "File types",
-          "Purposes of major directories"
+          "Identify important log files, log monitoring and rotation basics",
+          "Read and interpret log data and be able to use commands like tail and grep to troubleshoot a problem",
+          "Understand basic usage of disk partitioning tools such as fdisk, cfdisk and similar",
+          "Understand basics of installing extra device drivers such as GPU and Wifi",
+          "Configure and resize LVM-based filesystems on a server or desktop",
+          "Identify processes which are consuming too many resources",
+          "Add and modify scheduled tasks in pre-defined schedules in a crontab"
         ]
       }
     ]
@@ -37,7 +46,7 @@
     "exam_description": "Demonstrate your knowledge of Ubuntu Desktop administrative essentials. Focus on package management, system installation, data gathering, and managing printing and displays.",
     "syllabus": [
       {
-        "chapter_title": "Be acquainted with the Ubuntu community and its conventions",
+        "chapter_title": "Be Acquainted with the Ubuntu Community and its Conventions",
         "chapter_sections": [
           "Identify the year of Ubuntu’s first release",
           "Understand what an LTS is and entails",
@@ -45,7 +54,7 @@
         ]
       },
       {
-        "chapter_title": "Install and operate Ubuntu on your system",
+        "chapter_title": "Install and Operate Ubuntu on Your System",
         "chapter_sections": [
           "Install Ubuntu via ISO",
           "Identify installation styles",
@@ -58,7 +67,7 @@
         ]
       },
       {
-        "chapter_title": "Manage packages on an Ubuntu system",
+        "chapter_title": "Manage Packages on an Ubuntu System",
         "chapter_sections": [
           "Install packages, including from PPA repositories",
           "Identify the packages installed on your system",
@@ -70,7 +79,7 @@
         ]
       },
       {
-        "chapter_title": "Gather important system information",
+        "chapter_title": "Gather Important System Information",
         "chapter_sections": [
           "Display and record your current Ubuntu distribution",
           "Display and record CPU capabilities",
@@ -79,7 +88,7 @@
         ]
       },
       {
-        "chapter_title": "Manage files and permissions",
+        "chapter_title": "Manage Files and Permissions",
         "chapter_sections": [
           "Check file permissions",
           "Grant and revoke permissions",
@@ -89,7 +98,7 @@
         ]
       },
       {
-        "chapter_title": "Configure and manage displays and other desktop hardware",
+        "chapter_title": "Configure and Manage Displays and Other Desktop Hardware",
         "chapter_sections": [
           "Enable and disable devices from the command line",
           "Distinguish between desktop and server environments",
@@ -99,7 +108,7 @@
         ]
       },
       {
-        "chapter_title": "Configure networking capabilities",
+        "chapter_title": "Configure Networking Capabilities",
         "chapter_sections": [
           "Configure and use SSH",
           "Copy files and directories with rsync",
@@ -115,7 +124,7 @@
     "exam_description": "Illustrate your knowledge of common Ubuntu Server administrative tasks and troubleshooting. Topics include job control, performance tuning, services management, and Bash scripting.",
     "syllabus": [
       {
-        "chapter_title": "Perform common administrative tasks",
+        "chapter_title": "Perform Common Administrative Tasks",
         "chapter_sections": [
           "Manage users, groups, and permissions",
           "Configure local storage",
@@ -127,7 +136,7 @@
         ]
       },
       {
-        "chapter_title": "Troubleshoot issues",
+        "chapter_title": "Troubleshoot Issues",
         "chapter_sections": [
           "Obtain diagnostic information about disks, services, ports, and connections",
           "Find and interpret log files",
@@ -137,7 +146,7 @@
         ]
       },
       {
-        "chapter_title": "Configure and control automated tasks",
+        "chapter_title": "Configure and Control Automated Tasks",
         "chapter_sections": [
           "Write and interpret Bash scripts",
           "Manage cron jobs",
@@ -145,7 +154,7 @@
         ]
       },
       {
-        "chapter_title": "Tune your system for greater performance",
+        "chapter_title": "Tune Your System for Greater Performance",
         "chapter_sections": [
           "Configure GRUB 2",
           "Modify kernel parameters",

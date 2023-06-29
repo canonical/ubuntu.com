@@ -3,36 +3,36 @@ import unittest
 from freezegun import freeze_time
 
 from tests.shop.advantage.helpers import (
-    make_subscription,
-    make_listing,
+    make_account,
     make_contract_item,
     make_free_trial_contract,
-    make_shop_contract,
-    make_subscription_item,
     make_legacy_contract_item,
+    make_listing,
     make_renewal,
-    make_account,
+    make_shop_contract,
+    make_subscription,
+    make_subscription_item,
 )
-from webapp.shop.api.ua_contracts.models import Entitlement
 from webapp.shop.api.ua_contracts.helpers import (
+    apply_entitlement_rules,
+    extract_last_purchase_ids,
     get_current_number_of_machines,
+    get_date_statuses,
     get_items_aggregated_values,
     get_machine_type,
-    is_trialling_user_subscription,
     get_pending_purchases,
-    has_pending_purchases,
-    is_user_subscription_cancelled,
-    get_date_statuses,
-    get_user_subscription_statuses,
-    extract_last_purchase_ids,
     get_price_info,
-    set_listings_trial_status,
-    apply_entitlement_rules,
-    to_dict,
+    get_user_subscription_statuses,
     group_shop_items,
+    has_pending_purchases,
     is_billing_subscription_active,
     is_billing_subscription_auto_renewing,
+    is_trialling_user_subscription,
+    is_user_subscription_cancelled,
+    set_listings_trial_status,
+    to_dict,
 )
+from webapp.shop.api.ua_contracts.models import Entitlement
 
 
 class TestHelpers(unittest.TestCase):
@@ -842,9 +842,11 @@ class TestHelpers(unittest.TestCase):
                             started_with_trial=True,
                             in_trial=True,
                             status="active",
+                            id="abc",
                         )
                     ],
                     "machine": 1,
+                    "subscription_id": "abc",
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -858,7 +860,7 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
-                    "is_subscription_active": False,
+                    "is_subscription_active": True,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,

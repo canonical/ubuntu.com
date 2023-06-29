@@ -4,12 +4,14 @@ import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
+import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
+import { currencyFormatter } from "advantage/react/utils";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -20,44 +22,19 @@ type Props = {
 
 const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const {
     values,
     setFieldValue,
-    setErrors: setFormikErrors,
+    setFieldTouched,
+    setFieldError,
+    validateForm,
+    errors,
   } = useFormikContext<FormValues>();
   const { data: userInfo } = useCustomerInfo();
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (
-      !values.isInfoSaved ||
-      !values.isTaxSaved ||
-      !values.isCardValid ||
-      !values.email ||
-      !values.name ||
-      !values.address ||
-      !values.postalCode ||
-      !values.city ||
-      !values.country ||
-      !values.captchaValue ||
-      !values.TermsAndConditions ||
-      !values.Description ||
-      isLoading ||
-      (values.country === "US" && !values.usState) ||
-      (values.country === "CA" && !values.caProvince) ||
-      (values.buyingFor === "organisation" && !values.organisationName) ||
-      (values.buyingFor === "organisation" &&
-        values.name === values.organisationName)
-    ) {
-      setIsButtonDisabled(true);
-    } else {
-      setIsButtonDisabled(false);
-    }
-  }, [values, isLoading]);
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -72,7 +49,37 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     error: purchaseError,
   } = usePollPurchaseStatus();
 
+  useEffect(() => {
+    if (!vatCountries.includes(values.country ?? "")) {
+      setFieldValue("VATNumber", "");
+    }
+    if (values.country !== "US") {
+      setFieldValue("usState", "");
+    }
+    if (values.country !== "CA") {
+      setFieldValue("caProvince", "");
+    }
+  }, [values.country]);
+
   const onPayClick = () => {
+    validateForm().then((errors) => {
+      const possibleErrors = Object.keys(errors);
+
+      possibleErrors.forEach((error) => {
+        setFieldTouched(error, true);
+      });
+
+      if (!(possibleErrors.length === 0)) {
+        setError(<>Please make sure all fields are filled in correctly.</>);
+        document.querySelector("h1")?.scrollIntoView();
+        return;
+      }
+    });
+
+    if (!(Object.keys(errors).length === 0)) {
+      return;
+    }
+
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing
@@ -95,6 +102,19 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
           }
+
+          window.plausible("pro-purchase", {
+            props: {
+              country: values.country,
+              product: product?.name,
+              quantity: quantity,
+              total:
+                values.totalPrice &&
+                currencyFormatter.format(values?.totalPrice / 100),
+              "buying-for": values.buyingFor,
+              action: buyAction,
+            },
+          });
         },
         onError: (error) => {
           setIsLoading(false);
@@ -104,9 +124,10 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
           if (error instanceof Error)
             if (error.message === "email_already_exists") {
-              setFormikErrors({
-                email: "An Ubuntu Pro account with this email address exists.",
-              });
+              setFieldError(
+                "email",
+                "An Ubuntu Pro account with this email address exists."
+              );
               setError(
                 <>
                   An Ubuntu Pro account with this email address exists. Please{" "}
@@ -125,18 +146,18 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
                 </>
               );
             } else if (error.message.includes("tax_id_invalid")) {
-              setFormikErrors({
-                VATNumber:
-                  "That VAT number is invalid. Check the number and try again.",
-              });
+              setFieldError(
+                "VATNumber",
+                "That VAT number is invalid. Check the number and try again."
+              );
               setError(
                 <>That VAT number is invalid. Check the number and try again.</>
               );
             } else if (error.message.includes("tax_id_cannot_be_validated")) {
-              setFormikErrors({
-                VATNumber:
-                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-              });
+              setFieldError(
+                "VATNumber",
+                "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+              );
               setError(
                 <>
                   VAT number could not be validated at this time, please try
@@ -223,6 +244,10 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         tax: pendingPurchase?.invoice?.taxAmount / 100,
       };
 
+      if (localStorage.getItem("gaEventTriggered") === "true") {
+        localStorage.removeItem("gaEventTriggered");
+      }
+
       purchaseEvent(purchaseInfo, window.GAFriendlyProduct);
 
       // The state of the product selector is stored in the local storage
@@ -243,10 +268,34 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
       proSelectorStates.forEach((state) => localStorage.removeItem(state));
 
+      const address = userInfo
+        ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
+        : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
+
+      const getName = () => {
+        const name = userInfo?.customerInfo?.name || values?.name;
+        if (name && name.split(" ").length === 2) {
+          formData.append("firstName", name.split(" ")[0] ?? "");
+          formData.append("lastName", name.split(" ")[1] ?? "");
+        } else {
+          formData.append("firstName", "");
+          formData.append("lastName", name ?? "");
+        }
+      };
+
       const request = new XMLHttpRequest();
       const formData = new FormData();
       formData.append("formid", "3756");
-      formData.append("email", userInfo?.customerInfo?.email ?? "");
+      getName();
+      formData.append(
+        "email",
+        (userInfo?.customerInfo?.email || values.email) ?? ""
+      );
+      formData.append(
+        "company",
+        (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
+      );
+      formData.append("street", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
@@ -289,7 +338,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       appearance="positive"
       aria-label="Buy"
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
-      disabled={isButtonDisabled}
       onClick={onPayClick}
       loading={isLoading}
     >

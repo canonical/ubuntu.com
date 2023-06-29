@@ -112,22 +112,25 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
-          content.removeAttribute("hidden");
+          content.classList.remove("u-hide");
+          if (triggerReload) {
+            window.dispatchEvent(new Event("resize"));
+          }
         } else {
           tabElement.setAttribute("aria-selected", false);
-          content.setAttribute("hidden", true);
+          content.classList.add("u-hide");
         }
       });
     });
   };
 
   /**
-      Attaches events to tab links within a given parent element,
-      and sets the active tab if the current hash matches the id
-      of an element controlled by a tab link
-      @param {String} selector class name of the element
-      containing the tabs we want to attach events to
-    */
+    Attaches events to tab links within a given parent element,
+    and sets the active tab if the current hash matches the id
+    of an element controlled by a tab link
+    @param {String} selector class name of the element
+    containing the tabs we want to attach events to
+  */
   const initTabs = (selector) => {
     var tabContainers = [].slice.call(document.querySelectorAll(selector));
 
@@ -155,6 +158,34 @@
       }
     });
   };
+
+  /**
+    Check to see if a given script has been loaded on the page.
+  
+    If a chart is on a tab that isn't visible, it isn't built,
+    because its width depends on a parent element's width, which
+    is zero when the tab is not visible.
+   
+    Charts aren't responsive and need to be redrawn if the window
+    is resized, so they listen for that event and trigger the redraw
+    when it fires.
+   
+    @param {String} scriptName name of the script to check exists
+    on the page
+  */
+  const isScriptIncluded = (scriptName) => {
+    var scripts = document.scripts;
+
+    for (var i = 0; i < scripts.length; i++) {
+      if (scripts[i].src.includes(scriptName)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+  const targetScript = "release-chart.js";
+  const triggerReload = isScriptIncluded(targetScript);
 
   document.addEventListener("DOMContentLoaded", () => {
     initTabs(".js-tabbed-content");

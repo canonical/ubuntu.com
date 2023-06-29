@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import math
 import pytz
 import flask
 import json
@@ -10,13 +11,15 @@ from webapp.shop.api.ua_contracts.api import (
 )
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.utils import get_user_first_last_name
+from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 from webapp.views import get_user_country_by_ip
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from werkzeug.exceptions import BadRequest
+
+from ...views import marketo_api
 
 
 TIMEZONE_COUNTRIES = {
@@ -140,8 +143,14 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_your_exams(ua_contracts_api, trueability_api, **_):
-    exam_contracts = ua_contracts_api.get_exam_contracts()
+def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
+    email = flask.request.args.get("email", None)
+    try:
+        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+            product_tags=["cue"], email=email
+        )
+    except UAContractsAPIErrorView:
+        exam_contracts = []
     exams_in_progress = []
     exams_scheduled = []
     exams_not_taken = []
@@ -152,7 +161,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
             name = EXAM_NAMES.get(name, name)
-            contract_item_id = exam_contract["id"]
+            contract_item_id = (
+                exam_contract.get("id") or exam_contract["contractItem"]["id"]
+            )
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -368,11 +379,13 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     reservation = None
     error = None
 
-    exam_contracts = ua_contracts_api.get_exam_contracts()
+    exam_contracts = ua_contracts_api.get_annotated_contract_items(
+        product_tags=["cue"],
+    )
 
     exam_contract = None
     for item in exam_contracts:
-        if contract_item_id == item["id"]:
+        if contract_item_id == (item.get("id") or item["contractItem"]["id"]):
             exam_contract = item
             break
 
@@ -389,23 +402,25 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=20))
         first_name, last_name = get_user_first_last_name()
 
-        response = ua_contracts_api.post_assessment_reservation(
-            contract_item_id,
-            first_name,
-            last_name,
-            tz_info.zone,
-            starts_at.isoformat(),
-            country_code,
-        )
-
-        if "error" in response:
-            error = response.get(
-                "message", "An error occurred while creating your exam."
+        try:
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
+                first_name,
+                last_name,
+                tz_info.zone,
+                starts_at.isoformat(),
+                country_code,
             )
-        else:
+
             reservation_uuid = response.get("reservation", {}).get("IDs", [])[
                 -1
             ]
+
+        except UAContractsAPIErrorView:
+            error = (
+                "An error occurred while reserving your exam. "
+                + "Please try refreshing the page."
+            )
 
     if reservation_uuid:
         response = trueability_api.get_assessment_reservation(reservation_uuid)
@@ -549,8 +564,8 @@ def cred_submit_form(**_):
     row = list(form_fields.values())
     sheet = service.spreadsheets()
     sheet.values().append(
-        spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
-        range="Sheet2",
+        spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
+        range="SignUps",
         valueInputOption="RAW",
         body={"values": [row]},
     ).execute()
@@ -565,29 +580,52 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
-    activation_key = kwargs.get("code")
+    exam = None
+    action = flask.request.args.get("action")
+
+    if flask.request.method == "POST":
+        activation_key = flask.request.form.get("activation-key")
+        exam = flask.request.form.get("exam")
+    else:
+        activation_key = kwargs.get("code")
+
+    if not activation_key or action == "confirm":
+        return flask.render_template(
+            "/credentials/redeem_with_form.html", activation_key=activation_key
+        )
+
     try:
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
+                "productID": exam,
             }
         )
-        exam_contracts = ua_contracts_api.get_exam_contracts()
-        contract_id = exam_contracts[-1]["id"]
-        if flask.request.args.get("action") == "schedule":
+        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+            product_tags=["cue"],
+        )
+        contract_id = get_exam_contract_id(exam_contracts[-1])
+        if action == "schedule":
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
-        if flask.request.args.get("action") == "take":
+        if action == "take":
             return flask.redirect(
                 f"/credentials/provision?contractItemID={contract_id}"
             )
-        return flask.redirect("/credentials/your-exams")
-    except UAContractsAPIErrorView as error:
-        activation_response = json.loads(error.response.text)
         return flask.render_template(
             "/credentials/redeem.html",
-            activation_response=activation_response,
+            notification_class="positive",
+            notification_title="Success",
+            notification_message="Your exam has been activated.",
+        )
+    except UAContractsAPIErrorView as error:
+        activation_response = json.loads(error.response.text).get("message")
+        return flask.render_template(
+            "/credentials/redeem.html",
+            notification_class="negative",
+            notification_title="Something went wrong",
+            notification_message=activation_response,
         )
     except UAContractsUserHasNoAccount:
         return flask.render_template(
@@ -597,7 +635,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account()
+    account = advantage_mapper.get_purchase_account("canonical-ua")
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
     keys = []
@@ -626,3 +664,130 @@ def activate_activation_key(ua_contracts_api, **kwargs):
             "activationKey": activation_key,
         }
     )
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+@canonical_staff()
+def cred_beta_activation(**_):
+    if flask.request.method == "POST":
+        data = flask.request.form
+
+        emails = data["emails"].split("\n")
+        keys = data["keys"].split("\n")
+
+        leads = []
+        for email, key in zip(emails, keys):
+            leads.append({"email": email, "cred_activation_key": key})
+
+        marketo_api.update_leads(leads)
+
+    return flask.render_template("credentials/beta-activation.html")
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_filtered_webhook_responses(trueability_api, **kwargs):
+    ability_screen_id = flask.request.args.get("ability_screen_id", None)
+    page = flask.request.args.get("page", 1)
+    page = int(page)
+    per_page = flask.request.args.get("per_page", 10)
+    per_page = int(per_page)
+    ta_results_per_page = 100
+    ta_page = math.ceil(page * per_page // ta_results_per_page)
+    webhook_responses = trueability_api.get_filtered_webhook_responses(
+        ability_screen_id=ability_screen_id,
+        page=ta_page,
+    )
+    ta_webhook_responses = webhook_responses["webhook_responses"]
+    ta_webhook_responses = [
+        ta_webhook_responses[i]
+        for i in range(
+            page * per_page % ta_results_per_page - per_page,
+            page * per_page % ta_results_per_page,
+        )
+    ]
+    page_metadata = {}
+    page_metadata["current_page"] = page
+    page_metadata["total_pages"] = (
+        webhook_responses["meta"]["total_count"] // per_page
+    ) + 1
+    page_metadata["total_count"] = webhook_responses["meta"]["total_count"]
+    page_metadata["next_page"] = (
+        page + 1 if page < page_metadata["total_pages"] else None
+    )
+    page_metadata["prev_page"] = page - 1 if page > 1 else None
+
+    return flask.jsonify(
+        {"webhook_responses": ta_webhook_responses, "meta": page_metadata}
+    )
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_webhook_response(trueability_api, **kwargs):
+    webhook_id = flask.request.args.get("webhook_id", None)
+    webhook_responses = trueability_api.get_webhook_response(
+        webhook_id=webhook_id,
+    )
+    return flask.jsonify(webhook_responses)
+
+
+@shop_decorator(area="cred", permission="user", response=json)
+@canonical_staff()
+def get_issued_badges(credly_api, **kwargs):
+    badges = credly_api.get_issued_badges()
+    return flask.jsonify(badges["data"])
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+def get_my_issued_badges(credly_api, **kwargs):
+    sso_user_email = user_info(flask.session)["email"]
+    response = credly_api.get_issued_badges(
+        filter={"recipient_email": sso_user_email}
+    )
+    return flask.render_template(
+        "credentials/your-badges.html", badges=response["data"]
+    )
+
+
+@shop_decorator(area="cred", permission="guest", response="json")
+def issue_badges(trueability_api, credly_api, **kwargs):
+    webhook_response = flask.request.json
+    api_key = flask.request.headers.get("X-API-KEY")
+    if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
+        return flask.jsonify({"status": "Invalid API Key"}), 401
+    assessment_score = webhook_response["assessment"]["score"]
+    cutoff_score = webhook_response["assessment"]["ability_screen"][
+        "cutoff_score"
+    ]
+    if assessment_score >= cutoff_score:
+        assessment_user = webhook_response["assessment"]["user"]["email"]
+        first_name, last_name = webhook_response["assessment"]["user"][
+            "full_name"
+        ].rsplit(" ", 1)
+        ability_screen_id = webhook_response["assessment"][
+            "ability_screen_variant"
+        ]["ability_screen_id"]
+        new_badge = credly_api.issue_new_badge(
+            email=assessment_user,
+            first_name=first_name,
+            last_name=last_name,
+            ability_screen_id=ability_screen_id,
+        )
+        if "data" in new_badge and "accept_badge_url" in new_badge["data"]:
+            # 201 Created.
+            # Request was valid and the server created a new badge.
+            return (
+                flask.jsonify(
+                    {
+                        "status": "badge_issued",
+                        "accept_badge_url": new_badge["data"][
+                            "accept_badge_url"
+                        ],
+                    }
+                ),
+                201,
+            )
+        else:
+            # 500 Error. Request was valid but the server encountered an error
+            return (flask.jsonify(new_badge), 500)
+    # 403 Forbidden. Request was valid but the server is refusing action
+    return flask.jsonify({"status": "badge_not_issued"}), 403

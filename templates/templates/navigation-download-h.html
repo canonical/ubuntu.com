@@ -5,8 +5,7 @@
         <div class="col-3">
           <h4 class="p-heading-four is-dense"><a href='/download/desktop'>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
           <p class="p-p--small">Download Ubuntu desktop and replace your current operating system whether it's Windows or Mac OS, or, run Ubuntu alongside it.</p>
-          <a class="p-button--positive p-button--small" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.short_version }} LTS</a>
-          {% if releases.latest.short_version > releases.lts.short_version %}<a class="p-button p-button--small" href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.short_version }}</a>{% endif %}
+          <a class="p-button--positive p-button--small" href="/download/desktop/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : 'Get Ubuntu Desktop', 'eventValue' : undefined });">Get Ubuntu Desktop</a>
         </div>
         <div class="col-3">
           <h4 class="p-heading-four is-dense"><a href='/download/server'>Ubuntu Server&nbsp;&rsaquo;</a></h4>
@@ -54,7 +53,7 @@
             </a></li>
             <li class='p-list__item'><a class='p-link' href='/download/risc-v'>
               RISC-V platforms
-            </a></li>            
+            </a></li>
           </ul>
         </div>
         <div class="col-3">
@@ -95,7 +94,10 @@
       <div class="col-3">
         <h4 class="p-muted-heading--small">Ubuntu flavours</h4>
         <p class="p-p--small">Find new ways to experience Ubuntu, each with their own choice of default applications and settings.</p>
-        <ul class='p-text-list--small is-bordered p-list is-split' >
+        <ul class='p-text-list--small is-bordered p-list is-split u-no-margin--bottom' >
+          <li class='p-list__item'>
+            <a class='p-link' href='https://edubuntu.org/'>Edubuntu</a>
+          </li>
           <li class='p-list__item'>
             <a class='p-link' href='https://www.kubuntu.org/'>Kubuntu</a>
           </li>
@@ -106,7 +108,10 @@
             <a class='p-link' href='https://ubuntubudgie.org/'>Ubuntu Budgie</a>
           </li>
           <li class='p-list__item'>
-            <a class='p-link' href='http://www.ubuntukylin.com/index.php?lang=en'>Ubuntu Kylin</a>
+            <a class='p-link' href='https://ubuntucinnamon.org/download/'>Ubuntu Cinnamon</a>
+          </li>
+          <li class='p-list__item'>
+            <a class='p-link' href='https://www.ubuntukylin.com/downloads/download-en.html'>Ubuntu Kylin</a>
           </li>
           <li class='p-list__item'>
             <a class='p-link' href='https://ubuntu-mate.org/'>Ubuntu MATE</a>
@@ -115,9 +120,13 @@
             <a class='p-link' href='https://ubuntustudio.org/'>Ubuntu Studio</a>
           </li>
           <li class='p-list__item'>
+            <a class='p-link' href='https://ubuntuunity.org/'>Ubuntu Unity</a>
+          </li>
+          <li class='p-list__item'>
             <a class='p-link' href='https://xubuntu.org/'>Xubuntu</a>
           </li>
         </ul>
+        <p class="p-p--small"><a href="/desktop/flavours">Learn more about Ubuntu flavours</a></p>
       </div>
     </div>
   </div>

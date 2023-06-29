@@ -15,7 +15,7 @@
       </h1>
       <p class="p-heading--4">Fully managed Apache Kafka anywhere: on-prem and multi-cloud environments.</p>
       <p>Spend less time managing infrastructure, more time building applications. Highly available, secure and fully managed Apache Kafka for frictionless innovation.</p>
-      <p><a href="/managed/contact-us" class="p-button--positive">Get in touch</a></p>
+      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
     <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{
@@ -89,7 +89,7 @@
               attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
             ) | safe
           }}
-          <p class="p-heading--4">Webinar</p>
+          <p class="p-heading--4 p-heading-icon__title">Webinar</p>
         </div>
         <h4>Kafka can be challenging. Learn how we simplify it.</h4>
         <p><a href="https://www.brighttalk.com/webcast/6793/410402" class="p-button">Watch the webinar on BrightTALK</a></p>
@@ -261,7 +261,7 @@
       </div>
       <div class="row u-sv3">
         <div class="col-8">
-          <p><a href="/managed/contact-us" class="p-button--positive">Contact us</a></p>
+          <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
         </div>
       </div>
 
@@ -332,7 +332,7 @@
             Still have open questions?
           </p>
           <p>
-            <a class="p-button--positive" href="/managed/contact-us">
+            <a class="p-button--positive js-invoke-modal" href="/managed/contact-us">
               Contact us
             </a>
           </p>
@@ -345,6 +345,6 @@
 
     {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-kafka.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://ubuntu.com/managed/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kafka.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://ubuntu.com/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
     </div>
     {% endblock content %}

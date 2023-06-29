@@ -5,6 +5,7 @@ import {
   serverAndDesktopReleases,
   kernelReleases,
   kernelReleaseSchedule,
+  kernelReleases2204,
   kernelReleases2004,
   kernelReleases1804,
   kernelReleases1604,
@@ -13,6 +14,7 @@ import {
   kernelReleasesLTS,
   openStackReleases,
   kubernetesReleases,
+  microStackReleases,
   desktopServerStatus,
   kernelStatus,
   kernelReleaseScheduleStatus,
@@ -20,11 +22,13 @@ import {
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
+  microStackStatus,
   smallReleaseNames,
   desktopServerReleaseNames,
   kernelReleaseNames,
   kernelVersionNames,
   kernelReleaseScheduleNames,
+  kernelReleaseNames2204,
   kernelReleaseNames2004,
   kernelReleaseNames1804,
   kernelReleaseNames1604,
@@ -33,6 +37,7 @@ import {
   kernelReleaseNamesALL,
   openStackReleaseNames,
   kubernetesReleaseNames,
+  microStackReleaseNames,
 } from "./chart-data";
 
 function buildCharts() {
@@ -72,6 +77,14 @@ function buildCharts() {
       kernelStatus,
       kernelReleases,
       kernelVersionNames
+    );
+  }
+  if (document.querySelector("#kernel2204")) {
+    createChart(
+      "#kernel2204",
+      kernelReleaseNames2204,
+      kernelStatus,
+      kernelReleases2204
     );
   }
   if (document.querySelector("#kernel2004")) {
@@ -148,6 +161,14 @@ function buildCharts() {
       kernelReleaseSchedule
     );
   }
+  if (document.querySelector("#microstack-eol")) {
+    createChart(
+      "#microstack-eol",
+      microStackReleaseNames,
+      microStackStatus,
+      microStackReleases
+    );
+  }
 }
 
 function clearCharts() {
@@ -166,6 +187,10 @@ function clearCharts() {
   const kernelEol = document.querySelector("#kernel-eol");
   if (kernelEol) {
     kernelEol.innerHTML = "";
+  }
+  const kernel2204 = document.querySelector("#kernel2204");
+  if (kernel2204) {
+    kernel2204.innerHTML = "";
   }
   const kernel2004 = document.querySelector("#kernel2004");
   if (kernel2004) {
@@ -203,9 +228,13 @@ function clearCharts() {
   if (kernelSchedule) {
     kernelSchedule.innerHTML = "";
   }
+  const microstackEol = document.querySelector("#microstack-eol");
+  if (microstackEol) {
+    microstackEol.innerHTML = "";
+  }
 }
 
-var mediumBreakpoint = 875;
+var mediumBreakpoint = 620;
 
 // A bit of a hack, but chart doesn't load with full year axis on first load,
 // It has to be loaded once, and then again

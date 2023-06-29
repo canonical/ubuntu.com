@@ -48,7 +48,7 @@ To deploy the Multus charm, you will first need a Kubernetes model in Juju.
 Make sure your local kubeconfig is pointing to the correct Kubernetes cluster:
 
 ```
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 Next, add your Kubernetes as a cloud to your Juju controller:
