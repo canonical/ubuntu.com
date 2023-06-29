@@ -138,7 +138,7 @@ def activate_page_buying_for_submit(marketplace, ua_contracts_api):
     else:
         return flask.render_template("account/forbidden.html")
     return flask.render_template(
-        "/pro/activate.html", name=name, not_paid_account=False
+        "/pro/activate.html", name=name, needs_paid_account_created=False
     )
 
 
