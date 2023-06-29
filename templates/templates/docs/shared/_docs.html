@@ -100,7 +100,9 @@
     </aside>
 
     <main class="col-9">
+      {% if not disable_title %}
       <h1>{{ document.title }}</h1>
+      {% endif %}
 
       {{ document.body_html | safe }}
 
