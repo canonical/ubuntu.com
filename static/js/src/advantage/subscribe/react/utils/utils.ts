@@ -122,6 +122,7 @@ export enum PublicClouds {
   azure = "azure",
   gcp = "gcp",
   oracle = "oracle",
+  ibm = "ibm",
 }
 
 export enum LTSVersions {

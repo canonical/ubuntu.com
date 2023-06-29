@@ -13,29 +13,129 @@ const PublicCloudInfo = {
   [PublicClouds.aws]: {
     title: "AWS",
     name: "AWS Marketplace",
-    CTAName: "AWS marketplace",
-    link:
-      "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro",
+    CTA: [
+      {
+        CTAName: "In-place upgrade to Ubuntu Pro",
+        link:
+          "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
+        appearance: "positive",
+      },
+      {
+        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        link: "/18-04/aws",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        You can{" "}
+        <a href="https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro+ec2">
+          launch new Ubuntu Pro instances on the AWS Marketplace
+        </a>{" "}
+        and the{" "}
+        <a href="/blog/ubuntu-pro-is-now-part-of-the-aws-ec2-console">
+          EC2 Console
+        </a>{" "}
+        at a per-second, per-machine rate. If you have a running Ubuntu LTS
+        instance in AWS, you can also In-place upgrade that instance to a Ubuntu
+        Pro. If you need tech support as well,{" "}
+        <a href="/aws#get-in-touch">contact us</a>.
+      </>
+    ),
   },
   [PublicClouds.azure]: {
     title: "Azure",
     name: "Azure Marketplace",
-    CTAName: "Azure marketplace",
-    link:
-      "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
+    CTA: [
+      {
+        CTAName: "In-place upgrade to Ubuntu Pro",
+        link:
+          "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
+        appearance: "positive",
+      },
+      {
+        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        link: "/18-04/azure",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        You can{" "}
+        <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1">
+          launch new Ubuntu Pro instances on the Azure Marketplace
+        </a>{" "}
+        at an hourly, per-machine rate. If you need tech support as well, or to
+        add Ubuntu Pro entitlements to existing Ubuntu LTS instances, please{" "}
+        <a href="/azure#get-in-touch">contact us</a>.
+      </>
+    ),
   },
   [PublicClouds.gcp]: {
     title: "GCP",
     name: "Google Compute Engine",
-    CTAName: "GCE marketplace",
+    CTA: [
+      {
+        CTAName: "In-place upgrade to Ubuntu Pro",
+        link:
+          "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
+        appearance: "positive",
+      },
+      {
+        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        link: "/18-04/gcp",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        You can{" "}
+        <a href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1&pli=1">
+          launch new Ubuntu Pro instances on the Google Compute Engine
+        </a>{" "}
+        at an hourly, per-machine rate. If you have a running Ubuntu LTS
+        instance in Google Cloud, you can also In-place upgrade that instance to
+        a Ubuntu Pro. If you need tech support as well,{" "}
+        <a href="/gcp#get-in-touch">contact us</a>.{" "}
+      </>
+    ),
     link:
       "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
   },
   [PublicClouds.oracle]: {
     title: "Oracle",
     name: "Oracle",
-    CTAName: "Oracle marketplace",
-    link: "",
+    CTA: [
+      {
+        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        link: "/18-04/oci",
+        appearance: "positive",
+      },
+    ],
+    describe: (
+      <>
+        Please <a href="/security/esm#get-in-touch">contact us</a> to purchase a
+        subscription that you can attach to your Oracle Cloud Infrastructure
+        instance.
+      </>
+    ),
+  },
+  [PublicClouds.ibm]: {
+    title: "IBM Cloud",
+    name: "IBM",
+    CTA: [
+      {
+        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        link: "/18-04/ibm",
+        appearance: "positive",
+      },
+    ],
+    describe: (
+      <>
+        Please <a href="/security/esm#get-in-touch">contact us</a> to purchase a
+        subscription that you can attach to your IBM Cloud instance.
+      </>
+    ),
   },
 };
 const ProductType = () => {
@@ -118,24 +218,57 @@ const ProductType = () => {
           >
             {PublicCloudInfo[PublicClouds.gcp].title}
           </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.oracle}
+            aria-controls={PublicClouds.oracle}
+            id={PublicClouds.oracle}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.oracle);
+              localStorage.setItem(
+                "pro-selector-publicCloud",
+                JSON.stringify(PublicClouds.oracle)
+              );
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.ibm].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.ibm}
+            aria-controls={PublicClouds.ibm}
+            id={PublicClouds.ibm}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.ibm);
+              localStorage.setItem(
+                "pro-selector-publicCloud",
+                JSON.stringify(PublicClouds.ibm)
+              );
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.oracle].title}
+          </button>
         </div>
       </div>
 
       <p>
         <strong>{PublicCloudInfo[publicCloud]?.title}</strong>
       </p>
-      <p>
-        You can buy Ubuntu Pro on the {PublicCloudInfo[publicCloud]?.name} at an
-        hourly, per-machine rate. If you need tech support as well,{" "}
-        <a href="/support/contact-us">contact us</a>.
-      </p>
-      <Button
-        appearance="positive"
-        element="a"
-        href={PublicCloudInfo[publicCloud]?.link}
-      >
-        Visit {PublicCloudInfo[publicCloud]?.CTAName}
-      </Button>
+      <p>{PublicCloudInfo[publicCloud]?.describe}</p>
+      {PublicCloudInfo[publicCloud]?.CTA.map((cta) => (
+        <Button
+          appearance={cta.appearance}
+          element="a"
+          href={cta.link}
+          key={cta.CTAName}
+        >
+          {cta.CTAName}
+        </Button>
+      ))}
     </>
   );
 

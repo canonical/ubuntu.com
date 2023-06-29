@@ -49,6 +49,11 @@ const Form = () => {
               <h2>What Ubuntu LTS version are you running?</h2>
             </Col>
             <Col size={6}>
+              <p>
+                {" "}
+                Ubuntu Advantage is available for Ubuntu 14.04 and higher.
+                <br /> <a>Are you using an older version?</a>
+              </p>
               <Version />
             </Col>
           </Strip>

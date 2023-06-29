@@ -30,9 +30,11 @@ test("Type selector displays the public cloud section if a public cloud is selec
 
   await userEvent.click(screen.getByText("Public cloud instances"));
 
-  expect(screen.getByText(/^Visit AWS marketplace/)).toHaveAttribute(
+  expect(
+    screen.getByText(/launch new Ubuntu Pro instances on the AWS Marketplace/)
+  ).toHaveAttribute(
     "href",
-    "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro"
+    "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro+ec2"
   );
 });
 
