@@ -126,15 +126,15 @@ category/product/ubuntu-light/?: http://lubuntu.net/
 # old certification.ubuntu.com redirects
 certified/desktop/?: "/certified?category=Desktop&category=Laptop"
 certified/server/?: "/certified?category=Server"
-certified/iot/?: "/certified?category=Device"
 certified/soc/?: "/certified?category=SoC"
 certified/hardware/(?P<canonical_id>.*): "/certified/{canonical_id}"
 certified/catalog/search/?: "/certified"
 certified/desktop/models/?: "/certified?category=Desktop&category=Laptop"
 certified/server/models/?: "/certified?category=Server"
-certified/iot/models/?: "/certified?category=Device"
+certified/iot/models/?: "/certified/iot"
 certified/soc/models/?: "/certified?category=SoC"
 certified/why-certified/?: "/certified/why-certify"
+certified/devices/?: "/certified/iot"
 certification/?: "/certified"
 
 cc/?: "/security/certifications"
