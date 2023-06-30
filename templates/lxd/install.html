@@ -43,11 +43,15 @@
         <h3 class="p-stepped-list__title">Install the OS you’d like to use in your container or VM</h3>
         <div class="p-stepped-list__content">
           <h4>Container</h4>
-            <p>Command: <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt;</code></pre></p>
-            <p>Example: <pre><code>lxc launch ubuntu:22.04 ubuntu-container</code></pre></p>
+            <p>Command:</p>
+            <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt;</code></pre>
+            <p>Example:</p>
+            <pre><code>lxc launch ubuntu:22.04 ubuntu-container</code></pre>
           <h4>VM</h4>
-            <p>Command: <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt; --vm</code></pre></p>
-            <p>Example: <pre><code>lxc launch ubuntu:22.04 ubuntu-vm --vm</code></pre></p>
+            <p>Command:</p>
+            <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt; --vm</code></pre>
+            <p>Example:</p>
+            <pre><code>lxc launch ubuntu:22.04 ubuntu-vm --vm</code></pre>
             <p>Check the <a href="https://images.linuxcontainers.org/">community image server</a> for other Linux distributions.</p>
         </div>
       </li>
@@ -55,9 +59,12 @@
         <h3 class="p-stepped-list__title">Run commands</h3>
         <div class="p-stepped-list__content">
           <p>You now have your instance up and running! You’re all set to experiment with any commands you need.</p>
-          <p>Command: <pre><code>lxc exec &lt;instance_name&gt; -- &lt;command&gt;</code></pre></p>
-          <p>Example: <pre><code>lxc exec ubuntu-container -- apt-get update</code></pre></p>
-          <p>For a list of available commands and options, just run <pre><code>lxc</code></pre></p>
+          <p>Command:</p>
+          <pre><code>lxc exec &lt;instance_name&gt; -- &lt;command&gt;</code></pre>
+          <p>Example:</p>
+          <pre><code>lxc exec ubuntu-container -- apt-get update</code></pre>
+          <p>For a list of available commands and options, just run</p>
+          <pre><code>lxc</code></pre>
         </div>
       </li>
     </ol>
