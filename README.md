@@ -8,6 +8,8 @@ Ubuntu is an open source software operating system that runs from the desktop, t
 
 The site is largely maintained by the [Web and Design team](https://ubuntu.com/blog/topics/design) at [Canonical](https://www.canonical.com). It is a simple, database-less, informational website project based on [Flask](https://flask.palletsprojects.com/en/1.1.x/) and hosted on a [Charmed Kubernetes](https://ubuntu.com/kubernetes) cluster.
 
+You can read more about the application's architecture [in ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Bugs and issues
 
 If you have found a bug on the site or have an idea for a new feature, feel free to [create a new issue](https://github.com/canonical-web-and-design/ubuntu.com/issues/new), or suggest a fix by [creating a pull request](https://help.github.com/articles/creating-a-pull-request/). You can also find a link to create issues in the footer of every page of the site itself.
