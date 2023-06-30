@@ -66,6 +66,8 @@ const MESSAGES: Messages = {
           "You have cancelled your Ubuntu Pro trial. " +
           "At the end of the trial period, this subscription " +
           "will disappear and you will no longer have access to Pro services.",
+        [UserSubscriptionType.Key_activated]:
+          "Contact OEM to renew and ensure service continuity.",
       },
       title: "Your subscription is about to expire.",
     },

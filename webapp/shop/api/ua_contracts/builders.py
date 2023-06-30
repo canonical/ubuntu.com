@@ -165,19 +165,36 @@ def build_legacy_item_groups(user_summary: List) -> List:
                     item.product_listing_id is None
                     or item.subscription_id is None
                 ):
-                    legacy_item_groups.append(
-                        {
-                            "account": user_details.get("account"),
-                            "contract": contract,
-                            "items": [item],
-                            "renewal": item.renewal,
-                            "item_id": item.id,
-                            "listing": None,
-                            "marketplace": "canonical-ua",
-                            "subscriptions": user_details.get("subscriptions"),
-                            "type": "legacy",
-                        }
-                    )
+                    if item.reason == "key_activated":
+                        legacy_item_groups.append(
+                            {
+                                "account": user_details.get("account"),
+                                "contract": contract,
+                                "items": [item],
+                                "renewal": item.renewal,
+                                "item_id": item.id,
+                                "listing": None,
+                                "marketplace": "canonical-ua",
+                                "subscriptions":
+                                    user_details.get("subscriptions"),
+                                "type": "key_activated",
+                            }
+                        )
+                    else:
+                        legacy_item_groups.append(
+                            {
+                                "account": user_details.get("account"),
+                                "contract": contract,
+                                "items": [item],
+                                "renewal": item.renewal,
+                                "item_id": item.id,
+                                "listing": None,
+                                "marketplace": "canonical-ua",
+                                "subscriptions":
+                                    user_details.get("subscriptions"),
+                                "type": "legacy",
+                            }
+                        )
 
     return legacy_item_groups
 
