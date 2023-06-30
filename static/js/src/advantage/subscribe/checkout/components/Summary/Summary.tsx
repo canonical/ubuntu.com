@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { add, format } from "date-fns";
 import { useFormikContext } from "formik";
 import { Col, Row, Spinner } from "@canonical/react-components";
+import * as Sentry from "@sentry/react";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
@@ -13,9 +14,10 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-function Summary({ quantity, product, action }: Props) {
+function Summary({ quantity, product, action, setError }: Props) {
   const { values } = useFormikContext<FormValues>();
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
     quantity: quantity,
@@ -26,7 +28,11 @@ function Summary({ quantity, product, action }: Props) {
     isTaxSaved: values.isTaxSaved,
   });
 
-  const { data: preview, isFetching: isPreviewFetching } = usePreview({
+  const {
+    data: preview,
+    isFetching: isPreviewFetching,
+    error: error,
+  } = usePreview({
     quantity,
     product,
     action,
@@ -44,6 +50,37 @@ function Summary({ quantity, product, action }: Props) {
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
+
+  useEffect(() => {
+    if (error instanceof Error) {
+      let message = <></>;
+      if (error.message.includes("can only make one purchase at a time")) {
+        message = (
+          <>
+            You already have a pending purchase. Please go to{" "}
+            <a href="/account/payment-methods">payment methods</a> to retry.
+          </>
+        );
+      } else if (
+        error.message.includes(
+          "cannot make a purchase while subscription is in trial"
+        )
+      ) {
+        message = (
+          <>
+            You cannot make a purchase during the trial period. To make a new
+            purchase, cancel your current trial subscription.
+          </>
+        );
+      } else {
+        message = <>Sorry, there was an unknown error with your purchase.</>;
+      }
+      Sentry.captureException(error);
+      setError(message);
+      document.querySelector("h1")?.scrollIntoView();
+      return;
+    }
+  }, [error]);
 
   let totalSection = (
     <>
@@ -249,7 +286,15 @@ function Summary({ quantity, product, action }: Props) {
       </Row>
       <hr />
       {!isSummaryLoading ? (
-        totalSection
+        <>
+          {!error ? (
+            totalSection
+          ) : (
+            <>
+              <i className="p-icon--error"></i> <strong>Purchase error</strong>
+            </>
+          )}
+        </>
       ) : (
         <>
           {" "}
