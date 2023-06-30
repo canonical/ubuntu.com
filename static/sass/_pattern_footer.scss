@@ -1,12 +1,16 @@
 // Footer pattern styling
 @mixin footer-title {
   color: $color-mid-dark;
-  line-height: 1.5;
+  line-height: 1.25;
   margin-bottom: 0;
 
   @media only screen and (max-width: $breakpoint-small) {
     cursor: pointer;
   }
+
+  @media only screen and (min-width: $breakpoint-small) {
+    line-height: 1.5;
+  } 
 }
 
 @mixin ubuntu-p-footer {
@@ -97,7 +101,7 @@
     background-size: 13px 13px;
     border-top: 1px solid $color-mid-light;
     color: $color-dark;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 300;
     margin-top: 0;
     max-width: inherit;
@@ -172,6 +176,7 @@
     padding: $sp-small 0 $sp-small $sp-x-large;
     position: relative;
     z-index: 2;
+    line-height: 2.3;
 
     @media only screen and (min-width: $breakpoint-small) {
       display: none;
@@ -183,7 +188,6 @@
   }
 
   .p-footer--secondary {
-    padding: $sp-large $sp-small 0;
 
     @media only screen and (min-width: $breakpoint-small) {
       padding: 0;
@@ -191,6 +195,7 @@
 
     @media only screen and (max-width: $breakpoint-small - 1px) {
       margin-top: 0;
+      padding: $sp-large $sp-small 0 $sp-medium !important;
     }
 
     a:hover {
@@ -225,13 +230,15 @@
         border-top: 1px solid $color-mid-light;
         color: $color-dark;
         display: block;
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding: $sp-medium;
+        line-height: 1.25;
 
         @media only screen and (min-width: $breakpoint-small) {
           border: 0;
           font-size: 0.8125rem;
           padding: 0;
+          line-height: 1.5rem;
         }
       }
     }
@@ -295,6 +302,10 @@
     @media only screen and (min-width: $breakpoint-large) {
       margin-top: $sp-x-small;
     }
+  }
+
+  .p-footer--secondary .p-inline-list {
+
   }
 
   .p-footer--secondary .p-inline-list__item {
