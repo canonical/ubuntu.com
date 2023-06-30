@@ -47,13 +47,16 @@ const Form = () => {
           <Strip includeCol={false}>
             <Col size={6}>
               <h2>What Ubuntu LTS version are you running?</h2>
-            </Col>
-            <Col size={6}>
-              <p>
+              <p style={{ marginLeft: "3.6rem" }}>
                 {" "}
                 Ubuntu Advantage is available for Ubuntu 14.04 and higher.
-                <br /> <a>Are you using an older version?</a>
+                <br />{" "}
+                <a href="/contact-us/form?product=pro">
+                  Are you using an older version?
+                </a>
               </p>
+            </Col>
+            <Col size={6}>
               <Version />
             </Col>
           </Strip>
