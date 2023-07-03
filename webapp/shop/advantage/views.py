@@ -4,58 +4,51 @@ from typing import List
 
 import flask
 from webargs.fields import String
+
+from webapp.login import user_info
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from webapp.shop.api.ua_contracts.api import (
+    AccessForbiddenError,
+    UAContractsAPIErrorView,
+    UAContractsUserHasNoAccount,
+)
+from webapp.shop.api.ua_contracts.helpers import (
+    extract_last_purchase_ids,
+    set_listings_trial_status,
+    to_dict,
+)
 
 # Local
 from webapp.shop.api.ua_contracts.primitives import Subscription
 from webapp.shop.decorators import shop_decorator
-from webapp.login import user_info
 from webapp.shop.flaskparser import use_kwargs
-from webapp.shop.api.ua_contracts.helpers import (
-    to_dict,
-    extract_last_purchase_ids,
-    set_listings_trial_status,
-)
-from webapp.shop.api.ua_contracts.api import (
-    UAContractsUserHasNoAccount,
-    AccessForbiddenError,
-    UAContractsAPIErrorView,
-)
-
 from webapp.shop.schemas import (
-    post_advantage_subscriptions,
+    account_purhcase,
     cancel_advantage_subscriptions,
-    post_account_user_role,
-    put_account_user_role,
     delete_account_user_role,
-    put_contract_entitlements,
+    post_account_user_role,
+    post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer_schema,
-    account_purhcase,
+    put_account_user_role,
+    put_contract_entitlements,
 )
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def get_activate_view(ua_contracts_api, advantage_mapper, **kwargs):
+def get_activate_view(advantage_mapper: AdvantageMapper, **kwargs):
     account = None
-    user = user_info(flask.session)
-    name = user["fullname"]
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-        if account.type == "paid":
-            return flask.render_template(
-                "pro/activate.html",
-                name=name,
-                needs_paid_account_created=False,
-            )
     except UAContractsUserHasNoAccount:
-        return flask.render_template(
-            "pro/activate.html", name=name, needs_paid_account_created=True
-        )
+        pass
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
-    else:
-        flask.render_template("account/forbidden.html")
+
+    return flask.render_template(
+        "pro/activate.html",
+        needs_paid_account_created=False if account else True,
+    )
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
