@@ -659,7 +659,7 @@ data_spark_k8s_docs = Docs(
         index_topic_id=8963,
         url_prefix="/data/docs/spark/k8s",
     ),
-    document_template="/data/docs/spark-k8s/document.html",
+    document_template="/data/docs/spark/k8s/document.html",
     url_prefix="/data/docs/spark/k8s",
     blueprint_name="data-docs-spark-k8s",
 )
@@ -669,7 +669,7 @@ app.add_url_rule(
     build_search_view(
         session=session,
         site="ubuntu.com/data/docs/spark/k8s",
-        template_path="/data/docs/spark-k8s/search-results.html",
+        template_path="/data/docs/spark/k8s/search-results.html",
         search_engine_id=search_engine_id,
     ),
 )
@@ -679,7 +679,7 @@ data_spark_k8s_docs.init_app(app)
 data_mysql_iaas_docs = Docs(
     parser=DocParser(
         api=charmhub_discourse_api,
-        index_topic_id=9922,
+        index_topic_id=9925,
         url_prefix="/data/docs/mysql/iaas",
     ),
     document_template="/data/docs/mysql/iaas/document.html",
