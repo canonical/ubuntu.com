@@ -445,7 +445,9 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: true,
+        is_cancelled: false,
       }),
     });
 
@@ -467,6 +469,7 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: false,
       }),
     });
@@ -535,7 +538,9 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Trial,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: true,
+        is_cancelled: false,
       }),
     });
 

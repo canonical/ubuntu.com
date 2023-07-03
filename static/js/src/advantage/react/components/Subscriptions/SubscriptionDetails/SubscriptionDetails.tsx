@@ -155,37 +155,49 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                   {subscription.type == "monthly" ||
                   subscription.type == "yearly" ? (
                     <>
-                      {subscription.statuses.is_renewed ? (
-                        <button className="p-chip--positive">
-                          <span className="p-chip__value">Auto-renewal on</span>
-                        </button>
-                      ) : (
+                      {subscription.statuses.is_subscription_active &&
+                      !subscription.statuses.is_cancelled ? (
                         <>
-                          {!subscription.statuses.is_cancelled ? (
+                          {subscription.statuses.is_renewed ? (
+                            <button className="p-chip--positive">
+                              <span className="p-chip__value">
+                                Auto-renewal on
+                              </span>
+                            </button>
+                          ) : null}
+                          {!subscription.statuses.is_renewed ? (
                             <button className="p-chip--caution">
                               <span className="p-chip__value">
                                 Auto-renewal off
                               </span>
                             </button>
-                          ) : (
-                            <button className="p-chip--negative">
-                              <span className="p-chip__value">Cancelled</span>
-                            </button>
-                          )}
+                          ) : null}
                         </>
-                      )}
-                    </>
-                  ) : null}
-                  {subscription.type == "trial" ? (
-                    <>
+                      ) : null}
                       {subscription.statuses.is_cancelled ? (
                         <button className="p-chip--negative">
                           <span className="p-chip__value">Cancelled</span>
                         </button>
                       ) : null}
-                      {subscription.statuses.is_renewed ? (
-                        <button className="p-chip--positive">
-                          <span className="p-chip__value">Auto-renewal on</span>
+                    </>
+                  ) : null}
+                  {subscription.type == "trial" ? (
+                    <>
+                      {subscription.statuses.is_subscription_active ? (
+                        <>
+                          {subscription.statuses.is_renewed &&
+                          !subscription.statuses.is_cancelled ? (
+                            <button className="p-chip--positive">
+                              <span className="p-chip__value">
+                                Auto-renewal on
+                              </span>
+                            </button>
+                          ) : null}
+                        </>
+                      ) : null}
+                      {subscription.statuses.is_cancelled ? (
+                        <button className="p-chip--negative">
+                          <span className="p-chip__value">Cancelled</span>
                         </button>
                       ) : null}
                     </>
