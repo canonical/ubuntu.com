@@ -10,12 +10,13 @@
         <header class="p-modal__header">
           <h2 class="p-modal__title" id="modal-title">Activating for a company or yourself?</h2>
         </header>
-        <form action="{{ url_for('pro_activate_activation_key') }}" method="POST">
+        <form id="create-purchase-account-form">
           <div class="js-organisation-container u-sv3">
             <div class="col-4">
               <label class="p-radio">
                 <input class="p-radio__input radio-myself" type="radio" aria-labelledby="activate-myself-input" name="activate-buy-for" value="myself" required>
                 <span class="p-radio__label" id="activate-myself">Myself</span>
+                <input type="hidden" name="activate-name" value="{{ user_info.fullname }}">
               </label>
             </div>
             <div class="col-4">
@@ -207,6 +208,39 @@
         organisationNameContainer.style.display = "none";
         organisationNameInput.removeAttribute("required");
       }
+    });
+
+    var createPurchaseAccountForm = document.getElementById("create-purchase-account-form");
+
+    createPurchaseAccountForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const selectedOption = document.querySelector('input[name="activate-buy-for"]:checked');
+
+      let accountName = document.querySelector('input[name="activate-name"]').value;
+      if (selectedOption.value == "organisation") {
+        accountName = document.querySelector('input[name="activate-organisation-name"]').value;
+      }
+
+      fetch("/account/purchase-account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          marketplace: "canonical-ua",
+          account_name: accountName,
+        })
+      }).then(function(response) {
+          if (response.status != 200) {
+            throw new Error("Error: " + response.status);
+          }
+        })
+        .then(function(data) {
+          location.reload();
+        })
+        .catch(function(error) {
+          console.error(error);
+        })
     });
   </script>
   {% endblock %}
