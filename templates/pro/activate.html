@@ -30,7 +30,7 @@
               </div>
             </div>
           </div>
-          <button class="p-button--positive" type="submit" name="submit" value="buying-for-submit">Submit</button>
+          <button class="p-button--positive" type="submit" name="submit">Submit</button>
         </form>
       </section>
     </div>
@@ -49,32 +49,30 @@
         after buying your Ubuntu Pro Desktop subscription.
       </p>
       <p>The activation key is 23 characters long and starts with a K.</p>
-      <form class="p-form p-form--inline" action="{{ url_for('pro_activate_activation_key') }}" method="POST">
+      <form id="activate-key-form">
         <div class="p-form__group">
           <label for="pro-activation-key" class="p-form__label">Enter your code</label>
           <div class="p-form__control is-error" style="min-width: 15rem">
-            <input type="text" id="pro-activation-key" class="activate-input" name="pro-activation-key" autocomplete="off" placeholder="Ex: Kabcedfghij12345678910-" required="" aria-describedby="pro-activate-input">
+            <input type="text" id="pro-activation-key" class="activate-input" name="key" autocomplete="off" placeholder="Ex: Kabcedfghij12345678910-" required="" aria-describedby="pro-activate-input">
             <p class="p-form-validation__message" id="pro-activatio-validation__message"></p>
           </div>
         </div>
-        <button class="p-button--positive" type="submit" name="submit" value="activate-submit">Activate</button>
+        <button class="p-button--positive" type="submit" name="submit">Activate</button>
       </form>
     </div>
-    {% if notification_message %}
     <div class="u-fixed-width">
-      <div class="p-notification--{{ notification_class }}" id="notification">
+      <div class="p-notification--negative" id="notification" style="display: none">
         <div class="p-notification__content">
-          <h5 class="p-notification__title">{{ notification_title }}</h5>
-          <p class="p-notification__message">{{ notification_message }}</p>
+          <h5 class="p-notification__title">Error</h5>
+            <p class="p-notification__message" id="notification-message"></p>
         </div>
         <div class="p-notification__meta">
           <div class="p-notification__actions">
-            {% if notification_message == "activation key already used" %}<a class="p-notification__action p-button" href="/pro/dashboard">Go to dashboard</a>{% endif %}
+            <a class="p-notification__action p-button" href="/pro/dashboard">Go to dashboard</a>
           </div>
         </div>
       </div>
     </div>
-    {% endif %}
   </section>
   <script>
     // validate messages for keys
@@ -187,59 +185,91 @@
     })();
 
     // buying for input
-    const organisationContainer = document.querySelector(".js-organisation-container");
-    const radioMyself = organisationContainer.querySelector(
-      ".radio-myself"
-    );
-    const radioOrganisation = organisationContainer.querySelector(
-      ".radio-organisation"
-    );
-    const organisationNameContainer = organisationContainer.querySelector(".js-organisation-name-container");
-    const organisationNameInput = organisationNameContainer.querySelector('input[name="activate-organisation-name"]')
-    radioOrganisation.addEventListener("change", function (e) {
-      if (e.target.checked) {
-        organisationNameContainer.style.display = "block";
-        organisationNameContainer.focus();
-        organisationNameInput.setAttribute("required", true);
-      }
-    });
-    radioMyself.addEventListener("change", function (e) {
-      if (e.target.checked) {
-        organisationNameContainer.style.display = "none";
-        organisationNameInput.removeAttribute("required");
-      }
-    });
+    var shouldCreateAccount = document.querySelector("#create-purchase-account-form");
+    if (shouldCreateAccount) {
+      const organisationContainer = document.querySelector(".js-organisation-container");
+      const radioMyself = organisationContainer.querySelector(
+        ".radio-myself"
+      );
+      const radioOrganisation = organisationContainer.querySelector(
+        ".radio-organisation"
+      );
+      const organisationNameContainer = organisationContainer.querySelector(".js-organisation-name-container");
+      const organisationNameInput = organisationNameContainer.querySelector('input[name="activate-organisation-name"]')
+      radioOrganisation.addEventListener("change", function (e) {
+        if (e.target.checked) {
+          organisationNameContainer.style.display = "block";
+          organisationNameContainer.focus();
+          organisationNameInput.setAttribute("required", true);
+        }
+      });
+      radioMyself.addEventListener("change", function (e) {
+        if (e.target.checked) {
+          organisationNameContainer.style.display = "none";
+          organisationNameInput.removeAttribute("required");
+        }
+      });
 
-    var createPurchaseAccountForm = document.getElementById("create-purchase-account-form");
+      const createPurchaseAccountForm = document.getElementById("create-purchase-account-form");
 
-    createPurchaseAccountForm.addEventListener("submit", function(event) {
+      createPurchaseAccountForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const selectedOption = document.querySelector('input[name="activate-buy-for"]:checked');
+
+        let accountName = document.querySelector('input[name="activate-name"]').value;
+        if (selectedOption.value == "organisation") {
+          accountName = document.querySelector('input[name="activate-organisation-name"]').value;
+        }
+
+        fetch("/account/purchase-account", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            marketplace: "canonical-ua",
+            account_name: accountName,
+          })
+        }).then(function(response) {
+            if (response.status != 200) {
+              throw new Error("Error: " + response.status);
+            }
+          })
+          .then(function(data) {
+            location.reload();
+          })
+          .catch(function(error) {
+            console.error(error);
+          })
+      });
+    }
+
+    const activateKeyForm = document.getElementById("activate-key-form");
+    
+    activateKeyForm.addEventListener("submit", function(event) {
       event.preventDefault();
-      const selectedOption = document.querySelector('input[name="activate-buy-for"]:checked');
-
-      let accountName = document.querySelector('input[name="activate-name"]').value;
-      if (selectedOption.value == "organisation") {
-        accountName = document.querySelector('input[name="activate-organisation-name"]').value;
-      }
-
-      fetch("/account/purchase-account", {
+      
+      const key = document.querySelector('input[name="key"]').value;
+      fetch("/pro/activate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          marketplace: "canonical-ua",
-          account_name: accountName,
+          "key": key,
         })
       }).then(function(response) {
           if (response.status != 200) {
-            throw new Error("Error: " + response.status);
+            throw new Error(response);
           }
         })
-        .then(function(data) {
-          location.reload();
+        .then(function() {
+          window.location.replace = "/pro/dashboard"
         })
         .catch(function(error) {
-          console.error(error);
+          console.error("error", error);
+          document.querySelector('#notification').style.display = "block";
+          document.querySelector('#notification-message').innerHTML = error;
         })
     });
   </script>
