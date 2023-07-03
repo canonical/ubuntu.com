@@ -12,32 +12,92 @@
     }
   }
 
-  .p-navigation {
-    z-index: 40;
+  .is-signed-in {
+
   }
+  
+  .p-navigation--sliding {
+    z-index: 40;
 
-  .p-navigation__row {
-    transform: 0;
+    .p-navigation__row {
+      transform: 0;
 
-    .subsection-active & {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        transform: translateX(-100vw);
+      .subsection-active & {
+        @media (max-width: $breakpoint-navigation-threshold) {
+          transform: translateX(-100vw);
+        }
+      }
+
+      .p-navigation__nav {
+        overflow-y: hidden;
+      }
+
+      .p-navigation__item--dropdown-toggle {
+        .p-muted-heading {
+          padding-left: 3rem;
+        }
+
+        &.js-account {
+          .p-navigation__dropdown-item {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+          }
+
+          a::after {
+            @media (min-width: $breakpoint-navigation-threshold) {
+              content: none;
+            }
+          }
+
+          i:not(.is-signed-in) {
+              &::after {
+              content: none;
+            }
+          }
+        }
+
+        &:first-child {
+          .p-navigation__link::before {
+            content: "";
+          }
+        }
+      }
+
+      .p-navigation__link::after {
+        @media (max-width: $breakpoint-navigation-threshold ) {
+          right: 1.5rem;
+        }
+      }
+
+      .p-navigation__dropdown-item {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        line-height: 1.5rem;
+        margin: 0;
+        position: relative;
+  
+        a {
+          display: block;
+          padding: 0.25rem 0;
+          white-space: normal;
+        }
       }
     }
   }
 
-  .p-navigation.has-menu-open {
+  .p-navigation--sliding.has-menu-open {
     .p-navigation__row {
       .p-navigation__nav {
         background-color: transparent;
       }
     }
   }
+
 }
 
 @mixin ubuntu-p-navigation-reduced {
   @media (min-width: $breakpoint-navigation-threshold) {
-    .p-navigation.is-reduced.has-search-open {
+    .p-navigation--sliding.is-reduced.has-search-open {
       .p-navigation__nav .p-navigation__items {
         display: inline-flex;
       }
@@ -61,7 +121,7 @@
   }
 
   @media (max-width: $breakpoint-navigation-threshold) {
-    .p-navigation.is-reduced.has-menu-open {
+    .p-navigation--sliding.is-reduced.has-menu-open {
       .p-navigation__row {
         .p-navigation__nav {
           background-color: #111;
@@ -86,7 +146,7 @@
     }
   }
 
-  .p-navigation.is-reduced {
+  .p-navigation--sliding.is-reduced {
     @extend %small-text;
 
     margin-bottom: 0;
@@ -205,6 +265,7 @@
           }
 
           .p-navigation__link {
+            padding-left: 2rem;
             color: $color-x-light;
           }
 

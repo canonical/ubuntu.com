@@ -7,8 +7,8 @@
             <div class="p-side-navigation__drawer">
               <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
                 {% for side_nav_section in sections.side_nav_sections %}
-                  <li class="p-side-navigation__item" data-id="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}">
-                    <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="tab-{{ key }}-{{ loop.index }}" aria-controls="tab-content-{{ key }}-{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
+                  <li class="p-side-navigation__item" data-id="{{id}}-{{format_to_id(side_nav_section.title)}}">
+                    <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
                   </li>
                 {% endfor %}
                 </ul>
@@ -17,7 +17,7 @@
         </div>
 
         {% for side_nav_section in sections.side_nav_sections %}
-          <div class="col-9 dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="tab-content-{{ key }}-{{ loop.index }}" tabindex="0" role="tabpanel" aria-labelledby="tab-{{ key }}-{{ loop.index }}" >
+          <div class="col-9 dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="0" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
             <div class="row u-no-padding"> 
               <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel  {% if side_nav_section.secondary_links %}is-bordered{% endif %}">
                 {% for links_section in side_nav_section.primary_links %}
@@ -83,7 +83,7 @@
 
               <div class="col-3 dropdown-window__side-panel">
                 {% for links_section in side_nav_section.secondary_links %}
-                  <p class="p-muted-heading is-muted">{{ links_section.title }}</h2>
+                  <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
                   
                   <ul class="p-list">
                     {% for link in links_section.links %}
@@ -167,7 +167,7 @@
 
           <div class="col-3 dropdown-window__side-panel">
             {% for links_section in sections.secondary_links %}
-              <p class="p-muted-heading is-muted">{{ links_section.title }}</h2>
+              <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
               
               <ul class="p-list">
                 {% for link in links_section.links %}
@@ -192,23 +192,32 @@
   </li>
   {% if "side_nav_sections" in sections %}
     {% for side_nav_section in sections.side_nav_sections %}
-    <li class="p-navigation__item--dropdown-toggle" id="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}" data-id="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}">
-      <button class="p-navigation__link" href="#{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-content-mobile" aria-controls="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-content-mobile" role="tab" tabindex="-1" onclick="event.stopPropagation()">
+    <li class="p-navigation__item--dropdown-toggle" id="{{id}}-{{format_to_id(side_nav_section.title)}}" data-id="{{id}}-{{format_to_id(side_nav_section.title)}}">
+      <button class="p-navigation__link" href="#{{id}}-{{format_to_id(side_nav_section.title)}}-content-mobile" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-content-mobile" role="tab" tabindex="-1">
         {{ side_nav_section.title }}
       </button>
-      <ul class="p-navigation__dropdown" id="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-content-mobile" aria-hidden="true" data-level="2">
-        <li class="p-navigation__item--dropdown-close" id="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-back">
-          <button class="p-navigation__link js-back" href="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-content-mobile" aria-controls="{{id}}-{{side_nav_section.title|replace(" ", "-")|lower}}-content-mobile" tabindex="-1" onclick="event.stopPropagation()">
+      <ul class="p-navigation__dropdown" id="{{id}}-{{format_to_id(side_nav_section.title)}}-content-mobile" aria-hidden="true" data-level="2">
+        <li class="p-navigation__item--dropdown-close" id="{{id}}-{{format_to_id(side_nav_section.title)}}-back">
+          <button class="p-navigation__link js-back" href="{{id}}-{{format_to_id(side_nav_section.title)}}-content-mobile" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-content-mobile" tabindex="-1" onclick="event.stopPropagation();">
             Back
           </button>
         </li>
         {% for links_section in side_nav_section.primary_links %}
+        {% if links_section.title %}
+        <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+        {% endif %}
           {% for link in links_section.links %}
-          <li>
-            <a href="{{link.url}}" class="p-navigation__dropdown-item" onclick="event.stopPropagation()">
-              {{link.title}}
-            </a>
-          </li>
+            {% with 
+              url = link.url, 
+              title = link.title, 
+              description = link.description,
+              secondary_cta_url = link.secondary_cta_url,
+              secondary_cta_title = link.secondary_cta_title,
+              tabindex = "-1"
+
+            %}
+              {% include "templates/meganav/_list-item.html" %}
+            {% endwith %}
           {% endfor %}
         {% endfor %}
       </ul>
@@ -216,12 +225,20 @@
     {% endfor %}
   {% elif "primary_links" in sections %}
     {% for links_section in sections.primary_links %}
+    {% if links_section.title %}
+    <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+    {% endif %}
       {% for link in links_section.links %}
-      <li>
-        <a href="{{link.url}}" class="p-navigation__dropdown-item" onclick="event.stopPropagation()">
-          {{link.title}}
-        </a>
-      </li>
+        {% with 
+          url = link.url, 
+          title = link.title, 
+          description = link.description,
+          secondary_cta_url = link.secondary_cta_url,
+          secondary_cta_title = link.secondary_cta_title,
+          tabindex = "-1"
+        %}
+          {% include "templates/meganav/_list-item.html" %}
+        {% endwith %}
       {% endfor %}
     {% endfor %}
   {% endif %}

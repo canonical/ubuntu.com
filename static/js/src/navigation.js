@@ -1,131 +1,41 @@
 const ANIMATION_DELAY = 200;
-
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+const searchOverlay = document.querySelector(".p-navigation__search-overlay");
 const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(document.querySelectorAll(
-  ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
+  ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back):not(.js-account)"
 ));
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
+const skipLink = document.querySelector(".p-link--skip");
+const jsBackbuttons = document.querySelectorAll(".js-back");
+const reducedNav = document.querySelector(".p-navigation--sliding.is-reduced ");
+let dropdowns = [];
+const mainList = document.querySelector(
+  "nav.p-navigation__nav > .p-navigation__items"
+);
+const currentBubble = window.location.pathname.split("/")[1];
 
-// Update mobile view
-function updateMobileView() {
-  if (window.innerWidth <= 1150) {
-    topLevelNavDropdowns.forEach((dropdown) => {
-      if (dropdown.classList.contains("is-active")) {
-        navigation.classList.add("has-menu-open");
-      }
-    });
+nav.classList.remove("u-hide");
+
+// if the user has previously visited a page in the same bubble,
+// and scrolled up to reveal the reduced nav, show the nav on
+// pages within the same bubble
+function checkTopNav() {
+  const lastBubble = sessionStorage.getItem("navBubble");
+
+  if (lastBubble === currentBubble) {
+    addClassesToElements([document.body], ["navigation-lock"]);
   }
 }
+checkTopNav();
 
-// Initialize mobile view
-window.addEventListener("load", updateMobileView);
-window.addEventListener("resize", updateMobileView);
+//Helper functions
 
-// Event Listener for dropdown clicks
-topLevelNavDropdowns.forEach((dropdown, index) => {
-  dropdown.addEventListener("click", (event) => {
-    event.preventDefault();
-    handleDropdownClick(dropdown);
-  });
-});
-
-// Handle overlay click
-dropdownWindowOverlay?.addEventListener("click", () => {
-  if (dropdownWindow.classList.contains("is-active")) {
-    closeAll();
-  }
-});
-
-// Handle secondary nav click
-secondaryNav
-  ?.querySelector(".p-navigation__toggle--open")
-  ?.addEventListener("click", toggleSecondaryMobileNavDropdown);
-
-// Event Listener for global-nav-opened
-document.addEventListener("global-nav-opened", () => {
-  addClassesToElements(
-    [dropdownWindow, dropdownWindowOverlay],
-    ["slide-animation", "fade-animation"]
-  );
-  topLevelNavDropdowns.forEach((dropdown) => updateDropdownStates(dropdown, false));
-});
-
-// Toggles secondary mobile dropdown
-function toggleSecondaryMobileNavDropdown(event) {
-  event.preventDefault();
-  const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
-  const isDropdownOpen = mobileNavDropdown.classList.contains("is-open");
-  mobileNavDropdown.classList.toggle("is-open", !isDropdownOpen);
-  this.classList.toggle("is-open", !isDropdownOpen);
-}
-
-function handleDropdownClick(clickedDropdown) {
-  const isActive = clickedDropdown.classList.contains('is-active');
-  updateNavMenu(clickedDropdown, !isActive);
-  setTabindex(clickedDropdown.querySelector('ul.p-navigation__dropdown'));
-}
-
-function updateNavMenu(dropdown, show) {
-  let dropdownContent = document.getElementById(dropdown.id + '-content');
-  let dropdownContentMobile = document.getElementById(dropdown.id + '-content-mobile');
-
-  if (dropdownContent && dropdownContentMobile) {
-    if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
-    else updateDropdownStates(dropdown, show);
-    toggleDropdownWindowAnimation(show);
-  }
-}
-
-function updateDropdownStates(dropdown, show, delay) {
-  let isNested = dropdown.parentNode.classList.contains('p-navigation__dropdown');
-  if (!isNested && show) {
-    topLevelNavDropdowns
-      .filter((filteredDropdown) => filteredDropdown !== dropdown)
-      .forEach((filteredDropdown) => {
-        updateDesktopDropdownStates(filteredDropdown, !show, delay);
-        updateMobileDropdownState(filteredDropdown, !show);
-      });
-  }
-  updateDesktopDropdownStates(dropdown, show, delay);
-  updateMobileDropdownState(dropdown, show, isNested);
-}
-
-function updateDesktopDropdownStates(dropdown, show, delay) {
-  let dropdownContent = document.getElementById(dropdown.dataset.id + '-content');
-  toggleActiveState(dropdown, show);
-  toggleDropdownContentVisibility(dropdownContent, show, delay);
-}
-
-function updateMobileDropdownState(dropdown, show, isNested = false) {
-  let dropdownContentMobile = document.getElementById(dropdown.dataset.id + '-content-mobile');
-  if (dropdownContentMobile) {
-    dropdownContentMobile.setAttribute('aria-hidden', !show);
-    if (!isNested) {
-      toggleActiveState(dropdownContentMobile.parentNode.parentNode, show);
-    }
-  }
-}
-
-function toggleActiveState(element, active) {
+function toggleIsActiveState(element, active) {
   element.classList.toggle('is-active', active);
-}
-
-function toggleDropdownContentVisibility(contentElement, show, delay = 0) {
-  if (delay > 0 && !show) {
-    setTimeout(() => contentElement.classList.toggle('u-hide', !show), delay);
-  } else {
-    contentElement.classList.toggle('u-hide', !show);
-  }
-}
-
-function toggleDropdownWindowAnimation(show) {
-  dropdownWindow.classList.toggle('slide-animation', !show);
-  dropdownWindowOverlay.classList.toggle('fade-animation', !show);
-  toggleActiveState(dropdownWindow, show);
 }
 
 function addClassesToElements(elements, classes) {
@@ -133,26 +43,8 @@ function addClassesToElements(elements, classes) {
 }
 
 function removeClassesFromElements(elements, classes) {
-  elements.forEach((element, index) =>
-    element.classList.remove(classes[index])
-  );
+  elements.forEach((element, index) => element.classList.remove(classes[index]));
 }
-
-function closeDropdown(dropdown) {
-  toggleActiveState(dropdown, false);
-  toggleDropdownWindowAnimation(false);
-  if (window.history.pushState) {
-    window.history.pushState(null, null, window.location.href.split("#")[0]);
-  }
-}
-
-const currentBubble = window.location.pathname.split("/")[1];
-const skipLink = document.querySelector(".p-link--skip");
-const reducedNav = document.querySelector(".p-navigation--sliding.is-reduced ");
-let dropdowns = [];
-const mainList = document.querySelector(
-  "nav.p-navigation__nav > .p-navigation__items"
-);
 
 function getAllElements(queryString) {
   const lists = [...dropdowns, mainList];
@@ -164,9 +56,35 @@ function getAllElements(queryString) {
   return listItems;
 }
 
-nav.classList.remove("u-hide");
+// Attach initial event listeners
 
-checkTopNav();
+window.addEventListener("load", updateMobileView);
+window.addEventListener("resize", updateMobileView);
+
+topLevelNavDropdowns.forEach((dropdown) => {
+  dropdown.addEventListener("click", (event) => {
+    event.preventDefault();
+    handleDropdownClick(dropdown);
+  });
+});
+
+dropdownWindowOverlay?.addEventListener("click", () => {
+  if (dropdownWindow.classList.contains("is-active")) {
+    closeAll();
+  }
+});
+
+secondaryNav
+  ?.querySelector(".p-navigation__toggle--open")
+  ?.addEventListener("click", toggleSecondaryMobileNavDropdown);
+
+document.addEventListener("global-nav-opened", () => {
+  addClassesToElements(
+    [dropdownWindow, dropdownWindowOverlay],
+    ["slide-animation", "fade-animation"]
+  );
+  topLevelNavDropdowns.forEach((dropdown) => updateNavMenu(dropdown, false));
+});
 
 document.addEventListener("wheel", function (e) {
   if (window.scrollY <= 0) {
@@ -196,14 +114,150 @@ if (reducedNav) {
   });
 }
 
-// if the user has previously visited a page in the same bubble,
-// and scrolled up to reveal the reduced nav, show the nav on
-// pages within the same bubble
-function checkTopNav() {
-  const lastBubble = sessionStorage.getItem("navBubble");
+// Event handler functions
 
-  if (lastBubble === currentBubble) {
-    document.body.classList.add("navigation-lock");
+function updateMobileView() {
+  if (window.innerWidth <= 1150) {
+    topLevelNavDropdowns.forEach((dropdown) => {
+      if (dropdown.classList.contains("is-active")) {
+        addClassesToElements([navigation], ["has-menu-open"]);
+      }
+    });
+  } else if (window.innerWidth >= 1150) {
+    if (secondaryNav) {
+      secondaryNav.querySelector(".p-navigation__nav")
+        ?.classList.remove("is-open");
+    }
+  }
+}
+
+function toggleSecondaryMobileNavDropdown(event) {
+  event.preventDefault();
+  const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
+  const isDropdownOpen = mobileNavDropdown.classList.contains("is-open");
+  mobileNavDropdown.classList.toggle("is-open", !isDropdownOpen);
+  this.classList.toggle("is-open", !isDropdownOpen);
+}
+
+function handleDropdownClick(clickedDropdown) {
+  console.log("handleDropdownClick",clickedDropdown.classList)
+  const isActive = clickedDropdown.classList.contains('is-active');
+  console.log("handleDropdownClick", isActive)
+  updateNavMenu(clickedDropdown, !isActive);
+  setTabindex(clickedDropdown.querySelector('ul.p-navigation__dropdown'));
+}
+
+function goBackOneLevel(e, backButton) {
+  e.preventDefault();
+  const target = backButton.parentNode.parentNode;
+  target.setAttribute("aria-hidden", true);
+  toggleIsActiveState(backButton.closest(".is-active"), false);
+  toggleIsActiveState(backButton.closest(".is-active"), false);
+  setTabindex(target.parentNode.parentNode);
+
+  if (target.parentNode.getAttribute("role") == "menuitem") {
+    updateNavMenu(target.parentNode, false);
+  }
+};
+
+function keyPressHandler(e) {
+  if (e.key === "Escape") {
+    closeAll();
+  }
+}
+
+// Attaches to tab items in desktop dropdown and updates them,
+// also applies the same update to the mobile dropdown
+function toggleSection(e) {
+  e.preventDefault();
+
+  const target = e.target.getAttribute("aria-controls");
+  const el = document.querySelector(`.dropdown-content-desktop #${target}`);
+  
+  el.removeAttribute("hidden");
+
+  const mobileDropdownEle = document.getElementById(e.target.parentNode.dataset.id)
+  if (mobileDropdownEle) {
+    updateNavMenu(mobileDropdownEle, true);
+  }
+
+  setTimeout(function () {
+    toggleIsActiveState(el, true);
+    el.focus();
+  }, 1);
+}
+
+/**
+  Function to update the state of mobile and desktop dropdowns
+  @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
+*/
+function updateNavMenu(dropdown, show) {
+  console.log("updateNavMenu", dropdown, show)
+  let dropdownContent = document.getElementById(dropdown.id + '-content');
+  let dropdownContentMobile = document.getElementById(dropdown.id + '-content-mobile');
+  if (dropdownContent && dropdownContentMobile) {
+    if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
+    else updateDropdownStates(dropdown, show);
+    toggleDropdownWindowAnimation(show);
+  } else if (dropdownContentMobile) {
+    updateMobileDropdownState(dropdown, show)
+  }
+
+}
+
+function updateDropdownStates(dropdown, show, delay) {
+  let isNested = dropdown.parentNode.classList.contains('p-navigation__dropdown');
+  if (!isNested && show) {
+    topLevelNavDropdowns
+      .filter((filteredDropdown) => filteredDropdown !== dropdown)
+      .forEach((filteredDropdown) => {
+        updateDesktopDropdownStates(filteredDropdown, !show, delay);
+        updateMobileDropdownState(filteredDropdown, !show);
+      });
+  }
+  updateDesktopDropdownStates(dropdown, show, delay);
+  updateMobileDropdownState(dropdown, show, isNested);
+}
+
+function updateDesktopDropdownStates(dropdown, show, delay) {
+  let dropdownContent = document.getElementById(dropdown.dataset.id + '-content');
+  toggleIsActiveState(dropdown, show);
+  if (dropdownContent) {
+    toggleDropdownContentVisibility(dropdownContent, show, delay);
+  }
+}
+
+function updateMobileDropdownState(dropdown, show, isNested) {
+  let dropdownContentMobile = document.getElementById(dropdown.dataset.id + '-content-mobile');
+  if (dropdownContentMobile) {
+    dropdownContentMobile.setAttribute('aria-hidden', !show);
+    toggleIsActiveState(dropdownContentMobile.parentNode.parentNode, show);
+    toggleIsActiveState(dropdownContentMobile.parentNode, show);
+  }
+}
+
+// Functions to handle visual states
+
+function toggleDropdownContentVisibility(contentElement, show, delay = 0) {
+  if (delay > 0 && !show) {
+    setTimeout(() => contentElement.classList.toggle('u-hide', !show), delay);
+  } else {
+    contentElement.classList.toggle('u-hide', !show);
+  }
+}
+
+function toggleDropdownWindowAnimation(show) {
+  dropdownWindow.classList.toggle('slide-animation', !show);
+  dropdownWindowOverlay.classList.toggle('fade-animation', !show);
+  toggleIsActiveState(dropdownWindow, show);
+}
+
+// Not sure if we need this function
+function closeDropdown(dropdown) {
+  toggleIsActiveState(dropdown, false);
+  toggleDropdownWindowAnimation(false);
+  if (window.history.pushState) {
+    window.history.pushState(null, null, window.location.href.split("#")[0]);
   }
 }
 
@@ -219,7 +273,7 @@ function makeRequest(url, callback) {
   req.send();
 }
 
-function createTempElement(responseText, selector) {
+function convertHTMLToNode(responseText, selector) {
   const tempElement = document.createElement("div");
   tempElement.innerHTML = responseText;
   return tempElement.querySelector(selector);
@@ -227,66 +281,67 @@ function createTempElement(responseText, selector) {
 
 function attachBackButtonEventListener(element) {
   element.addEventListener("click", function(e) {
+    e.stopImmediatePropagation();
     goBackOneLevel(e, element);
-  });
+  }, true);
 }
 
 function deactivateActiveCTA(element) {
-  toggleActiveState(element, false);
+  toggleIsActiveState(element, false);
 }
 
-function fetchDropdown(event, url, id) {
-  const triggerEl = event.target;
+/**
+  Fetches the contents of indervidual, top level, navigation items
+  @param {String} url the path tp fetch the subsection
+  @param {String} id the id of the target subsection
+*/
+function fetchDropdown(e, url, id) {
+  const triggerEl = e.target;
   const container = document.getElementById(id);
   const mobileContainer = triggerEl.parentNode;
 
   if (container.innerHTML === "") {
     makeRequest(url, function() {
-      const desktopContent = createTempElement(this.responseText, ".desktop-dropdown-content");
+      const desktopContent = convertHTMLToNode(this.responseText, ".desktop-dropdown-content");
       container.appendChild(desktopContent);
 
-      const mobileContent = createTempElement(this.responseText, ".dropdown-content-mobile");
+      const mobileContent = convertHTMLToNode(this.responseText, ".dropdown-content-mobile");
       mobileContainer.appendChild(mobileContent);
 
       const targetDropdowns = mobileContent.querySelectorAll("ul.p-navigation__dropdown");
       dropdowns = [...dropdowns, ...targetDropdowns];
 
-      const jsBackButtons = mobileContainer.querySelectorAll(".js-back");
-      jsBackButtons.forEach(attachBackButtonEventListener);
+      const targetJsBackButtons = mobileContainer.querySelectorAll(".js-back");
+      targetJsBackButtons.forEach(attachBackButtonEventListener);
 
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
 
       const newToggles = mobileContainer.querySelectorAll("li.p-navigation__item--dropdown-toggle");
-      newToggles.forEach(toggle => toggle.addEventListener("click", function(e) {
-        console.log("Event should be firing on click");
+      newToggles.forEach(toggle => toggle.addEventListener("click", (e) => {
+        e.stopImmediatePropagation();
+        handleDropdownClick(toggle);
       }));
     });
   }
 }
 
-const goBackOneLevel = (e, backButton) => {
-  e.preventDefault();
-  const target = backButton.parentNode.parentNode;
-  target.setAttribute("aria-hidden", true);
-  toggleActiveState(backButton.closest(".is-active"), false);
-  toggleActiveState(backButton.closest(".is-active"), false);
-  setTabindex(target.parentNode.parentNode);
-
-  if (target.parentNode.getAttribute("role") == "menuitem") {
-    updateNavMenu(target.parentNode, false);
-  }
-};
-
-const setTabindex = (target) => {
+/**
+  Updates the tab index of the target group to 0
+  @param {HTMLNode} target <ul class="p-navigation__items">
+  or <ul class="p-navigation__dropdown">
+*/
+function setTabindex(target) {
+  console.log("here")
   const lists = [...dropdowns, mainList];
-  lists.forEach(function (list) {
+  lists.forEach((list) => {
     const elements = list.querySelectorAll("ul > li > a, ul > li > button");
     elements.forEach(function (element) {
       element.setAttribute("tabindex", "-1");
     });
   });
-  target.querySelectorAll("li").forEach(function (element) {
+  console.log(target)
+  target.querySelectorAll("li").forEach((element) => {
     if (element.parentNode === target) {
       element.children[0].setAttribute("tabindex", "0");
     }
@@ -304,13 +359,16 @@ function toggleMenu(e) {
   }
 }
 
+
 function closeNav() {
   menuButtons.forEach((searchButton) => {
     searchButton.removeAttribute("aria-pressed");
   });
 
-  navigation.classList.remove("has-menu-open");
-
+  removeClassesFromElements(
+    [navigation, mainList], 
+    ["has-menu-open", "is-active"]
+  );
   deactivateMobileDropdownElements();
   deactivateDesktopDropdownElements();
 
@@ -330,12 +388,13 @@ function deactivateMobileDropdownElements(exception) {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle"
   );
-  dropdownElements.forEach(function (dropdown) {
+  dropdownElements.forEach((dropdown) => {
     if (dropdown.classList.contains("is-active")) {
-      toggleActiveState(dropdown, false);
-      dropdown
-        .querySelector("ul.p-navigation__dropdown")
-        .setAttribute("aria-hidden", true);
+      toggleIsActiveState(dropdown, false);
+      const listItem = dropdown.querySelector("ul.p-navigation__dropdown")
+      listItem.setAttribute("aria-hidden", true);
+      toggleIsActiveState(listItem, false);
+
     }
   });
 }
@@ -344,12 +403,6 @@ function closeAll() {
   closeSearch();
   closeNav();
   setTabindex(mainList);
-}
-
-function keyPressHandler(e) {
-  if (e.key === "Escape") {
-    closeAll();
-  }
 }
 
 function openMenu(e) {
@@ -364,13 +417,13 @@ function openMenu(e) {
   setTabindex(mainList);
 }
 
-//
-//Setup and functions for navigaiton search
-//
+// Setup and functions for navigaiton search
 function initNavigationSearch() {
   searchButtons.forEach((searchButton) => {
     searchButton.addEventListener("click", toggleSearch);
   });
+
+  searchOverlay.addEventListener("click", toggleSearch);
 
   if (menuButtons) {
     menuButtons.forEach((menuButton) =>
@@ -391,15 +444,14 @@ function toggleSearch(e) {
 
 function openSearch(e) {
   e.preventDefault();
-  const searchInput = navigation.closest(".p-search-box__input");
-
+  const searchInput = navigation.querySelector(".p-search-box__input");
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
 
-  navigation.classList.add("has-search-open");
+  addClassesToElements([navigation], ["has-search-open"]);
   if (secondaryNav) {
-    secondaryNav.classList.add("u-hide");
+    addClassesToElements([secondaryNav], ["u-hide"]);
   }
   searchInput.focus();
   document.addEventListener("keyup", keyPressHandler);
@@ -423,131 +475,127 @@ const searchButtons = document.querySelectorAll(".js-search-button");
 const overlay = document.querySelector(".p-navigation__search-overlay");
 initNavigationSearch();
 
-function toggleSection(e) {
-  e.preventDefault();
-
-  const target = e.target.getAttribute("aria-controls");
-  const el = document.querySelector(`.dropdown-content-desktop #${target}`);
-
-  el.removeAttribute("hidden");
-
-  setTimeout(function () {
-    toggleActiveState(el, true);
-    el.focus();
-  }, 1);
-}
-
-// Init login
-
+// Initiate login
 var accountContainer = document.querySelector(".js-account");
 if (accountContainer) {
   fetch("/account.json")
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
-            <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true"><i class="p-icon--user is-light">${data.account.fullname}</i></a>
-            <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
-              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">Ubuntu Pro dashboard</a></li>
-              <li>
-                <hr class="u-no-margin--bottom">
-                <a href="/account/invoices" class="p-navigation__dropdown-item">Invoices & Payments</a>
-              </li>
-              <li>
-                <a href="https://login.ubuntu.com/" class="p-navigation__dropdown-item">Account settings</a>
-              </li>
-              <li>
-                <a href="/logout" class="p-navigation__dropdown-item">Logout</a>
-              </li>
-            </ul>
-          </div>`;
-      }
+        accountContainer.innerHTML = 
+          `<button href="#" class="p-navigation__link" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true"><i class="p-icon--user is-light is-signed-in">${data.account.fullname}</i></button>
+          <ul class="p-navigation__dropdown" id="canonical-login-content-mobile" aria-hidden="true">
+            <li class="p-navigation__item--dropdown-close" id="canonical-login-back">
+              <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1" onclick="event.stopPropagation()">
+                Back
+              </button>
+            </li>
+            <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
+            <li class="p-navigation__dropdown-item">
+              <a class="p-link--inverted" href="/account/invoices onclick="event.stopPropagation()">Invoices & Payments</a>
+            </li>
+            <li class="p-navigation__dropdown-item">
+              <a class="p-link--inverted" href="https://login.ubuntu.com/" onclick="event.stopPropagation()">Account settings</a>
+            </li>
+            <li class="p-navigation__dropdown-item">
+              <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
+            </li>
+          </ul>`;
 
-      function toggleMenu(element, show) {
-        const container = element.closest(
-          ".p-navigation__item--dropdown-toggle"
-        );
-        var target = document.getElementById(
-          element.getAttribute("aria-controls")
-        );
-
-        if (show) {
-          toggleActiveState(container, true);
-          [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
-            dropdownContent.classList.add("u-hide");
-          });
-        } else {
-          toggleActiveState(container, false);
-        }
-
-        if (target) {
-          element.setAttribute("aria-expanded", show);
-          target.setAttribute("aria-hidden", !show);
+        function toggleUserMenu(element, show) {
+          const container = element.closest(
+            ".p-navigation__item--dropdown-toggle"
+          );
+          var target = document.getElementById(
+            element.getAttribute("aria-controls")
+          );
 
           if (show) {
-            target.focus();
-            topLevelNavDropdowns.forEach(function (dropdown) {
-              closeDropdown(dropdown);
+            toggleIsActiveState(container, true);
+            [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
+              dropdownContent.classList.add("u-hide");
+            });
+          } else {
+            toggleIsActiveState(container, false);
+          }
+
+          if (target) {
+            element.setAttribute("aria-expanded", show);
+            target.setAttribute("aria-hidden", !show);
+
+            if (show) {
+              target.focus();
+              topLevelNavDropdowns.forEach(function (dropdown) {
+                closeDropdown(dropdown);
+              });
+            }
+          }
+        }
+
+        /**
+          Attaches event listeners for the menu toggle open and close click events.
+          @param {HTMLElement} menuToggle The menu container element.
+        */
+        function setupContextualMenu(menuToggle) {
+          menuToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var menuAlreadyOpen =
+              menuToggle.getAttribute("aria-expanded") === "true";
+
+            var top = menuToggle.offsetHeight;
+            // for inline elements leave some space between text and menu
+            if (window.getComputedStyle(menuToggle).display === "inline") {
+              top += 5;
+            }
+
+            toggleUserMenu(menuToggle, !menuAlreadyOpen, top);
+          });
+        }
+
+        /**
+          Attaches event listeners for all the menu toggles in the document and
+          listeners to handle close when clicking outside the menu or using ESC key.
+          @param {String} contextualMenuToggleSelector The CSS selector matching menu toggle elements.
+        */
+        function setupAllContextualMenus(contextualMenuToggleSelector) {
+          // Setup all menu toggles on the page.
+          var userToggle = document.querySelector(contextualMenuToggleSelector);
+          if (userToggle) {
+            setupContextualMenu(userToggle);
+
+            // Add handler for clicking outside the menu.
+            document.addEventListener("click", function (event) {
+              var contextualMenu = document.getElementById(
+                userToggle.getAttribute("aria-controls")
+              );
+              var clickOutside = !(
+                userToggle.contains(event.target) ||
+                contextualMenu.contains(event.target)
+              );
+
+              if (clickOutside) {
+                toggleUserMenu(userToggle, false);
+              }
             });
           }
         }
+        
+        const jsBackButton = document.querySelector(".js-account .js-back");
+        attachBackButtonEventListener(jsBackButton);
+
+        const accountDropdown = document.querySelector(".p-navigation__item--dropdown-toggle.js-account")
+        accountDropdown.addEventListener("click", (e) => {
+          handleDropdownClick(accountDropdown)
+        })
+
+        // setupAllContextualMenus(
+        //   ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
+        // );
       }
-
-      /**
-        Attaches event listeners for the menu toggle open and close click events.
-        @param {HTMLElement} menuToggle The menu container element.
-      */
-      function setupContextualMenu(menuToggle) {
-        menuToggle.addEventListener("click", function (event) {
-          event.preventDefault();
-
-          var menuAlreadyOpen =
-            menuToggle.getAttribute("aria-expanded") === "true";
-
-          var top = menuToggle.offsetHeight;
-          // for inline elements leave some space between text and menu
-          if (window.getComputedStyle(menuToggle).display === "inline") {
-            top += 5;
-          }
-
-          toggleMenu(menuToggle, !menuAlreadyOpen, top);
-        });
-      }
-
-      /**
-        Attaches event listeners for all the menu toggles in the document and
-        listeners to handle close when clicking outside the menu or using ESC key.
-        @param {String} contextualMenuToggleSelector The CSS selector matching menu toggle elements.
-      */
-      function setupAllContextualMenus(contextualMenuToggleSelector) {
-        // Setup all menu toggles on the page.
-        var userToggle = document.querySelector(contextualMenuToggleSelector);
-        if (userToggle) {
-          setupContextualMenu(userToggle);
-
-          // Add handler for clicking outside the menu.
-          document.addEventListener("click", function (event) {
-            var contextualMenu = document.getElementById(
-              userToggle.getAttribute("aria-controls")
-            );
-            var clickOutside = !(
-              userToggle.contains(event.target) ||
-              contextualMenu.contains(event.target)
-            );
-
-            if (clickOutside) {
-              toggleMenu(userToggle, false);
-            }
-          });
-        }
-      }
-
-      setupAllContextualMenus(
-        ".p-navigation__user .p-navigation__item--dropdown-toggle .p-navigation__link"
-      );
     });
 }
 

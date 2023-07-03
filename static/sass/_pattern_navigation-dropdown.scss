@@ -56,66 +56,33 @@
     }
 
     .p-side-navigation {
-      @media (min-width: $breakpoint-navigation-threshold) {
-        height: 100%;
-        padding: 2rem 0;
-        position: relative;
+      height: 100%;
+      padding: 2rem 0;
+      position: relative;
 
-        &::after {
-          background: #262626;
-          bottom: 0;
-          content: "";
-          display: block;
-          left: -50vw;
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
+      &::after {
+        background: #262626;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: -50vw;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
 
       &__drawer {
         height: 100%;
         position: relative;
-
-        @media (max-width: $breakpoint-navigation-threshold) {
-          max-width: none;
-          position: initial;
-          transform: none;
-        }
       }
 
       &__link {
         border-bottom: $dropdown-border;
-        padding: 0.75rem 2rem 0.75rem 1.5rem;
-
-        @media (min-width: $breakpoint-navigation-threshold) {
-          padding: 0.25rem 1rem 0.25rem 0.5rem;
-        }
+        padding: 0.25rem 1rem 0.25rem 0.5rem;
 
         &::before,
         &:focus::before {
           display: none;
-        }
-
-        &::after {
-          @extend %icon;
-          @include vf-icon-chevron;
-
-          bottom: 0;
-          content: "";
-          margin: auto;
-          position: absolute;
-          right: 1rem;
-          top: 0;
-          transform: rotate(-90deg);
-
-          @media (min-width: $breakpoint-small) {
-            right: 1.5rem;
-          }
-
-          @media (min-width: $breakpoint-navigation-threshold) {
-            display: none;
-          }
         }
 
         &.is-active {
@@ -132,15 +99,11 @@
   }
 
   .dropdown-window__footer {
-    padding: 0 1rem;
-
-    @media (min-width: $breakpoint-navigation-threshold) {
-      align-items: start;
-      border-top: $dropdown-border;
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-    }
+    align-items: start;
+    border-top: $dropdown-border;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
 
     [class*="p-button"] {
       background: transparent;
@@ -149,121 +112,56 @@
   }
 
   .dropdown-window__side-panel {
-    margin-top: 1rem;
-
-    @media (min-width: $breakpoint-small) {
-      padding: 0 0.5rem;
-    }
-
-    @media (min-width: $breakpoint-navigation-threshold) {
-      margin: 2.5rem 0;
-      padding: 0;
-    }
+    margin: 2.5rem 0;
+    padding: 0;
 
     a {
       color: #3097ff;
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        display: block;
-      }
-    }
-
-    .p-muted-heading {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        padding-left: 1rem;
-      }
-    }
-
-    .p-list__item {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        padding-left: 1rem;
-      }
     }
   }
 
   .dropdown-window__main-panel {
-    @media (min-width: $breakpoint-navigation-threshold) {
-      margin: 2.5rem 0;
-      padding: 0 2rem 0 0;
+    margin: 2.5rem 0;
+    padding: 0 2rem 0 0;
 
-      &.is-bordered {
-        border-right: $dropdown-border;
-      }
+    &.is-bordered {
+      border-right: $dropdown-border;
     }
 
-    .p-list {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        margin-bottom: 0;
-      }
-    }
-
-    .p-list__item {
+    .p-navigation__dropdown-item {
       border-bottom: $dropdown-border;
       line-height: 1.5rem;
-      margin: 0 0.5rem;
+      margin: 0;
       padding: 0;
       position: relative;
-
-      @media (min-width: $breakpoint-small) {
-        margin: 0 1rem;
-      }
-
-      @media (min-width: $breakpoint-navigation-threshold) {
-        margin: 0;
-      }
 
       a {
         display: block;
         padding: 0.25rem 0.5rem;
+        white-space: normal;
 
-        &:not(:first-child) {
+        &.p-button--positive {
           display: inline-block;
           margin: 0.5rem 0.5rem 0.75rem;
         }
 
-        &:hover:not([class*="p-button"]) {
+        &:hover:not([class*="p-button--positive"]) {
           background-color: rgba(170, 170, 170, 0.1);
           text-decoration: none;
         }
       }
 
       &:last-child {
-        @media (min-width: $breakpoint-navigation-threshold) {
-          border-bottom: 0;
-        }
+        border-bottom: 0;
+      }
+
+      &::before {
+        left: 2rem;
       }
     }
 
     .p-muted-heading {
-      padding-left: 1rem;
-
-      @media (min-width: $breakpoint-small) {
-        padding-left: 1.5rem;
-      }
-
-      @media (min-width: $breakpoint-navigation-threshold) {
-        padding-left: 0.5rem;
-      }
-    }
-  }
-
-  .dropdown-window__sidenav-content {
-    @media (max-width: $breakpoint-navigation-threshold) {
-      @include vf-animation(transform, brisk, out);
-
-      background-color: #2d2d2d;
-      bottom: 0;
-      position: fixed;
-      top: 0;
-      transform: translateX(150vw);
-      width: 100%;
-      z-index: 101;
-
-      &.is-active {
-        @include vf-animation(transform, brisk, out);
-
-        transform: translateX(100vw);
-      }
+      padding-left: 0.5rem;
     }
   }
 
@@ -292,19 +190,11 @@
 
       bottom: 0;
       content: "";
-      left: 0.75rem;
+      left: 1.25rem;
       margin: auto;
       position: absolute;
       top: 0;
       transform: rotate(90deg);
-
-      @media (min-width: $breakpoint-small) {
-        left: 1.25rem;
-      }
-    }
-
-    @media (min-width: $breakpoint-navigation-threshold) {
-      display: none;
     }
   }
 
