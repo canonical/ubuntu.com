@@ -94,7 +94,7 @@ products:
         - title: Products
           links:
             - title: Ubuntu Desktop
-              description: Secure Enterprise Linux
+              description: Secure enterprise Linux
               url: /desktop
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -241,7 +241,7 @@ products:
               url: /security/esm
             - title: Landscape
               description: Monitor and manage machines
-              url: https://landscape.canonical.com/
+              url: /landscape
             - title: Livepatch
               description: Stay patched without reboots
               url: /security/livepatch
@@ -282,7 +282,7 @@ products:
               description: Containerised workloads
               url: /kubernetes
             - title: MicroK8s
-              description: Simplest way to get K8s
+              description: Simplest way to get Kubernetes
               url: https://microk8s.io/
             - title: Kubeflow
               description: Machine learning toolkit for K8s
@@ -321,11 +321,11 @@ products:
       secondary_links:
         - title: Links
           links:
-            - title: Juju Documentation
+            - title: Juju documentation
               url: https://juju.is/docs
-            - title: Juju Tutorials
+            - title: Juju tutorials
               url: https://juju.is/tutorials
-            - title: Juju Blog
+            - title: Juju blog
               url: https://juju.is/blog
             - title: Charmhub Discourse
               url: https://discourse.charmhub.io/
@@ -380,7 +380,7 @@ products:
             - title: Servers
               description: Hardware for data centres
               url: /certified/servers
-            - title: IoT Devices
+            - title: IoT devices
               description: Stable and secure devices
               url: /certified/devices
             - title: SoCs
@@ -464,15 +464,15 @@ use_case:
         - title: Data fabric
           description: Deploy and operate databases
           url: /data
+        - title: Edge computing
+          description: Micro clouds
+          url: /edge-computing
         - title: HPC and supercomputing
           description: High-performance computing
           url: /hpc
         - title: IoT
           description: Internet of Things
           url: /internet-of-things
-        - title: Edge computing
-          description: Micro clouds
-          url: /edge-computing
         - title: Managed applications
           description: Fully managed open source
           url: /managed/apps
@@ -487,44 +487,35 @@ use_case:
           url: /openstack/consulting
         - title: Public cloud
           description: Ubuntu across public clouds
-          url: /cloud/public-clou
-        - title: Robotics
-          description: Build robots with Ubuntu and ROS
-          url: /robotics
+          url: /cloud/public-cloud
         - title: Security
           description: Enterprise-grade security
           url: /security
-        - title: Telco
-          description: Carrier-grade solutions
-          url: /telco
+        - title: Signage
+          description: Smart displays and kiosks
+          url: /internet-of-things/smart-displays
+
+  secondary_links:
+    - title: By industry
+      links:
         - title: Automotive
           description: Smarter vehicles and factories
           url: /automotive
         - title: Financial services
           description: Innovate with open source
           url: /financial-services
-        - title: Industrial
-          description: The factory of the future
-          url: /industrial
         - title: Government
           description: Public sector and federal
           url: /gov
-
-  secondary_links:
-    - title: Internet of Things
-      links:
-        - title: Robotics
-          url: /robotics
-        - title: Smart home
-          url: /internet-of-things/smart-home
         - title: Industrial
+          description: The factory of the future
           url: /industrial
-        - title: Automotive
-          url: /automotive
-        - title: Smart displays
-          url: /internet-of-things/smart-displays
-        - title: Smart city
-          url: /internet-of-things/smart-city
+        - title: Robotics
+          description: Build robots with Ubuntu and ROS
+          url: /robotics
+        - title: Telco
+          description: Carrier-grade solutions
+          url: /telco
 
 support:
   side_nav_sections:
@@ -579,7 +570,7 @@ support:
               description: Resource hub
               url: /engage
             - title: Tutorials
-              description: Guides for development activities
+              description: Guides for development
               url: /tutorials
             - title: Ask Ubuntu
               description: Q&A site for users and developers
@@ -614,10 +605,10 @@ community:
         - title: Resources
           links:
             - title: Tutorials
-              description: Guides for development and DevOps
+              description: Guides for development
               url: /tutorials/
             - title: Documentation
-              description: Official Ubuntu Documentation
+              description: Official Ubuntu documentation
               url: https://help.ubuntu.com/
             - title: Ubuntu on Air
               description: Community-focused videos
@@ -686,7 +677,7 @@ community:
             - title: QA and testing
               description: Test releases and features
               url: https://ubuntu.com/community/contribute/qa-testing
-            - title: Report Bugs
+            - title: Report bugs
               description: Report bugs on Launchpad
               url: https://help.ubuntu.com/community/ReportingBugs
             - title: Software development
@@ -793,7 +784,7 @@ get_ubuntu:
             - title: Ubuntu flavours
               description: Variations of Ubuntu OS
               url: /download/flavours
-            - title: Ubuntu ready PC and Laptops
+            - title: Ubuntu-ready PC and laptops
               description: Certified hardware
               url: /certified
       secondary_links:
@@ -849,6 +840,9 @@ get_ubuntu:
               url: /download/server/s390x
             - title: RISC-V
               url: /download/risc-v
+      section_footer:
+        cta_title: Get Ubuntu Server
+        cta_url: /download/server
     - title: Raspberry Pi
       primary_links:
         - title: Products
@@ -903,7 +897,7 @@ get_ubuntu:
       secondary_links:
         - title: Tutorials and docs
           links:
-            - title: Intel IoT Platforms
+            - title: Intel IoT platforms
               url: /download/iot/intel-iotg
             - title: Intel NUC
               url: /download/intel-nuc
@@ -913,7 +907,7 @@ get_ubuntu:
               url: /download/qualcomm-dragonboard-410c
             - title: Intel IEI TANK 870
               url: /download/intel-iei-tank-870
-            - title: Xilinx Evaluation kits & SOMs
+            - title: AMD-Xilinx Evaluation kits & SOMs
               url: /download/xilinx
             - title: Ubuntu for Raspberry Pi
               url: /raspberry-pi
@@ -932,7 +926,7 @@ get_ubuntu:
             - title: Publish apps
               description: For users, servers and devices
               url: https://snapcraft.io/
-            - title: Cloud Packages
+            - title: Cloud packages
               description: Deploy and operate cloud software
               url: https://charmhub.io/
             - title: AI and Machine Learning
