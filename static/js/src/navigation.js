@@ -318,7 +318,7 @@ function replaceUbuntuAdvantage() {
 }
 replaceUbuntuAdvantage();
 
-// TEMP FIX - PETE F 03.07.23
+// TEMP FIX - MPT 03.07.23
 // REPLACES CANONICAL LOGO WITH CANONICAL LINK UNTIL
 // WE MERGE THE NEW MEGANAV
 function replaceGlobalNavLogo() {
