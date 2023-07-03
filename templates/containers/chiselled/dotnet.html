@@ -28,26 +28,26 @@
   <div class="row">
     <div class="col-3 col-medium-3 p-block">
       <div class="u-data-border--top">
-        <p class="p-heading--2"><strong>20%</strong></p>
-        <p class="p-heading--4">Better memory usage</p>
+        <p class="p-heading--2 u-no-margin"><strong>20%</strong></p>
+        <p class="p-heading--4 u-no-margin">Better memory usage</p>
       </div>
     </div>
     <div class="col-3 col-medium-3 p-block">
       <div class="u-data-border--top">
-        <p class="p-heading--2"><strong>40%</strong></p>
-        <p class="p-heading--4">Better response time</p>
+        <p class="p-heading--2 u-no-margin"><strong>40%</strong></p>
+        <p class="p-heading--4 u-no-margin">Better response time</p>
       </div>
     </div>
     <div class="col-3 col-medium-3 p-block">
       <div class="u-data-border--top">
-        <p class="p-heading--2"><strong>25%</strong></p>
-        <p class="p-heading--4">Fewer resources</p>
+        <p class="p-heading--2 u-no-margin"><strong>25%</strong></p>
+        <p class="p-heading--4 u-no-margin">Fewer resources</p>
       </div>
     </div>
     <div class="col-3 col-medium-3 p-block">
       <div class="u-data-border--top">
-        <p class="p-heading--2"><strong>50%</strong></p>
-        <p class="p-heading--4">Less costs</p>
+        <p class="p-heading--2 u-no-margin"><strong>50%</strong></p>
+        <p class="p-heading--4 u-no-margin">Less costs</p>
       </div>
     </div>
     <p>Data is based on migration from servers to containers <br class="u-hide--small u-hide--medium"/>and from Windows to Ubuntu with chiselled Ubuntu.</p>
@@ -224,12 +224,13 @@
         <div class="col-3 col-medium-3">
           <div class="p-heading-icon--small">
             <div class="p-heading-icon__header">
-              <div class="p-heading-icon__img u-hide--small u-hide--medium">
-                {{ image (
-                  url="https://assets.ubuntu.com/v1/6623525b-We+support+your+operations-space-top-x3.png",
+              <div class="p-heading-icon__img u-hide--small u-hide--medium" style="margin-top: 0.7rem;">
+                {{ 
+                  image (
+                  url="https://assets.ubuntu.com/v1/30798854-settings.svg",
                   alt="",
-                  width="96",
-                  height="121",
+                  width="32",
+                  height="33",
                   hi_def=True,
                   loading="lazy"
                   ) | safe
