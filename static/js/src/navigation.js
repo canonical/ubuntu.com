@@ -323,9 +323,9 @@ replaceUbuntuAdvantage();
 // WE MERGE THE NEW MEGANAV
 function replaceGlobalNavLogo() {
   const globalNavLogo = document.querySelector(".global-nav__header-logo");
-  if (globalNavLogo){
-    globalNavLogo.innerHTML = `<a href="https://canonical.com/" style="color:white;">Canonical</a>`
+  if (globalNavLogo) {
+    globalNavLogo.innerHTML = `<a href="https://canonical.com/" style="color:white;">Canonical</a>`;
   }
 }
 
-replaceGlobalNavLogo()
+replaceGlobalNavLogo();
