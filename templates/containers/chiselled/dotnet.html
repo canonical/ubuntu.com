@@ -9,7 +9,6 @@
 {% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-
 <section class="p-strip">
   <div class="row">
     <div class="col-6 col-medium-3">
@@ -126,7 +125,6 @@
       </div>
     </div>
   </div>
-  </div>
 </section>
 
 <section class="p-strip is-deep u-no-padding--top">
@@ -136,7 +134,9 @@
       <h2>Lower costs by up to 50%</h2>
     </div>
     <div class="col-6 col-medium-3">
-      <p>Use chiselled Ubuntu to lower costs when you migrate from Windows to Ubuntu and Azure. Find out how chiselled Ubuntu can support your migration from servers to containers.</p>
+      <div class="p-block">
+        <p>Use chiselled Ubuntu to lower costs when you migrate from Windows to Ubuntu and Azure. Find out how chiselled Ubuntu can support your migration from servers to containers.</p>
+      </div>
       <p><a href="/containers/contact-us" class="p-heading--2 js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -149,7 +149,9 @@
       <h2>Peace of mind with <br class="u-hide--small" />Ubuntu Pro</h2>
     </div>
     <div class="col-6 col-medium-3">
-      <p>Ubuntu Pro offers an end-to-end capability from development workstation, applications and toolchains through to production-ready, secure-by-design ultra-small supported container images, starting with the .NET platform and with full support, security and uptime guaranteed by Canonical.</p>
+      <div class="p-block">
+        <p>Ubuntu Pro offers an end-to-end capability from development workstation, applications and toolchains through to production-ready, secure-by-design ultra-small supported container images, starting with the .NET platform and with full support, security and uptime guaranteed by Canonical.</p>
+      </div>
       <p>
         <a href="/pro" class="p-button">Get Ubuntu Pro</a>
       </p>
@@ -247,7 +249,6 @@
       </div>
     </div>
   </div>
-  </div>
 </section>
 
 <section class="p-strip u-no-padding--top">
@@ -303,4 +304,4 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/containers-chiselled-dotnet" data-form-id="5272" data-lp-id="" data-return-url="https://ubuntu.com/containers/chiselled/dotnet#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
-{% endblock %}
+{% endblock content %}
