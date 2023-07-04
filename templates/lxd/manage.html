@@ -33,12 +33,12 @@
     <div class="col-6 p-card">
     <h2 class="p-heading--3">LXD CLI</h2>
       <p>LXD offers an intuitive and crisp CLI for easy operations. To control LXD, you typically use two different commands: lxd and lxc. The lxd command is used to control the daemon and is typically used only for initialisation and debugging. The lxc command is the command-line client that you use to interact with your instances. See lxc --help for an overview of all available subcommands.</p>
-      <a href="https://linuxcontainers.org/lxd/docs/latest/explanation/lxd_lxc/">Get started with the LXD CLI</a>
+      <a href="https://documentation.ubuntu.com/lxd/en/latest/explanation/lxd_lxc/">Get started with the LXD CLI</a>
     </div>
     <div class="col-6 p-card">
       <h2 class="p-card__title p-heading--3">LXD REST API</h2>
       <p>All communication between LXD and its clients happens using a RESTful API over HTTP. This means you can easily integrate LXD with any other tool you use for managing your infrastructure, and you can easily set up scripts as needed. LXD implements a single REST API for both local and remote access.</p>
-      <a href="https://linuxcontainers.org/lxd/docs/latest/rest-api/">Learn more about the LXD REST API</a>
+      <a href="https://documentation.ubuntu.com/lxd/en/latest/rest-api/">Learn more about the LXD REST API</a>
     </div>
   </div>
 </section>
@@ -203,7 +203,7 @@
           <li class="p-list__item is-ticked">A <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_container_module.html">plugin</a> to create and manage LXD containers</li>
           <li class="p-list__item is-ticked">A <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_profile_module.html">plugin</a> to manage LXD profiles</li>
         </ul>
-        <p>To manage LXD in Ansible, you need a LXD server (see <a href="https://linuxcontainers.org/lxd/docs/latest/getting_started/">Getting started</a>).</p>
+        <p>To manage LXD in Ansible, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
       </div>
     </div>
   </div>
@@ -216,7 +216,7 @@
         <p><a href="https://terraform.io/">Terraform</a> is an open source infrastructure-as-code software tool for configuration and service management.</p>
         <p>The LXD integration allows Terraform to deploy instances on LXD servers with support for local and remote deployments.</p>
         <p>Take a look at the <a href="https://registry.terraform.io/providers/terraform-lxd/lxd/latest/docs">Terraform documentation on LXD</a> for more information.</p>
-        <p>To manage LXD in Terraform, you need a LXD server  (see <a href="https://linuxcontainers.org/lxd/docs/latest/getting_started/">Getting started</a>).</p>
+        <p>To manage LXD in Terraform, you need a LXD server  (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
         {{ image (
@@ -250,7 +250,7 @@
         <p><a href="https://puppet.com/docs/bolt/latest/bolt.html">Bolt</a> is an open source orchestration tool that automates the manual work it takes to maintain your infrastructure.</p>
         <p>The LXD transport allows for interacting with LXD instances.</p>
         <p>For more information, see the <a href="https://puppet.com/docs/bolt/latest/bolt_transports_reference.html#lxd">Puppet Bolt Documentation on LXD</a>.</p>
-        <p>To manage LXD in Puppet Bolt, you need a LXD server (see <a href="https://linuxcontainers.org/lxd/docs/latest/getting_started/">Getting started</a>).</p>
+        <p>To manage LXD in Puppet Bolt, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
       </div>
     </div>
   </div>
@@ -262,8 +262,8 @@
         <p><a href="https://www.packer.io/">Packer</a> is an open source tool for creating identical machine images for multiple platforms.</p>
         <p>With Packer's LXD builder, it's possible to re-use your existing cloud image building pipeline and with the LXD builder, build a LXD container image.</p>
         <p>Take a look at the <a href="https://www.packer.io/docs/builders/lxd">Packer documentation on LXD</a> for more information.</p>
-        <p>Additionally our guides about <a href="https://linuxcontainers.org/lxd/docs/latest/images/">images</a> and <a href="https://linuxcontainers.org/lxd/docs/latest/howto/instances_configure/">instance configuration</a> might contain useful information regarding image choice, configuration options etc.</p>
-        <p>To create LXD images in Packer, you need a LXD server (see <a href="https://linuxcontainers.org/lxd/docs/latest/getting_started/">Getting started</a>).</p>
+        <p>Additionally our guides about <a href="https://documentation.ubuntu.com/lxd/en/latest/images/">images</a> and <a href="https://documentation.ubuntu.com/lxd/en/latest/howto/instances_configure/">instance configuration</a> might contain useful information regarding image choice, configuration options etc.</p>
+        <p>To create LXD images in Packer, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
         {{ image (

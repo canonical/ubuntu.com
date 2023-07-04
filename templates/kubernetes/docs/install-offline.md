@@ -258,7 +258,7 @@ is covered in the [proxy documentation][].
 
 
 <!-- LINKS -->
-[LXD-image]: https://linuxcontainers.org/lxd/docs/latest/image-handling
+[LXD-image]: https://documentation.ubuntu.com/lxd/en/latest/image-handling
 [maas-images]: https://maas.io/docs/how-to-use-standard-images
 [simplestreams]: https://juju.is/docs/olm/cloud-image-metadata
 [bundles]: /kubernetes/docs/supported-versions
