@@ -40,13 +40,10 @@
     <div class="u-fixed-width">
       <h2>Activate your Ubuntu Pro subscription</h2>
       <p>
-        You are currently signed in as {{ name }}. Make sure it is the
-        account you will be using to manage your subscription. If not, <a href="https://login.ubuntu.com/+login">log in
-        to a different account</a>.
+        You are currently signed in as {{ user_info.fullname }}. Make sure it is the account you will be using to manage your subscription. If not, <a href="https://login.ubuntu.com/+login">log in to a different account</a>.
       </p>
       <p>
-        Your product key should be in the confirmation email you received
-        after buying your Ubuntu Pro Desktop subscription.
+        Your product key should be in the confirmation email you received after buying your Ubuntu Pro Desktop subscription.
       </p>
       <p>The activation key is 23 characters long and starts with a K.</p>
       <form id="activate-key-form">
@@ -63,7 +60,7 @@
     <div class="u-fixed-width">
       <div class="p-notification--negative" id="notification" style="display: none">
         <div class="p-notification__content">
-          <h5 class="p-notification__title">Error</h5>
+          <h5 class="p-notification__title">Something went wrong</h5>
             <p class="p-notification__message" id="notification-message"></p>
         </div>
         <div class="p-notification__meta">
@@ -74,6 +71,7 @@
       </div>
     </div>
   </section>
+
   <script>
     // validate messages for keys
     const activation_key = document.querySelector(".activate-input");
@@ -163,7 +161,6 @@
           if (typeof open === 'undefined') {
             open = modal.style.display === 'none';
           }
-
           if (open) {
             currentDialog = modal;
             modal.style.display = 'flex';
@@ -185,7 +182,7 @@
     })();
 
     // buying for input
-    var shouldCreateAccount = document.querySelector("#create-purchase-account-form");
+    const shouldCreateAccount = document.querySelector("#create-purchase-account-form");
     if (shouldCreateAccount) {
       const organisationContainer = document.querySelector(".js-organisation-container");
       const radioMyself = organisationContainer.querySelector(
@@ -215,7 +212,6 @@
       createPurchaseAccountForm.addEventListener("submit", function(event) {
         event.preventDefault();
         const selectedOption = document.querySelector('input[name="activate-buy-for"]:checked');
-
         let accountName = document.querySelector('input[name="activate-name"]').value;
         if (selectedOption.value == "organisation") {
           accountName = document.querySelector('input[name="activate-organisation-name"]').value;
@@ -244,34 +240,37 @@
       });
     }
 
+    //submit activate key
     const activateKeyForm = document.getElementById("activate-key-form");
     
-    activateKeyForm.addEventListener("submit", function(event) {
+    activateKeyForm.addEventListener("submit",  function(event){
       event.preventDefault();
-      
-      const key = document.querySelector('input[name="key"]').value;
-      fetch("/pro/activate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          "key": key,
-        })
-      }).then(function(response) {
-          if (response.status != 200) {
-            throw new Error(response);
-          }
-        })
-        .then(function() {
-          window.location.replace = "/pro/dashboard"
-        })
-        .catch(function(error) {
-          console.error("error", error);
-          document.querySelector('#notification').style.display = "block";
-          document.querySelector('#notification-message').innerHTML = error;
-        })
-    });
+      if(validate_message.textContent.length > 0){
+        return
+      } else{
+        const key = document.querySelector('input[name="key"]').value;
+        fetch("/pro/activate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              "key": key,
+            })
+          })
+          .then(response => {
+            if(!response.ok){
+              return response.text().then(text => { throw new Error(text) })
+            }
+            return response.json();
+          })
+          .then(response => {  window.location.replace = "/pro/dashboard" })
+          .catch (function(err){
+            document.querySelector('#notification').style.display = "block";
+            document.querySelector('#notification-message').innerHTML =  JSON.parse(err.message).errors
+        });
+      }
+    })
   </script>
   {% endblock %}
 {% endblock %}
