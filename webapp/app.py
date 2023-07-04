@@ -151,6 +151,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    interactive_engage_page,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -562,6 +563,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/engage/unlisted/<slug>",
     view_func=unlisted_engage_page,
+)
+app.add_url_rule(
+    "/engage/interactive/<slug>",
+    view_func=interactive_engage_page,
 )
 
 

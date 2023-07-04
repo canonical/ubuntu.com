@@ -545,6 +545,17 @@ def engage_thank_you(engage_pages):
     return render_template
 
 
+def interactive_engage_page(slug):
+    """
+    Renders an engage page that is separate from the
+    discourse implementation
+    """
+    try:
+        return flask.render_template(f"engage/interactive/{slug}.html")
+    except jinja2.exceptions.TemplateNotFound:
+        return flask.abort(404)
+
+
 def unlisted_engage_page(slug):
     """
     Renders an engage page that is separate from the
