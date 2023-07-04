@@ -63,7 +63,6 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
-
 window.addEventListener("load", updateMobileView);
 window.addEventListener("resize", updateMobileView);
 
@@ -147,9 +146,7 @@ function toggleSecondaryMobileNavDropdown(event) {
 }
 
 function handleDropdownClick(clickedDropdown) {
-  console.log("handleDropdownClick", clickedDropdown.classList);
   const isActive = clickedDropdown.classList.contains("is-active");
-  console.log("handleDropdownClick", isActive);
   updateNavMenu(clickedDropdown, !isActive);
   setTabindex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
 }
@@ -201,7 +198,6 @@ function toggleSection(e) {
   @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
 */
 function updateNavMenu(dropdown, show) {
-  console.log("updateNavMenu", dropdown, show);
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
@@ -315,7 +311,10 @@ function deactivateActiveCTA(element) {
   @param {String} url the path tp fetch the subsection
   @param {String} id the id of the target subsection
 */
+let isFetching = false;
 function fetchDropdown(e, url, id) {
+  if (isFetching) return;
+  isFetching = true;
   const triggerEl = e.target;
   const container = document.getElementById(id);
   const mobileContainer = triggerEl.parentNode;
@@ -356,6 +355,7 @@ function fetchDropdown(e, url, id) {
       );
     });
   }
+  isFetching = false;
 }
 
 /**
@@ -364,7 +364,6 @@ function fetchDropdown(e, url, id) {
   or <ul class="p-navigation__dropdown">
 */
 function setTabindex(target) {
-  console.log("here");
   const lists = [...dropdowns, mainList];
   lists.forEach((list) => {
     const elements = list.querySelectorAll("ul > li > a, ul > li > button");
@@ -372,7 +371,6 @@ function setTabindex(target) {
       element.setAttribute("tabindex", "-1");
     });
   });
-  console.log(target);
   target.querySelectorAll("li").forEach((element) => {
     if (element.parentNode === target) {
       element.children[0].setAttribute("tabindex", "0");

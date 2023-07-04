@@ -84,10 +84,6 @@
         &:focus::before {
           display: none;
         }
-
-        &.is-active {
-          background-color: #2d2d2d !important;
-        }
       }
 
       &__item:last-child {
@@ -137,6 +133,7 @@
 
       a {
         display: block;
+        font-weight: 400;
         padding: 0.25rem 0.5rem;
         white-space: normal;
 

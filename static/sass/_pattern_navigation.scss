@@ -18,8 +18,18 @@
     .p-navigation__row {
       transform: 0;
 
-      .subsection-active & {
-        @media (max-width: $breakpoint-navigation-threshold) {
+      @media (min-width: $breakpoint-navigation-threshold) {
+        .p-navigation__banner {
+          padding-right: 2.75rem;
+        }
+      }
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        .p-navigation__banner {
+          padding-left: 1rem;
+        }
+
+        .subsection-active & {
           transform: translateX(-100vw);
         }
       }
@@ -41,6 +51,14 @@
       .p-navigation__item--dropdown-toggle {
         .p-muted-heading {
           padding-left: 3rem;
+        }
+        
+        &.is-active[role=menuitem] {
+          @extend .is-selected;
+
+          >.p-navigation__link {
+            background-color: #2d2d2d;
+          }
         }
 
         &.js-account {
@@ -152,14 +170,19 @@
       .p-navigation__link span {
         display: none;
       }
+    }
 
-      @media (min-width: $breakpoint-large) {
-        .p-navigation__link span {
-          display: initial;
-          padding-right: 0.5rem;
-        }
+    @media (min-width: $breakpoint-navigation-threshold) {
+      .p-navigation__link span {
+        display: initial;
+        padding-right: 0.5rem;
+      }
+
+      .p-navigation__link::after {
+        top: 0.55rem;
       }
     }
+
 
     .p-navigation__item {
       .p-navigation__link {
