@@ -258,7 +258,7 @@ is covered in the [proxy documentation][].
 
 
 <!-- LINKS -->
-[LXD-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
+[LXD-image]: https://documentation.ubuntu.com/lxd/en/latest/image-handling
 [maas-images]: https://maas.io/docs/how-to-use-standard-images
 [simplestreams]: https://juju.is/docs/olm/cloud-image-metadata
 [bundles]: /kubernetes/docs/supported-versions
@@ -285,7 +285,7 @@ is covered in the [proxy documentation][].
 [sideload]: https://docs.ubuntu.com/snap-store-proxy/en/airgap#usage
 [proxy documentation]: /kubernetes/docs/proxies
 [registry]: /kubernetes/docs/docker-registry
-[LXD]: https://linuxcontainers.org/lxd/introduction/
+[LXD]: https://ubuntu.com/lxd
 [local-install]: /kubernetes/docs/install-local
 
 <!-- FEEDBACK -->
