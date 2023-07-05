@@ -62,7 +62,7 @@ const PublicCloudInfo = {
     describe: (
       <>
         You can{" "}
-        <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1">
+        <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1">
           launch new Ubuntu Pro instances on the Azure Marketplace
         </a>{" "}
         at an hourly, per-machine rate. If you need tech support as well, or to
@@ -107,9 +107,14 @@ const PublicCloudInfo = {
     name: "Oracle",
     CTA: [
       {
+        CTAName: "Contact us",
+        link: "/security/esm#get-in-touch",
+        appearance: "positive",
+      },
+      {
         CTAName: "Solutions for Ubuntu 18.04 LTS instances",
         link: "/18-04/oci",
-        appearance: "positive",
+        appearance: "",
       },
     ],
     describe: (
@@ -121,13 +126,18 @@ const PublicCloudInfo = {
     ),
   },
   [PublicClouds.ibm]: {
-    title: "IBM Cloud",
+    title: "IBM",
     name: "IBM",
     CTA: [
       {
+        CTAName: "Contact us",
+        link: "/security/esm#get-in-touch",
+        appearance: "positive",
+      },
+      {
         CTAName: "Solutions for Ubuntu 18.04 LTS instances",
         link: "/18-04/ibm",
-        appearance: "positive",
+        appearance: "",
       },
     ],
     describe: (
@@ -233,7 +243,7 @@ const ProductType = () => {
               );
             }}
           >
-            {PublicCloudInfo[PublicClouds.ibm].title}
+            {PublicCloudInfo[PublicClouds.oracle].title}
           </button>
           <button
             className="p-segmented-control__button"
@@ -250,7 +260,7 @@ const ProductType = () => {
               );
             }}
           >
-            {PublicCloudInfo[PublicClouds.oracle].title}
+            {PublicCloudInfo[PublicClouds.ibm].title}
           </button>
         </div>
       </div>

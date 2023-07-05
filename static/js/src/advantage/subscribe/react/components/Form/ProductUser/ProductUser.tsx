@@ -52,7 +52,9 @@ const ProductUser = () => {
             <p>
               Free, personal subscription for up to 5 machines, or 50 machines
               for active{" "}
-              <a href="/community/membership">Ubuntu Community members</a>.
+              <a href="/community/membership">Ubuntu Community members</a>. If
+              you need phone support or need to cover more than 5 machines,
+              please select "My organisation".
             </p>
           </Col>
         )}
