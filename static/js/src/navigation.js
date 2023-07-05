@@ -180,13 +180,6 @@ function toggleSection(e) {
 
   el.removeAttribute("hidden");
 
-  const mobileDropdownEle = document.getElementById(
-    e.target.parentNode.dataset.id
-  );
-  if (mobileDropdownEle) {
-    updateNavMenu(mobileDropdownEle, true);
-  }
-
   setTimeout(function () {
     toggleIsActiveState(el, true);
     el.focus();
@@ -533,6 +526,7 @@ if (accountContainer) {
           </ul>`;
 
         function toggleUserMenu(element, show) {
+          console.log("Toggling", element, show)
           const container = element.closest(
             ".p-navigation__item--dropdown-toggle"
           );
@@ -569,6 +563,7 @@ if (accountContainer) {
           @param {HTMLElement} menuToggle The menu container element.
         */
         function setupContextualMenu(menuToggle) {
+          console.log("Setting up contextual mnus")
           menuToggle.addEventListener("click", function (event) {
             event.preventDefault();
 
@@ -623,9 +618,9 @@ if (accountContainer) {
           handleDropdownClick(accountDropdown);
         });
 
-        // setupAllContextualMenus(
-        //   ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
-        // );
+        setupAllContextualMenus(
+          ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
+        );
       }
     });
 }

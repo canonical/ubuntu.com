@@ -78,6 +78,10 @@
               content: none;
             }
           }
+
+          button[aria-expanded=true] {
+            background-color: rgba(255,255,255,.05);
+          }
         }
 
         &:first-child {
@@ -159,6 +163,10 @@
     .p-navigation__toggle--open.is-open {
       transform: rotate(-180deg);
     }
+
+    .p-navigation__tagged-logo {
+      min-width: 15.7rem;
+    }
   }
 
   .p-navigation--sliding.is-reduced {
@@ -189,6 +197,7 @@
         color: $color-mid-light;
         padding-bottom: 0.5rem;
         padding-top: 0.5rem;
+        padding-left: 1rem;
       }
     }
 
@@ -212,6 +221,7 @@
       .p-navigation__link {
         color: $color-mid-light;
         font-weight: 300;
+        font-size: 0.875rem;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
@@ -286,7 +296,7 @@
 
           .p-navigation__link {
             color: $color-x-light;
-            padding-left: 2rem;
+            padding-left: 1rem;
           }
 
           .p-navigation__link::before {
