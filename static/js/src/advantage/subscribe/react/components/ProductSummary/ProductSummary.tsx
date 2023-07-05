@@ -187,7 +187,10 @@ const ProductSummary = () => {
               )}
             </p>
             {productUser === ProductUsers.myself ? (
-              <a href="/legal/ubuntu-pro/personal">
+              <a
+                href="/legal/ubuntu-pro/personal"
+                data-testid="personal-subscription"
+              >
                 See personal subscription <br /> terms of service
               </a>
             ) : (

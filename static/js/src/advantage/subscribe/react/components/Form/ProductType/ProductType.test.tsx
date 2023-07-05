@@ -17,8 +17,9 @@ test("Type selector doesn't display the public cloud section by default", () => 
       <ProductType />
     </FormProvider>
   );
-
-  expect(screen.queryByText(/^You can buy/)).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/^Solutions for Ubuntu 18.04 LTS instances/)
+  ).not.toBeInTheDocument();
 });
 
 test("Type selector displays the public cloud section if a public cloud is selected", async () => {
