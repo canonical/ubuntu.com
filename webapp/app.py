@@ -1385,3 +1385,22 @@ app.add_url_rule(
     view_func=subscription_centre,
     methods=["GET", "POST"],
 )
+
+
+# HPE blog section
+def render_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
+        tag_ids=[4307],
+        per_page=3,
+        blog_title="HPE blogs",
+    )
+    hpe_articles = blogs.get_tag("hpe")
+    return flask.render_template(
+        "/hpe/index.html", blogs=hpe_articles["articles"]
+    )
+
+
+app.add_url_rule("/hpe", view_func=render_blogs)

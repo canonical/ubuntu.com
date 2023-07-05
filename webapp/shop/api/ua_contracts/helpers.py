@@ -242,7 +242,7 @@ def get_user_subscription_statuses(
         statuses["has_pending_purchases"] = True
         return statuses
 
-    if type == "trial":
+    if type == "trial" and account.role != "technical":
         active_trial = [
             subscription
             for subscription in subscriptions
@@ -273,7 +273,7 @@ def get_user_subscription_statuses(
             and not statuses["is_cancelled"]
         )
 
-    if type in ["yearly", "monthly"]:
+    if type in ["yearly", "monthly"] and account.role != "technical":
         statuses["is_subscription_active"] = is_billing_subscription_active(
             subscriptions, subscription_id
         )
