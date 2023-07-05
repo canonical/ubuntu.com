@@ -31,10 +31,10 @@ const ProductUser = () => {
         {productUser === "organisation" && (
           <Col size={12} style={{ marginLeft: "35px" }}>
             <p>
-              {" "}
               Enterprise subscriptions for commercial use. If you need to cover
-              up to 5 machines with no support, it's free for personal use or
-              for a business you own. In that case please select "Myself".{" "}
+              up to 5 machines with no support, it&rsquo;s free for personal use
+              or for a business you own. In that case please select
+              &quot;Myself&quot;.
             </p>
           </Col>
         )}
@@ -54,7 +54,7 @@ const ProductUser = () => {
               for active{" "}
               <a href="/community/membership">Ubuntu Community members</a>. If
               you need phone support or need to cover more than 5 machines,
-              please select "My organisation".
+              please select &quot;My organisation&quot;.
             </p>
           </Col>
         )}
