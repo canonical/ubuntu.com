@@ -31,7 +31,6 @@ const KeyFiltersLength = Object.keys(ActiveTab).length / 2;
 
 const CredManage = () => {
   const [activeTab, setTab] = useState(ActiveTab.AllKeys);
-  const inputRefs = useRef<HTMLButtonElement[]>([]);
   const [actionLinks, updateActionLinks] = useState<
     { children: string; onClick: () => void }[]
   >([]);
@@ -71,11 +70,9 @@ const CredManage = () => {
     event.preventDefault();
     if (event.key == "ArrowLeft") {
       setTab((currentIndex - 1) % KeyFiltersLength);
-      inputRefs.current[(currentIndex - 1) % KeyFiltersLength].focus();
     }
     if (event.key == "ArrowRight") {
       setTab((currentIndex + 1) % KeyFiltersLength);
-      inputRefs.current[(currentIndex + 1) % KeyFiltersLength].focus();
     }
 
     // TODO
@@ -227,6 +224,7 @@ const CredManage = () => {
                 id: "tab-" + ActiveTab.UnusedKeys,
                 role: "tab",
                 active: activeTab === ActiveTab.UnusedKeys,
+                tabindex: -1,
                 label: "Unused keys",
                 onClick: () => setTab(ActiveTab.UnusedKeys),
                 onKeyUp: (e: React.KeyboardEvent<HTMLButtonElement>) =>
@@ -236,6 +234,7 @@ const CredManage = () => {
                 id: "tab-" + ActiveTab.ActiveKeys,
                 role: "tab",
                 active: activeTab === ActiveTab.ActiveKeys,
+                tabindex: -1,
                 label: "Active keys",
                 onClick: () => setTab(ActiveTab.ActiveKeys),
                 onKeyUp: (e: React.KeyboardEvent<HTMLButtonElement>) =>
