@@ -8,11 +8,13 @@ import Version from "./Version";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
   IoTDevices,
+  ProductUsers,
   isIoTDevice,
   isPublicCloud,
 } from "advantage/subscribe/react/utils/utils";
+import ProductUser from "./ProductUser/ProductUser";
 const Form = () => {
-  const { productType, iotDevice } = useContext(FormContext);
+  const { productType, iotDevice, productUser } = useContext(FormContext);
   const disabled =
     isPublicCloud(productType) ||
     (isIoTDevice(productType) && iotDevice === IoTDevices.core);
@@ -21,69 +23,84 @@ const Form = () => {
     <form className="product-selector">
       <Strip includeCol={false}>
         <Col size={6}>
-          <h2>What are you setting up?</h2>
+          <h2>Who will be using this subscription?</h2>
         </Col>
         <Col size={6}>
-          <ProductType />
+          <ProductUser />
         </Col>
       </Strip>
-      {!disabled && (
+      {productUser !== ProductUsers.myself ? (
         <>
           <Row>
             <hr />
           </Row>
           <Strip includeCol={false}>
             <Col size={6}>
-              <h2>For how many machines?</h2>
+              <h2>What are you setting up?</h2>
             </Col>
             <Col size={6}>
-              <Quantity />
+              <ProductType />
             </Col>
           </Strip>
-          <Row>
-            <hr />
-          </Row>
+          {!disabled && (
+            <>
+              <Row>
+                <hr />
+              </Row>
+              <Strip includeCol={false}>
+                <Col size={6}>
+                  <h2>For how many machines?</h2>
+                </Col>
+                <Col size={6}>
+                  <Quantity />
+                </Col>
+              </Strip>
+              <Row>
+                <hr />
+              </Row>
 
-          <Strip includeCol={false}>
-            <Col size={6}>
-              <h2>What Ubuntu LTS version are you running?</h2>
-              <p style={{ marginLeft: "3.6rem" }}>
-                {" "}
-                Ubuntu Advantage is available for Ubuntu 14.04 and higher.
-                <br />{" "}
-                <a href="/contact-us/form?product=pro">
-                  Are you using an older version?
-                </a>
-              </p>
-            </Col>
-            <Col size={6}>
-              <Version />
-            </Col>
-          </Strip>
-          <Row>
-            <hr />
-          </Row>
-          <Strip includeCol={false}>
-            <Col size={12}>
-              <h2>What security coverage do you need?</h2>
-            </Col>
-            <Col size={12}>
-              <Feature />
-            </Col>
-          </Strip>
-          <Row>
-            <hr />
-          </Row>
-          <Strip includeCol={false}>
-            <Col size={12}>
-              <h2>Do you also need phone and ticket support?</h2>
-            </Col>
-            <Col size={12}>
-              <Support />
-            </Col>
-          </Strip>
+              <Strip includeCol={false}>
+                <Col size={6}>
+                  <h2>What Ubuntu LTS version are you running?</h2>
+                  <p style={{ marginLeft: "3.6rem" }}>
+                    {" "}
+                    Ubuntu Advantage is available for Ubuntu 14.04 and higher.
+                    <br />{" "}
+                    <a href="/contact-us/form?product=pro">
+                      Are you using an older version?
+                    </a>
+                  </p>
+                </Col>
+                <Col size={6}>
+                  <Version />
+                </Col>
+              </Strip>
+              <Row>
+                <hr />
+              </Row>
+              <Strip includeCol={false}>
+                <Col size={12}>
+                  <h2>What security coverage do you need?</h2>
+                </Col>
+                <Col size={12}>
+                  <Feature />
+                </Col>
+              </Strip>
+              <Row>
+                <hr />
+              </Row>
+              <Strip includeCol={false}>
+                <Col size={12}>
+                  <h2>Do you also need phone and ticket support?</h2>
+                </Col>
+                <Col size={12}>
+                  <Support />
+                </Col>
+              </Strip>
+            </>
+          )}
         </>
-      )}
+      ) : null}
     </form>
   );
 };

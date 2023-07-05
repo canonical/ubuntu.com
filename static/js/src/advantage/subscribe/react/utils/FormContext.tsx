@@ -8,11 +8,14 @@ import {
   Periods,
   Product,
   ProductTypes,
+  ProductUsers,
   SLA,
   Support,
 } from "./utils";
 
 interface FormContext {
+  productUser: ProductUsers;
+  setProductUser: React.Dispatch<React.SetStateAction<ProductUsers>>;
   productType: ProductTypes;
   setProductType: React.Dispatch<React.SetStateAction<ProductTypes>>;
   version: LTSVersions;
@@ -33,6 +36,8 @@ interface FormContext {
 }
 
 export const defaultValues: FormContext = {
+  productUser: ProductUsers.organisation,
+  setProductUser: () => {},
   productType: ProductTypes.physical,
   setProductType: () => {},
   version: LTSVersions.jammy,
@@ -55,6 +60,7 @@ export const defaultValues: FormContext = {
 export const FormContext = createContext<FormContext>(defaultValues);
 
 interface FormProviderProps {
+  initialUser?: ProductUsers;
   initialType?: ProductTypes;
   initialVersion?: LTSVersions;
   initialFeature?: Features;
@@ -67,6 +73,7 @@ interface FormProviderProps {
 }
 
 export const FormProvider = ({
+  initialUser = defaultValues.productUser,
   initialType = defaultValues.productType,
   initialVersion = defaultValues.version,
   initialFeature = defaultValues.feature,
@@ -77,6 +84,7 @@ export const FormProvider = ({
   initialIoTDevice = defaultValues.iotDevice,
   children,
 }: FormProviderProps) => {
+  const localProductUser = localStorage.getItem("pro-selector-productUser");
   const localProductType = localStorage.getItem("pro-selector-productType");
   const localVersion = localStorage.getItem("pro-selector-version");
   const localQuantity = localStorage.getItem("pro-selector-quantity");
@@ -86,6 +94,9 @@ export const FormProvider = ({
   const localPeriod = localStorage.getItem("pro-selector-period");
   const localIoTDevice = localStorage.getItem("pro-selector-iotDevice");
 
+  const [productUser, setProductUser] = useState<ProductUsers>(
+    localProductUser ? JSON.parse(localProductUser) : initialUser
+  );
   const [productType, setProductType] = useState<ProductTypes>(
     localProductType ? JSON.parse(localProductType) : initialType
   );
@@ -173,6 +184,8 @@ export const FormProvider = ({
   return (
     <FormContext.Provider
       value={{
+        productUser,
+        setProductUser,
         productType,
         setProductType,
         version,
