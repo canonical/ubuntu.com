@@ -324,7 +324,7 @@ replaceUbuntuAdvantage();
 function replaceGlobalNavLogo() {
   const globalNavLogo = document.querySelector(".global-nav__header-logo");
   if (globalNavLogo) {
-    globalNavLogo.innerHTML = `<a href="https://canonical.com/" class="global-nav__header-link-anchor" style="color:white;">Canonical</a>`;
+    globalNavLogo.innerHTML = `<a href="https://canonical.com/" class="global-nav__header-link-anchor" style="color:white; padding-left: 0">Canonical</a>`;
   }
 }
 
