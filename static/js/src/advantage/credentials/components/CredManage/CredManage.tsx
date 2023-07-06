@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@canonical/react-components";
 import { listAllKeys, rotateKey } from "advantage/credentials/api/keys";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
 type ActivationKey = {
@@ -74,10 +74,6 @@ const CredManage = () => {
     if (event.key == "ArrowRight") {
       setTab((currentIndex + 1) % KeyFiltersLength);
     }
-
-    // TODO
-    event.target.focus();
-    console.log(event);
   };
 
   const [selectedKeyIds, setSelectedKeyIds] = useState<string[]>([]);
@@ -102,7 +98,6 @@ const CredManage = () => {
         selectedKeyIds.filter((id) => id != keyValue)
       );
     }
-    console.log(keyValue, selectedKeyIds);
   };
 
   const selectAllKeys = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +108,6 @@ const CredManage = () => {
   };
 
   const copyToClipboard = (value: string) => {
-    console.log(value);
     navigator.clipboard.writeText(value);
   };
 
@@ -255,7 +249,7 @@ const CredManage = () => {
             )}
           </div>
         </Row>
-        <Row role="tabpanel" tabindex="0">
+        <Row role="tabpanel">
           {isLoading ? (
             <Spinner />
           ) : (
