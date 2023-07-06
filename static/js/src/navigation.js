@@ -300,6 +300,20 @@ if (accountContainer && accountContainerSmall) {
     });
 }
 
+// TEMP FIX - DE 06.07.23
+// UPDATES LXD LINK TARGET IN THE MEGANAV UNTIL
+// WE MERGE THE NEW MEGANAV
+function replaceLxdLink() {
+  const globalNav = document.querySelector("#canonical-global-nav");
+  const lxdNavLinks = globalNav.querySelectorAll(
+    '[href="https://linuxcontainers.org/"]'
+  );
+  lxdNavLinks.forEach(function (element) {
+    element.href = "/lxd";
+  });
+}
+replaceLxdLink();
+
 // TEMP FIX - PETE F 15.05.23
 // UPDATES 'UBUNTU ADVANTAGE' TO 'UBUNTU PRO' IN THE MEGANAV UNTIL
 // WE MERGE THE NEW MEGANAV
