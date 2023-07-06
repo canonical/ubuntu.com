@@ -10,7 +10,7 @@ import {
 } from "advantage/subscribe/react/utils/utils";
 
 const livepatch =
-  "Kernel Livepatch  to apply kernel patches at run time without the need for an immediate reboot";
+  "Kernel Livepatch to apply kernel patches at run time without the need for an immediate reboot";
 const landscape = "Ubuntu systems management with Landscape";
 const knowledgeBase = "Access to the Knowledge base";
 const realtimeKernel = "Real-time kernel";
@@ -28,6 +28,11 @@ const FIPSComingSoon = (
     <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
+const CIS = (
+  <>
+    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
+  </>
+);
 const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
@@ -35,7 +40,10 @@ const CISComingSoon = (
   </>
 );
 const CommonCriteria = "Common Criteria EAL2";
-const ESMEndDate = "Extended Security Maintenance (ESM) until ";
+const ESMEndDate =
+  "Expanded Security Maintenance (ESM) for packages in 'main' repository until";
+const DesktopESMEndDate =
+  "Expanded Security Maintenance (ESM) for packages in 'main' and 'universe' repositories until";
 const AAD =
   "Advanced Active Directory integration including native GPO policy support, custom script execution and privilege management";
 
@@ -46,7 +54,7 @@ const PhysicalServerVersionDetails: {
     `${ESMEndDate} 2032`,
     livepatch,
     FIPSComingSoon,
-    CISComingSoon,
+    CIS,
     KVMDrivers,
     landscape,
     knowledgeBase,
@@ -94,49 +102,45 @@ const DesktopVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
   [LTSVersions.jammy]: [
-    `${ESMEndDate} 2032`,
+    `${DesktopESMEndDate} 2032`,
     AAD,
     livepatch,
     FIPSComingSoon,
     CISComingSoon,
-    KVMDrivers,
     landscape,
     knowledgeBase,
+    realtimeKernel,
   ],
   [LTSVersions.focal]: [
-    `${ESMEndDate} 2030`,
+    `${DesktopESMEndDate} 2030`,
     AAD,
     livepatch,
     FIPS,
     CISBenchmarkAndAutomation,
-    KVMDrivers,
     landscape,
     knowledgeBase,
   ],
   [LTSVersions.bionic]: [
-    `${ESMEndDate} 2028`,
+    `${DesktopESMEndDate} 2028`,
     livepatch,
     FIPS,
     CISBenchmark,
     CommonCriteria,
-    KVMDrivers,
     landscape,
     knowledgeBase,
   ],
   [LTSVersions.xenial]: [
-    `${ESMEndDate} 2026`,
+    `${DesktopESMEndDate} 2026`,
     livepatch,
     FIPS,
     CISBenchmark,
     CommonCriteria,
-    KVMDrivers,
     landscape,
     knowledgeBase,
   ],
   [LTSVersions.trusty]: [
     `${ESMEndDate} 2024`,
     livepatch,
-    KVMDrivers,
     landscape,
     knowledgeBase,
   ],

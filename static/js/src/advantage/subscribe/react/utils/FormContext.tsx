@@ -158,10 +158,15 @@ export const FormProvider = ({
   }, [productType, support]);
 
   useEffect(() => {
-    if (productType === ProductTypes.desktop) {
+    if (
+      productType === ProductTypes.desktop &&
+      version !== LTSVersions.trusty
+    ) {
       setFeature(Features.pro);
+    } else if (version === LTSVersions.trusty) {
+      setFeature(Features.infra);
     }
-  }, [productType, feature]);
+  }, [productType, feature, version]);
 
   useEffect(() => {
     const product = getProduct(productType, feature, support, sla, period);

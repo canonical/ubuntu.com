@@ -28,11 +28,9 @@ const ProductUser = () => {
             checked={productUser === ProductUsers.organisation}
           />
         </Col>
-        {productUser === "organisation" && (
-          <Col size={12} style={{ marginLeft: "35px" }}>
-            <p>Enterprise subscriptions for commercial use.</p>
-          </Col>
-        )}
+        <Col size={12} style={{ marginLeft: "35px" }}>
+          <p>Enterprise subscriptions for commercial use.</p>
+        </Col>
         <Col size={12}>
           <RadioInput
             label="Myself"
@@ -42,17 +40,15 @@ const ProductUser = () => {
             checked={productUser === ProductUsers.myself}
           />
         </Col>
-        {productUser === "myself" && (
-          <Col size={12} style={{ marginLeft: "35px" }}>
-            <p>
-              Free, personal subscription for 5 machines for you or any business
-              you own, or 50 machines for active{" "}
-              <a href="/community/membership">Ubuntu Community members</a>. If
-              you need phone support or need to cover more than 5 machines,
-              please select &quot;My organisation&quot;.
-            </p>
-          </Col>
-        )}
+        <Col size={12} style={{ marginLeft: "35px" }}>
+          <p>
+            Free, personal subscription for 5 machines for you or any business
+            you own, or 50 machines for active{" "}
+            <a href="/community/membership">Ubuntu Community members</a>. If you
+            need phone support or need to cover more than 5 machines, please
+            select &quot;My organisation&quot;.
+          </p>
+        </Col>
       </Row>
     </>
   );

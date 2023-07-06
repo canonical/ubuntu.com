@@ -19,7 +19,9 @@ const Feature = () => {
     );
   };
 
-  const infraOnlyDisabled = ProductTypes.desktop === productType;
+  const infraOnlyDisabled =
+    productType === ProductTypes.desktop && version !== LTSVersions.trusty;
+
   const proDisabled = version === LTSVersions.trusty;
 
   return (
