@@ -67,6 +67,13 @@
             padding-top: 0.75rem;
           }
 
+          @media (min-width: $breakpoint-navigation-threshold) {
+            .p-navigation__dropdown {
+              right: 0;
+              min-width: 10rem;
+            }
+          }
+
           a::after {
             @media (min-width: $breakpoint-navigation-threshold) {
               content: none;
@@ -89,10 +96,6 @@
             content: "";
           }
         }
-      }
-
-      .p-navigation__nav {
-        overflow-y: hidden;
       }
 
       .p-navigation__link::after {

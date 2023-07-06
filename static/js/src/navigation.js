@@ -8,7 +8,7 @@ const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(
   document.querySelectorAll(
-    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back):not(.js-account)"
+    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
 const nav = navigation.querySelector(".js-show-nav");
@@ -195,10 +195,12 @@ function updateNavMenu(dropdown, show) {
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
   );
+  let toggleAnimations = !dropdownContent.classList.contains("not-full-screen-dropdown");
+  
   if (dropdownContent && dropdownContentMobile) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
-    toggleDropdownWindowAnimation(show);
+    if (toggleAnimations) toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
   }
@@ -219,7 +221,7 @@ function updateDropdownStates(dropdown, show, delay) {
   updateDesktopDropdownStates(dropdown, show, delay);
   updateMobileDropdownState(dropdown, show, isNested);
 }
-
+// I need the js-account dropddown to be handled here, even though it is just a desktop dropdown
 function updateDesktopDropdownStates(dropdown, show, delay) {
   let dropdownContent = document.getElementById(
     dropdown.dataset.id + "-content"
@@ -525,37 +527,36 @@ if (accountContainer) {
             </li>
           </ul>`;
 
-        function toggleUserMenu(element, show) {
-          console.log("Toggling", element, show)
+        function toggleUserMenu(element) {
           const container = element.closest(
             ".p-navigation__item--dropdown-toggle"
           );
           var target = document.getElementById(
             element.getAttribute("aria-controls")
           );
+            
+          const show = !container.classList.contains(".is-active");
+          // handleDropdownClick(container);
+              
+          console.log("Toggling", element, show)
+          // if (show) {
+          //   toggleIsActiveState(container, true);
+          //   deactivateDesktopDropdownElements();
+          // } else {
+          //   toggleIsActiveState(container, false);
+          // }
 
-          if (show) {
-            toggleIsActiveState(container, true);
-            [].slice
-              .call(dropdownWindow.children)
-              .forEach((dropdownContent) => {
-                dropdownContent.classList.add("u-hide");
-              });
-          } else {
-            toggleIsActiveState(container, false);
-          }
+          // if (target) {
+          //   element.setAttribute("aria-expanded", show);
+          //   target.setAttribute("aria-hidden", !show);
 
-          if (target) {
-            element.setAttribute("aria-expanded", show);
-            target.setAttribute("aria-hidden", !show);
-
-            if (show) {
-              target.focus();
-              topLevelNavDropdowns.forEach(function (dropdown) {
-                closeDropdown(dropdown);
-              });
-            }
-          }
+          //   if (show) {
+          //     target.focus();
+          //     topLevelNavDropdowns.forEach(function (dropdown) {
+          //       closeDropdown(dropdown);
+          //     });
+          //   }
+          // }
         }
 
         /**
@@ -563,7 +564,6 @@ if (accountContainer) {
           @param {HTMLElement} menuToggle The menu container element.
         */
         function setupContextualMenu(menuToggle) {
-          console.log("Setting up contextual mnus")
           menuToggle.addEventListener("click", function (event) {
             event.preventDefault();
 
@@ -615,12 +615,12 @@ if (accountContainer) {
           ".p-navigation__item--dropdown-toggle.js-account"
         );
         accountDropdown.addEventListener("click", (e) => {
-          handleDropdownClick(accountDropdown);
+          toggleUserMenu(e.target);
         });
 
-        setupAllContextualMenus(
-          ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
-        );
+        // setupAllContextualMenus(
+        //   ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
+        // );
       }
     });
 }
