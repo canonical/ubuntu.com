@@ -202,15 +202,14 @@ activateKeyForm.addEventListener("submit", function (event) {
       }),
     })
       .then((response) => {
-        if (!response.ok) {
+        if (response.ok) {
+          window.location.href = "/pro/dashboard";
+        } else {
           return response.text().then((text) => {
             throw new Error(text);
           });
         }
         return response.json();
-      })
-      .then((response) => {
-        window.location.replace = "/pro/dashboard";
       })
       .catch(function (err) {
         document.querySelector("#notification").style.display = "block";
