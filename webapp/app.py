@@ -1104,7 +1104,7 @@ app.add_url_rule(
     view_func=certified_servers,
 )
 app.add_url_rule(
-    "/certified/devices",
+    "/certified/iot",
     view_func=certified_devices,
 )
 app.add_url_rule(
