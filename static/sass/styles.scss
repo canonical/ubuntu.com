@@ -1361,6 +1361,18 @@ hr.p-separator.is-shallow {
   }
 }
 
+.spaced-bottom--smaller {
+  margin-bottom: $sp-large;
+
+  @media screen and (max-width: calc($breakpoint-medium - 1px)) {
+    margin-bottom: $sp-xx-large;
+  }
+}
+
+.pad-top {
+  padding-top: map-get($nudges, p);
+}
+
 // utility to separate 50/50 images
 .u-image-separation {
   margin-top: $spv--small;
