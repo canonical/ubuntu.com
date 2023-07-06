@@ -811,6 +811,8 @@ def marketo_submit():
         value = ", ".join(values)
         if value:
             form_fields[key] = value
+            if 'utm_content' in form_fields:
+                form_fields['utmcontent'] = form_fields.pop('utm_content')
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
