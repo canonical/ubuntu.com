@@ -30,12 +30,7 @@ const ProductUser = () => {
         </Col>
         {productUser === "organisation" && (
           <Col size={12} style={{ marginLeft: "35px" }}>
-            <p>
-              Enterprise subscriptions for commercial use. If you need to cover
-              up to 5 machines with no support, it&rsquo;s free for personal use
-              or for a business you own. In that case please select
-              &quot;Myself&quot;.
-            </p>
+            <p>Enterprise subscriptions for commercial use.</p>
           </Col>
         )}
         <Col size={12}>
@@ -50,8 +45,8 @@ const ProductUser = () => {
         {productUser === "myself" && (
           <Col size={12} style={{ marginLeft: "35px" }}>
             <p>
-              Free, personal subscription for up to 5 machines, or 50 machines
-              for active{" "}
+              Free, personal subscription for 5 machines for you or any business
+              you own, or 50 machines for active{" "}
               <a href="/community/membership">Ubuntu Community members</a>. If
               you need phone support or need to cover more than 5 machines,
               please select &quot;My organisation&quot;.

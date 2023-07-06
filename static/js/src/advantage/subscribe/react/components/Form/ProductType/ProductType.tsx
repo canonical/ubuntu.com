@@ -15,13 +15,13 @@ const PublicCloudInfo = {
     name: "AWS Marketplace",
     CTA: [
       {
-        CTAName: "In-place upgrade to Ubuntu Pro",
+        CTAName: "in-place upgrade to Ubuntu Pro",
         link:
           "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
         appearance: "positive",
       },
       {
-        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 18.04 LTS users",
         link: "/18-04/aws",
         appearance: "",
       },
@@ -48,13 +48,13 @@ const PublicCloudInfo = {
     name: "Azure Marketplace",
     CTA: [
       {
-        CTAName: "In-place upgrade to Ubuntu Pro",
+        CTAName: "in-place upgrade to Ubuntu Pro",
         link:
           "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
         appearance: "positive",
       },
       {
-        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 18.04 LTS users",
         link: "/18-04/azure",
         appearance: "",
       },
@@ -76,13 +76,13 @@ const PublicCloudInfo = {
     name: "Google Compute Engine",
     CTA: [
       {
-        CTAName: "In-place upgrade to Ubuntu Pro",
+        CTAName: "in-place upgrade to Ubuntu Pro",
         link:
           "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
         appearance: "positive",
       },
       {
-        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 18.04 LTS users",
         link: "/18-04/gcp",
         appearance: "",
       },

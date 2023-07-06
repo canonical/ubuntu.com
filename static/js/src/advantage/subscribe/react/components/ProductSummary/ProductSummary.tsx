@@ -44,6 +44,7 @@ const ProductSummary = () => {
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
+        data-testid="summary-section"
       >
         <Row className="u-sv3">
           <Col size={6} className="p-text--small-caps">
