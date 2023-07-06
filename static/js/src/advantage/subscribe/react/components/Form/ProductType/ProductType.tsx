@@ -12,7 +12,7 @@ import {
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
     title: "AWS",
-    name: "AWS Marketplace",
+    name: "AWS",
     CTA: [
       {
         CTAName: "in-place upgrade to Ubuntu Pro",
@@ -37,7 +37,7 @@ const PublicCloudInfo = {
           EC2 Console
         </a>{" "}
         at a per-second, per-machine rate. If you have a running Ubuntu LTS
-        instance in AWS, you can also In-place upgrade that instance to a Ubuntu
+        instance in AWS, you can also in-place upgrade that instance to a Ubuntu
         Pro. If you need tech support as well,{" "}
         <a href="/aws#get-in-touch">contact us</a>.
       </>
@@ -45,12 +45,12 @@ const PublicCloudInfo = {
   },
   [PublicClouds.azure]: {
     title: "Azure",
-    name: "Azure Marketplace",
+    name: "Azure",
     CTA: [
       {
-        CTAName: "in-place upgrade to Ubuntu Pro",
+        CTAName: "Ubuntu Pro in Azure marketplace",
         link:
-          "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
+          "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1",
         appearance: "positive",
       },
       {
@@ -73,7 +73,7 @@ const PublicCloudInfo = {
   },
   [PublicClouds.gcp]: {
     title: "GCP",
-    name: "Google Compute Engine",
+    name: "Google Cloud",
     CTA: [
       {
         CTAName: "in-place upgrade to Ubuntu Pro",
@@ -94,7 +94,7 @@ const PublicCloudInfo = {
           launch new Ubuntu Pro instances on the Google Compute Engine
         </a>{" "}
         at an hourly, per-machine rate. If you have a running Ubuntu LTS
-        instance in Google Cloud, you can also In-place upgrade that instance to
+        instance in Google Cloud, you can also in-place upgrade that instance to
         a Ubuntu Pro. If you need tech support as well,{" "}
         <a href="/gcp#get-in-touch">contact us</a>.{" "}
       </>
@@ -104,7 +104,7 @@ const PublicCloudInfo = {
   },
   [PublicClouds.oracle]: {
     title: "Oracle",
-    name: "Oracle",
+    name: "Oracle Cloud",
     CTA: [
       {
         CTAName: "Contact us",
@@ -127,7 +127,7 @@ const PublicCloudInfo = {
   },
   [PublicClouds.ibm]: {
     title: "IBM",
-    name: "IBM",
+    name: "IBM Cloud",
     CTA: [
       {
         CTAName: "Contact us",
@@ -266,7 +266,7 @@ const ProductType = () => {
       </div>
 
       <p>
-        <strong>{PublicCloudInfo[publicCloud]?.title}</strong>
+        <strong>{PublicCloudInfo[publicCloud]?.name}</strong>
       </p>
       <p>{PublicCloudInfo[publicCloud]?.describe}</p>
       {PublicCloudInfo[publicCloud]?.CTA.map((cta) => (
@@ -356,7 +356,7 @@ const ProductType = () => {
             checked={productType === ProductTypes.physical}
           />
         </Col>
-        {productType === "physical" && (
+        {productType === ProductTypes.physical && (
           <Col size={12} style={{ marginLeft: "35px" }}>
             <p>
               <strong>Unlimited VMs on selected hypervisors</strong>
@@ -390,6 +390,13 @@ const ProductType = () => {
             checked={productType === ProductTypes.desktop}
           />
         </Col>
+        {productType === ProductTypes.desktop && (
+          <Col size={12} style={{ marginLeft: "35px" }}>
+            <p>
+              A subscription limited to single-user machine Desktop use-cases.
+            </p>
+          </Col>
+        )}
         <Col size={12}>
           <RadioInput
             label="IoT and devices"
