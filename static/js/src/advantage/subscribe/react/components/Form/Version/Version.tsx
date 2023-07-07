@@ -33,12 +33,6 @@ const CIS = (
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
   </>
 );
-const CISComingSoon = (
-  <>
-    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-    <StatusLabel appearance="positive">Coming soon</StatusLabel>
-  </>
-);
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate =
   "Expanded Security Maintenance (ESM) for packages in 'main' repository until";
@@ -106,7 +100,7 @@ const DesktopVersionDetails: {
     AAD,
     livepatch,
     FIPSComingSoon,
-    CISComingSoon,
+    CIS,
     landscape,
     knowledgeBase,
     realtimeKernel,

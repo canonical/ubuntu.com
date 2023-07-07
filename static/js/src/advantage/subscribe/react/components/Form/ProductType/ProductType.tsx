@@ -393,7 +393,7 @@ const ProductType = () => {
         {productType === ProductTypes.desktop && (
           <Col size={12} style={{ marginLeft: "35px" }}>
             <p>
-              A subscription limited to single-user machine Desktop use-cases.
+              A subscription limited to single-user machine Desktop use-cases
             </p>
           </Col>
         )}

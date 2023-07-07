@@ -29,7 +29,7 @@ const ProductUser = () => {
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>
-          <p>Enterprise subscriptions for commercial use.</p>
+          <p>Enterprise subscriptions for commercial use</p>
         </Col>
         <Col size={12}>
           <RadioInput
@@ -46,7 +46,7 @@ const ProductUser = () => {
             you own, or 50 machines for active{" "}
             <a href="/community/membership">Ubuntu Community members</a>. If you
             need phone support or need to cover more than 5 machines, please
-            select &quot;My organisation&quot;.
+            select &quot;My organisation&quot;
           </p>
         </Col>
       </Row>
