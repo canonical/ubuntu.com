@@ -1,12 +1,5 @@
 import { useQuery } from "react-query";
-import { useFormikContext } from "formik";
-import {
-  Action,
-  FormValues,
-  PaymentPayload,
-  Product,
-  TaxInfo,
-} from "../utils/types";
+import { Action, PaymentPayload, Product, TaxInfo } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 
 type Props = {
@@ -17,7 +10,6 @@ type Props = {
 
 const usePreview = ({ quantity, product, action }: Props) => {
   const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
-  const { setFieldValue } = useFormikContext<FormValues>();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["preview", product],
     async () => {
@@ -77,7 +69,6 @@ const usePreview = ({ quantity, product, action }: Props) => {
         end_of_cycle: res.end_of_cycle,
       };
 
-      setFieldValue("totalPrice", data.total);
       return data;
     },
     {
