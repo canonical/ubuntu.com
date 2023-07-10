@@ -249,6 +249,8 @@ export const getProduct = (
       return "uaia-standard-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
       return "uaia-advanced-physical-yearly";
+    case `${ProductTypes.desktop}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-desktop-yearly";
     case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
       return "uai-essential-desktop-yearly";
     case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
