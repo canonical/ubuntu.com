@@ -61,7 +61,7 @@ const ProductSummary = () => {
           </Col>
           <hr />
           <Col size={6}>
-            <p className="p-heading--2">
+            <p className="p-heading--2" data-testid="summary-product-name">
               {productUser === ProductUsers.myself
                 ? "Ubuntu Pro"
                 : product?.name}

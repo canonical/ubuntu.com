@@ -7,6 +7,7 @@ import {
   ProductListings,
   ProductTypes,
   ProductUsers,
+  LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import { productListFixture } from "advantage/subscribe/react/utils/test/Mocks";
 
@@ -16,24 +17,52 @@ beforeAll(() => {
 
 test("Should show Buy now button and full service description link when 'organisation' is selected ", async () => {
   render(
-    <FormProvider initialUser={ProductUsers.organisation}>
+    <FormProvider
+      initialType={ProductTypes.physical}
+      initialUser={ProductUsers.organisation}
+    >
       <ProductSummary />
     </FormProvider>
   );
-
+  expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
+    "Ubuntu Pro"
+  );
+  expect(screen.getByTestId("summary-product-name")?.textContent).not.toContain(
+    "Desktop"
+  );
   expect(
     screen.getAllByText("See full service description")[0]
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
   expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
 });
 
+test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => {
+  render(
+    <FormProvider
+      initialType={ProductTypes.desktop}
+      initialUser={ProductUsers.organisation}
+      initialVersion={LTSVersions.trusty}
+    >
+      <ProductSummary />
+    </FormProvider>
+  );
+  expect(screen.getByTestId("summary-product-name")?.textContent).toContain(
+    "Desktop"
+  );
+  expect(
+    screen.getAllByText("See full service description")[0]
+  ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
+  expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
+});
 test("Should show register button and person subscription terms of service when 'myself' is selected ", async () => {
   render(
     <FormProvider initialUser={ProductUsers.myself}>
       <ProductSummary />
     </FormProvider>
   );
-
+  expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
+    /^Ubuntu Pro$/
+  );
   expect(screen.getByTestId("personal-subscription")).toHaveAttribute(
     "href",
     "/legal/ubuntu-pro/personal"
