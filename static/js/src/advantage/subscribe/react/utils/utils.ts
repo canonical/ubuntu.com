@@ -104,6 +104,11 @@ export type BuyButtonProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
+export enum ProductUsers {
+  organisation = "organisation",
+  myself = "myself",
+}
+
 export enum ProductTypes {
   physical = "physical",
   virtual = "virtual",
@@ -122,6 +127,7 @@ export enum PublicClouds {
   azure = "azure",
   gcp = "gcp",
   oracle = "oracle",
+  ibm = "ibm",
 }
 
 export enum LTSVersions {

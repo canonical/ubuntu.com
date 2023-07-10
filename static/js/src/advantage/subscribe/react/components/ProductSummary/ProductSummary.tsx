@@ -3,15 +3,18 @@ import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
   IoTDevices,
+  isIoTDevice,
   isMonthlyAvailable,
+  isPublicCloud,
   Periods,
-  ProductTypes,
+  ProductUsers,
 } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 import PaymentButton from "../PaymentButton";
 
 const ProductSummary = () => {
   const {
+    productUser,
     quantity,
     period,
     setPeriod,
@@ -27,10 +30,12 @@ const ProductSummary = () => {
     );
   };
   const isHidden =
-    !product ||
-    !quantity ||
-    quantity < 1 ||
-    (productType === ProductTypes.iotDevice && iotDevice === IoTDevices.core);
+    productUser === ProductUsers.organisation &&
+    (!product ||
+      !quantity ||
+      +quantity < 1 ||
+      isPublicCloud(productType) ||
+      (isIoTDevice(productType) && iotDevice === IoTDevices.core));
 
   return (
     <>
@@ -39,6 +44,7 @@ const ProductSummary = () => {
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
+        data-testid="summary-section"
       >
         <Row className="u-sv3">
           <Col size={6} className="p-text--small-caps">
@@ -55,43 +61,58 @@ const ProductSummary = () => {
           </Col>
           <hr />
           <Col size={6}>
-            <p className="p-heading--2">{product?.name}</p>
-            <a href="/legal/ubuntu-pro-description">
-              See full service description
-            </a>
+            <p className="p-heading--2">
+              {productUser === ProductUsers.myself
+                ? "Ubuntu Pro"
+                : product?.name}
+            </p>
+            {productUser === ProductUsers.myself ? (
+              <a href="/legal/ubuntu-pro/personal">
+                See personal subscription <br /> terms of service
+              </a>
+            ) : (
+              <a href="/legal/ubuntu-pro-description">
+                See full service description
+              </a>
+            )}
           </Col>
           <Col size={2} className="u-align--right p-heading--2">
-            {quantity}
+            {productUser === ProductUsers.myself ? 5 : quantity}
           </Col>
           <Col size={2} style={{ lineHeight: "4rem" }}>
-            {isMonthlyAvailable(product) ? (
-              <>
-                <Select
-                  name="billing-period"
-                  className="u-no-margin--bottom"
-                  defaultValue={period}
-                  options={[
-                    {
-                      label: "Billed Annually",
-                      value: Periods.yearly,
-                    },
-                    {
-                      label: "Billed Monthly",
-                      value: Periods.monthly,
-                    },
-                  ]}
-                  onChange={handlePeriodChange}
-                />
-              </>
-            ) : (
-              "Billed Yearly"
-            )}
+            {productUser !== ProductUsers.myself ? (
+              isMonthlyAvailable(product) ? (
+                <>
+                  <Select
+                    name="billing-period"
+                    className="u-no-margin--bottom"
+                    defaultValue={period}
+                    options={[
+                      {
+                        label: "Billed Annually",
+                        value: Periods.yearly,
+                      },
+                      {
+                        label: "Billed Monthly",
+                        value: Periods.monthly,
+                      },
+                    ]}
+                    onChange={handlePeriodChange}
+                  />
+                </>
+              ) : (
+                "Billed Yearly"
+              )
+            ) : null}
           </Col>
           <Col size={2} className="u-align--right">
             <p className="p-heading--2">
-              {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
-              )}
+              {productUser === ProductUsers.myself
+                ? `Free`
+                : currencyFormatter.format(
+                    ((product?.price.value ?? 0) / 100) *
+                      (Number(quantity) ?? 0)
+                  )}
             </p>{" "}
             <p className="p-text--small">
               per {period === Periods.yearly ? "year" : "month"}
@@ -106,7 +127,7 @@ const ProductSummary = () => {
             emptyLarge={9}
             style={{ display: "flex", alignItems: "center" }}
           >
-            {product?.canBeTrialled ? (
+            {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
               <StatusLabel appearance="positive">
                 Free trial available
               </StatusLabel>
@@ -124,35 +145,41 @@ const ProductSummary = () => {
         <Row className="u-sv3">
           <Col size={12}>
             <p>
-              {quantity} subscription{quantity > 1 ? "s" : ""} for
+              {quantity} subscription{+quantity > 1 ? "s" : ""} for
             </p>
           </Col>
           <Col size={12}>
-            <p className="p-heading--2">{product?.name}</p>
+            <p className="p-heading--2">
+              {productUser === ProductUsers.myself
+                ? "Ubuntu Pro"
+                : product?.name}
+            </p>
           </Col>
           <Col size={12}>
-            {isMonthlyAvailable(product) ? (
-              <>
-                <Select
-                  name="billing-period"
-                  className="u-no-margin--bottom"
-                  defaultValue={period}
-                  options={[
-                    {
-                      label: "Billed Annually",
-                      value: Periods.yearly,
-                    },
-                    {
-                      label: "Billed Monthly",
-                      value: Periods.monthly,
-                    },
-                  ]}
-                  onChange={handlePeriodChange}
-                />
-              </>
-            ) : (
-              "Billed Yearly"
-            )}
+            {productUser !== ProductUsers.myself ? (
+              isMonthlyAvailable(product) ? (
+                <>
+                  <Select
+                    name="billing-period"
+                    className="u-no-margin--bottom"
+                    defaultValue={period}
+                    options={[
+                      {
+                        label: "Billed Annually",
+                        value: Periods.yearly,
+                      },
+                      {
+                        label: "Billed Monthly",
+                        value: Periods.monthly,
+                      },
+                    ]}
+                    onChange={handlePeriodChange}
+                  />
+                </>
+              ) : (
+                "Billed Yearly"
+              )
+            ) : null}
           </Col>
           <Col size={1} small={2}>
             <p className="p-heading--2">
@@ -160,9 +187,18 @@ const ProductSummary = () => {
                 ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
               )}
             </p>
-            <a href="/legal/ubuntu-pro-description">
-              See full service description
-            </a>
+            {productUser === ProductUsers.myself ? (
+              <a
+                href="/legal/ubuntu-pro/personal"
+                data-testid="personal-subscription"
+              >
+                See personal subscription <br /> terms of service
+              </a>
+            ) : (
+              <a href="/legal/ubuntu-pro-description">
+                See full service description
+              </a>
+            )}
           </Col>
           <Col size={1} small={2}>
             <p>per {period === Periods.yearly ? "year" : "month"}</p>
@@ -173,7 +209,7 @@ const ProductSummary = () => {
           <Col size={12}>
             <PaymentButton />
           </Col>
-          {product?.canBeTrialled ? (
+          {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
               <StatusLabel appearance="positive">
                 Free trial available
