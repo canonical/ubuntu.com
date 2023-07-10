@@ -191,7 +191,7 @@ function toggleSection(e) {
   Function to update the state of mobile and desktop dropdowns
   @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
 */
-function updateNavMenu(dropdown, show)  {
+function updateNavMenu(dropdown, show) {
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
@@ -199,7 +199,7 @@ function updateNavMenu(dropdown, show)  {
   let isAccountDropdown = dropdown.classList.contains("js-account");
   updateAccountDropdown(dropdown, isAccountDropdown);
 
-  if (dropdownContent && dropdownContentMobile || isAccountDropdown) {
+  if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
     if (isAccountDropdown) show = false;
@@ -245,7 +245,6 @@ function updateMobileDropdownState(dropdown, show, isNested) {
     toggleIsActiveState(dropdownContentMobile.parentNode, show);
   }
 }
-
 
 let currentDropdownHandler = null;
 function updateAccountDropdown(dropdown, isTarget) {

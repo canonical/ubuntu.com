@@ -52,11 +52,11 @@
         .p-muted-heading {
           padding-left: 3rem;
         }
-        
-        &.is-active[role=menuitem] {
+
+        &.is-active[role="menuitem"] {
           @extend .is-selected;
 
-          >.p-navigation__link {
+          > .p-navigation__link {
             background-color: #2d2d2d;
           }
         }
@@ -69,8 +69,8 @@
 
           @media (min-width: $breakpoint-navigation-threshold) {
             .p-navigation__dropdown {
-              right: 0;
               min-width: 10rem;
+              right: 0;
             }
           }
 
@@ -86,8 +86,8 @@
             }
           }
 
-          button[aria-expanded=true] {
-            background-color: rgba(255,255,255,.05);
+          button[aria-expanded="true"] {
+            background-color: rgba(255, 255, 255, 0.05);
           }
         }
 
@@ -194,13 +194,12 @@
       }
     }
 
-
     .p-navigation__item {
       .p-navigation__link {
         color: $color-mid-light;
         padding-bottom: 0.5rem;
-        padding-top: 0.5rem;
         padding-left: 1rem;
+        padding-top: 0.5rem;
       }
     }
 
@@ -223,8 +222,8 @@
 
       .p-navigation__link {
         color: $color-mid-light;
-        font-weight: 300;
         font-size: 0.875rem;
+        font-weight: 300;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
