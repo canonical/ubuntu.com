@@ -1,4 +1,5 @@
 const ANIMATION_DELAY = 200;
+const MOBILE_VIEW_BREAKPOINT = 1250;
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(
   ".dropdown-window-overlay"
@@ -123,13 +124,13 @@ if (reducedNav) {
 // Event handler functions
 
 function updateMobileView() {
-  if (window.innerWidth <= 1150) {
+  if (window.innerWidth <= MOBILE_VIEW_BREAKPOINT) {
     topLevelNavDropdowns.forEach((dropdown) => {
       if (dropdown.classList.contains("is-active")) {
         addClassesToElements([navigation], ["has-menu-open"]);
       }
     });
-  } else if (window.innerWidth >= 1150) {
+  } else if (window.innerWidth >= MOBILE_VIEW_BREAKPOINT) {
     if (secondaryNav) {
       secondaryNav
         .querySelector(".p-navigation__nav")

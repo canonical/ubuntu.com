@@ -111,12 +111,12 @@
     margin: 2.5rem 0;
     padding: 0;
 
-    a {
+    .p-side-navigation__item a {
       color: #3097ff;
     }
   }
 
-  .dropdown-window__main-panel {
+  .dropdown-window__main-panel, .dropdown-window__side-panel {
     margin: 2.5rem 0;
     padding: 0 2rem 0 0;
 
@@ -163,10 +163,14 @@
       &::before {
         left: 2rem;
       }
+
+      .p-muted-heading {
+        padding-left: 0.5rem;
+      }
     }
 
     .p-muted-heading {
-      padding-left: 0.5rem;
+      color: rgba(255,255,255,.6)
     }
   }
 
