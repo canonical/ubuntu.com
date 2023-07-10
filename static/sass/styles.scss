@@ -1384,10 +1384,16 @@ hr.p-separator.is-shallow {
   background-color: #fff;
 }
 
-.risc-v-strip {
+.risc-v-container {
   @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
 
-  margin-top: 0.5rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  margin-top: $spv--small;
+  padding-bottom: $spv--large;
+  padding-top: $spv--large;
+
+  .risc-v-image {
+    height: 13rem;
+    width: auto;
+  }
 }

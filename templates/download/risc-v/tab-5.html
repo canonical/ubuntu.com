@@ -3,7 +3,7 @@
     <div class="col-3">
       <h2 class="u-hide--small">Sipeed LicheeRV Dock</h2>
     </div>
-    <div class="col-6 risc-v-strip is-shallow u-vertically-center u-align--center">
+    <div class="col-6 risc-v-container u-vertically-center u-align--center">
       {{ 
         image (
         url="https://assets.ubuntu.com/v1/4c609299-Sipeed+LicheeRV+-+Edited.png",
@@ -11,13 +11,14 @@
         width="400",
         height="400",
         hi_def=True,
-        loading="lazy"
+        loading="lazy",
+        attrs={"class": "risc-v-image"}
         ) | safe
       }}
     </div>
   </div>
-  <div class="row p-strip is-shallow u-no-padding--top">
-    <hr class="is-fixed-width col-9">
+  <div class="row p-strip u-no-padding--top">
+    <hr class="col-9">
     <div class="col-3">
       <h3 class="p-heading--5 u-no-padding--top">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
     </div>
