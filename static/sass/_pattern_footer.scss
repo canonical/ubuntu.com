@@ -102,7 +102,7 @@
     border-top: 1px solid $color-mid-light;
     color: $color-dark;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 0;
     max-width: inherit;
 
@@ -183,7 +183,7 @@
     }
 
     a {
-      color: $color-brand;
+      color: $color-x-dark;
     }
   }
 
@@ -213,7 +213,7 @@
 
         li {
           a {
-            color: $color-mid-dark;
+            color: $color-dark;
           }
         }
       }
@@ -306,6 +306,7 @@
 
   .p-footer--secondary .p-inline-list__item {
     display: block;
+    margin-top: 0.5rem;
 
     @media only screen and (min-width: $breakpoint-small) {
       display: inline-block;
