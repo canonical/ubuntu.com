@@ -69,6 +69,7 @@ window.addEventListener("resize", updateMobileView);
 topLevelNavDropdowns.forEach((dropdown) => {
   dropdown.addEventListener("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
     handleDropdownClick(dropdown);
   });
 });
@@ -171,13 +172,13 @@ function keyPressHandler(e) {
 }
 
 // Attaches to tab items in desktop dropdown and updates them,
-// also applies the same update to the mobile dropdown
+// also applies the same update to the mobile dropdown.
+// Is attached via HTML onclick attribute.
 function toggleSection(e) {
   e.preventDefault();
 
   const target = e.target.getAttribute("aria-controls");
   const el = document.querySelector(`.dropdown-content-desktop #${target}`);
-
   el.removeAttribute("hidden");
 
   setTimeout(function () {
@@ -190,17 +191,19 @@ function toggleSection(e) {
   Function to update the state of mobile and desktop dropdowns
   @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
 */
-function updateNavMenu(dropdown, show) {
+function updateNavMenu(dropdown, show)  {
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
   );
-  let toggleAnimations = !dropdownContent.classList.contains("not-full-screen-dropdown");
-  
-  if (dropdownContent && dropdownContentMobile) {
+  let isAccountDropdown = dropdown.classList.contains("js-account");
+  updateAccountDropdown(dropdown, isAccountDropdown);
+
+  if (dropdownContent && dropdownContentMobile || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
-    if (toggleAnimations) toggleDropdownWindowAnimation(show);
+    if (isAccountDropdown) show = false;
+    toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
   }
@@ -221,7 +224,7 @@ function updateDropdownStates(dropdown, show, delay) {
   updateDesktopDropdownStates(dropdown, show, delay);
   updateMobileDropdownState(dropdown, show, isNested);
 }
-// I need the js-account dropddown to be handled here, even though it is just a desktop dropdown
+
 function updateDesktopDropdownStates(dropdown, show, delay) {
   let dropdownContent = document.getElementById(
     dropdown.dataset.id + "-content"
@@ -243,6 +246,37 @@ function updateMobileDropdownState(dropdown, show, isNested) {
   }
 }
 
+
+let currentDropdownHandler = null;
+function updateAccountDropdown(dropdown, isTarget) {
+  if (isTarget && !dropdown.classList.contains("is-active")) {
+    currentDropdownHandler = createDropdownHandler(dropdown);
+    document.addEventListener("click", currentDropdownHandler);
+  } else {
+    if (currentDropdownHandler) {
+      document.removeEventListener("click", currentDropdownHandler);
+      currentDropdownHandler = null;
+    }
+  }
+}
+
+function createDropdownHandler(dropdown) {
+  return function (e) {
+    e.stopPropagation();
+    handleClickOutsideDropdown(e.target, dropdown);
+  };
+}
+
+function handleClickOutsideDropdown(clickTarget, dropdown) {
+  if (!dropdown.contains(clickTarget)) {
+    handleDropdownClick(dropdown, false);
+    if (currentDropdownHandler) {
+      document.removeEventListener("click", currentDropdownHandler);
+      currentDropdownHandler = null;
+    }
+  }
+}
+
 // Functions to handle visual states
 
 function toggleDropdownContentVisibility(contentElement, show, delay = 0) {
@@ -257,15 +291,6 @@ function toggleDropdownWindowAnimation(show) {
   dropdownWindow.classList.toggle("slide-animation", !show);
   dropdownWindowOverlay.classList.toggle("fade-animation", !show);
   toggleIsActiveState(dropdownWindow, show);
-}
-
-// Not sure if we need this function
-function closeDropdown(dropdown) {
-  toggleIsActiveState(dropdown, false);
-  toggleDropdownWindowAnimation(false);
-  if (window.history.pushState) {
-    window.history.pushState(null, null, window.location.href.split("#")[0]);
-  }
 }
 
 function revealTopNav() {
@@ -286,12 +311,13 @@ function convertHTMLToNode(responseText, selector) {
   return tempElement.querySelector(selector);
 }
 
-function attachBackButtonEventListener(element) {
+function attachBackButtonEventListener(element, secondaryFunction) {
   element.addEventListener(
     "click",
     function (e) {
       e.stopImmediatePropagation();
       goBackOneLevel(e, element);
+      secondaryFunction();
     },
     true
   );
@@ -307,12 +333,11 @@ function deactivateActiveCTA(element) {
   @param {String} id the id of the target subsection
 */
 let isFetching = false;
-function fetchDropdown(e, url, id) {
+function fetchDropdown(url, id) {
   if (isFetching) return;
   isFetching = true;
-  const triggerEl = e.target;
-  const container = document.getElementById(id);
-  const mobileContainer = triggerEl.parentNode;
+  const container = document.getElementById(id + "-content");
+  const mobileContainer = document.getElementById(id);
 
   if (container.innerHTML === "") {
     makeRequest(url, function () {
@@ -505,7 +530,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign in&numsp;<i class="p-icon--user is-light"></i></a>`;
       } else {
         window.accountJSONRes = data.account;
         accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true"><i class="p-icon--user is-light">${data.account.fullname}</i></button>
@@ -527,100 +552,8 @@ if (accountContainer) {
             </li>
           </ul>`;
 
-        function toggleUserMenu(element) {
-          const container = element.closest(
-            ".p-navigation__item--dropdown-toggle"
-          );
-          var target = document.getElementById(
-            element.getAttribute("aria-controls")
-          );
-            
-          const show = !container.classList.contains(".is-active");
-          // handleDropdownClick(container);
-              
-          console.log("Toggling", element, show)
-          // if (show) {
-          //   toggleIsActiveState(container, true);
-          //   deactivateDesktopDropdownElements();
-          // } else {
-          //   toggleIsActiveState(container, false);
-          // }
-
-          // if (target) {
-          //   element.setAttribute("aria-expanded", show);
-          //   target.setAttribute("aria-hidden", !show);
-
-          //   if (show) {
-          //     target.focus();
-          //     topLevelNavDropdowns.forEach(function (dropdown) {
-          //       closeDropdown(dropdown);
-          //     });
-          //   }
-          // }
-        }
-
-        /**
-          Attaches event listeners for the menu toggle open and close click events.
-          @param {HTMLElement} menuToggle The menu container element.
-        */
-        function setupContextualMenu(menuToggle) {
-          menuToggle.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            var menuAlreadyOpen =
-              menuToggle.getAttribute("aria-expanded") === "true";
-
-            var top = menuToggle.offsetHeight;
-            // for inline elements leave some space between text and menu
-            if (window.getComputedStyle(menuToggle).display === "inline") {
-              top += 5;
-            }
-
-            toggleUserMenu(menuToggle, !menuAlreadyOpen, top);
-          });
-        }
-
-        /**
-          Attaches event listeners for all the menu toggles in the document and
-          listeners to handle close when clicking outside the menu or using ESC key.
-          @param {String} contextualMenuToggleSelector The CSS selector matching menu toggle elements.
-        */
-        function setupAllContextualMenus(contextualMenuToggleSelector) {
-          // Setup all menu toggles on the page.
-          var userToggle = document.querySelector(contextualMenuToggleSelector);
-          if (userToggle) {
-            setupContextualMenu(userToggle);
-
-            // Add handler for clicking outside the menu.
-            document.addEventListener("click", function (event) {
-              var contextualMenu = document.getElementById(
-                userToggle.getAttribute("aria-controls")
-              );
-              var clickOutside = !(
-                userToggle.contains(event.target) ||
-                contextualMenu.contains(event.target)
-              );
-
-              if (clickOutside) {
-                toggleUserMenu(userToggle, false);
-              }
-            });
-          }
-        }
-
-        const jsBackButton = document.querySelector(".js-account .js-back");
-        attachBackButtonEventListener(jsBackButton);
-
-        const accountDropdown = document.querySelector(
-          ".p-navigation__item--dropdown-toggle.js-account"
-        );
-        accountDropdown.addEventListener("click", (e) => {
-          toggleUserMenu(e.target);
-        });
-
-        // setupAllContextualMenus(
-        //   ".p-navigation__item--dropdown-toggle.js-account .p-navigation__link"
-        // );
+        const jsBackButton = accountContainer.querySelector(".js-back");
+        attachBackButtonEventListener(jsBackButton, updateAccountDropdown);
       }
     });
 }
