@@ -116,12 +116,17 @@
     }
   }
 
-  .dropdown-window__main-panel, .dropdown-window__side-panel {
+  .dropdown-window__main-panel,
+  .dropdown-window__side-panel {
     margin: 2.5rem 0;
     padding: 0 2rem 0 0;
 
     &.is-bordered {
       border-right: $dropdown-border;
+    }
+
+    .p-muted-heading {
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .p-navigation__dropdown-item {
@@ -167,10 +172,6 @@
       .p-muted-heading {
         padding-left: 0.5rem;
       }
-    }
-
-    .p-muted-heading {
-      color: rgba(255,255,255,.6)
     }
   }
 
