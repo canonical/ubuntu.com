@@ -245,6 +245,8 @@
 
   .p-footer__title.active {
     background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
+    font-weight: 800;
+    
 
     @media only screen and (min-width: $breakpoint-small) {
       background: none;
@@ -253,6 +255,7 @@
 
   .p-footer__title.active + .second-level-nav {
     display: block;
+    background-color: #e5e5e5;
   }
 
   .p-footer__title-text {
