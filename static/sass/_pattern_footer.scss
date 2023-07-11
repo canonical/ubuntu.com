@@ -255,9 +255,10 @@
 
   .p-footer__title.active + .second-level-nav {
     display: block;
+    background-color: $color-mid-x-light;
 
-    @media only screen and (max-width: $breakpoint-small) {
-      background-color: $color-mid-x-light;
+    @media only screen and (min-width: $breakpoint-small) {
+      background-color: initial;
     }    
   }
 
