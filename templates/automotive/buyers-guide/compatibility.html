@@ -1,0 +1,105 @@
+{% extends "automotive/base_automotive.html" %}
+
+{% block title %}Boost your automotive business with Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu is widely used to reduce time to market in automotive companies, as a platform for data analytics, online services, robotics and machine learning. Infotainment, ADAS and cockpit application development on Ubuntu is faster. New real-time hypervisors enable Ubuntu VMs alongside functional safety RTOS solutions.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1NLnoNEP6cL46PotNGVuKLajehl-nfyBU4C8JT-FYMvQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--light u-no-padding--top">
+  <div class="u-fixed-width p-card">
+    <div class="row">
+      <div class="col-6">
+        <h2>Compatibility</h2>
+      </div>
+      <div class="col-6">
+        <p>Considering the number of different chipsets present in a vehicle today, it is important that the Linux distribution you choose is compatible with a maximum number of hardware platforms.</p>
+        <p>We make sure to provide best level support and integration to hardware components that are widely used in the automotive industry. Thanks to our alliances and enablement teams, we work closely with silicon providers to make sure that Ubuntu runs seamlessly on top of their hardware.</p>
+      </div>
+    </div>
+    <div class="u-fixed-width" style="overflow:hidden">
+      <img src="https://ubuntu.com/wp-content/uploads/6dbf/Untitled-design-25-2.png" alt="" class="banner-image" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light u-no-padding--top" id="form">
+  <hr class="is-fixed-width">
+  <div class="row u-sv3">
+    <div class="col-6">
+      <h2>Download our buyer's guide</h2>
+    </div>
+    <div class="col-6">
+      <p class="p-heading--five">See if Ubuntu meets your needs and evaluate how it compares to others for your unique use case.</p>
+      <p>Based on our extensive experience in embedded systems, we put together an overview of considerations that will help you select the right OS for your in-vehicle projects. Our buyer's guide will also help you evaluate if Ubuntu is a good fit for you. Download the guide.</p>
+    </div>
+    <div class="row u-sv3">
+      <div class="col-6 col-start-large-7">
+        <h3 class="p-muted-heading">Contact us</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6cf586a1-Whitepaper A guide to high-performance computing.png",
+          alt="",
+          width="793",
+          height="1119",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <div class="col-6">
+        <form action="">
+          <label for="list-input-1">What can we help you with?</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label for="list-input-1">How should we get in touch?</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label for="list-input-1">First name:</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label for="list-input-1">Last name:</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label for="list-input-1">Email address:</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label for="list-input-1">Phone number:</label>
+          <input id="list-input-1" name="list-input-1" type="text">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+            <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+          </label>
+          <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</p>
+          <button type="submit" class="p-button--positive" aria-label="Submit">Let's discuss</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/automotive" data-form-id="4477" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=automotive" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script>
+function updateView(event) {
+  // Handle the difference in whether the event is fired on the <a> or the <img>
+  const targetIdentifier = event.target.firstChild || event.target;
+
+  const displayNewImage = () => {
+    const mainSrc = `${targetIdentifier.src.split("_th.jpg")[0]}.jpg`;
+    galleryImg.src = mainSrc;
+    galleryCaption.textContent = targetIdentifier.alt;
+  };
+
+  // Fallback for browsers that don't support View Transitions:
+  if (!document.startViewTransition) {
+    displayNewImage();
+    return;
+  }
+
+  // With View Transitions:
+  const transition = document.startViewTransition(() => displayNewImage());
+}
+</script>
+{% endblock content %}
