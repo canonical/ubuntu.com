@@ -45,6 +45,8 @@ export interface FormValues {
   VATNumber?: string;
   captchaValue: string | null;
   TermsAndConditions: boolean;
+  TermsOfService: boolean;
+  DataPrivacy: boolean;
   MarketingOptIn: boolean;
   Description: boolean;
   marketplace: UserSubscriptionMarketplace;

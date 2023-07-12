@@ -25,15 +25,16 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
     product,
     action
   );
-
-  return (
-    <Row>
-      <Col size={12}>
-        <Field
+  
+  if (product.marketplace=="canonical-cube"){
+    return (
+      <Row>
+        <Col size={12}>
+          <Field 
           as={CheckboxInput}
-          name="TermsAndConditions"
-          label={termsLabel}
-          checked={values.TermsAndConditions}
+          name="TermsofService"
+          label={<>I agree to the <a href="/legal/terms-and-policies/credentials-terms" target="_blank">Canonical Credentials Terms of Service</a></>}
+          checked={values.TermsOfService}
           defaultChecked={false}
           validate={(value: string) => {
             if (!value) {
@@ -42,26 +43,15 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
             return;
           }}
           required
-          error={touched?.TermsAndConditions && errors?.TermsAndConditions}
+          error={touched?.TermsOfService && errors?.TermsOfService}
         />
-        {touched?.TermsAndConditions && errors?.TermsAndConditions && (
-          <div className="p-form-validation is-error">
-            <div
-              className="p-form-validation__message"
-              id="exampleInputErrorMessage"
-              style={{ marginTop: "0.5rem" }}
-            >
-              <strong>Error:</strong> This field is required.
-            </div>
-          </div>
-        )}
-      </Col>
-      <Col size={12}>
-        <Field
+        </Col>
+        <Col size={12}>
+          <Field 
           as={CheckboxInput}
-          name="Description"
-          label={descriptionLabel}
-          checked={values.Description}
+          name="Data Privacy"
+          label={<>I have read the <a href="/legal/data-privacy/credential" target="_blank">Canonical Credentials Data Privacy Notice</a></>}
+          checked={values.DataPrivacy}
           defaultChecked={false}
           validate={(value: string) => {
             if (!value) {
@@ -70,52 +60,104 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
             return;
           }}
           required
-          error={touched?.Description && errors?.Description}
+          error={touched?.DataPrivacy && errors?.DataPrivacy}
         />
-        {touched?.Description && errors?.Description && (
-          <div className="p-form-validation is-error">
-            <div
-              className="p-form-validation__message"
-              id="exampleInputErrorMessage"
-              style={{ marginTop: "0.5rem" }}
-            >
-              <strong>Error:</strong> This field is required.
+        </Col>
+      </Row>
+    );
+  }
+  else{
+    return (
+      <Row>
+        <Col size={12}>
+          <Field
+            as={CheckboxInput}
+            name="TermsAndConditions"
+            label={termsLabel}
+            checked={values.TermsAndConditions}
+            defaultChecked={false}
+            validate={(value: string) => {
+              if (!value) {
+                return "This field is required.";
+              }
+              return;
+            }}
+            required
+            error={touched?.TermsAndConditions && errors?.TermsAndConditions}
+          />
+          {touched?.TermsAndConditions && errors?.TermsAndConditions && (
+            <div className="p-form-validation is-error">
+              <div
+                className="p-form-validation__message"
+                id="exampleInputErrorMessage"
+                style={{ marginTop: "0.5rem" }}
+              >
+                <strong>Error:</strong> This field is required.
+              </div>
             </div>
-          </div>
-        )}
-      </Col>
-      <Col size={12}>
+          )}
+        </Col>
+        <Col size={12}>
+          <Field
+            as={CheckboxInput}
+            name="Description"
+            label={descriptionLabel}
+            checked={values.Description}
+            defaultChecked={false}
+            validate={(value: string) => {
+              if (!value) {
+                return "This field is required.";
+              }
+              return;
+            }}
+            required
+            error={touched?.Description && errors?.Description}
+          />
+          {touched?.Description && errors?.Description && (
+            <div className="p-form-validation is-error">
+              <div
+                className="p-form-validation__message"
+                id="exampleInputErrorMessage"
+                style={{ marginTop: "0.5rem" }}
+              >
+                <strong>Error:</strong> This field is required.
+              </div>
+            </div>
+          )}
+        </Col>
+        <Col size={12}>
+          <Field
+            as={CheckboxInput}
+            name="MarketingOptIn"
+            id="MarketingOptIn"
+            label={marketingLabel}
+            defaultChecked={false}
+          />
+        </Col>
+        <div className="p-strip is-shallow u-no-padding--top">
+          <ReCAPTCHA
+            sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+            onChange={onCaptchaChange}
+          />
+        </div>
         <Field
-          as={CheckboxInput}
-          name="MarketingOptIn"
-          id="MarketingOptIn"
-          label={marketingLabel}
-          defaultChecked={false}
+          as={Input}
+          type="hidden"
+          id="captchaValue"
+          name="captchaValue"
+          validate={() => {
+            if (!window.captcha) {
+              return "Captcha field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.captchaValue && errors?.captchaValue}
         />
-      </Col>
-      <div className="p-strip is-shallow u-no-padding--top">
-        <ReCAPTCHA
-          sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
-          onChange={onCaptchaChange}
-        />
-      </div>
-      <Field
-        as={Input}
-        type="hidden"
-        id="captchaValue"
-        name="captchaValue"
-        validate={() => {
-          if (!window.captcha) {
-            return "Captcha field is required.";
-          }
-          return;
-        }}
-        required
-        error={touched?.captchaValue && errors?.captchaValue}
-      />
-      <hr />
-    </Row>
-  );
+        <hr />
+      </Row>
+    );
+  }
 };
 
 const getLabels = (product: Product, action: Action) => {
