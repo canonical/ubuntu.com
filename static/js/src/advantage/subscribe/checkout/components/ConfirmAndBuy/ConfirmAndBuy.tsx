@@ -26,138 +26,97 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
     action
   );
   
-  if (product.marketplace=="canonical-cube"){
-    return (
-      <Row>
-        <Col size={12}>
-          <Field 
-          as={CheckboxInput}
-          name="TermsofService"
-          label={<>I agree to the <a href="/legal/terms-and-policies/credentials-terms" target="_blank">Canonical Credentials Terms of Service</a></>}
-          checked={values.TermsOfService}
-          defaultChecked={false}
-          validate={(value: string) => {
-            if (!value) {
-              return "This field is required.";
-            }
-            return;
-          }}
-          required
-          error={touched?.TermsOfService && errors?.TermsOfService}
-        />
-        </Col>
-        <Col size={12}>
-          <Field 
-          as={CheckboxInput}
-          name="Data Privacy"
-          label={<>I have read the <a href="/legal/data-privacy/credential" target="_blank">Canonical Credentials Data Privacy Notice</a></>}
-          checked={values.DataPrivacy}
-          defaultChecked={false}
-          validate={(value: string) => {
-            if (!value) {
-              return "This field is required.";
-            }
-            return;
-          }}
-          required
-          error={touched?.DataPrivacy && errors?.DataPrivacy}
-        />
-        </Col>
-      </Row>
-    );
-  }
-  else{
-    return (
-      <Row>
-        <Col size={12}>
-          <Field
-            as={CheckboxInput}
-            name="TermsAndConditions"
-            label={termsLabel}
-            checked={values.TermsAndConditions}
-            defaultChecked={false}
-            validate={(value: string) => {
-              if (!value) {
-                return "This field is required.";
-              }
-              return;
-            }}
-            required
-            error={touched?.TermsAndConditions && errors?.TermsAndConditions}
-          />
-          {touched?.TermsAndConditions && errors?.TermsAndConditions && (
-            <div className="p-form-validation is-error">
-              <div
-                className="p-form-validation__message"
-                id="exampleInputErrorMessage"
-                style={{ marginTop: "0.5rem" }}
-              >
-                <strong>Error:</strong> This field is required.
-              </div>
-            </div>
-          )}
-        </Col>
-        <Col size={12}>
-          <Field
-            as={CheckboxInput}
-            name="Description"
-            label={descriptionLabel}
-            checked={values.Description}
-            defaultChecked={false}
-            validate={(value: string) => {
-              if (!value) {
-                return "This field is required.";
-              }
-              return;
-            }}
-            required
-            error={touched?.Description && errors?.Description}
-          />
-          {touched?.Description && errors?.Description && (
-            <div className="p-form-validation is-error">
-              <div
-                className="p-form-validation__message"
-                id="exampleInputErrorMessage"
-                style={{ marginTop: "0.5rem" }}
-              >
-                <strong>Error:</strong> This field is required.
-              </div>
-            </div>
-          )}
-        </Col>
-        <Col size={12}>
-          <Field
-            as={CheckboxInput}
-            name="MarketingOptIn"
-            id="MarketingOptIn"
-            label={marketingLabel}
-            defaultChecked={false}
-          />
-        </Col>
-        <div className="p-strip is-shallow u-no-padding--top">
-          <ReCAPTCHA
-            sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
-            onChange={onCaptchaChange}
-          />
-        </div>
+  
+  return (
+    <Row>
+      <Col size={12}>
         <Field
-          as={Input}
-          type="hidden"
-          id="captchaValue"
-          name="captchaValue"
-          validate={() => {
-            if (!window.captcha) {
-              return "Captcha field is required.";
+          as={CheckboxInput}
+          name="TermsAndConditions"
+          label={termsLabel}
+          checked={values.TermsAndConditions}
+          defaultChecked={false}
+          validate={(value: string) => {
+            if (!value) {
+              return "This field is required.";
             }
             return;
           }}
           required
-          error={touched?.captchaValue && errors?.captchaValue}
+          error={touched?.TermsAndConditions && errors?.TermsAndConditions}
         />
-        <hr />
-      </Row>
-    );
-  }
+        {touched?.TermsAndConditions && errors?.TermsAndConditions && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
+      </Col>
+      <Col size={12}>
+        <Field
+          as={CheckboxInput}
+          name="Description"
+          label={descriptionLabel}
+          checked={values.Description}
+          defaultChecked={false}
+          validate={(value: string) => {
+            if (!value) {
+              return "This field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.Description && errors?.Description}
+        />
+        {touched?.Description && errors?.Description && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
+      </Col>
+      <Col size={12}>
+        <Field
+          as={CheckboxInput}
+          name="MarketingOptIn"
+          id="MarketingOptIn"
+          label={marketingLabel}
+          defaultChecked={false}
+        />
+      </Col>
+      <div className="p-strip is-shallow u-no-padding--top">
+        <ReCAPTCHA
+          sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+          onChange={onCaptchaChange}
+        />
+      </div>
+      <Field
+        as={Input}
+        type="hidden"
+        id="captchaValue"
+        name="captchaValue"
+        validate={() => {
+          if (!window.captcha) {
+            return "Captcha field is required.";
+          }
+          return;
+        }}
+        required
+        error={touched?.captchaValue && errors?.captchaValue}
+      />
+      <hr />
+    </Row>
+  );
 };
 
 const getLabels = (product: Product, action: Action) => {
@@ -197,7 +156,40 @@ const getLabels = (product: Product, action: Action) => {
       ),
     };
   }
-
+  if(product.marketplace == "canonical-cube"){
+    return{
+      termsLabel: (
+        <>
+          I agree to the{" "}
+          <a
+            href="/legal/terms-and-policies/credentials-terms"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Credentials Terms of Service
+          </a>
+        </>
+      ),
+      descriptionLabel: (
+        <>
+          I have read the{" "}
+          <a
+            href="/legal/data-privacy/credentials"
+            target="_blank"
+            rel="noopener norefferer"
+          >
+            Data Privacy Notice
+          </a>
+        </>
+      ),
+      marketingLabel: (
+        <>
+          I agree to receive information about Canonical&apos;s products and
+          services
+        </>
+      ),
+    }
+  }
   return {
     termsLabel: (
       <>
