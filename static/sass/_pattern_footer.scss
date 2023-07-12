@@ -10,7 +10,7 @@
 
   @media only screen and (min-width: $breakpoint-small) {
     line-height: 1.5;
-  } 
+  }
 }
 
 @mixin ubuntu-p-footer {
@@ -171,12 +171,12 @@
     border-bottom: 1px solid $color-mid-dark;
     display: block;
     left: auto;
+    line-height: 2.3;
     margin-bottom: -1px;
     max-width: inherit;
     padding: $sp-small 0 $sp-small $sp-x-large;
     position: relative;
     z-index: 2;
-    line-height: 2.3;
 
     @media only screen and (min-width: $breakpoint-small) {
       display: none;
@@ -188,7 +188,6 @@
   }
 
   .p-footer--secondary {
-
     @media only screen and (min-width: $breakpoint-small) {
       padding: 0;
     }
@@ -231,14 +230,14 @@
         color: $color-dark;
         display: block;
         font-size: 1rem;
-        padding: $sp-medium;
         line-height: 1.25;
+        padding: $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
           border: 0;
           font-size: 0.8125rem;
-          padding: 0;
           line-height: 1.5rem;
+          padding: 0;
         }
       }
     }
