@@ -1,12 +1,23 @@
 // validate messages for keys
+const formControl = document.querySelector(".p-form__control");
 const activation_key = document.querySelector(".activate-input");
 const validate_message = document.querySelector(".p-form-validation__message");
+const notification = document.querySelector("#notification");
+
+function addIsError() {
+  const formControl = document.querySelector(".p-form__control");
+  if (validate_message.textContent.length > 0) {
+    if (!formControl.classList.contains("is-error")) {
+      formControl.classList.add("is-error");
+    }
+  } else {
+    formControl.classList.remove("is-error");
+  }
+}
 
 function validateKey(e) {
   const firstLetter = "The activation key starts with a K.";
   const length = "The activation key is 23 characters long.";
-  const notification = document.querySelector("#notification");
-
   if (e.target.value.length === 0) {
     validate_message.textContent = "";
   } else if (e.target.value.charAt(0) !== "K") {
@@ -16,6 +27,7 @@ function validateKey(e) {
   } else if (e.target.value.charAt(0) === "K" && e.target.value.length === 23) {
     validate_message.textContent = "";
   }
+  addIsError();
 }
 activation_key.addEventListener("keyup", validateKey);
 
@@ -212,10 +224,28 @@ activateKeyForm.addEventListener("submit", function (event) {
         return response.json();
       })
       .catch(function (err) {
-        document.querySelector("#notification").style.display = "block";
-        document.querySelector("#notification-message").innerHTML = JSON.parse(
-          err.message
-        ).errors;
+        const errorMessage = JSON.parse(err?.message)?.errors;
+        notification.style.display = "block";
+        document.querySelector(
+          "#notification-message"
+        ).innerHTML = errorMessage;
+
+        if (errorMessage === "activation key already used") {
+          const div1 = document.createElement("div");
+          const div2 = document.createElement("div");
+          div1.classList.add("p-notification__meta");
+          div2.classList.add("p-notification__actions");
+          const a = document.createElement("a");
+          a.setAttribute("href", "/pro/dashboard");
+          a.textContent = "Go to dashboard";
+          div2.appendChild(a);
+          div1.appendChild(div2);
+          notification.appendChild(div1);
+        } else {
+          if (document.querySelector(".p-notification__meta")) {
+            document.querySelector(".p-notification__meta").remove();
+          }
+        }
       });
   }
 });
