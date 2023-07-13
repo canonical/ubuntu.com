@@ -1,0 +1,386 @@
+{% extends "ai/_base_ai.html" %}
+
+{% block title %}Canonical AI Roadshow{% endblock %}
+
+{% block meta_description %}Canonical AI Roadshow is the right place to talk about open source MLOps, production-grade LLMs or enterprise support for your initiatives. Meet us across the globe and let's talk about AI.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1CA0GUU6yRB65yfDaKi1dgN8DED2bDAFI2h-swSVtMtg/edit{% endblock meta_copydoc %}
+
+{% block content %}
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <h1 class="p-heading--bold">
+            The Canonical AI Roadshow
+          </h1>
+        </div>
+        <p class="p-heading-4">Hear about production-grade LLMs: from raw data to model serving in one platform. Get answers to your most common AI/ML questions.</p>
+        <p>From the USA to the Netherlands, from UAE to Mexico, we are going on an AI roadshow across the globe. Ready to showcase production-grade LLMs developed within one platform, Canonical experts will talk about big data, MLOps and open source in the context of the latest innovations.</p>
+        <p>
+          <a href="#find-us" class="p-button--positive">See where you can find us</a>
+        </p>
+      </div>
+      <div class="col-6 col-medium-3 u-align--center u-hide--small u-vertically-center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/62b68b29-Canonical%20AI%20ML%20Illustrations%20v5-01.svg",
+          alt="",
+          width="536",
+          height="301",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="u-no-margin--bottom" />
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <h2>Why join us?</h2>
+          <hr class="p-rule u-hide--large">
+        </div>
+      </div>
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <p>Experience the best of both worlds: open source and machine learning in the company of Canonical experts. Get insight on the latest innovations and how you could build your own <abbr title="Large language models">LLMS</abbr>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-block">
+          <hr class="p-rule" />
+          <div class="row">
+            <div class="col-3 col-medium-2 col-small-2">
+              <h3 class="p-text--small-caps">Meet AI/ML experts and ask your questions</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>AI/ML and big data experts will be joining the Canonical AI Roadshow. We will host talks on different topics, run workshops to build your expertise and more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-block">
+          <hr class="p-rule" />
+          <div class="row">
+            <div class="col-3 col-medium-2 col-small-2">
+              <h3 class="p-text--small-caps">See our demos and try building your own LLM</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>We have prepared a series of demos that showcase the power of LLMs and how to build them using open source tooling.</p>
+              <p>Join one of our workshops and learn how to build your own LLM.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-block">
+          <hr class="p-rule" />
+          <div class="row">
+            <div class="col-3 col-medium-2 col-small-2">
+              <h3 class="p-text--small-caps">Run AI projects in production securely</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>Get enterprise support or managed services for the tools. Run your projects securely in production and don't worry about upgrades, updates or vulnerabilities. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <hr class="u-no-margin--bottom" />
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <h2>Discuss LLMs across the globe with Canonical</h2>
+        </div>
+      </div>
+      <div class="col-6 col-medium-3">
+        <div class="p-block">
+          <p>Large language models (LLMs) are the future of AI. They have applications across various industries, but taking them beyond experimentation is still a challenge. Open source tooling covers the entire lifecycle, easing operations and accelerating the entire process.</p>
+          <div class="p-strip--light u-align--center">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/7c6d52ef-Kubeflow-nicely-packaged-box.svg",
+              alt="",
+              width="208",
+              height="197",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+        <hr />
+        <ul class="p-list--ticked u-no-margin--bottom">
+          <li class="p-list__item">
+            <h3 class="p-heading--5 u-no-margin--bottom">Go from raw data to features</h3>
+            <p>Perform all the steps needed to deliver features for model training with open source &mdash; now the industry standard.</p>
+          </li>
+          <li class="p-list__item">
+            <h3 class="p-heading--5 u-no-margin--bottom">Data features to machine learning models</h3>
+            <p>Build LLMs efficiently, automate workflows, reduce operations.</p>
+          </li>
+          <li class="p-list__item">
+            <h3 class="p-heading--5 u-no-margin--bottom">Machine learning models to production</h3>
+            <p>Upgrade your model serving strategy with open source.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="find-us">
+    <hr class="is-fixed-width" />
+    <div class="row">
+      <div class="col-3">
+        <h2 class="p-text--small-caps">Where can you find us?</h2>
+      </div>
+      <div class="col-3">
+        <h3 class="p-heading--2 u-no-padding--top">Europe</h3>
+      </div>
+      <div class="col-6">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="https://worldsummit.ai/">World Summit AI</a>: 11-12 October 2023, Amsterdam, Netherlands
+            Talk: Building LLMs: from zero to hero with <a href="https://www.linkedin.com/in/mm4zur/">Maciej Mazur</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://events.canonical.com/event/31/program">Ubuntu Summit</a>: AI/ML track:  3-5 November, Riga, Latvia
+          </li>
+          <li class="p-list__item">
+            <a href="https://www.opensource-experience.com/en/">Open source experience</a>: 6-7 December 2023, Paris, France
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--2">North America</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://mlopsworld.com/">MLOps World</a>: 25-26 October 2023, Austin
+                Talk: MLOps on highly sensitive data &mdash; Strict Confinement, Confidential Computing and Tokenization Protecting Privacy with <a href="https://www.linkedin.com/in/andreea-mihaela-munteanu/">Andreea Munteanu</a> &amp; <a href="https://www.linkedin.com/in/mm4zur/">Maciej Mazur</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/">KubeconNA</a>: 6-9 November, Chicago
+              </li>
+              <li class="p-list__item">
+                <a href="https://dok.community/dok-day-north-america-2023/">Data on Kubernetes Day</a>: 6 November, Chicago
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--2">Middle East &amp; Africa</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://www.gitex.com/">GITEX</a>: 16-20 October, Dubai, UAE
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="is-fixed-width" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--2">Central &amp; South America</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://www.latam-ai.com/">LatamAI</a>: 12-13 September, Ciudad de Mexico, Mexico
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <div class="col-9 col-medium-4 col-start-large-4 col-start-medium-3">
+        <div class="p-block">
+          <h2>Would you like to have us at your event? Get in touch with us. For PR enquiries, contact us on <a href="mailto:pr@canonical.com">pr@canonical.com</a></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip u-no-padding--top">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-6 col-medium-3">
+        <h2>Your AI/ML journey with Canonical</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <div class="p-block">
+          <hr class="p-rule" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5"><a href="https://charmed-kubeflow.io/">Charmed Kubeflow</a></h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>A production-grade MLOps platform where the end-to-end ML lifecycle runs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4 col-medium-3 col-start-medium-4">
+        <div class="p-block">
+          <hr class="p-rule" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5"><a href="/data/spark">Charmed Spark</a></h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>A security-maintained and fully supported solution for Apache Spark on Kubernetes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5"><a href="/blog/charmed-mlflow-beta">Charmed MLFlow</a></h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>A platform used to manage machine learning workflows, used primarily for model registry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5"><a href="/data/opensearch">Charmed OpenSearch</a></h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Enterprise OpenSearch solution with support, security maintenance and operations automation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5"><a href="/data/mongodb">Charmed MongoDB</a></h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Enterprise MongoDB solution with support, security maintenance and operations automation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5"><a href="https://assets.ubuntu.com/v1/429359fe-MLOps%20advisory%20DS%2029.11.22.pdf">AI &amp; Data consultancy </a></h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Access one of our consultancy lanes for AI & Data experts to kickstart your journey.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow">
+    <div class="row u-no-padding--top">
+      <hr class="u-no-margin--bottom" />
+      <div class="col-6 col-medium-3">
+        <h2>A guide to MLOps</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <div class="p-aspect-ratio-image--2-3" style="background-image: url('https://assets.ubuntu.com/v1/96461792-a-guide-to-mlops.png');"></div>
+        <p>Learn how to choose your MLOps tooling; take your AI projects to production.</p>
+        <ul class="p-list--divided-bulleted">
+          <li class="p-list__item">
+            An increasing number of capabilities being used by organisations as part of their AI initiatives.
+          </li>
+          <li class="p-list__item">
+            An increasing level of investment is allocated to machine learning projects, which goes hand in hand with a higher adoption rate.
+          </li>
+          <li class="p-list__item">
+            More interest in collection, governance and ethics, aiming to ensure compliance for production deployments.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow">
+    <div class="row u-no-padding--top">
+      <hr class="u-no-margin--bottom" />
+      <div class="col-6 col-medium-3">
+        <h2>University of Tasmania unlocks real-time space tracking with AI/ML supercomputing</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <div class="p-aspect-ratio-image--2-3" style="background-image: url('https://assets.ubuntu.com/v1/c91a6542-the-university-of-tasmania.png');"></div>
+        <p>Learn how Tasmania University is modernising its space-tracking data processing with the Firmus Supercloud, built on Canonical's open infrastructure stack</p>
+        <ul class="p-list--divided-bulleted">
+          <li class="p-list__item">
+            Tasmania University, with the help of Canonical and Firmus has eliminated the data processing bottleneck, unlocking real-time, multi-object identification and monitoring.
+          </li>
+          <li class="p-list__item">
+            Supercloud will empower UTAS to pursue additional AI/ML initiatives
+          </li>
+          <li class="p-list__item">
+            UTAS is planning its MLOps tooling to simplify AI/ ML workflows through automation and reproducibility.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light">
+    <div class="row">
+      <div class="col-12">
+        <div class="p-block">
+          <h2 class="u-no-margin--bottom">You can also follow us on <a href="http://medium.com/ubuntu-ai">Medium</a></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
