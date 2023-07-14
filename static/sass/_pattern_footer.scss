@@ -1,11 +1,15 @@
 // Footer pattern styling
 @mixin footer-title {
   color: $color-mid-dark;
-  line-height: 1.5;
+  line-height: 1.25;
   margin-bottom: 0;
 
   @media only screen and (max-width: $breakpoint-small) {
     cursor: pointer;
+  }
+
+  @media only screen and (min-width: $breakpoint-small) {
+    line-height: 1.5;
   }
 }
 
@@ -97,8 +101,8 @@
     background-size: 13px 13px;
     border-top: 1px solid $color-mid-light;
     color: $color-dark;
-    font-size: 1.2rem;
-    font-weight: 300;
+    font-size: 1rem;
+    font-weight: 400;
     margin-top: 0;
     max-width: inherit;
 
@@ -167,6 +171,7 @@
     border-bottom: 1px solid $color-mid-dark;
     display: block;
     left: auto;
+    line-height: 2.3;
     margin-bottom: -1px;
     max-width: inherit;
     padding: $sp-small 0 $sp-small $sp-x-large;
@@ -178,19 +183,18 @@
     }
 
     a {
-      color: $color-mid-dark;
+      color: $color-x-dark;
     }
   }
 
   .p-footer--secondary {
-    padding: $sp-large $sp-small 0;
-
     @media only screen and (min-width: $breakpoint-small) {
       padding: 0;
     }
 
     @media only screen and (max-width: $breakpoint-small - 1px) {
       margin-top: 0;
+      padding: $sp-large $sp-small 0 $sp-medium !important;
     }
 
     a:hover {
@@ -208,7 +212,7 @@
 
         li {
           a {
-            color: $color-mid-dark;
+            color: $color-dark;
           }
         }
       }
@@ -225,12 +229,14 @@
         border-top: 1px solid $color-mid-light;
         color: $color-dark;
         display: block;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.25;
         padding: $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
           border: 0;
           font-size: 0.8125rem;
+          line-height: 1.5rem;
           padding: 0;
         }
       }
@@ -299,6 +305,7 @@
 
   .p-footer--secondary .p-inline-list__item {
     display: block;
+    margin-top: 0.5rem;
 
     @media only screen and (min-width: $breakpoint-small) {
       display: inline-block;

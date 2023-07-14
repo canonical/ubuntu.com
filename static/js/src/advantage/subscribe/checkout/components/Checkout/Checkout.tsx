@@ -70,7 +70,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
               onSubmit={() => {}}
               initialValues={initialValues}
               enableReinitialize={
-                !isGuest && !!userInfo?.customerInfo?.defaultPaymentMethod
+                !isGuest && !!userInfo?.customerInfo?.address?.country
               }
             >
               <>
@@ -98,6 +98,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                           quantity={quantity}
                           product={product}
                           action={action}
+                          setError={setError}
                         />
                       ),
                     },

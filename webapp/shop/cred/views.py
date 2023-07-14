@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import math
 import pytz
 import flask
 import json
@@ -262,13 +263,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button--positive",
+                        "button_class": "p-button",
                     },
                     {
                         "text": "Take now",
                         "href": "/credentials/provision?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button--positive",
+                        "button_class": "p-button",
                     },
                 ]
                 exams_not_taken.append(
@@ -681,3 +682,112 @@ def cred_beta_activation(**_):
         marketo_api.update_leads(leads)
 
     return flask.render_template("credentials/beta-activation.html")
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_filtered_webhook_responses(trueability_api, **kwargs):
+    ability_screen_id = flask.request.args.get("ability_screen_id", None)
+    page = flask.request.args.get("page", 1)
+    page = int(page)
+    per_page = flask.request.args.get("per_page", 10)
+    per_page = int(per_page)
+    ta_results_per_page = 100
+    ta_page = math.ceil(page * per_page // ta_results_per_page)
+    webhook_responses = trueability_api.get_filtered_webhook_responses(
+        ability_screen_id=ability_screen_id,
+        page=ta_page,
+    )
+    ta_webhook_responses = webhook_responses["webhook_responses"]
+    ta_webhook_responses = [
+        ta_webhook_responses[i]
+        for i in range(
+            page * per_page % ta_results_per_page - per_page,
+            page * per_page % ta_results_per_page,
+        )
+    ]
+    page_metadata = {}
+    page_metadata["current_page"] = page
+    page_metadata["total_pages"] = (
+        webhook_responses["meta"]["total_count"] // per_page
+    ) + 1
+    page_metadata["total_count"] = webhook_responses["meta"]["total_count"]
+    page_metadata["next_page"] = (
+        page + 1 if page < page_metadata["total_pages"] else None
+    )
+    page_metadata["prev_page"] = page - 1 if page > 1 else None
+
+    return flask.jsonify(
+        {"webhook_responses": ta_webhook_responses, "meta": page_metadata}
+    )
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_webhook_response(trueability_api, **kwargs):
+    webhook_id = flask.request.args.get("webhook_id", None)
+    webhook_responses = trueability_api.get_webhook_response(
+        webhook_id=webhook_id,
+    )
+    return flask.jsonify(webhook_responses)
+
+
+@shop_decorator(area="cred", permission="user", response=json)
+@canonical_staff()
+def get_issued_badges(credly_api, **kwargs):
+    badges = credly_api.get_issued_badges()
+    return flask.jsonify(badges["data"])
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+def get_my_issued_badges(credly_api, **kwargs):
+    sso_user_email = user_info(flask.session)["email"]
+    response = credly_api.get_issued_badges(
+        filter={"recipient_email": sso_user_email}
+    )
+    return flask.render_template(
+        "credentials/your-badges.html", badges=response["data"]
+    )
+
+
+@shop_decorator(area="cred", permission="guest", response="json")
+def issue_badges(trueability_api, credly_api, **kwargs):
+    webhook_response = flask.request.json
+    api_key = flask.request.headers.get("X-API-KEY")
+    if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
+        return flask.jsonify({"status": "Invalid API Key"}), 401
+    assessment_score = webhook_response["assessment"]["score"]
+    cutoff_score = webhook_response["assessment"]["ability_screen"][
+        "cutoff_score"
+    ]
+    if assessment_score >= cutoff_score:
+        assessment_user = webhook_response["assessment"]["user"]["email"]
+        first_name, last_name = webhook_response["assessment"]["user"][
+            "full_name"
+        ].rsplit(" ", 1)
+        ability_screen_id = webhook_response["assessment"][
+            "ability_screen_variant"
+        ]["ability_screen_id"]
+        new_badge = credly_api.issue_new_badge(
+            email=assessment_user,
+            first_name=first_name,
+            last_name=last_name,
+            ability_screen_id=ability_screen_id,
+        )
+        if "data" in new_badge and "accept_badge_url" in new_badge["data"]:
+            # 201 Created.
+            # Request was valid and the server created a new badge.
+            return (
+                flask.jsonify(
+                    {
+                        "status": "badge_issued",
+                        "accept_badge_url": new_badge["data"][
+                            "accept_badge_url"
+                        ],
+                    }
+                ),
+                201,
+            )
+        else:
+            # 500 Error. Request was valid but the server encountered an error
+            return (flask.jsonify(new_badge), 500)
+    # 403 Forbidden. Request was valid but the server is refusing action
+    return flask.jsonify({"status": "badge_not_issued"}), 403

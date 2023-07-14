@@ -1,0 +1,310 @@
+{% extends "lxd/base_lxd.html" %}
+
+{% block title %}Manage LXD{% endblock %}
+
+{% block meta_description %}When using LXD, you have several ways to manage your server configuration and your instances: with a simple command line tool, directly through the REST API, through the web UI or by using third-party tools and integrations.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1doGyKYSTOsX8dHvQ6W9W2U_pHQY6yfiq1bqSAJyredQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-sv3">
+    <div class="col-7">
+      <h1>Manage LXD</h1>
+      <p>When using LXD, you have several ways to manage your server configuration and your instances: with a simple command line tool,  directly through the REST API, through the web UI or by using third-party tools and integrations.</p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/89024427-Developer-convenience-2.svg",
+        alt="",
+        width="300",
+        height="172",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+    <h2 class="p-heading--3">LXD CLI</h2>
+      <p>LXD offers an intuitive and crisp CLI for easy operations. To control LXD, you typically use two different commands: lxd and lxc. The lxd command is used to control the daemon and is typically used only for initialisation and debugging. The lxc command is the command-line client that you use to interact with your instances. See lxc --help for an overview of all available subcommands.</p>
+      <a href="https://documentation.ubuntu.com/lxd/en/latest/explanation/lxd_lxc/">Get started with the LXD CLI</a>
+    </div>
+    <div class="col-6 p-card">
+      <h2 class="p-card__title p-heading--3">LXD REST API</h2>
+      <p>All communication between LXD and its clients happens using a RESTful API over HTTP. This means you can easily integrate LXD with any other tool you use for managing your infrastructure, and you can easily set up scripts as needed. LXD implements a single REST API for both local and remote access.</p>
+      <a href="https://documentation.ubuntu.com/lxd/en/latest/rest-api/">Learn more about the LXD REST API</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-sv3">
+    <div class="col-6">
+      <h2>LXD graphical user interface</h2>
+      <p>An official LXD UI tool is now available as an experimental feature. The UI supports most of the functionalities surrounding managing instances. More features coming soon.</p>
+      <p><a href="/blog/lxd_ui">Read more about the current state of the UI and future plans</a></p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4db28649-lxd-ui-with-vm.png",
+        alt="",
+        width="489",
+        height="250",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <h3>Try LXD UI</h3>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Enable the UI</h3>
+        <div class="p-stepped-list__content">
+          <p>The LXD UI is packaged together with the LXD snap, but it is still considered an experimental feature that needs to be enabled with:</p>
+          <pre><code>snap set lxd ui.enable=true</code></pre>
+          <pre><code>snap restart --reload lxd</code></pre>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Expose LXD server to the host</h3>
+        <div class="p-stepped-list__content">
+          <p>To access the UI, you need to make sure your LXD server is exposed to the host. You can enable this with:</p>
+          <pre><code>lxc config set core.https_address :8443</code></pre>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Set up the authentication certificates</h3>
+        <div class="p-stepped-list__content">
+          <p>Access the UI in your browser by entering the server address (for example, https://192.0.2.10:8443) and follow the authentication steps presented in the UI.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="p-strip--light">
+    <div class="row">
+      <h2>Third-party integrations</h2>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <p>Besides using LXD natively, you can also use LXD within external tools.</p>
+        <p>LXD integrations are available for the following tools:</p>
+
+        <ul class="p-list is-split">
+          <li class="p-list__item is-ticked">
+            <a href="#juju">Juju</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="#maas">MAAS</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="#ansible">Ansible</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="#terraform">Terraform</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="#puppet-bolt">Puppet Bolt</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="#packer">Packer</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise%2Bsupport.svg",
+          alt="",
+          width="200",
+          height="200",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/16a67f91-Canonical%20Juju.svg",
+          alt="",
+          width="250",
+          height="131",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <div class="col-7">
+        <h3 id="juju">Juju</h3>
+        <p><a href="https://juju.is/">Juju</a> is an open source orchestration engine for software operators that enables the deployment, integration and lifecycle management of applications at any scale, on any infrastructure.</p>
+        <p>Juju can be used to deploy a variety of workloads across many different clouds and virtualisation providers. It supports both deploying workloads against a LXD server or cluster and using LXD on the machines it's deploying to separate otherwise colocated services.</p>
+        <p>Take a look at the Step-by-Step Guide for LXD in the <a href="https://juju.is/docs/olm/lxd">Juju documentation</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <div class="col-7">
+        <h3 id="maas">MAAS</h3>
+        <p><a href="https://maas.io/">MAAS</a> is an open source server provisioning software tool for your data centre.</p>
+        <p>Self-service, remote installation of Windows, CentOS, ESXi and Ubuntu on real servers turns your data centre into a bare metal cloud.</p>
+        <p>MAAS integrates with LXD to provide easy creation of virtual machines. It can automatically deploy and configure LXD as part of the deployment of a physical machine or can be connected to an existing LXD deployment to dynamically create virtual machines on it.</p>
+        <p>Read about how <a href="https://maas.io/how-it-works">MAAS works</a> and try MAAS and LXD in the <a href="https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu">MAAS hands on tutorial</a>.</p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e45b7f3f-Canonical%20MAAS.svg",
+          alt="",
+          width="300",
+          height="121",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c3e59d4f-Ansible_logo.svg",
+          alt="",
+          width="130",
+          height="157",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <div class="col-7">
+        <h3 id="ansible">Ansible</h3>
+        <p><a href="https://www.ansible.com/">Ansible</a> is an open source software provisioning, configuration management and application-deployment tool.</p>
+        <p>The main integrations between Ansible and LXD are:</p>
+        <ul class="p-list is-split">
+          <li class="p-list__item is-ticked">A <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_connection.html#ansible-collections-community-general-lxd-connection">connection plugin</a> allowing Ansible to manage a LXD instance just as any other Linux system</li>
+          <li class="p-list__item is-ticked">An <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_inventory.html">inventory plugin</a> to detect LXD instances</li>
+          <li class="p-list__item is-ticked">A <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_container_module.html">plugin</a> to create and manage LXD containers</li>
+          <li class="p-list__item is-ticked">A <a href="https://docs.ansible.com/ansible/latest/collections/community/general/lxd_profile_module.html">plugin</a> to manage LXD profiles</li>
+        </ul>
+        <p>To manage LXD in Ansible, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <div class="col-7">
+        <h3 id="terraform">Terraform</h3>
+        <p><a href="https://terraform.io/">Terraform</a> is an open source infrastructure-as-code software tool for configuration and service management.</p>
+        <p>The LXD integration allows Terraform to deploy instances on LXD servers with support for local and remote deployments.</p>
+        <p>Take a look at the <a href="https://registry.terraform.io/providers/terraform-lxd/lxd/latest/docs">Terraform documentation on LXD</a> for more information.</p>
+        <p>To manage LXD in Terraform, you need a LXD server  (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3f10732f-terraform-logo.svg",
+          alt="",
+          width="300",
+          height="72",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/b690b29b-bolt-logo-dark.png",
+          alt="",
+          width="170",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <div class="col-7">
+        <h3 id="puppet-bolt">Bolt</h3>
+        <p><a href="https://puppet.com/docs/bolt/latest/bolt.html">Bolt</a> is an open source orchestration tool that automates the manual work it takes to maintain your infrastructure.</p>
+        <p>The LXD transport allows for interacting with LXD instances.</p>
+        <p>For more information, see the <a href="https://puppet.com/docs/bolt/latest/bolt_transports_reference.html#lxd">Puppet Bolt Documentation on LXD</a>.</p>
+        <p>To manage LXD in Puppet Bolt, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <div class="col-7">
+        <h3 id="packer">Packer</h3>
+        <p><a href="https://www.packer.io/">Packer</a> is an open source tool for creating identical machine images for multiple platforms.</p>
+        <p>With Packer's LXD builder, it's possible to re-use your existing cloud image building pipeline and with the LXD builder, build a LXD container image.</p>
+        <p>Take a look at the <a href="https://www.packer.io/docs/builders/lxd">Packer documentation on LXD</a> for more information.</p>
+        <p>Additionally our guides about <a href="https://documentation.ubuntu.com/lxd/en/latest/images/">images</a> and <a href="https://documentation.ubuntu.com/lxd/en/latest/howto/instances_configure/">instance configuration</a> might contain useful information regarding image choice, configuration options etc.</p>
+        <p>To create LXD images in Packer, you need a LXD server (see <a href="https://documentation.ubuntu.com/lxd/en/latest/getting_started/">Getting started</a>).</p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a4aefced-packer-logo.svg",
+          alt="",
+          width="250",
+          height="95",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-sv3">
+    <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+        alt="",
+        width="211",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2>Need more help with LXD?</h2>
+      <p>Let our LXD experts help you take the next step.</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/containers/contact-us?product=containers-lxd">Get in touch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/lxd" data-form-id="4446" data-lp-id="" data-return-url="/lxd" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}

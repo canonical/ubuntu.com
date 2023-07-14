@@ -3,9 +3,9 @@ import { add, format } from "date-fns";
 import { Field, useFormikContext } from "formik";
 import { Col, RadioInput, Row } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
-import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
-import usePreview from "../../hooks/usePreview";
 import useCalculate from "../../hooks/useCalculate";
+import usePreview from "../../hooks/usePreview";
+import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
 
 type Props = {
   product: Product;
@@ -43,6 +43,7 @@ const FreeTrial = ({ quantity, product, action }: Props) => {
           name="FreeTrial"
           label="Use free trial month"
           value="useFreeTrial"
+          disabled={!!window.currentPaymentId}
         />
         <Field
           as={RadioInput}
@@ -51,6 +52,7 @@ const FreeTrial = ({ quantity, product, action }: Props) => {
           name="FreeTrial"
           label="Pay now"
           value="payNow"
+          disabled={!!window.currentPaymentId}
         />
         {values?.FreeTrial === "useFreeTrial" ? (
           <>

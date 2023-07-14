@@ -22,7 +22,7 @@
 
 @import "vanilla-placeholders";
 
-// import flicity
+// import flickity
 @import "flickity/dist/flickity";
 
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
@@ -1278,10 +1278,8 @@ hr.p-separator.is-shallow {
   }
 }
 
-.p-list--silicon-ticked {
-  @extend .p-list--ticked;
-
-  .p-list__silicon-item {
+.p-list--ticked {
+  .p-list__item-padded {
     @extend .p-list__item;
 
     padding-bottom: $sp-medium;
@@ -1373,4 +1371,18 @@ hr.p-separator.is-shallow {
 
 .is-paper--input {
   background-color: rgba(0, 0, 0, 0.04);
+  
+.pad-top {
+  padding-top: map-get($nudges, p);
+}
+
+// utility to separate 50/50 images
+.u-image-separation {
+  margin-top: $spv--small;
+}
+
+.p-strip--white {
+  @extend %vf-strip;
+
+  background-color: #fff;
 }

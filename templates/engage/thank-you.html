@@ -39,7 +39,7 @@
   {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
     {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
     
-      <h3>We've emailed a copy of {{ resource_name }} to {{ form_details.email }}</h3>
+      <h3>We've emailed a copy of the {{ resource_name }} to {{ form_details.email }}</h3>
       <p>
         <a class="p-button--positive" href="{{ request_url }}">Back to last page</a>
         <a class="p-button" href="/contact-us">Contact us</a>

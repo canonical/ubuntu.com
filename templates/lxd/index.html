@@ -15,8 +15,7 @@
       <p class="p-heading--4">Fast, dense, and secure container and VM management at any scale </p>
       <p> LXD provides a unified user experience for managing system containers and virtual machines. For more demanding workloads, LXD can be set up in a cluster environment to run containers, VMs, or a combination of the two on a set of machines. LXD has direct hardware access, minimising overhead and matching the density and efficiency of containers.</p>
       <p>
-        <a class="p-button--positive" href="https://linuxcontainers.org/lxd/try-it/">Try LXD Online</a>
-        <a class="p-button js-invoke-modal" href="/lxd#get-in-touch">Get in touch</a>
+        <a class="p-button--positive js-invoke-modal" href="/containers/contact-us?product=containers-lxd">Get in touch</a>
       </p>
     </div>
     <div class="col-6 u-hide--medium u-hide--small u-align--center">
@@ -149,67 +148,10 @@
     </ul>
   </div>
 </section>
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Install LXD in 4 easy steps</h2>
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install LXD as a snap</h3>
-        <div class="p-stepped-list__content">
-          <p>If you are running Ubuntu 16.04 or later, just run:</p>
-          <pre><code>snap install lxd</code></pre>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Configure LXD</h3>
-        <div class="p-stepped-list__content">
-          <p>Run the following command and either accept the defaults or choose different options when prompted:</p>
-          <pre><code>lxd init</code></pre>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install the OS you’d like to use in your container or VM</h3>
-        <div class="p-stepped-list__content">
-          <h4>Container</h4>
-            <p>Command: <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt;</code></pre></p>
-            <p>Example: <pre><code>lxc launch ubuntu:22.04 ubuntu-container</code></pre></p>
-          <h4>VM</h4>
-            <p>Command: <pre><code>lxc launch &lt;image_server&gt;:&lt;image_name&gt; &lt;instance_name&gt; --vm</code></pre></p>
-            <p>Example: <pre><code>lxc launch ubuntu:22.04 ubuntu-container-vm --vm</code></pre></p>
-            <p>Check the <a href="https://images.linuxcontainers.org/">community image server</a> for other Linux distributions.</p>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Run commands</h3>
-        <div class="p-stepped-list__content">
-          <p>You now have your instance up and running! You’re all set to experiment with any commands you need.</p>
-          <p>Command: <pre><code>lxc exec &lt;instance_name&gt; -- &lt;command&gt;</code></pre></p>
-          <p>Example: <pre><code>lxc exec ubuntu-container -- apt-get update</code></pre></p>
-          <p>For a list of available commands and options, just run lxc</p>
-        </div>
-      </li>
-    </ol>
-    <p>For other installation options, please check our <a href="https://linuxcontainers.org/lxd/docs/master/installing/">documentation</a>.</p>
-  </div>
-</section>
 <section class="p-strip--light">
   <div class="row">
     <h2 class="u-sv3">Join the LXD community</h2>
-    <div class="col-3">
-      <div class="u-sv1 u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/dead5f08-containers.svg",
-        alt="",
-        width="52",
-        height="60",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      </div>
-      <a href="https://linuxcontainers.org/lxd/try-it/">Try LXD online demo&nbsp;&rsaquo;</a>
-    </div>
-    <div class="col-3">
+    <div class="col-4">
       <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
@@ -221,9 +163,9 @@
         ) | safe
       }}
       </div>
-      <a href="https://linuxcontainers.org/lxd/docs/master/">Read the documentation&nbsp;&rsaquo;</a>
+      <a href="https://documentation.ubuntu.com/lxd">Read the documentation&nbsp;&rsaquo;</a>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/3aef5bf9-forum-icon.svg",
@@ -235,9 +177,9 @@
         ) | safe
       }}
       </div>
-      <a href="https://discuss.linuxcontainers.org/">Discuss with other users&nbsp;&rsaquo;</a>
+      <a href="https://discourse.ubuntu.com/c/lxd/126">Discuss with other users&nbsp;&rsaquo;</a>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
@@ -256,7 +198,7 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-6">
-      <h2 class="u-sv2">Enhance your experience with best-in-class open-source tools</h2>
+      <h2 class="u-sv2">Enhance your experience with best-in-class open source tools</h2>
     </div>
   </div>
   <div class="row">
