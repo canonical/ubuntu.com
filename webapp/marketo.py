@@ -60,7 +60,7 @@ class MarketoAPI:
 
     def update_leads(self, leads=None):
         data = {
-            "action": "updateOnly",
+            "action": "createOrUpdate",
             "lookupField": "email",
             "input": leads,
         }
