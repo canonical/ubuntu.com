@@ -49,7 +49,18 @@ You can also ask us to stop using your information for news or product updates â
 
 ## Your right to complain
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/make-a-complaint/](https://ico.org.uk/make-a-complaint/) or write to them at:
+We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
+
+<div style="margin:2rem;">
+Legal, Canonical<br />
+4th floor, 201 Borough High St.<br />
+London SE1 1JA<br />
+United Kingdom<br />
+</div>
+
+Alternatively, you can use the relevant contact us form.
+
+If you have a complaint about our use of your information, you can contact the Information Commissionerâ€™s Office via their website at [ico.org.uk/make-a-complaintor](https://ico.org.uk/make-a-complaint/) write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />

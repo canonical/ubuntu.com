@@ -6,7 +6,7 @@ context:
   copydoc: https://docs.google.com/document/d/1MzxiuSwLvT440Ew5-3aPsFHo2zy2QVt1ZEJJpVEaZho/edit?ts=5f33e3f5#
 ---
 
-<h4 class="p-muted-heading">Version - August 2020</h4>
+<h4 class="p-muted-heading">Version - July 2023</h4>
 <hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Confidentiality agreement

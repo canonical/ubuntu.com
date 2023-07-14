@@ -96,7 +96,7 @@ To submit a request by email, post or telephone, please use the contact informat
 
 Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service. to ensure that the emails you receive are relevant to your interests.
 
-Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by clicking the unsubscribe button at the end of the email or by sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) with the heading "unsubscribe" or you can go to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate. Unsubscribe instructions are also clearly outlined at the bottom of every direct marketing email that we send you.
+Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by clicking the unsubscribe button at the end of the email or by sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) with the heading "unsubscribe" or you can go to your subscription centre page (you will be asked to insert the email address you receive the marketing communications on) and click the 'unsubscribe' link at the foot of the page as appropriate. Unsubscribe instructions are also clearly outlined at the bottom of every direct marketing email that we send you.
 
 ## Links to other websites
 
@@ -125,7 +125,9 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
+4th floor, 201 Borough High St.<br />
+London SE1 1JA<br />
+United Kingdom<br />
 </div>
 
 Alternatively, you can use the relevant [contact us](/legal/data-privacy/enquiry) form.

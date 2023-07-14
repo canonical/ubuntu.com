@@ -6,7 +6,7 @@ context:
   copydoc: https://docs.google.com/document/d/1I1PtxFqV1KNsnnxJlo-Q9V7JDvkbmsAxAvVk4Nf9aLQ
 ---
 
-<h4 class="p-muted-heading">Version - May 2019</h4>
+<h4 class="p-muted-heading">Version - July 2023</h4>
 <hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – ESXi
@@ -80,11 +80,10 @@ This Privacy Notice will be reviewed from time to time. If we decide to change t
 We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
 
 <div style="margin:2rem;">
-Legal, Canonical<br />
-    2nd Floor, Clarendon House, <br/>
-    Victoria Street, <br/>
-    Douglas IM1 2LN, <br/>
-    Isle of Man
+  Legal, Canonical<br />
+  4th floor, 201 Borough High St.<br />
+  London SE1 1JA<br />
+  United Kingdom<br />
 </div>
 
 Alternatively, you can use the relevant contact us form.
