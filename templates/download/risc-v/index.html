@@ -51,7 +51,7 @@
         <li><button class="p-tabs__item" id="starfive-visionfive-2" role="tab" aria-selected="false" aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button></li>
       </ul>
       <form class="u-hide--large u-hide--medium">
-        <select name="boardSelect" id="boardSelect" onchange="selectBoard()">
+        <select name="boardSelect" id="boardSelect">
           <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
           <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Polarfire SoC FPGA Icicle</option>
           <option value="qemu-tab">QEMU emulator</option>
@@ -79,18 +79,6 @@
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-<script>
-  function selectBoard(){
-    const selected = document.getElementById("boardSelect").value;
-    const boards = document.querySelectorAll(`[role=tabpanel]`)
-    boards.forEach(board => {
-      if (board.id === selected){
-        board.classList.remove("u-hide")
-      } else {
-        board.classList.add("u-hide")
-      }
-    })
-  }
-</script>
+<script src="{{ versioned_static('js/src/risc-v.js') }}"></script>
 
 {% endblock content %}
