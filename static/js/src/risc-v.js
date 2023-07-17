@@ -4,16 +4,16 @@ const boards = document.querySelectorAll(`[role=tabpanel]`);
 const dropdownSelect = document.getElementById("boardSelect");
 
 dropdownSelect.addEventListener("change", (event) => {
-    selectBoard();
-})
+  selectBoard();
+});
 
 function selectBoard() {
-  boards.forEach(board => {
+  boards.forEach((board) => {
     if (board.id === dropdownSelect.value) {
-      board.classList.remove("u-hide")
+      board.classList.remove("u-hide");
       board.focus();
     } else {
       board.classList.add("u-hide");
     }
-  })
+  });
 }
