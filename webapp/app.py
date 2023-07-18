@@ -152,6 +152,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    build_engage_pages_sitemap,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -536,6 +537,13 @@ engage_pages = EngagePages(
     page_type="engage-pages",
     exclude_topics=[17229, 18033, 17250],
 )
+
+
+app.add_url_rule(
+    "/engage/sitemap.xml",
+    view_func=build_engage_pages_sitemap(engage_pages),
+)
+
 
 app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
