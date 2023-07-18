@@ -95,7 +95,7 @@
   .p-footer__title {
     @include footer-title;
 
-    background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
+    // background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
     background-position: calc(100% - 10px) 50%;
     background-repeat: no-repeat;
     background-size: 13px 13px;
@@ -127,7 +127,8 @@
       }
     }
 
-    a {
+    a,
+    span {
       &:hover {
         text-decoration: none;
 
@@ -143,6 +144,15 @@
         @media only screen and (min-width: $breakpoint-small) {
           font-weight: normal;
         }
+      }
+
+      &::before {
+        @extend %icon;
+        @include vf-icon-chevron($color-mid-dark);
+        @include vf-transition($property: transform, $duration: fast);
+
+        content: '';
+        margin-right: $sph--large;
       }
 
       &::after {
@@ -233,6 +243,11 @@
         line-height: 1.25;
         padding: $sp-medium;
 
+        &::before {
+          content: "";
+          margin-left: 2rem;
+        }
+
         @media only screen and (min-width: $breakpoint-small) {
           border: 0;
           font-size: 0.8125rem;
@@ -244,9 +259,8 @@
   }
 
   .p-footer__title.active {
-    background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
+    // background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
     background-color: $colors--light-theme--background-hover;
-    
 
     @media only screen and (min-width: $breakpoint-small) {
       background: none;
