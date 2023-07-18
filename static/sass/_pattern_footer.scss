@@ -153,6 +153,10 @@
 
         content: '';
         margin-right: $sph--large;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          display: none;
+        } 
       }
 
       &::after {
@@ -245,6 +249,10 @@
         &::before {
           content: "";
           margin-left: 2rem;
+          
+          @media only screen and (min-width: $breakpoint-small) {
+            display: none;
+          }
         }
 
         @media only screen and (min-width: $breakpoint-small) {
