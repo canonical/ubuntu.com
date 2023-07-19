@@ -84,6 +84,10 @@
         &:focus::before {
           display: none;
         }
+
+        &.js-tab.is-active {
+          background-color: #2d2d2d;
+        }
       }
 
       &__item:last-child {
@@ -111,8 +115,16 @@
     margin: 2.5rem 0;
     padding: 0;
 
-    .p-side-navigation__item a {
-      color: #3097ff;
+    .p-list__item {
+      padding-left: 0.5rem;
+
+      a {
+        color: #69c;
+
+        &:visited {
+          color: #a679d2;
+        }
+      }
     }
   }
 
@@ -127,6 +139,7 @@
 
     .p-muted-heading {
       color: rgba(255, 255, 255, 0.6);
+      padding-left: 0.5rem;
     }
 
     .p-navigation__dropdown-item {

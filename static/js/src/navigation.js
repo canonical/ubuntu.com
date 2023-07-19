@@ -255,6 +255,7 @@ function updateAccountDropdown(dropdown, isTarget) {
   } else {
     if (currentDropdownHandler) {
       document.removeEventListener("click", currentDropdownHandler);
+      accountContainer.classList.remove("is-active");
       currentDropdownHandler = null;
     }
   }
@@ -530,10 +531,10 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign in&numsp;<i class="p-icon--user is-light"></i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign-in<i class="p-icon--user is-light"></i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true"><i class="p-icon--user is-light">${data.account.fullname}</i></button>
+        accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account&nbsp;<i class="p-icon--user is-light">${data.account.fullname}</i></button>
           <ul class="p-navigation__dropdown" id="canonical-login-content-mobile" aria-hidden="true">
             <li class="p-navigation__item--dropdown-close" id="canonical-login-back">
               <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1" onclick="event.stopPropagation()">

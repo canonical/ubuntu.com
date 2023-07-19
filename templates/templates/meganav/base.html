@@ -221,7 +221,7 @@
         </li>
         {% for links_section in side_nav_section.primary_links %}
         {% if links_section.title %}
-        <p class="p-muted-heading u-no-padding--top">{{ links_section.title }}</p>
+        <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
         {% endif %}
           {% for link in links_section.links %}
             {% with 
@@ -243,7 +243,7 @@
   {% elif "primary_links" in sections %}
     {% for links_section in sections.primary_links %}
     {% if links_section.title %}
-    <p class="p-muted-heading u-no-padding--top">{{ links_section.title }}</p>
+    <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
     {% endif %}
       {% for link in links_section.links %}
         {% with 
