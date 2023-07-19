@@ -95,7 +95,6 @@
   .p-footer__title {
     @include footer-title;
 
-    // background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
     background-position: calc(100% - 10px) 50%;
     background-repeat: no-repeat;
     background-size: 13px 13px;
@@ -150,6 +149,7 @@
         @extend %icon;
         @include vf-icon-chevron($color-mid-dark);
         @include vf-transition($property: transform, $duration: fast);
+        transform: rotate(-90deg);
 
         content: '';
         margin-right: $sph--large;
@@ -266,8 +266,13 @@
   }
 
   .p-footer__title.active {
-    // background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
     background-color: $colors--light-theme--background-hover;
+
+    a {
+      &::before {
+        transform: none;
+      }
+    }
 
     @media only screen and (min-width: $breakpoint-small) {
       background: none;
