@@ -124,10 +124,7 @@
       @media only screen and (min-width: $breakpoint-small) {
         padding: 0 0 $sp-x-small;
       }
-    }
 
-    a,
-    span {
       &:hover {
         text-decoration: none;
 
@@ -216,6 +213,20 @@
     }
   }
 
+  .p-footer__title.active {
+    background-color: $colors--light-theme--background-hover;
+
+    a {
+      &::before {
+        transform: none;
+      }
+    }
+
+    @media only screen and (min-width: $breakpoint-small) {
+      background: none;
+    }
+  }
+
   .p-footer .second-level-nav {
     margin: 0;
     padding: 0;
@@ -249,7 +260,7 @@
         &::before {
           content: "";
           margin-left: 2rem;
-          
+
           @media only screen and (min-width: $breakpoint-small) {
             display: none;
           }
@@ -265,22 +276,8 @@
     }
   }
 
-  .p-footer__title.active {
-    background-color: $colors--light-theme--background-hover;
-
-    a {
-      &::before {
-        transform: none;
-      }
-    }
-
-    @media only screen and (min-width: $breakpoint-small) {
-      background: none;
-    }
-  }
-
   .p-footer__title.active + .second-level-nav {
-    display: block;    
+    display: block;
   }
 
   .p-footer__title-text {
