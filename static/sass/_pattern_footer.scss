@@ -149,14 +149,14 @@
         @extend %icon;
         @include vf-icon-chevron($color-mid-dark);
         @include vf-transition($property: transform, $duration: fast);
-        transform: rotate(-90deg);
 
-        content: '';
+        content: "";
         margin-right: $sph--large;
+        transform: rotate(-90deg);
 
         @media only screen and (min-width: $breakpoint-small) {
           display: none;
-        } 
+        }
       }
 
       &::after {
