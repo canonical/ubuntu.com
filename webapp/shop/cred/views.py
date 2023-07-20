@@ -13,7 +13,6 @@ from webapp.shop.api.ua_contracts.api import (
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
-from webapp.views import get_user_country_by_ip
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
