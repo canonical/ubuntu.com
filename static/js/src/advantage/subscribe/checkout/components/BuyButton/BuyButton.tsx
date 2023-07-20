@@ -7,11 +7,11 @@ import * as Sentry from "@sentry/react";
 import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
+import { currencyFormatter } from "advantage/react/utils";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
-import { currencyFormatter } from "advantage/react/utils";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -145,6 +145,17 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
                   retry.
                 </>
               );
+            } else if (
+              error.message.includes(
+                "cannot make a purchase while subscription is in trial"
+              )
+            ) {
+              setError(
+                <>
+                  You cannot make a purchase during the trial period. To make a
+                  new purchase, cancel your current trial subscription.
+                </>
+              );
             } else if (error.message.includes("tax_id_invalid")) {
               setFieldError(
                 "VATNumber",
@@ -197,6 +208,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
+      if (window.accountId) {
+        queryClient.invalidateQueries("customerInfo");
+      }
       setIsLoading(false);
       setFieldValue("Description", false);
       setFieldValue("TermsAndConditions", false);

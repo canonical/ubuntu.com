@@ -1,0 +1,13 @@
+{% with
+    title="Charmed PostgreSQL on IaaS Docs",
+    query=query,
+    results=results,
+    search_action="/data/docs/postgresql/iaas/search",
+    siteSearch="https://ubuntu.com/data/docs/postgresql/iaas",
+    placeholder="Search Charmed PostgreSQL on IaaS Docs",
+    search_path="/data/docs/postgresql/iaas/search",
+    forum_link="https://discourse.charmhub.io/c/charm/41"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}
+

@@ -1,29 +1,32 @@
-<div tabindex="0" role="tabpanel" id="microchip-polarfire-soc-fpga-icicle-kit-tab" aria-labelledby="live-installer" aria-hidden="true">
-	<div class="row">
-		<div class="col-6">
-      <h2>Microchip Polarfire SoC <br class="u-hide--small">FPGA Icicle Kit</h2>
-			<h3 class="u-sv3">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+icicle.img.xz">Download 23.04</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+icicle.img.xz">Download 22.04.2</a>
-			</p>
-			<p>Works on:</p>
-			<ul class="p-list">
-				<li class="p-list__item is-ticked">The Microchip Polarfire SoC FPGA Icicle Kit with <a href="https://github.com/polarfire-soc/hart-software-services/releases/tag/v2022.10">HSS v2022.10</a></li>
-			</ul>
-			<p><a href="https://wiki.ubuntu.com/RISC-V/PolarFire%20SoC%20FPGA%20Icicle%20Kit">How to install Ubuntu on the Microchip Polarfire SoC FPGA Icicle Kit</a></p>
-		</div>
-		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
-			{{
-				image (
-				url="https://assets.ubuntu.com/v1/40eacb41-Microchip+PolarFire.png",
+<div tabindex="0" role="tabpanel" id="starfive-visionfive-board-tab" aria-labelledby="starfive-visionfive-board" aria-hidden="true">
+	<div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-3">
+      <h2 class="u-hide--small">StarFive VisionFive</h2>
+    </div>
+    <div class="col-6 risc-v-container u-vertically-center u-align--center">
+      {{ image (
+				url="https://assets.ubuntu.com/v1/470a2398-StarFive+VisionFive+Board-NoBg.png",
 				alt="",
-				width="800",
-				height="414",
+				width="370",
+				height="299",
 				hi_def=True,
-				loading="lazy"
+				loading="lazy",
+        attrs={"class": "risc-v-image"}
 				) | safe
 			  }}
-		</div>
-	</div>
+    </div>
+  </div>
+  <div class="row p-strip u-no-padding--top">
+    <hr class="col-9">
+    <div class="col-3">
+      <h3 class="p-heading--5 u-no-padding--top">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+    </div>
+    <div class="col-6">
+      <p>
+        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+visionfive.img.xz">Download 23.04</a>
+        <a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+visionfive.img.xz">Download 22.04.2</a>
+      </p>
+      <p><a href="https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive">How to install Ubuntu on the VisionFive</a></p>
+    </div>
+  </div>
 </div>

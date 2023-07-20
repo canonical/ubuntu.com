@@ -1,5 +1,5 @@
 <!-- MARKETO FORM -->
-<form action="/marketo/submit" method="post" id="mktoForm_{{ id }}" onSubmit='if (typeof fbq === "function"){fbq("trackCustom", "Download"); }'>
+<form action="/marketo/submit" method="post" id="mktoForm_{{ id }}">
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
     <legend class="u-off-screen">Kontaktinformationen</legend>
     <ul class="p-list u-no-margin--bottom">
@@ -57,8 +57,8 @@
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{utm_campaign}}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{utm_medium}}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{utm_source}}" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="{{utm_content}}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="{{utm_term}}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />

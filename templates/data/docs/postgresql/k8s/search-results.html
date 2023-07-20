@@ -1,0 +1,13 @@
+{% with
+    title="Charmed PostgreSQL on K8s Docs",
+    query=query,
+    results=results,
+    search_action="/data/docs/postgresql/k8s/search",
+    siteSearch="https://ubuntu.com/data/docs/postgresql/k8s",
+    placeholder="Search Charmed PostgreSQL on K8s Docs",
+    search_path="/data/docs/spark/search",
+    forum_link="https://discourse.charmhub.io/c/charm/41"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}
+

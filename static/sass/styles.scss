@@ -22,7 +22,7 @@
 
 @import "vanilla-placeholders";
 
-// import flicity
+// import flickity
 @import "flickity/dist/flickity";
 
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
@@ -1278,10 +1278,8 @@ hr.p-separator.is-shallow {
   }
 }
 
-.p-list--silicon-ticked {
-  @extend .p-list--ticked;
-
-  .p-list__silicon-item {
+.p-list--ticked {
+  .p-list__item-padded {
     @extend .p-list__item;
 
     padding-bottom: $sp-medium;
@@ -1360,5 +1358,42 @@ hr.p-separator.is-shallow {
 
   @media screen and (max-width: calc($breakpoint-medium - 1px)) {
     margin-bottom: $sp-xxx-large;
+  }
+}
+
+.spaced-bottom--smaller {
+  margin-bottom: $sp-large;
+
+  @media screen and (max-width: calc($breakpoint-medium - 1px)) {
+    margin-bottom: $sp-xx-large;
+  }
+}
+
+.pad-top {
+  padding-top: map-get($nudges, p);
+}
+
+// utility to separate 50/50 images
+.u-image-separation {
+  margin-top: $spv--small;
+}
+
+.p-strip--white {
+  @extend %vf-strip;
+
+  background-color: #fff;
+}
+
+.risc-v-container {
+  @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
+
+  margin-top: $spv--small;
+  padding-bottom: $spv--large;
+  padding-top: $spv--large;
+
+  .risc-v-image {
+    height: 13rem;
+    width: auto;
   }
 }

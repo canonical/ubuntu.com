@@ -9,6 +9,7 @@ import CredManage from "./components/CredManage";
 import CredKeyShop from "./components/CredKeyShop";
 import CredPurchaseConfirmation from "./components/CredPurchaseConfirmation/CredPurchaseConfirmation";
 import CredExamShop from "./components/CredExamShop/CredExamShop";
+import CredWebhookResponses from "./components/CredWebhookResponses";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -45,6 +46,10 @@ function App() {
             <Route
               path="/order-thank-you"
               element={<CredPurchaseConfirmation />}
+            />
+            <Route
+              path="/webhook_responses"
+              element={<CredWebhookResponses />}
             />
           </Routes>
         </Router>

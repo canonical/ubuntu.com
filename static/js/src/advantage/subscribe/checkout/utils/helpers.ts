@@ -27,7 +27,7 @@ export function getInitialFormValues(
     TermsAndConditions: false,
     MarketingOptIn: false,
     Description: false,
-    FreeTrial: canTrial ? "useFreeTrial" : "payNow",
+    FreeTrial: canTrial && !window.currentPaymentId ? "useFreeTrial" : "payNow",
     marketplace: product.marketplace,
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,

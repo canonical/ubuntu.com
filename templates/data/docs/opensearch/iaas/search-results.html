@@ -1,0 +1,13 @@
+{% with
+    title="Charmed OpenSearch on IaaS Docs",
+    query=query,
+    results=results,
+    search_action="/data/docs/opensearch/iaas/search",
+    siteSearch="https://ubuntu.com/data/docs/opensearch/iaas",
+    placeholder="Search Charmed OpenSearch on IaaS Docs",
+    search_path="/data/docs/opensearch/iaas/search",
+    forum_link="https://discourse.charmhub.io/c/charm/41"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}
+

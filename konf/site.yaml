@@ -1,6 +1,6 @@
 domain: ubuntu.com
 
-image: prod-comms.docker-registry.canonical.com/ubuntu.com
+image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
 
 env:
   - name: STORE_MAINTENANCE
@@ -135,7 +135,7 @@ production:
     - paths: [/blog]
       name: ubuntu-com-blog
       app_name: ubuntu.com-blog
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
       env:
@@ -150,7 +150,7 @@ production:
     - paths: [/credentials]
       name: ubuntu-com-credentials
       app_name: ubuntu.com-credentials
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
       env:
@@ -208,7 +208,7 @@ production:
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
       env:
@@ -243,7 +243,7 @@ production:
         ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
       env:
@@ -280,7 +280,7 @@ production:
     - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -305,7 +305,7 @@ production:
     - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -519,14 +519,42 @@ staging:
         key: api-key
         name: trueability
 
+    - name: TA_WEBHOOK_API_KEY
+      secretKeyRef:
+        key: webhook-secret
+        name: trueability
+
+    - name: CREDLY_URL
+      value: https://sandbox-api.credly.com/v1
+
+    - name: CREDLY_TOKEN
+      secretKeyRef:
+        key: token
+        name: credly
+
+    - name: CREDLY_ORGANIZATION_ID
+      secretKeyRef:
+        key: organization
+        name: credly
+
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
+
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api
 
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
       app_name: ubuntu.com-blog
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -541,7 +569,7 @@ staging:
     - paths: [/credentials]
       name: ubuntu-com-credentials
       app_name: ubuntu.com-credentials
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -596,10 +624,28 @@ staging:
             key: api-key
             name: trueability
 
+        - name: TA_WEBHOOK_API_KEY
+          secretKeyRef:
+            key: webhook-secret
+            name: trueability
+
+        - name: CREDLY_URL
+          value: https://sandbox-api.credly.com/v1
+
+        - name: CREDLY_TOKEN
+          secretKeyRef:
+            key: token
+            name: credly
+
+        - name: CREDLY_ORGANIZATION_ID
+          secretKeyRef:
+            key: organization
+            name: credly
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -634,7 +680,7 @@ staging:
         ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
@@ -671,7 +717,7 @@ staging:
     - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 2
       memoryLimit: 512Mi
       env:
@@ -696,7 +742,7 @@ staging:
     - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
-      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 2
       memoryLimit: 512Mi
       env:
@@ -866,3 +912,13 @@ demo:
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
+
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api
