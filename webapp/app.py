@@ -81,7 +81,6 @@ from webapp.shop.cred.views import (
     cred_cancel_exam,
     cred_exam,
     cred_home,
-    cred_provision,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
@@ -1132,11 +1131,6 @@ app.add_url_rule("/credentials/exam", view_func=cred_exam)
 app.add_url_rule(
     "/credentials/exit-survey",
     view_func=cred_submit_form,
-    methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/provision",
-    view_func=cred_provision,
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
