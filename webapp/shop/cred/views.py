@@ -13,7 +13,6 @@ from webapp.shop.api.ua_contracts.api import (
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
-from webapp.views import get_user_country_by_ip
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -64,8 +63,8 @@ def cred_sign_up(**_):
 def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
-    min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=42)).strftime("%Y-%m-%d")
+    min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
+    max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -265,12 +264,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         f"contractItemID={contract_item_id}",
                         "button_class": "p-button",
                     },
-                    {
-                        "text": "Take now",
-                        "href": "/credentials/provision?"
-                        f"contractItemID={contract_item_id}",
-                        "button_class": "p-button",
-                    },
                 ]
                 exams_not_taken.append(
                     {"name": name, "state": "Not taken", "actions": actions}
@@ -364,87 +357,6 @@ def cred_exam(trueability_api, **_):
 
     url = trueability_api.get_assessment_redirect(assessment_id)
     return flask.render_template("credentials/exam.html", url=url)
-
-
-@shop_decorator(area="cred", permission="user", response="html")
-def cred_provision(ua_contracts_api, trueability_api, **_):
-    contract_item_id = flask.request.args.get("contractItemID", type=int)
-
-    if contract_item_id is None:
-        return flask.redirect("/credentials/your-exams")
-
-    country_code = get_user_country_by_ip().json["country_code"] or "GB"
-    reservation_uuid = None
-    assessment = None
-    reservation = None
-    error = None
-
-    exam_contracts = ua_contracts_api.get_annotated_contract_items(
-        product_tags=["cue"],
-    )
-
-    exam_contract = None
-    for item in exam_contracts:
-        if contract_item_id == (item.get("id") or item["contractItem"]["id"]):
-            exam_contract = item
-            break
-
-    if exam_contract:
-        if "reservation" in exam_contract["cueContext"]:
-            reservation_uuid = exam_contract["cueContext"]["reservation"][
-                "IDs"
-            ][-1]
-    else:
-        error = "Exam not found"
-
-    if not reservation_uuid:
-        tz_info = pytz.timezone("UTC")
-        starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=20))
-        first_name, last_name = get_user_first_last_name()
-
-        try:
-            response = ua_contracts_api.post_assessment_reservation(
-                contract_item_id,
-                first_name,
-                last_name,
-                tz_info.zone,
-                starts_at.isoformat(),
-                country_code,
-            )
-
-            reservation_uuid = response.get("reservation", {}).get("IDs", [])[
-                -1
-            ]
-
-        except UAContractsAPIErrorView:
-            error = (
-                "An error occurred while reserving your exam. "
-                + "Please try refreshing the page."
-            )
-
-    if reservation_uuid:
-        response = trueability_api.get_assessment_reservation(reservation_uuid)
-
-        if "error" in response:
-            error = response.get("message", "No exam booking could be found.")
-        else:
-            reservation = response["assessment_reservation"]
-            assessment = reservation["assessment"]
-
-    if assessment and assessment.get("state") in [
-        "notified",
-        "released",
-        "in_progress",
-    ]:
-        return flask.redirect(f"/credentials/exam?id={ assessment['id'] }")
-
-    return flask.render_template(
-        "/credentials/provision.html",
-        contract_item_id=contract_item_id,
-        assessment=assessment,
-        reservation=reservation,
-        error=error,
-    )
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
@@ -608,10 +520,6 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         if action == "schedule":
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
-            )
-        if action == "take":
-            return flask.redirect(
-                f"/credentials/provision?contractItemID={contract_id}"
             )
         return flask.render_template(
             "/credentials/redeem.html",
