@@ -706,12 +706,13 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
         ability_screen_id=ability_screen_id,
         page=ta_page,
     )
+    total_count = webhook_responses["meta"]["total_count"]
     ta_webhook_responses = webhook_responses["webhook_responses"]
     ta_webhook_responses = [
         ta_webhook_responses[i]
         for i in range(
             page * per_page % ta_results_per_page - per_page,
-            page * per_page % ta_results_per_page,
+            min(page * per_page % ta_results_per_page, total_count),
         )
     ]
     page_metadata = {}
@@ -719,7 +720,7 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
     page_metadata["total_pages"] = (
         webhook_responses["meta"]["total_count"] // per_page
     ) + 1
-    page_metadata["total_count"] = webhook_responses["meta"]["total_count"]
+    page_metadata["total_count"] = total_count
     page_metadata["next_page"] = (
         page + 1 if page < page_metadata["total_pages"] else None
     )

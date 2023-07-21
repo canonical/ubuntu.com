@@ -25,8 +25,7 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
     product,
     action
   );
-  
-  
+
   return (
     <Row>
       <Col size={12}>
@@ -156,8 +155,8 @@ const getLabels = (product: Product, action: Action) => {
       ),
     };
   }
-  if(product.marketplace == "canonical-cube"){
-    return{
+  if (product.marketplace == "canonical-cube") {
+    return {
       termsLabel: (
         <>
           I agree to the{" "}
@@ -188,7 +187,7 @@ const getLabels = (product: Product, action: Action) => {
           services
         </>
       ),
-    }
+    };
   }
   return {
     termsLabel: (

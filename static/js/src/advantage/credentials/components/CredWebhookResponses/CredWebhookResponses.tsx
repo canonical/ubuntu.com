@@ -3,14 +3,15 @@ import { getFilteredWebhookResponses } from "advantage/credentials/api/trueabili
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
+import classNames from "classnames";
 
 type Webhook = {
   ability_screen_id: string;
   on_transition_to: string;
+  created_at: Date;
 };
 type WebhookResponse = {
   id: string;
-  created_at: Date;
   sent_at: Date;
   webhook: Webhook;
   response_status: string;
@@ -49,13 +50,13 @@ const CredWebhookResponses = () => {
             return {
               columns: [
                 {
-                  content: keyitem.created_at.toString(),
+                  content: keyitem.webhook.created_at?.toString(),
                 },
                 {
                   content: keyitem.id,
                 },
                 {
-                  content: keyitem.sent_at.toString(),
+                  content: keyitem.sent_at?.toString(),
                 },
                 {
                   content: keyitem.webhook.ability_screen_id,
@@ -78,7 +79,7 @@ const CredWebhookResponses = () => {
           <ol className="p-pagination__items">
             <li className="p-pagination__item">
               <a
-                className="p-pagination__link--previous"
+                className={classNames("p-pagination__link--previous", { "is-disabled": !data["meta"]["prev_page"] })}
                 href={
                   data["meta"]["prev_page"]
                     ? `/credentials/shop/webhook_responses?page=${data["meta"]["prev_page"]}`
@@ -92,7 +93,7 @@ const CredWebhookResponses = () => {
             </li>
             <li className="p-pagination__item">
               <a
-                className="p-pagination__link--next"
+                className={classNames("p-pagination__link--next", { "is-disabled": !data["meta"]["next_page"] })}
                 href={
                   data["meta"]["next_page"]
                     ? `/credentials/shop/webhook_responses?page=${data["meta"]["next_page"]}`
@@ -106,8 +107,9 @@ const CredWebhookResponses = () => {
             </li>
           </ol>
         </nav>
-      )}
-    </section>
+      )
+      }
+    </section >
   );
 };
 export default CredWebhookResponses;
