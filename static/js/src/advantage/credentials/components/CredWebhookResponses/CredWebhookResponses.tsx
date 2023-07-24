@@ -79,7 +79,9 @@ const CredWebhookResponses = () => {
           <ol className="p-pagination__items">
             <li className="p-pagination__item">
               <a
-                className={classNames("p-pagination__link--previous", { "is-disabled": !data["meta"]["prev_page"] })}
+                className={classNames("p-pagination__link--previous", {
+                  "is-disabled": !data["meta"]["prev_page"],
+                })}
                 href={
                   data["meta"]["prev_page"]
                     ? `/credentials/shop/webhook_responses?page=${data["meta"]["prev_page"]}`
@@ -93,7 +95,9 @@ const CredWebhookResponses = () => {
             </li>
             <li className="p-pagination__item">
               <a
-                className={classNames("p-pagination__link--next", { "is-disabled": !data["meta"]["next_page"] })}
+                className={classNames("p-pagination__link--next", {
+                  "is-disabled": !data["meta"]["next_page"],
+                })}
                 href={
                   data["meta"]["next_page"]
                     ? `/credentials/shop/webhook_responses?page=${data["meta"]["next_page"]}`
@@ -107,9 +111,8 @@ const CredWebhookResponses = () => {
             </li>
           </ol>
         </nav>
-      )
-      }
-    </section >
+      )}
+    </section>
   );
 };
 export default CredWebhookResponses;

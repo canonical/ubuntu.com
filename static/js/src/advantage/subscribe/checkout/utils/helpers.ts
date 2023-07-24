@@ -33,6 +33,8 @@ export function getInitialFormValues(
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
     isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,
     totalPrice: undefined,
+    TermsOfService: false,
+    DataPrivacy: false,
   };
 }
 
