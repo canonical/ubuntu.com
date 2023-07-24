@@ -47,7 +47,6 @@ def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
     ).get("productListings")
-    print(available_products)
     for product in available_products:
         if product.get("name") == "CUE Linux Essentials":
             return flask.render_template(
