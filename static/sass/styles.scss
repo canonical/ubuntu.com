@@ -1262,6 +1262,12 @@ hr.p-separator.is-shallow {
   background: #f3f3f3;
 }
 
+// XXX Pete 25/07/23
+// Make headings wrap on p-table--mobile-card's
+.p-table--mobile-card tbody th {
+  white-space: normal;
+}
+
 .amd-xilinx-table {
   th:nth-child(2) {
     width: 65%;
