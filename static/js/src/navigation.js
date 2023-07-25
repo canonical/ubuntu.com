@@ -12,6 +12,7 @@ const topLevelNavDropdowns = Array.from(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
+console.log("topLevelNaDropdowns",topLevelNavDropdowns)
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
 const skipLink = document.querySelector(".p-link--skip");
@@ -148,14 +149,17 @@ function toggleSecondaryMobileNavDropdown(event) {
 }
 
 function handleDropdownClick(clickedDropdown) {
+  console.log("handleDropdownClick, ", clickedDropdown)
   const isActive = clickedDropdown.classList.contains("is-active");
   updateNavMenu(clickedDropdown, !isActive);
   setTabindex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
 }
 
 function goBackOneLevel(e, backButton) {
+  console.log("backButton", backButton)
   e.preventDefault();
   const target = backButton.parentNode.parentNode;
+  console.log(target)
   target.setAttribute("aria-hidden", true);
   toggleIsActiveState(backButton.closest(".is-active"), false);
   toggleIsActiveState(backButton.closest(".is-active"), false);
@@ -193,24 +197,31 @@ function toggleSection(e) {
   @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
 */
 function updateNavMenu(dropdown, show) {
+  console.log("in updateNavMenu", dropdown)
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
+  console.log(dropdown.id)
   updateAccountDropdown(dropdown, isAccountDropdown);
 
+  console.log(dropdownContentMobile, dropdownContent)
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
+    console.log("updateNavMenu first if")
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
     if (isAccountDropdown) show = false;
     toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
+    console.log("updateNavMenu second if")
+
     updateMobileDropdownState(dropdown, show);
   }
 }
 
 function updateDropdownStates(dropdown, show, delay) {
+  console.log("updateDropdownStates", dropdown, show)
   let isNested = dropdown.parentNode.classList.contains(
     "p-navigation__dropdown"
   );
@@ -227,12 +238,16 @@ function updateDropdownStates(dropdown, show, delay) {
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
+  console.log(dropdown.id, show)
   let dropdownContent = document.getElementById(
     dropdown.dataset.id + "-content"
   );
   toggleIsActiveState(dropdown, show);
   if (dropdownContent) {
     toggleDropdownContentVisibility(dropdownContent, show, delay);
+  }
+  if (dropdown.id === "all-canonical") {
+    toggleGlobalNavVisibility(dropdownContent, show, delay);
   }
 }
 
@@ -294,6 +309,24 @@ function toggleDropdownWindowAnimation(show) {
   toggleIsActiveState(dropdownWindow, show);
 }
 
+function toggleGlobalNavVisibility(dropdown, show, delay) {
+  const globalNavContent = dropdown.querySelector(".global-nav-dropdown");
+  const globalNavInnerContent = dropdown.querySelector(".global-nav-dropdown__content");
+  if (show) {
+    globalNavInnerContent.classList.remove("u-hide");
+    globalNavInnerContent.setAttribute("aria-hidden", !show);
+    setTimeout(() => {
+      globalNavContent.classList.add("show-content");
+    }, delay);
+  } else {
+    globalNavContent.classList.remove("show-content");
+    globalNavInnerContent.setAttribute("aria-hidden", show);
+    setTimeout(() => {
+      globalNavInnerContent.classList.add("u-hide");
+    }, delay);
+  }
+}
+
 function revealTopNav() {
   document.body.style.marginTop = 0;
   sessionStorage.setItem("navBubble", currentBubble);
@@ -318,7 +351,7 @@ function attachBackButtonEventListener(element, secondaryFunction) {
     function (e) {
       e.stopImmediatePropagation();
       goBackOneLevel(e, element);
-      secondaryFunction();
+      if (secondaryFunction) secondaryFunction();
     },
     true
   );
@@ -524,6 +557,36 @@ const searchButtons = document.querySelectorAll(".js-search-button");
 const overlay = document.querySelector(".p-navigation__search-overlay");
 initNavigationSearch();
 
+// Setuo global-nav
+function setUpGlobalNav() {
+  const globalNavTab = document.querySelector(".global-nav-mobile");
+  const globalNavMainTabs = globalNavTab.querySelector("ul.p-navigation__items");
+  globalNavMainTabs.classList.remove("p-navigation__items");
+  globalNavMainTabs.classList.add("p-navigation__dropdown", "dropdown-content-mobile");
+  globalNavMainTabs.setAttribute("id", "all-canonical-content-mobile");
+  const globalNavMobileDropdowns = globalNavTab.querySelectorAll(".p-navigation__dropdown");
+  globalNavMobileDropdowns.forEach((dropdown) => {
+    console.log(dropdown.id)
+    const tempHTMLContainer = document.createElement('div');
+    tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
+        <button class="p-navigation__link js-back" href="${dropdown.id}" aria-controls="${dropdown.id}" tabindex="-1" onclick="event.stopPropagation()">
+          Back
+        </button>
+      </li>`;
+    const backButton = tempHTMLContainer.firstChild.cloneNode(true);
+    attachBackButtonEventListener(backButton.querySelector(".js-back"));
+    dropdown.prepend(backButton);
+    dropdown.addEventListener("click", (e) => {
+      e.stopPropagation()
+      handleDropdownClick(dropdown);
+    });
+    dropdown.setAttribute("aria-hidden", "true");
+  })
+}
+document.addEventListener("DOMContentLoaded", () => {
+  setUpGlobalNav();
+});
+
 // Initiate login
 var accountContainer = document.querySelector(".js-account");
 if (accountContainer) {
@@ -672,3 +735,5 @@ function addUTMToForms() {
     }
   }
 }
+
+console.log("Mega nav built")
