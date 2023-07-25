@@ -12,7 +12,6 @@ const topLevelNavDropdowns = Array.from(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
-console.log("topLevelNaDropdowns",topLevelNavDropdowns)
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
 const skipLink = document.querySelector(".p-link--skip");
@@ -149,17 +148,14 @@ function toggleSecondaryMobileNavDropdown(event) {
 }
 
 function handleDropdownClick(clickedDropdown) {
-  console.log("handleDropdownClick, ", clickedDropdown)
   const isActive = clickedDropdown.classList.contains("is-active");
   updateNavMenu(clickedDropdown, !isActive);
   setTabindex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
 }
 
 function goBackOneLevel(e, backButton) {
-  console.log("backButton", backButton)
   e.preventDefault();
   const target = backButton.parentNode.parentNode;
-  console.log(target)
   target.setAttribute("aria-hidden", true);
   toggleIsActiveState(backButton.closest(".is-active"), false);
   toggleIsActiveState(backButton.closest(".is-active"), false);
@@ -197,31 +193,24 @@ function toggleSection(e) {
   @param {HTMLNode} dropdown <li class="p-navigation__item--dropdown-toggle">
 */
 function updateNavMenu(dropdown, show) {
-  console.log("in updateNavMenu", dropdown)
   let dropdownContent = document.getElementById(dropdown.id + "-content");
   let dropdownContentMobile = document.getElementById(
     dropdown.id + "-content-mobile"
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
-  console.log(dropdown.id)
   updateAccountDropdown(dropdown, isAccountDropdown);
 
-  console.log(dropdownContentMobile, dropdownContent)
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
-    console.log("updateNavMenu first if")
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
     if (isAccountDropdown) show = false;
     toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
-    console.log("updateNavMenu second if")
-
     updateMobileDropdownState(dropdown, show);
   }
 }
 
 function updateDropdownStates(dropdown, show, delay) {
-  console.log("updateDropdownStates", dropdown, show)
   let isNested = dropdown.parentNode.classList.contains(
     "p-navigation__dropdown"
   );
@@ -238,7 +227,6 @@ function updateDropdownStates(dropdown, show, delay) {
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
-  console.log(dropdown.id, show)
   let dropdownContent = document.getElementById(
     dropdown.dataset.id + "-content"
   );
@@ -253,7 +241,7 @@ function updateDesktopDropdownStates(dropdown, show, delay) {
 
 function updateMobileDropdownState(dropdown, show, isNested) {
   let dropdownContentMobile = document.getElementById(
-    dropdown.dataset.id + "-content-mobile"
+    dropdown.id + "-content-mobile"
   );
   if (dropdownContentMobile) {
     dropdownContentMobile.setAttribute("aria-hidden", !show);
@@ -311,7 +299,9 @@ function toggleDropdownWindowAnimation(show) {
 
 function toggleGlobalNavVisibility(dropdown, show, delay) {
   const globalNavContent = dropdown.querySelector(".global-nav-dropdown");
-  const globalNavInnerContent = dropdown.querySelector(".global-nav-dropdown__content");
+  const globalNavInnerContent = dropdown.querySelector(
+    ".global-nav-dropdown__content"
+  );
   if (show) {
     globalNavInnerContent.classList.remove("u-hide");
     globalNavInnerContent.setAttribute("aria-hidden", !show);
@@ -557,31 +547,47 @@ const searchButtons = document.querySelectorAll(".js-search-button");
 const overlay = document.querySelector(".p-navigation__search-overlay");
 initNavigationSearch();
 
-// Setuo global-nav
+// Setup global-nav
 function setUpGlobalNav() {
   const globalNavTab = document.querySelector(".global-nav-mobile");
-  const globalNavMainTabs = globalNavTab.querySelector("ul.p-navigation__items");
-  globalNavMainTabs.classList.remove("p-navigation__items");
-  globalNavMainTabs.classList.add("p-navigation__dropdown", "dropdown-content-mobile");
-  globalNavMainTabs.setAttribute("id", "all-canonical-content-mobile");
-  const globalNavMobileDropdowns = globalNavTab.querySelectorAll(".p-navigation__dropdown");
-  globalNavMobileDropdowns.forEach((dropdown) => {
-    console.log(dropdown.id)
-    const tempHTMLContainer = document.createElement('div');
-    tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
+  const globalNavMainTab = globalNavTab.querySelector("ul.p-navigation__items");
+  globalNavMainTab.classList.replace(
+    "p-navigation__items",
+    "p-navigation__dropdown",
+    "dropdown-content-mobile"
+  );
+  globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
+
+  globalNavTab
+    .querySelectorAll(".p-navigation__dropdown")
+    .forEach((dropdown) => {
+      const dropdownToggle = dropdown.closest(
+        ".p-navigation__item--dropdown-toggle"
+      );
+      if (dropdownToggle.getAttribute("role") != "menuitem") {
+        const newDropdownId = `all-canonical-${dropdown.id}`;
+        dropdown.setAttribute("id", `${newDropdownId}-content-mobile`);
+        dropdownToggle.setAttribute("id", newDropdownId);
+        dropdownToggle
+          .querySelector("a.p-navigation__link")
+          .setAttribute("href", `#${newDropdownId}-content-mobile`);
+        dropdownToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handleDropdownClick(dropdownToggle);
+        });
+      }
+      const tempHTMLContainer = document.createElement("div");
+      tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
         <button class="p-navigation__link js-back" href="${dropdown.id}" aria-controls="${dropdown.id}" tabindex="-1" onclick="event.stopPropagation()">
           Back
         </button>
       </li>`;
-    const backButton = tempHTMLContainer.firstChild.cloneNode(true);
-    attachBackButtonEventListener(backButton.querySelector(".js-back"));
-    dropdown.prepend(backButton);
-    dropdown.addEventListener("click", (e) => {
-      e.stopPropagation()
-      handleDropdownClick(dropdown);
+      const backButton = tempHTMLContainer.firstChild.cloneNode(true);
+      attachBackButtonEventListener(backButton.querySelector(".js-back"));
+      dropdown.prepend(backButton);
+      dropdown.setAttribute("aria-hidden", "true");
     });
-    dropdown.setAttribute("aria-hidden", "true");
-  })
 }
 document.addEventListener("DOMContentLoaded", () => {
   setUpGlobalNav();
@@ -594,7 +600,7 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign-in<i class="p-icon--user is-light"></i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign-in&nbsp;<i class="p-icon--user is-light"></i></a>`;
       } else {
         window.accountJSONRes = data.account;
         accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account&nbsp;<i class="p-icon--user is-light">${data.account.fullname}</i></button>
@@ -735,5 +741,3 @@ function addUTMToForms() {
     }
   }
 }
-
-console.log("Mega nav built")

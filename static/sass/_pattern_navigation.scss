@@ -12,6 +12,13 @@
     }
   }
 
+  #all-canonical-mobile .global-nav__header-link-anchor::after {
+    @media (max-width: $breakpoint-small) {
+      right: 1rem !important;
+      top: 1.25rem !important;
+    }
+  }
+
   .global-nav-desktop .global-nav-dropdown {
     top: 0;
   }
@@ -39,7 +46,7 @@
         }
       }
 
-      .p-navigation__dropdown-item {
+      li.p-navigation__dropdown-item {
         line-height: 1.5rem;
         margin: 0;
         padding-bottom: 0.25rem;
@@ -51,6 +58,11 @@
           padding: 0.25rem 0;
           white-space: normal;
         }
+      }
+
+      a.p-navigation__dropdown-item {
+        padding-bottom: 0.75rem;
+        padding-top: 0.75rem;
       }
 
       .p-navigation__item--dropdown-toggle {
@@ -128,6 +140,7 @@
       .p-navigation__nav .p-navigation__items {
         display: inline-flex;
       }
+
       .p-navigation__search {
         align-items: center;
         background-color: #262626;
@@ -142,16 +155,6 @@
         .p-search-box {
           margin: 0;
           max-width: 50rem;
-        }
-      }
-    }
-  }
-
-  @media (max-width: $breakpoint-navigation-threshold) {
-    .p-navigation--sliding.is-reduced.has-menu-open {
-      .p-navigation__row {
-        .p-navigation__nav {
-          background-color: #111;
         }
       }
     }
@@ -173,14 +176,28 @@
     }
 
     .p-navigation__tagged-logo {
-      min-width: 15.7rem;
+      min-width: 17.4rem;
     }
   }
 
   .p-navigation--sliding.is-reduced {
-    @extend %small-text;
-
     margin-bottom: 0;
+
+    .p-navigation__banner {
+      height: 2.5rem;
+      padding-left: 1.5rem;
+      @media (min-width: $breakpoint-navigation-threshold) {
+        height: 2rem;
+        padding-left: 3rem;
+        width: 24%;
+      }
+    }
+
+    .p-navigation__tagged-logo {
+      .p-navigation__link {
+        padding-top: 0.5rem;
+      }
+    }
 
     .p-navigation__user {
       .p-navigation__link span {
@@ -319,6 +336,12 @@
 
     & ~ .global-nav-dropdown {
       top: 2.1rem !important;
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold - 1) {
+      #all-canonical-content-mobile {
+        display: none;
+      }
     }
   }
 }
