@@ -106,13 +106,11 @@
               {% include 'templates/_footer_item_small.html' %}
               {% endwith %}
               <li class="p-footer-list-single-child">
-                <a href="/model-driven-operations">Model-driven operations</a>
+                <a href="/software-partnerships">Software partnerships</a>
               </li>
-
-              <li class="p-footer-list-single-child">
-                <a href="/landscape">Landscape</a>
-              </li>
-
+              {% with section=nav_sections.landscape %}
+              {% include 'templates/_footer_item_small.html' %}
+              {% endwith %}
               <li class="p-footer-list-single-child">
                 <a href="/embedding">Canonical Embedding Programme</a>
               </li>

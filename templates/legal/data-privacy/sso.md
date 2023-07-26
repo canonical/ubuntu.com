@@ -2,20 +2,20 @@
 wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Single Sign On (SSO) and Ubuntu One"
-  description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) and/or Ubuntu One account."
+  description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) and/or Ubuntu One account"
   copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#
 ---
 
 <h4 class="p-muted-heading">Version - August 2022</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice - Single Sign On (SSO)
+# Privacy notice - Single Sign On (SSO) and Ubuntu One
 
-This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account and/or Ubuntu One account. SSO is an identity provider service that creates, maintains and manages user identity information, providing authentication services for Canonical and other third party applications. Ubuntu One the single account you use to log in to all services and sites related to www.ubuntu.com. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
+This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) account and/or Ubuntu One account. SSO is an identity provider service that creates, maintains and manages user identity information, providing authentication services for Canonical and other third party applications. Ubuntu One the single account you use to log in to all services and sites related to www.ubuntu.com. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our[privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 5 New Street Square, London, EC4A 3TW, United Kingdom. You can contact us by post at the address set out in the “right to complain” section, below or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -31,7 +31,7 @@ Your information will be used by us for the provision of services in the creatio
 
 Your information is stored in our database and may be processed outside of the European Economic Area. It is shared with the third parties only as reasonably required for Canonical to process and store your data in accordance with this notice.
 
-Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which currently apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information, please contact us (see "Your right to complain" below).
+Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which currently apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information, please contact us (see “Your right to complain” below).
 
 ## How long do we keep your information for?
 
@@ -61,7 +61,7 @@ If you would like to exercise any of those rights, please:
 - Provide us proof of your identity.
 - Let us know the information to which your request relates.
 
-Please note that if you ask us to remove your SSO and/or Ubuntu One account you will no longer be able to access certain Canonical and third party services.
+Let us know the information to which your request relates. Please note that if you ask us to remove your SSO and/or Ubuntu One account you will no longer be able to access certain Canonical and third party services.
 
 ## Your right to complain
 
