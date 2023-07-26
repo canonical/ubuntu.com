@@ -155,7 +155,40 @@ const getLabels = (product: Product, action: Action) => {
       ),
     };
   }
-
+  if (product.marketplace == "canonical-cube") {
+    return {
+      termsLabel: (
+        <>
+          I agree to the{" "}
+          <a
+            href="/legal/terms-and-policies/credentials-terms"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Credentials Terms of Service
+          </a>
+        </>
+      ),
+      descriptionLabel: (
+        <>
+          I have read the{" "}
+          <a
+            href="/legal/data-privacy/credentials"
+            target="_blank"
+            rel="noopener norefferer"
+          >
+            Data Privacy Notice
+          </a>
+        </>
+      ),
+      marketingLabel: (
+        <>
+          I agree to receive information about Canonical&apos;s products and
+          services
+        </>
+      ),
+    };
+  }
   return {
     termsLabel: (
       <>

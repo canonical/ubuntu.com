@@ -42,8 +42,16 @@ RESERVATION_STATES = {
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
-def cred_home(**_):
-    return flask.render_template("credentials/index.html")
+def cred_home(ua_contracts_api, **_):
+    available_products = ua_contracts_api.get_product_listings(
+        "canonical-cube"
+    ).get("productListings")
+    for product in available_products:
+        if product.get("name") == "CUE Linux Essentials":
+            return flask.render_template(
+                "credentials/index.html", can_purchase=True
+            )
+    return flask.render_template("credentials/index.html", can_purchase=False)
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
@@ -605,12 +613,13 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
         ability_screen_id=ability_screen_id,
         page=ta_page,
     )
+    total_count = webhook_responses["meta"]["total_count"]
     ta_webhook_responses = webhook_responses["webhook_responses"]
     ta_webhook_responses = [
         ta_webhook_responses[i]
         for i in range(
             page * per_page % ta_results_per_page - per_page,
-            page * per_page % ta_results_per_page,
+            min(page * per_page % ta_results_per_page, total_count),
         )
     ]
     page_metadata = {}
@@ -618,7 +627,7 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
     page_metadata["total_pages"] = (
         webhook_responses["meta"]["total_count"] // per_page
     ) + 1
-    page_metadata["total_count"] = webhook_responses["meta"]["total_count"]
+    page_metadata["total_count"] = total_count
     page_metadata["next_page"] = (
         page + 1 if page < page_metadata["total_pages"] else None
     )
