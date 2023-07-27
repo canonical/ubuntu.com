@@ -80,6 +80,7 @@ If you would like to unsubscribe from any email please see below.
 By law, you can ask us what information we hold about you, and you can ask us to correct it if it is inaccurate.
 
 You can also ask us to give you a copy of the information and to stop using your information for a period of time if you believe we are not doing so lawfully.
+
 To submit a request by email, post or telephone, please use the contact information provided above.
 
 ## Email marketing communications
