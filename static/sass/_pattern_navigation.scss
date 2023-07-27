@@ -19,6 +19,12 @@
     }
   }
 
+  #all-canonical-content-mobile {
+    @media (min-width: $breakpoint-navigation-threshold - 1) {
+      display: none;
+    }
+  }
+
   .global-nav-desktop .global-nav-dropdown {
     top: 0;
   }
@@ -336,12 +342,6 @@
 
     & ~ .global-nav-dropdown {
       top: 2.1rem !important;
-    }
-
-    @media (min-width: $breakpoint-navigation-threshold - 1) {
-      #all-canonical-content-mobile {
-        display: none;
-      }
     }
   }
 }

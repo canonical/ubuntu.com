@@ -612,7 +612,7 @@ if (accountContainer) {
             </li>
             <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/account/invoices onclick="event.stopPropagation()">Invoices & Payments</a>
+              <a class="p-link--inverted" href="/account/invoices" onclick="event.stopPropagation()">Invoices & Payments</a>
             </li>
             <li class="p-navigation__dropdown-item">
               <a class="p-link--inverted" href="https://login.ubuntu.com/" onclick="event.stopPropagation()">Account settings</a>
