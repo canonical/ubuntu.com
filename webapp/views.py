@@ -570,7 +570,7 @@ def build_engage_pages_sitemap(engage_pages):
         for page in metadata:
             links.append(
                 {
-                    "url": f'https://ubuntu.com/{page["path"]}',
+                    "url": f'https://ubuntu.com{page["path"]}',
                     "last_updated": page["updated"].strftime("%-d %B %Y"),
                 }
             )

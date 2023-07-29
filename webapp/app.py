@@ -525,12 +525,10 @@ engage_pages = EngagePages(
     exclude_topics=[17229, 18033, 17250],
 )
 
-
 app.add_url_rule(
     "/engage/sitemap.xml",
     view_func=build_engage_pages_sitemap(engage_pages),
 )
-
 
 app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
