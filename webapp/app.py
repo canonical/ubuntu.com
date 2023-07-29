@@ -20,19 +20,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
-from webapp.certified.views import (
-    certified_component_details,
-    certified_desktops,
-    certified_devices,
-    certified_hardware_details,
-    certified_home,
-    certified_laptops,
-    certified_model_details,
-    certified_servers,
-    certified_socs,
-    certified_vendors,
-    certified_why,
-)
+from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
 from webapp.security.views import (
@@ -1333,47 +1321,7 @@ app.add_url_rule(
 
 robotics_docs.init_app(app)
 
-app.add_url_rule("/certified", view_func=certified_home)
-app.add_url_rule(
-    "/certified/<canonical_id>",
-    view_func=certified_model_details,
-)
-app.add_url_rule(
-    "/certified/<canonical_id>/<release>",
-    view_func=certified_hardware_details,
-)
-app.add_url_rule(
-    "/certified/component/<component_id>",
-    view_func=certified_component_details,
-)
-app.add_url_rule(
-    "/certified/vendors/<vendor>",
-    view_func=certified_vendors,
-)
-app.add_url_rule(
-    "/certified/desktops",
-    view_func=certified_desktops,
-)
-app.add_url_rule(
-    "/certified/laptops",
-    view_func=certified_laptops,
-)
-app.add_url_rule(
-    "/certified/servers",
-    view_func=certified_servers,
-)
-app.add_url_rule(
-    "/certified/iot",
-    view_func=certified_devices,
-)
-app.add_url_rule(
-    "/certified/socs",
-    view_func=certified_socs,
-)
-app.add_url_rule(
-    "/certified/why-certify",
-    view_func=certified_why,
-)
+certified_routes(app)
 
 # Override openstack/install
 app.add_url_rule(

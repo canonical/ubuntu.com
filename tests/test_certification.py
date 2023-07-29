@@ -27,7 +27,7 @@ class TestCertification(VCRTestCase):
 
     def test_search_results(self):
         response = self.client.get(
-            "/certified?q=xps&category=Laptop&vendor=Dell"
+            "/certified?q=xps&category=Laptop&category=Desktop&vendor=Dell"
         )
         self.assertEqual(response.status_code, 200)
 
