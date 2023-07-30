@@ -69,7 +69,143 @@ def certified_routes(app):
         "/certified/why-certify",
         view_func=certified_why,
     )
+    app.add_url_rule("/certified/filters.json", view_func=lambda : get_filters(json=True))
 
+
+def _render_category_filters(selected_categories: list):
+    """
+    Args:
+
+    - selected_categories: a list of requests.args.getlist(category)
+    passed by query string
+    e.g. &category=Desktop&category=Laptops
+
+    This function is also the source of truth for the list of
+    certification categories (all_categories).
+    If at some point we need a new category,
+    it should be added here.
+    """
+
+    all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+    category_filters = []
+    if len(selected_categories) > 0:
+        for item in all_categories:
+            if item in selected_categories:
+                category_filters.insert(0, item)
+            else:
+                category_filters.append(item)
+    else:
+        category_filters = all_categories
+    
+    return category_filters
+
+def get_filters(request_args=None, json: bool=False):
+    certified_releases = api.certified_releases(limit="0")["objects"]
+    certified_makes = api.certified_makes(limit="0")["objects"]
+
+    # Laptop filters
+    laptop_releases = []
+    laptop_vendors = []
+
+    # Desktop filters
+    desktop_releases = []
+    desktop_vendors = []
+
+    # SoC filters
+    soc_releases = []
+    soc_vendors = []
+
+    # IoT filters
+    iot_releases = []
+    iot_vendors = []
+
+    # Server filters
+    server_releases = []
+    server_vendors = []
+
+    # Search results filters
+    all_releases = []
+    release_filters = []
+    all_vendors = []
+    vendor_filters = []
+
+    for release in certified_releases:
+        version = release["release"]
+
+        if release not in all_releases:
+            # UX improvement: selected filter on top
+            if request_args and version not in request_args.getlist("release"):
+                all_releases.append(version)
+                all_releases = sorted(all_releases, reverse=True)
+            else:
+                release_filters.append(version)
+
+        if int(release["laptops"]) > 0:
+            laptop_releases.append(release)
+
+        if int(release["desktops"]) > 0:
+            desktop_releases.append(release)
+
+        if int(release["smart_core"] > 1):
+            iot_releases.append(release)
+
+        if int(release["soc"] > 1):
+            soc_releases.append(release)
+
+        if int(release["servers"] > 1):
+            server_releases.append(release)
+
+    for vendor in certified_makes:
+        make = vendor["make"]
+
+        if make not in all_vendors:
+            # UX improvement: selected filter on top
+            if request_args and make not in request_args.getlist("vendor"):
+                all_vendors.append(make)
+                all_vendors = sorted(all_vendors)
+            else:
+                vendor_filters.append(make)
+
+        if int(vendor["laptops"]) > 0:
+            laptop_vendors.append(vendor)
+
+        if int(vendor["desktops"]) > 0:
+            desktop_vendors.append(vendor)
+
+        if int(vendor["smart_core"] > 1):
+            iot_vendors.append(vendor)
+
+        if int(vendor["soc"] > 1):
+            soc_vendors.append(vendor)
+
+        if int(vendor["servers"] > 1):
+            server_vendors.append(vendor)
+    
+    if json:
+        filters = {
+            "laptop_releases": laptop_releases,
+            "laptop_vendors": laptop_vendors,
+            "desktop_releases": desktop_releases,
+            "desktop_vendors": desktop_vendors,
+            "soc_releases": soc_vendors,
+            "iot_releases": iot_releases,
+            "iot_vendors": iot_vendors,
+            "server_releases": server_releases,
+            "server_vendors": server_vendors,
+            "all_releases": all_releases,
+            "all_vendors": all_vendors,
+            "vendor_filters": vendor_filters,
+            "release_filters": release_filters
+        }
+        return flask.jsonify(filters)
+
+    else:
+
+        return (
+            laptop_releases, laptop_vendors, desktop_releases,
+            desktop_vendors, soc_releases, soc_vendors, iot_releases,
+            iot_vendors, server_releases, server_vendors, all_releases, all_vendors, vendor_filters, release_filters
+        )
 
 def certified_component_details(component_id):
     try:
@@ -246,86 +382,8 @@ def certified_model_details(canonical_id):
 
 
 def certified_home():
-    certified_releases = api.certified_releases(limit="0")["objects"]
-    certified_makes = api.certified_makes(limit="0")["objects"]
 
-    # Laptop section
-    laptop_releases = []
-    laptop_vendors = []
-
-    # Desktop section
-    desktop_releases = []
-    desktop_vendors = []
-
-    # SoC section
-    soc_releases = []
-    soc_vendors = []
-
-    # IoT section
-    iot_releases = []
-    iot_vendors = []
-
-    # Server section
-    server_releases = []
-    server_vendors = []
-
-    # Search results filters
-    all_releases = []
-    release_filters = []
-    all_vendors = []
-    vendor_filters = []
-
-    for release in certified_releases:
-        version = release["release"]
-
-        if release not in all_releases:
-            # UX improvement: selected filter on top
-            if version not in request.args.getlist("release"):
-                all_releases.append(version)
-                all_releases = sorted(all_releases, reverse=True)
-            else:
-                release_filters.append(version)
-
-        if int(release["laptops"]) > 0:
-            laptop_releases.append(release)
-
-        if int(release["desktops"]) > 0:
-            desktop_releases.append(release)
-
-        if int(release["smart_core"] > 1):
-            iot_releases.append(release)
-
-        if int(release["soc"] > 1):
-            soc_releases.append(release)
-
-        if int(release["servers"] > 1):
-            server_releases.append(release)
-
-    for vendor in certified_makes:
-        make = vendor["make"]
-
-        if make not in all_vendors:
-            # UX improvement: selected filter on top
-            if make not in request.args.getlist("vendor"):
-                all_vendors.append(make)
-                all_vendors = sorted(all_vendors)
-            else:
-                vendor_filters.append(make)
-
-        if int(vendor["laptops"]) > 0:
-            laptop_vendors.append(vendor)
-
-        if int(vendor["desktops"]) > 0:
-            desktop_vendors.append(vendor)
-
-        if int(vendor["smart_core"] > 1):
-            iot_vendors.append(vendor)
-
-        if int(vendor["soc"] > 1):
-            soc_vendors.append(vendor)
-
-        if int(vendor["servers"] > 1):
-            server_vendors.append(vendor)
+    laptop_releases, laptop_vendors, desktop_releases, desktop_vendors, soc_releases, soc_vendors, iot_releases, iot_vendors, server_releases, server_vendors, all_releases, all_vendors, vendor_filters, release_filters = get_filters(request.args)
 
     if (
         "category" in request.args
@@ -390,16 +448,9 @@ def certified_home():
         # UX improvement: selected filter on top
         vendor_filters.extend(all_vendors)
         release_filters.extend(all_releases)
-        all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-        category_filters = []
-        if len(request.args.getlist("category")) > 0:
-            for item in all_categories:
-                if item in request.args.getlist("category"):
-                    category_filters.insert(0, item)
-                else:
-                    category_filters.append(item)
-        else:
-            category_filters = all_categories
+
+
+        category_filters = _render_category_filters(request.args.getlist("category"))
 
         for index, model in enumerate(results):
             # Replace "Ubuntu Core" with "Device"
@@ -517,21 +568,7 @@ def create_category_views(category, template_path):
 
     query = request.args.get("q", default=None, type=str)
 
-    # Old site replacements
-    if set(request.args) & set(["query", "vendors"]):
-        # Convert ImmutableMultiDict into normal dict
-        parameters = request.args.to_dict()
-        # Do the replacements
-        if "query" in parameters:
-            parameters["q"] = parameters["query"]
-            del parameters["query"]
-
-        if "vendors" in parameters:
-            parameters["vendor"] = parameters["vendors"]
-            del parameters["vendors"]
-
-        # Convert back into query string and redirect
-        return redirect(f"/certified?{urlencode(parameters)}", 301)
+    category_filters = _render_category_filters(request.args.getlist("category"))
 
     limit = request.args.get("limit", default=20, type=int)
     offset = request.args.get("offset", default=0, type=int)
@@ -575,6 +612,7 @@ def create_category_views(category, template_path):
         results=results,
         query=query,
         releases=releases,
+        category_filters=category_filters,
         release_filters=release_filters,
         vendor_filters=vendor_filters,
         vendors=vendors,

@@ -57,7 +57,6 @@
           <div>
             <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
               <ul class="p-accordion__list">
-                {% if vendor_page %}
                 <li class="p-accordion__group--certified">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
@@ -69,15 +68,29 @@
                   </div>
                   <hr class="u-no-margin--bottom">
                   <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
-                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter|replace(" ", "-") }}" class="p-checkbox__input js-enable-apply-filters" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ category_filter|replace(" ", "-") }}">{{ category_filter }}</span>
+                      <!-- values match API form factors -->
+                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="laptop" class="p-checkbox__input" name="category" value="Laptop" {% if request.path == '/certified/laptops' %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="laptop">Laptop</span>
                     </label>
-                    {% endfor %}
+                    <label class="p-checkbox">
+                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="desktop" class="p-checkbox__input" name="category" value="Desktop" {% if request.path == '/certified/desktops' %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="desktop">Desktop</span>
+                    </label>
+                    <label class="p-checkbox">
+                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="server" class="p-checkbox__input" name="category" value="Server" {% if request.path == '/certified/servers' %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="server">Server</span>
+                    </label>
+                    <label class="p-checkbox">
+                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="iot" class="p-checkbox__input" name="category" value="Ubuntu Core" {% if request.path == '/certified/iot' %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="iot">IoT</span>
+                    </label>
+                    <label class="p-checkbox">
+                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="socs" class="p-checkbox__input" name="category" value="Server SoC" {% if request.path == '/certified/socs' %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="socs">SoC</span>
+                    </label>
                   </section>
                 </li>
-                {% else %}
                 <li class="p-accordion__group--certified" id="vendor-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
@@ -89,24 +102,17 @@
                   </div>
                   <hr class="u-no-margin--bottom">
                   <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
-                    {% for vendor_filter in vendor_filters %}
-                    <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter|replace(" ", "-") }}" class="p-checkbox__input js-enable-apply-filters" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ vendor_filter|replace(" ", "-") }}">{{ vendor_filter }}</span>
-                    </label>
-                    {% endfor %}
                   </section>
-                  {% if vendor_filters | length > 5 %}
+                  <!-- {% if vendor_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
                     <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
                   </span>
-                  {% endif %}
+                  {% endif %} -->
                 </li>
-                {% endif %}
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
-                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
+                    <button type="button" class="p-accordion__tab u-no-padding--right" aria-controls="tab3-section" aria-expanded="true">
                       Certified ubuntu
                         <div class="p-round-chip u-hide">
                           <span class="p-chip__value" id="release-count">1</span>
@@ -116,26 +122,20 @@
                   </div>
                   <hr class="u-no-margin--bottom">
                   <section class="p-accordion__panel {% if release_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
-                    {% for release_filter in release_filters %}
-                    <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ release_filter|replace(" ", "-") }}" class="p-checkbox__input js-enable-apply-filters" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ release_filter|replace(" ", "-") }}">{{ release_filter }}</span>
-                    </label>
-                    {% endfor %}
                   </section>
-                  {% if release_filters | length > 5 %}
+                  <!-- {% if release_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
                     <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
                   </span>
-                  {% endif %}
+                  {% endif %} -->
                 </li>
               </ul>
               <hr style="margin-bottom: 1rem;">
             </aside>
             <div class="u-align--right" style="padding-right: 0.5rem">
               <button class="p-button p-update-results u-no-margin--right" onclick="return clearFilters()">Clear</button>
-              <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button>
+              <!-- <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button> -->
             </div>
           </div>
         </nav>
@@ -210,5 +210,6 @@
   </section>
 </form>
 
-<script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script>
+<!-- <script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script> -->
+<script type="text/javascript" src="/static/js/src/certified-search-results.js"></script>
 

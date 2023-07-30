@@ -171,3 +171,149 @@ toggleVendorsList();
 toggleShowAllLinks();
 updateResultsPerPage();
 hideDrawerPageReload();
+
+
+
+
+// New filters
+const filters2Elm = document.querySelector("#tab2-section");
+const filters3Elm = document.querySelector("#tab3-section");
+
+
+function loadFilters() {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const path = window.location.pathname;
+  const pathCategory = path.replace("/certified/", "");
+  const categoryParams = urlParams.get('category');
+  const vendorParams = urlParams.get('vendor');
+  const releaseParams = urlParams.get('release');
+
+  renderFilters(pathCategory);
+
+}
+
+async function renderFilters(category) {
+
+  const filters = await fetchFilters();
+  switch (category) {
+    case "desktop":
+      filters.desktop_vendors.forEach(item => {
+        renderCheckboxes(item.make, "vendor", filters2Elm);
+      });
+      filters.desktop_releases.forEach(item => {
+        renderCheckboxes(item.release, "release", filters3Elm);
+      });
+      break;
+      
+    case "laptops":
+      filters.laptop_vendors.forEach(item => {
+        renderCheckboxes(item.make, "vendor", filters2Elm);
+      });
+      filters.laptop_releases.forEach(item => {
+        renderCheckboxes(item.release, "release", filters3Elm);
+      });
+      break;
+    case "servers":
+      filters.server_vendors.forEach(item => {
+        renderCheckboxes(item.make, "vendor", filters2Elm);
+      });
+      filters.server_releases.forEach(item => {
+        renderCheckboxes(item.release, "release", filters3Elm);
+      });
+      break;
+    case "devices":
+      filters.laptop_vendors.forEach(item => {
+        renderCheckboxes(item.make, "vendor", filters2Elm);
+      });
+      filters.laptop_releases.forEach(item => {
+        renderCheckboxes(item.release, "release", filters3Elm);
+      });
+      break;
+    case "iot":
+      filters.iot_vendors.forEach(item => {
+        renderCheckboxes(item.make, "vendor", filters2Elm);
+      });
+      filters.iot_releases.forEach(item => {
+        renderCheckboxes(item.make, "release", filters3Elm);
+      });
+    default:
+      break;
+  }
+}
+
+function renderCheckboxes(value, name, parentElement) {
+  const label = document.createElement("label");
+  const input = document.createElement("input");
+  const span = document.createElement("span");
+  label.className = "p-checkbox";
+  label.dataset.value = value; // Make it easier to manipulate filters
+  input.type = "checkbox";
+  input.name = name;
+  input.className = "p-checkbox__input";
+  input.value = value;
+  input.addEventListener("click", handleFilterClick)
+  
+  if (name == "vendor") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const vendorParams = urlParams.getAll('vendor');
+
+    if (vendorParams && vendorParams.includes(value)) {
+      input.checked = true;
+    }
+  }
+
+  if (name == "release") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const releaseParams = urlParams.getAll('release');
+    if (releaseParams && releaseParams.includes(value)) {
+      input.checked = true;
+    }
+  }
+
+  span.className = "p-checkbox__label";
+  span.innerHTML = value;
+  span.id = value.replace(" ", "-");
+  label.appendChild(input);
+  label.appendChild(span);
+  parentElement.appendChild(label);
+}
+
+async function fetchFilters() {
+  return await fetch("/certified/filters.json").then(res =>
+    res.json()
+  );
+}
+
+async function handleCategoryClick(e) {
+  handleFilterClick(e);
+  renderFilters(value);
+}
+
+function handleFilterClick (e) {
+  const { value, name } = e.target;
+  let urlParams = new URLSearchParams(window.location.search);
+  const vendorParams = urlParams.getAll('vendor');
+  const releasesParams = urlParams.getAll('release');
+
+  if (name == "vendor") {
+    if (vendorParams.length > 0 && vendorParams.includes(value)) {
+      urlParams.delete(name, value);
+    } else {
+      urlParams.append(name, value);
+    }
+  }
+
+  if (name == "release") {
+    if (releasesParams.length > 0 && releasesParams.includes(value)) {
+      urlParams.delete(name, value);
+    } else {
+      urlParams.append(name, value);
+    }
+  }
+
+  const newURL = `${window.location.pathname}?${urlParams.toString()}`
+  window.location.href = newURL;
+}
+
+loadFilters()
