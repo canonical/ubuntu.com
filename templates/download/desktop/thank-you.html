@@ -87,7 +87,7 @@
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--4">Ubuntu Desktop guide</h3>
       <p>Read the official Ubuntu Desktop documentation.</p>
-      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu {{ releases.lts.short_version }} LTS documentation&nbsp;&rsaquo;</a></p>
+      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu documentation&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--4">Help is always at hand</h3>
@@ -326,25 +326,16 @@
   <div class="u-fixed-width">
     <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
   </div>
-  <div class="row p-divider">
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></p>
-      <p><em>by <a href="/blog/author/rajanpatel927">Rajan Patel</a> on 8 February 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/get-started-with-linux-game-development-on-ubuntu">Linux game development on Ubuntu: Godot and Unity</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 24 January 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/how-low-can-you-go-running-ubuntu-desktop-on-a-2gb-raspberry-pi-4">How low can you go? Running Ubuntu Desktop on a 2GB Raspberry Pi 4</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 11 January 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
-    </div>
+  <div class="row p-divider" id="latest-articles">
   </div>
 </section>
+
+<template style="display:none" class="" id="articles-template">
+  <article class="col-3 p-divider__block">
+    <p><a class="article-title article-link" href=""></a></p>
+    <p><em>by <span class="article-author"></span>on <time datetime="" class="article-time"></time></em></p>
+  </article>
+</template>
 
 {% endif %}
 
@@ -355,6 +346,7 @@
 
 {% if version %}
 <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 <script defer>
   var architecture = '{{ architecture }}';
   var version = '{{ version }}';
@@ -365,6 +357,17 @@
 
     window.initImageDownload(imagePath, GAlabel);
   }
+
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#articles-template",
+      hostname: "ubuntu.com",
+      groupId: "1479",
+      limit: "4",
+    }
+  )
+  
 </script>
 {% endif %}
 
