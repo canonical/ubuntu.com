@@ -48,6 +48,7 @@ from webapp.shop.advantage.views import (
     delete_account_user_role,
     get_account_offers,
     get_account_users,
+    get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
     get_contract_token,
@@ -59,6 +60,7 @@ from webapp.shop.advantage.views import (
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer,
+    pro_activate_activation_key,
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
@@ -66,6 +68,7 @@ from webapp.shop.advantage.views import (
 from webapp.shop.cred.views import (
     activate_activation_key,
     cred_assessments,
+    cred_beta_activation,
     cred_cancel_exam,
     cred_exam,
     cred_home,
@@ -77,7 +80,6 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
-    cred_beta_activation,
     get_activation_keys,
     get_filtered_webhook_responses,
     get_issued_badges,
@@ -196,6 +198,12 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/pro/activate", view_func=get_activate_view)
+app.add_url_rule(
+    "/pro/activate",
+    view_func=pro_activate_activation_key,
+    methods=["POST"],
+)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
