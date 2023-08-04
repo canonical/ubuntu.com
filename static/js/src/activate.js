@@ -224,26 +224,29 @@ activateKeyForm.addEventListener("submit", function (event) {
         return response.json();
       })
       .catch(function (err) {
+        const meta = document.querySelector(".p-notification__meta");
+        const message = document.querySelector("#notification-message");
         const errorMessage = JSON.parse(err?.message)?.errors;
         notification.style.display = "block";
-        document.querySelector(
-          "#notification-message"
-        ).innerHTML = errorMessage;
+        message.innerHTML = errorMessage;
 
         if (errorMessage === "activation key already used") {
-          const div1 = document.createElement("div");
-          const div2 = document.createElement("div");
-          div1.classList.add("p-notification__meta");
-          div2.classList.add("p-notification__actions");
-          const a = document.createElement("a");
-          a.setAttribute("href", "/pro/dashboard");
-          a.textContent = "Go to dashboard";
-          div2.appendChild(a);
-          div1.appendChild(div2);
-          notification.appendChild(div1);
+          if (!meta) {
+            const div1 = document.createElement("div");
+            const div2 = document.createElement("div");
+            const a = document.createElement("a");
+
+            div1.classList.add("p-notification__meta");
+            div2.classList.add("p-notification__actions");
+            a.setAttribute("href", "/pro/dashboard");
+            a.textContent = "Go to dashboard";
+            div2.appendChild(a);
+            div1.appendChild(div2);
+            notification.appendChild(div1);
+          }
         } else {
-          if (document.querySelector(".p-notification__meta")) {
-            document.querySelector(".p-notification__meta").remove();
+          if (meta) {
+            meta.remove();
           }
         }
       });
