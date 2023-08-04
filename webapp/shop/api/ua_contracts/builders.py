@@ -165,8 +165,7 @@ def build_legacy_item_groups(user_summary: List) -> List:
                     item.product_listing_id is None
                     or item.subscription_id is None
                 ):
-                    if (item.reason == "key_activated" and
-                       contract.product_id != "cue-linux-essentials"):
+                    if item.reason == "key_activated":
                         legacy_item_groups.append(
                             {
                                 "account": user_details.get("account"),
@@ -176,8 +175,9 @@ def build_legacy_item_groups(user_summary: List) -> List:
                                 "item_id": item.id,
                                 "listing": None,
                                 "marketplace": "canonical-ua",
-                                "subscriptions":
-                                    user_details.get("subscriptions"),
+                                "subscriptions": user_details.get(
+                                    "subscriptions"
+                                ),
                                 "type": "key_activated",
                             }
                         )
@@ -191,8 +191,9 @@ def build_legacy_item_groups(user_summary: List) -> List:
                                 "item_id": item.id,
                                 "listing": None,
                                 "marketplace": "canonical-ua",
-                                "subscriptions":
-                                    user_details.get("subscriptions"),
+                                "subscriptions": user_details.get(
+                                    "subscriptions"
+                                ),
                                 "type": "legacy",
                             }
                         )
