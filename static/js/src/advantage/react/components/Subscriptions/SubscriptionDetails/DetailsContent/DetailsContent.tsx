@@ -88,7 +88,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
     size: 2,
     title: "Billing",
     value:
-      isFree || subscription.type == "key_activated"
+      isFree || subscription.type == UserSubscriptionType.KeyActivated
         ? "None"
         : getPeriodDisplay(subscription.period),
   };
