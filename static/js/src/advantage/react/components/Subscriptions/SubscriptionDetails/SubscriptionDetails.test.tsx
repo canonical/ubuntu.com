@@ -378,6 +378,7 @@ describe("SubscriptionDetails", () => {
       type: UserSubscriptionType.Legacy,
       statuses: userSubscriptionStatusesFactory.build({
         is_renewed: false,
+        is_renewable: true,
         is_renewal_actionable: true,
       }),
     });
@@ -563,6 +564,7 @@ describe("SubscriptionDetails", () => {
       type: UserSubscriptionType.Legacy,
       statuses: userSubscriptionStatusesFactory.build({
         is_renewed: false,
+        is_renewable: false,
         is_renewal_actionable: false,
       }),
     });
