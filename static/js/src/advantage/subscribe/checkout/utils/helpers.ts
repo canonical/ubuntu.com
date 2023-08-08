@@ -32,6 +32,8 @@ export function getInitialFormValues(
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
     isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,
+    TermsOfService: false,
+    DataPrivacy: false,
   };
 }
 

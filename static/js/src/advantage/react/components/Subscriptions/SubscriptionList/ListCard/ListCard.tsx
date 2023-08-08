@@ -75,7 +75,9 @@ const ListCard = ({
               className="p-text--small-caps u-text--muted p-subscriptions__list-card-period"
               data-test="card-type"
             >
-              {subscription.type}
+              {subscription.type === UserSubscriptionType.KeyActivated
+                ? "key activated"
+                : subscription.type}
             </span>
           )}
         </div>

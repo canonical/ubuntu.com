@@ -4,6 +4,7 @@ A Flask application for ubuntu.com
 
 import os
 
+import requests
 import flask
 import talisker.requests
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -19,19 +20,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
-from webapp.certified.views import (
-    certified_component_details,
-    certified_desktops,
-    certified_devices,
-    certified_hardware_details,
-    certified_home,
-    certified_laptops,
-    certified_model_details,
-    certified_servers,
-    certified_socs,
-    certified_vendors,
-    certified_why,
-)
+from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
 from webapp.security.views import (
@@ -59,6 +48,7 @@ from webapp.shop.advantage.views import (
     delete_account_user_role,
     get_account_offers,
     get_account_users,
+    get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
     get_contract_token,
@@ -70,6 +60,7 @@ from webapp.shop.advantage.views import (
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer,
+    pro_activate_activation_key,
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
@@ -77,10 +68,10 @@ from webapp.shop.advantage.views import (
 from webapp.shop.cred.views import (
     activate_activation_key,
     cred_assessments,
+    cred_beta_activation,
     cred_cancel_exam,
     cred_exam,
     cred_home,
-    cred_provision,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
@@ -89,7 +80,6 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
-    cred_beta_activation,
     get_activation_keys,
     get_filtered_webhook_responses,
     get_issued_badges,
@@ -151,10 +141,14 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    build_engage_pages_sitemap,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
+
+CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
+CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -170,11 +164,22 @@ app = FlaskBase(
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
+charmhub_session = requests.Session()
+talisker.requests.configure(charmhub_session)
+
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
+)
+
+charmhub_discourse_api = DiscourseAPI(
+    base_url="https://discourse.charmhub.io/",
+    session=charmhub_session,
+    api_key=CHARMHUB_DISCOURSE_API_KEY,
+    api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
 )
 
@@ -193,6 +198,12 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/pro/activate", view_func=get_activate_view)
+app.add_url_rule(
+    "/pro/activate",
+    view_func=pro_activate_activation_key,
+    methods=["POST"],
+)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
@@ -523,6 +534,11 @@ engage_pages = EngagePages(
 )
 
 app.add_url_rule(
+    "/engage/sitemap.xml",
+    view_func=build_engage_pages_sitemap(engage_pages),
+)
+
+app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
 )
 # Custom engage page in German
@@ -637,6 +653,250 @@ template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
+# Data Platform Spark on K8s docs
+data_spark_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=8963,
+        url_prefix="/data/docs/spark/k8s",
+    ),
+    document_template="/data/docs/spark/k8s/document.html",
+    url_prefix="/data/docs/spark/k8s",
+    blueprint_name="data-docs-spark-k8s",
+)
+app.add_url_rule(
+    "/data/docs/spark/k8s/search",
+    "data-docs-spark-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/spark/k8s",
+        template_path="/data/docs/spark/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_spark_k8s_docs.init_app(app)
+
+# Data Platform MySQL on IAAS docs
+data_mysql_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9925,
+        url_prefix="/data/docs/mysql/iaas",
+    ),
+    document_template="/data/docs/mysql/iaas/document.html",
+    url_prefix="/data/docs/mysql/iaas",
+    blueprint_name="data-docs-mysql-iaas",
+)
+app.add_url_rule(
+    "/data/docs/mysql/iaas/search",
+    "data-docs-mysql-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mysql/iaas",
+        template_path="/data/docs/mysql/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mysql_iaas_docs.init_app(app)
+
+# Data Platform MySQL on K8s docs
+data_mysql_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9680,
+        url_prefix="/data/docs/mysql/k8s",
+    ),
+    document_template="/data/docs/mysql/k8s/document.html",
+    url_prefix="/data/docs/mysql/k8s",
+    blueprint_name="data-docs-mysql-k8s",
+)
+app.add_url_rule(
+    "/data/docs/mysql/k8s/search",
+    "data-docs-mysql-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mysql/k8s",
+        template_path="/data/docs/mysql/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mysql_k8s_docs.init_app(app)
+
+# Data Platform MongoDB on IaaS docs
+data_mongodb_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=7663,
+        url_prefix="/data/docs/mongodb/iaas",
+    ),
+    document_template="/data/docs/mongodb/iaas/document.html",
+    url_prefix="/data/docs/mongodb/iaas",
+    blueprint_name="data-docs-mongodb-iaas",
+)
+app.add_url_rule(
+    "/data/docs/mongodb/iaas/search",
+    "data-docs-mongodb-vm-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mongodb/iaas",
+        template_path="/data/docs/mongodb/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mongodb_iaas_docs.init_app(app)
+
+# Data Platform MongoDB on K8s docs
+data_mongodb_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10265,
+        url_prefix="/data/docs/mongodb/k8s",
+    ),
+    document_template="/data/docs/mongodb/k8s/document.html",
+    url_prefix="/data/docs/mongodb/k8s",
+    blueprint_name="data-docs-mongodb-k8s",
+)
+app.add_url_rule(
+    "/data/docs/mongodb/k8s/search",
+    "data-docs-mongodb-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mongodb/k8s",
+        template_path="/data/docs/mongodb/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_mongodb_k8s_docs.init_app(app)
+
+# Data Platform PostgreSQL on K8s docs
+data_postgresql_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9307,
+        url_prefix="/data/docs/postgresql/k8s",
+    ),
+    document_template="/data/docs/postgresql/k8s/document.html",
+    url_prefix="/data/docs/postgresql/k8s",
+    blueprint_name="data-docs-postgresql-k8s",
+)
+app.add_url_rule(
+    "/data/docs/postgresql/k8s/search",
+    "data-docs-postgresql-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/postgresql/k8s",
+        template_path="/data/docs/postgresql/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_postgresql_k8s_docs.init_app(app)
+
+# Data Platform PostgreSQL on IaaS docs
+data_postgresql_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9710,
+        url_prefix="/data/docs/postgresql/iaas",
+    ),
+    document_template="/data/docs/postgresql/iaas/document.html",
+    url_prefix="/data/docs/postgresql/iaas",
+    blueprint_name="data-docs-postgresql-iaas",
+)
+app.add_url_rule(
+    "/data/docs/postgresql/iaas/search",
+    "data-docs-postgresql-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/postgresql/iaas",
+        template_path="/data/docs/postgresql/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_postgresql_iaas_docs.init_app(app)
+
+# Data Platform OpenSearch on IaaS docs
+data_opensearch_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=9729,
+        url_prefix="/data/docs/opensearch/iaas",
+    ),
+    document_template="/data/docs/opensearch/iaas/document.html",
+    url_prefix="/data/docs/opensearch/iaas",
+    blueprint_name="data-docs-opensearch-iaas",
+)
+app.add_url_rule(
+    "/data/docs/opensearch/iaas/search",
+    "data-docs-opensearch-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/opensearch/iaas",
+        template_path="/data/docs/opensearch/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_opensearch_iaas_docs.init_app(app)
+
+# Data Platform Kafka on IaaS docs
+data_kafka_iaas_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10288,
+        url_prefix="/data/docs/kafka/iaas",
+    ),
+    document_template="/data/docs/kafka/iaas/document.html",
+    url_prefix="/data/docs/kafka/iaas",
+    blueprint_name="data-docs-kafka-iaas",
+)
+app.add_url_rule(
+    "/data/docs/kafka/iaas/search",
+    "data-docs-kafka-iaas-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/kafka/iaas",
+        template_path="/data/docs/kafka/iaas/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_kafka_iaas_docs.init_app(app)
+
+# Data Platform Kafka on K8s docs
+data_kafka_k8s_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10296,
+        url_prefix="/data/docs/kafka/k8s",
+    ),
+    document_template="/data/docs/kafka/k8s/document.html",
+    url_prefix="/data/docs/kafka/k8s",
+    blueprint_name="data-docs-kafka-k8s",
+)
+app.add_url_rule(
+    "/data/docs/kafka/k8s/search",
+    "data-docs-kafka-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/kafka/k8s",
+        template_path="/data/docs/kafka/k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+data_kafka_k8s_docs.init_app(app)
+
+# Data Platform index docs
+data_docs = Docs(
+    parser=DocParser(
+        api=charmhub_discourse_api,
+        index_topic_id=10863,
+        url_prefix="/data/docs/",
+    ),
+    document_template="/data/docs/document.html",
+    url_prefix="/data/docs/",
+    blueprint_name="data_docs",
+)
+
+data_docs.init_app(app)
+
 # Server docs
 url_prefix = "/server/docs"
 server_docs = Docs(
@@ -659,7 +919,6 @@ app.add_url_rule(
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -876,11 +1135,6 @@ app.add_url_rule(
     view_func=cred_submit_form,
     methods=["GET", "POST"],
 )
-app.add_url_rule(
-    "/credentials/provision",
-    view_func=cred_provision,
-    methods=["GET", "POST"],
-)
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule(
@@ -1068,53 +1322,12 @@ app.add_url_rule(
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
 robotics_docs.init_app(app)
 
-app.add_url_rule("/certified", view_func=certified_home)
-app.add_url_rule(
-    "/certified/<canonical_id>",
-    view_func=certified_model_details,
-)
-app.add_url_rule(
-    "/certified/<canonical_id>/<release>",
-    view_func=certified_hardware_details,
-)
-app.add_url_rule(
-    "/certified/component/<component_id>",
-    view_func=certified_component_details,
-)
-app.add_url_rule(
-    "/certified/vendors/<vendor>",
-    view_func=certified_vendors,
-)
-app.add_url_rule(
-    "/certified/desktops",
-    view_func=certified_desktops,
-)
-app.add_url_rule(
-    "/certified/laptops",
-    view_func=certified_laptops,
-)
-app.add_url_rule(
-    "/certified/servers",
-    view_func=certified_servers,
-)
-app.add_url_rule(
-    "/certified/devices",
-    view_func=certified_devices,
-)
-app.add_url_rule(
-    "/certified/socs",
-    view_func=certified_socs,
-)
-app.add_url_rule(
-    "/certified/why-certify",
-    view_func=certified_why,
-)
+certified_routes(app)
 
 # Override openstack/install
 app.add_url_rule(

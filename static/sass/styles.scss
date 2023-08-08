@@ -1203,81 +1203,6 @@ hr.p-separator.is-shallow {
   }
 }
 
-.p-card--silicon-h-suru {
-  align-items: center;
-  aspect-ratio: 269/150;
-  background: #000 url("https://assets.ubuntu.com/v1/2923651d-background-1.png");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.p-card--silicon-v-suru {
-  align-items: center;
-  aspect-ratio: 2/3;
-  background: #000 url("https://assets.ubuntu.com/v1/8c04e56e-background-3.png");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.p-testimonials__silicon {
-  .p-testimonial__logo {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 1 / span 2;
-      grid-row: 2 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 1;
-    }
-
-    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
-      grid-column: auto / span 2;
-    }
-
-    @media (min-width: $breakpoint-medium) {
-      grid-column: auto / span 3;
-    }
-  }
-
-  .p-testimonial__author {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 3 / span 2;
-      grid-row: 2 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 2;
-    }
-
-    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
-      grid-column: auto / span 4;
-    }
-
-    @media (min-width: $breakpoint-medium) {
-      grid-column: auto / span 3;
-    }
-  }
-
-  .p-testimonial__quote {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 1 / span 4;
-      grid-row: 1 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 3;
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 6;
-    }
-  }
-}
-
 .p-list--ticked {
   .p-list__item-padded {
     @extend .p-list__item;
@@ -1337,6 +1262,12 @@ hr.p-separator.is-shallow {
   background: #f3f3f3;
 }
 
+// XXX Pete 25/07/23
+// Make headings wrap on p-table--mobile-card's
+.p-table--mobile-card tbody th {
+  white-space: normal;
+}
+
 .amd-xilinx-table {
   th:nth-child(2) {
     width: 65%;
@@ -1369,6 +1300,10 @@ hr.p-separator.is-shallow {
   }
 }
 
+.is-paper--input {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 .pad-top {
   padding-top: map-get($nudges, p);
 }
@@ -1382,4 +1317,26 @@ hr.p-separator.is-shallow {
   @extend %vf-strip;
 
   background-color: #fff;
+}
+
+.p-image__background--3-2 {
+  @extend .u-aspect-ratio--3-2;
+
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.risc-v-container {
+  @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
+
+  margin-top: $spv--small;
+  padding-bottom: $spv--large;
+  padding-top: $spv--large;
+
+  .risc-v-image {
+    height: 13rem;
+    width: auto;
+  }
 }

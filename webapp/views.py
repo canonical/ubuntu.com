@@ -556,6 +556,36 @@ def unlisted_engage_page(slug):
         return flask.abort(404)
 
 
+def build_engage_pages_sitemap(engage_pages):
+    """
+    Create sitemaps for each engage page
+    """
+
+    def ep_sitemap():
+        links = []
+        metadata = engage_pages.get_index()
+        if len(metadata) == 0:
+            flask.abort(404)
+
+        for page in metadata:
+            links.append(
+                {
+                    "url": f'https://ubuntu.com{page["path"]}',
+                    "last_updated": page["updated"].strftime("%-d %B %Y"),
+                }
+            )
+
+        xml_sitemap = flask.render_template("sitemap.xml", links=links)
+
+        response = flask.make_response(xml_sitemap)
+        response.headers["Content-Type"] = "application/xml"
+        response.headers["Cache-Control"] = "public, max-age=43200"
+
+        return response
+
+    return ep_sitemap
+
+
 def openstack_install():
     """
     OpenStack install docs
@@ -811,6 +841,8 @@ def marketo_submit():
         value = ", ".join(values)
         if value:
             form_fields[key] = value
+            if "utm_content" in form_fields:
+                form_fields["utmcontent"] = form_fields.pop("utm_content")
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")

@@ -15,7 +15,7 @@ This Privacy Notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a> for the attention of "Legal".
+We are Canonical Group Limited. Our address is 5 New Street Square, London, EC4A 3TW, United Kingdom. You can contact us by post at the address set out in the “right to complain” section, below or by email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a> for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -80,6 +80,7 @@ If you would like to unsubscribe from any email please see below.
 By law, you can ask us what information we hold about you, and you can ask us to correct it if it is inaccurate.
 
 You can also ask us to give you a copy of the information and to stop using your information for a period of time if you believe we are not doing so lawfully.
+
 To submit a request by email, post or telephone, please use the contact information provided above.
 
 ## Email marketing communications

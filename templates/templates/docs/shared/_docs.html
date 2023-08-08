@@ -49,7 +49,9 @@
   siteSearch=siteSearch,
   placeholder=placeholder
 %}
-  {% include "templates/docs/shared/_search-box.html" %}
+  {% if not disableSearch %}
+    {% include "templates/docs/shared/_search-box.html" %}
+  {% endif %}
   <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
 {% endwith %}
 
@@ -98,7 +100,9 @@
     </aside>
 
     <main class="col-9">
+      {% if not disable_title %}
       <h1>{{ document.title }}</h1>
+      {% endif %}
 
       {{ document.body_html | safe }}
 

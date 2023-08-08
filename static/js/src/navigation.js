@@ -331,3 +331,15 @@ function replaceUbuntuAdvantage() {
   });
 }
 replaceUbuntuAdvantage();
+
+// TEMP FIX - MPT 03.07.23
+// REPLACES CANONICAL LOGO WITH CANONICAL LINK UNTIL
+// WE MERGE THE NEW MEGANAV
+function replaceGlobalNavLogo() {
+  const globalNavLogo = document.querySelector(".global-nav__header-logo");
+  if (globalNavLogo) {
+    globalNavLogo.innerHTML = `<a href="https://canonical.com/" class="global-nav__header-link-anchor" style="color:white; padding-left: 0">Canonical</a>`;
+  }
+}
+
+replaceGlobalNavLogo();

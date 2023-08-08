@@ -1198,25 +1198,25 @@ export var openStackReleases = [
   {
     startDate: new Date("2024-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
-    taskName: "OpenStack C",
+    taskName: "OpenStack 2024.1",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2023-10-01T00:00:00"),
     endDate: new Date("2025-04-01T00:00:00"),
-    taskName: "OpenStack Bobcat",
+    taskName: "OpenStack 2023.2",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2023-04-01T00:00:00"),
     endDate: new Date("2024-10-01T00:00:00"),
-    taskName: "OpenStack Antelope",
+    taskName: "OpenStack 2023.1",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2024-10-01T00:00:00"),
     endDate: new Date("2026-04-01T00:00:00"),
-    taskName: "OpenStack Antelope",
+    taskName: "OpenStack 2023.1",
     status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
   },
   {
@@ -1522,91 +1522,91 @@ export var microStackReleases = [
   {
     startDate: new Date("2026-04-01T00:00:00"),
     endDate: new Date("2031-04-01T00:00:00"),
-    taskName: "OpenStack G LTS",
+    taskName: "OpenStack 2026.1 LTS",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2031-04-01T00:00:00"),
     endDate: new Date("2036-04-01T00:00:00"),
-    taskName: "OpenStack G LTS",
+    taskName: "OpenStack 2026.1 LTS",
     status: "MICROSTACK_ESM",
   },
   {
     startDate: new Date("2026-04-01T00:00:00"),
     endDate: new Date("2036-04-01T00:00:00"),
-    taskName: "OpenStack G LTS",
+    taskName: "OpenStack 2026.1 LTS",
     status: "PRO_SUPPORT",
   },
   {
     startDate: new Date("2025-10-01T00:00:00"),
     endDate: new Date("2026-07-01T00:00:00"),
-    taskName: "OpenStack F",
+    taskName: "OpenStack 2025.2",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2026-01-01T00:00:00"),
-    taskName: "OpenStack E",
+    taskName: "OpenStack 2025.1",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2026-01-01T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
-    taskName: "OpenStack E",
+    taskName: "OpenStack 2025.1",
     status: "MICROSTACK_ESM",
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
-    taskName: "OpenStack E",
+    taskName: "OpenStack 2025.1",
     status: "PRO_SUPPORT",
   },
   {
     startDate: new Date("2024-10-01T00:00:00"),
     endDate: new Date("2025-07-01T00:00:00"),
-    taskName: "OpenStack D",
+    taskName: "OpenStack 2024.2",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2024-04-01T00:00:00"),
     endDate: new Date("2029-04-01T00:00:00"),
-    taskName: "OpenStack C LTS",
+    taskName: "OpenStack 2024.1 LTS",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2029-04-01T00:00:00"),
     endDate: new Date("2034-04-01T00:00:00"),
-    taskName: "OpenStack C LTS",
+    taskName: "OpenStack 2024.1 LTS",
     status: "MICROSTACK_ESM",
   },
   {
     startDate: new Date("2024-04-01T00:00:00"),
     endDate: new Date("2034-04-01T00:00:00"),
-    taskName: "OpenStack C LTS",
+    taskName: "OpenStack 2024.1 LTS",
     status: "PRO_SUPPORT",
   },
   {
     startDate: new Date("2023-10-01T00:00:00"),
     endDate: new Date("2024-07-01T00:00:00"),
-    taskName: "OpenStack B",
+    taskName: "OpenStack 2023.2",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2023-06-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "OpenStack Antelope",
+    taskName: "OpenStack 2023.1",
     status: "STANDARD_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2024-01-01T00:00:00"),
     endDate: new Date("2026-04-01T00:00:00"),
-    taskName: "OpenStack Antelope",
+    taskName: "OpenStack 2023.1",
     status: "MICROSTACK_ESM",
   },
   {
     startDate: new Date("2023-06-01T00:00:00"),
     endDate: new Date("2026-04-01T00:00:00"),
-    taskName: "OpenStack Antelope",
+    taskName: "OpenStack 2023.1",
     status: "PRO_SUPPORT",
   },
 ];
@@ -1832,9 +1832,9 @@ export var kernelReleaseNamesLTS = [
 ];
 
 export var openStackReleaseNames = [
-  "OpenStack C",
-  "OpenStack Bobcat",
-  "OpenStack Antelope",
+  "OpenStack 2024.1",
+  "OpenStack 2023.2",
+  "OpenStack 2023.1",
   "OpenStack Zed",
   "OpenStack Yoga LTS",
   "Ubuntu 22.04 LTS",
@@ -1849,13 +1849,13 @@ export var openStackReleaseNames = [
 ];
 
 export var microStackReleaseNames = [
-  "OpenStack G LTS",
-  "OpenStack F",
-  "OpenStack E",
-  "OpenStack D",
-  "OpenStack C LTS",
-  "OpenStack B",
-  "OpenStack Antelope",
+  "OpenStack 2026.1 LTS",
+  "OpenStack 2025.2",
+  "OpenStack 2025.1",
+  "OpenStack 2024.2",
+  "OpenStack 2024.1 LTS",
+  "OpenStack 2023.2",
+  "OpenStack 2023.1",
 ];
 
 export var kubernetesReleaseNames = [

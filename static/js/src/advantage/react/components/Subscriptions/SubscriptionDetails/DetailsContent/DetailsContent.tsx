@@ -87,7 +87,10 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const billingCol: Feature = {
     size: 2,
     title: "Billing",
-    value: isFree ? "None" : getPeriodDisplay(subscription.period),
+    value:
+      isFree || subscription.type == UserSubscriptionType.KeyActivated
+        ? "None"
+        : getPeriodDisplay(subscription.period),
   };
 
   const cost = getSubscriptionCost(subscription);

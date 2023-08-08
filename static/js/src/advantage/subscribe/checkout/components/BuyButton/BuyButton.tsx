@@ -313,19 +313,21 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
-          if (!window.loginSession) {
+          if (product.marketplace == "canonical-cube") {
+            location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+              product.name
+            )}&quantity=${quantity}`;
+          } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
-
             let urlBase = "/pro/subscribe";
             if (product.marketplace == "blender") {
               urlBase = "/pro/subscribe/blender";
             }
-
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
               email
             )}`;
           } else {
-            location.pathname = "/pro/dashboard";
+            location.href = "/pro/dashboard";
           }
         }
       };

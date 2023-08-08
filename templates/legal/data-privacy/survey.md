@@ -6,7 +6,7 @@ context:
   copydoc: https://docs.google.com/document/d/164IVIF3f8Prh7MTl8gTDal0jaPJt15PxdhMKToFhMu8
 ---
 
-<h4 class="p-muted-heading">Version - December 2019</h4>
+<h4 class="p-muted-heading">Version - July 2023</h4>
 <hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Survey
@@ -17,7 +17,7 @@ We will use your survey responses to assess Canonical's offerings and to improve
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th, Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 5 New Street Square, London, EC4A 3TW, United Kingdom. You can contact us by post at the address set out in the “right to complain” section, below or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -81,7 +81,10 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
+The Office Group<br />
+4th floor, 201 Borough High St,<br />
+London SE1 1JA,<br />
+United Kingdom<br />
 </div>
 
 Alternatively, you can use the relevant contact us form.

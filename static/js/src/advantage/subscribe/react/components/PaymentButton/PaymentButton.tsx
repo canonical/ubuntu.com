@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
+import { ProductUsers } from "../../utils/utils";
 
 export default function PaymentButton() {
   const {
     quantity,
     product,
+    productUser,
     productType,
     version,
     support,
@@ -22,30 +24,42 @@ export default function PaymentButton() {
 
   return (
     <>
-      <Button
-        appearance="positive"
-        onClick={(e) => {
-          e.preventDefault();
-          window.plausible("pro-selector", {
-            props: {
-              "product-type": productType,
-              quantity: quantity,
-              version: version,
-              feature: feature,
-              support: support,
-              sla: sla,
-              period: period,
-            },
-          });
-          localStorage.setItem(
-            "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
-          );
-          location.href = "/account/checkout";
-        }}
-      >
-        Buy now
-      </Button>
+      {productUser === ProductUsers.myself ? (
+        <Button
+          appearance="positive"
+          onClick={(e) => {
+            e.preventDefault();
+            location.href = "/pro/dashboard";
+          }}
+        >
+          Register
+        </Button>
+      ) : (
+        <Button
+          appearance="positive"
+          onClick={(e) => {
+            e.preventDefault();
+            window.plausible("pro-selector", {
+              props: {
+                "product-type": productType,
+                quantity: quantity,
+                version: version,
+                feature: feature,
+                support: support,
+                sla: sla,
+                period: period,
+              },
+            });
+            localStorage.setItem(
+              "shop-checkout-data",
+              JSON.stringify(shopCheckoutData)
+            );
+            location.href = "/account/checkout";
+          }}
+        >
+          Buy now
+        </Button>
+      )}
     </>
   );
 }
