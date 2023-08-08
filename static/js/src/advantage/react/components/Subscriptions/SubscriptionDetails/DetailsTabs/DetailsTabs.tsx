@@ -13,7 +13,6 @@ import {
 } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import FeaturesTab from "./components/FeaturesTab";
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -184,17 +183,17 @@ const DetailsTabs = ({
         .concat(
           token
             ? [
-                {
-                  label: (
-                    <>
-                      To attach a machine:{" "}
-                      <code data-test="contract-token">
-                        sudo pro attach {token?.contract_token}
-                      </code>
-                    </>
-                  ),
-                },
-              ]
+              {
+                label: (
+                  <>
+                    To attach a machine:{" "}
+                    <code data-test="contract-token">
+                      sudo pro attach {token?.contract_token}
+                    </code>
+                  </>
+                ),
+              },
+            ]
             : []
         )
     );
@@ -211,49 +210,9 @@ const DetailsTabs = ({
     </>
   );
 
-  switch (activeTab) {
-    case ActiveTab.DOCUMENTATION:
-      content = (
-        <div data-test="docs-content">
-          {isBlender ? blenderDocs : generateUADocs()}
-        </div>
-      );
-      break;
-    case ActiveTab.FEATURES:
-    default:
-      content = (
-        <FeaturesTab
-          subscription={subscription}
-          setHasUnsavedChanges={setHasUnsavedChanges}
-        />
-      );
-      break;
-  }
   return (
     <div {...wrapperProps}>
-      <Tabs
-        className="p-tabs--brand"
-        links={[
-          ...(!isFree && featuresDisplay.included.length > 0
-            ? // Don't show the Features tab if there are no included features.
-              [
-                {
-                  active: activeTab === ActiveTab.FEATURES,
-                  "data-test": "features-tab",
-                  label: "Features",
-                  onClick: () => setTab(ActiveTab.FEATURES),
-                },
-              ]
-            : []),
-          {
-            active: activeTab === ActiveTab.DOCUMENTATION,
-            "data-test": "docs-tab",
-            label: "Documentation",
-            onClick: () => setTab(ActiveTab.DOCUMENTATION),
-          },
-        ]}
-      />
-      {content}
+
     </div>
   );
 };
