@@ -16,10 +16,12 @@ describe("getSubscriptionCost", () => {
         userSubscriptionFactory.build({
           currency: "USD",
           price: 2000,
+          number_of_machines: 2,
+          current_number_of_machines: 1,
           period: UserSubscriptionPeriod.Yearly,
         })
       )
-    ).toBe("$20 USD/yr");
+    ).toBe("$10 USD/yr");
   });
 
   it("handles monthly prices", () => {
@@ -28,9 +30,11 @@ describe("getSubscriptionCost", () => {
         userSubscriptionFactory.build({
           currency: "USD",
           price: 2000,
+          number_of_machines: 2,
+          current_number_of_machines: 1,
           period: UserSubscriptionPeriod.Monthly,
         })
       )
-    ).toBe("$240 USD/yr");
+    ).toBe("$120 USD/yr");
   });
 });
