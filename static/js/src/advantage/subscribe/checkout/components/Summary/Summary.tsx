@@ -40,7 +40,6 @@ function Summary({ quantity, product, action, setError }: Props) {
 
   const isSummaryLoading = isPreviewFetching || isCalculateFetching;
   const priceData: TaxInfo | undefined = preview || calculate;
-
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
   const units =
