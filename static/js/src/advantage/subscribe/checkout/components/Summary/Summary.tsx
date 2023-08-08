@@ -120,6 +120,13 @@ function Summary({ quantity, product, action, setError }: Props) {
                 : currencyFormatter.format(defaultTotal)}
             </strong>
           </p>
+          <p>
+            <>
+              {total == 0 &&
+                priceData !== undefined &&
+                "This is because you have likely already paid for this product for the current billing period."}
+            </>
+          </p>
         </Col>
       </Row>
     </>
