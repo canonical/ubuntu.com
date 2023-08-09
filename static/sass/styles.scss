@@ -1371,3 +1371,33 @@ hr.p-separator.is-shallow {
 
   background-color: #fff;
 }
+
+// New stuff not in Vanilla yet
+$color-link-visited-dark: #a679d2 !default;
+$color-link-dark: #69c !default;
+
+.is-graphite {
+  background: $colors--dark-theme--background-default;
+  color: $colors--dark-theme--text-default;
+
+  .inner-wrapper .p-card {
+    background: #222222; // Unique color for this pattern
+    color: $colors--dark-theme--text-default;
+    border: none;
+  }
+
+  .p-checkbox__label {
+    color: $colors--dark-theme--text-default;
+  }
+}
+
+.is-graphite,
+.is-dark {
+  .inner-wrapper a:not([class^="p-button"]) {
+    color: $color-link-dark;
+
+    &:visited {
+      color: $color-link-visited-dark;
+    }
+  }
+}
