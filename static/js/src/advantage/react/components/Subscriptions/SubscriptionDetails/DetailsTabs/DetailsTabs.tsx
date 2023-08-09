@@ -1,4 +1,4 @@
-import { Icon, List, Tabs } from "@canonical/react-components";
+import { Icon, List, Row, Tabs } from "@canonical/react-components";
 import React, { HTMLProps, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -6,7 +6,7 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
+import { EntitlementsStore, filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
 import {
   isBlenderSubscription,
   isFreeSubscription,
@@ -137,66 +137,78 @@ const generateDocLinks = (
     []
   );
 
+const getSupportLevel = (subscription: UserSubscription) => {
+
+  const features: EntitlementsStore = filterAndFormatEntitlements(subscription.entitlements);
+  if (features.byLabel["24/5 Support"]) {
+    return "24/5 Weekday Support";
+  }
+  if (features.byLabel["24/7 Support"]) {
+    return "24/7 Support";
+  }
+  return "None";
+}
 const DetailsTabs = ({
   subscription,
   token,
-  setHasUnsavedChanges,
   ...wrapperProps
 }: Props) => {
-  const featuresDisplay = filterAndFormatEntitlements(
-    subscription.entitlements
-  );
 
   const isBlender = isBlenderSubscription(subscription);
   const isFree = isFreeSubscription(subscription);
-
-  const [activeTab, setActiveTab] = useState<ActiveTab>(
-    !isFree && featuresDisplay.included.length > 0
-      ? ActiveTab.FEATURES
-      : ActiveTab.DOCUMENTATION
-  );
+  const supportLevel = getSupportLevel(subscription);
 
   let content: ReactNode | null;
 
   // Display tutorial link for the free subscription.
   const docs = generateDocLinks(subscription.entitlements);
-  const setTab = (tab: ActiveTab) => {
-    setActiveTab(tab);
-    sendAnalyticsEvent({
-      eventCategory: "Advantage",
-      eventAction: "subscription-details-tab",
-      eventLabel: `subscription ${tab} tab clicked`,
-    });
-  };
 
-  const generateUADocs = () => {
-    return generateList(
-      "Documentation & tutorials",
-      docs
-        .map((doc) => ({
-          label: (
-            <a data-test="doc-link" href={doc.url}>
-              {doc.label}
-            </a>
-          ),
-        }))
-        .concat(
-          token
-            ? [
-              {
-                label: (
-                  <>
-                    To attach a machine:{" "}
-                    <code data-test="contract-token">
-                      sudo pro attach {token?.contract_token}
-                    </code>
-                  </>
-                ),
-              },
-            ]
-            : []
-        )
-    );
+  const UADocs = (subscription: UserSubscription) => {
+    return (<>
+      <h5 className="u-no-padding--top p-subscriptions__details-small-title">Services and Documentation</h5>
+      <table>
+        {isFree ? null : <>
+          <thead>
+            <tr>
+              <th colSpan={2}>SUPPORT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Knowledge Base</td>
+              <td><a href="https://portal.support.canonical.com/?_ga=2.3371065.849364026.1691488233-1001052631.1648559628">Online library of articles and tutorials</a></td>
+            </tr>
+            {supportLevel == "None" ? null : <tr>
+              <td>{supportLevel}</td>
+              <td><a href="https://portal.support.canonical.com/staff/s/contactsupport">Phone and ticket support</a></td>
+            </tr>}
+            <tr>
+              <td>Ubuntu Assurance Program</td>
+              <td><a href="https://ubuntu.com/legal/ubuntu-pro-assurance">Protecting your business from IP infringement</a></td>
+            </tr>
+          </tbody>
+        </>}
+        <thead>
+          <tr>
+            <th colSpan={2}>Security and Compliance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ESM</td>
+            <td><a href="https://ubuntu.com/pro/tutorial">Set up access to security updates with ESM</a></td>
+          </tr>
+          <tr>
+            <td>USG</td>
+            <td><a href="/security/certifications/docs/usg">Automated hardening profiles for CIS and DISA STIG</a></td>
+          </tr>
+          <tr>
+            <td>FIPS</td>
+            <td><a href="https://ubuntu.com/security/certifications/docs/fips">NIST-certified FIPS 140 cryptographic modules for Ubuntu</a></td>
+          </tr>
+        </tbody>
+      </table >
+    </>);
   };
 
   const blenderDocs = (
@@ -212,7 +224,7 @@ const DetailsTabs = ({
 
   return (
     <div {...wrapperProps}>
-
+      {isBlender ? blenderDocs : UADocs()}
     </div>
   );
 };

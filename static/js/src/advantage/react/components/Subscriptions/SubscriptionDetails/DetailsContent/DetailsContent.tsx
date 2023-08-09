@@ -104,84 +104,76 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   };
 
   const tokenBlock = token?.contract_token ? (
-    <CodeSnippet
-      blocks={[
-        {
-          appearance: CodeSnippetBlockAppearance.URL,
-          code: token?.contract_token,
-        },
-      ]}
-      className="u-sv4 u-no-margin--bottom"
-      onClick={() => {
-        sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-token-click",
-          eventLabel: "Token copied",
-        });
-      }}
-    />
+    <div>
+      <CodeSnippet
+        blocks={[
+          {
+            appearance: CodeSnippetBlockAppearance.URL,
+            code: token?.contract_token,
+          },
+        ]}
+        className="u-sv4 u-no-margin--bottom u-no-padding--bottom"
+        onClick={() => {
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-token-click",
+            eventLabel: "Token copied",
+          });
+        }}
+      />
+      <p>Command to attach a machine:{" "}
+        <code data-test="contract-token">
+          sudo pro attach {token?.contract_token}
+        </code></p>
+    </div>
   ) : null;
 
   return (
     <div>
       <Row className="u-sv4">
         {generateFeatures([
-          {
-            title: "Created",
-            value: formatDate(subscription.start_date),
-          },
-          {
-            title: "Expires",
-            value: subscription.end_date
-              ? formatDate(subscription.end_date)
-              : "Never",
-          },
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
-              []
+            []
             : [billingCol]),
           ...(cost && subscription.type !== UserSubscriptionType.Legacy
             ? // Don't show the cost column if it's empty.
-              [costCol]
+            [costCol]
             : []),
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
-              []
+            []
             : [
-                {
-                  title: "Machine type",
-                  value: getMachineTypeDisplay(subscription.machine_type),
-                },
-              ]),
-          {
-            title: isBlender ? "Users" : "Machines",
-            value: subscription.number_of_machines,
-          },
+              {
+                title: "Machine type",
+                value: getMachineTypeDisplay(subscription.machine_type),
+              },
+            ]),
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
-              []
+            []
             : [
-                {
-                  title: "Active machines",
-                  value: (
-                    <React.Fragment>
-                      {subscription.number_of_active_machines}
-                      <Tooltip
-                        tooltipClassName="p-subscriptions-tooltip"
-                        message="The number of machines with this token that contacted Ubuntu Pro in the last 24 hours (Beta)"
-                        position="right"
+              {
+                title: "Active machines",
+                value: (
+                  <React.Fragment>
+                    {subscription.number_of_active_machines}
+                    <Tooltip
+                      tooltipClassName="p-subscriptions-tooltip"
+                      message="The number of machines with this token that contacted Ubuntu Pro in the last 24 hours (Beta)"
+                      position="right"
+                    >
+                      <Button
+                        type="button"
+                        className="u-no-margin--bottom p-subscriptions-tooltip__button"
                       >
-                        <Button
-                          type="button"
-                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                        >
-                          <i className="p-icon--information" />
-                        </Button>
-                      </Tooltip>
-                    </React.Fragment>
-                  ),
-                },
-              ]),
+                        <i className="p-icon--information" />
+                      </Button>
+                    </Tooltip>
+                  </React.Fragment>
+                ),
+              },
+            ]),
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}
