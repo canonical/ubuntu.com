@@ -68,10 +68,12 @@ window.addEventListener("load", updateMobileView);
 window.addEventListener("resize", updateMobileView);
 
 topLevelNavDropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    handleDropdownClick(dropdown);
+  dropdown.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.target.classList.contains("p-navigation__link")) {
+      handleDropdownClick(dropdown);
+    }
   });
 });
 
@@ -394,7 +396,9 @@ function fetchDropdown(url, id) {
       newToggles.forEach((toggle) =>
         toggle.addEventListener("click", (e) => {
           e.stopImmediatePropagation();
-          handleDropdownClick(toggle);
+          if (e.target.classList.contains("p-navigation__link")) {
+            handleDropdownClick(toggle);
+          }
         })
       );
     });
@@ -600,15 +604,20 @@ if (accountContainer) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign-in&nbsp;<i class="p-icon--user is-light"></i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign-in</a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account&nbsp;<i class="p-icon--user is-light">${data.account.fullname}</i></button>
+        accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account</button>
           <ul class="p-navigation__dropdown" id="canonical-login-content-mobile" aria-hidden="true">
             <li class="p-navigation__item--dropdown-close" id="canonical-login-back">
               <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1" onclick="event.stopPropagation()">
                 Back
               </button>
+            </li>
+            <li class="p-navigation__account-name u-no-padding--bottom">
+              <p class="p-text--small">Logged in as <br/>
+              <strong>${data.account.email}gdshdsshfdhdsgsgsd</strong></p>
+              <hr class="is-dark u-no-margin" />
             </li>
             <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
             <li class="p-navigation__dropdown-item">

@@ -32,6 +32,16 @@
   .p-navigation--sliding {
     z-index: 40;
 
+    .p-navigation__nav {
+      .p-navigation__items {
+        width: 100%;
+
+        .global-nav {
+          margin-left: auto;
+        }
+      }
+    }
+
     .p-navigation__row {
       transform: 0;
 
@@ -64,9 +74,15 @@
         position: relative;
 
         a {
-          display: block;
-          padding: 0.25rem 0;
-          white-space: normal;
+          &:not(.p-button--positive) {
+            display: block;
+            padding: 0.25rem 0;
+            white-space: normal;
+          }
+
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
 
@@ -80,11 +96,38 @@
           padding-left: 3rem;
         }
 
+        .p-navigation__account-name {
+          @extend .p-navigation__dropdown-item;
+
+          pointer-events: none;
+          @media (min-width: $breakpoint-navigation-threshold) {
+            .p-text--small {
+              max-width: 13rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          @media (max-width: $breakpoint-navigation-threshold) {
+            hr {
+              display: none;
+            }
+          }
+        }
+        
         &.is-active[role="menuitem"] {
           @extend .is-selected;
-
+          
           > .p-navigation__link {
             background-color: #2d2d2d;
+          }
+        }
+
+        @media (max-width: $breakpoint-navigation-threshold) {
+          &.is-active[role="menuitem"] {
+            &::before {
+            content: none;
+            }
           }
         }
 
@@ -97,13 +140,15 @@
           @media (min-width: $breakpoint-navigation-threshold) {
             .p-navigation__dropdown {
               min-width: 10rem;
-              right: 0;
+              right: 3rem;
             }
           }
 
-          a::after {
-            @media (min-width: $breakpoint-navigation-threshold) {
-              content: none;
+          a {
+            &::after {
+              @media (min-width: $breakpoint-navigation-threshold) {
+                content: none;
+              }
             }
           }
 
@@ -196,6 +241,7 @@
     .p-navigation__banner {
       height: 2.5rem;
       padding-left: 1.5rem;
+
       @media (min-width: $breakpoint-navigation-threshold) {
         height: 2rem;
         padding-left: 3rem;
@@ -233,6 +279,10 @@
         padding-left: 1rem;
         padding-top: 0.5rem;
       }
+    }
+
+    .p-navigation__item:last-child {
+      padding-left: 0.75rem;
     }
 
     .p-navigation__link--search-toggle {
