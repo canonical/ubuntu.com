@@ -120,10 +120,12 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
           });
         }}
       />
-      <p>Command to attach a machine:{" "}
+      <p>
+        Command to attach a machine:{" "}
         <code data-test="contract-token">
           sudo pro attach {token?.contract_token}
-        </code></p>
+        </code>
+      </p>
     </div>
   ) : null;
 
@@ -133,46 +135,46 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         {generateFeatures([
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
-            []
+              []
             : [billingCol]),
           ...(cost && subscription.type !== UserSubscriptionType.Legacy
             ? // Don't show the cost column if it's empty.
-            [costCol]
+              [costCol]
             : []),
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
-            []
+              []
             : [
-              {
-                title: "Machine type",
-                value: getMachineTypeDisplay(subscription.machine_type),
-              },
-            ]),
+                {
+                  title: "Machine type",
+                  value: getMachineTypeDisplay(subscription.machine_type),
+                },
+              ]),
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
-            []
+              []
             : [
-              {
-                title: "Active machines",
-                value: (
-                  <React.Fragment>
-                    {subscription.number_of_active_machines}
-                    <Tooltip
-                      tooltipClassName="p-subscriptions-tooltip"
-                      message="The number of machines with this token that contacted Ubuntu Pro in the last 24 hours (Beta)"
-                      position="right"
-                    >
-                      <Button
-                        type="button"
-                        className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                {
+                  title: "Active machines",
+                  value: (
+                    <React.Fragment>
+                      {subscription.number_of_active_machines}
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message="The number of machines with this token that contacted Ubuntu Pro in the last 24 hours (Beta)"
+                        position="right"
                       >
-                        <i className="p-icon--information" />
-                      </Button>
-                    </Tooltip>
-                  </React.Fragment>
-                ),
-              },
-            ]),
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                        >
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    </React.Fragment>
+                  ),
+                },
+              ]),
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}

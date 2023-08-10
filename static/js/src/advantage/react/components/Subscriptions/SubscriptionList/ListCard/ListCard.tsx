@@ -70,11 +70,10 @@ const ListCard = ({
           </h5>
           {isFree ? null : (
             <button className="p-chip--positive">
-              <span
-                className="p-chip__value"
-                data-test="card-is_renewed"
-              >
-                {subscription.statuses.is_renewed ? "Auto-renewal on " : "Auto-renewal off"}
+              <span className="p-chip__value" data-test="card-is_renewed">
+                {subscription.statuses.is_renewed
+                  ? "Auto-renewal on "
+                  : "Auto-renewal off"}
               </span>
             </button>
           )}
@@ -95,7 +94,9 @@ const ListCard = ({
             </span>
           </Col>
           <Col medium={3} size={4} small={1}>
-            <p className="u-text--muted u-no-margin--bottom">{subscription.statuses.is_renewed ? "Renews" : "Expires"}</p>
+            <p className="u-text--muted u-no-margin--bottom">
+              {subscription.statuses.is_renewed ? "Renews" : "Expires"}
+            </p>
             <span data-test="card-end-date">
               {subscription.end_date
                 ? formatDate(subscription.end_date)
