@@ -14,7 +14,6 @@ import { UserSubscriptionType } from "advantage/api/enum";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
-  formatDate,
   getMachineTypeDisplay,
   getPeriodDisplay,
   getSubscriptionCost,
@@ -179,7 +178,6 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
       {isTokenVisible ? <SubscriptionToken /> : null}
       <DetailsTabs
         subscription={subscription}
-        token={token}
         setHasUnsavedChanges={setHasUnsavedChanges}
       />
     </div>

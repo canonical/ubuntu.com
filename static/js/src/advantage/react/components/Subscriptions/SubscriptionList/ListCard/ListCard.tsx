@@ -1,9 +1,8 @@
-import { Card, Col, List, Row } from "@canonical/react-components";
+import { Card, Col, Row } from "@canonical/react-components";
 import React, { ReactNode } from "react";
 import classNames from "classnames";
 import {
   formatDate,
-  getFeaturesDisplay,
   isBlenderSubscription,
   isFreeSubscription,
   makeInteractiveProps,
@@ -14,7 +13,6 @@ import {
   ExpiryNotificationSize,
   ORDERED_STATUS_KEYS,
 } from "../../ExpiryNotification/ExpiryNotification";
-import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   isSelected?: boolean;

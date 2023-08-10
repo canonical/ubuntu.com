@@ -3,7 +3,6 @@ import { mount as enzymeMount } from "enzyme";
 
 import DetailsTabs from "./DetailsTabs";
 import {
-  contractTokenFactory,
   freeSubscriptionFactory,
   userSubscriptionEntitlementFactory,
   userSubscriptionFactory,
@@ -166,7 +165,6 @@ describe("DetailsTabs", () => {
     const wrapper = mount(
       <DetailsTabs
         subscription={subscription}
-        token={contractTokenFactory.build()}
         setHasUnsavedChanges={jest.fn()}
       />
     );
@@ -179,7 +177,6 @@ describe("DetailsTabs", () => {
     const wrapper = mount(
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
-        token={contractTokenFactory.build()}
         setHasUnsavedChanges={jest.fn()}
       />
     );

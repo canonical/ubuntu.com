@@ -1,34 +1,19 @@
-import { Icon, List, Row, Tabs } from "@canonical/react-components";
-import React, { HTMLProps, useState } from "react";
+import { ICONS, Icon, List, Tooltip } from "@canonical/react-components";
+import React, { HTMLProps } from "react";
 import type { ReactNode } from "react";
 import {
-  ContractToken,
   UserSubscription,
-  UserSubscriptionEntitlement,
 } from "advantage/api/types";
 import { EntitlementsStore, filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
 import {
   isBlenderSubscription,
   isFreeSubscription,
 } from "advantage/react/utils";
-import { EntitlementType } from "advantage/api/enum";
-import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-
-enum ActiveTab {
-  DOCUMENTATION = "documentation",
-  FEATURES = "features",
-}
 
 type Props = {
   subscription: UserSubscription;
-  token?: ContractToken;
   setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 } & HTMLProps<HTMLDivElement>;
-
-type DocsLink = {
-  url: string;
-  label: string;
-};
 
 type ListItem = {
   icon?: string;
@@ -59,84 +44,6 @@ export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   </>
 );
 
-const isEntitlementTypeEnum = (
-  entitlementType: UserSubscriptionEntitlement["type"]
-): entitlementType is EntitlementType =>
-  Object.values<string>(EntitlementType).includes(entitlementType);
-
-const showLast = (entitlement: UserSubscriptionEntitlement) =>
-  isEntitlementTypeEnum(entitlement.type) &&
-  [EntitlementType.Fips, EntitlementType.CcEal, EntitlementType.Cis].includes(
-    entitlement.type
-  );
-
-const sortEntitlements = (
-  entitlements: UserSubscriptionEntitlement[]
-): UserSubscriptionEntitlement[] =>
-  [...entitlements].sort((a, b) => {
-    if (showLast(b) && !showLast(a)) {
-      return -1;
-    }
-    if (showLast(a) && !showLast(b)) {
-      return 1;
-    }
-    return 0;
-  });
-
-const generateDocLinks = (
-  entitlements: UserSubscriptionEntitlement[]
-): DocsLink[] =>
-  sortEntitlements(entitlements).reduce<DocsLink[]>(
-    (collection, entitlement) => {
-      let link: DocsLink | null = null;
-      switch (entitlement.type) {
-        case EntitlementType.EsmApps:
-        case EntitlementType.EsmInfra:
-          link = {
-            label: "Ubuntu Pro (esm-apps) tutorial",
-            url: "/pro/beta",
-          };
-          break;
-        case EntitlementType.Livepatch:
-        case EntitlementType.LivepatchOnprem:
-          link = {
-            label: "Livepatch",
-            url: "/security/livepatch/docs",
-          };
-          break;
-        case EntitlementType.Support:
-          link = {
-            label: "Support",
-            url: "https://portal.support.canonical.com/",
-          };
-          break;
-        case EntitlementType.Cis:
-          link = {
-            label: "CIS setup instructions",
-            url: "/security/certifications/docs/cis",
-          };
-          break;
-        case EntitlementType.CcEal:
-          link = {
-            label: "CC-EAL2 setup instructions",
-            url: "/security/certifications/docs/cc",
-          };
-          break;
-        case EntitlementType.Fips:
-          link = {
-            label: "FIPS setup instructions",
-            url: "/security/certifications/docs/fips ",
-          };
-          break;
-      }
-      if (link && !collection.find(({ label }) => label === link?.label)) {
-        collection.push(link);
-      }
-      return collection;
-    },
-    []
-  );
-
 const getSupportLevel = (subscription: UserSubscription) => {
 
   const features: EntitlementsStore = filterAndFormatEntitlements(subscription.entitlements);
@@ -150,7 +57,6 @@ const getSupportLevel = (subscription: UserSubscription) => {
 }
 const DetailsTabs = ({
   subscription,
-  token,
   ...wrapperProps
 }: Props) => {
 
@@ -158,12 +64,7 @@ const DetailsTabs = ({
   const isFree = isFreeSubscription(subscription);
   const supportLevel = getSupportLevel(subscription);
 
-  let content: ReactNode | null;
-
-  // Display tutorial link for the free subscription.
-  const docs = generateDocLinks(subscription.entitlements);
-
-  const UADocs = (subscription: UserSubscription) => {
+  const UADocs = () => {
     return (<>
       <h5 className="u-no-padding--top p-subscriptions__details-small-title">Services and Documentation</h5>
       <table>
@@ -199,12 +100,32 @@ const DetailsTabs = ({
             <td><a href="https://ubuntu.com/pro/tutorial">Set up access to security updates with ESM</a></td>
           </tr>
           <tr>
-            <td>USG</td>
+            <td><Tooltip message="Please read the documentation and only enable this feature if you specifically request this certification."><Icon name={ICONS.information} /></Tooltip>{" "}USG</td>
             <td><a href="/security/certifications/docs/usg">Automated hardening profiles for CIS and DISA STIG</a></td>
           </tr>
           <tr>
-            <td>FIPS</td>
+            <td><Tooltip message="Please read the documentation. Enabling FIPS on a machine will disable Livepatch and FIPS-update."><Icon name={ICONS.information} /></Tooltip>{" "}FIPS</td>
             <td><a href="https://ubuntu.com/security/certifications/docs/fips">NIST-certified FIPS 140 cryptographic modules for Ubuntu</a></td>
+          </tr>
+          <tr>
+            <td>Livepatch</td>
+            <td><a href="https://ubuntu.com/security/livepatch/docs">Livepatch on-prem and Livepatch client</a></td>
+          </tr>
+          <tr>
+            <td>Landscape</td>
+            <td><a href="https://ubuntu.com/tutorials/enable-esm-configurations-at-scale-with-ua-client-and-landscape#2-prerequisites">How to use Landscape to manage Ubuntu Systems</a></td>
+          </tr>
+          <tr>
+            <td><Tooltip message="Only available for Ubuntu 22.04 LTS"><Icon name={ICONS.information} /></Tooltip>{" "}Real-time kernel</td>
+            <td><a href="https://ubuntu.com/blog/real-time-ubuntu-is-now-generally-available">Prioritise high-priority processes with deterministic response times.</a></td>
+          </tr>
+          <tr>
+            <td>Active directory</td>
+            <td><a href="https://github.com/ubuntu/adsys">Advanced GPO support, privilege management and script execution</a></td>
+          </tr>
+          <tr>
+            <td>Common Criteria</td>
+            <td><a href="https://ubuntu.com/security/certifications/docs/16-18/cc">Common Criteria EAL 2 packages for 16.04 & 18.04</a></td>
           </tr>
         </tbody>
       </table >
