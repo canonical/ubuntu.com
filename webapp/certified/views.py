@@ -4,7 +4,13 @@ import requests
 import math
 import flask
 
-from flask import request, render_template, abort, current_app, redirect
+from flask import (
+    request,
+    render_template,
+    abort,
+    current_app,
+    redirect,
+)
 from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
@@ -69,37 +75,92 @@ def certified_routes(app):
         "/certified/why-certify",
         view_func=certified_why,
     )
-    app.add_url_rule("/certified/filters.json", view_func=lambda : get_filters(json=True))
+    app.add_url_rule(
+        "/certified/filters.json", view_func=get_vendors_releases_filters
+    )
 
 
-def _render_category_filters(selected_categories: list):
-    """
-    Args:
+def get_vendors_releases_filters():
+    categories = request.args.getlist("category")
+    selected_vendors = request.args.getlist("vendor")
+    selected_releases = request.args.getlist("release")
+    releases_limit = request.args.get("releases_limit", default=4, type=int)
+    vendors_limit = request.args.get("vendors_limit", default=4, type=int)
 
-    - selected_categories: a list of requests.args.getlist(category)
-    passed by query string
-    e.g. &category=Desktop&category=Laptops
+    certified_releases = api.certified_releases(limit="0")["objects"]
+    certified_makes = api.certified_makes(limit="0")["objects"]
 
-    This function is also the source of truth for the list of
-    certification categories (all_categories).
-    If at some point we need a new category,
-    it should be added here.
-    """
+    vendor_filters = []
+    release_filters = []
 
-    all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-    category_filters = []
-    if len(selected_categories) > 0:
-        for item in all_categories:
-            if item in selected_categories:
-                category_filters.insert(0, item)
-            else:
-                category_filters.append(item)
-    else:
-        category_filters = all_categories
-    
-    return category_filters
+    if len(categories) == 0:
+        categories = ["smart_core", "soc", "laptops", "desktops", "servers"]
 
-def get_filters(request_args=None, json: bool=False):
+    for cat in categories:
+        cat = cat.lower()
+        # pathname replacements
+        if cat == "iot":
+            cat = "smart_core"
+        elif cat == "ubuntu core":
+            cat = "smart_core"
+        elif cat == "socs":
+            cat = "soc"
+        elif cat == "laptop":
+            cat = "laptops"
+        elif cat == "desktop":
+            cat = "desktops"
+        elif cat == "server":
+            cat = "servers"
+        elif cat == "server soc":
+            cat = "soc"
+
+        for vendor in certified_makes:
+            make = vendor["make"]
+
+            if (
+                int(vendor[cat]) > 0
+                and make not in vendor_filters
+                and make not in selected_vendors
+            ):
+                vendor_filters.append(make)
+
+        for release in certified_releases:
+            version = release["release"]
+
+            if (
+                int(release[cat]) > 0
+                and version not in release_filters
+                and version != "18.04"
+                and version not in selected_releases
+            ):
+                release_filters.append(version)
+
+    # Reorder and put selected filters on top
+    vendor_filters.sort()
+    selected_vendors.extend(vendor_filters)
+    vendor_filters = selected_vendors
+    release_filters.sort(reverse=True)
+    selected_releases.extend(release_filters)
+    release_filters = selected_releases
+
+    total_vendors = len(vendor_filters)
+    total_releases = len(release_filters)
+
+    if vendors_limit != -1:
+        vendor_filters = vendor_filters[:vendors_limit]
+
+    if releases_limit != -1:
+        release_filters = release_filters[:releases_limit]
+
+    filters = {
+        "vendor_filters": {"data": vendor_filters, "total": total_vendors},
+        "release_filters": {"data": release_filters, "total": total_releases},
+    }
+
+    return flask.jsonify(filters)
+
+
+def get_filters(request_args=None, json: bool = False):
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
@@ -136,24 +197,36 @@ def get_filters(request_args=None, json: bool=False):
             # UX improvement: selected filter on top
             if request_args and version not in request_args.getlist("release"):
                 all_releases.append(version)
-                all_releases = sorted(all_releases, reverse=True)
             else:
-                release_filters.append(version)
+                if version not in release_filters and version != "18.04":
+                    release_filters.append(version)
 
-        if int(release["laptops"]) > 0:
-            laptop_releases.append(release)
+        if (
+            int(release["laptops"]) > 0
+            and release["release"] not in laptop_releases
+        ):
+            laptop_releases.append(release["release"])
 
-        if int(release["desktops"]) > 0:
-            desktop_releases.append(release)
+        if (
+            int(release["desktops"]) > 0
+            and release["release"] not in desktop_releases
+        ):
+            desktop_releases.append(release["release"])
 
-        if int(release["smart_core"] > 1):
-            iot_releases.append(release)
+        if (
+            int(release["smart_core"]) > 0
+            and release["release"] not in iot_releases
+        ):
+            iot_releases.append(release["release"])
 
-        if int(release["soc"] > 1):
-            soc_releases.append(release)
+        if int(release["soc"]) > 0 and release["release"] not in soc_releases:
+            soc_releases.append(release["release"])
 
-        if int(release["servers"] > 1):
-            server_releases.append(release)
+        if (
+            int(release["servers"]) > 0
+            and release["release"] not in server_releases
+        ):
+            server_releases.append(release["release"])
 
     for vendor in certified_makes:
         make = vendor["make"]
@@ -162,50 +235,69 @@ def get_filters(request_args=None, json: bool=False):
             # UX improvement: selected filter on top
             if request_args and make not in request_args.getlist("vendor"):
                 all_vendors.append(make)
-                all_vendors = sorted(all_vendors)
             else:
                 vendor_filters.append(make)
 
         if int(vendor["laptops"]) > 0:
             laptop_vendors.append(vendor)
+            laptop_vendors.sort(key=lambda vendor: vendor["make"])
 
         if int(vendor["desktops"]) > 0:
             desktop_vendors.append(vendor)
+            desktop_vendors.sort(key=lambda vendor: vendor["make"])
 
-        if int(vendor["smart_core"] > 1):
+        if int(vendor["smart_core"]) > 0:
             iot_vendors.append(vendor)
+            iot_vendors.sort(key=lambda vendor: vendor["make"])
 
-        if int(vendor["soc"] > 1):
+        if int(vendor["soc"]) > 0:
             soc_vendors.append(vendor)
+            soc_vendors.sort(key=lambda vendor: vendor["make"])
 
-        if int(vendor["servers"] > 1):
+        if int(vendor["servers"]) > 0:
             server_vendors.append(vendor)
-    
+            server_vendors.sort(key=lambda vendor: vendor["make"])
+
+    vendor_filters.extend(all_vendors)
+    release_filters.extend(all_releases)
+
     if json:
         filters = {
             "laptop_releases": laptop_releases,
             "laptop_vendors": laptop_vendors,
             "desktop_releases": desktop_releases,
             "desktop_vendors": desktop_vendors,
-            "soc_releases": soc_vendors,
+            "soc_releases": soc_releases,
+            "soc_vendors": soc_vendors,
             "iot_releases": iot_releases,
             "iot_vendors": iot_vendors,
             "server_releases": server_releases,
             "server_vendors": server_vendors,
             "all_releases": all_releases,
             "all_vendors": all_vendors,
-            "vendor_filters": vendor_filters,
-            "release_filters": release_filters
+            "vendor_filters": sorted(vendor_filters),
+            "release_filters": sorted(release_filters, reverse=True),
         }
         return flask.jsonify(filters)
 
     else:
-
         return (
-            laptop_releases, laptop_vendors, desktop_releases,
-            desktop_vendors, soc_releases, soc_vendors, iot_releases,
-            iot_vendors, server_releases, server_vendors, all_releases, all_vendors, vendor_filters, release_filters
+            laptop_releases,
+            laptop_vendors,
+            desktop_releases,
+            desktop_vendors,
+            soc_releases,
+            soc_vendors,
+            iot_releases,
+            iot_vendors,
+            server_releases,
+            server_vendors,
+            all_releases,
+            all_vendors,
+            vendor_filters,
+            release_filters,
         )
+
 
 def certified_component_details(component_id):
     try:
@@ -382,8 +474,22 @@ def certified_model_details(canonical_id):
 
 
 def certified_home():
-
-    laptop_releases, laptop_vendors, desktop_releases, desktop_vendors, soc_releases, soc_vendors, iot_releases, iot_vendors, server_releases, server_vendors, all_releases, all_vendors, vendor_filters, release_filters = get_filters(request.args)
+    (
+        laptop_releases,
+        laptop_vendors,
+        desktop_releases,
+        desktop_vendors,
+        soc_releases,
+        soc_vendors,
+        iot_releases,
+        iot_vendors,
+        server_releases,
+        server_vendors,
+        all_releases,
+        all_vendors,
+        vendor_filters,
+        release_filters,
+    ) = get_filters(request.args)
 
     if (
         "category" in request.args
@@ -396,17 +502,23 @@ def certified_home():
             for value in parameters[key]:
                 new_params += f"{key}={value}&"
 
-        return redirect(
-            f'/certified/{request.args["category"].lower()}s?{new_params}'
-        )
+        # Pathname replacements (UX requirement for consistency)
+        if request.args["category"] == "Ubuntu Core":
+            pathname = "iot"
+        elif request.args["category"] == "Server SoC":
+            pathname = "socs"
+        else:
+            pathname = request.args["category"].lower() + "s"
 
-    if "q" in request.args:
-        query = request.args["q"]
+        return redirect(f"/certified/{pathname}?{new_params}")
 
+    selected_categories = request.args.getlist("category")
+    if "q" in request.args or len(selected_categories) > 0:
+
+        query = request.args.get("q", default=None, type=str)
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
 
-        selected_categories = request.args.getlist("category")
         if "SoC" in selected_categories:
             selected_categories.remove("SoC")
             selected_categories.append("Server SoC")
@@ -449,9 +561,6 @@ def certified_home():
         vendor_filters.extend(all_vendors)
         release_filters.extend(all_releases)
 
-
-        category_filters = _render_category_filters(request.args.getlist("category"))
-
         for index, model in enumerate(results):
             # Replace "Ubuntu Core" with "Device"
             if model["category"] == "Ubuntu Core":
@@ -464,11 +573,8 @@ def certified_home():
             "certified/search-results.html",
             results=results,
             query=query,
-            category=",".join(request.args.getlist("category")),
+            category=categories,
             releases=releases,
-            category_filters=category_filters,
-            release_filters=release_filters,
-            vendor_filters=vendor_filters,
             vendors=vendors,
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
@@ -501,6 +607,10 @@ def create_category_views(category, template_path):
     Server, Ubuntu Core, Server SoC)
     template_path -- full template path (e.g. certified/search-results.html)
     """
+    if len(request.args.getlist("category")) > 1:
+        # UX requirement
+        return redirect(f"/certified?{request.query_string.decode()}&category={category}")
+
     if category == "Desktop":
         certified_releases = api.certified_releases(
             limit="0", desktops__gte=1
@@ -567,9 +677,6 @@ def create_category_views(category, template_path):
                 vendor_filters.append(make)
 
     query = request.args.get("q", default=None, type=str)
-
-    category_filters = _render_category_filters(request.args.getlist("category"))
-
     limit = request.args.get("limit", default=20, type=int)
     offset = request.args.get("offset", default=0, type=int)
 
@@ -612,7 +719,6 @@ def create_category_views(category, template_path):
         results=results,
         query=query,
         releases=releases,
-        category_filters=category_filters,
         release_filters=release_filters,
         vendor_filters=vendor_filters,
         vendors=vendors,

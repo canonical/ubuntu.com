@@ -1,0 +1,25 @@
+<section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
+	<!-- state storage -->
+	<label class="p-checkbox">
+		<!-- values match API form factors -->
+		<!-- id has to match with pathnames -->
+		<input id="laptops" onclick="handleCategoryClick(this)" type="checkbox" data-filter="laptops" class="p-checkbox__input" name="category" value="Laptop" {% if request.path == '/certified/laptops' or "Laptop" in request.args.getlist("category") %}checked{% endif %}>
+		<span class="p-checkbox__label">Laptop</span>
+	</label>
+	<label class="p-checkbox">
+		<input id="desktops" onclick="handleCategoryClick(this)" type="checkbox" data-filter="desktops" class="p-checkbox__input" name="category" value="Desktop" {% if request.path == '/certified/desktops' or  "Desktop" in request.args.getlist("category") %}checked{% endif %}>
+		<span class="p-checkbox__label">Desktop</span>
+	</label>
+	<label class="p-checkbox">
+		<input id="servers" onclick="handleCategoryClick(this)" type="checkbox" data-filter="servers" class="p-checkbox__input" name="category" value="Server" {% if request.path == '/certified/servers' or "Server" in request.args.getlist("category") %}checked{% endif %}>
+		<span class="p-checkbox__label">Server</span>
+	</label>
+	<label class="p-checkbox">
+		<input id="iot" onclick="handleCategoryClick(this)" type="checkbox" data-filter="smart_core" class="p-checkbox__input" name="category" value="Ubuntu Core" {% if request.path == '/certified/iot' or "Ubuntu Core" in request.args.getlist("category") %}checked{% endif %}>
+		<span class="p-checkbox__label">IoT</span>
+	</label>
+	<label class="p-checkbox">
+		<input id="socs" onclick="handleCategoryClick(this)" type="checkbox" data-filter="soc" class="p-checkbox__input" name="category" value="Server SoC" {% if request.path == '/certified/socs' or "Server SoC" in request.args.getlist("category") %}checked{% endif %}>
+		<span class="p-checkbox__label">SoC</span>
+	</label>
+</section>

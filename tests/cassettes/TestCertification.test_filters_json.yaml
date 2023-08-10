@@ -1,0 +1,205 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedreleases/?format=json&limit=0
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 8}, "objects": [{"desktops": 199, "laptops": 442, "release":
+        "20.04 LTS", "resource_uri": "/api/v1/certifiedreleases/20.04%20LTS/", "servers":
+        398, "smart_core": 46, "soc": 5, "total": 1097}, {"desktops": 0, "laptops":
+        0, "release": "Core 20", "resource_uri": "/api/v1/certifiedreleases/Core%2020/",
+        "servers": 0, "smart_core": 26, "soc": 0, "total": 26}, {"desktops": 0, "laptops":
+        0, "release": "Core 18", "resource_uri": "/api/v1/certifiedreleases/Core%2018/",
+        "servers": 0, "smart_core": 16, "soc": 0, "total": 16}, {"desktops": 115,
+        "laptops": 258, "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedreleases/18.04%20LTS/",
+        "servers": 400, "smart_core": 10, "soc": 10, "total": 795}, {"desktops": 0,
+        "laptops": 0, "release": "18.04", "resource_uri": "/api/v1/certifiedreleases/18.04/",
+        "servers": 2, "smart_core": 0, "soc": 0, "total": 2}, {"desktops": 2, "laptops":
+        0, "release": "16.04 LTS", "resource_uri": "/api/v1/certifiedreleases/16.04%20LTS/",
+        "servers": 419, "smart_core": 0, "soc": 0, "total": 421}, {"desktops": 0,
+        "laptops": 0, "release": "Core 16", "resource_uri": "/api/v1/certifiedreleases/Core%2016/",
+        "servers": 0, "smart_core": 5, "soc": 0, "total": 5}, {"desktops": 91, "laptops":
+        139, "release": "22.04 LTS", "resource_uri": "/api/v1/certifiedreleases/22.04%20LTS/",
+        "servers": 349, "smart_core": 13, "soc": 0, "total": 602}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '1443'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Aug 2023 14:22:41 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 104 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 97 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmakes/?format=json&limit=0
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 46}, "objects": [{"desktops": 139, "laptops": 465, "make":
+        "Dell", "resource_uri": "/api/v1/certifiedmakes/Dell/", "servers": 2, "smart_core":
+        8, "soc": 0, "total": 621}, {"desktops": 115, "laptops": 198, "make": "Lenovo",
+        "resource_uri": "/api/v1/certifiedmakes/Lenovo/", "servers": 96, "smart_core":
+        3, "soc": 0, "total": 413}, {"desktops": 113, "laptops": 141, "make": "HP",
+        "resource_uri": "/api/v1/certifiedmakes/HP/", "servers": 0, "smart_core":
+        0, "soc": 0, "total": 257}, {"desktops": 0, "laptops": 0, "make": "Supermicro",
+        "resource_uri": "/api/v1/certifiedmakes/Supermicro/", "servers": 152, "smart_core":
+        0, "soc": 0, "total": 152}, {"desktops": 0, "laptops": 0, "make": "Dell Technologies",
+        "resource_uri": "/api/v1/certifiedmakes/Dell%20Technologies/", "servers":
+        121, "smart_core": 0, "soc": 0, "total": 121}, {"desktops": 0, "laptops":
+        0, "make": "HPE", "resource_uri": "/api/v1/certifiedmakes/HPE/", "servers":
+        86, "smart_core": 0, "soc": 0, "total": 86}, {"desktops": 0, "laptops": 0,
+        "make": "IBM", "resource_uri": "/api/v1/certifiedmakes/IBM/", "servers": 79,
+        "smart_core": 0, "soc": 0, "total": 79}, {"desktops": 0, "laptops": 0, "make":
+        "ASUSTeK Computer Inc.", "resource_uri": "/api/v1/certifiedmakes/ASUSTeK%20Computer%20Inc./",
+        "servers": 65, "smart_core": 1, "soc": 0, "total": 66}, {"desktops": 0, "laptops":
+        0, "make": "Huawei Technologies Co., Ltd.", "resource_uri": "/api/v1/certifiedmakes/Huawei%20Technologies%20Co.,%20Ltd./",
+        "servers": 53, "smart_core": 0, "soc": 6, "total": 59}, {"desktops": 0, "laptops":
+        0, "make": "Fujitsu Limited.", "resource_uri": "/api/v1/certifiedmakes/Fujitsu%20Limited./",
+        "servers": 56, "smart_core": 0, "soc": 0, "total": 56}, {"desktops": 0, "laptops":
+        0, "make": "QUANTA Computer Inc", "resource_uri": "/api/v1/certifiedmakes/QUANTA%20Computer%20Inc/",
+        "servers": 54, "smart_core": 0, "soc": 0, "total": 54}, {"desktops": 0, "laptops":
+        0, "make": "Cisco UCS", "resource_uri": "/api/v1/certifiedmakes/Cisco%20UCS/",
+        "servers": 49, "smart_core": 0, "soc": 0, "total": 49}, {"desktops": 0, "laptops":
+        0, "make": "New H3C Technologies Co., Ltd", "resource_uri": "/api/v1/certifiedmakes/New%20H3C%20Technologies%20Co.,%20Ltd/",
+        "servers": 44, "smart_core": 0, "soc": 0, "total": 44}, {"desktops": 0, "laptops":
+        0, "make": "NEC Corporation", "resource_uri": "/api/v1/certifiedmakes/NEC%20Corporation/",
+        "servers": 34, "smart_core": 0, "soc": 0, "total": 34}, {"desktops": 0, "laptops":
+        0, "make": "Inspur Electronic Information Industry Co., Ltd.", "resource_uri":
+        "/api/v1/certifiedmakes/Inspur%20Electronic%20Information%20Industry%20Co.,%20Ltd./",
+        "servers": 29, "smart_core": 0, "soc": 0, "total": 29}, {"desktops": 0, "laptops":
+        0, "make": "xFusion Digital Technologies Co., Ltd.", "resource_uri": "/api/v1/certifiedmakes/xFusion%20Digital%20Technologies%20Co.,%20Ltd./",
+        "servers": 18, "smart_core": 0, "soc": 0, "total": 18}, {"desktops": 0, "laptops":
+        0, "make": "Giga Computing", "resource_uri": "/api/v1/certifiedmakes/Giga%20Computing/",
+        "servers": 17, "smart_core": 0, "soc": 0, "total": 17}, {"desktops": 0, "laptops":
+        0, "make": "ADVANTECH", "resource_uri": "/api/v1/certifiedmakes/ADVANTECH/",
+        "servers": 0, "smart_core": 17, "soc": 0, "total": 17}, {"desktops": 5, "laptops":
+        0, "make": "Raspberry Pi Foundation", "resource_uri": "/api/v1/certifiedmakes/Raspberry%20Pi%20Foundation/",
+        "servers": 0, "smart_core": 12, "soc": 0, "total": 17}, {"desktops": 0, "laptops":
+        0, "make": "Ericsson, Inc.", "resource_uri": "/api/v1/certifiedmakes/Ericsson,%20Inc./",
+        "servers": 11, "smart_core": 0, "soc": 0, "total": 11}, {"desktops": 0, "laptops":
+        0, "make": "Kontron", "resource_uri": "/api/v1/certifiedmakes/Kontron/", "servers":
+        7, "smart_core": 0, "soc": 0, "total": 7}, {"desktops": 0, "laptops": 0, "make":
+        "Intel Corp.", "resource_uri": "/api/v1/certifiedmakes/Intel%20Corp./", "servers":
+        0, "smart_core": 6, "soc": 0, "total": 6}, {"desktops": 0, "laptops": 0, "make":
+        "Cavium, Inc.", "resource_uri": "/api/v1/certifiedmakes/Cavium,%20Inc./",
+        "servers": 3, "smart_core": 0, "soc": 2, "total": 5}, {"desktops": 0, "laptops":
+        0, "make": "Xilinx", "resource_uri": "/api/v1/certifiedmakes/Xilinx/", "servers":
+        0, "smart_core": 5, "soc": 0, "total": 5}, {"desktops": 0, "laptops": 0, "make":
+        "OnLogic", "resource_uri": "/api/v1/certifiedmakes/OnLogic/", "servers": 0,
+        "smart_core": 4, "soc": 0, "total": 4}, {"desktops": 0, "laptops": 0, "make":
+        "DFI", "resource_uri": "/api/v1/certifiedmakes/DFI/", "servers": 0, "smart_core":
+        4, "soc": 0, "total": 4}, {"desktops": 0, "laptops": 0, "make": "nVidia",
+        "resource_uri": "/api/v1/certifiedmakes/nVidia/", "servers": 3, "smart_core":
+        0, "soc": 0, "total": 4}, {"desktops": 0, "laptops": 0, "make": "AAEON Technology
+        Inc.", "resource_uri": "/api/v1/certifiedmakes/AAEON%20Technology%20Inc./",
+        "servers": 0, "smart_core": 4, "soc": 0, "total": 4}, {"desktops": 0, "laptops":
+        0, "make": "Honeywell, Inc.", "resource_uri": "/api/v1/certifiedmakes/Honeywell,%20Inc./",
+        "servers": 0, "smart_core": 3, "soc": 0, "total": 3}, {"desktops": 0, "laptops":
+        0, "make": "Mellanox Technologies", "resource_uri": "/api/v1/certifiedmakes/Mellanox%20Technologies/",
+        "servers": 0, "smart_core": 1, "soc": 0, "total": 3}, {"desktops": 0, "laptops":
+        0, "make": "ASRock Industrial", "resource_uri": "/api/v1/certifiedmakes/ASRock%20Industrial/",
+        "servers": 0, "smart_core": 2, "soc": 0, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "Penguin Computing", "resource_uri": "/api/v1/certifiedmakes/Penguin%20Computing/",
+        "servers": 2, "smart_core": 0, "soc": 0, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "Ampere Computing, LLC", "resource_uri": "/api/v1/certifiedmakes/Ampere%20Computing,%20LLC/",
+        "servers": 0, "smart_core": 0, "soc": 2, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "Eurotech", "resource_uri": "/api/v1/certifiedmakes/Eurotech/",
+        "servers": 0, "smart_core": 2, "soc": 0, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "Wiwynn", "resource_uri": "/api/v1/certifiedmakes/Wiwynn/", "servers":
+        2, "smart_core": 0, "soc": 0, "total": 2}, {"desktops": 0, "laptops": 0, "make":
+        "GIGA-BYTE TECHNOLOGY CO., LTD.", "resource_uri": "/api/v1/certifiedmakes/GIGA-BYTE%20TECHNOLOGY%20CO.,%20LTD./",
+        "servers": 2, "smart_core": 0, "soc": 0, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "ADLink Technology, Inc.", "resource_uri": "/api/v1/certifiedmakes/ADLink%20Technology,%20Inc./",
+        "servers": 0, "smart_core": 2, "soc": 0, "total": 2}, {"desktops": 0, "laptops":
+        0, "make": "Fujitsu", "resource_uri": "/api/v1/certifiedmakes/Fujitsu/", "servers":
+        2, "smart_core": 0, "soc": 0, "total": 2}, {"desktops": 0, "laptops": 0, "make":
+        "Interactive Strength Inc", "resource_uri": "/api/v1/certifiedmakes/Interactive%20Strength%20Inc/",
+        "servers": 0, "smart_core": 1, "soc": 0, "total": 1}, {"desktops": 0, "laptops":
+        0, "make": "Avnet IoT Gateway", "resource_uri": "/api/v1/certifiedmakes/Avnet%20IoT%20Gateway/",
+        "servers": 0, "smart_core": 1, "soc": 0, "total": 1}, {"desktops": 0, "laptops":
+        0, "make": "ZTE", "resource_uri": "/api/v1/certifiedmakes/ZTE/", "servers":
+        1, "smart_core": 0, "soc": 0, "total": 1}, {"desktops": 0, "laptops": 0, "make":
+        "Element Biosciences", "resource_uri": "/api/v1/certifiedmakes/Element%20Biosciences/",
+        "servers": 0, "smart_core": 1, "soc": 0, "total": 1}, {"desktops": 0, "laptops":
+        0, "make": "FETCi", "resource_uri": "/api/v1/certifiedmakes/FETCi/", "servers":
+        1, "smart_core": 0, "soc": 0, "total": 1}, {"desktops": 0, "laptops": 0, "make":
+        "Rigado", "resource_uri": "/api/v1/certifiedmakes/Rigado/", "servers": 0,
+        "smart_core": 1, "soc": 0, "total": 1}, {"desktops": 0, "laptops": 0, "make":
+        "Axiomtek", "resource_uri": "/api/v1/certifiedmakes/Axiomtek/", "servers":
+        0, "smart_core": 1, "soc": 0, "total": 1}, {"desktops": 0, "laptops": 0, "make":
+        "Open Compute Project", "resource_uri": "/api/v1/certifiedmakes/Open%20Compute%20Project/",
+        "servers": 1, "smart_core": 0, "soc": 0, "total": 1}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '8037'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 11 Aug 2023 14:22:41 GMT
+      Keep-Alive:
+      - timeout=5, max=99
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '2'
+      X-QueryInspect-Total-Request-Time:
+      - 100 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 81 ms
+    status:
+      code: 200
+      message: OK
+version: 1

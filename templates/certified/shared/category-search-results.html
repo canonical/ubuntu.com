@@ -67,29 +67,7 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
-                    <label class="p-checkbox">
-                      <!-- values match API form factors -->
-                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="laptop" class="p-checkbox__input" name="category" value="Laptop" {% if request.path == '/certified/laptops' %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="laptop">Laptop</span>
-                    </label>
-                    <label class="p-checkbox">
-                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="desktop" class="p-checkbox__input" name="category" value="Desktop" {% if request.path == '/certified/desktops' %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="desktop">Desktop</span>
-                    </label>
-                    <label class="p-checkbox">
-                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="server" class="p-checkbox__input" name="category" value="Server" {% if request.path == '/certified/servers' %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="server">Server</span>
-                    </label>
-                    <label class="p-checkbox">
-                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="iot" class="p-checkbox__input" name="category" value="Ubuntu Core" {% if request.path == '/certified/iot' %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="iot">IoT</span>
-                    </label>
-                    <label class="p-checkbox">
-                      <input onclick="handleCategoryClick(event)" type="checkbox" aria-labelledby="socs" class="p-checkbox__input" name="category" value="Server SoC" {% if request.path == '/certified/socs' %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="socs">SoC</span>
-                    </label>
-                  </section>
+                  {% include "/certified/shared/_category-filters.html" %}
                 </li>
                 <li class="p-accordion__group--certified" id="vendor-section">
                   <div role="heading" aria-level="2">
@@ -101,14 +79,10 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
+                  <section class="p-accordion__panel is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                   </section>
-                  <!-- {% if vendor_filters | length > 5 %}
-                  <span class="js-toggle-links">
-                    <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
-                    <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
-                  </span>
-                  {% endif %} -->
+                  <p class="p-reveal-vendors is-dense js-show-all-vendors"><button class="p-button--link js-vendor-count" name="vendor" onclick="toggleExpandFilters(event, this)" value="true">Show all vendors</button></p>
+                  <p class="p-reveal-vendors is-dense"><button class="p-button--link js-show-less-vendors u-hide" name="vendor" onclick="toggleExpandFilters(event, this)" value="false">Show fewer</button></p>
                 </li>
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
@@ -121,21 +95,19 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel {% if release_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                  <section class="p-accordion__panel is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                   </section>
-                  <!-- {% if release_filters | length > 5 %}
                   <span class="js-toggle-links">
-                    <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
-                    <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
+                    <p class="p-reveal-versions is-dense"><button class="p-button--link js-show-all-releases" name="release" onclick="toggleExpandFilters(event, this)" value="true"> Show all versions</a></p>
+                    <p class="p-reveal-versions is-dense u-hide"><button class="p-button--link js-show-less-releases u-hide" name="release" onclick="toggleExpandFilters(event, this)" value="false">Show fewer</a></p>
                   </span>
-                  {% endif %} -->
                 </li>
               </ul>
               <hr style="margin-bottom: 1rem;">
             </aside>
             <div class="u-align--right" style="padding-right: 0.5rem">
               <button class="p-button p-update-results u-no-margin--right" onclick="return clearFilters()">Clear</button>
-              <!-- <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button> -->
+              <button class="p-button--positive p-update-results" onclick="return submitFilters()">Apply</button>
             </div>
           </div>
         </nav>
