@@ -514,7 +514,6 @@ def certified_home():
 
     selected_categories = request.args.getlist("category")
     if "q" in request.args or len(selected_categories) > 0:
-
         query = request.args.get("q", default=None, type=str)
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
@@ -609,7 +608,9 @@ def create_category_views(category, template_path):
     """
     if len(request.args.getlist("category")) > 1:
         # UX requirement
-        return redirect(f"/certified?{request.query_string.decode()}&category={category}")
+        return redirect(
+            f"/certified?{request.query_string.decode()}&category={category}"
+        )
 
     if category == "Desktop":
         certified_releases = api.certified_releases(

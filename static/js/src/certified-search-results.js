@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 // New filters
 const filters2Elm = document.querySelector("#tab2-section");
 const filters3Elm = document.querySelector("#tab3-section");
