@@ -122,10 +122,10 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
             </tr>
             <tr>
               <td>
+                USG{" "}
                 <Tooltip message="Please read the documentation and only enable this feature if you specifically request this certification.">
                   <Icon name={ICONS.information} />
-                </Tooltip>{" "}
-                USG
+                </Tooltip>
               </td>
               <td>
                 <a href="/security/certifications/docs/usg">
@@ -135,10 +135,10 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
             </tr>
             <tr>
               <td>
+                FIPS{" "}
                 <Tooltip message="Please read the documentation. Enabling FIPS on a machine will disable Livepatch and FIPS-update.">
                   <Icon name={ICONS.information} />
-                </Tooltip>{" "}
-                FIPS
+                </Tooltip>
               </td>
               <td>
                 <a href="https://ubuntu.com/security/certifications/docs/fips">
@@ -164,10 +164,10 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
             </tr>
             <tr>
               <td>
+                Real-time kernel{" "}
                 <Tooltip message="Only available for Ubuntu 22.04 LTS">
                   <Icon name={ICONS.information} />
-                </Tooltip>{" "}
-                Real-time kernel
+                </Tooltip>
               </td>
               <td>
                 <a href="https://ubuntu.com/blog/real-time-ubuntu-is-now-generally-available">
