@@ -22,7 +22,7 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 - [`./redirects.yaml`](rerdirects.yaml): A file defining URL paths for 302 redirects
 - [`./deleted.yaml`](deleted.yaml): A file defining URL paths for 310 deleted responses
 - [`./entrypoint`](entrypoint): The commands for running the application with Gunicorn. This is used within `Dockerfile` for running the production site.
--  [`./Dockerfile`](Dockerfile): Used by the [production Jenkins job](https://jenkins.canonical.com/webteam/job/ubuntu.com) for building the production docker image. See [our standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112).
+- [`./Dockerfile`](Dockerfile): Used by the [production Jenkins job](https://jenkins.canonical.com/webteam/job/ubuntu.com) for building the production docker image. See [our standard deployment flow](https://discourse.canonical.com/t/how-the-standard-website-deployment-flow-is-set-up-in-github-jenkins-and-kubernetes/2112).
 - [`./releases.yaml`](releases.yaml): For defining releases of Ubuntu, which get displayed on ubuntu.com/download etc.
 - [`./navigation.yaml`](navigation.yaml): Navigation sections within ubuntu.com.
 - [`./appliances.yaml`](appliances.yaml): Appliance metadata for displaying on ubuntu.com/appliance
@@ -42,7 +42,7 @@ Merging a pull request (PR) into the `main` branch will automatically trigger a 
 
 The homepage ([url rule](webapp/app.py#L637)) has no server-side dynamic functionality, so is instead served directly by the template finder view from `templates/index.html`.
 
-Since ubuntu.com is a high-traffic site, and the homepage its most popular page, it is important that the initial response for this page remains as fast as possible, so it should *not* be making server-side database or API calls directly if it can be avoided.
+Since ubuntu.com is a high-traffic site, and the homepage its most popular page, it is important that the initial response for this page remains as fast as possible, so it should _not_ be making server-side database or API calls directly if it can be avoided.
 
 #### Homepage takeovers and engage pages
 
@@ -88,7 +88,7 @@ We have had trouble with search spam in the past which has led to us hitting API
 
 The download pages, e.g. https://ubuntu.com/download/desktop, include links for people to download Ubuntu. These pages get extremely busy on our six-monthly release days.
 
-When people click the "Download" button they are sent to the thank-you page, e.g. `https://ubuntu.com/download/desktop/thank-you?version=22.04.2&architecture=amd64` ([url rule](webapp/app.py#L396-L403), [view function](webapp/views.py#L170-L184)). Similar to the homepage, it's important that this page is served as straightforwardly as possible with no back-end API/database calls so the page can remain responsive.
+When people click the "Download" button they are sent to the thank-you page, e.g. `https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64` ([url rule](webapp/app.py#L396-L403), [view function](webapp/views.py#L170-L184)). Similar to the homepage, it's important that this page is served as straightforwardly as possible with no back-end API/database calls so the page can remain responsive.
 
 After the page has loaded, JavaScript will download the list of download mirrors from https://ubuntu.com/mirrors.json and choose one to trigger the download with. If JavaScript isn't available, the download will instead be triggered from our own download server, releases.ubuntu.com.
 

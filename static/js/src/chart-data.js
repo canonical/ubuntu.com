@@ -164,7 +164,7 @@ export var kernelReleases = [
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS",
+    taskName: "Ubuntu 22.04.3 LTS",
     taskVersion: "Kernel version",
     status: "LTS",
   },
@@ -436,7 +436,7 @@ export var kernelReleases2204 = [
   {
     startDate: new Date("2023-02-17T00:00:00"),
     endDate: new Date("2023-07-22T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
     status: "LTS",
   },
 ];
@@ -907,7 +907,7 @@ export var kernelReleasesALL = [
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
     status: "LTS",
   },
 ];
@@ -1162,7 +1162,7 @@ export var kernelReleasesLTS = [
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
     status: "LTS",
   },
 ];
@@ -1680,7 +1680,7 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
-  "Ubuntu 22.04.2 LTS",
+  "Ubuntu 22.04.3 LTS",
   "Ubuntu 22.10",
   "Ubuntu 22.04.1 LTS",
   "Ubuntu 20.04.5 LTS",
@@ -1732,7 +1732,7 @@ export var kernelVersionNames = [
 export var kernelReleaseNames2204 = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v5.19)",
 ];
 
 export var kernelReleaseNames2004 = [
@@ -1798,7 +1798,7 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v5.19)",
 ];
 
 export var kernelReleaseNamesLTS = [
@@ -1828,7 +1828,7 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v5.19)",
 ];
 
 export var openStackReleaseNames = [
