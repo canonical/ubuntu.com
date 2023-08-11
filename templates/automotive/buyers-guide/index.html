@@ -18,8 +18,17 @@
       <p><a href="#form" class="p-button--positive">Download the full guide</a></p>
     </div>
   </div>
-  <div class="u-fixed-width u-no-padding u-hide--medium u-hide--small">
-    <img src="https://assets.ubuntu.com/v1/9469ef82-1_website_suru_DARK_25%20(1)122.jpg" alt="" style="aspect-ratio: 2580/501; width: 100%;">
+  <div class="u-fixed-width u-no-padding">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/a87daee0-gettyimages-1150555394-594x594%201.jpg",
+      alt="",
+      width="1276",
+      height="800",
+      hi_def=True,
+      loading="auto",
+      attrs={"class": "banner-image--non-interactive"},
+      ) | safe
+    }}
   </div>
 </section>
 
@@ -34,20 +43,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#">&lsaquo;&nbsp;Overview</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#security">Security&nbsp;&rsaquo;</a></p>
         </div>
@@ -64,8 +73,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#compatibility">
-        <img src="https://ubuntu.com/wp-content/uploads/6dbf/Untitled-design-25-2.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fd4b87a9-stock-photo-circuit-board-on-the-cars-engine-766850902%202.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#compatibility" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fd4b87a9-stock-photo-circuit-board-on-the-cars-engine-766850902%202.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -79,20 +107,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#compatibility">&lsaquo;&nbsp;Compatibility</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6  col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#developer-support">Developer support&nbsp;&rsaquo;</a></p>
         </div>
@@ -112,8 +140,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#security">
-        <img src="https://ubuntu.com/wp-content/uploads/23d5/Untitled-design-47-1.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bcbbfede-stock-photo-circuit-board-on-the-cars-engine-766850902%203.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#security" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/bcbbfede-stock-photo-circuit-board-on-the-cars-engine-766850902%203.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -126,20 +173,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#security">&lsaquo;&nbsp;Security</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#certifications-and-compliance">Certifications and compliance&nbsp;&rsaquo;</a></p>
         </div>
@@ -159,8 +206,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#developer-support">
-        <img src="https://ubuntu.com/wp-content/uploads/cacb/Untitled-design-37-1-1.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bf92304c-stock-photo-circuit-board-on-the-cars-engine-766850902%204.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#developer-support" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/bf92304c-stock-photo-circuit-board-on-the-cars-engine-766850902%204.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -173,20 +239,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#developer-support">&lsaquo;&nbsp;Developer support</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#power-management">Power management&nbsp;&rsaquo;</a></p>
         </div>
@@ -210,8 +276,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#certifications-and-compliance">
-        <img src="https://ubuntu.com/wp-content/uploads/b9c1/Untitled-design-52-2.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1d5bee46-stock-photo-circuit-board-on-the-cars-engine-766850902%205.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#certifications-and-compliance" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/1d5bee46-stock-photo-circuit-board-on-the-cars-engine-766850902%205.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -224,20 +309,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#certifications-and-compliance">&lsaquo;&nbsp;Certifications and compliance</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#open-source">Open source&nbsp;&rsaquo;</a></p>
         </div>
@@ -259,8 +344,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#power-management">
-        <img src="https://ubuntu.com/wp-content/uploads/6dbf/Untitled-design-25-2.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1e66a926-stock-photo-circuit-board-on-the-cars-engine-766850902%206.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#power-management" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/1e66a926-stock-photo-circuit-board-on-the-cars-engine-766850902%206.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -273,20 +377,20 @@
   <div class="u-fixed-width p-card">
     <div class="u-show-on-reveal">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p>Automotive OS buyer's guide</p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p><a href="#" class="p-icon--close">Close</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 col-medium-3 col-small-2">
           <p class="p-muted-heading">Previous</p>
           <p class="p-heading--3"><a href="#power-management">&lsaquo;&nbsp;Power management</a></p>
         </div>
-        <div class="col-6 u-align--right">
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#">Overview&nbsp;&rsaquo;</a></p>
         </div>
@@ -306,8 +410,27 @@
       </div>
     </div>
     <div class="row p-block u-sv3">
-      <a href="#open-source">
-        <img src="https://ubuntu.com/wp-content/uploads/b9c1/Untitled-design-52-2.png" alt="" class="banner-image u-sv3" />
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7a321180-stock-photo-circuit-board-on-the-cars-engine-766850902%201.jpg",
+        alt="",
+        width="1280",
+        height="800",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#open-source" class="u-hide-on-reveal">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/7a321180-stock-photo-circuit-board-on-the-cars-engine-766850902%201.jpg",
+          alt="",
+          width="1280",
+          height="800",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
       </a>
     </div>
     <div class="row u-show-on-reveal">
@@ -326,28 +449,35 @@
 </div>
 
 <style>
-
   html {
     scroll-behavior: auto !important;
   }
 
-  .banner-image {
+  .banner-image,
+  .banner-image--non-interactive {
     object-fit: cover;
     width: 100%;
-    height: 300px;
-    filter: grayscale(90%);
-    opacity: .6;
-    transition: all .25s ease-in-out;
+    max-height: 472px;
   }
 
-  .p-card:hover .banner-image {
+  .banner-image {
+    filter: grayscale(50%);
+    opacity: .6;
+    transition: all .25s ease-in-out;
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  }
+
+  .p-card:hover .banner-image,
+  .banner-image:focus {
     filter: grayscale(0%);
     opacity: 1;
+    -webkit-mask-image: none;
   }
 
   .feature-selected .p-card .banner-image {
     filter: grayscale(0%);
     opacity: 1;
+    -webkit-mask-image: none;
   }
 
   .p-card {
@@ -369,7 +499,7 @@
     display: block !important;
   }
 
-  .selected-feature .row {
+  .p-card .row {
     margin: 0 auto;
   }
 
@@ -389,12 +519,70 @@
     height: auto;
   }
 
+  @keyframes reveal-os {
+    0% {height: 9ch;}
+    90% {height: 30ch;}
+    100% {height: auto;}
+  }
+  #open-source .u-limit-content {
+    animation: reveal-os .5s ease-in-out;
+  }
+
+  @keyframes reveal-power {
+    0% {height: 9ch;}
+    90% {height: 53ch;}
+    100% {height: auto;}
+  }
+  #power-management .u-limit-content {
+    animation: reveal-power .5s ease-in-out;
+  }
+
+  @keyframes reveal-security {
+    0% {height: 9ch;}
+    90% {height: 42ch;}
+    100% {height: auto;}
+  }
+  #security .u-limit-content {
+    animation: reveal-security .5s ease-in-out;
+  }
+
+  @keyframes reveal-certifications-and-compliance {
+    0% {height: 9ch;}
+    90% {height: 60ch;}
+    100% {height: auto;}
+  }
+  #certifications-and-compliance .u-limit-content {
+    animation: reveal-certifications-and-compliance .5s ease-in-out;
+  }
+
+  @keyframes reveal-developer-support {
+    0% {height: 9ch;}
+    90% {height: 42ch;}
+    100% {height: auto;}
+  }
+  #developer-support .u-limit-content {
+    animation: reveal-developer-support .5s ease-in-out;
+  }
+
+  @keyframes reveal-compatibility {
+    0% {height: 9ch;}
+    90% {height: 20ch;}
+    100% {height: auto;}
+  }
+  #compatibility .u-limit-content {
+    animation: reveal-compatibility .5s ease-in-out;
+  }
+
   .u-show-on-reveal {
     display: none;
   }
 
   .feature-selected .u-show-on-reveal {
     display: block;
+  }
+
+  .p-icon--close:hover {
+    filter: invert(100%);
   }
 </style>
 
@@ -403,6 +591,23 @@
   const featuredSections = document.querySelectorAll('.feature-section');
   const navigation = document.querySelector('#navigation');
   const subNaviagtion = document.querySelector('.p-navigation--secondary');
+  const closeButtons = document.querySelectorAll('.p-icon--close');
+  let previousFeature = '';
+
+  closeButtons.forEach((closeButton) => {
+    closeButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      reveal('');
+      console.log(previousFeature)
+      if (previousFeature) {
+        const previousSection = document.querySelector(`#${previousFeature}`);
+        previousSection.scrollIntoView({
+          behavior: 'auto'
+        });
+      }
+    });
+  });
 
   window.addEventListener("hashchange", (event) => {
     const hash = location.hash.replace('#', '');
@@ -417,6 +622,7 @@
   function reveal(feature) {
     const globalNav = document.querySelector('.global-nav');
     if (feature !== "") {
+      previousFeature = feature;
       const section = document.querySelector(`#${feature}`);
       featuredSections.forEach((featuredSection) => {
         if (featuredSection.id === feature) {
