@@ -892,8 +892,12 @@ def marketo_submit():
     if "email" in form_fields:
         enrichment_fields = {
             "email": form_fields["email"],
-            "acquisition_url": referrer,
         }
+
+    if "acquisition_url" in form_fields:
+        enrichment_fields["acquisition_url"] = form_fields["acquisition_url"]
+    else:
+        enrichment_fields["acquisition_url"] = referrer
 
     if "preferredLanguage" in form_fields:
         enrichment_fields["preferredLanguage"] = form_fields[
