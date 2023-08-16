@@ -81,6 +81,7 @@
                 {% endfor %}
               </div>      
 
+              {% if side_nav_section.secondary_links %}
               <div class="col-3 dropdown-window__side-panel">
                 {% for links_section in side_nav_section.secondary_links %}
                   <p class="p-muted-heading">{{ links_section.title }}</p>
@@ -94,6 +95,7 @@
                   </ul>
                 {% endfor %}
               </div>
+              {% endif %}
             </div>
 
             {% if side_nav_section.section_footer %}

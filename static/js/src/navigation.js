@@ -565,6 +565,7 @@ function setUpGlobalNav() {
   globalNavTab
     .querySelectorAll(".p-navigation__dropdown")
     .forEach((dropdown) => {
+      dropdown.setAttribute("aria-hidden", "true");
       const dropdownToggle = dropdown.closest(
         ".p-navigation__item--dropdown-toggle"
       );
@@ -590,7 +591,6 @@ function setUpGlobalNav() {
       const backButton = tempHTMLContainer.firstChild.cloneNode(true);
       attachBackButtonEventListener(backButton.querySelector(".js-back"));
       dropdown.prepend(backButton);
-      dropdown.setAttribute("aria-hidden", "true");
     });
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -616,7 +616,7 @@ if (accountContainer) {
             </li>
             <li class="p-navigation__account-name u-no-padding--bottom">
               <p class="p-text--small">Logged in as <br/>
-              <strong>${data.account.email}gdshdsshfdhdsgsgsd</strong></p>
+              <strong>${data.account.email}</strong></p>
               <hr class="is-dark u-no-margin" />
             </li>
             <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
