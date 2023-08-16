@@ -9,8 +9,11 @@
   <div class="row">
     <div class="col-8">
       <div class="p-media-object u-no-margin--bottom">
-        <img src="{% if author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ author.avatar_urls['96'] }}{% endif %}" class="p-media-object__image is-round" alt="">
-
+        {% if author.id == 217 %}
+          <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg" class="p-media-object__image" alt="">
+        {% else %}
+          <img src="{{ author.avatar_urls['96'] }}" class="p-media-object__image is-round" alt="">
+        {% endif %}
         <div class="p-media-object__details">
           <h1 class="p-media-object__title">
             {{ author.name }}
