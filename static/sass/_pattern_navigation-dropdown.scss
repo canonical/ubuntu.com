@@ -50,6 +50,7 @@
   .dropdown-window__content {
     color: $color-light;
     padding: 0;
+    display: flex;
 
     [hidden="true"] {
       display: none;
@@ -98,6 +99,14 @@
     }
   }
 
+  .dropdown-window__tab-panel {
+    min-width: 17.5rem;
+
+    @media (min-width: $breakpoint-x-large) {
+      width: calc(26rem + 1px);
+    }
+  }
+
   .dropdown-window__footer {
     align-items: start;
     border-top: $dropdown-border;
@@ -126,6 +135,10 @@
         }
       }
     }
+  }
+
+  .dropdown-window__sidenav-content {
+    padding-left: 2rem;
   }
 
   .dropdown-window__main-panel,

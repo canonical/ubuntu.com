@@ -48,7 +48,11 @@
       @media (min-width: $breakpoint-navigation-threshold) {
         .p-navigation__banner {
           padding-right: 2.75rem;
-          width: 24.2%;
+          width: 19rem;
+          
+          @media (min-width: $breakpoint-x-large) {
+            width: 21rem;
+          }
         }
 
         .p-navigation__link--search-toggle::after {
@@ -231,7 +235,11 @@
     }
 
     .p-navigation__tagged-logo {
-      min-width: 17.4rem;
+      width: 17.5rem;
+
+      @media (min-width: $breakpoint-x-large) {
+        width: 19.5rem;
+      }
     }
   }
 
@@ -244,8 +252,12 @@
 
       @media (min-width: $breakpoint-navigation-threshold) {
         height: 2rem;
-        padding-left: 3rem;
-        width: 24%;
+        width: 19rem;
+      }
+
+      @media (min-width: $breakpoint-x-large) {
+        height: 2rem;
+        width: calc(21rem - 1px);
       }
     }
 
