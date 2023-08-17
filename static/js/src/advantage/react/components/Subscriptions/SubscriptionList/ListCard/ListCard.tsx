@@ -69,7 +69,13 @@ const ListCard = ({
             {isFree ? "Free Personal Token" : subscription.product_name}
           </h5>
           {isFree ? null : (
-            <button className={subscription.statuses.is_renewed ? "p-chip--positive" : "p-chip--caution"}>
+            <button
+              className={
+                subscription.statuses.is_renewed
+                  ? "p-chip--positive"
+                  : "p-chip--caution"
+              }
+            >
               <span className="p-chip__value" data-test="card-is_renewed">
                 {subscription.statuses.is_renewed
                   ? "Auto-renewal on "

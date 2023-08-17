@@ -65,7 +65,10 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
   const UADocs = () => {
     return (
       <>
-        <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+        <h5
+          className="u-no-padding--top p-subscriptions__details-small-title"
+          data-test="docs-content"
+        >
           Services and Documentation
         </h5>
         <table>
@@ -113,7 +116,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
           </thead>
           <tbody>
             <tr>
-              <td>ESM</td>
+              <td data-test="doc-link">ESM</td>
               <td>
                 <a href="https://ubuntu.com/pro/tutorial">
                   Set up access to security updates with ESM
@@ -134,7 +137,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td data-test="doc-link">
                 FIPS{" "}
                 <Tooltip message="Please read the documentation. Enabling FIPS on a machine will disable Livepatch and FIPS-update.">
                   <Icon name={ICONS.information} />
@@ -147,7 +150,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>Livepatch</td>
+              <td data-test="doc-link">Livepatch</td>
               <td>
                 <a href="https://ubuntu.com/security/livepatch/docs">
                   Livepatch on-prem and Livepatch client
@@ -155,7 +158,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>Landscape</td>
+              <td data-test="doc-link">Landscape</td>
               <td>
                 <a href="https://ubuntu.com/tutorials/enable-esm-configurations-at-scale-with-ua-client-and-landscape#2-prerequisites">
                   How to use Landscape to manage Ubuntu Systems
@@ -163,7 +166,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td data-test="doc-link">
                 Real-time kernel{" "}
                 <Tooltip message="Only available for Ubuntu 22.04 LTS">
                   <Icon name={ICONS.information} />
@@ -177,7 +180,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>Active directory</td>
+              <td data-test="doc-link">Active directory</td>
               <td>
                 <a href="https://github.com/ubuntu/adsys">
                   Advanced GPO support, privilege management and script
@@ -186,7 +189,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>Common Criteria</td>
+              <td data-test="doc-link">Common Criteria</td>
               <td>
                 <a href="https://ubuntu.com/security/certifications/docs/16-18/cc">
                   Common Criteria EAL 2 packages for 16.04 & 18.04
