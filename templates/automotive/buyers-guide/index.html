@@ -489,6 +489,11 @@
     display: none;
   }
 
+  .feature-section {
+    will-change: contents;
+    transition: all .75s ease-in-out;
+  }
+
   .selected-feature {
     padding-bottom: 0;
   }
@@ -524,17 +529,23 @@
     90% {height: 30ch;}
     100% {height: auto;}
   }
-  #open-source .u-limit-content {
-    animation: reveal-os .5s ease-in-out;
+  #open-source.selected-feature .u-limit-content {
+    animation: reveal-os .75s ease-in-out;
   }
+  #open-source:not(.selected-feature) .u-limit-content {
+    /* animation: reveal-os .5s ease-in-out;
+    animation-direction: reverse;
+    animation-fill-mode: forwards; */
+  }
+
 
   @keyframes reveal-power {
     0% {height: 9ch;}
     90% {height: 53ch;}
     100% {height: auto;}
   }
-  #power-management .u-limit-content {
-    animation: reveal-power .5s ease-in-out;
+  #power-management.selected-feature .u-limit-content {
+    animation: reveal-power .75s ease-in-out;
   }
 
   @keyframes reveal-security {
@@ -542,8 +553,8 @@
     90% {height: 42ch;}
     100% {height: auto;}
   }
-  #security .u-limit-content {
-    animation: reveal-security .5s ease-in-out;
+  #security.selected-feature .u-limit-content {
+    animation: reveal-security .75s ease-in-out;
   }
 
   @keyframes reveal-certifications-and-compliance {
@@ -551,8 +562,8 @@
     90% {height: 60ch;}
     100% {height: auto;}
   }
-  #certifications-and-compliance .u-limit-content {
-    animation: reveal-certifications-and-compliance .5s ease-in-out;
+  #certifications-and-compliance.selected-feature .u-limit-content {
+    animation: reveal-certifications-and-compliance .75s ease-in-out;
   }
 
   @keyframes reveal-developer-support {
@@ -560,8 +571,8 @@
     90% {height: 42ch;}
     100% {height: auto;}
   }
-  #developer-support .u-limit-content {
-    animation: reveal-developer-support .5s ease-in-out;
+  #developer-support.selected-feature .u-limit-content {
+    animation: reveal-developer-support .75s ease-in-out;
   }
 
   @keyframes reveal-compatibility {
@@ -569,8 +580,8 @@
     90% {height: 20ch;}
     100% {height: auto;}
   }
-  #compatibility .u-limit-content {
-    animation: reveal-compatibility .5s ease-in-out;
+  #compatibility.selected-feature .u-limit-content {
+    animation: reveal-compatibility .75s ease-in-out;
   }
 
   .u-show-on-reveal {
