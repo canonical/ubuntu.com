@@ -362,7 +362,10 @@ let isFetching = false;
 function fetchDropdown(url, id) {
   if (isFetching) return;
   isFetching = true;
+
   const container = document.getElementById(id + "-content");
+  const fetchedContent = container.querySelector("ul.p-navigation__dropdown");
+  if (fetchedContent) return;
   const mobileContainer = document.getElementById(id);
 
   if (container.innerHTML === "") {
@@ -555,11 +558,10 @@ initNavigationSearch();
 function setUpGlobalNav() {
   const globalNavTab = document.querySelector(".global-nav-mobile");
   const globalNavMainTab = globalNavTab.querySelector("ul.p-navigation__items");
-  globalNavMainTab.classList.replace(
-    "p-navigation__items",
-    "p-navigation__dropdown",
-    "dropdown-content-mobile"
-  );
+
+  globalNavMainTab.classList.replace("u-hide", "dropdown-content-mobile");
+  globalNavMainTab.classList.replace("p-navigation__items", "p-navigation__dropdown",);
+  
   globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
 
   globalNavTab
