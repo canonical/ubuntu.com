@@ -480,10 +480,6 @@
     -webkit-mask-image: none;
   }
 
-  .p-card {
-    transition: all .35s;
-  }
-
   .feature-selected .p-strip,
   .feature-selected .u-hide-on-reveal {
     display: none;
@@ -522,66 +518,6 @@
   .selected-feature .u-limit-content {
     overflow: visible;
     height: auto;
-  }
-
-  @keyframes reveal-os {
-    0% {height: 9ch;}
-    90% {height: 30ch;}
-    100% {height: auto;}
-  }
-  #open-source.selected-feature .u-limit-content {
-    animation: reveal-os .75s ease-in-out;
-  }
-  #open-source:not(.selected-feature) .u-limit-content {
-    /* animation: reveal-os .5s ease-in-out;
-    animation-direction: reverse;
-    animation-fill-mode: forwards; */
-  }
-
-
-  @keyframes reveal-power {
-    0% {height: 9ch;}
-    90% {height: 53ch;}
-    100% {height: auto;}
-  }
-  #power-management.selected-feature .u-limit-content {
-    animation: reveal-power .75s ease-in-out;
-  }
-
-  @keyframes reveal-security {
-    0% {height: 9ch;}
-    90% {height: 42ch;}
-    100% {height: auto;}
-  }
-  #security.selected-feature .u-limit-content {
-    animation: reveal-security .75s ease-in-out;
-  }
-
-  @keyframes reveal-certifications-and-compliance {
-    0% {height: 9ch;}
-    90% {height: 60ch;}
-    100% {height: auto;}
-  }
-  #certifications-and-compliance.selected-feature .u-limit-content {
-    animation: reveal-certifications-and-compliance .75s ease-in-out;
-  }
-
-  @keyframes reveal-developer-support {
-    0% {height: 9ch;}
-    90% {height: 42ch;}
-    100% {height: auto;}
-  }
-  #developer-support.selected-feature .u-limit-content {
-    animation: reveal-developer-support .75s ease-in-out;
-  }
-
-  @keyframes reveal-compatibility {
-    0% {height: 9ch;}
-    90% {height: 20ch;}
-    100% {height: auto;}
-  }
-  #compatibility.selected-feature .u-limit-content {
-    animation: reveal-compatibility .75s ease-in-out;
   }
 
   .u-show-on-reveal {
