@@ -190,8 +190,8 @@
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#certifications-and-compliance">Certifications and compliance&nbsp;&rsaquo;</a></p>
         </div>
+        <hr class="p-rule is-dark">
       </div>
-      <hr class="is-fixed-width">
     </div>
     <div class="row">
       <div class="col-6">
@@ -256,8 +256,8 @@
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#power-management">Power management&nbsp;&rsaquo;</a></p>
         </div>
+        <hr class="p-rule is-dark">
       </div>
-      <hr class="is-fixed-width">
     </div>
     <div class="row">
       <div class="col-6">
@@ -326,8 +326,8 @@
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#open-source">Open source&nbsp;&rsaquo;</a></p>
         </div>
+        <hr class="p-rule is-dark">
       </div>
-      <hr class="is-fixed-width">
     </div>
     <div class="row">
       <div class="col-6">
@@ -394,8 +394,8 @@
           <p class="p-muted-heading">Next</p>
           <p class="p-heading--3"><a href="#">Overview&nbsp;&rsaquo;</a></p>
         </div>
+        <hr class="p-rule is-dark">
       </div>
-      <hr class="is-fixed-width">
     </div>
     <div class="row">
       <div class="col-6">
@@ -567,6 +567,9 @@
   });
 
   function reveal(feature) {
+    if (feature === "form") {
+      return false;
+    }
     const globalNav = document.querySelector('.global-nav');
     if (feature !== "") {
       previousFeature = feature;
