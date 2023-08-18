@@ -125,6 +125,20 @@
   {% endwith %}
 </template>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("q");
+
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        const searchButton = document.getElementById("cve-search-button");
+        searchButton.click();
+      }
+    });
+  });
+</script>
+
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
