@@ -98,7 +98,9 @@
     </div>
     <div class="row u-show-on-reveal">
       <hr class="p-rule is-dark">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="compatibility" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -164,7 +166,9 @@
       </a>
     </div>
     <div class="row u-show-on-reveal">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="security" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -230,7 +234,9 @@
       </a>
     </div>
     <div class="row u-show-on-reveal">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="developer-support" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -300,7 +306,9 @@
       </a>
     </div>
     <div class="row u-show-on-reveal">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="certifications-and-compliance" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -368,7 +376,9 @@
       </a>
     </div>
     <div class="row u-show-on-reveal">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="power-management" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -434,13 +444,17 @@
       </a>
     </div>
     <div class="row u-show-on-reveal">
-      {% include "/automotive/buyers-guide/_form.html" %}
+      {% with interested_feature="open-source" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
     </div>
   </div>
 </section>
 
 <section class="p-strip u-no-padding--top" id="form">
-  {% include "/automotive/buyers-guide/_form.html" %}
+  {% with interested_feature="overall" %}
+    {% include "/automotive/buyers-guide/_form.html" %}
+  {% endwith %}
 </section>
 
 
