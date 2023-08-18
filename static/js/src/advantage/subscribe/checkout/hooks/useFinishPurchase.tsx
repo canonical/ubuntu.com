@@ -171,7 +171,11 @@ const useFinishPurchase = () => {
       const previewRes = await previewReq.json();
 
       if (previewRes.errors) {
-        throw new Error(previewRes.errors);
+        if (
+          previewRes.errors != "no invoice would be issued for this purchase"
+        ) {
+          throw new Error(previewRes.errors);
+        }
       }
 
       // purhcase

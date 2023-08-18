@@ -1,7 +1,6 @@
 import { useQuery } from "react-query";
-import { useFormikContext } from "formik";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
-import { FormValues, TaxInfo } from "../utils/types";
+import { TaxInfo } from "../utils/types";
 
 type useCalculateProps = {
   marketplace: UserSubscriptionMarketplace;
@@ -20,7 +19,6 @@ const useCalculate = ({
   VATNumber,
   isTaxSaved,
 }: useCalculateProps) => {
-  const { setFieldValue } = useFormikContext<FormValues>();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["calculate"],
     async () => {
@@ -54,7 +52,6 @@ const useCalculate = ({
       }
 
       const data: TaxInfo = res;
-      setFieldValue("totalPrice", data.total);
       return data;
     },
     {

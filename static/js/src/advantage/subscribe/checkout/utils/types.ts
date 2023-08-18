@@ -45,6 +45,8 @@ export interface FormValues {
   VATNumber?: string;
   captchaValue: string | null;
   TermsAndConditions: boolean;
+  TermsOfService: boolean;
+  DataPrivacy: boolean;
   MarketingOptIn: boolean;
   Description: boolean;
   marketplace: UserSubscriptionMarketplace;
@@ -52,7 +54,6 @@ export interface FormValues {
   isTaxSaved: boolean;
   isCardValid: boolean;
   isInfoSaved: boolean;
-  totalPrice: undefined | number;
 }
 
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";

@@ -1,0 +1,11 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/data/docs/mongodb/k8s/search",
+  siteSearch="https://ubuntu.com/data/docs/mongodb/k8s",
+  placeholder="Search Charmed MongoDB on Kubernetes docs",
+  navigation=navigation,
+  disable_title=true
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

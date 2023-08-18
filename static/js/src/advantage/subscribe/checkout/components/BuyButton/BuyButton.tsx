@@ -7,7 +7,6 @@ import * as Sentry from "@sentry/react";
 import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
-import { currencyFormatter } from "advantage/react/utils";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
@@ -102,19 +101,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
           }
-
-          window.plausible("pro-purchase", {
-            props: {
-              country: values.country,
-              product: product?.name,
-              quantity: quantity,
-              total:
-                values.totalPrice &&
-                currencyFormatter.format(values?.totalPrice / 100),
-              "buying-for": values.buyingFor,
-              action: buyAction,
-            },
-          });
         },
         onError: (error) => {
           setIsLoading(false);
@@ -327,19 +313,21 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
-          if (!window.loginSession) {
+          if (product.marketplace == "canonical-cube") {
+            location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+              product.name
+            )}&quantity=${quantity}`;
+          } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
-
             let urlBase = "/pro/subscribe";
             if (product.marketplace == "blender") {
               urlBase = "/pro/subscribe/blender";
             }
-
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
               email
             )}`;
           } else {
-            location.pathname = "/pro/dashboard";
+            location.href = "/pro/dashboard";
           }
         }
       };

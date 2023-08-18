@@ -19,6 +19,58 @@ api = CertificationAPI(
 partners_api = PartnersAPI(session=session)
 
 
+def certified_routes(app):
+    """
+    Load all /certified routes
+
+    The purpose of this function is to liberate
+    space on app.py. These endpoints are pretty stable
+    and independent, so they don't need to reside on app.py
+    """
+
+    app.add_url_rule("/certified", view_func=certified_home)
+    app.add_url_rule(
+        "/certified/<canonical_id>",
+        view_func=certified_model_details,
+    )
+    app.add_url_rule(
+        "/certified/<canonical_id>/<release>",
+        view_func=certified_hardware_details,
+    )
+    app.add_url_rule(
+        "/certified/component/<component_id>",
+        view_func=certified_component_details,
+    )
+    app.add_url_rule(
+        "/certified/vendors/<vendor>",
+        view_func=certified_vendors,
+    )
+    app.add_url_rule(
+        "/certified/desktops",
+        view_func=certified_desktops,
+    )
+    app.add_url_rule(
+        "/certified/laptops",
+        view_func=certified_laptops,
+    )
+    app.add_url_rule(
+        "/certified/servers",
+        view_func=certified_servers,
+    )
+    app.add_url_rule(
+        "/certified/iot",
+        view_func=certified_devices,
+    )
+    app.add_url_rule(
+        "/certified/socs",
+        view_func=certified_socs,
+    )
+    app.add_url_rule(
+        "/certified/why-certify",
+        view_func=certified_why,
+    )
+
+
 def certified_component_details(component_id):
     try:
         component = api.component_summary(component_id)
@@ -275,24 +327,23 @@ def certified_home():
         if int(vendor["servers"] > 1):
             server_vendors.append(vendor)
 
+    if (
+        "category" in request.args
+        and len(request.args.getlist("category")) == 1
+    ):
+        parameters = request.args.to_dict(flat=False)
+        parameters.pop("category")
+        new_params = ""
+        for key in parameters:
+            for value in parameters[key]:
+                new_params += f"{key}={value}&"
+
+        return redirect(
+            f'/certified/{request.args["category"].lower()}s?{new_params}'
+        )
+
     if "q" in request.args:
         query = request.args["q"]
-
-        # Old site replacements
-        if set(request.args) & set(["query", "vendors"]):
-            # Convert ImmutableMultiDict into normal dict
-            parameters = request.args.to_dict()
-            # Do the replacements
-            if "query" in parameters:
-                parameters["q"] = parameters["query"]
-                del parameters["query"]
-
-            if "vendors" in parameters:
-                parameters["vendor"] = parameters["vendors"]
-                del parameters["vendors"]
-
-            # Convert back into query string and redirect
-            return redirect(f"/certified?{urlencode(parameters)}", 301)
 
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)

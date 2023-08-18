@@ -7,6 +7,7 @@ import {
   IoTDevices,
   ProductListings,
   ProductTypes,
+  LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import { productListFixture } from "advantage/subscribe/react/utils/test/Mocks";
 
@@ -33,6 +34,45 @@ test("Feature sections disables Infra + Apps if destkop is selected", () => {
   );
 
   expect(screen.getByTestId("infra-only")).toBeDisabled();
+});
+
+test("Ubuntu pro is disabled if physical & 14.04 server is selected", () => {
+  render(
+    <FormProvider
+      initialType={ProductTypes.physical}
+      initialVersion={LTSVersions.trusty}
+    >
+      <Feature />
+    </FormProvider>
+  );
+
+  expect(screen.getByTestId("pro")).toBeDisabled();
+});
+
+test("Ubuntu pro is disabled if desktops & 14.04 server is selected", () => {
+  render(
+    <FormProvider
+      initialType={ProductTypes.desktop}
+      initialVersion={LTSVersions.trusty}
+    >
+      <Feature />
+    </FormProvider>
+  );
+
+  expect(screen.getByTestId("pro")).toBeDisabled();
+});
+
+test("Ubuntu pro infra only is not disabled if desktop and 14.04 server is selected", () => {
+  render(
+    <FormProvider
+      initialType={ProductTypes.desktop}
+      initialVersion={LTSVersions.trusty}
+    >
+      <Feature />
+    </FormProvider>
+  );
+
+  expect(screen.getByTestId("infra-only")).not.toBeDisabled();
 });
 
 test("The section is disabled if a public cloud is selected", () => {

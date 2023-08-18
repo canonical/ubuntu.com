@@ -1,0 +1,383 @@
+{% extends "software-partnerships/base_software-partnerships.html" %}
+
+{% block title %}Software partnerships{% endblock %}
+
+{% block meta_description %}
+Explore our software partnership opportunities: focus on your mission and give your customers peace of mind with trusted platforms for operations and security.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1ucKfDzLlw49sEM9OfkZ9aT5EHoDt4DsNebQ4ohzKn_E/edit#{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block content %}
+<section class="p-strip">
+  <div class="row--50-50">
+    <div class="col">
+      <h1 class="p-heading--bold p-heading--2">
+        Turn your software into enterprise-grade solutions
+      </h1>
+    </div>
+    <div class="col">
+      <p>Give your customers peace of mind. Deliver applications on any cloud, with built-in resilience, automation and security.
+      </p>
+      <p>Explore our partnership opportunities for software vendors.</p>
+      <p>
+        <a href="/contact-us/form?product=operator-collection" class="p-button--positive">Contact us</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Drive your solutions with a simple, flexible operations platform</h2>
+    </div>
+    <div class="col">
+      <div class="p-image__background--3-2 u-align--center u-vertically-center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a8147e27-charmed-opensearch-application-operations.svg",
+          alt="",
+          width="240",
+          height="155",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p>Deploy, integrate and manage your solutions at scale, on any infrastructure using your own software operator.</p>
+      <p>Canonical's Charm SDK allows you to build operators and package your operational knowledge as code, so you can automate more and focus on business value.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Reuse operators for popular<br class="u-hide--medium u-hide--small"> open source applications</h2>
+    </div>
+    <div class="col">
+      <div class="p-image__background--3-2 u-align--center u-vertically-center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/2c7e3fab-juju-header-illustration.svg",
+          alt="",
+          width="308",
+          height="280",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p>Build larger solutions more quickly by integrating with available Charms on <a href="https://charmhub.io">Charmhub.io</a>.</p>
+      <p>Charms allow faster software delivery of reference builds, consistent upgrades and simplified operations, whether on edge, private or public clouds.</p>
+      <p>
+        <a href="https://juju.is/" class="p-button">Get started with Juju and Charms</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row">
+    <div class="col-12 col-medium-3 u-sv3">
+      <h2>Integrate with rock-solid <br class="u-hide--medium u-hide--small"> infrastructure</h2>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule u-hide--medium u-hide--small">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Metal-as-a-Service provisioning for data centres: Canonical MAAS</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Metal-As-A-Service (MAAS) provisions and deploys any OS image on any hardware: MAAS is the essential foundation for private cloud infrastructure.</p>
+            <p>
+              <a href="https://maas.io" class="p-button">Learn more about MAAS</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Cost-effective private cloud with Charmed OpenStack</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>For workloads and solutions integrated with OpenStack, consider integrating with Charmed OpenStack. Leverage Canonical's tooling to streamline OpenStack deployment, modelling, implementations, and orchestration.</p>
+            <p>
+              <a href="/openstack" class="p-button">Discover Charmed OpenStack</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Canonical Kubernetes for multi-cloud operations</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Canonical Kubernetes is charm-driven, CNCF-conformant and supported by Canonical. Boost developer productivity and business innovation by charming your software and integrating with Canonical Kubernetes.</p>
+            <p>
+              <a href="/kubernetes" class="p-button">Explore Canonical Kubernetes</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row--50-50">
+    <div class="col u-sv3">
+      <h2>Deliver fully secured and supported applications</h2>
+    </div>
+    <div class="col">
+      <p>The most comprehensive subscription for open source software security.</p>
+      <p>Ubuntu is a popular and reliable base image for building custom container images. It's also available as hardened container images, with stable tracks from development to production. With an optional Ubuntu Pro subscription, you get 10 years of guaranteed security maintenance from Canonical's trusted repositories.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Ubuntu: the most popular Linux on public clouds</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu is the world's most popular operating system (OS) across public clouds. Thanks to its security, versatility and policy of regular updates, Ubuntu is the leading cloud guest OS. It's also the only free, cloud OS with the option of enterprise-grade commercial support and compliance for regulated environments.</p>
+            <p>
+              <a href="/cloud/public-cloud" class="p-button">Get Ubuntu on public clouds</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Get 10 years of stability for infrastructure, OS and applications </h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu Pro expands Canonical's security maintenance to 23,000 packages beyond the main OS covering critical infrastructure packages and many open source applications. Weekday or 24/7 support is also available on top of the Ubuntu Pro subscription to help you ensure business continuity.</p>
+            <p>
+              <a href="/pro" class="p-button">Get Ubuntu Pro</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Hardened long term supported (LTS) OCI images</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>The LTS Image Portfolio provides ready-to-use base images free of high and critical CVEs. The same secure infrastructure that produces the popular Ubuntu releases also builds these images. Images are updated automatically when apps or dependencies are fixed.</p>
+            <p>
+              <a href="/security">Learn more about security for Ubuntu&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row--50-50">
+    <div class="col u-sv3">
+      <h2>Minimal, secure and efficient containers</h2>
+    </div>
+    <div class="col">
+      <p>Create chiselled Ubuntu OCI images and get your containerised applications optimised for performance.</p>
+      <p>
+        <a href="/blog/craft-custom-chiselled-ubuntu-distroless">Learn more about Chiselled Ubuntu&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Lean OCI images</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Reduce the attack surface, improving your security posture by shipping only what's needed.</p>
+            <p>Leverage performance benefits in addition to better security and a smaller image size, with faster downloads and start-up times.</p>
+            <p>Consume significantly less resources, saving on energy bills and promoting greener infrastructures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Combine Distroless and Ubuntu</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Chiselled Ubuntu images are created using high-quality components from the Ubuntu distribution and are updated in accordance with the same release cycle and with the same support guarantees (5-year LTS, 10-year ESM plus optional weekday or 24/7 support).</p>
+            <p>No operating system-level packages or libraries that are not required at runtime. No package manager or shell (apt or bash, resulting in a minimal footprint).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row">
+    <div class="col-12 col-medium-3 u-sv3">
+      <h2>More opportunities <br class="u-hide--small u-hide--medium"/> for partners</h2>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule u-hide--medium u-hide--small">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Partner with Canonical to embed our products</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Canonical's portfolio is used to power solutions deployed all over the world within public clouds, data-centres, edge infrastructure and workstations.</p>
+            <p>Join the embedding programme and start an embedding partnership with Canonical.</p>
+            <p>
+              <a href="/embedding">Learn more about the embedding programme&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+      <div class="p-block">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">Promote your software as "Validated with Canonical"</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Validate against Canonical offerings (including Ubuntu, OpenStack and Kubernetes), with testing and tuning for optimal software performance.</p>
+            <p>Canonical also offers support assurance for the LTS releases of Ubuntu for partner applications.</p>
+            <p>
+              <a href="/hpc/contact-us?product=hpc-isv" class="p-button">Contact us for validation</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <div class="row">
+    <div class="col-3 col-medium-3 u-sv3">
+      <h2>Resources</h2>
+    </div>
+    <div class="col-9 col-medium-3">
+      <div class="row">
+        <div class="p-block">
+          <div class="row">
+            <div class="col-3">
+              <h3 class="p-heading-icon__title p-heading--5">Product documentation</h3>
+            </div>
+            <div class="col-6">
+              <p>
+                <a href="https://juju.is/docs">Read the Juju documentation</a> for more details.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-block">
+          <hr class="p-rule">
+          <div class="row">
+            <div class="col-3">
+              <h3 class="p-heading-icon__title p-heading--5">Community support</h3>
+            </div>
+            <div class="col-6">
+              <p>Join our community forums for <a href="https://discourse.ubuntu.com/">Ubuntu</a> or <a href="https://chat.charmhub.io/charmhub/channels/community-workshops">Juju</a>. Everyone is welcome!</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-block">
+          <hr class="p-rule">
+          <div class="row">
+            <div class="col-3">
+              <h3 class="p-heading-icon__title p-heading--5">From our blog</h3>
+            </div>
+            <div class="col-6">
+              <ul class="p-list u-no-margin--bottom" id="software-partnerships-container">
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <template style="display:none" id="software-partnerships-template">
+            <li class="p-list__item u-no-padding--top">
+              <h4 class="p-heading--5 u-no-margin--bottom"><a class="article-link article-title"></a></h4>
+              <p class="article-excerpt u-sv3"></p>
+              <hr class="p-rule">
+            </li>
+        </template>
+      
+        <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+        <script>
+          canonicalLatestNews.fetchLatestNews({
+            articlesContainerSelector: "#software-partnerships-container",
+            articleTemplateSelector: "#software-partnerships-template",
+            gtmEventLabel: "ubuntu.com juju blog",
+            limit: "3",
+            tagId: "1286",
+          })
+          // Wait for the lastest-news to be added to the DOM and then remove the final <hr>
+          const targetNode = document.getElementById('software-partnerships-container');
+          const observer = new MutationObserver(() => {
+            const lastItem = document.querySelector('#software-partnerships-container > li:last-child hr.p-rule');
+            if (lastItem) {
+              lastItem.style.display = 'none';
+            }
+          });
+          observer.observe(targetNode, { childList: true });
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock content%}

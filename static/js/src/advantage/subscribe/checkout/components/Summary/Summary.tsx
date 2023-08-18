@@ -40,11 +40,20 @@ function Summary({ quantity, product, action, setError }: Props) {
 
   const isSummaryLoading = isPreviewFetching || isCalculateFetching;
   const priceData: TaxInfo | undefined = preview || calculate;
-
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
-  const units = product?.marketplace === "canonical-ua" ? "Machines" : "Users";
-  const planType = action !== "offer" ? "Plan type" : "Products";
+  const units =
+    product?.marketplace === "canonical-ua"
+      ? "Machines"
+      : product?.marketplace === "canonical-cube"
+      ? "Exams"
+      : "Users";
+  const planType =
+    product?.marketplace === "canonical-cube"
+      ? "Product"
+      : action !== "offer"
+      ? "Plan type"
+      : "Products";
   const productName =
     action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
   const discount =
@@ -110,6 +119,13 @@ function Summary({ quantity, product, action, setError }: Props) {
                 ? currencyFormatter.format(total)
                 : currencyFormatter.format(defaultTotal)}
             </strong>
+          </p>
+          <p>
+            <>
+              {total == 0 &&
+                priceData !== undefined &&
+                "This is because you have likely already paid for this product for the current billing period."}
+            </>
           </p>
         </Col>
       </Row>
