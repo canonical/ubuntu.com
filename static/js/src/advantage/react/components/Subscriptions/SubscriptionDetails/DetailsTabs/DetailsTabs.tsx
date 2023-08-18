@@ -81,7 +81,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Knowledge Base</td>
+                  <td data-test="doc-link">Knowledge Base</td>
                   <td>
                     <a href="https://portal.support.canonical.com/?_ga=2.3371065.849364026.1691488233-1001052631.1648559628">
                       Online library of articles and tutorials
@@ -90,7 +90,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
                 </tr>
                 {supportLevel == "None" ? null : (
                   <tr>
-                    <td>{supportLevel}</td>
+                    <td data-test="doc-link">{supportLevel}</td>
                     <td>
                       <a href="https://portal.support.canonical.com/staff/s/contactsupport">
                         Phone and ticket support
@@ -99,7 +99,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
                   </tr>
                 )}
                 <tr>
-                  <td>Ubuntu Assurance Program</td>
+                  <td data-test="doc-link">Ubuntu Assurance Program</td>
                   <td>
                     <a href="https://ubuntu.com/legal/ubuntu-pro-assurance">
                       Protecting your business from IP infringement
@@ -124,7 +124,7 @@ const DetailsTabs = ({ subscription, ...wrapperProps }: Props) => {
               </td>
             </tr>
             <tr>
-              <td>
+              <td data-test="doc-link">
                 USG{" "}
                 <Tooltip message="Please read the documentation and only enable this feature if you specifically request this certification.">
                   <Icon name={ICONS.information} />
