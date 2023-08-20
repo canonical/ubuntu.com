@@ -26,7 +26,7 @@ documentation for details.
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
-    <p class="p-notification__message">Snapshots can only be restored on the <em>same major version of etc</em>.</p>
+    <p class="p-notification__message">Snapshots can only be restored on the **same major version of etcd**.</p>
   </div>
 </div>
 
@@ -74,8 +74,7 @@ against the value in the previous output:
 sha256sum etcd-snapshot-2023-04-26-18.04.02.tar.gz
 ```
 
-Note that some applications (e.g. flannel) may store data using the older 'v2' format. In this case you will need to repeat the snapshot procedure above for ***both*** 'keys-version=v3' and 'keys-version=v2'.
-
+Note that some applications (e.g. flannel) may store data using the older 'v2' format. In this case you will need to repeat the snapshot procedure above for ***both*** 'keys-version=v3' and 'keys-version=v2'
 
 ## Restoring a snapshot
 
