@@ -1,17 +1,4 @@
 @mixin ubuntu-p-navigation {
-  body:not(.navigation-lock) {
-    margin-top: -41px;
-    transition: margin-top 0.25s;
-
-    @media (min-width: $breakpoint-navigation-threshold) {
-      margin-top: -33px;
-    }
-
-    @media (min-width: $breakpoint-x-large) {
-      margin-top: -37px;
-    }
-  }
-
   #all-canonical-mobile .global-nav__header-link-anchor::after {
     @media (max-width: $breakpoint-small) {
       right: 1rem !important;
@@ -27,11 +14,15 @@
 
   .global-nav-desktop .global-nav-dropdown {
     top: 0;
+
+    .global-nav__link {
+      color: 69c;
+    }
   }
 
   .p-navigation--sliding {
     z-index: 40;
-
+    
     .p-navigation__nav {
       .p-navigation__items {
         width: 100%;
@@ -220,6 +211,8 @@
   }
 
   .p-navigation.is-secondary {
+    position: sticky;
+    top: 0px;
     z-index: 9;
 
     .p-navigation__nav.is-open {

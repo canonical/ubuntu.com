@@ -25,18 +25,6 @@ const currentBubble = window.location.pathname.split("/")[1];
 
 nav.classList.remove("u-hide");
 
-// if the user has previously visited a page in the same bubble,
-// and scrolled up to reveal the reduced nav, show the nav on
-// pages within the same bubble
-function checkTopNav() {
-  const lastBubble = sessionStorage.getItem("navBubble");
-
-  if (lastBubble === currentBubble) {
-    addClassesToElements([document.body], ["navigation-lock"]);
-  }
-}
-checkTopNav();
-
 //Helper functions
 
 function toggleIsActiveState(element, active) {
@@ -94,34 +82,6 @@ document.addEventListener("global-nav-opened", () => {
   );
   topLevelNavDropdowns.forEach((dropdown) => updateNavMenu(dropdown, false));
 });
-
-document.addEventListener("wheel", function (e) {
-  if (window.scrollY <= 0) {
-    revealTopNav();
-  }
-});
-
-document.addEventListener("scroll", function (e) {
-  if (window.scrollY <= 0) {
-    revealTopNav();
-  }
-});
-
-if (skipLink) {
-  skipLink.addEventListener("focus", function (e) {
-    if (window.scrollY <= 0) {
-      revealTopNav();
-    }
-  });
-}
-
-if (reducedNav) {
-  reducedNav.addEventListener("focus", function (e) {
-    if (window.scrollY <= 0) {
-      revealTopNav();
-    }
-  });
-}
 
 // Event handler functions
 
@@ -317,11 +277,6 @@ function toggleGlobalNavVisibility(dropdown, show, delay) {
       globalNavInnerContent.classList.add("u-hide");
     }, delay);
   }
-}
-
-function revealTopNav() {
-  document.body.style.marginTop = 0;
-  sessionStorage.setItem("navBubble", currentBubble);
 }
 
 function makeRequest(url, callback) {
