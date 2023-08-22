@@ -39,31 +39,30 @@
 </section>
 
 <section class="p-strip is-deep u-no-padding--top">
-  <div class="u-fixed-width u-no-margin--bottom">
-    <div class="row">
-      <div class="col-3 col-medium-2">
-        <div class="p-strip is-shallow u-no-padding--top">
-          <h2 class="p-text--small-caps">Choose a board</h2>
-        </div>
-        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="AMD-Xilinx boards">
-          <li><button class="p-tabs__item" id="kira-kv260-vision" role="tab" aria-selected="true" aria-controls="kira-kv260-vision-tab">Kria SOMs</button></li>
-          <li><button class="p-tabs__item" id="zynq-ultrascale" role="tab" aria-selected="false" aria-controls="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</button></li>
-          <li><button class="p-tabs__item" id="versal-adaptive-evaluation-kits" role="tab" aria-selected="false" aria-controls="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</button></li>
-        </ul>
-        <form class="u-hide--large u-hide--medium">
-          <select name="boardSelect" id="boardSelect">
-            <option value="kira-kv260-vision-tab" selected="">Kria SOMs</option>
-            <option value="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</option>
-            <option value="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</option>
-          </select>
-        </form>
+  <hr class="p-rule u-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <h2 class="p-text--small-caps">Choose a board</h2>
       </div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="AMD-Xilinx boards">
+        <li><button class="p-tabs__item" id="kira-kv260-vision" role="tab" aria-selected="true" aria-controls="kira-kv260-vision-tab">Kria SOMs</button></li>
+        <li><button class="p-tabs__item" id="zynq-ultrascale" role="tab" aria-selected="false" aria-controls="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</button></li>
+        <li><button class="p-tabs__item" id="versal-adaptive-evaluation-kits" role="tab" aria-selected="false" aria-controls="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</button></li>
+      </ul>
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="kira-kv260-vision-tab" selected="">Kria SOMs</option>
+          <option value="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</option>
+          <option value="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</option>
+        </select>
+      </form>
+    </div>
 
-      <div class="col-9 col-medium-4">
-        {% include "download/amd-xilinx/tab-1.html" %}
-        {% include "download/amd-xilinx/tab-2.html" %}
-        {% include "download/amd-xilinx/tab-3.html" %}
-      </div>
+    <div class="col-9 col-medium-4">
+      {% include "download/amd-xilinx/tab-1.html" %}
+      {% include "download/amd-xilinx/tab-2.html" %}
+      {% include "download/amd-xilinx/tab-3.html" %}
     </div>
   </div>
 </section>
