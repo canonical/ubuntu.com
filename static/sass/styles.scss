@@ -1319,7 +1319,6 @@ hr.p-separator.is-shallow {
   background-color: #fff;
 }
 
-
 // New stuff not in Vanilla yet
 $color-link-visited-dark: #a679d2 !default;
 $color-link-dark: #69c !default;
@@ -1329,9 +1328,9 @@ $color-link-dark: #69c !default;
   color: $colors--dark-theme--text-default;
 
   .inner-wrapper .p-card {
-    background: #222222; // Unique color for this pattern
-    color: $colors--dark-theme--text-default;
+    background: #222; // Unique color for this pattern
     border: none;
+    color: $colors--dark-theme--text-default;
   }
 
   .p-checkbox__label {
@@ -1371,4 +1370,3 @@ $color-link-dark: #69c !default;
     width: auto;
   }
 }
-
