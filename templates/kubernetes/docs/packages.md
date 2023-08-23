@@ -36,7 +36,7 @@ sudo snap install kubectl --classic
 <div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">Note: If you install tools such as **kubectl** from both the snap
+    <p class="p-notification__message">If you install tools such as **kubectl** from both the snap
     store and the apt archive they will be in different locations. Depending on your
     environment the snap may be resolved before the Debian installed package.</p>
   </div>
