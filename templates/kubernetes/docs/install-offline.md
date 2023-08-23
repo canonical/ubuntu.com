@@ -285,7 +285,7 @@ is covered in the [proxy documentation][].
 [sideload]: https://docs.ubuntu.com/snap-store-proxy/en/airgap#usage
 [proxy documentation]: /kubernetes/docs/proxies
 [registry]: /kubernetes/docs/docker-registry
-[LXD]: https://ubuntu.com/lxd
+[LXD]: https://linuxcontainers.org/lxd/introduction/
 [local-install]: /kubernetes/docs/install-local
 
 <!-- FEEDBACK -->

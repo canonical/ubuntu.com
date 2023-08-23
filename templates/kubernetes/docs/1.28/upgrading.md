@@ -3,12 +3,12 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading to 1.26"
+  title: "Upgrading to 1.28"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
-permalink: 1.26/upgrading.html
+permalink: 1.28/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
@@ -36,23 +36,25 @@ The 'App' section of the output lists each application and its version number. N
 
 ## Before you begin
 
-<div class="p-notification--caution is-inline">
+<div class="p-notification--warning is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning!:</span>
-    <p class="p-notification__message"><strong>Juju compatibility</strong>  - currently, only the latest <strong>2.9/stable</strong> version of Juju is recommended for use with Charmed Kubernetes. The later 3.0 versions of Juju introduce breaking changes and are not supported until a tested upgrade path is in place. If you have already installed a later version of the Juju client, you can revert to the supported channel by running <code> sudo snap refresh juju --channel=2.9/stable</code></p>
+    <p class="p-notification__message"><strong>Juju compatibility</strong>  The latest current version of Juju (as of the time of the Charmed Kubernetes 1.28 release) is <strong>3.1.5</strong>. This new major release introduces some breaking changes with previous versions (2.95). It is <em>recommended</em> that you upgrade to this new version of Juju, but also be aware of the changes. See the <a href="https://juju.is/docs/olm/upgrade-your-juju-deployment-from-2-9-to-3-x"> Juju documentation</a> for more information.</p>
   </div>
 </div>
+
+
 
 As with all upgrades, there is a possibility that there may be unforeseen difficulties. It is **highly recommended that you make a backup** of any important data, including any running workloads. For more details on creating backups, see the separate [documentation on backups][backups].
 
 You should also make sure:
 
--   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
--   Your cluster is running normally
--   Your Juju client and controller/models are running the 2.9/stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
--   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
--   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.26 which may impact your workloads.
+-   The machine from which you will perform the backup has sufficient internet access to retrieve updated software.
+-   Your cluster is running normally.
+-   Your Juju client and controller/models are running the same, stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
+-   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from.
+-   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.27 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -71,7 +73,7 @@ deprecated APIs.
 
 ## Upgrading the Machine's Series (required for machines currently running 18.04(Bionic))
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/juju/manage-machines#heading--upgrade-a-machine).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-the-ubuntu-series-of-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
@@ -86,7 +88,6 @@ outside of the cycle of new releases of Kubernetes.
 
 This includes:
 
-- Docker
 - easyrsa
 - etcd
 - flannel, calico or other CNI
@@ -131,6 +132,40 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 
 ```bash
 juju config etcd channel=3.4/stable
+```
+### Upgrading MetalLB (if used)
+
+Previous versions of the Charmed Kubernetes bundle adopted a two charm approach, deployed in a K8s model with the suggested name `metallb-system`.
+The 1.28 release includes the charms for MetallLB have been updated into a single charm (`metallb`). Updating is simply a matter of removing the old
+charms and model, creating a new Kubernetes Model and deploying the new charm.
+
+#### Upgrade steps
+
+First create a new model (call it whatever is preferred) so long as it is not named `metallb-system`, and deploy the charm into that model.
+
+```shell
+juju add-model juju-metallb
+juju deploy metallb --channel 1.28/stable --trust --config namespace=metallb-system-2
+```
+
+Next, wait until the metallb charm is active/idle
+
+```shell
+juju status -m juju-metallb --watch=1s
+```
+
+Once stable, the new MetalLB installation will take over managing existing LoadBalancer services, and the model containing the old charms may be deleted.
+
+```shell
+juju switch metallb-system
+juju remove-application metallb-speaker
+juju remove-application metallb-controller
+```
+
+Once the model is empty, it should be safe to remove the model
+
+```shell
+juju destroy-model metallb-system --no-prompt
 ```
 
 
@@ -338,7 +373,7 @@ juju status
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
 
-<!-- LINKS -->
+<!--LINKS-->
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
 [backups]: /kubernetes/docs/backups
@@ -348,15 +383,12 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
-[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
-[inclusive-naming]: /kubernetes/docs/inclusive-naming
-[bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.25/upgrading.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.28/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>

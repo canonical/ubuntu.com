@@ -257,7 +257,7 @@ For additional troubleshooting pointers, please see the
 [cilium-github]: https://github.com/cilium/cilium
 [cilium-dashboards]: https://github.com/cilium/cilium/tree/22161112e06f215a5af9485c05489eba5aa21504/install/kubernetes/cilium/files
 [cilium-metrics]: https://docs.cilium.io/en/stable/observability/metrics/
-[cilium-network]: https://docs.cilium.io/en/stable/security/tutorial-toc/
+[cilium-network]: https://docs.cilium.io/en/stable/security/
 [cilium-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/cilium-overlay.yaml
 [hubble]: https://docs.cilium.io/en/stable/overview/intro/#what-is-hubble
 [hubble-introduction]: https://docs.cilium.io/en/stable/gettingstarted/hubble_intro/

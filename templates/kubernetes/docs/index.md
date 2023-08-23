@@ -24,12 +24,12 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
     </div>
     <div class="col-3 p-divider__block">
       <h3>What's new</h3>
-      <p><em>Charmed Kubernetes 1.27 released!</em> Check out the <a href="/kubernetes/docs/1.27/components">latest version here</a>.</p>
+      <p><em>Charmed Kubernetes 1.28 released!</em> Check out the <a href="/kubernetes/docs/1.28/components">latest version here</a>.</p>
       <p>How Devs, DevOps and businesses <em>really</em> use Kubernetes: <a href="https://juju.is/cloud-native-kubernetes-usage-report-2021">Read the latest industry report</a></p>
     </div>
     <div class="col-3 p-divider__block">
       <h3>Tutorials</h3>
-      <p><a href="/tutorials/get-started-kubeflow#0">Get started with Kubeflow</a></p>
+      <p><a href="/tutorials/how-to-install-portainer-on-canonical-kubernetes#1-overview">Install Portainer on Charmed Kubernetes</a></p>
     </div>
   </div>
 </div>

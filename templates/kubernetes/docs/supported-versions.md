@@ -22,9 +22,9 @@ rather than editing the text -->
 Charmed Kubernetes officially supports the three (3) most recent minor releases
 of Kubernetes.
 
-Current release: **1.27**
+Current release: **1.28**
 
-Supported releases: **1.27.x, 1.26.x, 1.25.x**
+Supported releases: **1.28.x, 1.27.x, 1.26.x**
 
 ## Charmed Kubernetes bundle versions
 
@@ -37,10 +37,10 @@ juju deploy charmed-kubernetes
 
 It is also possible to deploy a specific version of the bundle by including
 the `--channel` argument. For example, to deploy the Charmed Kubernetes
-bundle for the Kubernetes 1.26 release, run the command:
+bundle for the Kubernetes 1.27 release, run the command:
 
 ```bash
-juju deploy charmed-kubernetes --channel=1.26/stable
+juju deploy charmed-kubernetes --channel=1.27/stable
 ```
 
 It is still possible to deploy older, unsupported versions of Charmed Kubernetes.
