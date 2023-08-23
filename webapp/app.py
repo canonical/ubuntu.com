@@ -67,6 +67,7 @@ from webapp.shop.advantage.views import (
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
+    confidentiality_agreement_webhook,
     cred_assessments,
     cred_beta_activation,
     cred_cancel_exam,
@@ -1192,6 +1193,13 @@ app.add_url_rule(
     view_func=get_my_issued_badges,
     methods=["GET"],
 )
+
+app.add_url_rule(
+    "/credentials/confidentiality-agreement",
+    view_func=confidentiality_agreement_webhook,
+    methods=["POST"],
+)
+
 
 # Charmed OpenStack docs
 openstack_docs = Docs(

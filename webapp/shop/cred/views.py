@@ -10,12 +10,17 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
 )
 
+from webapp.shop.api.datastore import (
+    handle_confidentiality_agreement_submission,
+    has_filed_confidentiality_agreement,
+)
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+
 from werkzeug.exceptions import BadRequest
 
 from ...views import marketo_api
@@ -39,6 +44,23 @@ RESERVATION_STATES = {
     "processed": "Complete",
     "canceled": "Cancelled",
 }
+
+
+def confidentiality_agreement_webhook():
+    username = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME")
+    password = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD")
+    authorization = flask.request.authorization
+    if (
+        not authorization
+        or authorization.username != username
+        or authorization.password != password
+    ):
+        return flask.jsonify({"message": "Invalid credentials."}), 403
+
+    email = flask.request.values.get("email").lower()
+    handle_confidentiality_agreement_submission(email)
+
+    return flask.jsonify({"message": "Webhook handled."}), 200
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
@@ -351,6 +373,13 @@ def cred_assessments(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_exam(trueability_api, **_):
+    email = flask.session["openid"]["email"].lower()
+    if (
+        not flask.current_app.debug
+        and not has_filed_confidentiality_agreement(email)
+    ):
+        return flask.render_template("credentials/exam-no-agreement.html"), 403
+
     assessment_id = flask.request.args.get("id")
     assessment = trueability_api.get_assessment(assessment_id)
 
