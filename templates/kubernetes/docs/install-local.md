@@ -247,7 +247,7 @@ juju config kubernetes-worker sysctl="{ fs.inotify.max_user_watches=1048576 }"
 
 <!-- LINKS -->
 
-[lxd-home]: https://linuxcontainers.org/
+[lxd-home]: https://ubuntu.com/lxd
 [lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/main/lxd-profile.yaml
 [Juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
