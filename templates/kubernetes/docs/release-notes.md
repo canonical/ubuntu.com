@@ -13,7 +13,6 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-<!-- AUTOGENERATE RELEASE NOTES HERE -->
 # 1.28
 
 ### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
