@@ -19,8 +19,7 @@
           <h3>Tell us about your data related use case:</h3>
           <ul class="p-list">
             <li class="p-list__item">
-              <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" maxlength="2000"></textarea>
+              <textareaw id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" maxlength="2000"></textarea>
             </li>
           </ul>
         </fieldset>
@@ -37,20 +36,20 @@
               <input required id="lastName" name="lastName" maxlength="255" type="text"/>
             </li>
             <li class="p-list__item">
-              <label for="companyName">Company name:</label>
-              <input required id="companyName" name="companyName" maxlength="255" type="text"/>
+              <label for="company">Company name:</label>
+              <input required id="company" name="company" maxlength="255" type="text"/>
             </li>
             <li class="p-list__item">
-              <label for="jobTitle">Job title:</label>
-              <input required id="jobTitle" name="jobTitle" maxlength="255" type="text"/>
+              <label for="title">Job title:</label>
+              <input required id="title" name="title" maxlength="255" type="text"/>
             </li>
             <li class="p-list__item">
-              <label for="email">Work address:</label>
+              <label for="email">Work email :</label>
               <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
             </li>
             <li class="p-list__item">
               <label for="phone">Phone number:</label>
-              <input required id="phone" name="phone" maxlength="255" type="tel"/>
+              <input id="phone" name="phone" maxlength="255" type="tel"/>
             </li>
             <!-- country -->
             {% include "shared/forms/_country.html" %}
@@ -66,7 +65,7 @@
               </label>
             </li>
             <li class="p-list__item">
-              In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+              By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
             </li>
             {# These are honey pot fields to catch bots #}
             <li class="u-off-screen">
@@ -98,21 +97,6 @@
           <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
         </fieldset>
       </form>
-    </div>
-
-    <div class="col-4">
-      <div class="p-card">
-        <h3 class="p-card__title">Any questions? Call us</h3>
-        {% include "shared/_call-sales-long.html" %}
-      </div>
-      <div class="p-card">
-      <h3 class="p-card__title">Need help with Ubuntu?</h3>
-      <p>If you are just looking for some free support for yourself, you can try:</p>
-      <ul class="p-list--divided">
-        <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
-        <li class="p-list__item"><a href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
-        <li class="p-list__item"><a href="https://help.ubuntu.com/">Help docs</a></li>
-      </ul>
     </div>
   </div>
 </section>
