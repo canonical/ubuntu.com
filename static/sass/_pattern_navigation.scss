@@ -218,7 +218,13 @@
   }
 
   .dropdown-window {
-        z-index: 11;
+    z-index: 11;
+
+    &.is-active {
+      overflow-y: auto;
+      max-height: calc(100vh - 3.5rem);
+      height: 100%;
+    }
   }
 
   .p-navigation--sliding:not(.is-reduced) + .dropdown-window-overlay + .dropdown-window {
