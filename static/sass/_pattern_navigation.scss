@@ -210,13 +210,24 @@
     }
   }
 
-  .p-navigation.is-secondary {
-    position: sticky;
-    top: 0px;
-    z-index: 9;
+    .p-navigation--sliding,
+    .p-navigation.is-secondary {
+      position: sticky;
+      top: 0px;
+      z-index: 9;
+    }
 
-    .p-navigation__nav.is-open {
-      display: flex;
+    .p-navigation.is-secondary {
+      top: 2.5rem;
+
+      @media (min-width: $breakpoint-large) {
+        top: 2rem;
+      }
+    }
+  
+    .p-navigation.is-secondary {
+      .p-navigation__nav.is-open {
+        display: flex;
 
       .p-navigation__items {
         display: block;
