@@ -40,7 +40,7 @@ export const defaultValues: FormContext = {
   setProductUser: () => {},
   productType: ProductTypes.physical,
   setProductType: () => {},
-  version: LTSVersions.jammy,
+  version: LTSVersions.focal,
   setVersion: () => {},
   feature: Features.pro,
   setFeature: () => {},
