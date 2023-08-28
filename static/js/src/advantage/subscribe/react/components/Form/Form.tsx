@@ -64,7 +64,7 @@ const Form = () => {
                   <h2>What Ubuntu LTS version are you running?</h2>
                   <p style={{ marginLeft: "3.6rem" }}>
                     {" "}
-                    Ubuntu Advantage is available for Ubuntu 14.04 and higher.
+                    Ubuntu Pro is available for Ubuntu 14.04 and higher.
                     <br />{" "}
                     <a href="/contact-us/form?product=pro">
                       Are you using an older version?
