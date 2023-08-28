@@ -214,7 +214,19 @@
   .p-navigation.is-secondary {
     position: sticky;
     top: 0px;
-    z-index: 9;
+    z-index: 12;
+  }
+
+  .dropdown-window {
+        z-index: 11;
+  }
+
+  .p-navigation--sliding:not(.is-reduced) + .dropdown-window-overlay + .dropdown-window {
+    position: fixed;
+  }
+
+  .p-navigation.is-secondary {
+    z-index: 10;
   }
 
   .p-navigation.is-secondary {
