@@ -210,11 +210,14 @@
     }
   }
 
+  .p-navigation--sliding:not(.is-reduced),
   .p-navigation.is-secondary {
     position: sticky;
     top: 0px;
     z-index: 9;
+  }
 
+  .p-navigation.is-secondary {
     .p-navigation__nav.is-open {
       display: flex;
 
