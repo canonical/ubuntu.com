@@ -214,11 +214,17 @@
     .p-navigation.is-secondary {
       position: sticky;
       top: 0px;
-      z-index: 9;
+      z-index: 12;
+    }
+
+    .dropdown-window {
+      position: fixed;
+      z-index: 11;
     }
 
     .p-navigation.is-secondary {
       top: 2.5rem;
+      z-index: 10;
 
       @media (min-width: $breakpoint-large) {
         top: 2rem;
