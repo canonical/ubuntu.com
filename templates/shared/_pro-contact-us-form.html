@@ -25,12 +25,10 @@
                 <input type="checkbox" aria-labelledby="22-04" class="p-checkbox__input" value="22.04 LTS">
                 <span class="p-checkbox__label" id="22-04">22.04 LTS</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="20-04" class="p-checkbox__input" value="20.04 LTS">
                 <span class="p-checkbox__label" id="20-04">20.04 LTS</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="18-04" class="p-checkbox__input" value="18.04 LTS">
                 <span class="p-checkbox__label" id="18-04">18.04 LTS</span>
@@ -42,7 +40,6 @@
                 <input type="checkbox" aria-labelledby="16-04" class="p-checkbox__input" value="16.04 LTS">
                 <span class="p-checkbox__label" id="16-04">16.04 LTS</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="14-04" class="p-checkbox__input" value="14.04 LTS">
                 <span class="p-checkbox__label" id="14-04">14.04 LTS</span>
@@ -55,13 +52,11 @@
                   value="22.10 (interim release)">
                 <span class="p-checkbox__label" id="22-10">22.10 (interim release)</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input"
                   value="21.04 (interim release)">
                 <span class="p-checkbox__label" id="21-04">21.04 (interim release)</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="12-04" class="p-checkbox__input" value="12.04 LTS">
                 <span class="p-checkbox__label" id="12-04">12.04 LTS</span>
@@ -75,10 +70,40 @@
                 <span class="p-checkbox__label" id="dont-use-ubuntu-today">I don't use
                   Ubuntu today</span>
               </label>
-
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
                 <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom" id="how-many-machines">
+          <legend class="u-off-screen">How many machines?</legend>
+          <h2 class="p-heading--3">How many machines?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="less-5-machines" name="how-many-machines-do-you-have" value="less than 5">
+                <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
+                <p id="5-machines-help" class="p-form-help-text u-no-margin--top u-hide" style="text-indent: 0;">
+                  <a href="/pro">Ubuntu Pro</a> is free for personal use, on up to 5 machines.
+                </p>
+              </label>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="5-to-50-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="5 to 50 machines">
+                <span class="p-radio__label" id="5-to-50-machines">5&nbsp;&ndash;&nbsp;50 machines</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="51-to-500-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="51 to 500 machines">
+                <span class="p-radio__label" id="51-to-500-machines">51&nbsp;&ndash;&nbsp;500 machines</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="501-to-1000-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="501 to 1000 machines">
+                <span class="p-radio__label" id="501-to-1000-machines">501&nbsp;&ndash;&nbsp;1000 machines</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio" aria-labelledby="greater-than-1000" class="p-radio__input" name="how-many-machines-do-you-have" value="greater than 1000">
+                <span class="p-radio__label" id="greater-than-1000">&gt;&nbsp;1000 machines</span>
               </label>
             </div>
           </div>
@@ -304,12 +329,27 @@
     </div>
 </section>
 <script>
+  let fiveMachinesHelpText = document.getElementById("5-machines-help");
+  document.getElementsByName("how-many-machines-do-you-have").forEach(
+    (radio) => {
+      radio.oninput = (e) => { 
+        if (e.target.value === "less than 5") {
+          fiveMachinesHelpText.classList.remove("u-hide");
+        } else {
+          fiveMachinesHelpText.classList.add("u-hide");
+        }
+      }
+    }
+  )
+
   function getCustomFields() {
     // disable submit button when form is submitted to stop duplicates
     document.getElementById("form-submit").setAttribute("disabled", "true");
 
     // If you use Ubuntu, which version(s) are you using?
     const ubuntuVersionsFieldset = document.getElementById("ubuntu-versions");
+    // How many machines?
+    const howManyMachinesFieldset = document.getElementById("how-many-machines");
     // How do you consume open source?
     const consumeOpenSourceFieldset = document.getElementById("how-do-you-consume-open-source");
     // Do you have specific compliance or hardening requirements?
@@ -319,14 +359,25 @@
 
     const data = `Tell us about your project: ${document.getElementById("about-your-project").value}.\n
       If you use Ubuntu, which version(s) are you using?: ${getCheckboxItemsAsCSV(ubuntuVersionsFieldset)}.\n
+      How many machines?: ${getRadioItemValue(howManyMachinesFieldset)}.\n
       How do you consume open source?: ${getCheckboxItemsAsCSV(consumeOpenSourceFieldset)}.\n
       Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
       Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
       What advice are you looking for: ${document.getElementById("advice").value}.\n
     `
 
+    const inputs = howManyMachinesFieldset.querySelectorAll("input[name='how-many-machines-do-you-have']")
+    inputs.forEach(function (input) {
+      input.removeAttribute("name");
+    })
+
     const textarea = document.getElementById("Comments_from_lead__c");
     textarea.value = data;
+  }
+
+  function getRadioItemValue(fieldset) {
+    const selectedRadio = fieldset.querySelector("input[name='how-many-machines-do-you-have']:checked")
+    return selectedRadio ? selectedRadio.value : ''
   }
 
   function getCheckboxItemsAsCSV(fieldset) {
