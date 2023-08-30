@@ -12,7 +12,7 @@ import { currencyFormatter } from "advantage/react/utils";
 const CredKeyShop = () => {
   const CUEExamKey = {
     id: "cue-activation-key",
-    longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
+    longId: "lAEPoNKYCFgZGmddQXplCtcnf5wMpYUXloGygjPK3y0E",
     name: "CUE Activation Key",
     price: { value: 4900, currency: "USD" },
     productID: "cue-activation-key",
