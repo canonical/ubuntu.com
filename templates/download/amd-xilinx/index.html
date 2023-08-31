@@ -10,59 +10,47 @@
 
 {% block content %}
 
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-3 col-medium-2">
-      <div class="p-strip is-shallow">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
-          alt="",
-          width="200",
-          height="124",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-6 col-medium-4">
-      <h1 class="p-heading--2"><strong>Install Ubuntu on AMD-Xilinx</strong></h1>
-      <p>Run Ubuntu on your AMD-Xilinx Zynq UltraScale+ MPSoC-based evaluation boards, Kria SOMs, and Versal&trade; Adaptive SoC evaluation kit. </p>
+<section class="p-strip--suru-topped">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h1>Install Ubuntu on <br class="u-hide--small"> AMD-Xilinx</h1>
+      <p>Run Ubuntu on your AMD-Xilinx Zynq UltraScale+ MPSoC-based evaluation boards and Kria SOMs. </p>
       <p>Pick the OS image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
-      <p>All images are 64-bit builds of Ubuntu.</p>
       <p>
         <a href="/download/contact-us" class="js-invoke-modal p-button">Get in touch</a>
       </p>
     </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
+        alt="",
+        width="241",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
-<section class="p-strip is-deep u-no-padding--top">
-  <hr class="p-rule u-fixed-width u-no-margin--bottom">
-  <div class="row">
-    <div class="col-3 col-medium-2">
-      <div class="p-strip is-shallow u-no-padding--top">
-        <h2 class="p-text--small-caps">Choose a board</h2>
+<section class="p-strip is-shallow">
+  <div class="u-fixed-width">
+    <div class="p-tabs">
+      <div class="p-tabs__list js-tabbed-content" role="tablist" aria-label="Install xilinx">
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="kira-kv260-vision-ai-tab" id="kira-kv260-vision-ai" tabindex="-1">Ubuntu for Kria SOMs</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="zynq-ultrascale-tab" id="zynq-ultrascale">Ubuntu for Zynq UltraScale+ MPSoC Development Boards</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="versal-adaptive-evaluation-kits-tab" id="versal-adaptive-evaluation-kits">Ubuntu for Versal&trade; Adaptive SoC Evaluation Kit</button>
+        </div>
       </div>
-      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="AMD-Xilinx boards">
-        <li><button class="p-tabs__item" id="kira-kv260-vision" role="tab" aria-selected="true" aria-controls="kira-kv260-vision-tab">Kria SOMs</button></li>
-        <li><button class="p-tabs__item" id="zynq-ultrascale" role="tab" aria-selected="false" aria-controls="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</button></li>
-        <li><button class="p-tabs__item" id="versal-adaptive-evaluation-kits" role="tab" aria-selected="false" aria-controls="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</button></li>
-      </ul>
-      <form class="u-hide--large u-hide--medium">
-        <select name="boardSelect" id="boardSelect">
-          <option value="kira-kv260-vision-tab" selected="">Kria SOMs</option>
-          <option value="zynq-ultrascale-tab">Zynq UltraScale+ MPSoC Development Boards</option>
-          <option value="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</option>
-        </select>
-      </form>
-    </div>
-
-    <div class="col-9 col-medium-4">
       {% include "download/amd-xilinx/tab-1.html" %}
       {% include "download/amd-xilinx/tab-2.html" %}
-      {% include "download/amd-xilinx/tab-3.html" %}
+      {% include "download/amd-xilinx/tab-3.html" %}      
     </div>
   </div>
 </section>
@@ -71,4 +59,5 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="4126" data-lp-id="" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
 {% endblock content %}
