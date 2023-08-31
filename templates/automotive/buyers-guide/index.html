@@ -1,0 +1,612 @@
+{% extends "automotive/base_automotive.html" %}
+
+{% block title %}Boost your automotive business with Ubuntu{% endblock %}
+{% block meta_description %}Ubuntu is widely used to reduce time to market in automotive companies, as a platform for data analytics, online services, robotics and machine learning. Infotainment, ADAS and cockpit application development on Ubuntu is faster. New real-time hypervisors enable Ubuntu VMs alongside functional safety RTOS solutions.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1NLnoNEP6cL46PotNGVuKLajehl-nfyBU4C8JT-FYMvQ/edit{% endblock meta_copydoc %}
+{% block body_class %}is-graphite{% endblock %}
+
+{% block content %}
+
+<section class="p-strip u-hide-on-reveal">
+  <div class="row">
+    <div class="col-6">
+      <h1><strong>Automotive OS <br class="u-hide--small" />Buyer's Guide</strong></h1>
+    </div>
+    <div class="col-6">
+      <h2>Choose the right Linux OS for in-vehicle systems</h2>
+      <p>Selecting the ideal Linux distribution for automotive applications involves various intricate facets. There are many crucial parameters that need consideration when making such choices. To accomplish this objective, our experts have compiled essential criteria that must be taken into account while picking a suitable Linux distribution for your automotive undertakings.</p>
+      <p><a href="#form" class="p-button--positive">Download the full guide</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow u-hide-on-reveal">
+  <div class="u-fixed-width u-no-padding">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/e8c27f33-GettyImages-1186091802.jpg",
+      alt="",
+      width="2121",
+      height="906",
+      hi_def=True,
+      loading="auto",
+      attrs={"class": "banner-image--non-interactive"},
+      ) | safe
+    }}
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top is-shallow u-hide-on-reveal">
+  <hr class="is-fixed-width is-dark">
+  <div class="u-fixed-width">
+    <h3 class="p-muted-heading">Criteria for choosing an automotive-grade Linux</h3>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="compatibility">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#">&lsaquo;&nbsp;Overview</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#security">Security&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Compatibility</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">Considering the number of different chipsets present in a vehicle today, it is important that the Linux distribution you choose is compatible with a maximum number of hardware platforms. We make sure to provide best level support and integration to hardware components that are widely used in the automotive industry. Thanks to our alliances and enablement teams, we work closely with silicon providers to make sure that Ubuntu runs seamlessly on top of their hardware.</p>
+        <p class="u-hide-on-reveal"><a class="js-section-select" href="#compatibility">Continue reading about compatibility&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/afce18b9-rfq-_0005_AdobeStock_621962476.jpg",
+        alt="",
+        width="2496",
+        height="1066",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#compatibility" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/afce18b9-rfq-_0005_AdobeStock_621962476.jpg",
+          alt="",
+          width="2496",
+          height="1066",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="u-fixed-width u-show-on-reveal">
+      <hr class="p-rule is-dark">
+      {% with interested_feature="compatibility" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="security">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#compatibility">&lsaquo;&nbsp;Compatibility</a></p>
+        </div>
+        <div class="col-6  col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#developer-support">Developer support&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Security</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">With vehicles being more connected, it becomes critical to ensure the highest level of security in your embedded systems. Ubuntu undergoes rigorous checks to guarantee its integrity. Ubuntu also benefits from strict application management and access so that your critical tasks can run in an isolated environment. With encryption, your system can also protect all system critical data. And if that isn’t enough, we also provide Ubuntu Core which relies entirely on snaps.
+          <br/><br/>
+          Ubuntu Core and snaps have been designed with specific security features that ensure improved security compared to other package formats. First and foremost, snaps are a packaging format that uses sandboxed environments, meaning that there cannot be any system file access or modification without explicit user permission. This isolation protects your system and considerably reduces the risk of malware. Second, snaps are signed, so all users can check the authenticity of each application that they want to use. Snaps can also receive over-the-air software updates, so you can ensure all new security patches are applied and vulnerability exploits prevented.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#security">Continue reading about security&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e1040bef-GettyImages-1320950393.jpg",
+        alt="",
+        width="2121",
+        height="906",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#security" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e1040bef-GettyImages-1320950393.jpg",
+          alt="",
+          width="2121",
+          height="906",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="security" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="developer-support">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#security">&lsaquo;&nbsp;Security</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#certifications-and-compliance">Certifications and compliance&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Developer support</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">The development process in the automotive industry is known to be lengthy, which means that by the end of these long development cycles, the customer demand has probably evolved. By the time the vehicle is released, it is necessary to update the product with additional features. On top of that, as technology moves rapidly, there is a risk of outdated software with design decisions that don’t allow the required flexibility that the more recent software architectures enable. If that wasn’t enough, the automotive industry is facing a huge skill shortage constraint. The demand for skilled developers and engineers is growing quickly, hence all organisations are competing for the same talent pool.
+          <br/><br/>
+          Ubuntu is one of the most widely used Linux operating systems, so developers can benefit from a  large community that enables knowledge sharing and collaboration. Ubuntu also includes the tools developers need to ensure their systems run smoothly. Ubuntu has integrated debugging features that help developers analyse their deployed software easily.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#developer-support">Continue reading about developer support&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6424cad4-rfq-_0003_Stocksy_txpa6427364mUm300_Large_1245677.jpg",
+        alt="",
+        width="2496",
+        height="1066",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#developer-support" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6424cad4-rfq-_0003_Stocksy_txpa6427364mUm300_Large_1245677.jpg",
+          alt="",
+          width="2496",
+          height="1066",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="developer-support" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="certifications-and-compliance">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#developer-support">&lsaquo;&nbsp;Developer support</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#power-management">Power management&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Certifications and compliance</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">Vulnerabilities in connected vehicles can result in life-threatening consequences. Hence, it is imperative to ensure the best level of security throughout our vehicles’ lifecycle. This can only be achieved with rigorous cybersecurity measures like encryption, authentication checks, secure onboard systems and intrusion detection. With the new UN155 enforcing the ISO21434 standard, certification will help bolster security efforts in the industry.
+          <br/><br/>
+          Maintaining functional safety is the other current hurdle for automotive developers since with level 3 autonomous driving, vehicles are becoming responsible for their interactions with the surrounding environment. The systems need to be extremely reliable in very specific scenarios.
+          <br/><br/>
+          Last but not least, respecting your users' privacy is not only key to gaining customer trust, but is also enforced by law, with the GDPR being the most known example.
+          <br/><br/>
+          The automotive industry relies on very strict standards. Canonical is working closely with international standard work groups and partners in order to ensure our products will comply with the standards that are important to OEMs and Tier 1s. More specifically, we are working on being compliant with ISO26262 for functional safety and ISO21434 for cybersecurity. If your product requires these standards, make sure to contact us to know more.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#certifications-and-compliance">Continue reading about certifications and compliance&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/8d02c3a0-GettyImages-1428397642.jpg",
+        alt="",
+        width="2121",
+        height="906",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#certifications-and-compliance" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8d02c3a0-GettyImages-1428397642.jpg",
+          alt="",
+          width="2121",
+          height="906",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="certifications-and-compliance" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="power-management">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#certifications-and-compliance">&lsaquo;&nbsp;Certifications and compliance</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#open-source">Open source&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Power management</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">In automotive, hardware integration is key to obtaining reliable systems. A vehicle contains hundreds of ECUs, themselves adding up to thousands of components from numerous suppliers, making it difficult to balance the cost vs performance equation. The work required to ensure software compatibility between these elements is tedious, but indispensable to guarantee seamless interaction. Moreover, there are very strict constraints inside a vehicle like limited space, interferences (radio frequency, EMI and the like) and probably the roughest durability requirements (like vibration, heat, cold, etc).
+          <br/><br/>
+          But the most difficult physical constraint that engineers are facing today is probably power management. With the increase of hardware components, the power consumption of auxiliary systems has increased drastically, requiring more advanced power management to ensure energy waste is minimised. It’s even more true with the electrification trend.
+          <br/><br/>
+          This is why vehicles have very specific energy efficiency requirements with battery optimisation. Ubuntu can be fine-tuned to provide advanced power management tools. Depending on the underlying hardware, it is also possible to enable power saving profiles, allowing for lower energy draining and longer battery autonomy.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#power-management">Continue reading about power management&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a05f2a83-rfq-_0006_shutterstock_766850902.jpg",
+        alt="",
+        width="2496",
+        height="1066",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#power-management" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a05f2a83-rfq-_0006_shutterstock_766850902.jpg",
+          alt="",
+          width="2496",
+          height="1066",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="power-management" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="open-source">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#power-management">&lsaquo;&nbsp;Power management</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#">Overview&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Open source</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content">Open source is at the heart of Ubuntu. We strongly believe that open source software will help automotive companies build the best solutions for the industry’s current and future challenges, like software-defined vehicles, autonomous driving algorithms and EV infrastructure enhancements.
+          <br/><br/>
+          Open source can speed up your development process from prototyping to integration and production. You also get access to developers that can review and maintain packages that your project depends on. New automotive-related technologies have increased the need for efficient software solutions and open source software provides many advantages, like collaboration on an open code base, avoiding vendor lock-in and using shared standards.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#open-source">Continue reading about open source&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c823bb93-rfq-_0004_AdobeStock_634132944.jpg",
+        alt="",
+        width="2496",
+        height="1066",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#open-source" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c823bb93-rfq-_0004_AdobeStock_634132944.jpg",
+          alt="",
+          width="2496",
+          height="1066",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="open-source" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top" id="form">
+  {% with interested_feature="overall" %}
+    {% include "/automotive/buyers-guide/_form.html" %}
+  {% endwith %}
+</section>
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/automotive" data-form-id="4477" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=automotive" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<style>
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  .banner-image,
+  .banner-image--non-interactive {
+    object-fit: cover;
+    width: 100%;
+    max-height: 472px;
+  }
+
+  .banner-image {
+    filter: grayscale(50%);
+    opacity: .6;
+    transition: all .25s ease-in-out;
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  }
+
+  .p-card:hover .banner-image,
+  .banner-image:focus {
+    filter: grayscale(0%);
+    opacity: 1;
+    -webkit-mask-image: none;
+  }
+
+  .feature-selected .p-card .banner-image {
+    filter: grayscale(0%);
+    opacity: 1;
+    -webkit-mask-image: none;
+  }
+
+  .feature-selected .p-strip,
+  .feature-selected .u-hide-on-reveal {
+    display: none;
+  }
+
+  .selected-feature {
+    padding-bottom: 0;
+  }
+
+  .selected-feature,
+  .selected-feature .u-fixed-width {
+    max-width: 100%;
+    display: block !important;
+  }
+
+  .p-card .row {
+    margin: 0 auto;
+  }
+
+  .selected-feature .banner-image {
+    width: 100%;
+    height: 450px;
+  }
+
+  .u-limit-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 9ch;
+  }
+
+  .selected-feature .u-limit-content {
+    overflow: visible;
+    height: auto;
+  }
+
+  .u-show-on-reveal {
+    display: none;
+  }
+
+  .feature-selected .u-show-on-reveal {
+    display: block;
+  }
+
+  .p-icon--close:hover {
+    filter: invert(100%);
+  }
+</style>
+
+<script>
+  const mainContent = document.querySelector('#main-content');
+  const featuredSections = document.querySelectorAll('.feature');
+  const navigation = document.querySelector('#navigation');
+  const subNaviagtion = document.querySelector('.p-navigation--secondary');
+  const closeButtons = document.querySelectorAll('.p-icon--close');
+  let previousFeature = '';
+
+  closeButtons.forEach((closeButton) => {
+    closeButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      reveal('');
+      console.log(previousFeature)
+      if (previousFeature) {
+        const previousSection = document.querySelector(`#${previousFeature}`);
+        previousSection.scrollIntoView({
+          behavior: 'auto'
+        });
+      }
+    });
+  });
+
+  window.addEventListener("hashchange", (event) => {
+    const hash = location.hash.replace('#', '');
+    reveal(hash);
+  });
+
+  window.addEventListener("load", (event) => {
+    const hash = location.hash.replace('#', '');
+    reveal(hash);
+  });
+
+  function reveal(feature) {
+    if (feature === "form") {
+      return false;
+    }
+    const globalNav = document.querySelector('.global-nav');
+    if (feature !== "") {
+      previousFeature = feature;
+      const section = document.querySelector(`#${feature}`);
+      featuredSections.forEach((featuredSection) => {
+        if (featuredSection.id === feature) {
+          featuredSection.classList.add('selected-feature');
+        } else {
+          featuredSection.classList.remove('selected-feature');
+        }
+      });
+      mainContent.classList.add('feature-selected');
+      navigation.classList.add('u-hide');
+      subNaviagtion.classList.add('u-hide');
+      globalNav.classList.add('u-hide');
+      window.scrollTo(0, 0);
+    } else {
+      featuredSections.forEach((featuredSection) => {
+        featuredSection.classList.remove('selected-feature');
+      });
+      mainContent.classList.remove('feature-selected');
+      navigation.classList.remove('u-hide');
+      subNaviagtion.classList.remove('u-hide');
+      globalNav.classList.remove('u-hide');
+    }
+  }
+</script>
+{% endblock content %}

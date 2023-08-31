@@ -1,0 +1,96 @@
+<div class="row u-sv3">
+  <hr class="p-rule is-dark">
+  <div class="col-6">
+    <h2>Download our buyer's guide</h2>
+  </div>
+  <div class="col-6 u-sv3">
+    <p class="p-heading--5">See if Ubuntu meets your needs and evaluate how it compares to others for your unique use case.</p>
+    <p>Based on our extensive experience in embedded systems, we put together an overview of considerations that will help you select the right OS for your in-vehicle projects. Our buyer's guide will also help you evaluate if Ubuntu is a good fit for you. Download the guide.</p>
+  </div>
+  <div class="row u-sv3">
+    <div class="col-6 col-start-large-7">
+      <h3 class="p-muted-heading">Contact us</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2395a6a4-automotive-os-buyers-guide.png",
+        alt="",
+        width="599",
+        height="838",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6 col-start-large-7">
+      <form action="/marketo/submit" method="post" id="mktoForm_5356">
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="firstName">First name:</label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="lastName">Last name:</label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="email">Email:</label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            </li>
+           <li class="p-list__item">
+              <label for="company">Company:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
+            </li>
+           <li class="p-list__item">
+              <label for="title">Job title:</label>
+              <input required id="title" name="title" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item u-sv3">
+              <label for="phone">Mobile/cell phone number:</label>
+              <input required id="phone" name="phone" maxlength="255" type="tel" />
+            </li>
+            <li class="p-list__item">
+              <label for="Comments_from_lead__c" style="width: 100%">Tell us more about your needs:</label>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </li>
+          </ul>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+              </label>
+            </li>
+            <li class="p-list__item u-sv3">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            <li class="p-list__item">
+              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'Download automotive buyers guide', 'eventLabel' : '{{ interested_feature }}', 'eventValue' : undefined });">Submit</button>
+            </li>
+          </ul>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="5356" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="https://pages.ubuntu.com/rs/066-EOV-335/images/Automotive_OS_Buyers_Guide.pdf" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

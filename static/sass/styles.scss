@@ -1319,6 +1319,36 @@ hr.p-separator.is-shallow {
   background-color: #fff;
 }
 
+// XXX - New stuff not in Vanilla yet
+$color-link-visited-dark: #a679d2 !default;
+$color-link-dark: #69c !default;
+
+.is-graphite {
+  background: $colors--dark-theme--background-default;
+  color: $colors--dark-theme--text-default;
+
+  .inner-wrapper .p-card {
+    background: #222; // Unique color for this pattern
+    border: none;
+    color: $colors--dark-theme--text-default;
+  }
+
+  .p-checkbox__label {
+    color: $colors--dark-theme--text-default;
+  }
+}
+
+.is-graphite,
+.is-dark {
+  .inner-wrapper a:not([class^="p-button"]) {
+    color: $color-link-dark;
+
+    &:visited {
+      color: $color-link-visited-dark;
+    }
+  }
+}
+
 .p-image__background--3-2 {
   @extend .u-aspect-ratio--3-2;
 
