@@ -1340,3 +1340,17 @@ hr.p-separator.is-shallow {
     width: auto;
   }
 }
+
+.amd-xilinx-container {
+  @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
+
+  margin-top: $spv--small;
+  padding-left: $spv--large;
+  padding-right: $spv--large;
+
+  .amd-xilinx-image {
+    height: 13rem;
+    width: auto;
+  }
+}
