@@ -1370,3 +1370,18 @@ $color-link-dark: #69c !default;
     width: auto;
   }
 }
+
+.is-paper__image--container {
+  background-color: rgba(0, 0, 0, 0.03);
+  display: flex;
+}
+
+.p-logo-section__item--variable {
+  @extend .p-logo-section__item;
+
+  padding-right: 1rem;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    width: auto;
+  }
+}
