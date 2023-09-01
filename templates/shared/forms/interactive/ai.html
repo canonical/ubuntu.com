@@ -9,20 +9,20 @@
         <h3 class="p-heading--5">Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.</h3>
         <div class="row u-no-padding">
           <div class="col-8">
-            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <form action="/marketo/submit" onsubmit="stringifyCustomFields()" method="post" id="mktoForm_%% formid %%" class="modal-form">
               <ul class="p-list">
                 <li class="p-list__item u-sv3">
                   <p>Do you already have any AI projects rolled out in your enterprise?</p>
                   <div class="row">
                     <div class="col-4">
                       <label class="p-radio--inline">
-                        <input type="radio" value="yes" class="p-radio__input" id="telephonePreferred" name="aiProjects" aria-labelledby="aiProjectsYes" required>
+                        <input type="radio" value="Yes" class="p-radio__input" id="aiProjectsYes" name="aiProjects" aria-labelledby="aiProjectsYes" required>
                         <span class="p-radio__label" id="aiProjectsYes">Yes</span>
                       </label>
                     </div>
                     <div class="col-4">
                       <label class="p-radio--inline u-align--right">
-                        <input type="radio" value="no" class="p-radio__input" id="emailPreferred" name="aiProjects" aria-labelledby="aiProjectsNo" required>
+                        <input type="radio" value="No" class="p-radio__input" id="aiProjectsNo" name="aiProjects" aria-labelledby="aiProjectsNo" required>
                         <span class="p-radio__label" id="aiProjectsNo">No</span>
                       </label>
                     </div>
@@ -32,26 +32,30 @@
                   <p>What are you interested in from our AI offering?</p>
                   <div class="row">
                     <div class="col-4">
-                      <label class="p-checkbox">
+                      <label class="p-checkbox js-checkbox">
                         <input type="checkbox" aria-labelledby="canonicalMlopsSolution" class="p-checkbox__input">
                         <span class="p-checkbox__label" id="canonicalMlopsSolution">Canonical MLOps solution</span>
                       </label>
-                      <label class="p-checkbox">
+                      <label class="p-checkbox js-checkbox">
                         <input type="checkbox" aria-labelledby="aiConsultingServices" class="p-checkbox__input">
                         <span class="p-checkbox__label" id="aiConsultingServices">AI consultancy services</span>
                       </label>
                     </div>
                     <div class="col-4">
-                      <label class="p-checkbox">
+                      <label class="p-checkbox js-checkbox">
                         <input type="checkbox" aria-labelledby="mlopsWorkshop" class="p-checkbox__input">
                         <span class="p-checkbox__label" id="mlopsWorkshop">MLOps Workshop</span>
                       </label>
-                      <label class="p-checkbox">
+                      <label class="p-checkbox js-checkbox">
                         <input type="checkbox" aria-labelledby="notSure" class="p-checkbox__input">
                         <span class="p-checkbox__label" id="notSure">Not sure</span>
                       </label>
                     </div>
                   </div>
+                </li>
+                <li class="p-list__item">
+                  <label class="p-heading--5" for="mlopsRequirements">Add details about your AI or MLOps requirements</label>
+                  <textarea id="mlopsRequirements"></textarea>
                 </li>
                 <li class="p-list__item">
                   <p>Add your information:</p>
