@@ -12,7 +12,7 @@ function stringifyCustomFields() {
         offerings += " \r\n" + text;
       } 
     });
-    
+
     if (offerings) {
       textarea.value +=" \r\n" + "What are you interested in from our AI offering?" + offerings + " \r\n";
     }
@@ -21,6 +21,7 @@ function stringifyCustomFields() {
       if (radio.checked) {
           textarea.value += " \r\n" + "Do you already have any AI projects rolled out in your enterprise? " + " \r\n"  + radio.value + " \r\n";
       }
+      radio.removeAttribute("name");
     })
 
     if (extraCommentsText) {
