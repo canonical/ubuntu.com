@@ -10,10 +10,13 @@ function stringifyCustomFields() {
       if (checkbox.children[0].checked) {
         const text = checkbox.children[1].innerHTML;
         offerings += " \r\n" + text;
-        textarea.value +=" \r\n" + "What are you interested in from our AI offering?" + offerings + " \r\n";
       } 
     });
     
+    if (offerings) {
+      textarea.value +=" \r\n" + "What are you interested in from our AI offering?" + offerings + " \r\n";
+    }
+
     radios.forEach(radio => {
       if (radio.checked) {
           textarea.value += " \r\n" + "Do you already have any AI projects rolled out in your enterprise? " + " \r\n"  + radio.value + " \r\n";
