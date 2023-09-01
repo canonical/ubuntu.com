@@ -50,6 +50,9 @@ def get_meganav(section):
     """
     sections = {}
     meganav_sections = copy.deepcopy(meganav)
+    
+    if section == "all":
+        return meganav_sections
 
     for section_name, meganav_section in meganav_sections.items():
         if section_name == section:
