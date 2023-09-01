@@ -1358,7 +1358,7 @@ export var kubernetesReleases = [
     startDate: new Date("2019-12-17T00:00:00"),
     endDate: new Date("2020-09-30T00:00:00"),
     taskName: "Kubernetes 1.14",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-06-28T00:00:00"),
@@ -1370,7 +1370,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-04-13T00:00:00"),
     endDate: new Date("2020-12-16T00:00:00"),
     taskName: "Kubernetes 1.15",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-09-27T00:00:00"),
@@ -1382,7 +1382,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-09-30T00:00:00"),
     endDate: new Date("2021-04-15T00:00:00"),
     taskName: "Kubernetes 1.16",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-12-17T00:00:00"),
@@ -1394,7 +1394,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-12-16T00:00:00"),
     endDate: new Date("2021-09-01T00:00:00"),
     taskName: "Kubernetes 1.17",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-04-13T00:00:00"),
@@ -1406,7 +1406,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-04-15T00:00:00"),
     endDate: new Date("2021-12-15T00:00:00"),
     taskName: "Kubernetes 1.18",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-09-30T00:00:00"),
@@ -1418,7 +1418,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-09-01T00:00:00"),
     endDate: new Date("2022-05-06T00:00:00"),
     taskName: "Kubernetes 1.19",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-12-16T00:00:00"),
@@ -1430,7 +1430,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-12-15T00:00:00"),
     endDate: new Date("2022-09-01T00:00:00"),
     taskName: "Kubernetes 1.20",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-04-15T00:00:00"),
@@ -1442,7 +1442,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-05-06T00:00:00"),
     endDate: new Date("2022-12-15T00:00:00"),
     taskName: "Kubernetes 1.21",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-09-01T00:00:00"),
@@ -1454,7 +1454,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-08-23T00:00:00"),
     endDate: new Date("2023-05-03T00:00:00"),
     taskName: "Kubernetes 1.22",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-12-15T00:00:00"),
@@ -1466,7 +1466,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-12-15T00:00:00"),
     endDate: new Date("2023-08-23T00:00:00"),
     taskName: "Kubernetes 1.23",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-05-06T00:00:00"),
@@ -1478,7 +1478,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-05-03T00:00:00"),
     endDate: new Date("2023-12-06T00:00:00"),
     taskName: "Kubernetes 1.24",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-09-01T00:00:00"),
@@ -1490,7 +1490,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-08-23T00:00:00"),
     endDate: new Date("2024-05-03T00:00:00"),
     taskName: "Kubernetes 1.25",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-12-15T00:00:00"),
@@ -1502,7 +1502,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-12-15T00:00:00"),
     endDate: new Date("2024-08-23T00:00:00"),
     taskName: "Kubernetes 1.26",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2023-04-21T00:00:00"),
@@ -1514,7 +1514,7 @@ export var kubernetesReleases = [
     startDate: new Date("2024-04-21T00:00:00"),
     endDate: new Date("2024-12-06T00:00:00"),
     taskName: "Kubernetes 1.27",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
 ];
 
@@ -1651,7 +1651,7 @@ export var openStackStatus = {
 
 export var kubernetesStatus = {
   CANONICAL_KUBERNETES_SUPPORT: "chart__bar--orange",
-  CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
+  CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
 };
 
 export var microStackStatus = {
