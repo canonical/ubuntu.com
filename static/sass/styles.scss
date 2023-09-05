@@ -1385,3 +1385,11 @@ $color-link-dark: #69c !default;
     width: auto;
   }
 }
+
+.ai-tooling .col-3  {
+  @media screen and (min-width: $breakpoint-large) {
+    .p-section--shallow:first-of-type {
+      height: 20rem;
+    }
+  }
+}

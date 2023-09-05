@@ -1,43 +1,67 @@
 {% extends "ai/_base_ai.html" %}
 
-{% block title %}AI on Ubuntu: the path to production{% endblock %}
+{% block title %}Open source AI{% endblock %}
 
-{% block meta_description %}Ubuntu is the right platform for end-to-end AI and Machine Learning. Develop, train and deploy models with the latest tools and automatic hardware GPU acceleration. Get training, support and managed services by Canonical to accelerate AI to production.{% endblock %}
+{% block meta_description %}Open source AI: path to production for models. From development to deployment, get a seamless experience.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1HP9YdHF11yVQ9SLl0VXhLezDZREsr1GHIKNi9wT1Gv0/edit?ts=5fb6b19b#heading=h.kyb2cyti2dz7{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1HP9YdHF11yVQ9SLl0VXhLezDZREsr1GHIKNi9wT1Gv0/edit{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped is-dark is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h1>AI on Ubuntu: the path<br>to production</h1>
-      <h4>The best data science and MLops tools across your infra</h4>
-      <p>Develop AI models on high-end Ubuntu workstations. Train on racks of bare-metal or public clouds with hardware acceleration. Deploy to cloud, edge and IoT. All on Ubuntu.</p>
-      <p>
-        <a href="/engage/mlops-guide" class="p-button--positive">Read our guide to MLOps</a>
-        <a href="https://assets.ubuntu.com/v1/429359fe-MLOps%20advisory%20DS%2029.11.22.pdf" class="p-button">Discover our AI consultancy</a>
-      </p>
+<section class="p-strip is-shallow u-no-margin--bottom">
+  <div class="p-section">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-section--shallow">
+          <h1>Take your models to production<br class="u-hide--small"> with open source AI</h1>
+        </div>
+        <div class="p-section--shallow">
+          <p>Build enterprise-grade AI projects with  secure and supported Canonical MLOps. Develop on your Ubuntu workstation using Charmed Kubeflow or Charmed MLFlow and scale up quickly with open source tooling in every part of your stack.</p>
+        </div>
+        <p>
+          <a class="p-button--positive">Contact us</a>
+          <a class="p-button" href="/engage/mlops-guide">Read our guide to MLOps</a>
+        </p>
+      </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/cc376f8c-AI-models.svg",
-        alt="",
-        width="304",
-        height="263",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+      <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt="" style="aspect-ratio: 5.1775700934579; width: 100%;">
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Why choose Canonical for Enterprise AI?</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Reliable experts to speed up your AI journey</li>
+          <li class="p-list__item is-ticked">One vendor to support your AI stack</li>
+          <li class="p-list__item is-ticked">Run your workloads anywhere, including hybrid and multi-cloud</li>
+          <li class="p-list__item is-ticked">Simplified operations with lifecycle management and automation</li>
+          <li class="p-list__item is-ticked">Simple per node subscription</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width p-section">
+    <hr class="p-rule">
+    <h2>Develop artificial intelligence projects on any environment</h2>
+  </div>
+  <div class="u-fixed-width">
     <div class="p-logo-section">
-      <p class="p-logo-section__title u-align--center">Leaders in artificial intelligence choose Ubuntu</p>
-      <div class="p-logo-section__items u-no-margin--bottom">
+      <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/1095d3bc-Tesla_logo_silver.png",
@@ -87,6 +111,289 @@
             }}
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Ubuntu: the OS of choice for data scientists</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div style="background:rgba(0, 0, 0, 0.03);" class="u-align--center p-strip">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a3ec6ab2-lenovo-laptop-p16-jammy.png",
+          alt="",
+          width="300",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p>Develop machine learning models on Ubuntu workstations and benefit from management tooling and security patches.</p>
+      <p>
+        <a href="/desktop/organisations" class="p-button">Read more about ubuntu workstations</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Move beyond experimentation with machine learning operations&nbsp;(MLOps)</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>MLOps is the short term for machine learning operations and it stands for a set of practices that aim to simplify workflow processes and automate machine learning and deep learning deployments.</p>
+      <p>MLOps is an approach that enables you to deploy and maintain models reliably and efficiently for production, at a large scale.</p>
+      <p>
+        <a class="p-button--positive" href="/blog/what-is-mlops">Learn more about MLOps</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--white is-shallow">
+  <div class="u-fixed-width">
+    <h2 class="p-text--small-caps">Open source MLOps tooling</h2>
+    <hr class="p-rule">
+  </div>
+  <div class="row u-equal-height ai-tooling">
+    <div class="col-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed Kubeflow</h3>
+        <p>Develop and deploy models with automated workflows. Charmed Kubeflow is an end-to-end MLOps platform designed to run AI at scale. It is the foundation of Canonical MLOps and seamlessly integrates with other big data and machine learning tools.</p>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <a href="/ai/what-is-kubeflow">What is Kubeflow</a>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed MLflow</h3>
+        <p>Track your experiments and get a better overview of your model catalogue. Charmed MLFlow is an open source platform used for managing machine learning workloads. It integrates with other MLOps tools to cover different functions of the machine learning lifecycle.</p>
+      </div>
+      <hr class="p-rule">
+      <a href="/blog/charmed-mlflow-beta">Learn more about MLFlow</a>
+    </div>
+    <div class="col-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed Spark</h3>
+        <p>Simply the best way to run Spark®, whether on the cloud or in your data centre. Runs on Kubernetes. Includes a fully supported distribution of Apache Spark.</p>
+      </div>
+      <hr class="p-rule">
+      <a href="/data/spark">Learn more about Spark</a>
+    </div>
+    <div class="col-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed OpenSearch</h3>
+        <p>Charmed OpenSearch simplifies the operations of your favourite search and analytics suite. In addition, OpenSearch provides an integrated vector database that can support AI systems by serving as a knowledge base.</p>
+      </div>
+      <hr class="p-rule">
+      <a href="/blog/what-is-opensearch">What is OpenSearch</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Run AI at scale with Canonical and NVIDIA</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>With NVIDIA AI Enterprise and NVIDIA DGX, Charmed Kubeflow improves the performance of AI workflows, by using the hardware to its maximum extent and accelerating project delivery. Charmed Kubeflow can significantly speed up model training, especially when coupled with DGX systems.</p>
+    </div>
+  </div>
+  <div class="row--50-50">
+    <div class="col">
+      <hr>
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c07365f4-Canonicla old logo + nvidia.svg",
+        alt="",
+        width="348",
+        height="228",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col">
+      <hr class="p-rule">
+      <div class="p-section--shallow">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Quick deployment</li>
+          <li class="p-list__item is-ticked">Run the entire ML lifecycle</li>
+          <li class="p-list__item is-ticked">Composable architectures</li>
+          <li class="p-list__item is-ticked">Reproducibility, portability, scalability</li>
+        </ul>
+      </div>
+      <hr class="p-rule">
+      <p>
+        <a href="/engage/run-ai-at-scale">Read our joint whitepaper</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Use modular platforms to run AI at the edge or in large clouds</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>Production-grade projects require a solution that enables scalability, reproducibility and portability. Canonical MLOps speeds up AI project timelines, giving you:</p>
+      <hr class="is-muted">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">The same experience on any cloud, whether private or public</li>
+        <li class="p-list__item is-ticked">Low-ops, streamlined lifecycle management</li>
+        <li class="p-list__item is-ticked">A modular and open source suite for reusable deployments</li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <!-- Illustration will go here -->
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule">
+    <div class="col">
+      <h2 class="p-text--small-caps">Open source AI services</h2>
+    </div>
+    <div class="col">
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">Managed Canonical MLOps</h3>
+        </div>
+        <div class="col-6">
+          <p>Focus on building production grade models, while Canonical experts manage the infrastructure underneath.</p>
+          <hr class="is-muted">
+          <div class="p-section--shallow">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">99.9% uptime</li>
+              <li class="p-list__item is-ticked">24/7 monitoring</li>
+              <li class="p-list__item is-ticked">High availability</li>
+            </ul>
+          </div>
+          <hr class="p-rule">
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow - Digital.pdf">Get the Managed MLOpsdatasheet</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">AI consulting</h3>
+        </div>
+        <div class="col-6">
+          <p>Work with our experts to understand your data better and deliver on your use case.</p>
+          <hr class="is-muted">
+          <div class="p-section--shallow">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Data exploration workshop</li>
+              <li class="p-list__item is-ticked">Canonical MLOps deployment</li>
+              <li class="p-list__item is-ticked">MLOps workshop</li>
+              <li class="p-list__item is-ticked">PoC-based</li>
+            </ul>
+          </div>
+          <hr class="p-rule">
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow%20-%20Digital.pdf">Get AI consulting</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Support</h3>
+        </div>
+        <div class="col-6">
+          <p>Looking for Kubeflow support? Work with our team to get support for any cloud environment or CNCF-complaint Kubernetes distribution.</p>
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow%20-%20Digital.pdf">Get the Charmed Kubeflow datasheet</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule">
+    <div class="col">
+      <h2 class="p-text--small-caps">Open source AI resources</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/ai-ml-casestudy-tasmania">Case study: Real-time space tracking with AI supercomputing</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>University of Tasmania (UTAS) modernised  its space-tracking data processing with the Firmus Supercloud, built on Canonical's open infrastructure stack.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/mlops-guide">Guide to MLOps</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Learn how to take models to production using open source MLOps platforms.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/run-ai-at-scale/">Guide: Run AI at scale with Canonical and NVIDIA</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Learn how to scale AI projects using hardware that's designed for AI workloads and certified software.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/kubeflow-vs-mlflow">Kubeflow vs MLFlow</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Choosing a suitable machine learning tool can often be challenging. Understand the differences between the most famous open source solutions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--white is-deep">
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      <h2>
+        <a>Talk to our experts</a>
+      </h2>
     </div>
   </div>
 </section>
