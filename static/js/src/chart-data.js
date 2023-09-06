@@ -161,26 +161,26 @@ export var serverAndDesktopReleases = [
 ];
 
 export var kernelReleases = [
-	{
+  {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 22.04.3 LTS",
     taskVersion: "6.2 kernel",
-    status: "INTERIM_RELEASE"
+    status: "INTERIM_RELEASE",
   },
   {
     startDate: new Date("2023-04-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 23.04",
     taskVersion: "",
-    status: "INTERIM_RELEASE"
+    status: "INTERIM_RELEASE",
   },
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
     taskName: "Ubuntu 22.04.2 LTS",
     taskVersion: "Kernel version",
-    status: "LTS"
+    status: "LTS",
   },
   {
     startDate: new Date("2022-10-01T00:00:00"),
