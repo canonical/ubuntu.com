@@ -1,7 +1,7 @@
 <nav class="dropdown-window__content-container desktop-dropdown-content">
-  <div class="dropdown-window__content">
+  <div class="dropdown-window__content row">
     {% if "side_nav_sections" in sections %}
-      <div class="dropdown-window__tab-panel">
+      <div class="dropdown-window__tab-panel col-3">
         <div class="p-side-navigation is-dark">
           <div class="p-side-navigation__drawer">
             <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
@@ -15,11 +15,11 @@
         </div>
       </div>
       
-      <div class="row u-no-padding">
+      <div class="col-9 u-no-padding">
         {% for side_nav_section in sections.side_nav_sections %}
-          <div class="col-12 dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="0" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
+          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="0" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
             <div class="row u-no-padding"> 
-              <div class="col-{% if side_nav_section.secondary_links %}8 is-bordered{% else %}12{% endif %} dropdown-window__main-panel">
+              <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel">
                 {% for links_section in side_nav_section.primary_links %}
                   {% if links_section.title %}
                     <p class="p-muted-heading">{{ links_section.title }}</p>
@@ -32,7 +32,7 @@
                       {% set split_links_list = split_list(links_section.links, 3) %}
                     {% endif %}
 
-                    <div class="col-4">
+                    <div class="col-3">
                       <ul class="p-list">
                         {% for link in split_links_list[0] %}
                           {% with 
@@ -48,7 +48,7 @@
                       </ul>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                       <ul class="p-list">
                         {% for link in split_links_list[1] %}
                           {% with 
@@ -63,7 +63,7 @@
                     </div>
 
                     {% if secondary_links not in side_nav_section %}
-                      <div class="col-4">
+                      <div class="col-3">
                         <ul class="p-list">
                           {% for link in split_links_list[2] %}
                             {% with 
@@ -82,7 +82,7 @@
               </div>      
 
               {% if side_nav_section.secondary_links %}
-              <div class="col-4 dropdown-window__side-panel">
+              <div class="col-3 dropdown-window__side-panel">
                 {% for links_section in side_nav_section.secondary_links %}
                   <p class="p-muted-heading">{{ links_section.title }}</p>
                   
@@ -99,7 +99,7 @@
             </div>
 
             {% if side_nav_section.section_footer %}
-              <div class="col-12 dropdown-window__footer">
+              <div class="col-9 dropdown-window__footer">
                 {% if "copy" in side_nav_section.section_footer %}
                   <p>{{ side_nav_section.section_footer['copy'] }}</p>
                 {% endif %}
@@ -112,7 +112,7 @@
       </div>
     {% elif "primary_links" in sections %}
       <div class="row u-no-padding"> 
-        <div class="col-9 dropdown-window__main-panel  {% if sections.secondary_links or sections.highlighted_secondary_links %}is-bordered{% endif %}">
+        <div class="col-9 dropdown-window__main-panel">
           {% for links_section in sections.primary_links %}
             {% if links_section.title %}
               <p class="p-muted-heading">{{ links_section.title }}</p>
@@ -222,9 +222,9 @@
           </button>
         </li>
         {% for links_section in side_nav_section.primary_links %}
-        {% if links_section.title %}
-        <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
-        {% endif %}
+          {% if links_section.title %}
+          <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+          {% endif %}
           {% for link in links_section.links %}
             {% with 
               url = link.url, 
@@ -233,7 +233,6 @@
               secondary_cta_url = link.secondary_cta_url,
               secondary_cta_title = link.secondary_cta_title,
               tabindex = "-1"
-
             %}
               {% include "templates/meganav/_list-item.html" %}
             {% endwith %}
@@ -244,9 +243,9 @@
     {% endfor %}
   {% elif "primary_links" in sections %}
     {% for links_section in sections.primary_links %}
-    {% if links_section.title %}
-    <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
-    {% endif %}
+      {% if links_section.title %}
+      <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+      {% endif %}
       {% for link in links_section.links %}
         {% with 
           url = link.url, 
