@@ -35,8 +35,10 @@
       .p-navigation__items {
         width: 100%;
 
-        .p-navigation__link {
-          padding-left: 3.5rem;
+        @media (max-width: $breakpoint-navigation-threshold) {
+          .p-navigation__link {
+            padding-left: 3.5rem;
+          }
         }
 
         .global-nav {
