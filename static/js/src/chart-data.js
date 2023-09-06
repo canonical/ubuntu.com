@@ -162,9 +162,23 @@ export var serverAndDesktopReleases = [
 
 export var kernelReleases = [
   {
-    startDate: new Date("2023-02-01T00:00:00"),
-    endDate: new Date("2027-04-01T00:00:00"),
+    startDate: new Date("2023-08-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 22.04.3 LTS",
+    taskVersion: "6.2 kernel",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-04-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
+    taskName: "Ubuntu 23.04",
+    taskVersion: "",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-02-01T00:00:00"),
+    endDate: new Date("2023-07-01T00:00:00"),
+    taskName: "Ubuntu 22.04.2 LTS",
     taskVersion: "Kernel version",
     status: "LTS",
   },
@@ -1681,6 +1695,8 @@ export var desktopServerReleaseNames = [
 
 export var kernelReleaseNames = [
   "Ubuntu 22.04.3 LTS",
+  "Ubuntu 23.04",
+  "Ubuntu 22.04.2 LTS",
   "Ubuntu 22.10",
   "Ubuntu 22.04.1 LTS",
   "Ubuntu 20.04.5 LTS",
@@ -1705,6 +1721,8 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "6.2 kernel",
+  "",
   "5.19 kernel",
   "",
   "5.15 kernel",
