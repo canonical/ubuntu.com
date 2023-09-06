@@ -1,5 +1,4 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
-<a href="#main-content" class="p-link--skip">Jump to main content</a>
 <header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   {% block header_banner %}
   <div class="row">
@@ -30,19 +29,19 @@
     </div>
     <nav class="p-navigation__nav col-9 js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" data-id="products" onmouseover="fetchDropdown('/templates/meganav/products', 'products'); this.onmouseover = null;">
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" data-id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
           <button class="p-navigation__link" href="#products-content" aria-controls="#products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" data-id="use-case" onmouseover="fetchDropdown('/templates/meganav/use-case', 'use-case'); this.onmouseover = null;">
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" data-id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
           <button class="p-navigation__link" href="#use-case-content" aria-controls="#use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" data-id="support" onmouseover="fetchDropdown('/templates/meganav/support', 'support'); this.onmouseover = null;">
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" data-id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
           <button class="p-navigation__link" href="#support-content" aria-controls="#support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" data-id="community" onmouseover="fetchDropdown('/templates/meganav/community', 'community'); this.onmouseover = null;">
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" data-id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
           <button class="p-navigation__link" href="#community-content" aria-controls="#community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" data-id="get-ubuntu" onmouseover="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu'); this.onmouseover = null;">
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" data-id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
           <button class="p-navigation__link" href="#get-ubuntu-content" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu');">Get Ubuntu</button>
         </li>
         <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical" data-id="all-canonical"></li>
