@@ -118,12 +118,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
                     return flask.jsonify(message), 401
 
-            if permission == "user_or_guest" and response == "json":
-                if not user_token and not guest_token:
-                    message = {"error": "authentication required"}
-
-                    return flask.jsonify(message), 401
-
             if permission == "user" and response == "html":
                 if not user_token:
                     redirect_path = redirect or flask.request.full_path

@@ -1,33 +1,34 @@
 # Packages
-from distutils.util import strtobool
 import os
-import flask
 from datetime import datetime
-from dateutil.parser import parse
-import pytz
-from requests.exceptions import HTTPError
-from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from distutils.util import strtobool
 
-# Local
-from webapp.shop.decorators import shop_decorator, SERVICES
-from webapp.shop.flaskparser import use_kwargs
+import flask
+import pytz
+from dateutil.parser import parse
+from requests.exceptions import HTTPError
+
+from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.ua_contracts.api import (
-    UAContractsAPI,
-    UAContractsAPIError,
-    UAContractsUserHasNoAccount,
     AccessForbiddenError,
+    UAContractsAPI,
+    UAContractsUserHasNoAccount,
 )
 from webapp.shop.api.ua_contracts.helpers import (
     extract_last_purchase_ids,
     to_dict,
 )
+
+# Local
+from webapp.shop.decorators import SERVICES, shop_decorator
+from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.schemas import (
     PurchaseTotalSchema,
+    ensure_purchase_account,
+    get_purchase_account_status,
+    invoice_view,
     post_anonymised_customer_info,
     post_customer_info,
-    ensure_purchase_account,
-    invoice_view,
-    get_purchase_account_status,
     post_payment_methods,
     post_purchase_calculate,
 )
@@ -190,9 +191,9 @@ def post_payment_methods(ua_contracts_api, **kwargs):
     return response
 
 
-@shop_decorator(area="account")
+@shop_decorator(area="account", permission="user", response="json")
 @use_kwargs(ensure_purchase_account, location="json")
-def ensure_purchase_account(ua_contracts_api, **kwargs):
+def ensure_purchase_account(advantage_mapper: AdvantageMapper, **kwargs):
     """
     Returns an object with the ID of an account a user can make
     purchases on. If the user is not logged in, the object also
@@ -200,34 +201,14 @@ def ensure_purchase_account(ua_contracts_api, **kwargs):
     contract API.
     """
 
-    marketplace = kwargs.get("marketplace")
-    email = kwargs.get("email")
-    account_name = kwargs.get("account_name")
-    captcha_value = kwargs.get("captcha_value")
+    response = advantage_mapper.ensure_purchase_account(
+        marketplace=kwargs.get("marketplace"),
+        email=kwargs.get("email"),
+        account_name=kwargs.get("account_name"),
+        captcha_value=kwargs.get("captcha_value"),
+    )
 
-    try:
-        account = ua_contracts_api.ensure_purchase_account(
-            marketplace=marketplace,
-            email=email,
-            account_name=account_name,
-            captcha_value=captcha_value,
-        )
-    except UAContractsAPIError as error:
-        response = {
-            "code": error.response.json()["code"],
-            "message": error.response.json()["message"],
-        }
-
-        return flask.jsonify(response), 200
-
-    # The guest authentication token is included in the response only when the
-    # user is not logged in.
-    token = account.get("token")
-
-    if token:
-        flask.session["guest_authentication_token"] = token
-
-    return flask.jsonify(account), 200
+    return flask.jsonify(to_dict(response)), 200
 
 
 @shop_decorator(area="account", permission="user", response="json")
@@ -249,7 +230,7 @@ def get_customer_info(ua_contracts_api, **kwargs):
     return response
 
 
-@shop_decorator(area="account", permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 @use_kwargs(post_customer_info, location="json")
 def post_customer_info(ua_contracts_api, **kwargs):
     payment_method_id = kwargs.get("payment_method_id")
@@ -269,7 +250,7 @@ def post_customer_info(ua_contracts_api, **kwargs):
     )
 
 
-@shop_decorator(area="account", permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 @use_kwargs(post_anonymised_customer_info, location="json")
 def post_anonymised_customer_info(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -288,27 +269,18 @@ def post_anonymised_customer_info(ua_contracts_api, **kwargs):
     )
 
 
-@shop_decorator(area="account", permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 def post_retry_purchase(ua_contracts_api: UAContractsAPI, **kwargs):
     purchase_id = kwargs.get("purchase_id")
 
     return ua_contracts_api.post_retry_purchase(purchase_id)
 
 
-@shop_decorator(area="account", permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 def get_purchase(ua_contracts_api, **kwargs):
     purchase_id = kwargs.get("purchase_id")
 
     return ua_contracts_api.get_purchase(purchase_id)
-
-
-@shop_decorator(area="account", permission="user_or_guest", response="json")
-def get_purchase_v2(advantage_mapper, **kwargs):
-    purchase_id = kwargs.get("purchase_id")
-
-    purchase = advantage_mapper.get_purchase(purchase_id)
-
-    return flask.jsonify(to_dict(purchase)), 200
 
 
 @shop_decorator(area="account", permission="user", response="json")
@@ -359,7 +331,7 @@ def support(**kwargs):
     )
 
 
-@shop_decorator(area="account", response="html")
+@shop_decorator(area="account", permission="user", response="html")
 def checkout(**kwargs):
     return flask.render_template(
         "account/checkout.html",

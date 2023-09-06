@@ -4,8 +4,8 @@ A Flask application for ubuntu.com
 
 import os
 
-import requests
 import flask
+import requests
 import talisker.requests
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -57,7 +57,6 @@ from webapp.shop.advantage.views import (
     magic_attach_view,
     post_account_user_role,
     post_advantage_purchase,
-    post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer,
     pro_activate_activation_key,
@@ -98,7 +97,6 @@ from webapp.shop.views import (
     get_last_purchase_ids,
     get_purchase,
     get_purchase_account_status,
-    get_purchase_v2,
     get_shop_status_page,
     invoices_view,
     maintenance_check,
@@ -121,6 +119,7 @@ from webapp.views import (
     appliance_portfolio,
     build_engage_index,
     build_engage_page,
+    build_engage_pages_sitemap,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -142,7 +141,6 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
-    build_engage_pages_sitemap,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -235,20 +233,8 @@ app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
 app.add_url_rule("/pro/subscribe/thank-you", view_func=advantage_thanks_view)
 app.add_url_rule(
     "/pro/subscribe",
-    view_func=post_advantage_subscriptions,
-    methods=["POST"],
-    defaults={"preview": False},
-)
-app.add_url_rule(
-    "/pro/subscribe",
     view_func=cancel_advantage_subscriptions,
     methods=["DELETE"],
-)
-app.add_url_rule(
-    "/pro/subscribe/preview",
-    view_func=post_advantage_subscriptions,
-    methods=["POST"],
-    defaults={"preview": True},
 )
 app.add_url_rule("/pro/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
@@ -348,11 +334,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/account/purchases/<purchase_id>",
     view_func=get_purchase,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/account/purchases_v2/<purchase_id>",
-    view_func=get_purchase_v2,
     methods=["GET"],
 )
 app.add_url_rule(

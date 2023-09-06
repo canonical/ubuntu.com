@@ -55,7 +55,6 @@ class PurchaseTotalSchema(Schema):
 
 account_purhcase = {
     "account_id": String(),
-    "customer_info": Nested(CustomerInfo),
     "products": List(Nested(ProductListing)),
     "offer_id": String(),
     "renewal_id": String(),
