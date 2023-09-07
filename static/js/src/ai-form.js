@@ -10,21 +10,35 @@ function stringifyCustomFields() {
     if (checkbox.children[0].checked) {
       const text = checkbox.children[1].innerHTML;
       offerings += " \r\n" + text;
-    } 
+    }
   });
 
   if (offerings) {
-    textarea.value +=" \r\n" + "What are you interested in from our AI offering?" + offerings + " \r\n";
+    textarea.value +=
+      " \r\n" +
+      "What are you interested in from our AI offering?" +
+      offerings +
+      " \r\n";
   }
 
-  radios.forEach(radio => {
+  radios.forEach((radio) => {
     if (radio.checked) {
-        textarea.value += " \r\n" + "Do you already have any AI projects rolled out in your enterprise? " + " \r\n"  + radio.value + " \r\n";
+      textarea.value +=
+        " \r\n" +
+        "Do you already have any AI projects rolled out in your enterprise? " +
+        " \r\n" +
+        radio.value +
+        " \r\n";
     }
     radio.removeAttribute("name");
-  })
+  });
 
   if (extraCommentsText) {
-    textarea.value += " \r\n" + "Add details about your AI or MLOps requirements:" + " \r\n"  + extraCommentsText + " \r\n";
+    textarea.value +=
+      " \r\n" +
+      "Add details about your AI or MLOps requirements:" +
+      " \r\n" +
+      extraCommentsText +
+      " \r\n";
   }
 }
