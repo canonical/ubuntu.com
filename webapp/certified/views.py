@@ -19,6 +19,11 @@ api = CertificationAPI(
 partners_api = PartnersAPI(session=session)
 
 
+def certification_tests():
+    return render_template(
+        "certified/tests.html",
+    ) 
+
 def certified_routes(app):
     """
     Load all /certified routes
@@ -28,6 +33,7 @@ def certified_routes(app):
     and independent, so they don't need to reside on app.py
     """
 
+    app.add_url_rule("/certified/tests", view_func=certification_tests)
     app.add_url_rule("/certified", view_func=certified_home)
     app.add_url_rule(
         "/certified/<canonical_id>",
