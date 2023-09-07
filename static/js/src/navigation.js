@@ -1,23 +1,23 @@
 const ANIMATION_DELAY = 200;
 const MOBILE_VIEW_BREAKPOINT = 1250;
+let dropdowns = [];
+const navigation = document.querySelector(".p-navigation--sliding");
 const dropdownWindow = document.querySelector(".dropdown-window");
-const dropdownWindowOverlay = document.querySelector(
+const dropdownWindowOverlay = navigation.querySelector(
   ".dropdown-window-overlay"
 );
-const searchOverlay = document.querySelector(".p-navigation__search-overlay");
+const searchOverlay = navigation.querySelector(".p-navigation__search-overlay");
 const secondaryNav = document.querySelector(".p-navigation.is-secondary");
-const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(
-  document.querySelectorAll(
+  navigation.querySelectorAll(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
 const nav = navigation.querySelector(".js-show-nav");
-const menuButtons = document.querySelectorAll(".js-menu-button");
-const skipLink = document.querySelector(".p-link--skip");
-const jsBackbuttons = document.querySelectorAll(".js-back");
-const reducedNav = document.querySelector(".p-navigation--sliding.is-reduced ");
-let dropdowns = [];
+const menuButtons = navigation.querySelectorAll(".js-menu-button");
+const skipLink = navigation.querySelector(".p-link--skip");
+const jsBackbuttons = navigation.querySelectorAll(".js-back");
+const reducedNav = navigation.querySelector(".p-navigation--sliding.is-reduced ");
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
