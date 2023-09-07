@@ -39,10 +39,8 @@ from webapp.shop.advantage.views import (
     activate_magic_attach,
     advantage_account_users_view,
     advantage_shop_view,
-    advantage_thanks_view,
     advantage_view,
     blender_shop_view,
-    blender_thanks_view,
     cancel_advantage_subscriptions,
     cancel_trial,
     delete_account_user_role,
@@ -230,7 +228,6 @@ app.add_url_rule(
 )
 app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
-app.add_url_rule("/pro/subscribe/thank-you", view_func=advantage_thanks_view)
 app.add_url_rule(
     "/pro/subscribe",
     view_func=cancel_advantage_subscriptions,
@@ -261,11 +258,6 @@ app.add_url_rule(
     "/pro/contracts/<contract_id>/entitlements",
     view_func=put_contract_entitlements,
     methods=["PUT"],
-)
-
-app.add_url_rule(
-    "/pro/subscribe/blender/thank-you",
-    view_func=blender_thanks_view,
 )
 
 app.add_url_rule(

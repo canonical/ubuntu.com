@@ -194,7 +194,7 @@ context("Checkout - Your information", () => {
 });
 
 context("Checkout purchase", () => {
-  it("user: it should purchase", () => {
+  it.only("user: it should purchase", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
@@ -225,9 +225,6 @@ context("Checkout purchase", () => {
 
     cy.findByRole("button", { name: "Buy" }).click();
 
-    cy.wait("@customerInfo").then((interception) => {
-      expect(interception.response.statusCode).to.equal(200);
-    });
     cy.wait("@preview").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });

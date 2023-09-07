@@ -25,8 +25,6 @@ AREA_LIST = {
 
 PERMISSION_LIST = {
     "user": "Endpoint needs logged in user.",
-    "guest": "Endpoint won't allow logged in user.",
-    "user_or_guest": "Endpoint needs user or guest token.",
 }
 
 RESPONSE_LIST = {
@@ -104,13 +102,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
             if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
 
-            # if logged in, get rid of guest token
             user_token = flask.session.get("authentication_token")
-            guest_token = flask.session.get("guest_authentication_token")
-
-            if user_token and guest_token:
-                flask.session.pop("guest_authentication_token")
-                guest_token = None
 
             if permission == "user" and response == "json":
                 if not user_token:
@@ -124,12 +116,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
                     return flask.redirect(f"/login?next={redirect_path}")
 
-            if permission == "guest" and response == "html":
-                if user_token:
-                    return flask.redirect(get_redirect_default(area))
-
             ua_contracts_api = get_ua_contracts_api_instance(
-                user_token, guest_token, response, session
+                user_token, response, session
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
             is_community_member = False
@@ -259,12 +247,12 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
 
 
 def get_ua_contracts_api_instance(
-    user_token, guest_token, response, session
+    user_token, response, session
 ) -> UAContractsAPI:
     ua_contracts_api = UAContractsAPI(
         session=session,
-        authentication_token=(user_token or guest_token),
-        token_type=("Macaroon" if user_token else "Bearer"),
+        authentication_token=user_token,
+        token_type="Macaroon",
         api_url=os.getenv(
             "CONTRACTS_API_URL", "https://contracts.canonical.com"
         ),

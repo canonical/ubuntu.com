@@ -250,15 +250,6 @@ def advantage_account_users_view(advantage_mapper, **kwargs):
     return flask.render_template("advantage/users/index.html")
 
 
-@shop_decorator(area="advantage", permission="guest", response="html")
-@use_kwargs({"email": String()}, location="query")
-def advantage_thanks_view(**kwargs):
-    return flask.render_template(
-        "advantage/subscribe/thank-you.html",
-        email=kwargs.get("email"),
-    )
-
-
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
@@ -621,15 +612,6 @@ def blender_shop_view(advantage_mapper, **kwargs):
         account=account,
         previous_purchase_ids=previous_purchase_ids,
         product_listings=to_dict(listings),
-    )
-
-
-@shop_decorator(area="advantage", permission="guest", response="html")
-@use_kwargs({"email": String()}, location="query")
-def blender_thanks_view(**kwargs):
-    return flask.render_template(
-        "advantage/subscribe/blender/thank-you.html",
-        email=kwargs.get("email"),
     )
 
 

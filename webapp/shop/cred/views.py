@@ -694,7 +694,7 @@ def get_my_issued_badges(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="guest", response="json")
+@shop_decorator(area="cred", response="json")
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
     api_key = flask.request.headers.get("X-API-KEY")
