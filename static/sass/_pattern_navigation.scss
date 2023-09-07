@@ -227,11 +227,32 @@
     }
   }
 
+  .p-navigation--sliding:not(.is-reduced),
   .p-navigation.is-secondary {
     position: sticky;
     top: 0px;
-    z-index: 9;
+    z-index: 12;
+  }
 
+  .dropdown-window {
+    z-index: 11;
+
+    &.is-active {
+      overflow-y: auto;
+      max-height: calc(100vh - 3.5rem);
+      height: 100%;
+    }
+  }
+
+  .p-navigation--sliding:not(.is-reduced) + .dropdown-window-overlay + .dropdown-window {
+    position: fixed;
+  }
+
+  .p-navigation.is-secondary {
+    z-index: 10;
+  }
+
+  .p-navigation.is-secondary {
     .p-navigation__nav.is-open {
       display: flex;
 
