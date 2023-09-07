@@ -1387,9 +1387,13 @@ $color-link-dark: #69c !default;
 }
 
 .ai-tooling .col-3  {
-  @media screen and (min-width: $breakpoint-large) {
-    .p-section--shallow:first-of-type {
+  .p-section--shallow:first-of-type {
+    @media screen and (min-width: $breakpoint-large) {
       height: 20rem;
+    }
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      height: 15rem;
     }
   }
 }
