@@ -30,6 +30,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_active-reveal";
+@import "pattern_ai";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
 @import "pattern_blog-post";
@@ -95,6 +96,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
+@include ubuntu-p-ai;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
@@ -1383,45 +1385,5 @@ $color-link-dark: #69c !default;
 
   @media screen and (min-width: $breakpoint-medium) {
     width: auto;
-  }
-}
-
-.ai-tooling .col-3 {
-  .p-section--shallow:first-of-type {
-    @media screen and (min-width: $breakpoint-large) {
-      height: 20rem;
-    }
-
-    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
-      height: 15rem;
-    }
-  }
-}
-
-.ai-iso-illustration {
-  background: rgb(0, 0, 0, 0.03); 
-
-  .lazyloaded {
-    height: 25rem;
-    position: relative;
-
-    img {
-      bottom: 0;
-      position: absolute;
-    }
-  }
-}
-
-.ai-logos {
-  .p-logo-section__items {
-    justify-content: space-between;
-  }
-
-  .p-logo-section__item {
-    max-width: fit-content;
-  }
-
-  .p-logo-section__logo{
-    height: 8rem;
   }
 }

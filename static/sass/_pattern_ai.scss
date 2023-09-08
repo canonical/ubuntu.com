@@ -1,0 +1,53 @@
+@mixin ubuntu-p-ai {
+  .ai-tooling .col-3 {
+    .p-section--shallow:first-of-type {
+      @media screen and (min-width: $breakpoint-large) {
+        height: 20rem;
+      }
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+        height: 15rem;
+      }
+    }
+  }
+
+  .ai-iso-illustration {
+    background: rgb(0, 0, 0, 0.03);
+
+    .lazyloaded {
+      height: 25rem;
+      position: relative;
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+        height: 15rem;
+      }
+
+      img {
+        bottom: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  .ai-logos {
+    .p-logo-section__items {
+      justify-content: space-between;
+    }
+
+    .p-logo-section__item {
+      max-width: fit-content;
+    }
+
+    .p-logo-section__logo {
+      height: 8rem;
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+        height: 4rem;
+      }
+
+      @media screen and (max-width: $breakpoint-small - 1) {
+        height: auto;
+      }
+    }
+  }
+}
