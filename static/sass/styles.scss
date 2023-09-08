@@ -1397,3 +1397,31 @@ $color-link-dark: #69c !default;
     }
   }
 }
+
+.ai-iso-illustration {
+  background: rgb(0, 0, 0, 0.03); 
+
+  .lazyloaded {
+    height: 25rem;
+    position: relative;
+
+    img {
+      bottom: 0;
+      position: absolute;
+    }
+  }
+}
+
+.ai-logos {
+  .p-logo-section__items {
+    justify-content: space-between;
+  }
+
+  .p-logo-section__item {
+    max-width: fit-content;
+  }
+
+  .p-logo-section__logo{
+    height: 8rem;
+  }
+}
