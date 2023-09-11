@@ -17,6 +17,7 @@
   @include ubuntu-p-strip-suru-square-suru;
   @include ubuntu-p-strip-x-deep;
   @include ubuntu-p-strip-suru-shape;
+  @include ubuntu-p-strip-whitesuru;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -1021,5 +1022,25 @@
     background-color: #2c2c2c;
     background-size: cover;
     color: $color-x-light;
+  }
+}
+
+@mixin ubuntu-p-strip-whitesuru {
+  .p-strip--whitesuru {
+    @extend %vf-strip;
+  
+    background: url("https://assets.ubuntu.com/v1/25538a5e-Suru%20top%20left%20angle.jpg");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: contain;
+  
+    // Hide suru on small and medium screens
+    @media screen and (max-width: $breakpoint-small - 1) {
+      background: none;
+    }
+  
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      background: none;
+    }
   }
 }
