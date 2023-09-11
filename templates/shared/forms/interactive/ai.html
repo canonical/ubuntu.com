@@ -1,14 +1,14 @@
-<div class="p-modal p-strip is-shallow" id="contact-modal">
-  <div class="p-modal__dialog is-paper" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" style="max-width: 1280px;">
-    <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem; margin-top: 0; background-color: #f3f3f3;">Close</button>
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog is-paper p-strip is-shallow" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" style="max-width: 1280px;">
     <div class="js-pagination js-pagination--1">
       <div class="js-formfield">
-        <div class="row--50-50 u-no-padding">
+        <div class="row--50-50">
           <div class="col">
             <h2 class="p-heading--1" id="modal-title">Open source AI: a scalable path to production</h2>
             <p>Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.</p>
           </div>
           <div class="col">
+            <button class="p-modal__close" aria-label="Close active modal" style="margin-top: 1.5rem; background-color: #f3f3f3;">Close</button>
             <form action="/marketo/submit" onsubmit="stringifyCustomFields()" method="post" id="mktoForm_%% formid %%" class="modal-form">
               <div class="p-section--shallow">
                 <p>Do you already have any AI projects rolled out in your enterprise?</p>
