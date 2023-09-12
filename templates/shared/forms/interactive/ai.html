@@ -1,0 +1,121 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog is-paper p-strip is-shallow" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <div class="js-pagination js-pagination--1">
+      <div class="js-formfield">
+        <div class="row--50-50">
+          <div class="col">
+            <h2 class="p-heading--1" id="modal-title">Open source AI: a scalable path to production</h2>
+            <p>Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.</p>
+          </div>
+          <div class="col">
+            <button class="p-modal__close" aria-label="Close active modal" style="margin-top: 1.5rem; background-color: #f3f3f3;">Close</button>
+            <form action="/marketo/submit" onsubmit="stringifyCustomFields()" method="post" id="mktoForm_%% formid %%" class="modal-form">
+              <div class="p-section--shallow">
+                <p>Do you already have any AI projects rolled out in your enterprise?</p>
+                <label class="p-radio">
+                  <input type="radio" value="Yes" class="p-radio__input" id="aiProjectsYes" name="aiProjects" aria-labelledby="aiProjectsYes" required>
+                  <span class="p-radio__label" id="aiProjectsYes">Yes</span>
+                </label>
+                <label class="p-radio">
+                  <input type="radio" value="No" class="p-radio__input" id="aiProjectsNo" name="aiProjects" aria-labelledby="aiProjectsNo" required>
+                  <span class="p-radio__label" id="aiProjectsNo">No</span>
+                </label>
+              </div>
+              <div class="p-section--shallow">
+                <hr class="p-rule">
+                <p>What are you interested in from our AI offering?</p>
+                <label class="p-checkbox js-checkbox">
+                  <input type="checkbox" aria-labelledby="canonicalMlopsSolution" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="canonicalMlopsSolution">Canonical MLOps solution</span>
+                </label>
+                <label class="p-checkbox js-checkbox">
+                  <input type="checkbox" aria-labelledby="aiConsultingServices" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="aiConsultingServices">AI consultancy services</span>
+                </label>
+                <label class="p-checkbox js-checkbox">
+                  <input type="checkbox" aria-labelledby="mlopsWorkshop" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="mlopsWorkshop">MLOps Workshop</span>
+                </label>
+                <label class="p-checkbox js-checkbox">
+                  <input type="checkbox" aria-labelledby="notSure" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="notSure">Not sure</span>
+                </label>
+              </div>
+              <div class="p-section--shallow">
+                <hr class="p-rule">
+                <label for="mlopsRequirements">Add details about your AI or MLOps requirements</label>
+                <textarea id="mlopsRequirements"></textarea>
+                <hr class="p-rule">
+                <p>Add your information</p>
+                <label for="firstName">First name:</label>
+                <input required id="firstName" name="firstName" maxlength="255" type="text"/>
+
+                <label for="lastName">Last name:</label>
+                <input required id="lastName" name="lastName" maxlength="255" type="text"/>
+
+                <label for="company">Company:</label>
+                <input required id="company" name="company" maxlength="255" type="text"/>
+
+                <label for="company">Title:</label>
+                <input required id="title" name="title" maxlength="255" type="text"/>
+
+                <label for="email">Email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
+
+                <label for="phone">Phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" />
+              </div>
+
+              <div class="p-section--shallow">
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
+
+                <p>By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</p>
+                {# These are honey pot fields to catch bots #}
+                <ul class="p-list u-off-screen">
+                  <li class="u-off-screen">
+                    <label class="website" for="website">Website:</label>
+                    <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+                  </li>
+                  <li class="u-off-screen">
+                    <label class="name" for="name">Name:</label>
+                    <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+                  </li>
+                </ul>
+                {# End of honey pots #}
+              </div>
+
+              <div class="u-hide">
+                <h3>Your comments</h3>
+                <ul class="p-list">
+                  <li class="p-list__item">
+                    <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                    <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                  </li>
+                </ul>
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+              </div>
+
+              <div class="pagination p-section--shallow">
+                <hr>
+                <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Submit form</button>
+              </div>
+            </form>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
