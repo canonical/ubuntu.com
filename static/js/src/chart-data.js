@@ -451,13 +451,13 @@ export var kernelReleases2204 = [
     startDate: new Date("2023-02-17T00:00:00"),
     endDate: new Date("2023-07-22T00:00:00"),
     taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS"
+    status: "LTS",
   },
   {
     startDate: new Date("2023-08-16T00:00:00"),
     endDate: new Date("2024-02-18T00:00:00"),
     taskName: "Ubuntu 20.04.3 LTS (v6.2)",
-    status: "LTS"
+    status: "LTS",
   },
 ];
 
@@ -928,13 +928,13 @@ export var kernelReleasesALL = [
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
     taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS"
+    status: "LTS",
   },
   {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 22.04.3 LTS (v6.2)",
-    status: "LTS"
+    status: "LTS",
   },
 ];
 
@@ -1189,13 +1189,13 @@ export var kernelReleasesLTS = [
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
     taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS"
+    status: "LTS",
   },
   {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 22.04.3 LTS (v6.2)",
-    status: "LTS"
+    status: "LTS",
   },
 ];
 
