@@ -26,7 +26,7 @@
     <ol class="l-tutorial__nav p-stepped-list u-hide--small" id="menu-tutorial">
       {% for section in document.sections %}
         <li class="p-stepped-list__item l-tutorial__nav-item">
-          <p class="p-stepped-list__title l-tutorial__nav-title u-no-margin--bottom">
+          <p class="p-stepped-list__title l-tutorial__nav-title">
             <a class="l-tutorial__nav-link" href="#{{ loop.index }}-{{ section['slug'] }}">
               {{ section["title"]}}
             </a>

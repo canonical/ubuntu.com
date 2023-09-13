@@ -37,24 +37,22 @@
   }
 
   .l-tutorial__nav-item {
-    padding-bottom: $sp-medium;
+    padding-bottom: $spv--small;
+
+    &.is-active {
+      @include vf-highlight-bar($colors--light-theme--text-default, left);
+
+      background-color: $colors--light-theme--background-active;
+    }
   }
 
   .l-tutorial__nav-title {
+    margin-bottom: 0;
+
     &::before {
       height: $sp-large;
       margin-right: $sp-medium;
       width: $sp-large;
-    }
-
-    .is-active & {
-      font-weight: 400;
-
-      &::before {
-        background-color: $color-brand;
-        color: $color-x-light;
-        font-weight: 300;
-      }
     }
   }
 
