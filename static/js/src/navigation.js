@@ -17,7 +17,9 @@ const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = navigation.querySelectorAll(".js-menu-button");
 const skipLink = navigation.querySelector(".p-link--skip");
 const jsBackbuttons = navigation.querySelectorAll(".js-back");
-const reducedNav = navigation.querySelector(".p-navigation--sliding.is-reduced ");
+const reducedNav = navigation.querySelector(
+  ".p-navigation--sliding.is-reduced "
+);
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
@@ -467,8 +469,11 @@ function setUpGlobalNav() {
   const globalNavMainTab = globalNavTab.querySelector("ul.p-navigation__items");
 
   globalNavMainTab.classList.replace("u-hide", "dropdown-content-mobile");
-  globalNavMainTab.classList.replace("p-navigation__items", "p-navigation__dropdown",);
-  
+  globalNavMainTab.classList.replace(
+    "p-navigation__items",
+    "p-navigation__dropdown"
+  );
+
   globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
 
   globalNavTab
