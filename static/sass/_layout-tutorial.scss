@@ -37,22 +37,32 @@
   }
 
   .l-tutorial__nav-item {
-    padding-bottom: $spv--small;
-
-    &.is-active {
-      @include vf-highlight-bar($colors--light-theme--text-default, left);
-
-      background-color: $colors--light-theme--background-active;
-    }
+    padding-bottom: $sp-medium;
   }
 
   .l-tutorial__nav-title {
-    margin-bottom: 0;
-
+    // recreate circle styling from Vanilla 3.0, to unlock Vanilla 4.0 migation
+    // FIXME: Vanilla 4.0 doesn't use circled steps, so this needs to be redesigned and updated, possibly to use standard side navigation
     &::before {
+      border: 1px solid $colors--light-theme--text-default;
+      border-radius: 50%;
+      content: counter(li);
       height: $sp-large;
+      // line height is calculated to vertically center the number, which is size of the circle minus the border
+      line-height: calc($sp-large - 2px);
       margin-right: $sp-medium;
+      text-align: center;
       width: $sp-large;
+    }
+
+    .is-active & {
+      font-weight: 400;
+
+      &::before {
+        background-color: $color-brand;
+        color: $color-x-light;
+        font-weight: 300;
+      }
     }
   }
 
