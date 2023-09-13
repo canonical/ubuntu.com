@@ -2,6 +2,8 @@
 
 {% extends "templates/base.html" %}
 
+{% block title %}Navigation{% endblock %}
+
 {% block outer_content %}
 
 <div class="p-strip nojs-meganav" style="overflow-x: unset;">
@@ -11,7 +13,7 @@
     <div class="dropdown-window__content row">
       {% include "templates/meganav/_section-heading.html"%}
       {% if "side_nav_sections" in nav[section] %}
-        <div class="dropdown-window__tab-panel col-3" style="top: 0; height: fit-content; position: sticky; padding-bottom: 3rem">
+        <div class="dropdown-window__tab-panel col-3 u-hide--small u-hide--medium" style="top: 0; height: fit-content; position: sticky; padding-bottom: 3rem">
           <div class="p-side-navigation is-dark">
             <div class="p-side-navigation__drawer">
               <ul class="p-side-navigation__list u-no-margin--bottom">
