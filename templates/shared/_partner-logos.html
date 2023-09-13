@@ -8,8 +8,8 @@
     </div>
   </div>
 {% else %}
+  {% if title %}<h2 class="p-muted-heading">{{title}}</h2>{% endif %}
   <div class="p-logo-section">
-    {% if title %}<h2 class="p-logo-section__title u-align--center">{{title}}</h2>{% endif %}
   
     <div id="cloud-partners" class="p-logo-section__items">
       {% for partner in partners %}
