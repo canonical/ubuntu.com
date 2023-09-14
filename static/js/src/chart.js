@@ -191,7 +191,7 @@ function buildChartKey(chartSelector, taskStatus) {
     .select(chartSelector)
     .append("svg")
     .attr("class", "chart-key")
-    .attr("width", "400")
+    .attr("width", "550")
     .attr("height", 24 * taskStatusKeys.length);
 
   taskStatusKeys.forEach(function (key, i) {
@@ -235,21 +235,21 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace("kub", "Kub");
   formattedKey = formattedKey.replace(
     "Interim release",
-    "Interim release Standard Support (9 months)"
+    "Interim release standard security maintenance (9 months)"
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "LTS expanded support for Ubuntu Main (5 years)"
+    "LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)"
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");
   formattedKey = formattedKey.replace(
     "Hardware and maintenance updates",
-    "LTS standard support for Ubuntu Main"
+    "LTS standard security maintenance for Ubuntu Main (5 years)"
   );
   formattedKey = formattedKey.replace(
     "Main universe",
-    "LTS expanded support for Ubuntu Universe (10 years)"
+    "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
   );
   formattedKey = formattedKey.replace(
     "Microstack esm",
