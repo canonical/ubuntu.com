@@ -1,9 +1,8 @@
-import { Card, Col, List, Row } from "@canonical/react-components";
+import { Card, Col, Row } from "@canonical/react-components";
 import React, { ReactNode } from "react";
 import classNames from "classnames";
 import {
   formatDate,
-  getFeaturesDisplay,
   isBlenderSubscription,
   isFreeSubscription,
   makeInteractiveProps,
@@ -105,14 +104,6 @@ const ListCard = ({
             </span>
           </Col>
         </Row>
-        {getFeaturesDisplay(subscription.entitlements).included.length > 0 ? (
-          <List
-            className="p-subscriptions__list-card-features p-text--small-caps u-text--muted u-no-margin--bottom"
-            data-test="card-entitlements"
-            inline
-            items={getFeaturesDisplay(subscription.entitlements).included}
-          />
-        ) : null}
       </div>
     </Card>
   );
