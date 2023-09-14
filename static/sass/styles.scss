@@ -1390,4 +1390,22 @@ $color-link-dark: #69c !default;
 
 .p-modal__dialog.is-paper {
   max-width: $grid-max-width !important;
+
+  &.is-ai-modal {
+    .p-modal__close {
+      background-color: transparent;
+      margin-top: 1.5rem;
+      right: 1rem;
+      @media screen and (min-width: $breakpoint-medium) {
+        right: 1.5rem;
+      }
+    }
+
+    .modal-form .p-section--shallow:first-child > p {
+      padding-right: 0rem;
+      @media screen and (min-width: $breakpoint-small) {
+        padding-right: 2rem;
+      }
+    }
+  }
 }
