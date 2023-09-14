@@ -27,8 +27,8 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="p-logo-section u-no-margin">
-      <h2 class="p-logo-section__title u-align--center">innovating on ubuntu with canonical</h2>
+    <h2 class="p-muted-heading">innovating on ubuntu with canonical</h2>
+    <div class="p-logo-section u-no-margin has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
             {{ image (
@@ -104,7 +104,7 @@
       <p>
         <a href="/cloud/public-cloud">Public cloud&nbsp;&rsaquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/openstack">Private cloud&nbsp;&rsaquo;</a>
       </p>
-      <div class="p-logo-section is-flex u-hide--medium u-hide--small u-align--left">
+      <div class="p-logo-section u-hide--medium u-hide--small u-align--left has-misaligned-images">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item u-no-margin--left">
             {{ image (
@@ -323,7 +323,7 @@
         <a href="/security">security</a> maintenance and <a href="/support">support</a>. Ubuntu ranks first for speed and quality of security fixes across the widest range of open source applications and infrastructure.</p>
     </div>
     <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      <div class="p-logo-section u-no-margin">
+      <div class="p-logo-section u-no-margin has-misaligned-images">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{ image (
@@ -401,14 +401,14 @@
     <p>Canonical offers <a href="/managed/apps">fully managed open source</a> with a disruptive business model - priced per host or VM, not by the hour or per application. Maintain business focus and reduce costs, and offload the complexity of deploying and managing open source components to our specialist team.</p>
   </div>
   <div class="u-fixed-width u-hide--small">
-    <div class="p-logo-section u-no-margin">
+    <div class="p-logo-section u-no-margin has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/82e5d34c-MySQL.png",
+            url="https://assets.ubuntu.com/v1/703b9461-apps_mysql.png",
             alt="MySQL",
-            width="90",
-            height="47",
+            width="144",
+            height="103",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -576,7 +576,7 @@
         <a href="/kubeflow">machine learning processes with Kubeflow</a>. With  Ubuntu, you benefit from perfect multi-cloud portability of AI/ML workloads.</p>
     </div>
     <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      <div class="p-logo-section u-no-margin">
+      <div class="p-logo-section u-no-margin has-misaligned-images">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{ image (
@@ -733,17 +733,5 @@
     </div>
   </div>
 </section>
-
-<style>
-  .p-logo-section.is-flex {
-    align-items: baseline;
-    display: flex;
-  }
-
-  .p-logo-section.is-flex>.p-logo-section__item {
-    margin-block-end: 0;
-    margin-block-start: 0;
-  }
-</style>
 
 {% endblock content %}
