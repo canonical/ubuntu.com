@@ -41,7 +41,7 @@
   }
 
   .l-tutorial__nav-title {
-    // recreate circle styling from Vanilla 3.0, to unlock Vanilla 4.0 migation
+    // recreate circle styling from Vanilla 3.0, to unblock Vanilla 4.0 migation
     // FIXME: Vanilla 4.0 doesn't use circled steps, so this needs to be redesigned and updated, possibly to use standard side navigation
     &::before {
       border: 1px solid $colors--light-theme--text-default;
@@ -59,8 +59,8 @@
       font-weight: 400;
 
       &::before {
-        background-color: $color-brand;
-        color: $color-x-light;
+        background-color: $colors--light-theme--text-default;
+        color: $colors--dark-theme--text-default;
         font-weight: 300;
       }
     }
