@@ -1,4 +1,4 @@
-{% extends "ai/_base_ai.html" %}
+{% extends "ai/base_ai.html" %}
 
 {% block title %}Open source AI{% endblock %}
 
@@ -20,7 +20,7 @@
         <div class="p-section--shallow">
           <p>Build enterprise-grade AI projects with  secure and supported Canonical MLOps. Develop on your Ubuntu workstation using Charmed Kubeflow or Charmed MLFlow and scale up quickly with open source tooling in every part of your stack.</p>
         </div>
-        <a class="p-button--positive js-invoke-modal" href="#get-in-touch">Contact us</a>
+        <a class="p-button--positive js-invoke-modal" href="/ai/contact-us">Contact us</a>
         <a class="p-button" href="/engage/mlops-guide">Read our guide to MLOps</a>
       </div>
     </div>
@@ -44,7 +44,7 @@
           <li class="p-list__item is-ticked">Deploy your solution and run AI at scale</li>
         </ul>
       </div>
-      <a class="p-button" href="#get-in-touch">Contact us</a>
+      <a class="p-button js-invoke-modal" href="/ai/contact-us">Contact us</a>
     </div>
   </div>
 </section>
@@ -104,7 +104,7 @@
         <div class="col-4">
           <p>Have an expert from our team by your side during the entire AI/ML project and let them drive it.</p>
           <p>
-            <a class="js-invoke-modal" href="#get-in-touch">Contact us for more details&nbsp;&rsaquo;</a>
+            <a class="js-invoke-modal" href="/ai/contact-us">Contact us for more details&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -232,14 +232,16 @@
   </div>
 </section>
 
-<section class="p-strip--white is-deep">
+<hr class=" u-fixed-width">
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-start-large-4 col-9">
       <p class="p-heading--2">Connect with an expert to discuss your project</p>
-      <a class="p-button--positive js-invoke-modal" href="#get-in-touch">Contact us</a>    
+      <a class="p-button--positive js-invoke-modal" href="/ai/contact-us">Contact us</a>    
     </div>
   </div>
 </section>
+<hr class="u-fixed-width">
 
 <section class="p-strip is-deep">
   <div class="row">
