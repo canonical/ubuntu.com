@@ -245,7 +245,7 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace("Early", "Early preview");
   formattedKey = formattedKey.replace(
     "Hardware and maintenance updates",
-    "LTS standard security maintenance for Ubuntu Main (5 years)"
+    "LTS standard security maintenance for Ubuntu Main (initial 5 years)"
   );
   formattedKey = formattedKey.replace(
     "Main universe",
