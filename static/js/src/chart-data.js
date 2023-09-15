@@ -456,7 +456,7 @@ export var kernelReleases2204 = [
   {
     startDate: new Date("2023-08-16T00:00:00"),
     endDate: new Date("2024-02-18T00:00:00"),
-    taskName: "Ubuntu 20.04.3 LTS (v6.2)",
+    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -1769,7 +1769,7 @@ export var kernelReleaseNames2204 = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
   "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 20.04.3 LTS (v6.2)",
+  "Ubuntu 22.04.3 LTS (v6.2)",
 ];
 
 export var kernelReleaseNames2004 = [
