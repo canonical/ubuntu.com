@@ -3,7 +3,7 @@ const MOBILE_VIEW_BREAKPOINT = 1250;
 let dropdowns = [];
 const navigation = document.querySelector(".p-navigation--sliding");
 const dropdownWindow = document.querySelector(".dropdown-window");
-const dropdownWindowOverlay = navigation.querySelector(
+const dropdownWindowOverlay = document.querySelector(
   ".dropdown-window-overlay"
 );
 const searchOverlay = navigation.querySelector(".p-navigation__search-overlay");
@@ -25,7 +25,9 @@ const mainList = document.querySelector(
 );
 const currentBubble = window.location.pathname.split("/")[1];
 
+navigation.classList.add("js-enabled")
 nav.classList.remove("u-hide");
+
 
 //Helper functions
 
