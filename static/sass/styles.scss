@@ -1402,11 +1402,13 @@ $color-link-dark: #69c !default;
     }
 
     .modal-form .p-section--shallow:first-child > p {
-      padding-right: 0rem;
+      padding-right: 0;
       @media screen and (min-width: $breakpoint-small) {
         padding-right: 2rem;
       }
     }
+  }
+}
 
 // XXX: @bartaz: this will be covered in Vanilla
 // can be removed once https://github.com/canonical/vanilla-framework/issues/4875 is done and released
