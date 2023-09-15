@@ -28,26 +28,4 @@
       }
     }
   }
-
-  .ai-logos {
-    .p-logo-section__items {
-      justify-content: space-between;
-    }
-
-    .p-logo-section__item {
-      max-width: fit-content;
-    }
-
-    .p-logo-section__logo {
-      height: 8rem;
-
-      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
-        height: 4rem;
-      }
-
-      @media screen and (max-width: $breakpoint-small - 1) {
-        height: auto;
-      }
-    }
-  }
 }
