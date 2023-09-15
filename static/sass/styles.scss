@@ -1423,3 +1423,17 @@ $color-link-dark: #69c !default;
     object-fit: contain;
   }
 }
+
+.p-list--divided.has-description {
+  .p-list__item {
+    @extend .p-heading--5;
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0.5rem !important;
+  }
+
+  p {
+    padding-left: 2rem;
+  }
+}
