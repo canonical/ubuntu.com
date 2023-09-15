@@ -61,12 +61,15 @@
 
       <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
 
+      <p>Ubuntu LTS releases receive 5 years of standard security maintenance for all packages in the ‘Main’ repository. With an Ubuntu Pro subscription you get access to Expanded Security Maintenance (ESM) covering security fixes for packages in the ‘Universe’ repository (esm-apps feature). Additionally, ESM extends the lifetime of an Ubuntu LTS from 5 years to 10 years (esm-infra feature).</p>
+
       <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
     </div>
 
     {% include "/about/release_cycles/ubuntu-eol.html" %}
 
     <div class="u-fixed-width">
+      <p>ESM requires Ubuntu Pro subscription.</p>
       <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.</p>
     </div>
   </div>
