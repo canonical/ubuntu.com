@@ -2,15 +2,13 @@ import React, { ReactNode } from "react";
 import classNames from "classnames";
 import {
   Button,
-  CodeSnippet,
-  CodeSnippetBlockAppearance,
   Col,
   ColProps,
   Row,
   Spinner,
   Tooltip,
 } from "@canonical/react-components";
-import { UserSubscriptionPeriod, UserSubscriptionType } from "advantage/api/enum";
+import { UserSubscriptionType } from "advantage/api/enum";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -93,35 +91,27 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   };
 
   const tokenBlock = token?.contract_token ? (
-    <CodeSnippet
-      blocks={[
-        {
-          appearance: CodeSnippetBlockAppearance.URL,
-          code: token?.contract_token,
-        },
-      ]}
-      className="u-sv4 u-no-margin--bottom"
-      onClick={() => {
-        sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-token-click",
-          eventLabel: "Token copied",
-        });
-      }}
-    />
+    <div className="u-sv4 u-no-margin--bottom p-code-snippet">
+      <pre className="p-code-snippet__block--icon is-url"
+        onClick={() => {
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-token-click",
+            eventLabel: "Token copied",
+          });
+        }}>
+        {token?.contract_token}
+      </pre>
+      <p>Command to attach a machine: <br /><code>sudo pro attach {token?.contract_token}</code></p>
+    </div>
   ) : null;
-
   return (
     <div>
       <Row className="u-sv4">
         {generateFeatures([
           {
-            title: "Billing",
-            value: subscription.period === UserSubscriptionPeriod.Monthly ? "Monthly" : "Yearly",
-          },
-          {
             title: "Cost",
-            value: currencyFormatter.format(subscription.price ?? 0),
+            value: currencyFormatter.format((subscription.price ?? 0) / 100),
           },
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
@@ -136,10 +126,6 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
                 value: getMachineTypeDisplay(subscription.machine_type),
               },
             ]),
-          {
-            title: isBlender ? "Users" : "Machines",
-            value: subscription.number_of_machines,
-          },
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
             []

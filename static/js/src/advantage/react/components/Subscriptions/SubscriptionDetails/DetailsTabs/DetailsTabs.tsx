@@ -38,9 +38,9 @@ type ListItem = {
 
 export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   <>
-    <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+    <>
       {title}
-    </h5>
+    </>
     <List
       items={items.map(({ label, icon }) => ({
         className: "u-no-padding--bottom",
@@ -181,22 +181,6 @@ const DetailsTabs = ({
             </a>
           ),
         }))
-        .concat(
-          token
-            ? [
-                {
-                  label: (
-                    <>
-                      To attach a machine:{" "}
-                      <code data-test="contract-token">
-                        sudo pro attach {token?.contract_token}
-                      </code>
-                    </>
-                  ),
-                },
-              ]
-            : []
-        )
     );
   };
 
@@ -234,23 +218,23 @@ const DetailsTabs = ({
       <Tabs
         className="p-tabs--brand"
         links={[
-          ...(!isFree && featuresDisplay.included.length > 0
-            ? // Don't show the Features tab if there are no included features.
-              [
-                {
-                  active: activeTab === ActiveTab.FEATURES,
-                  "data-test": "features-tab",
-                  label: "Features",
-                  onClick: () => setTab(ActiveTab.FEATURES),
-                },
-              ]
-            : []),
           {
             active: activeTab === ActiveTab.DOCUMENTATION,
             "data-test": "docs-tab",
-            label: "Documentation",
+            label: "Services and documentation",
             onClick: () => setTab(ActiveTab.DOCUMENTATION),
           },
+          ...(!isFree && featuresDisplay.included.length > 0
+            ? // Don't show the Features tab if there are no included features.
+            [
+              {
+                active: activeTab === ActiveTab.FEATURES,
+                "data-test": "features-tab",
+                label: "Default Settings",
+                onClick: () => setTab(ActiveTab.FEATURES),
+              },
+            ]
+            : []),
         ]}
       />
       {content}

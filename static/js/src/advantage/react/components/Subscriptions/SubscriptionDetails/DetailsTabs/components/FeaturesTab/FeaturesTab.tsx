@@ -47,12 +47,24 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     EntitlementLabel[]
   >([]);
 
+  const containsIncludedFeatures = (entitlements: EntitlementLabel[]) => {
+    return entitlements.some((label) => features.included.includes(label));
+  };
+
+  const containsAlwaysAvailableFeatures = (entitlements: EntitlementLabel[]) => {
+    return entitlements.some((label) => features.alwaysAvailable.includes(label));
+  };
+
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const isChecked = !!event?.target?.checked;
     const entitlement = { ...featuresFormState[label], isChecked };
+
+    if (features.included.includes(label)) {
+      console.log("Included");
+    }
 
     setFeaturesFormState(
       getNewFeaturesFormState(featuresFormState, entitlement)
@@ -119,125 +131,152 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       data-testid="features-content"
     >
       <Row className="u-sv1" data-testid="included-features">
-        <Col size={4}>
+        <Col size={12}>
           {features.included.length
             ? generateList(
-                "Included",
-                features.included.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
-                        }
-                      >
-                        {label}
-                      </FeatureSwitch>
-                      {label === EntitlementLabel.EsmApps &&
+              <div>
+                <h5>Default settings</h5>
+                <p>Changing the default settings of this subscription will affect the default enablement setting for machines attached <strong>after</strong> the changes are made</p>
+                <p>Please note that changes to these settings <strong>will not</strong> impact machines that were already attached.</p>
+              </div>,
+              features.included.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.EsmApps &&
                       featuresFormState[label]?.isDisabled ? (
-                        <Tooltip
-                          tooltipClassName="p-subscriptions-tooltip"
-                          message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps`."
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps`."
+                      >
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
                         >
-                          <Button
-                            type="button"
-                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                          >
-                            <i className="p-icon--information" />
-                          </Button>
-                        </Tooltip>
-                      ) : null}
-                    </div>
-                  ),
-                }))
-              )
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
+          {entitlementsToUpdate.length > 0 && containsIncludedFeatures(entitlementsToUpdate) ? (
+            <div className="u-align--right">
+              <div className="p-notification--caution">
+                <div className="p-notification__content">
+                  <p className="p-notification__message" role="alert">
+                    Changes will only affect new clients attached to this
+                    subscription.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <Button type="button" onClick={handleOnCancel}>
+                  Cancel
+                </Button>
+                <ActionButton
+                  type="submit"
+                  appearance="positive"
+                  loading={isLoading}
+                  disabled={isLoading}
+                >
+                  Save
+                </ActionButton>
+              </div>
+            </div>
+          ) : null}
         </Col>
-        <Col size={4} data-testid="excluded-features">
+      </Row>
+      <Row>
+        <Col size={12} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
-                <div>
-                  Not included
-                  <Tooltip
-                    tooltipClassName="p-subscriptions-tooltip"
-                    message="Not available with your subscription"
+              <div>
+                Not included
+                <Tooltip
+                  tooltipClassName="p-subscriptions-tooltip"
+                  message="Not available with your subscription"
+                >
+                  <Button
+                    type="button"
+                    className="u-no-margin--bottom p-subscriptions-tooltip__button"
                   >
-                    <Button
-                      type="button"
-                      className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                    >
-                      <i className="p-icon--information" />
-                    </Button>
-                  </Tooltip>
-                </div>,
-                features.excluded.map((label) => ({
-                  icon: "error",
-                  label: label,
-                }))
-              )
+                    <i className="p-icon--information" />
+                  </Button>
+                </Tooltip>
+              </div>,
+              features.excluded.map((label) => ({
+                icon: "error",
+                label: label,
+              }))
+            )
             : null}
         </Col>
       </Row>
-      <hr className="p-subscriptions-separator" />
       <Row className="u-sv1" data-testid="always-available-features">
         <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
-                <>
-                  Compliance & Hardening:{" "}
-                  <span style={{ fontWeight: 300 }}>
-                    please read the{" "}
-                    <a href="https://ubuntu.com/security/certifications/docs">
-                      documentation
-                    </a>{" "}
-                    and only enable these features if you specifically require
-                    these certifications.
-                  </span>
-                </>,
-                features.alwaysAvailable.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
+              <>
+                For compliance & hardening services:{" "}
+                <span style={{ fontWeight: 300 }}>
+                  please read the{" "}
+                  <a href="https://ubuntu.com/security/certifications/docs">
+                    documentation
+                  </a>{" "}
+                  and only enable these features if you specifically require
+                  these certifications.
+                </span>
+              </>,
+              features.alwaysAvailable.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.Fips ||
+                      label === EntitlementLabel.FipsUpdates ? (
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message={
+                          label === EntitlementLabel.Fips
+                            ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
+                            : "Enabling FIPS-Updates will disable FIPS"
                         }
                       >
-                        {label}
-                      </FeatureSwitch>
-                      {label === EntitlementLabel.Fips ||
-                      label === EntitlementLabel.FipsUpdates ? (
-                        <Tooltip
-                          tooltipClassName="p-subscriptions-tooltip"
-                          message={
-                            label === EntitlementLabel.Fips
-                              ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
-                              : "Enabling FIPS-Updates will disable FIPS"
-                          }
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
                         >
-                          <Button
-                            type="button"
-                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                          >
-                            <i className="p-icon--information" />
-                          </Button>
-                        </Tooltip>
-                      ) : null}
-                    </div>
-                  ),
-                }))
-              )
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
         </Col>
       </Row>
-      <p>
-        <a href="/legal/ubuntu-pro-description">Service description &rsaquo;</a>
-      </p>
       <div className="row"></div>
       {isError ? (
         <div className="p-notification--negative">
@@ -249,7 +288,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
           </div>
         </div>
       ) : null}
-      {entitlementsToUpdate.length > 0 ? (
+      {entitlementsToUpdate.length > 0 && containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
         <div className="u-align--right">
           <div className="p-notification--caution">
             <div className="p-notification__content">
@@ -274,6 +313,20 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
           </div>
         </div>
       ) : null}
+      <Row>
+        <Col size={12}>
+          <h5>
+            Service enablement for individual machines
+          </h5>
+          <p>To disable services on machines that were already attached, please run:</p>
+          <code>$ sudo pro disable 	&lt;services&gt;</code>
+          <p>
+            <p>To enable services on machines attached to a subscription with specific features turned off by default, please run:</p>
+            <code>$ sudo pro enable &lt;services&gt;</code>
+          </p>
+          <a href="/legal/ubuntu-pro-description">Service description &rsaquo;</a>
+        </Col>
+      </Row>
     </form>
   );
 };
