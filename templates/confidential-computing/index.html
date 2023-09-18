@@ -7,10 +7,10 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
 
 {% block outer_content %}
 <div class="is-paper">
-  <section class="p-strip is-bordered">
+  <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row">
-      <div class="col-9 col-medium-4 col-start-large-4 col-start-medium-3">
-        <div class="p-section">
+      <div class="col-9 col-start-large-4">
+        <div class="p-section--shallow">
           <h1 class="u-no-margin--bottom">Ubuntu for confidential computing</h1>
           <p class="p-heading--2">
             Protect your data in use,
@@ -22,173 +22,167 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
       </div>
     </div>
 
-    <div class="u-fixed-width u-no-padding u-hide--medium u-hide--small">
+    <div class="u-fixed-width u-no-padding">
       <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt=""
         style="aspect-ratio: 5.177570093457944; width: 100%" />
     </div>
+  </section>
 
+  <section class="p-section">
     <hr class="is-fixed-width" />
-
-    <div class="p-strip u-no-padding--top">
-      <div class="row--50-50">
-        <div class="col">
-          <h2>How confidential VMs work</h2>
-        </div>
-        <div class="col">
-          <p>
-            Confidential VMs introduce a new trust boundary which only includes
-            the software running within, and the platform’s hardware. All other
-            software outside is no longer part of your trusted computing base.
-          </p>
-          <div class="p-image__background--3-2 u-align--center u-vertically-center">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
-              alt="Hypervisor diagram",
-              width="195",
-              height="282",
-              hi_def=True,
-              loading="lazy" ) | safe
-            }}
-          </div>
-          <p>
-            To provide such strong security guarantees, confidential computing
-            relies on two main primitives:
-          </p>
-        </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>How confidential VMs work</h2>
       </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Confidential computing capable CPUs are equipped with an AES
-                hardware memory encryption engine, which encrypts data when it is
-                written to system memory, and decrypts it when read. The
-                encryption key itself is stored in the hardware root of trust and
-                is never exposed to the platform’s system software.
-              </p>
-            </div>
-          </div>
+      <div class="col">
+        <p>
+          Confidential VMs introduce a new trust boundary which only includes
+          the software running within, and the platform’s hardware. All other
+          software outside is no longer part of your trusted computing base.
+        </p>
+        <div class="p-image__background--3-2 u-align--center u-vertically-center">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
+            alt="Hypervisor diagram",
+            width="195",
+            height="282",
+            hi_def=True,
+            loading="lazy" ) | safe
+          }}
         </div>
-        <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-          <hr class="p-rule" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading-icon__title p-heading--5">
-                2. Remote attestation
-              </h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                When a confidential VM is launched, its integrity is verified and
-                its initial code and data are measured by a hardware root of
-                trust. This ensures they have not been tampered with. The
-                measurement is cryptographically signed and can be attested to a
-                remote verifier.
-              </p>
-            </div>
-          </div>
-        </div>
+        <p>
+          To provide such strong security guarantees, confidential computing
+          relies on two main primitives:
+        </p>
       </div>
     </div>
-
-    <hr class="is-fixed-width" />
-
     <div class="row">
-      <div class="col-6 col-medium-12">
-        <h2>Enterprise-grade confidential VMs on all major public clouds</h2>
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Confidential computing capable CPUs are equipped with an AES
+              hardware memory encryption engine, which encrypts data when it is
+              written to system memory, and decrypts it when read. The
+              encryption key itself is stored in the hardware root of trust and
+              is never exposed to the platform’s system software.
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="col-6 col-medium-12">
-        <table aria-label="">
-          <tbody>
-            <tr>
-              <td class="u-table-cell-padding-overlap" style="width: 158px">
-                <p class="u-no-margin--bottom">
-                  {{ image (
-                    url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
-                    alt="Azure logo",
-                    height="22",
-                    width="22",
-                    hi_def=True,
-                    loading="lazy" ) | safe
-                  }}
-                </p>
-              </td>
-              <td class="u-hide--small" style="width: 32px"></td>
-              <td class="u-table-cell-padding-overlap">
-                <p>
-                  <a
-                    href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-focal?tab=Overview">AMD
-                    SEV SNP with Ubuntu 20.04 LTS on Azure</a>
-                </p>
-                <hr />
-                <p>
-                  <a
-                    href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-jammy">AMD
-                    SEV SNP with Ubuntu 22.04 LTS on Azure</a>
-                </p>
-                <hr />
-                <p>
-                  <a
-                    href="https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9_qJVF-zyZCqvwR_iaG2EFUME1BT1hJN0I1VjhGWE9QNUJGREQ5QUlMNS4u">Intel
-                    TDX in private preview with 22.04 LTS on Azure</a>
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td class="u-table-cell-padding-overlap">
-                <p class="u-no-margin--bottom">
-                  {{ image (
-                    url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
-                    alt="Google Cloud logo",
-                    height="22",
-                    width="129",
-                    hi_def=True,
-                    loading="lazy" ) | safe
-                  }}
-                </p>
-              </td>
-              <td></td>
-              <td class="u-table-cell-padding-overlap">
-                <p>
-                  <a href="https://ubuntu.com/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a>
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td class="u-table-cell-padding-overlap">
-                <p class="u-no-margin--bottom">
-                  {{ image (
-                    url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
-                    alt="AWS logo",
-                    height="22",
-                    width="40",
-                    hi_def=True,
-                    loading="lazy" ) | safe
-                  }}
-                </p>
-              </td>
-              <td></td>
-              <td class="u-table-cell-padding-overlap">
-                <p>
-                  <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a>
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading-icon__title p-heading--5">
+              2. Remote attestation
+            </h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              When a confidential VM is launched, its integrity is verified and
+              its initial code and data are measured by a hardware root of
+              trust. This ensures they have not been tampered with. The
+              measurement is cryptographically signed and can be attested to a
+              remote verifier.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip u-no-padding--top">
+    <div class="row">
+      <div class="col-6 col-medium-6">
+        <h2>Enterprise-grade confidential VMs on all major public clouds</h2>
+      </div>
+      <div class="col-6 col-medium-6">
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
+                alt="Azure logo",
+                height="22",
+                width="22",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item">
+                <a
+                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-focal?tab=Overview">AMD
+                  SEV SNP with Ubuntu 20.04 LTS on Azure</a>
+              </li>
+              <li class="p-list__item">
+                <a
+                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-jammy">AMD
+                  SEV SNP with Ubuntu 22.04 LTS on Azure</a>
+              </li>
+              <li class="p-list__item">
+                <a
+                  href="https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9_qJVF-zyZCqvwR_iaG2EFUME1BT1hJN0I1VjhGWE9QNUJGREQ5QUlMNS4u">Intel
+                  TDX in private preview with 22.04 LTS on Azure</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
+                alt="Google Cloud logo",
+                height="22",
+                width="129",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="https://ubuntu.com/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a></p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+                alt="AWS logo",
+                height="22",
+                width="40",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
   <section class="p-strip is-deep">
     <div class="row">
       <div class="col-12">
-        <p class="p-heading--2 u-no-margin--bottom">
+        <p class="p-heading--2">
           <a href="https://ubuntu.com/engage/introduction-confidential-computing">Download our guide to confidential computing ›</a>
         </p>
       </div>
@@ -242,28 +236,28 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
 
   <hr class="is-fixed-width" />
 
-  <section class="p-strip u-no-padding--top">
+  <section class="p-strip is-deep u-no-padding--top">
     <div class="row--50-50">
       <div class="col">
         <h2>Learn more about confidential computing</h2>
       </div>
       <div class="col">
-        <p>
-          <a href="https://ubuntu.com/blog/what-is-confidential-computing-a-high-level-explanation-for-cisos">What is
-            confidential computing? A high-level explanation for CISOs</a>
-        </p>
-        <hr class="p-rule" />
-        <p>
-          <a
-            href="https://ubuntu.com/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
-            computing in public clouds: isolation and remote
-            attestation explained</a>
-        </p>
-        <hr class="p-rule" />
-        <p>
-          <a href="https://ubuntu.com/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
-            cyber security with Ubuntu Pro and confidential VMs</a>
-        </p>
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item">
+            <a href="https://ubuntu.com/blog/what-is-confidential-computing-a-high-level-explanation-for-cisos">What is
+              confidential computing? A high-level explanation for CISOs</a>
+          </li>
+          <li class="p-list__item">
+            <a
+              href="https://ubuntu.com/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
+              computing in public clouds: isolation and remote
+              attestation explained</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://ubuntu.com/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
+              cyber security with Ubuntu Pro and confidential VMs</a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -272,7 +266,7 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
 <section class="p-strip--white is-deep">
   <div class="row">
     <div class="col-12">
-      <p class="p-heading--2 u-no-margin--bottom">
+      <p class="p-heading--2">
         <a class="js-invoke-modal" href="">Contact us to discuss your use case ›</a>
       </p>
     </div>
