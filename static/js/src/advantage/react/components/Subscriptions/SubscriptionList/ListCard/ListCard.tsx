@@ -85,7 +85,7 @@ const ListCard = ({
                   ) : (
                     <>
                       {subscription.statuses.is_renewal_actionable &&
-                        subscription.statuses.is_renewable ? (
+                      subscription.statuses.is_renewable ? (
                         <button className="p-chip--caution">
                           <span className="p-chip__value">Not renewed</span>
                         </button>
@@ -95,16 +95,14 @@ const ListCard = ({
                 </>
               ) : null}
               {subscription.type == "monthly" ||
-                subscription.type == "yearly" ? (
+              subscription.type == "yearly" ? (
                 <>
                   {subscription.statuses.is_subscription_active &&
-                    !subscription.statuses.is_cancelled ? (
+                  !subscription.statuses.is_cancelled ? (
                     <>
                       {subscription.statuses.is_renewed ? (
                         <button className="p-chip--positive">
-                          <span className="p-chip__value">
-                            Auto-renewal on
-                          </span>
+                          <span className="p-chip__value">Auto-renewal on</span>
                         </button>
                       ) : null}
                       {!subscription.statuses.is_renewed ? (
@@ -128,11 +126,9 @@ const ListCard = ({
                   {subscription.statuses.is_subscription_active ? (
                     <>
                       {subscription.statuses.is_renewed &&
-                        !subscription.statuses.is_cancelled ? (
+                      !subscription.statuses.is_cancelled ? (
                         <button className="p-chip--positive">
-                          <span className="p-chip__value">
-                            Auto-renewal on
-                          </span>
+                          <span className="p-chip__value">Auto-renewal on</span>
                         </button>
                       ) : null}
                     </>

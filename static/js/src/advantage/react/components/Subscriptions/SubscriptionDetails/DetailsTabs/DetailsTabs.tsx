@@ -38,9 +38,7 @@ type ListItem = {
 
 export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   <>
-    <>
-      {title}
-    </>
+    <>{title}</>
     <List
       items={items.map(({ label, icon }) => ({
         className: "u-no-padding--bottom",
@@ -173,14 +171,13 @@ const DetailsTabs = ({
   const generateUADocs = () => {
     return generateList(
       "Documentation & tutorials",
-      docs
-        .map((doc) => ({
-          label: (
-            <a data-test="doc-link" href={doc.url}>
-              {doc.label}
-            </a>
-          ),
-        }))
+      docs.map((doc) => ({
+        label: (
+          <a data-test="doc-link" href={doc.url}>
+            {doc.label}
+          </a>
+        ),
+      }))
     );
   };
 
@@ -226,14 +223,14 @@ const DetailsTabs = ({
           },
           ...(!isFree && featuresDisplay.included.length > 0
             ? // Don't show the Features tab if there are no included features.
-            [
-              {
-                active: activeTab === ActiveTab.FEATURES,
-                "data-test": "features-tab",
-                label: "Default Settings",
-                onClick: () => setTab(ActiveTab.FEATURES),
-              },
-            ]
+              [
+                {
+                  active: activeTab === ActiveTab.FEATURES,
+                  "data-test": "features-tab",
+                  label: "Default Settings",
+                  onClick: () => setTab(ActiveTab.FEATURES),
+                },
+              ]
             : []),
         ]}
       />
