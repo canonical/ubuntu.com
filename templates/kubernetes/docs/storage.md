@@ -51,7 +51,7 @@ So, for example, to deploy three `ceph-osd` storage nodes, using the default sto
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/olm/defining-and-using-persistent-storage">Juju documentation</a>.</p>
+    <p class="p-notification__message">For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/juju/defining-and-using-persistent-storage">Juju documentation</a>.</p>
   </div>
 </div>
 
@@ -280,8 +280,8 @@ There is no requirement that these additional units should have the same amount 
 [kubernetes-storage-docs]: https://kubernetes.io/docs/concepts/storage/
 [ceph-home]: https://ceph.com/
 [ceph-charm]: https://charmhub.io/ceph-osd
-[juju-storage]: https://juju.is/docs/olm/defining-and-using-persistent-storage
-[juju-cmr]: https://juju.is/docs/olm/cross-model-relations
+[juju-storage]: https://juju.is/docs/juju/defining-and-using-persistent-storage
+[juju-cmr]: https://juju.is/docs/juju/cross-model-relations
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

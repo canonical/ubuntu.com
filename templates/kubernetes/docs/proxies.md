@@ -91,7 +91,7 @@ also be configured for offline use (see the
 
 <!-- LINKS -->
 
-[Juju proxy documentation]: https://juju.is/docs/olm/working-offline
+[Juju proxy documentation]: https://juju.is/docs/juju/working-offline
 [1.23-components]: 1.23/components#snaps
 [offline]: install-offline
 [snap]: https://snapcraft.io

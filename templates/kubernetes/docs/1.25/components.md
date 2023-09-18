@@ -57,7 +57,8 @@ release. These charms are maintained by the Charmed Kubernetes team.
 
 
 ## CNI charms
-These are the CNI charms also supported by Charmed Kubernetes ( calico is the default CNI and is included in the core charms above)
+These are the CNI charms also supported by Charmed Kubernetes (Calico
+ is the default CNI and is included in the core charms above)
 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|

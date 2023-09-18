@@ -122,13 +122,13 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust
 [CA]: https://en.wikipedia.org/wiki/Certificate_authority
-[Juju units]: https://juju.is/docs/olm/quick-reference
-[Juju controller]: https://juju.is/docs/olm/quick-reference
+[Juju units]: https://juju.is/docs/juju/quick-reference
+[Juju controller]: https://juju.is/docs/juju/quick-reference
 [tls-certificates]: https://github.com/juju-solutions/interface-tls-certificates
-[interface]: https://juju.is/docs/olm/quick-reference
+[interface]: https://juju.is/docs/juju/quick-reference
 [websockets]: https://en.wikipedia.org/wiki/WebSocket
 [cloud-init]: https://cloud-init.io/
-[relation]: https://juju.is/docs/olm/quick-reference
+[relation]: https://juju.is/docs/juju/quick-reference
 [vault-charm]: https://charmhub.io/vault
 [vault]: https://www.vaultproject.io
 [easyrsa-charm]: https://charmhub.io/containers-easyrsa
@@ -141,7 +141,7 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [client certificate]: https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_client_certificate
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
-[network primitives]: https://juju.is/docs/olm/quick-reference
+[network primitives]: https://juju.is/docs/juju/quick-reference
 [kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane
 [`extra_sans`]:  https://charmhub.io/kubernetes-control-plane/configure
 [HA]: https://en.wikipedia.org/wiki/High_availability
