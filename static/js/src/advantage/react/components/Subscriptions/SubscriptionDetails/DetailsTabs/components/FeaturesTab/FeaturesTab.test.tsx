@@ -43,7 +43,7 @@ it("displays feature categories with content", () => {
   renderWithQueryClient(
     <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
   );
-  screen.getByRole("heading", { name: "Included" });
+  screen.getByRole("heading", { name: "Default settings" });
   screen.getByRole("heading", { name: /Compliance & Hardening/ });
 
   within(screen.getByTestId("included-features")).getByLabelText("Livepatch");

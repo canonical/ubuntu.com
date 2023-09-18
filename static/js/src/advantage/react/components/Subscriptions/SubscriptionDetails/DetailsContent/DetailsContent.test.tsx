@@ -111,8 +111,8 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("CodeSnippet").exists()).toBe(true);
-    expect(wrapper.find(CodeSnippet).prop("blocks")[0].code).toBe(
+    expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
+    expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
       contractToken.contract_token
     );
   });
