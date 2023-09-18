@@ -30,6 +30,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_active-reveal";
+@import "pattern_ai";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
 @import "pattern_blog-post";
@@ -95,6 +96,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
+@include ubuntu-p-ai;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
@@ -1383,6 +1385,42 @@ $color-link-dark: #69c !default;
 
   @media screen and (min-width: $breakpoint-medium) {
     width: auto;
+  }
+}
+
+.p-list--divided.has-description {
+  .p-list__item {
+    @extend .p-heading--5;
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0.5rem !important;
+  }
+
+  p {
+    padding-left: 2rem;
+  }
+}
+
+.p-modal__dialog.is-paper {
+  max-width: $grid-max-width !important;
+
+  &.is-ai-modal {
+    .p-modal__close {
+      background-color: transparent;
+      margin-top: 1.5rem;
+      right: 1rem;
+      @media screen and (min-width: $breakpoint-medium) {
+        right: 1.5rem;
+      }
+    }
+
+    .modal-form .p-section--shallow:first-child > p {
+      padding-right: 0;
+      @media screen and (min-width: $breakpoint-small) {
+        padding-right: 2rem;
+      }
+    }
   }
 }
 

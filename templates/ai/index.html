@@ -1,61 +1,70 @@
-{% extends "ai/_base_ai.html" %}
+{% extends "ai/base_ai.html" %}
 
-{% block title %}AI on Ubuntu: the path to production{% endblock %}
+{% block title %}Open source AI{% endblock %}
 
-{% block meta_description %}Ubuntu is the right platform for end-to-end AI and Machine Learning. Develop, train and deploy models with the latest tools and automatic hardware GPU acceleration. Get training, support and managed services by Canonical to accelerate AI to production.{% endblock %}
+{% block meta_description %}Open source AI: path to production for models. From development to deployment, get a seamless experience.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1HP9YdHF11yVQ9SLl0VXhLezDZREsr1GHIKNi9wT1Gv0/edit?ts=5fb6b19b#heading=h.kyb2cyti2dz7{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1HP9YdHF11yVQ9SLl0VXhLezDZREsr1GHIKNi9wT1Gv0/edit{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped is-dark is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h1>AI on Ubuntu: the path<br>to production</h1>
-      <h4>The best data science and MLops tools across your infra</h4>
-      <p>Develop AI models on high-end Ubuntu workstations. Train on racks of bare-metal or public clouds with hardware acceleration. Deploy to cloud, edge and IoT. All on Ubuntu.</p>
-      <p>
-        <a href="/engage/mlops-guide" class="p-button--positive">Read our guide to MLOps</a>
-        <a href="https://assets.ubuntu.com/v1/429359fe-MLOps%20advisory%20DS%2029.11.22.pdf" class="p-button">Discover our AI consultancy</a>
-      </p>
-    </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/cc376f8c-AI-models.svg",
-        alt="",
-        width="304",
-        height="263",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
+<section class="p-strip is-shallow u-no-padding--bottom">
   <div class="row">
-    <p class="p-muted-heading">Leaders in artificial intelligence choose Ubuntu</p>
-    <div class="p-logo-section has-misaligned-images">
-      <div class="p-logo-section__items u-no-margin--bottom">
+    <div class="col-start-large-4 col-9">
+      <div class="p-section--shallow">
+        <h1>Take your models to production<br class="u-hide--small"> with open source AI</h1>
+      </div>
+      <div class="p-section--shallow">
+        <p>Build enterprise-grade AI projects with  secure and supported Canonical MLOps. Develop on your Ubuntu workstation using Charmed Kubeflow or Charmed MLFlow and scale up quickly with open source tooling in every part of your stack.</p>
+      </div>
+      <a class="p-button--positive js-invoke-modal" href="/ai/contact-us">Contact us</a>
+      <a class="p-button" href="/engage/mlops-guide">Read our guide to MLOps</a>
+    </div>
+  </div>
+  <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+    <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt="" style="aspect-ratio: 5.1775700934579; width: 100%;">
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Why choose Canonical for Enterprise AI?</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Reliable experts to speed up your AI journey</li>
+          <li class="p-list__item is-ticked">One vendor to support your AI stack</li>
+          <li class="p-list__item is-ticked">Run your workloads anywhere, including hybrid and multi-cloud</li>
+          <li class="p-list__item is-ticked">Simplified operations with lifecycle management and automation</li>
+          <li class="p-list__item is-ticked">Simple per node subscription</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-section">
+  <div class="u-fixed-width p-section">
+    <hr class="p-rule">
+    <h2>Develop artificial intelligence projects on any environment</h2>
+  </div>
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/1095d3bc-Tesla_logo_silver.png",
-            alt="Tesla",
-            width="130",
-            height="17",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-            }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+            url="https://assets.ubuntu.com/v1/5343281c-nvidia-logo.png",
             alt="Nvidia",
-            width="130",
-            height="25",
+            width="254",
+            height="256",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -64,10 +73,10 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/26eb00dd-fb.png",
-            alt="Facebook",
-            width="130",
-            height="25",
+            url="https://assets.ubuntu.com/v1/3dd6c007-Dell-logo.png",
+            alt="Dell",
+            width="315",
+            height="255",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -75,466 +84,240 @@
           }}
         </div>
         <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c346c103-openai.png",
-              alt="OpenAI",
-              width="130",
-              height="90",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3b24973b-lenovo-logo.png",
+            alt="Lenovo",
+            width="169",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4652e840-aws-logo.png",
+            alt="AWS",
+            width="128",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f804661e-google-cloud-logo.png",
+            alt="",
+            width="353",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/b15c397c-microsoft-azure-new-logo.png",
+            alt="Microsoft Azure",
+            width="223",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/bccbfdac-hp-enterprise-logo.png",
+            alt="HPE",
+            width="211",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Develop</h2>
-      <h4>Best of breed data science tools.</h4>
-      <p>The most productive tools for AI / ML development, with guides and resources available.</p>
 
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/2842a636-tensor-flow-logo.svg",
-              alt="TensorFlow",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/4a40f049-jupyter_logo.svg",
-              alt="Jupyter",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/89baba26-keras_logo.svg",
-              alt="Keras",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/b12c771f-scikit-learn-logo.svg",
-              alt="Scikit Learn",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f0a9ed33-pytorch_logo.svg",
-              alt="PyTorch",
-              width="144",
-              height="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Ubuntu: the OS of choice for data scientists</h2>
       </div>
     </div>
-    <div class="col-6">
-      <div class="u-fixed-width u-show--small u-hide--large u-hide--medium">
-        <hr class="p-separator">
+    <div class="col">
+      <div style="background:rgba(0, 0, 0, 0.03); margin-top: 0.5rem;" class="u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3289e116-7f76ac3a-hp-laptop-studio-jammy 5.png",
+          alt="",
+          width="1190",
+          height="714",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
-      <h2>Deploy</h2>
-      <h4>Multi-framework model serving.</h4>
-      <p>Effective model deployment across devices mesh. Low-latency inference serving.</p>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f988bb24-seldon-logo.svg",
-              alt="Seldon",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/dd599628-kfserving-logo.svg",
-              alt="KFServing",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/172ba86b-onnx-logo.svg",
-              alt="Onnx",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/5c484303-tensortRT-logo.svg",
-              alt="TensorRt",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/97451d76-dmlc-xgboost-logo.svg",
-              alt="XGBoost",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
+      <p>Develop machine learning models on Ubuntu workstations and benefit from management tooling and security patches.</p>
+      <p>
+        <a href="/desktop/organisations">Read more about Ubuntu workstations&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-      <h2>ML operations</h2>
-      <h4>Infrastructure for production data science.</h4>
-      <p>Centralised or multi-cloud training infrastructure for better resource allocation and data governance.</p>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/b730ace5-kubeflow-logo.svg",
-              alt="Kubeflow",
-              width="158",
-              height="159",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/835a5d08-Juju.png",
-              alt="Juju",
-              width="316",
-              height="316",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/abdcff3a-pachyderm-logo.svg",
-              alt="Pachyderm",
-              width="158",
-              height="159",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/7d84f656-mlflow-logo.svg",
-              alt="ML-Flow",
-              width="158",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Move beyond experimentation with machine learning operations&nbsp;(MLOps)</h2>
       </div>
     </div>
-    <div class="col-6">
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-      <h2>Data lake</h2>
-      <h4>Analyse epic amounts of data, wherever it is.</h4>
-      <p>Build large-scale data lakes optimised for machine learning on bare metal, virtual or cloud infrastructure with open source.</p>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/fabdefb7-kafka+logo.png",
-              alt="Kafka",
-              width="252",
-              height="253",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/967d5d93-apache-spark-logo.svg",
-              alt="Apache Spark",
-              width="158",
-              height="157",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
+    <div class="col">
+      <p>MLOps is the short term for machine learning operations and it stands for a set of practices that aim to simplify workflow processes and automate machine learning and deep learning deployments.</p>
+      <p>MLOps is an approach that enables you to deploy and maintain models reliably and efficiently for production, at a large scale.</p>
+      <a class="p-button" href="/blog/what-is-mlops">Learn more about MLOps</a>
     </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <div class="u-fixed-width">
-        <hr class="p-separator">
+</section>
+
+<section class="p-strip--white is-shallow u-no-padding--bottom ">
+  <div class="u-fixed-width">
+    <h2 class="p-text--small-caps">Open source MLOps tooling</h2>
+    <hr class="p-rule">
+  </div>
+  <div class="row ai-tooling">
+    <div class="col-3 col-medium-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed Kubeflow</h3>
+        <p>Develop and deploy models with automated workflows. Charmed Kubeflow is an end-to-end MLOps platform designed to run AI at scale. It is the foundation of Canonical MLOps and seamlessly integrates with other big data and machine learning tools.</p>
       </div>
-      <h2>Hardware control</h2>
-      <h4>Drivers, storage, networking, CPU, GPU, DPU.</h4>
-      <p>Enjoy full control over your firmware, in a safe environment, tested by millions.</p>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d2ed7c63-nvidia-logo.svg",
-              alt="Nvidia",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/6b82d1e3-amd-logo.svg",
-              alt="AMD",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/bf838af9-intel-new-logo.svg",
-              alt="Intel",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/50ac62e7-arm-logo.svg",
-              alt="ARM",
-              width="159",
-              height="158",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <p>
+          <a href="/ai/what-is-kubeflow">What is Kubeflow&nbsp;&rsaquo;</a>
+        </p>    
       </div>
     </div>
-    <div class="col-6">
-      <div class="u-fixed-width">
-        <hr class="p-separator">
+    <div class="col-3 col-medium-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed MLflow</h3>
+        <p>Track your experiments and get a better overview of your model catalogue. Charmed MLFlow is an open source platform used for managing machine learning workloads. It integrates with other MLOps tools to cover different functions of the machine learning lifecycle.</p>
       </div>
-      <h2>Portable to scale</h2>
-      <h4>Give your workloads consistency everywhere.</h4>
-      <p>Portable from desktop to vast multi-clouds. Fast-deploy on every major public cloud with GPU acceleration.</p>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/2f0c1694-server brand.svg",
-              alt="Server brand",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/53da813f-openstack-logomark-logo.svg",
-              alt="Openstack",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/b2952436-aws-logo.svg",
-              alt="AWS",
-              width="159",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f0cf1fa3-google-cloud-logo.svg",
-              alt="Google Cloud",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/82c52642-microsoft-azure.svg",
-              alt="Microsoft Azure",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <p>
+          <a href="/blog/charmed-mlflow-beta">Learn more about MLFlow&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed Spark</h3>
+        <p>Simply the best way to run Spark®, whether on the cloud or in your data centre. Runs on Kubernetes. Includes a fully supported distribution of Apache Spark.</p>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <p>
+          <a href="/data/spark">Learn more about Spark&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-3">
+      <div class="p-section--shallow">
+        <h3 class="p-heading--5">Charmed OpenSearch</h3>
+        <p>Charmed OpenSearch simplifies the operations of your favourite search and analytics suite. In addition, OpenSearch provides an integrated vector database that can support AI systems by serving as a knowledge base.</p>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <p>
+          <a href="/blog/what-is-opensearch">What is OpenSearch&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Kubeflow AI and MLOps at any scale</h2>
-      <h4>Enterprise-ready Charmed Kubeflow, the fully supported MLOps platform for any cloud</h4>
-      <ul>
-        <li>A complete solution for sophisticated data science labs. Upgrades and security updates - all supported in the free, open source distribution.</li>
-        <li>Get up and running fast with Charmed Kubeflow on MicroK8s, from lab to large scale. Highly available with 3+ nodes.</li>
-        <li>Or deploy on Azure, Amazon AWS and Google cloud Kubernetes services with full support available from Canonical - the experts behind Charmed Kubeflow.</li>
-      </ul>
-      <p>
-        <a href="http://charmed-kubeflow.io" class="p-button--positive">Charmed Kubeflow</a>
-        <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us&nbsp;&rsaquo;</a>
-      </p>
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Run AI at scale with Canonical and NVIDIA</h2>
+      </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+    <div class="col">
+      <p>With NVIDIA AI Enterprise and NVIDIA DGX, Charmed Kubeflow improves the performance of AI workflows, by using the hardware to its maximum extent and accelerating project delivery. Charmed Kubeflow can significantly speed up model training, especially when coupled with DGX systems.</p>
+    </div>
+  </div>
+  <div class="row--50-50">
+    <div class="col">
+      <hr class="p-rule">
       {{ image (
-        url="https://assets.ubuntu.com/v1/25baf3c4-Kubeflow-Topology.svg",
-        alt="Kubeflow Topology",
-        width="400",
-        height="353",
+        url="https://assets.ubuntu.com/v1/ba3a0335-Canonicla+nvidia.png",
+        alt="Canonical + Nvidia",
+        width="335",
+        height="41",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
+    <div class="col">
+      <hr class="p-rule">
+      <div class="p-section--shallow">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Quick deployment</li>
+          <li class="p-list__item is-ticked">Run the entire ML lifecycle</li>
+          <li class="p-list__item is-ticked">Composable architectures</li>
+          <li class="p-list__item is-ticked">Reproducibility, portability, scalability</li>
+        </ul>
+      </div>
+      <hr class="p-rule">
+      <p>
+        <a href="/engage/run-ai-at-scale">Read our joint whitepaper&nbsp;&rsaquo;</a>
+      </p>
+    </div>
   </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Use modular platforms to run AI at the edge or in large clouds</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>Production-grade projects require a solution that enables scalability, reproducibility and portability. Canonical MLOps speeds up AI project timelines, giving you:</p>
+      <hr class="is-muted">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">The same experience on any cloud, whether private or public</li>
+        <li class="p-list__item is-ticked">Low-ops, streamlined lifecycle management</li>
+        <li class="p-list__item is-ticked">A modular and open source suite for reusable deployments</li>
+      </ul>
+    </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+  <div class="u-fixed-width u-hide--small">
+    <div class="ai-iso-illustration">
       {{ image (
-        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
+        url="https://assets.ubuntu.com/v1/6a0c5fec-Canonical AI ML Illustrations v5-08 1.png",
         alt="",
-        width="250",
-        height="270",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h2>Canonical AI services</h2>
-      <h4>Enterprise support, deployment, training and fully managed Kubeflow</h4>
-      <ul>
-        <li>Rely on 24/7 enterprise support with guaranteed SLAs.</li>
-        <li>Provide specialised MLOps training to your sysadmins, devops engineers and data scientists. Any infra and level of expertise, tailored to your data.</li>
-        <li>Off-load the complexity of Kubeflow deployment and management to Canonical engineers.</li>
-      </ul>
-      <p>
-        <a href="/ai/services" class="p-button--positive">Discover more</a>
-        <a href="/ai/contact-us?product=ai-index">Contact us&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>MLops for devices and Micro clouds</h2>
-      <h4>Industrial grade data pipelines from cloud to edge</h4>
-      <ul>
-        <li>High-throughput inference at the edge with fast model updates.</li>
-        <li>Build your AI/ML on top of the most reliable edge infra.</li>
-        <li><a href="https://ubuntu.com/core">Ubuntu Core</a> for IoT, <a
-          href="http://microk8s.io">MicroK8s</a> for zero-ops K8s with high-availability, Kubeflow for inference and distributed training.</li>
-      </ul>
-      <p>
-        <a href="/iot" class="p-button--positive">Ubuntu for IoT</a>
-        <a href="/blog/deploying-kubeflow-everywhere">Kubeflow at the edge&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/3f81159f-Kubeflow+to+the+edge3.svg",
-        alt="",
-        width="300",
-        height="293",
+        width="2460",
+        height="808",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -543,117 +326,138 @@
   </div>
 </section>
 
-<section class="p-strip p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Learn more about AI/ML and Charmed Kubeflow</h2>
-    <div class="p-divider row">
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Webinar</h4>
+<section class="p-section">
+  <div class="row--25-75 is-split-on-medium">
+    <hr class="p-rule">
+    <div class="col">
+      <h2 class="p-text--small-caps">Open source AI services</h2>
+    </div>
+    <div class="col">
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">Managed Canonical MLOps</h3>
+        </div>
+        <div class="col-6">
+          <p>Focus on building production grade models, while Canonical experts manage the infrastructure underneath.</p>
+          <hr class="is-muted">
+          <div class="p-section--shallow">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">99.9% uptime</li>
+              <li class="p-list__item is-ticked">24/7 monitoring</li>
+              <li class="p-list__item is-ticked">High availability</li>
+            </ul>
           </div>
-          <ul>
-            <li><a href="https://www.brighttalk.com/webcast/6793/427925">AI to production&nbsp;&rsaquo;</a></li>
-            <li><a href="https://www.brighttalk.com/webcast/6793/424551/demystifying-kubeflow-pipelines-from-tensorflow-notebook-to-pipeline">Kubeflow Pipelines&nbsp;&rsaquo;</a></li>
-            <li><a
-              href="https://www.brighttalk.com/webcast/6793/451777??utm_source=marketo&utm_medium=email&mkt_tok=eyJpIjoiTnpKaU9EazROR1F6WXpndyIsInQiOiI4NVBCRldTbG8zRTVrajg4eENSOEpaeGhwaWN4WFNmOEJVdlZiMERHNDJ6TWFKSkw3VE5WMWlMeGo5VmFUNVA0enFIT0lHVFduYzhFOGwwNGdUMFNTcUQ0aG9neDVYeHdndVpMRWVMQjFrRWdaVlwvZVA5anVYU2krYmdUbURJSEUifQ%3D%3D">AI deployment and inference&nbsp;&rsaquo;</a></li>
-          </ul>
+          <hr class="p-rule">
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow - Digital.pdf">Get the Managed MLOpsdatasheet&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Latest news on AI/ML</h4>
+      <hr class="p-rule">
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">AI consulting</h3>
+        </div>
+        <div class="col-6">
+          <p>Work with our experts to understand your data better and deliver on your use case.</p>
+          <hr class="is-muted">
+          <div class="p-section--shallow">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Data exploration workshop</li>
+              <li class="p-list__item is-ticked">Canonical MLOps deployment</li>
+              <li class="p-list__item is-ticked">MLOps workshop</li>
+              <li class="p-list__item is-ticked">PoC-based</li>
+            </ul>
           </div>
-          <div id="ai-articles" class="row p-divider">
-            <div><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
-          </div>
+          <hr class="p-rule">
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow%20-%20Digital.pdf">Get the AI consulting datasheet&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">DOWNLOAD</h4>
-          </div>
-          <ul>
-            <li><a href="https://ubuntu.com/engage/starting-with-ai">Whitepaper: Get started with AI&nbsp;&rsaquo;</a></li>
-            <li><a href="https://assets.ubuntu.com/v1/1b365f88-k8s_kubeflow_ra_dell-emc_canonical.pdf">Kubeflow Reference Architecture&nbsp;&rsaquo;</a></li>
-            <li><a
-              href="https://assets.ubuntu.com/v1/197d9867-Charmed_Kubeflow_Kubernetes_10.11.20.pdf">Charmed Kubeflow datasheet&nbsp;&rsaquo;</a></li>
-          </ul>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Support</h3>
+        </div>
+        <div class="col-6">
+          <p>Looking for Kubeflow support? Work with our team to get support for any cloud environment or CNCF-complaint Kubernetes distribution.</p>
+          <p>
+            <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Charmed Kubeflow%20-%20Digital.pdf">Get the Charmed Kubeflow datasheet&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
-
-  <template style="display:none" id="ai-template">
-    <div class="col-4">
-      <ul class="u-no-margin"><li><a class="article-link article-title"></a></li></ul>
-    </div>
-  </template>
-
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
-    canonicalLatestNews.fetchLatestNews({
-      articlesContainerSelector: "#ai-articles",
-      articleTemplateSelector: "#ai-template",
-      gtmEventLabel: "ubuntu.com ai blog",
-      limit: "3",
-      tagId: "2389",
-    })
-  </script>
 </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Get started with AI and Machine learning today.</h2>
-      <p><a href="http://charmed-kubeflow.io/docs/install" class="p-button--positive">Test drive Charmed Kubeflow now</a></p>
-      <p>Or <a href="/ai/contact-us?product=ai-index">contact our experts</a> to get started with consulting, training or outsourced operations.</p>
+<section class="p-section">
+  <div class="row--25-75 is-split-on-medium">
+    <hr class="p-rule">
+    <div class="col">
+      <h2 class="p-text--small-caps">Open source AI resources</h2>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-      alt="",
-      width="281",
-      height="200",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-      }}
+    <div class="col">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/ai-ml-casestudy-tasmania">Case study: Real-time space tracking with AI supercomputing</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>University of Tasmania (UTAS) modernised  its space-tracking data processing with the Firmus Supercloud, built on Canonical's open infrastructure stack.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/mlops-guide">Guide to MLOps</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Learn how to take models to production using open source MLOps platforms.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/run-ai-at-scale/">Guide: Run AI at scale with Canonical and NVIDIA</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Learn how to scale AI projects using hardware that's designed for AI workloads and certified software.</p>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            <a href="/engage/kubeflow-vs-mlflow">Kubeflow vs MLFlow</a>
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>Choosing a suitable machine learning tool can often be challenging. Understand the differences between the most famous open source solutions.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<section class="p-strip--white is-deep">
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      <h2>
+        <a class="js-invoke-modal" href="/ai/contact-us">Talk to our experts&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </div>
+</section>
 
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/ai" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+
+<script src="/static/js/src/ai-form.js"></script>
+  
 {% endblock content %}
