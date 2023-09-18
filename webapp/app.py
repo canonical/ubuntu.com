@@ -1028,6 +1028,17 @@ app.add_url_rule(
 )
 core_docs.init_app(app)
 
+# Developer docs
+developer_docs = Docs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=38024, url_prefix="/developerdocs"
+    ),
+    document_template="/core/docs/document.html",
+    url_prefix="/developerdocs",
+    blueprint_name="developer",
+)
+developer_docs.init_app(app)
+
 # Core docs - Modem Manager
 core_modem_manager_docs = Docs(
     parser=DocParser(
