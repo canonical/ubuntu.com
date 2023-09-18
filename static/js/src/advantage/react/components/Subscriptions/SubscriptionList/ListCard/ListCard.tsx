@@ -69,17 +69,85 @@ const ListCard = ({
           >
             {isFree ? "Free Personal Token" : subscription.product_name}
           </h5>
-          {subscription.type === UserSubscriptionType.Legacy ? null : (
-            <span
-              className="p-text--small-caps u-text--muted p-subscriptions__list-card-period"
-              data-test="card-type"
-            >
-              {subscription.type === UserSubscriptionType.KeyActivated
-                ? "key activated"
-                : subscription.type}
-            </span>
+
+          {subscription.statuses.is_expired ? (
+            <button className="p-chip--negative">
+              <span className="p-chip__value">Expired</span>
+            </button>
+          ) : (
+            <>
+              {subscription.type == "legacy" && subscription.renewal_id ? (
+                <>
+                  {subscription.statuses.is_renewed ? (
+                    <button className="p-chip--positive">
+                      <span className="p-chip__value">Renewed</span>
+                    </button>
+                  ) : (
+                    <>
+                      {subscription.statuses.is_renewal_actionable &&
+                        subscription.statuses.is_renewable ? (
+                        <button className="p-chip--caution">
+                          <span className="p-chip__value">Not renewed</span>
+                        </button>
+                      ) : null}
+                    </>
+                  )}
+                </>
+              ) : null}
+              {subscription.type == "monthly" ||
+                subscription.type == "yearly" ? (
+                <>
+                  {subscription.statuses.is_subscription_active &&
+                    !subscription.statuses.is_cancelled ? (
+                    <>
+                      {subscription.statuses.is_renewed ? (
+                        <button className="p-chip--positive">
+                          <span className="p-chip__value">
+                            Auto-renewal on
+                          </span>
+                        </button>
+                      ) : null}
+                      {!subscription.statuses.is_renewed ? (
+                        <button className="p-chip--caution">
+                          <span className="p-chip__value">
+                            Auto-renewal off
+                          </span>
+                        </button>
+                      ) : null}
+                    </>
+                  ) : null}
+                  {subscription.statuses.is_cancelled ? (
+                    <button className="p-chip--negative">
+                      <span className="p-chip__value">Cancelled</span>
+                    </button>
+                  ) : null}
+                </>
+              ) : null}
+              {subscription.type == "trial" ? (
+                <>
+                  {subscription.statuses.is_subscription_active ? (
+                    <>
+                      {subscription.statuses.is_renewed &&
+                        !subscription.statuses.is_cancelled ? (
+                        <button className="p-chip--positive">
+                          <span className="p-chip__value">
+                            Auto-renewal on
+                          </span>
+                        </button>
+                      ) : null}
+                    </>
+                  ) : null}
+                  {subscription.statuses.is_cancelled ? (
+                    <button className="p-chip--negative">
+                      <span className="p-chip__value">Cancelled</span>
+                    </button>
+                  ) : null}
+                </>
+              ) : null}
+            </>
           )}
         </div>
+
         <Row>
           <Col medium={3} size={3} small={1}>
             <p className="u-text--muted u-no-margin--bottom">
