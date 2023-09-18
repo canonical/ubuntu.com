@@ -13,13 +13,12 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
         <div class="p-section">
           <h1 class="u-no-margin--bottom">Ubuntu for confidential computing</h1>
           <p class="p-heading--2">
-            Protect your data is use,
-            <br class="u-hide--small u-hide--medium" />across public and private
-            clouds.
+            Protect your data in use,
+            <br class="u-hide--small u-hide--medium" />across public and private clouds.
           </p>
         </div>
         <hr />
-        <button class="p-button--positive">Contact us</button>
+        <a class="js-invoke-modal p-button--positive" href="/contact-us">Contact us</a>
       </div>
     </div>
 
@@ -274,9 +273,21 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
   <div class="row">
     <div class="col-12">
       <p class="p-heading--2 u-no-margin--bottom">
-        <a href="">Contact us to discuss your use case ›</a>
+        <a class="js-invoke-modal" href="">Contact us to discuss your use case ›</a>
       </p>
     </div>
   </div>
 </section>
+
+<!-- Set default Marketo information for contact form below-->
+<div 
+  class="u-hide"
+  id="contact-form-container"
+  data-form-location="/shared/forms/interactive/confidential-computing"
+  data-form-id="5352"
+  data-lp-id=""
+  data-return-url="https://ubuntu.com/contact-us/form/thank-you"
+  data-lp-url="">
+</div>
+
 {% endblock %}
