@@ -1378,13 +1378,18 @@ $color-link-dark: #69c !default;
   display: flex;
 }
 
-.p-logo-section__item--variable {
-  @extend .p-logo-section__item;
+.amd-container {
+  @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
 
-  padding-right: 1rem;
-
+  margin-top: $spv--small;
+  padding-left: $spv--large;
+  padding-right: $spv--large;
   @media screen and (min-width: $breakpoint-medium) {
-    width: auto;
+    .amd-image {
+      height: 13rem;
+      width: auto;
+    }
   }
 }
 
