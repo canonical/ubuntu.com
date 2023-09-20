@@ -1,0 +1,219 @@
+{% extends "real-time/base_real-time.html" %}
+
+{% block title %}Real-time Ubuntu{% endblock %}
+
+{% block meta_description %}Real-time Ubuntu provides a deterministic response to the most demanding workloads in  industrial, telco, automotive, aerospace and defence. Guarantee bounded execution times for business-critical applications with the real-time kernel built into Ubuntu.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1g9G3r4eJRPGZy5Dyz_GJhUz_iqNn-5QUhG43scnBnUA/edit{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block content %}
+
+<section class="p-strip">
+  <div class="row--25-75">
+    <div class="col u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/454e861d-Ubuntu-real-time-Kernel-cropped.png",
+        alt="",
+        width="285",
+        height="267",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <h1>Real-time Ubuntu</h1>
+        <p class="p-heading--2">Run the most exacting workloads for <br class="u-hide--small"/>low-latency use cases with Real-time Ubuntu</p>
+        <p>Real-time Ubuntu ensures high-priority processes are executed first, with deterministic response times.</p>
+        <a class="p-button--positive" href="/kernel/real-time/contact-us">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Why use Real-time Ubuntu?</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item is-ticked">Support for real-time compute with PREEMPT_RT</li>
+          <li class="p-list__item is-ticked">Time-bound for mission-critical latency requirements</li>
+          <li class="p-list__item is-ticked">More preemptive than mainline Linux</li>
+          <li class="p-list__item is-ticked">10 year security update commitment</li>
+        </ul>
+        <p><a href="#">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule">
+    <div class="col-12 col-medium-3 p-section--shallow">
+      <h2>Real-time Ubuntu use cases</h2>
+    </div>
+    <div class="col-9 col-start-large-4 col-medium-3">
+      <div class="p-section--shallow">
+        <hr class="p-rule u-hide--medium">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Industrial settings</h3>
+          </div>
+          <div class="col-6">
+            <p>PLCs in assembly lines must deliver and process data in real-time to ensure system integrity and continuous production.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Telco</h3>
+          </div>
+          <div class="col-6">
+            <p>Real-time Ubuntu brings ultra-low latency and enhanced security capabilities to telco workloads and the critical infrastructure they run on.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Healthcare robotics</h3>
+          </div>
+          <div class="col-6">
+            <p>From autonomous mobile robots to life-support medical equipment, healthcare systems must complete tasks within specified deadlines.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Automotive</h3>
+          </div>
+          <div class="col-6">
+            <p>Automotive manufacturers are increasingly reliant on real-time Linux for infotainment systems, HMIs and latency-sensitive scenarios.</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <hr class="p-rule">
+        <div class="row">
+          <div class="col-6 col-start-large-4">
+            <p>Not sure real-time is for you? <br/><a href="/kernel/real-time/contact-us">Get in touch</a> to talk over your use case with our sales team</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <span class="p-text--small-caps">Video</span>
+      <h2>What is Real-time Ubuntu?</h2>
+    </div>
+    <div class="col">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe title="YouTube video player: What is Real-time Ubuntu?" class="u-embedded-media__element" src="https://www.youtube.com/embed/fxoWWfEWbIE?si=3Gi3EmZEhoQekrun" allowfullscreen=""></iframe>
+      </div>
+      <p>Canonical and Intel collaborate to deliver real-time Ubuntu on 12th Gen Intel&reg; Core&trade; processors with TSN and TCC Support. Explore how real-time Ubuntu benefits the IoT customers and market as a whole.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <h2>Getting started</h2>
+    </div>
+    <div class="col">
+      <p>The real-time kernel is available via <a href="/pro">Ubuntu Pro</a>, Canonical’s enterprise security and compliance subscription. Ubuntu Pro is free for personal and small scale commercial use in up to 5 machines.</p>
+      <p>With an Ubuntu Pro subscription, launching the real-time kernel is as easy as:</p>
+      <pre><code>pro attach &lt;token&gt;
+pro enable realtime-kernel</code></pre>
+      <a class="p-button" href="https://ubuntu.com/pro">Discover Ubuntu Pro</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <h2>Run Real-time Ubuntu on Intel hardware</h2>
+    </div>
+    <div class="col">
+      <p>Optimised Real-time Ubuntu is available on 12th Gen Intel&reg; Core&trade; processors. Coupled with Intel&reg; Time Coordinated Computing (Intel&reg; TCC) and Time Sensitive Networking (IEEE TSN), the real-time kernel delivers industrial-grade performance to meet stringent latency requirements:</p>
+      <p>Intel-optimised Real-time Ubuntu is available on Intel SoCs via Ubuntu Pro:</p>
+      <pre><code>pro attach &lt;token&gt;
+pro enable realtime-kernel --variant intel-iotg</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <h2>Learn more about Real-time Ubuntu</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-2">
+              <h3 class="p-text--small-caps">Webinars</h3>
+            </div>
+            <div class="col-4">
+              <ul class="p-list--divided u-no-margin--bottom">
+                <li class="p-list__item"><a href="https://www.brighttalk.com/webcast/6793/535454">An introduction to real-time Linux</a></li>
+                <li class="p-list__item"><a href="https://www.brighttalk.com/webcast/6793/579183?utm_source=Canonical&utm_medium=brighttalk&utm_campaign=579183">How real-time Linux accelerates industrial transformation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="p-section--shallow">
+          <hr class="p-rule">
+          <div class="row">
+            <div class="col-2">
+              <h3 class="p-text--small-caps">From our blog</h3>
+            </div>
+            <div class="col-4">
+              <ul class="p-list--divided u-no-margin--bottom">
+                <li class="p-list__item"><a href="/blog/real-time-kernel-technical">Technical deep-dive into a real-time kernel</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--white is-deep">
+  <div class="row">
+    <div class="col-12">
+      <div class="p-section--shallow">
+        <h2>Build with confidence on Real-time Ubuntu</h2>
+      </div>
+      <p><a class="p-button--positive" href="/kernel/real-time/contact-us">Get in touch</a></p>
+    </div>
+  </div>
+</section>
+  
+{% endblock content %}
