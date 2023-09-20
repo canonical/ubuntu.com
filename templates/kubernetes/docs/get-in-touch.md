@@ -36,7 +36,7 @@ The source for the bundles and all the core charms for Charmed Kubernetes is
 
 ## Professional support
 
-If you are looking for additional support, find out about [Ubuntu Advantage][support].
+If you are looking for additional support, find out about [Ubuntu Pro][support].
 
 Canonical can also provide [managed solutions][managed] for Kubernetes.
 
