@@ -3,7 +3,7 @@ import { Button, Col, Row } from "@canonical/react-components";
 
 const Landscape = () => {
   return (
-    <div className="u-vertically-spaced">
+    <div className="u-vertically-spaced" data-test="landscape">
       <Row>
         <Col size={4}>
           <h2>Landscape</h2>
