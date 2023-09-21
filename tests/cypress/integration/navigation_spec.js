@@ -9,7 +9,7 @@ context("Navigation", () => {
   it("should display the navigation sections when clicked", () => {
     cy.get('nav')
     .findByRole('link', {name: /Download/i}).click();
-    cy.findByRole('link', { name: /AMD-Xilinx Evaluation kits & SOMs/ })
+    cy.findByRole('link', { name: /AMD Evaluation kits & SOMs/ })
       .should("be.visible");
     cy.get('nav')
     .findByRole('link', {name: /Community/i}).click();
