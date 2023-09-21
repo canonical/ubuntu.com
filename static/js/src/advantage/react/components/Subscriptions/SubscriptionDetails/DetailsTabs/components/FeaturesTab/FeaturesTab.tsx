@@ -138,53 +138,53 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         <Col size={12}>
           {features.included.length
             ? generateList(
-                <div>
-                  <h5>Default settings</h5>
-                  <p>
-                    Changing the default settings of this subscription will
-                    affect the default enablement setting for machines attached{" "}
-                    <strong>after</strong> the changes are made
-                  </p>
-                  <p>
-                    Please note that changes to these settings{" "}
-                    <strong>will not</strong> impact machines that were already
-                    attached.
-                  </p>
-                </div>,
-                features.included.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
-                        }
-                      >
-                        {label}
-                      </FeatureSwitch>
-                      {label === EntitlementLabel.EsmApps &&
+              <div>
+                <h5>Default settings</h5>
+                <p>
+                  Changing the default settings of this subscription will
+                  affect the default enablement setting for machines attached{" "}
+                  <strong>after</strong> the changes are made
+                </p>
+                <p>
+                  Please note that changes to these settings{" "}
+                  <strong>will not</strong> impact machines that were already
+                  attached.
+                </p>
+              </div>,
+              features.included.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.EsmApps &&
                       featuresFormState[label]?.isDisabled ? (
-                        <Tooltip
-                          tooltipClassName="p-subscriptions-tooltip"
-                          message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps`."
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps`."
+                      >
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
                         >
-                          <Button
-                            type="button"
-                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                          >
-                            <i className="p-icon--information" />
-                          </Button>
-                        </Tooltip>
-                      ) : null}
-                    </div>
-                  ),
-                }))
-              )
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
           {entitlementsToUpdate.length > 0 &&
-          containsIncludedFeatures(entitlementsToUpdate) ? (
+            containsIncludedFeatures(entitlementsToUpdate) ? (
             <div className="u-align--right">
               <div className="p-notification--caution">
                 <div className="p-notification__content">
@@ -215,25 +215,25 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         <Col size={12} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
-                <div>
-                  Not included
-                  <Tooltip
-                    tooltipClassName="p-subscriptions-tooltip"
-                    message="Not available with your subscription"
+              <div>
+                Not included
+                <Tooltip
+                  tooltipClassName="p-subscriptions-tooltip"
+                  message="Not available with your subscription"
+                >
+                  <Button
+                    type="button"
+                    className="u-no-margin--bottom p-subscriptions-tooltip__button"
                   >
-                    <Button
-                      type="button"
-                      className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                    >
-                      <i className="p-icon--information" />
-                    </Button>
-                  </Tooltip>
-                </div>,
-                features.excluded.map((label) => ({
-                  icon: "error",
-                  label: label,
-                }))
-              )
+                    <i className="p-icon--information" />
+                  </Button>
+                </Tooltip>
+              </div>,
+              features.excluded.map((label) => ({
+                icon: "error",
+                label: label,
+              }))
+            )
             : null}
         </Col>
       </Row>
@@ -241,52 +241,52 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
-                <>
-                  For compliance & hardening services:{" "}
-                  <span style={{ fontWeight: 300 }}>
-                    please read the{" "}
-                    <a href="https://ubuntu.com/security/certifications/docs">
-                      documentation
-                    </a>{" "}
-                    and only enable these features if you specifically require
-                    these certifications.
-                  </span>
-                </>,
-                features.alwaysAvailable.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
+              <>
+                For compliance & hardening services:{" "}
+                <span style={{ fontWeight: 300 }}>
+                  please read the{" "}
+                  <a href="https://ubuntu.com/security/certifications/docs">
+                    documentation
+                  </a>{" "}
+                  and only enable these features if you specifically require
+                  these certifications.
+                </span>
+              </>,
+              features.alwaysAvailable.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.Fips ||
+                      label === EntitlementLabel.FipsUpdates ? (
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message={
+                          label === EntitlementLabel.Fips
+                            ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
+                            : "Enabling FIPS-Updates will disable FIPS"
                         }
                       >
-                        {label}
-                      </FeatureSwitch>
-                      {label === EntitlementLabel.Fips ||
-                      label === EntitlementLabel.FipsUpdates ? (
-                        <Tooltip
-                          tooltipClassName="p-subscriptions-tooltip"
-                          message={
-                            label === EntitlementLabel.Fips
-                              ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
-                              : "Enabling FIPS-Updates will disable FIPS"
-                          }
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
                         >
-                          <Button
-                            type="button"
-                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                          >
-                            <i className="p-icon--information" />
-                          </Button>
-                        </Tooltip>
-                      ) : null}
-                    </div>
-                  ),
-                }))
-              )
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
         </Col>
       </Row>
@@ -302,7 +302,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         </div>
       ) : null}
       {entitlementsToUpdate.length > 0 &&
-      containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
+        containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
         <div className="u-align--right">
           <div className="p-notification--caution">
             <div className="p-notification__content">
@@ -336,10 +336,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
           </p>
           <code>$ sudo pro disable &lt;services&gt;</code>
           <p>
-            <p>
-              To enable services on machines attached to a subscription with
-              specific features turned off by default, please run:
-            </p>
+            To enable services on machines attached to a subscription with
+            specific features turned off by default, please run:
             <code>$ sudo pro enable &lt;services&gt;</code>
           </p>
           <a href="/legal/ubuntu-pro-description">

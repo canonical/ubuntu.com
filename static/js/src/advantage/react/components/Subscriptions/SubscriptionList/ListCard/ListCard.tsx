@@ -71,7 +71,7 @@ const ListCard = ({
 
           {subscription.statuses.is_expired ? (
             <button className="p-chip--negative">
-              <span className="p-chip__value">Expired</span>
+              <span className="p-chip__value" data-test="card-type">Expired</span>
             </button>
           ) : (
             <>
@@ -79,14 +79,14 @@ const ListCard = ({
                 <>
                   {subscription.statuses.is_renewed ? (
                     <button className="p-chip--positive">
-                      <span className="p-chip__value">Renewed</span>
+                      <span className="p-chip__value" data-test="card-type">Renewed</span>
                     </button>
                   ) : (
                     <>
                       {subscription.statuses.is_renewal_actionable &&
                         subscription.statuses.is_renewable ? (
                         <button className="p-chip--caution">
-                          <span className="p-chip__value">Not renewed</span>
+                          <span className="p-chip__value" data-test="card-type">Not renewed</span>
                         </button>
                       ) : null}
                     </>
@@ -101,7 +101,7 @@ const ListCard = ({
                     <>
                       {subscription.statuses.is_renewed ? (
                         <button className="p-chip--positive">
-                          <span className="p-chip__value">Auto-renewal on</span>
+                          <span className="p-chip__value" data-test="card-type">Auto-renewal on</span>
                         </button>
                       ) : null}
                       {!subscription.statuses.is_renewed ? (
@@ -115,7 +115,7 @@ const ListCard = ({
                   ) : null}
                   {subscription.statuses.is_cancelled ? (
                     <button className="p-chip--negative">
-                      <span className="p-chip__value">Cancelled</span>
+                      <span className="p-chip__value" data-test="card-type">Cancelled</span>
                     </button>
                   ) : null}
                 </>
@@ -127,14 +127,14 @@ const ListCard = ({
                       {subscription.statuses.is_renewed &&
                         !subscription.statuses.is_cancelled ? (
                         <button className="p-chip--positive">
-                          <span className="p-chip__value">Auto-renewal on</span>
+                          <span className="p-chip__value" data-test="card-type">Auto-renewal on</span>
                         </button>
                       ) : null}
                     </>
                   ) : null}
                   {subscription.statuses.is_cancelled ? (
                     <button className="p-chip--negative">
-                      <span className="p-chip__value">Cancelled</span>
+                      <span className="p-chip__value" data-test="card-type">Cancelled</span>
                     </button>
                   ) : null}
                 </>

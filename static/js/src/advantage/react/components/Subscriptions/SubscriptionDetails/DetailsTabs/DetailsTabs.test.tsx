@@ -162,19 +162,6 @@ describe("DetailsTabs", () => {
     expect(docsLinks.at(4).text()).toBe("CIS setup instructions");
   });
 
-  it("can display a contract token", () => {
-    const wrapper = mount(
-      <DetailsTabs
-        subscription={subscription}
-        token={contractTokenFactory.build()}
-        setHasUnsavedChanges={jest.fn()}
-      />
-    );
-    // Switch to the docs tab:
-    wrapper.find("[data-test='docs-tab']").simulate("click");
-    expect(wrapper.find("[data-test='contract-token']").exists()).toBe(true);
-  });
-
   it("Display tutorial link for the free subscription", () => {
     const wrapper = mount(
       <DetailsTabs

@@ -44,7 +44,7 @@ it("displays feature categories with content", () => {
     <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
   );
   screen.getByRole("heading", { name: "Default settings" });
-  screen.getByRole("heading", { name: /Compliance & Hardening/ });
+  screen.getByRole("heading", { name: "Service enablement for individual machines" });
 
   within(screen.getByTestId("included-features")).getByLabelText("Livepatch");
   expect(screen.queryByText("ESM Apps")).not.toBeInTheDocument();
