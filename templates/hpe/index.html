@@ -350,20 +350,31 @@
     </div>
     <div class="col-9 col-medium-4">
       {% for article in blogs %}
-      {% if loop.index > 0 %}
-      <hr class="is-fixed-width p-rule">
-      {% endif %}
-      <div class="p-block">
-        <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></h2>
-        <p>
-          <button class="p-chip--information" onclick="location.href='/blog/tag/event'">
-            <span class="p-chip__value">Event</span>
-          </button>
-          <button class="p-chip--information" onclick="location.href='/blog/tag/hpe'">
-            <span class="p-chip__value">HPE</span>
-          </button>
-        </p>
-      </div>
+        {% if loop.index <= 3 %}
+          {% if loop.index > 0 %}
+          <hr class="is-fixed-width p-rule">
+          {% endif %}
+          <div class="p-block">
+            <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></h2>
+            <p>
+              {% if 4307 in article.tags %}
+              <button class="p-chip--information" onclick="location.href='/blog/tag/hpe'">
+                <span class="p-chip__value">HPE</span>
+              </button>
+              {% endif %}
+              {% if 1419 in article.tags %}
+              <button class="p-chip--information" onclick="location.href='/blog/tag/event'">
+                <span class="p-chip__value">Event</span>
+              </button>
+              {% endif %}
+              {% if 1377 in article.tags %}
+              <button class="p-chip--information" onclick="location.href='/blog/tag/telco'">
+                <span class="p-chip__value">Telco</span>
+              </button>
+              {% endif %}
+            </p>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
