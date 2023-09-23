@@ -184,7 +184,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
               )
             : null}
           {entitlementsToUpdate.length > 0 &&
-          containsIncludedFeatures(entitlementsToUpdate) ? (
+          containsIncludedFeatures(entitlementsToUpdate) &&
+          !containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
             <div className="u-align--right">
               <div className="p-notification--caution">
                 <div className="p-notification__content">
