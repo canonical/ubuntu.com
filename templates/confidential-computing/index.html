@@ -1,11 +1,11 @@
-{% extends "templates/base.html" %}
+{% extends "confidential-computing/base_confidential-computing.html" %}
 
 {% block title %}Confidential Computing{% endblock %}
 {% block meta_description %}Protect data in use with confidential computing. Build the foundation of your
 privacy-enhancing technology strategy with Ubuntu confidential VMs on both public and private clouds.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit{% endblock %}
 
-{% block outer_content %}
+{% block content %}
 <div class="is-paper">
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row">
@@ -58,40 +58,42 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
     </div>
     <div class="row">
       <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Confidential computing capable CPUs are equipped with an AES
-              hardware memory encryption engine, which encrypts data when it is
-              written to system memory, and decrypts it when read. The
-              encryption key itself is stored in the hardware root of trust and
-              is never exposed to the platform’s system software.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading-icon__title p-heading--5">
-              2. Remote attestation
-            </h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              When a confidential VM is launched, its integrity is verified and
-              its initial code and data are measured by a hardware root of
-              trust. This ensures they have not been tampered with. The
-              measurement is cryptographically signed and can be attested to a
-              remote verifier.
-            </p>
-          </div>
-        </div>
+        <ol class="p-stepped-list--detailed">
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
+              </div>
+              <div class="col-6 col-medium-3">
+                <p>
+                  Confidential computing capable CPUs are equipped with an AES
+                  hardware memory encryption engine, which encrypts data when it is
+                  written to system memory, and decrypts it when read. The
+                  encryption key itself is stored in the hardware root of trust and
+                  is never exposed to the platform’s system software.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <h3 class="p-heading-icon__title p-heading--5">
+                  2. Remote attestation
+                </h3>
+              </div>
+              <div class="col-6 col-medium-3">
+                <p>
+                  When a confidential VM is launched, its integrity is verified and
+                  its initial code and data are measured by a hardware root of
+                  trust. This ensures they have not been tampered with. The
+                  measurement is cryptographically signed and can be attested to a
+                  remote verifier.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
@@ -272,16 +274,5 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
     </div>
   </div>
 </section>
-
-<!-- Set default Marketo information for contact form below-->
-<div 
-  class="u-hide"
-  id="contact-form-container"
-  data-form-location="/shared/forms/interactive/confidential-computing"
-  data-form-id="5352"
-  data-lp-id=""
-  data-return-url="https://ubuntu.com/contact-us/form/thank-you"
-  data-lp-url="">
-</div>
 
 {% endblock %}
