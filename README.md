@@ -26,6 +26,12 @@ Once it's installed, run the project with:
 dotrun
 ```
 
+For Mac users, in case running `dotrun` returns an error related to Chromium, add the following line to your local `.env.local` file (create one if you don't have it):
+
+```
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+```
+
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
 # Deploy
