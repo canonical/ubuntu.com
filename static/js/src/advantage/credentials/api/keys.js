@@ -40,3 +40,15 @@ export async function activateKey(activationKey) {
   const data = await response.json();
   return data;
 }
+
+export async function getKeyProducts() {
+  let response = await fetch("/credentials/keys/products", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return data;
+}

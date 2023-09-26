@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
   Form,
   Input,
   Row,
+  Spinner,
   Strip,
 } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
+import { getKeyProducts } from "advantage/credentials/api/keys";
+import { Product } from "advantage/subscribe/checkout/utils/types";
+import { useQuery } from "react-query";
 
 const CredKeyShop = () => {
-  const CUEExamKey = {
-    id: "cue-activation-key",
-    longId: "lAEPoNKYCFgZGmddQXplCtcnf5wMpYUXloGygjPK3y0E",
-    name: "CUE Activation Key",
-    price: { value: 4900, currency: "USD" },
-    productID: "cue-activation-key",
-    canBeTrialled: false,
-    private: false,
-    marketplace: "canonical-cube",
-  };
+  const { isLoading, data: keyProducts } = useQuery(
+    ["KeyProducts"],
+    async () => {
+      return getKeyProducts();
+    }
+  );
+  const [CUEExamKey, setCUEExamKey] = useState<Product | null>(null);
   const checkoutData = localStorage.getItem("shop-checkout-data") || "{}";
   const parsedCheckoutData = JSON.parse(checkoutData);
   const initQuantity: number = parsedCheckoutData?.quantity;
@@ -46,6 +47,9 @@ const CredKeyShop = () => {
     );
     location.href = "/account/checkout";
   };
+  useEffect(() => {
+    setCUEExamKey(keyProducts?.find((product: Product) => product.id === "cue-activation-key"));
+  }, [keyProducts]);
   return (
     <>
       <Strip>
@@ -91,9 +95,9 @@ const CredKeyShop = () => {
             )}
           </Col>
           <Col size={3}>
-            <Button appearance="positive" type="submit" onClick={handleSubmit}>
+            {isLoading?<Button appearance="positive"><Spinner></Spinner></Button>:<Button appearance="positive" type="submit" onClick={handleSubmit}>
               Buy Now
-            </Button>
+            </Button>}
           </Col>
         </Row>
       </section>

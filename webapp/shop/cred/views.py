@@ -714,3 +714,23 @@ def issue_badges(trueability_api, credly_api, **kwargs):
             return (flask.jsonify(new_badge), 500)
     # 403 Forbidden. Request was valid but the server is refusing action
     return flask.jsonify({"status": "badge_not_issued"}), 403
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_key_products(ua_contracts_api, **kwargs):
+    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+        "productListings"
+    )
+    key_products = [
+        {
+            "id": listing["productID"],
+            "longId": listing["id"],
+            "period": listing["period"],
+            "marketplace": listing["marketplace"],
+            "name": listing["name"],
+            "price": listing["price"],
+        }
+        for listing in listings
+        if listing["productID"].endswith("key")
+    ]
+    return flask.jsonify(key_products)
