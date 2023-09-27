@@ -296,7 +296,7 @@ const Taxes = ({ setError }: TaxesProps) => {
         >
           {isEditing ? (
             <>
-              {window.accountId ? (
+              {window.accountId && !!initialValues.country ? (
                 <ActionButton
                   onClick={() => {
                     setFieldValue("country", initialValues.country);
