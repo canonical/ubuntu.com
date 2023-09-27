@@ -13,6 +13,63 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<!-- AUTOGENERATE RELEASE NOTES HERE -->
+
+# 1.28+ck1 Bugfix release
+
+### September 25, 2023 - `charmed-kubernetes --channel 1.28/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
+
+## What's new
+### Cloud Integrator Charms
+* [LP#2033082](https://bugs.launchpad.net/bugs/2033082) 
+  Replaces deprecated yaml library method to `yaml.safe_load` over `yaml.load`
+  - aws-integrator
+  - gcp-integrator
+  - vsphere-integrator
+
+### Calico
+* [LP#2034737](https://bugs.launchpad.net/bugs/2034737) [LP#2034736](https://bugs.launchpad.net/bugs/2034736)
+  The charm configured Calico `assign_ipv{4,6}` as null instead of the actual value.
+  Adds a call to reconfigure the `cni_config` when the charm configuration or the etcd config changes.
+  Casts the value of veth_mtu to string rather than an int
+
+### Ceph-csi
+* [LP#2034267](https://bugs.launchpad.net/bugs/2034267)
+  Support custom kubelet_dir over kubernetes-info interface
+
+### CoreDNS
+* [LP#2032822](https://bugs.launchpad.net/bugs/2032822)
+  Prevents attempts to deploy the charm in a machine charm (non-k8s)
+
+### KubeOVN
+* [LP#2030772](https://bugs.launchpad.net/bugs/2030772)
+  Update to kube-ovn v1.11.10
+
+### Kubeapi Load Balancer
+* [LP#1893681](https://bugs.launchpad.net/bugs/1893681)
+  Adds the option to handle Nginx configuration contexts via config `nginx-http-config`.
+
+* [LP#1948019](https://bugs.launchpad.net/bugs/1948019)
+  Adds the option to handle Nginx configuration contexts via config `nginx-events-config` and `nginx-main-config`.
+
+### Kubernetes Control Plane
+* [LP#2033682](https://bugs.launchpad.net/bugs/2033682)
+  Adds ipvs kernel modules to lxd profile (#300)
+  Required when using kube-proxy in ipvs mode
+
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### Kubernetes Worker
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### MetalLB
+* [LP#2031937](https://bugs.launchpad.net/bugs/2031937)
+  Updates Charmhub Documentation to a Diataxis version
+  
 # 1.28
 
 ### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
@@ -278,7 +335,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Cilium on AWS and OpenStack [LP#2016905](https://bugs.launchpad.net/charm-cilium/+bug/2016905)
 
-  Deploying Cilium on AWS or Openstack can cause inter-node communication
+  Deploying Cilium on AWS or OpenStack can cause inter-node communication
   failures due to the Fan networking that Juju enables by default in those
   environments. To work around this issue, set model configuration prior
   to deployment:
@@ -713,14 +770,14 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
 
   Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed.
   
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
   * Not using storage
   * Using alternative storage like `ceph-csi`
   * Manually configuring the out-of-tree storage provisioner
 
 * PodSecurityPolicy Removed
   PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
 
 ## Deprecations and API changes
 
