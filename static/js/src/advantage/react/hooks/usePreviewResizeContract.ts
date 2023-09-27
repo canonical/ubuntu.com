@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { useLastPurchaseIds } from ".";
 import { selectPurchaseIdsByMarketplaceAndPeriod } from "./useLastPurchaseIds";
 
-export type PreviewResizeContractResponse = { amountDue: number };
+export type PreviewResizeContractResponse = { total: number };
 
 export const usePreviewResizeContract = (subscription?: UserSubscription) => {
   const { data: lastPurchaseId } = useLastPurchaseIds(

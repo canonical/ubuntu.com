@@ -164,40 +164,6 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   return data;
 }
 
-export async function postPurchaseData(
-  accountID,
-  products,
-  previousPurchaseId,
-  marketplace
-) {
-  const queryString = window.location.search; // Pass arguments to the flask backend
-
-  const purchaseData = {
-    account_id: accountID,
-    products: products,
-    previous_purchase_id: previousPurchaseId,
-    period: products[0].period,
-  };
-
-  if (marketplace) {
-    purchaseData.marketplace = marketplace;
-  }
-
-  let response = await fetch(`/pro/subscribe${queryString}`, {
-    method: "POST",
-    cache: "no-store",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(purchaseData),
-  });
-
-  let data = await response.json();
-  return data;
-}
-
 export async function cancelContract(
   accountId,
   previousPurchaseId,
@@ -235,7 +201,7 @@ export async function resizeContract(
   marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  let response = await fetch(`/pro/subscribe${queryString}`, {
+  let response = await fetch(`/pro/purchase${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -246,14 +212,13 @@ export async function resizeContract(
     body: JSON.stringify({
       account_id: accountId,
       previous_purchase_id: previousPurchaseId,
-      period: period,
+      action: "resize",
       products: [
         {
           product_listing_id: productId,
           quantity: quantity,
         },
       ],
-      resizing: true,
       marketplace: marketplace,
     }),
   });
@@ -270,7 +235,7 @@ export async function previewResizeContract(
   marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  let response = await fetch(`/pro/subscribe/preview${queryString}`, {
+  let response = await fetch(`/pro/purchase/preview${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -280,51 +245,16 @@ export async function previewResizeContract(
     },
     body: JSON.stringify({
       account_id: accountId,
+      action: "resize",
       previous_purchase_id: previousPurchaseId,
-      period: period,
       products: [
         {
           product_listing_id: productId,
           quantity: quantity,
         },
       ],
-      resizing: true,
       marketplace: marketplace,
     }),
-  });
-
-  let data = await response.json();
-  return data;
-}
-
-export async function postPurchasePreviewData(
-  accountID,
-  products,
-  previousPurchaseId,
-  marketplace
-) {
-  const queryString = window.location.search; // Pass arguments to the flask backend
-
-  const previewData = {
-    account_id: accountID,
-    products: products,
-    previous_purchase_id: previousPurchaseId,
-    period: products[0].period,
-  };
-
-  if (marketplace) {
-    previewData.marketplace = marketplace;
-  }
-
-  let response = await fetch(`/pro/subscribe/preview${queryString}`, {
-    method: "POST",
-    cache: "no-store",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(previewData),
   });
 
   let data = await response.json();
