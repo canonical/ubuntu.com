@@ -81,6 +81,7 @@ from webapp.shop.cred.views import (
     cred_syllabus_data,
     cred_your_exams,
     get_activation_keys,
+    get_exam_products,
     get_filtered_webhook_responses,
     get_issued_badges,
     get_key_products,
@@ -1131,6 +1132,9 @@ app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
 app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentials/exam", view_func=cred_exam)
+app.add_url_rule(
+    "/credentials/exam/products", view_func=get_exam_products, methods=["GET"]
+)
 app.add_url_rule(
     "/credentials/exit-survey",
     view_func=cred_submit_form,

@@ -48,7 +48,11 @@ const CredKeyShop = () => {
     location.href = "/account/checkout";
   };
   useEffect(() => {
-    setCUEExamKey(keyProducts?.find((product: Product) => product.id === "cue-activation-key"));
+    setCUEExamKey(
+      keyProducts?.find(
+        (product: Product) => product.id === "cue-activation-key"
+      )
+    );
   }, [keyProducts]);
   return (
     <>
@@ -95,9 +99,19 @@ const CredKeyShop = () => {
             )}
           </Col>
           <Col size={3}>
-            {isLoading?<Button appearance="positive"><Spinner></Spinner></Button>:<Button appearance="positive" type="submit" onClick={handleSubmit}>
-              Buy Now
-            </Button>}
+            {isLoading ? (
+              <Button appearance="positive">
+                <Spinner></Spinner>
+              </Button>
+            ) : (
+              <Button
+                appearance="positive"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Buy Now
+              </Button>
+            )}
           </Col>
         </Row>
       </section>

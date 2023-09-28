@@ -734,3 +734,22 @@ def get_key_products(ua_contracts_api, **kwargs):
         if listing["productID"].endswith("key")
     ]
     return flask.jsonify(key_products)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_exam_products(ua_contracts_api, **kwargs):
+    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+        "productListings"
+    )
+    exam_products = [
+        {
+            "id": listing["productID"],
+            "longId": listing["id"],
+            "period": listing["period"],
+            "marketplace": listing["marketplace"],
+            "name": listing["name"],
+            "price": listing["price"],
+        }
+        for listing in listings
+    ]
+    return flask.jsonify(exam_products)
