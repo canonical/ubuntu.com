@@ -68,7 +68,7 @@ Google. You can see which ones are ready to use by running this command:
           </div>
           <script id="asciicast-254740" src="https://asciinema.org/a/254740.js" async data-rows="18" ></script>
 
-          <p><a href="https://juju.is/docs/olm/clouds">Find out more about Clouds in Juju</a></p>
+          <p><a href="https://juju.is/docs/juju/clouds">Find out more about Clouds in Juju</a></p>
         </div>
       </li>
 

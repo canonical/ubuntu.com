@@ -20,7 +20,7 @@ to directly use native vSphere features such as storage.
 <div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere Cloud Provider assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://juju.is/docs/olm/vmware-vsphere" >Juju documentation</a>.</p>
+    <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere Cloud Provider assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://juju.is/docs/juju/vmware-vsphere" >Juju documentation</a>.</p>
   </div>
 </div>
 
@@ -282,7 +282,7 @@ please see the [vSphere Cloud Provider charm page][vsphere-cloud-provider].
 [Migrating In-Tree vSphere volumes]: https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/2.0/vmware-vsphere-csp-getting-started/GUID-968D421F-D464-4E22-8127-6CB9FF54423F.html
 [storage]: /kubernetes/docs/storage
 [vsphere-cloud-provider]: https://charmhub.io/vsphere-cloud-provider/docs
-[vsphere-juju]: https://juju.is/docs/olm/vmware-vsphere
+[vsphere-juju]: https://juju.is/docs/juju/vmware-vsphere
 [install]: /kubernetes/docs/install-manual
 [vmware documentation]: https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/index.html
 

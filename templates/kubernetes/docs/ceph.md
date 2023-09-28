@@ -55,7 +55,7 @@ juju integrate ceph-osd ceph-mon
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">For more on how Juju makes use of storage, please see the relevant
-<a href="https://juju.is/docs/olm/defining-and-using-persistent-storage"> Juju documentation</a></p>
+<a href="https://juju.is/docs/juju/defining-and-using-persistent-storage"> Juju documentation</a></p>
   </div>
 </div>
 

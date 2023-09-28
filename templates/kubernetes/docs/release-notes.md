@@ -13,6 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<!-- AUTOGENERATE RELEASE NOTES HERE -->
 # 1.28
 
 ### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
@@ -278,7 +279,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Cilium on AWS and OpenStack [LP#2016905](https://bugs.launchpad.net/charm-cilium/+bug/2016905)
 
-  Deploying Cilium on AWS or Openstack can cause inter-node communication
+  Deploying Cilium on AWS or OpenStack can cause inter-node communication
   failures due to the Fan networking that Juju enables by default in those
   environments. To work around this issue, set model configuration prior
   to deployment:
@@ -713,14 +714,14 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
 
   Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed.
   
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
   * Not using storage
   * Using alternative storage like `ceph-csi`
   * Manually configuring the out-of-tree storage provisioner
 
 * PodSecurityPolicy Removed
   PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
 
 ## Deprecations and API changes
 
