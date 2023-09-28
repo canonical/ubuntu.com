@@ -9,14 +9,15 @@ import {
 } from "@canonical/react-components";
 import classNames from "classnames";
 import { currencyFormatter } from "advantage/react/utils";
-import { Product } from "advantage/subscribe/blender/utils/utils";
+import { Product } from "advantage/credentials/utils/utils";
 import { useQuery } from "react-query";
 import { getExamProducts } from "advantage/credentials/api/keys";
 
 const CredExamShop = () => {
-  const ExamProductDescriptions = [
+  const ExamProductDescriptions: Product[] = [
     {
       id: "cue-linux-essentials",
+      name: "CUE Linux Essentials",
       metadata: [
         {
           key: "description",
@@ -27,6 +28,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-02-desktop",
+      name: "CUE Desktop",
       metadata: [
         {
           key: "description",
@@ -37,6 +39,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-03-server",
+      name: "CUE Server",
       metadata: [
         {
           key: "description",
@@ -72,22 +75,18 @@ const CredExamShop = () => {
     location.href = "/account/checkout";
   };
   useEffect(() => {
-    const tempExamProducts = [];
-    console.log(ExamData);
-    if(ExamData === undefined) {
+    if (ExamData === undefined) {
       return;
     }
-    for (const exam of ExamData) {
-      for (const examDescription of ExamProductDescriptions) {
+    for (const examDescription of ExamProductDescriptions) {
+      for (const exam of ExamData) {
         if (exam.id === examDescription.id) {
-          exam.metadata = examDescription.metadata;
-          tempExamProducts.push(exam);
+          Object.assign(examDescription, exam);
         }
       }
     }
-    setExamProducts(tempExamProducts);
-    console.log(ExamData);
-    console.log(tempExamProducts);
+    setExamProducts(ExamProductDescriptions);
+    console.log(ExamProductDescriptions);
   }, [ExamData]);
   if (isLoading) {
     return <Spinner />;
@@ -118,7 +117,7 @@ const CredExamShop = () => {
                       value={examIndex}
                       checked={exam == examIndex}
                       onChange={handleChange}
-                      disabled={examElement.private}
+                      disabled={examElement.price === undefined}
                     />
                     <span className="p-radio__label">
                       <RadioInput
@@ -127,7 +126,7 @@ const CredExamShop = () => {
                         checked={exam == examIndex}
                         value={examIndex}
                         onChange={handleChange}
-                        disabled={examElement.private}
+                        disabled={examElement.price === undefined}
                       />
                       <hr />
                       <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
@@ -138,7 +137,7 @@ const CredExamShop = () => {
                         className="u-align--right"
                         style={{ paddingRight: "1rem" }}
                       >
-                        {examElement.private
+                        {examElement.price === undefined
                           ? "Coming Soon!"
                           : "Price: " +
                             currencyFormatter.format(
@@ -171,7 +170,7 @@ const CredExamShop = () => {
                   checked={exam == examIndex}
                   value={examIndex}
                   onChange={handleChange}
-                  disabled={examElement.private}
+                  disabled={examElement.price === undefined}
                 />
                 <span>
                   <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
@@ -183,7 +182,7 @@ const CredExamShop = () => {
                     className="u-align--right"
                     style={{ paddingRight: "1rem" }}
                   >
-                    {examElement.private
+                    {examElement.price === undefined
                       ? "Coming Soon!"
                       : "Price: " +
                         currencyFormatter.format(examElement.price.value / 100)}
@@ -209,7 +208,7 @@ const CredExamShop = () => {
           <Col size={3} small={2} style={{ display: "flex" }}>
             <p className="p-heading--2" style={{ marginBlock: "auto" }}>
               {currencyFormatter.format(
-                (ExamProducts[exam]?.price.value ?? 0) / 100 ?? 0
+                (ExamProducts[exam]?.price?.value ?? 0) / 100 ?? 0
               )}
             </p>
           </Col>

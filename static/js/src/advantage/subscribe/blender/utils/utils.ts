@@ -29,7 +29,6 @@ export type Product = {
   id: ProductIDs;
   productID: string;
   marketplace: UserSubscriptionMarketplace;
-  metadata?: Array<{ key: string; value: string }>;
 };
 
 export type ProductListings = {
