@@ -15,7 +15,7 @@ toc: False
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
 
-# 1.28+ck1 Bugfix release
+## 1.28+ck1 Bugfix release
 
 ### September 25, 2023 - `charmed-kubernetes --channel 1.28/stable`
 
@@ -69,8 +69,8 @@ The release bundle can also be [downloaded here](https://raw.githubusercontent.c
 ### MetalLB
 * [LP#2031937](https://bugs.launchpad.net/bugs/2031937)
   Updates Charmhub Documentation to a Diataxis version
-  
-# 1.28
+
+## 1.28
 
 ### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
 

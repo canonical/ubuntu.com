@@ -1,12 +1,22 @@
-from typing import List, Dict, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
 from webapp.shop.api.ua_contracts.models import (
-    Purchase,
     Invoice,
-    UserSubscription,
-    Offer,
     Listing,
+    Offer,
+    Purchase,
+    UserSubscription,
+)
+from webapp.shop.api.ua_contracts.parsers import (
+    parse_contract,
+    parse_contracts,
+    parse_offers,
+    parse_product_listing,
+    parse_product_listings,
+    parse_subscriptions,
+    parse_users,
 )
 from webapp.shop.api.ua_contracts.primitives import (
     Account,
@@ -15,26 +25,12 @@ from webapp.shop.api.ua_contracts.primitives import (
     Subscription,
     User,
 )
-from webapp.shop.api.ua_contracts.api import (
-    UAContractsUserHasNoAccount,
-    UnauthorizedError,
-)
-from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
-from webapp.shop.api.ua_contracts.parsers import (
-    parse_contracts,
-    parse_subscriptions,
-    parse_product_listing,
-    parse_product_listings,
-    parse_users,
-    parse_contract,
-    parse_offers,
-)
 from webapp.shop.api.ua_contracts.schema import (
-    AnnotatedContractItemsSchema,
-    PurchaseSchema,
     AccountSchema,
-    InvoiceSchema,
+    AnnotatedContractItemsSchema,
     EnsurePurchaseAccountSchema,
+    InvoiceSchema,
+    PurchaseSchema,
 )
 
 
@@ -179,17 +175,19 @@ class AdvantageMapper:
 
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict, preview=True
-    ) -> Purchase:
+    ) -> Union[Invoice, Purchase]:
         if preview:
-            response = self.ua_contracts_api.preview_purchase_from_marketplace(
-                marketplace, purchase_request
-            )
-        else:
-            response = self.ua_contracts_api.purchase_from_marketplace(
-                marketplace, purchase_request
+            invoice = self.ua_contracts_api.preview_purchase_from_marketplace(
+                marketplace=marketplace, purchase_request=purchase_request
             )
 
-        return PurchaseSchema().load(response)
+            return InvoiceSchema().load(invoice)
+
+        purchase = self.ua_contracts_api.purchase_from_marketplace(
+            marketplace=marketplace, purchase_request=purchase_request
+        )
+
+        return PurchaseSchema().load(purchase)
 
     def ensure_purchase_account(
         self,
@@ -273,135 +271,6 @@ class AdvantageMapper:
         items = AnnotatedContractItemsSchema(many=True).load(resp)
 
         return items
-
-    def get_or_create_user_account(
-        self, marketplace, customer_info, captcha_value
-    ) -> Account:
-        try:
-            return self.get_purchase_account(marketplace)
-        except (UnauthorizedError, UAContractsUserHasNoAccount):
-            email = customer_info.get("email", "") if customer_info else ""
-            name = customer_info.get("name", "") if customer_info else ""
-
-            account = self.ensure_purchase_account(
-                marketplace=marketplace,
-                email=email,
-                account_name=name,
-                captcha_value=captcha_value,
-            )
-
-            if account.token:
-                self.ua_contracts_api.set_authentication_token(account.token)
-                self.ua_contracts_api.set_token_type("Bearer")
-
-            return account
-
-    def post_user_purchase(
-        self,
-        account_id: str,
-        marketplace: str,
-        customer_info: dict,
-        action: str,
-        products: dict,
-        offer_id: str,
-        renewal_id: str,
-        previous_purchase_id: str,
-        session: dict,
-        preview: bool = False,
-    ) -> Union[Purchase, Invoice]:
-        if customer_info is not None:
-            tax_id = customer_info.get("tax_id")
-            if tax_id and tax_id["value"] == "":
-                tax_id["delete"] = True
-
-            self.ua_contracts_api.put_customer_info(
-                account_id,
-                customer_info.get("payment_method_id"),
-                customer_info.get("address"),
-                customer_info.get("name"),
-                tax_id,
-            )
-
-        subscribed_quantities = {}
-        if action == "purchase":
-            try:
-                subscriptions = self.get_account_subscriptions(
-                    account_id=account_id,
-                    marketplace=marketplace,
-                    filters={"status": "active"},
-                )
-
-                for subscription in subscriptions:
-                    for item in subscription.items:
-                        product_listing_id = item.product_listing_id
-                        subscribed_quantities[product_listing_id] = item.value
-            except UnauthorizedError:
-                pass  # user is guest
-
-        purchase_items = []
-        for product in products:
-            product_listing_id = product["product_listing_id"]
-            metric_value = product["quantity"] + subscribed_quantities.get(
-                product_listing_id, 0
-            )
-
-            purchase_items.append(
-                {
-                    "productListingID": product_listing_id,
-                    "metric": "active-machines",
-                    "value": metric_value,
-                }
-            )
-
-        purchase_request = {
-            "accountID": account_id,
-            "purchaseItems": purchase_items,
-            "previousPurchaseID": previous_purchase_id,
-        }
-
-        if action == "trial":
-            purchase_request["inTrial"] = True
-
-        if action == "offer":
-            purchase_request["offerID"] = offer_id
-
-        if action == "renewal":
-            purchase_request["renewalID"] = renewal_id
-
-        # marketing parameters
-        metadata_keys = [
-            "ad_source",
-            "google-click-id",
-            "google-gbraid-id",
-            "google-wbraid-id",
-            "facebook-click-id",
-            "salesforce-campaign-id",
-        ]
-
-        metadata = [
-            {
-                "key": metadata_key,
-                "value": session.get(metadata_key),
-            }
-            for metadata_key in metadata_keys
-            if session.get(metadata_key)
-        ]
-
-        if metadata:
-            purchase_request["metadata"] = metadata
-
-        if preview:
-            invoice = self.ua_contracts_api.preview_purchase_from_marketplace(
-                marketplace=marketplace, purchase_request=purchase_request
-            )
-
-            return InvoiceSchema().load(invoice)
-
-        purchase = self.ua_contracts_api.purchase_from_marketplace(
-            marketplace=marketplace, purchase_request=purchase_request
-        )
-
-        return PurchaseSchema().load(purchase)
 
     def activate_magic_attach(
         self, user_code: str, contract_id: str, client_ip: int

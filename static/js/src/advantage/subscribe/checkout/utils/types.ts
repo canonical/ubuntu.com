@@ -84,26 +84,8 @@ export type Cart = {
 
 export type Action = "purchase" | "resize" | "trial" | "offer" | "renewal";
 
-type AddressObejct = {
-  city?: string;
-  country?: string;
-  line1?: string;
-  postal_code?: string;
-  state?: string;
-};
-
 export type PaymentPayload = {
   account_id?: string;
-  customer_info?: {
-    payment_method_id: string;
-    email?: string;
-    name?: string;
-    address: AddressObejct;
-    tax_id: {
-      type: string;
-      value?: string;
-    };
-  };
   marketplace: UserSubscriptionMarketplace;
   action: Action;
   previous_purchase_id?: string | null;

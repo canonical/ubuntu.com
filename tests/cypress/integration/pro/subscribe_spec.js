@@ -5,7 +5,7 @@ import { getRandomEmail, slowDownResponse } from "../../utils";
 Cypress.config("defaultCommandTimeout", 10000);
 
 context("/pro/subscribe", () => {
-  it("should redirect to checkout page when pressing 'Buy now'", () => {
+  it("should redirect to login page when pressing 'Buy now'", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
@@ -14,7 +14,7 @@ context("/pro/subscribe", () => {
 
     // Redirected to checkout
     cy.location().should((loc) => {
-      expect(loc.pathname).to.equal("/account/checkout");
+      expect(loc.host).to.contains("login");
     });
   });
 });
@@ -28,15 +28,6 @@ context("/pro/subscribe trial", () => {
     cy.get("#summary-section")
       .contains("Free trial available")
       .should("be.visible");
-    cy.findByRole("button", { name: "Buy now" }).click();
-
-    // Redirected to checkout
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal("/account/checkout");
-    });
-
-    // cy.get(".checkout-container").scrollTo("bottom");
-    // cy.findByText("Use free trial month").should("be.visible");
   });
 
   it("should not show trial badge", () => {
@@ -47,14 +38,5 @@ context("/pro/subscribe trial", () => {
     cy.get("#summary-section")
       .contains("Free trial available")
       .should("not.exist");
-    cy.findByRole("button", { name: "Buy now" }).click();
-
-    // Redirected to checkout
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal("/account/checkout");
-    });
-
-    // cy.get(".checkout-container").scrollTo("bottom");
-    // cy.findByText("Use free trial month").should("not.exist");
   });
 });

@@ -348,7 +348,7 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
-[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
+[juju-controller-upgrade]: https://juju.is/docs/juju/upgrade-models
 [inclusive-naming]: /kubernetes/docs/inclusive-naming
 [bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 

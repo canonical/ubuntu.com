@@ -40,7 +40,7 @@ The 'App' section of the output lists each application and its version number. N
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning!:</span>
-    <p class="p-notification__message"><strong>Juju compatibility</strong>  The latest current version of Juju (as of the time of the Charmed Kubernetes 1.27 release) is <strong>3.1</strong>. This new major release introduces some breaking changes with previous versions. It is recommended that you upgrade to this new version of Juju, but also be aware of the changes. See the <a href="https://juju.is/docs/olm/upgrade-your-juju-deployment-from-2-9-to-3-x"> Juju documentation</a> for more information.</p>
+    <p class="p-notification__message"><strong>Juju compatibility</strong>  The latest current version of Juju (as of the time of the Charmed Kubernetes 1.27 release) is <strong>3.1</strong>. This new major release introduces some breaking changes with previous versions. It is recommended that you upgrade to this new version of Juju, but also be aware of the changes. See the <a href="https://juju.is/docs/juju/upgrade-your-juju-deployment-from-2-9-to-3-x"> Juju documentation</a> for more information.</p>
   </div>
 </div>
 
@@ -341,8 +341,8 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 
 <!--LINKS-->
 
-[juju-controller-upgrade]: https://juju.is/docs/olm/manage-controllers#heading--upgrade-a-controller
-[juju-3-upgrade]: https://juju.is/docs/olm/upgrade-your-juju-deployment-from-2-9-to-3-x
+[juju-controller-upgrade]: https://juju.is/docs/juju/manage-controllers#heading--upgrade-a-controller
+[juju-3-upgrade]: https://juju.is/docs/juju/upgrade-your-juju-deployment-from-2-9-to-3-x
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
 [backups]: /kubernetes/docs/backups
 [release-notes]: /kubernetes/docs/release-notes

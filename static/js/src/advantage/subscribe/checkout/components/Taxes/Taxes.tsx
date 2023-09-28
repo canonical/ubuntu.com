@@ -37,7 +37,6 @@ const Taxes = ({ setError }: TaxesProps) => {
   } = useFormikContext<FormValues>();
   const [isEditing, setIsEditing] = useState(!initialValues.country);
   const queryClient = useQueryClient();
-  const isGuest = !initialValues.email;
 
   useEffect(() => {
     if (errors.VATNumber) {
@@ -60,7 +59,7 @@ const Taxes = ({ setError }: TaxesProps) => {
   const onSaveClick = () => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
-    if (isGuest || !window.accountId) {
+    if (!window.accountId) {
       queryClient.invalidateQueries("calculate");
       setFieldValue("isTaxSaved", true);
     } else {
@@ -297,7 +296,7 @@ const Taxes = ({ setError }: TaxesProps) => {
         >
           {isEditing ? (
             <>
-              {window.accountId ? (
+              {window.accountId && !!initialValues.country ? (
                 <ActionButton
                   onClick={() => {
                     setFieldValue("country", initialValues.country);
