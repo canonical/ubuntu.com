@@ -30,7 +30,7 @@
           <p class="p-heading--2">Run the most exacting workloads for <br class="u-hide--small"/>low-latency use cases with Real-time Ubuntu</p>
         </div>
         <p>Real-time Ubuntu ensures high-priority processes are executed first, with deterministic response times.</p>
-        <a class="p-button--positive" href="/kernel/real-time/contact-us">Get in touch</a>
+        <a class="p-button--positive js-invoke-modal" href="/kernel/real-time/contact-us">Get in touch</a>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
           <li class="p-list__item is-ticked">More preemptive than mainline Linux</li>
           <li class="p-list__item is-ticked">10 year security update commitment</li>
         </ul>
-        <p><a href="#">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a></p>
+        <p><a class="js-invoke-modal" href="/kernel/real-time/contact-us">Talk to our team about how Real-time Ubuntu can support your work&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -211,9 +211,14 @@ pro enable realtime-kernel --variant intel-iotg</code></pre>
       <div class="p-section--shallow">
         <h2>Build with confidence on Real-time Ubuntu</h2>
       </div>
-      <p><a class="p-button--positive" href="/kernel/real-time/contact-us">Get in touch</a></p>
+      <p><a class="p-button--positive js-invoke-modal" href="/kernel/real-time/contact-us">Get in touch</a></p>
     </div>
   </div>
 </section>
-  
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/real-time" data-form-id="4914" data-lp-id="" data-return-url="/real-time#success" data-lp-url="https://ubuntu.com/kernel/real-time/contact-us">
+</div>
+<script src="/static/js/src/static-forms.js"></script>
+
 {% endblock content %}
