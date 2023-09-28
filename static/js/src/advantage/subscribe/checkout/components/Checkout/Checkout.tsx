@@ -7,17 +7,16 @@ import {
   Row,
   Spinner,
 } from "@canonical/react-components";
+import { checkoutEvent } from "advantage/ecom-events";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
 import { Action, marketplaceDisplayName, Product } from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";
-import SignIn from "../SignIn";
 import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
-import { checkoutEvent } from "advantage/ecom-events";
 
 type Props = {
   product: Product;
@@ -28,7 +27,6 @@ type Props = {
 const Checkout = ({ product, quantity, action }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
-  const isGuest = !userInfo?.customerInfo?.email;
   const userCanTrial = window.canTrial;
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
@@ -69,9 +67,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
             <Formik
               onSubmit={() => {}}
               initialValues={initialValues}
-              enableReinitialize={
-                !isGuest && !!userInfo?.customerInfo?.address?.country
-              }
+              enableReinitialize={!!userInfo?.customerInfo?.address?.country}
             >
               <>
                 <Col emptyLarge={7} size={6}>
@@ -102,14 +98,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
                         />
                       ),
                     },
-                    ...(isGuest
-                      ? [
-                          {
-                            title: "Sign in",
-                            content: <SignIn />,
-                          },
-                        ]
-                      : []),
                     {
                       title: "Your information",
                       content: <UserInfoForm setError={setError} />,

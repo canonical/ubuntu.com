@@ -43,7 +43,6 @@ endblock meta_copydoc %} {% block content %}
   };
 
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
-  var isGuest = {% if account %}false{% else %}true{% endif %};
   var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
   var isTrialling = {% if is_trialling %}true{% else %}false{% endif %};
   var accountName = "{% if account %}{{ account.name }}{% endif %}";

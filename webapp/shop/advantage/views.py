@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.ua_contracts.api import (
     AccessForbiddenError,
     UAContractsUserHasNoAccount,
+    UnauthorizedError,
 )
 from webapp.shop.api.ua_contracts.helpers import (
     extract_last_purchase_ids,
@@ -26,7 +27,6 @@ from webapp.shop.schemas import (
     cancel_advantage_subscriptions,
     delete_account_user_role,
     post_account_user_role,
-    post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer_schema,
     put_account_user_role,
@@ -250,58 +250,34 @@ def advantage_account_users_view(advantage_mapper, **kwargs):
     return flask.render_template("advantage/users/index.html")
 
 
-@shop_decorator(area="advantage", permission="guest", response="html")
-@use_kwargs({"email": String()}, location="query")
-def advantage_thanks_view(**kwargs):
-    return flask.render_template(
-        "advantage/subscribe/thank-you.html",
-        email=kwargs.get("email"),
-    )
-
-
-@shop_decorator(area="advantage", permission="user_or_guest", response="json")
-@use_kwargs(post_advantage_subscriptions, location="json")
-def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
-    preview = kwargs.get("preview")
+@shop_decorator(area="advantage", permission="user", response="json")
+@use_kwargs(account_purhcase, location="json")
+def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     account_id = kwargs.get("account_id")
-    previous_purchase_id = kwargs.get("previous_purchase_id")
-    period = kwargs.get("period")
-    products = kwargs.get("products")
-    resizing = kwargs.get("resizing", False)
-    trialling = kwargs.get("trialling", False)
     marketplace = kwargs.get("marketplace", "canonical-ua")
+    action = kwargs.get("action", "purchase")
 
-    current_subscription = {}
-    if user_info(flask.session):
-        subscriptions = advantage_mapper.get_account_subscriptions(
-            account_id=account_id,
-            marketplace=marketplace,
-            filters={"status": "active"},
-        )
-
-        for subscription in subscriptions:
-            if (
-                subscription.period == period
-                and subscription.marketplace == marketplace
-            ):
-                current_subscription = subscription
-
-    # If there is a subscription we get the current metric
-    # value for each product listing so we can generate a
-    # purchase request with updated quantities later.
-    # If we resize we want to override the existing value
     subscribed_quantities = {}
-    if not resizing and current_subscription:
-        for item in current_subscription.items:
-            product_listing_id = item.product_listing_id
-            subscribed_quantities[product_listing_id] = item.value
+    if action == "purchase":
+        try:
+            subscriptions = advantage_mapper.get_account_subscriptions(
+                account_id=account_id,
+                marketplace=marketplace,
+                filters={"status": "active"},
+            )
+
+            for subscription in subscriptions:
+                for item in subscription.items:
+                    product_listing_id = item.product_listing_id
+                    subscribed_quantities[product_listing_id] = item.value
+        except UnauthorizedError:
+            pass  # user is guest
 
     purchase_items = []
-    for product in products:
+    for product in kwargs.get("products", []):
         product_listing_id = product["product_listing_id"]
-        metric_value = product["quantity"] + subscribed_quantities.get(
-            product_listing_id, 0
-        )
+        previous_quantity = subscribed_quantities.get(product_listing_id, 0)
+        metric_value = product["quantity"] + previous_quantity
 
         purchase_items.append(
             {
@@ -314,14 +290,19 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
     purchase_request = {
         "accountID": account_id,
         "purchaseItems": purchase_items,
-        "previousPurchaseID": previous_purchase_id,
+        "previousPurchaseID": kwargs.get("previous_purchase_id"),
     }
 
-    if trialling:
+    if action == "trial":
         purchase_request["inTrial"] = True
 
-    # marketing parameters
+    if action == "offer":
+        purchase_request["offerID"] = kwargs.get("offer_id")
 
+    if action == "renewal":
+        purchase_request["renewalID"] = kwargs.get("renewal_id")
+
+    # marketing parameters
     metadata_keys = [
         "ad_source",
         "google-click-id",
@@ -343,50 +324,9 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
     if metadata:
         purchase_request["metadata"] = metadata
 
-    if not preview:
-        purchase = ua_contracts_api.purchase_from_marketplace(
-            marketplace=marketplace, purchase_request=purchase_request
-        )
-    else:
-        purchase = ua_contracts_api.preview_purchase_from_marketplace(
-            marketplace=marketplace, purchase_request=purchase_request
-        )
-
-    return flask.jsonify(purchase), 200
-
-
-@shop_decorator(area="advantage", response="json")
-@use_kwargs(account_purhcase, location="json")
-def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
-    account_id = kwargs.get("account_id") or flask.session.get(
-        "guest_account_id"
-    )
-    customer_info = kwargs.get("customer_info")
-    marketplace = kwargs.get("marketplace", "canonical-ua")
-
-    if not account_id:
-        try:
-            account = advantage_mapper.get_or_create_user_account(
-                marketplace, customer_info, kwargs.get("captcha_value")
-            )
-            account_id = account.id
-            if account.token is not None:
-                flask.session["guest_authentication_token"] = account.token
-                flask.session["guest_account_id"] = account.id
-        except AccessForbiddenError:
-            response = {"error": "User has no permission to purchase"}
-            return flask.jsonify(response), 403
-
-    response = advantage_mapper.post_user_purchase(
-        account_id=account_id,
+    response = advantage_mapper.purchase_from_marketplace(
         marketplace=marketplace,
-        customer_info=customer_info,
-        action=kwargs.get("action", "purchase"),
-        products=kwargs.get("products", []),
-        offer_id=kwargs.get("offer_id"),
-        renewal_id=kwargs.get("renewal_id"),
-        previous_purchase_id=kwargs.get("previous_purchase_id"),
-        session=flask.session,
+        purchase_request=purchase_request,
         preview=kwargs.get("preview"),
     )
 
@@ -672,15 +612,6 @@ def blender_shop_view(advantage_mapper, **kwargs):
         account=account,
         previous_purchase_ids=previous_purchase_ids,
         product_listings=to_dict(listings),
-    )
-
-
-@shop_decorator(area="advantage", permission="guest", response="html")
-@use_kwargs({"email": String()}, location="query")
-def blender_thanks_view(**kwargs):
-    return flask.render_template(
-        "advantage/subscribe/blender/thank-you.html",
-        email=kwargs.get("email"),
     )
 
 

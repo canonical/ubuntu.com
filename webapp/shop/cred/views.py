@@ -63,7 +63,7 @@ def confidentiality_agreement_webhook():
     return flask.jsonify({"message": "Webhook handled."}), 200
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
@@ -76,12 +76,12 @@ def cred_home(ua_contracts_api, **_):
     return flask.render_template("credentials/index.html", can_purchase=False)
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
     sign_up_open = False
     return flask.render_template(
@@ -396,7 +396,7 @@ def cred_exam(trueability_api, **_):
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
@@ -694,7 +694,7 @@ def get_my_issued_badges(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="guest", response="json")
+@shop_decorator(area="cred", response="json")
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
     api_key = flask.request.headers.get("X-API-KEY")
