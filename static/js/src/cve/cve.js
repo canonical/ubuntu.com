@@ -68,6 +68,11 @@ function handleSearchInput(event) {
 
 searchInput.addEventListener("keyup", handleSearchInput);
 
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  handleCveIdInput(searchInput.value);
+});
+
 attachEvents();
 handleButtons();
 disableSelectedVersions();
