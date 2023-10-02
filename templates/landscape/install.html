@@ -21,13 +21,13 @@
     </div>
     <div class="col-9">
       <ul class="p-list">
-        <li class="p-list__item has-bullet u-sv2">Ubuntu 20.04 LTS (Focal Fossa) or Ubuntu 22.04 LTS (Jammy Jellyfish)</li>
+        <li class="p-list--divided">Ubuntu 20.04 LTS (Focal Fossa) or Ubuntu 22.04 LTS (Jammy Jellyfish)</li>
         <hr>
-        <li class="p-list__item has-bullet u-sv2">For hardware: a dual core 2 Ghz processor, 4 GB of RAM, and 20 GB of disk space</li>
+        <li class="p-list--divided">For hardware: a dual core 2 Ghz processor, 4 GB of RAM, and 20 GB of disk space</li>
         <hr>
-        <li class="p-list__item has-bullet u-sv2">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
+        <li class="p-list--divided">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
         <hr>
-        <li class="p-list__item has-bullet">DNS administration access for the hostname you will use to access Landscape is necessary, if you wish to use LetsEncrypt to obtain an SSL certificate.</li>
+        <li class="p-list--divided">DNS administration access for the hostname you will use to access Landscape is necessary, if you wish to use LetsEncrypt to obtain an SSL certificate.</li>
       </ul>
     </div>
   </div>
@@ -250,7 +250,7 @@ sudo hostnamectl set-hostname "$FQDN"</code></pre>
               <ol class="p-list--divided">
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set SMTP information in variables</p>
-                  <p>The value of SMTP_PASSWORD should be the SendGrid API Key from: https://app.sendgrid.com/settings/api_keys</p>
+                  <p>The value of SMTP_PASSWORD should be the <a href="https://app.sendgrid.com/settings/api_keys">SendGrid API Key</a></p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>SMTP_HOST='smtp.sendgrid.net'
 SMTP_PORT='587'
@@ -512,7 +512,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
               <ol class="p-list--divided">
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Define parameters in variables</p>
-                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.
+                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
 LANDSCAPE_FQDN='landscape.yourdomain.com'</code></pre>
