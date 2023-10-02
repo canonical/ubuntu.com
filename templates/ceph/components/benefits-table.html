@@ -1,0 +1,35 @@
+<div class="u-fixed-width">
+  <div class="p-grid-table benefits-table">
+    <div class="p-grid-table__cell p-grid__cell--bold benefits-table__inner-table">   
+      <div class="p-grid-table__inner-cell">
+        Ceph<br />Octopus<br />15.2.x
+      </div>
+      <div class="p-grid-table__inner-cell p-grid-table__cell--highlight">
+        Ceph<br />Pacific<br />16.2.x
+      </div>
+      <div class="p-grid-table__inner-cell p-grid-table__cell--highlight">
+        Ceph<br />Quincy<br />17.2.x
+      </div>
+    </div>
+    <div class="p-grid-table__cell p-grid__cell--bold">
+      <div>Ceph<br />Quincy<br />17.2.x</div>
+    </div>
+    <div class="p-grid-table__cell">
+      <div>Ubuntu<br />20.04.x LTS<br />Focal</div>
+    </div>
+    <div class="p-grid-table__cell">
+      <div>Ubuntu<br />22.04<br />Jammy</div>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .benefits-table {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .benefits-table__inner-table {
+    grid-template-columns: repeat(3, 1fr);
+  }
+</style>
