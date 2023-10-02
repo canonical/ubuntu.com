@@ -52,18 +52,20 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
+mainList.addEventListener("click", function(e) {
+  let target = e.target;
+  console.log("the event in 'addEventListener':", target)
+  if (target.classList.contains("p-navigation__link")) {
+    if (target.classList.contains("js-back")) {
+      goBackOneLevel(e, target);
+    } else {
+      handleDropdownClick(e.target.parentNode);
+    }
+  }
+})
+
 window.addEventListener("load", updateMobileView);
 window.addEventListener("resize", updateMobileView);
-
-topLevelNavDropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.target.classList.contains("p-navigation__link")) {
-      handleDropdownClick(dropdown);
-    }
-  });
-});
 
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
@@ -160,8 +162,7 @@ function updateNavMenu(dropdown, show) {
     dropdown.id + "-content-mobile"
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
-  updateAccountDropdown(dropdown, isAccountDropdown);
-
+  
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
@@ -190,7 +191,7 @@ function updateDropdownStates(dropdown, show, delay) {
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
   let dropdownContent = document.getElementById(
-    dropdown.dataset.id + "-content"
+    dropdown.id + "-content"
   );
   toggleIsActiveState(dropdown, show);
   if (dropdownContent) {
@@ -209,37 +210,6 @@ function updateMobileDropdownState(dropdown, show, isNested) {
     dropdownContentMobile.setAttribute("aria-hidden", !show);
     toggleIsActiveState(dropdownContentMobile.parentNode.parentNode, show);
     toggleIsActiveState(dropdownContentMobile.parentNode, show);
-  }
-}
-
-let currentDropdownHandler = null;
-function updateAccountDropdown(dropdown, isTarget) {
-  if (isTarget && !dropdown.classList.contains("is-active")) {
-    currentDropdownHandler = createDropdownHandler(dropdown);
-    document.addEventListener("click", currentDropdownHandler);
-  } else {
-    if (currentDropdownHandler) {
-      document.removeEventListener("click", currentDropdownHandler);
-      accountContainer.classList.remove("is-active");
-      currentDropdownHandler = null;
-    }
-  }
-}
-
-function createDropdownHandler(dropdown) {
-  return function (e) {
-    e.stopPropagation();
-    handleClickOutsideDropdown(e.target, dropdown);
-  };
-}
-
-function handleClickOutsideDropdown(clickTarget, dropdown) {
-  if (!dropdown.contains(clickTarget)) {
-    handleDropdownClick(dropdown, false);
-    if (currentDropdownHandler) {
-      document.removeEventListener("click", currentDropdownHandler);
-      currentDropdownHandler = null;
-    }
   }
 }
 
@@ -292,18 +262,6 @@ function convertHTMLToNode(responseText, selector) {
   return tempElement.querySelector(selector);
 }
 
-function attachBackButtonEventListener(element, secondaryFunction) {
-  element.addEventListener(
-    "click",
-    function (e) {
-      e.stopImmediatePropagation();
-      goBackOneLevel(e, element);
-      if (secondaryFunction) secondaryFunction();
-    },
-    true
-  );
-}
-
 function deactivateActiveCTA(element) {
   toggleIsActiveState(element, false);
 }
@@ -342,23 +300,8 @@ function fetchDropdown(url, id) {
       );
       dropdowns = [...dropdowns, ...targetDropdowns];
 
-      const targetJsBackButtons = mobileContainer.querySelectorAll(".js-back");
-      targetJsBackButtons.forEach(attachBackButtonEventListener);
-
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
-
-      const newToggles = mobileContainer.querySelectorAll(
-        "li.p-navigation__item--dropdown-toggle"
-      );
-      newToggles.forEach((toggle) =>
-        toggle.addEventListener("click", (e) => {
-          e.stopImmediatePropagation();
-          if (e.target.classList.contains("p-navigation__link")) {
-            handleDropdownClick(toggle);
-          }
-        })
-      );
     });
   }
   isFetching = false;
@@ -531,22 +474,17 @@ function setUpGlobalNav() {
         dropdown.setAttribute("id", `${newDropdownId}-content-mobile`);
         dropdownToggle.setAttribute("id", newDropdownId);
         dropdownToggle
-          .querySelector("a.p-navigation__link")
+          .querySelector("button.p-navigation__link")
           .setAttribute("href", `#${newDropdownId}-content-mobile`);
-        dropdownToggle.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          handleDropdownClick(dropdownToggle);
-        });
+
       }
       const tempHTMLContainer = document.createElement("div");
       tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
-        <button class="p-navigation__link js-back" href="${dropdown.id}" aria-controls="${dropdown.id}" tabindex="-1" onclick="event.stopPropagation()">
+        <button class="p-navigation__link js-back" href="${dropdown.id}" aria-controls="${dropdown.id}" tabindex="-1">
           Back
         </button>
       </li>`;
       const backButton = tempHTMLContainer.firstChild.cloneNode(true);
-      attachBackButtonEventListener(backButton.querySelector(".js-back"));
       dropdown.prepend(backButton);
     });
 }
@@ -567,7 +505,7 @@ if (accountContainer) {
         accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account</button>
           <ul class="p-navigation__dropdown" id="canonical-login-content-mobile" aria-hidden="true">
             <li class="p-navigation__item--dropdown-close" id="canonical-login-back">
-              <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1" onclick="event.stopPropagation()">
+              <button class="p-navigation__link js-back" href="canonical-login-content-mobile" aria-controls="canonical-login-content-mobile" tabindex="-1"">
                 Back
               </button>
             </li>
@@ -588,8 +526,6 @@ if (accountContainer) {
             </li>
           </ul>`;
 
-        const jsBackButton = accountContainer.querySelector(".js-back");
-        attachBackButtonEventListener(jsBackButton, updateAccountDropdown);
       }
     });
 }
