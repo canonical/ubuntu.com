@@ -47,17 +47,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     EntitlementLabel[]
   >([]);
 
-  const containsIncludedFeatures = (entitlements: EntitlementLabel[]) => {
-    return entitlements.some((label) => features.included.includes(label));
-  };
-
-  const containsAlwaysAvailableFeatures = (
-    entitlements: EntitlementLabel[]
-  ) => {
-    return entitlements.some((label) =>
-      features.alwaysAvailable.includes(label)
-    );
-  };
+  const changeReference = React.useRef<HTMLDivElement>(null);
 
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
@@ -66,6 +56,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     const isChecked = !!event?.target?.checked;
     const entitlement = { ...featuresFormState[label], isChecked };
 
+    console.log(changeReference);
     if (features.included.includes(label)) {
       console.log("Included");
     }
@@ -78,6 +69,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       if (!entitlementsToUpdate.includes(label)) {
         setEntitlementsToUpdate([...entitlementsToUpdate, label]);
       }
+    
   };
 
   const handleOnCancel = () => {
@@ -101,6 +93,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       setHasUnsavedChanges(true);
       window.addEventListener("beforeunload", alertUser);
     }
+    changeReference.current?.scrollIntoView({"block":"center"});
     return () => {
       window.removeEventListener("beforeunload", alertUser);
     };
@@ -183,33 +176,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                 }))
               )
             : null}
-          {entitlementsToUpdate.length > 0 &&
-          containsIncludedFeatures(entitlementsToUpdate) &&
-          !containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
-            <div className="u-align--right">
-              <div className="p-notification--caution">
-                <div className="p-notification__content">
-                  <p className="p-notification__message" role="alert">
-                    Changes will only affect new clients attached to this
-                    subscription.
-                  </p>
-                </div>
-              </div>
-              <div>
-                <Button type="button" onClick={handleOnCancel}>
-                  Cancel
-                </Button>
-                <ActionButton
-                  type="submit"
-                  appearance="positive"
-                  loading={isLoading}
-                  disabled={isLoading}
-                >
-                  Save
-                </ActionButton>
-              </div>
-            </div>
-          ) : null}
         </Col>
       </Row>
       <Row>
@@ -302,9 +268,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
           </div>
         </div>
       ) : null}
-      {entitlementsToUpdate.length > 0 &&
-      containsAlwaysAvailableFeatures(entitlementsToUpdate) ? (
-        <div className="u-align--right">
+      {entitlementsToUpdate.length > 0 ? (
+        <div className="u-align--right" ref={changeReference}>
           <div className="p-notification--caution">
             <div className="p-notification__content">
               <p className="p-notification__message" role="alert">
