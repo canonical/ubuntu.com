@@ -34,8 +34,10 @@
     background-color: #262626;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
-    position: absolute;
+    height: auto;
+    position: fixed;
     width: 100%;
+    overflow-y: hidden;
     z-index: 11;
   }
 

@@ -166,7 +166,6 @@ function updateNavMenu(dropdown, show) {
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
-    if (isAccountDropdown) show = false;
     toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);

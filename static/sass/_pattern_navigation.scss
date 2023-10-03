@@ -12,8 +12,13 @@
     }
   }
 
+  body:has(header.p-navigation--sliding.has-menu-open) {
+    overflow: hidden;
+  }
+
   .global-nav-desktop .global-nav-dropdown {
     top: 0;
+    position: relative;
 
     .global-nav__link {
       color: 69c;
@@ -22,6 +27,8 @@
 
   .p-navigation--sliding {
     z-index: 40;
+    position: sticky;
+    top: 0px;
     
     .p-link--inverted {
       font-weight: 400;
@@ -36,15 +43,21 @@
         width: 100%;
 
         @media (max-width: $breakpoint-navigation-threshold) {
-          .p-navigation__item--dropdown-toggle.is-selected {
-            > .p-navigation__link::before {
+          .p-navigation__item--dropdown-toggle {
+            &:first-child .p-navigation__link::before {
+              content: "";
+            }
+            
+            &.is-selected > .p-navigation__link::before {
               content: none;
             }
           }
-
-          .p-navigation__link {
-            padding-left: 3rem;
-          }
+          .p-navigation__item--dropdown-toggle:first-of-type, 
+          .p-navigation__item--dropdown-close:first-of-type {
+            > .p-navigation__link::before {
+              content: none;
+            }
+          } 
         }
 
         .global-nav {
@@ -68,6 +81,12 @@
 
       .p-navigation__dropdown {
         height: 100vh;
+      }
+
+      @media (min-width: $breakpoint-small) {
+        .p-navigation__banner {
+          padding-left: 1.5rem;
+        }
       }
 
       @media (min-width: $breakpoint-navigation-threshold) {
@@ -113,17 +132,14 @@
 
       .p-navigation__item--dropdown-toggle {
         .p-muted-heading {
-          padding-left: 2.5rem;
-
-          @media (min-width: $breakpoint-small) {
-            padding-left: 3rem;
-          }
+          padding-left: 3rem;
         }
 
         .p-navigation__account-name {
           @extend .p-navigation__dropdown-item;
 
           pointer-events: none;
+
           @media (min-width: $breakpoint-navigation-threshold) {
             .p-text--small {
               max-width: 13rem;
@@ -180,9 +196,9 @@
           }
         }
 
-        &:first-child {
-          .p-navigation__link::before {
-            content: "";
+        .p-navigation__link::before {
+          &:first-of-type {
+          content: "";
           }
         }
       }
@@ -235,9 +251,9 @@
   }
 
   .p-navigation.is-secondary {
+    top: 2rem;
     position: sticky;
-    top: 0px;
-    z-index: 9;
+    z-index: 10;
 
     .p-navigation__nav {
       margin-left: -2rem;
@@ -251,13 +267,28 @@
       }
     }
 
+    .p-navigation__banner {
+      padding-left: 0.5rem;
+    }
+
+    @media (max-width: $breakpoint-navigation-threshold) {
+      .row {
+        padding-left: 1rem;
+        padding-right: 0;
+      }
+
+      .p-navigation__nav {
+        margin-left: -1rem;
+      }
+    }
+
     .p-navigation__toggle--open.is-open {
       transform: rotate(-180deg);
     }
 
     .p-navigation__tagged-logo {
       width: 17.5rem;
-
+      
       @media (min-width: $breakpoint-x-large) {
         width: 19.5rem;
       }
@@ -268,14 +299,7 @@
     margin-bottom: 0;
 
     .p-navigation__banner {
-      height: 2.5rem;
-      padding-left: 2.5rem;
-      
-      @media (min-width: $breakpoint-navigation-threshold) {
-        height: 2rem;
-        width: 19rem;
-        padding-left: 1.5rem;
-      }
+      height: auto;
 
       @media (min-width: $breakpoint-x-large) {
         height: 2rem;
@@ -286,6 +310,7 @@
     .p-navigation__tagged-logo {
       .p-navigation__link {
         padding-top: 0.5rem;
+        padding-left: 1.5rem;
       }
     }
 
@@ -302,16 +327,18 @@
       }
 
       .p-navigation__link::after {
-        top: 0.55rem;
+        top: 0.5rem;
       }
+    }
+
+    button.p-navigation__link.js-menu-button {
+      padding-left: 2rem;
     }
 
     .p-navigation__item {
       .p-navigation__link {
         color: $color-mid-light;
-        padding-bottom: 0.5rem;
-        padding-left: 1rem;
-        padding-top: 0.5rem;
+        padding: .5rem 2rem .5rem 0;
       }
     }
 
@@ -343,6 +370,10 @@
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
+      }
+
+      .p-navigation__tagged-logo > .p-navigation__link {
+        padding-left: .5rem;
       }
 
       &__logo {
