@@ -36,7 +36,7 @@ jobs:
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
-          wait-on-timeout: 180
+          wait-on-timeout: 300
           browser: chrome
           config-file: tests/cypress/cypress.json
           config: baseUrl=http://0.0.0.0:8001
