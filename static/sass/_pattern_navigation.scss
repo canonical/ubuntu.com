@@ -43,6 +43,29 @@
         width: 100%;
 
         @media (max-width: $breakpoint-navigation-threshold) {
+          .p-navigation__link {
+            padding-left: 1.5rem;
+  
+            &::before {
+              left: 1.5rem;
+            }
+  
+            &.js-back::after {
+              left: 0;
+            }
+          }
+  
+          .p-navigation__dropdown-item {
+            padding-left: 1.5rem;
+  
+            &::before {
+              left: 1.5rem;
+            }
+          }
+        }
+
+
+        @media (max-width: $breakpoint-navigation-threshold) {
           .p-navigation__item--dropdown-toggle {
             &:first-child .p-navigation__link::before {
               content: "";
@@ -68,14 +91,17 @@
 
     @media (max-width: $breakpoint-navigation-threshold) {
       .p-navigation__nav {
-        overflow-y: hidden;
+        overflow-y: auto;
         margin-left: 0;
       }
     }
 
+    .p-navigation__banner {
+      padding-left: 0;
+    }
+
     .row {
       @media (max-width: $breakpoint-navigation-threshold) {
-        padding-left: 0;
         padding-right: 0;
       }
 
@@ -83,19 +109,11 @@
         height: 100vh;
       }
 
-      @media (min-width: $breakpoint-small) {
-        .p-navigation__banner {
-          padding-left: 1.5rem;
-        }
-      }
+      .p-navigation__link--search-toggle::after {
+        right: 1rem;
 
-      @media (min-width: $breakpoint-navigation-threshold) {
-        .p-navigation__banner {
-          padding-left: 0;
-        }
-
-        .p-navigation__link--search-toggle::after {
-          right: 1rem;
+        @media (max-width: $breakpoint-navigation-threshold) {
+          right: 0.5rem;
         }
       }
 
@@ -132,7 +150,7 @@
 
       .p-navigation__item--dropdown-toggle {
         .p-muted-heading {
-          padding-left: 3rem;
+          padding-left: 1.5rem;
         }
 
         .p-navigation__account-name {
@@ -265,15 +283,18 @@
       .p-navigation__items {
         display: block;
       }
+
+      .p-navigation__link {
+        padding-left: 2.5rem;
+      }
     }
 
     .p-navigation__banner {
-      padding-left: 0.5rem;
+      padding-left: 0;
     }
 
     @media (max-width: $breakpoint-navigation-threshold) {
       .row {
-        padding-left: 1rem;
         padding-right: 0;
       }
 
@@ -300,6 +321,7 @@
 
     .p-navigation__banner {
       height: auto;
+      padding-left: 0;
 
       @media (min-width: $breakpoint-x-large) {
         height: 2rem;
@@ -310,7 +332,7 @@
     .p-navigation__tagged-logo {
       .p-navigation__link {
         padding-top: 0.5rem;
-        padding-left: 1.5rem;
+        padding-left: 0;
       }
     }
 
@@ -332,7 +354,8 @@
     }
 
     button.p-navigation__link.js-menu-button {
-      padding-left: 2rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
     .p-navigation__item {
@@ -340,10 +363,6 @@
         color: $color-mid-light;
         padding: .5rem 2rem .5rem 0;
       }
-    }
-
-    .p-navigation__item:last-child {
-      padding-left: 0.75rem;
     }
 
     .p-navigation__link--search-toggle {
@@ -373,7 +392,7 @@
       }
 
       .p-navigation__tagged-logo > .p-navigation__link {
-        padding-left: .5rem;
+        padding-left: 0;
       }
 
       &__logo {
@@ -417,7 +436,7 @@
       .p-navigation__link--search-toggle {
         color: $color-mid-light;
         line-height: 1rem;
-        padding: 0.5rem 2rem 0.5rem 0;
+        padding: 0.5rem 2rem 0.5rem 1rem;
 
         &::after {
           color: $color-mid-light;
