@@ -1,0 +1,443 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Why Ubuntu Pro?{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1f1LU-xfBYt48UcJxYcNkW4mGB2u1spdjJrILJBGCI1Y/edit#{% endblock
+meta_copydoc %}
+
+{% block meta_description %}Ubuntu Pro secures your open source stack with timely security patches for all packages in Ubuntu’s Main and Universe repositories, patching automation tooling and compliance certifications.{% endblock meta_description%}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block outer_content %}
+{% block content %}
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="p-section">
+    <div class="row--25-75">
+      <div class="col">
+        <h1>
+          Why <br class="u-hide--medium u-hide--small">
+          Ubuntu Pro?
+        </h1>
+      </div>
+      <div class="col">
+        <p class="p-heading--2">
+          All the open source you need. <br class="u-hide--medium u-hide--small">
+          Maintained, secured and tested.
+        </p>
+        <p>Ubuntu Pro helps you offload security and compliance for your open source stack so you can focus on building and running your business. It’s an extra layer of services on top of every Ubuntu LTS. </p>
+        <p>
+          <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to our experts</a>
+          <a href="/pro/subscribe">Explore&nbsp;pricing&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </div>  
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule is-muted">
+    <div class="col-6 col-medium-3">
+      <h2>
+        One subscription for comprehensive security <br class="u-hide--small">and compliance
+      </h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Reduce average CVE exposure time from 98 days to 1 day</li>
+        <li class="p-list__item is-ticked">Get 10 years of stability for infrastructure, OS and applications</li>
+        <li class="p-list__item is-ticked">Ensure uptime and automate patching</li>
+        <li class="p-list__item is-ticked">Comply with FedRAMP, HIPAA and more</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule is-muted">
+    <div class="col">
+      <h2>Free for personal use</h2>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Anyone can use Ubuntu Pro for free on up to 5 machines, or 50 if you are <a href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member</a>.</p>
+        <p>
+          <a href="/pro/dashboard" class="p-button">Sign up today&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      <div class="row p-divider">
+        <p class="u-no-margin--bottom">Available everywhere</p>
+        <div class="col-3 p-divider__block no-divider">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header">
+              <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg" alt="">
+              <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Desktop</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header">
+              <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg" alt="">
+              <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Public Cloud</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header">
+              <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/fdf83d49-Server.svg" alt="">
+              <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">Servers</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header">
+              <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg" alt="">
+              <p class="p-heading-icon__title u-vertically-center u-no-margin--bottom">IoT</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="p-section--shallow">
+    <div class="u-fixed-width">
+      <hr class="p-rule is-muted">
+      <h2>
+        Ubuntu Pro gives you confidence <br class="u-hide--small u-hide--medium">
+        in your full open source stack
+      </h2>
+    </div>
+  </div>
+  <div class="row p-section--shallow">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule is-muted">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            Pull your software <br class="u-hide--small u-hide--medium">
+            from a secure source
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Your dev team can pull all open source software packages from a trusted source. Ubuntu Pro gets you timely security patches for over 25,000 software packages in Ubuntu’s Main and Universe repositories. This includes the most widely used open source applications and toolchains.
+          </p>
+          <div class="u-fixed-width">
+            <div class="p-logo-section--dense">
+              <div class="p-logo-section__items">
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/a63fb3fc-pgbouncer-logo.png",
+                    alt="",
+                    width="91",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/33072748-perl-logo.png",
+                    alt="",
+                    width="37",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/880b97f2-python-logo.png",
+                    alt="",
+                    width="92",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/2440746d-go-logo.png",
+                    alt="",
+                    width="50",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/5ec3f5aa-power-dns-logo.png",
+                    alt="",
+                    width="117",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/c3f21c3a-rails-logo.png",
+                    alt="",
+                    width="69",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/8fd53f00-rust-logo.png",
+                    alt="",
+                    width="49",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/012683d0-vagrant-logo.png",
+                    alt="",
+                    width="90",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/4c33885a-wordpress-logo-blue.png",
+                    alt="",
+                    width="48",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/f75ca036-apache-zookeeper-logo.png",
+                    alt="",
+                    width="84",
+                    height="100",
+                    hi_def=True,
+                    loading="auto|lazy"
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/e1b22248-puppet-logo.png",
+                    alt="",
+                    width="98",
+                    height="100",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-section--shallow">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule is-muted">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            Gain a decade of platform stability
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Deploying on Ubuntu means 10 years of platform stability with Pro. We guarantee the security maintenance of all packages in Ubuntu’s Main and Universe repositories and backport the fixes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-section--shallow">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule is-muted">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            Ensure uptime. Speed up remediation.
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Protect your organisation from financial and reputational damage by minimising the time to remediation. Ubuntu Pro includes Livepatch, so you can patch critical and high kernel CVEs at run-time with rollout control and defer unplanned reboots to the next maintenance window.
+          </p>
+          <a href="/security/livepatch">Read more about Livepatch&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-section--shallow">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule is-muted">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            Streamline compliance
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Give your security and IT teams peace of mind with compliance certifications for major standards like DISA-STIG, FedRAMP and HIPAA. Apply hardening at scale. Get custom reports for regulatory compliance.
+          </p>
+          <a href="/security/certifications">Browse certifications&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-section--shallow u-no-padding--bottom">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule is-muted">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">
+            Automate security patching at scale
+          </h3>
+        </div>
+        <div class="col-6">
+          <p>
+            Ubuntu Pro provides access to Landscape, which lets you track full software package information for all registered instances. You can easily install, update and remove software and define policies for automated security patching, audit logging and compliance reporting.
+          </p>
+          <a href="/landscape/features">Read more about Landscape&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width p-section--shallow">
+    <hr class="p-rule">
+    <h2>Our vulnerability patching process</h2>
+    <p>We work with open source communities to address vulnerabilities.</p>
+  </div>
+  <ol class="p-stepped-list">
+    <div class="row">
+      <hr class="p-rule">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Monitor CVEs
+          </p>
+          <p class="p-stepped-list__content">We monitor for CVEs daily and triage to identify how they affect all the packages in Ubuntu’s Main and Universe repositories.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large u-hide--medium">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Fix vulnerabilities
+          </p>
+          <p class="p-stepped-list__content">We fix the vulnerability by applying the patches available and backporting when necessary. Your team doesn’t need to worry about understanding different codebases and their dependencies.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Test
+          </p>
+          <p class="p-stepped-list__content">We test the new version of the codebase to ensure the stability of the entire ecosystem.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large u-hide--medium">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Release
+          </p>
+          <p class="p-stepped-list__content">We release the new version of the software packages.</p>
+        </li>
+      </div>
+      <hr class="p-rule">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Install
+          </p>
+          <p class="p-stepped-list__content">You can immediately install the update. For vulnerabilities under embargo, you’ll have the fix ready by the time the fix is publicly announced.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large u-hide--medium">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Livepatch
+          </p>
+          <p class="p-stepped-list__content">Use <a href="/security/livepatch">Livepatch</a> to automatically patch Linux kernel vulnerabilities and defer rebooting.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Landscape
+          </p>
+          <p class="p-stepped-list__content">Use <a href="/landscape">Landscape</a> to define logical groupings of machines and apply updates automatically or manually to groups of machines.</p>
+        </li>
+      </div>
+      <hr class="p-rule u-hide--large u-hide--medium">
+      <div class="col-3 col-medium-3">
+        <li class="p-stepped-list__item">
+          <p class="p-stepped-list__title u-no-margin--bottom u-sv2">
+            Secured
+          </p>
+          <p class="p-stepped-list__content">Your system is secure and stable, so your team can focus on valuable and critical tasks.</p>
+        </li>
+      </div>
+    </div>
+  </ol>
+</section>
+
+<section class="p-strip--white">
+  <div class="row--50-50">
+    <div class="col">
+      <p class="p-text--small-caps u-no-margin--bottom">Additional services</p>
+      <h2 class="u-no-padding--top">Expert support for open source</h2>
+    </div>
+    <div class="col">
+      <p>Need hands-on experts to troubleshoot issues on your open source data fabric or code? Get operational support for your open source infrastructure and applications, including database, LMA, server and cloud-native apps.</p>
+      <p>On top of security patches and maintenance, you can purchase expert support for troubleshooting and bug fixing on your open source environment. We support over 2,300 packages in the Main Ubuntu repository, and over 23,000 packages in the Universe repository.</p>
+      <div class="p-section--shallow">
+        <p>Get access to:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Our knowledge base, built from +15 years experience in supporting open source software.</li>
+          <li class="p-list__item is-ticked">Troubleshooting, break-fix and bug fix support on open source infrastructure platforms, like OpenStack, and applications, like python-based apps.</li>
+        </ul>
+      </div>
+      <a href="/pro/subscribe" class="p-button--positive">Purchase Ubuntu Pro + Support</a>
+      <a href="/support">Learn&nbsp;more&nbsp;about&nbsp;support&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+{% endblock outer_content %}

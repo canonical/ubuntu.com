@@ -21,38 +21,23 @@
     </div>
     <div class="col-9">
       <ul class="p-list">
-        <li class="p-list__item has-bullet u-sv2">Ubuntu 20.04 LTS (Focal Fossa) or Ubuntu 22.04 LTS (Jammy Jellyfish)</li>
+        <li class="p-list--divided">Ubuntu 20.04 LTS (Focal Fossa) or Ubuntu 22.04 LTS (Jammy Jellyfish)</li>
         <hr>
-        <li class="p-list__item has-bullet u-sv2">For hardware: a dual core 2 Ghz processor, 4 GB of RAM, and 20 GB of disk space</li>
+        <li class="p-list--divided">For hardware: a dual core 2 Ghz processor, 4 GB of RAM, and 20 GB of disk space</li>
         <hr>
-        <li class="p-list__item has-bullet">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
+        <li class="p-list--divided">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
+        <hr>
+        <li class="p-list--divided">DNS administration access for the hostname you will use to access Landscape is necessary, if you wish to use LetsEncrypt to obtain an SSL certificate.</li>
       </ul>
     </div>
   </div>
   <hr class="is-fixed-width u-no-margin--bottom">
   <div class="row">
     <div class="col-3">
-      <h2 class="p-muted-heading">3 ways to install landscape server</h2>
+      <h2 class="p-muted-heading">2 ways to install landscape server</h2>
     </div>
     <div class="col-9 u-hide--small">
       <div class="p-strip is-shallow u-no-padding--top">
-        <div class="row u-equal-height">
-          <div class="col-3 u-vertically-center">
-            <p>Automated install using Juju</p>
-          </div>
-          <div class="col-6">
-            <div class="install-config-chart" style="--max-chart-time: 60">
-              <div class="install-time" style="--install-time: 15">
-                <p>Install 15 mins</p>
-              </div>
-              <div class="config-time" style="--config-time: 15">
-                <p>Config 15 mins</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="u-hide--medium u-no-margin--bottom">
-        <hr class="p-separator is-shallow u-hide--large u-no-margin--bottom">
         <div class="row u-equal-height">
           <div class="col-3 u-vertically-center">
             <p>Quickstart install</p>
@@ -119,12 +104,6 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4">
-      <hr>
-      <p>The goal of these installation guides is to provide the fastest installation and configuration experience possible. Juju provides the fastest path to a fully configured Landscape installation. Juju is the preferred deployment method for more complex Landscape deployments, such as installations requiring high availability.</p>
-    </div>
-  </div>
 </section>
 
 <style>
@@ -169,10 +148,7 @@
         <div class="p-tabs">
           <div class="p-tabs__list" role="tablist" aria-label="Landscape installations" style="margin-bottom:-1px;">
             <div class="p-tabs__item">
-              <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="automated-tab" id="automated">Juju (Recommended)</button>
-            </div>  
-            <div class="p-tabs__item">
-              <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="quickstart-tab" id="quickstart" tabindex="-1">Quickstart</button>
+              <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="quickstart-tab" id="quickstart">Quickstart</button>
             </div>
             <div class="p-tabs__item">
               <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="manual-tab" id="manual" tabindex="-1">Manual</button>
@@ -182,183 +158,7 @@
       </div>
       <hr class="is-fixed-width">
 
-      <div class="p-tabs__content" tabindex="0" role="tabpanel" id="automated-tab" aria-labelledby="automated" style="scroll-margin-top:86px;">
-        <div class="row">
-          <div class="col-8 col-start-large-4 p-strip is-shallow">
-            <p>The entire installation and configuration can be automated with <a href="https://cloud-init.io/">Cloud Init</a>, using this <a href="https://github.com/canonical/landscape-scripts/blob/main/provisioning/cloud-init.yaml">cloud-init.yaml</a> file.</p>
-          </div>
-        </div>
-        <div class="p-stepped-list--grid">
-          <hr class="u-no-margin--bottom">
-          <div class="col-3 col-medium-1 u-hide--small">
-            <p class="p-step-counter"></p>
-          </div>
-          <div class="col-9 col-medium-5">
-            <div class="p-strip is-shallow u-no-padding--top">
-              <h3 class="p-heading--2">Install</h3>
-            </div>
-            <div class="p-strip u-no-padding--top">
-              <ol class="p-list--divided">
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Install prerequisites</p>
-                  <div class="p-code-snippet">
-                      <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y snapd ubuntu-advantage-tools curl</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Install Juju</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --channel latest/stable && mkdir -p ~/.local/share</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Install LXD</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install lxd --channel latest/stable && sudo snap refresh lxd --channel latest/stable</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Bootstrap Juju</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost landscape-controller</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Add Juju Model</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju add-model landscape-model</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">State your CPU architecture</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju set-model-constraints arch=$(dpkg --print-architecture)</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Deploy Landscape</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-scalable</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Identify the HAProxy IP</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>read -r HAPROXY_UNIT_IP &lt; &lt;(juju run --unit haproxy/0 'network-get public --ingress-address=true')</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Identify the HAProxy instance ID</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>read -r HAPROXY_INSTANCE_ID &lt; &lt;(juju status haproxy --format=json | sed -n 's/.*"instance-id":"\([^"]*\).*/\1/p')</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Route ports 80 and 443 to HAProxy</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>for PORT in 443 80; do lxc config device add $HAPROXY_INSTANCE_ID tcp${PORT}proxyv4 proxy listen=tcp:0.0.0.0:${PORT} connect=tcp:${HAPROXY_UNIT_IP}:${PORT}</code></pre>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-
-          <hr class="u-no-margin--bottom">
-          <div class="col-3 col-medium-1 u-hide--small">
-            <p class="p-step-counter"></p>
-          </div>
-          <div class="col-9 col-medium-5">
-            <div class="p-strip is-shallow u-no-padding--top">
-              <div class="p-strip is-shallow u-no-padding--top">
-                <h3 class="p-heading--2">Configure SSL</h3>
-              </div>
-              <p>If you have the fullchain.pem and privkey.pem files for your SSL certificate already, skip to Step 3</p>
-            </div>
-            <div class="p-strip u-no-padding--top">
-              <ol class="p-list--divided">
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Install Certbot</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Set an FQDN variable</p>
-                  <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server.</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>FQDN=landscape.yourdomain.com</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Get a valid SSL certificate</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d $FQDN --manual --preferred-challenges dns certonly</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">base64 encode the full certificate chain with no line breaks</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/${FQDN}/fullchain.pem)</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">base64 encode the private key file with no line breaks</p>
-                  <div class="p-code-snippet">
-                    <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server.</p>
-                    <pre class="p-code-snippet__block is-wrapped"><code>PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/${FQDN}/privkey.pem)</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Update HAProxy with your certificate</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju config haproxy ssl_cert="$FULLCHAIN" ssl_key="$PRIVKEY"</code></pre>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-
-          <hr class="u-no-margin--bottom">
-          <div class="col-3 col-medium-1 u-hide--small">
-            <p class="p-step-counter"></p>
-          </div>
-          <div class="col-9 col-medium-5">
-            <div class="p-strip is-shallow u-no-padding--top">
-              <div class="p-strip is-shallow u-no-padding--top">
-                <h3 class="p-heading--2">Configure postfix for email</h3>
-              </div>
-              <p>The SMTP example in Step 1 uses SendGrid as an example, replace it with your own SMTP information</p>
-            </div>
-            <div class="p-strip u-no-padding--top">
-              <ol class="p-list--divided">
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Set SMTP information in variables</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>SMTP_HOST='smtp.sendgrid.net'
-SMTP_PORT='465'
-SMTP_USERNAME='apikey'
-SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Deploy the postfix-relay subordinate charm</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy postfix-relay --config smtp_auth_password="$SMTP_PASSWORD" --config smtp_auth_username="$SMTP_USERNAME" --config ssl_ca=$(curl -s https://www.thawte.com/roots/thawte_Primary_Root_CA.pem | base64 | tr -d '\n') --config relayhost="[${SMTP_HOST}]:${SMTP_PORT}"</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Add charm relations</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju add-relation postfix-relay landscape-server</code></pre>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="quickstart-tab" aria-labelledby="quickstart" style="scroll-margin-top:86px;">
+      <div class="p-tabs__content" tabindex="0" role="tabpanel" id="quickstart-tab" aria-labelledby="quickstart" style="scroll-margin-top:86px;">
         <div class="p-stepped-list--grid">
           <div class="col-3 col-medium-1 u-hide--small">
             <p class="p-step-counter"></p>
@@ -372,33 +172,29 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install prerequisites</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y wget software-properties-common</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y ca-certificates software-properties-common</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set your hostname using variables</p>
                   <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server, and set the HOSTNAME and DOMAIN variables based on the FQDN.</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>FQDN=landscape.yourdomain.com
-HOSTNAME=landscape
+                    <pre class="p-code-snippet__block is-wrapped"><code>HOSTNAME=landscape
 DOMAIN=yourdomain.com
-PRETTY_HOSTNAME="My Landscape Server"
-sudo hostnamectl set-hostname "$FQDN" --static
-sudo hostnamectl set-hostname "$FQDN" --transient
-sudo hostnamectl set-hostname "$HOSTNAME"
-sudo hostnamectl set-hostname "$PRETTY_HOSTNAME" --pretty</code></pre>
+FQDN=$HOST_NAME.$DOMAIN
+sudo hostnamectl set-hostname "$FQDN"</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Add the Landscape PPA</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository ppa:landscape/self-hosted-23.03 </code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository -y ppa:landscape/self-hosted-23.03 </code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install Landscape</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install landscape-server-quickstart</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y landscape-server-quickstart</code></pre>
                   </div>
                 </li>
               </ol>
@@ -425,9 +221,15 @@ sudo hostnamectl set-hostname "$PRETTY_HOSTNAME" --pretty</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
+                  <p class="u-no-padding--top">Set your email address in a variable</p>
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block is-wrapped"><code>EMAIL="YOUR-EMAIL@ADDRESS.COM"</code></pre>
+                  </div>
+                </li>
+                <li class="p-list__item">
                   <p class="u-no-padding--top">Get and install your certificate</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache --non-interactive --no-redirect --agree-tos --email $EMAIL --domains $FQDN</code></pre>
                   </div>
                 </li>
               </ol>
@@ -448,23 +250,12 @@ sudo hostnamectl set-hostname "$PRETTY_HOSTNAME" --pretty</code></pre>
               <ol class="p-list--divided">
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set SMTP information in variables</p>
+                  <p>The value of SMTP_PASSWORD should be the <a href="https://app.sendgrid.com/settings/api_keys">SendGrid API Key</a></p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>SMTP_HOST='smtp.sendgrid.net'
-SMTP_PORT='465'
+SMTP_PORT='587'
 SMTP_USERNAME='apikey'
 SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Download an SSL CA file</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo wget https://www.thawte.com/roots/thawte_Primary_Root_CA.pem -O /etc/postfix/thawte_Primary_Root_CA.pem</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Set appropriate permissions</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo chmod 400 /etc/postfix/thawte_Primary_Root_CA.pem</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -478,6 +269,9 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>sudo postconf -e myhostname="$FQDN"
 sudo postconf -e mydomain="$DOMAIN"
+sudo postconf -e myorigin="$DOMAIN"
+sudo postconf -e masquerade_domains="$DOMAIN"
+sudo postconf -e mydestination=localhost
 sudo postconf -e default_transport=smtp
 sudo postconf -e relay_transport=smtp
 sudo postconf -e relayhost="[${SMTP_HOST}]:${SMTP_PORT}"
@@ -486,8 +280,9 @@ sudo postconf -e smtp_sasl_auth_enable=yes
 sudo postconf -e smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
 sudo postconf -e header_size_limit=4096000
 sudo postconf -e smtp_sasl_security_options=noanonymous
-sudo postconf -e smtp_tls_CAfile=/etc/postfix/thawte_Primary_Root_CA.pem
-sudo postconf -e smtp_use_tls=yes</code></pre>
+sudo postconf -e smtp_use_tls=yes
+sudo postconf -e smtp_tls_security_level=encrypt
+sudo postconf -e smtp_sasl_tls_security_options=noanonymous</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -576,7 +371,7 @@ sudo postconf -e smtp_use_tls=yes</code></pre>
                 <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="subordinate-charm-tab" id="subordinate" tabindex="-1">Subordinate Charm</button>
               </div>
               <div class="p-tabs__item">
-                <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="cloud-init-tab" id="cloud" tabindex="-1">Cloud Init</button>
+                <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="cloud-init-tab" id="cloud" tabindex="-1">Cloud-init</button>
               </div>
             </div>
           </div>
@@ -622,7 +417,7 @@ sudo postconf -e smtp_use_tls=yes</code></pre>
               <ol class="p-list--divided">
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Define parameters in variables</p>
-                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their account name.</p>
+                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
 LANDSCAPE_FQDN='landscape.yourdomain.com'
@@ -685,7 +480,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
               <ol class="p-list--divided">
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Define parameters in variables</p>
-                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their account name.</p>
+                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
 LANDSCAPE_FQDN='landscape.yourdomain.com'
@@ -715,6 +510,14 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
             </div>
             <div class="p-strip u-no-padding--top">
               <ol class="p-list--divided">
+                <li class="p-list__item">
+                  <p class="u-no-padding--top">Define parameters in variables</p>
+                  <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
+LANDSCAPE_FQDN='landscape.yourdomain.com'</code></pre>
+                  </div>
+                </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Deploy the charm</p>
                   <div class="p-code-snippet">
@@ -752,19 +555,13 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
             <p class="p-step-counter"></p>
           </div>
           <div class="col-9 col-medium-5">
-            <p class="p-heading--5">Define variables using Jinja</p>
+            <p class="p-heading--5">To install landscape-client from a PPA</p>
             <div class="p-code-snippet">
-              <pre class="p-code-snippet__block is-wrapped"><code># LANDSCAPE_ACCOUNT_NAME: self-hosted Landscape users can leave this as `standalone`
-# Landscape SaaS users can find the account name here: https://landscape.canonical.com/settings
-{% raw %}{% set LANDSCAPE_ACCOUNT_NAME = 'standalone' %}{% endraw %}
-
-# LANDSCAPE_FQDN: `landscape.canonical.com` is only for Landscape SaaS users
-# Fully Qualified Domain Name of your Landscape instance
-{% raw %}{% set LANDSCAPE_FQDN = 'landscape.canonical.com' %}{% endraw %}
-
-# LANDSCAPE_COMPUTER_TITLE: default value is fine
-# human readable name in Landscape
-{% raw %}{% set LANDSCAPE_COMPUTER_TITLE = "dedicated server" %}{% endraw %}</code></pre>
+              <pre class="p-code-snippet__block is-wrapped"><code>apt:
+  sources:
+    trunk-testing-ppa:
+      source: ppa:landscape/self-hosted-23.03
+            </code></pre>
             </div>
           </div>
           <hr class="u-no-margin--bottom u-hide--small">
@@ -772,9 +569,17 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
             <p class="p-step-counter"></p>
           </div>
           <div class="col-9 col-medium-5">
-            <p class="p-heading--5">Install within the runcmd section of Cloud Init</p>
+            <p class="p-heading--5">Configure landscape-client</p>
+            <p>To discover additional supported client keys visit the <a href="https://cloudinit.readthedocs.io/en/latest/reference/modules.html#landscape">cloud-init Landscape module documentation</a>.</p>
+            <p>Self-hosted Landscape users should set account_name as `standalone` and define the url and ping_url keys. Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a>, and the url and ping_url keys can be omitted.</p>
             <div class="p-code-snippet">
-              <pre class="p-code-snippet__block is-wrapped"><code>{% raw %}landscape-config --silent --account-name='{{ LANDSCAPE_ACCOUNT_NAME }}' --computer-title="{{ LANDSCAPE_COMPUTER_TITLE }}" --tags="{{ VPROJECT }}" --script-users='nobody,landscape,root' --ping-url="http://{{ LANDSCAPE_FQDN }}/ping" --url="https://{{ LANDSCAPE_FQDN }}/message-system"{% endraw %}</code></pre>
+              <pre class="p-code-snippet__block is-wrapped"><code>landscape:
+  client:
+    account_name: standalone
+    computer_title: "My Computer"
+    url: "https://landscape.yourdomain.com/message-system"
+    ping_url: "http://landscape.yourdomain.com/ping"
+            </code></pre>
             </div>
           </div>
         </div>

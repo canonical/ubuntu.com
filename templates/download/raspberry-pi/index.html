@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu on a Raspberry Pi{% endblock %}}
+{% block title %}Install Ubuntu on a Raspberry Pi{% endblock %}
 
 {% block meta_image %}https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg{% endblock meta_image %}
 
@@ -16,13 +16,10 @@
         Install Ubuntu <br class="u-hide--small">on a Raspberry Pi
       </h1>
       <p>
-        Running Ubuntu on your Raspberry Pi is easy. Just pick the OS image you want, flash it onto a microSD card, load it onto your Pi and away you go.
+        Versatile and affordable, the Raspberry Pi is one of the most popular devices available on the market, with uses that range from education to industry.
       </p>
       <p>
-        First time installing Ubuntu on Raspberry Pi?
-      </p>
-      <p>
-        The simplest way is to use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> which enables you to select an Ubuntu image during installation. Follow our <a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4#1-overview">desktop</a>, <a href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview">server</a> and <a href="/download/raspberry-pi-core">core</a> tutorials to learn how.
+        With full Ubuntu support, open source developers have everything they need to get up and running quickly and securely.
       </p>
     </div>
     <div class="col-5 u-hide--medium u-hide--small u-align--center">
@@ -40,522 +37,306 @@
   </div>
 </section>
 
-{# desktop latest #}
-<section class="p-strip--light is-bordered">
-  <div class="u-fixed-width">
-    <h2 class="u-sv2">
-      Download Ubuntu Desktop
-    </h2>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p class="p-muted-heading">&nbsp;</p>
-      <h3>
-        Ubuntu Desktop {{ releases.lts.full_version }} LTS
-      </h3>
-      <p>
-        The latest version of Ubuntu with five years of long term support, until {{ releases.lts.eol }}.
-      </p>
-      <p>
-        <a
-        class="p-button--positive"
-        href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
-        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          Download 64-bit
-        </a>
-      </p>
-    </div>
-    <div class="col-6">
-      <p class="p-muted-heading">
-        Recommended desktop
-      </p>
-      <h3>
-        Ubuntu Desktop {{ releases.latest.full_version }}
-      </h3>
-      <p>
-        The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.
-      </p>
-      <p>
-        <a
-        class="p-button--positive"
-        href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
-        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-          Download 64-bit
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <div class="row u-hide--medium u-hide--large">
-    <div class="col-6">
-      <p>Certified for:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Raspberry Pi 4 - <em>At least 2 GB RAM required.</em></li>
-        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
-        <li class="p-list__item is-ticked">Raspberry Pi CM4 - <em>At least 2 GB RAM and 16GB eMMC/SD storage required.</em></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-hide--small">
-    <h4>
-      Certified for:
-    </h4>
-  </div>
-  <div class="row u-hide--small">
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 4
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-          alt="",
-          height="48",
-          width="75",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-      <h6 class="u-text-light">
-        <em>
-          * At least 2 GB RAM required
-        </em>
-      </h6>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 400
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
-          alt="",
-          height="48",
-          width="93",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi CM4
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
-          alt="",
-          height="48",
-          width="68",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-      <h6 class="u-text-light">
-        <em>
-          * At least 2 GB RAM and 16GB eMMC/SD storage required
-        </em>
-      </h6>
-    </div>
-  </div>
-</section>
-
-{# server lts #}
-<section class="p-strip--light {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
-  <div class="row">
-    <div class="col-6">
-      <h2 class="u-sv2">
-        Download Ubuntu Server
-      </h2>
-      <p class="p-muted-heading">
-        Recommended server
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h3>
-        Ubuntu Server {{ releases.lts.full_version }} LTS
-      </h3>
-      <p>
-        The latest version of Ubuntu with five years of long term support, until {{ releases.lts.eol }}.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          Download 64-bit
-        </a>
-        <a class="p-button" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          Download 32-bit
-        </a>
-      </p>
-    </div>
-    <div class="col-6">
-      <h3>
-        Ubuntu Server {{ releases.latest.full_version }}
-      </h3>
-      <p>
-        The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-          Download 64-bit
-        </a>
-        <a class="p-button" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-          Download 32-bit
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <div class="row u-hide--medium u-hide--large">
-    <div class="col-6">
-      <p>Certified for:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Raspberry Pi 2 - <em>32-bit only</em></li>
-        <li class="p-list__item is-ticked">Raspberry Pi 3</li>
-        <li class="p-list__item is-ticked">Raspberry Pi 4</li>
-        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
-        <li class="p-list__item is-ticked">Raspberry Pi CM4</li>
-        <li class="p-list__item is-ticked">Raspberry Pi Zero 2 W</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-hide--small">
-    <h4>
-      Certified for:
-    </h4>
-  </div>
-  <div class="row u-hide--small">
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 2
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
-          alt="",
-          height="48",
-          width="72",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-      <h6 class="u-text-light">
-        <em>
-          * 32-bit only
-        </em>
-      </h6>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 3
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
-          alt="",
-          height="48",
-          width="75",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 4
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-          alt="",
-          height="48",
-          width="75",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 400
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
-          alt="",
-          height="48",
-          width="93",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi CM4
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
-          alt="",
-          height="48",
-          width="68",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi <br> Zero 2 W
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/a79a3cee-raspberry-pi-z-2.png",
-          alt="",
-          width="70",
-          height="46",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    <div>
-  </div>
-</section>
-
-{# core #}
-<section class="p-strip--light {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
-  <div class="row">
-    <div class="col-6">
-      <h2 class="u-sv2">
-        Download Ubuntu Core
-      </h2>
-      <p class="p-muted-heading">
-        For production deployments
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h3>
-        Ubuntu Core 22
-      </h3>
-      <p>
-        Ubuntu Core 22 comes with 10 years of support, until 2032.
-      </p>
-      {% include "download/shared/_core_raspberry_pi_download.html" %}
-    </div>
-  </div>
-
-  <div class="row u-hide--medium u-hide--large">
-    <div class="col-6">
-      <p>Certified for:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Raspberry Pi 2 - <em>32-bit only</em></li>
-        <li class="p-list__item is-ticked">Raspberry Pi 3</li>
-        <li class="p-list__item is-ticked">Raspberry Pi 4</li>
-        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
-        <li class="p-list__item is-ticked">Raspberry Pi CM4</li>
-        <li class="p-list__item is-ticked">Raspberry Pi Zero 2 W</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-hide--small">
-    <h4>
-      Certified for:
-    </h4>
-  </div>
-  <div class="row u-hide--small">
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 2
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
-          alt="",
-          height="48",
-          width="72",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-      <h6 class="u-text-light">
-        <em>
-          * 32-bit only
-        </em>
-      </h6>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 3
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
-          alt="",
-          height="48",
-          width="75",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 4
-      </p>
-      <hr>
-      <div>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-          alt="",
-          height="48",
-          width="75",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="auto"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi 400
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
-          alt="",
-          height="48",
-          width="93",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi CM4
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
-          alt="",
-          height="48",
-          width="68",
-          hi_def=True,
-          attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-    <div class="col-2">
-      <p class="u-no-padding--top" style="margin-bottom: .5rem;">
-        Raspberry Pi <br> Zero 2 W
-      </p>
-      <hr>
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/a79a3cee-raspberry-pi-z-2.png",
-          alt="",
-          width="70",
-          height="46",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    <div>
-  </div>
-</section>
-
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Which image should I pick?</h2>
-    <p>If you are wondering which download to pick, here are a few pointers on the options. For information on previous versions of Ubuntu, visit our <a href="/certified/iot?q=&limit=20&vendor=Raspberry+Pi+Foundation">certified hardware</a> section to get more insight into Raspberry Pi compatibility.</p>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3><a href="/desktop">Ubuntu Desktop</a></h3>
-      <hr class="u-sv1">
-      <p>The full Ubuntu Desktop image contains everything you need to turn a Raspberry Pi into your main PC, from surfing the web and writing documents to developing software. Because of its size, it only works on the Raspberry Pi 4 models with 2GB of RAM or more.</p>
+  <div class="row">
+    <div class="col-6">
+      <h2>First time installing Ubuntu on Raspberry Pi?</h2>
+      <p>The simplest way is to use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> which enables you to select an Ubuntu image when flashing your SD card.</p>
+      <p>If you are on Ubuntu, run:</p>
+      <pre><code>sudo snap install rpi-imager</code></pre>
+      <p>And follow our <a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4#1-overview">desktop</a>, <a href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview">server</a> and <a href="/download/raspberry-pi-core">core</a> tutorials to get started.</p>
+      <p>For those not using the Raspberry Pi Imager, direct downloads are available below.</p>
     </div>
-    <div class="col-6 p-card">
-      <h3>32 bit vs 64 bit</h3>
-      <hr class="u-sv1">
-      <p>The Raspberry Pi 2 only supports 32 bits, so that's an easy choice. However, the Raspberry Pi 3 and 4 are 64-bit boards. According to the Raspberry Pi foundation, there are limited benefits to using the 64-bit version for the Pi 3 due to the fact that it only supports 1GB of memory; however, with the Pi 4, the 64-bit version should be faster.</p>
-    </div>
-        <div class="col-6 p-card">
-      <h3><a href="/server">Ubuntu Server</a></h3>
-      <hr class="u-sv1">
-      <p>The Ubuntu Server image is much smaller than the Desktop version, although you can install flavours of the Ubuntu Desktop on top of it. It gives you access to the Ubuntu CLI and by extension, all of the latest open source. Ubuntu Server works on the Raspberry Pi 2, 3 and 4. </p>
-    </div>
-    <div class="col-6 p-card">
-      <h3><a href="/core">Ubuntu Core</a></h3>
-      <hr class="u-sv1">
-      <p>Ubuntu Core is a leaner, containerised operating system built on snaps, our universal packaging format. It supports Secure Boot and Full Disk Encryption for added security as well as OTA updates. Develop your IoT software on your Ubuntu Desktop and deploy it to an Ubuntu Core device with ease, even at scale.</p>
+    <div class="col-6 u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4664fcd-raspberry-pi-imager.png",
+        alt="",
+        width="450",
+        height="303",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep" style="display:none;" id="tutorial-strip">
-  <div class="u-fixed-width">
-    <h2>Getting Started with Ubuntu WSL</h2>
+<section class="p-strip is-shallow u-hide--small">
+  <div class="row">
+    <div class="col-6 col-medium-3 u-vertically-center">
+      <h2>Ready for Raspberry Pi 5</h2>
+    </div>
+    <div class="col-6 col-medium-3 u-vertically-center u-align--right">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/953685e6-raspberry-pi-5.png",
+        alt="",
+        width="300",
+        height="200",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
   </div>
-  <div class="row p-divider" id="tutorials-container"></div>
-  {% include "shared/_tutorial-template.html" %}
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row u-vertically-center">
+    <div class="col-4 u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/57a36cad-Minotaur_circular.png",
+        alt="",
+        width="250",
+        height="250",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8 col-start-large-5">
+      <h3>Ubuntu {{ releases.latest.full_version }}</h3>
+      <p>The Raspberry Pi 5 is supported on the latest development release of Ubuntu with nine months of support, until July 2024.</p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button u-no-margin--bottom">Download Ubuntu Desktop 23.10</a> <p><em>* Minimum 4GBs of RAM required</em></p>
+      </p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Server 23.10</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow">
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h2>Certified for the Raspberry Pi</h2>
+      <p><a href="/certified">Certified devices</a> are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience. Ubuntu LTS releases are certified on select Raspberry Pi hardware.</p>
+    </div>
+    <div class="col-4 u-align--right u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f76dd871-ubuntu-certified.png",
+        alt="",
+        width="150",
+        height="212",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light u-no-padding--top">
+  <div class="row u-vertically-center">
+    <div class="col-4 u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/b743f1ee-jj-in-circle.png",
+        alt="",
+        width="250",
+        height="250",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h3>Ubuntu {{ releases.lts.full_version }} LTS</h3>
+      <p>The latest Long Term Supported release of Ubuntu with five years of security patching and maintenance until April 2027, extended to ten years with <a href="/pro">Ubuntu Pro</a>.</p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });" class="p-button u-no-margin--bottom">Download Ubuntu Desktop 22.04.3 LTS</a> <p><em>* Minimum 2GBs of RAM and 16GB storage required</em></p>
+      </p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Server 22.04.3 LTS</a>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 col-start-large-5">
+      <h3>Ubuntu Core 22</h3>
+      <p>An immutable, strictly confined operating system designed for Internet of Things (IoT) use-cases with a focus on security and simplified maintenance, supported until 2032.</p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Core 22</a>
+      </p>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Supported devices</h2>
+    <table aria-label="Raspberry pi support with Ubuntu">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Ubuntu 22.04.3 LTS</th>
+          <th>Ubuntu Core 22</th>
+          <th>Ubuntu 23.10</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi 2</p>
+            </div>
+            <div class="col">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
+                alt="",
+                width="73",
+                height="48",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi 3</p>
+            </div>
+            <div class="col">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
+                alt="",
+                height="48",
+                width="75",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi 4</p>
+            </div>
+            <div class="col">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
+                alt="",
+                height="48",
+                width="75",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi 400</p>
+            </div>
+            <div class="col">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
+                alt="",
+                height="48",
+                width="93",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi CM4</p>
+            </div>
+            <div class="col">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
+                alt="",
+                height="48",
+                width="68",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi Zero 2 W</p>
+            </div>
+            <div class="col">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/a79a3cee-raspberry-pi-z-2.png",
+                alt="",
+                width="70",
+                height="46",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>Yes, certified</td>
+          <td>Yes, certified</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th class="row--50-50">
+            <div class="col u-vertically-center">
+              <p>Raspberry Pi 5</p>
+            </div>
+            <div class="col">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/14667b44-raspberry-pi_5.png",
+                alt="",
+                width="61",
+                height="46",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </th>
+          <td>-</td>
+          <td>-</td>
+          <td>Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-3">
+        <a href="/certified">Learn more about Ubuntu Certified&nbsp;&rsaquo;</a>
+      </div>
+      <div class="col-3">
+        <a href="/certified/iot?q=&limit=13&vendor=Raspberry+Pi+Foundation">All certified Raspberry Pi hardware&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>Make something great today</h2>
     <p>Check out these project ideas to help you get started.</p>
@@ -636,9 +417,8 @@
   </div>
 </section>
 
-
-{% with section_classes='p-strip--light is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4' %}
+{% with section_classes='p-strip is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4', custom_heading="Check out the latest blog" %}
   {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
-{% endblock content %}
+{% endblock %}
