@@ -1,6 +1,8 @@
 <div class="u-fixed-width">
-  <div class="p-grid-table benefits-table">
-    <div class="p-grid-table__cell p-grid__cell--bold benefits-table__inner-table">   
+  <div class="p-grid-table benefits-table"
+    aria-label="A table that shows which versions of Ceph are supported by Ubuntu LTS releases"
+    role="grid">
+    <div class="p-grid-table__cell p-grid__cell--bold benefits-table__inner-table--three-cells">   
       <div class="p-grid-table__inner-cell">
         Ceph<br />Octopus<br />15.2.x
       </div>
@@ -11,14 +13,19 @@
         Ceph<br />Quincy<br />17.2.x
       </div>
     </div>
-    <div class="p-grid-table__cell p-grid__cell--bold">
-      <div>Ceph<br />Quincy<br />17.2.x</div>
+    <div class="p-grid-table__cell p-grid__cell--bold benefits-table__inner-table--two-cells">
+      <div class="p-grid-table__inner-cell">
+        Ceph<br />Quincy<br />17.2.x
+      </div>
+      <div class="p-grid-table__inner-cell p-grid-table__cell--highlight">
+        Ceph<br />Reef<br />18.2.x
+      </div>
     </div>
     <div class="p-grid-table__cell">
       <div>Ubuntu<br />20.04.x LTS<br />Focal</div>
     </div>
     <div class="p-grid-table__cell">
-      <div>Ubuntu<br />22.04<br />Jammy</div>
+      <div>Ubuntu<br />22.04.x LTS<br />Jammy</div>
     </div>
   </div>
 </div>
@@ -29,7 +36,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .benefits-table__inner-table {
+  .benefits-table__inner-table--three-cells {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .benefits-table__inner-table--two-cells {
+    grid-template-columns: 1fr 2fr;
   }
 </style>
