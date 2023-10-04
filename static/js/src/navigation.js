@@ -270,23 +270,22 @@ function deactivateActiveCTA(element) {
   @param {String} url the path tp fetch the subsection
   @param {String} id the id of the target subsection
 */
-let isFetching = false;
+const fetchedMap = {};
 function fetchDropdown(url, id) {
-  if (isFetching) return;
-  isFetching = true;
-
-  const container = document.getElementById(id + "-content");
-  const fetchedContent = container.querySelector("ul.p-navigation__dropdown");
-  if (fetchedContent) return;
+  const key = `${url}-${id}`;
+  if (fetchedMap[key] === true) return;
+  fetchedMap[key] = true;
+  
+  const desktopContainer = document.getElementById(id + "-content");
   const mobileContainer = document.getElementById(id);
 
-  if (container.innerHTML === "") {
+  if (desktopContainer.innerHTML === "") {
     makeRequest(url, function () {
       const desktopContent = convertHTMLToNode(
         this.responseText,
         ".desktop-dropdown-content"
       );
-      container.appendChild(desktopContent);
+      desktopContainer.appendChild(desktopContent);
 
       const mobileContent = convertHTMLToNode(
         this.responseText,
