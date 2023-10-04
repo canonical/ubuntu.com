@@ -91,7 +91,7 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(1);
+    expect(docsLinks.length).toBe(2);
     expect(docsLinks.at(0).text()).toBe("Livepatch");
   });
 
@@ -117,7 +117,7 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(1);
+    expect(docsLinks.length).toBe(2);
     expect(docsLinks.at(0).text()).toBe("Ubuntu Pro (esm-apps) tutorial");
   });
 

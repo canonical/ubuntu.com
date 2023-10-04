@@ -181,6 +181,16 @@ const DetailsTabs = ({
             </a>
           ),
         }))
+        .concat({
+          label: (
+            <a
+              data-test="doc-link"
+              href="https://canonical-ubuntu-pro-client.readthedocs-hosted.com/en/latest/references/network_requirements.html"
+            >
+              Ubuntu Pro network requirements
+            </a>
+          ),
+        })
         .concat(
           token
             ? [
