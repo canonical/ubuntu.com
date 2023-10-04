@@ -37,7 +37,8 @@
     height: auto;
     position: fixed;
     width: 100%;
-    overflow-y: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 4rem);
     z-index: 11;
   }
 
