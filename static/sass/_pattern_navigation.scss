@@ -38,6 +38,7 @@
       margin-left: -2rem;
       margin-right: 0rem;
       width: auto;
+      max-height: calc(100vh - 3rem);
 
       .p-navigation__items {
         width: 100%;
@@ -227,6 +228,13 @@
           right: 1.5rem;
           top: 1rem;
         }
+      }
+
+      .p-navigation__secondary-links {
+        @extend .dropdown-window__side-panel;
+        
+        padding-left: 1rem !important;
+        margin-top: 1.5rem;
       }
     }
   }
