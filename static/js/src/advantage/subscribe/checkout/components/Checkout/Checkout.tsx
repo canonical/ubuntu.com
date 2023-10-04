@@ -67,7 +67,12 @@ const Checkout = ({ product, quantity, action }: Props) => {
             <Formik
               onSubmit={() => {}}
               initialValues={initialValues}
-              enableReinitialize={!!userInfo?.customerInfo?.address?.country}
+              enableReinitialize={
+                (!!userInfo?.customerInfo?.address?.country &&
+                  action === "renewal") ||
+                (!!userInfo?.customerInfo?.defaultPaymentMethod &&
+                  action === "purchase")
+              }
             >
               <>
                 <Col emptyLarge={7} size={6}>
