@@ -8,6 +8,9 @@
 
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="p-strip--suru-topped">
+    {% if schedule_banner("2023-03-08", "2023-03-22") %}
+      {% include "shared/_charmed-kubeflow-beta-banner.html" %}
+    {% endif %}
     <div class="row u-equal-height">
       <div class="col-6">
         <h1 class="u-sv2">What is Kubeflow?</h1>
@@ -17,7 +20,7 @@
           <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/install">
           Charmed Kubeflow
           </a>
-          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact&nbsp;us&nbsp;now&nbsp;&rsaquo;</a>
+          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us now&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="col-4 col-start-large-8 u-vertically-center u-hide--medium u-hide--small u-align--center">

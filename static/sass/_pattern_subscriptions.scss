@@ -157,7 +157,6 @@
 
         .p-modal__header {
           margin-bottom: 0;
-          padding-right: 0;
 
           &::after {
             // Remove the bottom border from the title.
@@ -191,12 +190,6 @@
   // notification.
   .p-subscriptions__details-header + .p-subscriptions__details-action {
     margin-top: $spv--small;
-  }
-
-  .p-subscriptions__details-header {
-    [class*="p-chip--"] {
-      max-height: 1.8rem;
-    }
   }
 
   .p-subscriptions__details-small-title {
