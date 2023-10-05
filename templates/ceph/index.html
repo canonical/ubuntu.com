@@ -96,21 +96,8 @@
   </div>
 
   <div class="row">
-    <div class="col-12 u-sv3">
-      <figure>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/c4c73fdf-Ceph+table.png",
-          alt="CEPH versioning graph",
-          width="1600",
-          height="389",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-        <figcaption>
-          <small>Ubuntu, OpenStack and Ceph support cadence</small>
-        </figcaption>
-      </figure>
+    <div class="col-6">
+      {% include "ceph/components/benefits-table.html" %}
     </div>
   </div>
 </section>
