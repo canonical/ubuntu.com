@@ -332,7 +332,17 @@ def support(**kwargs):
 
 
 @shop_decorator(area="account", permission="user", response="html")
-def checkout(**kwargs):
+def checkout(advantage_mapper, **kwargs):
+    is_technical = False
+    try:
+        advantage_mapper.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        pass
+    except AccessForbiddenError:
+        is_technical = True
+        return flask.render_template(
+            "account/forbidden.html", is_technical=is_technical
+        )
     return flask.render_template(
         "account/checkout.html",
     )
