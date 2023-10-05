@@ -717,11 +717,11 @@ def issue_badges(trueability_api, credly_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-def get_key_products(ua_contracts_api, **kwargs):
+def get_cue_products(ua_contracts_api, type, **kwargs):
     listings = ua_contracts_api.get_product_listings("canonical-cube").get(
         "productListings"
     )
-    key_products = [
+    filtered_products = [
         {
             "id": listing["productID"],
             "longId": listing["id"],
@@ -731,25 +731,7 @@ def get_key_products(ua_contracts_api, **kwargs):
             "price": listing["price"],
         }
         for listing in listings
-        if listing["productID"].endswith("key")
+        if (listing["productID"].endswith("key") and type == "keys")
+        or (type == "exam")
     ]
-    return flask.jsonify(key_products)
-
-
-@shop_decorator(area="cred", permission="user", response="json")
-def get_exam_products(ua_contracts_api, **kwargs):
-    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
-        "productListings"
-    )
-    exam_products = [
-        {
-            "id": listing["productID"],
-            "longId": listing["id"],
-            "period": listing["period"],
-            "marketplace": listing["marketplace"],
-            "name": listing["name"],
-            "price": listing["price"],
-        }
-        for listing in listings
-    ]
-    return flask.jsonify(exam_products)
+    return flask.jsonify(filtered_products)
