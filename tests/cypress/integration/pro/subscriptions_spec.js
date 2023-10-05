@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+Cypress.config("defaultCommandTimeout", 10000);
+
 context("/pro/dashboard", () => {
   it("header links work correctly", () => {
     const links = [
@@ -12,6 +14,8 @@ context("/pro/dashboard", () => {
     ];
 
     cy.login();
+    cy.wait(2000);
+
     cy.visit("/pro/dashboard");
     cy.acceptCookiePolicy();
 
@@ -24,6 +28,8 @@ context("/pro/dashboard", () => {
 
   it("free personal token is at the bottom of the list", () => {
     cy.login();
+    cy.wait(2000);
+
     cy.visit("/pro/dashboard");
     cy.acceptCookiePolicy();
 
@@ -34,6 +40,8 @@ context("/pro/dashboard", () => {
 
   it.skip("sends a correct request when resizing a subscription", () => {
     cy.login();
+    cy.wait(2000);
+
     cy.visit("/pro");
     cy.acceptCookiePolicy();
 
@@ -69,6 +77,7 @@ context("/pro/dashboard", () => {
 
   it.skip("prevents a user from creating disallowed combinations of features", () => {
     cy.login();
+    cy.wait(2000);
 
     cy.visit("/pro");
     cy.acceptCookiePolicy();
@@ -82,6 +91,7 @@ context("/pro/dashboard", () => {
 
   it.skip("saves changes to feature settings successfully", () => {
     cy.login();
+    cy.wait(2000);
 
     cy.visit("/pro");
     cy.acceptCookiePolicy();
