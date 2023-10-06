@@ -882,22 +882,9 @@ html {
     }
   }
 
-  .p-testimonial__author {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 3 / span 2;
-      grid-row: 2 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 1;
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 3;
-    }
-  }
-
   .p-testimonial__quote {
+    font-style: italic;
+
     @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
@@ -908,7 +895,7 @@ html {
     }
 
     @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 6;
+      grid-column: auto / span 8;
     }
   }
 }
