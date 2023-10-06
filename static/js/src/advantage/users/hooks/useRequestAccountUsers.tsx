@@ -10,14 +10,7 @@ const useRequestAccountUsers = () => {
 
         return res;
       } catch (error) {
-        if (
-          error instanceof Error &&
-          error.message.includes("cannot find purchase account")
-        ) {
-          return undefined;
-        } else {
-          throw error;
-        }
+        throw error;
       }
     }
   );
