@@ -21,7 +21,6 @@ context("Checkout - Region and taxes", () => {
     cy.selectProducts();
 
     cy.login();
-    cy.wait(2000);
 
     cy.scrollTo("bottom");
     cy.findByRole("button", { name: "Buy now" }).click();
@@ -55,7 +54,6 @@ context("Checkout - Region and taxes", () => {
     cy.selectProducts();
 
     cy.login();
-    cy.wait(2000);
 
     cy.scrollTo("bottom");
     cy.findByRole("button", { name: "Buy now" }).click();
@@ -90,7 +88,6 @@ context("Checkout - Region and taxes", () => {
     cy.selectProducts();
 
     cy.login();
-    cy.wait(2000);
 
     cy.scrollTo("bottom");
     cy.findByRole("button", { name: "Buy now" }).click();
@@ -156,7 +153,6 @@ context("Checkout - Your information", () => {
     cy.selectProducts();
 
     cy.login();
-    cy.wait(2000);
 
     cy.scrollTo("bottom");
     cy.findByRole("button", { name: "Buy now" }).click();
@@ -200,7 +196,6 @@ context("Checkout purchase", () => {
     cy.selectProducts();
 
     cy.login();
-    cy.wait(2000);
 
     cy.scrollTo("bottom");
     cy.findByRole("button", { name: "Buy now" }).click();
