@@ -54,7 +54,6 @@ function getAllElements(queryString) {
 // Attach initial event listeners
 mainList.addEventListener("click", function(e) {
   let target = e.target;
-  console.log("the event in 'addEventListener':", target)
   if (target.classList.contains("p-navigation__link")) {
     if (target.classList.contains("js-back")) {
       goBackOneLevel(e, target);
@@ -169,6 +168,18 @@ function updateNavMenu(dropdown, show) {
     toggleDropdownWindowAnimation(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
+  } else {
+    function handleMutation(mutationsList, observer) {
+      mutationsList.forEach(mutation => {
+        if (mutation.type === 'childList') {
+          handleDropdownClick(mutation.target);
+          observer.disconnect();
+        }
+      });
+    }
+    const observer = new MutationObserver(handleMutation);
+    const observerConfig = { childList: true, subtree: true };
+    observer.observe(dropdown, observerConfig);
   }
 }
 
@@ -267,7 +278,7 @@ function deactivateActiveCTA(element) {
 
 /**
   Fetches the contents of indervidual, top level, navigation items
-  @param {String} url the path tp fetch the subsection
+  @param {String} url the path to fetch the subsection
   @param {String} id the id of the target subsection
 */
 const fetchedMap = {};
@@ -301,6 +312,8 @@ function fetchDropdown(url, id) {
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
     });
+  } else {
+    resolve();
   }
   isFetching = false;
 }
