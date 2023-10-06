@@ -22,6 +22,7 @@ toc: False
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
 
 ## What's new
+
 ### Cloud Integrator Charms
 * [LP#2033082](https://bugs.launchpad.net/bugs/2033082) 
   Replaces deprecated yaml library method to `yaml.safe_load` over `yaml.load`
