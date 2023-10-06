@@ -86,7 +86,6 @@ const CredExamShop = () => {
       }
     }
     setExamProducts(ExamProductDescriptions);
-    console.log(ExamProductDescriptions);
   }, [ExamData]);
   if (isLoading) {
     return <Spinner />;
