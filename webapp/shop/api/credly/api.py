@@ -17,9 +17,9 @@ class CredlyAPI:
         self.session = session
         self.auth_token = auth_token
         self.badge_template_dict = {
-            4190: "3d3a19a1-324c-48fa-aa55-60f66c0dcca6",
-            4194: "3d3a19a1-324c-48fa-aa55-60f66c0dcca6",
-            4223: "3d3a19a1-324c-48fa-aa55-60f66c0dcca6",
+            4190: "d452b185-8eaa-4639-88ad-3afd41029251",
+            4194: "d452b185-8eaa-4639-88ad-3afd41029251",
+            4223: "d452b185-8eaa-4639-88ad-3afd41029251",
         }
 
     def make_request(
