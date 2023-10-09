@@ -12,7 +12,13 @@
     <div class="row">
       <div class="col-12">
         <h1>Access Forbidden</h1>
-        <p>You cannot perform that action. Contact your account administrator for more information.</p>
+        {% if reason=="is_not_admin" %}	
+          <p>You need administrator rights to the account to access this feature.</p>
+        {% elif reason=="is_technical" %}
+          <p>You have "Technical" user access to this account. "Technical" users are denied access to some features. Contact your account administrator for more information.</p>
+        {% elif reason=="is_only_personal" %}
+          <p>This feature is accessible only by users with enterprise subscriptions for commercial use.</p>
+        {% endif %}
       </div>
     </div>
   </section>

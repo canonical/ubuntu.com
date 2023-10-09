@@ -202,7 +202,9 @@ def advantage_shop_view(advantage_mapper, **kwargs):
             # One will need to be created later; expected condition.
             pass
         except AccessForbiddenError:
-            return flask.render_template("account/forbidden.html")
+            return flask.render_template(
+                "account/forbidden.html", reason="is_technical"
+            )
 
     all_subscriptions = []
     if account:
@@ -240,12 +242,18 @@ def advantage_account_users_view(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
-        pass
+        return flask.render_template(
+            "account/forbidden.html", reason="is_only_personal"
+        )
     except AccessForbiddenError:
-        return flask.render_template("account/forbidden.html")
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
 
-    if account is None or account.role != "admin":
-        return flask.render_template("account/forbidden.html")
+    if account.role != "admin":
+        return flask.render_template(
+            "account/forbidden.html", reason="is_not_admin"
+        )
 
     return flask.render_template("advantage/users/index.html")
 
@@ -589,7 +597,9 @@ def blender_shop_view(advantage_mapper, **kwargs):
             # One will need to be created later; expected condition.
             pass
         except AccessForbiddenError:
-            return flask.render_template("account/forbidden.html")
+            return flask.render_template(
+                "account/forbidden.html", reason="is_technical"
+            )
 
     all_subscriptions = []
     if account:
@@ -661,7 +671,9 @@ def get_activate_view(advantage_mapper: AdvantageMapper, **kwargs):
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
-        return flask.render_template("account/forbidden.html")
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
 
     return flask.render_template(
         "pro/activate.html",

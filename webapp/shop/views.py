@@ -93,7 +93,9 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     except UAContractsUserHasNoAccount:
         account = None
     except AccessForbiddenError:
-        return flask.render_template("account/forbidden.html")
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
 
     payments = []
     if account:
@@ -135,7 +137,9 @@ def payment_methods_view(advantage_mapper, ua_contracts_api, **kwargs):
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
-        return flask.render_template("account/forbidden.html")
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
 
     if account:
         account_id = account.id
@@ -332,7 +336,15 @@ def support(**kwargs):
 
 
 @shop_decorator(area="account", permission="user", response="html")
-def checkout(**kwargs):
+def checkout(advantage_mapper, **kwargs):
+    try:
+        advantage_mapper.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        pass
+    except AccessForbiddenError:
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
     return flask.render_template(
         "account/checkout.html",
     )
