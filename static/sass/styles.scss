@@ -461,6 +461,14 @@ summary {
   }
 }
 
+.u-pad-logo {
+  padding-top: 0.2rem;
+  img {
+    height: 40px;
+    width: auto;
+  }
+}
+
 // Styling for ubuntu navigation logo for engage pages
 .navigation-logo-engage {
   margin-top: -2.2rem;
@@ -883,8 +891,9 @@ html {
   }
 
   .p-testimonial__quote {
-    font-style: italic;
-
+    p {
+      font-style: italic;
+    }
     @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
@@ -898,10 +907,6 @@ html {
       grid-column: auto / span 8;
     }
   }
-}
-
-.u-pad-logo {
-  padding-top: 0.2rem;
 }
 
 .u-max-width {

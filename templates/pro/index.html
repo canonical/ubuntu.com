@@ -11,10 +11,10 @@
       <div class="p-block">
         <h1 class="u-no-margin--bottom">Ubuntu&nbsp;Pro</h1>
         <p class="p-heading--2">The most comprehensive subscription<br class="u-hide--small"/> for open-source software security</p>
-        <p class="u-sv3">30-day trial for enterprises. Always free for personal use.</p>
+        <p>30-day trial for enterprises. Always free for personal use.</p>
       </div>
-      <div class="row u-sv1 u-hide--small">
-        <hr class="p-rule">
+      <div class="row">
+        <hr class="is-muted">
       </div>
       <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
       <!-- need to fix the dark button -->
@@ -23,16 +23,18 @@
   </div>
   <div class="p-suru"></div>
 </section>
-<section class="p-strip--light u-no-padding--top u-no-padding--bottom">
+<div class="row">
+  <hr class="p-rule">
+</div>
+<section class="p-strip--light u-no-padding--top">
   <div class="row">
-    <hr class="p-rule">
     <h2>Security and compliance on top of Ubuntu LTS:<br/>10 years of coverage for over 25,000 packages</h2>
   </div>
 </section>
-<section class="p-section p-strip--light">
-  <div class="row">
-    <hr class="p-rule">
-  </div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<section class="p-section p-strip--light u-no-padding--top">
   <div class="row--50-50">
     <div class="col">
       <div class="row">
@@ -335,7 +337,6 @@
       <div class="row">
         <h2 class="p-text--small-caps u-sv2">For compliance:</h2>
       </div>
-      
       <div class="row">
         <div class="col-3">
           <ul class="p-list--divided u-no-margin--bottom">
@@ -361,10 +362,10 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light">
-  <div class="row u-sv1">
-    <hr class="p-rule">
-  </div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<section class="p-strip--light u-no-padding--top">
   <div class="row--50-50">
     <div class="col">
       <div class="row">
@@ -376,12 +377,32 @@
         <p class="u-no-margin--bottom"><strong>Stability, security, and compliance for your operations.</strong></p>
         <p class="u-no-margin--bottom">Reduce your average CVE exposure from 98 days to 1 on average*.</p>
         <p>* <a href="https://go.snyk.io/state-of-open-source-security-report-2022-dwn-typ.html">According to Snyk</a> organisation need on average 97.8 days to fix a vulnerability. With Ubuntu&nbsp;Pro currently measured average time to fix for Critical CVE vulnerability fixes is less than 24h.</p>
-        <p><span class="p-heading--3"><strong>1,800+</strong></span> additional high and critical patches only availiable with Ubuntu&nbsp;Pro</p>
-        <hr/>
-        <p><span class="p-heading--3"><strong>10 years</strong></span> of maintenance for the whole stack</p>
-        <hr />
-        <p><span class="p-heading--3"><strong>24/7</strong></span> optional enterprise-grade support</p>
-        <hr class="u-no-margin--bottom"/>
+        <div class="row">
+          <div class="col-2 p-heading--2">
+            <strong>1,800+</strong>
+          </div>
+          <div class="col-4">
+            <p>additional high and critical patches<br/> only availiable with Ubuntu&nbsp;Pro</p>
+          </div>
+        </div>
+        <hr class="is-muted"/>
+        <div class="row">
+          <div class="col-2 p-heading--2">
+            <strong>10 years</strong>
+          </div>
+          <div class="col-4">
+            <p>of maintenance<br/>for the whole stack</p>
+          </div>
+        </div>
+        <hr class="is-muted"/>
+        <div class="row">
+          <div class="col-2 p-heading--2">
+            <strong>24/7</strong>
+          </div>
+          <div class="col-4">
+            <p>optional enterprise-grade<br/>support</p>
+          </div>
+        </div>
         <p><a href="/pro/why-pro">Learn why security professionals choose Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a></p>
       </div>
     </div>
@@ -400,52 +421,58 @@
     </div>
   </div>
 </section>
+<div class="row">
+  <hr class="p-rule">
+</div>
 <section class="p-strip--light u-no-padding--top">
-  <div class="row">
-    <hr class="p-rule">
-  </div>
   <div class="u-fixed-width">
     <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro features</h2>
   </div>
-  <div class="row--50-50 u-sv3">
-    <div class="col">
-      <h3 class="p-heading--2">Expanded Security <br/>Maintenance (ESM)</h3>
-    </div>
-    <div class="col">
-      <p>Enable your developers. Upgrade at your own pace while keeping your whole stack secure.</p>
-      <p class="u-sv3">ESM provides 10 years of vulnerability management for critical, high and selected medium CVEs for all software packages shipped with Ubuntu.</p>
-      <hr class="u-no-margin--bottom u-hide--small"/>
-      <p>
-        <a href="/esm">Learn more about ESM</a>
-      </p>
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Expanded Security <br/>Maintenance (ESM)</h3>
+      </div>
+      <div class="col">
+        <p>Enable your developers. Upgrade at your own pace while keeping your whole stack secure.</p>
+        <p>ESM provides 10 years of vulnerability management for critical, high and selected medium CVEs for all software packages shipped with Ubuntu.</p>
+        <hr class="u-no-margin--bottom is-muted"/>
+        <p>
+          <a href="/esm">Learn more about ESM</a>
+        </p>
+      </div>
     </div>
   </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row--50-50 u-sv3">
-    <div class="col">
-      <h3 class="p-heading--2">Live kernel updates</h3>
-    </div>
-    <div class="col">
+  <hr class="is-fixed-width is-muted">
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Live kernel updates</h3>
+      </div>
+      <div class="col">
         <p>Minimise downtime and unplanned reboots with patches for critical and high-severity kernel vulnerabilities.</p>
-        <p class="u-sv3"><a href="https://www.pagerduty.com/resources/reports/unplanned-work">64% of IT professionals</a> spend more than 100 hours per year on unplanned work. Livepatch allows to patch CVEs without rebooting machines outside of planned maintenance windows.</p>
-        <hr class="u-no-margin--bottom u-hide--small"/>
+        <p><a href="https://www.pagerduty.com/resources/reports/unplanned-work">64% of IT professionals</a> spend more than 100 hours per year on unplanned work. Livepatch allows to patch CVEs without rebooting machines outside of planned maintenance windows.</p>
+        <hr class="u-no-margin--bottom is-muted"/>
         <p>
           <a href="/livepatch">Discover Livepatch</a>
         </p>
+      </div>
     </div>
   </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row--50-50 u-sv3">
-    <div class="col">
-      <h3 class="p-heading--2">Compliance and hardening</h3>
-    </div>
-    <div class="col">
-      <p>Reduce your operational risk with certified automation tools for hardening and compliance profiles, including CIS, DISA-STIG, FIPS 140, and Common Criteria.</p>
-      <p class="u-sv3">Ubuntu&nbsp;Pro offers tooling to achieve and maintain compliance on-remise and on public clouds: <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.</p>
-      <hr class="u-no-margin--bottom u-hide--small"/>
-      <p>
-        <a href="/security/certifications">Learn more about compliance and hardening</a>
-      </p>
+  <hr class="is-fixed-width is-muted">
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Compliance and hardening</h3>
+      </div>
+      <div class="col">
+        <p>Reduce your operational risk with certified automation tools for hardening and compliance profiles, including CIS, DISA-STIG, FIPS 140, and Common Criteria.</p>
+        <p>Ubuntu&nbsp;Pro offers tooling to achieve and maintain compliance on-remise and on public clouds: <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.</p>
+        <hr class="u-no-margin--bottom u-hide--small"/>
+        <p>
+          <a href="/security/certifications">Learn more about compliance and hardening</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -453,38 +480,39 @@
   <hr class="p-rule">
 </div>
 <section class="p-strip--light u-no-padding--top">
-  <div class="row">
-    <hr class="p-rule">
-  </div>
   <div class="u-fixed-width">
     <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro add-ons</h2>
   </div>
-  <div class="row--50-50 u-sv3">
-    <div class="col">
-      <h3 class="p-heading--2">Add 24/7 phone & ticket support</h3>
-    </div>
-    <div class="col">
-      <p>Get phone and ticket support for troubleshooting and bug fixing whenever something breaks in your environment.</p>
-      <p class="u-sv3"><a href="/blog/security-maintenance-vs-support-whats-the-difference"></a>Support vs. security maintenance: what's the difference?</p>
-      <p>Ubuntu&nbsp;Pro + Support covers the whole stack: from the infrastructure layer (OpenStack, MAAS, Ceph, LXD, Kubernetes), through the base Ubuntu Operating System, to all application packages and their dependencies in Ubuntu repositories, including Kafka, Kubeflow, OpenJDK, PostrgreSQL, and more.</p>
-      <hr class="u-no-margin--bottom u-hide--small"/>
-      <p>
-        <a href="/support">Learn more about Support</a>
-      </p>
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Add 24/7 phone & ticket support</h3>
+      </div>
+      <div class="col">
+        <p>Get phone and ticket support for troubleshooting and bug fixing whenever something breaks in your environment.</p>
+        <p><a href="/blog/security-maintenance-vs-support-whats-the-difference"></a>Support vs. security maintenance: what's the difference?</p>
+        <p>Ubuntu&nbsp;Pro + Support covers the whole stack: from the infrastructure layer (OpenStack, MAAS, Ceph, LXD, Kubernetes), through the base Ubuntu Operating System, to all application packages and their dependencies in Ubuntu repositories, including Kafka, Kubeflow, OpenJDK, PostrgreSQL, and more.</p>
+        <hr class="u-no-margin--bottom is-muted"/>
+        <p>
+          <a href="/support">Learn more about Support</a>
+        </p>
+      </div>
     </div>
   </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row--50-50 u-sv3">
-    <div class="col">
-      <h3 class="p-heading--2">Upgrade to managed services</h3>
-    </div>
-    <div class="col">
+  <hr class="is-fixed-width is-muted">
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Upgrade to managed services</h3>
+      </div>
+      <div class="col">
         <p>Get enhanced guidance from Canonical engineers when facing critical issues with Firefighting Support, or choose our <a href="/managed">Fully Managed</a> solutions and allow us to operate your environments from set-up to production.</p>
-        <p class="u-sv3">Our Managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka, Kubeflow, Grafana, PostgreSQL, and many others).</p>
-        <hr class="u-no-margin--bottom u-hide--small"/>
+        <p>Our Managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka, Kubeflow, Grafana, PostgreSQL, and many others).</p>
+        <hr class="u-no-margin--bottom is-muted"/>
         <p>
           <a href="/managed">Learn more about our Managed offering</a>
         </p>
+      </div>
     </div>
   </div>
 </section>
@@ -498,10 +526,10 @@
     </div>
   </div>
 </section>
+<div class="row">
+  <hr class="p-rule">
+</div>
 <section class="p-strip--light u-no-padding--top">
-  <div class="row">
-    <hr class="p-rule">
-  </div>
   <div class="row">
     <h2 class="p-text--small-caps u-sv2">Get started today</h2>
   </div>
@@ -518,7 +546,7 @@
   </div>
   <div class="p-section--shallow">
     <div class="row">
-      <hr class="p-rule">
+      <hr class="is-muted">
     </div>
     <div class="row--50-50">
       <div class="col">
@@ -532,7 +560,7 @@
   </div>
   <div class="p-section--shallow">
     <div class="row">
-      <hr class="p-rule">
+      <hr class="is-muted">
     </div>
     <div class="row--50-50">
       <div class="col">
@@ -560,9 +588,6 @@
 </div>
 <section class="p-strip--light u-no-padding--top">
   <div class="row">
-    <hr class="p-rule">
-  </div>
-  <div class="row">
     <h2 class="p-text--small-caps u-sv3">Used by professionals</h2>
   </div>
   <div class="p-section--shallow">
@@ -570,10 +595,10 @@
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/f34edb1f-Google+Cloud+logo+158x40.png",
+            url="https://assets.ubuntu.com/v1/d51581ba-tab.png",
             alt="",
-            width="158",
-            height="40",
+            width="464",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -592,15 +617,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/bc66f2a9-tab-1.png",
+            url="https://assets.ubuntu.com/v1/1f1a50bd-tenable.png",
             alt="",
-            width="504",
-            height="257",
+            width="376",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -619,15 +644,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/c5c06b7d-tab-2.png",
+            url="https://assets.ubuntu.com/v1/ed098196-nvidia.png",
             alt="",
-            width="566",
-            height="257",
+            width="438",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -646,15 +671,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/15178465-tab-3.png",
+            url="https://assets.ubuntu.com/v1/ee2d87f7-vmware.png",
             alt="",
-            width="517",
-            height="257",
+            width="389",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -673,15 +698,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/0e8852b9-tab-4.png",
+            url="https://assets.ubuntu.com/v1/9d82b026-acquia.png",
             alt="",
-            width="425",
-            height="257",
+            width="297",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -700,15 +725,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/226b7ed0-tab-5.png",
+            url="https://assets.ubuntu.com/v1/ec8aae1a-emory.png",
             alt="",
-            width="445",
-            height="257",
+            width="317",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -727,15 +752,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/3ed8c341-launchdarkly.png",
+            url="https://assets.ubuntu.com/v1/f4651997-launchdarkly.png",
             alt="",
             width="617",
-            height="97",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -754,15 +779,15 @@
         </p>
       </div>
     </div>
-    <hr class="is-fixed-width u-no-margin--bottom">
+    <hr class="p-rule is-fixed-width is-muted">
     <div class="p-testimonial">
       <div class="p-testimonial__logo">
         <div class="u-pad-logo">
           {{ image (
-            url="https://assets.ubuntu.com/v1/7f023879-tab-7.png",
+            url="https://assets.ubuntu.com/v1/865e7e2f-microsoft.png",
             alt="",
-            width="569",
-            height="257",
+            width="441",
+            height="161",
             hi_def=True,
             loading="lazy"
             ) | safe
