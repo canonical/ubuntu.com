@@ -68,12 +68,18 @@ def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
     ).get("productListings")
+    user_purchasing = False
+    enterprise_purchasing = False
     for product in available_products:
         if product.get("name") == "CUE Linux Essentials":
-            return flask.render_template(
-                "credentials/index.html", can_purchase=True
-            )
-    return flask.render_template("credentials/index.html", can_purchase=False)
+            user_purchasing = True
+        if product.get("name") == "CUE Activation Key":
+            enterprise_purchasing = True
+    return flask.render_template(
+        "credentials/index.html",
+        user_purchasing=user_purchasing,
+        enterprise_purchasing=enterprise_purchasing,
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -737,3 +743,24 @@ def issue_badges(trueability_api, credly_api, **kwargs):
             return (flask.jsonify(new_badge), 500)
     # 403 Forbidden. Request was valid but the server is refusing action
     return flask.jsonify({"status": "badge_not_issued"}), 403
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cue_products(ua_contracts_api, type, **kwargs):
+    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+        "productListings"
+    )
+    filtered_products = [
+        {
+            "id": listing["productID"],
+            "longId": listing["id"],
+            "period": listing["period"],
+            "marketplace": listing["marketplace"],
+            "name": listing["name"],
+            "price": listing["price"],
+        }
+        for listing in listings
+        if (listing["productID"].endswith("key") and type == "keys")
+        or (type == "exam")
+    ]
+    return flask.jsonify(filtered_products)
