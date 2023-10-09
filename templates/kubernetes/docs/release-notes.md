@@ -14,7 +14,64 @@ toc: False
 ---
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
-# 1.28
+
+## 1.28+ck1 Bugfix release
+
+### September 25, 2023 - `charmed-kubernetes --channel 1.28/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
+
+## What's new
+
+### Cloud Integrator Charms
+* [LP#2033082](https://bugs.launchpad.net/bugs/2033082) 
+  Replaces deprecated yaml library method to `yaml.safe_load` over `yaml.load`
+  - aws-integrator
+  - gcp-integrator
+  - vsphere-integrator
+
+### Calico
+* [LP#2034737](https://bugs.launchpad.net/bugs/2034737) [LP#2034736](https://bugs.launchpad.net/bugs/2034736)
+  The charm configured Calico `assign_ipv{4,6}` as null instead of the actual value.
+  Adds a call to reconfigure the `cni_config` when the charm configuration or the etcd config changes.
+  Casts the value of veth_mtu to string rather than an int
+
+### Ceph-csi
+* [LP#2034267](https://bugs.launchpad.net/bugs/2034267)
+  Support custom kubelet_dir over kubernetes-info interface
+
+### CoreDNS
+* [LP#2032822](https://bugs.launchpad.net/bugs/2032822)
+  Prevents attempts to deploy the charm in a machine charm (non-k8s)
+
+### KubeOVN
+* [LP#2030772](https://bugs.launchpad.net/bugs/2030772)
+  Update to kube-ovn v1.11.10
+
+### Kubeapi Load Balancer
+* [LP#1893681](https://bugs.launchpad.net/bugs/1893681)
+  Adds the option to handle Nginx configuration contexts via config `nginx-http-config`.
+
+* [LP#1948019](https://bugs.launchpad.net/bugs/1948019)
+  Adds the option to handle Nginx configuration contexts via config `nginx-events-config` and `nginx-main-config`.
+
+### Kubernetes Control Plane
+* [LP#2033682](https://bugs.launchpad.net/bugs/2033682)
+  Adds ipvs kernel modules to lxd profile (#300)
+  Required when using kube-proxy in ipvs mode
+
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### Kubernetes Worker
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### MetalLB
+* [LP#2031937](https://bugs.launchpad.net/bugs/2031937)
+  Updates Charmhub Documentation to a Diataxis version
+
+## 1.28
 
 ### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
 

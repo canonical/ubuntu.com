@@ -174,6 +174,15 @@ You may need to start a new shell (or logout and login) for this to take effect:
 newgrp lxd
 ```
 
+### Confirm CNIs do not need specific kernel parameters unsupported by the lxd-profile
+
+If the CNI pods fail to start, see notes on the specific CNI page.
+
+CNIs like [Cilium][cilium] and [Calico][calico] need access to `/sys/fs/bpf`, but that
+mountpoint is not supported by the juju's [validation check][juju-validation-check] 
+for the charm specific `lxd-profile.yaml`. See [CNI Overview][cni-overview] for more
+details.
+
 ### Services fail to start with errors related to missing files in the /proc filesystem
 
 For example, `systemctl status snap.kube-proxy.daemon` may report the following:
@@ -249,6 +258,10 @@ juju config calico ignore-loose-rpf=true
 
 [lxd-home]: https://ubuntu.com/lxd
 [lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/main/lxd-profile.yaml
+[calico]: /kubernetes/docs/cni-calico
+[cilium]: /kubernetes/docs/cni-cilium
+[cni-overview]: /kubernetes/docs/cni-overview
+[juju-validation-check]: https://juju.is/docs/juju/use-lxd-profiles
 [Juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/docs/install-manual

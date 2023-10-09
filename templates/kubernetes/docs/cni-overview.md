@@ -36,7 +36,8 @@ The currently supported base CNI solutions for **Charmed Kubernetes** are:
  -   [Kube-OVN][kube-ovn]
  -   [Tigera Secure EE][tigera]
 
-By default, **Charmed Kubernetes** will deploy the cluster using calico. To chose a different CNI provider, see the individual links above.
+By default, **Charmed Kubernetes** will deploy the cluster using Calico. To choose
+a different CNI provider, see the individual links above.
 
 The following CNI addons are also available:
  -   [Multus][multus]
@@ -48,6 +49,45 @@ As networking is a fundamental part of the cluster, changing the network on a li
 is not straightforward. Currently it is recommended to create a new cluster with **Charmed Kubernetes**
 using the desired option. When [federation][] becomes part of a future release of
 Kubernetes, such a migration should be manageable with no downtime.
+
+
+## CNI Requirements in a LXD
+
+As they develop and mature, CNIs such as [cilium][] and [calico][] more frequently require
+specific kernel features which make them more difficult to operate from within the
+confinement of LXD. **Charmed Kubernetes** makes a best effort to operate CNIs, but admins
+should consider avoiding LXD as a choice to operate `kubernetes-worker` or 
+`kubernetes-control-plane` since the CNIs require deeper access on the host machine's kernel.
+
+If the choice is made to continue using LXD for nodes where a CNI is deployed, the LXD profile must be opened
+up for those units to adjust the host machine's kernel space. Consider a deployment where [calico][] is deployed
+as a subordinate unit of `kubernetes-control-plane` on LXD. Those LXDs exist solely on machines where the primary 
+app is `ubuntu-control-plane-nodes` with the `ubuntu` charm.
+
+Both CNIs require access to the host `/sys/fs/bpf` and this can be exposed through the following profile adjustment
+```bash
+machine_app=ubuntu-control-plane-nodes
+# Mount the host /sys/fs/bpf into the lxd containers of these machines
+juju exec -a $machine_app -- 'sudo lxc profile edit default << EOF
+devices:
+  sysfsbpf:
+    path: /sys/fs/bpf
+    source: /sys/fs/bpf
+    type: disk
+EOF'
+```
+
+Every container in the machine should then be restarted to update its profile:
+
+```bash
+readarray units < <(juju status $machine_app --format yaml | yq ".applications.$machine_app.units | keys" )
+for unit in "${units[@]}"; do
+    juju exec -u $(echo $unit | yq .[0]) -- 'sudo lxc restart --all'
+done
+
+# wait for the cluster to settle
+juju-wait
+```
 
 <!-- LINKS -->
 
