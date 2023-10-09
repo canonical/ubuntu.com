@@ -5,13 +5,9 @@ const useRequestAccountUsers = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     "accountUsers",
     async () => {
-      try {
-        const res = await requestAccountUsers();
+      const res = await requestAccountUsers();
 
-        return res;
-      } catch (error) {
-        throw error;
-      }
+      return res;
     }
   );
 
