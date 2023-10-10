@@ -3,10 +3,11 @@
 {% block title %}Ubuntu Pro{% endblock %}
 {% block meta_description %}Canonical provides Ubuntu Pro with 10 years of enhanced CVE patching, FIPS compliance, CIS and DISA-STIG profiles and enterprise-grade open source software security with a single subscription for open source supply chain provenance.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1XidZq045nJDM5vzfB5KJCpH3AqOERvPOeayuqUKfNso/edit{% endblock meta_copydoc %}
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<div class="is-paper">
-  <section class="p-strip is-shallow">
+<div class="p-strip is-shallow u-no-padding--bottom">
+  <section class="p-section--shallow">
     <div class="row">
       <div class="col-medium-6 col-9 col-start-large-4">
         <div class="p-block">
@@ -33,9 +34,9 @@
     </div>
   </section>
   <div class="row">
-    <hr class="p-rule">
+    <hr class="p-rule is-muted">
   </div>
-  <section class="p-section u-no-padding--top">
+  <section class="p-section">
     <div class="row--50-50">
       <div class="col">
         <div class="row">
@@ -366,7 +367,7 @@
   <div class="row">
     <hr class="p-rule">
   </div>
-  <section class="p-section u-no-padding--top">
+  <section class="p-section">
     <div class="row--50-50">
       <div class="col">
         <div class="row">
@@ -409,419 +410,421 @@
       </div>
     </div>
   </section>
-  <div class="row">
-    <hr class="p-rule">
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip is-deep">
+  <div class="row u-vertically-center">
+    <div class="col-10">
+      <h2>Talk to our experts about your security needs.</h2>
+      <p>
+        <a href="/contact-us/form?product=pro" class="p-button--positive">Request a security assessment</a>
+      </p>
+    </div>
   </div>
-  <section class="p-strip is-deep">
-    <div class="row u-vertically-center">
-      <div class="col-10">
-        <h2>Talk to our experts about your security needs.</h2>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro features</h2>
+  </div>
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Expanded Security <br/>Maintenance (ESM)</h3>
+      </div>
+      <div class="col">
+        <p>Enable your developers. Upgrade at your own pace while keeping your whole stack secure.</p>
+        <p>ESM provides 10 years of vulnerability management for critical, high and selected medium CVEs for all software packages shipped with Ubuntu.</p>
+        <hr class="p-rule is-muted"/>
         <p>
-          <a href="/contact-us/form?product=pro" class="p-button--positive">Request a security assessment</a>
+          <a href="/esm">Learn more about ESM</a>
         </p>
       </div>
     </div>
   </section>
-  <div class="row">
-    <hr class="p-rule">
-  </div>
-  <section class="p-section u-no-padding--top">
-    <div class="u-fixed-width">
-      <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro features</h2>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3 class="p-heading--2">Expanded Security <br/>Maintenance (ESM)</h3>
-        </div>
-        <div class="col">
-          <p>Enable your developers. Upgrade at your own pace while keeping your whole stack secure.</p>
-          <p>ESM provides 10 years of vulnerability management for critical, high and selected medium CVEs for all software packages shipped with Ubuntu.</p>
-          <hr class="p-rule is-muted"/>
-          <p>
-            <a href="/esm">Learn more about ESM</a>
-          </p>
-        </div>
+  <hr class="p-rule is-fixed-width is-muted">
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Live kernel updates</h3>
       </div>
-    </div>
-    <hr class="p-rule is-fixed-width is-muted">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3 class="p-heading--2">Live kernel updates</h3>
-        </div>
-        <div class="col">
-          <p>Minimise downtime and unplanned reboots with patches for critical and high-severity kernel vulnerabilities.</p>
-          <p><a href="https://www.pagerduty.com/resources/reports/unplanned-work">64% of IT professionals</a> spend more than 100 hours per year on unplanned work. Livepatch allows to patch CVEs without rebooting machines outside of planned maintenance windows.</p>
-          <hr class="p-rule is-muted"/>
-          <p>
-            <a href="/livepatch">Discover Livepatch</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <hr class="p-rule is-fixed-width is-muted">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3 class="p-heading--2">Compliance and hardening</h3>
-        </div>
-        <div class="col">
-          <p>Reduce your operational risk with certified automation tools for hardening and compliance profiles, including CIS, DISA-STIG, FIPS 140, and Common Criteria.</p>
-          <p>Ubuntu&nbsp;Pro offers tooling to achieve and maintain compliance on-remise and on public clouds: <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.</p>
-          <hr class="p-rule is-muted"/>
-          <p>
-            <a href="/security/certifications">Learn more about compliance and hardening</a>
-          </p>
-        </div>
+      <div class="col">
+        <p>Minimise downtime and unplanned reboots with patches for critical and high-severity kernel vulnerabilities.</p>
+        <p><a href="https://www.pagerduty.com/resources/reports/unplanned-work">64% of IT professionals</a> spend more than 100 hours per year on unplanned work. Livepatch allows to patch CVEs without rebooting machines outside of planned maintenance windows.</p>
+        <hr class="p-rule is-muted"/>
+        <p>
+          <a href="/livepatch">Discover Livepatch</a>
+        </p>
       </div>
     </div>
   </section>
-  <div class="row">
-    <hr class="p-rule">
-  </div>
-  <section class="p-section u-no-padding--top">
-    <div class="u-fixed-width">
-      <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro add-ons</h2>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3 class="p-heading--2">Add 24/7 phone & ticket support</h3>
-        </div>
-        <div class="col">
-          <p>Get phone and ticket support for troubleshooting and bug fixing whenever something breaks in your environment.</p>
-          <p><a href="/blog/security-maintenance-vs-support-whats-the-difference"></a>Support vs. security maintenance: what's the difference?</p>
-          <p>Ubuntu&nbsp;Pro + Support covers the whole stack: from the infrastructure layer (OpenStack, MAAS, Ceph, LXD, Kubernetes), through the base Ubuntu Operating System, to all application packages and their dependencies in Ubuntu repositories, including Kafka, Kubeflow, OpenJDK, PostrgreSQL, and more.</p>
-          <hr class="p-rule is-muted"/>
-          <p>
-            <a href="/support">Learn more about Support</a>
-          </p>
-        </div>
+  <hr class="p-rule is-fixed-width is-muted">
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Compliance and hardening</h3>
       </div>
-    </div>
-    <hr class="p-rule is-fixed-width is-muted">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h3 class="p-heading--2">Upgrade to managed services</h3>
-        </div>
-        <div class="col">
-          <p>Get enhanced guidance from Canonical engineers when facing critical issues with Firefighting Support, or choose our <a href="/managed">Fully Managed</a> solutions and allow us to operate your environments from set-up to production.</p>
-          <p>Our Managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka, Kubeflow, Grafana, PostgreSQL, and many others).</p>
-          <hr class="p-rule is-muted"/>
-          <p>
-            <a href="/managed">Learn more about our Managed offering</a>
-          </p>
-        </div>
+      <div class="col">
+        <p>Reduce your operational risk with certified automation tools for hardening and compliance profiles, including CIS, DISA-STIG, FIPS 140, and Common Criteria.</p>
+        <p>Ubuntu&nbsp;Pro offers tooling to achieve and maintain compliance on-remise and on public clouds: <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a>.</p>
+        <hr class="p-rule is-muted"/>
+        <p>
+          <a href="/security/certifications">Learn more about compliance and hardening</a>
+        </p>
       </div>
     </div>
   </section>
-  <div class="row">
-    <hr class="p-rule">
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2 class="p-text--small-caps u-sv3">Ubuntu&nbsp;Pro add-ons</h2>
   </div>
-  <section class="p-strip is-deep">
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Add 24/7 phone & ticket support</h3>
+      </div>
+      <div class="col">
+        <p>Get phone and ticket support for troubleshooting and bug fixing whenever something breaks in your environment.</p>
+        <p><a href="/blog/security-maintenance-vs-support-whats-the-difference"></a>Support vs. security maintenance: what's the difference?</p>
+        <p>Ubuntu&nbsp;Pro + Support covers the whole stack: from the infrastructure layer (OpenStack, MAAS, Ceph, LXD, Kubernetes), through the base Ubuntu Operating System, to all application packages and their dependencies in Ubuntu repositories, including Kafka, Kubeflow, OpenJDK, PostrgreSQL, and more.</p>
+        <hr class="p-rule is-muted"/>
+        <p>
+          <a href="/support">Learn more about Support</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <hr class="p-rule is-fixed-width is-muted">
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h3 class="p-heading--2">Upgrade to managed services</h3>
+      </div>
+      <div class="col">
+        <p>Get enhanced guidance from Canonical engineers when facing critical issues with Firefighting Support, or choose our <a href="/managed">Fully Managed</a> solutions and allow us to operate your environments from set-up to production.</p>
+        <p>Our Managed offering covers the entire infrastructure layer (MAAS, Ceph, OpenStack, MicroCloud, LXD, Kubernetes), as well as an extensive collection of applications (Kafka, Kubeflow, Grafana, PostgreSQL, and many others).</p>
+        <hr class="p-rule is-muted"/>
+        <p>
+          <a href="/managed">Learn more about our Managed offering</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip is-deep">
+  <section class="p-section--shallow">
     <div class="row u-vertically-center">
       <div class="col-10">
         <h2>Find the right subscription for your needs.<br/> <a href="/pricing/pro">Ubuntu&nbsp;Pro pricing&nbsp;&rsaquo;</a></h2>
       </div>
     </div>
   </section>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip u-no-padding--top">
   <div class="row">
-    <hr class="p-rule">
+    <h2 class="p-text--small-caps u-sv2">Get started today</h2>
   </div>
-  <section class="p-section u-no-padding--top">
-    <div class="row">
-      <h2 class="p-text--small-caps u-sv2">Get started today</h2>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <div class="col">
-          <h2>Enterprise</h2>
-        </div>
-        <div class="col">
-          <p>Try Ubuntu&nbsp;Pro for 30 days to find out what it can do for you.</p>
-          <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <hr class="p-rule is-muted">
-      </div>
-      <div class="row--50-50">
-        <div class="col">
-          <h2>Personal</h2>
-        </div>
-        <div class="col">
-          <p>Anyone can use Ubuntu&nbsp;Pro for free on up to 5 machines, or 50 if you are <a href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member</a>.</p>
-          <a href="/pro/subscribe" class="p-button">Get Ubuntu&nbsp;Pro</a>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <hr class="p-rule is-muted">
-      </div>
-      <div class="row--50-50">
-        <div class="col">
-          <h2>Education, Research, and Academia</h2>
-        </div>
-        <div class="col">
-          <p>Canonical offers Ubuntu&nbsp;Pro at a discount for approved institutions, such as schools, research and academia.</p>
-          <a href="/contact-us/form?product=pro" class="p-button">Contact for pricing</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="row">
-    <hr class="p-rule">
-  </div>
-  <section class="p-strip is-deep">
-    <div class="row u-vertically-center">
-      <div class="col-10">
-        <h2>Find out what Ubuntu&nbsp;Pro can do for you<br/><a href="/contact-us/form?product=pro">Talk to an expert&nbsp;&rsaquo;</a></h2>
-      </div>
-    </div>
-  </section>
-  <div class="row">
-    <hr class="p-rule">
-  </div>
-  <section class="p-section u-no-padding--top">
-    <div class="row">
-      <h2 class="p-text--small-caps u-sv3">Used by professionals</h2>
-    </div>
-    <div class="p-section--shallow">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d51581ba-tab.png",
-              alt="",
-              width="464",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Derry Cheng</span>
-              <br><span class="u-text--muted">Product Manager<br/>for Compute Engine</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;For the last decade, Google has partnered with Canonical to promote the adoption of open-source software.<br/><br/>By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/1f1a50bd-tenable.png",
-              alt="",
-              width="376",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Robert Huber</span>
-              <br><span class="u-text--muted">Chief Security Officer</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts.<br/><br/>Ubuntu&nbsp;Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/ed098196-nvidia.png",
-              alt="",
-              width="438",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Justin Boitano</span>
-              <br><span class="u-text--muted">Vice president<br/>of Enterprise Computing</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation.<br/><br/>With the introduction of Ubuntu&nbsp;Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/ee2d87f7-vmware.png",
-              alt="",
-              width="389",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Ajay Patel</span>
-              <br><span class="u-text--muted">GM and SVP<br/>Modern Apps & Cloud Management Business</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.<br/><br/>VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu&nbsp;Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/9d82b026-acquia.png",
-              alt="",
-              width="297",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Robert Former</span>
-              <br><span class="u-text--muted">Chief Information Security Officer</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;Ubuntu&nbsp;Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers.<br/><br/>Canonical's transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/ec8aae1a-emory.png",
-              alt="",
-              width="317",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>David A Gutman</span>
-              <br><span class="u-text--muted">MD PhD<br/>Associate Professor of Pathology</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research.<br/><br/>The open-source security patches delivered through Ubuntu&nbsp;Pro give my team peace of mind and ensure my servers are secure.<br/><br/>Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f4651997-launchdarkly.png",
-              alt="",
-              width="617",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Patrick Kaeding</span>
-              <br><span class="u-text--muted">Security Engineer</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.<br/><br/>With enterprise-grade Ubuntu&nbsp;Pro support backed by Canonical's 10-year security maintenance commitment, we provide critical development infrastructure for some of the world's most famous brands.&rdquo;
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule is-fixed-width is-muted">
-      <div class="p-testimonial">
-        <div class="p-testimonial__logo">
-          <div class="u-pad-logo">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/865e7e2f-microsoft.png",
-              alt="",
-              width="441",
-              height="161",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-testimonial__author">
-            <p>
-              <span>Jon Rowland</span>
-              <br><span class="u-text--muted">Principal Group Software Engineering Manager<br/>Microsoft Azure for Operators</span>
-            </p>
-          </div>
-        </div>
-        <div class="p-testimonial__quote">
-          <p class="p-heading--4">
-            &ldquo;The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer's environment.<br/><br/> Using Ubuntu&nbsp;Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on.&rdquo;
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="row">
-    <hr class="p-rule">
-  </div>
-  <section class="p-strip is-deep">
+  <section class="p-section--shallow">
     <div class="row--50-50">
       <div class="col">
-        <h2>Looking to learn more</a></h2>
+        <h2>Enterprise</h2>
       </div>
       <div class="col">
-        <p class="p-heading--2 u-no-margin--bottom"><a href="https://discourse.ubuntu.com/t/ubuntu-pro-faq/34042">FAQ&nbsp;&rsaquo;</a></p>
-        <p class="p-heading--2"><a href="/pro/tutorial">Tutorial&nbsp;&rsaquo;</a></p>
+        <p>Try Ubuntu&nbsp;Pro for 30 days to find out what it can do for you.</p>
+        <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
       </div>
     </div>
   </section>
+  <section class="p-section--shallow">
+    <div class="row">
+      <hr class="p-rule is-muted">
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Personal</h2>
+      </div>
+      <div class="col">
+        <p>Anyone can use Ubuntu&nbsp;Pro for free on up to 5 machines, or 50 if you are <a href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member</a>.</p>
+        <a href="/pro/subscribe" class="p-button">Get Ubuntu&nbsp;Pro</a>
+      </div>
+    </div>
+  </section>
+  <section class="p-section--shallow">
+    <div class="row">
+      <hr class="p-rule is-muted">
+    </div>
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Education, Research, and Academia</h2>
+      </div>
+      <div class="col">
+        <p>Canonical offers Ubuntu&nbsp;Pro at a discount for approved institutions, such as schools, research and academia.</p>
+        <a href="/contact-us/form?product=pro" class="p-button">Contact for pricing</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip is-deep">
+  <div class="row u-vertically-center">
+    <div class="col-10">
+      <h2>Find out what Ubuntu&nbsp;Pro can do for you<br/><a href="/contact-us/form?product=pro">Talk to an expert&nbsp;&rsaquo;</a></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip u-no-padding--top">
+  <div class="row">
+    <h2 class="p-text--small-caps u-sv3">Used by professionals</h2>
+  </div>
+  <div class="p-testimonials">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d51581ba-tab.png",
+            alt="",
+            width="464",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Derry Cheng</span>
+            <br><span class="u-text--muted">Product Manager<br/>for Compute Engine</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;For the last decade, Google has partnered with Canonical to promote the adoption of open-source software.<br/><br/>By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1f1a50bd-tenable.png",
+            alt="",
+            width="376",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Robert Huber</span>
+            <br><span class="u-text--muted">Chief Security Officer</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts.<br/><br/>Ubuntu&nbsp;Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for trustworthy open source.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ed098196-nvidia.png",
+            alt="",
+            width="438",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Justin Boitano</span>
+            <br><span class="u-text--muted">Vice president<br/>of Enterprise Computing</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;Transformative innovations such as AI and deep learning are being put to work to unlock new levels of business automation.<br/><br/>With the introduction of Ubuntu&nbsp;Pro, enterprises will benefit from better security, support and long-term maintenance for thousands of open source libraries that are at the core of modern AI and data science workflows.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ee2d87f7-vmware.png",
+            alt="",
+            width="389",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Ajay Patel</span>
+            <br><span class="u-text--muted">GM and SVP<br/>Modern Apps & Cloud Management Business</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.<br/><br/>VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu&nbsp;Pro with VMware Tanzu, we can provide customers with a hardened, better, secure and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/9d82b026-acquia.png",
+            alt="",
+            width="297",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Robert Former</span>
+            <br><span class="u-text--muted">Chief Information Security Officer</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;Ubuntu&nbsp;Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers.<br/><br/>Canonical's transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ec8aae1a-emory.png",
+            alt="",
+            width="317",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>David A Gutman</span>
+            <br><span class="u-text--muted">MD PhD<br/>Associate Professor of Pathology</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;I manage my own compute cluster leveraging MAAS and other Canonical tools to support my research.<br/><br/>The open-source security patches delivered through Ubuntu&nbsp;Pro give my team peace of mind and ensure my servers are secure.<br/><br/>Canonical is continuously delivering timely CVE patches covering a broad portfolio of open-source applications for the entire ten-year lifetime of an Ubuntu LTS. This brings much needed stability and compliance.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f4651997-launchdarkly.png",
+            alt="",
+            width="617",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Patrick Kaeding</span>
+            <br><span class="u-text--muted">Security Engineer</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.<br/><br/>With enterprise-grade Ubuntu&nbsp;Pro support backed by Canonical's 10-year security maintenance commitment, we provide critical development infrastructure for some of the world's most famous brands.&rdquo;
+        </p>
+      </div>
+    </div>
+    <hr class="p-rule is-fixed-width is-muted">
+    <div class="p-testimonial">
+      <div class="p-testimonial__logo">
+        <div class="u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/865e7e2f-microsoft.png",
+            alt="",
+            width="441",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-testimonial__author">
+          <p>
+            <span>Jon Rowland</span>
+            <br><span class="u-text--muted">Principal Group Software Engineering Manager<br/>Microsoft Azure for Operators</span>
+          </p>
+        </div>
+      </div>
+      <div class="p-testimonial__quote">
+        <p class="p-heading--4">
+          &ldquo;The Telco industry demands high reliability, with many rounds of testing both during product development and before integration into the customer's environment.<br/><br/> Using Ubuntu&nbsp;Pro gives us the security, support and control over the product lifecycle that we need as the foundation to build our Metaswitch Clearwater products on.&rdquo;
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <hr class="p-rule">
+</div>
+<div class="p-strip is-deep">
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Looking to learn more</a></h2>
+    </div>
+    <div class="col">
+      <p class="p-heading--2 u-no-margin--bottom"><a href="https://discourse.ubuntu.com/t/ubuntu-pro-faq/34042">FAQ&nbsp;&rsaquo;</a></p>
+      <p class="p-heading--2"><a href="/pro/tutorial">Tutorial&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </div>
 {% endblock content %}
