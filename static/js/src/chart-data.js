@@ -158,6 +158,12 @@ export var serverAndDesktopReleases = [
     taskName: "23.04 (Lunar Lobster)",
     status: "INTERIM_RELEASE",
   },
+  {
+    startDate: new Date("2023-10-20T00:00:00"),
+    endDate: new Date("2024-07-20T00:00:00"),
+    taskName: "23.10 (Mantic Minotaur)",
+    status: "INTERIM_RELEASE",
+  },
 ];
 
 export var kernelReleases = [
@@ -1702,6 +1708,7 @@ export var smallReleaseNames = [
 ];
 
 export var desktopServerReleaseNames = [
+  "23.10 (Mantic Minotaur)",
   "23.04 (Lunar Lobster)",
   "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",

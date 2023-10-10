@@ -48,8 +48,12 @@ meta_copydoc %}
     <h2>Why choose Ubuntu for Desktop?</h2>
   </div>
   <div class="row">
-    <div class="col-6 u-vertically-center">
-      <h3>The developers' choice</h3>
+    <div class="col-6">
+      <h3 data-gtm-vis-recent-on-screen1014405_499="219" data-gtm-vis-first-on-screen1014405_499="219"
+        data-gtm-vis-total-visible-time1014405_499="100" data-gtm-vis-has-fired1014405_499="1">The developers’ choice
+      </h3>
+    </div>
+    <div class="col-6">
       <ul class="p-list">
         <li class="p-list__item is-ticked">Using Ubuntu Desktop provides a common platform for development, test, and
           production environments.
@@ -64,22 +68,14 @@ meta_copydoc %}
         <li class="p-list__item is-ticked">New Developer editions of Ubuntu Desktop are released every 6-months, with
           9-months of support and access to the latest kernel, libraries, and new upstream OS features.</li>
       </ul>
-      <p>
-        <a href="/about/release-cycle">The Ubuntu release cycle&nbsp;&rsaquo;</a>
+      <p data-gtm-vis-has-fired1014405_503="1">
+        <a href="/about/release-cycle">The Ubuntu release cycle&nbsp;›</a>
       </p>
     </div>
-    <div class="col-6 u-align--center u-vertically-center">
-      <div class="u-hide--small u-hide--medium">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/ff736e6a-Screenshot+2022-07-11+at+11.19.37+am.png",
-        alt="",
-        width="698",
-        height="164",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
-      </div>
+  </div>
+  <div class="row p-strip--light is-shallow ">
+
+    <div class="col-12 ">
       <div class="u-hide--small" id="server-desktop-eol"></div>
       <table class="u-hide--medium u-hide--large">
         <thead>
@@ -91,18 +87,6 @@ meta_copydoc %}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
-            <td>Apr 2010</td>
-            <td>Apr 2015</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
-            <td>Apr 2012</td>
-            <td>Apr 2017</td>
-            <td>Apr 2019</td>
-          </tr>
           <tr>
             <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
             <td>Apr 2014</td>
@@ -128,33 +112,25 @@ meta_copydoc %}
             <td>Apr 2030</td>
           </tr>
           <tr>
-            <td>20.10 (Groovy Gorilla)</td>
-            <td>Oct 2020</td>
-            <td>Jul 2021</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>21.04 (Hirsute Hippo)</td>
-            <td>Apr 2021</td>
-            <td>Jan 2022</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>21.10 (Impish Indri)</td>
-            <td>Oct 2021</td>
-            <td>Jul 2022</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
             <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
             <td>Apr 2022</td>
             <td>Apr 2027</td>
             <td>Apr 2032</td>
           </tr>
           <tr>
-            <td><strong>22.10 (Kinetic Kudu)</strong></td>
-            <td>Apr 2022</td>
+            <td>22.10 (Kinetic Kudu)</td>
+            <td>Oct 2022</td>
             <td>Jul 2023</td>
+          </tr>
+          <tr>
+            <td>23.04 (Lunar Lobster)</td>
+            <td>Apr 2023</td>
+            <td>Jan 2024</td>
+          </tr>
+          <tr>
+            <td>23.10 (Mantic Minotaur)</td>
+            <td>Oct 2023</td>
+            <td>Jul 2024</td>
           </tr>
         </tbody>
       </table>
@@ -536,24 +512,14 @@ meta_copydoc %}
   </div>
   <div class="u-fixed-width">
     <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Linux 6.2 kernel</li>
-      <li class="p-list__item is-ticked">GNOME 44 desktop environment
-        <ul>
-          <li>New quick settings UI for bluetooth devices and dark mode</li>
-        </ul>
-      </li>
-      <li class="p-list__item is-ticked">Up to date toolchains including .Net 7, Java 17, Go 1.20,
-        Rust 1.67, Python 3.11, GCC 12.3, Ruby 3.1</li>
-      <li class="p-list__item is-ticked">New installer built on Subiquity with a refreshed user experience</li>
-      <li class="p-list__item is-ticked">Snap refresh awareness for improved update management</li>
-      <li class="p-list__item is-ticked">Support for user authentication with Azure Active Directory</li>
-      <li class="p-list__item is-ticked">New ADsys features:
-        <ul>
-          <li>Winbind support in addition to SSSD</li>
-          <li>Group Policy Object support for network shares and app confinement</li>
-        </ul>
-      </li>
-      <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.5.2, Thunderbird 102.9.0 and Firefox 111</li>
+      <li class="p-list__item is-ticked">Linux 6.5 kernel</li>
+      <li class="p-list__item is-ticked">GNOME 45 desktop environment</li>
+      <li class="p-list__item is-ticked">New App Center for improved application discovery and management</li>
+      <li class="p-list__item is-ticked">Support for Active Directory certificate auto-enrollment in ADsys</li>
+      <li class="p-list__item is-ticked">Experimental support for hardware-backed full-disc encryption</li>
+      <li class="p-list__item is-ticked">Experimental support for guided ZFS install</li>
+      <li class="p-list__item is-ticked">Support for Raspberry Pi 5</li>
+      <li class="p-list__item is-ticked">Network Manager now uses Netplan as its default settings storage backend</li>
     </ul>
   </div>
   <div class="u-fixed-width">
