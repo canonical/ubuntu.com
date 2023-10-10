@@ -5,321 +5,298 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1XidZq045nJDM5vzfB5KJCpH3AqOERvPOeayuqUKfNso/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--light is-shallow">
-  <div class="row">
-    <div class="col-medium-6 col-9 col-start-large-4">
-      <div class="p-block">
-        <h1 class="u-no-margin--bottom">Ubuntu&nbsp;Pro</h1>
-        <p class="p-heading--2">The most comprehensive subscription<br class="u-hide--small"/> for open-source software security</p>
-        <p>30-day trial for enterprises. Always free for personal use.</p>
+<div class="p-strip--light u-no-padding--bottom">
+  <section class="p-section--shallow">
+    <div class="row">
+      <div class="col-medium-6 col-9 col-start-large-4">
+        <div class="p-block">
+          <h1 class="u-no-margin--bottom">Ubuntu&nbsp;Pro</h1>
+          <p class="p-heading--2">The most comprehensive subscription<br class="u-hide--small"/> for open-source software security</p>
+          <p>30-day trial for enterprises. Always free for personal use.</p>
+        </div>
+        <div class="row">
+          <hr class="is-muted">
+        </div>
+        <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
+        <!-- need to fix the dark button -->
+        <a href="/pro/subscribe" class="p-button" style="background-color: #262626; color: #fff;">Get Ubuntu&nbsp;Pro now</a>
       </div>
-      <div class="row">
-        <hr class="is-muted">
-      </div>
-      <a href="/contact-us/form?product=pro" class="p-button--positive">Talk to an expert</a>
-      <!-- need to fix the dark button -->
-      <a href="/pro/subscribe" class="p-button" style="background-color: #262626; color: #fff;">Get Ubuntu&nbsp;Pro now</a>
     </div>
-  </div>
-  <div class="p-suru"></div>
-</section>
-<div class="row">
-  <hr class="p-rule">
-</div>
-<section class="p-strip--light u-no-padding--top">
+    <div class="p-suru"></div>
+  </section>
   <div class="row">
-    <h2>Security and compliance on top of Ubuntu LTS:<br/>10 years of coverage for over 25,000 packages</h2>
+    <hr class="p-rule">
   </div>
-</section>
-<div class="row">
-  <hr class="p-rule">
-</div>
-<section class="p-section p-strip--light u-no-padding--top">
-  <div class="row--50-50">
-    <div class="col">
-      <div class="row">
-        <h2 class="p-text--small-caps u-sv2">For security Patching:</h2>
-        <div class="p-logo-section--dense">
-          <div class="p-logo-section__items u-sv3">
-            <div class="p-logo-section__item u-sv1">
+  <section class="p-section u-no-padding--top">
+    <div class="row">
+      <h2>Security and compliance on top of Ubuntu LTS:<br/>10 years of coverage for over 25,000 packages</h2>
+    </div>
+  </section>
+  <div class="row">
+    <hr class="p-rule">
+  </div>
+  <section class="p-section u-no-padding--top">
+    <div class="row--50-50">
+      <div class="col">
+        <div class="row">
+          <h2 class="p-text--small-caps u-sv2">For security Patching:</h2>
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items u-sv3">
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/93af6c88-rust logo.png",
+                  alt="",
+                  width="120",
+                  height="252",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/3b69f369-ruby-logo.png",
+                  alt="",
+                  width="104",
+                  height="252",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/bedc5d63-rabbitmq-logo.png",
+                  alt="",
+                  width="248",
+                  height="257",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/c2cd0bc4-php-logo.png",
+                  alt="",
+                  width="160",
+                  height="252",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class":"p-logo-section__logo"},
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
+                  alt="",
+                  width="172",
+                  height="252",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/a92957da-nginex logo.png",
+                  alt="",
+                  width="184",
+                  height="258",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/0e5bcec1-mysql logo.png",
+                  alt="",
+                  width="180",
+                  height="252",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/6cdc1a69-ansible logo.png",
+                  alt="",
+                  width="124",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/605af026-apache tomcat logo.png",
+                  alt="",
+                  width="204",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/5dbf023e-docker logo.png",
+                  alt="",
+                  width="244",
+                  height="245",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/933cc587-etcd logo.png",
+                  alt="",
+                  width="196",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/1f55452f-glusterfs logo.png",
+                  alt="",
+                  width="196",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/973c8e10-Frame 19.png",
+                  alt="",
+                  width="232",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/3ec28413-powerdns logo.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+               <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/7e68a46f-perl logo.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/35e5c439-puppet logo.png",
+                  alt="",
+                  width="236",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/2ad3b2ba-python logo.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/8279fc01-go logo.png",
+                  alt="",
+                  width="168",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/94f1e342-nagios logo.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/5b13a988-nginex logo-1.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
+                  alt="",
+                  width="196",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
               {{ image (
-                url="https://assets.ubuntu.com/v1/93af6c88-rust logo.png",
-                alt="",
-                width="120",
-                height="252",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/3b69f369-ruby-logo.png",
-                alt="",
-                width="104",
-                height="252",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/bedc5d63-rabbitmq-logo.png",
-                alt="",
-                width="248",
-                height="257",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/c2cd0bc4-php-logo.png",
-                alt="",
-                width="160",
-                height="252",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class":"p-logo-section__logo"},
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png",
-                alt="",
-                width="172",
-                height="252",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/a92957da-nginex logo.png",
-                alt="",
-                width="184",
-                height="258",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/0e5bcec1-mysql logo.png",
-                alt="",
-                width="180",
-                height="252",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/6cdc1a69-ansible logo.png",
-                alt="",
-                width="124",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/605af026-apache tomcat logo.png",
-                alt="",
-                width="204",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/5dbf023e-docker logo.png",
-                alt="",
-                width="244",
-                height="245",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/933cc587-etcd logo.png",
-                alt="",
-                width="196",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/1f55452f-glusterfs logo.png",
-                alt="",
-                width="196",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/973c8e10-Frame 19.png",
-                alt="",
-                width="232",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/3ec28413-powerdns logo.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-             <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/7e68a46f-perl logo.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/35e5c439-puppet logo.png",
-                alt="",
-                width="236",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/2ad3b2ba-python logo.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/8279fc01-go logo.png",
-                alt="",
-                width="168",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/94f1e342-nagios logo.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/5b13a988-nginex logo-1.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/56d8741e-node-logo.png",
-                alt="",
-                width="196",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk logo.png",
-              alt="",
-              width="240",
-              height="253",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/05c01589-redis logo.png",
-                alt="",
-                width="252",
-                height="253",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-sv1">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/850af73c-ruby-rails logo.png",
+                url="https://assets.ubuntu.com/v1/fa78f5b4-openjdk logo.png",
                 alt="",
                 width="240",
                 height="253",
@@ -328,88 +305,113 @@
                 attrs={"class": "p-logo-section__logo"}
                 ) | safe
               }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/05c01589-redis logo.png",
+                  alt="",
+                  width="252",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item u-sv1">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/850af73c-ruby-rails logo.png",
+                  alt="",
+                  width="240",
+                  height="253",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="row">
-        <h2 class="p-text--small-caps u-sv2">For compliance:</h2>
-      </div>
-      <div class="row">
-        <div class="col-3">
-          <ul class="p-list--divided u-no-margin--bottom">
-            <li class="p-list__item u-no-padding--bottom">Defence Information<br/>Systems Agency (DISA-STIG)</li>
-            <li class="p-list__item u-no-padding--bottom">FedRamp</li>
-            <li class="p-list__item u-no-padding--bottom">NIST</li>
-            <li class="p-list__item u-no-padding--bottom">Sarbanes-Oxley (SOX)</li>
-            <li class="p-list__item u-no-padding--bottom">HIPAA</li>
-            <li class="p-list__item u-no-padding--bottom">FISMA</li>
-          </ul>
+      <div class="col">
+        <div class="row">
+          <h2 class="p-text--small-caps u-sv2">For compliance:</h2>
         </div>
-        <div class="col-3">
-          <ul class="p-list--divided">
-            <li class="p-list__item u-no-padding--bottom">Center for Internet Security (CIS)</li>
-            <li class="p-list__item u-no-padding--bottom">Common Criteria</li>
-            <li class="p-list__item u-no-padding--bottom">PCI</li>
-            <li class="p-list__item u-no-padding--bottom">ISO 27001</li>
-            <li class="p-list__item u-no-padding--bottom">FIPS 140</li>
-            <li class="p-list__item u-no-padding--bottom">Cyber Essentials</li>
-          </ul>
+        <div class="row">
+          <div class="col-3">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item u-no-padding--bottom">Defence Information<br/>Systems Agency (DISA-STIG)</li>
+              <li class="p-list__item u-no-padding--bottom">FedRamp</li>
+              <li class="p-list__item u-no-padding--bottom">NIST</li>
+              <li class="p-list__item u-no-padding--bottom">Sarbanes-Oxley (SOX)</li>
+              <li class="p-list__item u-no-padding--bottom">HIPAA</li>
+              <li class="p-list__item u-no-padding--bottom">FISMA</li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="p-list--divided">
+              <li class="p-list__item u-no-padding--bottom">Center for Internet Security (CIS)</li>
+              <li class="p-list__item u-no-padding--bottom">Common Criteria</li>
+              <li class="p-list__item u-no-padding--bottom">PCI</li>
+              <li class="p-list__item u-no-padding--bottom">ISO 27001</li>
+              <li class="p-list__item u-no-padding--bottom">FIPS 140</li>
+              <li class="p-list__item u-no-padding--bottom">Cyber Essentials</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+  <div class="row">
+    <hr class="p-rule">
   </div>
-</section>
-<div class="row">
-  <hr class="p-rule">
-</div>
-<section class="p-strip--light u-no-padding--top">
-  <div class="row--50-50">
-    <div class="col">
-      <div class="row">
-        <h2>Peace of mind <br /> for your team</h2>
+  <section class="p-section u-no-padding--top">
+    <div class="row--50-50">
+      <div class="col">
+        <div class="row">
+          <h2>Peace of mind <br /> for your team</h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <p class="u-no-margin--bottom"><strong>Stability, security, and compliance for your operations.</strong></p>
+          <p class="u-no-margin--bottom">Reduce your average CVE exposure from 98 days to 1 on average*.</p>
+          <p>* <a href="https://go.snyk.io/state-of-open-source-security-report-2022-dwn-typ.html">According to Snyk</a> organisation need on average 97.8 days to fix a vulnerability. With Ubuntu&nbsp;Pro currently measured average time to fix for Critical CVE vulnerability fixes is less than 24h.</p>
+          <div class="row">
+            <div class="col-2 p-heading--2">
+              <strong>1,800+</strong>
+            </div>
+            <div class="col-4">
+              <p>additional high and critical patches<br/> only availiable with Ubuntu&nbsp;Pro</p>
+            </div>
+          </div>
+          <hr class="is-muted"/>
+          <div class="row">
+            <div class="col-2 p-heading--2">
+              <strong>10 years</strong>
+            </div>
+            <div class="col-4">
+              <p>of maintenance<br/>for the whole stack</p>
+            </div>
+          </div>
+          <hr class="is-muted"/>
+          <div class="row">
+            <div class="col-2 p-heading--2">
+              <strong>24/7</strong>
+            </div>
+            <div class="col-4">
+              <p>optional enterprise-grade<br/>support</p>
+            </div>
+          </div>
+          <p><a href="/pro/why-pro">Learn why security professionals choose Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a></p>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="row">
-        <p class="u-no-margin--bottom"><strong>Stability, security, and compliance for your operations.</strong></p>
-        <p class="u-no-margin--bottom">Reduce your average CVE exposure from 98 days to 1 on average*.</p>
-        <p>* <a href="https://go.snyk.io/state-of-open-source-security-report-2022-dwn-typ.html">According to Snyk</a> organisation need on average 97.8 days to fix a vulnerability. With Ubuntu&nbsp;Pro currently measured average time to fix for Critical CVE vulnerability fixes is less than 24h.</p>
-        <div class="row">
-          <div class="col-2 p-heading--2">
-            <strong>1,800+</strong>
-          </div>
-          <div class="col-4">
-            <p>additional high and critical patches<br/> only availiable with Ubuntu&nbsp;Pro</p>
-          </div>
-        </div>
-        <hr class="is-muted"/>
-        <div class="row">
-          <div class="col-2 p-heading--2">
-            <strong>10 years</strong>
-          </div>
-          <div class="col-4">
-            <p>of maintenance<br/>for the whole stack</p>
-          </div>
-        </div>
-        <hr class="is-muted"/>
-        <div class="row">
-          <div class="col-2 p-heading--2">
-            <strong>24/7</strong>
-          </div>
-          <div class="col-4">
-            <p>optional enterprise-grade<br/>support</p>
-          </div>
-        </div>
-        <p><a href="/pro/why-pro">Learn why security professionals choose Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
+  </section>
+  <div class="row">
+    <hr class="p-rule">
   </div>
-</section>
-<div class="row">
-  <hr class="p-rule">
 </div>
 <section class="p-strip--light is-deep">
   <div class="row u-vertically-center">
