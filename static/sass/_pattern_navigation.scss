@@ -1,5 +1,7 @@
 $row-margin-medium: 1.5rem;
 $row-margin-small: 1rem;
+$meganav-height: 3rem;
+
 
 @mixin ubuntu-p-navigation {
 
@@ -54,6 +56,10 @@ $row-margin-small: 1rem;
         @media (max-width: $breakpoint-navigation-threshold) {
           &>.p-navigation__item--dropdown-toggle > .p-navigation__link {
             padding-left: $row-margin-medium;
+
+            &::before {
+              left: $row-margin-medium;
+            }
           }
 
           .p-navigation__item--dropdown-toggle {
@@ -100,6 +106,10 @@ $row-margin-small: 1rem;
         @media (max-width: $breakpoint-medium) {
           &>.p-navigation__item--dropdown-toggle > .p-navigation__link {
             padding-left: $row-margin-small;
+
+            &::before {
+              left: $row-margin-small;
+            }
           }
 
           .p-navigation__link {
@@ -141,6 +151,7 @@ $row-margin-small: 1rem;
 
       .p-navigation__banner {
         padding-left: $row-margin-medium;
+        height: $meganav-height;
       }
     }
 
@@ -158,7 +169,12 @@ $row-margin-small: 1rem;
       }
 
       .p-navigation__dropdown {
-        height: 100vh;
+        height: calc(100vh - $meganav-height);
+        overflow: hidden;
+
+        &[aria-hidden="false"] {
+          overflow: unset;
+        }
       }
 
       .p-navigation__link--search-toggle::after {
@@ -203,6 +219,10 @@ $row-margin-small: 1rem;
       .p-navigation__item--dropdown-toggle {
         .p-navigation__account-name {
           @extend .p-navigation__dropdown-item;
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1.5rem + $row-margin-small);
+          }
 
           pointer-events: none;
 
@@ -293,9 +313,9 @@ $row-margin-small: 1rem;
   .p-navigation--sliding.has-menu-open {
     height: fit-content;
 
-    .p-navigation__row {
-      .p-navigation__nav {
-        background-color: transparent;
+    @media (max-width: $breakpoint-navigation-threshold) {
+      .row {
+        height: 100vh;
       }
     }
   }

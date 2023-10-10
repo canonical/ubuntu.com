@@ -16,7 +16,6 @@
     }
   }
 
-  // overlay
   .dropdown-window-overlay {
     @include vf-animation(opacity, brisk, out);
 
@@ -40,6 +39,10 @@
     overflow-y: auto;
     max-height: calc(100vh - 3rem);
     z-index: 11;
+  }
+
+  .p-navigation--sliding.is-reduced ~ .dropdown-window {
+    position: absolute;
   }
 
   .dropdown-window__content {
