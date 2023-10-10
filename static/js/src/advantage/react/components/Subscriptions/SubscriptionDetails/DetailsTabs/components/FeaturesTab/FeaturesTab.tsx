@@ -47,8 +47,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     EntitlementLabel[]
   >([]);
 
-  const changeReference = React.useRef<HTMLDivElement>(null);
-
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
     event: React.ChangeEvent<HTMLInputElement>
@@ -56,7 +54,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     const isChecked = !!event?.target?.checked;
     const entitlement = { ...featuresFormState[label], isChecked };
 
-    console.log(changeReference);
     if (features.included.includes(label)) {
       console.log("Included");
     }
@@ -93,7 +90,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       setHasUnsavedChanges(true);
       window.addEventListener("beforeunload", alertUser);
     }
-    changeReference.current?.scrollIntoView({"block":"center"});
     return () => {
       window.removeEventListener("beforeunload", alertUser);
     };
@@ -269,7 +265,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         </div>
       ) : null}
       {entitlementsToUpdate.length > 0 ? (
-        <div className="u-align--right" ref={changeReference}>
+        <div className="u-align--right">
           <div className="p-notification--caution">
             <div className="p-notification__content">
               <p className="p-notification__message" role="alert">
