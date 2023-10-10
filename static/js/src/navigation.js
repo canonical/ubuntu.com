@@ -88,17 +88,11 @@ document.addEventListener("global-nav-opened", () => {
 
 function updateMobileView() {
   if (window.innerWidth <= MOBILE_VIEW_BREAKPOINT) {
-    topLevelNavDropdowns.forEach((dropdown) => {
-      if (dropdown.classList.contains("is-active")) {
-        addClassesToElements([navigation], ["has-menu-open"]);
-      }
-    });
-  } else if (window.innerWidth >= MOBILE_VIEW_BREAKPOINT) {
-    if (secondaryNav) {
-      secondaryNav
-        .querySelector(".p-navigation__nav")
-        ?.classList.remove("is-open");
+    if (dropdownWindow.classList.contains("is-active")) {
+      closeDesktopDropdown();
     }
+  } else if (window.innerWidth >= MOBILE_VIEW_BREAKPOINT) {
+    closeMobileDropdown();
   }
 }
 
@@ -165,7 +159,7 @@ function updateNavMenu(dropdown, show) {
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
-    toggleDropdownWindowAnimation(show);
+    showDesktopDropdown(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
   } else {
@@ -233,7 +227,7 @@ function toggleDropdownContentVisibility(contentElement, show, delay = 0) {
   }
 }
 
-function toggleDropdownWindowAnimation(show) {
+function showDesktopDropdown(show) {
   dropdownWindow.classList.toggle("slide-animation", !show);
   dropdownWindowOverlay.classList.toggle("fade-animation", !show);
   toggleIsActiveState(dropdownWindow, show);
@@ -354,18 +348,16 @@ function closeNav() {
     searchButton.removeAttribute("aria-pressed");
   });
 
-  removeClassesFromElements(
-    [navigation, mainList],
-    ["has-menu-open", "is-active"]
-  );
-  deactivateMobileDropdownElements();
-  deactivateDesktopDropdownElements();
+  closeSharedContainers();
+  closeMobileDropdown();
+  closeDesktopDropdown();
 
   document.removeEventListener("keyup", keyPressHandler);
 }
 
-function deactivateDesktopDropdownElements() {
-  toggleDropdownWindowAnimation(false);
+function closeDesktopDropdown() {
+  showDesktopDropdown(false);
+
   [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
     if (!dropdownContent.classList.contains("u-hide")) {
       dropdownContent.classList.add("u-hide");
@@ -373,7 +365,7 @@ function deactivateDesktopDropdownElements() {
   });
 }
 
-function deactivateMobileDropdownElements(exception) {
+function closeMobileDropdown(exception) {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle"
   );
@@ -385,6 +377,13 @@ function deactivateMobileDropdownElements(exception) {
       toggleIsActiveState(listItem, false);
     }
   });
+}
+
+function closeSharedContainers() {
+  removeClassesFromElements(
+    [navigation, mainList],
+    ["has-menu-open", "is-active"]
+  );
 }
 
 function closeAll() {

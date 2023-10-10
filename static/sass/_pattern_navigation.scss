@@ -143,6 +143,10 @@ $meganav-height: 3rem;
       }
     }
 
+    .p-navigation__banner {
+      padding-left: 0;
+    }
+    
     @media (max-width: $breakpoint-navigation-threshold) {
       .p-navigation__nav {
         overflow-y: auto;
@@ -412,7 +416,6 @@ $meganav-height: 3rem;
 
     .p-navigation__banner {
       height: auto;
-      padding-left: 0;
 
       @media (max-width: $breakpoint-navigation-threshold) {
         padding-left: $row-margin-medium;
