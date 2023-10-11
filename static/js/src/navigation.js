@@ -63,8 +63,8 @@ mainList.addEventListener("click", function(e) {
   }
 })
 
-window.addEventListener("load", updateMobileView);
-window.addEventListener("resize", updateMobileView);
+window.addEventListener("load", closeAll);
+window.addEventListener("resize", closeAll);
 
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
@@ -85,16 +85,6 @@ document.addEventListener("global-nav-opened", () => {
 });
 
 // Event handler functions
-
-function updateMobileView() {
-  if (window.innerWidth <= MOBILE_VIEW_BREAKPOINT) {
-    if (dropdownWindow.classList.contains("is-active")) {
-      closeDesktopDropdown();
-    }
-  } else if (window.innerWidth >= MOBILE_VIEW_BREAKPOINT) {
-    closeMobileDropdown();
-  }
-}
 
 function toggleSecondaryMobileNavDropdown(event) {
   event.preventDefault();
@@ -347,8 +337,6 @@ function closeNav() {
   menuButtons.forEach((searchButton) => {
     searchButton.removeAttribute("aria-pressed");
   });
-
-  closeSharedContainers();
   closeMobileDropdown();
   closeDesktopDropdown();
 
@@ -357,7 +345,7 @@ function closeNav() {
 
 function closeDesktopDropdown() {
   showDesktopDropdown(false);
-
+  removeClassesFromElements([mainList], ["is-active"]);
   [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
     if (!dropdownContent.classList.contains("u-hide")) {
       dropdownContent.classList.add("u-hide");
@@ -365,10 +353,11 @@ function closeDesktopDropdown() {
   });
 }
 
-function closeMobileDropdown(exception) {
+function closeMobileDropdown() {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle"
   );
+  removeClassesFromElements([navigation, mainList], ["has-menu-open", "is-active"]);
   dropdownElements.forEach((dropdown) => {
     if (dropdown.classList.contains("is-active")) {
       toggleIsActiveState(dropdown, false);
@@ -377,13 +366,6 @@ function closeMobileDropdown(exception) {
       toggleIsActiveState(listItem, false);
     }
   });
-}
-
-function closeSharedContainers() {
-  removeClassesFromElements(
-    [navigation, mainList],
-    ["has-menu-open", "is-active"]
-  );
 }
 
 function closeAll() {
