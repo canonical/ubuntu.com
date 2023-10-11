@@ -134,35 +134,38 @@
     <div class="row">
       <div class="col-6 col-medium-3">
         <div class="p-section--shallow">
-          <h2>Certified for the Raspberry Pi</h2>
+          <h2>Certified <br>for the Raspberry Pi</h2>
         </div>
       </div>
       <div class="col-6 col-medium-3">
-        <p><a href="/certified">Certified devices</a> are tested for reliability and performance, ensuring you have the best
-          out-of-the-box Ubuntu experience. Ubuntu LTS releases are certified on select Raspberry Pi hardware.</p>
-          <h3>Ubuntu {{ releases.lts.full_version }} LTS</h3>
-          <p>The latest Long Term Supported release of Ubuntu with five years of security patching and maintenance until April
-            2027, extended to ten years with <a href="/pro">Ubuntu Pro</a>.</p>
-          <p>
-            <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-              class="p-button u-no-margin--bottom">Download Ubuntu Desktop 22.04.3 LTS</a>
-          <p><em>* Minimum 2GBs of RAM and 16GB storage required</em></p>
-          </p>
-          <p>
-            <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-              class="p-button">Download Ubuntu Server 22.04.3 LTS</a>
-          </p>
-          <hr class="p-rule is-fixed-width">
-          <h3>Ubuntu Core 22</h3>
-          <p>An immutable, strictly confined operating system designed for Internet of Things (IoT) use-cases with a focus on
-            security and simplified maintenance, supported until 2032.</p>
-          <p>
-            <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi"
-              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
-              class="p-button">Download Ubuntu Core 22</a>
-          </p>
+        <div class="p-section--shallow">
+          <p><a href="/certified">Certified devices</a> are tested for reliability and performance, ensuring you have the best
+            out-of-the-box Ubuntu experience. Ubuntu LTS releases are certified on select Raspberry Pi hardware.</p>
+        </div>
+        <hr class="p-rule is-fixed-width">
+        <h3 class="p-heading--5">Ubuntu {{ releases.lts.full_version }} LTS</h3>
+        <p>The latest Long Term Supported release of Ubuntu with five years of security patching and maintenance until April
+          2027, extended to ten years with <a href="/pro">Ubuntu Pro</a>.</p>
+        <p>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
+            class="p-button u-no-margin--bottom">Download Ubuntu Desktop 22.04.3 LTS</a>
+        <p><em>* Minimum 2GBs of RAM and 16GB storage required</em></p>
+        </p>
+        <p>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
+            class="p-button">Download Ubuntu Server 22.04.3 LTS</a>
+        </p>
+        <hr class="p-rule is-fixed-width">
+        <h3 class="p-heading--5">Ubuntu Core 22</h3>
+        <p>An immutable, strictly confined operating system designed for Internet of Things (IoT) use-cases with a focus on
+          security and simplified maintenance, supported until 2032.</p>
+        <p>
+          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
+            class="p-button">Download Ubuntu Core 22</a>
+        </p>
       </div>
     </div>
   </section>
@@ -346,85 +349,33 @@
   </section>
 
   <hr class="p-rule is-fixed-width">
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <div class="p-section--shallow">
-        <h2>Make something great today</h2>
-        <p>Check out these project ideas to help you get started.</p>
-      </div>
-    </div>
-    <div class="row p-divider">
-      <div class="col-3 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-              alt="",
-              width="231",
-              height="150",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Tutorial</h4>
-          </div>
-          <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
+  <section class="p-section--deep">
+    <div class="row">
+      <div class="col-6 col-medium-3">
+        <div class="p-section--shallow">
+          <h2>Make something great today</h2>
+          <p>Check out these project ideas to help you get started.</p>
         </div>
       </div>
-      <div class="col-3 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-              alt="",
-              width="231",
-              height="150",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Tutorial</h4>
-          </div>
-          <p><a href="/blog/common-sense-using-the-raspberry-pi-sense-hat-on-ubuntu-impish-indri">Common Sense &mdash; using the Raspberry Pi Sense HAT on Ubuntu Impish Indri</a></p>
-        </div>
-      </div>
-      <div class="col-3 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-              alt="",
-              width="231",
-              height="150",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Tutorial</h4>
-          </div>
-          <p><a href="/blog/homelab-clusters-lxd-micro-cloud-on-raspberry-pi">Homelab clusters: LXD micro cloud on Raspberry Pi</a></p>
-        </div>
-      </div>
-      <div class="col-3 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-              alt="",
-              width="231",
-              height="150",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Tutorial</h4>
-          </div>
-          <p><a href="https://maas.io/tutorials/build-your-own-bare-metal-cloud-using-a-raspberry-pi-cluster-with-maas#1-overview">Build your own bare metal cloud using a Raspberry Pi cluster with MAAS</a></p>
-        </div>
+    <div class="col-6 col-medium-3 row">
+      <ul class="p-list--divided has-bullets">
+        <li class="p-list__item">
+          <a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host
+            a Minecraft server on Ubuntu Desktop</a>
+        </li>
+        <li class="p-list__item">
+          <a href="/blog/common-sense-using-the-raspberry-pi-sense-hat-on-ubuntu-impish-indri">Common Sense &mdash; using
+            the Raspberry Pi Sense HAT on Ubuntu Impish Indri</a>
+        </li>
+        <li class="p-list__item">
+          <a href="/blog/homelab-clusters-lxd-micro-cloud-on-raspberry-pi">Homelab clusters: LXD micro cloud on Raspberry
+            Pi</a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://maas.io/tutorials/build-your-own-bare-metal-cloud-using-a-raspberry-pi-cluster-with-maas#1-overview">Build
+            your own bare metal cloud using a Raspberry Pi cluster with MAAS</a>
+        </li>
+      </ul>
       </div>
     </div>
   </section>
