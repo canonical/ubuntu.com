@@ -364,7 +364,9 @@ function closeMobileDropdown() {
     ".p-navigation__item--dropdown-toggle"
   );
   removeClassesFromElements([navigation, mainList], ["has-menu-open", "is-active"]);
-  toggleSecondaryMobileNavDropdown();
+  if (secondaryNav) {
+    toggleSecondaryMobileNavDropdown();
+  }
   dropdownElements.forEach((dropdown) => {
     if (dropdown.classList.contains("is-active")) {
       toggleIsActiveState(dropdown, false);

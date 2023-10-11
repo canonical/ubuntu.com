@@ -368,10 +368,14 @@ $meganav-height: 3rem;
       }
 
       .p-navigation__link {
-        padding-left: calc(1.5rem + $row-margin-small);
+        padding-left: calc(1rem + $row-margin-medium);
+
+        @media (max-width: $breakpoint-medium) {
+          padding-left: calc(1rem + $row-margin-small);
+        }
 
         &::before {
-          left: calc(1.5rem + $row-margin-small);
+          left: $row-margin-small;
         }
       }
     }
