@@ -2,9 +2,12 @@
 
 {% block title %}Get Ubuntu | Download{% endblock %}
 
-{% block meta_description %}Download Ubuntu desktop, Ubuntu Server, Ubuntu for Raspberry Pi and IoT devices, Ubuntu Core and all the Ubuntu flavours.  Ubuntu is an open-source software platform that runs everywhere from the PC to the server and the cloud.{% endblock %}
+{% block meta_description %}Download Ubuntu desktop, Ubuntu Server, Ubuntu for Raspberry Pi and IoT devices, Ubuntu Core
+and all the Ubuntu flavours. Ubuntu is an open-source software platform that runs everywhere from the PC to the server
+and the cloud.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1egsCcmFiz8czeHsvwoB9Jz815Ij5Urtf7Ngrru6Zd4o/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1egsCcmFiz8czeHsvwoB9Jz815Ij5Urtf7Ngrru6Zd4o/edit{% endblock
+meta_copydoc %}
 
 {% block meta_image %}https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg{% endblock %}
 
@@ -15,7 +18,8 @@
       <h1 class="p-heading--2 u-no-margin--bottom"><strong>Ubuntu downloads</strong></h1>
       <h2 class="u-no-padding--top u-text--muted">Ubuntu Desktop</h2>
       <p>
-        Fast, free and full of new features. The latest release of Ubuntu Desktop delivers new tools and enhancements for developers,
+        Fast, free and full of new features. The latest release of Ubuntu Desktop delivers new tools and enhancements
+        for developers,
         creators, gamers and administrators.
       </p>
       <p>
@@ -23,18 +27,19 @@
       </p>
       <p><a href="/download/desktop" class="p-button--positive">Download Ubuntu Desktop</a></p>
       <p>
-        <strong>Do you want to upgrade?</strong> <a href="/tutorials/tutorial-upgrading-ubuntu-desktop">Follow our simple guide</a>
+        <strong>Do you want to upgrade?</strong> <a href="/tutorials/tutorial-upgrading-ubuntu-desktop">Follow our
+          simple guide</a>
       </p>
     </div>
     <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/95ef22cd-mascots-lobster+jj.png",
-        alt="",
-        width="540",
-        height="230",
-        hi_def=True,
-        loading="auto"
-        ) | safe
+      url="https://assets.ubuntu.com/v1/e55bf8b8-mascots-minotaur+jj.png",
+      alt="",
+      width="540",
+      height="230",
+      hi_def=True,
+      loading="auto"
+      ) | safe
       }}
     </div>
   </div>
@@ -44,14 +49,14 @@
   <div class="row u-equal-height">
     <div class="col-1 u-hide--small u-vertically-center u-align--center">
       {{
-        image(
-        url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
-        alt="Ubuntu",
-        width="40",
-        height="40",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+      alt="Ubuntu",
+      width="40",
+      height="40",
+      hi_def=True,
+      loading="auto",
+      ) | safe
       }}
     </div>
     <div class="col-5 u-vertically-center">
@@ -62,14 +67,14 @@
     </div>
     <div class="col-1 u-hide--small u-vertically-center u-align--center">
       {{
-        image(
-        url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
-        alt="Windows",
-        width="40",
-        height="40",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
+      alt="Windows",
+      width="40",
+      height="40",
+      hi_def=True,
+      loading="auto",
+      ) | safe
       }}
     </div>
     <div class="col-5 u-vertically-center">
@@ -90,7 +95,8 @@
         </a>
       </h3>
       <p>
-        Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of free updates.
+        Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu
+        Server and its five years of free updates.
       </p>
     </div>
     <div class="col-6 u-sv3">
@@ -100,7 +106,8 @@
         </a>
       </h3>
       <p>
-        Ubuntu is the reference OS for OpenStack. Try <a href="/openstack/install">Canonical OpenStack</a> on a single machine or start building a production cloud on a cluster &mdash; just add servers.
+        Ubuntu is the reference OS for OpenStack. Try <a href="/openstack/install">Canonical OpenStack</a> on a single
+        machine or start building a production cloud on a cluster &mdash; just add servers.
       </p>
     </div>
   </div>
@@ -112,7 +119,8 @@
         </a>
       </h3>
       <p>
-        Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and settings, backed by the full Ubuntu archive for packages and updates.
+        Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and
+        settings, backed by the full Ubuntu archive for packages and updates.
       </p>
     </div>
     <div class="col-6 u-sv3">
@@ -122,7 +130,8 @@
         </a>
       </h3>
       <p>
-        Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.
+        Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and
+        devices.
       </p>
     </div>
   </div>
@@ -131,13 +140,16 @@
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Alternative downloads</h2>
-    <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional mirrors for our older (and newer) releases.</p>
+    <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our
+      network installer for older systems and special configurations and links to our regional mirrors for our older
+      (and newer) releases.</p>
     <p>
       <a href="/download/alternative-downloads" class="p-button">Alternative downloads</a>
     </p>
   </div>
 </section>
 
-{% with first_item="_download_enterprise_support", second_item="_download_documentation", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_download_enterprise_support", second_item="_download_documentation",
+third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
