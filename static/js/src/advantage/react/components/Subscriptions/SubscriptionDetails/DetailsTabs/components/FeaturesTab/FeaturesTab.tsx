@@ -66,7 +66,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       if (!entitlementsToUpdate.includes(label)) {
         setEntitlementsToUpdate([...entitlementsToUpdate, label]);
       }
-    
   };
 
   const handleOnCancel = () => {
