@@ -147,12 +147,6 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2022-10-20T00:00:00"),
-    endDate: new Date("2023-07-20T00:00:00"),
-    taskName: "22.10 (Kinetic Kudu)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2024-01-20T00:00:00"),
     taskName: "23.04 (Lunar Lobster)",
@@ -1710,7 +1704,6 @@ export var smallReleaseNames = [
 export var desktopServerReleaseNames = [
   "23.10 (Mantic Minotaur)",
   "23.04 (Lunar Lobster)",
-  "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
