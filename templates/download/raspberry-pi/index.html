@@ -60,48 +60,61 @@
     </div>
   </div>
 </section>
-
-<section class="p-strip is-shallow u-hide--small">
+<section class="p-strip--light is-shallow u-hide--small">
   <div class="row">
-    <div class="col-6 col-medium-3 u-vertically-center">
-      <h2>Ready for Raspberry Pi 5</h2>
+    <div class="col-6 col-medium-3">
+      <span class="p-text--x-small-capitalised u-no-margin--bottom">Ready for Raspberry Pi 5</span>
+      <h2>Ubuntu {{ releases.latest.full_version }}</h2>
     </div>
-    <div class="col-6 col-medium-3 u-vertically-center u-align--right">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/953685e6-raspberry-pi-5.png",
-        alt="",
-        width="300",
-        height="200",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+    <div class="col-6 col-medium-3 u-vertically-center u-align--right u-align-text--left">
+      <p>The Raspberry Pi 5 is supported on the latest development release of Ubuntu with nine months of support, until
+        July 2024.</p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
+          class="p-button u-no-margin--bottom">Download Ubuntu Desktop 23.10</a>
+      <p><em>* Minimum 4GBs of RAM required</em></p>
+      </p>
+      <p>
+        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
+          class="p-button">Download Ubuntu Server 23.10</a>
+      </p>
     </div>
   </div>
-</section>
-
-<section class="p-strip u-no-padding--top">
-  <div class="row u-vertically-center">
-    <div class="col-4 u-align--center u-hide--small u-hide--medium">
+  <div class="row u-vertically-center" style="background:rgba(0, 0, 0, 0.03)">
+    <div class="col-5 u-align--center u-hide--small u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/57a36cad-Minotaur_circular.png",
-        alt="",
-        width="250",
-        height="250",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      url="https://assets.ubuntu.com/v1/c9da3d62-Minotaur_circular-removebg-preview.png",
+      alt="",
+      width="250",
+      height="250",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
       }}
     </div>
-    <div class="col-8 col-start-large-5">
-      <h3>Ubuntu {{ releases.latest.full_version }}</h3>
-      <p>The Raspberry Pi 5 is supported on the latest development release of Ubuntu with nine months of support, until July 2024.</p>
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button u-no-margin--bottom">Download Ubuntu Desktop 23.10</a> <p><em>* Minimum 4GBs of RAM required</em></p>
-      </p>
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Server 23.10</a>
-      </p>
+    <div class="col-2 u-align--center u-hide--small u-hide--medium">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/8f006d42-plus.png",
+      alt="",
+      width="64",
+      height="64",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-5 col-medium-3 u-vertically-center u-align--right">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/953685e6-raspberry-pi-5.png",
+      alt="",
+      width="500",
+      height="350",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+      }}
     </div>
   </div>
 </section>
