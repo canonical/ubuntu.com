@@ -86,12 +86,18 @@ document.addEventListener("global-nav-opened", () => {
 
 // Event handler functions
 
-function toggleSecondaryMobileNavDropdown(event) {
-  event.preventDefault();
+function toggleSecondaryMobileNavDropdown(e) {
   const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
-  const isDropdownOpen = mobileNavDropdown.classList.contains("is-open");
+  const mobileNavDropdownToggle = secondaryNav.querySelector(".p-navigation__toggle--open");
+  let isDropdownOpen;
+  if (e && e.type == "click") {
+    e.preventDefault();
+    isDropdownOpen = mobileNavDropdown.classList.contains("is-open");
+  } else {
+    isDropdownOpen = true;
+  }
   mobileNavDropdown.classList.toggle("is-open", !isDropdownOpen);
-  this.classList.toggle("is-open", !isDropdownOpen);
+  mobileNavDropdownToggle.classList.toggle("is-open", !isDropdownOpen);
 }
 
 function handleDropdownClick(clickedDropdown) {
@@ -358,6 +364,7 @@ function closeMobileDropdown() {
     ".p-navigation__item--dropdown-toggle"
   );
   removeClassesFromElements([navigation, mainList], ["has-menu-open", "is-active"]);
+  toggleSecondaryMobileNavDropdown();
   dropdownElements.forEach((dropdown) => {
     if (dropdown.classList.contains("is-active")) {
       toggleIsActiveState(dropdown, false);
