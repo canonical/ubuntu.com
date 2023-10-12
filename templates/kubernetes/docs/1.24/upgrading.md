@@ -396,7 +396,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
 [docker2containerd]: /kubernetes/docs/upgrade-notes#1.15
-[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
+[juju-controller-upgrade]: https://juju.is/docs/juju/upgrade-models
 [bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->

@@ -182,8 +182,8 @@ For a more detailed guide, please refer to the [Juju high availability documenta
 
 <!-- LINKS -->
 
-[juju-ha]: https://juju.is/docs/olm/high-availability-juju-controller
-[juju-constraints]: https://juju.is/docs/olm/constraints
+[juju-ha]: https://juju.is/docs/juju/high-availability-juju-controller
+[juju-constraints]: https://juju.is/docs/juju/constraints
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

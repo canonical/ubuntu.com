@@ -136,7 +136,7 @@ const ResizeSummary = ({
         {preview ? (
           <>
             You will be charged{" "}
-            <b>{currencyFormatter.format(preview.amountDue / 100)}</b> when you
+            <b>{currencyFormatter.format(preview.total / 100)}</b> when you
             click Resize.
             <br />
           </>

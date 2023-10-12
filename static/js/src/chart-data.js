@@ -147,24 +147,38 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2022-10-20T00:00:00"),
-    endDate: new Date("2023-07-20T00:00:00"),
-    taskName: "22.10 (Kinetic Kudu)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2024-01-20T00:00:00"),
     taskName: "23.04 (Lunar Lobster)",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-10-20T00:00:00"),
+    endDate: new Date("2024-07-20T00:00:00"),
+    taskName: "23.10 (Mantic Minotaur)",
     status: "INTERIM_RELEASE",
   },
 ];
 
 export var kernelReleases = [
   {
-    startDate: new Date("2023-02-01T00:00:00"),
-    endDate: new Date("2027-04-01T00:00:00"),
+    startDate: new Date("2023-08-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
     taskName: "Ubuntu 22.04.3 LTS",
+    taskVersion: "6.2 kernel",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-04-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
+    taskName: "Ubuntu 23.04",
+    taskVersion: "",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-02-01T00:00:00"),
+    endDate: new Date("2023-07-01T00:00:00"),
+    taskName: "Ubuntu 22.04.2 LTS",
     taskVersion: "Kernel version",
     status: "LTS",
   },
@@ -436,7 +450,13 @@ export var kernelReleases2204 = [
   {
     startDate: new Date("2023-02-17T00:00:00"),
     endDate: new Date("2023-07-22T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2023-08-16T00:00:00"),
+    endDate: new Date("2024-02-18T00:00:00"),
+    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -907,7 +927,13 @@ export var kernelReleasesALL = [
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2023-08-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
+    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -1162,7 +1188,13 @@ export var kernelReleasesLTS = [
   {
     startDate: new Date("2023-02-01T00:00:00"),
     endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v5.19)",
+    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2023-08-01T00:00:00"),
+    endDate: new Date("2024-01-01T00:00:00"),
+    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -1358,7 +1390,7 @@ export var kubernetesReleases = [
     startDate: new Date("2019-12-17T00:00:00"),
     endDate: new Date("2020-09-30T00:00:00"),
     taskName: "Kubernetes 1.14",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-06-28T00:00:00"),
@@ -1370,7 +1402,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-04-13T00:00:00"),
     endDate: new Date("2020-12-16T00:00:00"),
     taskName: "Kubernetes 1.15",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-09-27T00:00:00"),
@@ -1382,7 +1414,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-09-30T00:00:00"),
     endDate: new Date("2021-04-15T00:00:00"),
     taskName: "Kubernetes 1.16",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2019-12-17T00:00:00"),
@@ -1394,7 +1426,7 @@ export var kubernetesReleases = [
     startDate: new Date("2020-12-16T00:00:00"),
     endDate: new Date("2021-09-01T00:00:00"),
     taskName: "Kubernetes 1.17",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-04-13T00:00:00"),
@@ -1406,7 +1438,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-04-15T00:00:00"),
     endDate: new Date("2021-12-15T00:00:00"),
     taskName: "Kubernetes 1.18",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-09-30T00:00:00"),
@@ -1418,7 +1450,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-09-01T00:00:00"),
     endDate: new Date("2022-05-06T00:00:00"),
     taskName: "Kubernetes 1.19",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2020-12-16T00:00:00"),
@@ -1430,7 +1462,7 @@ export var kubernetesReleases = [
     startDate: new Date("2021-12-15T00:00:00"),
     endDate: new Date("2022-09-01T00:00:00"),
     taskName: "Kubernetes 1.20",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-04-15T00:00:00"),
@@ -1442,7 +1474,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-05-06T00:00:00"),
     endDate: new Date("2022-12-15T00:00:00"),
     taskName: "Kubernetes 1.21",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-09-01T00:00:00"),
@@ -1454,7 +1486,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-08-23T00:00:00"),
     endDate: new Date("2023-05-03T00:00:00"),
     taskName: "Kubernetes 1.22",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2021-12-15T00:00:00"),
@@ -1466,7 +1498,7 @@ export var kubernetesReleases = [
     startDate: new Date("2022-12-15T00:00:00"),
     endDate: new Date("2023-08-23T00:00:00"),
     taskName: "Kubernetes 1.23",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-05-06T00:00:00"),
@@ -1478,7 +1510,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-05-03T00:00:00"),
     endDate: new Date("2023-12-06T00:00:00"),
     taskName: "Kubernetes 1.24",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-09-01T00:00:00"),
@@ -1490,7 +1522,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-08-23T00:00:00"),
     endDate: new Date("2024-05-03T00:00:00"),
     taskName: "Kubernetes 1.25",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-12-15T00:00:00"),
@@ -1502,7 +1534,7 @@ export var kubernetesReleases = [
     startDate: new Date("2023-12-15T00:00:00"),
     endDate: new Date("2024-08-23T00:00:00"),
     taskName: "Kubernetes 1.26",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2023-04-21T00:00:00"),
@@ -1514,7 +1546,7 @@ export var kubernetesReleases = [
     startDate: new Date("2024-04-21T00:00:00"),
     endDate: new Date("2024-12-06T00:00:00"),
     taskName: "Kubernetes 1.27",
-    status: "CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
 ];
 
@@ -1651,7 +1683,7 @@ export var openStackStatus = {
 
 export var kubernetesStatus = {
   CANONICAL_KUBERNETES_SUPPORT: "chart__bar--orange",
-  CANONICAL_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
+  CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
 };
 
 export var microStackStatus = {
@@ -1670,8 +1702,8 @@ export var smallReleaseNames = [
 ];
 
 export var desktopServerReleaseNames = [
+  "23.10 (Mantic Minotaur)",
   "23.04 (Lunar Lobster)",
-  "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
@@ -1681,6 +1713,8 @@ export var desktopServerReleaseNames = [
 
 export var kernelReleaseNames = [
   "Ubuntu 22.04.3 LTS",
+  "Ubuntu 23.04",
+  "Ubuntu 22.04.2 LTS",
   "Ubuntu 22.10",
   "Ubuntu 22.04.1 LTS",
   "Ubuntu 20.04.5 LTS",
@@ -1705,6 +1739,8 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "6.2 kernel",
+  "",
   "5.19 kernel",
   "",
   "5.15 kernel",
@@ -1732,7 +1768,8 @@ export var kernelVersionNames = [
 export var kernelReleaseNames2204 = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.3 LTS (v5.19)",
+  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v6.2)",
 ];
 
 export var kernelReleaseNames2004 = [
@@ -1798,7 +1835,8 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.3 LTS (v5.19)",
+  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v6.2)",
 ];
 
 export var kernelReleaseNamesLTS = [
@@ -1828,7 +1866,8 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.3 LTS (v5.19)",
+  "Ubuntu 22.04.2 LTS (v5.19)",
+  "Ubuntu 22.04.3 LTS (v6.2)",
 ];
 
 export var openStackReleaseNames = [

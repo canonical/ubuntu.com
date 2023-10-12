@@ -32,7 +32,6 @@ const UserInfoForm = ({ setError }: Props) => {
     touched,
     values,
     initialValues,
-    setFieldError,
     setFieldTouched,
     setFieldValue,
     isSubmitting,
@@ -98,59 +97,27 @@ const UserInfoForm = ({ setError }: Props) => {
           setIsButtonDisabled(false);
           document.querySelector("h1")?.scrollIntoView();
 
-          if (error instanceof Error)
-            if (error.message === "email_already_exists") {
-              setError(
-                <>
-                  An Ubuntu Pro account with this email address exists. Please{" "}
-                  <a href="/login">sign in</a> or <a href="/login">register</a>{" "}
-                  with your Ubuntu One account.
-                </>
-              );
-            } else if (error.message.includes("tax_id_invalid")) {
-              setFieldError(
-                "VATNumber",
-                "That VAT number is invalid. Check the number and try again."
-              );
-              setError(
-                <>That VAT number is invalid. Check the number and try again.</>
-              );
-            } else if (error.message.includes("tax_id_cannot_be_validated")) {
-              setFieldError(
-                "VATNumber",
-                "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
-              );
-              setError(
-                <>
-                  VAT number could not be validated at this time, please try
-                  again later or contact
-                  <a href="mailto:customersuccess@canonical.com">
-                    customer success
-                  </a>{" "}
-                  if the problem persists.
-                </>
-              );
-            } else {
-              const knownErrorMessage = getErrorMessage({
-                message: "",
-                code: error.message,
-              });
+          if (error instanceof Error) {
+            const knownErrorMessage = getErrorMessage({
+              message: "",
+              code: error.message,
+            });
 
-              // Tries to match the error with a known error code and defaults to a generic error if it fails
-              if (knownErrorMessage) {
-                setError(knownErrorMessage);
-              } else {
-                Sentry.captureException(error);
-                setError(
-                  <>
-                    Sorry, there was an unknown error with your credit card.
-                    Check the details and try again. Contact{" "}
-                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
-                    if the problem persists.
-                  </>
-                );
-              }
+            // Tries to match the error with a known error code and defaults to a generic error if it fails
+            if (knownErrorMessage) {
+              setError(knownErrorMessage);
+            } else {
+              Sentry.captureException(error);
+              setError(
+                <>
+                  Sorry, there was an unknown error with your credit card. Check
+                  the details and try again. Contact{" "}
+                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
+                  the problem persists.
+                </>
+              );
             }
+          }
         },
       }
     );

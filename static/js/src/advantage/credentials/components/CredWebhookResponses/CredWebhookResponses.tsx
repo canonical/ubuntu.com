@@ -20,7 +20,6 @@ type WebhookResponse = {
 const CredWebhookResponses = () => {
   const [searchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1");
-  console.log(page);
   const { data } = useQuery(["WebhookResponses"], async () => {
     return getFilteredWebhookResponses("4190", page);
   });
@@ -30,7 +29,6 @@ const CredWebhookResponses = () => {
     if (data && data["webhook_responses"]) {
       changeTableData(data["webhook_responses"]);
     }
-    console.log(data);
   }, [data]);
 
   return (

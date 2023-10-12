@@ -3,14 +3,17 @@ domain: ubuntu.com
 image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
 
 env:
+  - name: GOOGLE_CLOUD_DISABLE_GRPC
+    value: true
+
   - name: STORE_MAINTENANCE
     value: true
 
   - name: STORE_MAINTENANCE_START
-    value: 2023-03-18T21:00:00Z
+    value: 2023-10-02T03:00:00Z
 
   - name: STORE_MAINTENANCE_END
-    value: 2023-03-19T01:00:00Z
+    value: 2023-10-02T06:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -66,6 +69,31 @@ env:
     secretKeyRef:
       key: private-key
       name: google-service-account
+
+  - name: GOOGLE_DATASTORE_PROJECT_ID
+    secretKeyRef:
+      key: project-id
+      name: ubuntu-google-datastore
+
+  - name: GOOGLE_DATASTORE_EMAIL
+    secretKeyRef:
+      key: email
+      name: ubuntu-google-datastore
+
+  - name: GOOGLE_DATASTORE_PRIVATE_KEY
+    secretKeyRef:
+      key: private-key
+      name: ubuntu-google-datastore
+
+  - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+    secretKeyRef:
+      key: username
+      name: confidentiality-webhook
+
+  - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+    secretKeyRef:
+      key: password
+      name: confidentiality-webhook
 
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
@@ -197,6 +225,31 @@ production:
             key: private-key
             name: google-service-account
 
+        - name: GOOGLE_DATASTORE_PROJECT_ID
+          secretKeyRef:
+            key: project-id
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_EMAIL
+          secretKeyRef:
+            key: email
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: ubuntu-google-datastore
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+          secretKeyRef:
+            key: username
+            name: confidentiality-webhook
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+          secretKeyRef:
+            key: password
+            name: confidentiality-webhook
+
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
 
@@ -313,10 +366,10 @@ production:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-10-02T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-10-02T06:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -423,10 +476,10 @@ staging:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-10-02T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-10-02T06:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -482,6 +535,31 @@ staging:
       secretKeyRef:
         key: private-key
         name: google-service-account
+
+    - name: GOOGLE_DATASTORE_PROJECT_ID
+      secretKeyRef:
+        key: project-id
+        name: ubuntu-google-datastore
+
+    - name: GOOGLE_DATASTORE_EMAIL
+      secretKeyRef:
+        key: email
+        name: ubuntu-google-datastore
+
+    - name: GOOGLE_DATASTORE_PRIVATE_KEY
+      secretKeyRef:
+        key: private-key
+        name: ubuntu-google-datastore
+
+    - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+      secretKeyRef:
+        key: username
+        name: confidentiality-webhook
+
+    - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+      secretKeyRef:
+        key: password
+        name: confidentiality-webhook
 
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
@@ -615,6 +693,31 @@ staging:
           secretKeyRef:
             key: private-key
             name: google-service-account
+
+        - name: GOOGLE_DATASTORE_PROJECT_ID
+          secretKeyRef:
+            key: project-id
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_EMAIL
+          secretKeyRef:
+            key: email
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: ubuntu-google-datastore
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+          secretKeyRef:
+            key: username
+            name: confidentiality-webhook
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+          secretKeyRef:
+            key: password
+            name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
@@ -750,10 +853,10 @@ staging:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-10-02T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-10-02T06:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -820,14 +923,17 @@ staging:
 
 demo:
   env:
+    - name: GOOGLE_CLOUD_DISABLE_GRPC
+      value: true
+
     - name: STORE_MAINTENANCE
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-10-02T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-10-02T06:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:

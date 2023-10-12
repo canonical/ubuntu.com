@@ -30,6 +30,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_active-reveal";
+@import "pattern_ai";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
 @import "pattern_blog-post";
@@ -95,6 +96,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include blog-u-crop;
 @include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
+@include ubuntu-p-ai;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
@@ -456,6 +458,14 @@ summary {
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;
+  }
+}
+
+.u-pro-logo {
+  img {
+    height: 40px;
+    margin-top: 0.5rem;
+    width: auto;
   }
 }
 
@@ -835,78 +845,6 @@ html {
 
     button {
       margin-left: 1rem;
-    }
-  }
-}
-
-.p-testimonial {
-  @extend %fixed-width-container;
-
-  padding-bottom: $sph--x-large;
-  position: relative;
-
-  @supports (display: grid) {
-    display: grid;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-gap: 0 map-get($grid-gutter-widths, small);
-    grid-template-columns: repeat($grid-columns-small, minmax(0, 1fr));
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $grid-max-width;
-
-    @media (min-width: $breakpoint-x-small) {
-      grid-gap: 0 map-get($grid-gutter-widths, default);
-      grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-gap: 0 map-get($grid-gutter-widths, default);
-      grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
-    }
-  }
-
-  .p-testimonial__logo {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 1 / span 2;
-      grid-row: 2 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 2;
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 3;
-    }
-  }
-
-  .p-testimonial__author {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 3 / span 2;
-      grid-row: 2 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 1;
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 3;
-    }
-  }
-
-  .p-testimonial__quote {
-    @media (max-width: ($breakpoint-x-small - 1)) {
-      grid-column: 1 / span 4;
-      grid-row: 1 / span 1;
-    }
-
-    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
-      grid-column: auto / span 3;
-    }
-
-    @media (min-width: $breakpoint-small) {
-      grid-column: auto / span 6;
     }
   }
 }
@@ -1319,6 +1257,36 @@ hr.p-separator.is-shallow {
   background-color: #fff;
 }
 
+// XXX - New stuff not in Vanilla yet
+$color-link-visited-dark: #a679d2 !default;
+$color-link-dark: #69c !default;
+
+.is-graphite {
+  background: $colors--dark-theme--background-default;
+  color: $colors--dark-theme--text-default;
+
+  .inner-wrapper .p-card {
+    background: #222; // Unique color for this pattern
+    border: none;
+    color: $colors--dark-theme--text-default;
+  }
+
+  .p-checkbox__label {
+    color: $colors--dark-theme--text-default;
+  }
+}
+
+.is-graphite,
+.is-dark {
+  .inner-wrapper a:not([class^="p-button"]) {
+    color: $color-link-dark;
+
+    &:visited {
+      color: $color-link-visited-dark;
+    }
+  }
+}
+
 .p-image__background--3-2 {
   @extend .u-aspect-ratio--3-2;
 
@@ -1338,5 +1306,85 @@ hr.p-separator.is-shallow {
   .risc-v-image {
     height: 13rem;
     width: auto;
+  }
+}
+
+.is-paper__image--container {
+  background-color: rgba(0, 0, 0, 0.03);
+  display: flex;
+}
+
+.amd-container {
+  @extend .p-strip--light;
+  @extend .u-aspect-ratio--3-2;
+
+  margin-top: $spv--small;
+  padding-left: $spv--large;
+  padding-right: $spv--large;
+  @media screen and (min-width: $breakpoint-medium) {
+    .amd-image {
+      height: 13rem;
+      width: auto;
+    }
+  }
+}
+
+.p-list--divided.has-description {
+  .p-list__item {
+    @extend .p-heading--5;
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0.5rem !important;
+  }
+
+  p {
+    padding-left: 2rem;
+  }
+}
+
+.p-modal__dialog.is-paper {
+  max-width: $grid-max-width !important;
+
+  &.is-ai-modal {
+    .p-modal__close {
+      background-color: transparent;
+      margin-top: 1.5rem;
+      right: 1rem;
+      @media screen and (min-width: $breakpoint-medium) {
+        right: 1.5rem;
+      }
+    }
+
+    .modal-form .p-section--shallow:first-child > p {
+      padding-right: 0;
+      @media screen and (min-width: $breakpoint-small) {
+        padding-right: 2rem;
+      }
+    }
+  }
+}
+
+// XXX: @bartaz: this will be covered in Vanilla
+// can be removed once https://github.com/canonical/vanilla-framework/issues/4875 is done and released
+.p-logo-section.has-misaligned-images {
+  .p-logo-section__item {
+    margin-bottom: $spv--x-large;
+  }
+
+  .p-logo-section__logo {
+    max-height: 5rem;
+    // make sure image aspect ratio is kept
+    object-fit: contain;
+  }
+}
+
+// XXX: pete f: vanilla issue here -
+// https://github.com/canonical/vanilla-framework/issues/4877
+.p-divider {
+  .p-divider__block.no-divider {
+    &::before {
+      content: none;
+    }
   }
 }

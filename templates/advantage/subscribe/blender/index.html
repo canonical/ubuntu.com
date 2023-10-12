@@ -40,7 +40,6 @@
   };
 
   window.accountId = "{% if account %}{{ account.id }}{% endif %}";
-  window.isGuest = {% if account %}false{% else %}true{% endif %};
   window.isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
   window.isTrialling = false;
   window.accountName = "{% if account %}{{ account.name }}{% endif %}";

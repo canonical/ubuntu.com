@@ -2,7 +2,7 @@
 
 {% block title %}Ubuntu Expanded Security Maintenance | Security{% endblock %}
 
-{% block meta_description %}Expanded Security Maintenance provides ongoing Linux security fixes for Ubuntu for the Linux kernel and essential packages beyond the five-year basic maintenance window.{% endblock meta_description %}
+{% block meta_description %}Expanded Security Maintenance provides ongoing security fixes for Ubuntu, the Linux kernel and packages in Ubuntu repositories packages beyond the five-year basic maintenance window.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1RBZX3PJPvODxRlcnIS10Ii4SkIMH5Fm74EmsMQ0cnic/edit{% endblock meta_copydoc %}
 
@@ -523,28 +523,28 @@
             <td>Until 2026</td>
             <td>Until 2026</td>
             <td>yes</td>
-            <td>amd64, s390X</td>
+            <td>amd64, s390x</td>
           </tr>
           <tr>
             <td>Ubuntu 18.04 LTS (Bionic Beaver)</td>
             <td>Until 2028</td>
             <td>Until 2028</td>
             <td>yes</td>
-            <td>amd64, arm64, s390X, PowerPC</td>
+            <td>amd64, arm64, s390x, ppc64el</td>
           </tr>
           <tr>
             <td>Ubuntu 20.04 LTS (Focal Fossa)</td>
             <td>Until 2030</td>
             <td>Until 2030</td>
             <td>yes</td>
-            <td>amd64, arm64, s390X, PowerPC</td>
+            <td>amd64, arm64, s390x, ppc64el, RISC-V</td>
           </tr>
           <tr>
             <td>Ubuntu 22.04 LTS (Jammy Jellyfish)</td>
             <td>Until 2032</td>
             <td>Until 2032</td>
             <td>yes</td>
-            <td>amd64, arm64, s390X, PowerPC</td>
+            <td>amd64, arm64, s390x, ppc64el, RISC-V</td>
           </tr>
         </tbody>
       </table>
@@ -568,15 +568,23 @@
     <div class="row">
       <hr />
       <div class="col-6">
-        <h2>Ubuntu 16.04 LTS out of standard security maintenance</h2>
+        <h2>Ubuntu 18.04 LTS out of standard security maintenance</h2>
       </div>
       <div class="col-6">
-        <div class="jsBrightTALKEmbedWrapper">
-          <script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : "6793", "language": "en-US", "commId" : "453617", "displayMode" : "standalone" }</script>
-          <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
-        </div>
-        <p>Ubuntu 16.04 LTS Xenial Xerus moves out from the standard LTS security updates transitions to the expanded security maintenance (ESM) period in April 2021. Learn about the ESM period and six key considerations when assessing and planning your migration path.</p>
-        <a href="/engage/migrating-to-20.04" class="p-button">Watch the webinar</a>
+        <a href="https://www.linkedin.com/events/7051935059137703936/comments/">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f52739bc-18.04_LTS_End_of_Standard_Support.png",
+            alt="",
+            width="1350",
+            height="758",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "bordered-thumbnail"},
+            ) | safe
+          }}
+        </a>
+        <p>Ubuntu 18.04 LTS Bionic Beaver, one of the most popular Ubuntu releases, has reached the end of standard support. If you continue to run Ubuntu 18.04 LTS without ESM, you will not receive any security updates after 31 May 2023. Watch a webinar to explore your options.</p>
+        <a href="https://www.linkedin.com/events/7051935059137703936/comments/" class="p-button">Watch the webinar</a>
       </div>
     </div>
   </section>

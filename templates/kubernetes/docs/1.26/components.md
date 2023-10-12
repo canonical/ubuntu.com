@@ -37,7 +37,7 @@ Other information about this release can be found on the following pages:
 ## What's new
 
 For a list of new features, changes, deprecations, and bug fixes in this
-release, please see the [release notes](release-notes).
+release, please see the [Release notes](release-notes).
 
 ## Core charms
 
@@ -50,21 +50,19 @@ release. These charms are maintained by the Charmed Kubernetes team.
 | [containerd](https://charmhub.io/containerd) | Containerd container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-containerd.git) | [docs](https://charmhub.io/containerd/docs) | [bugs](https://bugs.launchpad.net/charm-containerd) |
 | [easyrsa](https://charmhub.io/easyrsa) | Deploys and manages EasyRSA to create a Certificate Authority (CA) | [source](https://github.com/charmed-kubernetes/layer-easyrsa.git) | [docs](https://charmhub.io/easyrsa/docs) | [bugs](https://bugs.launchpad.net/charm-easyrsa) |
 | [etcd](https://charmhub.io/etcd) | Deploy a TLS terminated ETCD Cluster | [source](https://github.com/charmed-kubernetes/layer-etcd.git) | [docs](https://charmhub.io/etcd/docs) | [bugs](https://bugs.launchpad.net/charm-etcd) |
-| [kata](https://charmhub.io/kata) | Kata untrusted container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-kata.git) | [docs](https://charmhub.io/kata/docs) | [bugs](https://bugs.launchpad.net/charm-kata) |
 | [kubeapi-load-balancer](https://charmhub.io/kubeapi-load-balancer) | Nginx Load Balancer | [source](https://github.com/charmed-kubernetes/charm-kubeapi-load-balancer.git) | [docs](https://charmhub.io/kubeapi-load-balancer/docs) | [bugs](https://bugs.launchpad.net/charm-kubeapi-load-balancer) |
 | [kubernetes-control-plane](https://charmhub.io/kubernetes-control-plane) | The Kubernetes control plane | [source](https://github.com/charmed-kubernetes/charm-kubernetes-control-plane.git) | [docs](https://charmhub.io/kubernetes-control-plane/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-control-plane) |
 | [kubernetes-worker](https://charmhub.io/kubernetes-worker) | The workload bearing units of a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-worker.git) | [docs](https://charmhub.io/kubernetes-worker/docs) | [bugs](https://bugs.launchpad.net/charm-kubernetes-worker) |
 
 
 ## CNI charms
-These are the CNI charms also supported by Charmed Kubernetes (Calico is the default CNI and is included in the core charms above)
+These are the CNI charms also supported by Charmed Kubernetes (Calico
+ is the default CNI and is included in the core charms above)
 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
-| [bird](https://charmhub.io/bird) | A dynamic IP routing daemon | [source](https://github.com/charmed-kubernetes/bird-operator.git) | [docs](https://charmhub.io/bird/docs) | [bugs](https://bugs.launchpad.net/charm-bird) |
 | [calico](https://charmhub.io/calico) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/layer-calico.git) | [docs](https://charmhub.io/calico/docs) | [bugs](https://bugs.launchpad.net/charm-calico) |
 | [canal](https://charmhub.io/canal) | A Software Defined Network based on Flannel and Calico | [source](https://github.com/charmed-kubernetes/layer-canal.git) | [docs](https://charmhub.io/canal/docs) | [bugs](https://bugs.launchpad.net/charm-canal) |
-| [coredns](https://charmhub.io/coredns) | The CoreDNS domain name service provider | [source](https://github.com/charmed-kubernetes/charm-coredns.git) | [docs](https://charmhub.io/coredns/docs) | [bugs](https://bugs.launchpad.net/charm-coredns) |
 | [flannel](https://charmhub.io/flannel) | A charm that provides a robust Software Defined Network | [source](https://github.com/charmed-kubernetes/charm-flannel.git) | [docs](https://charmhub.io/flannel/docs) | [bugs](https://bugs.launchpad.net/charm-flannel) |
 | [kube-ovn](https://charmhub.io/kube-ovn) | A Software Defined Network based on Kube-OVN | [source](https://github.com/charmed-kubernetes/charm-kube-ovn.git) | [docs](https://charmhub.io/kube-ovn/docs) | [bugs](https://bugs.launchpad.net/charm-kube-ovn) |
 | [multus](https://charmhub.io/multus) | a CNI plugin for attaching multiple network interfaces | [source](https://github.com/charmed-kubernetes/charm-multus.git) | [docs](https://charmhub.io/multus/docs) | [bugs](https://bugs.launchpad.net/charm-multus) |
@@ -96,10 +94,16 @@ These charms are also maintained and supported by the Charmed Kubernetes team to
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [aws-iam](https://charmhub.io/aws-iam) |  | [source](https://github.com/charmed-kubernetes/charm-aws-iam.git) | [docs](https://charmhub.io/aws-iam/docs)  | [bugs](https://bugs.launchpad.net/charm-aws-iam) |
+| [ceph-csi](https://charmhub.io/ceph-csi) | Deploys Container Storage Interface (CSI) plugin that
+enables Charmed Kubernetes to use ceph as a storage backend. | [source](https://github.com/charmed-kubernetes/ceph-csi-operator.git) | [docs](https://charmhub.io/ceph-csi/README.md)  | [bugs](https://bugs.launchpad.net/charm-ceph-csi) |
+| [coredns](https://charmhub.io/coredns) | The CoreDNS domain name service provider | [source](https://github.com/charmed-kubernetes/charm-coredns.git) | [docs](https://charmhub.io/coredns/docs)  | [bugs](https://bugs.launchpad.net/charm-coredns) |
 | [docker-registry](https://charmhub.io/docker-registry) | Registry for docker images | [source](https://github.com/CanonicalLtd/docker-registry-charm.git) | [docs](https://charmhub.io/docker-registry/docs)  | [bugs](https://bugs.launchpad.net/layer-docker-registry) |
+| [gatekeeper-audit](https://charmhub.io/gatekeeper-audit) | Audit charm for Gatekeeper audit | [source](https://github.com/charmed-kubernetes/opa-gatekeeper-operators.git) | [docs](https://charmhub.io/gatekeeper-audit/docs)  | [bugs](https://bugs.launchpad.net/opa-gatekeeper-operator) |
+| [gatekeeper-controller-manager](https://charmhub.io/gatekeeper-controller-manager) | Controller charm for Gatekeeper | [source](https://github.com/charmed-kubernetes/opa-gatekeeper-operators.git) | [docs](https://charmhub.io/gatekeeper-controller-manager/docs)  | [bugs](https://bugs.launchpad.net/opa-gatekeeper-operator) |
+| [kata](https://charmhub.io/kata) | Kata untrusted container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-kata.git) | [docs](https://charmhub.io/kata/docs)  | [bugs](https://bugs.launchpad.net/charm-kata) |
 | [keepalived](https://charmhub.io/keepalived) | Failover and monitoring daemon for LVS clusters | [source](https://github.com/charmed-kubernetes/charm-keepalived.git) | [docs](https://charmhub.io/keepalived/docs)  | [bugs](https://bugs.launchpad.net/charm-keepalived) |
-| [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs)  | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
-| [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs)  | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
+| [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs)  | [bugs](https://bugs.launchpad.net/kube-state-metrics-operator) |
+| [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-autoscaler) |
 | [kubernetes-e2e](https://charmhub.io/kubernetes-e2e) | End-to-end (e2e) tests for Kubernetes | [source](https://github.com/charmed-kubernetes/charm-kubernetes-e2e.git) | [docs](https://charmhub.io/kubernetes-e2e/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-e2e) |
 | [kubernetes-metrics-server](https://charmhub.io/kubernetes-metrics-server) | Exposes core Kubernetes metrics via metrics API | [source](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator.git) | [docs](https://charmhub.io/kubernetes-metrics-server/docs)  | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [metallb-controller](https://charmhub.io/metallb-controller) | Controller charm for the metallb loadbalancer | [source](https://github.com/charmed-kubernetes/metallb-operator.git) | [docs](https://charmhub.io/metallb-controller/docs)  | [bugs](https://bugs.launchpad.net/operator-metallb) |
@@ -140,7 +144,7 @@ These are the container images used by this release:
 -  dns/k8s-dns-kube-dns:1.22.13
 -  dns/k8s-dns-sidecar:1.22.13
 -  external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
--  k8s-artifacts-prod/ingress-nginx/controller:v1.2.0
+-  ingress-nginx/controller:v1.2.0
 -  k8scloudprovider/cinder-csi-plugin:v1.25.0
 -  k8scloudprovider/k8s-keystone-auth:v1.25.3
 -  k8scloudprovider/openstack-cloud-controller-manager:v1.25.0

@@ -52,7 +52,7 @@
     </div>
     <div class="col-6 col-medium-3">
       <p>
-        You can either <a href="/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure">migrate to the next LTS or upgrade to Ubuntu Pro</a> to expand your security maintenance.
+        You can either <a href="#nextLTS">migrate to the next LTS</a> or <a href="#upgradeToPro">upgrade to Ubuntu Pro</a> to expand your security maintenance.
       </p>
       <p>
         With Ubuntu Pro, the 18.04 LTS will be fully supported until 2028. Ubuntu Pro is free for personal and small-scale commercial use on up to 5 machines. Paid plans with transparent, per-machine pricing are available for large-scale deployments.
@@ -101,7 +101,7 @@
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-strip u-no-padding--top" id="nextLTS">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom" />
     <div class="col-6 col-medium-3">
@@ -133,6 +133,24 @@
       <h3 class="p-heading--5"><a href="/engage/migrating-to-20.04">Watch the 20.04 migration webinar&nbsp;&rsaquo;</a></h3>
       <p>
         This webinar explores all the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top" id="upgradeToPro">
+  <div class="row">
+    <hr class="is-muted u-no-margin--bottom" />
+    <div class="col-6 col-medium-3">
+      <h2>Upgrading to Ubuntu Pro</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Selecting the best method to obtain Ubuntu Pro on Azure depends on your needs and workload flexibility. Here are your main options:</p>
+      <p>Directly transition from Ubuntu Server to Ubuntu Pro within Azure without any downtime. This process requires just a few commands, and Azure takes care of the billing. For an in-depth guide, refer to our <a href="/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure">announcement.</a></p>
+      <p>For workloads that support regular redeployment, like in CI/CD setups, use the Ubuntu Pro images from the <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1">Azure Marketplace</a>. These images come preloaded with the latest security updates, ensuring a secure start. Plus, they seamlessly replace Ubuntu Server images in most deployment tools, such as Azure Image Builder, Terraform, and Packer.</p>
+      <p>
+        <a class="p-button--positive" href="/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure">Upgrade to Ubuntu Pro on Azure</a>
+        <a class="p-button" href="/azure/pro">Get started with Ubuntu Pro on Azure</a>
       </p>
     </div>
   </div>

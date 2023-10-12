@@ -1,0 +1,326 @@
+{% extends "ai/base_ai.html" %}
+
+{% block title %}Charmed MLflow{% endblock %}
+
+{% block meta_description %}MLflow is an open-source platform used for managing machine learning workflows{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1kafEsmi8OpaCD-WK4XnIBMgMStHUJNhM86nBN91e4ZI/edit{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block content %}
+
+<section class="p-strip is-shallow">
+  <div class="row--25-75">
+    <div class="col p-section--shallow">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/da0946e1-mlflow.png",
+        alt="MLflow",
+        width="94",
+        height="37",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+    <div class="col">
+      <div class="p-section-shallow">
+        <h1 class="u-no-margin--bottom u-no-padding--top">MLflow made easy</h1>
+        <p class="p-heading--2">A seamless start to your machine learning journey with open source</p>
+      </div>
+      <p>Charmed MFlow is a lightweight and secure machine learning platform for any developer. It can be deployed on your infrastructure of choice, and is backed by expert support.</p>
+      <a class="p-button--positive" href="https://documentation.ubuntu.com/charmed-mlflow">Install Charmed MLflow</a>
+      <a class="p-button js-invoke-modal" href="/ai/contact-us">Contact us</a>
+    </div>
+  </div>
+  <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+    <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt="" style="aspect-ratio: 5.1775700934579; width: 100%;">
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Get the features of<br class="u-hide--small">upstream MLflow</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>Charmed MLflow, Canonical's distribution of the upstream project, comes with all the upstream features, including:</p>
+      <div class="p-section--shallow">
+        <hr class="p-rule is-muted">
+        <ul class="p-list--divided has-description">
+          <li class="p-list__item has-bullet">Experiment tracking</li>
+          <p>Record and query experiments: code, data, config and results.</p>
+          <li class="p-list__item has-bullet">Reproducible projects</li>
+          <p>Package data science code in a format that enables reproducible runs on any platform.</p>
+          <li class="p-list__item has-bullet">Model registry</li>
+          <p>Store, annotate and manage models in a centralised repository.</p>
+          <li class="p-list__item has-bullet">Models deployment</li>
+          <p>Deploy machine learning models in diverse serving environments.</p>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section-shallow">
+        <h2>With the peace of mind of a secure and supported solution</h2>
+      </div>
+    </div>
+    <div class="col">
+      <p>In addition to upstream features, Charmed MLflow includes:</p>
+      <div class="p-section--shallow">
+        <hr class="p-rule is-muted">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Integration with machine learning and big data tools</li>
+          <li class="p-list__item is-ticked">Simplified deployment on any infrastructure</li>
+          <li class="p-list__item is-ticked">Security patching</li>
+          <li class="p-list__item is-ticked">Bug fixing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width">
+    <hr class="p-rule">
+    <p class="p-text--small-caps">Use Charmed MLflow with</p>
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e332a639-jupyter-logo.png",
+            alt="Jupiter",
+            width="129",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          <a href="/data/spark">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/4f123dc2-apache-spark-logo.png",
+              alt="Apache Spark",
+              width="150",
+              height="256",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
+        </div>
+        <div class="p-logo-section__item">
+          <a href="/ai/what-is-kubeflow">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/35962db5-kubeflow-logo.png",
+              alt="Kubeflow",
+              width="89",
+              height="256",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/33625a37-Grafana.png",
+            alt="Grafana",
+            width="111",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/53b0513c-prometheus.png",
+            alt="",
+            width="89",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          <a href="https://juju.is/">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8875229f-Juju-logo.png",
+              alt="Juju",
+              width="133",
+              height="256",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>Deploy easily on any infra, from workstations to public clouds</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-strip is-shallow">
+        <img src="https://assets.ubuntu.com/v1/b21b2f8a-ai-mlflow.svg" alt="MLflow">
+      </div>
+      <p>Run Charmed MLflow on any environment. The machine learning platform is made for everyone &ndash; from enthusiasts who are just getting started to enterprises running workloads at scale.</p>
+      <div class="p-section--shallow">
+        <hr class="p-rule is-muted">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Quickly deploy it on a workstation</li>
+          <li class="p-list__item is-ticked">Deploy on any CNCF-conformant Kubernetes</li>
+          <li class="p-list__item is-ticked">Run it on a public cloud</li>
+        </ul>
+        <a class="p-button" href="https://documentation.ubuntu.com/charmed-mlflow">Deploy Charmed MLflow on any infra</a>
+      </div>
+    </div>
+    <hr>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <p class="p-heading--2">
+      <a href="/ai">Why partner with Canonical for your enterprise AI project</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row--25-75 is-split-on-medium">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>MLflow services</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Managed services</h3>
+        </div>
+        <div class="col-6">
+          <div class="p-section--shallow">
+            <p>We manage your MLflow deployments on any cloud, including: automatically deploying, patching, optimising and upgrading with our open source operator.</p>
+            <hr class="p-rule is-muted">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Backed by a Service Level Agreement (SLA)</li>
+              <li class="p-list__item is-ticked">Low cost of ownership</li>
+              <li class="p-list__item is-ticked">Expert help in application operations</li>
+              <li class="p-list__item is-ticked">24/7 support included</li>
+            </ul>
+            <a class="js-invoke-modal" href="/ai/contact-us">Contact us&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Enterprise support</h3>
+        </div>
+        <div class="col-6">
+          <div class="p-section--shallow">
+            <p>We provide 24/7 phone and ticket support for your MLflow deployments on any environment with an Ubuntu Pro &plus; Support subscription.</p>
+            <hr class="p-rule is-muted">
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Backed by an SLA</li>
+              <li class="p-list__item is-ticked">Quickly resolve technical support issues</li>
+              <li class="p-list__item is-ticked">Expert help in applications operations, troubleshooting and bug fixes</li>
+            </ul>
+            <a class="js-invoke-modal" href="/support">Learn more about enterprise support&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <p class="p-heading--2">
+      <a href="/ai/consulting">Speed up your AI journey with our consulting services</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row--50-50">
+    <hr class="p-rule">
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2>MLflow resources</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p class="p-heading--5 u-no-margin--bottom">
+          <a href="https://documentation.ubuntu.com/charmed-mlflow">Charmed MLflow docs</a>
+        </p>
+        <p>Read more about Charmed MLflow's capabilities and follow our tutorials.</p>
+      </div>
+      <hr class="p-rule">
+      <div class="p-section--shallow">
+        <p class="p-heading--5 u-no-margin--bottom">
+          <a href="/engage/mlflow-introduction">Intro to MLflow</a>
+        </p>
+        <p>Understand the differences between the upstream project and Canonical's distribution.</p>
+      </div>
+      <hr class="p-rule">
+      <div class="p-section--shallow">
+        <p class="p-heading--5 u-no-margin--bottom">
+          <a href="/engage/kubeflow-vs-mlflow">Kubeflow vs. MLflow</a>
+        </p>
+        <p>Understand the differences between the most famous open source solutions.</p>
+      </div>
+      <hr class="p-rule">
+      <div class="p-section--shallow">
+        <p class="p-heading--5 u-no-margin--bottom">
+          <a href="/engage/mlops-guide">Guide to MLOps</a>
+        </p>
+        <p>Learn how to take models to production using open source MLOps platforms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--white is-deep">
+  <div class="u-fixed-width">
+    <p class="p-heading--2">Start your machine learning journey with open source</p>
+    <a class="p-button--positive" href="https://documentation.ubuntu.com/charmed-mlflow">Install Charmed MLflow</a>
+    <a class="p-button js-invoke-modal" href="/ai/contact-us">Contact us</a>
+  </div>
+</section>
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/ai" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+<script src="/static/js/src/ai-form.js"></script>
+{% endblock content %}
+    

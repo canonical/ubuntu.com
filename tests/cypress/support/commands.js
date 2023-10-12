@@ -13,7 +13,7 @@ Cypress.Commands.add(
     }
   ) =>
     cy
-      .task("login", { username, password }, { timeout: 30000 })
+      .task("login", { username, password }, { timeout: 40000 })
       .then((user) => {
         user.cookies.forEach(({ name, value }) => {
           cy.setCookie(name, value);

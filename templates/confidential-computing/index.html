@@ -1,0 +1,278 @@
+{% extends "confidential-computing/base_confidential-computing.html" %}
+
+{% block title %}Confidential Computing{% endblock %}
+{% block meta_description %}Protect data in use with confidential computing. Build the foundation of your
+privacy-enhancing technology strategy with Ubuntu confidential VMs on both public and private clouds.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit{% endblock %}
+
+{% block content %}
+<div class="is-paper">
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-section--shallow">
+          <h1 class="u-no-margin--bottom">Ubuntu for confidential computing</h1>
+          <p class="p-heading--2">
+            Protect your data in use,
+            <br class="u-hide--small u-hide--medium" />across public and private clouds.
+          </p>
+        </div>
+        <hr />
+        <a class="js-invoke-modal p-button--positive" href="/contact-us">Contact us to learn more</a>
+      </div>
+    </div>
+
+    <div class="u-fixed-width u-no-padding">
+      <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt=""
+        style="aspect-ratio: 5.177570093457944; width: 100%" />
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>How confidential VMs work</h2>
+      </div>
+      <div class="col">
+        <p>
+          Confidential VMs introduce a new trust boundary which only includes
+          the software running within, and the platform’s hardware. All other
+          software outside is no longer part of your trusted computing base.
+        </p>
+        <div class="p-image__background--3-2 u-align--center u-vertically-center">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
+            alt="Hypervisor diagram",
+            width="195",
+            height="282",
+            hi_def=True,
+            loading="lazy" ) | safe
+          }}
+        </div>
+        <p>
+          To provide such strong security guarantees, confidential computing
+          relies on two main primitives:
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <ol class="p-stepped-list--detailed">
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
+              </div>
+              <div class="col-6 col-medium-3">
+                <p>
+                  Confidential computing capable CPUs are equipped with an AES
+                  hardware memory encryption engine, which encrypts data when it is
+                  written to system memory, and decrypts it when read. The
+                  encryption key itself is stored in the hardware root of trust and
+                  is never exposed to the platform’s system software.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3 col-medium-3">
+                <h3 class="p-heading-icon__title p-heading--5">
+                  2. Remote attestation
+                </h3>
+              </div>
+              <div class="col-6 col-medium-3">
+                <p>
+                  When a confidential VM is launched, its integrity is verified and
+                  its initial code and data are measured by a hardware root of
+                  trust. This ensures they have not been tampered with. The
+                  measurement is cryptographically signed and can be attested to a
+                  remote verifier.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip u-no-padding--top">
+    <div class="row">
+      <div class="col-6 col-medium-6">
+        <h2>Enterprise-grade confidential VMs on all major public clouds</h2>
+      </div>
+      <div class="col-6 col-medium-6">
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
+                alt="Azure logo",
+                height="22",
+                width="22",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <ul class="p-list--divided u-no-margin--bottom">
+              <li class="p-list__item">
+                <a
+                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-focal?tab=Overview">AMD
+                  SEV SNP with Ubuntu 20.04 LTS on Azure</a>
+              </li>
+              <li class="p-list__item">
+                <a
+                  href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-confidential-vm-jammy">AMD
+                  SEV SNP with Ubuntu 22.04 LTS on Azure</a>
+              </li>
+              <li class="p-list__item">
+                <a
+                  href="https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9_qJVF-zyZCqvwR_iaG2EFUME1BT1hJN0I1VjhGWE9QNUJGREQ5QUlMNS4u">Intel
+                  TDX in private preview with 22.04 LTS on Azure</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
+                alt="Google Cloud logo",
+                height="22",
+                width="120",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a></p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            <p class="u-no-margin--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+                alt="AWS logo",
+                height="22",
+                width="36",
+                hi_def=True,
+                loading="lazy" ) | safe
+              }}
+            </p>
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="row">
+      <div class="col-12">
+        <p class="p-heading--2">
+          <a href="/engage/introduction-confidential-computing">Download our guide to confidential computing ›</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip u-no-padding--top">
+    <div class="row--50-50">
+      <div class="col">
+        <h2>A solid foundation of your zero trust strategy</h2>
+      </div>
+      <div class="col">
+        <p>
+          With confidential computing, you can remove the privileged systems
+          software from your trusted computing base, reduce your attack surface,
+          and get a remotely verifiable cryptographic guarantee before trusting
+          any platform with your data.
+        </p>
+        <p>
+          <a href="/blog/build-foundation-zero-trust-strategy-ubuntu-confidential-computing">Learn
+            more about zero trust and confidential computing ›</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip u-no-padding--top">
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Confidential computing in your private data centre</h2>
+      </div>
+      <div class="col">
+        <p>
+          Combine good data governance practices with the latest advances in
+          privacy-enhancing computation. Use confidential computing to protect
+          the confidentiality and integrity of the sensitive data hosted on your
+          on-premises servers, using hardware-rooted primitives beyond
+          traditional measures.
+        </p>
+        <p>
+          <a href="https://canonical.com/blog/why-do-you-also-need-confidential-computing-for-your-private-datacenter">Why
+            use confidential VMs in your private datacenter? ›</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Learn more about confidential computing</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item">
+            <a href="/blog/what-is-confidential-computing-a-high-level-explanation-for-cisos">What is
+              confidential computing? A high-level explanation for CISOs</a>
+          </li>
+          <li class="p-list__item">
+            <a
+              href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
+              computing in public clouds: isolation and remote
+              attestation explained</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
+              cyber security with Ubuntu Pro and confidential VMs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="p-strip--white is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a class="js-invoke-modal" href="/contact-us">Contact us to discuss your use case ›</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

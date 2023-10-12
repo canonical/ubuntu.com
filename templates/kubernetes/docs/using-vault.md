@@ -276,7 +276,7 @@ juju status vault
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io
-[expose]: https://juju.is/docs/olm/expose-a-deployed-application
+[expose]: https://juju.is/docs/juju/expose-a-deployed-application
 [hacluster]: https://charmhub.io/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-charm-unseal]: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#post-deployment-tasks

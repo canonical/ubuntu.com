@@ -10,12 +10,17 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
 )
 
+from webapp.shop.api.datastore import (
+    handle_confidentiality_agreement_submission,
+    has_filed_confidentiality_agreement,
+)
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+
 from werkzeug.exceptions import BadRequest
 
 from ...views import marketo_api
@@ -41,25 +46,48 @@ RESERVATION_STATES = {
 }
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+def confidentiality_agreement_webhook():
+    username = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME")
+    password = os.getenv("CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD")
+    authorization = flask.request.authorization
+    if (
+        not authorization
+        or authorization.username != username
+        or authorization.password != password
+    ):
+        return flask.jsonify({"message": "Invalid credentials."}), 403
+
+    email = flask.request.values.get("email").lower()
+    handle_confidentiality_agreement_submission(email)
+
+    return flask.jsonify({"message": "Webhook handled."}), 200
+
+
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
     ).get("productListings")
+    user_purchasing = False
+    enterprise_purchasing = False
     for product in available_products:
         if product.get("name") == "CUE Linux Essentials":
-            return flask.render_template(
-                "credentials/index.html", can_purchase=True
-            )
-    return flask.render_template("credentials/index.html", can_purchase=False)
+            user_purchasing = True
+        if product.get("name") == "CUE Activation Key":
+            enterprise_purchasing = True
+    return flask.render_template(
+        "credentials/index.html",
+        user_purchasing=user_purchasing,
+        enterprise_purchasing=enterprise_purchasing,
+    )
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
     sign_up_open = False
     return flask.render_template(
@@ -351,6 +379,13 @@ def cred_assessments(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_exam(trueability_api, **_):
+    email = flask.session["openid"]["email"].lower()
+    if (
+        not flask.current_app.debug
+        and not has_filed_confidentiality_agreement(email)
+    ):
+        return flask.render_template("credentials/exam-no-agreement.html"), 403
+
     assessment_id = flask.request.args.get("id")
     assessment = trueability_api.get_assessment(assessment_id)
 
@@ -367,7 +402,7 @@ def cred_exam(trueability_api, **_):
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cred", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
@@ -665,7 +700,7 @@ def get_my_issued_badges(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="guest", response="json")
+@shop_decorator(area="cred", response="json")
 def issue_badges(trueability_api, credly_api, **kwargs):
     webhook_response = flask.request.json
     api_key = flask.request.headers.get("X-API-KEY")
@@ -708,3 +743,24 @@ def issue_badges(trueability_api, credly_api, **kwargs):
             return (flask.jsonify(new_badge), 500)
     # 403 Forbidden. Request was valid but the server is refusing action
     return flask.jsonify({"status": "badge_not_issued"}), 403
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cue_products(ua_contracts_api, type, **kwargs):
+    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+        "productListings"
+    )
+    filtered_products = [
+        {
+            "id": listing["productID"],
+            "longId": listing["id"],
+            "period": listing["period"],
+            "marketplace": listing["marketplace"],
+            "name": listing["name"],
+            "price": listing["price"],
+        }
+        for listing in listings
+        if (listing["productID"].endswith("key") and type == "keys")
+        or (type == "exam")
+    ]
+    return flask.jsonify(filtered_products)

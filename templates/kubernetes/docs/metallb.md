@@ -46,6 +46,49 @@ on a single node.
   </div>
 </div>
 
+## Preparation
+
+Before deploying MetalLB, it is recommended to configure kube-proxy to use IPVS
+proxy mode with strict ARP enabled.
+
+### New clusters
+
+It is easiest to configure IPVS proxy mode when deploying Charmed Kubernetes, by
+creating a bundle overlay with the following command:
+
+```bash
+cat > overlay-ipvs.yaml << EOF
+applications:
+  kubernetes-control-plane:
+    options:
+      proxy-extra-config: '{mode: ipvs, ipvs: {strictARP: true}}'
+  kubernetes-worker:
+    options:
+      proxy-extra-config: '{mode: ipvs, ipvs: {strictARP: true}}'
+EOF
+```
+
+Then, to deploy Charmed Kubernetes with the overlay:
+
+```bash
+juju deploy charmed-kubernetes --overlay overlay-ipvs.yaml
+```
+
+### Existing clusters
+
+For existing clusters, this configuration can be set by using the `juju config`
+command:
+
+```bash
+juju config kubernetes-control-plane proxy-extra-config='{mode: ipvs, ipvs: {strictARP: true}}'
+juju config kubernetes-worker proxy-extra-config='{mode: ipvs, ipvs: {strictARP: true}}'
+```
+
+However, when changing proxy modes, kube-proxy will leave behind old iptables
+rules that are no longer valid. To clean up the old rules, you must wait until
+the kubernetes-control-plane and kubernetes-worker units have finished
+processing the config change. Then, reboot the Kubernetes host machines.
+
 ## Deployment
 
 ### Layer 2 mode
@@ -101,7 +144,7 @@ metallb/0*  active    idle   192.168.0.15
 
 To exit the screen with `juju status --watch 1s`, enter `Ctrl+c`.
 If you want to further inspect Juju logs, can watch for logs with `juju debug-log`.
-More info on logging at [juju logs](https://juju.is/docs/olm/juju-logs).
+More info on logging at [juju logs](https://juju.is/docs/juju/juju-logs).
 
 #### Configuration
 
