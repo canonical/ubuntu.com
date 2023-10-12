@@ -116,7 +116,6 @@ describe("DetailsTabs", () => {
     const docsLinks = wrapper.find("[data-test='doc-link']");
     expect(docsLinks.length).toBe(11);
     expect(docsLinks.at(0).text()).toBe("Knowledge Base");
-
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
