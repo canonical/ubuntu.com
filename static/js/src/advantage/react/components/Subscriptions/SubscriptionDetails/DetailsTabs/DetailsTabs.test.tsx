@@ -37,9 +37,7 @@ describe("DetailsTabs", () => {
         setHasUnsavedChanges={jest.fn()}
       />
     );
-    expect(wrapper.find("[data-test='docs-content']").exists()).toBe(
-      true
-    );
+    expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
   });
 
   it("hides the feature content tab is there are not entitlements", () => {
