@@ -162,7 +162,6 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
       {isTokenVisible ? <SubscriptionToken /> : null}
       <DetailsTabs
         subscription={subscription}
-        token={token}
         setHasUnsavedChanges={setHasUnsavedChanges}
       />
     </div>

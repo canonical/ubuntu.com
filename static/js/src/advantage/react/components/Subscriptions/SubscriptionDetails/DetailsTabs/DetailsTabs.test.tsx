@@ -3,7 +3,6 @@ import { mount as enzymeMount } from "enzyme";
 
 import DetailsTabs from "./DetailsTabs";
 import {
-  contractTokenFactory,
   freeSubscriptionFactory,
   userSubscriptionEntitlementFactory,
   userSubscriptionFactory,
@@ -31,14 +30,14 @@ describe("DetailsTabs", () => {
     });
   });
 
-  it("defaults to the features tab if there are entitlements", () => {
+  it("defaults to the docs tab always", () => {
     const wrapper = mount(
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
       />
     );
-    expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
+    expect(wrapper.find("[data-test='docs-content']").exists()).toBe(
       true
     );
   });
@@ -63,10 +62,10 @@ describe("DetailsTabs", () => {
         setHasUnsavedChanges={jest.fn()}
       />
     );
-    expect(wrapper.find("[data-test='docs-content']").exists()).toBe(false);
-    wrapper.find("[data-test='docs-tab']").simulate("click");
-    wrapper.update();
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
+    wrapper.find("[data-test='features-tab']").simulate("click");
+    wrapper.update();
+    expect(wrapper.find("[data-test='docs-content']").exists()).toBe(false);
   });
 
   it("only displays one link to livepatch docs", () => {
@@ -91,8 +90,8 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(1);
-    expect(docsLinks.at(0).text()).toBe("Livepatch");
+    expect(docsLinks.length).toBe(11);
+    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
   });
 
   it("only displays one link to ESM docs", () => {
@@ -117,8 +116,8 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.length).toBe(1);
-    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro (esm-apps) tutorial");
+    expect(docsLinks.length).toBe(11);
+    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
@@ -155,24 +154,23 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro (esm-apps) tutorial");
-    expect(docsLinks.at(1).text()).toBe("Livepatch");
-    expect(docsLinks.at(2).text()).toBe("FIPS setup instructions");
-    expect(docsLinks.at(3).text()).toBe("CC-EAL2 setup instructions");
-    expect(docsLinks.at(4).text()).toBe("CIS setup instructions");
+    expect(docsLinks.at(0).text()).toBe("Knowledge Base");
+    expect(docsLinks.at(1).text()).toBe("Ubuntu Assurance Program");
+    expect(docsLinks.at(2).text()).toBe("Ubuntu Pro network requirements");
+    expect(docsLinks.at(3).text()).toBe("ESM");
+    expect(docsLinks.at(4).text()).toBe("USG ");
   });
 
   it("Display tutorial link for the free subscription", () => {
     const wrapper = mount(
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
-        token={contractTokenFactory.build()}
         setHasUnsavedChanges={jest.fn()}
       />
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("Ubuntu Pro (esm-apps) tutorial");
+    expect(docsLinks.at(0).text()).toBe("ESM");
   });
 });
