@@ -8,6 +8,7 @@ import {
 } from "./cve-search.js";
 
 const searchInput = document.querySelector("#q");
+const searchForm = document.querySelector("#searchForm");
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -63,15 +64,14 @@ function handleCveIdInput(value) {
 handleCveIdInput(searchInput.value);
 
 function handleSearchInput(event) {
+  if (event.key === "Enter"){
+    searchForm.submit();
+  }else{
   handleCveIdInput(event.target.value);
+  }
 }
 
 searchInput.addEventListener("keyup", handleSearchInput);
-
-searchForm.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent the default form submission
-  handleCveIdInput(searchInput.value);
-});
 
 attachEvents();
 handleButtons();
