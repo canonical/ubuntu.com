@@ -64,7 +64,17 @@ mainList.addEventListener("click", function(e) {
 })
 
 window.addEventListener("load", closeAll);
-window.addEventListener("resize", closeAll);
+let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
+window.addEventListener("resize", function() {
+  // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
+  const currentViewportWidth = window.innerWidth;
+  const isBelowSpecificWidth = currentViewportWidth < MOBILE_VIEW_BREAKPOINT;
+  if (wasBelowSpecificWidth !== isBelowSpecificWidth) {
+    closeAll();
+  }
+  wasBelowSpecificWidth = isBelowSpecificWidth;
+});
+
 
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
@@ -397,9 +407,7 @@ function openMenu(e) {
 
 // Setup and functions for navigaiton search
 function initNavigationSearch() {
-  searchButtons.forEach((searchButton) => {
-    searchButton.addEventListener("click", toggleSearch);
-  });
+  searchButtons.forEach((searchButton) => searchButton.addEventListener("click", toggleSearch));
 
   searchOverlay.addEventListener("click", toggleSearch);
 
