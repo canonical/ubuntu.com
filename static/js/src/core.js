@@ -11,4 +11,8 @@ createNav({
 // Initalise the cookie policy notification.
 cookiePolicy();
 
-createNav({ breakpoint: 1150 });
+createNav({
+  breakpoint: 1150,
+  mobileContainerSelector: ".global-nav-mobile",
+  desktopContainerSelector: ".global-nav-desktop",
+});

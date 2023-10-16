@@ -1,11 +1,10 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
-<a href="#main-content" class="p-link--skip">Jump to main content</a>
-<header id="navigation" class="p-navigation is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   {% block header_banner %}
-  <div class="p-navigation__row">
-    <div class="p-navigation__banner">
+  <div class="row">
+    <div class="p-navigation__banner col-3">
       <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}u-no-padding--left {% elif breadcrumbs == 'tutorials' %}u-no-padding--left{% endif %}" href="/">
+        <a class="p-navigation__link" href="/">
           {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
           Canonical Ubuntu
           {% elif breadcrumbs == "tutorials" %}
@@ -20,7 +19,7 @@
       </div>
       <ul class="p-navigation__items">
         <li class="p-navigation__item">
-          <button class="js-search-button p-navigation__link--search-toggle">
+          <button class="js-search-button p-navigation__link--search-toggle" aria-label="Search">
           </button>
         </li>
         <li class="p-navigation__item">
@@ -28,35 +27,28 @@
         </li>
       </ul>
     </div>
-    <nav class="p-navigation__nav js-show-nav u-hide" aria-label="Categories">
+    <nav class="p-navigation__nav col-9 js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseover="fetchDropdown(event, '/templates/meganav/products', 'products-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#products-content" onfocus="fetchDropdown(event, '/templates/meganav/products', 'products-content');">Products</a>
-          <div class="u-hide dropdown-content-mobile" id="products-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" data-id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
+          <button class="p-navigation__link" href="#products-content" aria-controls="#products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products'); this.onfocus = null">Products</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseover="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#use-case-content" onfocus="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content');">Use Case</a>
-          <div class="u-hide dropdown-content-mobile" id="use-case-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" data-id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
+          <button class="p-navigation__link" href="#use-case-content" aria-controls="#use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case'); this.onfocus = null">Use cases</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseover="fetchDropdown(event, '/templates/meganav/support', 'support-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#support-content" onfocus="fetchDropdown(event, '/templates/meganav/support', 'support-content');">Support</a>
-          <div class="u-hide dropdown-content-mobile" id="support-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" data-id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
+          <button class="p-navigation__link" href="#support-content" aria-controls="#support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support'); this.onfocus = null">Support</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown(event, '/templates/meganav/community', 'community-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown(event, '/templates/meganav/community', 'community-content');">Community</a>
-          <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" data-id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
+          <button class="p-navigation__link" href="#community-content" aria-controls="#community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community'); this.onfocus = null">Community</button>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
-          <div class="u-hide dropdown-content-mobile" id="get-ubuntu-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" data-id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
+          <button class="p-navigation__link" href="#get-ubuntu-content" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu'); this.onfocus = null">Get Ubuntu</button>
         </li>
-      </ul>
-      <ul class="p-navigation__items global-nav">
+        <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical" data-id="all-canonical"></li>
+        <li class="p-navigation__item--dropdown-toggle js-account" role="menuitem" id="canonical-login" data-id="canonical-login"></li>
         <li class="p-navigation__item">
-          <button href="#" class="js-search-button p-navigation__link--search-toggle">
-          </button>
+          <button href="#" class="js-search-button p-navigation__link--search-toggle"></button>
         </li>
-        <li class="p-navigation__user js-account" id="canonical-login"></li>
       </ul>
       <div class="p-navigation__search">
         <form action="/search" class="p-search-box">
@@ -77,12 +69,13 @@
   <div class="u-hide dropdown-content-desktop" id="support-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
   <div class="u-hide dropdown-content-desktop" id="get-ubuntu-content"></div>
+  <div class="u-hide dropdown-content-desktop global-nav-desktop" id="all-canonical-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
 {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
 <div id="secondary-navigation" class="p-navigation is-secondary is-dark">
-  <div class="p-navigation__row">
-    <div class="p-navigation__banner">
+  <div class="row">
+    <div class="p-navigation__banner col-3">
       <div class="p-navigation__tagged-logo">
         <a class="p-navigation__link" href="{{ breadcrumbs.section.path }}">
           <div class="p-navigation__logo-tag">
@@ -98,7 +91,7 @@
       {% endif %}
     </div>
 
-    <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
+    <nav class="p-navigation__nav col-9" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
       {% if breadcrumbs.children %}
       <ul class="p-navigation__items">
         {% for child in breadcrumbs.children %}
@@ -138,266 +131,3 @@
 </div>
 {% endif %}
 {% endif %}
-<script>
-  const nav = document.querySelector('.js-show-nav');
-  const currentBubble = window.location.pathname.split('/')[1]
-  const skipLink = document.querySelector('.p-link--skip');
-  const reducedNav = document.querySelector('.p-navigation.is-reduced ')
-
-  nav.classList.remove('u-hide')
-
-  checkTopNav();
-
-  document.addEventListener('wheel', function(e) {
-    if (window.scrollY <= 0) {
-      revealTopNav();
-    }
-  });
-
-  document.addEventListener('scroll', function(e) {
-    if (window.scrollY <= 0) {
-      revealTopNav();
-    }
-  });
-
-  if (skipLink) {
-    skipLink.addEventListener('focus', function(e) {
-      if (window.scrollY <= 0) {
-        revealTopNav();
-      }
-    })
-  }
-  
-  if (reducedNav) {
-    reducedNav.addEventListener('focus', function(e) {
-      if (window.scrollY <= 0) {
-        revealTopNav();
-      }
-    })
-  }
-
-  // if the user has previously visited a page in the same bubble,
-  // and scrolled up to reveal the reduced nav, show the nav on
-  // pages within the same bubble
-  function checkTopNav() {
-    const lastBubble = sessionStorage.getItem('navBubble');
-
-    if (lastBubble === currentBubble) {
-      document.body.classList.add('navigation-lock');
-    }
-  }
-
-  function revealTopNav() {
-    document.body.style.marginTop = 0;
-    sessionStorage.setItem('navBubble', currentBubble)
-  }
-  
-  function fetchDropdown(event, url, id) {
-    const triggerEl = event.target;
-    const container = document.getElementById(id);
-    const mobileContainer = document.getElementById(id+"-mobile");
-    if (container.innerHTML === "") {
-      const req = new XMLHttpRequest();
-      req.open('GET', url);
-      req.send();
-      req.addEventListener('load', function() {
-        container.innerHTML = this.responseText;
-        // attachNavEvents(triggerEl, container);
-      });
-      req.addEventListener('load', function() {
-        mobileContainer.innerHTML = this.responseText;
-        
-        const activeCTAs = mobileContainer.querySelectorAll('a.is-active');
-
-        activeCTAs.forEach((cta) => {
-          cta.classList.remove('is-active');
-        })
-      });
-    }
-  }
-
-  function initNavigationSearch(element) {
-    const searchButtons = element.querySelectorAll('.js-search-button');
-    const menuButton = element.querySelector('.js-menu-button');
-    const overlay = element.querySelector('.p-navigation__search-overlay');
-
-    searchButtons.forEach((searchButton) => {
-      searchButton.addEventListener('click', toggleSearch);
-    });
-
-    if (menuButton) {
-      menuButton.addEventListener('click', toggleMenu);
-    }
-
-    if (overlay) {
-      overlay.addEventListener('click', closeAll);
-    }
-
-    function toggleMenu(e) {
-      e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
-
-      if (navigation.classList.contains('has-menu-open')) {
-        const mobileContent = document.querySelector('.dropdown-content-mobile')
-        
-        mobileContent.classList.add('u-hide')
-        closeAll();
-      } else {
-        closeAll();
-        openMenu(e);
-      }
-    }
-
-    function toggleSearch(e) {
-      e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
-
-      if (navigation.classList.contains('has-search-open')) {
-        closeAll();
-      } else {
-        closeAll();
-        openSearch(e);
-      }
-    }
-
-    function openSearch(e) {
-      e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
-      const nav = navigation.querySelector('.p-navigation__nav');
-      const searchInput = navigation.querySelector('.p-search-box__input');
-      const buttons = document.querySelectorAll('.js-search-button');
-      const secondaryNav = document.querySelector(".is-secondary")
-
-      buttons.forEach((searchButton) => {
-        searchButton.setAttribute('aria-pressed', true);
-      });
-
-      navigation.classList.add('has-search-open');
-      if(secondaryNav){
-        secondaryNav.classList.add('u-hide');
-      }
-      searchInput.focus();
-      document.addEventListener('keyup', keyPressHandler);
-    }
-
-    function openMenu(e) {
-      e.preventDefault();
-      const navigation = e.target.closest('.p-navigation');
-      const nav = navigation.querySelector('.p-navigation__nav');
-      const buttons = document.querySelectorAll('.js-menu-button');
-
-      buttons.forEach((searchButton) => {
-        searchButton.setAttribute('aria-pressed', true);
-      });
-
-      navigation.classList.add('has-menu-open');
-      document.addEventListener('keyup', keyPressHandler);
-    }
-
-    function closeSearch() {
-      const navigation = document.querySelector('.p-navigation');
-      const nav = navigation.querySelector('.p-navigation__nav');
-      const banner = document.querySelector('.p-navigation__banner');
-      const buttons = document.querySelectorAll('.js-search-button');
-      const secondaryNav = document.querySelector(".is-secondary");
-
-      buttons.forEach((searchButton) => {
-        searchButton.removeAttribute('aria-pressed');
-      });
-
-      navigation.classList.remove('has-search-open');
-      
-      if(secondaryNav){
-        secondaryNav.classList.remove('u-hide');
-      }
-      
-      document.removeEventListener('keyup', keyPressHandler);
-    }
-
-    function closeMenu() {
-      const navigation = document.querySelector('.p-navigation');
-      const nav = navigation.querySelector('.p-navigation__nav');
-      const banner = document.querySelector('.p-navigation__banner');
-      const buttons = document.querySelectorAll('.js-menu-button');
-      const dropdownWindow =  document.querySelector('.dropdown-window');
-      const dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
-      const reducedNavItems = document.querySelectorAll('[role="menuitem"]');
-      
-      dropdownWindow.classList.add("slide-animation");
-      dropdownWindowOverlay.classList.add("fade-animation");
-      navigation.classList.remove('subsection-active');
-
-      reducedNavItems.forEach( item => {
-        if (item.classList.contains("is-selected")){
-          item.classList.remove("is-selected");
-        }
-      });
-
-      [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
-          if (dropdownContent.classList.contains("u-hide") === false) {
-            dropdownContent.classList.add("u-hide");
-          }
-        }
-      )
-
-      buttons.forEach((searchButton) => {
-        searchButton.removeAttribute('aria-pressed');
-      });
-
-      navigation.classList.remove('has-menu-open');
-      document.removeEventListener('keyup', keyPressHandler);
-    }
-
-    function closeAll() {
-      closeSearch();
-      closeMenu();
-    }
-
-    function keyPressHandler(e) {
-      if (e.key === 'Escape') {
-        closeAll();
-      }
-    }
-  }
-
-  const navigation = document.querySelector('#navigation');
-  initNavigationSearch(navigation);
-
-  function showSection(e) {
-    const nav = document.querySelector('.p-navigation');
-    const target = e.target.getAttribute('aria-controls');
-    const isDesktop = e.target.closest('.dropdown-content-desktop');
-    const isMobile = e.target.closest('.dropdown-content-mobile');
-    let el;
-
-    e.preventDefault()
-
-    if (isDesktop) {
-      el = document.querySelector(`.dropdown-content-desktop #${target}`);
-    } else if (isMobile) {
-      el = document.querySelector(`.dropdown-content-mobile #${target}`);
-    }
-    
-    el.removeAttribute('hidden');
-
-    setTimeout(function () {
-      nav.classList.add('subsection-active');
-      el.classList.add('is-active');
-      el.focus();
-    }, 1);
-  }
-
-  function hideSection(e) {
-    e.preventDefault();
-    const nav = document.querySelector('.p-navigation');
-    const target = e.target.getAttribute('aria-controls');
-    const el = document.getElementById(target)
-
-    nav.classList.remove('subsection-active');
-    el.classList.remove('is-active');
-
-    setTimeout(function () {
-      el.setAttribute('hidden', true);
-    }, 333);
-  }
-</script>
