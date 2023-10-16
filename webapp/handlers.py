@@ -18,6 +18,7 @@ from webapp.context import (
     sort_by_key_and_ordered_list,
     get_meganav,
     split_list,
+    format_to_id,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -181,6 +182,7 @@ def init_handlers(app, sentry):
             "schedule_banner": schedule_banner,
             "get_meganav": get_meganav,
             "split_list": split_list,
+            "format_to_id": format_to_id,
         }
 
     @app.context_processor
