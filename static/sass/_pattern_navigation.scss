@@ -613,10 +613,26 @@ $meganav-height: 3rem;
 @mixin ubuntu-p-nojs-navigation {
   .nojs-meganav {
     background: #262626;
+    overflow-x: unset !important;
 
     h2 {
       color: #f7f7f7;
       padding-left: 1.5rem;
+    }
+
+    .p-side-navigation  {
+      padding-top: 1rem;
+    }
+
+    .dropdown-window__tab-panel {
+      top: 3rem;
+      height: fit-content;
+      position: sticky;
+      padding-bottom: 3rem;
+    }
+
+    .dropdown-window__footer {
+      padding-bottom: 3rem;
     }
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {

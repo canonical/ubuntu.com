@@ -6,14 +6,14 @@
 
 {% block outer_content %}
 
-<div class="p-strip nojs-meganav" style="overflow-x: unset;">
+<div class="p-strip nojs-meganav">
   {% for section in nav %}
   <hr class="is-dark is-fixed-width is-muted">
   <nav class="dropdown-window__content-container desktop-dropdown-content">
     <div class="dropdown-window__content row">
       {% include "templates/meganav/_section-heading.html"%}
       {% if "side_nav_sections" in nav[section] %}
-        <div class="dropdown-window__tab-panel col-3" style="top: 0; height: fit-content; position: sticky; padding-bottom: 3rem">
+        <div class="dropdown-window__tab-panel col-3">
           <div class="p-side-navigation is-dark">
             <div class="p-side-navigation__drawer">
               <ul class="p-side-navigation__list u-no-margin--bottom">
@@ -31,7 +31,7 @@
           {% for side_nav_section in nav[section].side_nav_sections %}
             <div class="dropdown-window__sidenav-content" id="{{section}}-{{format_to_id(side_nav_section.title)}}-navigation">
               <hr class="is-dark is-fixed-width is-muted">
-              <h2 class="u-no-padding--left">{{side_nav_section.title}}</h2>
+              <h3 class="p-heading--2 u-no-padding--left">{{side_nav_section.title}}</h3>
               <div class="row u-no-padding">
                 <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel">
                   {% for links_section in side_nav_section.primary_links %}
@@ -113,7 +113,7 @@
               </div>
   
               {% if side_nav_section.section_footer %}
-                <div class="col-9 dropdown-window__footer" style="padding-bottom: 3rem;">
+                <div class="col-9 dropdown-window__footer">
                   {% if "copy" in side_nav_section.section_footer %}
                     <p>{{ side_nav_section.section_footer['copy'] }}</p>
                   {% endif %}
