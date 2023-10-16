@@ -3,6 +3,7 @@ latest:
   name: "Mantic Minotaur"
   short_version: "23.10"
   full_version: "23.10"
+  desktop_version: "23.10.1" # for 23.10 release only, because Desktop image for 23.10 release has version 23.10.1, while as all other images have version 23.10
   core_version: "23"
   release_date: "October 2023"
   eol: "July 2024"
@@ -31,7 +32,7 @@ openstack_lts:
 
 checksums:
   desktop:
-    "23.10": "444c8a7b993cb6f103d7df1144954064889cbf7491b2415518d5dd0875e3a96f *ubuntu-23.10-desktop-amd64.iso"
+    "23.10.1": "3b6c5275366d02160554fa5703add462da3b8ce9be1749f8806e8dbbffaa2b5a *ubuntu-23.10.1-desktop-amd64.iso"
     "22.04.3": "a435f6f393dda581172490eda9f683c32e495158a780b5a1de422ee77d98e909 *ubuntu-22.04.3-desktop-amd64.iso"
     "21.10": "f8d3ab0faeaecb5d26628ae1aa21c9a13e0a242c381aa08157db8624d574b830 *ubuntu-21.10-desktop-amd64.iso"
     "20.04.6": "510ce77afcb9537f198bc7daa0e5b503b6e67aaed68146943c231baeaab94df1 *ubuntu-20.04.6-desktop-amd64.iso"
