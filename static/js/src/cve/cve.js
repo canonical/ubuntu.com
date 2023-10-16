@@ -64,10 +64,10 @@ function handleCveIdInput(value) {
 handleCveIdInput(searchInput.value);
 
 function handleSearchInput(event) {
-  if (event.key === "Enter"){
+  if (event.key === "Enter") {
     searchForm.submit();
-  }else{
-  handleCveIdInput(event.target.value);
+  } else {
+    handleCveIdInput(event.target.value);
   }
 }
 
