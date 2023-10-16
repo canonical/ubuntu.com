@@ -12,6 +12,7 @@ import flask
 import requests
 import yaml
 import dateutil.parser
+from slugify import slugify
 from canonicalwebteam.http import CachedSession
 
 
@@ -137,6 +138,10 @@ def descending_years(end_year):
 
 def split_list(array, parts):
     return numpy.array_split(array, parts)
+
+
+def format_to_id(string):
+    return slugify(string)
 
 
 def get_json_feed(url, offset=0, limit=None):
