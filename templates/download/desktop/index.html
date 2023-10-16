@@ -87,18 +87,12 @@ meta_copydoc %}
         }}
       </div>
       <p>
-        <a class="p-button--positive is-wide is-disabled u-no-margin--bottom"
-          aria-describedby="downloadButtonHelpMessage" style="pointer-events: none"
-          href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
+        <a class="p-button--positive is-wide"
+          href="/download/desktop/thank-you?version={{ releases.latest.desktop_version }}&amp;architecture=amd64"
           onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
           Download {{ releases.latest.full_version }}
         </a>
         <script>performance.mark("Download (Desktop) button rendered")</script>
-      <p class="p-form-help-text" id="downloadButtonHelpMessage">Ubuntu 23.10 cannot be downloaded right now. We
-        apologize while we work on <a
-          href="https://discourse.ubuntu.com/t/announcement-ubuntu-desktop-23-10-release-image-is-being-updated-to-resolve-a-malicious-translation-incident/39365">correcting
-          the issue.</a>
-      </p>
       </p>
       <p>
         <a href="https://cdimage.ubuntu.com/releases/mantic/release/ubuntu-{{ releases.latest.short_version }}-desktop-legacy-amd64.iso"
