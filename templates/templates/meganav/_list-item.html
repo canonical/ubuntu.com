@@ -1,12 +1,12 @@
-<li class="p-list__item">
-  <a href="{{ url }}" class="p-link--inverted">
+<li class="p-navigation__dropdown-item">
+  <a href="{{ url }}" class="p-link--inverted" onclick="event.stopPropagation()" tabindex="{% if tabindex %}{{tabindex}}{% else %}0{% endif %}">
     <span>{{ title }}</span><br />
     <small class="is-muted">{{ description }}</small>
   </a>
 
   {% if secondary_cta_url and secondary_cta_title %}
-    <a href="{{ secondary_cta_url }}" class="p-button--positive">
-      {{ secondary_cta_title }}
-    </a>
+  <a href="{{ secondary_cta_url }}" class="p-button--positive" tabindex="{% if tabindex %}{{tabindex}}{% else %}0{% endif %}">
+    {{ secondary_cta_title }}
+  </a>
   {% endif %}
 </li>
