@@ -9,7 +9,7 @@
         <h3 class="p-heading--5">Submit your information to get a free account</h3>
         <div class="row u-no-padding">
           <div class="col-6">
-            <form action="/marketo/submit" onsubmit="contactPreference()" method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
+            <form action="/marketo/submit"  onsubmit="stringifyCustomFields()" method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
               <ul class="p-list">
                 <li class="p-list__item">
                   <label for="firstName">First name:</label>
@@ -29,27 +29,27 @@
                 </li>
                 <div class="p-list__item u-sv2">
                   <label>I have Ubuntu Pro on:</label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-aws" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-aws">AWS</span>
                   </label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-azure" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-azure">Azure</span>
                   </label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-gcp" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-gcp">GCP</span>
                   </label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-physical" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-physical">Physical Servers with unlimited VMs</span>
                   </label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-desktops" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-desktops">Desktops</span>
                   </label>
-                  <label class="p-checkbox">
+                  <label class="p-checkbox js-checkbox">
                     <input type="checkbox" aria-labelledby="ubuntu-pro-on-iot" class="p-checkbox__input">
                     <span class="p-checkbox__label" id="ubuntu-pro-on-iot">IoT and devices</span>
                   </label>
