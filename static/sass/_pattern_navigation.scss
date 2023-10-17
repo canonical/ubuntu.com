@@ -41,8 +41,6 @@ $meganav-height: 3rem;
 
       &::after {
         content: none;
-      }
-    }
   }
 
   .p-navigation--sliding {
@@ -254,11 +252,11 @@ $meganav-height: 3rem;
             }
           }
         }
-
+        
         &.is-active[role="menuitem"] {
           @extend .is-selected;
-
-          >.p-navigation__link {
+          
+          > .p-navigation__link {
             background-color: #2d2d2d;
           }
         }
@@ -305,7 +303,6 @@ $meganav-height: 3rem;
 
       .p-navigation__link::after {
         top: 1.25rem;
-
         @media (max-width: $breakpoint-navigation-threshold) {
           right: 1.5rem;
           top: 1rem;
@@ -472,6 +469,15 @@ $meganav-height: 3rem;
       .p-navigation__link::after {
         top: 0.5rem;
       }
+
+      .p-navigation__link::after {
+        top: 0.5rem;
+      }
+    }
+
+    button.p-navigation__link.js-menu-button {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
     button.p-navigation__link.js-menu-button {
