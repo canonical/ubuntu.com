@@ -1,7 +1,8 @@
 {% extends "download/iot/_base_iot.html" %}
 
 {% block title %}Download Ubuntu for IoT boards | Download{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1Sxdl5cGGe1wbHmKB2eL2zQLfVW3KBea02a2FIGx3VdQ/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Sxdl5cGGe1wbHmKB2eL2zQLfVW3KBea02a2FIGx3VdQ/edit{% endblock
+meta_copydoc %}
 
 {% block content %}
 
@@ -16,287 +17,297 @@
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
-            image(
-              url="https://assets.ubuntu.com/v1/a8a6238c-RGB+RPi.svg",
-              alt="Raspberry Pi",
-              width="40",
-              height="40",
-              hi_def=True,
-              loading="auto",
-              attrs={"class": "p-heading-icon__img"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/a8a6238c-RGB+RPi.svg",
+          alt="Raspberry Pi",
+          width="40",
+          height="40",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "p-heading-icon__img"},
+          ) | safe
           }}
           <h2 class="p-heading-icon__title p-heading--3">Ubuntu for Raspberry Pi</h2>
         </div>
       </div>
       <p>
-        Get the power, ease and flexibility of Ubuntu for Raspberry Pi 2, 3 or 4.<br />
+        Get the power, ease and flexibility of Ubuntu for Raspberry Pi 2, 3, 4 or 5.<br />
         Get started with an Ubuntu Server or Desktop image for a familiar development environment.
       </p>
-      <p><a class="p-button--positive" href="/download/raspberry-pi">Install on Raspberry Pi 2, 3 or 4</a></p>
+      <p><a class="p-button--positive" href="/download/raspberry-pi">Install on Raspberry Pi</a></p>
     </div>
     <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
       {{
-        image(
-          url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-          alt="",
-          height="268",
-          width="420",
-          hi_def=True,
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
+      alt="",
+      height="268",
+      width="420",
+      hi_def=True,
+      ) | safe
       }}
     </div>
-  </section>
+</section>
 
 
-  <section class="p-strip is-deep">
-    <div class="row">
-      <div class="col-2 col-medium-4">
-        <h3>Supported platforms</h3>
-      </div>
-      <div class="col-2 col-medium-3">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
-            alt="Intel NUC",
-            width="120",
-            height="45",
-            hi_def=True,
-            loading="auto",
-          ) | safe
-        }}
-        <p>
-          <a href="/download/intel-nuc-desktop">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-2 col-medium-3">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/88444b11-logo-up2.svg",
-            alt="Up2",
-            width="63",
-            height="45",
-            hi_def=True,
-            loading="auto",
-          ) | safe
-        }}
-        <p>
-          <a href="/download/up-squared-iot-grove-server">Install Ubuntu Server&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-2 col-medium-3">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/327b8104-AMD_E_Blk_RGB.png",
-          alt="AMD XILINX",
-          width="187",
-          height="45",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-        <p>
-          <a href="/download/amd">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-2 col-medium-3">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-          alt="Intel",
-          width="75",
-          height="42",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-        <p>
-          <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-2 col-medium-3">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
-          alt="RISC-V",
-          width="147",
-          height="23",
-          hi_def=True,
-          loading="auto",
-          attrs={"style": "margin: 0.5rem 0 0.75rem; max-width: 147px;"}
-          ) | safe
-        }}
-        <p>
-          <a href="/download/risc-v">Install Ubuntu Server&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div class="col-8">
-        <h3>The ultimate Ubuntu Experience</h3>
-      </div>
-      </div>
-    <div class="row">
-      <div class="col-8">
-        <p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
-
-        <a class="p-button--positive" href="/certified">Get Certified Hardware</a>
-      </div>
-      <div class="col-4 u-align--center u-hide--medium u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
-          alt="",
-          width="106",
-          height="150",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section id="core" class="p-strip--light">
-    <div class="row u-equal-height p-divider">
-      <div class="col-7">
-        <h3 class="p-heading--2">Ubuntu Core</h3>
-        <p>
-          Ubuntu Core is a lean, strictly confined and fully transactional operating system. We designed it from the ground up, to focus on security and simplified maintenance, for appliances and large device networks. Ubuntu Core is powered by snaps - the universal Linux packaging format.
-        </p>
-        <p>
-          <a class="p-button is-inline" style="margin-left: 0;" href="/core">Learn more about Ubuntu Core</a><br class="u-hide--large u-hide--medium" /><a href="/download/kvm">Install on your workstation in a KVM&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-5 p-divider__block u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/0bdfaf89-ubuntu-core-logo-45.svg",
-            alt="Canonical Ubuntu Core logo",
-            width="315",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="u-fixed-width u-sv3">
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-2 col-medium-4">
       <h3>Supported platforms</h3>
     </div>
-    <div class="row u-sv3">
-      <div class="col-4">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg",
-            alt="Raspberry Pi logo",
-            width="168",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        <p><a href="/download/iot/raspberry-pi">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="col-4">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
-            alt="Intel NUC logo",
-            width="120",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-          <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="col-4">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg",
-            alt="Intel Tank logo",
-            width="163",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-          <p><a href="/download/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
-        </div>
-      </div>
-      <div class="row u-sv3">
-        <div class="col-4">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg",
-            alt="Qualcomm Snapdragon logo",
-            width="139",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-          <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="col-4">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/327b8104-AMD_E_Blk_RGB.png",
-            alt="",
-            width="187",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-          <p><a href="/download/amd">Install Ubuntu Desktop&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="col-4">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-            alt="Intel logo",
-            width="75",
-            height="42",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-          <p>
-            <a href="/download/iot/intel-iotg">Install Ubuntu Core 20&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        <p>
-          <a class="p-button" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">
-            Browse all supported images
-          </a>
-        </p>
-      </div>
-    </section>
-
-    <div class="u-fixed-width">
-      <hr />
+    <div class="col-2 col-medium-3">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
+      alt="Intel NUC",
+      width="120",
+      height="45",
+      hi_def=True,
+      loading="auto",
+      ) | safe
+      }}
+      <p>
+        <a href="/download/intel-nuc-desktop">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+      </p>
     </div>
-
-    <section class="p-strip">
-      <div class="u-fixed-width">
-        <h3 class="u-sv3 p-heading--2">Can't find your board of choice?</h3>
-        <p>
-          <a class="p-button--positive js-invoke-modal" href="/download/contact-us">Get in touch</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="p-strip--light is-deep">
-      {% with head="Make something great today", subhead="Download appliance images for your PC, Raspberry Pi or a virtual machine" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
-    </section>
-
-    <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="1266" data-lp-id="" data-return-url="https://www.ubuntu.com/download/thank-you?product=supported-platforms" data-lp-url="https://ubuntu.com/download/contact-us?product=supported-platforms">
+    <div class="col-2 col-medium-3">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/88444b11-logo-up2.svg",
+      alt="Up2",
+      width="63",
+      height="45",
+      hi_def=True,
+      loading="auto",
+      ) | safe
+      }}
+      <p>
+        <a href="/download/up-squared-iot-grove-server">Install Ubuntu Server&nbsp;&rsaquo;</a>
+      </p>
     </div>
+    <div class="col-2 col-medium-3">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/327b8104-AMD_E_Blk_RGB.png",
+      alt="AMD XILINX",
+      width="187",
+      height="45",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+      }}
+      <p>
+        <a href="/download/amd">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-2 col-medium-3">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
+      alt="Intel",
+      width="75",
+      height="42",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+      }}
+      <p>
+        <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-2 col-medium-3">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+      alt="RISC-V",
+      width="147",
+      height="23",
+      hi_def=True,
+      loading="auto",
+      attrs={"style": "margin: 0.5rem 0 0.75rem; max-width: 147px;"}
+      ) | safe
+      }}
+      <p>
+        <a href="/download/risc-v">Install Ubuntu Server&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-8">
+      <h3>The ultimate Ubuntu Experience</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of
+        hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that
+        Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
+
+      <a class="p-button--positive" href="/certified">Get Certified Hardware</a>
+    </div>
+    <div class="col-4 u-align--center u-hide--medium u-hide--small">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+      alt="",
+      width="106",
+      height="150",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section id="core" class="p-strip--light">
+  <div class="row u-equal-height p-divider">
+    <div class="col-7">
+      <h3 class="p-heading--2">Ubuntu Core</h3>
+      <p>
+        Ubuntu Core is a lean, strictly confined and fully transactional operating system. We designed it from the
+        ground up, to focus on security and simplified maintenance, for appliances and large device networks. Ubuntu
+        Core is powered by snaps - the universal Linux packaging format.
+      </p>
+      <p>
+        <a class="p-button is-inline" style="margin-left: 0;" href="/core">Learn more about Ubuntu Core</a><br
+          class="u-hide--large u-hide--medium" /><a href="/download/kvm">Install on your workstation in a
+          KVM&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 p-divider__block u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/0bdfaf89-ubuntu-core-logo-45.svg",
+      alt="Canonical Ubuntu Core logo",
+      width="315",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv3">
+    <h3>Supported platforms</h3>
+  </div>
+  <div class="row u-sv3">
+    <div class="col-4">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg",
+      alt="Raspberry Pi logo",
+      width="168",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p><a href="/download/iot/raspberry-pi">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
+      alt="Intel NUC logo",
+      width="120",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg",
+      alt="Intel Tank logo",
+      width="163",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p><a href="/download/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="row u-sv3">
+    <div class="col-4">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg",
+      alt="Qualcomm Snapdragon logo",
+      width="139",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      {{
+      image (
+      url="https://assets.ubuntu.com/v1/327b8104-AMD_E_Blk_RGB.png",
+      alt="",
+      width="187",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p><a href="/download/amd">Install Ubuntu Desktop&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
+      alt="Intel logo",
+      width="75",
+      height="42",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+      <p>
+        <a href="/download/iot/intel-iotg">Install Ubuntu Core 20&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>
+      <a class="p-button" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">
+        Browse all supported images
+      </a>
+    </p>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr />
+</div>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h3 class="u-sv3 p-heading--2">Can't find your board of choice?</h3>
+    <p>
+      <a class="p-button--positive js-invoke-modal" href="/download/contact-us">Get in touch</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep">
+  {% with head="Make something great today", subhead="Download appliance images for your PC, Raspberry Pi or a virtual
+  machine" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general"
+  data-form-id="1266" data-lp-id=""
+  data-return-url="https://www.ubuntu.com/download/thank-you?product=supported-platforms"
+  data-lp-url="https://ubuntu.com/download/contact-us?product=supported-platforms">
+</div>
 
 
-    {% with heading="Not finding the board you want? " %}{% include "/pricing/shared/_enablement-strip.html" %}{% endwith %}
+{% with heading="Not finding the board you want? " %}{% include "/pricing/shared/_enablement-strip.html" %}{% endwith %}
 
-    {% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include
+"shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-    {% endblock content %}
-
+{% endblock content %}

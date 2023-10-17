@@ -1,14 +1,16 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Download Ubuntu Desktop | Download{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1ScuTtdrm3-iAvizTDxksVTAerV6QkCUN8Sg60uUlJsk/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1ScuTtdrm3-iAvizTDxksVTAerV6QkCUN8Sg60uUlJsk/edit{% endblock
+meta_copydoc %}
 
 {% block content %}
 
 <section class="p-strip--suru-shape-light is-deep">
   <div class="u-fixed-width">
     <h1 class="p-heading--2 u-no-margin--bottom"><strong>Download Ubuntu Desktop</strong></h1>
-    <p>The open-source desktop operating system that powers millions of PCs and laptops around the world. Find out more about Ubuntu's features and how we support developers and organisations below.</p>
+    <p>The open-source desktop operating system that powers millions of PCs and laptops around the world. Find out more
+      about Ubuntu's features and how we support developers and organisations below.</p>
     <p>
       <a href="/desktop" class="p-button--positive">Ubuntu Desktop homepage</a>
       <a href="/blog/desktop">Visit the Ubuntu Desktop blog&nbsp;&rsaquo;</a>
@@ -20,8 +22,11 @@
   <div class="row">
     <div class="col-8 p-divider__block">
       <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
-      <p class="u-no-padding--top">The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed until {{ releases.lts.eol }}.</p>
-      <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
+      <p class="u-no-padding--top">The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop
+        PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and
+        maintenance updates, guaranteed until {{ releases.lts.eol }}.</p>
+      <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a>
+      </p>
       <p>Recommended system requirements:</p>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
@@ -34,20 +39,24 @@
     <div class="col-4">
       <div class="u-align--center u-sv4">
         {{ image (
-          url="https://assets.ubuntu.com/v1/b743f1ee-jj-in-circle.png",
-          alt="",
-          width="200",
-          height="200",
-          hi_def=True,
-          loading="auto"
-          ) | safe
+        url="https://assets.ubuntu.com/v1/b743f1ee-jj-in-circle.png",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="auto"
+        ) | safe
         }}
       </div>
       <p>
-        <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }}</a>
+        <a class="p-button--positive is-wide"
+          href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
+          {{ releases.lts.full_version }}</a>
         <script>performance.mark("Download (Desktop) button rendered")</script>
       </p>
-      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors
+          and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
     </div>
   </div>
 </section>
@@ -57,31 +66,41 @@
   <div class="row">
     <div class="col-8 p-divider__block">
       <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-      <p class="u-no-padding--top">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.short_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.</p>
+      <p class="u-no-padding--top">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu
+        {{ releases.latest.short_version }} comes with nine months of security and maintenance updates, until {{
+        releases.latest.eol }}.</p>
       <p>Recommended system requirements are the same as for Ubuntu {{ releases.lts.short_version }} LTS.</p>
-      <p><a href="{{ releases.latest.release_notes_url }}">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
+      <p><a href="{{ releases.latest.release_notes_url }}">Ubuntu {{ releases.latest.short_version }} release notes</a>
+      </p>
     </div>
     <div class="col-4">
       <div class="u-align--center u-sv4">
         {{
-          image (
-          url="https://assets.ubuntu.com/v1/3a32d136-Lobster_circular.png",
-          alt="",
-          width="200",
-          height="200",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
+        image (
+        url="https://assets.ubuntu.com/v1/d708a347-mantic-minotaur-logo.png",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
         }}
       </div>
       <p>
-        <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}</a>
+        <a class="p-button--positive is-wide"
+          href="/download/desktop/thank-you?version={{ releases.latest.desktop_version }}&amp;architecture=amd64"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          Download {{ releases.latest.full_version }}
+        </a>
         <script>performance.mark("Download (Desktop) button rendered")</script>
       </p>
       <p>
-        <a href="https://cdimage.ubuntu.com/releases/lunar/release/ubuntu-23.04-desktop-legacy-amd64.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }} legacy installer', 'eventValue' : undefined });">Download {{ releases.latest.short_version }} (Legacy Desktop Installer)</a>
+        <a href="https://cdimage.ubuntu.com/releases/mantic/release/ubuntu-{{ releases.latest.short_version }}-desktop-legacy-amd64.iso"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }} legacy installer', 'eventValue' : undefined });">Download
+          {{ releases.latest.short_version }} (Legacy Desktop Installer)</a>
       </p>
-      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors
+          and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
     </div>
   </div>
 </section>
@@ -97,11 +116,14 @@
       <p>You can also run Ubuntu from a USB to try it without installing it on your machine.</p>
     </div>
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop on a virtual machine using VirtualBox</a></h3>
-      <p>Learn how to run Ubuntu Desktop on any operating system using VirtualBox. Set up a virtual machine with this quick start guide.</p>
+      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How
+          to run Ubuntu Desktop on a virtual machine using VirtualBox</a></h3>
+      <p>Learn how to run Ubuntu Desktop on any operating system using VirtualBox. Set up a virtual machine with this
+        quick start guide.</p>
     </div>
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
+      <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install
+          Ubuntu Desktop on Raspberry Pi 4</a></h3>
       <p>Read the complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
     </div>
     <div class="col-3 p-divider__block">
@@ -116,19 +138,22 @@
   <div class="row">
     <div class="col-6">
       <h2>Certified on hundreds of devices</h2>
-      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra-portable laptops to high-end workstations. Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out-of-the-box. Our partners also offer select devices preloaded with optimised Ubuntu images.</p>
+      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra-portable
+        laptops to high-end workstations. Ubuntu certified hardware has passed our extensive testing and review process,
+        ensuring that Ubuntu runs well out-of-the-box. Our partners also offer select devices preloaded with optimised
+        Ubuntu images.</p>
       <p><a href="/certified">Read more&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{
-        image (
-        url="https://assets.ubuntu.com/v1/32b323db-certified-hardware-partners.svg",
-        alt="Ubuntu certified hardware partners (HP, Lenovo and Dell)",
-        width="476",
-        height="187",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      image (
+      url="https://assets.ubuntu.com/v1/32b323db-certified-hardware-partners.svg",
+      alt="Ubuntu certified hardware partners (HP, Lenovo and Dell)",
+      width="476",
+      height="187",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
       }}
     </div>
   </div>
@@ -139,7 +164,8 @@
   <div class="u-fixed-width">
     <p>For more information, download our whitepaper:</p>
     <p>
-      <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux desktop</a>
+      <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux
+        desktop</a>
     </p>
     <p><a class="p-button--positive" href="/pro">Register today</a></p>
   </div>
@@ -148,21 +174,22 @@
 <section class="p-strip--light">
   <div class="row p-divider">
     <div class="col-8 p-divider__block">
-      <h2>Ubuntu VMs on Linux, Mac <br class="u-hide--medium u-hide--small"/>or Windows</h2>
+      <h2>Ubuntu VMs on Linux, Mac <br class="u-hide--medium u-hide--small" />or Windows</h2>
       <h3>Mini-clouds on desktops with Multipass</h3>
-      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with the latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
+      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with the latest updates
+        preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
       <p><a href="https://multipass.run/#install" class="p-button--positive">Download for (macOS|Windows|Linux)</a></p>
       <p><a href="https://multipass.run">Learn more about Multipass&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium p-divider__block">
       {{ image (
-        url="https://assets.ubuntu.com/v1/ea3e125b-multipass-logo-45.svg",
-        alt="Canonical Multipass",
-        width="273",
-        height="45",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      url="https://assets.ubuntu.com/v1/ea3e125b-multipass-logo-45.svg",
+      alt="Canonical Multipass",
+      width="273",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
       }}
     </div>
   </div>
@@ -172,20 +199,22 @@
   <div class="row">
     <div class="col-4 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/8b5cbeea-Windows_11+Ubuntu .png",
-        alt="",
-        width="375",
-        height="110",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      url="https://assets.ubuntu.com/v1/8b5cbeea-Windows_11+Ubuntu .png",
+      alt="",
+      width="375",
+      height="110",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
       }}
     </div>
     <div class="col-8">
       <h3>Access the Linux Terminal on Windows with Ubuntu WSL</h3>
-      <p>For a more integrated environment, activate Windows Subsystem for Linux (WSL) to run Linux applications and workflows while developing cross-platform on your Windows machine.</p>
+      <p>For a more integrated environment, activate Windows Subsystem for Linux (WSL) to run Linux applications and
+        workflows while developing cross-platform on your Windows machine.</p>
       <p>You can download Ubuntu directly from the Microsoft Store.</p>
-      <p><a href="https://www.microsoft.com/en-us/p/ubuntu/9pdxgncfsczv?rtc=1&activetab=pivot:overviewtab" class="p-button--positive">Download Ubuntu WSL</a></p>
+      <p><a href="https://www.microsoft.com/en-us/p/ubuntu/9pdxgncfsczv?rtc=1&activetab=pivot:overviewtab"
+          class="p-button--positive">Download Ubuntu WSL</a></p>
       <p><a href="/wsl">Learn more about WSL&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -195,18 +224,19 @@
   <div class="row p-divider">
     <div class="col-8 p-divider__block">
       <h3>Run system containers with LXD</h3>
-      <p>When running Linux on Linux, consider LXD system containers instead of VMs for optimizing resources. LXD runs a full OS inside containers, providing all the benefits of a VM without the usual overhead.</p>
+      <p>When running Linux on Linux, consider LXD system containers instead of VMs for optimizing resources. LXD runs a
+        full OS inside containers, providing all the benefits of a VM without the usual overhead.</p>
       <p><a href="/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/81c90cea-lxd-logo-45.svg",
-        alt="Canonical LXD",
-        width="209",
-        height="45",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
+      url="https://assets.ubuntu.com/v1/81c90cea-lxd-logo-45.svg",
+      alt="Canonical LXD",
+      width="209",
+      height="45",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
       }}
     </div>
   </div>
@@ -225,16 +255,20 @@
       <p class="p-card__content u-align--center"><a href="https://askubuntu.com/">Ask Ubuntu</a></p>
     </div>
     <div class="col-3 p-card">
-      <p class="p-card__content u-align--center"><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></p>
+      <p class="p-card__content u-align--center"><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a>
+      </p>
     </div>
     <div class="col-3 p-card">
-      <p class="p-card__content u-align--center"><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support</a></p>
+      <p class="p-card__content u-align--center"><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support</a>
+      </p>
     </div>
   </div>
 </section>
 
-{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='ubuntu-desktop', tag_id='1920', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
+{% with section_classes = 'p-strip', heading_topic = 'Ubuntu Desktop', tag_name = 'ubuntu-desktop', tag_id = '1920',
+limit = '4'
+%}
+{% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
 {% endblock content %}

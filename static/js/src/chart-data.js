@@ -147,15 +147,15 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2022-10-20T00:00:00"),
-    endDate: new Date("2023-07-20T00:00:00"),
-    taskName: "22.10 (Kinetic Kudu)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2024-01-20T00:00:00"),
     taskName: "23.04 (Lunar Lobster)",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-10-20T00:00:00"),
+    endDate: new Date("2024-07-20T00:00:00"),
+    taskName: "23.10 (Mantic Minotaur)",
     status: "INTERIM_RELEASE",
   },
 ];
@@ -1514,38 +1514,50 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2022-09-01T00:00:00"),
-    endDate: new Date("2023-08-23T00:00:00"),
+    endDate: new Date("2023-08-28T00:00:00"),
     taskName: "Kubernetes 1.25",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
-    startDate: new Date("2023-08-23T00:00:00"),
-    endDate: new Date("2024-05-03T00:00:00"),
+    startDate: new Date("2023-08-28T00:00:00"),
+    endDate: new Date("2024-04-28T00:00:00"),
     taskName: "Kubernetes 1.25",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2022-12-15T00:00:00"),
-    endDate: new Date("2023-12-15T00:00:00"),
+    endDate: new Date("2023-12-28T00:00:00"),
     taskName: "Kubernetes 1.26",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
-    startDate: new Date("2023-12-15T00:00:00"),
-    endDate: new Date("2024-08-23T00:00:00"),
+    startDate: new Date("2023-12-28T00:00:00"),
+    endDate: new Date("2024-08-28T00:00:00"),
     taskName: "Kubernetes 1.26",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2023-04-21T00:00:00"),
-    endDate: new Date("2024-04-21T00:00:00"),
+    endDate: new Date("2024-04-28T00:00:00"),
     taskName: "Kubernetes 1.27",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
-    startDate: new Date("2024-04-21T00:00:00"),
-    endDate: new Date("2024-12-06T00:00:00"),
+    startDate: new Date("2024-04-28T00:00:00"),
+    endDate: new Date("2024-12-28T00:00:00"),
     taskName: "Kubernetes 1.27",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2023-08-18T00:00:00"),
+    endDate: new Date("2024-08-28T00:00:00"),
+    taskName: "Kubernetes 1.28",
+    status: "CANONICAL_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2024-08-28T00:00:00"),
+    endDate: new Date("2025-04-28T00:00:00"),
+    taskName: "Kubernetes 1.28",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
 ];
@@ -1702,8 +1714,8 @@ export var smallReleaseNames = [
 ];
 
 export var desktopServerReleaseNames = [
+  "23.10 (Mantic Minotaur)",
   "23.04 (Lunar Lobster)",
-  "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
@@ -1898,6 +1910,7 @@ export var microStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  "Kubernetes 1.28",
   "Kubernetes 1.27",
   "Kubernetes 1.26",
   "Kubernetes 1.25",

@@ -190,7 +190,7 @@ context("Checkout - Your information", () => {
 });
 
 context("Checkout purchase", () => {
-  it.only("user: it should purchase", () => {
+  it("user: it should purchase", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();

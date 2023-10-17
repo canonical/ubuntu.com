@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
   RadioInput,
   Row,
   Strip,
+  Spinner,
 } from "@canonical/react-components";
 import classNames from "classnames";
 import { currencyFormatter } from "advantage/react/utils";
+import { Product } from "advantage/credentials/utils/utils";
+import { useQuery } from "react-query";
+import { getExamProducts } from "advantage/credentials/api/keys";
 
 const CredExamShop = () => {
-  const ExamProducts = [
+  const ExamProductDescriptions: Product[] = [
     {
       id: "cue-linux-essentials",
-      longId: "lAK5jL8zvMjZOwaysIMQyGRAdOLgTQQH0xpezu2oYp74",
       name: "CUE Linux Essentials",
-      period: "none",
-      price: {
-        currency: "USD",
-        value: 4900,
-      },
-      productID: "cue-linux-essentials",
-      status: "active",
-      private: false,
-      marketplace: "canonical-cube",
       metadata: [
         {
           key: "description",
@@ -34,13 +28,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-02-desktop",
-      longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
-      name: "CUE.02 Desktop QuickCert",
-      price: { value: 4900, currency: "USD" },
-      productID: "cue-02-desktop",
-      canBeTrialled: false,
-      private: true,
-      marketplace: "canonical-cube",
+      name: "CUE Desktop",
       metadata: [
         {
           key: "description",
@@ -51,13 +39,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-03-server",
-      longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
-      name: "CUE.03 Server QuickCert",
-      price: { value: 4900, currency: "USD" },
-      productID: "cue-03-server",
-      canBeTrialled: false,
-      private: true,
-      marketplace: "canonical-cube",
+      name: "CUE Server",
       metadata: [
         {
           key: "description",
@@ -67,6 +49,10 @@ const CredExamShop = () => {
       ],
     },
   ];
+  const { isLoading, data: ExamData } = useQuery(["ExamProducts"], async () => {
+    return getExamProducts();
+  });
+  const [ExamProducts, setExamProducts] = useState<Product[]>([]);
   const [exam, setExam] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setExam(parseInt(event.target.value));
@@ -88,6 +74,23 @@ const CredExamShop = () => {
     );
     location.href = "/account/checkout";
   };
+  useEffect(() => {
+    if (ExamData === undefined) {
+      return;
+    }
+    for (const examDescription of ExamProductDescriptions) {
+      for (const exam of ExamData) {
+        if (exam.id === examDescription.id) {
+          Object.assign(examDescription, exam);
+        }
+      }
+    }
+    setExamProducts(ExamProductDescriptions);
+  }, [ExamData]);
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <Strip className="product-selector">
@@ -113,16 +116,16 @@ const CredExamShop = () => {
                       value={examIndex}
                       checked={exam == examIndex}
                       onChange={handleChange}
-                      disabled={examElement.private}
+                      disabled={examElement.price === undefined}
                     />
                     <span className="p-radio__label">
                       <RadioInput
                         labelClassName="inner-label"
-                        label={examElement.name}
+                        label={examElement?.name}
                         checked={exam == examIndex}
                         value={examIndex}
                         onChange={handleChange}
-                        disabled={examElement.private}
+                        disabled={examElement.price === undefined}
                       />
                       <hr />
                       <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
@@ -133,7 +136,7 @@ const CredExamShop = () => {
                         className="u-align--right"
                         style={{ paddingRight: "1rem" }}
                       >
-                        {examElement.private
+                        {examElement.price === undefined
                           ? "Coming Soon!"
                           : "Price: " +
                             currencyFormatter.format(
@@ -162,11 +165,11 @@ const CredExamShop = () => {
               >
                 <RadioInput
                   inline
-                  label={examElement.name}
+                  label={examElement?.name}
                   checked={exam == examIndex}
                   value={examIndex}
                   onChange={handleChange}
-                  disabled={examElement.private}
+                  disabled={examElement.price === undefined}
                 />
                 <span>
                   <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
@@ -178,7 +181,7 @@ const CredExamShop = () => {
                     className="u-align--right"
                     style={{ paddingRight: "1rem" }}
                   >
-                    {examElement.private
+                    {examElement.price === undefined
                       ? "Coming Soon!"
                       : "Price: " +
                         currencyFormatter.format(examElement.price.value / 100)}
@@ -198,13 +201,13 @@ const CredExamShop = () => {
         <Row>
           <Col size={6} style={{ display: "flex" }}>
             <p className="p-heading--2" style={{ marginBlock: "auto" }}>
-              {ExamProducts[exam].name}
+              {ExamProducts[exam]?.name}
             </p>
           </Col>
           <Col size={3} small={2} style={{ display: "flex" }}>
             <p className="p-heading--2" style={{ marginBlock: "auto" }}>
               {currencyFormatter.format(
-                (ExamProducts[exam]?.price.value ?? 0) / 100 ?? 0
+                (ExamProducts[exam]?.price?.value ?? 0) / 100 ?? 0
               )}
             </p>
           </Col>
