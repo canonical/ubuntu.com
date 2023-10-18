@@ -23,7 +23,7 @@ const mainList = document.querySelector(
 );
 const currentBubble = window.location.pathname.split("/")[1];
 
-navigation.classList.add("js-enabled")
+navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
 
 //Helper functions
@@ -53,7 +53,8 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
-mainList.addEventListener("click", function(e) {
+mainList.addEventListener("click", function (e) {
+  e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
     if (target.classList.contains("js-back")) {
@@ -62,11 +63,11 @@ mainList.addEventListener("click", function(e) {
       handleDropdownClick(e.target.parentNode);
     }
   }
-})
+});
 
 window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
   const currentViewportWidth = window.innerWidth;
   const isBelowSpecificWidth = currentViewportWidth < MOBILE_VIEW_BREAKPOINT;
@@ -75,7 +76,6 @@ window.addEventListener("resize", function() {
   }
   wasBelowSpecificWidth = isBelowSpecificWidth;
 });
-
 
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
@@ -99,7 +99,9 @@ document.addEventListener("global-nav-opened", () => {
 
 function toggleSecondaryMobileNavDropdown(e) {
   const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
-  const mobileNavDropdownToggle = secondaryNav.querySelector(".p-navigation__toggle--open");
+  const mobileNavDropdownToggle = secondaryNav.querySelector(
+    ".p-navigation__toggle--open"
+  );
   let isDropdownOpen;
   if (e && e.type == "click") {
     e.preventDefault();
@@ -162,7 +164,7 @@ function updateNavMenu(dropdown, show) {
     dropdown.id + "-content-mobile"
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
-  
+
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
@@ -171,8 +173,8 @@ function updateNavMenu(dropdown, show) {
     updateMobileDropdownState(dropdown, show);
   } else {
     function handleMutation(mutationsList, observer) {
-      mutationsList.forEach(mutation => {
-        if (mutation.type === 'childList') {
+      mutationsList.forEach((mutation) => {
+        if (mutation.type === "childList") {
           handleDropdownClick(mutation.target);
           observer.disconnect();
         }
@@ -201,9 +203,7 @@ function updateDropdownStates(dropdown, show, delay) {
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
-  let dropdownContent = document.getElementById(
-    dropdown.id + "-content"
-  );
+  let dropdownContent = document.getElementById(dropdown.id + "-content");
   toggleIsActiveState(dropdown, show);
   if (dropdownContent) {
     toggleDropdownContentVisibility(dropdownContent, show, delay);
@@ -287,7 +287,7 @@ function fetchDropdown(url, id) {
   const key = `${url}-${id}`;
   if (fetchedMap[key] === true) return;
   fetchedMap[key] = true;
-  
+
   const desktopContainer = document.getElementById(id + "-content");
   const mobileContainer = document.getElementById(id);
 
@@ -374,7 +374,10 @@ function closeMobileDropdown() {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle"
   );
-  removeClassesFromElements([navigation, mainList], ["has-menu-open", "is-active"]);
+  removeClassesFromElements(
+    [navigation, mainList],
+    ["has-menu-open", "is-active"]
+  );
   if (secondaryNav) {
     toggleSecondaryMobileNavDropdown();
   }
@@ -408,7 +411,9 @@ function openMenu(e) {
 
 // Setup and functions for navigaiton search
 function initNavigationSearch() {
-  searchButtons.forEach((searchButton) => searchButton.addEventListener("click", toggleSearch));
+  searchButtons.forEach((searchButton) =>
+    searchButton.addEventListener("click", toggleSearch)
+  );
 
   searchOverlay.addEventListener("click", toggleSearch);
 
@@ -489,7 +494,6 @@ function setUpGlobalNav() {
         dropdownToggle
           .querySelector("button.p-navigation__link")
           .setAttribute("href", `#${newDropdownId}-content-mobile`);
-
       }
       const tempHTMLContainer = document.createElement("div");
       tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
@@ -538,7 +542,6 @@ if (accountContainer) {
               <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
             </li>
           </ul>`;
-
       }
     });
 }
