@@ -31,7 +31,7 @@
       <hr class="p-rule">
       <div class="p-notification--information is-borderless u-no-margin--bottom">
         <div class="p-notification__content">
-          <p class="p-notification__message">Please ensure that your Kria&trade; platform has the latest boot firmware. Firmware updates and instructions are available on the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513/Kria+K26+SOM">AMD K26 Wiki</a>.</p>
+          <p class="p-notification__message">Please check the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513">AMD Kria&trade; Wiki</a> for the platform's latest boot firmware, technical documentation, and the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1413611532/Canonical+Ubuntu">Ubuntu for AMD-Xilinx Devices Wiki</a> for known issues and limitations.</p>
         </div>
       </div>
       <p>
@@ -168,4 +168,44 @@
     <p>If you have any questions about the platform or would like information about our certification program, <a href="/download/contact-us" class="js-invoke-modal">contact us</a>.</p>
   </div>
 
+  <div class="row p-strip">
+    <hr class="p-rule">
+    <div class="col-3 col-medium-2">
+      <h2 class="u-hide--small">Kria&trade; K26 SOM <br class="u-hide--medium" />(KR260)</h2>
+    </div>
+    <div class="col-6 amd-container u-align--center col-medium-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/08fdc6b3-xilinx-board.png",
+        alt="AMD Kria&trade;KR260 circuit board",
+        width="478",
+        height="382",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
+	<div class="row p-strip is-shallow u-no-padding--top">
+		<hr class="col-9">
+		<div class="col-3 col-medium-2">
+			<h3>Ubuntu Core 22 (Developer Preview)</h3>
+		</div>
+		<div class="col-6 col-medium-3">
+      <p>The version of Ubuntu is meant for evaluation and development purposes only. It should not be used in production systems.</p>
+			<p>Works on:</p>
+			<ul class="p-list">
+				<li class="p-list__item is-ticked">AMD KR260 Robotics Starter Kit</li>
+			</ul>
+      <hr class="p-rule">
+      <div class="p-notification--information is-borderless u-no-margin--bottom">
+        <div class="p-notification__content">
+          <p class="p-notification__message">This release only supports AMD Kria&trade; KR260. Please check the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513">AMD Kria&trade; Wiki</a> for the latest boot firmware for all platforms and technical documentation, and check the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1413611532/Canonical+Ubuntu">Ubuntu for AMD-Xilinx Devices Wiki</a> for known issues and limitations.</p>
+        </div>
+      </div>
+			<p>
+				<a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/kria-uc22-x01/limerick-kria-core-22-kria-uc22-x01-20231008-19.img.xz">Download Ubuntu Core 22</a>
+			</p>
+		</div>
+	</div>
 </div>
