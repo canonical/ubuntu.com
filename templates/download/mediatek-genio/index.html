@@ -1,0 +1,80 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on MediaTek Genio{% endblock %}
+
+{% block meta_description %}Adopt Ubuntu on MediaTek Genio platform for the familiar developer experience and an accelerated path to production.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1Tm3cVVkWkzriQQ7kgbgKfKoeGZaew1M5OMbpLPSDGIc/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/0a367424-MediaTek-Genio_Black-Vertical-0222.png",
+          alt="",
+          width="1212",
+          height="500",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+  </div>
+  <div class="col-9 col-medium-4">
+    <h1 class="p-heading--2"><strong>Install Ubuntu on MediaTek Genio</strong></h1>
+    <p>Run Ubuntu on your MediaTek Genio Development Kits.</p>
+    <p>Pick the OS image, flash it onto internal eMMC, and away you go.</p>
+    <p>All images are 64-bit builds of Ubuntu.</p>
+    <p>
+      <a href="/download/mediatek-genio/contact-us" class="p-button">Get in touch</a>
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top"><h2 class="p-text--small-caps">Choose a board</h2></div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="MediaTek Genio board">
+        <li><button class="p-tabs__item" id="genio-1200-evk" role="tab" aria-selected="true" aria-controls="genio-1200-evk-tab">Genio 1200 EVK</button></li>
+        <li><button class="p-tabs__item" id="genio-700-evk" role="tab" aria-selected="false" aria-controls="genio-700-evk-tab">Genio 700 EVK</button></li>
+        <li><button class="p-tabs__item" id="genio-350-evk" role="tab" aria-selected="false" aria-controls="genio-350-evk-tab">Genio 350 EVK</button></li>
+      </ul>
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="genio-1200-evk-tab" selected="">Genio 1200 EVK</option>
+          <option value="genio-700-evk-tab">Genio 700 EVK</option>
+          <option value="genio-350-evk-tab">Genio 350 EVK</option>
+        </select>
+      </form>
+    </div>
+    <div class="col-9 col-medium-4">
+      {% include "download/mediatek-genio/tab-1.html" %}
+      {% include "download/mediatek-genio/tab-2.html" %}
+      {% include "download/mediatek-genio/tab-3.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top"><h2 class="p-text--small-caps">Are you working on a commercial project?</h2></div>
+    </div>
+    <div class="col-9 col-medium-4">
+      <p>Canonical partners with silicon vendors, board manufacturers and leading enterprises to shorten time-to-market. If you are deploying Ubuntu on MediaTek Genio platforms at-scale, <a href="/download/amd-xilinx#get-in-touch">reach out to Canonical</a> to get access to ongoing bug fixes, critical security patching, long-term support; or to learn more about our solutions for custom board enablement and application development services.</p>
+      <p>For information about using Canonical's Ubuntu images on a commercial project, <a href="/legal/intellectual-property-policy">read Canonical's IP policy</a>.</p>
+      <p>If you have any questions about the platform or would like information about our certification program, <a href="/download/mediatek/contact-us">contact us</a>.</p>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
+{% endblock content %}
