@@ -405,7 +405,7 @@
         </div>
         <div class="col-6 col-medium-3 col-small-2 u-align--right">
           <p class="p-muted-heading">Next</p>
-          <p class="p-heading--4"><a href="#">Overview&nbsp;&rsaquo;</a></p>
+          <p class="p-heading--4"><a href="#eb-corbos-linux">EB Corbos Linux&nbsp;&rsaquo;</a></p>
         </div>
         <hr class="p-rule is-dark">
       </div>
@@ -448,6 +448,74 @@
     </div>
     <div class="row u-show-on-reveal">
       {% with interested_feature="open-source" %}
+        {% include "/automotive/buyers-guide/_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="feature p-strip u-no-padding--top" id="eb-corbos-linux">
+  <div class="u-fixed-width p-card">
+    <div class="u-show-on-reveal">
+      <div class="row">
+        <div class="col-9 col-medium-4 col-small-3">
+          <p>Automotive OS buyer's guide</p>
+        </div>
+        <div class="col-3 col-medium-2 col-small-1 u-align--right">
+          <p><a href="#" class="p-icon--close">Close</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+      <div class="row">
+        <div class="col-6 col-medium-3 col-small-2">
+          <p class="p-muted-heading">Previous</p>
+          <p class="p-heading--4"><a href="#open-source">&lsaquo;&nbsp;Open source</a></p>
+        </div>
+        <div class="col-6 col-medium-3 col-small-2 u-align--right">
+          <p class="p-muted-heading">Next</p>
+          <p class="p-heading--4"><a href="#">Overview&nbsp;&rsaquo;</a></p>
+        </div>
+        <hr class="p-rule is-dark">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>EB corbos Linux &mdash; built on Ubuntu</h2>
+      </div>
+      <div class="col-6">
+        <p class="u-limit-content"><a href="https://bit.ly/EBcLinuxCanonical">EB corbos Linux &mdash; built on Ubuntu</a>, represents a step forward towards SDV development. With Ubuntu at its core, it will greatly reduce time spent on development infrastructures, prototyping and deployment. Moreover, with proven security mechanisms and long-term support, this OS will benefit from CVE patches the same way your Ubuntu desktop does.
+          <br/><br/>
+          Elektrobit and Canonical are strongly working on this collaborative effort in order to push the industry towards SDVs with an OS that is designed specifically for current and future highly demanding automotive use cases. We are leveraging decades of experience across both software and automotive industries, to offer a combined, all-in-one solution tailored for automotive needs. <a href="https://bit.ly/EBcLinuxCanonical">Download EB corbos Linux for free</a>.
+        </p>
+        <p class="u-hide-on-reveal"><a href="#eb-corbos-linux">Continue reading about EB corbos Linux&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="row p-block u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/18728485-RFQ-EBCorbos_Linux_Ubuntu.jpg",
+        alt="",
+        width="2000",
+        height="600",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "banner-image u-sv3 u-show-on-reveal"},
+        ) | safe
+      }}
+      <a href="#eb-corbos-linux" class="u-hide-on-reveal" tabIndex="-1" aria-hidden="true">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/18728485-RFQ-EBCorbos_Linux_Ubuntu.jpg",
+          alt="",
+          width="2000",
+          height="600",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "banner-image u-sv3"},
+          ) | safe
+        }}
+      </a>
+    </div>
+    <div class="row u-show-on-reveal">
+      {% with interested_feature="eb-corbos-linux" %}
         {% include "/automotive/buyers-guide/_form.html" %}
       {% endwith %}
     </div>
