@@ -183,7 +183,6 @@ function updateNavMenu(dropdown, show) {
   }
 }
 
-
 function updateDropdownStates(dropdown, show, delay) {
   let isNested = dropdown.parentNode.classList.contains(
     "p-navigation__dropdown"
