@@ -31,12 +31,12 @@ lities in modern kernels. That’s why it’s the top choice for enterprise Kube
 </thead>
 <tbody>
 <tr>
-<td><a href="/docs/tutorials">Tutorials</a><br>  Get started with this introduction to Charmed Kubernetes <br></td>
-<td><a href="/docs/how-to">How-to guides</a> <br> Step-by-step guides covering key operations and common tasks</td>
+<td><a href="/kubernetes/docs/tutorials-index">Tutorials</a><br>  Get started with this introduction to Charmed Kubernetes <br></td>
+<td><a href="/kubernetes/docs/how-to-index">How-to guides</a> <br> Step-by-step guides covering key operations and common tasks</td>
 </tr>
 <tr>
-<td><a href="/docs/explanation">Explanation</a> <br> Concepts - discussion and clarification of key topics</td>
-<td><a href="/docs/reference">Reference</a> <br> Technical information - specifications, commands, architecture</td>
+<td><a href="/kubernetes/docs/explanation-index">Explanation</a> <br> Concepts - discussion and clarification of key topics</td>
+<td><a href="/kubernetes/docs/reference-index">Reference</a> <br> Technical information - specifications, commands, architecture</td>
 </tr>
 </tbody>
 </table>
