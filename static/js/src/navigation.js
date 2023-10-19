@@ -14,15 +14,12 @@ const topLevelNavDropdowns = Array.from(
 );
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
-const skipLink = document.querySelector(".p-link--skip");
-const jsBackbuttons = document.querySelectorAll(".js-back");
-const reducedNav = document.querySelector(".p-navigation--sliding.is-reduced ");
 let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
-const currentBubble = window.location.pathname.split("/")[1];
 
+navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
 
 //Helper functions
@@ -52,7 +49,8 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
-mainList.addEventListener("click", function(e) {
+mainList.addEventListener("click", function (e) {
+  e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
     if (target.classList.contains("js-back")) {
@@ -61,11 +59,11 @@ mainList.addEventListener("click", function(e) {
       handleDropdownClick(e.target.parentNode);
     }
   }
-})
+});
 
 window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
   const currentViewportWidth = window.innerWidth;
   const isBelowSpecificWidth = currentViewportWidth < MOBILE_VIEW_BREAKPOINT;
@@ -74,7 +72,6 @@ window.addEventListener("resize", function() {
   }
   wasBelowSpecificWidth = isBelowSpecificWidth;
 });
-
 
 dropdownWindowOverlay?.addEventListener("click", () => {
   if (dropdownWindow.classList.contains("is-active")) {
@@ -98,7 +95,9 @@ document.addEventListener("global-nav-opened", () => {
 
 function toggleSecondaryMobileNavDropdown(e) {
   const mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
-  const mobileNavDropdownToggle = secondaryNav.querySelector(".p-navigation__toggle--open");
+  const mobileNavDropdownToggle = secondaryNav.querySelector(
+    ".p-navigation__toggle--open"
+  );
   let isDropdownOpen;
   if (e && e.type == "click") {
     e.preventDefault();
@@ -161,7 +160,16 @@ function updateNavMenu(dropdown, show) {
     dropdown.id + "-content-mobile"
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
-  
+
+  function handleMutation(mutationsList, observer) {
+    mutationsList.forEach((mutation) => {
+      if (mutation.type === "childList") {
+        handleDropdownClick(mutation.target);
+        observer.disconnect();
+      }
+    });
+  }
+
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
@@ -169,14 +177,6 @@ function updateNavMenu(dropdown, show) {
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
   } else {
-    function handleMutation(mutationsList, observer) {
-      mutationsList.forEach(mutation => {
-        if (mutation.type === 'childList') {
-          handleDropdownClick(mutation.target);
-          observer.disconnect();
-        }
-      });
-    }
     const observer = new MutationObserver(handleMutation);
     const observerConfig = { childList: true, subtree: true };
     observer.observe(dropdown, observerConfig);
@@ -200,9 +200,7 @@ function updateDropdownStates(dropdown, show, delay) {
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
-  let dropdownContent = document.getElementById(
-    dropdown.id + "-content"
-  );
+  let dropdownContent = document.getElementById(dropdown.id + "-content");
   toggleIsActiveState(dropdown, show);
   if (dropdownContent) {
     toggleDropdownContentVisibility(dropdownContent, show, delay);
@@ -286,7 +284,7 @@ function fetchDropdown(url, id) {
   const key = `${url}-${id}`;
   if (fetchedMap[key] === true) return;
   fetchedMap[key] = true;
-  
+
   const desktopContainer = document.getElementById(id + "-content");
   const mobileContainer = document.getElementById(id);
 
@@ -312,10 +310,7 @@ function fetchDropdown(url, id) {
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
     });
-  } else {
-    resolve();
   }
-  isFetching = false;
 }
 
 /**
@@ -373,7 +368,10 @@ function closeMobileDropdown() {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle"
   );
-  removeClassesFromElements([navigation, mainList], ["has-menu-open", "is-active"]);
+  removeClassesFromElements(
+    [navigation, mainList],
+    ["has-menu-open", "is-active"]
+  );
   if (secondaryNav) {
     toggleSecondaryMobileNavDropdown();
   }
@@ -407,7 +405,9 @@ function openMenu(e) {
 
 // Setup and functions for navigaiton search
 function initNavigationSearch() {
-  searchButtons.forEach((searchButton) => searchButton.addEventListener("click", toggleSearch));
+  searchButtons.forEach((searchButton) =>
+    searchButton.addEventListener("click", toggleSearch)
+  );
 
   searchOverlay.addEventListener("click", toggleSearch);
 
@@ -467,8 +467,11 @@ function setUpGlobalNav() {
   const globalNavMainTab = globalNavTab.querySelector("ul.p-navigation__items");
 
   globalNavMainTab.classList.replace("u-hide", "dropdown-content-mobile");
-  globalNavMainTab.classList.replace("p-navigation__items", "p-navigation__dropdown",);
-  
+  globalNavMainTab.classList.replace(
+    "p-navigation__items",
+    "p-navigation__dropdown"
+  );
+
   globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
 
   globalNavTab
@@ -485,7 +488,6 @@ function setUpGlobalNav() {
         dropdownToggle
           .querySelector("button.p-navigation__link")
           .setAttribute("href", `#${newDropdownId}-content-mobile`);
-
       }
       const tempHTMLContainer = document.createElement("div");
       tempHTMLContainer.innerHTML = `<li class="p-navigation__item--dropdown-close" id="${dropdown.id}-back">
@@ -534,7 +536,6 @@ if (accountContainer) {
               <a class="p-link--inverted" href="/logout" onclick="event.stopPropagation()">Logout</a>
             </li>
           </ul>`;
-
       }
     });
 }

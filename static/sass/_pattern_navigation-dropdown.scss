@@ -34,10 +34,10 @@
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     height: auto;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
     position: fixed;
     width: 100%;
-    overflow-y: auto;
-    max-height: calc(100vh - 3rem);
     z-index: 11;
   }
 
@@ -112,23 +112,6 @@
     }
   }
 
-  .dropdown-window__side-panel {
-    margin: 2.5rem 0;
-    padding: 0;
-
-    .p-list__item {
-      padding-left: 0.5rem;
-
-      a {
-        color: #69c;
-
-        &:visited {
-          color: #a679d2;
-        }
-      }
-    }
-  }
-
   .dropdown-window__main-panel,
   .dropdown-window__side-panel {
     margin: 2.5rem 0;
@@ -180,6 +163,25 @@
 
       .p-muted-heading {
         padding-left: 0.5rem;
+      }
+    }
+  }
+
+  .dropdown-window__side-panel {
+    margin: 2.5rem 0;
+    padding: 0;
+
+    .p-list {
+      .p-list__item {
+        padding-left: 0.5rem;
+
+        a.dropdown-window__side-panel-link {
+          color: #69c;
+
+          &:visited {
+            color: #a679d2;
+          }
+        }
       }
     }
   }
