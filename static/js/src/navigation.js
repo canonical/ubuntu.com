@@ -14,14 +14,10 @@ const topLevelNavDropdowns = Array.from(
 );
 const nav = navigation.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
-const skipLink = document.querySelector(".p-link--skip");
-const jsBackbuttons = document.querySelectorAll(".js-back");
-const reducedNav = document.querySelector(".p-navigation--sliding.is-reduced ");
 let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
-const currentBubble = window.location.pathname.split("/")[1];
 
 navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
@@ -165,6 +161,15 @@ function updateNavMenu(dropdown, show) {
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
 
+  function handleMutation(mutationsList, observer) {
+    mutationsList.forEach((mutation) => {
+      if (mutation.type === "childList") {
+        handleDropdownClick(mutation.target);
+        observer.disconnect();
+      }
+    });
+  }
+
   if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
     if (!show) updateDropdownStates(dropdown, show, ANIMATION_DELAY);
     else updateDropdownStates(dropdown, show);
@@ -172,19 +177,12 @@ function updateNavMenu(dropdown, show) {
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
   } else {
-    function handleMutation(mutationsList, observer) {
-      mutationsList.forEach((mutation) => {
-        if (mutation.type === "childList") {
-          handleDropdownClick(mutation.target);
-          observer.disconnect();
-        }
-      });
-    }
     const observer = new MutationObserver(handleMutation);
     const observerConfig = { childList: true, subtree: true };
     observer.observe(dropdown, observerConfig);
   }
 }
+
 
 function updateDropdownStates(dropdown, show, delay) {
   let isNested = dropdown.parentNode.classList.contains(
@@ -313,10 +311,7 @@ function fetchDropdown(url, id) {
       const activeCTAs = mobileContainer.querySelectorAll("a.is-active");
       activeCTAs.forEach(deactivateActiveCTA);
     });
-  } else {
-    resolve();
   }
-  isFetching = false;
 }
 
 /**
