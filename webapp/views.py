@@ -1161,3 +1161,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
         return response
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
+
+
+def navigation_nojs():
+    return flask.render_template("templates/meganav/navigation-nojs.html")
