@@ -8,10 +8,11 @@
 {% block content %}
 
 <section class="p-strip--suru-topped is-bordered">
-  <div class="row">
+  <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Take control of your infrastructure</h1>
-      <p>Landscape is the leading management and administration tool for Ubuntu.</p>
+      <p>Landscape automates security patching, auditing, access management and compliance tasks across your Ubuntu estate. Use it in well-connected or airgapped environments: at sea, in space and everywhere in between.
+        Landscape is available with an <a href="https://ubuntu.com/pro">Ubuntu Pro</a> subscription.</p>
       <p>
         <a class="p-button--positive" href="/landscape/pricing">Get Landscape</a>
         <a class="p-button js-invoke-modal" href="/landscape#get-in-touch">Contact us</a>
@@ -19,10 +20,9 @@
     </div>
     <div class="col-6 u-hide--small u-hide--medium u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
+        url="https://assets.ubuntu.com/v1/ad670ab4-canonical-landscape-illustration.svg",
         alt="",
-        width="250",
-        height="270",
+        width="600",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -38,24 +38,83 @@
       <li class="p-list__item is-ticked">Automation for security, hardening, and compliance</li>
       <li class="p-list__item is-ticked">Receive alerts to update machines you specify</li>
       <li class="p-list__item is-ticked">Keep secure with the latest security patches</li>
-      <li class="p-list__item is-ticked">Manage up to 40,000 machines with a single interface</li>
+      <li class="p-list__item is-ticked">Insights about your entire Ubuntu estate, anywhere, through a single pane of glass</li>
       <li class="p-list__item is-ticked">Create your own software repositories</li>
       <li class="p-list__item is-ticked">Extend and customise Landscape via our API</li>
     </ul>
   </div>
   <div class="u-fixed-width">
-    <div class="u-hide--small u-hide--medium u-sv3">
-      <img src="https://assets.ubuntu.com/v1/44ac1c31-web-ui-2.gif" alt="Landscape admin splashscreen">
-    </div>
     <p>
       <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
     </p>
   </div>
 </section>
 
-<div class="u-fixed-width">
-  <hr class="p-seperator">
-</div>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-4">
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+          alt="",
+          height="28",
+          width="32",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+          ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Webinars</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--4'><a href='https://www.linkedin.com/events/6991037067392618497/comments/'>Adopting Linux in
+          a Windows-centric enterprise&nbsp;&rsaquo;</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+          alt="",
+          height="28",
+          width="32",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+          ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Webinar</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--4'><a href='https://www.linkedin.com/video/event/urn:li:ugcPost:7009200843417677824/'>Linux
+          security patches: how to ensure uptime and security&nbsp;&rsaquo;</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+          alt="",
+          height="28",
+          width="32",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+          ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Whitepaper</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--4'><a
+          href='https://ubuntu.com/engage/ensure-security-and-uptime-when-patching-linux-vulnerabilities'>Linux security
+          patches: best practices for risk-mitigation and uptime&nbsp;&rsaquo;</a></h3>
+    </div>
+  </div>
+</section>
 
 <section class="p-strip">
   <div class="u-fixed-width u-sv3">
