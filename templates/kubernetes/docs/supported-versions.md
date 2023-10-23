@@ -19,12 +19,25 @@ source of the information - please file a bug at
 https://github.com/charmed-kubernetes/kubernetes-docs/issues 
 rather than editing the text -->
 
-Charmed Kubernetes officially supports the three (3) most recent minor releases
-of Kubernetes.
+Charmed Kubernetes officially supports the three most recent minor releases
+of Kubernetes. The support window for Charmed Kubernetes is explained more
+fully on the [Ubuntu release cycle page](/about/release-cycle#canonical-kubernetes-release-cycle).
 
 Current release: **1.28**
 
-Supported releases: **1.28.x, 1.27.x, 1.26.x**
+Supported releases (click buttons for more information): 
+
+<div class="row">
+ <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/docs/1.28/components" class="p-button--positive">1.28.x</a></span>
+ </div>
+ <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/docs/1.27/components" class="p-button--positive">1.27.x</a></span>
+ </div>
+ <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/docs/1.26/components" class="p-button--positive">1.26.x</a></span>
+ </div>
+</div>
 
 ## Charmed Kubernetes bundle versions
 
