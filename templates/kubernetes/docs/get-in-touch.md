@@ -21,6 +21,10 @@ in touch with suggestions, problems or just to get involved.
 
 Find us in **#canonical-kubernetes** on [Kubernetes Slack][slack].
 
+## Mattermost
+
+Join the [public Mattermost channel][mattermost] dedicated to all things Canonical Kubernetes!
+
 ## Bugs
 
 **Charmed Kubernetes** bugs  are tracked in [launchpad][lp].
