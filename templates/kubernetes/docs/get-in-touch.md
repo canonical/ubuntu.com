@@ -40,9 +40,14 @@ If you are looking for additional support, find out about [Ubuntu Advantage][sup
 
 Canonical can also provide [managed solutions][managed] for Kubernetes.
 
+## Contributing
+
+We'd be delighted if you wanted to contribute to any aspect of this open source project. Please see the [docs on contributing][].
+
 <!-- LINKS -->
 
 [docs]:  https://github.com/charmed-kubernetes/kubernetes-docs
+[docs on contributing]: /kubernetes/docs/how-to-contribute
 [lp]: https://bugs.launchpad.net/charmed-kubernetes
 [support]: /support
 [managed]: /kubernetes/managed
