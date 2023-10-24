@@ -32,18 +32,18 @@ a better option.
 ## Control Plane
 
 An initial plan to make the control plane more resilient might be to simply add more
-master nodes with  `juju add-unit kubernetes-control-plane`:
+control plane nodes with  `juju add-unit kubernetes-control-plane`:
 
-![multi-master worker image][img-multi-master]
+![multi-control plane worker image][img-multi-control-plane]
 
 While this will add more machines, it doesn't work as may be expected. What
-happens is that the workers will randomly pick a master to communicate with and
-always use that master unit. This means if that master fails in a way that
+happens is that the workers will randomly pick a control plane unit to communicate with and
+always use that unit. This means if that control plane unit fails in a way that
 doesn't remove it from **Juju**, those workers are simply unable to communicate
-with the control plane. If workers arbitrarily pick the same master, they can
-also overload the master with traffic, making the additional units redundant.
+with the control plane. If workers arbitrarily pick the same control plane unit, they can
+also overload the unit with traffic, making the additional units redundant.
 
-Load balancing the masters is the next logical step:
+Load balancing the control plane is the next logical step:
 
 ![single load balancer image][img-single-load-balancer]
 
@@ -54,11 +54,11 @@ relevant "Cloud Integration" section of the documentation for more details
 on your specific cloud.
 
 The workers now all use the load balancer to talk to the control plane. This
-will balance the load to the master units, but we have just moved the single
+will balance the load to the control plane units, but we have just moved the single
 point of failure to the load balancer. Floating a virtual IP address in front
-of the master units works in a similar manner but without any load balancing.
-If your cluster won't generate enough traffic to saturate a single master, but
-you want high availability on the control plane, multiple masters floating a
+of the control plane units works in a similar manner but without any load balancing.
+If your cluster won't generate enough traffic to saturate a single control plane, but
+you want high availability on the control plane, multiple control plane units floating a
 virtual IP address is a solid choice.
 
 The next thought is to add multiple load balancers to add resiliency there:
@@ -70,11 +70,11 @@ balancer and if that balancer fails they will fail. We can float a virtual IP
 address in front of these load balancers to solve that.
 
 The way to handle a highly available control plane is to add virtual IP
-addresses in front of either the master units or load balancers depending on
+addresses in front of either the control plane units or load balancers depending on
 load balance requirements. If the desire is simply to avoid a node failing from
-compromising the cluster, a virtual IP on the master nodes will handle that.
+compromising the cluster, a virtual IP on the control plane nodes will handle that.
 Note that multiple virtual IP addresses can be used if load exceeds a single
-machine, but realise that without proper load balancing the load on the master
+machine, but realise that without proper load balancing the load on the control plane
 units will not necessarily be even due to the random IP selection in the
 Kubernetes worker charms.
 
@@ -108,9 +108,9 @@ software to enable HA
 
 <!-- IMAGES -->
 
-[img-single-load-balancer]: https://assets.ubuntu.com/v1/b47ac644-single-loadbalancer.png
-[img-multi-load-balancer]: https://assets.ubuntu.com/v1/21062012-multi-load-balancer.png
-[img-multi-master]: https://assets.ubuntu.com/v1/dd44ab17-multi-master.png
+[img-single-load-balancer]: https://assets.ubuntu.com/v1/e3e326fd-ha02.png
+[img-multi-load-balancer]: https://assets.ubuntu.com/v1/2467ada2-ha03.png
+[img-multi-control-plane]: https://assets.ubuntu.com/v1/eb998574-ha01.png
 
 <!-- LINKS -->
 
@@ -125,7 +125,8 @@ software to enable HA
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/high-availability.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
+    <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
 
