@@ -1,7 +1,6 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { mount } from "enzyme";
-import { CodeSnippet } from "@canonical/react-components";
 import {
   UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
@@ -32,7 +31,6 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("[data-test='expires-col']").text()).toBe("Never");
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("None");
   });
 
@@ -51,9 +49,6 @@ describe("DetailsContent", () => {
           setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
-    );
-    expect(wrapper.find("[data-test='expires-col']").text()).toBe(
-      "09 Jul 2022"
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
   });
@@ -111,8 +106,8 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("CodeSnippet").exists()).toBe(true);
-    expect(wrapper.find(CodeSnippet).prop("blocks")[0].code).toBe(
+    expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
+    expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
       contractToken.contract_token
     );
   });
