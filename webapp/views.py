@@ -846,7 +846,7 @@ def shorten_acquisition_url(acquisition_url):
         url_params_string = acquisition_url.split("?")[1]
         url_params_list = url_params_string.split("&")
 
-        ## Check for and remove fbclid and gclid parameters
+        # Check for and remove fbclid and gclid parameters
         for param in url_params_list:
             if param.startswith("fbclid") or param.startswith("gclid"):
                 url_params_list.remove(param)
