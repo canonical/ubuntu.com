@@ -9,7 +9,7 @@
 {% block content %}
 
 <section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
-  <div class="p-section--deep">
+  <div class="p-section">
     <div class="row">
       <div class="col-start-large-4 col-9">
         <div class="p-section--shallow">
@@ -25,7 +25,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip is-deep u-no-padding--top">
   <div class="row">
     <hr class="u-no-margin--bottom" />
     <div class="col-6 col-medium-3">
@@ -35,6 +35,9 @@
     </div>
     <div class="col-6 col-medium-3">
       <div class="p-block">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/_bHdUo_ZOEo?si=nG5LLt5Jt7m2fzy7" title="YouTube video player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
         <p>Canonical is shaping the future of the automotive industry with open source technology and strong partnerships with leading companies in the sector.</p>
         <p>We ensure that our products meet your strict requirements in safety, security and maintenance. Our goal is to enable you to focus on innovation and differentiation.</p>
       </div>
@@ -46,30 +49,18 @@
       <div class="p-block">
         <h3 class="p-heading--5">Protect against cyberattacks</h3>
         <p>All of our products benefit from robust protection against cyberattacks by providing over-the-air CVE patches and state-of -the-art encryption.</p>
-        <hr class="p-rule" />
-        <p>
-          <a href="">Some link text&nbsp;&rsaquo;</a>
-        </p>
       </div>
     </div>
     <div class="col-3">
       <div class="p-block">
         <h3 class="p-heading--5">Maintenance and reliability</h3>
         <p>With a track record of use in public clouds, our products are trusted by companies that require minimal downtime and seamless updates.</p>
-        <hr class="p-rule" />
-        <p>
-          <a href="">Some link text&nbsp;&rsaquo;</a>
-        </p>
       </div>
     </div>
     <div class="col-3">
       <div class="p-block">
         <h3 class="p-heading--5">Uphold the strictest safety standards</h3>
         <p>We are actively working on functional safety compliance based on the ISO26262 standard's strict requirements.</p>
-        <hr class="p-rule" />
-        <p>
-          <a href="">Some link text&nbsp;&rsaquo;</a>
-        </p>
       </div>
     </div>
   </div>
@@ -94,24 +85,23 @@
     <div class="col">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps u-no-margin--bottom">Whitepapers</h2>
-        <a class="p-text--small-caps" href="/blog/tag/white-paper">See all</a>
       </div>
     </div>
     <div class="col">
       <div class="row p-section--shallow">
-        <div class="col-3 border-accent--top">
+        <div class="col-3 p-rule--highlight">
           <h3 class="p-heading--4">
             <strong><a href="/engage/automotive-leader-guide-2023-trends">The automotive leader's guide to 2023 trends</a></strong>
           </h3>
           <p>Dive deep into the latest trends shaping the automotive sector. From electric vehicles and connectivity to data security and mobility services, gain insights and actionable strategies to propel your company towards success.</p>
         </div>
-        <div class="col-3 border-accent--top">
+        <div class="col-3 p-rule--highlight">
           <h3 class="p-heading--4">
             <strong><a href="/engage/software-defined-vehicles-whitepaper">A CTO’s guide to software-defined vehicles</a></strong>
           </h3>
           <p>Discover proven ways to tackle the challenges brought on by SDVs such as cybersecurity risks, increased software fragmentation and rising costs. Learn how adopting open source technologies like Linux can streamline your operations, cut expenses, enhance your platforms and strengthen your cybersecurity all without sacrificing innovation.</p>
         </div>
-        <div class="col-3 border-accent--top">
+        <div class="col-3 p-rule--highlight">
           <h3 class="p-heading--4">
             <strong><a href="/engage/consumer-trends-in-the-automotive-industry:-the-impact-of-new-ownership-habits-and-mobility-trends">The impact of new ownership habits and mobility trends</a></strong>
           </h3>
@@ -134,7 +124,9 @@
       <h3 class="p-heading--2">Security and real-time Linux <br class="u-hide--small u-hide--medium" />in a shifting automotive world</h3>
       <p>Watch the webinar about the best practices, emerging threats and innovative technologies that can be used to secure your future in-vehicle ECUs.</p>
       <p>Learn how IT solutions and technologies can help bridge the gap between the traditional automotive industry approaches and the best software practices.</p>
-      <iframe width="900" height="506" src="https://www.youtube.com/embed/IWdQETXN-0k?si=a-b0mizOnfgWeTnj" title="Security and real-time Linux in a shifting automotive world" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/IWdQETXN-0k?si=a-b0mizOnfgWeTnj" title="Security and real-time Linux in a shifting automotive world" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -201,12 +193,17 @@
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 <script>
-  canonicalLatestNews.fetchLatestNews(
-  {
-    articlesContainerSelector: "#automotoive-resources-latest-articles",
-    articleTemplateSelector: "#automotoive-resources-articles-template",
-  }
-  )
+    canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#automotoive-resources-latest-articles",
+      articleTemplateSelector: "#automotoive-resources-articles-template",
+    }
+    )
+    console.log("here 1")
+    document.querySelectorAll(".article-excerpt").forEach(excerpt => {
+      console.log(excerpt.innerHTML)
+      excerpt.innerHTML = excerpt.innerHTML.substring(0, maxLength) + '...';
+    })
 </script>
 
 <section class="p-section--deep">
