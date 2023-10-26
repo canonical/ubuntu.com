@@ -1377,3 +1377,17 @@ $color-link-dark: #69c !default;
     }
   }
 }
+
+// XXX: pete f: vanilla issue here -
+// https://github.com/canonical/vanilla-framework/issues/4876
+.p-image-wrapper {
+  margin-top: $spv--medium;
+
+  &.is-partner {
+    background-color: #fff;
+  }
+
+  &.is-product {
+    background-color: #f3f3f3;
+  }
+}
