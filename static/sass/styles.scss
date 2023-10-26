@@ -1176,17 +1176,6 @@ hr.p-separator.is-shallow {
   max-height: 3rem;
 }
 
-// XXX Ochuko 11/04/2023
-// Removed separator from the first item on the list. This is a temporary fix
-// this is used on the /data/mongodb and /data/opensearch pages
-.p-list--articles {
-  @extend .p-list--divided;
-
-  .p-list__item:first-child {
-    box-shadow: none;
-  }
-}
-
 // XXX Ochuko 13/04/2023
 // Custom styles for 2 by 3 aspect ratio containers
 // will propose to Vanilla to add this to the framework
