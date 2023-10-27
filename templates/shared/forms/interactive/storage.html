@@ -4,7 +4,7 @@
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
       <h2 class="p-modal__title u-sv1" id="modal-title">Software-defined storage</h2>
     </header>
-    
+
     <div class="js-pagination js-pagination--1">
       <div class="row u-no-padding">
         <div class="u-sv3 js-formfield">
@@ -16,39 +16,24 @@
         </div>
       </div>
 
-      <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
-        <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
-            <ul class="p-list">
+
+        <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+          <div class="row">
+            <ul class="p-list col-6">
               <li class="p-list__item">
                 <label for="firstName">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                <input id="firstName" name="firstName" maxlength="255" type="text" required="required" />
               </li>
               <li class="p-list__item">
                 <label for="lastName">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                <input id="lastName" name="lastName" maxlength="255" type="text" required="required" />
               </li>
               <li class="p-list__item">
-                <label for="email">Work email:</label>
+                <label for="email">Email:</label>
                 <input required id="email" name="email" maxlength="255" type="email"
                   pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
-              <li class="p-list__item">
-                <label for="phone">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label class="p-checkbox">
-                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
-                    name="canonicalUpdatesOptIn" type="checkbox">
-                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about
-                    Canonical's products and services.</span>
-                </label>
-              </li>
-              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a
-                  href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
-                  href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
                 <label class="website" for="website">Website:</label>
@@ -93,12 +78,16 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage"
                 name="preferredLanguage" maxlength="255" value="" />
             </div>
+          </div>
 
-            <div class="pagination">
-              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Submit form</button>
-            </div>
-          </form>
-        </div>
+          <div class="u-sv2">By submitting this form, I confirm that I have read and agree to <a
+              href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+              href="/legal/data-privacy">Privacy Policy</a>.</div>
+          <div class="pagination">
+            <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Submit
+              form</button>
+          </div>
+        </form>
       </div>
     </div>
 
