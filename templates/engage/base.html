@@ -16,6 +16,9 @@
   {% if metadata['path'] == "/engage/ShellOnboarding" %}
     <meta name="robots" content="noindex, nofollow" />
   {% endif %}
+
+  <meta name="discourse-url" value="{{ metadata['topic_path'] }}" />
+
 {% endblock %}
 
 {% block meta_copydoc %}{{ metadata["meta_copydoc"] }}{% endblock meta_copydoc %}
