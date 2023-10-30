@@ -97,15 +97,15 @@
         </div>
         <div class="col-3 p-rule--highlight">
           <h3 class="p-heading--4">
-            <strong><a href="/engage/software-defined-vehicles-whitepaper">A CTO’s guide to software-defined vehicles</a></strong>
+            <strong><a href="/engage/software-defined-vehicles-whitepaper">A CTO's guide to software-defined vehicles</a></strong>
           </h3>
-          <p>Discover proven ways to tackle the challenges brought on by SDVs such as cybersecurity risks, increased software fragmentation and rising costs. Learn how adopting open source technologies like Linux can streamline your operations, cut expenses, enhance your platforms and strengthen your cybersecurity all without sacrificing innovation.</p>
+          <p>Explore solutions to SDV challenges such as  increased cybersecurity risks, software fragmentation and costs. Learn how open source technologies can streamline operations, cut costs, enhance platforms and strengthen cybersecurity without sacrificing innovation.</p>
         </div>
         <div class="col-3 p-rule--highlight">
           <h3 class="p-heading--4">
             <strong><a href="/engage/consumer-trends-in-the-automotive-industry:-the-impact-of-new-ownership-habits-and-mobility-trends">The impact of new ownership habits and mobility trends</a></strong>
           </h3>
-          <p>Autonomous cars are revolutionising both personal mobility and consumer preferences. Get ready for a shift in vehicle ownership patterns, fuelled by digital natives who seek convenient and eco-friendly modes of travel. Discover smart and sustainable alternatives to traditional car ownership, unlock fresh revenue streams through novel mobility services, and monetise advanced technology offerings for connected vehicles.</p>
+          <p>Get ready for a shift in vehicle ownership patterns, fuelled by digital natives who seek convenient and eco-friendly ways to travel. Find alternatives to traditional car ownership, unlock fresh revenue streams, and monetise advanced technology offerings for connected vehicles.</p>
         </div>
       </div>
     </div>
@@ -142,25 +142,61 @@
     <div class="col">
       <div class="row p-section--shallow">
         <div class="col-3">
-
+          <div class="u-crop--16-9">
+            <a href="https://canonical.com/blog/canonical-joins-the-eclipse-foundations-software-defined-vehicle-working-group" aria-hidden="true" tabindex="-1">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/2e11c501-eclipse-foundations-software-defined-vehicle-working-group.png",
+                alt="",
+                width="1200",
+                height="628",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </a>
+          </div>
           <h3 class="p-heading--5">
-            <a href=""></a>
+            <a href="https://canonical.com/blog/canonical-joins-the-eclipse-foundations-software-defined-vehicle-working-group" aria-hidden="true" tabindex="-1">Canonical joins the Eclipse Foundation's Software Defined Vehicle working group</a>
           </h3>
-          <p></p>
+          <p>Canonical is proud to join the Eclipse Foundation's Software Defined Vehicle working group.</p>
         </div>
         <div class="col-3">
-
+          <div class="u-crop--16-9">
+            <a href="/blog/canonical-joins-soafee-sig">  
+              {{ image (
+                url="https://assets.ubuntu.com/v1/7b2df80b-SOAFEE-SIG-blog.png",
+                alt="",
+                width="1600",
+                height="900",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </a>
+          </div>
           <h3 class="p-heading--5">
-            <a href=""></a>
+            <a href="/blog/canonical-joins-soafee-sig">Canonical joins SOAFEE SIG</a>
           </h3>
-          <p></p>
+          <p>Canonical is part of the Scalable Open Architecture for Embedded Edge (SOAFEE) Special Interest Group, which contributes to the development of a safe, secure and software-defined automotive future.</p>
         </div>
         <div class="col-3">
-
+          <div class="u-crop--16-9">
+            <a href="/blog/elektrobit-and-canonical-announce-eb-corbos-linux-built-on-ubuntu" aria-hidden="true" tabindex="-1">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/ec3fe3cd-eb-corbos-linux-built-on-ubuntu-blog.jpg",
+                alt="",
+                width="1247",
+                height="748",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </a>
+          </div>
           <h3 class="p-heading--5">
-            <a href=""></a>
+            <a href="/blog/elektrobit-and-canonical-announce-eb-corbos-linux-built-on-ubuntu">Elektrobit and Canonical announce EB corbos Linux &ndash; built on Ubuntu</a>
           </h3>
-          <p></p>
+          <p>Canonical and EB are thrilled to reveal EB corbos Linux &ndash; built on Ubuntu, a solution that is tailored specifically for demanding automotive applications.</p>
         </div>
       </div>
     </div>
@@ -173,19 +209,23 @@
     <div class="col">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps u-no-padding--top">Latest</h2>
-        <a href="">Read more about automotive and open source on our blog&nbsp;&rsaquo;</a>
+        <a href="/blog/tag/automotive">Read more about automotive and open source on our blog&nbsp;&rsaquo;</a>
       </div>
     </div>
     <div class="col">
-      <div class="row p-section--shallow" id="automotoive-resources-latest-articles">
+      <div class="row p-section--shallow" id="automotive-resources-latest-articles">
       </div>
     </div>
   </div>
 
-  <template style="display:none" id="automotoive-resources-articles-template">
+  <template style="display:none" id="automotive-resources-articles-template">
     <div class="col-3">
-      <div class="article-image"></div>
-      <h4 class="p-heading--5"><a class="article-link article-title"></a></h4>
+      <div class="u-crop--16-9">
+        <a class="article-link" aria-hidden="true" tabindex="-1">
+          <div class="article-image"></div>
+        </a>
+      </div>
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
       <p class="article-excerpt"></p>
     </div>
   </template>
@@ -195,15 +235,12 @@
 <script>
     canonicalLatestNews.fetchLatestNews(
     {
-      articlesContainerSelector: "#automotoive-resources-latest-articles",
-      articleTemplateSelector: "#automotoive-resources-articles-template",
+      articlesContainerSelector: "#automotive-resources-latest-articles",
+      articleTemplateSelector: "#automotive-resources-articles-template",
+      excerptLength: 100,
+      groupId: "4340",
     }
     )
-    console.log("here 1")
-    document.querySelectorAll(".article-excerpt").forEach(excerpt => {
-      console.log(excerpt.innerHTML)
-      excerpt.innerHTML = excerpt.innerHTML.substring(0, maxLength) + '...';
-    })
 </script>
 
 <section class="p-section--deep">
