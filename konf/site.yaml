@@ -3,9 +3,6 @@ domain: ubuntu.com
 image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
 
 env:
-  - name: GOOGLE_CLOUD_DISABLE_GRPC
-    value: true
-
   - name: STORE_MAINTENANCE
     value: true
 
@@ -214,6 +211,9 @@ production:
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
+
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
 
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
