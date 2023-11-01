@@ -603,7 +603,7 @@ staging:
         name: trueability
 
     - name: CREDLY_URL
-      value: https://sandbox-api.credly.com/v1
+      value: https://api.credly.com/v1
 
     - name: CREDLY_TOKEN
       secretKeyRef:
@@ -733,7 +733,7 @@ staging:
             name: trueability
 
         - name: CREDLY_URL
-          value: https://sandbox-api.credly.com/v1
+          value: https://api.credly.com/v1
 
         - name: CREDLY_TOKEN
           secretKeyRef:
