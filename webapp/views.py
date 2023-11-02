@@ -836,6 +836,37 @@ def sitemap_index():
     return response
 
 
+def shorten_acquisition_url(acquisition_url):
+    """
+    Shorten the acquisition URL sent when submitting forms
+    """
+
+    if len(acquisition_url) > 255:
+        url_without_params = acquisition_url.split("?")[0]
+        url_params_string = acquisition_url.split("?")[1]
+        url_params_list = url_params_string.split("&")
+        url_params_to_remove = []
+
+        # Check for and remove fbclid and gclid parameters
+        for param in url_params_list:
+            if param.startswith("fbclid") or param.startswith("gclid"):
+                url_params_to_remove.append(param)
+
+        for param in url_params_to_remove:
+            url_params_list.remove(param)
+
+        new_acquisition_url = (
+            url_without_params + "?" + "&".join(url_params_list)
+        )
+
+        # If the URL is still too long, remove all parameters
+        if len(new_acquisition_url) > 255:
+            return new_acquisition_url.split("?")[0]
+
+        return new_acquisition_url
+    return acquisition_url
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -895,9 +926,12 @@ def marketo_submit():
         }
 
     if "acquisition_url" in form_fields:
-        enrichment_fields["acquisition_url"] = form_fields["acquisition_url"]
+        shortened_url = shorten_acquisition_url(form_fields["acquisition_url"])
+        form_fields["acquisition_url"] = shortened_url
+        enrichment_fields["acquisition_url"] = shortened_url
     else:
-        enrichment_fields["acquisition_url"] = referrer
+        shortened_url = shorten_acquisition_url(referrer)
+        enrichment_fields["acquisition_url"] = shortened_url
 
     if "preferredLanguage" in form_fields:
         enrichment_fields["preferredLanguage"] = form_fields[
