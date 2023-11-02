@@ -3,9 +3,9 @@ import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
-    var triggeringHash = "#get-in-touch";
-    var formContainer = document.getElementById("contact-form-container");
-    var contactButtons = document.querySelectorAll(".js-invoke-modal");
+    const triggeringHash = "#get-in-touch";
+    const formContainer = document.getElementById("contact-form-container");
+    const contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
     const returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
@@ -187,7 +187,7 @@ import setupIntlTelInput from "./intlTelInput.js";
         ".pagination a"
       );
       var paginationContent = contactModal.querySelectorAll(".js-pagination");
-      var submitButton = contactModal.querySelector(".mktoButton");
+      var submitButton = contactModal.querySelector('button[type="submit"]');
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
       var phoneInput = document.querySelector("#phone");
@@ -540,6 +540,23 @@ import setupIntlTelInput from "./intlTelInput.js";
       }
 
       setpreferredLanguage();
+
+      // Disables submit button and adds visual queue when for is submitted
+      function setupSubmitButton() {
+        const modalForm = formContainer.querySelector("form");
+        const spinnerIcon = document.createElement("i");
+        spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+        const buttonRect = submitButton.getBoundingClientRect();
+        modalForm.addEventListener("submit", function (e) {
+          submitButton.style.width = buttonRect.width + "px";
+          submitButton.style.height = buttonRect.height + "px";
+          submitButton.disabled = true;
+          submitButton.innerText = "";
+          submitButton.appendChild(spinnerIcon);
+        });
+      }
+
+      setupSubmitButton();
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
