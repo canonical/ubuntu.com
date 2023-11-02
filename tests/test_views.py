@@ -59,16 +59,17 @@ class TestViewsFunctions(TestCase):
             "&utm_campaign=7018jyr44t534e000000Lrr2AAC"
         )
 
-        # Case 1: url is less than 255 characters
+        # Case 1: url is shorten to less than 255 characters
         # and only fbclid/gclid parameters are removed
         self.assertEqual(shorten_acquisition_url(first_url), first_url_check)
         self.assertLess(len(shorten_acquisition_url(first_url)), 255)
 
-        # Case 2: url is less than 255 characters
+        # Case 2: url is shorten to less than 255 characters
         # and all parameters are removed (including UTM parameters)
         self.assertEqual(shorten_acquisition_url(second_url), second_url_check)
         self.assertLess(len(shorten_acquisition_url(second_url)), 255)
 
-        # Case 3: url already less than 255 characters are not shortened
+        # Case 3: url is already less than 255 characters
+        # and is not shortened
         self.assertEqual(shorten_acquisition_url(third_url), third_url)
         self.assertLess(len(shorten_acquisition_url(third_url)), 255)
