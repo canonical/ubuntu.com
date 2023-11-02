@@ -845,11 +845,15 @@ def shorten_acquisition_url(acquisition_url):
         url_without_params = acquisition_url.split("?")[0]
         url_params_string = acquisition_url.split("?")[1]
         url_params_list = url_params_string.split("&")
+        url_params_to_remove = []
 
         # Check for and remove fbclid and gclid parameters
         for param in url_params_list:
             if param.startswith("fbclid") or param.startswith("gclid"):
-                url_params_list.remove(param)
+                url_params_to_remove.append(param)
+
+        for param in url_params_to_remove:
+            url_params_list.remove(param)
 
         new_acquisition_url = (
             url_without_params + "?" + "&".join(url_params_list)
@@ -860,7 +864,6 @@ def shorten_acquisition_url(acquisition_url):
             return new_acquisition_url.split("?")[0]
 
         return new_acquisition_url
-
     return acquisition_url
 
 
@@ -924,7 +927,7 @@ def marketo_submit():
 
     if "acquisition_url" in form_fields:
         shortened_url = shorten_acquisition_url(form_fields["acquisition_url"])
-        form_fields["acquisition_url"] = shorten_acquisition_url
+        form_fields["acquisition_url"] = shortened_url
         enrichment_fields["acquisition_url"] = shortened_url
     else:
         shortened_url = shorten_acquisition_url(referrer)
