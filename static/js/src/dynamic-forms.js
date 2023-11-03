@@ -543,14 +543,14 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       // Disables submit button and adds visual queue when it is submitted
       function setupSubmitButton() {
-        console.log("setupSubmitButton")
+        console.log("setupSubmitButton");
         const modalForm = formContainer.querySelector("form");
         const spinnerIcon = document.createElement("i");
         spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
         console.log("spinnerIcon", spinnerIcon);
         modalForm.addEventListener("submit", function (e) {
           const buttonRect = submitButton.getBoundingClientRect();
-          console.log("submit event", submitButton)
+          console.log("submit event", submitButton);
           submitButton.style.width = buttonRect.width + "px";
           submitButton.style.height = buttonRect.height + "px";
           submitButton.disabled = true;
