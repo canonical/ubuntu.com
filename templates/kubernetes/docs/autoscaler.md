@@ -44,7 +44,7 @@ kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints --no
 In order to remove the taint, for each tainted control-plane node run:
 
 ```bash
-kubectl taint node $NODE juju.is/kubernetes-control-plane=true:NoSchedule-
+kubectl taint node $NODE node-role.kubernetes.io/control-plane=true:NoSchedule-
 ```
 
 Assuming you have a Charmed-Kubernetes deployment running and have copied the kube config file from your control-plane:
