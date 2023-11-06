@@ -1,15 +1,16 @@
 ## Tutorials
 - [Get started](/kubernetes/docs/quickstart)
 
-## How to...
+## How to&hellip; 
 
-- [...install](/kubernetes/docs/how-to-install)
-- [...integrate with clouds](/kubernetes/docs/how-to-clouds)
-- [...configure CNI](/kubernetes/docs/how-to-cni)
-- [...use container runtimes](/kubernetes/docs/how-to-containers)
-- [...operate Kubernetes](/kubernetes/docs/how-to-operate)
-- [...achieve High Availability](/kubernetes/docs/how-to-ha)
-- [...secure your cluster](/kubernetes/docs/how-to-security)
+- [&hellip;install](/kubernetes/docs/how-to-install)
+- [&hellip;integrate with clouds](/kubernetes/docs/how-to-clouds)
+- [&hellip;configure CNI](/kubernetes/docs/how-to-cni)
+- [&hellip;use container runtimes](/kubernetes/docs/how-to-containers)
+- [&hellip;operate Kubernetes](/kubernetes/docs/how-to-operate)
+- [&hellip;achieve High Availability](/kubernetes/docs/how-to-ha)
+- [&hellip;secure your cluster](/kubernetes/docs/how-to-security)
+- [&hellip;contribute to this project](/kubernetes/docs/how-to-contribute)
 
 ## Explanation
  - [Charmed Kubernetes](/kubernetes/docs/overview)
