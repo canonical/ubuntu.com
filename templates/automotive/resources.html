@@ -25,40 +25,40 @@
   </div>
 </section>
 
-<section class="p-strip is-deep u-no-padding--top">
+<section class="p-section">
   <div class="row">
-    <hr class="u-no-margin--bottom" />
+    <hr class="p-rule">
     <div class="col-6 col-medium-3">
-      <div class="p-block">
+      <div class="p-section--shallow">
         <h2>Adopt open source securely <br class="u-hide--small u-hide--medium" />in automotive</h2>
       </div>
     </div>
     <div class="col-6 col-medium-3">
-      <div class="p-block">
+      <div class="p-section--shallow">
+        <p>Canonical is shaping the future of the automotive industry with open source technology and strong partnerships with leading companies in the sector.</p>
+        <p>We ensure that our products meet your strict requirements in safety, security and maintenance. Our goal is to enable you to focus on innovation and differentiation.</p>
         <div class="u-embedded-media">
           <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/_bHdUo_ZOEo?si=nG5LLt5Jt7m2fzy7" title="YouTube video player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <p>Canonical is shaping the future of the automotive industry with open source technology and strong partnerships with leading companies in the sector.</p>
-        <p>We ensure that our products meet your strict requirements in safety, security and maintenance. Our goal is to enable you to focus on innovation and differentiation.</p>
       </div>
     </div>
   </div>
   <div class="row">
-    <hr class="p-rule col-9 col-start-large-4" />
-    <div class="col-3 col-start-large-4">
-      <div class="p-block">
+    <hr class="p-rule col-9 col-start-large-4">
+    <div class="col-3 col-medium-2 col-start-large-4">
+      <div class="p-section--shallow">
         <h3 class="p-heading--5">Protect against cyberattacks</h3>
         <p>All of our products benefit from robust protection against cyberattacks by providing over-the-air CVE patches and state-of -the-art encryption.</p>
       </div>
     </div>
-    <div class="col-3">
-      <div class="p-block">
+    <div class="col-3 col-medium-2">
+      <div class="p-section--shallow">
         <h3 class="p-heading--5">Maintenance and reliability</h3>
         <p>With a track record of use in public clouds, our products are trusted by companies that require minimal downtime and seamless updates.</p>
       </div>
     </div>
-    <div class="col-3">
-      <div class="p-block">
+    <div class="col-3 col-medium-2">
+      <div class="p-section--shallow">
         <h3 class="p-heading--5">Uphold the strictest safety standards</h3>
         <p>We are actively working on functional safety compliance based on the ISO26262 standard's strict requirements.</p>
       </div>
@@ -66,6 +66,7 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 u-vertically-center u-align--center">
+      <div class="p-image-wrapper">
       {{ image (
         url="https://assets.ubuntu.com/v1/29f26f5e-automotive-resources-chassis.png",
         alt="",
@@ -75,11 +76,12 @@
         loading="lazy"
         ) | safe
       }}
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row--25-75 is-split-on-medium">
     <hr class="p-rule">
     <div class="col">
@@ -112,9 +114,9 @@
   </div>
 </section>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row--25-75 is-split-on-medium">
-    <hr />
+    <hr class="p-rule"/>
     <div class="col">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps u-no-padding--top">Webinar</h2>
@@ -133,7 +135,7 @@
 
 <section class="p-section">
   <div class="row--25-75 is-split-on-medium">
-    <hr />
+    <hr class="p-rule"/>
     <div class="col">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps u-no-padding--top">From our blog</h2>
@@ -144,6 +146,7 @@
         <div class="col-3">
           <div class="u-crop--16-9">
             <a href="https://canonical.com/blog/canonical-joins-the-eclipse-foundations-software-defined-vehicle-working-group" aria-hidden="true" tabindex="-1">
+              <div class="p-image-wrapper">
               {{ image (
                 url="https://assets.ubuntu.com/v1/2e11c501-eclipse-foundations-software-defined-vehicle-working-group.png",
                 alt="",
@@ -153,6 +156,7 @@
                 loading="lazy"
                 ) | safe
               }}
+              </div>
             </a>
           </div>
           <h3 class="p-heading--5">
@@ -162,7 +166,8 @@
         </div>
         <div class="col-3">
           <div class="u-crop--16-9">
-            <a href="/blog/canonical-joins-soafee-sig">  
+            <a href="/blog/canonical-joins-soafee-sig">
+              <div class="p-image-wrapper">
               {{ image (
                 url="https://assets.ubuntu.com/v1/7b2df80b-SOAFEE-SIG-blog.png",
                 alt="",
@@ -172,6 +177,7 @@
                 loading="lazy"
                 ) | safe
               }}
+              </div>
             </a>
           </div>
           <h3 class="p-heading--5">
@@ -182,6 +188,7 @@
         <div class="col-3">
           <div class="u-crop--16-9">
             <a href="/blog/elektrobit-and-canonical-announce-eb-corbos-linux-built-on-ubuntu" aria-hidden="true" tabindex="-1">
+              <div class="p-image-wrapper">
               {{ image (
                 url="https://assets.ubuntu.com/v1/ec3fe3cd-eb-corbos-linux-built-on-ubuntu-blog.jpg",
                 alt="",
@@ -191,6 +198,7 @@
                 loading="lazy"
                 ) | safe
               }}
+              </div>
             </a>
           </div>
           <h3 class="p-heading--5">
@@ -205,7 +213,7 @@
 
 <section class="p-section">
   <div class="row--25-75 is-split-on-medium">
-    <hr />
+    <hr class="p-rule"/>
     <div class="col">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps u-no-padding--top">Latest</h2>
@@ -243,7 +251,7 @@
     )
 </script>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row--25-75 is-split-on-medium">
     <hr class="p-rule">
     <div class="col">
@@ -279,7 +287,7 @@
   </div>
 </section>
 
-<section class="p-section" id="newsletter-signup">
+<section class="p-section--deep" id="newsletter-signup">
   <div class="row--50-50 is-split-on-medium">
     <hr class="p-rule">
     <div class="col">
