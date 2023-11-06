@@ -14,7 +14,7 @@ Charmed Kubernetes<sup>&reg;</sup>, is pure Kubernetes tested across the widest 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabi
 lities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
 
-[Find out more in the Charmed Kubernetes overview&nbsp;&rsaquo;](../overview)
+[Find out more in the Charmed Kubernetes overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
 
 <img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" style="float:right; margin-left: 2rem; border: 0
 " alt="">
