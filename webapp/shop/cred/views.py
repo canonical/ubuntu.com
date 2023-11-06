@@ -381,7 +381,7 @@ def cred_assessments(trueability_api, **_):
 def cred_exam(trueability_api, **_):
     email = flask.session["openid"]["email"].lower()
     if (
-        not flask.current_app.debug
+        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED")
         and not has_filed_confidentiality_agreement(email)
     ):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
@@ -636,6 +636,7 @@ def cred_beta_activation(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
+@canonical_staff()
 def get_filtered_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = flask.request.args.get("ability_screen_id", None)
     page = flask.request.args.get("page", 1)
@@ -674,6 +675,7 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
+@canonical_staff()
 def get_webhook_response(trueability_api, **kwargs):
     webhook_id = flask.request.args.get("webhook_id", None)
     webhook_responses = trueability_api.get_webhook_response(

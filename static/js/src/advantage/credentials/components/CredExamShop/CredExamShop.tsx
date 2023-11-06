@@ -159,9 +159,6 @@ const CredExamShop = () => {
                   "is-selected": exam == examIndex,
                 })}
                 onChange={handleChange}
-                onClick={() => {
-                  setExam(examIndex);
-                }}
               >
                 <RadioInput
                   inline

@@ -3,9 +3,6 @@ domain: ubuntu.com
 image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
 
 env:
-  - name: GOOGLE_CLOUD_DISABLE_GRPC
-    value: true
-
   - name: STORE_MAINTENANCE
     value: true
 
@@ -215,6 +212,9 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
+
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
             key: email
@@ -239,6 +239,9 @@ production:
           secretKeyRef:
             key: private-key
             name: ubuntu-google-datastore
+
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -603,7 +606,7 @@ staging:
         name: trueability
 
     - name: CREDLY_URL
-      value: https://sandbox-api.credly.com/v1
+      value: https://api.credly.com/v1
 
     - name: CREDLY_TOKEN
       secretKeyRef:
@@ -684,6 +687,9 @@ staging:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
+
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
             key: email
@@ -709,6 +715,9 @@ staging:
             key: private-key
             name: ubuntu-google-datastore
 
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
+
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
             key: username
@@ -733,7 +742,7 @@ staging:
             name: trueability
 
         - name: CREDLY_URL
-          value: https://sandbox-api.credly.com/v1
+          value: https://api.credly.com/v1
 
         - name: CREDLY_TOKEN
           secretKeyRef:
