@@ -240,6 +240,9 @@ production:
             key: private-key
             name: ubuntu-google-datastore
 
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
+
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
             key: username
@@ -684,6 +687,9 @@ staging:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
+
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
             key: email
@@ -708,6 +714,9 @@ staging:
           secretKeyRef:
             key: private-key
             name: ubuntu-google-datastore
+
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
