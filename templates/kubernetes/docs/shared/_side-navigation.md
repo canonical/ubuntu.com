@@ -1,5 +1,3 @@
-- [Home](/kubernetes/docs/)
-
 ## Tutorials
 - [Get started](/kubernetes/docs/quickstart)
 
@@ -19,6 +17,7 @@
  - [Networking](/kubernetes/docs/cni-overview)
  - [High Availability](/kubernetes/docs/high-availability)
  - [Security](/kubernetes/docs/security)
+ - [Backups](/kubernetes/docs/explain-backups)
 
 
 ## Reference
@@ -29,4 +28,3 @@
 - [Inclusive naming](/kubernetes/docs/inclusive-naming)
 - [CIS compliance](/kubernetes/docs/cis-compliance)
 - [Get in touch](/kubernetes/docs/get-in-touch)
-
