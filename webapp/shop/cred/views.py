@@ -381,7 +381,7 @@ def cred_assessments(trueability_api, **_):
 def cred_exam(trueability_api, **_):
     email = flask.session["openid"]["email"].lower()
     if (
-        not flask.current_app.debug
+        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED")
         and not has_filed_confidentiality_agreement(email)
     ):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
