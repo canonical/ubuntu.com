@@ -380,10 +380,9 @@ def cred_assessments(trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_exam(trueability_api, **_):
     email = flask.session["openid"]["email"].lower()
-    if (
-        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED")
-        and not has_filed_confidentiality_agreement(email)
-    ):
+    if os.getenv(
+        "CREDENTIALS_CONFIDENTIALITY_ENABLED"
+    ) and not has_filed_confidentiality_agreement(email):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
 
     assessment_id = flask.request.args.get("id")
