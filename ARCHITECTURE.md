@@ -64,7 +64,7 @@ The blog pages under https://ubuntu.com/blog make use of [the blog module](https
 
 There are a large number of documentation areas on ubuntu.com (complete at the time of writing, I think):
 
-- [ubuntu.com/servers/docs](http://ubuntu.com/servers/docs) ([code](webapp/app.py#L642-L651))
+- [ubuntu.com/server/docs](http://ubuntu.com/server/docs) ([code](webapp/app.py#L642-L651))
 - [ubuntu.com/core/services/guide](https://ubuntu.com/core/services/guide) ([code](webapp/app.py#L606-L616))
 - [ubuntu.com/core/docs](http://ubuntu.com/core/docs) ([code](webapp/app.py#L748-L756))
   - Also [core sub docs sets](webapp/app.py#L757-L858): bluez, networkmanager, wpa-supplicant, easy-openvpn, wifi-ap, asla-utils
