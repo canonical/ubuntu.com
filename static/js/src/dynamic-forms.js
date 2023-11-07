@@ -200,18 +200,6 @@ import setupIntlTelInput from "./intlTelInput.js";
         }
       };
 
-      if (submitButton) {
-        submitButton.addEventListener("click", function () {
-          ga(
-            "send",
-            "event",
-            "interactive-forms",
-            "submitted",
-            window.location.pathname
-          );
-        });
-      }
-
       if (closeModal) {
         closeModal.addEventListener("click", function (e) {
           e.preventDefault();
