@@ -13,6 +13,39 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+## 1.28+ck2 Bugfix release
+
+### November 7, 2023 - `charmed-kubernetes --channel 1.28/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
+
+## What's new
+
+### Containerd
+* [LP#2034080](https://bugs.launchpad.net/bugs/2034080)
+  Updated source repository for nvidia debs.
+
+### Calico
+* [LP#2037236](https://bugs.launchpad.net/bugs/2037236)
+  1.28 charm release no longer ignores `cni` networking binding.
+
+### Kubernetes-Control-Plane and Kubernetes Worker
+* [LP#2038970](https://bugs.launchpad.net/bugs/2038970)
+  Check the kubernetes cluster version before applying DevicePlugin feature gates.
+
+### Openstack Cloud Controller and CDK Addons
+* [LP#2039886](https://bugs.launchpad.net/bugs/2039886)
+  Correctly update the kubernetes cluster-name when starting the cloud-controller-manager.
+
+### Updated Images
+* [LP#2035139](https://bugs.launchpad.net/bugs/2035139)
+  Updated of various container images which address numerous CVEs in the following operators
+  - coredns charm
+  - ceph-csi charm
+  - openstack-cloud-controller charm
+  - cdk-addons
+
+
 ## 1.28+ck1 Bugfix release
 
 ### September 25, 2023 - `charmed-kubernetes --channel 1.28/stable`
