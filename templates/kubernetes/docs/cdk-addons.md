@@ -152,6 +152,6 @@ please refer to the [How to guide][howto].
 [kubernetes-dashboard-charm]: https://charmhub.io/kubernetes-dashboard
 [kube-state-metrics example]: https://github.com/kubernetes/kube-state-metrics/tree/master/examples/standard
 [metrics-server releases]: https://github.com/kubernetes-sigs/metrics-server/releases
-[add a k8s cloud]: https://juju.is/docs/olm/get-started-on-kubernetes#heading--register-the-cluster-with-juju
+[add a k8s cloud]: https://juju.is/docs/juju/get-started-on-kubernetes#heading--register-the-cluster-with-juju
 [kubernetes-metrics-server]: https://charmhub.io/kubernetes-metrics-server
 [aggregation-extentions]: https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/

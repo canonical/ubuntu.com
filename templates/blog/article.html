@@ -7,7 +7,20 @@
 {# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
 
 {% block body_class %}blog-article{% endblock %}
-{% block canonical_url %}{% if 2996 in article.tags %}https://snapcraft.io/blog/{{ article.slug }}{% elif 4059 in article.tags %}https://juju.is/blog/{{ article.slug }}{% elif 1304 in article.tags or 3681 in article.tags -%}https://maas.io/blog/{{ article.slug }}{% else %}{{ super() }}{% endif %}{% endblock canonical_url %}
+
+{%- block canonical_url -%}
+  {%- if article.author and article.author.id == 217 -%}
+    https://canonical.com/blog/{{ article.slug }}
+  {%- elif 2996 in article.tags -%}
+    https://snapcraft.io/blog/{{ article.slug }}
+  {%- elif 4059 in article.tags -%}
+    https://juju.is/blog/{{ article.slug }}
+  {%- elif 1304 in article.tags or 3681 in article.tags -%}
+    https://maas.io/blog/{{ article.slug }}
+  {%- else -%}
+    https://ubuntu.com/blog/{{ article.slug }}
+  {%- endif -%}
+{%- endblock canonical_url -%}
 
 {% block extra_metatags %}
 <script type="application/ld+json">
@@ -46,8 +59,10 @@
     <div class="row">
       <div class="col-8">
         <div class="p-media-object">
-          {% if article.author %}
-            <img src="{% if article.author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls['96'] }}{% endif %}" class="p-media-object__image is-round" alt="">
+          {% if article.author and article.author.id == 217 %}
+            <img src="https://assets.ubuntu.com/v1/f16c40d0-Favicon+-+CoF.svg" class="p-media-object__image" alt="">
+          {% else %}
+            <img src="{{ article.author.avatar_urls['96'] }}" class="p-media-object__image is-round" alt="">
           {% endif %}
 
           <div class="p-media-object__details">

@@ -14,6 +14,45 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.27+ck1 Bugfix release
+
+### June 12, 2023 - `charmed-kubernetes --channel 1.27/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Vault KV [LP#1949913](https://bugs.launchpad.net/charm-layer-vault-kv/+bug/1949913)
+
+  Possible collisions if two apps with same name related to vault from different models.
+
+- Etcd [LP#2004612](https://bugs.launchpad.net/charm-etcd/+bug/2004612)
+
+  Prometheus cannot access etcd targets created by relation.
+
+- Ceph CSI [LP#2007423](https://bugs.launchpad.net/charm-ceph-csi/+bug/2007423)
+
+  Make hostnetworking configurable.
+
+- Kube-OVN [LP#2017004](https://bugs.launchpad.net/charm-kube-ovn/+bug/2017004)
+
+  Upgrade kube-ovn to v1.11.5.
+
+- Containerd [LP#2017175](https://bugs.launchpad.net/charm-containerd/+bug/2017175)
+
+  Installation of GPU cude-drivers installs gnome-* packages which can shut the servers down on idle.
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes Control Plane [LP#2020059](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2020059)
+
+  Kubernetes charms don't set ipvs mode (code and docs bug).
+
+A list of all bug fixes and minor updates in this release can be found at
+[the launchpad milestone page for 1.27+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.27+ck1).
+
 # 1.27
 
 ### April 21, 2023 - `charmed-kubernetes --channel 1.27/stable`
@@ -126,7 +165,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Cilium on AWS and OpenStack [LP#2016905](https://bugs.launchpad.net/charm-cilium/+bug/2016905)
 
-  Deploying Cilium on AWS or Openstack can cause inter-node communication
+  Deploying Cilium on AWS or OpenStack can cause inter-node communication
   failures due to the Fan networking that Juju enables by default in those
   environments. To work around this issue, set model configuration prior
   to deployment:

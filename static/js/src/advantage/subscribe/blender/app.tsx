@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import BlenderPurchase from "./BlenderPurchase";
@@ -13,7 +13,6 @@ import { ProductListings } from "./utils/utils";
 declare global {
   interface Window {
     stripePublishableKey?: string;
-    isGuest?: boolean;
     isLoggedIn?: boolean;
     accountId?: string;
     tempAccountId?: string;

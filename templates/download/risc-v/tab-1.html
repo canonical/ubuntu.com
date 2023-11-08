@@ -1,42 +1,32 @@
-<div tabindex="0" role="tabpanel" id="quemu-sifive-image-tab" aria-labelledby="quemu-sifive-image">
-  <div class="row">
-    <div class="col-6">
-      <div class="p-strip is-shallow u-no-padding--top">
-        <h2>SiFive Unmatched</h2>
-        <h3>Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-      </div>
-      <div class="p-notification--information is-inline">
-        <div class="p-notification__content">
-          <p class="p-notification__title">Note:</p>
-          <p class="p-notification__message">If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.</p>
-        </div>
-      </div>
-      <p class="u-sv3">
-        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
-        <a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
-      </p>
+<div tabindex="0" role="tabpanel" id="allwinner-nezha-tab" aria-labelledby="allwinner-nezha" aria-hidden="true">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-3">
+      <h2 class="u-hide--small">AllWinner Nezha</h2>
     </div>
-    <div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
+    <div class="col-6 risc-v-container u-vertically-center u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
+        url="https://assets.ubuntu.com/v1/5207975e-0cc9bac3-Allwinner+Nezha+Board.png",
         alt="",
-        width="720",
-        height="480",
+        width="400",
+        height="240",
         hi_def=True,
-        loading="auto"
+        loading="auto",
+        attrs={"class": "risc-v-image"}
         ) | safe
-        }}
+      }}
     </div>
   </div>
-  <div class="row">
+  <div class="row p-strip u-no-padding--top">
+    <hr class="col-9">
+    <div class="col-3">
+      <h3 class="p-heading--5 u-no-padding--top">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+    </div>
     <div class="col-6">
-      <hr class="u-no-margin--bottom">
-      <h3 class="u-sv3">Ubuntu Server live installer</h3>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
+      <p>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz">Download 23.10</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.3/release/ubuntu-22.04.3-preinstalled-server-riscv64+nezha.img.xz">Download 22.04.3</a>
 			</p>
-			<p><a href="https://wiki.ubuntu.com/RISC-V/SiFive%20HiFive%20Unmatched">How to install Ubuntu on SiFive HiFive Unmatched</a></p>
-		</div>
-	</div>
+			<p><a href="https://wiki.ubuntu.com/RISC-V/Nezha%20D1">How to install Ubuntu on the Nezha</a></p>
+    </div>
+  </div>
 </div>

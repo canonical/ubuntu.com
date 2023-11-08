@@ -36,7 +36,7 @@ The 'App' section of the output lists each application and its version number. N
 
 ## Before you begin
 
-<div class="p-notification--warning is-inline">
+<div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning!:</span>
     <p class="p-notification__message"><strong>Juju compatibility</strong>  - currently, only the latest <strong>2.9/stable</strong> version of Juju is recommended for use with Charmed Kubernetes. The later 3.0 versions of Juju introduce breaking changes and are not supported until a tested upgrade path is in place. If you have already installed a later version of the Juju client, you can revert to the supported channel by running <code> sudo snap refresh juju --channel=2.9/stable</code></p>
@@ -71,7 +71,7 @@ deprecated APIs.
 
 ## Upgrading the Machine's Series (required for machines currently running 18.04(Bionic))
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-a-machine).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/juju/manage-machines#heading--upgrade-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
@@ -348,7 +348,7 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
-[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
+[juju-controller-upgrade]: https://juju.is/docs/juju/upgrade-models
 [inclusive-naming]: /kubernetes/docs/inclusive-naming
 [bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 

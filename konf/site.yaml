@@ -7,10 +7,10 @@ env:
     value: true
 
   - name: STORE_MAINTENANCE_START
-    value: 2023-03-18T21:00:00Z
+    value: 2023-10-02T03:00:00Z
 
   - name: STORE_MAINTENANCE_END
-    value: 2023-03-19T01:00:00Z
+    value: 2023-10-02T06:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -67,6 +67,31 @@ env:
       key: private-key
       name: google-service-account
 
+  - name: GOOGLE_DATASTORE_PROJECT_ID
+    secretKeyRef:
+      key: project-id
+      name: ubuntu-google-datastore
+
+  - name: GOOGLE_DATASTORE_EMAIL
+    secretKeyRef:
+      key: email
+      name: ubuntu-google-datastore
+
+  - name: GOOGLE_DATASTORE_PRIVATE_KEY
+    secretKeyRef:
+      key: private-key
+      name: ubuntu-google-datastore
+
+  - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+    secretKeyRef:
+      key: username
+      name: confidentiality-webhook
+
+  - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+    secretKeyRef:
+      key: password
+      name: confidentiality-webhook
+
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -102,9 +127,6 @@ env:
     secretKeyRef:
       key: api-key
       name: trueability
-
-  - name: CANONICAL_LOGIN_URL
-    value: https://login.ubuntu.com/
 
 memoryLimit: 512Mi
 
@@ -190,6 +212,9 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
+
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
             key: email
@@ -199,6 +224,34 @@ production:
           secretKeyRef:
             key: private-key
             name: google-service-account
+
+        - name: GOOGLE_DATASTORE_PROJECT_ID
+          secretKeyRef:
+            key: project-id
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_EMAIL
+          secretKeyRef:
+            key: email
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: ubuntu-google-datastore
+
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+          secretKeyRef:
+            key: username
+            name: confidentiality-webhook
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+          secretKeyRef:
+            key: password
+            name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
@@ -316,10 +369,10 @@ production:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-10-02T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-10-02T06:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -426,10 +479,10 @@ staging:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-10-02T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-10-02T06:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -486,6 +539,31 @@ staging:
         key: private-key
         name: google-service-account
 
+    - name: GOOGLE_DATASTORE_PROJECT_ID
+      secretKeyRef:
+        key: project-id
+        name: ubuntu-google-datastore
+
+    - name: GOOGLE_DATASTORE_EMAIL
+      secretKeyRef:
+        key: email
+        name: ubuntu-google-datastore
+
+    - name: GOOGLE_DATASTORE_PRIVATE_KEY
+      secretKeyRef:
+        key: private-key
+        name: ubuntu-google-datastore
+
+    - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+      secretKeyRef:
+        key: username
+        name: confidentiality-webhook
+
+    - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+      secretKeyRef:
+        key: password
+        name: confidentiality-webhook
+
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -528,7 +606,7 @@ staging:
         name: trueability
 
     - name: CREDLY_URL
-      value: https://sandbox-api.credly.com/v1
+      value: https://api.credly.com/v1
 
     - name: CREDLY_TOKEN
       secretKeyRef:
@@ -542,6 +620,16 @@ staging:
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
+
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api
 
   routes:
     - paths: [/blog]
@@ -599,6 +687,9 @@ staging:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
+        - name: GOOGLE_CLOUD_DISABLE_GRPC
+          value: true
+
         - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
           secretKeyRef:
             key: email
@@ -608,6 +699,34 @@ staging:
           secretKeyRef:
             key: private-key
             name: google-service-account
+
+        - name: GOOGLE_DATASTORE_PROJECT_ID
+          secretKeyRef:
+            key: project-id
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_EMAIL
+          secretKeyRef:
+            key: email
+            name: ubuntu-google-datastore
+
+        - name: GOOGLE_DATASTORE_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: ubuntu-google-datastore
+
+        - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+          value: false
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
+          secretKeyRef:
+            key: username
+            name: confidentiality-webhook
+
+        - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_PASSWORD
+          secretKeyRef:
+            key: password
+            name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
@@ -623,7 +742,7 @@ staging:
             name: trueability
 
         - name: CREDLY_URL
-          value: https://sandbox-api.credly.com/v1
+          value: https://api.credly.com/v1
 
         - name: CREDLY_TOKEN
           secretKeyRef:
@@ -743,10 +862,10 @@ staging:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-10-02T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-10-02T06:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -813,14 +932,17 @@ staging:
 
 demo:
   env:
+    - name: GOOGLE_CLOUD_DISABLE_GRPC
+      value: true
+
     - name: STORE_MAINTENANCE
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-10-02T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-10-02T06:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -905,3 +1027,13 @@ demo:
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
+
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api

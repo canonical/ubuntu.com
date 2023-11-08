@@ -61,12 +61,15 @@
 
       <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
 
+      <p>Ubuntu LTS releases receive 5 years of standard security maintenance for all packages in the ‘Main’ repository. With an Ubuntu Pro subscription you get access to Expanded Security Maintenance (ESM) covering security fixes for packages in the ‘Universe’ repository (esm-apps feature). Additionally, ESM extends the lifetime of an Ubuntu LTS from 5 years to 10 years (esm-infra feature).</p>
+
       <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
     </div>
 
     {% include "/about/release_cycles/ubuntu-eol.html" %}
 
     <div class="u-fixed-width">
+      <p>ESM requires Ubuntu Pro subscription.</p>
       <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.</p>
     </div>
   </div>
@@ -189,7 +192,7 @@
       
       <p>OpenStack clouds deployed through <a href="/openstack/consulting">Private Cloud Build</a> or validated through <a href="/openstack/consulting">Cloud Validation</a> consulting engagement (aka Charmed OpenStack clouds) can also benefit from <a href="/legal/ubuntu-pro-description#uprosd-full-openstack-support">Full OpenStack support</a> under <a href="/support">Ubuntu Pro &plus; Support and Ubuntu Pro (Infra-only) &plus; Support</a>. Full OpenStack support is provided for all OpenStack versions available in the Ubuntu Archive and Ubuntu Cloud Archive during their lifespan under standard security maintenance (18, 36 or 60 months depending on the version).</p>
     
-      <p>Chramed OpenStack support lifecycle on Ubuntu can be represented in this way:</p>
+      <p>Charmed OpenStack support lifecycle on Ubuntu can be represented in this way:</p>
 
       {% include "/about/release_cycles/openstack-eol.html" %}
 
@@ -219,7 +222,8 @@
       <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides expanded security maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.</p>
 
       <p>For <a href="/support">Ubuntu Pro</a> support, users must upgrade to remain in the N-2 support window.</p>
-      <p>ESM support includes fixes to high and critical CVEs related to Kubernetes charms, limited to the LTS Ubuntu releases in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and Microk8s.</p>
+
+      <p>ESM support includes fixes to high and critical CVEs related to Kubernetes charms and MicroK8s (snap), in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and MicroK8s.</p>
 
       <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
     </div>

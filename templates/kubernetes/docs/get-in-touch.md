@@ -21,6 +21,10 @@ in touch with suggestions, problems or just to get involved.
 
 Find us in **#canonical-kubernetes** on [Kubernetes Slack][slack].
 
+## Mattermost
+
+Join the [public Mattermost channel][mattermost] dedicated to all things Canonical Kubernetes!
+
 ## Bugs
 
 **Charmed Kubernetes** bugs  are tracked in [launchpad][lp].
@@ -40,9 +44,14 @@ If you are looking for additional support, find out about [Ubuntu Advantage][sup
 
 Canonical can also provide [managed solutions][managed] for Kubernetes.
 
+## Contributing
+
+We'd be delighted if you wanted to contribute to any aspect of this open source project. Please see the [docs on contributing][].
+
 <!-- LINKS -->
 
 [docs]:  https://github.com/charmed-kubernetes/kubernetes-docs
+[docs on contributing]: /kubernetes/docs/how-to-contribute
 [lp]: https://bugs.launchpad.net/charmed-kubernetes
 [support]: /support
 [managed]: /kubernetes/managed

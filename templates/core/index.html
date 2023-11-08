@@ -85,7 +85,7 @@
       </p>
     </div>
     <div class="col-6">
-      <div class="p-logo-section">
+      <div class="p-logo-section has-misaligned-images">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{ image (
@@ -94,6 +94,7 @@
               width="288",
               height="288",
               hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
               loading="auto",
               ) | safe
             }}
@@ -105,6 +106,7 @@
               width="288",
               height="288",
               hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
               loading="auto",
               ) | safe
             }}
@@ -116,7 +118,8 @@
               width="288",
               height="288",
               hi_def=True,
-              loading="auto|lazy"
+              attrs={"class": "p-logo-section__logo"},
+              loading="lazy"
               ) | safe
             }}
           </div>
@@ -127,6 +130,7 @@
               width="128",
               height="50",
               hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
               loading="lazy",
               ) | safe
             }}
@@ -353,7 +357,7 @@
         <img src="https://assets.ubuntu.com/v1/4f70dabc-Kernel.svg" class="p-media-object__image" alt="">
         <div class="p-media-object__details">
           <h3 class="p-media-object__title">
-            <a href="/blog/real-time-ubuntu-is-now-generally-available">Real-time kernel</a>
+            <a href="/real-time">Real-time kernel</a>
           </h3>
           <p class="p-media-object__content p-heading--5" style="margin-bottom: 0;">Time-bound for mission-critical latency requirements</p>
           <p class="p-media-object__content">The real-time kernel integrates the PREEMPT_RT patchset to reduce the kernel latencies as required by the most demanding workloads, guaranteeing a time-predictable task execution.</p>
@@ -525,7 +529,7 @@
           <p class="p-heading-icon__title">Webinar</p>
         </div>
       </div>
-      <h3 class="p-heading--4"><a href="/engage/intro-to-ubuntu-core22-webinar" onclick="dataLayer.push({' event' : 'GAEvent', 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - Introuction to Ubuntu Core 22 ' , 'eventValue' : '1' });">Introduction to Ubuntu Core 22&nbsp;&rsaquo;</a></h3>
+      <h3 class="p-heading--4"><a href="/engage/embedded-ubuntu-for-devices-webinar" onclick="dataLayer.push({' event' : 'GAEvent', 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - Embedded Ubuntu for devices' , 'eventValue' : '1' });">Embedded Ubuntu for devices&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -545,7 +549,7 @@
           <p class="p-heading-icon__title">Webinar</p>
         </div>
       </div>
-      <h3 class="p-heading--4"><a href="https://www.brighttalk.com/webcast/6793/402503/ubuntu-core-a-cybersecurity-analysis" onclick="dataLayer.push({' event' : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - a cybersecurity analysis' , 'eventValue' : '1' });">Ubuntu Core: a cybersecurity analysis&nbsp;&rsaquo;</a></h3>
+      <h3 class="p-heading--4"><a href="/engage/intro-to-ubuntu-core22-webinar" onclick="dataLayer.push({' event' : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - Introduction to Ubuntu Core 22' , 'eventValue' : '1' });">Introduction to Ubuntu Core 22&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">

@@ -1,19 +1,17 @@
 import React from "react";
-import { mount } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
-
-import DetailsContent from "./DetailsContent";
+import { mount } from "enzyme";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 import {
   contractTokenFactory,
   freeSubscriptionFactory,
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
-import {
-  UserSubscriptionPeriod,
-  UserSubscriptionMarketplace,
-} from "advantage/api/enum";
-import { CodeSnippet } from "@canonical/react-components";
+import DetailsContent from "./DetailsContent";
 
 describe("DetailsContent", () => {
   let queryClient: QueryClient;
@@ -33,9 +31,7 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("[data-test='expires-col']").text()).toBe("Never");
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("None");
-    expect(wrapper.find("[data-test='cost-col']").text()).toBe("Free");
   });
 
   it("displays ua subscription specific details", () => {
@@ -54,11 +50,7 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("[data-test='expires-col']").text()).toBe(
-      "09 Jul 2022"
-    );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
-    expect(wrapper.find("[data-test='cost-col']").text()).toBe("$1,500 USD/yr");
   });
 
   it("displays a spinner while loading the contract token", () => {
@@ -114,25 +106,10 @@ describe("DetailsContent", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find("CodeSnippet").exists()).toBe(true);
-    expect(wrapper.find(CodeSnippet).prop("blocks")[0].code).toBe(
+    expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
+    expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
       contractToken.contract_token
     );
-  });
-
-  it("hides the cost column if there is no cost provided", () => {
-    const contract = userSubscriptionFactory.build();
-    contract.price = null;
-    queryClient.setQueryData("userSubscriptions", [contract]);
-    const wrapper = mount(
-      <QueryClientProvider client={queryClient}>
-        <DetailsContent
-          selectedId={contract.id}
-          setHasUnsavedChanges={jest.fn()}
-        />
-      </QueryClientProvider>
-    );
-    expect(wrapper.find("[data-test='cost-col']").exists()).toBe(false);
   });
 
   it("displays correctly for blender subscription", () => {

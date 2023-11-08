@@ -9,7 +9,6 @@ fetchMock.enableMocks();
 describe("setupIntlTelInput", () => {
   let phoneInput;
   let mobileInput;
-  let errorElement;
 
   beforeEach(() => {
     document.body.innerHTML = `

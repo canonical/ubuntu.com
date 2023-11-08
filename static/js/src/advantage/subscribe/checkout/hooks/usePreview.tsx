@@ -1,13 +1,6 @@
 import { useQuery } from "react-query";
-import {
-  Action,
-  FormValues,
-  PaymentPayload,
-  Product,
-  TaxInfo,
-} from "../utils/types";
+import { Action, PaymentPayload, Product, TaxInfo } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
-import { useFormikContext } from "formik";
 
 type Props = {
   quantity: number;
@@ -16,8 +9,7 @@ type Props = {
 };
 
 const usePreview = ({ quantity, product, action }: Props) => {
-  const { isError: isUserInfoError } = useCustomerInfo();
-  const { setFieldValue } = useFormikContext<FormValues>();
+  const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["preview", product],
     async () => {
@@ -64,8 +56,17 @@ const usePreview = ({ quantity, product, action }: Props) => {
       const res = await response.json();
 
       if (res.errors) {
-        console.log(res.errors);
-        throw new Error(res.errors);
+        if (res.errors != "no invoice would be issued for this purchase") {
+          console.log(res.errors);
+          throw new Error(res.errors);
+        }
+
+        return {
+          currency: "USD",
+          subtotal: 0,
+          tax: 0,
+          total: 0,
+        };
       }
 
       const data: TaxInfo = {
@@ -77,14 +78,15 @@ const usePreview = ({ quantity, product, action }: Props) => {
         end_of_cycle: res.end_of_cycle,
       };
 
-      setFieldValue("totalPrice", data.total);
       return data;
     },
     {
+      retry: false,
       enabled:
         !!window.accountId &&
         !window.currentPaymentId &&
         !!product &&
+        !!userInfo?.accountInfo?.name &&
         !isUserInfoError,
     }
   );

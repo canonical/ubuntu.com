@@ -194,6 +194,8 @@ containers:
       path: /containers
     - title: What are containers
       path: /containers/what-are-containers
+    - title: Chiselled Ubuntu
+      path: /containers/chiselled/dotnet
 
 ai:
   title: AI / ML
@@ -202,10 +204,16 @@ ai:
   children:
     - title: Overview
       path: /ai
-    - title: What is Kubeflow
+    - title: MLOps
+      path: /ai/mlops
+    - title: Kubeflow
       path: /ai/what-is-kubeflow
-    - title: Services
-      path: /ai/services
+    - title: MLflow
+      path: /ai/mlflow
+    - title: Consulting
+      path: /ai/consulting
+    - title: Roadshow
+      path: /ai/roadshow
 
 kubernetes:
   title: Kubernetes
@@ -314,12 +322,11 @@ support:
       path: /pro/dashboard
     - title: Account users
       path: /pro/users
-    - title: Support
-      path: /support
     - title: Pricing
       path: /pricing/pro
     - title: Discourse
       path: https://discourse.ubuntu.com/c/ubuntu-pro
+
 pro:
   title: Pro
   path: /pro
@@ -331,8 +338,6 @@ pro:
       path: /pro/dashboard
     - title: Account users
       path: /pro/users
-    - title: Support
-      path: /support
     - title: Pricing
       path: /pricing/pro
     - title: Tutorial
@@ -351,20 +356,6 @@ account:
       path: /account/invoices
     - title: Payment methods
       path: /account/payment-methods
-
-data:
-  title: Data
-  path: /data
-
-  children:
-    - title: Kafka
-      path: /data/kafka
-    - title: Spark
-      path: /data/spark
-    - title: MongoDB
-      path: /data/mongodb
-    - title: OpenSearch
-      path: /data/opensearch
 
 download:
   title: Downloads
@@ -415,6 +406,14 @@ lxd:
   children:
     - title: Overview
       path: /lxd
+    - title: Install
+      path: /lxd/install
+    - title: Manage
+      path: /lxd/manage
+    - title: Docs
+      path: https://documentation.ubuntu.com/lxd/
+    - title: Forum
+      path: https://discourse.ubuntu.com/c/lxd/126
 
 observability:
   title: Observability
@@ -633,8 +632,8 @@ certification:
       path: /certified/desktops
     - title: Servers
       path: /certified/servers
-    - title: Devices
-      path: /certified/devices
+    - title: IoT
+      path: /certified/iot
     - title: SoCs
       path: /certified/socs
 

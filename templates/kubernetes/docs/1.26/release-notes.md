@@ -1,4 +1,3 @@
-
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
@@ -13,6 +12,56 @@ permalink: 1.26/release-notes.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
+# 1.26+ck4 Bugfix release
+
+### June 19, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+## Fixes
+
+Two bug fixes related to the `kubeapi-load-balancer` charm have been backported
+from Charmed Kubernetes 1.27:
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes API Load Balancer [LP#2017812](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017812)
+
+  ha-cluster-vip not correctly written to kubeconfig.
+
+# 1.26+ck3 Bugfix release
+
+### March 20, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane [LP#1989362](https://bugs.launchpad.net/bugs/1989362)
+
+  Resolves a hook error when related to vault but the vault api endpoint is not ready
+
+- Kubernetes Control Plane [LP#1999542](https://bugs.launchpad.net/bugs/1999542)
+
+  Resolves an issue where the charm incorrectly presumes a one-time vault token has
+  been used successfully to create a secret.
+
+- ETCD [LP#2008267](https://bugs.launchpad.net/bugs/2008267)
+
+  Resolves a race-condition which occurs when etcd sends cluster information
+  before its api endpoint is available, causing both it and calico to stall
+  during deployment.
+
+- Vsphere Cloud Provider [LP#2010233](https://bugs.launchpad.net/bugs/2010233)
+
+  Resolves an issue where the sync-manifest action could result in pods described
+  with the wrong image.
+
+- Vsphere Cloud Provider [LP#2009965](https://bugs.launchpad.net/bugs/2009965)
+
+  Resolves an issue where the charm is stuck in Maintenance state after running
+  a sync-manifest action.
 
 # 1.26+ck2 Bugfix release
 
@@ -30,7 +79,7 @@ Notable fixes in this release include:
 
   Restrict non-root access to etcd snap data directory.
 
-- Kubernetes Control Plane 
+- Kubernetes Control Plane LP#2007174
 
   Restrict non-root access to the script responsible for synchronizing control-plane leader files to followers.
 
@@ -38,31 +87,48 @@ Notable fixes in this release include:
 
   Add missing bundle overlays for AWS/GCE cloud storage providers.
 
-# 1.26+ck1 Bugfix release
- 
-### January 16, 2023 - `charmed-kubernetes --channel 1.26/stable` 
- 
-The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
- 
- ## Fixes
- 
- Notable fixes in this release include:
-- Kubernetes Control Plane / Octavia [LP#1990494](https://bugs.launchpad.net/bugs/1990494)
-   Resolves an issue which made it impossible to delete a kubernetes service when octavia loadbalancers are detected
-- Kubernetes Control Plane / Octavia [LP#1995746](https://bugs.launchpad.net/bugs/1995746)
-   Adds support to disable openstack loadbalancer integration
-- Kubernetes Control Plane / Ceph [LP#1998257](https://bugs.launchpad.net/bugs/1998257)
-   Resolves an issue where the `csi-rbdplugin` pod cannot start if the control-plane unit is running in a LXD machine.
-- Containerd [#LP2002593](https://bugs.launchpad.net/bugs/2002593)
-   Resolves issue with flooding `/var/log/syslog` with messages about a deprecation of `io.containerd.runc.v1`
-- CoreDNS [LP#2002698](https://bugs.launchpad.net/bugs/2002698)
-   Upgrade of the coredns image from `1.6.7` to `1.10.0`
-- ops.lib-manifest library [LP#1999427](https://bugs.launchpad.net/bugs/1999427)
-   Resolves an issue where a charm hook fails rather than retrying when the kubernetes-api is available.
-- SRIOV CNI/Network Device Plugin [LP#2002186](https://bugs.launchpad.net/bugs/2002186)
-   Add support for control-plane node toleration for SRIOV daemonsets
 
-## 1.26
+# 1.26+ck1 Bugfix release
+
+### January 16, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
+
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane / Octavia [LP#1990494](https://bugs.launchpad.net/bugs/1990494)
+
+  Resolves an issue which made it impossible to delete a kubernetes service when octavia loadbalancers are detected
+
+- Kubernetes Control Plane / Octavia [LP#1995746](https://bugs.launchpad.net/bugs/1995746)
+
+  Adds support to disable openstack loadbalancer integration
+
+- Kubernetes Control Plane / Ceph [LP#1998257](https://bugs.launchpad.net/bugs/1998257)
+
+  Resolves an issue where the `csi-rbdplugin` pod cannot start if the control-plane unit is running in a LXD machine.
+
+- Containerd [#LP2002593](https://bugs.launchpad.net/bugs/2002593)
+  
+  Resolves issue with flooding `/var/log/syslog` with messages about a deprecation of `io.containerd.runc.v1`
+
+- CoreDNS [LP#2002698](https://bugs.launchpad.net/bugs/2002698)
+
+  Upgrade of the coredns image from `1.6.7` to `1.10.0`
+
+- ops.lib-manifest library [LP#1999427](https://bugs.launchpad.net/bugs/1999427)
+
+  Resolves an issue where a charm hook fails rather than retrying when the kubernetes-api is available.
+
+- SRIOV CNI/Network Device Plugin [LP#2002186](https://bugs.launchpad.net/bugs/2002186)
+
+  Add support for control-plane node toleration for SRIOV daemonsets
+
+
+# 1.26
 
 ### December 15, 2022 - `charmed-kubernetes --channel 1.26/stable` 
 
@@ -139,9 +205,9 @@ A list of issues to be fixed in the first 1.26 maintenance release can be found 
     aws-k8s-storage/0*         error        idle                54.80.73.214                    hook failed: "update-status"
   ```
 
-  When the affected charms (see bug link above) are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
+  When the affected charms are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
   can respond to client requests with a 502 Gateway Error, amongst other error statuses not produced
-  by the API server itself.  The charm's Kubernetes client library raises an unhandled exception in
+  by the API server itself.  The charm's kubernetes client library raises an unhandled exception in
   this case. This results is the charm being in an error state which is easily resolved by running
 
   ```bash

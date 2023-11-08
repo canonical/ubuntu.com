@@ -12,16 +12,15 @@ const FeatureSwitch = ({
   handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <label className="p-subscription-switch">
+    <label className="p-checkbox">
       <input
         disabled={isDisabled}
         type="checkbox"
-        className="p-switch__input"
+        className="p-checkbox__input"
         checked={isChecked}
         onChange={handleOnChange}
       />
-      <span className="p-switch__slider p-subscription-switch__slider"></span>
-      {children}
+      <span className="p-checkbox__label">{children}</span>
     </label>
   );
 };

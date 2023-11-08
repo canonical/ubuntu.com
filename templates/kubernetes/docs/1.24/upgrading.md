@@ -313,7 +313,7 @@ juju run-action kubernetes-worker/1 upgrade
 
 ## Upgrading the Machine's Series
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-a-machine).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/juju/manage-machines#heading--upgrade-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
@@ -396,7 +396,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
 [docker2containerd]: /kubernetes/docs/upgrade-notes#1.15
-[juju-controller-upgrade]: https://juju.is/docs/olm/upgrade-models
+[juju-controller-upgrade]: https://juju.is/docs/juju/upgrade-models
 [bundle-repo]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->

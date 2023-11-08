@@ -762,8 +762,7 @@ https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/
 
 - Added support for Dynamic Kubelet Configuration
 
-While we recommend `kubelet-extra-config` as a more robust and approachable way to configure Kubelet, we've also made it possible to configure kubelet using the Dynamic Kubelet Configuration feature that comes with Kubernetes 1.11+. You can read about that here:
-https://kubernetes.io/docs/tasks/administer-cluster/reconfigure-kubelet/
+While we recommend `kubelet-extra-config` as a more robust and approachable way to configure Kubelet, we've also made it possible to configure kubelet using the Dynamic Kubelet Configuration feature that comes with Kubernetes 1.11+. 
 
 - New etcd charm config: bind_to_all_interfaces ([PR](https://github.com/juju-solutions/layer-etcd/pull/137))
 

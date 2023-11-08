@@ -1,15 +1,20 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Alternative downloads{% endblock %}
-{% block meta_description %}Want to download via-bitTorrent links, get images with more language packs, use the text-based alternate installer or find previous versions of Ubuntu?{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1VhmFVE3dK81mE3zcC9FVA6f5SGJ-DHan7WWlrlfRcvo/edit{% endblock meta_copydoc %}
+{% block meta_description %}Want to download via-bitTorrent links, get images with more language packs, use the
+text-based alternate installer or find previous versions of Ubuntu?{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1VhmFVE3dK81mE3zcC9FVA6f5SGJ-DHan7WWlrlfRcvo/edit{% endblock
+meta_copydoc %}
 
 {% block content %}
 <div class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-8">
       <h1>Alternative downloads</h1>
-      <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our network installer for older systems and special configurations and links to our regional mirrors for our older (and newer) releases. If you don't specifically require any of these installers, we recommend using our <a href="/download">standard downloads</a>.</p>
+      <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download,
+        our network installer for older systems and special configurations and links to our regional mirrors for our
+        older (and newer) releases. If you don't specifically require any of these installers, we recommend using our <a
+          href="/download">standard downloads</a>.</p>
     </div>
   </div>
 </div>
@@ -18,11 +23,18 @@
   <div class="row" id="network-installer">
     <div class="col-8">
       <h2>Network installer</h2>
-      <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation.</p>
-      <p>The network installer is ideal if you have a computer that cannot run the graphical installer, for example, because it does not meet the minimum requirements for the live CD/DVD, or because the computer requires extra configuration before a graphical desktop can be used. The network installer is also useful if you want to install Ubuntu on a large number of computers at once.</p>
+      <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to
+        start and the rest of the packages are downloaded over the network. Since only current packages are downloaded,
+        there is no need to upgrade packages immediately after installation.</p>
+      <p>The network installer is ideal if you have a computer that cannot run the graphical installer, for example,
+        because it does not meet the minimum requirements for the live CD/DVD, or because the computer requires extra
+        configuration before a graphical desktop can be used. The network installer is also useful if you want to
+        install Ubuntu on a large number of computers at once.</p>
       <p>For 22.04 LTS, users can use the new Ubuntu Live installer to setup and configure a network install.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><a href="https://discourse.ubuntu.com/t/netbooting-the-live-server-installer">Instructions for the {{ releases.lts.short_version }} LTS Ubuntu Live installer</a></li>
+        <li class="p-list__item is-ticked"><a
+            href="https://discourse.ubuntu.com/t/netbooting-the-live-server-installer">Instructions for the {{
+            releases.lts.short_version }} LTS Ubuntu Live installer</a></li>
       </ul>
     </div>
   </div>
@@ -32,7 +44,8 @@
   <div class="row" id="bittorrents">
     <div class="col-8">
       <h2 id="bittorrent">BitTorrent</h2>
-      <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files. You need a BitTorrent client on your computer to enable this download method.</p>
+      <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable
+        downloads of large files. You need a BitTorrent client on your computer to enable this download method.</p>
     </div>
   </div>
 
@@ -41,23 +54,51 @@
     <div class="col-4">
       <h3 class="p-heading--4"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.latest.full_version }}</a></li>
+        <li class="p-list__item">
+          <a class="download-torrent"
+            href="https://releases.ubuntu.com/{{ releases.latest.desktop_version }}/ubuntu-{{ releases.latest.desktop_version }}-desktop-amd64.iso.torrent">Ubuntu
+            {{ releases.latest.full_version }} Desktop (64-bit)</a>
+        </li>
+        <li class="p-list__item">
+          <a class="download-torrent"
+            href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+            Server {{ releases.latest.full_version }}</a>
+        </li>
       </ul>
     </div>
     {% endif %}
     <div class="col-4">
-      <h3 class="p-heading--4"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4">
+        <span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span>
+      </h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.lts.full_version }} LTS</a></li>
+        <li class="p-list__item">
+          <a class="download-torrent"
+            href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
+            {{ releases.lts.full_version }} Desktop (64-bit)</a>
+        </li>
+        <li class="p-list__item">
+          <a class="download-torrent"
+            href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+            Server {{ releases.lts.full_version }} LTS</a>
+        </li>
       </ul>
     </div>
     <div class="col-4">
-      <h3 class="p-heading--4"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4">
+        <span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span>
+      </h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.previous_lts.full_version }} LTS</a></li>
+        <li class="p-list__item">
+          <a class="download-lts"
+            href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu
+            {{ releases.previous_lts.full_version }} Desktop (64-bit)</a>
+        </li>
+        <li class="p-list__item">
+          <a class="download-lts"
+            href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu
+            Server {{ releases.previous_lts.full_version }} LTS</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -72,19 +113,30 @@
     </div>
     <div class="col-6 p-divider__block">
       <h2 id="past-releases-and-other-flavours">Past releases and other flavours</h2>
-      <p>Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+      <p>Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a
+        previous LTS point release with its original stack, you can find them in past releases.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><a href="https://releases.ubuntu.com/{{ releases.previous_lts.full_version }}/">Ubuntu {{ releases.previous_lts.short_version }} LTS ({{ releases.previous_lts.name }})</a></li>
+        <li class="p-list__item is-ticked">
+          <a href="https://releases.ubuntu.com/{{ releases.previous_lts.full_version }}/">Ubuntu {{
+            releases.previous_lts.short_version }} LTS ({{ releases.previous_lts.name }})</a>
+        </li>
         {% if releases.latest.past_eol_date != true and releases.latest.short_version < releases.lts.short_version %}
-        <li class="p-list__item is-ticked"><a href="https://releases.ubuntu.com/{{ releases.latest.full_version }}/">Ubuntu {{ releases.latest.short_version }} ({{ releases.latest.name }})</a></li>
-        {% endif %}
-        <li class="p-list__item is-ticked"><a href="https://releases.ubuntu.com/{{ releases.previous_previous_lts.full_version }}/">Ubuntu {{ releases.previous_previous_lts.short_version }} LTS ({{ releases.previous_previous_lts.name }})</a></li>
+          <li class="p-list__item is-ticked">
+          <a href="https://releases.ubuntu.com/{{ releases.latest.full_version }}/">Ubuntu {{
+            releases.latest.short_version }} ({{ releases.latest.name }})</a>
+          </li>
+          {% endif %}
+          <li class="p-list__item is-ticked">
+            <a href="https://releases.ubuntu.com/{{ releases.previous_previous_lts.full_version }}/">Ubuntu {{
+              releases.previous_previous_lts.short_version }} LTS ({{ releases.previous_previous_lts.name }})</a>
+          </li>
       </ul>
       <p><a href="https://releases.ubuntu.com/">Past releases</a></p>
     </div>
   </div>
 </div>
 
-{% with first_item="_download_more_info_enterprise", second_item="_download_all_installation", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_download_more_info_enterprise", second_item="_download_all_installation",
+third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

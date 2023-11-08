@@ -5,6 +5,7 @@ A Flask application for ubuntu.com
 import os
 
 import flask
+import requests
 import talisker.requests
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -19,19 +20,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
-from webapp.certified.views import (
-    certified_component_details,
-    certified_desktops,
-    certified_devices,
-    certified_hardware_details,
-    certified_home,
-    certified_laptops,
-    certified_model_details,
-    certified_servers,
-    certified_socs,
-    certified_vendors,
-    certified_why,
-)
+from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
 from webapp.security.views import (
@@ -50,15 +39,14 @@ from webapp.shop.advantage.views import (
     activate_magic_attach,
     advantage_account_users_view,
     advantage_shop_view,
-    advantage_thanks_view,
     advantage_view,
     blender_shop_view,
-    blender_thanks_view,
     cancel_advantage_subscriptions,
     cancel_trial,
     delete_account_user_role,
     get_account_offers,
     get_account_users,
+    get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
     get_contract_token,
@@ -67,20 +55,21 @@ from webapp.shop.advantage.views import (
     magic_attach_view,
     post_account_user_role,
     post_advantage_purchase,
-    post_advantage_subscriptions,
     post_auto_renewal_settings,
     post_offer,
+    pro_activate_activation_key,
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
+    confidentiality_agreement_webhook,
     cred_assessments,
+    cred_beta_activation,
     cred_cancel_exam,
     cred_exam,
     cred_home,
-    cred_provision,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
@@ -89,8 +78,8 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
-    cred_beta_activation,
     get_activation_keys,
+    get_cue_products,
     get_filtered_webhook_responses,
     get_issued_badges,
     get_my_issued_badges,
@@ -107,7 +96,6 @@ from webapp.shop.views import (
     get_last_purchase_ids,
     get_purchase,
     get_purchase_account_status,
-    get_purchase_v2,
     get_shop_status_page,
     invoices_view,
     maintenance_check,
@@ -130,6 +118,7 @@ from webapp.views import (
     appliance_portfolio,
     build_engage_index,
     build_engage_page,
+    build_engage_pages_sitemap,
     build_tutorials_index,
     build_tutorials_query,
     download_server_steps,
@@ -156,6 +145,9 @@ from webapp.views import (
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
+CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
+CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
+
 # Set up application
 # ===
 
@@ -170,11 +162,22 @@ app = FlaskBase(
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
+charmhub_session = requests.Session()
+talisker.requests.configure(charmhub_session)
+
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
+)
+
+charmhub_discourse_api = DiscourseAPI(
+    base_url="https://discourse.charmhub.io/",
+    session=charmhub_session,
+    api_key=CHARMHUB_DISCOURSE_API_KEY,
+    api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
 )
 
@@ -193,6 +196,12 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/pro/activate", view_func=get_activate_view)
+app.add_url_rule(
+    "/pro/activate",
+    view_func=pro_activate_activation_key,
+    methods=["POST"],
+)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
@@ -220,23 +229,10 @@ app.add_url_rule(
 )
 app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
-app.add_url_rule("/pro/subscribe/thank-you", view_func=advantage_thanks_view)
-app.add_url_rule(
-    "/pro/subscribe",
-    view_func=post_advantage_subscriptions,
-    methods=["POST"],
-    defaults={"preview": False},
-)
 app.add_url_rule(
     "/pro/subscribe",
     view_func=cancel_advantage_subscriptions,
     methods=["DELETE"],
-)
-app.add_url_rule(
-    "/pro/subscribe/preview",
-    view_func=post_advantage_subscriptions,
-    methods=["POST"],
-    defaults={"preview": True},
 )
 app.add_url_rule("/pro/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
@@ -263,11 +259,6 @@ app.add_url_rule(
     "/pro/contracts/<contract_id>/entitlements",
     view_func=put_contract_entitlements,
     methods=["PUT"],
-)
-
-app.add_url_rule(
-    "/pro/subscribe/blender/thank-you",
-    view_func=blender_thanks_view,
 )
 
 app.add_url_rule(
@@ -336,11 +327,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/account/purchases/<purchase_id>",
     view_func=get_purchase,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/account/purchases_v2/<purchase_id>",
-    view_func=get_purchase_v2,
     methods=["GET"],
 )
 app.add_url_rule(
@@ -523,6 +509,11 @@ engage_pages = EngagePages(
 )
 
 app.add_url_rule(
+    "/engage/sitemap.xml",
+    view_func=build_engage_pages_sitemap(engage_pages),
+)
+
+app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
 )
 # Custom engage page in German
@@ -659,7 +650,6 @@ app.add_url_rule(
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -872,13 +862,13 @@ app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentials/exam", view_func=cred_exam)
 app.add_url_rule(
-    "/credentials/exit-survey",
-    view_func=cred_submit_form,
-    methods=["GET", "POST"],
+    "/credentials/<string:type>/products",
+    view_func=get_cue_products,
+    methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/provision",
-    view_func=cred_provision,
+    "/credentials/exit-survey",
+    view_func=cred_submit_form,
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
@@ -938,6 +928,13 @@ app.add_url_rule(
     view_func=get_my_issued_badges,
     methods=["GET"],
 )
+
+app.add_url_rule(
+    "/credentials/confidentiality-agreement",
+    view_func=confidentiality_agreement_webhook,
+    methods=["POST"],
+)
+
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
@@ -1068,53 +1065,12 @@ app.add_url_rule(
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
 robotics_docs.init_app(app)
 
-app.add_url_rule("/certified", view_func=certified_home)
-app.add_url_rule(
-    "/certified/<canonical_id>",
-    view_func=certified_model_details,
-)
-app.add_url_rule(
-    "/certified/<canonical_id>/<release>",
-    view_func=certified_hardware_details,
-)
-app.add_url_rule(
-    "/certified/component/<component_id>",
-    view_func=certified_component_details,
-)
-app.add_url_rule(
-    "/certified/vendors/<vendor>",
-    view_func=certified_vendors,
-)
-app.add_url_rule(
-    "/certified/desktops",
-    view_func=certified_desktops,
-)
-app.add_url_rule(
-    "/certified/laptops",
-    view_func=certified_laptops,
-)
-app.add_url_rule(
-    "/certified/servers",
-    view_func=certified_servers,
-)
-app.add_url_rule(
-    "/certified/devices",
-    view_func=certified_devices,
-)
-app.add_url_rule(
-    "/certified/socs",
-    view_func=certified_socs,
-)
-app.add_url_rule(
-    "/certified/why-certify",
-    view_func=certified_why,
-)
+certified_routes(app)
 
 # Override openstack/install
 app.add_url_rule(
@@ -1128,3 +1084,22 @@ app.add_url_rule(
     view_func=subscription_centre,
     methods=["GET", "POST"],
 )
+
+
+# HPE blog section
+def render_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
+        tag_ids=[4307],
+        per_page=3,
+        blog_title="HPE blogs",
+    )
+    hpe_articles = blogs.get_tag("hpe")
+    return flask.render_template(
+        "/hpe/index.html", blogs=hpe_articles["articles"]
+    )
+
+
+app.add_url_rule("/hpe", view_func=render_blogs)

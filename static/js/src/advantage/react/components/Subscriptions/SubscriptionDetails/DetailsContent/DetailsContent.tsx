@@ -2,8 +2,6 @@ import React, { ReactNode } from "react";
 import classNames from "classnames";
 import {
   Button,
-  CodeSnippet,
-  CodeSnippetBlockAppearance,
   Col,
   ColProps,
   Row,
@@ -14,10 +12,9 @@ import { UserSubscriptionType } from "advantage/api/enum";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
-  formatDate,
+  currencyFormatter,
   getMachineTypeDisplay,
   getPeriodDisplay,
-  getSubscriptionCost,
   isBlenderSubscription,
   isFreeSubscription,
 } from "advantage/react/utils";
@@ -87,60 +84,45 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const billingCol: Feature = {
     size: 2,
     title: "Billing",
-    value: isFree ? "None" : getPeriodDisplay(subscription.period),
-  };
-
-  const cost = getSubscriptionCost(subscription);
-  const costCol: Feature = {
-    // When a legacy subscription is being displayed then stretch this
-    // column to take up the space where the billing column would
-    // otherwise be.
-    size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
-    title: "Cost",
-    value: cost,
+    value:
+      isFree || subscription.type == UserSubscriptionType.KeyActivated
+        ? "None"
+        : getPeriodDisplay(subscription.period),
   };
 
   const tokenBlock = token?.contract_token ? (
-    <CodeSnippet
-      blocks={[
-        {
-          appearance: CodeSnippetBlockAppearance.URL,
-          code: token?.contract_token,
-        },
-      ]}
-      className="u-sv4 u-no-margin--bottom"
-      onClick={() => {
-        sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-token-click",
-          eventLabel: "Token copied",
-        });
-      }}
-    />
+    <div className="u-sv4 u-no-margin--bottom p-code-snippet">
+      <pre
+        className="p-code-snippet__block--icon is-url"
+        data-test="contract-token"
+        onClick={() => {
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-token-click",
+            eventLabel: "Token copied",
+          });
+        }}
+      >
+        {token?.contract_token}
+      </pre>
+      <p>
+        Command to attach a machine: <br />
+        <code>sudo pro attach {token?.contract_token}</code>
+      </p>
+    </div>
   ) : null;
-
   return (
     <div>
       <Row className="u-sv4">
         {generateFeatures([
           {
-            title: "Created",
-            value: formatDate(subscription.start_date),
-          },
-          {
-            title: "Expires",
-            value: subscription.end_date
-              ? formatDate(subscription.end_date)
-              : "Never",
+            title: "Cost",
+            value: currencyFormatter.format((subscription.price ?? 0) / 100),
           },
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
               []
             : [billingCol]),
-          ...(cost && subscription.type !== UserSubscriptionType.Legacy
-            ? // Don't show the cost column if it's empty.
-              [costCol]
-            : []),
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
               []
@@ -150,10 +132,6 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
                   value: getMachineTypeDisplay(subscription.machine_type),
                 },
               ]),
-          {
-            title: isBlender ? "Users" : "Machines",
-            value: subscription.number_of_machines,
-          },
           ...(isBlender
             ? // Don't show the column for Blender subscriptions.
               []
@@ -184,7 +162,6 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
       {isTokenVisible ? <SubscriptionToken /> : null}
       <DetailsTabs
         subscription={subscription}
-        token={token}
         setHasUnsavedChanges={setHasUnsavedChanges}
       />
     </div>

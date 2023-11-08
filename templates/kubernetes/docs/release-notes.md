@@ -15,6 +15,214 @@ toc: False
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
 
+## 1.28+ck1 Bugfix release
+
+### September 25, 2023 - `charmed-kubernetes --channel 1.28/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
+
+## What's new
+
+### Cloud Integrator Charms
+* [LP#2033082](https://bugs.launchpad.net/bugs/2033082) 
+  Replaces deprecated yaml library method to `yaml.safe_load` over `yaml.load`
+  - aws-integrator
+  - gcp-integrator
+  - vsphere-integrator
+
+### Calico
+* [LP#2034737](https://bugs.launchpad.net/bugs/2034737) [LP#2034736](https://bugs.launchpad.net/bugs/2034736)
+  The charm configured Calico `assign_ipv{4,6}` as null instead of the actual value.
+  Adds a call to reconfigure the `cni_config` when the charm configuration or the etcd config changes.
+  Casts the value of veth_mtu to string rather than an int
+
+### Ceph-csi
+* [LP#2034267](https://bugs.launchpad.net/bugs/2034267)
+  Support custom kubelet_dir over kubernetes-info interface
+
+### CoreDNS
+* [LP#2032822](https://bugs.launchpad.net/bugs/2032822)
+  Prevents attempts to deploy the charm in a machine charm (non-k8s)
+
+### KubeOVN
+* [LP#2030772](https://bugs.launchpad.net/bugs/2030772)
+  Update to kube-ovn v1.11.10
+
+### Kubeapi Load Balancer
+* [LP#1893681](https://bugs.launchpad.net/bugs/1893681)
+  Adds the option to handle Nginx configuration contexts via config `nginx-http-config`.
+
+* [LP#1948019](https://bugs.launchpad.net/bugs/1948019)
+  Adds the option to handle Nginx configuration contexts via config `nginx-events-config` and `nginx-main-config`.
+
+### Kubernetes Control Plane
+* [LP#2033682](https://bugs.launchpad.net/bugs/2033682)
+  Adds ipvs kernel modules to lxd profile (#300)
+  Required when using kube-proxy in ipvs mode
+
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### Kubernetes Worker
+* [LP#2034448](https://bugs.launchpad.net/bugs/2034448)
+  Updates documentation for operating CNIs like Cilium and Calico on units hosted by lxd containers
+
+### MetalLB
+* [LP#2031937](https://bugs.launchpad.net/bugs/2031937)
+  Updates Charmhub Documentation to a Diataxis version
+
+## 1.28
+
+### August 18, 2023 - `charmed-kubernetes --channel 1.28/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
+
+## What's new
+
+### calico
+Update Calico to v3.25.1
+Convert Calico to the ops framework
+
+### canal
+Add flannel cni-plugin 1.2.0, update to flannel 0.22.1
+
+### ceph-csi
+Update charm to apply manifests with `ops.manifest``
+
+### flannel
+Add flannel cni-plugin 1.2.0, update to flanneld 0.22.1 (#89)
+
+### kube-ovn
+Update to kube-ovn 1.11.10
+Resolves Error state when relating to cos-lite 
+
+### kubernetes-worker
+Update to CNI 1.2.0
+
+### metallb
+Convert to Ops Framework
+
+### volcano
+Create a bundle for volcano scheduler
+
+## Component Versions
+
+### Charm(/Addons) pinned versions
+- kube-ovn 1.11.10
+- calico 3.25.1
+- ceph-csi 3.7.2 / 3.7.2
+- cinder-csi 1.27.1 / 1.26.2 
+- coredns 1.10.1 / 1.9.4
+- ingress-nginx 1.6.4
+- k8s-keystone-auth 1.26.2
+- kube-state-metrics 2.0.0 / 2.8.2
+- kubernetes-dashboard 2.7.0 / 2.7.0
+- openstack-cloud-controller-manager 1.27.1 / 1.26.2 
+
+### Charm default versions
+- cloud-provider-vsphere 1.26
+- vsphere-csi-driver 3.0.0
+- cloud-provider-azure 1.25.0
+- azuredisk-csi-driver 1.23.0
+- cloud-provider-aws 1.26.1
+- aws-ebs-csi-driver 1.12.0
+- gcp-compute-persistent-disk-csi-driver 1.8.0
+
+
+## Fixes
+
+A list of other bug fixes and minor feature updates in this release can be found at
+[the launchpad milestone page for 1.28](https://launchpad.net/charmed-kubernetes/+milestone/1.28).
+
+- **azure-cloud-provider**
+Apply `topologySpreadConstraints` to control-plane Deployments [LP#2016053](https://launchpad.net/bugs/2016053) 
+
+- **ceph-csi**
+Support CephFS [LP#1940922](https://launchpad.net/bugs/1940922) and [LP#1940921](https://launchpad.net/bugs/1940921)
+
+- **cilium**
+Resolves Error state when relating to cos-lite [LP#2025162](https://launchpad.net/bugs/2025162)
+
+- **coredns**
+Resolves multiple architecture deployment [LP#1998607](https://launchpad.net/bugs/1998607)
+
+- **etcd**
+Redirect nagios cron output through tee [LP#2021950](https://launchpad.net/bugs/2021950)
+Provide etcd certs to prometheus reation [LP#2004612](https://launchpad.net/bugs/2004612)
+
+- **kubernetes-control-plane**
+Restart kube-proxy if proxy-extra-config changes [LP#2020059](https://launchpad.net/bugs/2020059)
+Add cinder-availability-zone config [LP#1972861](https://launchpad.net/bugs/1972861)
+Update renamed metrics to fix grafana dashboard [LP#1956611](https://launchpad.net/bugs/1956611)
+Update to CNI 1.2.0
+
+- **kubernetes-worker**
+update clusterrole for ingress-nginx to support 1.6.4 release [LP#2015761](https://launchpad.net/bugs/2015761)
+Restart kube-proxy if proxy-extra-config changes [LP#2020059](https://launchpad.net/bugs/2020059)
+
+- **metallb**
+Update charm icon [LP#1926982](https://launchpad.net/bugs/1926982)
+Add L2 Advertisements deployed via the charm [LP#2030108](https://launchpad.net/bugs/2030108)
+
+- **openstack-integrator**
+Fix endpoint url regex to parse trailing slash [LP#1964544](https://launchpad.net/bugs/1964544)
+
+
+## Notes and Known Issues
+
+None
+
+## Deprecations and API changes
+
+- Upstream
+
+For details of other deprecation notices and API changes for Kubernetes 1.28, please see the
+relevant sections of the [upstream release notes][upstream-changelog-1.28].
+
+[upstream-changelog-1.28]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.28.md#deprecation
+
+<!-- AUTOGENERATED RELEASE 1.28 ABOVE -->
+
+
+# 1.27+ck1 Bugfix release
+
+### June 12, 2023 - `charmed-kubernetes --channel 1.27/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Vault KV [LP#1949913](https://bugs.launchpad.net/charm-layer-vault-kv/+bug/1949913)
+
+  Possible collisions if two apps with same name related to vault from different models.
+
+- Etcd [LP#2004612](https://bugs.launchpad.net/charm-etcd/+bug/2004612)
+
+  Prometheus cannot access etcd targets created by relation.
+
+- Ceph CSI [LP#2007423](https://bugs.launchpad.net/charm-ceph-csi/+bug/2007423)
+
+  Make hostnetworking configurable.
+
+- Kube-OVN [LP#2017004](https://bugs.launchpad.net/charm-kube-ovn/+bug/2017004)
+
+  Upgrade kube-ovn to v1.11.5.
+
+- Containerd [LP#2017175](https://bugs.launchpad.net/charm-containerd/+bug/2017175)
+
+  Installation of GPU cude-drivers installs gnome-* packages which can shut the servers down on idle.
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes Control Plane [LP#2020059](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2020059)
+
+  Kubernetes charms don't set ipvs mode (code and docs bug).
+
+A list of all bug fixes and minor updates in this release can be found at
+[the launchpad milestone page for 1.27+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.27+ck1).
+
 # 1.27
 
 ### April 21, 2023 - `charmed-kubernetes --channel 1.27/stable`
@@ -128,7 +336,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Cilium on AWS and OpenStack [LP#2016905](https://bugs.launchpad.net/charm-cilium/+bug/2016905)
 
-  Deploying Cilium on AWS or Openstack can cause inter-node communication
+  Deploying Cilium on AWS or OpenStack can cause inter-node communication
   failures due to the Fan networking that Juju enables by default in those
   environments. To work around this issue, set model configuration prior
   to deployment:
@@ -149,6 +357,23 @@ Kubernetes 1.27, please see the relevant sections of the
 [upstream-changelog-1.27]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md#deprecation
 
 <!-- AUTOGENERATED RELEASE 1.27 ABOVE -->
+
+# 1.26+ck4 Bugfix release
+
+### June 19, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+## Fixes
+
+Two bug fixes related to the `kubeapi-load-balancer` charm have been backported
+from Charmed Kubernetes 1.27:
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes API Load Balancer [LP#2017812](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017812)
+
+  ha-cluster-vip not correctly written to kubeconfig.
 
 # 1.26+ck3 Bugfix release
 
@@ -344,6 +569,23 @@ relevant sections of the [upstream release notes][upstream-changelog-1.26].
 [upstream-changelog-1.26]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md#deprecation
 <!-- AUTOGENERATED RELEASE 1.26 ABOVE -->
 
+# 1.25+ck4 Bugfix release
+
+### June 19, 2023 - `charmed-kubernetes --channel 1.25/stable`
+
+## Fixes
+
+Two bug fixes related to the `kubeapi-load-balancer` charm have been backported
+from Charmed Kubernetes 1.27:
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes API Load Balancer [LP#2017812](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017812)
+
+  ha-cluster-vip not correctly written to kubeconfig.
+
 # 1.25+ck3 Bugfix release
 
 ### December 1, 2022
@@ -529,14 +771,14 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
 
   Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed.
   
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
   * Not using storage
   * Using alternative storage like `ceph-csi`
   * Manually configuring the out-of-tree storage provisioner
 
 * PodSecurityPolicy Removed
   PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
+  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
 
 ## Deprecations and API changes
 
@@ -554,6 +796,23 @@ relevant sections of the [upstream release notes][upstream-changelog-1.25].
 
 [upstream-changelog-1.25]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#deprecation
 <!-- AUTOGENERATED RELEASE 1.25 ABOVE -->
+
+# 1.24+ck2 Bugfix release
+
+### June 19, 2023 - `charmed-kubernetes --channel 1.24/stable`
+
+## Fixes
+
+Two bug fixes related to the `kubeapi-load-balancer` charm have been backported
+from Charmed Kubernetes 1.27:
+
+- Kubernetes API Load Balancer [LP#2017814](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017814)
+
+  nginx configuration is missing on non-leader units when VIP is set.
+
+- Kubernetes API Load Balancer [LP#2017812](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2017812)
+
+  ha-cluster-vip not correctly written to kubeconfig.
 
 # 1.24+ck1 Bugfix release 
 

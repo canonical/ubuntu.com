@@ -1,4 +1,4 @@
-{% extends "ai/_base_ai.html" %}
+{% extends "ai/base_ai.html" %}
 
 {% block title %}What is Kubeflow?{% endblock %}
 {% block meta_description %}Charmed Kubeflow is an enterprise-ready, fully supported MLOps platform for any cloud. A complete, free, open source solution for sophisticated data science labs.{% endblock meta_description %}
@@ -8,9 +8,6 @@
 
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="p-strip--suru-topped">
-    {% if schedule_banner("2023-03-08", "2023-03-22") %}
-      {% include "shared/_charmed-kubeflow-beta-banner.html" %}
-    {% endif %}
     <div class="row u-equal-height">
       <div class="col-6">
         <h1 class="u-sv2">What is Kubeflow?</h1>
@@ -20,7 +17,7 @@
           <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/install">
           Charmed Kubeflow
           </a>
-          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us now&nbsp;&rsaquo;</a>
+          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact&nbsp;us&nbsp;now&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="col-4 col-start-large-8 u-vertically-center u-hide--medium u-hide--small u-align--center">
@@ -41,8 +38,8 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <p class="p-logo-section__title u-align--center">Contributors to Kubeflow</p>
+    <p class="p-muted-heading">Contributors to Kubeflow</p>
+    <div class="p-logo-section has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{
@@ -73,10 +70,10 @@
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
+            url="https://assets.ubuntu.com/v1/563c0d9b-_Canonical.svg",
             alt="Canonical",
-            height="20",
-            width="140",
+            height="400",
+            width="1400",
             hi_def=True,
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
@@ -162,7 +159,7 @@
 
     </div>
     <div class="col-5 u-hide--small u-hide--medium">
-      <div class="p-logo-section">
+      <div class="p-logo-section has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
         {{
@@ -402,11 +399,11 @@
     <div class="col-6">
       <h2 class="u-fixed-width u-sv1">Who uses Kubeflow?</h2>
       <p>Thousands of companies have chosen Kubeflow for their AI/ML stack.</p>
-      <p>From research institutions like CERN, to transport and logistics companies - Uber, Lyft, GoJek - to financial and media industries with Spotify, Bloomberg, Shopify and PayPal.</p>
+      <p>From research institutions like CERN, to transport and logistics companies &ndash; Uber, Lyft, GoJek &ndash; to financial and media industries with Spotify, Bloomberg, Shopify and&nbsp;PayPal.</p>
       <p>Forward-looking enterprises are using Kubeflow to empower their data scientists.</p>
     </div>
  <div class="col-6 u-vertically-center">
-   <div class="p-logo-section">
+   <div class="p-logo-section has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{

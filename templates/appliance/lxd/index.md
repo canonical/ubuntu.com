@@ -26,7 +26,7 @@ context:
       url: "https://lxd.readthedocs.io"
     2:
       title: "LXD website"
-      url: "https://linuxcontainers.org/"
+      url: "https://ubuntu.com/lxd"
     3:
       title: "License - Apache-2.0"
       url: "https://www.apache.org/licenses/LICENSE-2.0"

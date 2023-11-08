@@ -28,11 +28,6 @@
         <input required id="title" name="title" maxlength="255" type="text"/>
       </li>
       <li class="p-list__item">
-        <label for="Comments_from_lead__c">Décrivez vos besoins de support :</label>
-        <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" maxlength="2000"></textarea>
-      </li>
-
-      <li class="p-list__item">
         <label class="p-checkbox">
           <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
           <span class="p-checkbox__label" id="canonicalUpdatesOptIn">J'accepte de recevoir des informations sur les produits et services de Canonical.</span>
@@ -59,11 +54,11 @@
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{ id }}" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{ returnURL }}" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{utm_campaign}}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{utm_medium}}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{utm_source}}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="{{utm_source}}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="{{utm_term}}" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />

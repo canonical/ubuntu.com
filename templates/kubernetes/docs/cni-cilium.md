@@ -21,6 +21,14 @@ transparent network security and traffic monitoring features.
 
 ## Deploying Charmed Kubernetes with Cilium
 
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you are deploying Charmed Kubernetes + Cilium on AWS or OpenStack, please set the following model configurations to disable FAN networking, as this conflicts with the network interfaces created by Cilium: `juju model-config container-networking-method=local fan-config=`
+    </p>
+  </div>
+</div>
+
 To deploy a cluster with Cilium, deploy the `charmed-kubernetes` bundle with
 the [Cilium overlay][cilium-overlay]:
 
@@ -257,13 +265,13 @@ For additional troubleshooting pointers, please see the
 [cilium-github]: https://github.com/cilium/cilium
 [cilium-dashboards]: https://github.com/cilium/cilium/tree/22161112e06f215a5af9485c05489eba5aa21504/install/kubernetes/cilium/files
 [cilium-metrics]: https://docs.cilium.io/en/stable/observability/metrics/
-[cilium-network]: https://docs.cilium.io/en/stable/security/tutorial-toc/
+[cilium-network]: https://docs.cilium.io/en/stable/security/
 [cilium-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/cilium-overlay.yaml
 [hubble]: https://docs.cilium.io/en/stable/overview/intro/#what-is-hubble
 [hubble-introduction]: https://docs.cilium.io/en/stable/gettingstarted/hubble_intro/
 [hubble-client]: https://docs.cilium.io/en/stable/gettingstarted/hubble_cli/#hubble-cli
 [hubble-metrics]: https://docs.cilium.io/en/stable/observability/metrics/#hubble-metrics
-[juju-cmi]: https://juju.is/docs/olm/cross-model-integration
+[juju-cmi]: https://juju.is/docs/juju/cross-model-integration
 [troubleshooting]: /kubernetes/docs/troubleshooting
 
 <!-- FEEDBACK -->

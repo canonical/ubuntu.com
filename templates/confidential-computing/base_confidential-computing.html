@@ -1,0 +1,18 @@
+{% extends "templates/base.html" %}
+
+
+{% block meta_copydoc %}https://drive.google.com/drive/folders/16zO5FLA0Kl1xKry3xnwYHevrBxcK9m4i{% endblock %}
+
+{% block outer_content %}
+  {% block content %}{% endblock %}
+  <!-- Set default Marketo information for contact form below-->
+  <div 
+    class="u-hide"
+    id="contact-form-container"
+    data-form-location="/shared/forms/interactive/confidential-computing"
+    data-form-id="5352"
+    data-lp-id=""
+    data-return-url="https://ubuntu.com/contact-us/form/thank-you"
+    data-lp-url="">
+  </div>
+{% endblock %}

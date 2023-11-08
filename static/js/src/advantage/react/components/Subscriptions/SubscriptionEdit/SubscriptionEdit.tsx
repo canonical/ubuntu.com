@@ -10,7 +10,10 @@ import {
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 import {
   usePreviewResizeContract,
@@ -19,7 +22,10 @@ import {
 } from "advantage/react/hooks";
 import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
-import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
+import {
+  selectAutoRenewableSubscriptionsByMarketplace,
+  selectSubscriptionById,
+} from "advantage/react/hooks/useUserSubscriptions";
 import {
   currencyFormatter,
   formatDate,
@@ -96,6 +102,7 @@ type ResizeSummaryProps = {
   nextCycle: Date | null;
   preview?: PreviewResizeContractResponse;
   isPreviewLoading: boolean;
+  totalCost: number;
 };
 
 const ResizeSummary = ({
@@ -108,6 +115,7 @@ const ResizeSummary = ({
   nextCycle,
   preview,
   isPreviewLoading,
+  totalCost,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - currentNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -128,7 +136,7 @@ const ResizeSummary = ({
         {preview ? (
           <>
             You will be charged{" "}
-            <b>{currencyFormatter.format(preview.amountDue / 100)}</b> when you
+            <b>{currencyFormatter.format(preview.total / 100)}</b> when you
             click Resize.
             <br />
           </>
@@ -141,14 +149,23 @@ const ResizeSummary = ({
         ) : null}
         {!isPreviewLoading ? (
           <>
+            <br />
             Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
             <b>
-              {isDecreasing ? "reduced" : "increased"} by{" "}
-              {currencyFormatter.format(
-                preview ? preview.amountDue / 100 : absoluteDelta * unitPrice
-              )}
-              .
+              {isDecreasing
+                ? currencyFormatter.format(
+                    totalCost - absoluteDelta * unitPrice
+                  )
+                : currencyFormatter.format(
+                    totalCost + absoluteDelta * unitPrice
+                  )}
             </b>
+            * . <br />
+            <small>
+              * Taxes and/or balance credits are not included in this price and
+              may apply at renewal time.
+            </small>
+            <br />
           </>
         ) : (
           <Spinner />
@@ -226,6 +243,29 @@ const SubscriptionEdit = ({
   const [resizeNumber, setResizeNumber] = useState(
     subscription?.current_number_of_machines ?? 0
   );
+
+  const { data: renewableSubscriptions } = useUserSubscriptions({
+    select: selectAutoRenewableSubscriptionsByMarketplace(
+      subscription?.marketplace ?? UserSubscriptionMarketplace.CanonicalUA
+    ),
+  });
+
+  const totalCost: number =
+    renewableSubscriptions?.reduce(
+      (price: number, renewableSubscription: UserSubscription) => {
+        if (renewableSubscription?.period != subscription?.period) {
+          return price;
+        }
+
+        return (
+          price +
+          ((renewableSubscription.price ?? 0) *
+            renewableSubscription.current_number_of_machines) /
+            (100 * renewableSubscription.number_of_machines)
+        );
+      },
+      0
+    ) || 0;
 
   useEffect(() => {
     if (isResized) {
@@ -352,6 +392,7 @@ const SubscriptionEdit = ({
                   nextCycle={nextCycleStart}
                   preview={preview}
                   isPreviewLoading={isPreviewLoading}
+                  totalCost={totalCost}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">

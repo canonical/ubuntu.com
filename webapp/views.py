@@ -556,6 +556,38 @@ def unlisted_engage_page(slug):
         return flask.abort(404)
 
 
+def build_engage_pages_sitemap(engage_pages):
+    """
+    Create sitemaps for each engage page
+    """
+
+    def ep_sitemap():
+        links = []
+        metadata = engage_pages.get_index()
+        if len(metadata) == 0:
+            flask.abort(404)
+
+        for page in metadata:
+            links.append(
+                {
+                    "url": f'https://ubuntu.com{page["path"]}',
+                    "last_updated": page["updated"].strftime(
+                        "%Y-%m-%dT%H:%M:%SZ"
+                    ),
+                }
+            )
+
+        xml_sitemap = flask.render_template("sitemap.xml", links=links)
+
+        response = flask.make_response(xml_sitemap)
+        response.headers["Content-Type"] = "application/xml"
+        response.headers["Cache-Control"] = "public, max-age=43200"
+
+        return response
+
+    return ep_sitemap
+
+
 def openstack_install():
     """
     OpenStack install docs
@@ -804,6 +836,37 @@ def sitemap_index():
     return response
 
 
+def shorten_acquisition_url(acquisition_url):
+    """
+    Shorten the acquisition URL sent when submitting forms
+    """
+
+    if len(acquisition_url) > 255:
+        url_without_params = acquisition_url.split("?")[0]
+        url_params_string = acquisition_url.split("?")[1]
+        url_params_list = url_params_string.split("&")
+        url_params_to_remove = []
+
+        # Check for and remove fbclid and gclid parameters
+        for param in url_params_list:
+            if param.startswith("fbclid") or param.startswith("gclid"):
+                url_params_to_remove.append(param)
+
+        for param in url_params_to_remove:
+            url_params_list.remove(param)
+
+        new_acquisition_url = (
+            url_without_params + "?" + "&".join(url_params_list)
+        )
+
+        # If the URL is still too long, remove all parameters
+        if len(new_acquisition_url) > 255:
+            return new_acquisition_url.split("?")[0]
+
+        return new_acquisition_url
+    return acquisition_url
+
+
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
@@ -811,6 +874,8 @@ def marketo_submit():
         value = ", ".join(values)
         if value:
             form_fields[key] = value
+            if "utm_content" in form_fields:
+                form_fields["utmcontent"] = form_fields.pop("utm_content")
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
@@ -858,8 +923,15 @@ def marketo_submit():
     if "email" in form_fields:
         enrichment_fields = {
             "email": form_fields["email"],
-            "acquisition_url": referrer,
         }
+
+    if "acquisition_url" in form_fields:
+        shortened_url = shorten_acquisition_url(form_fields["acquisition_url"])
+        form_fields["acquisition_url"] = shortened_url
+        enrichment_fields["acquisition_url"] = shortened_url
+    else:
+        shortened_url = shorten_acquisition_url(referrer)
+        enrichment_fields["acquisition_url"] = shortened_url
 
     if "preferredLanguage" in form_fields:
         enrichment_fields["preferredLanguage"] = form_fields[

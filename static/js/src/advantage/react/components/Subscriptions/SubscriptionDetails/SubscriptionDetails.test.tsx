@@ -378,6 +378,7 @@ describe("SubscriptionDetails", () => {
       type: UserSubscriptionType.Legacy,
       statuses: userSubscriptionStatusesFactory.build({
         is_renewed: false,
+        is_renewable: true,
         is_renewal_actionable: true,
       }),
     });
@@ -394,6 +395,30 @@ describe("SubscriptionDetails", () => {
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Not renewed");
+  });
+
+  it("it does not display the not renewed label for legacy actionable but not renewable", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: false,
+        is_renewable: false,
+        is_renewal_actionable: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").exists()).toBe(false);
   });
 
   it("it does display the renewed label for legacy renewed", () => {
@@ -445,7 +470,9 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: true,
+        is_cancelled: false,
       }),
     });
 
@@ -467,6 +494,7 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: false,
       }),
     });
@@ -535,7 +563,9 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Trial,
       statuses: userSubscriptionStatusesFactory.build({
+        is_subscription_active: true,
         is_renewed: true,
+        is_cancelled: false,
       }),
     });
 
@@ -558,6 +588,7 @@ describe("SubscriptionDetails", () => {
       type: UserSubscriptionType.Legacy,
       statuses: userSubscriptionStatusesFactory.build({
         is_renewed: false,
+        is_renewable: false,
         is_renewal_actionable: false,
       }),
     });

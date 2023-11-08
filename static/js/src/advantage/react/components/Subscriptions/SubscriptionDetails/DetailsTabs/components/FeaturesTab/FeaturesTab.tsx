@@ -54,6 +54,10 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     const isChecked = !!event?.target?.checked;
     const entitlement = { ...featuresFormState[label], isChecked };
 
+    if (features.included.includes(label)) {
+      console.log("Included");
+    }
+
     setFeaturesFormState(
       getNewFeaturesFormState(featuresFormState, entitlement)
     );
@@ -119,10 +123,22 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       data-testid="features-content"
     >
       <Row className="u-sv1" data-testid="included-features">
-        <Col size={4}>
+        <Col size={12}>
           {features.included.length
             ? generateList(
-                "Included",
+                <div>
+                  <h5>Default settings</h5>
+                  <p>
+                    Changing the default settings of this subscription will
+                    affect the default enablement setting for machines attached{" "}
+                    <strong>after</strong> the changes are made
+                  </p>
+                  <p>
+                    Please note that changes to these settings{" "}
+                    <strong>will not</strong> impact machines that were already
+                    attached.
+                  </p>
+                </div>,
                 features.included.map((label) => ({
                   label: (
                     <div className="p-subscription-switch-wrapper">
@@ -156,7 +172,9 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
               )
             : null}
         </Col>
-        <Col size={4} data-testid="excluded-features">
+      </Row>
+      <Row>
+        <Col size={12} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
                 <div>
@@ -181,13 +199,12 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
             : null}
         </Col>
       </Row>
-      <hr className="p-subscriptions-separator" />
       <Row className="u-sv1" data-testid="always-available-features">
         <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
                 <>
-                  Compliance & Hardening:{" "}
+                  For compliance & hardening services:{" "}
                   <span style={{ fontWeight: 300 }}>
                     please read the{" "}
                     <a href="https://ubuntu.com/security/certifications/docs">
@@ -235,9 +252,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
             : null}
         </Col>
       </Row>
-      <p>
-        <a href="/legal/ubuntu-pro-description">Service description &rsaquo;</a>
-      </p>
       <div className="row"></div>
       {isError ? (
         <div className="p-notification--negative">
@@ -274,6 +288,24 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
           </div>
         </div>
       ) : null}
+      <Row>
+        <Col size={12}>
+          <h5>Service enablement for individual machines</h5>
+          <p>
+            To disable services on machines that were already attached, please
+            run:
+          </p>
+          <code>$ sudo pro disable &lt;services&gt;</code>
+          <p>
+            To enable services on machines attached to a subscription with
+            specific features turned off by default, please run:
+            <code>$ sudo pro enable &lt;services&gt;</code>
+          </p>
+          <a href="/legal/ubuntu-pro-description">
+            Service description &rsaquo;
+          </a>
+        </Col>
+      </Row>
     </form>
   );
 };

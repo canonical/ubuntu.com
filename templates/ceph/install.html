@@ -33,112 +33,247 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <h2>How to install Ceph on Ubuntu</h2>
-      <p>Charmed Ceph is Ubuntu’s fully automated, model-driven approach to installing and managing Ceph. <a href="/ceph">Charmed Ceph</a> is generally deployed on bare-metal that is managed by <a href="https://maas.io/">MAAS</a>.</p>
-      <h3>How to install Ceph on MAAS</h3>
-      <p>These instructions will result in an environment consisting of Ubuntu 20.04 LTS on three machines (one OSD node and one containerised MON node on each) that will run Ceph Octopus.</p>
-      <ol class="p-stepped-list--detailed">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Install Juju</h3>
-          <div class="p-stepped-list__content">
-            <p>Juju simplifies how you configure, scale and operate today’s complex software. Install it now:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
+<seciton class="p-strip">
+  <div class="u-fixed-width js-tabbed-content">
+    <div class="p-tabs">
+      <div class="p-tabs__list" role="tablist" aria-label="Ceph installation instructions">
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="single-node-tab" id="single-node" data-maintain-hash="single-node">Single-node</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="multi-node-tab" id="multi-node" data-maintain-hash="multi-node" tabindex="-1">Multi-node</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="containerised-tab" id="containerised" data-maintain-hash="Containerised" tabindex="-1">Containerised</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="large-scale-tab" id="large-scale" data-maintain-hash="large-scale" tabindex="-1">Large-scale</button>
+        </div>
+      </div>
+    
+      <div tabindex="0" role="tabpanel" id="single-node-tab" aria-labelledby="single-node">
+        <section class="p-strip u-no-padding--top">
+          <h2>Single-node deployment</h2>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Uses MicroCeph</li>
+            <li class="p-list__item is-ticked">Works on a workstation or VM</li>
+            <li class="p-list__item is-ticked">Suitable for testing and development</li>
+          </ul>
+          <p>These installation instructions use MicroCeph - Ceph in a snap.  MicroCeph is a pure upstream Ceph distribution designed for small scale and edge deployments, which can be installed and maintained with minimal knowledge and effort.</p>
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message"> You will need a multi-core processor and at least 8GiB of memory and 100GB of disk space.  MicroCeph has been tested on x86-based physical and virtual machines running Ubuntu 22.04 LTS.</p>
             </div>
-            <p>This requires snapd to be installed. The latest Ubuntu release comes with this built in. For other Linux systems <a href="https://docs.snapcraft.io/installing-snapd">install snapd first</a>.</p>
           </div>
-        </li>
+          <hr class="p-separator is-shallow">
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                To get started, install the MicroCeph snap with the following command on each node to be used in the cluster:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo snap install microceph</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Then bootstrap the cluster:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph cluster bootstrap</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Check the cluster status with the following command:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph status</code></pre>
+                </div>
+                <p>
+                  Here you should see that there is a single node in the cluster. <br/>
+                </p>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                To use MicroCeph as a single node, the default CRUSH rules need to be modified:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph osd crush rule rm replicated_rule<br/>sudo microceph.ceph osd crush rule create-replicated single default osd</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Next, add some disks that will be used as OSDs:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph disk add /dev/sd[x] --wipe</code></pre>
+                </div>
+                <p>
+                  Repeat for each disk you would like to use as an OSD on that node, and additionally on the other nodes in the cluster. Cluster status can be verified using:
+                </p>
+                <div class="p-stepped-list__content">
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block"><code>sudo microceph.ceph status<br/>sudo microceph.ceph osd status</code></pre>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </div>
+    
+      <div tabindex="0" role="tabpanel" id="multi-node-tab" aria-labelledby="multi-node">
+        <section class="p-strip u-no-padding--top">
+          <h2>Multi-node deployment</h2>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Uses MicroCeph</li>
+            <li class="p-list__item is-ticked">Minimum 4-nodes, full-HA Ceph cluster</li>
+            <li class="p-list__item is-ticked">Suitable for small-scale production environments</li>
+          </ul>
+          <p>These installation instructions use MicroCeph - Ceph in a snap.  MicroCeph is a pure upstream Ceph distribution designed for small scale and edge deployments, which can be installed and maintained with minimal knowledge and effort.</p>
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message">You will need 4 physical machines with multi-core processors and at least 8GiB of memory and 100GB of disk space. MicroCeph has been tested on x86-based physical machines running Ubuntu 22.04 LTS.</p>
+            </div>
+          </div>
+          <hr class="p-separator is-shallow">
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                To get started, install the MicroCeph snap with the following command on each node to be used in the cluster:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo snap install microceph</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Then bootstrap the cluster from the first node:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph cluster bootstrap</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                On the first node, add other nodes to the cluster:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph cluster add node[x]</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Copy the resulting output to be used on node[x]:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph cluster join pasted-output-from-node1</code></pre>
+                </div>
+                <p>Repeat these steps for each additional node you would like to add to the cluster.</p>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Check the cluster status with the following command:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph status</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <p class="p-stepped-list__title p-heading--4">
+                Next, add some disks to each node that will be used as OSDs:
+              </h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph disk add /dev/sd[x] --wipe</code></pre>
+                </div>
+                <p>Repeat for each disk you would like to use as an OSD on that node, and additionally on the other nodes in the cluster. Cluster status can be verified using:</p>
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph status<br/>sudo microceph.ceph osd status</code></pre>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </div>
+    
+      <div tabindex="0" role="tabpanel" id="containerised-tab" aria-labelledby="containerised">
+        <section class="p-strip u-no-padding--top">
+          <h2>Containerised deployment</h2>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Uses a Canonical-supplied and maintained ROCK (OCI image)</li>
+            <li class="p-list__item is-ticked">Works with cephadm and rook</li>
+            <li class="p-list__item is-ticked">Suitable for all types of containerised deployments</li>
+          </ul>
+          <p>These installation instructions use the Canonical produced and supplied Ceph ROCK &ndash; this OCI compliant image provides a drop in replacement for the upstream Ceph OCI image.</p>
+          <p><a href="https://github.com/canonical/ceph-containers">Read the container image documentation&nbsp;&rsaquo;</a></p>
+        </section>
+      </div>
 
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Add your MAAS cloud</h3>
-          <div class="p-stepped-list__content">
-            <p>This interactive step will register your private MAAS cloud that currently manages your bare metal infrastructure. </p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju add-cloud</code></pre>
-            </div>
-            <p>You would choose MAAS in the interactive session and answer a few questions (see <a href="https://juju.is/docs/maas-cloud">Juju</a> for details). Let us assume that we have named the cloud &rsquo;mymaas&rsquo;.</a></p>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Add Credentials</h3>
-          <div class="p-stepped-list__content">
-            <p>Cloud &rsquo;mymaas&rsquo; requires credentials in the form of a user&rsquo;s API key that is created on the MAAS server. Inform Juju about it:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju add-credential mymaas</code></pre>
-            </div>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Add Controller</h3>
-          <div class="p-stepped-list__content">
-            <p>The Juju controller is used to manage the software deployed through Juju. Create one now called, say, &rsquo;maas-one&rsquo;:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju bootstrap mymaas maas-one</code></pre>
-            </div>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Add Model</h3>
-          <div class="p-stepped-list__content">
-            <p>The model will hold the Ceph deployment, which includes the various applications and the number of units for each. Create one now called, say, &rsquo;ceph&rsquo;:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju add-model ceph</code></pre>
-            </div>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Deploy Ceph</h3>
-          <div class="p-stepped-list__content">
-            <p>Deploy the Ceph cluster with the <a href="https://jaas.ai/ceph-base">ceph-base</a> bundle from the Charm Store:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju deploy ceph-base</code></pre>
-            </div>
-            <p>The bundle uses block device &rsquo;/dev/sdb&rsquo; to back cluster OSDs. Adjust as needed post-install with:</p>
-            <div class="p-code-snippet">
-              <pre class="p-code-snippet__block--icon"><code>juju config ceph-osd osd-devices=/dev/&lt;XXX&gt;</code></pre>
-            </div>
-          </div>
-        </li>
-      </ol>
-      <p>
-        <a href="/ceph/docs">For more details, see the Ceph documentation &nbsp;&rsaquo;</a>
-      </p>
+      <div tabindex="0" role="tabpanel" id="large-scale-tab" aria-labelledby="large-scale">
+        <section class="p-strip u-no-padding--top">
+          <h2>Large-scale deployment</h2>
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Uses Charmed Ceph</li>
+            <li class="p-list__item is-ticked">Uses MAAS for bare metal orchestration</li>
+            <li class="p-list__item is-ticked">Suitable for large-scale production environments</li>
+          </ul>
+          <p>Charmed Ceph is Canonical's fully automated, model-driven approach to installing and managing Ceph. <a href="/ceph">Charmed Ceph</a> is generally deployed on bare-metal hardware that is managed by <a href="https://maas.io/">MAAS</a>.</p>
+          <p><a href="/ceph/docs/install-ceph">How to install Charmed Ceph&nbsp;&rsaquo;</a></p>
+          <p><a href="/ceph/docs">For more details, read the Ceph documentation&nbsp;&rsaquo;</a></p>
+        </section>
+      </div>
     </div>
   </div>
-</section>
+</seciton>
 
-<section class="p-strip is-deep">
-  <div class="row u-equal-height u-vertically-center">
+<section class="p-strip--light is-deep">
+  <div class="row u-equal-height">
     <div class="col-5 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
-        alt="Contact us",
-        width="240",
-        height="171",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+            alt="",
+            width="281",
+            height="200",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
     </div>
     <div class="col-7">
       <h2>Need more help with Ceph?</h2>
       <p>Let our Ceph experts help you take the next step.</p>
       <p>
-        <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+        <a class="p-button--positive js-invoke-modal" href="/ceph/contact-us">Get in touch</a>
       </p>
     </div>
   </div>
 </section>
 
-{% with section_classes='p-strip--light is-deep is-bordered', heading_topic='Ceph', tag_name='ceph', tag_id='1780', limit='4' %}
+{% with section_classes='p-strip', heading_topic='Ceph', tag_name='ceph', tag_id='1780', limit='4' %}
   {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

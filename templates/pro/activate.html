@@ -1,0 +1,72 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Activate Ubuntu Pro subscription{% endblock %}
+
+{% block outer_content %}
+  {% block content %}
+  {% if needs_paid_account_created %}
+    <div class="p-modal" id="modal">
+      <section class="p-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+        <header class="p-modal__header">
+          <h2 class="p-modal__title" id="modal-title">Activating for a company or yourself?</h2>
+        </header>
+        <form id="create-purchase-account-form">
+          <div class="js-organisation-container u-sv3">
+            <div class="col-4">
+              <label class="p-radio">
+                <input class="p-radio__input radio-myself" type="radio" aria-labelledby="activate-myself-input" name="activate-buy-for" value="myself" required>
+                <span class="p-radio__label" id="activate-myself">Myself</span>
+                <input type="hidden" name="activate-name" value="{{ user_info.fullname }}">
+              </label>
+            </div>
+            <div class="col-4">
+              <label class="p-radio">
+                <input class="p-radio__input radio-organisation" type="radio" aria-labelledby="activate-organisation-input" name="activate-buy-for" value="organisation">
+                <span class="p-radio__label" id="activate-organisation">Organisation</span>
+              </label>
+              <div class="p-form__group js-organisation-name-container" style="display:none">
+                <label for="activate-organisation-name" class="p-form__label">Organisation name: </label>
+                <input class="u-no-margin--bottom" type="text" id="activate-organisation-name" name="activate-organisation-name" placeholder="Ex: Canonical" style="margin-top: .25rem;" aria-label="What?">
+              </div>
+            </div>
+          </div>
+          <button class="p-button--positive" type="submit" name="submit">Submit</button>
+        </form>
+      </section>
+    </div>
+  {% endif %}
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h2>Activate your Ubuntu Pro subscription</h2>
+      <p>
+        You are currently signed in as {{ user_info.fullname }}. Make sure it is the account you will be using to manage your subscription. If not, <a href="https://login.ubuntu.com/+login">log in to a different account</a>.
+      </p>
+      <p>
+        Your product key should be in the confirmation email you received after buying your Ubuntu Pro Desktop subscription.
+      </p>
+      <p>The activation key is 23 characters long and starts with a K.</p>
+      <form id="activate-key-form">
+        <div class="p-form__group">
+          <label for="pro-activation-key" class="p-form__label">Enter your code</label>
+          <div class="p-form__control" style="min-width: 15rem">
+            <input type="text" id="pro-activation-key" class="activate-input" name="key" autocomplete="off" placeholder="Ex: Kabcedfghij12345678910-" required="" aria-describedby="pro-activate-input">
+            <p class="p-form-validation__message" id="pro-activatio-validation__message"></p>
+          </div>
+        </div>
+        <button class="p-button--positive" type="submit" name="submit">Activate</button>
+      </form>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-notification--negative" id="notification" style="display: none">
+        <div class="p-notification__content">
+          <h5 class="p-notification__title">Something went wrong</h5>
+            <p class="p-notification__message" id="notification-message"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="{{ versioned_static('js/dist/activate.js') }}" defer></script>
+
+  {% endblock %}
+{% endblock %}

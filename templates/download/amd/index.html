@@ -1,0 +1,79 @@
+{% extends "download/amd/_base_amd.html" %}
+
+{% block title %}Install Ubuntu on AMD{% endblock %}
+
+{% block meta_description %}Use Ubuntu on AMD for the familiar developer experience and an accelerated path to production.{% endblock meta_description %}
+
+{% block meta_image %}https://assets.ubuntu.com/v1/2fe9d465-AMD%20download%20page%20meta%20image.png{% endblock meta_image %}
+
+{% block meta_copydoc%} https://docs.google.com/document/d/1cxQnEErs8FZ3dZ_IhlfcaJ03gE_vrMJfRC-5me9IDd4 {% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow" style="padding-top: 1rem;">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/327b8104-AMD_E_Blk_RGB.png",
+          alt="",
+          width="670",
+          height="160",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+    <div class="col-6 col-medium-4">
+      <h1 class="p-heading--2"><strong>Install Ubuntu on AMD</strong></h1>
+      <p>Run Ubuntu on your AMD Zynq&trade; UltraScale+&trade; MPSoC-based evaluation boards, Kria&trade; SOMs, and Versal&trade; Adaptive SoC evaluation kit. </p>
+      <p>Pick the OS image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
+      <p>All images are 64-bit builds of Ubuntu.</p>
+      <p>
+        <a href="/download/contact-us" class="js-invoke-modal p-button">Get in touch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="u-fixed-width u-no-margin--bottom">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-3 col-medium-2">
+        <div class="p-strip is-shallow u-no-padding--top">
+          <h2 class="p-text--small-caps">Choose a board</h2>
+        </div>
+        <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="AMD boards">
+          <li><button class="p-tabs__item" id="kira-k24-vision" role="tab" aria-selected="true" aria-controls="kira-k24-vision-tab">Kria&trade; K24 SOMs</button></li>
+          <li><button class="p-tabs__item" id="kira-kv260-vision" role="tab" aria-selected="false" aria-controls="kira-kv260-vision-tab">Kria&trade; K26 SOMs</button></li>
+          <li><button class="p-tabs__item" id="zynq-ultrascale" role="tab" aria-selected="false" aria-controls="zynq-ultrascale-tab">Zynq&trade; UltraScale+&trade; MPSoC Development Boards</button></li>
+          <li><button class="p-tabs__item" id="versal-adaptive-evaluation-kits" role="tab" aria-selected="false" aria-controls="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</button></li>
+        </ul>
+        <form class="u-hide--large u-hide--medium">
+          <select name="boardSelect" id="boardSelect">
+            <option value="kira-k24-vision-tab" selected="">Kria&trade; K24 SOMs</option>
+            <option value="kira-kv260-vision-tab">Kria&trade; K26 SOMs</option>
+            <option value="zynq-ultrascale-tab">Zynq&trade; UltraScale+&trade; MPSoC Development Boards</option>
+            <option value="versal-adaptive-evaluation-kits-tab">Versal&trade; Adaptive SoC Evaluation Kit</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="col-9 col-medium-4">
+        {% include "download/amd/tab-1.html" %}
+        {% include "download/amd/tab-2.html" %}
+        {% include "download/amd/tab-3.html" %}
+        {% include "download/amd/tab-4.html" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="4126" data-lp-id="" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+{% endblock content %}

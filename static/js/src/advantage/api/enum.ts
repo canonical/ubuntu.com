@@ -31,6 +31,7 @@ export enum UserSubscriptionType {
   Monthly = "monthly",
   Trial = "trial",
   Legacy = "legacy",
+  KeyActivated = "key_activated",
 }
 
 export enum UserSubscriptionMachineType {

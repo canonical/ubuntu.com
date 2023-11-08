@@ -33,6 +33,16 @@ These are installed in the same way. For example:
 sudo snap install kubectl --classic
 ```
 
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you install tools such as **kubectl** from both the snap
+    store and the apt archive they will be in different locations. Depending on your
+    environment the snap may be resolved before the Debian installed package.</p>
+  </div>
+</div>
+
+
 ## Server Snaps
 
 When installing **Charmed Kubernetes**, various necessary services are actually
@@ -96,7 +106,7 @@ sudo snap set kube-apiserver args="
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">Any files used by the service, such as certificate files, must be
     placed within the /root/ directory to be visible to the service. This
-    limitation allows us to run a few of the services in a strict confinement
+    limitation allows some of the services to run in a strict confinement
     mode that offers better isolation and security.</p>
   </div>
 </div>
@@ -162,38 +172,6 @@ The source code for the snaps can be found here:
 
 <https://launchpad.net/snap-kube-proxy>
 
-## Debian Packages
-
-Debian packages are available through a PPA which provides the following:
-
-* <https://launchpad.net/kubectl>
-* <https://launchpad.net/kubelet>
-* <https://launchpad.net/kubeadm>
-* <https://launchpad.net/kubernetes-cni>
-* <https://launchpad.net/cri-tools>
-
-To install, first add the PPA of desired version:
-
-```bash
-sudo apt-add-repository ppa:k8s-maintainers/1.19
-```
-
-A list of available PPA's can be found at <https://launchpad.net/~k8s-maintainers>.
-
-Once the PPA is added, installing the tools can be performed with:
-
-```bash
-sudo apt install kubeadm
-```
-
-<div class="p-notification--information is-inline">
-  <div class="p-notification__content">
-    <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">Note: If you install tools such as **kubectl** from both the snap
-    store and the apt archive they will be in different locations. Depending on your
-    environment the snap may be resolved before the Debian installed package.</p>
-  </div>
-</div>
 
 <!-- LINKS -->
 

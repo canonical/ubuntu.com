@@ -27,7 +27,7 @@ class TestCertification(VCRTestCase):
 
     def test_search_results(self):
         response = self.client.get(
-            "/certified?q=xps&category=Laptop&vendor=Dell"
+            "/certified?q=xps&category=Laptop&category=Desktop&vendor=Dell"
         )
         self.assertEqual(response.status_code, 200)
 
@@ -46,3 +46,11 @@ class TestCertification(VCRTestCase):
     def test_vendor_pages(self):
         response = self.client.get("/certified/vendors/HP")
         self.assertEqual(response.status_code, 200)
+
+    def test_filters_json(self):
+        response = self.client.get("/certified/filters.json")
+        self.assertIsInstance(response.json, dict)
+        # If below test fails data structure changed
+        # so please change it also in the certified-search-results.js
+        self.assertIn("release_filters", response.json.keys())
+        self.assertIn("vendor_filters", response.json.keys())

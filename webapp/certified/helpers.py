@@ -18,7 +18,7 @@ def get_download_url(model_details):
 
     if "core" in platform_category:
         if make == "xilinx":
-            return "https://ubuntu.com/download/amd-xilinx"
+            return "https://ubuntu.com/download/amd"
 
         return "https://ubuntu.com/download/iot/"
 

@@ -1,0 +1,77 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Contact us</h2>
+    </header>
+
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Discuss your confidential computing use case with our experts</p>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <ul class="p-list">
+              <li class="p-list__item">
+                <label for="customerName">Name:</label>
+                <input required id="customerName" name="name" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="email">Email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="phone">Phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="Company">Company:</label>
+                <input id="Company" name="Company" maxlength="255" type="text" required="required"/>
+              </li>
+              <li>
+                <label for="title">Job title:</label>
+                <input required id="title" name="title" maxlength="255" type="text" required="required">
+              </li>              
+
+              {% include "shared/forms/_country.html" %}
+              
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to 
+                <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and 
+                <a href="/legal/data-privacy">Privacy Policy</a>.
+              </li>
+              {# These are honey pot fields to catch bots #}
+              <li class="u-off-screen">
+                <label class="website" for="website">Website:</label>
+                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+              </li>
+              <li class="u-off-screen">
+                <label class="name" for="name">Name:</label>
+                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              </li>
+              {# End of honey pots #}
+            </ul>
+
+            <div class="u-hide">
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+            </div>
+
+            <div class="pagination">
+              <button type="submit" class="p-button--positive" aria-label="Submit">Let's discuss</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
