@@ -261,7 +261,7 @@ $meganav-height: 3rem;
             }
           }
 
-          a.p-link--inverted {
+          a.p-navigation__link {
             &::after {
               @media (min-width: $breakpoint-navigation-threshold) {
                 content: none;
@@ -269,7 +269,7 @@ $meganav-height: 3rem;
             }
           }
 
-          a.p-link--inverted:not(.is-signed-in) {
+          a.p-navigation__link:not(.is-signed-in) {
             &::after {
               content: none;
             }
