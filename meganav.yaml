@@ -114,7 +114,7 @@ products:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Upgrade Ubuntu
               url: /tutorials/upgrading-ubuntu-desktop
@@ -160,7 +160,7 @@ products:
               description: OpenStack implementation
               url: /openstack/consulting
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Server documentation
               url: /server/docs
@@ -207,7 +207,7 @@ products:
               url: /wsl
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: What is virtualisation?
               url: https://snapcraft.io/blog/what-is-virtualisation-the-basics
@@ -254,7 +254,7 @@ products:
               url: /security/certifications
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Ubuntu Pro pricing
               url: /pricing/pro
@@ -281,7 +281,7 @@ products:
               url: /ai/what-is-kubeflow
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Kubernetes documentation
               url: /kubernetes/docs
@@ -310,7 +310,7 @@ products:
               url: https://jaas.ai/
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Juju documentation
               url: https://juju.is/docs
@@ -342,7 +342,7 @@ products:
               url: /internet-of-things/appstore
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Getting started with snaps
               url: http://snapcraft.io/docs/getting-started
@@ -380,7 +380,7 @@ products:
               url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Why use Certified devices?
               url: /certified/why-certified
@@ -414,15 +414,16 @@ products:
             - title: ROS ESM
               description: Expanded security for robots
               url: /robotics/ros-esm
+            - title: Real-time Ubuntu
+              description: Low-latency kernel
+              url: /real-time
             - title: IoT Professional Services
               description: Bring IoT devices to market
               url: /core/services
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
-            - title: Real-time Ubuntu
-              url: /blog/real-time-ubuntu-is-now-generally-available
             - title: Guide to IoT lifecycle management
               url: /engage/a-practical-guide-to-iot-lifecycle-management
             - title: Canonical joins the CSA
@@ -446,6 +447,9 @@ use_case:
         - title: Compliance
           description: Certifications and hardening
           url: /security/certifications
+        - title: Confidential computing
+          description: Protect your data in use
+          url: /confidential-computing
         - title: Containers
           description: Ubuntu for container operations
           url: /containers
@@ -533,7 +537,7 @@ support:
               url: /managed
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Upgrade from 18.04
               url: /18-04
@@ -573,7 +577,7 @@ support:
               url: https://ubuntuforums.org/
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Webinars
               url: /engage?resource=webinar
@@ -590,8 +594,7 @@ community:
   side_nav_sections:
     - title: Learning resources
       primary_links:
-        - title: Resources
-          links:
+        - links:
             - title: Tutorials
               description: Guides for development
               url: /tutorials/
@@ -615,7 +618,7 @@ community:
               url: /masters-conference
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Upgrade Ubuntu
               url: /tutorials/upgrading-ubuntu-desktop
@@ -628,8 +631,7 @@ community:
 
     - title: Forums
       primary_links:
-        - title: Forums
-          links:
+        - links:
             - title: Ask Ubuntu
               description: Q&A for users and developers
               url: https://askubuntu.com/
@@ -644,7 +646,7 @@ community:
               url: https://discourse.ubuntu.com/
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: "Forum: New to Ubuntu"
               url: https://ubuntuforums.org/forumdisplay.php?f=125
@@ -657,8 +659,7 @@ community:
 
     - title: Contribute to Ubuntu
       primary_links:
-        - title: Ways to contribute
-          links:
+        - links:
             - title: Translate and localise
               description: Translate into your language
               url: https://ubuntu.com/community/contribute/translation-localisation
@@ -686,8 +687,7 @@ community:
 
     - title: Mission and governance
       primary_links:
-        - title: Mission and governance
-          links:
+        - links:
             - title: Our mission
               description: What we stand for
               url: /community/mission
@@ -711,7 +711,7 @@ community:
               url: http://loco.ubuntu.com/teams/
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Community Council agenda
               url: https://discourse.ubuntu.com/t/community-council-meeting-agendas-schedule/708
@@ -722,8 +722,7 @@ community:
 
     - title: Keep up to date
       primary_links:
-        - title: Keep up to date
-          links:
+        - links:
             - title: Read the blogs
               description: Ubuntu blogs
               url: /blog
@@ -741,7 +740,7 @@ community:
               url: https://wiki.ubuntu.com/Teams
 
       secondary_links:
-        - title: Links
+        - title: Quick links
           links:
             - title: Become a blog contributor
               url: https://community.ubuntu.com/t/call-for-contributors-to-the-ubuntu-weekly-newsletter/1542
@@ -793,7 +792,7 @@ get_ubuntu:
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
               url: /server
-              secondary_cta_title: Download 22.04 LTS
+              secondary_cta_title: Get Ubuntu Server
               secondary_cta_url: /download/server
             - title: MAAS
               description: Bare metal provisioning
@@ -808,7 +807,7 @@ get_ubuntu:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
             - title: Server guide
               url: /server/docs
@@ -822,18 +821,14 @@ get_ubuntu:
               url: /download/server/s390x
             - title: RISC-V
               url: /download/risc-v
-      section_footer:
-        cta_title: Get Ubuntu Server
-        cta_url: /download/server
     - title: Raspberry Pi
       primary_links:
         - links:
             - title: Ubuntu for Raspberry Pi
               description: Single board computer
               url: /raspberry-pi
-            - title: Install on Raspberry Pi
-              description: Download per-model
-              url: /download/raspberry-pi
+              secondary_cta_title: Get Ubuntu for Raspberry Pi
+              secondary_cta_url: /download/raspberry-pi
             - title: Ubuntu Core for Raspberry Pi
               description: Embedded OS
               url: /download/raspberry-pi-core
@@ -853,9 +848,6 @@ get_ubuntu:
               url: /engage/raspberry-pi-livestream
             - title: Build a Kubernetes cluster on Raspberry Pi
               url: /tutorials/how-to-kubernetes-cluster-on-raspberry-pi
-      section_footer:
-        cta_title: Get Ubuntu for Raspberry Pi
-        cta_url: /download/raspberry-pi
     - title: Ubuntu for IoT
       primary_links:
         - links:
@@ -874,9 +866,14 @@ get_ubuntu:
             - title: Embedded Linux
               description: Developers, apps and hardware
               url: /embedded
+            - title: Real-time Ubuntu
+              description: Low-latency kernel
+              url: /real-time
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
+            - title: Ubuntu for Raspberry Pi
+              url: /raspberry-pi
             - title: Intel IoT platforms
               url: /download/iot/intel-iotg
             - title: Intel NUC
@@ -889,10 +886,8 @@ get_ubuntu:
               url: /download/intel-iei-tank-870
             - title: AMD-Xilinx Evaluation kits & SOMs
               url: /download/xilinx
-            - title: Ubuntu for Raspberry Pi
-              url: /raspberry-pi
-            - title: Real-time Ubuntu
-              url: /blog/real-time-ubuntu-is-now-generally-available
+            - title: Mediatek Genio
+              url: /download/mediatek-genio
       section_footer:
         cta_title: Get Ubuntu for IoT
         cta_url: /download/iot
