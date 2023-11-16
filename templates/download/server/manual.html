@@ -42,7 +42,7 @@
             <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
             <input type="hidden" name="architecture" value="amd64">
             <input type="hidden" name="next-step" value="download">
-            <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
+            <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
         </form>
         </li>
         <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
@@ -94,7 +94,7 @@
         <input type="hidden" name="version" value="{{ releases.latest.full_version }}">
         <input type="hidden" name="architecture" value="amd64">
         <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - latest', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
+        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
       </form>
       <p>
         <a href="{{ releases.latest.release_notes_url }}">
@@ -151,7 +151,7 @@
         <input type="hidden" name="version" value="{{ releases.previous_lts.full_version }}">
         <input type="hidden" name="architecture" value="amd64">
         <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - previous_lts', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.full_version }} LTS</button>
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.full_version }} LTS</button>
       </form>
     </div>
     <div class="col-4 p-card">
