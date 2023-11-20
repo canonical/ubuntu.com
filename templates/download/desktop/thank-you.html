@@ -29,7 +29,6 @@
   <div class="p-strip--suru-topped">
     <div class="row">
       <div class="col-6">
-        {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn't,
           {% if architecture == 'amd64+mac' %}
@@ -41,12 +40,6 @@
             now</a>.
           {% endif %}
         </p>
-        {% with version=version, system="desktop", architecture=architecture %}{% include
-        "download/shared/_verify-checksums.html" %}{% endwith %}
-        {% else %}
-        <h1>Thank you for your contribution</h1>
-        <p>It will help further the open source development of Ubuntu.</p>
-        {% endif %}
       </div>
       <div class="u-hide" id="contact-form-container" data-form-id="4960" data-lp-id=""
         data-return-url="/download/desktop/thank-you#newsletter-signup"
@@ -58,7 +51,7 @@
         <p>Get the latest Ubuntu news and updates in your inbox.</p>
         <ul class="p-list">
           <li class="p-list__item">
-            <label for="email">Email:</label>
+            <label for="email">* Email:</label>
             <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
           </li>
           <li class="p-list__item u-no-margin--top">
