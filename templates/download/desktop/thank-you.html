@@ -28,25 +28,59 @@
 <section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
   <div class="p-strip--suru-topped">
     <div class="row">
-      <div class="col-8">
+      <div class="col-6">
         {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn't,
           {% if architecture == 'amd64+mac' %}
-          <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+          <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download
+            now</a>.
           {% else %}
-          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download
+            now</a>.
           {% endif %}
         </p>
-        {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
+        {% with version=version, system="desktop", architecture=architecture %}{% include
+        "download/shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
         {% endif %}
       </div>
+      <form class="col-6">
+        <h1 style="font-weight: 100;">Sign up for our newsletter</h1>
+        <p>Get the latest Ubuntu news and updates in your inbox.</p>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label for="email">Email:</label>
+            <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+          </li>
+          <li class="p-list__item u-no-margin--top">
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn"
+                type="checkbox" />
+              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical’s
+                products
+                and services.</span>
+            </label>
+          </li>
+          <li class="p-list__item u-no-margin--top">
+            <p>By submitting this form, I confirm that I have read and agree to <a
+                href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+                href="/legal/data-privacy">Privacy Policy</a>.</p>
+          </li>
+          <li class="p-list__item">
+            <button type="submit" class="p-button--positive">Subscribe now</button>
+          </li>
+        </ul>
+        <div>
+          <!-- <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="Yes">
+          <input type="hidden" aria-hidden="true" name="formid" value="3415"> -->
+          <input type="hidden" aria-hidden="true" name="returnURL" value="/download/desktop/thank-you#success" />
+        </div>
+      </form>
     </div>
-  </div>
-</section>
+    </section>
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
