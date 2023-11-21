@@ -29,18 +29,27 @@
   <div class="p-strip--suru-topped">
     <div class="row">
       <div class="col-6">
+        {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn't,
           {% if architecture == 'amd64+mac' %}
-          <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+          <a
+            href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download
+            now</a>.
           {% else %}
           <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download
             now</a>.
           {% endif %}
         </p>
+        {% else %}
+        <h1>Thank you for your contribution</h1>
+        <p>It will help further the open source development of Ubuntu.</p>
+        {% endif %}
       </div>
-
-
+      <div class="u-hide" id="contact-form-container" data-form-id="4960" data-lp-id=""
+        data-return-url="/download/desktop/thank-you#newsletter-signup"
+        data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+      </div>
       <form class="col-6" action="/marketo/submit" method="post" id="mktoForm_4960"
         onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
         <h1 style="font-weight: 100;">Sign up for our newsletter</h1>
