@@ -28,24 +28,76 @@
 <section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
   <div class="p-strip--suru-topped">
     <div class="row">
-      <div class="col-8">
+      <div class="col-6">
         {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn't,
           {% if architecture == 'amd64+mac' %}
-          <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
+          <a
+            href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download
+            now</a>.
           {% else %}
-          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download
+            now</a>.
           {% endif %}
         </p>
-        {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
         {% endif %}
       </div>
+
+
+      <form class="col-6" action="/marketo/submit" method="post" id="mktoForm_4960"
+        onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+        <h1 style="font-weight: 100;">Sign up for our newsletter</h1>
+        <p>Get the latest Ubuntu news and updates in your inbox.</p>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label for="email">* Email:</label>
+            <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+          </li>
+          <li class="p-list__item u-no-margin--top">
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
+                name="canonicalUpdatesOptIn" type="checkbox" />
+              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about
+                Canonical’s
+                products
+                and services.</span>
+            </label>
+          </li>
+          <li class="p-list__item u-no-margin--top">
+            <p>By submitting this form, I confirm that I have read and agree to <a
+                href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+                href="/legal/data-privacy">Privacy Policy</a>.</p>
+          </li>
+        </ul>
+        <div>
+          <span class="p-card--content">
+            <button type="submit" class="p-button--positive">Subscribe now</button>
+          </span>
+          <input value="4960" name="formid" type="hidden">
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" name="returnURL"
+            value="http://{{ http_host }}/download/desktop/thank-you#newsletter-signup" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c"
+            id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage"
+            name="preferredLanguage" maxlength="255" value="" />
+        </div>
+      </form>
     </div>
-  </div>
 </section>
 
 <section class="p-strip--light">
@@ -224,98 +276,6 @@
           </div>
         </div>
       </form>
-    </div>
-    <div class="col-4 col-start-large-9" style="position: sticky; top: 2rem;">
-      <div class="p-card">
-        <h4 class="p-muted-heading">Newsletter signup</h4>
-        <hr class="u-sv1" />
-        <h3 class="p-card--title">Select topics you're interested in</h3>
-        <form action="/marketo/submit" method="post" id="mktoForm_1212" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
-          <div class="p-card--content">
-            <ul class="p-list">
-              <li class="p-list__item u-clearfix">
-                <label class="p-checkbox">
-                  <input type="checkbox" aria-labelledby="insightscloudserver" class="p-checkbox__input" name="insightscloudserver" value="true" />
-                  <span class="p-checkbox__label" id="insightscloudserver">Cloud and Server</span>
-                </label>
-
-              </li>
-              <li class="p-list__item u-clearfix">
-                <label class="p-checkbox">
-                  <input type="checkbox" aria-labelledby="insightsdesktop" class="p-checkbox__input" name="insightsdesktop" value="true" />
-                  <span class="p-checkbox__label" id="insightsdesktop">Desktop</span>
-                </label>
-
-              </li>
-              <li class="p-list__item u-clearfix">
-                <label class="p-checkbox">
-                  <input type="checkbox" aria-labelledby="insightsiot" class="p-checkbox__input" name="insightsiot" value="true" />
-                  <span class="p-checkbox__label" id="insightsiot">Internet of Things</span>
-                </label>
-
-              </li>
-              <li class="p-list__item u-clearfix">
-                <label class="p-checkbox">
-                  <input class="p-checkbox__input" aria-labelledby="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
-                  <span class="p-checkbox__label" id="insightsrobotics">Robotics</span>
-                </label>
-              </li>
-              <li class="p-list__item u-clearfix">
-                <label class="p-checkbox">
-                  <input class="p-checkbox__input" aria-labelledby="insightstutorials" name="insightstutorials" value="true" type="checkbox">
-                  <span class="p-checkbox__label" id="insightstutorials">Tutorials</span>
-                </label>
-              </li>
-              {# These are honey pot fields to catch bots #}
-              <li class="u-off-screen">
-                <label class="website" for="website">Website:</label>
-                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-              </li>
-              <li class="u-off-screen">
-                <label class="name" for="name">Name:</label>
-                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-              </li>
-              {# End of honey pots #}
-            </ul>
-            <div>
-              <label>
-                <span class="u-no-margin--top">Work email: <span>*</span></span>
-                <input required  id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-              </label>
-            </div>
-            <div>
-              <label class="p-checkbox">
-                <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
-                <span class="p-checkbox__label" id="CanonicalUpdatesOptIn">
-                  <small>I agree to receive information about Canonical's products and services.</small>
-                </span>
-              </label>
-            </div>
-            <p>
-              <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
-            </p>
-
-
-            <div>
-              <span class="p-card--content">
-                <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
-              </span>
-              <input value="1212" name="formid" type="hidden">
-              <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" name="returnURL" value="http://{{ http_host }}/download/desktop/thank-you?newsletter=true" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
-              <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
-            </div>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
 </section>
