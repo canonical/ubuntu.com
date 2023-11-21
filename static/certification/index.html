@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -27,39 +28,41 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>device_tree</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "4283724971";
+    const serviceWorkerVersion = "2173999261";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-  <script src="./pkg/detarball.js" type="module" defer>
+  <!-- <script src="./pkg/detarball.js" type="module" defer> -->
   </script>
 </head>
+
 <body>
   <script type="module">
-    import init, { decompress_from_xz_tarball } from './pkg/detarball.js';
-        
-    window.addEventListener('load', function(ev) {
+    // import init, { decompress_from_xz_tarball } from './pkg/detarball.js';
+
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function(engineInitializer) {
+      }).then(function (engineInitializer) {
         return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
+      }).then(function (appRunner) {
         // FIXME: Remove this hack when ES6 module support works OK in Flutter.
-        window.decompress_from_xz_tarball = decompress_from_xz_tarball;
-        window.initDetarball = init;
+        // window.decompress_from_xz_tarball = decompress_from_xz_tarball;
+        // window.initDetarball = init;
         return appRunner.runApp();
       });
     });
   </script>
 </body>
+
 </html>
