@@ -146,6 +146,10 @@ $meganav-height: 3rem;
     }
 
     @media (max-width: $breakpoint-navigation-threshold) {
+      .row {
+        display: unset;
+      }
+
       .p-navigation__nav {
         margin-left: 0;
         overflow-y: auto;
@@ -413,7 +417,7 @@ $meganav-height: 3rem;
     .p-navigation__item {
       .p-navigation__link {
         color: $color-mid-light;
-        padding: 0.5rem 2rem 0.5rem 0;
+        // padding: 0.5rem 2rem 0.5rem 0;
       }
     }
 
@@ -579,6 +583,7 @@ $meganav-height: 3rem;
       }
 
       .row {
+        display: unset;
         padding-left: 0;
         padding-right: 0;
       }
