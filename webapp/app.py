@@ -28,6 +28,7 @@ from webapp.security.views import (
     cve_index,
     cves_sitemap,
     notice,
+    notice_redirect,
     notices,
     notices_feed,
     notices_sitemap,
@@ -450,6 +451,11 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
+
+app.add_url_rule(
+    "/security/notices/<prefix>",
+    view_func=notice_redirect,
+)
 
 app.add_url_rule(
     r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
