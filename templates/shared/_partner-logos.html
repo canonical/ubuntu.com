@@ -1,4 +1,5 @@
 {% set partners=get_json_feed(json_feed_url, limit=feed_item_limit) %}
+{% set ordered_slugs=['amazon-web-services', 'microsoft-azure', 'google-cloud-platform', 'oracle', 'ibm-cloud'] %}
 
 {% if partners == false %}
   <div class="p-notification--negative is-inline">
@@ -12,9 +13,9 @@
   <div class="p-logo-section">
   
     <div id="cloud-partners" class="p-logo-section__items">
-      {% for partner in partners %}
+      {% for partner in partners | sort_by_key_and_ordered_list('slug', ordered_slugs) %}
         <div class="p-logo-section__item">
-          {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-logo-section__logo" src="{{ partner.logo }}" style="max-width: 144px;" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
+          {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-logo-section__logo" src="{{ partner.logo }}" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
         </div>
       {% endfor %}
       </div>
