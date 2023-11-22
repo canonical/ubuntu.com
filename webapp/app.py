@@ -28,7 +28,6 @@ from webapp.security.views import (
     cve_index,
     cves_sitemap,
     notice,
-    notice_redirect,
     notices,
     notices_feed,
     notices_sitemap,
@@ -453,8 +452,8 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 app.add_url_rule("/security/notices", view_func=notices)
 
 app.add_url_rule(
-    "/security/notices/<prefix>",
-    view_func=notice_redirect,
+    "/security/notices/<notice_id>",
+    view_func=notice,
 )
 
 app.add_url_rule(

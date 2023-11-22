@@ -36,17 +36,6 @@ def get_processed_details(notice):
     )
 
 
-def notice_redirect(prefix):
-    prefix = prefix.lower()
-
-    if prefix == "lsn":
-        return flask.redirect("/security/notices?details=lsn")
-    elif prefix == "usn":
-        return flask.redirect("/security/notices?details=usn")
-    else:
-        flask.abort(404)
-
-
 def notice(notice_id):
     notice = security_api.get_notice(notice_id)
 
