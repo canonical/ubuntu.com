@@ -1,9 +1,9 @@
 {% extends "internet-of-things/base_things.html" %}
 
 
-{% block title %}The IoT App Store for Linux | Ubuntu for the Internet of Things {% endblock %}
+{% block title %}IoT App Store | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}
-With the IoT App Store for Linux, create, publish and distribute software on one platform, with reliable iot ota updates to only your devices in a secure and validated way. With a private app store, guarantee the secure management and maintenance of your Linux platform ecosystem or fleet of devices.
+Create, publish and distribute software, with reliable IoT OTA updates using the Dedicated Snap Store.
 {% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1CKwmPDDtXOIgw-jSZFwzP-qLMc_rS_dUACpHQXlg0fA/edit{% endblock meta_copydoc %}
 
@@ -14,22 +14,15 @@ With the IoT App Store for Linux, create, publish and distribute software on one
     {% include "shared/_18-04-eol-banner.html" %}
 
     <div class="row u-equal-height u-vertically-center">
-      <div class="col-7 col-medium-4">
+      <div class="col-6">
         <h1>The IoT App Store</h1>
-        <p>Create, publish and distribute software on one platform, with reliable over-the-air updates to only your devices in a secure and validated way. We provide the infrastructure for secure management and maintenance of your Linux platform ecosystem or fleet of devices. Whether you need a private app store for your device or an efficient IoT package management system, we have a solution for you.</p>
-        <ul class="p-inline-list u-no-margin--bottom">
-          <li class="p-inline-list__item">
-            <a class="p-button" href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a class="p-button--positive" href="/internet-of-things/contact-us?product=appstore" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Telcos - Top CTA' });" class="p-button js-invoke-modal">Find out more</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a class="p-button" href="/pricing/devices">Plans and pricing</a>
-          </li>
-        </ul>
+        <p>Create, publish and distribute software on the global Snap Store and your private enterprise App Store.</p>
+        <p>
+          <a href="/internet-of-things/contact-us?product=appstore" class="p-button--positive">Contact us</a>
+          <a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf" class="p-button">Read the datasheet</a>
+        </p>
       </div>
-      <div class="col-5 u-embedded-media u-hide--medium u-hide--small u-align--center">
+      <div class="col-6 u-embedded-media u-align--center">
          <iframe title="Introduction to IoT app stores" class="u-embedded-media__element" src="https://player.vimeo.com/video/466105746" allowfullscreen=""></iframe>
       </div>
     </div>
@@ -37,278 +30,214 @@ With the IoT App Store for Linux, create, publish and distribute software on one
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Enterprise-ready</h2>
-  </div>
-
-  <div class="row">
-    <div class="col-3">
-      <ul class="p-list u-no-margin--bottom">
-        <li class="p-list__item is-ticked">Reliable OTA (over-the-air) updates</li>
-        <li class="p-list__item is-ticked">Secure authentication</li>
-      </ul>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Ideal for secure <br>software distribution</h2>
     </div>
-
-    <div class="col-3">
-      <ul class="p-list u-no-margin--bottom">
-        <li class="p-list__item is-ticked">CI/CD integration</li>
-        <li class="p-list__item is-ticked">Management dashboard</li>
-      </ul>
-    </div>
-
-    <div class="col-3">
-      <ul class="p-list u-no-margin--bottom">
-        <li class="p-list__item is-ticked">Usage analytics</li>
-        <li class="p-list__item is-ticked">Multi-tenancy</li>
+    <div class="col-6">
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Advanced software management for fleets of devices</li>
+        <li class="p-list__item is-ticked">Secure, validated OTA update mechanisms to handle distribution at scale</li>
+        <li class="p-list__item is-ticked">Infrastructure for secure management and maintenance of specialised applications</li>
       </ul>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Securely manage <br>your IoT fleet</h2>
+    </div>
+    <div class="col-6">
+      <p class="p-heading--5">Use your store in a way that suits your business needs. Either open source your software and publish it to the global Snap Store or manage your business and devices with a Dedicated Snap Store to explore a  richer featureset.</p>
+      <h3 class="p-heading--4">Onboard new devices</h3>
+      <p>New devices are securely authenticated and added to your fleet. Devices are connected to your Dedicated  Snap Store with a secure, built-in signing service.</p>
+      <h3 class="p-heading--4">Reliable over-the-air (OTA) updates</h3>
+      <p><a href="/core/features/ota-updates">Over-the-air updates</a> are automatic and transactional, so devices rollback to a stable state if a failure occurs. All updates are delivered as deltas to minimise bandwidth consumption and the associated costs. </p>
+      <h3 class="p-heading--4">Detailed account delegation</h3>
+      <p>Set granular permissions for users of your Dedicated Snap Store, allowing varying tiers of access and publisher rights. You can also set permissions at the snap-level, granting collaborator rights to software publishers.</p>
+      <h3 class="p-heading--4">Usage analytics</h3>
+      <p>Track the use of your devices over a dashboard. The Dedicated Snap Store uses the APIs provided by Ubuntu Core to extract usage metrics and present them through a user-friendly interface.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <h2>Check out the dedicated Snap Store</h2>
+    </div>
+    <div class="col-6">
+      <p>The Dedicated Snap Store has a range of features on it's dashboard, including:</p>
+      <ul>
+        <li>Snap inclusion and exclusion</li>
+        <li>Account delegation and role management</li>
+        <li>Release management for your snaps</li>
+        <li>Detailed snap metrics</li>
+      </ul>
+      <a href="/internet-of-things/contact-us?product=appstore" class="p-button">Ready to find out more? Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Learn more about <br>the Snap Store</h2>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--5 u-no-margin--bottom">OTA Updates</h3>
+      <p>
+        <a href="/engage/ota-updates-iot-guide">How to implement over-the-air updates for IoT</a>
+      </p>
+      <h3 class="p-heading--5 u-no-margin--bottom">Enterprise Ready</h3>
+      <p>
+        <a href="/engage/enterprise-snap-management">How to manage Snaps in an Enterprise environment</a>
+      </p>
+      <h3 class="p-heading--5 u-no-margin--bottom">IoT Challenges</h3>
+      <p>
+        <a href="/engage/top-five-iot-challenges">Top 5 IoT challenges and how to solve them</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-sv3">Read about the companies using app stores for IoT</h2>
-    <div class="p-logo-section has-misaligned-images">
-      <div class="p-logo-section__items">
+    <div class="p-logo-section">
+      <h2 class="u-align--center">Trusted by</h2>
+      <div class="p-logo-section__items u-no-margin--bottom u-align--center">
         <div class="p-logo-section__item">
-          <a href="/engage/case-study-rigado">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/6d588a1f-RigadoFullColorVert-800px.png",
-                alt="",
-                height="71",
-                width="113",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/87bef30b-dell-emc-logo.png",
+            alt="",
+            width="463",
+            height="744",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <a href="/dell">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png",
-                alt="",
-                height="29",
-                width="162",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0066964b-rigado-logo.png",
+            alt="",
+            width="505",
+            height="512",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">
-            {{
-              image (
-              url="https://assets.ubuntu.com/v1/156ddbf8-rexroth_logo.svg",
-              alt="",
-              width="131",
-              height="53",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1468ce5f-rexroth-logo.png",
+            alt="",
+            width="350",
+            height="512",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <a href="/engage/cyberdyne">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/c5ee407e-cyberdyne.png",
-                alt="",
-                height="99",
-                width="158",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/846dfb20-cyberdyne-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <a href="/blog/lime-microsystems-and-canonical-announce-limenet-crowdfunding">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/5651e32d-lime.png",
-                alt="",
-                height="69",
-                width="162",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ee3c6ba7-Screenly-logo.png",
+            alt="",
+            width="366",
+            height="512",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
         <div class="p-logo-section__item">
-          <a href="/engage/domotz-case-study">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/84d82478-domotz.svg",
-                alt="",
-                height="36",
-                width="162",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-              ) | safe
-            }}
-          </a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ed91e03b-domotz-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    {{
-      image(
-        url="https://assets.ubuntu.com/v1/0aa9c999-rigado.svg",
-        alt="",
-        height="35",
-        width="185",
-        hi_def=True,
-        loading="lazy"
-      ) | safe
-    }}
-    <blockquote class="p-pull-quote">
-      <p class="p-pull-quote__quote">Large-scale commercial IoT deployments are not one size fits all. They require infrastructure that is open, scalable, and secure, with software that can evolve to meet the changing needs of the customer. Ubuntu Core brings a powerful and open architecture to IoT gateways, ensuring they're an enabler of business success for customers, now and in the future.</p>
-      <cite class="p-pull-quote__citation">Ben Corrado, Co-founder, Rigado</cite>
-    </blockquote>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
-      <h2>Enabling IoT ecosystems</h2>
+      <h2>What some of our customers say</h2>
     </div>
-  </div>
-  <div class="row p-divider u-sv3">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">OEMs</h3>
-      <p>Build new business models around your devices. Seize the opportunity to create platform business models based on software-defined devices.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Software vendors</h3>
-      <p>Create a store to publish your software or re-sell software from other vendors. New distribution channels and brand visibility.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">System integrators</h3>
-      <p>Create a store to market your IoT solutions to clients anywhere in the world. Access new markets at minimal cost.</p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <a class="p-button--positive" href="/engage/iot-business-model">Establish a software defined IoT business model</a>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--top">
-  <div class="u-fixed-width">
-    <h2>Securely manage your IoT fleet</h2>
-    <ul class="p-matrix p-matrix--two-col u-clearfix">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Onboard new devices</h3>
-          <div class="p-matrix__desc">
-            <p>New devices are securely authenticated and added to your managed IoT fleet. Devices are connected to your enterprise app store, with cryptographic protection built into the operating system and the store. Access to applications and data for each device is in your control.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Usage analytics</h3>
-          <div class="p-matrix__desc">
-            <p>Track the use of your devices over a dashboard. The IoT app store utilises the APIs provided by Ubuntu Core to extract usage metrics and present them through a user-friendly interface.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Reliable over-the-air (OTA) updates</h3>
-          <div class="p-matrix__desc">
-            <p>All updates are delivered as deltas to minimise bandwidth consumption and the associated costs. Over-the-air updates are automatic and transactional, so devices rollback to a stable state if a failure occurs.</p>
-            <p>
-              <a href="/core/features/ota-updates">Learn more&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Tamper-proof fleet management</h3>
-          <div class="p-matrix__desc">
-            <p>Device policies and configuration are defined and controlled by documents stored on the device, and signed by OEMs with strong cryptography. Manufacturers have full control over usage of their devices.</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <div class="u-fixed-width">
-      <p>
-        <a class="p-button" href="/internet-of-things/management">Learn more about IoT management</a>
-      </p>
-      <p>
-        <a class="p-button--positive" href="/engage/enterprise-snap-management">Enterprise management of snaps</a>
-      </p>
+    <div class="col-6">
+      <blockquote class="p-pull-quote--small">
+        <p class="p-pull-quote__quote">The IoT App Store gives us the prebuilt infrastructure to seamlessly deliver OTA updates to our entire fleet.</p>
+        <span class="p-pull-quote__citation">Viktor Petersson, CEO, Screenly</span>
+      </blockquote>
+      <hr>
+      <blockquote class="p-pull-quote--small">
+        <p class="p-pull-quote__quote">Large-scale commercial IoT deployments are not one size fits all. They require infrastructure that is open, scalable, and secure, with software that can evolve to meet the changing needs of the customer. Ubuntu Core brings a powerful and open architecture to IoT gateways, ensuring they're an enabler of business success for customers, now and in the future.</p>
+        <span class="p-pull-quote__citation">Ben Corrado, Co-founder, Rigado</span>
+      </blockquote>
+      <hr>
+      <blockquote class="p-pull-quote--small">
+        <p class="p-pull-quote__quote">Building our product with snaps lets us guarantee that all updates are automatic and entirely transactional &ndash; not only for our own software, but also for the kernel and OS. What's more, snaps work on virtually all Linux operating systems, so we've been able to release our open source Domotz Pro software as a public snap that users can install on their own hardware.</p>
+        <span class="p-pull-quote__citation">Giancarlo Fanelli, CTO, Domotz</span>
+      </blockquote>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>What are the use cases?</h2>
-    <p class="p-heading--4">Our app stores handle a wide range of business scenarios, from simple software distribution to complex IoT ecosystem development.</p>
-    <ul class="p-matrix p-matrix--two-col u-clearfix">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Appliances</h3>
-          <div class="p-matrix__desc">
-            <p>App stores can power fleets of software-defined appliances. Devices upgrades can be offered as snaps. An admin interface is delivered out of the box with basic usage analytics functionalities.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Line of products</h3>
-          <div class="p-matrix__desc">
-            <p>App stores can be dedicated to specific IoT device series in a model family. Each device model will have a store through which applications are published and managed.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Platform ecosystems</h3>
-          <div class="p-matrix__desc">
-            <p>In this scenario, substores are created through which third party IoT applications can be distributed. Third party publishers maintain control of their content when distributed through reseller stores.</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-heading--4">Partnerships</h3>
-          <div class="p-matrix__desc">
-            <p>Partner OEMs can create shared app stores to complement their applications offering upstream in the value chain. This enables multi-tenancy models.</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <a href="/engage/snap-deltas" class="p-button--positive">Learn about optimising IoT bandwidth</a>
+  <div class="row">
+    <div class="col-6">
+      <h2>On premise and air gapped</h2>
+    </div>
+    <div class="col-6">
+      <div class="u-hide--medium u-hide--small u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fd4691a7-Snapcraft+Proxy_Aubergine.svg",
+          alt="",
+          width="300",
+          height="300",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p>The Snap Store Proxy is an add-on to the Dedicated Snap Store, offering additional functionality for your use case. Using the Proxy, you can pin a specific version of software on your devices or use your Dedicated Snap Store in environments with complex networking requirements.</p>
+      <p>For an on-premise experience, if you are operating devices that are completely isolated from the internet, we also offer air gapped mode.</p>
+      <p>Maximise bandwidth and speed by caching downloads and snap traffic.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/494857">Learn more about the Snap Store Proxy&nbsp;&rsaquo;</a>
+    </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
     <div class="col-6">
-      <h2>On premise and supported</h2>
-      <p>Many enterprises and device manufacturers depend on Canonical's IoT App Stores to distribute software to their devices in the field. Additionally, Canonical can provide commercial support plans for enterprises through Ubuntu Advantage. The Snap Store Proxy allows you to control, update and isolate your devices from the internet.</p>
+      <h2>Professional services to get you started quickly</h2>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -321,62 +250,39 @@ With the IoT App Store for Linux, create, publish and distribute software on one
         <li class="p-list__item is-ticked">Access to our world-class technical team</li>
         <li class="p-list__item is-ticked">Private software repositories</li>
         <li class="p-list__item is-ticked">Guaranteed levels of service </li>
-        <li class="p-list__item is-ticked">Own app ecosystem control and management</li>
-        <li class="p-list__item is-ticked">Snap Store Proxy functionality</li>
       </ul>
       <a class="p-button--positive u-no-margin--bottom" href="/pricing/devices">Find out more about App Store pricing</a>
     </div>
 
     <div class="col-6 p-card">
-      <h3 class="p-card__title">Snap Store Proxy</h3>
+      <h3 class="p-card__title">IoT Professional Services</h3>
       <hr class="u-sv1">
-      <p class="p-card__content">The Snap Store Proxy The Snap Store Proxy is an add-on to the IoT App Store, with a number of applications to meet your project requirements.</p>
+      <p class="p-card__content">Canonical offers an expert engineering team specialising in field deployments. We offer a range of services for all embedded projects, including:</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Pin to a specific version of software on your devices</li>
-        <li class="p-list__item is-ticked">Use airgap mode for devices disconnected from the internet</li>
-        <li class="p-list__item is-ticked">Determine which devices connect to your Store Proxy</li>
-        <li class="p-list__item is-ticked">Maximise bandwidth and speed by caching downloads and snap traffic</li>
+        <li class="p-list__item is-ticked">Full-service enablement</li>
+        <li class="p-list__item is-ticked">Application creation</li>
+        <li class="p-list__item is-ticked">Deployment services</li>
+        <li class="p-list__item is-ticked">Technical add-ons</li>
+        <li class="p-list__item is-ticked">Snap workshops</li>
       </ul>
       <p>
-        <a class="p-button--positive" href="https://docs.ubuntu.com/snap-store-proxy/en/">Learn more about the Snap Store Proxy</a>
+        <a class="p-button--positive" href="/core/services">[Learn more about IoT Professional Services</a>
       </p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Global Snap Store</h2>
-      <h3 class="p-heading--4">Showcase your applications on the IoT marketplace for Linux.</h3>
-      <p>The Snap Store is the global marketplace for applications on Linux, used by millions of people around the world. Discover snaps, a unique packaging format, optimised for OTA updates and security, perfect for IoT, desktop and cloud. With a huge range of applications available and free to use, find the software you need for your use case. Showcase your applications and boost your user base.</p>
-    </div>
-    <p>
-      <a href="https://snapcraft.io/" class="p-button--positive">Discover the Snap Store&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-7">
+    <div class="col-6">
       <h2>Ready to innovate? </h2>
-      <p>Whether you are a startup bringing your concept to market or already established, we have considerable expertise and infrastructure to launch and support your product journey. Tell us your story and let’s work together.</p>
-      <p style="margin-top: 2rem;">
-        <a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us?product=appstore" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us' });">Contact us</a>
-      </p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          height="178",
-          width="250",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+    <div class="col-6">
+      <p class="p-heading--5">Contact us</p>
+      <p>Whether you are a startup bringing your concept to market or already  have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
+      <p style="margin-top: 2rem;">
+        <a class="p-button--positive js-invoke-modal" href="/internet-of-things#get-in-touch" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us' });">Contact our team</a>
+      </p>
     </div>
   </div>
 </section>
