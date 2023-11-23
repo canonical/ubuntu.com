@@ -452,6 +452,11 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 app.add_url_rule("/security/notices", view_func=notices)
 
 app.add_url_rule(
+    "/security/notices/<notice_id>",
+    view_func=notice,
+)
+
+app.add_url_rule(
     r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
     view_func=notice,
 )
