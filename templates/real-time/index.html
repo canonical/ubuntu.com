@@ -68,7 +68,8 @@
   <div class="row u-equal-height">
     <div class="col-3 col-medium-3">
       <h3 class="p-heading--5">Industrial settings</h3>
-      <p style="min-height: 130px;">PLCs in assembly lines must deliver and process data in real-time to ensure system integrity and continuous
+      <p class="p-cases">PLCs in assembly lines must deliver and process data in real-time to ensure system
+        integrity and continuous
         production.</p>
       <div class="u-hide--small" style="background-color: rgba(0, 0, 0, 0.03);">
         {{
@@ -84,7 +85,8 @@
     </div>
     <div class="col-3 col-medium-3">
       <h3 class="p-heading--5">Telco</h3>
-      <p style="min-height: 130px;">Real-time Ubuntu brings ultra-low latency and enhanced security capabilities to telco workloads and the
+      <p class="p-cases">Real-time Ubuntu brings ultra-low latency and enhanced security capabilities to
+        telco workloads and the
         critical
         infrastructure they run on.</p>
       <div class="u-hide--small" style="background-color: rgba(0, 0, 0, 0.03);">
@@ -101,7 +103,8 @@
     </div>
     <div class="col-3 col-medium-3">
       <h3 class="p-heading--5">Healthcare robotics</h3>
-      <p style="min-height: 130px;">From autonomous mobile robots to life-support medical equipment, healthcare systems must complete tasks within
+      <p class="p-cases">From autonomous mobile robots to life-support medical equipment, healthcare systems
+        must complete tasks within
         specified deadlines.</p>
       <div class="u-hide--small" style="background-color: rgba(0, 0, 0, 0.03);">
         {{
@@ -117,7 +120,8 @@
     </div>
     <div class="col-3 col-medium-3">
       <h3 class="p-heading--5">Automotive</h3>
-      <p style="min-height: 130px;">Automotive manufacturers are increasingly reliant on real-time Linux for infotainment systems, HMIs and
+      <p class="p-cases">Automotive manufacturers are increasingly reliant on real-time Linux for
+        infotainment systems, HMIs and
         latency-sensitive scenarios.</p>
       <div class="u-hide--small" style="background-color: rgba(0, 0, 0, 0.03);">
         {{
@@ -131,11 +135,12 @@
         }}
       </div>
     </div>
-    <div class="row">
-      <p>Not sure real-time is for you? <br /><a href="/kernel/real-time/contact-us">Get in touch</a> to talk over
-        your
-        use case with our sales team</p>
-    </div>
+  </div>
+  <div class="row">
+    <p>Not sure real-time is for you? <br /><a href="/kernel/real-time/contact-us">Get in touch</a> to talk over
+      your
+      use case with our sales team</p>
+  </div>
 </section>
 
 <section class="p-section">
@@ -237,5 +242,17 @@ pro enable realtime-kernel --variant intel-iotg</code></pre>
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/real-time" data-form-id="4914" data-lp-id="" data-return-url="/real-time#success" data-lp-url="https://ubuntu.com/kernel/real-time/contact-us">
 </div>
 <script src="/static/js/src/static-forms.js"></script>
+<style>
+  @media (min-width: 1032px) {
+    .p-cases {
+      min-height: 130px;
+    }
+  }
 
+  @media (min-width: 620px) and (max-width: 1032px) {
+    .p-cases {
+      min-height: 105px;
+    }
+  }
+</style>
 {% endblock content %}
