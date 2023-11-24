@@ -18,24 +18,6 @@ export var smallReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2020-10-01T00:00:00"),
-    endDate: new Date("2021-07-07T00:00:00"),
-    taskName: "Ubuntu 20.10",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-10-01T00:00:00"),
-    endDate: new Date("2022-07-07T00:00:00"),
-    taskName: "Ubuntu 21.10",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2022-01-05T00:00:00"),
-    taskName: "Ubuntu 21.04",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2024-09-30T00:00:00"),
     taskName: "Ubuntu 22.04 LTS",
@@ -57,6 +39,18 @@ export var smallReleases = [
     startDate: new Date("2022-10-20T00:00:00"),
     endDate: new Date("2023-07-20T00:00:00"),
     taskName: "Ubuntu 22.10",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-04-20T00:00:00"),
+    endDate: new Date("2024-01-20T00:00:00"),
+    taskName: "Ubuntu 23.04",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-10-20T00:00:00"),
+    endDate: new Date("2024-07-20T00:00:00"),
+    taskName: "Ubuntu 23.10",
     status: "INTERIM_RELEASE",
   },
 ];
@@ -1705,11 +1699,10 @@ export var microStackStatus = {
 };
 
 export var smallReleaseNames = [
+  "Ubuntu 23.10",
+  "Ubuntu 23.04",
   "Ubuntu 22.10",
   "Ubuntu 22.04 LTS",
-  "Ubuntu 21.10",
-  "Ubuntu 21.04",
-  "Ubuntu 20.10",
   "Ubuntu 20.04 LTS",
 ];
 
