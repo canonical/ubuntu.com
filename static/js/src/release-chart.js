@@ -1,7 +1,6 @@
 import { createChart } from "./chart";
 import { debounce } from "./utils/debounce.js";
 import {
-  smallReleases,
   serverAndDesktopReleases,
   kernelReleases,
   kernelReleaseSchedule,
@@ -23,7 +22,6 @@ import {
   openStackStatus,
   kubernetesStatus,
   microStackStatus,
-  smallReleaseNames,
   desktopServerReleaseNames,
   kernelReleaseNames,
   kernelVersionNames,
@@ -41,14 +39,6 @@ import {
 } from "./chart-data";
 
 function buildCharts() {
-  if (document.querySelector("#small-eol")) {
-    createChart(
-      "#small-eol",
-      smallReleaseNames,
-      desktopServerStatus,
-      smallReleases
-    );
-  }
   if (document.querySelector("#server-desktop-eol")) {
     delete desktopServerStatus.MAINTENANCE_UPDATES;
     createChart(
@@ -172,10 +162,6 @@ function buildCharts() {
 }
 
 function clearCharts() {
-  const smallEol = document.querySelector("#small-eol");
-  if (smallEol) {
-    smallEol.innerHTML = "";
-  }
   const serverDesktopEol = document.querySelector("#server-desktop-eol");
   if (serverDesktopEol) {
     serverDesktopEol.innerHTML = "";
