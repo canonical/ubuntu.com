@@ -103,7 +103,7 @@
                     <ul class="p-list">
                       {% for link in links_section.links %}
                         <li class="p-list__item">
-                          <a href="{{ link.url }}">{{ link.title }}</a>
+                          <a class="dropdown-window__side-panel-link" href="{{ link.url }}">{{ link.title }}</a>
                         </li>
                       {% endfor %}
                     </ul>
@@ -190,7 +190,7 @@
                 <ul class="p-list">
                   {% for link in links_section.links %}
                     <li class="p-list__item">
-                      <a href="{{ link.url }}">{{ link.title }}</a>
+                      <a class="dropdown-window__side-panel-link" href="{{ link.url }}">{{ link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
