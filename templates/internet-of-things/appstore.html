@@ -33,8 +33,6 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>Ideal for secure <br>software distribution</h2>
-    </div>
-    <div class="col-6">
       <ul class="p-list">
         <li class="p-list__item is-ticked">Advanced software management for fleets of devices</li>
         <li class="p-list__item is-ticked">Secure, validated OTA update mechanisms to handle distribution at scale</li>
@@ -45,21 +43,27 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>Securely manage <br>your IoT fleet</h2>
-    </div>
-    <div class="col-6">
-      <p class="p-heading--5">Use your store in a way that suits your business needs. Either open source your software and publish it to the global Snap Store or manage your business and devices with a Dedicated Snap Store to explore a  richer featureset.</p>
-      <h3 class="p-heading--4">Onboard new devices</h3>
-      <p>New devices are securely authenticated and added to your fleet. Devices are connected to your Dedicated  Snap Store with a secure, built-in signing service.</p>
-      <h3 class="p-heading--4">Reliable over-the-air (OTA) updates</h3>
-      <p><a href="/core/features/ota-updates">Over-the-air updates</a> are automatic and transactional, so devices rollback to a stable state if a failure occurs. All updates are delivered as deltas to minimise bandwidth consumption and the associated costs. </p>
-      <h3 class="p-heading--4">Detailed account delegation</h3>
-      <p>Set granular permissions for users of your Dedicated Snap Store, allowing varying tiers of access and publisher rights. You can also set permissions at the snap-level, granting collaborator rights to software publishers.</p>
-      <h3 class="p-heading--4">Usage analytics</h3>
-      <p>Track the use of your devices over a dashboard. The Dedicated Snap Store uses the APIs provided by Ubuntu Core to extract usage metrics and present them through a user-friendly interface.</p>
-    </div>
+  <div class="u-fixed-width">
+    <h2>Securely manage <br>your IoT fleet</h2>
+    <p class="p-heading--4">Use your store in a way that suits your business needs. Either open source your software and publish it to the global Snap Store or manage your business and devices with a Dedicated Snap Store to explore a  richer featureset.</p>
+    <ul class="p-matrix p-matrix--two-col">
+      <li class="p-matrix__item">
+        <h3 class="p-heading--4">Onboard new devices</h3>
+        <p>New devices are securely authenticated and added to your fleet. Devices are connected to your Dedicated  Snap Store with a secure, built-in signing service.</p>
+      </li>
+      <li class="p-matrix__item">
+        <h3 class="p-heading--4">Reliable over-the-air (OTA) updates</h3>
+        <p><a href="/core/features/ota-updates">Over-the-air updates</a> are automatic and transactional, so devices rollback to a stable state if a failure occurs. All updates are delivered as deltas to minimise bandwidth consumption and the associated costs. </p>
+      </li>
+      <li class="p-matrix__item">
+        <h3 class="p-heading--4">Detailed account delegation</h3>
+        <p>Set granular permissions for users of your Dedicated Snap Store, allowing varying tiers of access and publisher rights. You can also set permissions at the snap-level, granting collaborator rights to software publishers.</p>
+      </li>
+      <li class="p-matrix__item">
+        <h3 class="p-heading--4">Usage analytics</h3>
+        <p>Track the use of your devices over a dashboard. The Dedicated Snap Store uses the APIs provided by Ubuntu Core to extract usage metrics and present them through a user-friendly interface.</p>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -76,7 +80,8 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
         <li>Release management for your snaps</li>
         <li>Detailed snap metrics</li>
       </ul>
-      <a href="/internet-of-things/contact-us?product=appstore" class="p-button">Ready to find out more? Get in touch</a>
+      <p>Ready to find out more?</p>
+      <a href="/internet-of-things/contact-us?product=appstore" class="p-button--positive"> Get in touch</a>
     </div>
   </div>
 </section>
@@ -106,79 +111,92 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <div class="p-logo-section">
-      <h2 class="u-align--center">Trusted by</h2>
-      <div class="p-logo-section__items u-no-margin--bottom u-align--center">
+      <h2 class="p-text--small-caps">Learn about the companies using app stores</h2>
+      <p class="p-text--small">Click each logo to read a case study.</p>
+      <div class="p-logo-section__items u-no-margin--bottom">
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/87bef30b-dell-emc-logo.png",
-            alt="",
-            width="463",
-            height="744",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+          <a href="/dell">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/87bef30b-dell-emc-logo.png",
+              alt="",
+              width="463",
+              height="744",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
             ) | safe
-          }}
+            }}
+          </a>
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/0066964b-rigado-logo.png",
-            alt="",
-            width="505",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+          <a href="/engage/case-study-rigado">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/0066964b-rigado-logo.png",
+              alt="",
+              width="505",
+              height="512",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/1468ce5f-rexroth-logo.png",
-            alt="",
-            width="350",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+          <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/1468ce5f-rexroth-logo.png",
+              alt="",
+              width="350",
+              height="512",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/846dfb20-cyberdyne-logo.png",
-            alt="",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+          <a href="/engage/cyberdyne">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/846dfb20-cyberdyne-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ee3c6ba7-Screenly-logo.png",
-            alt="",
-            width="366",
-            height="512",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+          <a href="/engage/secure-digital-signage-screenly">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/ee3c6ba7-Screenly-logo.png",
+              alt="",
+              width="366",
+              height="512",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ed91e03b-domotz-logo.png",
-            alt="",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
+          <a href="/engage/domotz-case-study">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/ed91e03b-domotz-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </a>
         </div>
       </div>
     </div>
@@ -251,7 +269,7 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
         <li class="p-list__item is-ticked">Private software repositories</li>
         <li class="p-list__item is-ticked">Guaranteed levels of service </li>
       </ul>
-      <a class="p-button--positive u-no-margin--bottom" href="/pricing/devices">Find out more about App Store pricing</a>
+      <a href="/pricing/devices">Learn more more about App Store pricing&nbsp;&rsaquo;</a>
     </div>
 
     <div class="col-6 p-card">
@@ -266,7 +284,7 @@ Create, publish and distribute software, with reliable IoT OTA updates using the
         <li class="p-list__item is-ticked">Snap workshops</li>
       </ul>
       <p>
-        <a class="p-button--positive" href="/core/services">[Learn more about IoT Professional Services</a>
+        <a href="/core/services">Learn more about IoT Professional Services&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
