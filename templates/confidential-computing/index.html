@@ -32,6 +32,59 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
     <hr class="is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
+        <h2>Benefits of Ubuntu for confidential computing</h2>
+      </div>
+      <ul class="col u-vertically-center">
+        <li>Protect sensitive data by encrypting it when it’s being processed</li>
+        <li>Secure your workloads in untrusted environments</li>
+        <li>Build data clean rooms for collaborative AI analytics</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Intel TDX  is available on Ubuntu for both the host and guest</h2>
+      </div>
+      <div class="col">
+        <p>Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution
+          environment enables you to add an extra layer of protection to the code and data running within your confidential
+          virtual machines.
+        </p>
+        <div class="p-image__background--3-2 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4143661e-Ubuntu%20VM%20on%20Intel%20TDX.png",
+            alt="Hypervisor diagram",
+            width="195",
+            height="282",
+            hi_def=True,
+            loading="lazy" ) | safe
+          }}
+        </div>
+        <p><span style="font-weight: bold">Private preview available on Ubuntu 23.10:</span> Canonical’s strategic partnership with Intel gives you a customised Ubuntu
+          build for Intel®TDX, incorporating all the latest necessary end-to-end host-to-guest patches available, even before
+          they make it upstream.
+        </p>
+        <p><span style="font-weight: bold">Host side:</span> we support a 6.5 kernel, derived from the 23.10 generic kernel, and offer essential user space components
+          accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts to simplify
+          the creation of confidential environments with just a few commands.
+        </p>
+        <p><span style="font-weight: bold">Guest side:</span> we support a comprehensive package, featuring a 6.5 kernel, Shim, Grub, and TDVF, which serves as an
+          in-guest VM firmware.
+        </p>
+        <p>
+          <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 23.10 today ›</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
         <h2>How confidential VMs work</h2>
       </div>
       <div class="col">
