@@ -65,8 +65,8 @@ window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
-  const currentViewportWidth = window.innerWidth;
-  const isBelowSpecificWidth = currentViewportWidth < MOBILE_VIEW_BREAKPOINT;
+  const currViewportWidth = window.innerWidth;
+  const isBelowSpecificWidth = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
   if (wasBelowSpecificWidth !== isBelowSpecificWidth) {
     closeAll();
   }
@@ -155,14 +155,28 @@ function keyPressHandler(e) {
 // Is attached via HTML onclick attribute.
 function toggleSection(e) {
   e.preventDefault();
+  const targetId = e.target.getAttribute("aria-controls");
+  const el = document.querySelector(`.dropdown-content-desktop #${targetId}`);
+  const currTabWindow = el.closest(".dropdown-window__content-container");
+  const tabLinks = currTabWindow.querySelectorAll(".p-side-navigation__link");
+  tabLinks.forEach((tabLink) => {
+    const tabId = tabLink.getAttribute("aria-controls");
+    const tabWindow = dropdownWindow.querySelector(`#${tabId}`);
+    if (tabId === targetId) {
+      el.removeAttribute("hidden");
+      tabLink.setAttribute("aria-selected", true);
+      tabLink.classList.add("is-active");
+    } else {
+      tabWindow.setAttribute("hidden", true);
+      tabLink.setAttribute("aria-selected", false);
+      tabLink.classList.remove("is-active");
+    }
+  });
 
-  const target = e.target.getAttribute("aria-controls");
-  const el = document.querySelector(`.dropdown-content-desktop #${target}`);
-  el.removeAttribute("hidden");
-
+  const firstLink = el.querySelector("a");
   setTimeout(function () {
     toggleIsActiveState(el, true);
-    el.focus();
+    firstLink.focus();
   }, 1);
 }
 
@@ -258,6 +272,7 @@ function showDesktopDropdown(show) {
   dropdownWindow.classList.toggle("slide-animation", !show);
   dropdownWindowOverlay.classList.toggle("fade-animation", !show);
   toggleIsActiveState(dropdownWindow, show);
+  addKeyboardEvents();
 }
 
 function toggleGlobalNavVisibility(dropdown, show, delay) {
@@ -349,11 +364,139 @@ function setTabindex(target) {
       element.setAttribute("tabindex", "-1");
     });
   });
+
   target.querySelectorAll("li").forEach((element) => {
     if (element.parentNode === target) {
       element.children[0].setAttribute("tabindex", "0");
     }
   });
+
+  // If on desktop, update the nav items tab index.
+  // Keep the active nav item at tabindex 0
+  // When none are active, set them all to tabindex 0
+  if (window.innerWidth > MOBILE_VIEW_BREAKPOINT) {
+    const currActiveNavItem = navigation.querySelector(
+      ".p-navigation__item--dropdown-toggle.is-active"
+    );
+    if (currActiveNavItem) {
+      currActiveNavItem.children[0].setAttribute("tabindex", "0");
+    } else {
+      mainList.querySelectorAll(":scope > li").forEach((element) => {
+        element.children[0].setAttribute("tabindex", "0");
+      });
+    }
+  }
+}
+
+function addKeyboardEvents() {
+  document.addEventListener("keydown", keyboardNavigationHandler);
+}
+
+function removeKeyboardEvents() {
+  document.removeEventListener("keydown", keyboardNavigationHandler);
+}
+
+function keyboardNavigationHandler(e) {
+  if (e.key === "Escape") {
+    handleEscapeKey(e);
+  } else if (e.shiftKey && e.key === "Tab") {
+    handleShiftTabKey(e);
+  } else if (e.key === "Tab") {
+    handleTabKey(e);
+  }
+}
+
+function handleEscapeKey(e) {
+  // If '.dropdown-window__sidenav-content' exists we are in the dropdown window
+  // so we want to move up to the side-tabs
+  const targetTabId = e.target.closest(
+    ".dropdown-window__sidenav-content.is-active"
+  )?.id;
+  if (targetTabId) {
+    const targetTab = document.querySelector(
+      `.p-side-navigation__link[aria-controls="${targetTabId}"]`
+    );
+    targetTab?.focus();
+    return;
+  }
+
+  // Else check if we are in the side-tabs so want to move up to the nav bar items
+  const targetDropdownToggleId = e.target.closest(".dropdown-content-desktop")
+    ?.id;
+  if (targetDropdownToggleId) {
+    const targetNavItem = document.querySelector(
+      `.p-navigation__link[aria-controls="${targetDropdownToggleId}"]`
+    );
+    targetNavItem?.focus();
+    closeAll();
+  }
+}
+
+function handleTabKey(e) {
+  const dropdownPanel = getContainingDropdown(e.target);
+  if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
+    const currDropdownToggle = mainList.querySelector(
+      ":scope > .p-navigation__item--dropdown-toggle.is-active"
+    );
+    const nextDropdownToggleLink =
+      currDropdownToggle.nextElementSibling.children[0];
+    closeAll();
+    e.preventDefault();
+    nextDropdownToggleLink.focus();
+  }
+}
+
+function handleShiftTabKey(e) {
+  const dropdownPanel = getContainingDropdown(e.target);
+  if (
+    isFirstLinkFocused(e, dropdownPanel) &&
+    tabPanelExists(e.target) &&
+    !isInTabPanel(e.target)
+  ) {
+    const parentContainer = dropdownPanel.closest(".dropdown-window__content");
+    const targetTab = parentContainer.querySelector(
+      ".p-side-navigation__item .p-side-navigation__link.is-active"
+    );
+    if (targetTab) {
+      e.preventDefault();
+      targetTab?.focus();
+    }
+  }
+}
+
+function isLastLinkFocused(e, dropdownPanel) {
+  const listOfLinks = dropdownPanel?.querySelectorAll("a");
+  if (listOfLinks) {
+    const lastLink = Array.from(listOfLinks).pop();
+    return e.target === lastLink;
+  }
+}
+
+function isFirstLinkFocused(e, dropdownPanel) {
+  const listOfLinks = dropdownPanel?.querySelectorAll("a");
+  if (listOfLinks) {
+    const firstLink = Array.from(listOfLinks).shift();
+    return e.target === firstLink;
+  }
+}
+
+function getContainingDropdown(target) {
+  return (
+    target.closest(".dropdown-window__sidenav-content.is-active") ||
+    target.closest(".dropdown-window__content") ||
+    target.closest(".global-nav-dropdown__content")
+  );
+}
+
+function isInTabPanel(target) {
+  return target.closest(".dropdown-window__tab-panel") ? true : false;
+}
+
+function tabPanelExists(target) {
+  const parentContainer = target.closest(".dropdown-window__content");
+  return parentContainer?.querySelector(".dropdown-window__tab-panel")
+    ? true
+    : false;
 }
 
 function toggleMenu(e) {
@@ -384,6 +527,7 @@ function closeDesktopDropdown() {
       dropdownContent.classList.add("u-hide");
     }
   });
+  removeKeyboardEvents();
 }
 
 function closeMobileDropdown() {
@@ -426,7 +570,7 @@ function openMenu(e) {
   setTabindex(mainList);
 }
 
-// Setup and functions for navigaiton search
+// Setup and functions for navigation search
 function initNavigationSearch() {
   searchButtons.forEach((searchButton) =>
     searchButton.addEventListener("click", toggleSearch)
