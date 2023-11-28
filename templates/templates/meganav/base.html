@@ -4,10 +4,10 @@
       <div class="dropdown-window__tab-panel col-3">
         <div class="p-side-navigation is-dark">
           <div class="p-side-navigation__drawer">
-            <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
+            <ul class="p-side-navigation__list js-tabs u-no-margin--bottom" role="tablist" aria-label="Categories">
               {% for side_nav_section in sections.side_nav_sections %}
                 <li class="p-side-navigation__item" data-id="{{id}}-{{format_to_id(side_nav_section.title)}}">
-                  <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
+                  <a href="#" class="p-side-navigation__link{{ ' is-active' if loop.index == 1 }}" id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
                 </li>
               {% endfor %}
               </ul>
@@ -17,7 +17,7 @@
       
       <div class="col-9 u-no-padding">
         {% for side_nav_section in sections.side_nav_sections %}
-          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="0" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
+          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
             <div class="row u-no-padding"> 
               <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel">
                 {% for links_section in side_nav_section.primary_links %}
