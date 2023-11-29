@@ -117,9 +117,17 @@ function handleDropdownClick(clickedDropdown) {
 
 function updateUrlHash(id, open) {
   if (id !== null && id !== undefined && open) {
-    window.history.pushState(null, document.title, window.location.pathname + window.location.search + `#${id}`);
+    window.history.pushState(
+      null,
+      document.title,
+      window.location.pathname + window.location.search + `#${id}`
+    );
   } else {
-    window.history.pushState(null, document.title, window.location.pathname + window.location.search);
+    window.history.pushState(
+      null,
+      document.title,
+      window.location.pathname + window.location.search
+    );
   }
 }
 
@@ -174,7 +182,7 @@ function updateNavMenu(dropdown, show) {
   }
 
   // This is needed as the onhover/onfocus effect does not work with touch screens,
-  // but will trigger calling the navigation contents. We then need to manually 
+  // but will trigger calling the navigation contents. We then need to manually
   // open the dropdown.
   function handleMutation(mutationsList, observer) {
     mutationsList.forEach((mutation) => {
