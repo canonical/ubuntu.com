@@ -356,19 +356,6 @@ const ProductType = () => {
             checked={productType === ProductTypes.physical}
           />
         </Col>
-        {productType === ProductTypes.physical && (
-          <Col size={12} style={{ marginLeft: "35px" }}>
-            <p>
-              <strong>Unlimited VMs on selected hypervisors</strong>
-            </p>
-            <p>
-              Any of: KVM | Qemu | Boch, VMWare ESXi, LXD | LXC, Xen, Hyper-V
-              (WSL, Multipass), VirtualBox, z/VM, Docker. All Nodes in the
-              cluster have to be subscribed to the service in order to benefit
-              from the unlimited VM support
-            </p>
-          </Col>
-        )}
         <Col size={12}>
           <RadioInput
             label="Public cloud instances"
