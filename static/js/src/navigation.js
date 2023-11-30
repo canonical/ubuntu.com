@@ -115,6 +115,22 @@ function handleDropdownClick(clickedDropdown) {
   setTabindex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
 }
 
+function updateUrlHash(id, open) {
+  if (id  && open) {
+    window.history.pushState(
+      null,
+      document.title,
+      window.location.pathname + window.location.search + `#${id}`
+    );
+  } else {
+    window.history.pushState(
+      null,
+      document.title,
+      window.location.pathname + window.location.search
+    );
+  }
+}
+
 function goBackOneLevel(e, backButton) {
   e.preventDefault();
   const target = backButton.parentNode.parentNode;
@@ -161,6 +177,13 @@ function updateNavMenu(dropdown, show) {
   );
   let isAccountDropdown = dropdown.classList.contains("js-account");
 
+  if (dropdownContent) {
+    updateUrlHash(dropdown.id, show);
+  }
+
+  // This is needed as the onhover/onfocus effect does not work with touch screens,
+  // but will trigger calling the navigation contents. We then need to manually
+  // open the dropdown.
   function handleMutation(mutationsList, observer) {
     mutationsList.forEach((mutation) => {
       if (mutation.type === "childList") {
@@ -350,7 +373,6 @@ function closeNav() {
   });
   closeMobileDropdown();
   closeDesktopDropdown();
-
   document.removeEventListener("keyup", keyPressHandler);
 }
 
@@ -388,6 +410,7 @@ function closeMobileDropdown() {
 function closeAll() {
   closeSearch();
   closeNav();
+  updateUrlHash();
   setTabindex(mainList);
 }
 
@@ -544,13 +567,13 @@ if (accountContainer) {
 
 var origin = window.location.href;
 
-addGANavEvents("#canonical-global-nav", "www.ubuntu.com-nav-global");
+addGANavEvents("#all-canonical-link", "www.ubuntu.com-nav-global");
 addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
-addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
-addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
-addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#get-ubuntun-content", "www.ubuntu.com-nav-1-get-ubuntu");
-addGANavEvents(".p-navigation--secondary", "www.ubuntu.com-nav-2");
+addGANavEvents("#use-case", "www.ubuntu.com-nav-1-use-case");
+addGANavEvents("#support", "www.ubuntu.com-nav-1-support");
+addGANavEvents("#community", "www.ubuntu.com-nav-1-community");
+addGANavEvents("#get-ubuntu", "www.ubuntu.com-nav-1-get-ubuntu");
+addGANavEvents(".p-navigation.is-secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");
 addGANavEvents(".p-footer--secondary", "www.ubuntu.com-nav-footer-1");
