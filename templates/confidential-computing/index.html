@@ -3,7 +3,8 @@
 {% block title %}Confidential Computing{% endblock %}
 {% block meta_description %}Protect data in use with confidential computing. Build the foundation of your
 privacy-enhancing technology strategy with Ubuntu confidential VMs on both public and private clouds.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit{% endblock
+%}
 
 {% block content %}
 <div class="is-paper">
@@ -34,11 +35,13 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
       <div class="col">
         <h2>Benefits of Ubuntu for confidential computing</h2>
       </div>
-      <ul class="col u-vertically-center">
-        <li>Protect sensitive data by encrypting it when it’s being processed</li>
-        <li>Secure your workloads in untrusted environments</li>
-        <li>Build data clean rooms for collaborative AI analytics</li>
-      </ul>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Protect sensitive data by encrypting it when it’s being processed</li>
+          <li class="p-list__item is-ticked">Secure your workloads in untrusted environments</li>
+          <li class="p-list__item is-ticked">Build data clean rooms for collaborative AI analytics</li>
+          </ol>
+      </div>
     </div>
   </section>
 
@@ -46,36 +49,60 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
     <hr class="is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Intel TDX  is available on Ubuntu for both the host and guest</h2>
+        <h2>Intel TDX is available on Ubuntu for both the host and guest</h2>
       </div>
       <div class="col">
         <p>Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution
-          environment enables you to add an extra layer of protection to the code and data running within your confidential
-          virtual machines.
+          environment enables you to add an extra layer of protection to the code and data running within your
+          confidential virtual machines.
         </p>
-        <div class="p-image__background--3-2 u-align--center u-vertically-center u-hide--small">
+        <div class="u-align--center u-vertically-center u-hide--small">
           {{ image (
-            url="https://assets.ubuntu.com/v1/4143661e-Ubuntu%20VM%20on%20Intel%20TDX.png",
-            alt="Hypervisor diagram",
-            width="195",
-            height="282",
-            hi_def=True,
-            loading="lazy" ) | safe
+          url="https://assets.ubuntu.com/v1/4143661e-Ubuntu%20VM%20on%20Intel%20TDX.png",
+          alt="Ubuntu Intel TDX diagram",
+          width="410",
+          height="550",
+          hi_def=True,
+          loading="lazy" ) | safe
           }}
         </div>
-        <p><span style="font-weight: bold">Private preview available on Ubuntu 23.10:</span> Canonical’s strategic partnership with Intel gives you a customised Ubuntu
-          build for Intel®TDX, incorporating all the latest necessary end-to-end host-to-guest patches available, even before
-          they make it upstream.
-        </p>
-        <p><span style="font-weight: bold">Host side:</span> we support a 6.5 kernel, derived from the 23.10 generic kernel, and offer essential user space components
-          accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts to simplify
-          the creation of confidential environments with just a few commands.
-        </p>
-        <p><span style="font-weight: bold">Guest side:</span> we support a comprehensive package, featuring a 6.5 kernel, Shim, Grub, and TDVF, which serves as an
-          in-guest VM firmware.
-        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps p-heading--5">Private preview available on Ubuntu 23.10</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Canonical’s strategic partnership with Intel gives you a customised Ubuntu
+              build for Intel®TDX, incorporating all the latest necessary end-to-end host-to-guest patches available,
+              even before they make it upstream.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps p-heading--5">Host side</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>We support a 6.5 kernel, derived from the 23.10 generic kernel, and offer essential user space components
+              accessible through PPAs, such as Libvirt 9.6, and QEMU 8.0. We also offer a set of user-friendly scripts
+              to simplify the creation of confidential environments with just a few commands.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-text--small-caps p-heading--5">Guest side</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>We support a comprehensive package, featuring a 6.5 kernel, Shim, Grub, and TDVF, which serves as an
+              in-guest VM firmware.
+            </p>
+          </div>
+        </div>
         <p>
-          <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 23.10 today ›</a>
+          <a href="https://github.com/canonical/tdx">Deploy Intel TDX with Ubuntu 23.10 today&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -95,12 +122,12 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
         </p>
         <div class="p-image__background--3-2 u-align--center u-vertically-center">
           {{ image (
-            url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
-            alt="Hypervisor diagram",
-            width="195",
-            height="282",
-            hi_def=True,
-            loading="lazy" ) | safe
+          url="https://assets.ubuntu.com/v1/abd7bccf-Hypervisor%20diagram%203.png",
+          alt="Hypervisor diagram",
+          width="195",
+          height="282",
+          hi_def=True,
+          loading="lazy" ) | safe
           }}
         </div>
         <p>
@@ -163,12 +190,12 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
           <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
             <p class="u-no-margin--bottom">
               {{ image (
-                url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
-                alt="Azure logo",
-                height="22",
-                width="22",
-                hi_def=True,
-                loading="lazy" ) | safe
+              url="https://assets.ubuntu.com/v1/dbab00f7-Microsoft_Azure.svg",
+              alt="Azure logo",
+              height="22",
+              width="22",
+              hi_def=True,
+              loading="lazy" ) | safe
               }}
             </p>
           </div>
@@ -197,17 +224,18 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
           <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
             <p class="u-no-margin--bottom">
               {{ image (
-                url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
-                alt="Google Cloud logo",
-                height="22",
-                width="120",
-                hi_def=True,
-                loading="lazy" ) | safe
+              url="https://assets.ubuntu.com/v1/2c479064-cloud-logo%201.svg",
+              alt="Google Cloud logo",
+              height="22",
+              width="120",
+              hi_def=True,
+              loading="lazy" ) | safe
               }}
             </p>
           </div>
           <div class="col-4 col-medium-3 col-small-2">
-            <p><a href="/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a></p>
+            <p><a href="/blog/start-your-snp-vms-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a>
+            </p>
           </div>
         </div>
         <hr />
@@ -215,17 +243,18 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
           <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
             <p class="u-no-margin--bottom">
               {{ image (
-                url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
-                alt="AWS logo",
-                height="22",
-                width="36",
-                hi_def=True,
-                loading="lazy" ) | safe
+              url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+              alt="AWS logo",
+              height="22",
+              width="36",
+              hi_def=True,
+              loading="lazy" ) | safe
               }}
             </p>
           </div>
           <div class="col-4 col-medium-3 col-small-2">
-            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a></p>
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snp-requirements.html">AMD SEV SNP with
+                Ubuntu 23.10 on AWS</a></p>
           </div>
         </div>
       </div>
@@ -238,7 +267,8 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
     <div class="row">
       <div class="col-12">
         <p class="p-heading--2">
-          <a href="/engage/introduction-confidential-computing">Download our guide to confidential computing ›</a>
+          <a href="/engage/introduction-confidential-computing">Download our guide to confidential
+            computing&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -260,7 +290,7 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
         </p>
         <p>
           <a href="/blog/build-foundation-zero-trust-strategy-ubuntu-confidential-computing">Learn
-            more about zero trust and confidential computing ›</a>
+            more about zero trust and confidential computing&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -283,7 +313,7 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
         </p>
         <p>
           <a href="https://canonical.com/blog/why-do-you-also-need-confidential-computing-for-your-private-datacenter">Why
-            use confidential VMs in your private datacenter? ›</a>
+            use confidential VMs in your private datacenter?&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -303,10 +333,8 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
               confidential computing? A high-level explanation for CISOs</a>
           </li>
           <li class="p-list__item">
-            <a
-              href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
-              computing in public clouds: isolation and remote
-              attestation explained</a>
+            <a href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential
+              computing in public clouds: isolation and remote attestation explained</a>
           </li>
           <li class="p-list__item">
             <a href="/blog/cloud-cyber-security-with-ubuntu-pro-confidential-vms">Strengthen your cloud
@@ -322,7 +350,7 @@ privacy-enhancing technology strategy with Ubuntu confidential VMs on both publi
   <div class="row">
     <div class="col-12">
       <p class="p-heading--2">
-        <a class="js-invoke-modal" href="/contact-us">Contact us to discuss your use case ›</a>
+        <a class="js-invoke-modal" href="/contact-us">Contact us to discuss your use case&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
