@@ -2,6 +2,7 @@
 import re
 from datetime import datetime
 from math import ceil, floor
+from collections import Counter
 
 # Packages
 import flask
@@ -324,7 +325,7 @@ def cve_index():
         statuses=statuses,
         order=order,
     )
-
+    
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
 
