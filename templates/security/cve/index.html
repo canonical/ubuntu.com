@@ -1,5 +1,6 @@
 {% extends "security/cve/base_cve.html" %}
 
+{% block body_class %}is-paper{% endblock body_class %}
 {% block title %}
   {% if query or package or component or priority or versions or statuses %}
     CVE search results
@@ -10,33 +11,54 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped u-no-padding--bottom">
-  <div class="u-fixed-width">
-    {% if query or package or component or priority or versions or statuses %}
-      <h1>CVE search results</h1>
-    {% else %}
-      <h1>CVE reports</h1>
-
-      <p>The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.</p>
-
-      <p>Canonical also produces <a href="/security/oval">Open Vulnerability and Assessment Language (OVAL)</a> data, which is machine-readable, to enable auditing for CVEs and to determine whether a particular patch, via an Ubuntu Security Notice (USN), is appropriate for the local system.</p>
-    {% endif %}
+<section class="p-section">
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {% if query or package or component or priority or versions or statuses %}
+        <h1>CVE reports</h1>
+      {% else %}
+        <h1>CVE reports</h1>
+        <p>The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.</p>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a>Learn more about CVEs</a></li>
+          <li class="p-inline-list__item"><a>OVAL data</a></li>
+          <li class="p-inline-list__item"><a>Security API</a></li>
+        </ul>
+      {% endif %}
+    </div>
   </div>
 </section>
 
-<section class="p-strip is-shallow">
-  <div class="u-fixed-width">
-    {% if query or package or component or priority or versions or statuses %}
-      <!-- has to be this way because query string can exist with empty values -->
-    {% else %}
-      <h2>Search</h2>
-    {% endif %}
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule"/>
+    <div class="col">
+      {% if query or package or component or priority or versions or statuses %}
+        <!-- has to be this way because query string can exist with empty values -->
+      {% else %}
+        <h2>Search CVEs</h2>
+      {% endif %}
+    </div>
+    <div class="col">
+      <form id="searchForm">
+        <div class="row">
+          <div class="col-7">
+            <label for="q">CVE ID or description contains:</label>
+            <input  type="text" name="q" id="q" value="{{ query or '' }}">
+          </div>
+          <div class="col-2">
+            <button style="margin-top: 2.6rem; width: 100%;" type="submit" class="p-button--positive" id="cve-search-button">
+              <span class="cve-search-text">Search</span>
+              <span class="cve-search-valid-cve-text u-hide">Go to CVE</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-  <form id = "searchForm">
+  <!-- <form id = "searchForm">
     <div class="row">
       <div class="col-6">
-        <label for="q">CVE ID or description contains:</label>
-        <input type="text" name="q" id="q" value="{{ query or '' }}">
       </div>
       <div class="col-3">
         <label for="package">Package:</label>
@@ -77,15 +99,105 @@
     {% endif %}
     <div id="new-row-container"></div>
     <div class="u-fixed-width">
-      <button type="submit" class="p-button--positive" id="cve-search-button">
-        <span class="cve-search-text">Search</span>
-        <span class="cve-search-valid-cve-text u-hide">Go to CVE</span>
-      </button>
+
     </div>
-  </form>
+  </form> -->
 </section>
 
-<section class="p-strip is-shallow u-overflow-inherit">
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Quick Links</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-2">
+          <h3 class="p-heading--5">By Ubuntu release</h3>
+        </div>
+        <div class="col-7">
+          <ul class="p-inline-list" style="margin-top: .3rem;">
+            <li class="p-inline-list__item"><a>All maintained releases</a></li>
+            <li class="p-inline-list__item"><a>All LTS</a></li>
+            <li class="p-inline-list__item"><a>22.04 LTS</a></li>
+            <li class="p-inline-list__item"><a>20.04 LTS</a></li>
+            <li class="p-inline-list__item"><a>18.04 LTS</a></li>
+            <li class="p-inline-list__item"><a>23.10</a></li>
+            <li class="p-inline-list__item"><a>Other releases</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Recent CVEs</h2>
+    </div>
+    <div class="col">
+      {% for cve in high_priority_cves %}
+      <div class="row p-section--shallow">
+        <div class="col-6">
+          <div class="p-section--shallow">
+            <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+            <p style="float: inline-end;">
+              {% if cve.priority == 'unknown' %}
+                <i class="p-icon--placeholder"></i>
+              {% elif cve.priority == 'negligible' %}
+                <i class="p-icon--negligible-priority"></i>
+              {% elif cve.priority == 'low' %}
+                <i class="p-icon--low-priority"></i>
+              {% elif cve.priority == 'medium' %}
+                <i class="p-icon--medium-priority"></i>
+              {% elif cve.priority == 'high' %}
+                <i class="p-icon--high-priority"></i>
+              {% elif cve.priority == 'critical' %}
+                <i class="p-icon--critical-priority"></i>
+              {% else %}
+                <i class="p-icon--placeholder"></i>
+              {% endif %}
+              <span class="capitalize">{{ cve.priority }} priority</span>
+            </p>
+          </div>
+          <p>{{ cve.description }}</p>
+        </div>
+        <div class="col-3">
+          {% set status = cve.summarized_status %}
+            {% if status.name == "Some fixed" %}
+              <p>Some fixes available <span class="u-text--muted">{{ status.fixed_count }} of {{ status.total_count }}</span></p>
+            {% elif status.name == "Needs evaluation" %}
+              <p>
+                <i class="p-icon--help"></i> <span>Needs evaluation</span>
+              </p>
+            {% endif %}
+          <p class="p-text--small-caps u-text--muted u-no-margin--top">{{ cve.packages | length}} affected packages</p>
+          <p class="u-text--muted">
+            {% for package in cve.packages %}
+              {% if cve.packages | length > 1 %}
+                {% if loop.index < 6  %}
+                  {{ package.name }}, 
+                {% elif loop.index == 6 %}
+                  and {{ cve.packages | length - 5 }} more
+                {% endif %}
+              {% else %}
+                {{ package.name }}
+              {% endif %}
+            {% endfor %}
+          </p>
+
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+<section class="p-strip is-shallow u-overflow-inherit u-hide">
   <div class="u-fixed-width">
     {% if query or package or priority %}
     <h2>
