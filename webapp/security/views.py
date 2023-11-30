@@ -2,6 +2,7 @@
 import re
 from datetime import datetime
 from math import ceil, floor
+from collections import Counter
 
 # Packages
 import flask
@@ -16,6 +17,8 @@ from sortedcontainers import SortedDict
 # Local
 from webapp.context import api_session
 from webapp.security.api import SecurityAPI
+from webapp.security.helpers import get_summarized_status
+
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -297,7 +300,7 @@ def cve_index():
     - limit - default 20
     - offset - default 0
     """
-    # Query parameters
+
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority", default="", type=str)
     package = flask.request.args.get("package", default="", type=str)
@@ -307,7 +310,7 @@ def cve_index():
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
 
-    # get cves and total results
+    # All CVEs
     cves_response = security_api.get_cves(
         query=query,
         priority=priority,
@@ -318,22 +321,42 @@ def cve_index():
         versions=versions,
         statuses=statuses,
     )
-
+    
     cves = cves_response.get("cves")
-    # Pagination
     total_results = cves_response.get("total_results")
 
-    # check if cve id is valid
+    # Most recent, highest priority CVEs
+    high_priority_response = security_api.get_cves(
+        query=query,
+        priority="high",
+        package=package,
+        limit=5,
+        offset=offset,
+        component=component,
+        versions=versions,
+        statuses=statuses,
+    )
+
+    high_priority_cves = high_priority_response.get("cves")
+
+    ignored_low_indicators = ["end of standard support", "superseded", "replaced"]
+    vulnerable_indicators = ["needed", "pending", "deferred"]
+
+    for cve in high_priority_cves:
+        cve["summarized_status"] = {}
+        get_summarized_status(cve, ignored_low_indicators, vulnerable_indicators)
+        
+    # Check if cve id is valid
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
-    # get cve with specific id
+    # Get cve with specific id
     if is_cve_id and cves_response.get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
-    # releases in desc order
+    # Releases in desc order
     releases_json = security_api.get_releases()
 
-    # releases without "upstream"
+    # Releases without "upstream"
     all_releases = []
     for release in releases_json:
         if release["codename"] != "upstream":
@@ -360,15 +383,16 @@ def cve_index():
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
+    # Format summarized statuses
     friendly_names = {
-        "DNE": "Does not exist",
-        "needs-triage": "Needs triage",
+        "DNE": "Not in release",
+        "needs-triage": "Needs evaluation",
         "not-affected": "Not vulnerable",
-        "needed": "Needed",
-        "deferred": "Deferred",
+        "needed": "Vulnerable",
+        "deferred": "Vulnerable",
         "ignored": "Ignored",
-        "pending": "Pending",
-        "released": "Released",
+        "pending": "Vulnerable",
+        "released": "Fixed",
     }
 
     for cve in cves:
@@ -396,6 +420,7 @@ def cve_index():
         versions=versions,
         statuses=statuses,
         selected_releases=selected_releases,
+        high_priority_cves=high_priority_cves,
     )
 
 
