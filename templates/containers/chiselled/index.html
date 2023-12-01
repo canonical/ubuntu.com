@@ -1,0 +1,321 @@
+{% extends "containers/chiselled/_base_chiselled.html" %}
+
+{% block title %}Ultra-small Ubuntu-based distroless containers - Chiselled Ubuntu{% endblock %}
+{% block meta_description %}Get started with chiselled Ubuntu: ultra-small Ubuntu container images. Build Distroless
+containers with 6x smaller attack surface and the advantages of a vendor-supported Linux distribution.{% endblock %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block content %}
+<section class="p-strip is-shallow">
+  <div class="row--50-50">
+    <div class="col">
+      <h1>Chiselled Ubuntu</h1>
+    </div>
+    <div class="col">
+      <h2>Ultra-small, ultra-secure containerisation</h2>
+      <p>Rethink your containerisation strategy with chiselled Ubuntu—where ultra-small meets ultra-secure. Trim your
+        attack surface by 6x and get the reliability of a vendor-supported Linux distribution.</p>
+      <hr />
+      <a
+        href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Learn
+        about using chisel in production&nbsp;&rsaquo;</a>
+      <br />
+      <a href="/containers/contact-us" class="js-invoke-modal">Get support for chiselled Containers&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="u-align--center">
+      <img src="https://assets.ubuntu.com/v1/05f4aaaa-Frame%203363.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <p class="p-text--small-caps u-no-margin--bottom u-sv-3">How to reduce container image size</p>
+      <h2>Chisel trims up to 80% of your containers’ attack surface.</h2>
+    </div>
+    <div class="col">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe title="Chiselled Ubuntu Containers webinar" width="560" height="315"
+          src="https://www.youtube.com/embed/o8NILnbjhQ4" class="u-embedded-media__element" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <p>Mark Lewis, VP Application Services at Canonical, explains how chisel works.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Why your attack surface matters</h2>
+    </div>
+    <div class="col">
+      <p>Container images’ attack surface is a critical factor in determining their security. As the size of a container
+        image increases, so does the potential for vulnerabilities and known security issues.</p>
+      <p>According to Sysdig, 87% of container images have high or critical vulnerabilities.</p>
+      <a href="/blog/chiselled-containers-perfect-gift-cloud-applications">Explore the benefits of smaller container
+        images&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h3 class="p-text--heading5 p-text--small-caps">Chiselled Ubuntu:</h3>
+      <h2>Production-ready, ultra-small Ubuntu containers</h2>
+    </div>
+    <div class="col">
+      <p>Experience the power of ultra-small containerisation. Chiselled Ubuntu delivers efficiency with a minimal
+        attack surface.</p>
+      <p>Chiselled Ubuntu and your favourite toolchains come together seamlessly. It's your shortcut to creating and
+        deploying secure, super-efficient images for production environments.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a
+          href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Get
+          started now and ship with chiselled Ubuntu in minutes&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>How does Chisel work</h2>
+    </div>
+    <div class="col">
+      <div class="u-sv1"></div>
+      {{ image (
+      url="https://assets.ubuntu.com/v1/888372bb-how%20it%20works.png",
+      alt="Diagram that shows how Chisel works",
+      height="450",
+      width="800",
+      hi_def=True,
+      loading="lazy" ) | safe
+      }}
+      <p>Chisel operates as a from-scratch package manager, meticulously sculpting ultra-small runtime file systems.</p>
+      <p>To do so, chiselled Ubuntu relies on a curated collection of Slice Definitions Files. These files relate to the
+        upstream packages from the Ubuntu archives, and define one or more slices for any given package. A package slice
+        represents a subset of the package’s contents, comprising its maintainer scripts and dependencies.</p>
+      <p>Chisel effectively layers reusable knowledge on top of traditional Ubuntu deb packages, through a
+        developer-friendly CLI and fine-grained dependency management mechanism.</p>
+      <hr class="p-rule" />
+      <p>
+        <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Read more about how chisel
+          works&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a href="/containers/chiselled/dotnet">Discover chiselled Ubuntu for .NET applications&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>How does Chisel work</h2>
+    </div>
+    <div class="col">
+      <p>Don’t take our word for it. Listen to industry experts discuss chiselled Ubuntu.</p>
+      <p>
+        <cite>“There has always been a need for smaller and tighter images. Developers remind us, as a base image
+          provider, of that on a regular basis. Chiselled images leapfrog over approaches we’ve looked at in the past.
+          We love the idea and implementation of Chiselled images and Canonical as a partner. When technical leaders at
+          Canonical shared the first demos of Chiselled images with us, we immediately wanted to be a launch partner,
+          and we’re thrilled that we’re shipping Ubuntu Chiselled images for .NET as part of the GA release”
+        </cite>
+      </p>
+      <p><cite>Richard Lander, Program Manager, .NET at Microsoft</cite></p>
+      <hr />
+      <a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>From development to production:<br /> making developers' lives easier</h2>
+    </div>
+    <div class="col">
+      <p>A seamless developer experience means more productive teams and <a
+          href="https://canonical.com/blog/secure-containers-supply-chain-intel-openvino-canonical">more secure
+          applications</a>.</p>
+      <p>Chiselled Ubuntu is designed to simplify the containerisation journey, ensuring a smooth transition from
+        development to production.</p>
+      <ul class="p-list--divided u-sv-1">
+        <li class="p-list__item is-ticked">100% library and release cycle alignment with Ubuntu LTS</li>
+        <li class="p-list__item is-ticked">Fewer dependency headaches</li>
+        <li class="p-list__item is-ticked">Chisel CLI for easier multi-stage builds</li>
+        <li class="p-list__item is-ticked">Simple image rebuilds</li>
+        <li class="p-list__item is-ticked">Prebuilt chiselled images for popular toolchains such as <a
+            href="https://hub.docker.com/r/ubuntu/dotnet-runtime">.NET</a> and <a
+            href="https://hub.docker.com/r/ubuntu/jre">Java</a>
+        </li>
+      </ul>
+      <a href="https://canonical-oci.readthedocs-hosted.com/en/latest/oci-how-to/create-chiselled-ubuntu-image/">Get
+        started today&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Vendor supported<br /> distroless images</h2>
+    </div>
+    <div class="col">
+      <p>Chiselled Ubuntu images are fully supported by Canonical, on the same terms as classic minimal Ubuntu images:
+      </p>
+      <hr class="p-rule is-muted" />
+      <ul class="p-list--divided">
+        <li class="p-list__item has-bullet">5-year free bug fixing and security patching for the main libraries</li>
+        <li class="p-list__item has-bullet">10-year security patching for Ubuntu Pro customers, on all Ubuntu packages
+        </li>
+        <li class="p-list__item has-bullet">24/7 phone and ticket customer support</li>
+      </ul>
+      <a href="/security/docker-images">Read more about our support commitments&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<hr class="is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a href="/blog/craft-custom-chiselled-ubuntu-distroless">Get started with chiselled Ubuntu containers
+          today&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Further reading</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-2 col-medium-3">
+          <h3 class="p-text--heading5 p-text--small-caps">Documentation</h3>
+        </div>
+        <div class="col-4 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <a href="https://canonical-rockcraft.readthedocs-hosted.com/en/latest/explanation/chisel/">Using chisel in
+                Rockcraft</a>
+            </li>
+            <li class="p-list__item">
+              <a
+                href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Create
+                a chiselled Ubuntu base image for C/C++, Go and Rust applications</a>
+            </li>
+            <li class="p-list__item">
+              <a href="https://canonical-rockcraft.readthedocs-hosted.com/en/latest/tutorials/chisel/">Install packages
+                slices into a ROCK</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="is-muted" />
+      <div class="row">
+        <div class="col-2 col-medium-3">
+          <h3 class="p-text--heading5 p-text--small-caps">Docker Hub</h3>
+        </div>
+        <div class="col-4 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <a href="https://hub.docker.com/u/ubuntu">Ubuntu on Docker Hub</a>
+            </li>
+            <li class="p-list__item">
+              <a href="http://ubuntu/dotnet-runtime">Chiselled Ubuntu for Chiselled .NET</a>
+            </li>
+            <li class="p-list__item">
+              <a href="http://ubuntu/dotnet-deps">Chiselled Ubuntu for Chiselled .NET Deps</a>
+            </li>
+            <li class="p-list__item">
+              <a href="https://hub.docker.com/r/ubuntu/jre">Chiselled Ubuntu for JRE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="is-muted" />
+      <div class="row">
+        <div class="col-2 col-medium-3">
+          <h3 class="p-text--heading5 p-text--small-caps">GitHub</h3>
+        </div>
+        <div class="col-4 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <a href="https://github.com/canonical/chisel">Chisel</a>
+            </li>
+            <li class="p-list__item">
+              <a href="https://github.com/canonical/chisel-releases">Chisel releases</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a href="/containers/contact-us" class="js-invoke-modal">Talk to an expert about how<br /> Ubuntu
+          containers can benefit your enterprise&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container"
+  data-form-location="/shared/forms/interactive/containers-chiselled-dotnet" data-form-id="5272" data-lp-id=""
+  data-return-url="https://ubuntu.com/containers/chiselled/dotnet#success"
+  data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+{% endblock %}
