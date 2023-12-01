@@ -7,73 +7,83 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
 {% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip is-shallow">
-  <div class="row--50-50">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
     <div class="col">
       <h1>Chiselled Ubuntu</h1>
     </div>
     <div class="col">
-      <h2>Ultra-small, ultra-secure containerisation</h2>
+      <div class="p-section--shallow">
+        <h2>Ultra-small, ultra-secure containerisation</h2>
+      </div>
       <p>Rethink your containerisation strategy with chiselled Ubuntu — where ultra-small meets ultra-secure. Trim your
-        attack surface by 6x and get the reliability of a vendor-supported Linux distribution.</p>
-      <hr />
-      <a
-        href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Learn
-        about using chisel in production&nbsp;&rsaquo;</a>
-      <br />
-      <a href="/containers/contact-us" class="js-invoke-modal">Get support for chiselled containers&nbsp;&rsaquo;</a>
+          attack surface by 6x and get the reliability of a vendor-supported Linux distribution.</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          <a href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Learn
+            about using chisel in production&nbsp;&rsaquo;</a>
+        </li>
+        <li class="p-list__item">
+          <a href="/containers/contact-us" class="js-invoke-modal">Get support for chiselled containers&nbsp;&rsaquo;</a>
+        </li>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-section">
   <div class="row">
     <div class="u-align--center">
-      <img src="https://assets.ubuntu.com/v1/05f4aaaa-Frame%203363.png" alt="" />
+      <img src="https://assets.ubuntu.com/v1/b0a37cc9-canonical.com_%20(1).png" style="height: auto; width: 100%;" alt="" />
     </div>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
-      <p class="p-text--small-caps u-no-margin--bottom u-sv-3">How to reduce container image size</p>
-      <h2>Chisel trims up to 80% of your containers’ attack surface.</h2>
+      <h2 class="p-text--small-caps u-no-margin--bottom">How to reduce container image size</h2>
+      <h3 class="p-heading--2">Chisel trims up to 80% of your containers’ attack surface.</h3>
     </div>
     <div class="col">
-      <div class="u-embedded-media u-no-margin--bottom">
+      <div class="u-embedded-media ">
         <iframe title="Chiselled Ubuntu Containers webinar" width="560" height="315"
           src="https://www.youtube.com/embed/o8NILnbjhQ4" class="u-embedded-media__element" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
       </div>
+      <hr class="p-rule">
       <p>Mark Lewis, VP Application Services at Canonical, explains how chisel works.</p>
     </div>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
       <h2>Why your attack surface matters</h2>
     </div>
     <div class="col">
-      <p>Container images’ attack surface is a critical factor in determining their security. As the size of a container
-        image increases, so does the potential for vulnerabilities and known security issues.</p>
-      <p>According to Sysdig, 87% of container images have high or critical vulnerabilities.</p>
-      <a href="/blog/chiselled-containers-perfect-gift-cloud-applications">Explore the benefits of smaller container
-        images&nbsp;&rsaquo;</a>
+      <div class="p-section--shallow">
+        <p>Container images’ attack surface is a critical factor in determining their security. As the size of a container
+          image increases, so does the potential for vulnerabilities and known security issues.</p>
+        <p>According to Sysdig, 87% of container images have high or critical vulnerabilities.</p>
+      </div>
+      <hr class="p-rule">
+      <p>
+        <a href="/blog/chiselled-containers-perfect-gift-cloud-applications">Explore the benefits of smaller container
+          images&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
-      <h3 class="p-text--heading5 p-text--small-caps">Chiselled Ubuntu:</h3>
+      <h3 class="p-text--small-caps">Chiselled Ubuntu:</h3>
       <h2>Production-ready, ultra-small Ubuntu containers</h2>
     </div>
     <div class="col">
@@ -85,21 +95,18 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   </div>
 </section>
 
-<hr class="is-fixed-width" />
-
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--2">
-        <a
-          href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Get
-          started now and ship with chiselled Ubuntu in minutes&nbsp;&rsaquo;</a>
-      </p>
-    </div>
+<section class="u-fixed-width">
+  <hr class="p-rule"/>
+  <div class="p-strip is-deep">
+  <p class="p-heading--2">
+    <a
+      href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Get
+      started now and ship with chiselled Ubuntu in minutes&nbsp;&rsaquo;</a>
+  </p>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
@@ -108,19 +115,21 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
     <div class="col">
       <div class="u-sv1"></div>
       {{ image (
-      url="https://assets.ubuntu.com/v1/888372bb-how%20it%20works.png",
+      url="https://assets.ubuntu.com/v1/805717bb-how%20it%20works.png",
       alt="Diagram that shows how Chisel works",
-      height="450",
-      width="800",
+      height="346",
+      width="600",
       hi_def=True,
       loading="lazy" ) | safe
       }}
-      <p>Chisel operates as a from-scratch package manager, meticulously sculpting ultra-small runtime file systems.</p>
-      <p>To do so, chiselled Ubuntu relies on a curated collection of Slice Definitions Files. These files relate to the
-        upstream packages from the Ubuntu archives, and define one or more slices for any given package. A package slice
-        represents a subset of the package’s contents, comprising its maintainer scripts and dependencies.</p>
-      <p>Chisel effectively layers reusable knowledge on top of traditional Ubuntu deb packages, through a
-        developer-friendly CLI and fine-grained dependency management mechanism.</p>
+      <div class="p-section--shallow">
+        <p>Chisel operates as a from-scratch package manager, meticulously sculpting ultra-small runtime file systems.</p>
+        <p>To do so, chiselled Ubuntu relies on a curated collection of Slice Definitions Files. These files relate to the
+          upstream packages from the Ubuntu archives, and define one or more slices for any given package. A package slice
+          represents a subset of the package’s contents, comprising its maintainer scripts and dependencies.</p>
+        <p>Chisel effectively layers reusable knowledge on top of traditional Ubuntu deb packages, through a
+            developer-friendly CLI and fine-grained dependency management mechanism.</p>
+      </div>
       <hr class="p-rule" />
       <p>
         <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Read more about how chisel
@@ -131,7 +140,7 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   </div>
 </section>
 
-<hr class="is-fixed-width" />
+<hr class="p-rule is-fixed-width" />
 
 <section class="p-strip is-deep">
   <div class="row">
@@ -143,34 +152,36 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
       <h2>What industry experts say</h2>
     </div>
     <div class="col">
-      <p>Don’t take our word for it. Listen to industry experts discuss chiselled Ubuntu.</p>
-      <p>
-        <cite>“There has always been a need for smaller and tighter images. Developers remind us, as a base image
-          provider, of that on a regular basis. Chiselled images leapfrog over approaches we’ve looked at in the past.
-          We love the idea and implementation of Chiselled images and Canonical as a partner. When technical leaders at
-          Canonical shared the first demos of Chiselled images with us, we immediately wanted to be a launch partner,
-          and we’re thrilled that we’re shipping Ubuntu Chiselled images for .NET as part of the GA release”
-        </cite>
-      </p>
-      <p><cite>Richard Lander, Program Manager, .NET at Microsoft</cite></p>
-      <hr />
-      <a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a>
+      <div class="p-section--shallow">
+        <p>Don’t take our word for it. Listen to industry experts discuss chiselled Ubuntu.</p>
+        <p>
+          <cite>“There has always been a need for smaller and tighter images. Developers remind us, as a base image
+            provider, of that on a regular basis. Chiselled images leapfrog over approaches we’ve looked at in the past.
+            We love the idea and implementation of Chiselled images and Canonical as a partner. When technical leaders at
+            Canonical shared the first demos of Chiselled images with us, we immediately wanted to be a launch partner,
+            and we’re thrilled that we’re shipping Ubuntu Chiselled images for .NET as part of the GA release”
+          </cite>
+        </p>
+        <p><cite>Richard Lander, Program Manager, .NET at Microsoft</cite></p>
+      </div>
+      <hr class="p-rule"/>
+      <p><a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
-      <h2>From development to production:<br /> making developers' lives easier</h2>
+      <h2>From development to production: making developers' lives easier</h2>
     </div>
     <div class="col">
       <p>A seamless developer experience means more productive teams and <a
@@ -178,7 +189,7 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
           applications</a>.</p>
       <p>Chiselled Ubuntu is designed to simplify the containerisation journey, ensuring a smooth transition from
         development to production.</p>
-      <ul class="p-list--divided u-sv-1">
+      <ul class="p-list--divided">
         <li class="p-list__item is-ticked">100% library and release cycle alignment with Ubuntu LTS</li>
         <li class="p-list__item is-ticked">Fewer dependency headaches</li>
         <li class="p-list__item is-ticked">Chisel CLI for easier multi-stage builds</li>
@@ -188,13 +199,14 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
             href="https://hub.docker.com/r/ubuntu/jre">Java</a>
         </li>
       </ul>
-      <a href="https://canonical-oci.readthedocs-hosted.com/en/latest/oci-how-to/create-chiselled-ubuntu-image/">Get
-        started today&nbsp;&rsaquo;</a>
+      <hr class="p-rule">
+      <p><a href="https://canonical-oci.readthedocs-hosted.com/en/latest/oci-how-to/create-chiselled-ubuntu-image/">Get
+        started today&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
@@ -210,25 +222,23 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
         </li>
         <li class="p-list__item has-bullet">24/7 phone and ticket customer support</li>
       </ul>
-      <a href="/security/docker-images">Read more about our support commitments&nbsp;&rsaquo;</a>
+      <hr class="p-rule">
+      <p><a href="/security/docker-images">Read more about our support commitments&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<hr class="is-fixed-width" />
-
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--2">
-        <a href="/blog/craft-custom-chiselled-ubuntu-distroless">Get started with chiselled Ubuntu containers
-          today&nbsp;&rsaquo;</a>
-      </p>
-    </div>
+<section class="u-fixed-width">
+<hr class="p-rule" />
+<div class="p-strip is-deep">
+    <p class="p-heading--2">
+      <a href="/blog/craft-custom-chiselled-ubuntu-distroless">Get started with chiselled Ubuntu containers
+        today&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
@@ -237,7 +247,7 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
     <div class="col">
       <div class="row">
         <div class="col-2 col-medium-3">
-          <h3 class="p-text--heading5 p-text--small-caps">Documentation</h3>
+          <h3 class="p-text--small-caps">Documentation</h3>
         </div>
         <div class="col-4 col-medium-3">
           <ul class="p-list--divided">
@@ -257,10 +267,10 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
           </ul>
         </div>
       </div>
-      <hr class="is-muted" />
+      <hr class="p-rule is-muted" />
       <div class="row">
         <div class="col-2 col-medium-3">
-          <h3 class="p-text--heading5 p-text--small-caps">Docker Hub</h3>
+          <h3 class="p-text--small-caps">Docker Hub</h3>
         </div>
         <div class="col-4 col-medium-3">
           <ul class="p-list--divided">
@@ -279,10 +289,10 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
           </ul>
         </div>
       </div>
-      <hr class="is-muted" />
+      <hr class="p-rule is-muted" />
       <div class="row">
         <div class="col-2 col-medium-3">
-          <h3 class="p-text--heading5 p-text--small-caps">GitHub</h3>
+          <h3 class="p-text--small-caps">GitHub</h3>
         </div>
         <div class="col-4 col-medium-3">
           <ul class="p-list--divided">
@@ -299,13 +309,13 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   </div>
 </section>
 
-<hr class="is-fixed-width" />
+<hr class="p-rule is-fixed-width" />
 
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-12">
       <p class="p-heading--2">
-        <a href="/containers/contact-us" class="js-invoke-modal">Talk to an expert about how<br /> Ubuntu
+        <a href="/containers/contact-us" class="js-invoke-modal">Talk to an expert about how<br class="u-hide--small u-hide--medium"/> Ubuntu
           containers can benefit your enterprise&nbsp;&rsaquo;</a>
       </p>
     </div>
