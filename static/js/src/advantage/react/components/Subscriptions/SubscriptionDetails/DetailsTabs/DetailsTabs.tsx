@@ -139,7 +139,7 @@ const DetailsTabs = ({
                 <tr>
                   <td data-test="doc-link">Ubuntu Pro network requirements</td>
                   <td>
-                    <a href="https://canonical-ubuntu-pro-client.readthedocs-hosted.com/en/latest/references/network_requirements.html">
+                    <a href="https://canonical-ubuntu-pro-client.readthedocs-hosted.com/en/latest/references/network_requirements">
                       Ubuntu Pro network requirements
                     </a>
                   </td>
