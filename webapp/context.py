@@ -186,3 +186,9 @@ def date_has_passed(date_str):
         return present > date
     except ValueError:
         return False
+
+
+def sort_by_key_and_ordered_list(list_to_sort, obj_key, ordered_list):
+    return sorted(
+        list_to_sort, key=lambda item: ordered_list.index(item[obj_key])
+    )

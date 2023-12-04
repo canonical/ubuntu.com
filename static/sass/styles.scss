@@ -802,6 +802,16 @@ td.p-accordion {
   z-index: 10;
 }
 
+#newsletter-signup {
+  display: none;
+  position: absolute;
+}
+
+#newsletter-signup:target {
+  display: block;
+  z-index: 10;
+}
+
 #updated {
   display: none;
 }

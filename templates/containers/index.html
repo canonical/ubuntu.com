@@ -1,142 +1,216 @@
 {% extends "containers/base_containers.html" %}
 
 {% block title %}Containers{% endblock %}
+
 {% block meta_description %}Containers run best on Ubuntu because it has more modern Linux kernels and the latest tooling for the fast-moving Docker, K8s and LXD communities. Optimised on all major clouds.{% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1OtyfNeA--EJgpgvDzqcbJ8jqa6d9H5H9xyxHNxcKXvc/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-<div class="p-strip--suru-topped is-bordered">
+
+<div class="p-strip is-shallow u-no-padding--bottom">
   <div class="row">
-    <div class="col-7">
-      <h1>Why is Ubuntu the #1 OS for containers?</h1>
-      <p>From Docker to Kubernetes, the experts choose Ubuntu for container operations. The single most important driver of quality, security and performance is the kernel version, and Canonical ensures that Ubuntu always has the very latest kernels with the latest security capabilities. That's why the world's biggest cloud operators and the world's most sophisticated IT operations have chosen Ubuntu for containers.</p>
-      <p><a class="js-invoke-modal" href="/containers/contact-us?product=containers-overview">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/72dcc529-containers-illustration_AW.svg",
-        alt="",
-        width="350",
-        height="318",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+    <div class="col-start-large-4 col-9">
+      <div class="p-section--shallow">
+        <h1>Build applications at speed with <br aria-hidden="true"/> ultra-secure and supported Ubuntu containers</h1>
+      </div>
+      <p>Experience secure, and long term supported container images built from the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready chiselled containers.</p>
+      <hr />
+      <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our OCI images</a>
+      <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">What are chiselled containers&nbsp;&rsaquo;</a>
     </div>
   </div>
-</div>
-</div>
-
-<div class="p-strip--light">
-  <div class="row u-equal-height"> 
-    <div class="col-7">
-      <h2>Kubernetes &mdash; the multi-cloud operations layer for next-gen apps</h2>
-      <p class="p-heading--4">Kubernetes on Ubuntu supports VMware, OpenStack, bare metal and every public cloud.</p>
-      <p>The new wave of cloud-native applications are being designed for Kubernetes operations. With high performance auto-scaling, healing, service meshes and built-in primitives for CI/CD, K8s is the most significant change in IT operations since the emergence of public cloud in 2009.</p>
-      <p><a href="/kubernetes">Learn more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
-        alt="",
-        width="250",
-        height="250",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</div>
-<div class="p-strip--light u-no-padding--top is-bordered">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading-four">Elastic</h3>
-      <p>Looking for a container orchestration system to help build your microservice-based app? Our Kubernetes distribution is simple and naturally elastic.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading-four">Cost-effective</h3>
-      <p>Canonical's Kubernetes distribution includes all operational scripting and tooling needed to manage a long-lived cluster, including upgrades and scaling. Build it right for the long term on day one.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading-four">Carrier-grade</h3>
-      <p>Our production Kubernetes deployments include Prometheus for monitoring, Ceph for storage and Elastic Stack including Kibana for analysis and visualisations.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-      <p><a href="/containers/kubernetes">Learn more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a></p>
-    </div>
+  <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+    <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt="" style="aspect-ratio: 5.1775700934579; width: 100%;">
   </div>
 </div>
 
-<div class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    {% with title="Partnering with industry leaders", json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Containers", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
-  </div>
-</div>
-
-{% include "containers/shared/_whitepaper.html" %}
-
-<div class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h2>VM-style containers for legacy applications with LXD</h2>
-      <p>LXD containers behave like regular VMs, so traditional applications can be installed there unmodified.</p>
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Easy for developers, <br aria-hidden="true"/>secured by Ubuntu</h2>
     </div>
-  </div>
-</div>
-<div class="p-strip u-no-padding--top is-bordered">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Lift-and-shift existing VM workloads</h3>
-      <p>Move your existing Linux VMs straight to containers, easily, without modifying the apps or your operations. LXD's machine containers operate just like virtual machines.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">25% faster than legacy VMs</h3>
-      <p>Use VM-style commands to run your applications in an unmodified Linux operating system, at incredible speed, with zero latency.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">10x the density of ESX</h3>
-      <p>LXD's pure-container approach to Linux virtualisation offers dramatic density advantages over VMware ESX and Linux KVM for private and public cloud infrastructure.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-      <p><a href="/lxd">Learn more about LXD</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--light is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-7 equal-height__align-vertically">
-      <h2>Expert support from Canonical</h2>
-      <p>If you need the assurance of a professional support subscription for your desktop, server, cloud or container deployment, Ubuntu Advantage has got you covered:</p>
+    <div class="col">
+      <p>Rely on Ubuntu's demonstrated history of security with containers that are:</p>
       <ul class="p-list--divided">
-        <li class="p-list__item is-ticked">24/7 access to the world's leading Ubuntu experts</li>
-        <li class="p-list__item is-ticked">Landscape &mdash; our systems management tool</li>
-        <li class="p-list__item is-ticked">IP assurance for your Ubuntu environment</li>
-        <li class="p-list__item is-ticked">Kernel livepatching to ensure you have the latest kernel security&nbsp;updates</li>
-      </ul>
-      <ul class="p-inline-list">
-        <li class="p-inline-list__item"><a href="/pro" class="p-button--positive">Visit the Ubuntu Advantage store</a></li>
-        <li class="p-inline-list__item">or <a href="/containers/contact-us?product=containers-overview" class="js-invoke-modal">contact us&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item has-bullet"><strong>Secure.</strong> Timely updates and patches, building on Ubuntu's security track record.</li>
+        <li class="p-list__item has-bullet"><strong>Stable.</strong> Long-term support with a consistent, predictable lifecycle and support commitment.</li>
+        <li class="p-list__item has-bullet"><strong>Seamless.</strong> Developer-friendly, smooth experience from development to production.</li>
+        <li class="p-list__item has-bullet"><strong>Small.</strong> Ultra-small, resource-efficient, yet robust images with chiselled (distroless) Ubuntu.</li>
+    </div>
+  </div>
+</div>
+
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Explore our container offerings</h2>
+    </div>
+    <div class="col">
+      <p>Ubuntu containers are designed for modern software deployment. Our solutions, tailored to diverse needs, range from an ecosystem of base OCI images, ultra-optimised chiselled container images to our long-term supported Docker images portfolio.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule"/>
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Base images</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Ubuntu base images provide a solid foundation for your applications, offering a stable and secure environment, built from the world’s most popular cloud operating system. Canonical provides commercial support for all Ubuntu-based container images.</p>
+          <p>
+            <a href="/support">Explore contract support&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Application images</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Canonical's LTS Docker images come with a long-term support and stability commitment. Pre-built and pre-configured application, runtime, and base images supported for up to 10 years with security patches.</p>
+          <p>
+            <a href="https://hub.docker.com/u/ubuntu">Explore our OCI container images&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Chiselled Ubuntu images</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>The future of container images is here. Chiselled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.</p>
+          <p>
+            <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Learn about Chiselled Ubuntu&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr class="u-fixed-width"/>
+</div>
+<div class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>
+      <a href="/engage/container-security-guide">Read our whitepaper about container security&nbsp;&rsaquo;</a>
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <hr class="u-fixed-width"/>
+</div>
+
+<div class="p-section">
+  <div class="u-fixed-width">
+    <p class="p-text--small-caps">Trusted by industry leaders</p>
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/a4c39400-docker-logo-horizontal.png",
+            alt="Docker",
+            width="516",
+            height="558",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+            alt="Intel",
+            width="149",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
+            alt="Arm",
+            width="183",
+            height="372",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/9e636877-microsoft-logo.png",
+            alt="Microsoft",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr class="u-fixed-width"/>
+</div>
+<div class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>
+      <a href="https://canonical-oci.readthedocs-hosted.com/en/latest/">Read the docs for Ubuntu OCI and chiselled images&nbsp;&rsaquo;</a>
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <hr class="u-fixed-width"/>
+</div>
+
+<div class="p-section">
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Take your container strategy<br aria-hidden="true"/> to the next level</h2>
+    </div>
+    <div class="col">
+      <p>Dive deeper into the world of containers with Ubuntu on our blog.</p>
+      <hr class="p-rule"/>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="/blog/install-dotnet-on-ubuntu">Microsoft and Canonical announce native .NET availability in Ubuntu 22.04 hosts and containers </a></li>
+        <li class="p-list__item"><a href="/blog/docker-container-security-demystifying-fips-enabled-containers-with-ubuntu-pro">Docker container security: demystifying FIPS-enabled containers with Ubuntu Pro</a></li>
+        <li class="p-list__item"><a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Chiselled Ubuntu containers: the benefits of combining Distroless and Ubuntu</a></li>
       </ul>
     </div>
   </div>
 </div>
 
-<section class="p-strip">
+<div class="p-strip--white is-deep">
   <div class="u-fixed-width">
-    <p id="fn1" class="note"><a href="#r1">*</a> Kubernetes&reg; is a registered trademark of The Linux Foundation in the United States and other countries, and is used pursuant to a license from The Linux Foundation</p>
+    <h2>
+      <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact our team for support with Ubuntu containers&nbsp;&rsaquo;</a>
+    </h2>
   </div>
-</section>
+</div>
 
-{% with first_item="_containers_juju", second_item="_cloud_lxd_vs_docker", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
 
 {% endblock content %}

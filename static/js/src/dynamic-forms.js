@@ -58,7 +58,7 @@ import setupIntlTelInput from "./intlTelInput.js";
             title.innerHTML = formData.title;
           }
           setProductContext(contactButton);
-          setUTMs();
+          setUTMs(formData.formId);
           setGclid();
           setFBclid();
           loadCaptchaScript();
@@ -130,27 +130,26 @@ import setupIntlTelInput from "./intlTelInput.js";
       }
     }
 
-    function setUTMs() {
+    function setUTMs(formId) {
       var params = new URLSearchParams(window.location.search);
-      var utm_campaign = document.getElementById("utm_campaign");
+      var targetForm = document.getElementById(`mktoForm_${formId}`);
+      var utm_campaign = targetForm.querySelector("#utm_campaign");
       if (utm_campaign) {
         utm_campaign.value = params.get("utm_campaign");
       }
-      var utm_source = document.getElementById("utm_source");
+      var utm_source = targetForm.querySelector("#utm_source");
       if (utm_source) {
         utm_source.value = params.get("utm_source");
       }
-      var utm_medium = document.getElementById("utm_medium");
+      var utm_medium = targetForm.querySelector("#utm_medium");
       if (utm_medium) {
         utm_medium.value = params.get("utm_medium");
       }
-
-      var utm_content = document.getElementById("utm_content");
+      var utm_content = targetForm.querySelector("#utm_content");
       if (utm_content) {
         utm_content.value = params.get("utm_content");
       }
-
-      var utm_term = document.getElementById("utm_term");
+      var utm_term = targetForm.querySelector("#utm_term");
       if (utm_term) {
         utm_term.value = params.get("utm_term");
       }

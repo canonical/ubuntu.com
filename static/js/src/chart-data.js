@@ -1,66 +1,3 @@
-export var smallReleases = [
-  {
-    startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2022-10-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS",
-    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
-  },
-  {
-    startDate: new Date("2022-10-01T00:00:00"),
-    endDate: new Date("2025-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS",
-    status: "MAINTENANCE_UPDATES",
-  },
-  {
-    startDate: new Date("2025-04-02T00:00:00"),
-    endDate: new Date("2030-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2020-10-01T00:00:00"),
-    endDate: new Date("2021-07-07T00:00:00"),
-    taskName: "Ubuntu 20.10",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-10-01T00:00:00"),
-    endDate: new Date("2022-07-07T00:00:00"),
-    taskName: "Ubuntu 21.10",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2022-01-05T00:00:00"),
-    taskName: "Ubuntu 21.04",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2022-04-01T00:00:00"),
-    endDate: new Date("2024-09-30T00:00:00"),
-    taskName: "Ubuntu 22.04 LTS",
-    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
-  },
-  {
-    startDate: new Date("2024-09-30T00:00:00"),
-    endDate: new Date("2027-04-01T00:00:00"),
-    taskName: "Ubuntu 22.04 LTS",
-    status: "MAINTENANCE_UPDATES",
-  },
-  {
-    startDate: new Date("2027-04-01T00:00:00"),
-    endDate: new Date("2032-04-09T00:00:00"),
-    taskName: "Ubuntu 22.04 LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2022-10-20T00:00:00"),
-    endDate: new Date("2023-07-20T00:00:00"),
-    taskName: "Ubuntu 22.10",
-    status: "INTERIM_RELEASE",
-  },
-];
-
 export var serverAndDesktopReleases = [
   {
     startDate: new Date("2014-04-01T00:00:00"),
@@ -1703,15 +1640,6 @@ export var microStackStatus = {
   MICROSTACK_ESM: "chart__bar--aubergine",
   PRO_SUPPORT: "chart_bar--charcoal",
 };
-
-export var smallReleaseNames = [
-  "Ubuntu 22.10",
-  "Ubuntu 22.04 LTS",
-  "Ubuntu 21.10",
-  "Ubuntu 21.04",
-  "Ubuntu 20.10",
-  "Ubuntu 20.04 LTS",
-];
 
 export var desktopServerReleaseNames = [
   "23.10 (Mantic Minotaur)",

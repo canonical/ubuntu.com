@@ -18,6 +18,7 @@ from webapp.context import (
     get_meganav,
     split_list,
     format_to_id,
+    sort_by_key_and_ordered_list,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -185,3 +186,5 @@ def init_handlers(app, sentry):
         return {"image": image_template}
 
     app.add_template_filter(date_has_passed)
+
+    app.add_template_filter(sort_by_key_and_ordered_list)
