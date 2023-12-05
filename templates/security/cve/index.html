@@ -56,52 +56,6 @@
       </form>
     </div>
   </div>
-  <!-- <form id = "searchForm">
-    <div class="row">
-      <div class="col-6">
-      </div>
-      <div class="col-3">
-        <label for="package">Package:</label>
-        <input type="text" name="package" id="package" value="{{ package or '' }}" placeholder="Any">
-      </div>
-      <div class="col-3">
-        <label for="priority">Priority:</label>
-        <select name="priority" id="priority">
-          <option value="">Any</option>
-          <option value="critical" {% if priority == 'critical' %}selected{% endif %}>
-            Critical
-          </option>
-          <option value="high" {% if priority == 'high' %}selected{% endif %}>
-            High
-          </option>
-          <option value="medium" {% if priority == 'medium' %}selected{% endif %}>
-            Medium
-          </option>
-          <option value="low" {% if priority == 'low' %}selected{% endif %}>
-            Low
-          </option>
-          <option value="negligible" {% if priority == 'negligible' %}selected{% endif %}>
-            Negligible
-          </option>
-        </select>
-      </div>
-    </div>
-    {% if versions | length > 0 %}
-      {% for version in versions %}
-        {% with versions=versions, statuses=statuses, releases=releases, index=loop.index - 1 %}
-        {% include "security/cve/_version-and-status-row.html" %}
-        {% endwith %}
-      {% endfor %}
-    {% else %}
-      {% with versions=versions, statuses=statuses, releases=releases, index=0 %}
-      {% include "security/cve/_version-and-status-row.html" %}
-      {% endwith %}
-    {% endif %}
-    <div id="new-row-container"></div>
-    <div class="u-fixed-width">
-
-    </div>
-  </form> -->
 </section>
 
 <section class="p-section">
@@ -189,10 +143,11 @@
               {% endif %}
             {% endfor %}
           </p>
-
         </div>
       </div>
-      <hr class="p-rule"/>
+        {% if loop.index < 5 %}
+          <hr class="p-rule"/>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -239,10 +194,38 @@
   {% endwith %}
 </template>
 
-<script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
+<section class="p-section">
+  <div class="row--25-75">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Resources</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Join the discussion</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security mailing list</a></li>
+            <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Ubuntu Pro</h3>
+        </div>
+        <div class="col-6">
+          <p>10-year security coverage for Ubuntu <br aria-hidden="true"> and 23,000 open-source applications and toolchains.</p>
+          <a class="p-button" href="/pro/subscribe">Get Ubuntu Pro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
-{% include "shared/contextual_footers/_contextual_footer.html" %}
-{% endwith %}
+<script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
 
 {% endblock %}
