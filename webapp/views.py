@@ -736,14 +736,12 @@ class BlogRedirects(BlogView):
         if "article" not in context:
             return flask.abort(404)
 
-        # Capture the original query string
-        original_query_string = flask.request.query_string.decode("utf-8")
-
         # Redirect canonical announcements
         group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             redirect_url = f"https://canonical.com/blog/{slug}"
             # Append the original query string to the redirect URL
+            original_query_string = flask.request.query_string.decode("utf-8")
             if original_query_string:
                 redirect_url += f"?{original_query_string}"
             return flask.redirect(redirect_url)
