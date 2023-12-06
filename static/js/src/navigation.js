@@ -116,7 +116,7 @@ function handleDropdownClick(clickedDropdown) {
 }
 
 function updateUrlHash(id, open) {
-  if (id  && open) {
+  if (id && open) {
     window.history.pushState(
       null,
       document.title,
