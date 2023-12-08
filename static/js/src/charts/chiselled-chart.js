@@ -15,11 +15,7 @@ function buildChiselledChart(selector, data, isFirst) {
     .attr("width", width)
     .attr("height", `${2.5 * (data.length + (withScale ? 1 : 0))}em`);
 
-  const xAxis = d3
-    .axisTop(x)
-    .ticks(3)
-    .tickSizeInner(24)
-    .tickSizeOuter(0);
+  const xAxis = d3.axisTop(x).ticks(3).tickSizeInner(24).tickSizeOuter(0);
 
   const axisG = svg.append("g");
 
@@ -27,19 +23,22 @@ function buildChiselledChart(selector, data, isFirst) {
 
   axisG.call(xAxis);
 
-  axisG.selectAll("text")
+  axisG
+    .selectAll("text")
     .attr("transform", "translate(5, 20)")
     .attr("text-anchor", "start")
     .style("font-size", "1.6em")
     .style("color", "#666666");
 
-  axisG.select(".domain")
+  axisG
+    .select(".domain")
     .attr("transform", "translate(0, -2)")
     .attr("stroke", "#000000")
     .attr("stroke-width", "1px")
     .attr("opacity", "0.2");
 
-  axisG.selectAll("line")
+  axisG
+    .selectAll("line")
     .attr("transform", "translate(0, -2)")
     .attr("stroke", "#000000")
     .attr("stroke-width", "1px")
@@ -48,8 +47,9 @@ function buildChiselledChart(selector, data, isFirst) {
   const chartG = svg.append("g");
 
   if (withScale) chartG.style("transform", "translate(0, 2.4em)");
-  
-  chartG.selectAll()
+
+  chartG
+    .selectAll()
     .data(data)
     .enter()
     .append("rect")
@@ -64,6 +64,9 @@ function buildChiselledChart(selector, data, isFirst) {
     .attr("height", "2.35em")
     .attr("width", function (d, i) {
       return x(d);
+    })
+    .attr("aria-label", function (d, i) {
+      return `${d} MB`;
     });
 }
 
