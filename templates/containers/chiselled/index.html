@@ -7,6 +7,28 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
 {% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
+<style>
+  .dimmed-text {
+    color: #666666;
+  }
+
+  .display-on-large {
+    @media (max-width: 1035px) {
+      display: none;
+    }
+  }
+
+  .d-flex {
+    display: flex !important;
+  }
+
+  .chart-legend-box {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+</style>
+
 <section class="p-strip is-shallow u-no-padding--bottom">
   <div class="row--50-50 p-section">
     <div class="col">
@@ -17,14 +39,16 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
         <h2>Ultra-small, ultra-secure containerisation</h2>
       </div>
       <p>Rethink your containerisation strategy with chiselled Ubuntu — where ultra-small meets ultra-secure. Trim your
-          attack surface by 6x and get the reliability of a vendor-supported Linux distribution.</p>
+        attack surface by 6x and get the reliability of a vendor-supported Linux distribution.</p>
       <ul class="p-list--divided">
         <li class="p-list__item">
-          <a href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Learn
+          <a
+            href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Learn
             about using chisel in production&nbsp;&rsaquo;</a>
         </li>
         <li class="p-list__item">
-          <a href="/containers/contact-us" class="js-invoke-modal">Get support for chiselled containers&nbsp;&rsaquo;</a>
+          <a href="/containers/contact-us" class="js-invoke-modal">Get support for chiselled
+            containers&nbsp;&rsaquo;</a>
         </li>
     </div>
   </div>
@@ -33,7 +57,8 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
 <section class="p-section">
   <div class="row">
     <div class="u-align--center">
-      <img src="https://assets.ubuntu.com/v1/b0a37cc9-canonical.com_%20(1).png" style="height: auto; width: 100%;" alt="" />
+      <img src="https://assets.ubuntu.com/v1/b0a37cc9-canonical.com_%20(1).png" style="height: auto; width: 100%;"
+        alt="" />
     </div>
   </div>
 </section>
@@ -66,7 +91,8 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
     </div>
     <div class="col">
       <div class="p-section--shallow">
-        <p>Container images’ attack surface is a critical factor in determining their security. As the size of a container
+        <p>Container images’ attack surface is a critical factor in determining their security. As the size of a
+          container
           image increases, so does the potential for vulnerabilities and known security issues.</p>
         <p>According to Sysdig, 87% of container images have high or critical vulnerabilities.</p>
       </div>
@@ -80,13 +106,14 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
 </section>
 
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="row">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="col-6 col-medium-6">
       <h3 class="p-text--small-caps">Chiselled Ubuntu:</h3>
       <h2>Production-ready, ultra-small Ubuntu containers</h2>
+      <div class="p-section u-hide--large"></div>
     </div>
-    <div class="col">
+    <div class="col-6 col-medium-6">
       <p>Experience the power of ultra-small containerisation. Chiselled Ubuntu delivers efficiency with a minimal
         attack surface.</p>
       <p>Chiselled Ubuntu and your favourite toolchains come together seamlessly. It's your shortcut to creating and
@@ -95,14 +122,150 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   </div>
 </section>
 
+<section class="p-section">
+  <div class="row">
+    <hr class="u-hide--large" />
+    <div class="col-medium-1 col-small-6 u-hide--large">
+      <h3 class="p-heading--5 u-hide--large u-no-margin--bottom">.NET</h3>
+    </div>
+    <div class="col-6 col-medium-5">
+      <table>
+        <thead>
+          <tr class="u-hide--small u-hide--medium">
+            <th class="u-no-padding--left" width="30%">Language</th>
+            <th class="u-no-padding--left" width="70%">Package</th>
+            <th class="u-align--right u-no-padding--right" width="90px">Size</th>
+          </tr>
+          <tr class="u-hide--large">
+            <td width="100%" class="p-text--small-caps u-no-padding--left">Package</td>
+            <td width="90px" class="u-align--right p-text--small-caps u-no-padding--right">Size</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="display-on-large u-no-padding--left" rowspan="3">.NET</td>
+            <td class="dimmed-text u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#CBA7B8;"></div>
+              Ubuntu .NET image
+            </td>
+            <td class="u-align--right u-no-padding--right"><strong>219MB</strong></td>
+          </tr>
+          <tr>
+            <td class="dimmed-text u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#923A66;"></div>
+              Chiselled Ubuntu .NET image
+            </td>
+            <td class="u-align--right u-no-padding--right"><strong>116MB</strong></td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#000000;"></div>
+              Chiselled Ubuntu for self contained .NET image
+            </td>
+            <td class="u-align--right u-no-padding--right"><strong>5MB</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6 col-medium-5 col-start-medium-2 col-small-6">
+      <div id="chiselled-dotnet-chart"></div>
+      <div class="u-sv3 u-hide--large"></div>
+    </div>
+  </div>
+  <div class="row">
+    <hr class="u-hide--large" />
+    <div class="col-medium-1 col-small-6 u-hide--large">
+      <h3 class="p-heading--5 u-hide--large u-no-margin--bottom">JAVA</h3>
+    </div>
+    <div class="col-6 col-medium-5">
+      <table>
+        <thead>
+          <tr class="u-hide--small u-hide--medium">
+            <th class="u-no-padding" width="30%"><span class="u-hide">Language</span></th>
+            <th class="u-no-padding" width="70%"><span class="u-hide">Package</span></th>
+            <th class="u-no-padding" width="90px"><span class="u-hide">Size</span></th>
+          </tr>
+          <tr class="u-hide--large">
+            <th width="100%" class="p-text--small-caps u-no-padding--left">Package</th>
+            <th width="90px" class="u-align--right p-text--small-caps u-no-padding--right">Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="display-on-large u-no-padding--left" rowspan="2">JAVA</td>
+            <td class="dimmed-text u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#CBA7B8;"></div>
+              Eclipse Temurin
+            </td>
+            <td width="90px" class="u-align--right u-no-padding--right"><strong>215MB</strong></td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#000000;"></div>
+              Chiselled Ubuntu for JRE8
+            </td>
+            <td class="u-align--right u-no-padding--right"><strong>113MB</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6 col-medium-5 col-start-medium-2 col-small-6">
+      <div id="chiselled-java-chart"></div>
+      <div class="u-sv3 u-hide--large"></div>
+    </div>
+  </div>
+  <div class="row">
+    <hr class="u-hide--large" />
+    <div class="col-medium-1 col-small-6 u-hide--large">
+      <h3 class="p-heading--5 u-hide--large u-no-margin--bottom">C, C++, Go, R</h3>
+    </div>
+    <div class="col-6 col-medium-5">
+      <table>
+        <thead>
+          <tr class="u-hide--small u-hide--medium">
+            <th class="u-no-padding" width="30%"><span class="u-hide">Language</span></th>
+            <th class="u-no-padding" width="70%"><span class="u-hide">Package</span></th>
+            <th class="u-no-padding" width="90px"><span class="u-hide">Size</span></th>
+          </tr>
+          <tr class="u-hide--large">
+            <td width="100%" class="p-text--small-caps u-no-padding--left">Package</td>
+            <td width="90px" class="u-align--right p-text--small-caps u-no-padding--right">Size</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="display-on-large u-no-padding--left" rowspan="2">C, C++, Go, R</td>
+            <td class="dimmed-text u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#CBA7B8;"></div>
+              Google Distroless
+            </td>
+            <td width="90px" class="u-align--right u-no-padding--right"><strong>20MB</strong></td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left d-flex u-vertically-center">
+              <div class="chart-legend-box u-hide--large" style="background:#000000;"></div>
+              Chiselled Ubuntu
+            </td>
+            <td class="u-align--right u-no-padding--right"><strong>12MB</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6 col-medium-5 col-start-medium-2 col-small-6">
+      <div id="chiselled-other-chart"></div>
+      <div class="u-sv3 u-hide--large"></div>
+    </div>
+  </div>
+</section>
+
 <section class="u-fixed-width">
-  <hr class="p-rule"/>
+  <hr class="p-rule" />
   <div class="p-strip is-deep">
-  <p class="p-heading--2">
-    <a
-      href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Get
-      started now and ship with chiselled Ubuntu in minutes&nbsp;&rsaquo;</a>
-  </p>
+    <p class="p-heading--2">
+      <a
+        href="https://canonical-public-cloud.readthedocs-hosted.com/en/latest/oci/oci-how-to/create-chiselled-ubuntu-image.html">Get
+        started now and ship with chiselled Ubuntu in minutes&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
 
@@ -123,12 +286,15 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
       loading="lazy" ) | safe
       }}
       <div class="p-section--shallow">
-        <p>Chisel operates as a from-scratch package manager, meticulously sculpting ultra-small runtime file systems.</p>
-        <p>To do so, chiselled Ubuntu relies on a curated collection of Slice Definitions Files. These files relate to the
-          upstream packages from the Ubuntu archives, and define one or more slices for any given package. A package slice
+        <p>Chisel operates as a from-scratch package manager, meticulously sculpting ultra-small runtime file systems.
+        </p>
+        <p>To do so, chiselled Ubuntu relies on a curated collection of Slice Definitions Files. These files relate to
+          the
+          upstream packages from the Ubuntu archives, and define one or more slices for any given package. A package
+          slice
           represents a subset of the package’s contents, comprising its maintainer scripts and dependencies.</p>
         <p>Chisel effectively layers reusable knowledge on top of traditional Ubuntu deb packages, through a
-            developer-friendly CLI and fine-grained dependency management mechanism.</p>
+          developer-friendly CLI and fine-grained dependency management mechanism.</p>
       </div>
       <hr class="p-rule" />
       <p>
@@ -164,15 +330,17 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
         <p>
           <cite>“There has always been a need for smaller and tighter images. Developers remind us, as a base image
             provider, of that on a regular basis. Chiselled images leapfrog over approaches we’ve looked at in the past.
-            We love the idea and implementation of chiselled images and Canonical as a partner. When technical leaders at
+            We love the idea and implementation of chiselled images and Canonical as a partner. When technical leaders
+            at
             Canonical shared the first demos of chiselled images with us, we immediately wanted to be a launch partner,
             and we’re thrilled that we’re shipping Ubuntu chiselled images for .NET as part of the GA release”
           </cite>
         </p>
         <p><cite>Richard Lander, Program Manager, .NET at Microsoft</cite></p>
       </div>
-      <hr class="p-rule"/>
-      <p><a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a></p>
+      <hr class="p-rule" />
+      <p><a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
@@ -201,7 +369,7 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
       </ul>
       <hr class="p-rule">
       <p><a href="https://canonical-oci.readthedocs-hosted.com/en/latest/oci-how-to/create-chiselled-ubuntu-image/">Get
-        started today&nbsp;&rsaquo;</a></p>
+          started today&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -229,8 +397,8 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
 </section>
 
 <section class="u-fixed-width">
-<hr class="p-rule" />
-<div class="p-strip is-deep">
+  <hr class="p-rule" />
+  <div class="p-strip is-deep">
     <p class="p-heading--2">
       <a href="/blog/craft-custom-chiselled-ubuntu-distroless">Get started with chiselled Ubuntu containers
         today&nbsp;&rsaquo;</a>
@@ -318,7 +486,8 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   <div class="row">
     <div class="col-12">
       <p class="p-heading--2">
-        <a href="/containers/contact-us" class="js-invoke-modal">Talk to an expert about how<br class="u-hide--small u-hide--medium"/> Ubuntu
+        <a href="/containers/contact-us" class="js-invoke-modal">Talk to an expert about how<br
+            class="u-hide--small u-hide--medium" /> Ubuntu
           containers can benefit your enterprise&nbsp;&rsaquo;</a>
       </p>
     </div>
@@ -331,4 +500,6 @@ containers with 6x smaller attack surface and the advantages of a vendor-support
   data-return-url="https://ubuntu.com/containers/chiselled/dotnet#success"
   data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/chiselled-chart.js') }}" defer></script>
 {% endblock %}
