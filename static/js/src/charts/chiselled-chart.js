@@ -3,23 +3,23 @@ import { debounce } from "../utils/debounce.js";
 function buildChiselledChart(selector, data, isFirst) {
   const colors = ["#CBA7B8", "#923A66", "#000000"];
 
-  var width = document.querySelector(selector).getBoundingClientRect().width;
+  const width = document.querySelector(selector).getBoundingClientRect().width;
 
   const x = d3.scaleLinear().range([0, width]).domain([0, 330]);
 
-  const withScale = screen.width < 1036 || isFirst;
+  const withAxis = screen.width < 1036 || isFirst;
 
   const svg = d3
     .select(selector)
     .append("svg")
     .attr("width", width)
-    .attr("height", `${2.5 * (data.length + (withScale ? 1 : 0))}em`);
+    .attr("height", `${2.5 * (data.length + (withAxis ? 1 : 0))}em`); // make the height bigger if it shows with axis
 
   const xAxis = d3.axisTop(x).ticks(3).tickSizeInner(24).tickSizeOuter(0);
 
   const axisG = svg.append("g");
 
-  if (withScale) axisG.style("transform", "translate(0, 2.3rem)");
+  if (withAxis) axisG.style("transform", "translate(0, 2.3rem)");
 
   axisG.call(xAxis);
 
@@ -46,7 +46,7 @@ function buildChiselledChart(selector, data, isFirst) {
 
   const chartG = svg.append("g");
 
-  if (withScale) chartG.style("transform", "translate(0, 2.4em)");
+  if (withAxis) chartG.style("transform", "translate(0, 2.4em)");
 
   chartG
     .selectAll()
