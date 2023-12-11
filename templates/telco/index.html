@@ -238,7 +238,18 @@
 <section class="p-strip">
   <div class="row">
     <div class="p-card col-6">
-      <p class="p-card__title"></p>
+      <p class="p-card__title">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/4e576e00-Canonical%20MicroCloud%20logo@4x.png",
+          alt="MicroCloud",
+          width="188",
+          height="48",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </p>
       <p class="p-heading--5">Modern virtualisation infrastructure solutions for 5G</p>
       <div class="p-card__content">
         <p>Automation and lifecycle management brought to fully upstream open source solutions, with security and observability.</p>
@@ -249,8 +260,8 @@
         <p class="p-card__title">
           {{ 
             image (
-            url="https://assets.ubuntu.com/v1/f07eaf0c-Canonical OpenStack.svg",
-            alt="",
+            url="https://assets.ubuntu.com/v1/f07eaf0c-Canonical%20OpenStack.svg",
+            alt="OpenStack",
             width="200",
             height="50",
             hi_def=True,
