@@ -50,10 +50,10 @@
     <div class="col-6 u-vertically-center u-align--center u-align--left-medium u-hide--small">
       {{ 
         image (
-        url="https://assets.ubuntu.com/v1/94dc8ff1-TelcoStack.png",
+        url="https://assets.ubuntu.com/v1/ac5a6f1f-telco-stack.png",
         alt="",
-        width="855",
-        height="308",
+        width="948",
+        height="479",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -163,6 +163,28 @@
     </div>
   </div>
 </section>
+
+<hr class="p-separator u-fixed-width" />
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-4">
+      
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
+        alt="BT",
+        width="90",
+        height="90",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <p class="p-heading--3">Thanks to Canonical's OpenStack distribution, BT can bring 5G to more people in the UK, with cost-effectiveness and reliability. This was delivered with Canonical's automation solutions, which made it possible for BT to better scale and manage large-scale infrastructure.</p>
+    </div>
+  </div>
+</section>
+
 
 <section class="p-strip--suru-blog-header">
   <div class="row">
@@ -332,11 +354,39 @@
 
 </section>
 
-{% with section_classes='p-strip--light', heading_topic='Telco', tag_name='telco', tag_id='1377', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h3>Latest Telco news from <a href="/blog/tag/telco">our blog&nbsp;&rsaquo;</a></h3>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <p class="u-no-margin--bottom p-muted-heading"><time datetime="14 November 2023" class="article-time">14 November 2023</time></p>
+      <h2 class="p-heading--5">
+        <a class="article-link article-title" href="/blog/bringing-automation-to-telco-edge-clouds-at-scale">Bringing automation to telco edge clouds at scale</a>
+      </h2>
+    </div>
+    <div class="col-3">
+      <p class="u-no-margin--bottom p-muted-heading"><time datetime="14 September 2023" class="article-time">14 September 2023</time></p>
+      <h2 class="p-heading--5">
+        <a class="article-link article-title" href="/blog/how-a-real-time-kernel-reduces-latency-in-telco-edge-clouds">How a real-time kernel reduces latency in telco edge clouds</a>
+      </h2>
+    </div>
+    <div class="col-3">
+      <p class="u-no-margin--bottom p-muted-heading"><time datetime="28 August 2023" class="article-time">28 August 2023</time></p>
+      <h2 class="p-heading--5">
+        <a class="article-link article-title" href="/blog/telecom-security-how-to-safeguard-your-open-source-telco-infrastructure">Telecom security: How to safeguard your open source telco infrastructure</a>
+      </h2>
+    </div>
+    <div class="col-3">
+      <p class="u-no-margin--bottom p-muted-heading"><time datetime="8 September 2023" class="article-time">8 September 2023</time></p>
+      <h2 class="p-heading--5">
+        <a class="article-link article-title" href="/blog/how-telcos-are-building-carrier-grade-infrastructure-using-open-source">How telcos are building carrier-grade infrastructure using open source</a>
+      </h2>
+    </div>
+  </div>
+</section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h3 class="p-muted-heading">
       Programs we are proud to be part of:
@@ -491,12 +541,15 @@
 </section>
 
 <section class="p-strip--light">
+  <div class="u-fixed-width p-section--shallow">
+    <h2>See what our customers say about us:</h2>
+  </div>
   <div class="row p-divider">
-    <div class="col-6 p-divider__block">
+    <div class="col-4 p-divider__block">
       <div>
         {{ image (
           url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
-          alt="",
+          alt="AT&T",
           width="100",
           height="41",
           hi_def=True,
@@ -509,7 +562,7 @@
         <cite class="p-pull-quote__citation">Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&T.</cite>
       </blockquote>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <div>
           {{ image (
             url="https://assets.ubuntu.com/v1/c2b1de52-BT_logo.svg",
@@ -527,6 +580,27 @@
       </blockquote>
       <p>
         <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core">Read the case study&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4">
+      <div>
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/0bb4a28e-vodafone_logo.png",
+          alt="",
+          width="84",
+          height="52",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote">By bringing new 'Thin Apps' closer to the customer, we enable them to access apps on tap in more places, and unhindered by the lag of a distant data centre.</p>
+        <cite class="p-pull-quote__citation">Johan Wibergh, Chief Technology Officer of Vodafone.</cite>
+      </blockquote>
+      <p>
+        <a href="https://www.vodafone.com/news/technology/powering-devices-through-cloud">Read Vodafone's tech news&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
