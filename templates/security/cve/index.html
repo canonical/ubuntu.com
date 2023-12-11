@@ -11,8 +11,8 @@
 
 {% block content %}
 
-<section class="p-section">
-  <div class="row">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row p-section">
     <div class="col-start-large-4 col-9">
       {% if query or package or component or priority or versions or statuses %}
         <h1>CVE reports</h1>
@@ -59,12 +59,9 @@
 </section>
 
 <section class="p-section">
-  <div class="row--25-75">
+  <div class="row">
     <hr class="p-rule"/>
-    <div class="col">
-      <h2>Quick Links</h2>
-    </div>
-    <div class="col">
+    <div class="col-start-large-4 col-9">
       <div class="row">
         <div class="col-2">
           <h3 class="p-heading--5">By Ubuntu release</h3>
@@ -86,18 +83,18 @@
 </section>
 
 <section class="p-section">
-  <div class="row--25-75">
+  <div class="row">
     <hr class="p-rule"/>
-    <div class="col">
+    <div class="col-3 p-section--shallow">
       <h2>Recent CVEs</h2>
     </div>
-    <div class="col">
+    <div class="col-9 col-medium-6 p-section--shallow">
       {% for cve in high_priority_cves %}
-      <div class="row p-section--shallow">
-        <div class="col-6">
+      <div class="row">
+        <div class="col-6 col-medium-4">
           <div style="margin-bottom: 1.1rem;">
             <p>
-              <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+              <a class="p-heading--5" href="/security/{{ cve.id }}">{{ cve.id }}</a>
               <span style="float: inline-end;">
                 {% if cve.priority == 'unknown' %}
                   <i class="p-icon--placeholder"></i>
@@ -114,13 +111,12 @@
                 {% else %}
                   <i class="p-icon--placeholder"></i>
                 {% endif %}
-                <span class="capitalize">{{ cve.priority }} priority</span>
+                <span>{{ cve.priority.split() | first | capitalize }} priority</span>
               </span>
             </p>
           </div>
-          <p>{{ cve.description }}</p>
         </div>
-        <div class="col-3">
+        <div class="col-3 col-medium-2">
           {% set status = cve.summarized_status %}
             {% if status.name == "Some fixed" %}
               <p>Some fixes available <span class="u-text--muted">{{ status.fixed_count }} of {{ status.total_count }}</span></p>
@@ -129,20 +125,31 @@
                 <i class="p-icon--help"></i> <span>Needs evaluation</span>
               </p>
             {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="row p-section--shallow">
+        <div class="col-6 col-medium-4">
+          <p>{{ cve.description }}</p>
+        </div>
+        <div class="col-3 col-medium-2">
           <p class="p-text--small-caps u-text--muted u-no-margin--top">{{ cve.packages | length}} affected packages</p>
           <p class="u-text--muted">
             {% for package in cve.packages %}
-              {% if cve.packages | length > 1 %}
+              {% if cve.packages | length > 6 %}
                 {% if loop.index < 6  %}
                   {{ package.name }}, 
                 {% elif loop.index == 6 %}
                   and {{ cve.packages | length - 5 }} more
                 {% endif %}
-              {% else %}
-                {{ package.name }}
+              {% elif cve.packages | length < 6 %}
+                {% if loop.last %}
+                  {{ package.name }}
+                {% else %}
+                  {{ package.name }},
+                {% endif %}
               {% endif %}
             {% endfor %}
-          </p>
         </div>
       </div>
         {% if loop.index < 5 %}
@@ -195,7 +202,7 @@
 </template>
 
 <section class="p-section">
-  <div class="row--25-75">
+  <div class="row--25-75 is-split-on-medium">
     <hr class="p-rule"/>
     <div class="col">
       <h2>Resources</h2>
@@ -219,7 +226,7 @@
         </div>
         <div class="col-6">
           <p>10-year security coverage for Ubuntu <br aria-hidden="true"> and 23,000 open-source applications and toolchains.</p>
-          <a class="p-button" href="/pro/subscribe">Get Ubuntu Pro</a>
+          <a class="p-button" href="/pro">Get Ubuntu Pro</a>
         </div>
       </div>
     </div>
