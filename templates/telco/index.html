@@ -1,42 +1,61 @@
 {% extends "telco/base_telco.html" %}
 
-{% block title %}Open source NFV platform for 5G{% endblock %}
+{% block title %}Carrier-grade open source for telecommunications{% endblock %}
 
-{% block meta_description %}Ubuntu is a leading platform in the telecommunications sector. Ubuntu powers telecommunications infrastructure of leading global service providers. Ubuntu is in the heart of the entire ETSI NFV stack, providing both NFVI and MANO, bringing operational costs down and ensuring the highest level of security. All of that at a competitive price.{% endblock %}
+{% block meta_description %}Canonical in telecommunications - secure open source telecom solutions for private mobile networks, Open RAN deployments, edge computing use cases, and private and edge cloud infrastructure, consumable by mobile network operators and enterprises.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1a3otoXCbXtddJG2HCnYIIHJiDxvG-pzFPtLobVB4-vw/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru is-dark">
-  {% include "shared/_rt-kernel-ga-banner.html" %}
-
   <div class="row u-equal-height">
-    <div class="col-8 u-vertically-center">
-      <h1>
-        Open source for telecoms
-      </h1>
-      <p class="p-heading--3">
-        Carrier-grade solutions
-      </p>
-      <p class="u-sv3">
-      Scale and complexity brings similar challenges, big or small. Hybrid cloud, public cloud, on-prem only large datacenter or highly distributed infrastructure - Canonical Open Source technology building blocks provide a unified approach to enabling Service Providers to meet any current or future use-cases, from OpenRAN, next generation Core (5G and beyond) or AI at the edge.
+    <div class="col-7 u-vertically-center">
+      <h1>Carrier-grade open source for telecom</h1>
+      <p class="p-heading--3">Canonical offers secure, modular and interoperable solutions for public and private clouds, multi-cloud or hybrid-cloud environments at centralised or distributed sites.</p>
+      <p>
+        <a href="/telco/contact-us" class="p-button--positive">Contact us</a>
       </p>
       <p>
-        <a href="/telco/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
-      </p>
-      <p>
-        <a class="p-link--inverted" href="/blog/introduction-to-open-source-private-lte-and-5g-networks">Intro to open source private LTE&nbsp;&rsaquo;</a>
+        <a class="p-link--inverted" href="/engage/telco-dilemma-reduce-5g-infra-cost">Cut your telco infrastructure costs&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/01a65abc-telecommunications-white.svg",
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/d2387483-telecommunications-grey.svg",
         alt="",
-        height="341",
-        width="330",
+        width="300",
+        height="300",
         hi_def=True,
-        loading="auto"
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Open source for the entire telco stack</h2>
+      <p>Achieve a cost-efficient and flexible software-based telecom infrastructure with production-grade open source solutions supported for 10 years.</p>
+      <p>Build a trusted, reliable and fully functional end-to-end network with lifecycle management and automation in place using model-driven operations.</p>
+      <p>Learn more about using open source for telco:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked"><a href="/engage/open-source-telco-infrastructure-whitepaper">How to use open source in the telco space</a></li>
+        <li class="p-list__item is-ticked"><a href="/telco/openran">Open source in the radio network</a></li>
+        <li class="p-list__item is-ticked"><a href="https://juju.is/">How to automate software with Juju</a></li>
+      </ul>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-align--left-medium u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/94dc8ff1-TelcoStack.png",
+        alt="",
+        width="855",
+        height="308",
+        hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -58,7 +77,6 @@
         <a href="/engage/5g-and-lte-networks-webinar" class="p-button--positive">Watch webinar</a>
       </p>
     </div>
-
     <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/55cff1c7-Anbox_Telco_5G.svg",
@@ -76,20 +94,29 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-6">
-      <h2>Infrastructure for CNF</h2>
-      <h4>Cloud-native network functions</h4>
-      <p>Orchestrate your CNFs with Charmed Kubernetes on OpenStack, VMware, and bare metal.</p>
-      <p>We work with network function vendors to optimise Kubernetes and Ubuntu for telco specific workloads.</p>
+      <h2>One subscription for full stack security coverage</h2>
+      <p>Canonical offers you <a href="/pro">Ubuntu Pro</a> the most comprehensive subscription to offload the compliance, security and support needs of your entire open source telco stack. </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Security hardening and compliance for remediation and auditing at scale</li>
+        <li class="p-list__item is-ticked">Support for a wide range of security frameworks and compliance profiles</li>
+        <li class="p-list__item is-ticked">10 years of security maintenance with timely CVE patches and software dependency management</li>
+        <li class="p-list__item is-ticked">Uninterrupted telco workloads and operations while ensuring system security</li>
+        <li class="p-list__item is-ticked">Confined execution spaces for telco workloads for desired levels of system isolation</li>
+      </ul>
       <p>
-        <a href="/telco/cnf">Read more&nbsp;&rsaquo;</a>
+        <a href="/engage/improving-telecom-security-2023-webinar">Access the webinar on telco security with Ubuntu Pro&nbsp;&rsaquo;</a>
+      </p>
+      <p>
+        <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-6 u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f145e15a-K8s_Multi-cloud_solid.svg",
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/cb2bad68-Security-with-Ubuntu-Pro.png",
         alt="",
-        width="252",
-        height="150",
+        width="406",
+        height="377",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -99,234 +126,210 @@
   </div>
   <div class="row">
     <div class="col-6 u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/669390e0-openstack-cloud.svg",
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/b261f3cb-telco-edge-cloud.png",
         alt="",
-        width="263",
-        height="150",
+        width="538",
+        height="284",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2>Infrastructure for NFV</h2>
-      <h4>OpenStack engineered for best price-performance</h4>
-      <p>Designed to be economical in every way.</p>
-      <p>Smart operations, optimal architecture, better pricing.</p>
-      <p>All of this to ensure TCO reduction of your cloud, while expanding your budget for innovation.</p>
+      <h2>Performant and efficient telco edge clouds</h2>
+      <p>Modern edge clouds delivered with carrier-grade open source solutions, tailored for the needs of telecom operators.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Minimal footprint with optimally sizes</li>
+        <li class="p-list__item is-ticked">Scalable, modular and highly-available</li>
+        <li class="p-list__item is-ticked">Cloud-native for Open RAN, 5G and MEC</li>
+        <li class="p-list__item is-ticked">Unattended operations with full automation</li>
+        <li class="p-list__item is-ticked">Security and compliance with Ubuntu Pro</li>
+        <li class="p-list__item is-ticked">Strictly confined and sandboxed orchestration</li>
+        <li class="p-list__item is-ticked">Automatic updates and streamlined upgrades</li>
+        <li class="p-list__item is-ticked">Multi-tenancy, identity and authentication</li>
+        <li class="p-list__item is-ticked">Observability at every part of the stack</li>
+        <li class="p-list__item is-ticked">Highly performant telco data plane</li>
+        <li class="p-list__item is-ticked">Ultra-reliability and bounded low latency</li>
+      </ul>
       <p>
-        <a href="/telco/vnf">Read more&nbsp;&rsaquo;</a>
+        Learn more about our modern telco edge solutions:
       </p>
+      <ul class="p-list">
+        <li class="p-list__item"><a href="/blog/bringing-automation-to-telco-edge-clouds-at-scale">Cloud Native Execution Platform (CNEP)</a></li>
+        <li class="p-list__item"><a href="https://canonical.com/microcloud">Scalable private clouds and edge computing with MicroCloud</a></li>
+        <li class="p-list__item"><a href="/kubernetes">Highly-available and pure upstream Canonical Kubernetes</a></li>
     </div>
-    <hr class="p-separator" />
   </div>
-  <div class="row">
-    <div class="col-6">
-      <h2>Open source software in telco</h2>
-      <h4>With components like OpenRAN, Magma Core, Kamailio and others, you can build a fully functional open telecom network.</h4>
-      <p>Canonical removes friction and complexity of the software lifecycle, with model-driven operations based on Juju Charms.</p>
-      <p>We stand behind these projects and provide up to 10 years of ESM support to infrastructure and open source software running on it.</p>
-      <p>
-        <a href="/engage/open-source-telco-infrastructure-whitepaper">Read how to use open source in the telco space&nbsp;&rsaquo;</a>
-      </p>
-      <p>
-        <a href="/telco/openran">Read more on OpenRAN&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6 u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-        alt="",
-        width="228",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <hr class="p-separator" />
-  </div>
-  <div class="row">
-    <div class="col-6 u-align--center u-vertically-center">
+</section>
 
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3de3935b-edge.png",
+<section class="p-strip--suru-blog-header">
+  <div class="row">
+    <div class="col-7 u-vertically-center">
+      <h2>With Canonical's Anbox Cloud technology, Vodafone delivered a full smartphone experience on entry-level smartphones and other connected devices via 5G connectivity.
+      </h2>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/be72de6b-Vodafone-Logo.png",
+        alt="",
+        width="3840",
+        height="2160",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Real-time kernel for telco</h2>
+      <p>Run your edge computing workloads and your devices on an ultra-reliable Linux kernel with bounded low latency.</p>
+      <p>Achieve agility and reliability in your business applications for industry 4.0, automation, autonomous driving, healthcare, smart city, smart energy grid, and many more.</p>
+      <p>Read the blogs:</p>
+      <ul class="p-list">
+        <li class="p-list__item has-bullet"><a href="/blog/how-a-real-time-kernel-reduces-latency-in-telco-edge-clouds">Latency reduction with real-time kernel in telco edge clouds</a></li>
+        <li class="p-list__item has-bullet"><a href="https://canonical.com/blog/what-is-real-time-linux-i">Real-time kernel blog series</a></li>
+        <li class="p-list__item has-bullet"><a href="https://canonical.com/blog/real-time-kernel-technical">Deep-dive with our post about real-time kernel technicals</a></li>
+      </ul>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/8fb44013-real-time-kernal-telco.png",
+        alt="",
+        width="501",
+        height="385",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="p-card col-6">
+      <p class="p-card__title"></p>
+      <p class="p-heading--5">Modern virtualisation infrastructure solutions for 5G</p>
+      <div class="p-card__content">
+        <p>Automation and lifecycle management brought to fully upstream open source solutions, with security and observability.</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="p-card col-6">
+        <p class="p-card__title">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/f07eaf0c-Canonical OpenStack.svg",
             alt="",
-            width="235",
-            height="270",
+            width="200",
+            height="50",
             hi_def=True,
             loading="lazy"
             ) | safe
           }}
+        </p>
+        <p class="p-heading--5">Virtual infrastructure for VMs,  engineered for best price–performance</p>
+        <div class="p-card__content">
+          <ul class="p-list">
+            <li class="p-list__item has-bullet">Economical in every way.</li>
+            <li class="p-list__item has-bullet">Smart operations, optimal architecture, better pricing.</li>
+            <li class="p-list__item has-bullet">TCO reduction of your cloud, while expanding your budget for innovation with <a href="/openstack">Canonical OpenStack</a> and <a href="https://canonical.com/microcloud">Canonical MicroCloud</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="col-6">
-      <h2>Micro clouds</h2>
-      <h4>The operations-friendly way to setup MEC sites</h4>
-      <p>A modular stack built on datacenter primitives for resilience, scalability and autonomy.</p>
-      <p>Bare metal provisioning of any OS image and on-demand change site configuration with MAAS.</p>
-      <p>Lightweight virtual machines with bare-metal performance, negligible latency and increased security with LXD.</p>
-      <p>Low-ops, minimal production Kubernetes for workstations, clouds edge and IoT with MicroK8s.</p>
-      <p>
-        <a href="https://maas.io/">Read more on MAAS&nbsp;&rsaquo;</a>
-      </p>
-      <p>
-        <a href="/lxd">Read more on LXD&nbsp;&rsaquo;</a>
-      </p>
-      <p>
-        <a href="https://microk8s.io/">Read more on MicroK8s&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <hr class="p-separator" />
   </div>
+</section>
 
+<section class="p-section">
   <div class="row">
-    <div class="col-6">
-      <h2>VNF onboarding, day 1 and day 2 operations with ETSI OSM</h2>
-      <h4>Accelerate your migration to NFV with Open Source MANO</h4>
-      <p>OSM assists with network functions onboarding and orchestration in physical, virtual, containerised and hybrid environments, as required in modern telco networks.</p>
-      <p>
-        <a href="/telco/osm">Read more&nbsp;&rsaquo;</a>
-      </p>
-      <p>
-        <a href="/engage/telco-network-functions-whitepaper">Learn how to build and orchestrate networks functions&nbsp;&rsaquo;</a>
-      </p>
-    </div>
     <div class="col-6 u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/a2e4b89f-opensource-MANO.svg",
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/d82d9e4b-Canonical-Kubernetes-logo-2022.png",
         alt="",
-        width="300",
-        height="108",
+        width="353",
+        height="103",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
-    <hr class="p-separator" />
+    <div class="col-6">
+      <h2>Infrastructure for cloud native telco</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Modular and scalable edge clouds with Canonical Kubernetes on MicroCloud or bare metal.</li>
+        <li class="p-list__item is-ticked">Reliable and stable core clouds with Canonical Kubernetes on OpenStack or bare metal.</li>
+        <li class="p-list__item is-ticked">Repeatable and trusted deployment and operations for CNFs.</li>
+        <li class="p-list__item is-ticked">Optimal and minimally-sized containers with chiselled Ubuntu images.</li>
+      </ul>
+      <p>Learn how we support cloud-native telco with:</p>
+      <ul class="p-list">
+        <li class="p-list__item has-bullet"><a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Chiselled Ubuntu</a></li>
+        <li class="p-list__item has-bullet"><a href="/kubernetes">Canonical Kubernetes</a></li>
+      </ul>
+    </div>
   </div>
+</section>
+
+<section class="p-strip--suru-blog-header">
   <div class="row">
-      <h2>Full stack, one price</h2>
-    <div class="col-6">
-      <h4>Security, support and managed open source for enterprises with Ubuntu Advantage</h4>
-    </div>
-    <div class="col-6">
-      <p>Ubuntu Advantage is a single, per-node package of the most comprehensive enterprise security and support for open source infrastructure and applications, with managed service offerings available.</p>
+    <div class="col-7 u-vertically-center">
+      <h2>Reduce 5G infrastructure costs with open source</h2>
       <p>
-        <a href="/support">Read more&nbsp;&rsaquo;</a>
+        <a href="/engage/telco-dilemma-reduce-5g-infra-cost" class="p-button--positive">Download our whitepaper</a>
       </p>
-      <div class="p-logo-section u-hide--small has-misaligned-images">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/df155ef0-magma.png",
-              alt="",
-              width="396",
-              height="127",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/6c534a44-oran.png",
-              alt="",
-              width="1500",
-              height="643",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/176a11dd-opensource-MANO.svg",
-              alt="",
-              width="300",
-              height="108",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f253ee6e-telecom-infra-project-vector-logo.svg",
-              alt="",
-              width="150",
-              height="150",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
-              alt="",
-              width="300",
-              height="78",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/9f8a8273-2018-logo-kubernetes+%282%29.svg",
-              alt="",
-              width="356",
-              height="60",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
-              alt="",
-              width="300",
-              height="67",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/038514e8-MAAS_black-orange_rgb.svg",
-              alt="",
-              width="300",
-              height="79",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/48a8eddf-juju_black-orange_hex.svg",
-              alt="",
-              width="407",
-              height="147",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/707119b1-5G_Telco_cost2.png",
+        alt="",
+        width="600",
+        height="400",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
+</section>
+
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Private mobile network</h2>
+      <p>Streamline the efficiency and productivity of your business applications with the performance and cost-efficiency benefits brought to you by private mobile networks with our secure open source solutions.</p>
+      <p>Focus on your business applications and processes while our software runs and maintains your telco infrastructure with automation.</p>
+      <p>We provide a full software stack with repeatable deployment steps that easily scale across your enterprise sites.</p>
+      <p>Our private mobile telco stack is powered by carrier-grade software infrastructure products  that come with built-in high-availability, security, and interoperability.</p>
+      <p>
+        <a href="/blog/introduction-to-open-source-private-lte-and-5g-networks">Intro to open source private LTE and 5G</a>
+      </p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-align--left-medium u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/1e013f0c-private-mobile-network-city-display.png",
+        alt="",
+        width="420",
+        height="307",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
 </section>
 
 {% with section_classes='p-strip--light', heading_topic='Telco', tag_name='telco', tag_id='1377', limit='4' %}
@@ -343,7 +346,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/e816c05d-Etsi.svg",
-            alt="",
+            alt="Etsi",
             width="112",
             height="34",
             hi_def=True,
@@ -355,7 +358,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/f15a069c-opnfv_logo_wp.png",
-            alt="",
+            alt="OPNFV",
             width="1582",
             height="343",
             hi_def=True,
@@ -367,7 +370,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/8217f350-CNTT.svg",
-            alt="",
+            alt="CNTT",
             width="71",
             height="59",
             hi_def=True,
@@ -379,7 +382,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/6d24ee33-OLF+Networking.png",
-            alt="",
+            alt="OLF Networking",
             width="137",
             height="46",
             hi_def=True,
@@ -391,7 +394,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/6c534a44-oran.png",
-            alt="",
+            alt="O-ran Allicance",
             width="1500",
             height="643",
             hi_def=True,
@@ -403,7 +406,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/f2999577-Cloud+Native.svg",
-            alt="",
+            alt="Cloud Native Computing Foundation",
             width="140",
             height="34",
             hi_def=True,
@@ -414,7 +417,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/60f5a586-kubernetes.svg",
-            alt="",
+            alt="Kubernetes",
             width="85",
             height="65",
             hi_def=True,
@@ -425,7 +428,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
-            alt="",
+            alt="OpenStack",
             width="300",
             height="145",
             hi_def=True,
@@ -437,7 +440,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/df155ef0-magma.png",
-            alt="",
+            alt="Magma",
             width="396",
             height="127",
             hi_def=True,
@@ -449,7 +452,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/176a11dd-opensource-MANO.svg",
-            alt="",
+            alt="Open Source MANO",
             width="300",
             height="108",
             hi_def=True,
@@ -461,7 +464,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/f253ee6e-telecom-infra-project-vector-logo.svg",
-            alt="",
+            alt="Telecom Infra",
             width="150",
             height="150",
             hi_def=True,
@@ -473,7 +476,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/48a8eddf-juju_black-orange_hex.svg",
-            alt="",
+            alt="Juju",
             width="407",
             height="147",
             hi_def=True,
