@@ -1096,21 +1096,22 @@
   resolved "https://registry.yarnpkg.com/@canonical/latest-news/-/latest-news-1.5.0.tgz#22b0c211114ef8d0b9a10d495d035411b21e1a86"
   integrity sha512-pNCNhBn/LFnCe9Fp3Dm4WJwVkGrJMlL6lZft1SnLqufE5k6+ihZVr03revNxyMwnSu5EPpDcEduqYrTuQQGM4A==
 
-"@canonical/react-components@^0.38.0":
-  version "0.38.0"
-  resolved "https://registry.npmjs.org/@canonical/react-components/-/react-components-0.38.0.tgz"
-  integrity sha512-0t20yrHamxCPCxlJu7ZjXMFexrfZXUSTZvVL+dSoTF8ZHTTi/NUnvgLMak8NWzVht9nOkVb6ltAA8pPSmMr8rg==
+"@canonical/react-components@^0.47.0":
+  version "0.47.1"
+  resolved "https://registry.yarnpkg.com/@canonical/react-components/-/react-components-0.47.1.tgz#4f870b47f688d06f0c9a018dc13c167479b3abd6"
+  integrity sha512-Uue9LyUQH5OLB8FcOccDpnlLYqxlXO3WT6ibKIs8oSxn+EUNI6xXKLljawnZGf7dtMiSdrv4ieaeYQmnV5mtlg==
   dependencies:
     "@types/jest" "27.5.2"
-    "@types/node" "16.11.47"
-    "@types/react" "17.0.48"
-    "@types/react-dom" "17.0.17"
-    "@types/react-table" "7.7.12"
-    classnames "2.3.1"
-    nanoid "3.3.4"
+    "@types/node" "18.18.5"
+    "@types/react" "18.2.28"
+    "@types/react-dom" "18.2.13"
+    "@types/react-table" "7.7.16"
+    classnames "2.3.2"
+    nanoid "3.3.6"
     prop-types "15.8.1"
+    react-router-dom "6.17.0"
     react-table "7.8.0"
-    react-useportal "1.0.17"
+    react-useportal "1.0.18"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -1421,6 +1422,11 @@
     redux "^4.1.2"
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
+
+"@remix-run/router@1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.10.0.tgz#e2170dc2049b06e65bbe883adad0e8ddf8291278"
+  integrity sha512-Lm+fYpMfZoEucJ7cMxgt4dYt8jLfbpwRCzAjm9UgSLOkmlqo9gupxt6YX3DY0Fk155NT9l17d/ydi+964uS9Lw==
 
 "@remix-run/router@1.3.1":
   version "1.3.1"
@@ -1736,10 +1742,15 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.1.tgz"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/node@*", "@types/node@16.11.47":
+"@types/node@*":
   version "16.11.47"
   resolved "https://registry.npmjs.org/@types/node/-/node-16.11.47.tgz"
   integrity sha512-fpP+jk2zJ4VW66+wAMFoBJlx1bxmBKx4DUFf68UHgdGCOuyUTDlLWqsaNPJh7xhNDykyJ9eIzAygilP/4WoN8g==
+
+"@types/node@18.18.5":
+  version "18.18.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.18.5.tgz#afc0fd975df946d6e1add5bbf98264225b212244"
+  integrity sha512-4slmbtwV59ZxitY4ixUZdy1uRLf9eSIvBWPQxNjhHYWEtn0FryfKpyS2cvADYXTayWdKEIsJengncrVvkI4I6A==
 
 "@types/node@^14.14.31":
   version "14.17.14"
@@ -1766,7 +1777,14 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.3.tgz"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/react-dom@17.0.17", "@types/react-dom@>=16.9.0":
+"@types/react-dom@18.2.13":
+  version "18.2.13"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.13.tgz#89cd7f9ec8b28c8b6f0392b9591671fb4a9e96b7"
+  integrity sha512-eJIUv7rPP+EC45uNYp/ThhSpE16k22VJUknt5OLoH9tbXoi8bMhwLf5xRuWMywamNbWzhrSmU7IBJfPup1+3fw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-dom@>=16.9.0":
   version "17.0.17"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.17.tgz"
   integrity sha512-VjnqEmqGnasQKV0CWLevqMTXBYG9GbwuE6x3VetERLh0cq2LTptFE73MrQi2S7GkKXCf2GgwItB/melLnxfnsg==
@@ -1780,10 +1798,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@7.7.12":
-  version "7.7.12"
-  resolved "https://registry.npmjs.org/@types/react-table/-/react-table-7.7.12.tgz"
-  integrity sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==
+"@types/react-table@7.7.16":
+  version "7.7.16"
+  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.7.16.tgz#e143e2c0fa2dcac739fcc8055e58f5a7a9c0e5fb"
+  integrity sha512-khfVwkNkvFnQV+Dx5Z/4jeMWIi+qytR8/Hl89fMPQ3aGiIgVlnghwdnyrq45UVSU+9wTqQFL0kUmIk4MGaM20Q==
   dependencies:
     "@types/react" "*"
 
@@ -1794,10 +1812,19 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@17.0.48", "@types/react@>=16.9.0", "@types/react@^17":
+"@types/react@*", "@types/react@>=16.9.0", "@types/react@^17":
   version "17.0.48"
   resolved "https://registry.npmjs.org/@types/react/-/react-17.0.48.tgz"
   integrity sha512-zJ6IYlJ8cYYxiJfUaZOQee4lh99mFihBoqkOSEGV+dFi9leROW6+PgstzQ+w3gWTnUfskALtQPGHK6dYmPj+2A==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@18.2.28":
+  version "18.2.28"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.28.tgz#86877465c0fcf751659a36c769ecedfcfacee332"
+  integrity sha512-ad4aa/RaaJS3hyGz0BGegdnSRXQBkd1CCYDCdNjBPg90UUpLgo+WlJqb9fMYUxtehmzF3PJaTWqRZjko6BRzBg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -2748,10 +2775,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.1.tgz"
-  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+classnames@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
+  integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -6268,12 +6295,7 @@ nanoclone@^0.2.1:
   resolved "https://registry.npmjs.org/nanoclone/-/nanoclone-0.2.1.tgz"
   integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
 
-nanoid@3.3.4:
-  version "3.3.4"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
-  integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
-
-nanoid@^3.1.30, nanoid@^3.3.6:
+nanoid@3.3.6, nanoid@^3.1.30, nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
@@ -7164,6 +7186,14 @@ react-query@3.34.7:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
+react-router-dom@6.17.0:
+  version "6.17.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.17.0.tgz#ea73f89186546c1cf72b10fcb7356d874321b2ad"
+  integrity sha512-qWHkkbXQX+6li0COUUPKAUkxjNNqPJuiBd27dVwQGDNsuFBdMbrS6UZ0CLYc4CsbdLYTckn4oB4tGDuPZpPhaQ==
+  dependencies:
+    "@remix-run/router" "1.10.0"
+    react-router "6.17.0"
+
 react-router-dom@^6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.8.0.tgz#5e5f4c4b15fdec3965d2ad9d7460d0c61971e744"
@@ -7171,6 +7201,13 @@ react-router-dom@^6.8.0:
   dependencies:
     "@remix-run/router" "1.3.1"
     react-router "6.8.0"
+
+react-router@6.17.0:
+  version "6.17.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.17.0.tgz#7b680c4cefbc425b57537eb9c73bedecbdc67c1e"
+  integrity sha512-YJR3OTJzi3zhqeJYADHANCGPUu9J+6fT5GLv82UWRGSxu6oJYCKVmxUcaBQuGm9udpWmPsvpme/CdHumqgsoaA==
+  dependencies:
+    "@remix-run/router" "1.10.0"
 
 react-router@6.8.0:
   version "6.8.0"
@@ -7209,12 +7246,12 @@ react-useportal@1.0.16:
   dependencies:
     use-ssr "^1.0.22"
 
-react-useportal@1.0.17:
-  version "1.0.17"
-  resolved "https://registry.npmjs.org/react-useportal/-/react-useportal-1.0.17.tgz"
-  integrity sha512-IS1NC+qQtp8e9Z9f8EPpW5whU85VuaT9Vxzw20vAAfKoRB9dlsnFmZ8NeNkbjNaue7Iy64Qsafs73M7qvkMzoA==
+react-useportal@1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/react-useportal/-/react-useportal-1.0.18.tgz#b3baf14962f44402b2d0d6152acc2035c5342bd8"
+  integrity sha512-dGuT/yyE2T9RtUxRZJYkIX8tLHC7KxAxbMw/Ufjiwo8ixoDYzkk9LFKGnARtCtFz6Yd5AoP7fVymrN3eT04jiA==
   dependencies:
-    use-ssr "^1.0.22"
+    use-ssr "^1.0.25"
 
 react@17.0.2:
   version "17.0.2"
@@ -8575,6 +8612,11 @@ use-ssr@^1.0.22:
   resolved "https://registry.npmjs.org/use-ssr/-/use-ssr-1.0.24.tgz"
   integrity sha512-0MFps7ezL57/3o0yl4CvrHLlp9z20n1rQZV/lSRz7if+TUoM6POU1XdOvEjIgjgKeIhTEye1U0khrIYWCTWw4g==
 
+use-ssr@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/use-ssr/-/use-ssr-1.0.25.tgz#c7f54b59d6e52db26749b1d4115a650101a190bd"
+  integrity sha512-VYF8kJKI+X7+U4XgGoUER2BUl0vIr+8OhlIhyldgSGE0KHMoDRXPvWeHUUeUktq7ACEOVLzXGq1+QRxcvtwvyQ==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/use/-/use-3.1.1.tgz"
@@ -8624,10 +8666,10 @@ vanilla-framework@3.0.1:
     postcss-cli "9.1.0"
     sass "1.45.2"
 
-vanilla-framework@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.3.0.tgz#44850ba1e568646bd1144de25628f63758d749ce"
-  integrity sha512-CDFgUX7MMp3ZJoiE8nif/uSPD3YPaK0lWm8iru9tgIO/SloWzkGvG2G5NPllDnwF4cMMi7YxsK/ylz7mH7OgZA==
+vanilla-framework@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.5.1.tgz#19b55dd4771c304b2bae8af646312916f5f45917"
+  integrity sha512-vF7GGZsXcQZnM2522Q2am08to/iM2K+EhsfYPuYsiHvp2kRGxY/rJ8tcjbKftNY859qOqT8yJg0PE+sVmKI5zg==
 
 verbalize@^0.1.2:
   version "0.1.2"
