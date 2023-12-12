@@ -69,6 +69,7 @@ from webapp.shop.cred.views import (
     cred_beta_activation,
     cred_cancel_exam,
     cred_exam,
+    cred_exam_status,
     cred_home,
     cred_redeem_code,
     cred_schedule,
@@ -866,6 +867,7 @@ app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
 app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentials/exam", view_func=cred_exam)
+app.add_url_rule("/credentials/exam/<exam_id>/status", view_func=cred_exam_status)
 app.add_url_rule(
     "/credentials/<string:type>/products",
     view_func=get_cue_products,

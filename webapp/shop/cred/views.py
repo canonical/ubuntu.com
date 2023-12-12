@@ -398,8 +398,13 @@ def cred_exam(trueability_api, **_):
         return flask.abort(403)
 
     url = trueability_api.get_assessment_redirect(assessment_id)
-    return flask.render_template("credentials/exam.html", url=url)
+    return flask.render_template("credentials/exam.html", url=url, assessment_id=assessment_id)
 
+@shop_decorator(area="cred", permission="user", response="json")
+def cred_exam_status(trueability_api, **kwargs):
+    assessment_id = kwargs.get("exam_id")
+    assessment = trueability_api.get_assessment(assessment_id)
+    return flask.jsonify(assessment)
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_syllabus_data(**_):
