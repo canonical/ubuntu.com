@@ -3,7 +3,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&page=1&per_page=3&sticky=true&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&page=1&per_page=3&sticky=true&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":113667,"date":"2023-04-12T12:11:17","date_gmt":"2023-04-12T12:11:17","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113667"},"modified":"2023-04-12T13:17:11","modified_gmt":"2023-04-12T13:17:11","slug":"kubeflow-appliance-aws","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/12\/kubeflow-appliance-aws\/","title":{"rendered":"Charmed
@@ -309,7 +309,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:33 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=3&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&sticky=1&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=3&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&sticky=1&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
@@ -340,7 +340,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/categories?_embed=true&slug=events
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/categories?_embed=&slug=events
   response:
     body:
       string: '[{"id":1175,"count":135,"description":"","link":"https:\/\/admin.insights.ubuntu.com\/category\/events\/","name":"Events","slug":"events","taxonomy":"category","parent":0,"meta":[],"_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories\/1175"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?categories=1175"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?categories=1175"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]'
@@ -388,7 +388,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/categories?_embed=true&slug=webinars
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/categories?_embed=&slug=webinars
   response:
     body:
       string: '[{"id":1187,"count":106,"description":"","link":"https:\/\/admin.insights.ubuntu.com\/category\/webinars\/","name":"Webinars","slug":"webinars","taxonomy":"category","parent":0,"meta":[],"_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories\/1187"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?categories=1187"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?categories=1187"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]'
@@ -436,7 +436,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&categories=1175%2C1187&page=1&per_page=3&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&categories=1175%2C1187&page=1&per_page=3&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":113928,"date":"2023-04-11T08:00:17","date_gmt":"2023-04-11T08:00:17","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113928"},"modified":"2023-04-10T18:20:28","modified_gmt":"2023-04-10T18:20:28","slug":"dell-and-canonical-at-kubecon-cloudnativecon-europe","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/11\/dell-and-canonical-at-kubecon-cloudnativecon-europe\/","title":{"rendered":"Dell
@@ -691,7 +691,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:33 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=3&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&categories%5B0%5D=1175&categories%5B1%5D=1187&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=3&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&categories%5B0%5D=1175&categories%5B1%5D=1187&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
@@ -722,7 +722,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=113667%2C113790%2C113681&page=1&per_page=11&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&exclude=113667%2C113790%2C113681&page=1&per_page=11&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":113942,"date":"2023-04-18T07:37:15","date_gmt":"2023-04-18T07:37:15","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113942"},"modified":"2023-04-11T07:42:34","modified_gmt":"2023-04-11T07:42:34","slug":"postgresql-high-availability","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/18\/postgresql-high-availability\/","title":{"rendered":"PostgreSQL
@@ -2260,7 +2260,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:24 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=11&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=113667&exclude%5B1%5D=113790&exclude%5B2%5D=113681&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=11&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=113667&exclude%5B1%5D=113790&exclude%5B2%5D=113681&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
@@ -2291,7 +2291,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/tags?_embed=true&slug=design
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/tags?_embed=&slug=design
   response:
     body:
       string: '[{"id":1239,"count":615,"description":"","link":"https:\/\/admin.insights.ubuntu.com\/tag\/design\/","name":"Design","slug":"design","taxonomy":"post_tag","meta":[],"_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1239"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1239"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1239"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]'
@@ -2339,7 +2339,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&page=1&per_page=12&tags=1239&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&page=1&per_page=12&tags=1239&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":110865,"date":"2022-10-14T10:10:47","date_gmt":"2022-10-14T10:10:47","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=110865"},"modified":"2023-02-17T08:28:48","modified_gmt":"2023-02-17T08:28:48","slug":"introducing-a-vscode-extension-for-vanilla-css-framework","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2022\/10\/14\/introducing-a-vscode-extension-for-vanilla-css-framework\/","title":{"rendered":"Introducing
@@ -3683,7 +3683,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:26 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1239&per_page=12&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1239&per_page=12&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
@@ -3714,7 +3714,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/group?_embed=true&slug=internet-of-things
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/group?_embed=&slug=internet-of-things
   response:
     body:
       string: '[{"id":1666,"count":2430,"description":"","link":"https:\/\/admin.insights.ubuntu.com\/group\/internet-of-things\/","name":"Internet
@@ -3763,7 +3763,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&group=1666&page=1&per_page=12&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&group=1666&page=1&per_page=12&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":113877,"date":"2023-04-09T13:24:06","date_gmt":"2023-04-09T13:24:06","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113877"},"modified":"2023-04-09T13:24:12","modified_gmt":"2023-04-09T13:24:12","slug":"four-challenges-for-ml-data-pipeline","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/09\/four-challenges-for-ml-data-pipeline\/","title":{"rendered":"Four
@@ -5397,7 +5397,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:23 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=12&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&group%5B0%5D=1666&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?per_page=12&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&group%5B0%5D=1666&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
@@ -5428,7 +5428,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&slug=installing-ros-in-lxd&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&slug=installing-ros-in-lxd&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":96552,"date":"2020-06-29T15:00:29","date_gmt":"2020-06-29T15:00:29","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=96552"},"modified":"2020-07-20T10:59:07","modified_gmt":"2020-07-20T10:59:07","slug":"installing-ros-in-lxd","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2020\/06\/29\/installing-ros-in-lxd\/","title":{"rendered":"Installing
@@ -5662,7 +5662,7 @@ interactions:
     body: null
     headers: {}
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=96552&page=1&per_page=30&tags=1695%2C1743%2C1721%2C1700%2C1639%2C3260%2C1564%2C3870&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=&exclude=96552&page=1&per_page=30&tags=1695%2C1743%2C1721%2C1700%2C1639%2C3260%2C1564%2C3870&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
   response:
     body:
       string: '[{"id":113725,"date":"2023-04-17T08:48:26","date_gmt":"2023-04-17T08:48:26","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113725"},"modified":"2023-04-17T08:48:28","modified_gmt":"2023-04-17T08:48:28","slug":"optimise-your-ros-snap-part-3","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/17\/optimise-your-ros-snap-part-3\/","title":{"rendered":"Optimise
@@ -9838,7 +9838,7 @@ interactions:
       Date:
       - Thu, 20 Apr 2023 08:41:39 GMT
       Link:
-      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1695&tags%5B1%5D=1743&tags%5B2%5D=1721&tags%5B3%5D=1700&tags%5B4%5D=1639&tags%5B5%5D=3260&tags%5B6%5D=1564&tags%5B7%5D=3870&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=96552&_embed=true>;
+      - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1695&tags%5B1%5D=1743&tags%5B2%5D=1721&tags%5B3%5D=1700&tags%5B4%5D=1639&tags%5B5%5D=3260&tags%5B6%5D=1564&tags%5B7%5D=3870&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=96552&_embed=>;
         rel="next"
       Server:
       - Apache/2.4.7 (Ubuntu)
