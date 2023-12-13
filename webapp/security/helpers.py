@@ -13,7 +13,6 @@ def get_summarized_status(cve, ignored_low_indicators, vulnerable_indicators):
     for package in cve["packages"]:
         # Check if all statuses for all packages are the same, excluding DNE and empty data
         if (len({d["status"] for d in package["statuses"] if d["status"] not in {"DNE", ""}}) == 1):
-            #  todo: set status
             cve["summarized_status"] = {
                 "name" : cve["packages"][0]["statuses"][0]["status"]
             }                
