@@ -43,16 +43,16 @@ function retrieveSelectedFilters() {
   const path = window.location.pathname;
   const pathCategory = path.replace("/certified/", "");
 
-  let selectedCategories;
+  let selectedCategories = [];
   let selectedVendors = urlParams.getAll("vendor");
   let selectedReleases = urlParams.getAll("release");
 
   if (pathCategory !== "/certified") {
-    selectedCategories = urlParams.getAll("category").push(pathCategory);
+    selectedCategories = urlParams.getAll("category");
+    selectedCategories.push(pathCategory);
   } else {
     selectedCategories = urlParams.getAll("category");
   }
-
   return {
     category: selectedCategories,
     vendor: selectedVendors,
