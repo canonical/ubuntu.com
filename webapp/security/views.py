@@ -2,7 +2,6 @@
 import re
 from datetime import datetime
 from math import ceil, floor
-from collections import Counter
 
 # Packages
 import flask
@@ -321,7 +320,7 @@ def cve_index():
         versions=versions,
         statuses=statuses,
     )
-    
+
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
 
@@ -339,13 +338,19 @@ def cve_index():
 
     high_priority_cves = high_priority_response.get("cves")
 
-    ignored_low_indicators = ["end of standard support", "superseded", "replaced"]
+    ignored_low_indicators = [
+        "end of standard support",
+        "superseded",
+        "replaced",
+    ]
     vulnerable_indicators = ["needed", "pending", "deferred"]
 
     for cve in high_priority_cves:
         cve["summarized_status"] = {}
-        get_summarized_status(cve, ignored_low_indicators, vulnerable_indicators)
-        
+        get_summarized_status(
+            cve, ignored_low_indicators, vulnerable_indicators
+        )
+
     # Check if cve id is valid
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
