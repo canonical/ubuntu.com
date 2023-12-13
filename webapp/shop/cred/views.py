@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import math
+import sched
 import pytz
 import flask
 import json
@@ -107,10 +108,20 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
-        scheduled_time = f"{data['date']}T{data['time']}"
-        starts_at = tz_info.localize(
-            datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
+        scheduled_time = datetime.strptime(
+            f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
+        if scheduled_time < datetime.now():
+            error = "You cannot schedule an exam in the past."
+            return flask.render_template(
+                "/credentials/schedule.html", error=error
+            )
+        if scheduled_time < now + timedelta(minutes=30):
+            error = "You cannot schedule an exam less than 30 minutes in the future."
+            return flask.render_template(
+                "/credentials/schedule.html", error=error
+            )
+        starts_at = tz_info.localize(scheduled_time)
         contract_item_id = data["contractItemID"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
@@ -124,7 +135,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             country_code,
         )
 
-        if response and "error" in response:
+        if response and "reservation" not in response:
             error = response["message"]
             return flask.render_template(
                 "/credentials/schedule.html", error=error
