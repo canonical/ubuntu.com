@@ -42,11 +42,11 @@
     <div class="col">
       <form id="searchForm">
         <div class="row">
-          <div class="col-7">
+          <div class="col-7 col-medium-4">
             <label for="q">CVE ID or description contains:</label>
             <input  type="text" name="q" id="q" value="{{ query or '' }}">
           </div>
-          <div class="col-2">
+          <div class="col-2 col-medium-2">
             <button style="margin-top: 2.6rem; width: 100%;" type="submit" class="p-button--positive" id="cve-search-button">
               <span class="cve-search-text">Search</span>
               <span class="cve-search-valid-cve-text u-hide">Go to CVE</span>
@@ -142,7 +142,7 @@
                 {% elif loop.index == 6 %}
                   and {{ cve.packages | length - 5 }} more
                 {% endif %}
-              {% elif cve.packages | length < 6 %}
+              {% else %}
                 {% if loop.last %}
                   {{ package.name }}
                 {% else %}
@@ -158,7 +158,6 @@
       {% endfor %}
     </div>
   </div>
-
 </section>
 
 <section class="p-strip is-shallow u-overflow-inherit u-hide">
@@ -241,10 +240,9 @@
             <li class="p-list__item"><a href="/blog/running-openssl-1-1-1-after-eol-with-ubuntu-pro">Running OpenSSL 1.1.1 after EOL? Stay secure with Ubuntu Pro.</a></li>
             <li class="p-list__item"><a href="/blog/ubuntu-23-10-restricted-unprivileged-user-namespaces">Restricted unprivileged user namespaces are coming to Ubuntu 23.10</a></li>
             <li class="p-list__item"><a href="/blog/securing-open-source-software-dependencies-in-the-public-cloud">Securing open source software dependencies in the public cloud</a></li>
-
           </ul>
         </div>
-    </div>
+      </div>
   </div>
 </section>
 
