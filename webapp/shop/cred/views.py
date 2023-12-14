@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 import math
-import sched
 import pytz
 import flask
 import json
@@ -117,7 +116,8 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "/credentials/schedule.html", error=error
             )
         if scheduled_time < now + timedelta(minutes=30):
-            error = "You cannot schedule an exam less than 30 minutes in the future."
+            error = """You cannot schedule an exam less than 30 minutes in
+             the future."""
             return flask.render_template(
                 "/credentials/schedule.html", error=error
             )
