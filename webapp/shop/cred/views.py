@@ -191,6 +191,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     exams_not_taken = []
     exams_complete = []
     exams_cancelled = []
+    exams_expired = []
 
     if exam_contracts:
         for exam_contract in exam_contracts:
@@ -199,6 +200,12 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             contract_item_id = (
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
+            if "effectivenessContext" in exam_contract and "status" in exam_contract["effectivenessContext"] and exam_contract["effectivenessContext"]["status"] == "expired":
+                    exams_expired.append(
+                        {"name": name, "state": "Expired", "actions": []}
+                    )
+                    continue
+
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -311,6 +318,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         + exams_not_taken
         + exams_complete
         + exams_cancelled
+        + exams_expired
     )
 
     response = flask.make_response(
