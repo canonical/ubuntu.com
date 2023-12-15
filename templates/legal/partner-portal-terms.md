@@ -3,7 +3,7 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Partner Portal terms and conditions"
   description: "This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website."
-  update_date: "Version - February 2019"
+  update_date: "Version - January 2024"
   copydoc: https://docs.google.com/document/d/1CqJbwC3KpEJeJaCUVjAIN0y6ZLmoc7gVlFyc-BeFMYw/edit#
 ---
 
@@ -15,13 +15,13 @@ context:
 
 ## Copyright
 
-The website HTML, text, images audio, video, software or other content that is made available on Canonical's Partner Platform or otherwise hosted by Canonical are the property of someone - the author in the case of content produced elsewhere and reproduced here with permission of Canonical, the platform provider or content suppliers (e.g. Gorilla Toolz, Inc. and Vartopia, LLC.). Before you use this content in some way please take care to ensure that you have the relevant rights and permissions from the copyright holder.
+The website HTML, text, images audio, video, software or other content that is made available on Canonical's Partner Platform or otherwise hosted by Canonical are the property of someone - the author in the case of content produced elsewhere and reproduced here with permission of Canonical, the platform provider or content suppliers (e.g. Zift Solutions). Before you use this content in some way please take care to ensure that you have the relevant rights and permissions from the copyright holder.
 
 You are welcome to display on your computer, download and print pages from Canonical's Partner Platform for internal use only. You must retain copyright, trademark and other notices unaltered on any copies or printouts you make. Certain materials available on this site are "open source" materials subject to the GNU General Public Licence ("GPL") or other open-source licence and are so marked. Use of those materials is governed by the individual applicable licence.
 
 ## Trademarks
 
-Any trademarks, logos and service marks displayed on Canonical's Partner Platform are the property of their owners, whether Canonical or third parties. For example, the Gorilla Toolz logo is a registered trademark of Gorilla Toolz, Inc.
+Any trademarks, logos and service marks displayed on Canonical's Partner Platform are the property of their owners, whether Canonical or third parties. For example, the ZiftONE logo is a registered trademark of Zift Solutions.
 
 ## Privacy policy
 
