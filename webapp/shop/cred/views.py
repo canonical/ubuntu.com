@@ -869,6 +869,25 @@ def cred_shop_thank_you(**kwargs):
     )
 
 
+def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)    
+
+    keys = []
+    for contract in contracts:
+        contract_id = contract.id
+        all_keys = ua_contracts_api.list_activation_keys(contract_id)
+        keys.extend(all_keys)
+
+    response = flask.make_response(
+        flask.render_template(
+            "credentials/shop/manage.html",
+            keys=keys,
+        )
+    )
+    return response
+
+
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
 def cred_shop_webhook_responses(trueability_api, **kwargs):
