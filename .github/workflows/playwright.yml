@@ -6,8 +6,6 @@ env:
   STRIPE_PUBLISHABLE_KEY: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
   CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 jobs:
@@ -45,11 +43,3 @@ jobs:
         PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
         PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
       run: yarn playwright test
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        build: yarn run build
-        start: yarn run serve
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
