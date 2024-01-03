@@ -871,7 +871,7 @@ def cred_shop_thank_you(**kwargs):
 
 def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account("canonical-ua")
-    contracts = advantage_mapper.get_activation_key_contracts(account.id)    
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
     keys = []
     for contract in contracts:
