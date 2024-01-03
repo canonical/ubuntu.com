@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Partner Portal"
   description: This privacy notice tells you about the information we collect from you when you access the Canonical Partner Portal.
+  update_date: "Version - January 2024"
   copydoc: https://docs.google.com/document/d/1yuh7dL3jjkj21sKJCUhm_z00PKzH4vssY339wbp4U-s/edit
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Partner Portal
 
@@ -21,7 +19,7 @@ We are not required to have a data protection officer, so any enquiries about ou
 
 ## What personal data do we collect?
 
-When you access the Canonical Partner Portal, we ask you to submit your USERID and password. You will ask be asked for further information through the deal registration system, including name, address, contact telephone number, email address and information about the deal you are registering.
+When you access the Canonical Partner Portal, we ask you to submit your USERID and password. You will be asked for further information through the deal registration system, including name, address, contact telephone number, email address and information about the deal you are registering.
 
 ## Why do we collect this information?
 
@@ -42,7 +40,7 @@ We may:
 
 Your information is stored in our order processing system and may be processed outside of the European Economic Area. It is shared with the third parties set out below and as reasonably required for Canonical to process and store your data.
 
-The Canonical Partner Platform is hosted by a third party supplier, Gorilla Toolz, Inc. and the deal registration system (part of the Canonical Partner Platform) is hosted by a third party supplier, Vartopia LLC. In order for the Canonical Partner Platform to operate we share your information with these third party suppliers and they may share information about you with us.
+The Canonical Partner Platform is hosted by a third party supplier, Zift Solutions. In order for the Canonical Partner Platform to operate we share your information with this third party supplier and they may share information about you with us.
 
 ## Our legal basis to use your Personal information
 
