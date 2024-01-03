@@ -1,0 +1,25 @@
+settings:
+  # Jira project key to create the issue in
+  jira_project_key: "WD"
+
+  # Dictionary mapping GitHub issue status to Jira issue status
+  status_mapping:
+    opened: Untriaged
+    closed: done
+
+  # (Optional) Jira project components that should be attached to the created issue
+  # Component names are case-sensitive
+  components:
+    - Sites Tribe
+
+  # (Optional) (Default: false) Add a new comment in GitHub with a link to Jira created issue
+  add_gh_comment: false
+
+  # (Optional) (Default: true) Synchronize issue description from GitHub to Jira
+  sync_description: true
+
+  # (Optional) (Default: true) Synchronize comments from GitHub to Jira
+  sync_comments: true
+
+  # (Optional) (Default: None) Parent Epic key to link the issue to
+  epic_key: "WD-6777"
