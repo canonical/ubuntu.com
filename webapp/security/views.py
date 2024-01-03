@@ -368,6 +368,8 @@ def cve_index():
             all_releases.append(release)
 
     selected_releases = []
+    lts_releases = []
+    maintained_releases = []
 
     for release in all_releases:
         # format dates
@@ -377,13 +379,18 @@ def cve_index():
         esm_date = datetime.strptime(
             release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
         )
+        release_date = datetime.strptime(
+            release["release_date"], "%Y-%m-%dT%H:%M:%S"
+        )
 
         # filter releases
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
                     selected_releases.append(release)
-        elif support_date > datetime.now() or esm_date > datetime.now():
+        elif (
+            support_date > datetime.now() or esm_date > datetime.now()
+        ) and release_date < datetime.now():
             selected_releases.append(release)
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
@@ -425,6 +432,8 @@ def cve_index():
         versions=versions,
         statuses=statuses,
         selected_releases=selected_releases,
+        lts_releases=lts_releases,
+        maintained_releases=maintained_releases,
         high_priority_cves=high_priority_cves,
     )
 
