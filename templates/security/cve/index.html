@@ -68,13 +68,14 @@
         </div>
         <div class="col-7">
           <ul class="p-inline-list" style="margin-top: .3rem;">
-            <li class="p-inline-list__item"><a>All maintained releases</a></li>
-            <li class="p-inline-list__item"><a>All LTS</a></li>
-            <li class="p-inline-list__item"><a>22.04 LTS</a></li>
-            <li class="p-inline-list__item"><a>20.04 LTS</a></li>
-            <li class="p-inline-list__item"><a>18.04 LTS</a></li>
-            <li class="p-inline-list__item"><a>23.10</a></li>
-            <li class="p-inline-list__item"><a>Other releases</a></li>
+            <!-- Once the search results page is finished and the cve list is not tied to the current table cols, selected releases, maintained releases, and lts releases will be accounted for separately -->
+            <li class="p-inline-list__item"><a href="/security/cves?{% for release in selected_releases %}version={{release.codename}}&status=&{% endfor %}">All maintained releases</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=&version=focal&status=&version=bionic&status=&version=xenial&status=&version=trusty&status=">All LTS</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=">22.04 LTS</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?version=focal&status=">20.04 LTS</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?version=bionic&status=">18.04 LTS</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?version=mantic&status=">23.10</a></li>
+            <li class="p-inline-list__item"><a href="/security/cves?status=">Other releases</a></li>
           </ul>
         </div>
       </div>
@@ -82,7 +83,7 @@
   </div>
 </section>
 
-<section class="p-section">
+<section class="p-section" id="recent-cves">
   <div class="row">
     <hr class="p-rule"/>
     <div class="col-3 p-section--shallow">
@@ -160,7 +161,7 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow u-overflow-inherit u-hide">
+<section class="p-strip is-shallow u-overflow-inherit u-hide" id="cve-list">
   <div class="u-fixed-width">
     {% if query or package or priority %}
     <h2>
