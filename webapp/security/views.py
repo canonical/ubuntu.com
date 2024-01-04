@@ -455,6 +455,7 @@ def cve_index():
                     "pocket": status["pocket"],
                     "icon": friendly_status["icon"],
                 }
+                
     return flask.render_template(
         "security/cves/index.html",
         all_releases=all_releases,
