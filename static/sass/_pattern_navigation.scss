@@ -43,7 +43,6 @@ $meganav-height: 3rem;
     }
 
     .p-navigation__nav {
-      margin-left: -2rem;
       margin-right: 0;
       max-height: calc(100vh - 3rem);
       width: auto;
@@ -187,6 +186,10 @@ $meganav-height: 3rem;
 
         &[aria-hidden="false"] {
           overflow: unset;
+        }
+
+        &::before {
+          box-shadow: none;
         }
       }
 
@@ -417,15 +420,15 @@ $meganav-height: 3rem;
       }
     }
 
-    button.p-navigation__link.js-menu-button {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
     .p-navigation__item {
       .p-navigation__link {
         color: $color-mid-light;
       }
+
+      .js-menu-button.p-navigation__link {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }  
     }
 
     .p-navigation__link--search-toggle {
@@ -555,10 +558,6 @@ $meganav-height: 3rem;
     position: sticky;
     top: 0;
     z-index: 10;
-
-    .p-navigation__nav {
-      margin-left: -2rem;
-    }
 
     .p-navigation__nav.is-open {
       display: flex;
