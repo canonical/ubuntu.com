@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Canonical Support Portal"
   description: This privacy notice tells you about the information collected from you when you access the Canonical Support Portal. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
+  update_date: "Version - December 2023"
   copydoc: https://docs.google.com/document/d/1x8vH0dabSF7en7KenZKKDlugFHjbKwtdonuKPbQUDiM/edit
 ---
-
-<h4 class="p-muted-heading">Version - January 2024</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – Canonical Support Portal
 
@@ -66,7 +64,7 @@ If you would like to unsubscribe from any email, you can also click the “unsub
 
 ## Keeping your personal information secure
 
-We have appropriate security measures in place to prevent personal information from being accidentally lost, or used or accessed in an unauthorized way. We limit access to your personal information to those who have a genuine business need to know it. Those processing your information will do so only in an authorized manner and are subject to a duty of confidentiality.
+We have appropriate security measures in place to prevent personal information from being accidentally lost, or used or accessed in an unauthorised way. We limit access to your personal information to those who have a genuine business need to know it. Those processing your information will do so only in an authorised manner and are subject to a duty of confidentiality.
 
 We also have procedures in place to deal with any suspected data security breach. We will notify you and any applicable regulator of a suspected data breach where we are legally required to do so.
 
