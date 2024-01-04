@@ -875,9 +875,16 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
 
     keys = []
     for contract in contracts:
-        contract_id = contract.id
-        all_keys = ua_contracts_api.list_activation_keys(contract_id)
+        all_keys = ua_contracts_api.list_activation_keys(contract.id)
         keys.extend(all_keys)
+
+    for key in keys:
+        parsed_date = (
+            datetime.strptime(key["expirationDate"], "%Y-%m-%dT%H:%M:%SZ")
+            .replace(tzinfo=pytz.timezone("UTC"))
+            .astimezone()
+        )
+        key["expirationDate"] = parsed_date.strftime("%a %b %d %Y %H:%M:%S %Z%z")
 
     response = flask.make_response(
         flask.render_template(
