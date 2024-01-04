@@ -408,14 +408,18 @@ def cve_index():
     }
 
     for cve in cves:
-        for cve_package in cve["packages"]:
-            cve_package["release_statuses"] = {}
-            for status in cve_package["statuses"]:
-                cve_package["release_statuses"][status["release_codename"]] = {
-                    "slug": status["status"],
-                    "name": friendly_names[status["status"]],
-                    "pocket": status["pocket"],
-                }
+        cve["summarized_status"] = {}
+        get_summarized_status(
+            cve, ignored_low_indicators, vulnerable_indicators
+        )
+        # for cve_package in cve["packages"]:
+        #     cve_package["release_statuses"] = {}
+        #     for status in cve_package["statuses"]:
+        #         cve_package["release_statuses"][status["release_codename"]] = {
+        #             "slug": status["status"],
+        #             "name": friendly_names[status["status"]],
+        #             "pocket": status["pocket"],
+        #         }
 
     return flask.render_template(
         "security/cve/index.html",
