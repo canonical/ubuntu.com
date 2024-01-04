@@ -48,9 +48,13 @@
         <label for="resource-selector">Select resource type:</label>
         <select name="resource-selector" id="resource-selector" class="u-no-margin--bottom">
           <option value="all">All resource types</option>
-          {% for resource in resource_types %}
-            <option value="{{ resource }}">{{ resource | capitalize }}</option>
-          {% endfor %}
+          <option value="blog">Blog</option>
+          <option value="case+study">Case study</option>
+          <option value="ebook">Ebook</option>
+          <option value="event">Event</option>
+          <option value="form">Form</option>
+          <option value="webinar">Webinar</option>
+          <option value="whitepaper">Whitepaper</option>
         </select>
       </div>
     </div>
