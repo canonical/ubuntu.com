@@ -255,7 +255,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         }
                     )
 
-                elif state == "Scheduled":
+                elif state == "Scheduled" and starts_at > now + timedelta(
+                    minutes=30
+                ):
                     actions.extend(
                         [
                             {
