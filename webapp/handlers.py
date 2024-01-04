@@ -50,6 +50,10 @@ def init_handlers(app, sentry):
         if flask.request.path.startswith(disable_cache_on):
             response.cache_control.no_store = True
 
+        # Prevent XSS
+        if flask.request.path.startswith("/certified"):
+            response.headers["X-Frame-Options"] = "DENY"
+
         return response
 
     # Error pages

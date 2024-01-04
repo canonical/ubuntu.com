@@ -1,15 +1,15 @@
-import { ICONS, Icon, List, Tabs, Tooltip } from "@canonical/react-components";
-import React, { HTMLProps, useState } from "react";
 import type { ReactNode } from "react";
+import React, { HTMLProps, useState } from "react";
+import { Icon, ICONS, List, Tabs, Tooltip } from "@canonical/react-components";
 import { UserSubscription } from "advantage/api/types";
-import {
-  EntitlementsStore,
-  filterAndFormatEntitlements,
-} from "advantage/react/utils/filterAndFormatEntitlements";
 import {
   isBlenderSubscription,
   isFreeSubscription,
 } from "advantage/react/utils";
+import {
+  EntitlementsStore,
+  filterAndFormatEntitlements,
+} from "advantage/react/utils/filterAndFormatEntitlements";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import FeaturesTab from "./components/FeaturesTab";
 
@@ -113,7 +113,7 @@ const DetailsTabs = ({
                 <tr>
                   <td data-test="doc-link">Knowledge Base</td>
                   <td>
-                    <a href="https://portal.support.canonical.com/?_ga=2.3371065.849364026.1691488233-1001052631.1648559628">
+                    <a href="https://support-portal.canonical.com/knowledge-base">
                       Online library of articles and tutorials
                     </a>
                   </td>
@@ -122,7 +122,7 @@ const DetailsTabs = ({
                   <tr>
                     <td data-test="doc-link">{supportLevel}</td>
                     <td>
-                      <a href="https://portal.support.canonical.com/staff/s/contactsupport">
+                      <a href="https://support-portal.canonical.com/contact-us">
                         Phone and ticket support
                       </a>
                     </td>

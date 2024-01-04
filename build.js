@@ -30,7 +30,8 @@ let entries = {
   "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
   "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx",
-  activate: "./static/js/src/activate.js"
+  activate: "./static/js/src/activate.js",
+  "chiselled-chart": "./static/js/src/charts/chiselled-chart.js"
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

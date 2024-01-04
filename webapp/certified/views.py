@@ -2,7 +2,7 @@ import talisker.requests
 import talisker.sentry
 import requests
 import math
-import flask
+import bleach
 
 from flask import (
     request,
@@ -10,6 +10,8 @@ from flask import (
     abort,
     current_app,
     redirect,
+    jsonify,
+    url_for,
 )
 from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
@@ -80,6 +82,75 @@ def certified_routes(app):
     )
 
 
+def _parse_query_params(all_releases, all_vendors):
+    new_query_params = {}
+    if request.args.get("q") or request.args.get("q") == "":
+        new_query_params["q"] = [request.args.get("q")]
+
+    if request.args.getlist("category"):
+        category_params = []
+        # These include UX replacements
+        # Filters, navigation and pathnames
+        for category in [
+            "Laptop",
+            "Desktop",
+            "Server",
+            "IoT",
+            "SoC",
+            "laptops",
+            "desktops",
+            "servers",
+            "iot",
+            "socs",
+        ]:
+            for item in request.args.getlist("category"):
+                if request.args["category"] == "Ubuntu Core":
+                    item = "IoT"
+                if request.args["category"] == "Server SoC":
+                    item = "SoC"
+                if item == category:
+                    new_query_params["category"] = category_params.append(
+                        category
+                    )
+        new_query_params["category"] = category_params
+
+    if request.args.getlist("vendor"):
+        vendor_params = []
+        for vendor in all_vendors:
+            for item in request.args.getlist("vendor"):
+                if item == vendor:
+                    vendor_params.append(vendor)
+        new_query_params["vendor"] = vendor_params
+
+    if request.args.getlist("release"):
+        release_params = []
+        for release in all_releases:
+            for item in request.args.getlist("release"):
+                if item == release:
+                    release_params.append(release)
+        new_query_params["release"] = release_params
+
+    if request.args.get("limit"):
+        new_query_params["limit"] = [request.args.get("limit")]
+
+    if request.args.get("offset"):
+        new_query_params["offset"] = [request.args.get("offset")]
+
+    if request.args.get("vendors_limit"):
+        new_query_params["vendors_limit"] = [request.args.get("vendors_limit")]
+
+    if request.args.get("releases_limit"):
+        new_query_params["releases_limit"] = [
+            request.args.get("releases_limit")
+        ]
+
+    if new_query_params == request.args.to_dict(flat=False):
+        # No parsing was done
+        return None
+    else:
+        return new_query_params
+
+
 def get_vendors_releases_filters():
     categories = request.args.getlist("category")
     selected_vendors = request.args.getlist("vendor")
@@ -90,74 +161,104 @@ def get_vendors_releases_filters():
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
-    vendor_filters = []
-    release_filters = []
+    (
+        laptop_releases,
+        laptop_vendors,
+        desktop_releases,
+        desktop_vendors,
+        soc_releases,
+        soc_vendors,
+        iot_releases,
+        iot_vendors,
+        server_releases,
+        server_vendors,
+        all_releases,
+        all_vendors,
+        vendors,
+        releases,
+    ) = get_filters(request.args)
 
-    if len(categories) == 0:
-        categories = ["smart_core", "soc", "laptops", "desktops", "servers"]
+    new_certified_params = _parse_query_params(vendors, releases)
+    if not new_certified_params:
+        vendor_filters = []
+        release_filters = []
 
-    for cat in categories:
-        cat = cat.lower()
-        # pathname replacements
-        if cat == "iot":
-            cat = "smart_core"
-        elif cat == "ubuntu core":
-            cat = "smart_core"
-        elif cat == "socs":
-            cat = "soc"
-        elif cat == "laptop":
-            cat = "laptops"
-        elif cat == "desktop":
-            cat = "desktops"
-        elif cat == "server":
-            cat = "servers"
-        elif cat == "server soc":
-            cat = "soc"
+        if len(categories) == 0:
+            categories = [
+                "smart_core",
+                "soc",
+                "laptops",
+                "desktops",
+                "servers",
+            ]
 
-        for vendor in certified_makes:
-            make = vendor["make"]
+        for cat in categories:
+            cat = cat.lower()
+            # pathname replacements
+            if cat == "iot":
+                cat = "smart_core"
+            elif cat == "ubuntu core":
+                cat = "smart_core"
+            elif cat == "socs":
+                cat = "soc"
+            elif cat == "laptop":
+                cat = "laptops"
+            elif cat == "desktop":
+                cat = "desktops"
+            elif cat == "server":
+                cat = "servers"
+            elif cat == "server soc":
+                cat = "soc"
 
-            if (
-                int(vendor[cat]) > 0
-                and make not in vendor_filters
-                and make not in selected_vendors
-            ):
-                vendor_filters.append(make)
+            for vendor in certified_makes:
+                make = vendor["make"]
 
-        for release in certified_releases:
-            version = release["release"]
+                if (
+                    int(vendor[cat]) > 0
+                    and make not in vendor_filters
+                    and make not in selected_vendors
+                ):
+                    vendor_filters.append(make)
 
-            if (
-                int(release[cat]) > 0
-                and version not in release_filters
-                and version != "18.04"
-                and version not in selected_releases
-            ):
-                release_filters.append(version)
+            for release in certified_releases:
+                version = release["release"]
 
-    # Reorder and put selected filters on top
-    vendor_filters.sort()
-    selected_vendors.extend(vendor_filters)
-    vendor_filters = selected_vendors
-    release_filters.sort(reverse=True)
-    selected_releases.extend(release_filters)
-    release_filters = selected_releases
+                if (
+                    int(release[cat]) > 0
+                    and version not in release_filters
+                    and version != "18.04"
+                    and version not in selected_releases
+                ):
+                    release_filters.append(version)
 
-    total_vendors = len(vendor_filters)
-    total_releases = len(release_filters)
+        # Reorder and put selected filters on top
+        vendor_filters.sort()
+        selected_vendors.extend(vendor_filters)
+        vendor_filters = selected_vendors
+        release_filters.sort(reverse=True)
+        selected_releases.extend(release_filters)
+        release_filters = selected_releases
 
-    if vendors_limit != -1:
-        vendor_filters = vendor_filters[:vendors_limit]
+        total_vendors = len(vendor_filters)
+        total_releases = len(release_filters)
 
-    if releases_limit != -1:
-        release_filters = release_filters[:releases_limit]
+        if vendors_limit != -1:
+            vendor_filters = vendor_filters[:vendors_limit]
 
-    filters = {
-        "vendor_filters": {"data": vendor_filters, "total": total_vendors},
-        "release_filters": {"data": release_filters, "total": total_releases},
-    }
+        if releases_limit != -1:
+            release_filters = release_filters[:releases_limit]
 
-    return flask.jsonify(filters)
+        filters = {
+            "vendor_filters": {"data": vendor_filters, "total": total_vendors},
+            "release_filters": {
+                "data": release_filters,
+                "total": total_releases,
+            },
+        }
+
+        return jsonify(filters)
+    else:
+        return redirect(url_for(request.endpoint, **new_certified_params))
 
 
 def get_filters(request_args=None, json: bool = False):
@@ -278,7 +379,7 @@ def get_filters(request_args=None, json: bool = False):
             "vendor_filters": sorted(vendor_filters),
             "release_filters": sorted(release_filters, reverse=True),
         }
-        return flask.jsonify(filters)
+        return jsonify(filters)
 
     else:
         return (
@@ -491,6 +592,11 @@ def certified_home():
         release_filters,
     ) = get_filters(request.args)
 
+    # Parse url
+    new_certified_params = _parse_query_params(release_filters, vendor_filters)
+    if new_certified_params:
+        return redirect(url_for(request.endpoint, **new_certified_params))
+
     if (
         "category" in request.args
         and len(request.args.getlist("category")) == 1
@@ -607,10 +713,10 @@ def create_category_views(category, template_path):
     template_path -- full template path (e.g. certified/search-results.html)
     """
     if len(request.args.getlist("category")) > 1:
+        url = f"/certified?{request.query_string.decode()}&category={category}"
+        clean_url = bleach.clean(url, tags=[], strip=True)
         # UX requirement
-        return redirect(
-            f"/certified?{request.query_string.decode()}&category={category}"
-        )
+        return redirect(clean_url)
 
     if category == "Desktop":
         certified_releases = api.certified_releases(
@@ -680,6 +786,11 @@ def create_category_views(category, template_path):
     query = request.args.get("q", default=None, type=str)
     limit = request.args.get("limit", default=20, type=int)
     offset = request.args.get("offset", default=0, type=int)
+
+    # Parse url
+    new_cert_params = _parse_query_params(release_filters, vendor_filters)
+    if new_cert_params:
+        return redirect(url_for(request.endpoint, **new_cert_params))
 
     releases = (
         ",".join(request.args.getlist("release"))
@@ -768,7 +879,7 @@ def certified_vendors(vendor):
         vendor_data = partners_data[0]
     except Exception:
         # Most likely all exceptions are related to not having data
-        return flask.redirect("/certified?q=" + vendor)
+        return redirect("/certified?q=" + vendor)
 
     # Pagination
     limit = request.args.get("limit", default=20, type=int)
