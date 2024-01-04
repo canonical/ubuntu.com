@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CredManage from "./components/CredManage";
 import CredKeyShop from "./components/CredKeyShop";
 import CredExamShop from "./components/CredExamShop/CredExamShop";
 import CredWebhookResponses from "./components/CredWebhookResponses";
@@ -41,7 +40,6 @@ function App() {
           <Routes>
             <Route path="/" element={<CredExamShop />} />
             <Route path="/keys" element={<CredKeyShop />} />
-            <Route path="/manage" element={<CredManage />} />
             <Route
               path="/webhook_responses"
               element={<CredWebhookResponses />}
