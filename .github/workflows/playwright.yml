@@ -1,0 +1,45 @@
+name: Playwright Tests
+env:
+  SECRET_KEY: insecure_test_key
+  PORT: 8001
+  CONTRACTS_API_URL: https://contracts.staging.canonical.com
+  STRIPE_PUBLISHABLE_KEY: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+  CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    timeout-minutes: 60
+    if: github.repository == 'canonical/ubuntu.com'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install python dependencies
+      run: pip3 install -r requirements.txt
+    - name: Install dependencies
+      run: npm install -g yarn && yarn
+    - name: Install dotrun
+      uses: canonical/install-dotrun@main
+    - name: Install dependencies
+      run: /snap/bin/dotrun install
+    - name: Build assets
+      run: /snap/bin/dotrun build
+    - name: Run dotrun
+      run: |
+        /snap/bin/dotrun &
+        curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
+    - name: Run Playwright tests
+      env:
+        PLAYWRIGHT_USER_ID: ${{ secrets.PLAYWRIGHT_USER_ID }}
+        PLAYWRIGHT_USER_PASSWORD : ${{ secrets.PLAYWRIGHT_USER_PASSWORD }}
+      run: yarn playwright test
