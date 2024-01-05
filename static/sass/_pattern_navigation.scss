@@ -400,6 +400,10 @@ $meganav-height: 3rem;
       .p-navigation__link {
         padding-left: 0;
         padding-top: 0.5rem;
+
+        @media (max-width: $breakpoint-navigation-threshold) {
+          padding-top: 0.75rem;
+        }
       }
     }
 
@@ -435,9 +439,14 @@ $meganav-height: 3rem;
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
 
+      @media (max-width: $breakpoint-large) {
+        padding-right: 3rem;
+      }
+
       &::after {
         color: $color-mid-light;
-        top: 0.75rem;
+        top: 1rem;
+        right: 1rem;
       }
     }
 
