@@ -239,10 +239,9 @@
           {% endfor %}
         {% endfor %}
         {% if side_nav_section.secondary_links %}
-        <div class="p-navigation__secondary-links">
           {% for links_section in side_nav_section.secondary_links %}
-            <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
-            <ul class="p-list">
+          <ul class="p-list p-navigation__secondary-links">
+              <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
               {% for link in links_section.links %}
                 <li class="p-list__item">
                   <a class="dropdown-window__side-panel-link" href="{{ link.url }}">{{ link.title }}</a>
@@ -250,7 +249,6 @@
               {% endfor %}
             </ul>
           {% endfor %}
-        </div>
         {% endif %}
       </ul>
     </li>

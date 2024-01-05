@@ -1,5 +1,5 @@
 const ANIMATION_DELAY = 200;
-const MOBILE_VIEW_BREAKPOINT = 1250;
+const MOBILE_VIEW_BREAKPOINT = 1281;
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(
   ".dropdown-window-overlay"
@@ -112,7 +112,7 @@ function toggleSecondaryMobileNavDropdown(e) {
 function handleDropdownClick(clickedDropdown) {
   const isActive = clickedDropdown.classList.contains("is-active");
   updateNavMenu(clickedDropdown, !isActive);
-  setTabindex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
+  setTabIndex(clickedDropdown.querySelector("ul.p-navigation__dropdown"));
 }
 
 function updateUrlHash(id, open) {
@@ -137,7 +137,7 @@ function goBackOneLevel(e, backButton) {
   target.setAttribute("aria-hidden", true);
   toggleIsActiveState(backButton.closest(".is-active"), false);
   toggleIsActiveState(backButton.closest(".is-active"), false);
-  setTabindex(target.parentNode.parentNode);
+  setTabIndex(target.parentNode.parentNode);
 
   if (target.parentNode.getAttribute("role") == "menuitem") {
     updateNavMenu(target.parentNode, false);
@@ -356,7 +356,7 @@ function fetchDropdown(url, id) {
   @param {HTMLNode} target <ul class="p-navigation__items">
   or <ul class="p-navigation__dropdown">
 */
-function setTabindex(target) {
+function setTabIndex(target) {
   const lists = [...dropdowns, mainList];
   lists.forEach((list) => {
     const elements = list.querySelectorAll("ul > li > a, ul > li > button");
@@ -366,7 +366,7 @@ function setTabindex(target) {
   });
 
   target.querySelectorAll("li").forEach((element) => {
-    if (element.parentNode === target) {
+    if (element.parentNode === target || element.parentNode.parentNode === target) {
       element.children[0].setAttribute("tabindex", "0");
     }
   });
@@ -555,7 +555,7 @@ function closeAll() {
   closeSearch();
   closeNav();
   updateUrlHash();
-  setTabindex(mainList);
+  setTabIndex(mainList);
 }
 
 function openMenu(e) {
@@ -567,7 +567,7 @@ function openMenu(e) {
 
   navigation.classList.add("has-menu-open");
   document.addEventListener("keyup", keyPressHandler);
-  setTabindex(mainList);
+  setTabIndex(mainList);
 }
 
 // Setup and functions for navigation search
