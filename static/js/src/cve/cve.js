@@ -157,7 +157,7 @@ function toggleCVEList() {
   if (urlParams.has("status")) {
     recentCves.classList.add("u-hide");
     cveList.classList.remove("u-hide");
-  } 
+  }
 }
 
 toggleCVEList();
