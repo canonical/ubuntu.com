@@ -100,9 +100,12 @@
 <section class="p-section u-hide" id="cve-list">
   <div class="row">
     <div class="col-3 p-section--shallow">
-
+      <p class="p-text--small-caps">Filters</p>
+      <form>
+        <label class="p-form__label" for="package"><i class="p-icon--chevron-down"></i>Affected packages</label>
+        <input type="email" id="exampleTextInput" name="exampleTextInput" placeholder="example@canonical.com" autocomplete="email">
+      </form>
     </div>
-  
     {% if total_results > 0 %}
       <div class="col-9 col-medium-6 p-section--shallow">
         <div class="row p-section--shallow">
@@ -127,7 +130,7 @@
               <span class="p-switch__slider"></span>
               <span class="p-switch__label">Detailed view</span>
             </label>
-            <div class="p-form__group" style="margin-right: 0;">
+            <div class="p-form__group" style="margin-right: 0; margin-left: auto;">
               <label class="p-form__label" for="sort-by">Sort by:</label>
               <select class="p-form__control u-no-margin--bottom js-order-select" id="sort-by" style="max-width: fit-content; padding-right: 1rem; min-width: 0;">
                 <option value="newest" {% if request.args.order == 'newest'%} selected {% endif %}>Date</option>
