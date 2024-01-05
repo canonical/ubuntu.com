@@ -647,10 +647,11 @@ def activate_magic_attach(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-@use_kwargs({"email": String(), "subscription": String()}, location="query")
+@use_kwargs({"email": String(), "subscription": String(), "magic-attach-code": String()}, location="query")
 def magic_attach_view(advantage_mapper: AdvantageMapper, **kwargs):
     email = kwargs.get("email")
     selected_id = kwargs.get("subscription")
+    magic_attach_code = kwargs.get("magic-attach-code")
 
     user_subscriptions = advantage_mapper.get_user_subscriptions(
         email=email, marketplaces=["canonical-ua"]
@@ -660,6 +661,7 @@ def magic_attach_view(advantage_mapper: AdvantageMapper, **kwargs):
         "pro/attach/index.html",
         subscriptions=user_subscriptions,
         selected_id=selected_id,
+        magic_attach_code = magic_attach_code,
     )
 
 
