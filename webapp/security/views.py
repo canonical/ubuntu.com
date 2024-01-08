@@ -303,7 +303,7 @@ def cve_index():
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority", default="", type=str)
     package = flask.request.args.get("package", default="", type=str)
-    limit = flask.request.args.get("limit", default=20, type=int)
+    limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
     versions = flask.request.args.getlist("version")

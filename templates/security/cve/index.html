@@ -15,7 +15,10 @@
   <div class="row p-section">
     <div class="col-start-large-4 col-9">
       {% if query or package or component or priority or versions or statuses %}
-        <h1>Search CVE reports</h1>
+        <div class="p-section--shallow">
+          <h1>Search CVE reports</h1>
+        </div>
+        {% include "security/cve/_cve-search.html" %}
       {% else %}
         <h1>CVE reports</h1>
         <p>The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.</p>
@@ -29,82 +32,53 @@
   </div>
 </section>
 
-<section class="p-section">
-  <div class="row--25-75">
-    <hr class="p-rule"/>
-    <div class="col">
-      {% if query or package or component or priority or versions or statuses %}
-        <!-- has to be this way because query string can exist with empty values -->
-      {% else %}
-        <h2>Search CVEs</h2>
-      {% endif %}
-    </div>
-    <div class="col">
-      <form id="searchForm">
-        <div class="row">
-          <div class="col-7 col-medium-4">
-            <label for="q">CVE ID or description contains:</label>
-            <input  type="text" name="q" id="q" value="{{ query or '' }}">
-          </div>
-          <div class="col-2 col-medium-2">
-            <button style="margin-top: 2.6rem; width: 100%;" type="submit" class="p-button--positive" id="cve-search-button">
-              <span class="cve-search-text">Search</span>
-              <span class="cve-search-valid-cve-text u-hide">Go to CVE</span>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="row">
-    <div class="col-start-large-4 col-9">
+{% if query or package or component or priority or versions or statuses %}
+<!-- has to be this way because query string can exist with empty values -->
+{% else %}
+  <section class="p-section">
+    <div class="row--25-75">
       <hr class="p-rule"/>
-      <div class="row">
-        <div class="col-2">
-          <h3 class="p-heading--5">By Ubuntu release</h3>
-        </div>
-        <div class="col-7">
-          <ul class="p-inline-list" style="margin-top: .3rem;">
-            <!-- Once the search results page is finished and the cve list is not tied to the current table cols, selected releases, maintained releases, and lts releases will be accounted for separately -->
-            <li class="p-inline-list__item"><a href="/security/cves?{% for release in selected_releases %}version={{release.codename}}&status=&{% endfor %}">All maintained releases</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=&version=focal&status=&version=bionic&status=&version=xenial&status=&version=trusty&status=">All LTS</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=">22.04 LTS</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?version=focal&status=">20.04 LTS</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?version=bionic&status=">18.04 LTS</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?version=mantic&status=">23.10</a></li>
-            <li class="p-inline-list__item"><a href="/security/cves?status=">Other releases</a></li>
-          </ul>
+      <div class="col">
+          <h2>Search CVEs</h2>
+      </div>
+      <div class="col">
+        {% include "security/cve/_cve-search.html" %}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <hr class="p-rule"/>
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">By Ubuntu release</h3>
+          </div>
+          <div class="col-7">
+            <ul class="p-inline-list" style="margin-top: .3rem;">
+              <!-- Once the search results page is finished and the cve list is not tied to the current table cols, selected releases, maintained releases, and lts releases will be accounted for separately -->
+              <li class="p-inline-list__item"><a href="/security/cves?{% for release in selected_releases %}version={{release.codename}}&status=&{% endfor %}">All maintained releases</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=&version=focal&status=&version=bionic&status=&version=xenial&status=&version=trusty&status=">All LTS</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=">22.04 LTS</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?version=focal&status=">20.04 LTS</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?version=bionic&status=">18.04 LTS</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?version=mantic&status=">23.10</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?status=">Other releases</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+{% endif %}
 
-<section class="p-section" id="recent-cves">
+{% if query or package or component or priority or versions or statuses %}
+<section class="p-section">
   <div class="row">
-    <hr class="p-rule"/>
-    <div class="col-3 p-section--shallow">
-      <h2>Recent CVEs</h2>
-    </div>
-    <div class="col-9 col-medium-6 p-section--shallow">
-      {% with cves = high_priority_cves %}
-        {% include "security/cve/_cve-card.html" %}
-      {% endwith %}
-    </div>
-  </div>
-</section>
-
-<section class="p-section u-hide" id="cve-list">
-  <div class="row">
-    <div class="col-3 p-section--shallow">
-      <p class="p-text--small-caps">Filters</p>
-      <form>
-        <label class="p-form__label" for="package"><i class="p-icon--chevron-down"></i>Affected packages</label>
-        <input type="email" id="exampleTextInput" name="exampleTextInput" placeholder="example@canonical.com" autocomplete="email">
-      </form>
+    <hr />
+    <div class="col-3">
+      {% include "security/cve/_cve-filters.html" %}
     </div>
     {% if total_results > 0 %}
       <div class="col-9 col-medium-6 p-section--shallow">
@@ -126,87 +100,51 @@
           </div>
           <div class="col-3 p-form" style="display: flex; justify-content: right;">
             <label class="p-switch u-align--right" >
-              <input type="checkbox" class="p-switch__input" checked="" role="switch">
+              <input type="checkbox" class="p-switch__input" role="switch">
               <span class="p-switch__slider"></span>
               <span class="p-switch__label">Detailed view</span>
             </label>
             <div class="p-form__group" style="margin-right: 0; margin-left: auto;">
               <label class="p-form__label" for="sort-by">Sort by:</label>
               <select class="p-form__control u-no-margin--bottom js-order-select" id="sort-by" style="max-width: fit-content; padding-right: 1rem; min-width: 0;">
-                <option value="newest" {% if request.args.order == 'newest'%} selected {% endif %}>Date</option>
-                <option value="oldest" {% if request.args.order == 'oldest'%} selected {% endif %}>Oldest</option>
+                <option disabled="" value="" selected>Date</option>
+                <option value="newest" >Newest</option>
+                <option value="oldest">Oldest</option>
               </select>
             </div>
 
           </div>
         </div>
         <hr class="p-rule"/>
-        {% with cves = cves%}
-          {% include "security/cve/_cve-card.html" %}
-        {% endwith %}
-    
-        {% with %}
-        {% include "security/cve/_pagination.html" %}
-        {% endwith %}
+        <div class="p-section--shallow">
+          {% with cves = cves%}
+            {% include "security/cve/_cve-card.html" %}
+          {% endwith %}
+        </div>
+          {% include "security/cve/_pagination.html" %}
       </div>
     {% endif %}
   </div>
-
-  
 </section>
 
-<template id="version-field-row-template">
-  {% with versions=versions, statuses=statuses, releases=releases %}
-  {% include "security/cve/_version-and-status-row.html" %}
-  {% endwith %}
-</template>
+{% else %}
+  <section class="p-section" id="recent-cves">
+    <div class="row">
+      <hr class="p-rule"/>
+      <div class="col-3 p-section--shallow">
+        <h2>Recent CVEs</h2>
+      </div>
+      <div class="col-9 col-medium-6 p-section--shallow">
+        {% with cves = high_priority_cves %}
+          {% include "security/cve/_cve-card.html" %}
+        {% endwith %}
+      </div>
+    </div>
+  </section>
+  {% include "security/cve/_cve-footer.html" %}
+{% endif %}
 
-<section class="p-section">
-  <div class="row--25-75 is-split-on-medium">
-    <hr class="p-rule"/>
-    <div class="col">
-      <h2>Resources</h2>
-    </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-3">
-          <h3 class="p-heading--5">Join the discussion</h3>
-        </div>
-        <div class="col-6">
-          <ul class="p-list--divided">
-            <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security mailing list</a></li>
-            <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr class="p-rule"/>
-      <div class="row p-section--shallow">
-        <div class="col-3">
-          <h3 class="p-heading--5">Ubuntu Pro</h3>
-        </div>
-        <div class="col-6">
-          <p>10-year security coverage for Ubuntu <br aria-hidden="true"> and 23,000 open-source applications and toolchains.</p>
-          <a class="p-button" href="/pro">Get Ubuntu Pro</a>
-        </div>
-      </div>
-      <hr class="p-rule"/>
-      <div class="row">
-        <div class="col-3">
-          <h3 class="p-heading--5">From our blog</h3>
-        </div>
-        <div class="col-6">
-          <ul class="p-list--divided">
-            <li class="p-list__item"><a href="/blog/securing-multiple-ubuntu-instances-while-maximising-uptime">Ubuntu Explained: How to ensure security and stability in cloud instances—part 3</a></li>
-            <li class="p-list__item"><a href="/blog/ubuntu-updates-best-practices-for-updating-your-instance">Ubuntu Explained: How to ensure security and stability in cloud instances—part 2</a></li>
-            <li class="p-list__item"><a href="/blog/running-openssl-1-1-1-after-eol-with-ubuntu-pro">Running OpenSSL 1.1.1 after EOL? Stay secure with Ubuntu Pro.</a></li>
-            <li class="p-list__item"><a href="/blog/ubuntu-23-10-restricted-unprivileged-user-namespaces">Restricted unprivileged user namespaces are coming to Ubuntu 23.10</a></li>
-            <li class="p-list__item"><a href="/blog/securing-open-source-software-dependencies-in-the-public-cloud">Securing open source software dependencies in the public cloud</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
 
