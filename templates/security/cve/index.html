@@ -47,7 +47,7 @@
     </div>
   </section>
 
-  <section class="p-section">
+  <section class="p-section cve-landing">
     <div class="row">
       <div class="col-start-large-4 col-9">
         <hr class="p-rule"/>
@@ -56,10 +56,9 @@
             <h3 class="p-heading--5">By Ubuntu release</h3>
           </div>
           <div class="col-7">
-            <ul class="p-inline-list" style="margin-top: .3rem;">
-              <!-- Once the search results page is finished and the cve list is not tied to the current table cols, selected releases, maintained releases, and lts releases will be accounted for separately -->
-              <li class="p-inline-list__item"><a href="/security/cves?{% for release in selected_releases %}version={{release.codename}}&status=&{% endfor %}">All maintained releases</a></li>
-              <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=&version=focal&status=&version=bionic&status=&version=xenial&status=&version=trusty&status=">All LTS</a></li>
+            <ul class="p-inline-list">
+              <li class="p-inline-list__item"><a href="/security/cves?{% for release in maintained_releases %}version={{release.codename}}&status=&{% endfor %}">All maintained releases</a></li>
+              <li class="p-inline-list__item"><a href="/security/cves?{% for release in lts_releases %}version={{release.codename}}&status=&{% endfor %}">All LTS</a></li>
               <li class="p-inline-list__item"><a href="/security/cves?version=jammy&status=">22.04 LTS</a></li>
               <li class="p-inline-list__item"><a href="/security/cves?version=focal&status=">20.04 LTS</a></li>
               <li class="p-inline-list__item"><a href="/security/cves?version=bionic&status=">18.04 LTS</a></li>
@@ -74,61 +73,60 @@
 {% endif %}
 
 {% if query or package or component or priority or versions or statuses %}
-<section class="p-section">
-  <div class="row">
-    <hr />
-    <div class="col-3">
-      {% include "security/cve/_cve-filters.html" %}
-    </div>
-    {% if total_results > 0 %}
-      <div class="col-9 col-medium-6 p-section--shallow">
-        <div class="row p-section--shallow">
-          <div class="col-6">
-            <p class="p-text--small-caps" style="display: inline-flex;">
-              {% if total_results > 1 %}
-                {{ offset + 1 }}
-                &ndash;
-                {% if offset + limit > total_results %}
-                  {{ total_results }}
-                {% else %}
-                  {{ offset + limit }}
-                {% endif %}
-                of
-              {% endif %}
-              {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-            </p>
-          </div>
-          <div class="col-3 p-form" style="display: flex; justify-content: right;">
-            <label class="p-switch u-align--right" >
-              <input type="checkbox" class="p-switch__input" role="switch">
-              <span class="p-switch__slider"></span>
-              <span class="p-switch__label">Detailed view</span>
-            </label>
-            <div class="p-form__group" style="margin-right: 0; margin-left: auto;">
-              <label class="p-form__label" for="sort-by">Sort by:</label>
-              <select class="p-form__control u-no-margin--bottom js-order-select" id="sort-by" style="max-width: fit-content; padding-right: 1rem; min-width: 0;">
-                <option disabled="" value="" selected>Date</option>
-                <option value="newest" >Newest</option>
-                <option value="oldest">Oldest</option>
-              </select>
-            </div>
-
-          </div>
-        </div>
-        <hr class="p-rule"/>
-        <div class="p-section--shallow">
-          {% with cves = cves%}
-            {% include "security/cve/_cve-card.html" %}
-          {% endwith %}
-        </div>
-          {% include "security/cve/_pagination.html" %}
+  <section class="p-section">
+    <div class="row">
+      <hr />
+      <div class="col-3 cve-filters u-hide--small">
+        {% include "security/cve/_cve-filters.html" %}
       </div>
-    {% endif %}
-  </div>
-</section>
+      {% if total_results > 0 %}
+        <div class="col-9 col-medium-6 p-section--shallow">
+          <div class="row p-section--shallow cve-results">
+            <div class="col-6">
+              <p class="p-text--small-caps">
+                {% if total_results > 1 %}
+                  {{ offset + 1 }}
+                  &ndash;
+                  {% if offset + limit > total_results %}
+                    {{ total_results }}
+                  {% else %}
+                    {{ offset + limit }}
+                  {% endif %}
+                  of
+                {% endif %}
+                {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+              </p>
+            </div>
+            <div class="col-3 p-form">
+              <label class="p-switch u-align--right" >
+                <input type="checkbox" class="p-switch__input" role="switch">
+                <span class="p-switch__slider"></span>
+                <span class="p-switch__label">Detailed view</span>
+              </label>
+              <div class="p-form__group">
+                <label class="p-form__label" for="sort-by">Sort by:</label>
+                <select class="p-form__control u-no-margin--bottom js-order-select" id="sort-by">
+                  <option disabled="" value="" selected>Date</option>
+                  <option value="descending">Newest</option>
+                  <option value="ascending">Oldest</option>
+                </select>
+              </div>
 
+            </div>
+          </div>
+          <hr class="p-rule"/>
+          <div class="p-section--shallow">
+            {% with cves = cves%}
+              {% include "security/cve/_cve-card.html" %}
+            {% endwith %}
+          </div>
+            {% include "security/cve/_pagination.html" %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
 {% else %}
-  <section class="p-section" id="recent-cves">
+  <section class="p-section">
     <div class="row">
       <hr class="p-rule"/>
       <div class="col-3 p-section--shallow">
