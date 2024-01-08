@@ -224,4 +224,58 @@
 
     border-bottom-color: #66a61e;
   }
+
+  .cve-landing {
+    .p-inline-list {
+      margin-top: .3rem;
+    }
+  }
+
+  .cve-results {
+    .p-text--small-caps {
+      display: inline-flex;
+    }
+
+    .p-form {
+      display: flex;
+      justify-content: right;
+    }
+
+    .p-form__group {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .p-form__control {
+      max-width: fit-content;
+      min-width: 0;
+      padding-right: 1rem;
+    }
+  }
+
+  .cve-card-header {
+    margin-bottom: 1.1rem;
+
+    #priority-icon {
+      float: inline-end;
+    }
+  }
+
+  .cve-pagination-footer {
+    a {
+      display: inline;
+    }
+
+    .p-form__group {
+      display: inline;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .p-form__control {
+      max-width: fit-content;
+      min-width: 0;
+      padding-right: 1rem;
+    }
+  }
 }
