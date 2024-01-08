@@ -12,6 +12,7 @@ const searchForm = document.querySelector("#searchForm");
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
 const limitSelect = document.querySelector(".js-limit-select");
+const orderSelect = document.querySelector(".js-order-select");
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -165,3 +166,17 @@ function handleLimitSelect() {
   }
 }
 handleLimitSelect();
+
+function handleOrderSelect() {
+  if (urlParams.has("order")) {
+    orderSelect.value = urlParams.get("order");
+  } 
+
+  orderSelect.onchange = function(event) {
+    orderSelect.value = event.target.value;
+    urlParams.set("order", orderSelect.value);
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  }
+}
+handleOrderSelect();
