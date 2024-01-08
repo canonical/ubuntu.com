@@ -295,7 +295,7 @@ def cve_index():
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
-    - order-by - "oldest" or "newest"
+    - order-by - "descending" (default) or "ascending"
     - query - search query for the description field
     - priority
     - limit - default 20
@@ -310,6 +310,7 @@ def cve_index():
     component = flask.request.args.get("component")
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
+    order = flask.request.args.get("order", default="", type=str)
 
     # All CVEs
     cves_response = security_api.get_cves(
@@ -321,6 +322,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        order=order,
     )
 
     cves = cves_response.get("cves")
@@ -336,6 +338,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        order=order,
     )
 
     high_priority_cves = high_priority_response.get("cves")
@@ -393,7 +396,9 @@ def cve_index():
         elif (
             support_date > datetime.now() or esm_date > datetime.now()
         ) and release_date < datetime.now():
-            selected_releases.append(release)
+            maintained_releases.append(release)
+        elif release["lts"] and release_date < datetime.now():
+            lts_releases.append(release)
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
@@ -441,6 +446,7 @@ def cve_index():
         lts_releases=lts_releases,
         maintained_releases=maintained_releases,
         high_priority_cves=high_priority_cves,
+        order=order,
     )
 
 
