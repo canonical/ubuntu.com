@@ -9,10 +9,9 @@ import {
 
 const searchInput = document.querySelector("#q");
 const searchForm = document.querySelector("#searchForm");
-const cveList = document.querySelector("#cve-list");
-const recentCves = document.querySelector("#recent-cves");
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
+const limitSelect = document.querySelector(".js-limit-select");
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -153,11 +152,16 @@ tooltipIconList.forEach(function (tooltipIcon) {
   );
 });
 
-function toggleCVEList() {
-  if (urlParams.has("status")) {
-    recentCves.classList.add("u-hide");
-    cveList.classList.remove("u-hide");
+function handleLimitSelect() {
+  if (urlParams.has("limit")) {
+    limitSelect.value = urlParams.get("limit");
   } 
-}
 
-toggleCVEList();
+  limitSelect.onchange = function(event) {
+    limitSelect.value = event.target.value;
+    urlParams.set("limit", limitSelect.value);
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  }
+}
+handleLimitSelect();
