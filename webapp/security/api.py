@@ -131,6 +131,7 @@ class SecurityAPI:
         component: str,
         versions: list,
         statuses: list,
+        order: str,
     ):
         parameters = {
             "q": query,
@@ -141,6 +142,7 @@ class SecurityAPI:
             "component": component,
             "version": versions,
             "status": statuses,
+            "order": order,
         }
 
         # Remove falsey items from dictionary
