@@ -878,6 +878,8 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
         all_keys = ua_contracts_api.list_activation_keys(contract.id)
         keys.extend(all_keys)
 
+    unused_keys = []
+    active_keys = []
     for i in range(len(keys)):
         key = keys[i]
         parsed_date = (
@@ -889,13 +891,52 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
         key["expirationDate"] = parsed_date.strftime(
             "%a %b %d %Y %H:%M:%S %Z%z"
         )
-    response = flask.make_response(
+        if "activatedBy" in key:
+            active_keys.append(key)
+        else:
+            unused_keys.append(key)
+
+    current_tab = flask.request.args.get("current_tab", "all")
+    page = int(flask.request.args.get("page", 1))
+    all_page_no = int(flask.request.args.get("all", 1))
+    unused_page_no = int(flask.request.args.get("unused", 1))
+    active_page_no = int(flask.request.args.get("active", 1))
+
+    if current_tab == "all":
+        all_page_no = page
+    elif current_tab == "unused":
+        unused_page_no = page
+    else:
+        active_page_no = page
+
+    per_page = 5
+    all = get_page_info(all_keys, all_page_no, per_page)
+    unused = get_page_info(unused_keys, unused_page_no, per_page)
+    active = get_page_info(active_keys, active_page_no, per_page)
+
+    return flask.make_response(
         flask.render_template(
             "credentials/shop/manage.html",
             keys=keys,
+            per_page=per_page,
+            current_tab=current_tab,
+            all=all,
+            unused=unused,
+            active=active,
         )
     )
-    return response
+
+
+def get_page_info(keys, page_no, per_page):
+    total_pages = (len(keys) // per_page) + 1
+    start_page = (page_no - 1) * per_page
+    all_end_page = page_no * per_page
+
+    return {
+        "keys": keys[start_page:all_end_page],
+        "page_no": page_no,
+        "total_pages": total_pages,
+    }
 
 
 @shop_decorator(area="cube", permission="user", response="html")
