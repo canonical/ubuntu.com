@@ -392,6 +392,9 @@ def cve_index():
             support_date > datetime.now() or esm_date > datetime.now()
         ) and release_date < datetime.now():
             selected_releases.append(release)
+            maintained_releases.append(release)
+        elif release["lts"] and release_date < datetime.now():
+            lts_releases.append(release)
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 

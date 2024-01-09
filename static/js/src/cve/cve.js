@@ -153,11 +153,11 @@ tooltipIconList.forEach(function (tooltipIcon) {
   );
 });
 
-function toggleCVEList() {
+function showCVEList() {
   if (urlParams.has("status")) {
     recentCves.classList.add("u-hide");
     cveList.classList.remove("u-hide");
   }
 }
 
-toggleCVEList();
+showCVEList();
