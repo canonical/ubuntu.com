@@ -5,7 +5,7 @@
 {% endif %}
 
 {% if total_results > limit %}
-<div class="row">
+<div class="row cve-pagination-footer">
   <div class="col-6">
     <ol class="p-pagination">
       <li class="p-pagination__item">
@@ -99,11 +99,11 @@
       </li>
     </ol>
   </div>
-  <div class="col-3 cve-pagination-footer">
-    <a style="display: inline;">Export to JSON</a>
-    <div class="p-form__group" style="margin-right: 0; margin-left: auto; display: inline;">
-      <label class="p-form__label" for="sort-by">Sort by:</label>
-      <select class="p-form__control u-no-margin--bottom js-limit-select" id="sort-by" style="max-width: fit-content; padding-right: 1rem; min-width: 0;">
+  <div class="col-3 cve-pagination-footer-links">
+    <a id="js-export-link" href="">Export to JSON</a>
+    <div class="p-form__group">
+      <label class="p-form__label" for="limit-set">Results by page:</label>
+      <select class="p-form__control u-no-margin--bottom js-limit-select" id="limit-set">
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="40">40</option>
