@@ -144,7 +144,7 @@ function goBackOneLevel(e, backButton) {
   }
 }
 
-function keyPressHandler(e) {
+function escKeyPressHandler(e) {
   if (e.key === "Escape") {
     closeAll();
   }
@@ -365,8 +365,12 @@ function setTabIndex(target) {
     });
   });
 
-  target.querySelectorAll("li").forEach((element) => {
-    if (element.parentNode === target || element.parentNode.parentNode === target) {
+  const targetLiItems = target.querySelectorAll("li");
+  targetLiItems.forEach((element, index) => {
+    if (
+      element.parentNode === target ||
+      element.parentNode.parentNode === target
+    ) {
       element.children[0].setAttribute("tabindex", "0");
     }
   });
@@ -388,6 +392,9 @@ function setTabIndex(target) {
   }
 }
 
+/** 
+  Setup functions for keyboard navigation and trapping
+*/
 function addKeyboardEvents() {
   document.addEventListener("keydown", keyboardNavigationHandler);
 }
@@ -433,8 +440,17 @@ function handleEscapeKey(e) {
 }
 
 function handleTabKey(e) {
+  // Find which dropdown container we are in
   const dropdownPanel = getContainingDropdown(e.target);
-  if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
+  const mobileDropdownPanel = getMobileContainingDropdown(e.target);
+
+  if (mobileDropdownPanel && isLastMobileLinkFocused(e, mobileDropdownPanel)) {
+    e.preventDefault();
+    const canonicalLogo = navigation.querySelector(
+      ".p-navigation__tagged-logo > a"
+    );
+    canonicalLogo.focus();
+  } else if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
     const currDropdownToggle = mainList.querySelector(
       ":scope > .p-navigation__item--dropdown-toggle.is-active"
     );
@@ -466,15 +482,34 @@ function handleShiftTabKey(e) {
 
 function isLastLinkFocused(e, dropdownPanel) {
   const listOfLinks = dropdownPanel?.querySelectorAll("a");
-  if (listOfLinks) {
+  if (listOfLinks?.length > 0) {
     const lastLink = Array.from(listOfLinks).pop();
     return e.target === lastLink;
   }
 }
 
+function isLastMobileLinkFocused(e, dropdownPanel) {
+  // Find what level of the navigation we are in, 'menuItems' being the top level
+  const listOfMenuItems = dropdownPanel?.querySelectorAll(
+    "li[role='menuitem']"
+  );
+  const listOfLinks = Array.from(
+    dropdownPanel?.querySelectorAll(":scope > li")
+  );
+  if (listOfMenuItems?.length > 0) {
+    const lastLink = Array.from(listOfMenuItems).pop();
+    return e.target === lastLink.firstElementChild;
+  } else if (listOfLinks?.length > 0) {
+    // Sometimes there is a secondary list of links, so we need to add those to the list
+    appendSecondaryListItems(dropdownPanel, listOfLinks);
+    const lastLink = Array.from(listOfLinks).pop();
+    return e.target === lastLink.firstElementChild;
+  }
+}
+
 function isFirstLinkFocused(e, dropdownPanel) {
   const listOfLinks = dropdownPanel?.querySelectorAll("a");
-  if (listOfLinks) {
+  if (listOfLinks?.length > 0) {
     const firstLink = Array.from(listOfLinks).shift();
     return e.target === firstLink;
   }
@@ -488,6 +523,13 @@ function getContainingDropdown(target) {
   );
 }
 
+function getMobileContainingDropdown(target) {
+  return (
+    target.closest(".p-navigation__dropdown") ||
+    target.closest(".p-navigation__nav >  .p-navigation__items")
+  );
+}
+
 function isInTabPanel(target) {
   return target.closest(".dropdown-window__tab-panel") ? true : false;
 }
@@ -497,6 +539,19 @@ function tabPanelExists(target) {
   return parentContainer?.querySelector(".dropdown-window__tab-panel")
     ? true
     : false;
+}
+
+function appendSecondaryListItems(dropdownPanel, listOfLinks) {
+  const secondaryList = [
+    ...(dropdownPanel
+      .querySelector(":scope > .p-navigation__secondary-links")
+      ?.querySelectorAll("li") || []),
+  ];
+  if (secondaryList?.length > 0) {
+    secondaryList.forEach((listItem) => {
+      listOfLinks.push(listItem);
+    });
+  }
 }
 
 function toggleMenu(e) {
@@ -516,7 +571,8 @@ function closeNav() {
   });
   closeMobileDropdown();
   closeDesktopDropdown();
-  document.removeEventListener("keyup", keyPressHandler);
+  removeKeyboardEvents();
+  document.removeEventListener("keyup", escKeyPressHandler);
 }
 
 function closeDesktopDropdown() {
@@ -527,7 +583,6 @@ function closeDesktopDropdown() {
       dropdownContent.classList.add("u-hide");
     }
   });
-  removeKeyboardEvents();
 }
 
 function closeMobileDropdown() {
@@ -566,8 +621,9 @@ function openMenu(e) {
   });
 
   navigation.classList.add("has-menu-open");
-  document.addEventListener("keyup", keyPressHandler);
+  document.addEventListener("keyup", escKeyPressHandler);
   setTabIndex(mainList);
+  addKeyboardEvents();
 }
 
 // Setup and functions for navigation search
@@ -607,7 +663,7 @@ function openSearch(e) {
     addClassesToElements([secondaryNav], ["u-hide"]);
   }
   searchInput.focus();
-  document.addEventListener("keyup", keyPressHandler);
+  document.addEventListener("keyup", escKeyPressHandler);
 }
 
 function closeSearch() {
@@ -621,7 +677,7 @@ function closeSearch() {
     secondaryNav.classList.remove("u-hide");
   }
 
-  document.removeEventListener("keyup", keyPressHandler);
+  document.removeEventListener("keyup", escKeyPressHandler);
 }
 
 const searchButtons = document.querySelectorAll(".js-search-button");
