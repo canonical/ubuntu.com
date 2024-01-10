@@ -421,7 +421,8 @@ def cve_index():
         # for cve_package in cve["packages"]:
         #     cve_package["release_statuses"] = {}
         #     for status in cve_package["statuses"]:
-        #         cve_package["release_statuses"][status["release_codename"]] = {
+        #         cve_package["release_statuses"][status["release_codename"]] =
+        # {
         #             "slug": status["status"],
         #             "name": friendly_names[status["status"]],
         #             "pocket": status["pocket"],
