@@ -443,14 +443,17 @@ function handleTabKey(e) {
   // Find which dropdown container we are in
   const dropdownPanel = getContainingDropdown(e.target);
   const mobileDropdownPanel = getMobileContainingDropdown(e.target);
-
+  console.log("in handle tab key", "dropdown panel", dropdownPanel)
+console.log("is last link", isLastLinkFocused(e, dropdownPanel))
   if (mobileDropdownPanel && isLastMobileLinkFocused(e, mobileDropdownPanel)) {
+    console.log("is last mobile link")
     e.preventDefault();
     const canonicalLogo = navigation.querySelector(
       ".p-navigation__tagged-logo > a"
     );
     canonicalLogo.focus();
   } else if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
+    console.log("lsat link etc etc")
     const currDropdownToggle = mainList.querySelector(
       ":scope > .p-navigation__item--dropdown-toggle.is-active"
     );
@@ -482,6 +485,7 @@ function handleShiftTabKey(e) {
 
 function isLastLinkFocused(e, dropdownPanel) {
   const listOfLinks = dropdownPanel?.querySelectorAll("a");
+  console.log("list of links", listOfLinks)
   if (listOfLinks?.length > 0) {
     const lastLink = Array.from(listOfLinks).pop();
     return e.target === lastLink;
@@ -517,7 +521,7 @@ function isFirstLinkFocused(e, dropdownPanel) {
 
 function getContainingDropdown(target) {
   return (
-    target.closest(".dropdown-window__sidenav-content.is-active") ||
+    target.closest(".dropdown-window__sidenav-content") ||
     target.closest(".dropdown-window__content") ||
     target.closest(".global-nav-dropdown__content")
   );
