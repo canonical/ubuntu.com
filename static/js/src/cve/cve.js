@@ -165,7 +165,6 @@ function handleLimitSelect() {
     urlParams.set("limit", limitSelect.value);
     window.location.href = url.href;
   };
-}
 handleLimitSelect();
 
 function handleOrderSelect() {
@@ -189,3 +188,4 @@ function exportToJSON() {
   };
 }
 exportToJSON();
+

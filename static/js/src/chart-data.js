@@ -1172,7 +1172,7 @@ export var openStackReleases = [
   },
   {
     startDate: new Date("2023-10-01T00:00:00"),
-    endDate: new Date("2025-04-01T00:00:00"),
+    endDate: new Date("2024-07-01T00:00:00"),
     taskName: "OpenStack 2023.2",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
