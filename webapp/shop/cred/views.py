@@ -272,7 +272,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             {
                                 "text": "Take exam",
                                 "href": "/credentials/exam?"
-                                f"id={ assessment_id }",
+                                f"id={assessment_id}",
                                 "button_class": "p-button--positive",
                             }
                         ]
@@ -689,6 +689,28 @@ def cred_shop_webhook_responses(trueability_api, **kwargs):
 
     return flask.render_template(
         "credentials/shop/webhook_responses.html", webhook_responses=webhook
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_shop_keys(ua_contracts_api, **kwargs):
+    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+        "productListings"
+    )
+    cue_price = [
+        {
+            "id": listing["productID"],
+            "longId": listing["id"],
+            "period": listing["period"],
+            "marketplace": listing["marketplace"],
+            "name": listing["name"],
+            "price": listing["price"],
+        }
+        for listing in listings
+        if (listing["productID"].endswith("key")) or (type == "exam")
+    ]
+    return flask.render_template(
+        "credentials/shop/keys.html", cue_price=cue_price[0]
     )
 
 
