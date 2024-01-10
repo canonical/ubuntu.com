@@ -401,16 +401,16 @@ def cve_index():
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
     # Format summarized statuses
-    friendly_names = {
-        "DNE": "Not in release",
-        "needs-triage": "Needs evaluation",
-        "not-affected": "Not vulnerable",
-        "needed": "Vulnerable",
-        "deferred": "Vulnerable",
-        "ignored": "Ignored",
-        "pending": "Vulnerable",
-        "released": "Fixed",
-    }
+    # friendly_names = {
+    #     "DNE": "Not in release",
+    #     "needs-triage": "Needs evaluation",
+    #     "not-affected": "Not vulnerable",
+    #     "needed": "Vulnerable",
+    #     "deferred": "Vulnerable",
+    #     "ignored": "Ignored",
+    #     "pending": "Vulnerable",
+    #     "released": "Fixed",
+    # }
 
     for cve in cves:
         cve["summarized_status"] = {}
