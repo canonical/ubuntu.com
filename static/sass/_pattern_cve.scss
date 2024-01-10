@@ -227,18 +227,21 @@
 
   .cve-landing {
     .p-inline-list {
-      margin-top: .3rem;
+      margin-top: 0.3rem;
     }
   }
 
   .cve-results {
+    display: flex;
+    justify-content: space-between;
+
     .p-text--small-caps {
       display: inline-flex;
     }
 
     .p-form {
       display: flex;
-      justify-content: right;
+      gap: 2.5rem;
     }
 
     .p-form__group {
@@ -255,6 +258,12 @@
 
   .cve-card-header {
     margin-bottom: 1.1rem;
+    padding-top: 0.4rem;
+
+    h2 {
+      display: inline;
+      padding-top: 0;
+    }
 
     #priority-icon {
       float: inline-end;
@@ -262,14 +271,16 @@
   }
 
   .cve-pagination-footer {
-    a {
-      display: inline;
-    }
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .p-form__group {
-      display: inline;
-      margin-left: auto;
-      margin-right: 0;
+  .cve-pagination-footer-links {
+    display: flex;
+    gap: inherit;
+
+    a {
+      margin-top: 0.4rem;
     }
 
     .p-form__control {
