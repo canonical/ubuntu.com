@@ -533,6 +533,16 @@ def cred_shop(**kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_shop_thank_you(**kwargs):
+    quantity = flask.request.args.get("quantity", '')
+    product = flask.request.args.get("productName", '')
+    return flask.render_template(
+        "credentials/shop/thank-you.html", quantity=quantity, product=product
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     exam = None
     action = flask.request.args.get("action")
