@@ -633,6 +633,7 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
+<<<<<<< HEAD
 def cred_shop_thank_you(**kwargs):
     quantity = flask.request.args.get("quantity", "")
     product = flask.request.args.get("productName", "")
@@ -709,6 +710,10 @@ def cred_shop_keys(ua_contracts_api, **kwargs):
         for listing in listings
         if (listing["productID"].endswith("key")) or (type == "exam")
     ]
+=======
+def cred_shop_keys(**kwargs):
+    cue_price = get_cue_products(type="keys").json
+>>>>>>> 4562fa112 (Remove redundant row class)
     return flask.render_template(
         "credentials/shop/keys.html", cue_price=cue_price[0]
     )
