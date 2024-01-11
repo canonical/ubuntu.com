@@ -44,6 +44,7 @@ $meganav-height: 3rem;
 
     .p-navigation__nav {
       margin-right: 0;
+      margin-left: -.75rem;
       max-height: calc(100vh - 3rem);
       width: auto;
 
@@ -568,22 +569,26 @@ $meganav-height: 3rem;
     top: 0;
     z-index: 10;
 
-    .p-navigation__nav.is-open {
-      display: flex;
+    .p-navigation__nav {
+      margin-left: -.75rem;
 
-      .p-navigation__items {
-        display: block;
-      }
+      &.is-open {
+        display: flex;
 
-      .p-navigation__link {
-        padding-left: calc(1rem + $row-margin-medium);
-
-        @media (max-width: $breakpoint-medium) {
-          padding-left: calc(1rem + $row-margin-small);
+        .p-navigation__items {
+          display: block;
         }
 
-        &::before {
-          left: $row-margin-small;
+        .p-navigation__link {
+          padding-left: calc(1rem + $row-margin-medium);
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1rem + $row-margin-small);
+          }
+
+          &::before {
+            left: $row-margin-small;
+          }
         }
       }
     }
