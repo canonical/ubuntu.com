@@ -43,8 +43,8 @@ $meganav-height: 3rem;
     }
 
     .p-navigation__nav {
+      margin-left: -0.75rem;
       margin-right: 0;
-      margin-left: -.75rem;
       max-height: calc(100vh - 3rem);
       width: auto;
 
@@ -433,7 +433,7 @@ $meganav-height: 3rem;
       .js-menu-button.p-navigation__link {
         padding-left: 1rem;
         padding-right: 1rem;
-      }  
+      }
     }
 
     .p-navigation__link--search-toggle {
@@ -446,8 +446,8 @@ $meganav-height: 3rem;
 
       &::after {
         color: $color-mid-light;
-        top: 1rem;
         right: 1rem;
+        top: 1rem;
       }
     }
 
@@ -570,7 +570,7 @@ $meganav-height: 3rem;
     z-index: 10;
 
     .p-navigation__nav {
-      margin-left: -.75rem;
+      margin-left: -0.75rem;
 
       &.is-open {
         display: flex;
