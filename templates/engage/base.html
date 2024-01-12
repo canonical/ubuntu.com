@@ -86,7 +86,7 @@
   {% endif %}
 {% endif %}
 
-<section class="p-strip is-shallow is-bordered">
+<section class="p-strip is-shallow is-bordered u-text-max-width">
   <div class="row">
     <div class="{% if 'form_id' in metadata and metadata['form_id'] != '' %}col-7{% else %}col-12{% endif %}">
       {{ metadata["body_html"] | safe }}
