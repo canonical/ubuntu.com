@@ -402,9 +402,10 @@ def cve_index():
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
     """
-    TODO: Lines 407-417 and 422-430 are commented out because they will 
+    TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
-    BUT currently cause errors as that has not been implemented is this branch yet.
+    BUT currently cause errors as that has not been implemented in
+    this branch yet.
     """
 
     # Format summarized statuses
