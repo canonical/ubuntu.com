@@ -1,0 +1,294 @@
+{% extends "supermicro/base_supermicro.html"%}
+
+{% block title %}Supermicro and Canonical{% endblock %}
+{% block description %}A worldwide partnership to provide enterprise and public organizations with a range of
+open-source solutions that are both validated and fully supported{% endblock %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block content %}
+
+<section class="p-strip is-shallow">
+  <div class="row--25-75">
+    <div class="col">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/c9b393e3-supermicro-logo.png",
+      alt="Diagram that shows how Chisel works",
+      height="120",
+      width="120",
+      hi_def=True,
+      loading="lazy" ) | safe
+      }}
+    </div>
+    <div class="col">
+      <h1 class="u-sv2">Supermicro and Canonical</h1>
+      <p>In 2016, Canonical and Supermicro, joined forces to establish a worldwide partnership to provide enterprise and
+        public organizations with a range of open-source solutions that are both validated and fully supported, spanning
+        from data center environments to edge computing scenarios.
+      </p>
+      <p>Contact us to learn more about the partnership and our solutions.</p>
+      <hr />
+      <a class="p-button--positive" href="#">Get in touch</a>
+    </div>
+  </div>
+  <div class="p-suru"></div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>One-stop shop</h2>
+    </div>
+    <div class="col">
+      <p>Customers have access to Canonical's support subscriptions, services, and solutions for cloud, Kubernetes,
+        AI/ML, storage and edge, all through a single source — Supermicro. This partnership simplifies the process for
+        Supermicro customers, providing them with a one-stop shop for all their open source needs.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="u-align--center">
+      <img src="https://assets.ubuntu.com/v1/3de7572c-Canonical%20AI%20ML%20Illustrations%20v5-05%201.png"
+        alt="Illustration of Supermicro serving as a one-stop shop" width="600" />
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>From the data centre to the edge, from infrastructure to applications</h2>
+      </div>
+      <div class="col">
+        <p>Supermicro and Canonical have collaborated to offer a comprehensive portfolio of open-source solutions and
+          services that directly address the most critical needs of our customers.</p>
+        <p>These solutions are designed to deliver tangible, cost-effective business benefits, meeting the pressing
+          requirements of today's dynamic business environment.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <img src="https://assets.ubuntu.com/v1/6a5eade6-Image.jpg" alt="Supermicro servers" width="100%" />
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Reference Cloud HW for Openstack and Kubernetes</h2>
+    </div>
+    <div class="col">
+      <div class="u-sv1"></div>
+      <img src="https://assets.ubuntu.com/v1/6182ba85-Image.png" alt="Server" width="100%" />
+      <p>Supermicro and Canonical have joined forces to create collaborative and rigorously validated reference designs
+        that encompasses software, hardware, and integration points for all components of the solution.</p>
+      <hr class="p-rule" />
+      <p><a href="#">Check our Reference Architectures&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>AI/ML at the Edge with MicroK8s and Charmed Kubeflow</h2>
+    </div>
+    <div class="col">
+      <p><strong>Running on NVIDIA-certified EGX platforms provided by Supermicro.</strong></p>
+      <p>Build a stack to run AI at the Edge with this step by step guide.</p>
+      <p class="u-sv2">The guide covers hardware specifications, tools, services, and provides a step-by-step guide for
+        setting up the
+        hardware and software required to run ML workloads. It also delves into other tools used for cluster monitoring
+        and management, explaining how all these components work together in the system.</p>
+      <img src="https://assets.ubuntu.com/v1/e7559c1f-Image-1.png" alt="" width="100%" />
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Proven results from collaborative solutions</h2>
+    </div>
+    <div class="col">
+      <p>Canonical and Supermicro collaborate to offer proven open-source solutions that have benefited numerous global
+        clients.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+          image (
+          url="https://assets.ubuntu.com/v1/3a44e09e-sdaia-logo.png",
+          alt="SDAIA",
+          width="120",
+          height="100",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image (
+          url="https://assets.ubuntu.com/v1/9d00e2d9-wintermute-logo.png",
+          alt="WinterMute",
+          width="90",
+          height="120",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image (
+          url="https://assets.ubuntu.com/v1/f21cbb8d-firmus-logo.png",
+          alt="Firmus",
+          width="120",
+          height="120",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image (
+          url="https://assets.ubuntu.com/v1/e835d7d6-deltadental-logo.png",
+          alt="Delta Dental",
+          width="160",
+          height="100",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--shallow">
+  <div class="row">
+    <hr class="p-rule" />
+    <span class="p-text--small-caps">Resources</span>
+    <img src="https://assets.ubuntu.com/v1/ef5e1a39-dell%20server%20image.jpg" alt="Supermicro server" width="100%" />
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Certified hardware</h2>
+    </div>
+    <div class="col">
+      <p>Ubuntu certified hardware has passed an extensive testing and review process, ensuring that Ubuntu runs
+        perfectly out of the box.</p>
+      <a href="#">Contact us to know more about SMC certified Hardware&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Reference architectures</h2>
+    </div>
+    <div class="col">
+      <div class="u-sv1"></div>
+      <img src="https://assets.ubuntu.com/v1/e6ffdd65-Rectangle%20558.jpg" alt="" width="100%" />
+      <p>Discover how these Supermicro and Canonical components complement each other to create an entire joint
+        solution.</p>
+      <hr class="p-rule" />
+      <p>
+        <a href="https://www.supermicro.com/solutions/f_CanonicalOpenStack.pdf">Supermicro Total Solution for Canonical
+          OpenStack&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Webinars</h2>
+    </div>
+    <div class="col">
+      <p>
+        <a href="https://www.brighttalk.com/webcast/17278/587447">New Cloud Game Streaming Platform Delivering PC
+          Quality
+          Graphics to Mobile Games</a>
+      </p>
+      <p>Learn how Supermicro, Ampere, Canonical, and NVIDIA partner to deliver next-gen gaming experiences</p>
+      <hr class="p-rule" />
+      <p>
+        <a href="https://www.brighttalk.com/webcast/6793/347227">Moving to Production-Ready, Fast, Affordable
+          Kubernetes</a>
+      </p>
+      <p>Discover how to optimize design considerations and performance to deploy a kubernetes cluster in days rather
+        than
+        months</p>
+      <hr class="p-rule" />
+      <p>
+        <a href="https://www.brighttalk.com/webcast/17278/394378">Accelerate AI/ML workloads with Kubeflow and System
+          Architecture</a>
+      </p>
+      <p>See how getting the right hardware and configuration can overcome AI/ML challenges as heavy compute demands</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>From our blog</h2>
+    </div>
+    <div class="col">
+      {% for article in blogs %}
+      {% if loop.index <= 3 %}
+        {% if loop.index> 0 %}
+        <hr class="is-fixed-width p-rule">
+        {% endif %}
+        <div class="p-block">
+          <a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a>
+          <p>
+            <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
+              <span class="p-chip__value">Supermicro</span>
+            </button>
+          </p>
+        </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="p-rule is-fixed-width" />
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">
+        <a href="#">Contact us about the Supermicro partnership<br /> or how to purchase our joint solutions&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
