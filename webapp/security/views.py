@@ -293,7 +293,7 @@ def cve_index():
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
-    - order-by - "oldest" or "newest"
+    - order-by - "descending" (default) or "ascending"
     - query - search query for the description field
     - priority
     - limit - default 20
@@ -303,11 +303,12 @@ def cve_index():
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority", default="", type=str)
     package = flask.request.args.get("package", default="", type=str)
-    limit = flask.request.args.get("limit", default=20, type=int)
+    limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
+    order = flask.request.args.get("order", default="", type=str)
 
     # All CVEs
     cves_response = security_api.get_cves(
@@ -319,6 +320,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        order=order,
     )
 
     cves = cves_response.get("cves")
@@ -334,6 +336,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        order=order,
     )
 
     high_priority_cves = high_priority_response.get("cves")
@@ -398,27 +401,39 @@ def cve_index():
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
+    """
+    TODO: Lines 407-417 and 422-430 are commented out because they will
+    be needed for the detailed view of the cve card
+    BUT currently cause errors as that has not been implemented in
+    this branch yet.
+    """
+
     # Format summarized statuses
-    friendly_names = {
-        "DNE": "Not in release",
-        "needs-triage": "Needs evaluation",
-        "not-affected": "Not vulnerable",
-        "needed": "Vulnerable",
-        "deferred": "Vulnerable",
-        "ignored": "Ignored",
-        "pending": "Vulnerable",
-        "released": "Fixed",
-    }
+    # friendly_names = {
+    #     "DNE": "Not in release",
+    #     "needs-triage": "Needs evaluation",
+    #     "not-affected": "Not vulnerable",
+    #     "needed": "Vulnerable",
+    #     "deferred": "Vulnerable",
+    #     "ignored": "Ignored",
+    #     "pending": "Vulnerable",
+    #     "released": "Fixed",
+    # }
 
     for cve in cves:
-        for cve_package in cve["packages"]:
-            cve_package["release_statuses"] = {}
-            for status in cve_package["statuses"]:
-                cve_package["release_statuses"][status["release_codename"]] = {
-                    "slug": status["status"],
-                    "name": friendly_names[status["status"]],
-                    "pocket": status["pocket"],
-                }
+        cve["summarized_status"] = {}
+        get_summarized_status(
+            cve, ignored_low_indicators, vulnerable_indicators
+        )
+        # for cve_package in cve["packages"]:
+        #     cve_package["release_statuses"] = {}
+        #     for status in cve_package["statuses"]:
+        #         cve_package["release_statuses"][status["release_codename"]] =
+        # {
+        #             "slug": status["status"],
+        #             "name": friendly_names[status["status"]],
+        #             "pocket": status["pocket"],
+        #         }
 
     return flask.render_template(
         "security/cve/index.html",
@@ -438,6 +453,7 @@ def cve_index():
         lts_releases=lts_releases,
         maintained_releases=maintained_releases,
         high_priority_cves=high_priority_cves,
+        order=order,
     )
 
 

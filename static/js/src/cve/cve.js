@@ -9,10 +9,12 @@ import {
 
 const searchInput = document.querySelector("#q");
 const searchForm = document.querySelector("#searchForm");
-const cveList = document.querySelector("#cve-list");
-const recentCves = document.querySelector("#recent-cves");
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
+const limitSelect = document.querySelector(".js-limit-select");
+const orderSelect = document.querySelector(".js-order-select");
+const exportLink = document.querySelector("#js-export-link");
+const apiBase = "https://ubuntu.com/security/cves.json";
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -153,11 +155,39 @@ tooltipIconList.forEach(function (tooltipIcon) {
   );
 });
 
-function showCVEList() {
-  if (urlParams.has("status")) {
-    recentCves.classList.add("u-hide");
-    cveList.classList.remove("u-hide");
+function handleLimitSelect() {
+  if (urlParams.has("limit")) {
+    limitSelect.value = urlParams.get("limit");
   }
-}
 
-showCVEList();
+  limitSelect.onchange = function (event) {
+    limitSelect.value = event.target.value;
+    urlParams.set("limit", limitSelect.value);
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  };
+}
+handleLimitSelect();
+
+function handleOrderSelect() {
+  if (urlParams.has("order")) {
+    orderSelect.value = urlParams.get("order");
+  }
+
+  orderSelect.onchange = function (event) {
+    orderSelect.value = event.target.value;
+    urlParams.set("order", orderSelect.value);
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  };
+}
+handleOrderSelect();
+
+function exportToJSON() {
+  exportLink.onclick = function (event) {
+    event.preventDefault();
+    let apiURL = new URL(url.search, apiBase);
+    window.location.href = apiURL.href;
+  };
+}
+exportToJSON();
