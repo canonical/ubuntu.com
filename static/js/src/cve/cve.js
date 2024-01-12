@@ -163,6 +163,7 @@ function handleLimitSelect() {
   limitSelect.onchange = function (event) {
     limitSelect.value = event.target.value;
     urlParams.set("limit", limitSelect.value);
+    url.search = urlParams.toString();
     window.location.href = url.href;
   };
 }
@@ -176,6 +177,7 @@ function handleOrderSelect() {
   orderSelect.onchange = function (event) {
     orderSelect.value = event.target.value;
     urlParams.set("order", orderSelect.value);
+    url.search = urlParams.toString();
     window.location.href = url.href;
   };
 }
