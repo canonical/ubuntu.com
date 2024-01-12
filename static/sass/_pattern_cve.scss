@@ -272,21 +272,34 @@
 
   .cve-pagination-footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
   .cve-pagination-footer-links {
     display: flex;
     gap: inherit;
-
+    
     a {
       margin-top: 0.4rem;
+    }
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      flex-direction: column;
+      gap: 1rem;
     }
 
     .p-form__control {
       max-width: fit-content;
       min-width: 0;
       padding-right: 1rem;
+    }
+  }
+
+  #cve-search-button {
+    @media screen and (min-width: $breakpoint-small) {
+      margin-top: 2.6rem; 
+      width: 100%;   
     }
   }
 }
