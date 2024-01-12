@@ -1,0 +1,13 @@
+{% extends "supermicro/base_supermicro.html" %}
+
+{% block title %}Contact us | Supermicro{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1YO56CHFtMPccTKpizd9GG_aA5UEqGqdz7jlZ63KFnek/edit{% endblock %}
+
+{% block content %}
+
+{% with formid="5699",
+  returnURL="/thank-you" %}
+  {% include "shared/forms/interactive/supermicro.html" %}
+{% endwith %}
+
+{% endblock content %}

@@ -1116,7 +1116,7 @@ def render_supermicro_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
-        tag_ids=[4307],
+        tag_ids=[2247],
         per_page=3,
         blog_title="Supermicro blogs",
     )

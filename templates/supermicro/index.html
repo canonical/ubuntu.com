@@ -28,7 +28,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
       </p>
       <p>Contact us to learn more about the partnership and our solutions.</p>
       <hr />
-      <a class="p-button--positive" href="#">Get in touch</a>
+      <a class="p-button--positive js-invoke-modal" href="/supermicro/contact-us">Get in touch</a>
     </div>
   </div>
   <div class="p-suru"></div>
@@ -86,7 +86,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
       <p>Supermicro and Canonical have joined forces to create collaborative and rigorously validated reference designs
         that encompasses software, hardware, and integration points for all components of the solution.</p>
       <hr class="p-rule" />
-      <p><a href="#">Check our Reference Architectures&nbsp;&rsaquo;</a></p>
+      <p><a href="#reference_architectures">Check our Reference Architectures&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -101,9 +101,8 @@ open-source solutions that are both validated and fully supported{% endblock %}
       <p><strong>Running on NVIDIA-certified EGX platforms provided by Supermicro.</strong></p>
       <p>Build a stack to run AI at the Edge with this step by step guide.</p>
       <p class="u-sv2">The guide covers hardware specifications, tools, services, and provides a step-by-step guide for
-        setting up the
-        hardware and software required to run ML workloads. It also delves into other tools used for cluster monitoring
-        and management, explaining how all these components work together in the system.</p>
+        setting up the hardware and software required to run ML workloads. It also delves into other tools used for
+        cluster monitoring and management, explaining how all these components work together in the system.</p>
       <img src="https://assets.ubuntu.com/v1/e7559c1f-Image-1.png" alt="" width="100%" />
     </div>
   </div>
@@ -197,12 +196,13 @@ open-source solutions that are both validated and fully supported{% endblock %}
     <div class="col">
       <p>Ubuntu certified hardware has passed an extensive testing and review process, ensuring that Ubuntu runs
         perfectly out of the box.</p>
-      <a href="#">Contact us to know more about SMC certified Hardware&nbsp;&rsaquo;</a>
+      <a class="js-invoke-modal" href="/supermicro/contact-us">Contact us to know more about SMC certified
+        Hardware&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
 
-<section class="p-section">
+<section class="p-section" id="reference_architectures">
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
@@ -231,8 +231,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
     <div class="col">
       <p>
         <a href="https://www.brighttalk.com/webcast/17278/587447">New Cloud Game Streaming Platform Delivering PC
-          Quality
-          Graphics to Mobile Games</a>
+          Quality Graphics to Mobile Games</a>
       </p>
       <p>Learn how Supermicro, Ampere, Canonical, and NVIDIA partner to deliver next-gen gaming experiences</p>
       <hr class="p-rule" />
@@ -241,8 +240,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
           Kubernetes</a>
       </p>
       <p>Discover how to optimize design considerations and performance to deploy a kubernetes cluster in days rather
-        than
-        months</p>
+        than months</p>
       <hr class="p-rule" />
       <p>
         <a href="https://www.brighttalk.com/webcast/17278/394378">Accelerate AI/ML workloads with Kubeflow and System
@@ -261,19 +259,19 @@ open-source solutions that are both validated and fully supported{% endblock %}
     </div>
     <div class="col">
       {% for article in blogs %}
-      {% if loop.index <= 3 %}
-        {% if loop.index> 0 %}
-        <hr class="is-fixed-width p-rule">
+        {% if loop.index <= 3 %}
+          {% if loop.index > 0 %}
+            <div>
+              <p><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></p>
+              <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
+                <span class="p-chip__value">Supermicro</span>
+              </button>
+            </div>
+            {% if loop.index < 3 %}
+              <hr class="p-rule">
+            {% endif %}
+          {% endif %}
         {% endif %}
-        <div class="p-block">
-          <a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a>
-          <p>
-            <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
-              <span class="p-chip__value">Supermicro</span>
-            </button>
-          </p>
-        </div>
-      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -285,10 +283,17 @@ open-source solutions that are both validated and fully supported{% endblock %}
   <div class="row">
     <div class="col-12">
       <p class="p-heading--2">
-        <a href="#">Contact us about the Supermicro partnership<br /> or how to purchase our joint solutions&nbsp;&rsaquo;</a>
+        <a class="js-invoke-modal" href="/supermicro/contact-us">Contact us about the Supermicro partnership<br /> or
+          how to purchase our joint solutions&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
 </section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/supermicro"
+  data-form-id="4914" data-lp-id="" data-return-url="/thank-you"
+  data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
 
 {% endblock %}
