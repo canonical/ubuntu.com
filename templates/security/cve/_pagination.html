@@ -19,7 +19,6 @@
         </span>
         {% endif %}
       </li>
-  
       {# always show 5 pages in pagination #}
       {% if current_page > 4 and current_page == total_pages %}
         <li class="p-pagination__item">
@@ -81,7 +80,7 @@
       {% endif %}
   
       {% if current_page <= total_pages - 3 and current_page == 2 %}
-        <li class="p-pagination__item">
+        <li class="p-pagination__item">k
           <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
         </li>
       {% endif %}

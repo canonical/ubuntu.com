@@ -15,6 +15,7 @@ def get_summarized_status(cve, ignored_low_indicators, vulnerable_indicators):
         Check if all statuses for all packages are the same,
         excluding DNE and empty data
         """
+        # TODO: Fix this logic, causing false flags in summarized status
         # if (
         #     len(
         #         {
