@@ -121,63 +121,63 @@ open-source solutions that are both validated and fully supported{% endblock %}
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/3a44e09e-sdaia-logo.png",
-          alt="SDAIA",
-          width="120",
-          height="100",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
-          ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/9d00e2d9-wintermute-logo.png",
-          alt="WinterMute",
-          width="90",
-          height="120",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
-          ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/f21cbb8d-firmus-logo.png",
-          alt="Firmus",
-          width="120",
-          height="120",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
-          ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/e835d7d6-deltadental-logo.png",
-          alt="Delta Dental",
-          width="160",
-          height="100",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
-          ) | safe
-          }}
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{
+            image (
+            url="https://assets.ubuntu.com/v1/3a44e09e-sdaia-logo.png",
+            alt="SDAIA",
+            width="120",
+            height="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image (
+            url="https://assets.ubuntu.com/v1/9d00e2d9-wintermute-logo.png",
+            alt="WinterMute",
+            width="90",
+            height="120",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image (
+            url="https://assets.ubuntu.com/v1/f21cbb8d-firmus-logo.png",
+            alt="Firmus",
+            width="120",
+            height="120",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image (
+            url="https://assets.ubuntu.com/v1/e835d7d6-deltadental-logo.png",
+            alt="Delta Dental",
+            width="160",
+            height="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <section class="p-section--shallow">
@@ -210,14 +210,16 @@ open-source solutions that are both validated and fully supported{% endblock %}
       <h2>Reference architectures</h2>
     </div>
     <div class="col">
-      <div class="u-sv1"></div>
-      <img src="https://assets.ubuntu.com/v1/e6ffdd65-Rectangle%20558.jpg" alt="" width="100%" />
       <p>Discover how these Supermicro and Canonical components complement each other to create an entire joint
         solution.</p>
       <hr class="p-rule" />
       <p>
-        <a href="https://www.supermicro.com/solutions/f_CanonicalOpenStack.pdf">Supermicro Total Solution for Canonical
+        <a href="https://www.supermicro.com/en/solutions/canonical">Supermicro Total Solution for Canonical
           OpenStack&nbsp;&rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://www.supermicro.com/en/solutions/kubernetes-canonical">Supermicro Total Solution for Canonical
+          Kubernetes&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
@@ -260,17 +262,15 @@ open-source solutions that are both validated and fully supported{% endblock %}
     </div>
     <div class="col">
       {% for article in blogs %}
-        {% if loop.index <= 3 %}
-          {% if loop.index > 0 %}
-            <div>
-              <p><a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a></p>
-              <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
-                <span class="p-chip__value">Supermicro</span>
-              </button>
-            </div>
-            {% if loop.index < 3 %}
-              <hr class="p-rule">
-            {% endif %}
+        {% if loop.index > 0 and loop.index <= 3 %}
+          <div>
+            <p><a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a></p>
+            <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
+              <span class="p-chip__value">Supermicro</span>
+            </button>
+          </div>
+          {% if loop.index < 3 %}
+            <hr class="p-rule">
           {% endif %}
         {% endif %}
       {% endfor %}
