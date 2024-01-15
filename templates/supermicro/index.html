@@ -12,10 +12,10 @@ open-source solutions that are both validated and fully supported{% endblock %}
   <div class="row--25-75">
     <div class="col">
       {{ image (
-      url="https://assets.ubuntu.com/v1/c9b393e3-supermicro-logo.png",
+      url="https://assets.ubuntu.com/v1/0bcf86c5-supermicro_logo.png",
       alt="Diagram that shows how Chisel works",
-      height="120",
-      width="120",
+      height="55",
+      width="90",
       hi_def=True,
       loading="lazy" ) | safe
       }}
@@ -120,6 +120,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
     </div>
   </div>
   <div class="row">
+    <div class="col-9 col-start-large-4">
     <div class="p-logo-section">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
@@ -262,7 +263,7 @@ open-source solutions that are both validated and fully supported{% endblock %}
         {% if loop.index <= 3 %}
           {% if loop.index > 0 %}
             <div>
-              <p><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></p>
+              <p><a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a></p>
               <button class="p-chip--information" onclick="location.href='/blog/tag/supermicro'">
                 <span class="p-chip__value">Supermicro</span>
               </button>
