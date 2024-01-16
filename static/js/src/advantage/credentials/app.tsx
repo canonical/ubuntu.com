@@ -6,7 +6,6 @@ import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
-import CredExamShop from "./components/CredExamShop/CredExamShop";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -37,7 +36,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Router basename="/credentials/shop">
           <Routes>
-            <Route path="/" element={<CredExamShop />} />
             <Route path="/manage" element={<CredManage />} />
           </Routes>
         </Router>
