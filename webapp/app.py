@@ -1108,3 +1108,22 @@ def render_blogs():
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
+
+
+# Supermicro blog section
+def render_supermicro_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
+        tag_ids=[2247],
+        per_page=3,
+        blog_title="Supermicro blogs",
+    )
+    supermicro_articles = blogs.get_tag("supermicro")
+    return flask.render_template(
+        "/supermicro/index.html", blogs=supermicro_articles["articles"]
+    )
+
+
+app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
