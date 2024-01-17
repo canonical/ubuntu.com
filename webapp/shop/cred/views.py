@@ -633,7 +633,6 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
-<<<<<<< HEAD
 def cred_shop_thank_you(**kwargs):
     quantity = flask.request.args.get("quantity", "")
     product = flask.request.args.get("productName", "")
@@ -694,28 +693,10 @@ def cred_shop_webhook_responses(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-def cred_shop_keys(ua_contracts_api, **kwargs):
-    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
-        "productListings"
-    )
-    cue_price = [
-        {
-            "id": listing["productID"],
-            "longId": listing["id"],
-            "period": listing["period"],
-            "marketplace": listing["marketplace"],
-            "name": listing["name"],
-            "price": listing["price"],
-        }
-        for listing in listings
-        if (listing["productID"].endswith("key")) or (type == "exam")
-    ]
-=======
 def cred_shop_keys(**kwargs):
-    cue_price = get_cue_products(type="keys").json
->>>>>>> 4562fa112 (Remove redundant row class)
+    cue_key_product = get_cue_products(type="keys").json
     return flask.render_template(
-        "credentials/shop/keys.html", cue_price=cue_price[0]
+        "credentials/shop/keys.html", cue_key_product=cue_key_product[0]
     )
 
 
