@@ -314,12 +314,30 @@
 
         input {
           width: auto;
+          margin-bottom: 0;
         }
+      }
+
+      .p-accordion__group {
+        padding-bottom: 1.5rem;
+        position: unset;
+      }
+
+      .p-checkbox__label {
+        padding-left: 2.2rem;
+      }
+
+      .p-text--small-caps{
+        padding-left: 2.2rem;
       }
     }
 
     .p-icon--chevron-down {
       margin-right: 1rem;
+    }
+
+    .p-text--small-caps{
+      padding-left: 2rem;
     }
   }
 }
