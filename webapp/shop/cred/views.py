@@ -633,6 +633,19 @@ def cred_shop_thank_you(**kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_shop_webhook_responses(**kwargs):
+    ability_screen_id = "4190"
+    page = flask.request.args.get("page", 1)
+    webhook = get_filtered_webhook_responses(
+        ability_screen_id=ability_screen_id, page=page
+        ).json
+    return flask.render_template(
+        "credentials/shop/webhook_responses.html", webhook_responses=webhook
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     exam = None
     action = flask.request.args.get("action")
@@ -755,9 +768,16 @@ def cred_beta_activation(**_):
 @shop_decorator(area="cred", permission="user", response="json")
 @canonical_staff()
 def get_filtered_webhook_responses(trueability_api, **kwargs):
-    ability_screen_id = flask.request.args.get("ability_screen_id", None)
-    page = flask.request.args.get("page", 1)
-    page = int(page)
+    if kwargs["ability_screen_id"]:
+        ability_screen_id = kwargs["ability_screen_id"]
+    else:
+        ability_screen_id = flask.request.args.get("ability_screen_id", None)
+
+    if kwargs["page"]:
+        page = int(kwargs["page"])
+    else:
+        page = flask.request.args.get("page", 1)
+        page = int(page)
     per_page = flask.request.args.get("per_page", 10)
     per_page = int(per_page)
     ta_results_per_page = 100
@@ -777,9 +797,9 @@ def get_filtered_webhook_responses(trueability_api, **kwargs):
     ]
     page_metadata = {}
     page_metadata["current_page"] = page
-    page_metadata["total_pages"] = (
+    page_metadata["total_pages"] = math.ceil(
         webhook_responses["meta"]["total_count"] // per_page
-    ) + 1
+    )
     page_metadata["total_count"] = total_count
     page_metadata["next_page"] = (
         page + 1 if page < page_metadata["total_pages"] else None
