@@ -21,6 +21,21 @@
   });
 })();
 
+(function setupSubmitButton() {
+  const submitButton = document.querySelector('button[type="submit"]');
+  const modalForm = formContainer.querySelector("form");
+  const spinnerIcon = document.createElement("i");
+  spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+  modalForm.addEventListener("submit", function (e) {
+    const buttonRect = submitButton.getBoundingClientRect();
+    submitButton.style.width = buttonRect.width + "px";
+    submitButton.style.height = buttonRect.height + "px";
+    submitButton.disabled = true;
+    submitButton.innerText = "";
+    submitButton.appendChild(spinnerIcon);
+  });
+})()
+
 function buildCommentsForLead() {
   var message = "";
   var commentsFromLead = document.querySelector("#Comments_from_lead__c");
