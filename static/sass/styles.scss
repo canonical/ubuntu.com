@@ -1403,3 +1403,41 @@ $color-link-dark: #69c !default;
     background-color: #f3f3f3;
   }
 }
+
+.p-icon-section {
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 3rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+  }
+
+  &__item {
+    margin-bottom: -0.5rem;
+    margin-right: 3rem;
+    margin-top: -.5rem;
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      margin-right: 1.5rem;
+    }
+    
+  }
+
+  &__icon {
+    height: 6rem;
+    width: auto;
+  }
+}
+
+.desktop-footer {
+  &__content {
+    height: 12rem;
+  }
+
+  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+    &__content {
+      height: 14rem;
+    }  
+  }
+}
