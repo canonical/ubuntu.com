@@ -1409,19 +1409,18 @@ $color-link-dark: #69c !default;
     display: flex;
     flex-wrap: wrap;
     line-height: 3rem;
-    padding-bottom: .5rem;
-    padding-top: .5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
   }
 
   &__item {
     margin-bottom: -0.5rem;
     margin-right: 3rem;
-    margin-top: -.5rem;
+    margin-top: -0.5rem;
 
     @media screen and (max-width: $breakpoint-small - 1) {
       margin-right: 1.5rem;
     }
-    
   }
 
   &__icon {
@@ -1438,6 +1437,6 @@ $color-link-dark: #69c !default;
   @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
     &__content {
       height: 14rem;
-    }  
+    }
   }
 }
