@@ -58,6 +58,9 @@ mainList.addEventListener("click", function (e) {
     } else {
       handleDropdownClick(e.target.parentNode);
     }
+  } else if (target.tagName == "A") {
+    // This handles the globa-nav using a slightly different class naming convention
+    window.location.href = target.href;
   }
 });
 
@@ -105,8 +108,8 @@ function toggleSecondaryMobileNavDropdown(e) {
   } else {
     isDropdownOpen = true;
   }
-  mobileNavDropdown.classList.toggle("is-open", !isDropdownOpen);
-  mobileNavDropdownToggle.classList.toggle("is-open", !isDropdownOpen);
+  mobileNavDropdown?.classList.toggle("is-open", !isDropdownOpen);
+  mobileNavDropdownToggle?.classList.toggle("is-open", !isDropdownOpen);
 }
 
 function handleDropdownClick(clickedDropdown) {
