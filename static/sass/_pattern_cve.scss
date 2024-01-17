@@ -305,12 +305,16 @@
 
   .cve-filters {
     .p-side-navigation {
-      #tab1-section {
-        margin-top: 1rem;
+      &__drawer-header {
+        position: relative;
       }
 
-      #affectedPackages {
-        width: auto;
+      li:first-child .p-accordion__panel[aria-hidden="false"] {
+        margin-top: 1rem;
+
+        input {
+          width: auto;
+        }
       }
     }
 
