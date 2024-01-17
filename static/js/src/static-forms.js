@@ -23,7 +23,7 @@
 
 (function setupSubmitButton() {
   const submitButton = document.querySelector('button[type="submit"]');
-  const modalForm = formContainer.querySelector("form");
+  const modalForm = document.querySelector("form");
   const spinnerIcon = document.createElement("i");
   spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
   modalForm.addEventListener("submit", function (e) {
