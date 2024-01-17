@@ -639,7 +639,7 @@ def cred_shop_webhook_responses(**kwargs):
     page = flask.request.args.get("page", 1)
     webhook = get_filtered_webhook_responses(
         ability_screen_id=ability_screen_id, page=page
-        ).json
+    ).json
     return flask.render_template(
         "credentials/shop/webhook_responses.html", webhook_responses=webhook
     )
