@@ -142,7 +142,12 @@ $meganav-height: 3rem;
       }
 
       .p-search-box__input {
-        background-color: #f2f2f2 !important;
+        background-color: $color-light !important;
+
+        &:focus,
+        &:hover {
+          background-color: $color-light !important;
+        }
       }
 
       .p-search-box__input::placeholder {
@@ -188,6 +193,10 @@ $meganav-height: 3rem;
 
         &[aria-hidden="false"] {
           overflow: unset;
+
+          &::before {
+            pointer-events: none;
+          }
         }
       }
 
