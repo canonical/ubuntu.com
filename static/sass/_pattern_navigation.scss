@@ -660,13 +660,20 @@ $meganav-height: 3rem;
 
 @mixin ubuntu-p-docs-navigation {
   body:is(.docs) {
-    .p-navigation--sliding {
+    .p-navigation--sliding,
+    .p-navigation.is-secondary {
       .p-navigation__banner {
         padding-left: 1rem;
       }
 
       .p-navigation__nav {
         margin-left: 0;
+      }
+    }
+
+    .p-navigation--sliding.is-reduced {
+      .js-account a:after {
+        content: none;
       }
     }
   }
