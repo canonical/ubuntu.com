@@ -12,10 +12,10 @@
 
 {# 0 -180px #}
 
-<section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
+<section class="p-strip is-shallow u-no-padding--bottom">
   <div class="p-section">
-    <div class="row">
-      <div class="col-start-large-4 col-9">
+    <div class="row--50-50">
+      <div class="col">
         <h1>Ubuntu for desktops</h1>
         <p class="desktop-hero--subtext">The open source Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
         <p>
@@ -23,9 +23,7 @@
           <a href="/desktop/features">Take a look&nbsp;&rsaquo;</a>
         </p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-4 col-6">
+      <div class="col">
         <div class="u-embedded-media">
           <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -182,24 +180,26 @@
 </section>
 
 <section class="p-section">
-  <div class="u-fixed-width p-section--shallow">
+  <div class="row--50-50 p-section--shallow">
     <hr class="p-rule" />
-    <h2>Visually stunning, wherever it's used</h2>
-  </div>
-  <div class="row">
-    <div class="col-start-large-4 col-9">
-      <p>Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.</p>
-      {{ 
-        image (
-        url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
-        alt="",
-        width="2557",
-        height="1321",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="col">
+      <h2>Visually stunning,<br /> wherever it's used</h2>
     </div>
+    <div class="col">
+      <p>Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width p-section--shallow">
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
+      alt="",
+      width="2557",
+      height="1321",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
   </div>
 </section>
 
