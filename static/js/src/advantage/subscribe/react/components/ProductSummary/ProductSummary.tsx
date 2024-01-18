@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
-  IoTDevices,
   isIoTDevice,
   isMonthlyAvailable,
   isPublicCloud,
@@ -19,7 +18,6 @@ const ProductSummary = () => {
     period,
     setPeriod,
     product,
-    iotDevice,
     productType,
   } = useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -35,8 +33,7 @@ const ProductSummary = () => {
       !quantity ||
       +quantity < 1 ||
       isPublicCloud(productType) ||
-      (isIoTDevice(productType) && iotDevice === IoTDevices.core));
-
+      isIoTDevice(productType));
   return (
     <>
       <section
