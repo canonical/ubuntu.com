@@ -870,14 +870,7 @@ def cred_shop_thank_you(**kwargs):
 
 
 def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account("canonical-ua")
-    contracts = advantage_mapper.get_activation_key_contracts(account.id)
-
-    keys = []
-    for contract in contracts:
-        all_keys = ua_contracts_api.list_activation_keys(contract.id)
-        keys.extend(all_keys)
-
+    keys = get_activation_keys().json
     unused_keys = []
     active_keys = []
     for i in range(len(keys)):
@@ -910,7 +903,7 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
         active_page_no = page
 
     per_page = 5
-    all = get_page_info(all_keys, all_page_no, per_page)
+    all = get_page_info(keys, all_page_no, per_page)
     unused = get_page_info(unused_keys, unused_page_no, per_page)
     active = get_page_info(active_keys, active_page_no, per_page)
 
