@@ -12,10 +12,10 @@
 
 {# 0 -180px #}
 
-<section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
+<section class="p-strip is-shallow u-no-padding--bottom">
   <div class="p-section">
     <div class="row">
-      <div class="col-start-large-4 col-9">
+      <div class="col-6 col-medium-3">
         <h1>Ubuntu for desktops</h1>
         <p class="desktop-hero--subtext">The open source Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
         <p>
@@ -23,13 +23,11 @@
           <a href="/desktop/features">Take a look&nbsp;&rsaquo;</a>
         </p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-4 col-6">
+      <div class="col-6 col-medium-3">
         <div class="u-embedded-media">
           <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -38,18 +36,19 @@
   <div class="row--50-50 p-section--shallow">
     <hr class="p-rule" />
     <div class="col">
-      <h2>The OS trusted by millions</h2>
+      <h2>The OS trusted by&nbsp;millions</h2>
     </div>
     <div class="col">
-      <p>Ubuntu comes with everything you need to run your organisation, school, home or enterprise.  All the essential applications, like an office suite, browsers, email and media apps, come pre-installed and thousands more games and applications are available in the Ubuntu Software Centre.</p>
-      <p><a href="/desktop/features">Explore features&nbsp;&rsaquo;</a></p>
+      <div class="p-section">
+        <p>Ubuntu comes with everything you need to run your organisation, school, home or enterprise.  All the essential applications, like an office suite, browsers, email and media apps, come pre-installed and thousands more games and applications are available in the Ubuntu Software Centre.</p>
+        <p><a href="/desktop/features">Explore features&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <div class="p-icon-section">
-      <div class="p-icon-section__items">
-        <div class="p-icon-section__item">
-          {{ 
+    <div class="u-fixed-width">
+      <div class="p-icon-section">
+        <div class="p-icon-section__items">
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/9917aba6-spotify-linux-256.png",
             alt="Spotify",
@@ -59,10 +58,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/f099c20f-vlc.png",
             alt="VLC",
@@ -72,10 +71,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/034147e9-code_ozwVHSV.png",
             alt="VSCode",
@@ -85,10 +84,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/eb5ccb1d-clion.ico.png",
             alt="CLion",
@@ -98,10 +97,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/8daf0eb5-firefox_logo.png",
             alt="Firefox",
@@ -111,10 +110,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/dcc61b66-Skype.png",
             alt="Skype",
@@ -124,10 +123,10 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ 
+            }}
+          </div>
+          <div class="p-icon-section__item">
+            {{
             image (
             url="https://assets.ubuntu.com/v1/d77f0f3a-icon256.png",
             alt="Telegram",
@@ -137,10 +136,12 @@
             loading="lazy",
             attrs={"class": "p-icon-section__icon"},
             ) | safe
-          }}
+            }}
+          </div>
         </div>
       </div>
-    </div>
+    </div>  </div>
+  <div class="u-fixed-width">
   </div>
 </section>
 
@@ -148,7 +149,7 @@
   <div class="row--25-75 is-split-on-medium">
     <hr class="p-rule" />
     <div class="col">
-      <h2 class="p-text--small-caps">Why choose Ubuntu desktop</h2>
+      <h2 class="p-text--small-caps">Why choose <br>Ubuntu desktop</h2>
     </div>
     <div class="col">
       <div class="row p-section--shallow">
@@ -182,24 +183,26 @@
 </section>
 
 <section class="p-section">
-  <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule" />
-    <h2>Visually stunning, wherever it's used</h2>
-  </div>
-  <div class="row">
-    <div class="col-start-large-4 col-9">
-      <p>Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.</p>
-      {{ 
-        image (
-        url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
-        alt="",
-        width="2557",
-        height="1321",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+  <hr class="p-rule is-fixed-width">
+  <div class="row--50-50">
+    <div class="col p-section--shallow">
+      <h2>Visually stunning,<br>wherever it's used</h2>
     </div>
+    <div class="col">
+      <p>Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+      {{
+      image (
+      url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
+      alt="",
+      width="2557",
+      height="1321",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
   </div>
 </section>
 
@@ -207,7 +210,7 @@
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
-      <h2>Get Linux on the largest range of hardware</h2>
+      <h2>Get Linux on the largest range of&nbsp;hardware</h2>
     </div>
     <div class="col">
       <p>Canonical works closely with Dell, Lenovo and HP  to certify that Ubuntu works on a wide range of their laptops and workstations. It means that a seamless Ubuntu experience is available out of the box with more hardware choice than ever.</p>
@@ -234,8 +237,8 @@
     <hr class="p-rule" />
     <h2>Ubuntu Desktop for the enterprise</h2>
   </div>
-  <div class="row">
-    <div class="col-start-large-4 col-9 col-medium-6">
+  <div class="row--25-75">
+    <div class="col">
       <hr class="p-rule" />
       <div class="row p-section--shallow">
         <div class="col-3 col-medium-3">
