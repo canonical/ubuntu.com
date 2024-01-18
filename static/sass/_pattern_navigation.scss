@@ -29,7 +29,7 @@ $meganav-height: 3rem;
     }
 
     .global-nav__link {
-      color: 69;
+      color: #69c;
     }
   }
 
@@ -43,7 +43,7 @@ $meganav-height: 3rem;
     }
 
     .p-navigation__nav {
-      margin-left: -2rem;
+      margin-left: -1rem;
       margin-right: 0;
       max-height: calc(100vh - 3rem);
       width: auto;
@@ -197,6 +197,10 @@ $meganav-height: 3rem;
           &::before {
             pointer-events: none;
           }
+        }
+
+        &::before {
+          box-shadow: none;
         }
       }
 
@@ -411,6 +415,10 @@ $meganav-height: 3rem;
       .p-navigation__link {
         padding-left: 0;
         padding-top: 0.5rem;
+
+        @media (max-width: $breakpoint-navigation-threshold) {
+          padding-top: 0.75rem;
+        }
       }
     }
 
@@ -431,14 +439,14 @@ $meganav-height: 3rem;
       }
     }
 
-    button.p-navigation__link.js-menu-button {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
     .p-navigation__item {
       .p-navigation__link {
         color: $color-mid-light;
+      }
+
+      .js-menu-button.p-navigation__link {
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
 
@@ -446,9 +454,14 @@ $meganav-height: 3rem;
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
 
+      @media (max-width: $breakpoint-large) {
+        padding-right: 3rem;
+      }
+
       &::after {
         color: $color-mid-light;
-        top: 0.75rem;
+        right: 1rem;
+        top: 1rem;
       }
     }
 
@@ -571,25 +584,25 @@ $meganav-height: 3rem;
     z-index: 10;
 
     .p-navigation__nav {
-      margin-left: -2rem;
-    }
+      margin-left: -1rem;
 
-    .p-navigation__nav.is-open {
-      display: flex;
+      &.is-open {
+        display: flex;
 
-      .p-navigation__items {
-        display: block;
-      }
-
-      .p-navigation__link {
-        padding-left: calc(1rem + $row-margin-medium);
-
-        @media (max-width: $breakpoint-medium) {
-          padding-left: calc(1rem + $row-margin-small);
+        .p-navigation__items {
+          display: block;
         }
 
-        &::before {
-          left: $row-margin-small;
+        .p-navigation__link {
+          padding-left: calc(1rem + $row-margin-medium);
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1rem + $row-margin-small);
+          }
+
+          &::before {
+            left: $row-margin-small;
+          }
         }
       }
     }
@@ -640,7 +653,7 @@ $meganav-height: 3rem;
     overflow-x: unset !important;
 
     h2 {
-      color: #f7f7f7;
+      color: $color-light;
       padding-left: 1.5rem;
     }
 
