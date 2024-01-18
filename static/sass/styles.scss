@@ -1409,6 +1409,10 @@ $color-link-dark: #69c !default;
     line-height: 3rem;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      row-gap: 1rem;
+    }
   }
 
   &__item {
@@ -1424,17 +1428,28 @@ $color-link-dark: #69c !default;
   &__icon {
     height: 6rem;
     width: auto;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      height: 4rem;
+    }
   }
 }
 
 .desktop-footer {
+  &__container {
+    @media screen and (max-width: $breakpoint-small - 1) {
+      padding-bottom: 1rem;
+    }
+  }
   &__content {
     height: 12rem;
-  }
 
-  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
-    &__content {
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
       height: 14rem;
+    }
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      height: auto;
     }
   }
 }
