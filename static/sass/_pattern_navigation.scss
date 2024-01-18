@@ -143,8 +143,9 @@ $meganav-height: 3rem;
 
       .p-search-box__input {
         background-color: $color-light !important;
-      
-        &:focus, &:hover {
+
+        &:focus,
+        &:hover {
           background-color: $color-light !important;
         }
       }
@@ -193,7 +194,7 @@ $meganav-height: 3rem;
         &[aria-hidden="false"] {
           overflow: unset;
 
-          &:before {
+          &::before {
             pointer-events: none;
           }
         }
