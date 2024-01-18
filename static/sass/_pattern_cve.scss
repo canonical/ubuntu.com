@@ -302,4 +302,42 @@
       width: 100%;
     }
   }
+
+  .cve-filters {
+    .p-side-navigation {
+      &__drawer-header {
+        position: relative;
+      }
+
+      li:first-child .p-accordion__panel[aria-hidden="false"] {
+        margin-top: 1rem;
+
+        input {
+          margin-bottom: 0;
+          width: auto;
+        }
+      }
+
+      .p-accordion__group {
+        padding-bottom: 1.5rem;
+        position: unset;
+      }
+
+      .p-checkbox__label {
+        padding-left: 2.2rem;
+      }
+
+      .p-text--small-caps {
+        padding-left: 2.2rem;
+      }
+    }
+
+    .p-icon--chevron-down {
+      margin-right: 1rem;
+    }
+
+    .p-text--small-caps:not(:first-child) {
+      padding-left: 2rem;
+    }
+  }
 }
