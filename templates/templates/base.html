@@ -82,6 +82,7 @@
     </style>
   </noscript>
 
+  {% block body %}
   {% if not(hide_nav == True) %}
     {% include "templates/_navigation.html" %}
   {% endif %}
@@ -132,5 +133,7 @@
     {% endif %}
     {% block footer_extra %}{% endblock %}
   {% endif %}
+
+  {% endblock body%}
 </body>
 </html>

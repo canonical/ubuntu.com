@@ -1,67 +1,64 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
-<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
-  {% block header_banner %}
-  <div class="row">
-    <div class="p-navigation__banner col-3">
-      <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="/">
-          {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
-          Canonical Ubuntu
-          {% elif breadcrumbs == "tutorials" %}
-          Canonical Ubuntu
-          {% else %}
-          <div class="p-navigation__logo-tag">
-            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
-          </div>
-          <span class="p-navigation__logo-title">Canonical Ubuntu</span>
-          {% endif %}
-        </a>
-      </div>
-      <ul class="p-navigation__items">
-        <li class="p-navigation__item">
-          <a href="/search" class="js-search-button p-navigation__link--search-toggle" aria-label="Search">
-          </a>
-        </li>
-        <li class="p-navigation__item">
-          <a href="/navigation" class="js-menu-button p-navigation__link">Menu</a>
-        </li>
-      </ul>
+
+{% macro banner_content() %}
+<div class="p-navigation__tagged-logo">
+  <a class="p-navigation__link" href="/">
+    {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+    Canonical Ubuntu
+    {% elif breadcrumbs == "tutorials" %}
+    Canonical Ubuntu
+    {% else %}
+    <div class="p-navigation__logo-tag">
+      <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
     </div>
-    <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
-      <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#use-case-navigation" aria-controls="use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#support-navigation" aria-controls="support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#community-navigation" aria-controls="community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
-          <a class="p-navigation__link" href="/navigation#get-ubuntu-navigation" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu');">Get Ubuntu</a>
-        </li>
-        <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical"></li>
-        <li class="p-navigation__item--dropdown-toggle js-account" role="menuitem" id="canonical-login"></li>
-        <li class="p-navigation__item">
-          <a href="/search" class="js-search-button p-navigation__link--search-toggle"></a>
-        </li>
-      </ul>
-      <div class="p-navigation__search">
-        <form action="/search" class="p-search-box">
-          <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-        </form>
-      </div>
-    </nav>
-  </div>
-  {% endblock header_banner %}
-  <div class="p-navigation__search-overlay"></div>
-</header>
+    <span class="p-navigation__logo-title">Canonical Ubuntu</span>
+    {% endif %}
+  </a>
+</div>
+<ul class="p-navigation__items">
+  <li class="p-navigation__item">
+    <a href="/search" class="js-search-button p-navigation__link--search-toggle" aria-label="Search">
+    </a>
+  </li>
+  <li class="p-navigation__item">
+    <a href="/navigation" class="js-menu-button p-navigation__link">Menu</a>
+  </li>
+</ul>
+{% endmacro %}
+
+{% macro nav_items() %}
+<ul class="p-navigation__items">
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
+  </li>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#use-case-navigation" aria-controls="use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</a>
+  </li>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#support-navigation" aria-controls="support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</a>
+  </li>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#community-navigation" aria-controls="community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</a>
+  </li>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#get-ubuntu-navigation" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu');">Get Ubuntu</a>
+  </li>
+  <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical"></li>
+  <li class="p-navigation__item--dropdown-toggle js-account" role="menuitem" id="canonical-login"></li>
+  <li class="p-navigation__item">
+    <a href="/search" class="js-search-button p-navigation__link--search-toggle"></a>
+  </li>
+</ul>
+<div class="p-navigation__search">
+  <form action="/search" class="p-search-box">
+    <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
+    <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+    <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+  </form>
+</div>
+{% endmacro %}
+
+{% macro navigation_dropdown() %}
 <div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   <div class="u-hide dropdown-content-desktop" id="products-content"></div>
@@ -130,4 +127,40 @@
   </div>
 </div>
 {% endif %}
+{% endif %}
+{% endmacro %}
+
+{% if is_docs %}
+<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+  <div class="l-docs__subgrid">
+    <div class="l-docs__sidebar">
+      <div class="p-navigation__banner">
+        {{ banner_content() }}
+      </div>
+    </div>
+    <div class="l-docs__main">
+      <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
+        {{ nav_items() }}
+      </nav>
+    </div>
+  </div>
+  <div class="p-navigation__search-overlay"></div>
+</header>
+{{ navigation_dropdown() }}
+{% else %}
+<header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
+  {% block header_banner %}
+  <div class="row">
+    <div class="p-navigation__banner col-3">
+      {{ banner_content() }}
+    </div>
+    <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
+      {{ nav_items() }}
+    </nav>
+  </div>
+  {% endblock header_banner %}
+  <div class="p-navigation__search-overlay"></div>
+</header>
+{{ navigation_dropdown() }}
+
 {% endif %}
