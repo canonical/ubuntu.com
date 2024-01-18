@@ -1,8 +1,6 @@
 {% set nav_sections = get_navigation(request.path).nav_sections %}
 
-{% block footer %}
-
-<footer class="p-footer p-strip u-clearfix">
+{% macro footer_contents() %}
   <div class="u-fixed-width p-footer__container">
     <p class="u-hide--medium u-hide--large link-to-top"><a href="#"><small>Back to top</small></a></p>
     <nav aria-label="Footer navigation" id="main-navigation" class="p-footer__nav u-clearfix row u-no-padding--left u-no-padding--right">
@@ -254,6 +252,21 @@
     </script>
     <span class="u-off-screen"><a href="#">Go to the top of the page</a></span>
   </div>
+{% endmacro %}
+{% block footer %}
+
+{% if is_docs %}
+<footer class="p-footer p-strip u-clearfix">
+  <div class="l-docs__subgrid">
+    <div class="l-docs__main">
+      {{ footer_contents() }}
+    </div>
+  </div>
 </footer>
+{% else %}
+<footer class="p-footer p-strip u-clearfix">
+  {{ footer_contents() }}
+</footer>
+{% endif %}
 
 {% endblock footer %}

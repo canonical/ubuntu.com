@@ -1,4 +1,19 @@
 {# search form for docs #}
+{% if is_docs %}
+<section class="p-strip is-shallow is-bordered l-docs__subgrid">
+    <div class="l-docs__main">
+        <div class="row">
+            <form class="p-search-box u-no-margin--bottom" action="{{ search_action }}">
+            <input class="p-search-box__input" name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="{{ placeholder }}" required/>
+            {% if siteSearch %}
+                <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
+            {% endif %}
+            <button type="submit" alt="search" class="p-search-box__button" alt="search"><i class="p-icon--search">Submit</i></button>
+            </form>
+        </div>
+    </div>
+</section>
+{% else %}
 <div class="p-strip is-shallow">
     <div class="u-fixed-width">
         <form class="p-search-box u-no-margin--bottom" action="{{ search_action }}">
@@ -10,3 +25,4 @@
         </form>
     </div>
 </div>
+{% endif %}

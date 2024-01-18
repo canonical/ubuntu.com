@@ -679,3 +679,17 @@ $meganav-height: 3rem;
     }
   }
 }
+
+@mixin ubuntu-p-docs-navigation {
+  body:is(.docs) {
+    .p-navigation--sliding {
+      .p-navigation__banner {
+        padding-left: 1rem;
+      }
+
+      .p-navigation__nav {
+        margin-left: 0;
+      }
+    }
+  }
+}
