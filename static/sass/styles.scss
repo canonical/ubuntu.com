@@ -1401,3 +1401,57 @@ $color-link-dark: #69c !default;
     background-color: #f3f3f3;
   }
 }
+
+.p-icon-section {
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 3rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      row-gap: 1rem;
+    }
+  }
+
+  &__item {
+    margin-bottom: -0.5rem;
+    margin-right: 3rem;
+    margin-top: -0.5rem;
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__icon {
+    height: 6rem;
+    width: auto;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      height: 4rem;
+    }
+  }
+}
+
+// XXX: MPT: Can be removed once this is fixed in Vanilla
+// https://github.com/canonical/vanilla-framework/pull/4950
+.desktop-footer {
+  &__container {
+    @media screen and (max-width: $breakpoint-small - 1) {
+      padding-bottom: 1rem;
+    }
+  }
+  &__content {
+    height: 12rem;
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      height: 14rem;
+    }
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      height: auto;
+    }
+  }
+}
