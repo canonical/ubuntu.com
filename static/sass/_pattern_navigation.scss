@@ -205,6 +205,14 @@ $meganav-height: 3rem;
 
         .p-muted-heading {
           padding-left: 3rem;
+          
+          @media (max-width: $breakpoint-medium) {
+            padding-left: 2.5rem;
+          }
+        }
+
+        .p-navigation__secondary-links .p-muted-heading {
+          padding-left: 0;
         }
       }
 
@@ -223,13 +231,12 @@ $meganav-height: 3rem;
       }
 
       .p-navigation__secondary-links {
-        @extend .dropdown-window__side-panel;
 
         margin-top: 1.5rem;
-        padding-left: calc(1.5rem + $row-margin-medium) !important;
+        padding-left: calc(1.5rem + $row-margin-medium);
 
         @media (max-width: $breakpoint-medium) {
-          padding-left: calc(1rem + $row-margin-small) !important;
+          padding-left: calc(1.5rem + $row-margin-small);
         }
 
         a {
