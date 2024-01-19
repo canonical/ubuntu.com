@@ -29,12 +29,12 @@ jobs:
     - name: Install dotrun
       uses: canonical/install-dotrun@main
     - name: Install dependencies
-      run: /snap/bin/dotrun install
+      run: dotrun install
     - name: Build assets
-      run: /snap/bin/dotrun build
+      run: dotrun build
     - name: Run dotrun
       run: |
-        /snap/bin/dotrun &
+        dotrun &
         curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
