@@ -1435,6 +1435,8 @@ $color-link-dark: #69c !default;
   }
 }
 
+// XXX: MPT: Can be removed once this is fixed in Vanilla
+// https://github.com/canonical/vanilla-framework/pull/4950
 .desktop-footer {
   &__container {
     @media screen and (max-width: $breakpoint-small - 1) {
