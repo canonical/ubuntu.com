@@ -98,7 +98,7 @@ $meganav-height: 3rem;
           }
 
           .p-muted-heading {
-            padding-left: 0 !important;
+            padding-left: 0;
           }
         }
 
@@ -132,7 +132,7 @@ $meganav-height: 3rem;
           }
 
           .p-muted-heading {
-            padding-left: 0 !important;
+            padding-left: 0;
           }
         }
 
@@ -201,6 +201,10 @@ $meganav-height: 3rem;
 
         &::before {
           box-shadow: none;
+        }
+
+        .p-muted-heading {
+          padding-left: 3rem;
         }
       }
 
