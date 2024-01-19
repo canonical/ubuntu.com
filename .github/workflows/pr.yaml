@@ -134,7 +134,7 @@ jobs:
         run: dotrun build
 
       - name: Run tests with coverage
-        run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
+        run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
