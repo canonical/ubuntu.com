@@ -1,6 +1,7 @@
 @mixin ubuntu-p-strip-photos {
   .p-strip-photos {
     &__container {
+      height: 25px;
       @media only screen and (min-width: $breakpoint-medium) {
         margin-bottom: 10.6rem;
         margin-top: 10.6rem;
@@ -10,10 +11,12 @@
     &__credit {
       @media only screen and (min-width: $breakpoint-medium) {
         background-color: rgba(0, 0, 0, 0.6);
-        bottom: 0;
+        bottom: 10px;
+        right: 10px;
         color: $color-light;
         margin-top: -$sp-xxx-large;
         padding: $sp-small;
+        position: absolute;
       }
     }
 
