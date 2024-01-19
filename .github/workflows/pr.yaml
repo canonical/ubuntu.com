@@ -10,7 +10,7 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
@@ -25,27 +25,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dotrun
         uses: canonical/install-dotrun@main
 
       - name: Install dependencies
-        run: /snap/bin/dotrun install
+        run: |
+          sudo chmod -R 777 .
+          dotrun install
 
       - name: Build assets
-        run: /snap/bin/dotrun build
+        run: dotrun build
 
       - name: Run dotrun
         run: |
-          /snap/bin/dotrun &
+          dotrun &
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
 
   lint-scss:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -57,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -69,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -86,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install konf
         run: |
@@ -108,7 +110,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # fetch all history for codecov
 
@@ -121,16 +123,18 @@ jobs:
         uses: canonical/install-dotrun@main
 
       - name: Install node dependencies
-        run: /snap/bin/dotrun install
+        run: |
+          sudo chmod -R 777 .
+          dotrun install
 
       - name: Install dependencies
-        run: /snap/bin/dotrun exec pip3 install coverage
+        run: dotrun exec pip3 install coverage
 
       - name: Build resources
-        run: /snap/bin/dotrun build
+        run: dotrun build
 
       - name: Run tests with coverage
-        run: /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
+        run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -141,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # fetch all history for codecov
 
@@ -165,7 +169,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -178,7 +182,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -192,7 +196,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: woke
         uses: canonical-web-and-design/inclusive-naming@main
