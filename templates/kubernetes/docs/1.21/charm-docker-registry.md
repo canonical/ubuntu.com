@@ -485,7 +485,7 @@ juju config docker-registry \
 
 The recommended way to delete images from the registry is to use the `rmi`
 action. If necessary, this charm can be configured to
-[allow deletion][storage-delete] of blobs and manifests by digest by setting
+allow deletion of blobs and manifests by digest by setting
 the `storage-delete` config option to `true`:
 
 ```bash
