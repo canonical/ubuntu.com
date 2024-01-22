@@ -19,67 +19,69 @@
       updateOtherInputVisibility.bind(null, textInput)
     );
   });
-})();
 
-window.buildCommentsForLead = function buildCommentsForLead(formId) {
-  var message = "";
-  var commentsFromLead = document.querySelector("#Comments_from_lead__c");
+  const form = document.querySelector("form[action='/marketo/submit']");
+  form?.addEventListener('submit', (e) => {
+    var message = "";
+    var commentsFromLead = document.querySelector("#Comments_from_lead__c");
 
-  const modalForm = document.getElementById(formId);
-  const submitButton = modalForm.querySelector('button[type="submit"]');
-  const spinnerIcon = document.createElement("i");
-  spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
-  const buttonRect = submitButton.getBoundingClientRect();
-  submitButton.style.width = buttonRect.width + "px";
-  submitButton.style.height = buttonRect.height + "px";
-  submitButton.classList.add('is-processing');
-  submitButton.disabled = true;
-  submitButton.innerText = "";
-  submitButton.appendChild(spinnerIcon);
-
-  var formFields = document.querySelectorAll(".js-formfield");
-  formFields.forEach(function (formField) {
-    var comma = ",";
-    var colon = ": ";
-    var fieldTitle = formField.querySelector(".p-heading--3");
-    var inputs = formField.querySelectorAll("input, textarea");
-    if (fieldTitle) {
-      message += fieldTitle.innerText + "\r\n";
+    if (!form.closest('.p-modal')) {
+      const submitButton = form.querySelector('button[type="submit"]');
+      const spinnerIcon = document.createElement("i");
+      spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+      const buttonRect = submitButton.getBoundingClientRect();
+      submitButton.style.width = buttonRect.width + "px";
+      submitButton.style.height = buttonRect.height + "px";
+      submitButton.classList.add('is-processing');
+      submitButton.disabled = true;
+      submitButton.innerText = "";
+      submitButton.appendChild(spinnerIcon);
     }
 
-    inputs.forEach(function (input) {
-      var question = input.name.split("-").join(" ");
-      switch (input.type) {
-        case "radio":
-          if (input.checked) {
-            message += question + colon + input.value + comma + "\r\n\r\n";
-          }
-          break;
-        case "checkbox":
-          if (input.checked) {
-            message += question + colon + input.value + comma + "\r\n\r\n";
-          }
-          break;
-        case "text":
-          if (input.value !== "") {
-            message += question + colon + input.value + comma + "\r\n\r\n";
-          }
-          break;
-        case "number":
-          if (input.value !== "") {
-            message += question + colon + input.value + comma + "\r\n\r\n";
-          }
-          break;
-        case "textarea":
-          if (input.value !== "") {
-            message += question + colon + input.value + comma + "\r\n\r\n";
-          }
-          break;
+    var formFields = document.querySelectorAll(".js-formfield");
+    formFields.forEach(function (formField) {
+      var comma = ",";
+      var colon = ": ";
+      var fieldTitle = formField.querySelector(".p-heading--3");
+      var inputs = formField.querySelectorAll("input, textarea");
+      if (fieldTitle) {
+        message += fieldTitle.innerText + "\r\n";
       }
-      input.removeAttribute("name");
-    });
-  });
 
-  commentsFromLead.value = message;
-  return message;
-}
+      inputs.forEach(function (input) {
+        var question = input.name.split("-").join(" ");
+        switch (input.type) {
+          case "radio":
+            if (input.checked) {
+              message += question + colon + input.value + comma + "\r\n\r\n";
+            }
+            break;
+          case "checkbox":
+            if (input.checked) {
+              message += question + colon + input.value + comma + "\r\n\r\n";
+            }
+            break;
+          case "text":
+            if (input.value !== "") {
+              message += question + colon + input.value + comma + "\r\n\r\n";
+            }
+            break;
+          case "number":
+            if (input.value !== "") {
+              message += question + colon + input.value + comma + "\r\n\r\n";
+            }
+            break;
+          case "textarea":
+            if (input.value !== "") {
+              message += question + colon + input.value + comma + "\r\n\r\n";
+            }
+            break;
+        }
+        input.removeAttribute("name");
+      });
+    });
+
+    commentsFromLead.value = message;
+    return message;
+  })
+})();
