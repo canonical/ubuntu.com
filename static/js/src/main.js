@@ -5,6 +5,7 @@ import "./polyfills.js";
 import "./contextual-menu.js";
 import "./accordion.js";
 import "./dynamic-forms.js";
+import './static-forms.js';
 import "./core.js";
 import "./navigation.js";
 import "./mobile-footer-navigation.js";

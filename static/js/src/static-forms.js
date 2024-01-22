@@ -21,7 +21,7 @@
   });
 })();
 
-function buildCommentsForLead(formId) {
+window.buildCommentsForLead = function buildCommentsForLead(formId) {
   var message = "";
   var commentsFromLead = document.querySelector("#Comments_from_lead__c");
 
@@ -32,7 +32,7 @@ function buildCommentsForLead(formId) {
   const buttonRect = submitButton.getBoundingClientRect();
   submitButton.style.width = buttonRect.width + "px";
   submitButton.style.height = buttonRect.height + "px";
-  submitButton.classList.add('is-processing')
+  submitButton.classList.add('is-processing');
   submitButton.disabled = true;
   submitButton.innerText = "";
   submitButton.appendChild(spinnerIcon);
