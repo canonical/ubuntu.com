@@ -7,7 +7,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredKeyShop from "./components/CredKeyShop";
-import CredPurchaseConfirmation from "./components/CredPurchaseConfirmation/CredPurchaseConfirmation";
 import CredExamShop from "./components/CredExamShop/CredExamShop";
 import CredWebhookResponses from "./components/CredWebhookResponses";
 
@@ -43,10 +42,6 @@ function App() {
             <Route path="/" element={<CredExamShop />} />
             <Route path="/keys" element={<CredKeyShop />} />
             <Route path="/manage" element={<CredManage />} />
-            <Route
-              path="/order-thank-you"
-              element={<CredPurchaseConfirmation />}
-            />
             <Route
               path="/webhook_responses"
               element={<CredWebhookResponses />}
