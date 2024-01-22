@@ -287,8 +287,8 @@ in the [upstream documentation][upstream-webhook].
 [docs-ldap]: /kubernetes/docs/ldap
 [roles]: #rbac
 [aws-iam]: /kubernetes/docs/aws-iam-auth
-[auth-webhook-app]: https://github.com/charmed-kubernetes/charm-kubernetes-control-plane/blob/master/templates/cdk.master.auth-webhook.py
-[auth-webhook-svc]: https://github.com/charmed-kubernetes/charm-kubernetes-control-plane/blob/master/templates/cdk.master.auth-webhook.service
+[auth-webhook-app]: https://github.com/charmed-kubernetes/charm-kubernetes-control-plane/blob/main/templates/auth-webhook.py
+[auth-webhook-svc]: https://github.com/charmed-kubernetes/charm-kubernetes-control-plane/blob/main/templates/auth-webhook.service
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
