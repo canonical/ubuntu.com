@@ -18,6 +18,7 @@ const apiBase = "https://ubuntu.com/security/cves.json";
 const releaseFilter = document.querySelector("#release-filter");
 const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
+const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const maintainedReleases = [
   "mantic",
@@ -106,7 +107,7 @@ function handleFilters() {
       if (event.target.checked) {
         addParam(releaseFilter.name, event.target.value);
       } else {
-        removePram(releaseFilter.name, event.target.value);
+        removeParam(releaseFilter.name, event.target.value);
       }
     });
   });
@@ -116,7 +117,7 @@ function handleFilters() {
       if (event.target.checked) {
         addParam(priorityFilter.name, event.target.value);
       } else {
-        removePram(priorityFilter.name, event.target.value);
+        removeParam(priorityFilter.name, event.target.value);
       }
     });
   });
@@ -126,14 +127,14 @@ function handleFilters() {
       if (event.target.checked) {
         addParam(statusFilter.name, event.target.value);
       } else {
-        removePram(statusFilter.name, event.target.value);
+        removeParam(statusFilter.name, event.target.value);
       }
     });
   });
 }
 handleFilters();
 
-function removePram(param, value) {
+function removeParam(param, value) {
   if (urlParams.has(param)) {
     if (value === "vulnerable") {
       vulnerableStatuses.forEach(function (status) {
@@ -170,6 +171,7 @@ function handleFilterPersist() {
 
   if (urlParams.has("status")) {
     params = urlParams.getAll("status");
+
     if (params.includes("pending")) {
       checkbox = statusFilter.querySelector("input[value='vulnerable']");
       checkbox.checked = true;
@@ -211,6 +213,15 @@ function addParam(param, value) {
   url.search = urlParams.toString();
   window.location.href = url.href;
 }
+
+function handleClearFilters() {
+  clearFiltersButton.addEventListener("click", function (event) {
+    for (const [param, value] of urlParams.entries()) {
+      removeParam(param, value);
+    }    
+  });
+}
+handleClearFilters();
 
 function handleLimitSelect() {
   if (urlParams.has("limit")) {
