@@ -26,6 +26,18 @@
   stroke-width: 1px;
 }
 
+.chart__bar--aubergine-mid-light {
+  fill: #923a66;
+  stroke: #923a66;
+  stroke-width: 1px;
+}
+
+.chart__bar--aubergine-light {
+  fill: #cba7b8;
+  stroke: #cba7b8;
+  stroke-width: 1px;
+}
+
 .chart__bar--green {
   fill: green;
   stroke: green;
@@ -35,6 +47,12 @@
 .chart__bar--charcoal {
   fill: #333;
   stroke: #333;
+  stroke-width: 1px;
+}
+
+.chart__bar--black {
+  fill: #111;
+  stroke: #111;
   stroke-width: 1px;
 }
 
@@ -64,6 +82,22 @@
 .x.axis text {
   font-size: 12px;
   text-anchor: start !important;
+}
+
+#server-desktop-eol {
+  .tick text {
+    font-size: 16px;
+  }
+
+  .x.axis text {
+    font-size: 16px;
+    color: #666666;
+    text-anchor: start !important;
+  }
+
+  .chart__label--bold {
+    font-weight: 600;
+  }
 }
 
 .chart-key {
