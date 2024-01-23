@@ -21,7 +21,9 @@ const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const searchResults = document.querySelector(".js-cve-search-results");
 const landingPage = document.querySelector(".js-cve-landing");
-const releasesLinks = document.querySelector("#releases-links").querySelectorAll("a");
+const releasesLinks = document
+  .querySelector("#releases-links")
+  .querySelectorAll("a");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const maintainedReleases = [
   "mantic",
@@ -103,7 +105,7 @@ disableSelectedVersions();
 releasesLinks.forEach(function (link) {
   link.addEventListener("click", function (event) {
     landingPage.classList.add("u-hide");
-    searchResults.classList.remove("u-hide")
+    searchResults.classList.remove("u-hide");
   });
 });
 
@@ -228,7 +230,7 @@ function handleClearFilters() {
   clearFiltersButton.addEventListener("click", function (event) {
     for (const [param, value] of urlParams.entries()) {
       removeParam(param, value);
-    }    
+    }
   });
 }
 handleClearFilters();
