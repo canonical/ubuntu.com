@@ -19,6 +19,9 @@ const releaseFilter = document.querySelector("#release-filter");
 const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
+const searchResults = document.querySelector(".js-cve-search-results");
+const landingPage = document.querySelector(".js-cve-landing");
+const releasesLinks = document.querySelector("#releases-links").querySelectorAll("a");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const maintainedReleases = [
   "mantic",
@@ -96,6 +99,13 @@ searchInput.addEventListener("keyup", handleSearchInput);
 attachEvents();
 handleButtons();
 disableSelectedVersions();
+
+releasesLinks.forEach(function (link) {
+  link.addEventListener("click", function (event) {
+    landingPage.classList.add("u-hide");
+    searchResults.classList.remove("u-hide")
+  });
+});
 
 function handleFilters() {
   releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");

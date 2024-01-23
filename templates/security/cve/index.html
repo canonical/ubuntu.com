@@ -32,11 +32,12 @@
   </div>
 </section>
 
-{% if query or package or component or priority or versions or statuses %}
+<div class="js-cve-search-results u-hide">
   {% include "security/cve/_cve-search-results.html"%}
-{% else %}
+</div>
+<div class="js-cve-landing">
   {% include "security/cve/_cve-landing.html" %}
-{% endif %}
+</div>
 
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
 
