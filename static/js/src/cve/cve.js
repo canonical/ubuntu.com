@@ -15,6 +15,19 @@ const limitSelect = document.querySelector(".js-limit-select");
 const orderSelect = document.querySelector(".js-order-select");
 const exportLink = document.querySelector("#js-export-link");
 const apiBase = "https://ubuntu.com/security/cves.json";
+const releaseFilter = document.querySelector("#release-filter");
+const priorityFilter = document.querySelector("#priority-filter");
+const statusFilter = document.querySelector("#status-filter");
+const vulnerableStatuses = ["pending", "needed", "deferred"];
+const maintainedReleases = [
+  "mantic",
+  "lunar",
+  "jammy",
+  "focal",
+  "bionic",
+  "xenial",
+  "trusty",
+];
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -82,6 +95,122 @@ searchInput.addEventListener("keyup", handleSearchInput);
 attachEvents();
 handleButtons();
 disableSelectedVersions();
+
+function handleFilters() {
+  releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
+  priorityCheckboxes = priorityFilter.querySelectorAll(".p-checkbox__input");
+  statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
+
+  releaseCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        addParam(releaseFilter.name, event.target.value);
+      } else {
+        removePram(releaseFilter.name, event.target.value);
+      }
+    });
+  });
+
+  priorityCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        addParam(priorityFilter.name, event.target.value);
+      } else {
+        removePram(priorityFilter.name, event.target.value);
+      }
+    });
+  });
+
+  statusCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        addParam(statusFilter.name, event.target.value);
+      } else {
+        removePram(statusFilter.name, event.target.value);
+      }
+    });
+  });
+}
+handleFilters();
+
+function removePram(param, value) {
+  if (urlParams.has(param)) {
+    if (value === "vulnerable") {
+      vulnerableStatuses.forEach(function (status) {
+        urlParams.delete(param, status);
+      });
+    } else {
+      urlParams.delete(param, value);
+    }
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  }
+}
+
+function handleFilterPersist() {
+  if (urlParams.has("version")) {
+    params = urlParams.getAll("version");
+
+    releaseCheckboxes.forEach(function (checkbox) {
+      if (params.includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  if (urlParams.has("priority")) {
+    params = urlParams.getAll("priority");
+
+    priorityCheckboxes.forEach(function (checkbox) {
+      if (params.includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  if (urlParams.has("status")) {
+    params = urlParams.getAll("status");
+    if (params.includes("pending")) {
+      checkbox = statusFilter.querySelector("input[value='vulnerable']");
+      checkbox.checked = true;
+    } else {
+      statusCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
+  }
+}
+handleFilterPersist();
+
+// Maintained releases and vulnerable statuses are handled differently
+// because they are both arrays instead of individual values
+function addParam(param, value) {
+  if (value === "maintained") {
+    urlParams.delete("status");
+    urlParams.set(param, maintainedReleases[0]);
+    remainingMaintainedReleases = maintainedReleases.slice(1);
+    remainingMaintainedReleases.forEach(function (release) {
+      urlParams.append(param, release);
+    });
+  } else if (value === "vulnerable") {
+    urlParams.set(param, vulnerableStatuses[0]);
+    remainingVulnerableStatuses = vulnerableStatuses.slice(1);
+    remainingVulnerableStatuses.forEach(function (status) {
+      value = status;
+      urlParams.append(param, value);
+    });
+  } else {
+    if (urlParams.has(param)) {
+      urlParams.append(param, value);
+    } else {
+      urlParams.set(param, value);
+    }
+  }
+  url.search = urlParams.toString();
+  window.location.href = url.href;
+}
 
 function handleLimitSelect() {
   if (urlParams.has("limit")) {
