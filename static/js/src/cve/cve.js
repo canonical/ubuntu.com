@@ -19,11 +19,9 @@ const releaseFilter = document.querySelector("#release-filter");
 const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
+const otherReleasesLink = document.querySelector("#other-releases-link");
 const searchResults = document.querySelector(".js-cve-search-results");
 const landingPage = document.querySelector(".js-cve-landing");
-const releasesLinks = document
-  .querySelector("#releases-links")
-  .querySelectorAll("a");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const maintainedReleases = [
   "mantic",
@@ -102,13 +100,7 @@ attachEvents();
 handleButtons();
 disableSelectedVersions();
 
-releasesLinks.forEach(function (link) {
-  link.addEventListener("click", function (event) {
-    landingPage.classList.add("u-hide");
-    searchResults.classList.remove("u-hide");
-  });
-});
-
+// Adds event listeners to all filter checkboxes
 function handleFilters() {
   releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
   priorityCheckboxes = priorityFilter.querySelectorAll(".p-checkbox__input");
@@ -146,6 +138,8 @@ function handleFilters() {
 }
 handleFilters();
 
+// Removes a parameter from the URL
+// Vulnerable statuses are handled differently because they are multiple values
 function removeParam(param, value) {
   if (urlParams.has(param)) {
     if (value === "vulnerable") {
@@ -160,6 +154,8 @@ function removeParam(param, value) {
   }
 }
 
+// Maintains filter state on page load
+// Vulnerable filter is handled differently because it is a single value
 function handleFilterPersist() {
   if (urlParams.has("version")) {
     params = urlParams.getAll("version");
@@ -271,3 +267,12 @@ function exportToJSON() {
   };
 }
 exportToJSON();
+
+// This link isn't meant to include any parameters
+// Instead of refreshing the page, it should just hide the landing page
+// and show the unfiltered search results when clicked
+otherReleasesLink.addEventListener("click", function (event) {
+  event.preventDefault();
+  landingPage.classList.add("u-hide");
+  searchResults.classList.remove("u-hide");
+});
