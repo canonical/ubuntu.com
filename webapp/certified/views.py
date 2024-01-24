@@ -2,7 +2,6 @@ import talisker.requests
 import talisker.sentry
 import requests
 import math
-import bleach
 
 from flask import (
     request,
@@ -102,12 +101,12 @@ def _parse_query_params(all_releases, all_vendors):
             "servers",
             "iot",
             "socs",
+            "Ubuntu Core",
+            "Server SoC",
         ]:
             for item in request.args.getlist("category"):
-                if request.args["category"] == "Ubuntu Core":
-                    item = "IoT"
-                if request.args["category"] == "Server SoC":
-                    item = "SoC"
+                if item in category_params:
+                    continue
                 if item == category:
                     new_query_params["category"] = category_params.append(
                         category
@@ -714,9 +713,8 @@ def create_category_views(category, template_path):
     """
     if len(request.args.getlist("category")) > 1:
         url = f"/certified?{request.query_string.decode()}&category={category}"
-        clean_url = bleach.clean(url, tags=[], strip=True)
         # UX requirement
-        return redirect(clean_url)
+        return redirect(url)
 
     if category == "Desktop":
         certified_releases = api.certified_releases(
