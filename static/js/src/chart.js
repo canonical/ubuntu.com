@@ -380,8 +380,6 @@ export function createChart(
 
   sortTasks(tasks);
 
-  buildChartKey(chartSelector, taskStatus);
-
   // Build initial chart body
   var svg = d3
     .select(chartSelector)
@@ -415,6 +413,7 @@ export function createChart(
   highlightChartRow(svg, y, highlightVersion);
 
   cleanUpChart(svg);
+  buildChartKey(chartSelector, taskStatus);
 }
 
 /**

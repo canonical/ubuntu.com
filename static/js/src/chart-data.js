@@ -1238,8 +1238,8 @@ export var desktopServerStatus = {
 
 export var kernelStatus = {
   LTS: "chart__bar--orange",
-  INTERIM_RELEASE: "chart__bar--grey",
   ESM: "chart__bar--aubergine",
+  INTERIM_RELEASE: "chart__bar--grey",
 };
 
 export var kernelReleaseScheduleStatus = {
