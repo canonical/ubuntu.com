@@ -1,3 +1,5 @@
+import { ro } from "date-fns/locale";
+
 /**
  *
  * @param {Array} tasks
@@ -95,10 +97,7 @@ function addXAxis(svg, height, margin, xAxis) {
  * Append y-axis group to SVG
  */
 function appendYAxisGroup(svg, yAxis) {
-  return svg
-    .append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
+  return svg.append("g").attr("class", "y axis").call(yAxis);
 }
 
 /**
@@ -109,11 +108,10 @@ function appendYAxisGroup(svg, yAxis) {
  * Centers labels in line with bars
  */
 function transformTickText(yAxisGroup, y) {
-  yAxisGroup.selectAll(".tick text")
-    .attr("transform", function (d) {
-      var centerOffset = y.bandwidth() / 2;
-      return "translate(0, " + -centerOffset + ")";
-    });
+  yAxisGroup.selectAll(".tick text").attr("transform", function (d) {
+    var centerOffset = y.bandwidth() / 2;
+    return "translate(0, " + -centerOffset + ")";
+  });
 }
 
 /**
@@ -131,7 +129,7 @@ function formatLabel(textElement) {
     words[1] = "(" + words[1];
   }
 
-  textElement.text(""); 
+  textElement.text("");
 
   textElement
     .append("tspan")
@@ -156,12 +154,11 @@ function formatLabel(textElement) {
  * function on them
  */
 function formatAxisLabels(yAxisGroup) {
-  yAxisGroup.selectAll(".tick text")
-    .call(function (t) {
-      t.each(function (d) {
-        formatLabel(d3.select(this));
-      });
+  yAxisGroup.selectAll(".tick text").call(function (t) {
+    t.each(function (d) {
+      formatLabel(d3.select(this));
     });
+  });
 }
 
 /**
@@ -178,7 +175,6 @@ function addYAxis(svg, yAxis, y) {
   formatAxisLabels(yAxisGroup);
 }
 
-
 /**
  *
  * @param {*} yAxis
@@ -188,7 +184,7 @@ function addYAxis(svg, yAxis, y) {
 function getTickPositions(yAxis) {
   const yAxisScale = yAxis.scale();
   const ticks = yAxisScale.ticks ? yAxisScale.ticks() : yAxisScale.domain();
-  return ticks.map(tick => yAxisScale(tick));
+  return ticks.map((tick) => yAxisScale(tick));
 }
 
 /**
@@ -203,7 +199,8 @@ function getTickPositions(yAxis) {
  * Appends a horiontal line to the SVG based on custom parameters
  */
 function addHorizontalLine(svg, x1, x2, y, strokeColor, strokeWidth) {
-  svg.append("line")
+  svg
+    .append("line")
     .attr("x1", x1)
     .attr("x2", x2)
     .attr("y1", y)
@@ -228,9 +225,23 @@ function addYAxisHorizontalLines(svg, yAxis, width, margin) {
   const lineAdjustment = 27;
 
   tickPositions.forEach((posY, index) => {
-    addHorizontalLine(svg, -margin.left, 0, posY - lineAdjustment, "#D9D9D9", 2);
+    addHorizontalLine(
+      svg,
+      -margin.left,
+      0,
+      posY - lineAdjustment,
+      "#D9D9D9",
+      2
+    );
 
-    addHorizontalLine(svg, 0, width + margin.right, posY - lineAdjustment, "#D9D9D9", index === 0 ? 2 : 1);
+    addHorizontalLine(
+      svg,
+      0,
+      width + margin.right,
+      posY - lineAdjustment,
+      "#D9D9D9",
+      index === 0 ? 2 : 1
+    );
   });
 }
 
@@ -265,7 +276,6 @@ function cleanUpChart(svg) {
 function emboldenLTSLabels(svg) {
   svg.selectAll(".tick text tspan").select(function () {
     var text = this.textContent;
-    console.log("test", text);
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
     }
@@ -276,7 +286,7 @@ function emboldenLTSLabels(svg) {
  *
  * @param {*} svg
  * @param {String} highlightVersion
- * 
+ *
  * Set version axis labels
  */
 function highlightChartRow(svg, highlightVersion) {
@@ -299,7 +309,7 @@ function highlightChartRow(svg, highlightVersion) {
 /**
  *
  * @param {*} svg
- * 
+ *
  * Set version axis labels
  */
 function setVersionAxisLabels(svg, taskVersions) {
@@ -335,19 +345,31 @@ function buildChartKey(chartSelector, taskStatus) {
   var rowHeight = rectDimensions + 5;
   var gapBetweenRectAndText = 10;
   var verticalTextAlignmentOffset = 16;
+  var containerWidth = document.querySelector(chartSelector).clientWidth;
+
+  var numberOfExtraLines =
+    getMaxNumberOfLines(taskStatusKeys, containerWidth) - 1;
+  var extraChartHeight = numberOfExtraLines * 9;
 
   var chartKey = d3
     .select(chartSelector)
     .append("svg")
     .attr("class", "chart-key")
-    .attr("width", "550")
-    .attr("height", rowHeight * taskStatusKeys.length);
+    .attr("width", containerWidth)
+    .attr(
+      "height",
+      rowHeight * taskStatusKeys.length +
+        extraChartHeight * taskStatusKeys.length
+    );
 
   taskStatusKeys.forEach(function (key, i) {
     var keyRow = chartKey
       .append("g")
       .attr("class", "chart-key__row")
-      .attr("transform", "translate(0, " + rowHeight * i + ")")
+      .attr(
+        "transform",
+        "translate(0, " + (rowHeight * i + extraChartHeight * i) + ")"
+      )
       .attr("height", rectDimensions);
 
     keyRow
@@ -362,7 +384,89 @@ function buildChartKey(chartSelector, taskStatus) {
       .text(formatKeyLabel(key))
       .attr("class", "chart-key__label")
       .attr("x", rectDimensions + gapBetweenRectAndText)
-      .attr("y", verticalTextAlignmentOffset);
+      .attr("y", verticalTextAlignmentOffset)
+      .call(wrapText, containerWidth - rectDimensions - gapBetweenRectAndText);
+  });
+}
+
+/**
+ *
+ * @param {String} text
+ * @param {Int} containerWidth
+ *
+ * Find the max number of lines that any given text will occupy from
+ * a list of texts, based on a given container width
+ */
+function getMaxNumberOfLines(textList, width) {
+  var tempSvg = (svg = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg"
+  ));
+  svg.style.position = "absolute";
+  svg.style.visibility = "hidden";
+  svg.width = width;
+  document.body.appendChild(svg);
+
+  var maxNumberOfLines = 1;
+
+  textList.forEach(function (key, i) {
+    let textNode = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "text"
+    );
+    textNode.textContent = formatKeyLabel(key);
+    svg.appendChild(textNode);
+    var numberOfLines = Math.ceil(textNode.getComputedTextLength() / width);
+    if (numberOfLines > maxNumberOfLines) {
+      maxNumberOfLines = numberOfLines;
+    }
+    svg.removeChild(textNode);
+  });
+  document.body.removeChild(svg);
+  return maxNumberOfLines;
+}
+
+/**
+ *
+ * @param {String} text
+ * @param {Int} width
+ *
+ * At the point where a text would be longer that the container width,
+ * split the text into tspan (two lines)
+ */
+function wrapText(text, width) {
+  var negativeTextMargin = text.node().getComputedTextLength() > width ? 5 : 0;
+  text.each(function () {
+    var text = d3.select(this),
+      words = text.text().split(/\s+/).reverse(),
+      word,
+      line = [],
+      lineNumber = 0,
+      lineHeight = 1.1,
+      x = text.attr("x"),
+      y = text.attr("y"),
+      dy = 0;
+    tspan = text
+      .text(null)
+      .append("tspan")
+      .attr("x", x)
+      .attr("y", y - negativeTextMargin)
+      .attr("dy", dy + "em");
+    while ((word = words.pop())) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text
+          .append("tspan")
+          .attr("x", x)
+          .attr("y", y - negativeTextMargin)
+          .attr("dy", ++lineNumber * lineHeight + dy + "em")
+          .text(word);
+      }
+    }
   });
 }
 
@@ -543,8 +647,6 @@ export function createSupportChart(
   cleanUpChart(svg);
   buildChartKey(keyAttachmentSelector, taskStatus);
 
-  setTimeout(function () {
-    emboldenLTSLabels(svg);
-    highlightChartRow(svg, highlightVersion);
-  }, 0);
+  emboldenLTSLabels(svg);
+  highlightChartRow(svg, highlightVersion);
 }

@@ -40,6 +40,15 @@ import {
 } from "./chart-data";
 
 function buildCharts() {
+  if (document.querySelector("#server-desktop-eol-old")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
+    createChart(
+      "#server-desktop-eol-old",
+      desktopServerReleaseNames,
+      desktopServerStatus,
+      serverAndDesktopReleases
+    );
+  }
   if (document.querySelector("#server-desktop-eol")) {
     delete desktopServerStatus.MAINTENANCE_UPDATES;
     createSupportChart(
@@ -164,6 +173,10 @@ function buildCharts() {
 }
 
 function clearCharts() {
+  const serverDesktopEolOld = document.querySelector("#server-desktop-eol-old");
+  if (serverDesktopEolOld) {
+    serverDesktopEolOld.innerHTML = "";
+  }
   const serverDesktopEol = document.querySelector("#server-desktop-eol");
   if (serverDesktopEol) {
     serverDesktopEol.innerHTML = "";
