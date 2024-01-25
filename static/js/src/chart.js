@@ -1,3 +1,10 @@
+const rowHeight = 34;
+const margin = {
+  top: 0,
+  right: 40,
+  bottom: 20,
+};
+
 /**
  *
  * @param {Array} tasks
@@ -74,12 +81,11 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
  *
  * @param {*} svg
  * @param {Int} height
- * @param {Object} margin
  * @param {*} xAxis
  *
  * Add x axis to chart
  */
-function addXAxis(svg, height, margin, xAxis) {
+function addXAxis(svg, height, xAxis) {
   svg
     .append("g")
     .attr("class", "x axis")
@@ -129,29 +135,39 @@ function cleanUpChart(svg) {
  *
 
  */
-function emboldenLTSLabels(svg) {
-  svg.selectAll(".tick text").select(function () {
-    var text = this.textContent;
+function emboldenLTSLabels(svg, yScale) {
+  const domain = yScale.domain();
+  const tickValues = domain.map((value) => value.toString());
 
-    if (text.includes("LTS")) {
-      this.classList.add("chart__label--bold");
+  svg.selectAll(".y.axis .tick text").each(function (d, i) {
+    const tickText = d3.select(this);
+    const textContent = tickValues[i].toString();
+
+    if (textContent?.includes("LTS")) {
+      tickText.classed("chart__label--bold", true);
     }
   });
 }
 
-function highlightChartRow(svg, highlightVersion) {
-  svg.selectAll(".tick text").select(function () {
-    var text = this.textContent;
+function highlightChartRow(svg, scale, highlightVersion) {
+  const domain = scale.domain();
+  const tickValues = domain.map((value) => value.toString());
+
+  svg.selectAll(".y.axis .tick text").each(function (d, i) {
+    const tickText = d3.select(this);
+    const textContent = tickValues[i].toString();
+
     var isNotHighlightedVersion =
-      highlightVersion && !text.includes(highlightVersion);
-    var isYearLabel = text.includes("20") && !text.includes("Ubuntu ");
+      highlightVersion && !textContent.includes(highlightVersion);
+    var isYearLabel =
+      textContent.includes("20") && !textContent.includes("Ubuntu ");
 
     if (isNotHighlightedVersion) {
-      this.classList.add("chart__label--transparent");
+      tickText.classed("chart__label--transparent", true);
     }
 
     if (isYearLabel) {
-      this.classList.remove("chart__label--transparent");
+      tickText.classed("chart__label--transparent", false);
     }
   });
 }
@@ -175,6 +191,17 @@ function setVersionAxisLabels(svg, taskVersions) {
  */
 function addXAxisVerticalLines(svg, height) {
   svg.selectAll(".x.axis .tick line").attr("y1", -height);
+}
+
+/**
+ *
+ * @param {*} svg
+ * @param {Int} height
+ *
+ * Adds vertical lines to the x axis
+ */
+function addYAxisVerticalLines(svg, width) {
+  svg.selectAll(".y.axis .tick line").attr("x1", width);
 }
 
 /**
@@ -227,10 +254,7 @@ function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, " ");
   var formattedKey =
     keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
-  formattedKey = formattedKey.replace(
-    "Lts",
-    "Ubuntu LTS release Standard Support"
-  );
+  formattedKey = formattedKey.replace("Lts", "Standard support (4-5 years)");
   formattedKey = formattedKey.replace(" openstack ", " OpenStack ");
   formattedKey = formattedKey.replace("kub", "Kub");
   formattedKey = formattedKey.replace(
@@ -239,7 +263,7 @@ function formatKeyLabel(key) {
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)"
+    "Expanded Security Maintenance (extra 5 years)"
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");
@@ -294,13 +318,7 @@ export function createChart(
   removePadding,
   highlightVersion
 ) {
-  var margin = {
-    top: 0,
-    right: 40,
-    bottom: 20,
-  };
   margin.left = calculateYAxisWidth(taskTypes);
-  var rowHeight = 34;
   var timeDomainStart;
   var timeDomainEnd;
   var earliestStartDate = d3.min(tasks, (d) => d.startDate);
@@ -362,6 +380,8 @@ export function createChart(
 
   sortTasks(tasks);
 
+  buildChartKey(chartSelector, taskStatus);
+
   // Build initial chart body
   var svg = d3
     .select(chartSelector)
@@ -378,21 +398,75 @@ export function createChart(
       "translate(" + chartTranslateX + ", " + margin.top + ")"
     );
 
-  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
-  addXAxis(svg, height, margin, xAxis);
+  addXAxis(svg, height, xAxis);
+  addXAxisVerticalLines(svg, height);
+
   addYAxis(svg, yAxis);
+  addYAxisVerticalLines(svg, width);
+
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
 
   if (taskVersions) {
     addVersionAxis(svg, versionAxis);
     setVersionAxisLabels(svg, taskVersions);
   }
 
-  addXAxisVerticalLines(svg, height);
-  cleanUpChart(svg);
-  buildChartKey(chartSelector, taskStatus);
+  emboldenLTSLabels(svg, y);
+  highlightChartRow(svg, y, highlightVersion);
 
-  setTimeout(function () {
-    emboldenLTSLabels(svg);
-    highlightChartRow(svg, highlightVersion);
-  }, 0);
+  cleanUpChart(svg);
+}
+
+/**
+ *
+ * @param {String} chartSelector
+ * @param {Array} taskTypes
+ * @param {String} taskTypesTitle
+ * @param {Object} taskStatus
+ * @param {Array} tasks
+ * @param {Array} taskVersions
+ * @param {String} taskVersionsTitle
+ *
+ * Builds chart using supplied selector and data
+ */
+export function createChartWithTitles(
+  chartSelector,
+  taskTypes,
+  taskTypesTitle,
+  taskStatus,
+  tasks,
+  taskVersions,
+  taskVersionsTitle
+) {
+  if (!taskTypesTitle || !taskVersionsTitle) return;
+
+  // build regular chart
+  createChart(chartSelector, taskTypes, taskStatus, tasks, taskVersions);
+
+  // adjust chart height to fit titles
+  margin.left = calculateYAxisWidth(taskTypes);
+  const svg = d3.select(chartSelector).select(".chart");
+  const height = taskTypes.length * rowHeight;
+  const newHeight = height + 30;
+  svg.attr("height", newHeight);
+
+  const chart = svg.select(".gantt-chart");
+  chart
+    .attr("height", newHeight)
+    .attr("transform", `translate(${margin.left * 1.6}, 30)`);
+
+  // add titles
+  chart
+    .append("text")
+    .attr("x", -margin.left * 1.6)
+    .attr("y", 0)
+    .attr("dy", "0.2em")
+    .text(taskVersionsTitle);
+
+  chart
+    .append("text")
+    .attr("x", -margin.left)
+    .attr("y", 0)
+    .attr("dy", "0.2em")
+    .text(taskTypesTitle);
 }

@@ -1,4 +1,4 @@
-import { createChart } from "./chart";
+import { createChart, createChartWithTitles } from "./chart";
 import { debounce } from "./utils/debounce.js";
 import {
   serverAndDesktopReleases,
@@ -61,12 +61,14 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel-eol")) {
-    createChart(
+    createChartWithTitles(
       "#kernel-eol",
       kernelReleaseNames,
+      "Ubuntu",
       kernelStatus,
       kernelReleases,
-      kernelVersionNames
+      kernelVersionNames,
+      "Kernel"
     );
   }
   if (document.querySelector("#kernel2204")) {
