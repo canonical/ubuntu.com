@@ -135,7 +135,8 @@ function formatLabel(textElement) {
     .append("tspan")
     .attr("x", textXValue)
     .attr("dy", "-0.5em")
-    .text(words[0]);
+    .text(words[0])
+    .call(emboldenLTSLabels);
 
   if (words.length > 1) {
     textElement
@@ -143,6 +144,20 @@ function formatLabel(textElement) {
       .attr("x", textXValue)
       .attr("dy", "1.6em")
       .text(words.slice(1).join(" "));
+  }
+}
+
+/**
+ *
+ * @param {*} textNode
+ *
+ * Embolden text if it contains LTS
+ *
+ */
+function emboldenLTSLabels(textNode) {
+  const textContent = textNode.text();
+  if (textContent?.includes("LTS")) {
+    textNode.classed("chart__label--bold", true);
   }
 }
 
@@ -269,39 +284,29 @@ function cleanUpChart(svg) {
 /**
  *
  * @param {*} svg
- *
- * Embolden LTS labels on y axis**
- *
- */
-function emboldenLTSLabels(svg) {
-  svg.selectAll(".tick text tspan").select(function () {
-    var text = this.textContent;
-    if (text.includes("LTS")) {
-      this.classList.add("chart__label--bold");
-    }
-  });
-}
-
-/**
- *
- * @param {*} svg
  * @param {String} highlightVersion
  *
  * Set version axis labels
  */
-function highlightChartRow(svg, highlightVersion) {
-  svg.selectAll(".tick text").select(function () {
-    var text = this.textContent;
+function highlightChartRow(svg, scale, highlightVersion) {
+  const domain = scale.domain();
+  const tickValues = domain.map((value) => value.toString());
+
+  svg.selectAll(".y.axis .tick text").each(function (d, i) {
+    const tickText = d3.select(this);
+    const textContent = tickValues[i].toString();
+
     var isNotHighlightedVersion =
-      highlightVersion && !text.includes(highlightVersion);
-    var isYearLabel = text.includes("20") && !text.includes("Ubuntu ");
+      highlightVersion && !textContent.includes(highlightVersion);
+    var isYearLabel =
+      textContent.includes("20") && !textContent.includes("Ubuntu ");
 
     if (isNotHighlightedVersion) {
-      this.classList.add("chart__label--transparent");
+      tickText.classed("chart__label--transparent", true);
     }
 
     if (isYearLabel) {
-      this.classList.remove("chart__label--transparent");
+      tickText.classed("chart__label--transparent", false);
     }
   });
 }
@@ -647,6 +652,5 @@ export function createSupportChart(
   cleanUpChart(svg);
   buildChartKey(keyAttachmentSelector, taskStatus);
 
-  emboldenLTSLabels(svg);
   highlightChartRow(svg, highlightVersion);
 }
