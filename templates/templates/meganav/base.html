@@ -274,7 +274,7 @@
     {% if "highlighted_secondary_links" in sections %}
       {% for links_section in sections.highlighted_secondary_links %}
         {% if links_section.title %}
-        <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
+        <p class="p-muted-heading is-muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
         {% endif %}
         {% for link in links_section.links %}
           {% with 
