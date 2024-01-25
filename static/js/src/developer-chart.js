@@ -22,62 +22,152 @@ const OpenSourcedata = [
   { count: 4.8, label: "NavyLinux" },
 ];
 
-function createChart(dataset, id) {
-  const data = dataset.sort(function (a, b) {
+/**
+ * 
+ * @param {*} data 
+ * @param {*} id 
+ */
+function sortData(data) {
+  return data = data.sort(function (a, b) {
     return d3.ascending(a.count, b.count);
   });
+}
 
+function createChart(data, id) {
+  sortData(data)
+  var parent = d3.select(`#${id}`);
+  var parentWidth = parent.node().getBoundingClientRect().width;
   var margin = {
-    top: 15,
-    right: 60,
+    top: 30,
+    right: 140,
     bottom: 15,
-    left: 100,
+    left: 70,
   };
-
-  var width = 500 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+  var rowHeight = 40;
+  var width = parentWidth - margin.left - margin.right;
+  var height = (data.length * rowHeight);
 
   var svg = d3
     .select(`#${id}`)
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("class", "developer-chart");
 
-  var x = d3.scale
-    .linear()
-    .range([0, width])
-    .domain([
-      0,
-      d3.max(data, function (d) {
-        return d.count;
-      }),
-    ]);
+  var g = svg.append("g");
+
+  var x = d3.scale.linear().domain([
+    0,
+    d3.max(data, function (d) {
+      return d.count;
+    }),
+  ]);
 
   var y = d3.scale
     .ordinal()
-    .rangeRoundBands([height, 0], 0.1)
+    .rangeRoundBands([height, margin.top], 0.05)
     .domain(
       data.map(function (d) {
         return d.label;
       })
     );
 
-  var yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
+  // Attach OS labels
+  const yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
+  const osLabels = svg.append("g").attr("class", "OS-labels").attr("y", 0).call(yAxis);
+  // modify existing tick texts (created by D3's axis generator, hense the set timeout)
+  setTimeout(() => {
+    osLabels.selectAll(".tick text").attr("x", 0).style("text-anchor", "start");
+  }, 0);
 
-  var gy = svg.append("g").attr("class", "y axis").call(yAxis);
+  // Attach percentage labels
+  const percentageLabels = svg
+  .append("g")
+  .attr("class", "percentage-labels")
+  .attr("transform", "translate(" + margin.left + ",0)");
 
-  var bars = svg.selectAll(".bar").data(data).enter().append("g");
+  // Adding the percentage values
+  percentageLabels
+    .selectAll(null)
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .attr("y", function (d) {
+      return y(d.label) + y.rangeBand() / 2 + 4;
+    })
+    .attr("x", margin.left - 10)
+    .style("text-anchor", "end")
+    .text(function (d) {
+      return `${d.count}%`;
+    });
 
-  bars
+  percentageLabels.append("text")
+    .attr("class", "percentage-symbol")
+    .attr("x", margin.left + 4)
+    .attr("y", margin.top)
+    .style("text-anchor", "end")
+    .style("font-weight", "500")
+    .text('%');
+
+  // Attach lines above labels
+  const linePositions = data.map((d, i) => {
+    const yBottom =
+      i === 0 ? -y.rangeBand() / 2 : y(data[i - 1].label) + y.rangeBand();
+    const yTop = y(d.label);
+    if (i === 0) {
+      return margin.top + 3;
+    }
+    return (yBottom + yTop) / 2;
+  });
+  svg
+    .selectAll(".line")
+    .data(linePositions)
+    .enter()
+    .append("line")
+    .attr("class", "line")
+    .attr("x1", 0)
+    .attr("x2", margin.right + 5)
+    .attr("y1", (d) => d)
+    .attr("y2", (d) => d)
+    .attr("stroke", "#ccc") // You can set the line color here
+    .attr("stroke-width", 1); // You can set the line width here
+
+
+  // Attach top axis ticks
+  var topAxis = d3.svg.axis().scale(x).orient("top").tickSize(-10).tickFormat(d3.format("d"));
+  var tickValues = d3.range(0, d3.max(data, d => d.count) + 10, 10);
+  console.log(tickValues)
+  topAxis.tickValues(tickValues);
+  svg.append("g")
+    .attr("class", "top-axis")
+    .attr("transform", "translate(" + (margin.right + 40) + "," + margin.top + ")")
+    .call(topAxis);
+
+  svg.selectAll(".top-axis-line")
+  .data(tickValues)
+  .enter()
+  .append("line")
+  .attr("class", "top-axis-line")
+  .attr("x1", d => x(d) + margin.right + 40)
+  .attr("x2", d => x(d) + margin.right + 40)
+  .attr("y1", margin.top)
+  .attr("y2", margin.top + 10) // Length of the small line
+  .attr("stroke", "black") // or any color you prefer
+  .attr("stroke-width", 1);
+
+
+  // Attach bars
+  var barsGroup = svg.append("g").attr("class", "bars");
+  var bars = barsGroup
+    .selectAll(".bar")
+    .data(data)
+    .enter()
     .append("rect")
     .attr("class", "bar")
     .attr("y", function (d) {
       return y(d.label);
     })
     .attr("height", y.rangeBand())
-    .attr("x", 8)
+    .attr("x", 0)
     .attr("width", function (d) {
       return x(d.count);
     })
@@ -89,18 +179,80 @@ function createChart(dataset, id) {
       }
     });
 
-  bars
-    .append("text")
-    .attr("class", "label")
-    .attr("y", function (d) {
-      return y(d.label) + y.rangeBand() / 2 + 4;
-    })
-    .attr("x", function (d) {
-      return x(d.count) + 17;
-    })
-    .text(function (d) {
-      return `${d.count}%`;
-    });
+  // Handle resizing
+  var update = function () {
+    svg.attr(
+      "viewBox",
+      `0 0 ${width + margin.left + margin.right} ${
+        height + margin.top + margin.bottom
+      }`
+    );
+
+    barsGroup.attr(
+      "transform",
+      "translate(" + (margin.right - 35) + ",0)"
+    );
+
+    g.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    x.range([0, width]);
+    y.rangeRoundBands([height, margin.top], 0.1);
+
+    svg.select(".top-axis").call(topAxis);
+
+    svg
+      .selectAll(".bar")
+      .attr("x", margin.left)
+      .attr("width", function (d) {
+        return x(d.count);
+      });
+
+    osLabels.call(yAxis);
+
+    svg
+      .selectAll(".label")
+      .attr("y", function (d) {
+        return y(d.label) + y.rangeBand() / 2 + 4;
+      })
+      .attr("x", margin.left + 5);
+
+    cleanUpChart(svg);
+  };
+
+  update();
+
+  d3.select(window).on("resize", function () {
+    parentWidth = parent.node().getBoundingClientRect().width;
+    width = parentWidth - margin.left - margin.right;
+
+    update();
+  });
+
+  cleanUpChart(svg);
+}
+
+/**
+ *
+ * @param {*} svg
+ *
+ * Clean up unwanted elements on chart put in by d3.js
+ */
+function cleanUpChart(svg) {
+  svg.selectAll(".domain").remove();
+}
+
+/**
+ *
+ * @param {Array} taskTypes
+ *
+ * Calculate the longest Y-Axis label
+ */
+function calculateMaxLabelWidth(YAxisLabels) {
+  var YAxisLabelsCopy = YAxisLabels.slice();
+  var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
+    return b.length - a.length;
+  })[0];
+  return longestLabel.length * 7;
 }
 
 createChart(hackerEarthData, "hackerearth-chart");
