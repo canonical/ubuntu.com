@@ -28,10 +28,10 @@
   <div class="p-section">
     <div class="u-fixed-width">
       {{ image (
-        url="https://assets.ubuntu.com/v1/6bb2f8e7-stocksy-woman-working-ar2-1.jpg",
+        url="https://assets.ubuntu.com/v1/1819c545-woman-working.jpg",
         alt="",
-        width="2048",
-        height="1024",
+        width="2464",
+        height="1052",
         hi_def=True,
         loading="auto"
         ) | safe
@@ -41,7 +41,7 @@
 </section>
 
 <section class="p-section">
-  <div class="row--50-50 is-split-on-medium">
+  <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-text--small-caps u-no-margin--bottom">Why choose Ubuntu Desktop?</h2>
@@ -60,14 +60,14 @@
           ) | safe
         }}
       </div>
-      <hr class="is-extra-muted">
+      <hr class="is-extra-muted" />
       <ul class="p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked">Using Ubuntu Desktop provides a common platform for development, test, and production environments.</li>
         <li class="p-list__item is-ticked">Tools, such as <a href="https://juju.is/">Juju</a>, <a href="https://microk8s.io/">Microk8s</a>, and <a href="https://multipass.run/">Multipass</a> make developing, testing, and cross-building easy and affordable.</li>
         <li class="p-list__item is-ticked"><strong>Long term support (LTS)</strong> releases are delivered every 2-years, with 5 years of standard support extended to 10 years with an Ubuntu Pro Desktop subscription.</li>
         <li class="p-list__item is-ticked">New Developer editions of Ubuntu Desktop are released every 6-months, with 9-months of support and access to the latest kernel, libraries, and new upstream OS features.</li>
       </ul>
-      <hr class="is-extra-muted">
+      <hr class="is-extra-muted" />
       <a href="/about/release-cycle">The Ubuntu release cycle&nbsp;&rsaquo;</a>
   </div>
 </section>
@@ -89,7 +89,7 @@
 
 <section class="p-section">
   <div class="row--50-50 p-section">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="col">
       <h2>Access to cutting-edge hardware and software</h2>
     </div>
@@ -99,83 +99,83 @@
         <li class="p-list__item is-ticked">Ubuntu is the OS of choice for data science and machine learning, with support for popular frameworks like <a href="https://opencv.org/">OpenCV</a>, <a href="https://www.tensorflow.org/">TensorFlow</a>, <a href="https://keras.io/">Keras</a>, <a href="https://pytorch.org/">PyTorch</a> and <a href="https://www.kubeflow.org/">Kubeflow</a>.</li>
         <li class="p-list__item is-ticked">Ubuntu is the target platform for the <a href="https://github.com/NVIDIA/data-science-stack">NVIDIA data science stack</a>, which enables GPU accelerated data science workloads to be run locally before deploying to the cloud.</li>
       </ul>
-      <hr class="is-extra-muted">
+      <hr class="is-extra-muted" />
       <a href="/ai">How Ubuntu enables AI innovation&nbsp;&rsaquo;</a>
     </div>
   </div>
   <div class="u-fixed-width">
-    <div class="p-icon-section">
-      <div class="p-icon-section__items">
-        <div class="p-icon-section__item ">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item ">
           {{ image (
           url="https://assets.ubuntu.com/v1/1bc694f0-nvidia-cuda-logo.png",
-          alt="",
+          alt="nvidia cuda logo",
           width="288",
           height="288",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
+          attrs={"class": "p-logo-section__logo"}
           ) | safe
           }}
         </div>
-        <div class="p-icon-section__item ">
+        <div class="p-logo-section__item ">
           {{ image (
-          url="https://assets.ubuntu.com/v1/eea32cc5-jupyter-logo.png",
-          alt="",
-          width="288",
-          height="288",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
-          ) | safe
+            url="https://assets.ubuntu.com/v1/e332a639-jupyter-logo.png",
+            alt="juptyer logo",
+            width="129",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
-        <div class="p-icon-section__item ">
+        <div class="p-logo-section__item ">
           {{ image (
-          url="https://assets.ubuntu.com/v1/462ef9f5-keras-logo.png",
-          alt="",
-          width="288",
-          height="288",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
-          ) | safe
+            url="https://assets.ubuntu.com/v1/1652445f-keras-logo.png",
+            alt="keras logo",
+            width="277",
+            height="384",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
-        <div class="p-icon-section__item">
+        <div class="p-logo-section__item">
           {{ image (
-          url="https://assets.ubuntu.com/v1/c1fd7abe-scikit-learn-logo.png",
-          alt="",
-          width="288",
-          height="288",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
-          ) | safe
+            url="https://assets.ubuntu.com/v1/fbb20c33-scikit-logo.png",
+            alt="scikit logo",
+            width="233",
+            height="257",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
-        <div class="p-icon-section__item">
+        <div class="p-logo-section__item">
           {{ image (
-          url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
-          alt="",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
-          ) | safe
+            url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
+            alt="tensor flow logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
-        <div class="p-icon-section__item">
+        <div class="p-logo-section__item">
           {{ image (
-          url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
-          alt="",
-          width="288",
-          height="288",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-icon-section__icon"}
-          ) | safe
+            url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
+            alt="pytorch logo",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
       </div>
@@ -185,7 +185,7 @@
 
 <section class="p-section">
   <div class="row--50-50 p-section">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="col">
       <h2>A rich ecosystem</h2>
     </div>
@@ -196,7 +196,7 @@
         <li class="p-list__item is-ticked">Office productivity tools include Slack, Microsoft Teams, Dropbox, and Zoom as well as the Microsoft-compatible LibreOffice.</li>
         <li class="p-list__item is-ticked">Media, gaming, and content creation apps include Spotify, Steam, Discord and OBS Studio.</li>
       </ul>
-      <hr class="is-extra-muted">
+      <hr class="is-extra-muted" />
       <a href="https://snapcraft.io/">Learn more about Snapcraft&nbsp;&rsaquo;</a>
     </div>
   </div>
@@ -219,11 +219,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/11d81b4e-IntelliJ_IDEA_Logo.svg",
-            alt="",
+            alt="intelli J idea logo",
             width="256",
             height="256",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -231,11 +231,11 @@
         <div class="p-icon-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/fbce8950-git-kraken.png",
-            alt="",
+            alt="git kraken logo",
             width="62",
             height="63",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -243,11 +243,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/f0bd491c-blender.png",
-            alt="",
+            alt="blender logo",
             width="512",
             height="512",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -255,11 +255,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/aadb53b3-unity-seeklogo.com.svg",
-            alt="",
+            alt="unity seek logo",
             width="249",
             height="256",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -267,11 +267,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/8a2851df-slack-icon-vanilla.svg",
-            alt="",
+            alt="slack logo",
             width="256",
             height="256",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -279,11 +279,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/8f85ef3f-microsoft-teams.png",
-            alt="",
+            alt="microsoft teams logo",
             width="512",
             height="512",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -291,11 +291,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/6e5fe7ef-logo-dropbox.svg",
-            alt="",
+            alt="dropbox logo",
             width="184",
             height="174",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -303,11 +303,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/ceca3817-zoom-app.svg",
-            alt="",
+            alt="zoom logo",
             width="2500",
             height="2500",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -315,11 +315,11 @@
         <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/be731535-Logo-libreoffice.svg",
-            alt="",
+            alt="libre office logo",
             width="219",
             height="264",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -328,7 +328,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/9917aba6-spotify-linux-256.png",
-            alt="Spotify",
+            alt="Spotify logo",
             width="256",
             height="256",
             hi_def=True,
@@ -340,11 +340,11 @@
         <div class="p-icon-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/ff5561bc-steam.png",
-            alt="",
+            alt="steam logo",
             width="61",
             height="62",
             hi_def=True,
-            loading="auto|lazy",
+            loading="lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
@@ -356,7 +356,7 @@
 
 <section class="p-section">
   <div class="row--50-50 p-section">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="col">
       <h2>Certified hardware</h2>
     </div>
@@ -366,91 +366,91 @@
         <li class="p-list__item is-ticked">Ubuntu performs out of the box across a wide range of laptops, desktops, and workstations, including the HP Z series and Dell XPS and Precision lines.</li>
         <li class="p-list__item is-ticked"><a href="/desktop/partners">Strategic partnerships</a> extend to component manufacturers and Ubuntu is certified to work with the full range of NVIDIA GPUs.</li>
       </ul>
-      <hr class="is-extra-muted">
+      <hr class="is-extra-muted" />
       <a href="/certified">Ubuntu certified hardware&nbsp;&rsaquo;</a>
     </div>
   </div>
   <div class="u-fixed-width">
-    <div class="p-icon-section">
-      <div class="p-icon-section__items">
-        <div class="p-icon-section__item">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/cd5c35a3-partners-logo-hp.png",
-            alt="",
-            width="212",
-            height="211",
+            url="https://assets.ubuntu.com/v1/4b74a5f4-hp-logo.png",
+            alt="hp logo",
+            width="110",
+            height="256",
             hi_def=True,
             loading="auto|lazy",
             attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
-        <div class="p-icon-section__item">
+        <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/7b0c2984-lenovo-logo-square.png",
-            alt="",
-            width="207",
-            height="207",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-icon-section__icon"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
-            alt="",
-            width="240",
-            height="240",
-            hi_def=True,
-            loading="auto|lazy",
-            attrs={"class": "p-icon-section__icon"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/54e604c7-amd-logo-no-horizontal-whitespace.png",
-            alt="",
-            width="266",
-            height="266",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-icon-section__icon"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c580cd51-intel-logo-square.png",
-            alt="",
-            width="182",
-            height="182",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-icon-section__icon"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/579c3731-arm-logo-square.png",
-            alt="",
-            width="182",
-            height="182",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-icon-section__icon"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-icon-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/d7829629-nvidia-logo.svg",
-            alt="",
-            width="143",
+            url="https://assets.ubuntu.com/v1/a34e318a-lenovo-logo.svg",
+            alt="lenovo logo",
+            width="105",
             height="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fe17c507-dell-logo.svg",
+            alt="dell logo",
+            width="71",
+            height="144",
+            hi_def=True,
+            loading="auto|lazy",
+            attrs={"class": "p-icon-section__icon"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/dac5c9d7-amd-logo.png",
+            alt="amd logo",
+            width="186",
+            height="257",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+            alt="intel logo",
+            width="149",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
+            alt="arm logo",
+            width="183",
+            height="372",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/49c503f5-nvidia-logo.png",
+            alt="nvidia logo",
+            width="254",
+            height="257",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-icon-section__icon"}
@@ -464,7 +464,7 @@
 
 <section class="p-section">
   <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <h2>Developers love Ubuntu, organisations trust it</h2>
   </div>
   <div class="row--50-50">
@@ -493,19 +493,11 @@
 
 <section class="p-strip--white u-no-padding--top">
   <div class="u-fixed-width p-section--shallow">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/db0c14a8-Ubuntu Pro.svg",
-      alt="",
-      width="200",
-      height="52",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
+    <img src="https://assets.ubuntu.com/v1/db0c14a8-Ubuntu Pro.svg" alt="" width="161" height="42" />
   </div>
   <div class="p-section--shallow">
     <div class="row--50-50">
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
       </div>
@@ -524,7 +516,7 @@
   </div>
   <div class="p-section u-no-padding--bottom">
     <div class="row--50-50">
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Free for personal use <br aria-hidden/>on up to five machines</h2>
       </div>
@@ -604,7 +596,7 @@
     <hr class="p-rule"/>
     <div class="col">
       <div class="p-section--shallow">
-        <h2 class="p-text--small-caps"><a href="">Latest Ubuntu Desktop news <br aria-hidden/>from our blog&nbsp;&rsaquo;</a></h2>
+        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest Ubuntu Desktop news <br aria-hidden />from our blog&nbsp;&rsaquo;</a></h2>
       </div>
     </div>
     <div class="col">
@@ -639,8 +631,6 @@
     }
     )
 </script>
-
-{% include "shared/contextual_footers/_desktop.html" %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.5.0/d3.min.js" defer></script>
 <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
