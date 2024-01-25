@@ -1440,6 +1440,11 @@ $color-link-dark: #69c !default;
 
   .p-icon-section__items {
     line-height: 2rem;
+    row-gap: calc(1rem + 1vw);
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      row-gap: 1.5rem;
+    }
   }
 
   .p-icon-section__item {
