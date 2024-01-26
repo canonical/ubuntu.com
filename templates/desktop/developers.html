@@ -17,7 +17,6 @@
     <div class="row--50-50">
       <div class="col">
         <h1>Ubuntu Desktop <br aria-hidden/>for developers</h1>
- 
       </div>
       <div class="col">
         <p>Whether you're an app or web developer, engineering manager, data scientist, or AI/ML researcher &mdash; Ubuntu is your ideal workstation.</p>
@@ -78,6 +77,8 @@
     <div class="col">
       <h2>Security support <br aria-hidden/>for Ubuntu releases</h2>
     </div>
+    <div class="col" id="server-desktop-eol-key" style="padding-top:1rem;">
+    </div>
   </div>
   <div class="u-fixed-width">
     <div class="u-hide--small" id="server-desktop-eol"></div>
@@ -112,11 +113,11 @@
           height="288",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
+          attrs={"class": "p-icon-section__icon"}
           ) | safe
           }}
         </div>
-        <div class="p-logo-section__item ">
+        <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/e332a639-jupyter-logo.png",
             alt="juptyer logo",
@@ -128,7 +129,7 @@
             ) | safe
           }}
         </div>
-        <div class="p-logo-section__item ">
+        <div class="p-icon-section__item ">
           {{ image (
             url="https://assets.ubuntu.com/v1/1652445f-keras-logo.png",
             alt="keras logo",
@@ -378,8 +379,8 @@
             width="110",
             height="256",
             hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            loading="auto|lazy",
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -391,7 +392,7 @@
             height="144",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -402,8 +403,8 @@
             width="71",
             height="144",
             hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            loading="auto|lazy",
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -415,7 +416,7 @@
             height="257",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -427,7 +428,7 @@
             height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -439,7 +440,7 @@
             height="372",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -451,7 +452,7 @@
             height="257",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
+            attrs={"class": "p-icon-section__icon"}
             ) | safe
           }}
         </div>
@@ -546,7 +547,7 @@
         </div>
         <div class="col-6 col-medium-3">
           <p>Download Ubuntu Desktop and replace your current operating system. It's easy to install on Windows or macOS, or run Ubuntu alongside it.</p>
-          <hr class="is-extra-muted" / />
+          <hr class="is-extra-muted" />
           <a class="p-button--positive u-no-margin--bottom" href="/download/desktop">Download now</a>
         </div>
       </div>
@@ -557,7 +558,7 @@
         </div>
         <div class="col-6 col-medium-3">
           <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers, including Dell, HP, and Lenovo.</p>
-          <hr class="is-extra-muted" / />
+          <hr class="is-extra-muted" />
           <a href="https://canonical.com/partners/desktop">Find out more about our retail partners&nbsp;&rsaquo;</a>
         </div>
       </div>
@@ -568,7 +569,7 @@
         </div>
         <div class="col-6 col-medium-3">
           <p>Share ideas, write code, and get advice and help from our large, active community of IT professionals.</p>
-          <hr class="is-extra-muted" / />
+          <hr class="is-extra-muted" />
           <ul class="p-inline-list--middot">
             <li class="p-inline-list__item">
               <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
@@ -629,7 +630,6 @@
     }
     )
 </script>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
 <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>

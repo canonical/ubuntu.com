@@ -1593,10 +1593,10 @@ export var microStackReleases = [
 ];
 
 export var desktopServerStatus = {
-  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
+  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--black",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
-  ESM: "chart__bar--aubergine",
-  MAIN_UNIVERSE: "chart__bar--charcoal",
+  ESM: "chart__bar--aubergine-light",
+  MAIN_UNIVERSE: "chart__bar--aubergine-mid-light",
   INTERIM_RELEASE: "chart__bar--grey",
 };
 

@@ -1,4 +1,5 @@
 import { createChart } from "./chart";
+import { createSupportChart } from "./support-chart";
 import { debounce } from "./utils/debounce.js";
 import {
   serverAndDesktopReleases,
@@ -39,10 +40,20 @@ import {
 } from "./chart-data";
 
 function buildCharts() {
-  if (document.querySelector("#server-desktop-eol")) {
+  if (document.querySelector("#server-desktop-eol-old")) {
     delete desktopServerStatus.MAINTENANCE_UPDATES;
     createChart(
+      "#server-desktop-eol-old",
+      desktopServerReleaseNames,
+      desktopServerStatus,
+      serverAndDesktopReleases
+    );
+  }
+  if (document.querySelector("#server-desktop-eol")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
+    createSupportChart(
       "#server-desktop-eol",
+      "#server-desktop-eol-key",
       desktopServerReleaseNames,
       desktopServerStatus,
       serverAndDesktopReleases
@@ -162,9 +173,17 @@ function buildCharts() {
 }
 
 function clearCharts() {
+  const serverDesktopEolOld = document.querySelector("#server-desktop-eol-old");
+  if (serverDesktopEolOld) {
+    serverDesktopEolOld.innerHTML = "";
+  }
   const serverDesktopEol = document.querySelector("#server-desktop-eol");
   if (serverDesktopEol) {
     serverDesktopEol.innerHTML = "";
+  }
+  const serverDesktopEolKey = document.querySelector("#server-desktop-eol-key");
+  if (serverDesktopEolKey) {
+    serverDesktopEolKey.innerHTML = "";
   }
   const eol1604 = document.querySelector("#eol-1604");
   if (eol1604) {
