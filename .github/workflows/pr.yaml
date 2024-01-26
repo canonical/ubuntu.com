@@ -73,16 +73,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install node dependencies
-        run: yarn install --immutable
+      - name: Install dotrun
+        uses: canonical/install-dotrun@main
 
-      - name: Install python dependencies
+      - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          sudo pip3 install flake8 black
+          sudo chmod -R 777 .
+          dotrun install
+
+      - name: Build assets
+        run: dotrun build
 
       - name: Lint python
-        run: yarn lint-python
+        run: dotrun lint-python
 
   validate-deploy:
     runs-on: ubuntu-latest
