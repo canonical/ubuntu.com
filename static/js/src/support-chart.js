@@ -652,5 +652,5 @@ export function createSupportChart(
   cleanUpChart(svg);
   buildChartKey(keyAttachmentSelector, taskStatus);
 
-  highlightChartRow(svg, highlightVersion);
+  highlightChartRow(svg, y, highlightVersion);
 }
