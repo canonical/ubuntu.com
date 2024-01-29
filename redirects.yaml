@@ -465,7 +465,6 @@ ec2/?: "/cloud/public-cloud"
 edge/?: "/edge-computing"
 edge-cloud/?: "/cloud"
 education.*/?: "/desktop/education"
-embedded: "/real-time"
 employment/?: "https://www.canonical.com/careers"
 employment/SSEBzr/?: "https://www.canonical.com/careers"
 end-of-life/?: "/about/release-cycle"
@@ -729,7 +728,7 @@ promo.*/?: "/download"
 public-cloud/?: "/cloud/public-cloud"
 qct/?: "https://pages.canonical.com/QCTCloudHardware.html"
 raspberrypi(?P<page>.*)/?:  "/raspberry-pi{page}"
-realtime-kernel/?: "/embedded#beta-signup"
+realtime-kernel/?: "/real-time"
 release-end-of-life/?: "/about/release-cycle"
 release-notes/oneiric-ocelot/?: "https://wiki.ubuntu.com/OneiricOcelot/ReleaseNotes"
 release-notes/precise-pangolin/?: "https://wiki.ubuntu.com/PrecisePangolin/ReleaseNotes"
@@ -1028,3 +1027,6 @@ security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{
 
 # Fix search results https://github.com/canonical/ubuntu.com/issues/12510
 pricing/desktops: "/pricing/desktop"
+
+# Documentation pages (coming from discourse)
+server/docs/virtualization-introduction: /server/docs/introduction-to-virtualization

@@ -327,15 +327,17 @@ const ProductType = () => {
           </button>
         </div>
       </div>
+      <>
+        <Button
+          appearance="positive"
+          element="a"
+          href="/internet-of-things#get-in-touch"
+        >
+          Contact us to find out more our IoT pricing
+        </Button>
+      </>
       {iotDevice === IoTDevices.core && (
         <>
-          <p>
-            <strong> Ubuntu Core </strong>
-          </p>
-          <p>
-            If you are interested in Ubuntu Core, please{" "}
-            <a href="/core/contact-us">contact us</a>.
-          </p>
           <Button element="a" href="/core">
             Learn more about Ubuntu Core
           </Button>

@@ -1,7 +1,3 @@
-.chart {
-  margin-top: $sp-unit * 3;
-}
-
 .chart__bar--orange {
   fill: #e95420;
   stroke: #e95420;
@@ -47,7 +43,8 @@
   opacity: 0.2;
 }
 
-.x.axis line {
+.x.axis line,
+.y.axis line {
   shape-rendering: crispEdges;
   stroke: #d6d3cf;
   stroke-dasharray: 3 2;
