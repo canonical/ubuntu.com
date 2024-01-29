@@ -59,10 +59,10 @@ mainList.addEventListener("click", function (e) {
       handleDropdownClick(e.target.parentNode);
     }
   } else if (
-    target.classList.contains("p-navigation__dropdown") &&
-    target.tagName == "A"
+    target.classList.contains("p-navigation__dropdown-item") ||
+    (target.classList.contains("p-navigation__secondary-link") &&
+      target.tagName == "A")
   ) {
-    // This handles the globa-nav using a slightly different class naming convention
     window.location.href = target.href;
   }
 });
