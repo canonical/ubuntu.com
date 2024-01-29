@@ -60,8 +60,8 @@ mainList.addEventListener("click", function (e) {
     }
   } else if (
     target.classList.contains("p-navigation__dropdown-item") ||
-    target.classList.contains("p-navigation__secondary-link") &&
-    target.tagName == "A"
+    (target.classList.contains("p-navigation__secondary-link") &&
+      target.tagName == "A")
   ) {
     window.location.href = target.href;
   }
