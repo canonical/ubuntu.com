@@ -38,6 +38,10 @@ $meganav-height: 3rem;
     top: 0;
     z-index: 40;
 
+    .p-navigation__secondary-link {
+      @extend .dropdown-window__side-panel-link;
+    }
+
     .p-link--inverted {
       font-weight: 400;
     }
