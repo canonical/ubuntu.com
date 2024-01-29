@@ -10,7 +10,7 @@ const hackerEarthData = [
   { count: 2, label: "FreeBSD" },
   { count: 1, label: "Deepin" },
 ];
-const OpenSourcedata = [
+const openSourceData = [
   { count: 35.6, label: "Ubuntu" },
   { count: 21.4, label: "Debian" },
   { count: 19.5, label: "CentOS" },
@@ -33,8 +33,32 @@ function sortData(data) {
   });
 }
 
+/**
+ *
+ * @param {*} svg
+ *
+ * Clean up unwanted elements on chart put in by d3.js
+ */
+function cleanUpChart(svg) {
+  svg.selectAll(".domain").remove();
+}
+
+/**
+ *
+ * @param {Array} taskTypes
+ *
+ * Calculate the longest Y-Axis label
+ */
+function calculateMaxLabelWidth(YAxisLabels) {
+  var YAxisLabelsCopy = YAxisLabels.slice();
+  var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
+    return b.length - a.length;
+  })[0];
+  return longestLabel.length * 7;
+}
+
 function createChart(data, id) {
-  sortData(data)
+  sortData(data);
   var parent = d3.select(`#${id}`);
   var parentWidth = parent.node().getBoundingClientRect().width;
   var margin = {
@@ -231,29 +255,51 @@ function createChart(data, id) {
   cleanUpChart(svg);
 }
 
-/**
- *
- * @param {*} svg
- *
- * Clean up unwanted elements on chart put in by d3.js
- */
-function cleanUpChart(svg) {
-  svg.selectAll(".domain").remove();
+function buildCharts() {
+  if (document.querySelector("#hackerearth-chart")) {
+    createChart(
+      hackerEarthData,
+      "hackerearth-chart"
+    );
+  }
+  if (document.querySelector("#opensource-chart")) {
+    createChart(
+      openSourceData,
+      "opensource-chart",
+    );
+  }
 }
 
-/**
- *
- * @param {Array} taskTypes
- *
- * Calculate the longest Y-Axis label
- */
-function calculateMaxLabelWidth(YAxisLabels) {
-  var YAxisLabelsCopy = YAxisLabels.slice();
-  var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
-    return b.length - a.length;
-  })[0];
-  return longestLabel.length * 7;
+function clearCharts() {
+  const hackerEarthData = document.querySelector("#hackerearth-chart");
+  if (hackerEarthData) {
+    hackerEarthData.innerHTML = "";
+  }
+  const openSourceData = document.querySelector("#opensource-chart");
+  if (openSourceData) {
+    openSourceData.innerHTML = "";
+  }
 }
 
-createChart(hackerEarthData, "hackerearth-chart");
-createChart(OpenSourcedata, "opensource-chart");
+var mediumBreakpoint = 620;
+
+// A bit of a hack, but chart doesn't load with full year axis on first load,
+// It has to be loaded once, and then again
+// This will need looking into but this fix will work for now
+if (window.innerWidth >= mediumBreakpoint) {
+  buildCharts();
+  setTimeout(function () {
+    clearCharts();
+    buildCharts();
+  }, 0);
+}
+
+window.addEventListener(
+  "resize",
+  debounce(function () {
+    if (window.innerWidth >= mediumBreakpoint) {
+      clearCharts();
+      buildCharts();
+    }
+  }, 250)
+);
