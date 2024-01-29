@@ -61,7 +61,9 @@
 
       <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
 
-      <p>Ubuntu LTS releases receive 5 years of standard security maintenance for all packages in the ‘Main’ repository. With an Ubuntu Pro subscription you get access to Expanded Security Maintenance (ESM) covering security fixes for packages in the ‘Universe’ repository (esm-apps feature). Additionally, ESM extends the lifetime of an Ubuntu LTS from 5 years to 10 years (esm-infra feature).</p>
+      <p>Ubuntu LTS releases receive 5 years of standard security maintenance for all packages in the ‘Main’ repository. With an Ubuntu Pro subscription, you get access to Expanded Security Maintenance (ESM) covering security fixes for packages in both the ‘Main’ and ‘Universe’ repositories for 10 years.
+         <a href="/support">Phone and ticket support</a> is also available and can be optionally added on top of an Ubuntu Pro subscription, covering the same packages covered by ESM, for the same time frame.
+      </p>
 
       <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
     </div>
@@ -69,7 +71,7 @@
     {% include "/about/release_cycles/ubuntu-eol.html" %}
 
     <div class="u-fixed-width">
-      <p>ESM requires Ubuntu Pro subscription.</p>
+      <p>ESM phone and ticket support require Ubuntu Pro subscription.</p>
       <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.</p>
     </div>
   </div>
@@ -102,7 +104,15 @@
         </tbody>
       </table>
 
-      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year standard security maintenance period, during which maintenance updates are publicly available without a subscription, and five years of <a href="/security/esm">Expanded Security Maintenance (ESM)</a>. Furthermore ESM also covers 10 years of security maintenance for the Universe repository, which is not provided outside of Ubuntu Pro subscription. The full 10 year Ubuntu LTS lifecycle is available with an <a href="/pro">Ubuntu Pro subscription</a> (free for personal use on up to 5 machines).</p>
+      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel
+        livepatching, and optional phone and ticket support, for a period of ten years. The lifecycle consists of an initial
+        five-year standard security maintenance period, during which maintenance updates are publicly available without a
+        subscription, and five years of <a href="/security/esm">Expanded Security Maintenance (ESM)</a>. Furthermore ESM also
+        covers 10 years of security maintenance for the Universe repository, which is not provided outside of Ubuntu Pro
+        subscription. The full 10 year Ubuntu LTS lifecycle is available with an <a href="/pro">Ubuntu Pro subscription</a>
+        (free for personal use on up to 5 machines). Technical phone and ticket support is only available as an add-on to an
+        Ubuntu Pro subscription.
+      </p>
 
       <div class="u-fixed-width u-hide--small">
         {{
@@ -165,7 +175,7 @@
 
       <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 18.04 LTS received the kernels from Ubuntu 18.10, 19.04, 19.10 and 20.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels 'roll' which means that they jump every six months until the next LTS. Large scale deployments that adopt the 'hardware enablement' or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
 
-      <p>The Ubuntu kernel support lifecycle is as follows:</p>
+      <p>The Ubuntu kernel support lifecycle</p>
     </div>
 
     {% include "/about/release_cycles/kernel-eol.html" %}
