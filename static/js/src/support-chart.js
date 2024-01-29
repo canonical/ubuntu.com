@@ -403,14 +403,11 @@ function buildChartKey(chartSelector, taskStatus) {
  * a list of texts, based on a given container width
  */
 function getMaxNumberOfLines(textList, width) {
-  var tempSvg = (svg = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "svg"
-  ));
-  svg.style.position = "absolute";
-  svg.style.visibility = "hidden";
-  svg.width = width;
-  document.body.appendChild(svg);
+  var tempSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  tempSvg.style.position = "absolute";
+  tempSvg.style.visibility = "hidden";
+  tempSvg.width = width;
+  document.body.appendChild(tempSvg);
 
   var maxNumberOfLines = 1;
 
@@ -420,14 +417,14 @@ function getMaxNumberOfLines(textList, width) {
       "text"
     );
     textNode.textContent = formatKeyLabel(key);
-    svg.appendChild(textNode);
+    tempSvg.appendChild(textNode);
     var numberOfLines = Math.ceil(textNode.getComputedTextLength() / width);
     if (numberOfLines > maxNumberOfLines) {
       maxNumberOfLines = numberOfLines;
     }
-    svg.removeChild(textNode);
+    tempSvg.removeChild(textNode);
   });
-  document.body.removeChild(svg);
+  document.body.removeChild(tempSvg);
   return maxNumberOfLines;
 }
 
@@ -451,7 +448,7 @@ function wrapText(text, width) {
       x = text.attr("x"),
       y = text.attr("y"),
       dy = 0;
-    tspan = text
+    var tspan = text
       .text(null)
       .append("tspan")
       .attr("x", x)
