@@ -198,28 +198,6 @@ function getTickPositions(yAxis) {
 /**
  *
  * @param {*} svg
- * @param {Int} x1
- * @param {Int} x2
- * @param {*} y
- * @param {String} strokeColor
- * @param {Int} strokeColor
- *
- * Appends a horiontal line to the SVG based on custom parameters
- */
-function addHorizontalLine(svg, x1, x2, y, strokeColor, strokeWidth) {
-  svg
-    .append("line")
-    .attr("x1", x1)
-    .attr("x2", x2)
-    .attr("y1", y)
-    .attr("y2", y)
-    .attr("stroke", strokeColor)
-    .attr("stroke-width", strokeWidth);
-}
-
-/**
- *
- * @param {*} svg
  * @param {*} yAxis
  * @param {Int} width
  * @param {Obj} margin
@@ -229,27 +207,17 @@ function addHorizontalLine(svg, x1, x2, y, strokeColor, strokeWidth) {
  */
 function addYAxisHorizontalLines(svg, yAxis, width, margin) {
   const tickPositions = getTickPositions(yAxis);
-
   const lineAdjustment = 27;
 
   tickPositions.forEach((posY, index) => {
-    addHorizontalLine(
-      svg,
-      -margin.left,
-      0,
-      posY - lineAdjustment,
-      "#D9D9D9",
-      2
-    );
-
-    addHorizontalLine(
-      svg,
-      0,
-      width + margin.right,
-      posY - lineAdjustment,
-      "#D9D9D9",
-      index === 0 ? 2 : 1
-    );
+    svg
+    .append("line")
+    .attr("x1", -margin.left)
+    .attr("x2", width + margin.right)
+    .attr("y1", posY - lineAdjustment)
+    .attr("y2", posY - lineAdjustment,)
+    .attr("stroke", "#D9D9D9")
+    .attr("stroke-width", index === 0 ? 2 : 1); 
   });
 }
 
@@ -321,7 +289,7 @@ function setVersionAxisLabels(svg, taskVersions) {
  * @param {*} svg
  * @param {Int} height
  *
- * Adds vertical lines to the x axis
+ * Adds vertical lines to the x axis 
  */
 function addXAxisVerticalLines(svg, height, margin) {
   svg
@@ -536,7 +504,7 @@ function calculateYAxisWidth(YAxisLabels) {
  *
  * Builds chart using supplied selector and data
  */
-export function createSupportChart(
+export function createReleaseChart(
   chartSelector,
   keySelector,
   taskTypes,

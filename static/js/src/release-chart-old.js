@@ -285,7 +285,7 @@ function calculateYAxisWidth(YAxisLabels) {
  *
  * Builds chart using supplied selector and data
  */
-export function createSupportChartOld(
+export function createReleaseChartOld(
   chartSelector,
   taskTypes,
   taskStatus,

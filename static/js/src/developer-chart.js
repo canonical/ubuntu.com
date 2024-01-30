@@ -248,12 +248,11 @@ function addYAxisHorizontalLines(svg, yAxis, width, margin) {
 /**
  *
  * @param {*} svg
- * @param {*} yAxis
  *
  * Selects the <line> elements in the x-axis and extends it
  */
-function addXAxisTicks(svg, xAxis) {
-  d3.selectAll(".x.axis .tick line").each(function () {
+function addXAxisTicks(svg) {
+  svg.selectAll(".x.axis .tick line").each(function () {
     d3.select(this)
       .attr("y1", 3)
       .attr("y2", 28)
@@ -349,7 +348,7 @@ export function createDeveloperChart(chartSelector, taskTypes, tasks) {
   addYAxis(svg, yAxis, tasks);
 
   addYAxisHorizontalLines(svg, yAxis, width, margin);
-  addXAxisTicks(svg, xAxis);
+  addXAxisTicks(svg);
   cleanUpChart(svg);
 }
 

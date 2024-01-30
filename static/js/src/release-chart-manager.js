@@ -1,5 +1,5 @@
-import { createSupportChartOld } from "./release-chart-old.js";
-import { createSupportChart } from "./release-chart.js";
+import { createReleaseChartOld } from "./release-chart-old.js";
+import { createReleaseChart } from "./release-chart.js";
 import { debounce } from "./utils/debounce.js";
 import {
   serverAndDesktopReleases,
@@ -40,18 +40,9 @@ import {
 } from "./chart-data.js";
 
 function buildCharts() {
-  if (document.querySelector("#server-desktop-eol-old")) {
-    delete desktopServerStatus.MAINTENANCE_UPDATES;
-    createSupportChartOld(
-      "#server-desktop-eol-old",
-      desktopServerReleaseNames,
-      desktopServerStatus,
-      serverAndDesktopReleases
-    );
-  }
   if (document.querySelector("#server-desktop-eol")) {
     delete desktopServerStatus.MAINTENANCE_UPDATES;
-    createSupportChart(
+    createReleaseChart(
       "#server-desktop-eol",
       "#server-desktop-eol-key",
       desktopServerReleaseNames,
@@ -59,9 +50,18 @@ function buildCharts() {
       serverAndDesktopReleases
     );
   }
+  if (document.querySelector("#server-desktop-eol-old")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
+    createReleaseChartOld(
+      "#server-desktop-eol-old",
+      desktopServerReleaseNames,
+      desktopServerStatus,
+      serverAndDesktopReleases
+    );
+  }
   if (document.querySelector("#eol-1604")) {
     delete desktopServerStatus.MAINTENANCE_UPDATES;
-    createSupportChartOld(
+    createReleaseChartOld(
       "#eol-1604",
       desktopServerReleaseNames,
       desktopServerStatus,
@@ -72,7 +72,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel-eol")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel-eol",
       kernelReleaseNames,
       kernelStatus,
@@ -81,7 +81,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel2204")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel2204",
       kernelReleaseNames2204,
       kernelStatus,
@@ -89,7 +89,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel2004")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel2004",
       kernelReleaseNames2004,
       kernelStatus,
@@ -97,7 +97,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel1804")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel1804",
       kernelReleaseNames1804,
       kernelStatus,
@@ -105,7 +105,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel1604")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel1604",
       kernelReleaseNames1604,
       kernelStatus,
@@ -113,7 +113,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel1404")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel1404",
       kernelReleaseNames1404,
       kernelStatus,
@@ -121,7 +121,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernellts")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernellts",
       kernelReleaseNamesLTS,
       kernelStatusLTS,
@@ -129,7 +129,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernelall")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernelall",
       kernelReleaseNamesALL,
       kernelStatusALL,
@@ -137,7 +137,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#openstack-eol")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#openstack-eol",
       openStackReleaseNames,
       openStackStatus,
@@ -145,7 +145,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kubernetes-eol")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kubernetes-eol",
       kubernetesReleaseNames,
       kubernetesStatus,
@@ -155,7 +155,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#kernel-schedule")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#kernel-schedule",
       kernelReleaseScheduleNames,
       kernelReleaseScheduleStatus,
@@ -163,7 +163,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#microstack-eol")) {
-    createSupportChartOld(
+    createReleaseChartOld(
       "#microstack-eol",
       microStackReleaseNames,
       microStackStatus,
