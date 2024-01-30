@@ -468,20 +468,22 @@
   </div>
   <div class="row--50-50">
     <div class="col">
-      <p><strong>Operating systems developers prefer</strong> <br aria-hidden/>Multiple choice poll</p>
-      <div>
-        <figure id="hackerearth-chart" class="hackerearth-chart"></figure>
-      </div>
+      <p class="u-no-margin--bottom"><strong>Operating systems developers prefer</strong> <br aria-hidden/>Multiple choice poll</p>
+      <div id="hackerearth-chart" class="hackerearth-chart"></div>
+    </div>
+    <div class="col">
+      <p class="u-no-margin--bottom"><strong>Which of these open source technologies does your organisation use today to support your software infrastructure?</strong></p>
+      <div id="opensource-chart" class="opensource-chart"></div>
+    </div>
+  </div>
+  <div class="row--50-50">
+    <div class="col">
       <hr class="is-muted">
       <p>Source: <a
         href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020
         HackerEarth Developer Survey</a></p>
     </div>
     <div class="col">
-      <p><strong>Which of these open source technologies does your organisation use today to support your software infrastructure?</strong></p>
-      <div>
-        <figure id="opensource-chart" class="opensource-chart"></figure>
-      </div>
       <hr class="is-muted">
       <p>Source: <a
         href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The
@@ -632,8 +634,7 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
-<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
-<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
-<script src="{{ versioned_static('js/src/developer-chart.js')}}"></script>
+<script src="{{ versioned_static('js/dist/release-chart-manager.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/developer-chart.js')}}" defer></script>
 
 {% endblock content %}

@@ -20,6 +20,12 @@
   stroke-width: 1px;
 }
 
+.chart__bar--light-grey {
+  fill: #c2c2c2;
+  stroke: #c2c2c2;
+  stroke-width: 1px;
+}
+
 .chart__bar--aubergine {
   fill: #772953;
   stroke: #772953;
@@ -84,6 +90,27 @@
   text-anchor: start !important;
 }
 
+.chart-key {
+  display: block;
+}
+
+.chart-key__row {
+  display: block;
+}
+
+.horizontal-bar-chart {
+  .tick text {
+    font-size: 16px;
+    font-weight: 350;
+  }
+
+  .x.axis text {
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
 #server-desktop-eol {
   .tick text {
     font-size: 16px;
@@ -97,20 +124,5 @@
 
   .chart__label--bold {
     font-weight: 600;
-  }
-}
-
-.chart-key {
-  display: block;
-}
-
-.chart-key__row {
-  display: block;
-}
-
-.developer-chart {
-  text {
-    font-size: 16px;
-    font-weight: 300;
   }
 }
