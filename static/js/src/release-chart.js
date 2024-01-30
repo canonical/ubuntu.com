@@ -211,13 +211,13 @@ function addYAxisHorizontalLines(svg, yAxis, width, margin) {
 
   tickPositions.forEach((posY, index) => {
     svg
-    .append("line")
-    .attr("x1", -margin.left)
-    .attr("x2", width + margin.right)
-    .attr("y1", posY - lineAdjustment)
-    .attr("y2", posY - lineAdjustment,)
-    .attr("stroke", "#D9D9D9")
-    .attr("stroke-width", index === 0 ? 2 : 1); 
+      .append("line")
+      .attr("x1", -margin.left)
+      .attr("x2", width + margin.right)
+      .attr("y1", posY - lineAdjustment)
+      .attr("y2", posY - lineAdjustment)
+      .attr("stroke", "#D9D9D9")
+      .attr("stroke-width", index === 0 ? 2 : 1);
   });
 }
 
@@ -289,7 +289,7 @@ function setVersionAxisLabels(svg, taskVersions) {
  * @param {*} svg
  * @param {Int} height
  *
- * Adds vertical lines to the x axis 
+ * Adds vertical lines to the x axis
  */
 function addXAxisVerticalLines(svg, height, margin) {
   svg
