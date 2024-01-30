@@ -19,9 +19,6 @@ const releaseFilter = document.querySelector("#release-filter");
 const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
-const otherReleasesLink = document.querySelector("#other-releases-link");
-const searchResults = document.querySelector(".js-cve-search-results");
-const landingPage = document.querySelector(".js-cve-landing");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const maintainedReleases = [
   "mantic",
@@ -267,12 +264,3 @@ function exportToJSON() {
   };
 }
 exportToJSON();
-
-// This link isn't meant to include any parameters
-// Instead of refreshing the page, it should just hide the landing page
-// and show the unfiltered search results when clicked
-otherReleasesLink.addEventListener("click", function (event) {
-  event.preventDefault();
-  landingPage.classList.add("u-hide");
-  searchResults.classList.remove("u-hide");
-});

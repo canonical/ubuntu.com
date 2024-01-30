@@ -14,7 +14,7 @@
 <section class="p-strip is-shallow u-no-padding--bottom">
   <div class="row p-section">
     <div class="col-start-large-4 col-9">
-      {% if query or package or component or priority or versions or statuses %}
+      {% if request.args %}
         <div class="p-section--shallow">
           <h1>Search CVE reports</h1>
         </div>
@@ -32,15 +32,10 @@
   </div>
 </section>
 
-{% if query or package or component or priority or versions or statuses %}
+{% if request.args %}
   {% include "security/cve/_cve-search-results.html"%}
 {% else %}
-  <div class="js-cve-search-results u-hide">
-    {% include "security/cve/_cve-search-results.html"%}
-  </div>
-  <div class="js-cve-landing">
-    {% include "security/cve/_cve-landing.html" %}
-  </div>
+  {% include "security/cve/_cve-landing.html" %}
 {% endif %}
 
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>

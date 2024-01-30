@@ -8,10 +8,12 @@ import flask
 import dateutil
 import talisker.requests
 import bs4 as bs
+import yaml
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
 from sortedcontainers import SortedDict
+from operator import itemgetter
 
 # Local
 from webapp.context import api_session
@@ -310,6 +312,16 @@ def cve_index():
     statuses = flask.request.args.getlist("status")
     order = flask.request.args.get("order", default="", type=str)
 
+    import ipdb
+
+    with open("releases.yaml") as releases_yaml:
+        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
+
+    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
+
+    temp = [releases_yaml.get(key) for key in yaml_keys]
+
+    ipdb.set_trace()
     # All CVEs
     cves_response = security_api.get_cves(
         query=query,
