@@ -308,7 +308,7 @@ function toggleGlobalNavVisibility(dropdown, show, delay) {
 
 function getUrlBarHeight(element) {
   const visibleHeight = window.innerHeight;
-  const fullHeight = document.querySelector('#control-height').clientHeight;
+  const fullHeight = document.querySelector("#control-height").clientHeight;
   const barHeight = fullHeight - visibleHeight;
   return barHeight;
 }
@@ -320,7 +320,7 @@ function updateWindowHeight() {
   navEle.style.maxHeight = originalMaxHeight;
   const isInDropdownList = mainList.classList.contains("is-active");
   if (isInDropdownList) {
-    const newHeight = (navEle.clientHeight - getUrlBarHeight() - 20) + 'px';
+    const newHeight = navEle.clientHeight - getUrlBarHeight() - 20 + "px";
     navEle.style.maxHeight = newHeight;
   } else {
     navEle.style.maxHeight = originalMaxHeight;
