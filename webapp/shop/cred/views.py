@@ -597,7 +597,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
                 "request_headers": error.request.headers,
                 "response_headers": error.response.headers,
                 "response_body": error.response.json(),
-                "activation_response": activation_response
+                "activation_response": activation_response,
             }
         )
         return flask.render_template(
