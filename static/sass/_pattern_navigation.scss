@@ -3,6 +3,12 @@ $row-margin-small: 1rem;
 $meganav-height: 3rem;
 
 @mixin ubuntu-p-navigation {
+  #control-height {
+    height: 100vh;
+    position: absolute;
+    width: 0;
+  }
+
   #all-canonical-mobile .global-nav__header-link-anchor::after {
     @media (max-width: $breakpoint-small) {
       right: 1rem !important;
