@@ -63,7 +63,7 @@ mainList.addEventListener("click", function (e) {
     target.classList.contains("p-navigation__secondary-link") ||
     target.classList.contains("p-button--positive")
   ) {
-    if (target.tagName == "A" || target.firstChild.tagName == "A") {
+    if (target.tagName === "A" || target.firstChild.tagName === "A") {
       window.location.href = target.href;
     }
   }
