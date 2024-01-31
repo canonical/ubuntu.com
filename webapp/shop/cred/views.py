@@ -184,7 +184,16 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
             product_tags=["cue"], email=email
         )
-    except UAContractsAPIErrorView:
+    except UAContractsAPIErrorView as error:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": error.request.url,
+                "request_headers": error.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
         exam_contracts = []
     exams_in_progress = []
     exams_scheduled = []
@@ -581,13 +590,31 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         )
     except UAContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text).get("message")
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": error.request.url,
+                "request_headers": error.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+                "activation_response": activation_response
+            }
+        )
         return flask.render_template(
             "/credentials/redeem.html",
             notification_class="negative",
             notification_title="Something went wrong",
             notification_message=activation_response,
         )
-    except UAContractsUserHasNoAccount:
+    except UAContractsUserHasNoAccount as error:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "request_url": error.request.url,
+                "request_headers": error.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
         return flask.render_template(
             "/credentials/redeem_with_captcha.html", key=activation_key
         )
