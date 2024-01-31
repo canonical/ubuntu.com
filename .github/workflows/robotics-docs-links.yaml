@@ -1,0 +1,58 @@
+name: docs links on ubuntu.com/robotics/docs
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install linkchecker
+        run: sudo pip install LinkChecker
+
+      - name: Write linkchecker config file
+        run: |
+          mkdir -p ~/.linkchecker
+          cat > ~/.linkchecker/linkcheckerrc <<EOF
+          [checking]
+          maxrequestspersecond=5
+
+          [filtering]
+          nofollow=!https:\/\/ubuntu.com\/robotics\/docs
+          checkextern=1
+          ignore=
+            https://res\.cloudinary\.com
+            /q_auto
+            c_fill
+            /fl_sanitize
+            e_sharpen
+            /w_
+            /h_
+
+          [output]
+          status=0
+          warnings=0
+          EOF
+
+      - name: Run linkchecker
+        continue-on-error: true
+        run: |
+          linkchecker https://ubuntu.com/robotics/docs > ~/.linkchecker/roboticsdocs-out.txt
+
+      - name: Parse linkchecker output
+        run: |
+          scripts/parseDocsLinkcheckerOutput roboticsdocs-out.txt
+
+      - name: Send message on failure
+        if: failure()
+        run: |
+          curl -X POST \
+            -F "workflow=${GITHUB_WORKFLOW}" \
+            -F "repo_name=${GITHUB_REPOSITORY}" \
+            -F "action_id=${GITHUB_RUN_ID}" \
+            ${{ secrets.BOT_URL }}?room=docs
