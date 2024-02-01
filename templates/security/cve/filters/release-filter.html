@@ -3,30 +3,26 @@
     <input type="checkbox" aria-labelledby="allMaintainedReleases" class="p-checkbox__input" value="maintained" />
     <span class="p-checkbox__label" id="allMaintainedReleases">All maintained releases</span>
   </label>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="22.10" class="p-checkbox__input" value="kinetic" />
-    <span class="p-checkbox__label" id="22.10">22.10 kinetic</span>
-  </label>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="22.04" class="p-checkbox__input" value="jammy" />
-    <span class="p-checkbox__label" id="22.04">22.04 LTS jammy</span>
-  </label>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="20.04" class="p-checkbox__input" value="focal" >
-    <span class="p-checkbox__label" id="20.04">20.04 LTS focal</span>
-  </label>
+  {% for release in maintained_releases %}
+    <label class="p-checkbox">
+      <input type="checkbox" aria-labelledby={{release.version}} class="p-checkbox__input" value={{release.codename}} />
+      <span class="p-checkbox__label" id={{release.version}}>{{release.version}} <span class="u-text--muted">{{release.codename}}</span></span>
+    </label>
+  {% endfor %}
   <p class="p-text--small-caps">Still maintained with<br/> Ubuntu Pro</p>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="18.04" class="p-checkbox__input" value="bionic" />
-    <span class="p-checkbox__label" id="18.04">18.04 LTS bionic</span>
-  </label>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="16.04" class="p-checkbox__input" value="xenial" />
-    <span class="p-checkbox__label" id="16.04">16.04 LTS xenial</span>
-  </label>
-  <label class="p-checkbox">
-    <input type="checkbox" aria-labelledby="14.04" class="p-checkbox__input" value="trsuty" />
-    <span class="p-checkbox__label" id="14.04">14.04 LTS trusty</span>
-  </label>
+  {% for release in lts_releases %}
+    <label class="p-checkbox">
+      <input type="checkbox" aria-labelledby={{release.version}} class="p-checkbox__input" value={{release.codename}} />
+      <span class="p-checkbox__label" id={{release.version}}>{{release.version}} <span class="u-text--muted">{{release.codename}}</span></span>
+    </label>
+  {% endfor %}
+  <a>Show unmaintained releases</a>
+  <div class="js-release-filters">
+    {% for release in unmaintained_releases %}
+      <label class="p-checkbox">
+        <input type="checkbox" aria-labelledby={{release.version}} class="p-checkbox__input" value={{release.codename}} />
+        <span class="p-checkbox__label" id={{release.version}}>{{release.version}} <span class="u-text--muted">{{release.codename}}</span></span>
+      </label>
+    {% endfor %}
+  </div>
 </form>
-<a>Show unmaintained releases</a>

@@ -222,7 +222,9 @@ function addParam(param, value) {
 function handleClearFilters() {
   clearFiltersButton.addEventListener("click", function (event) {
     for (const [param, value] of urlParams.entries()) {
-      removeParam(param, value);
+      if (param != "q"){
+        removeParam(param, value);
+      }
     }
   });
 }
