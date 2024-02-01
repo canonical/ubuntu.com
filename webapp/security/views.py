@@ -314,14 +314,6 @@ def cve_index():
 
     import ipdb
 
-    with open("releases.yaml") as releases_yaml:
-        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
-
-    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
-
-    temp = [releases_yaml.get(key) for key in yaml_keys]
-
-    ipdb.set_trace()
     # All CVEs
     cves_response = security_api.get_cves(
         query=query,
@@ -376,6 +368,21 @@ def cve_index():
     # Releases in desc order
     releases_json = security_api.get_releases()
 
+    # Create list of maintained releases from releases.yaml
+    with open("releases.yaml") as releases_yaml:
+        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
+
+    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
+    yaml_releases = [releases_yaml.get(key) for key in yaml_keys]
+
+    maintained_temp = []
+    maintained_releases = []
+    # for release in yaml_releases:
+    #     for api_release in releases_json:
+    #         if release["name"] == api_release["name"]:
+    #             maintained_releases.append(release)
+
+
     # Releases without "upstream"
     all_releases = []
     for release in releases_json:
@@ -384,7 +391,7 @@ def cve_index():
 
     selected_releases = []
     lts_releases = []
-    maintained_releases = []
+    unmaintained_releases = []
 
     for release in all_releases:
         # format dates
@@ -407,10 +414,19 @@ def cve_index():
             support_date > datetime.now() or esm_date > datetime.now()
         ) and release_date < datetime.now():
             selected_releases.append(release)
-            maintained_releases.append(release)
-        elif release["lts"] and release_date < datetime.now():
-            lts_releases.append(release)
+        
+        if support_date < datetime.now():
+            if esm_date > datetime.now():
+                if release["lts"] and release_date < datetime.now():
+                    lts_releases.append(release)
+            else:
+                unmaintained_releases.append(release)
+        else:
+            for yaml_release in yaml_releases:
+                if yaml_release["name"] == release["name"]:
+                    maintained_releases.append(release)
 
+    # ipdb.set_trace()
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
     """
@@ -464,6 +480,7 @@ def cve_index():
         selected_releases=selected_releases,
         lts_releases=lts_releases,
         maintained_releases=maintained_releases,
+        unmaintained_releases=unmaintained_releases,
         high_priority_cves=high_priority_cves,
         order=order,
     )
