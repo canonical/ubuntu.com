@@ -626,6 +626,11 @@ $meganav-height: 3rem;
             padding-left: calc(1.5rem + $row-margin-small);
           }
 
+
+          @media (max-width: $breakpoint-small) {
+            padding-left: calc(1rem + $row-margin-small);
+          }
+
           &::before {
             left: $row-margin-small;
           }
