@@ -169,14 +169,14 @@ $meganav-height: 3rem;
       padding-left: 0;
 
       @media (max-width: $breakpoint-navigation-threshold) {
-        padding-left: $row-margin-medium;
         height: $meganav-height;
+        padding-left: $row-margin-medium;
       }
 
       @media (max-width: $breakpoint-large) {
         padding-left: $row-margin-medium;
       }
-  
+
       @media (max-width: $breakpoint-small) {
         padding-left: $row-margin-small;
       }
@@ -426,7 +426,7 @@ $meganav-height: 3rem;
       @media (max-width: $breakpoint-large) {
         padding-left: $row-margin-medium;
       }
-  
+
       @media (max-width: $breakpoint-small) {
         padding-left: $row-margin-small;
       }
@@ -625,7 +625,6 @@ $meganav-height: 3rem;
           @media (max-width: $breakpoint-medium) {
             padding-left: calc(1.5rem + $row-margin-small);
           }
-
 
           @media (max-width: $breakpoint-small) {
             padding-left: calc(1rem + $row-margin-small);
