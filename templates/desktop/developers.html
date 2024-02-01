@@ -155,26 +155,26 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
-            alt="tensor flow logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
+          url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
+          alt="tensor flow logo",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
-            alt="pytorch logo",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
+          url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
+          alt="pytorch logo",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
           }}
         </div>
       </div>
@@ -466,22 +466,43 @@
     <hr class="p-rule" />
     <h2>Developers love Ubuntu, organisations trust it</h2>
   </div>
-  <div class="row--50-50">
-    <div class="col">
-      <p><strong>Operating systems developers prefer</strong> <br aria-hidden/>Multiple choice poll</p>
-      <div>
-        <figure id="hackerearth-chart" class="hackerearth-chart"></figure>
+  <div class="row">
+    <div class="col-6">
+      <p class="u-no-margin--bottom"><strong>Operating systems developers prefer</strong> <br aria-hidden/>Multiple choice poll</p>
+      <div id="hackerearth-chart" class="hackerearth-chart u-hide--small"></div>
+      <div class="u-hide--medium u-hide--large">
+        {% include "desktop/partial/_hackearth-table.html" %}
       </div>
+      
+      <div class="u-hide--large">
+        <hr class="is-muted">
+        <p>Source: <a
+          href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020
+          HackerEarth Developer Survey</a></p>
+      </div>
+    </div>
+    <div class="col-6">
+      <p class="u-no-margin--bottom"><strong>Which of these open source technologies does your organisation use today to support your software infrastructure?</strong></p>
+      <div id="opensource-chart" class="opensource-chart u-hide--small"></div>
+      <div class="u-hide--medium u-hide--large">
+        {% include "desktop/partial/_hackearth-table.html" %}
+      </div>
+      <div class="u-hide--large">
+        <hr class="is-muted">
+        <p>Source: <a
+          href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The
+          2022 State of Open Source Report &ndash; OpenLogic</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="row--50-50 u-hide--medium u-hide--small">
+    <div class="col">
       <hr class="is-muted">
       <p>Source: <a
         href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020
         HackerEarth Developer Survey</a></p>
     </div>
     <div class="col">
-      <p><strong>Which of these open source technologies does your organisation use today to support your software infrastructure?</strong></p>
-      <div>
-        <figure id="opensource-chart" class="opensource-chart"></figure>
-      </div>
       <hr class="is-muted">
       <p>Source: <a
         href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The
@@ -632,8 +653,7 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
-<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
-<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
-<script src="{{ versioned_static('js/src/developer-chart.js')}}"></script>
+<script src="{{ versioned_static('js/dist/release-chart-manager.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/developer-chart.js')}}" defer></script>
 
 {% endblock content %}

@@ -184,7 +184,7 @@
 
     return false;
   };
-  const targetScript = "release-chart.js";
+  const targetScript = "release-chart-manager.js";
   const triggerReload = isScriptIncluded(targetScript);
 
   document.addEventListener("DOMContentLoaded", () => {
