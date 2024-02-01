@@ -466,17 +466,36 @@
     <hr class="p-rule" />
     <h2>Developers love Ubuntu, organisations trust it</h2>
   </div>
-  <div class="row--50-50">
-    <div class="col">
+  <div class="row">
+    <div class="col-6">
       <p class="u-no-margin--bottom"><strong>Operating systems developers prefer</strong> <br aria-hidden/>Multiple choice poll</p>
-      <div id="hackerearth-chart" class="hackerearth-chart"></div>
+      <div id="hackerearth-chart" class="hackerearth-chart u-hide--small"></div>
+      <div class="u-hide--medium u-hide--large">
+        {% include "desktop/partial/_hackearth-table.html" %}
+      </div>
+      
+      <div class="u-hide--large">
+        <hr class="is-muted">
+        <p>Source: <a
+          href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020
+          HackerEarth Developer Survey</a></p>
+      </div>
     </div>
-    <div class="col">
+    <div class="col-6">
       <p class="u-no-margin--bottom"><strong>Which of these open source technologies does your organisation use today to support your software infrastructure?</strong></p>
-      <div id="opensource-chart" class="opensource-chart"></div>
+      <div id="opensource-chart" class="opensource-chart u-hide--small"></div>
+      <div class="u-hide--medium u-hide--large">
+        {% include "desktop/partial/_hackearth-table.html" %}
+      </div>
+      <div class="u-hide--large">
+        <hr class="is-muted">
+        <p>Source: <a
+          href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The
+          2022 State of Open Source Report &ndash; OpenLogic</a></p>
+      </div>
     </div>
   </div>
-  <div class="row--50-50">
+  <div class="row--50-50 u-hide--medium u-hide--small">
     <div class="col">
       <hr class="is-muted">
       <p>Source: <a
