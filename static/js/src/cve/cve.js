@@ -20,15 +20,6 @@ const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
-const maintainedReleases = [
-  "mantic",
-  "lunar",
-  "jammy",
-  "focal",
-  "bionic",
-  "xenial",
-  "trusty",
-];
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -99,6 +90,7 @@ disableSelectedVersions();
 
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
+
   releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
   priorityCheckboxes = priorityFilter.querySelectorAll(".p-checkbox__input");
   statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
@@ -133,7 +125,6 @@ function handleFilters() {
     });
   });
 }
-handleFilters();
 
 // Removes a parameter from the URL
 // Vulnerable statuses are handled differently because they are multiple values
