@@ -368,6 +368,12 @@ def cve_index():
     # Releases in desc order
     releases_json = security_api.get_releases()
 
+    # Releases without "upstream"
+    all_releases = []
+    for release in releases_json:
+        if release["codename"] != "upstream":
+            all_releases.append(release)
+
     # Create list of maintained releases from releases.yaml
     with open("releases.yaml") as releases_yaml:
         releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
@@ -375,20 +381,7 @@ def cve_index():
     yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
     yaml_releases = [releases_yaml.get(key) for key in yaml_keys]
 
-    maintained_temp = []
     maintained_releases = []
-    # for release in yaml_releases:
-    #     for api_release in releases_json:
-    #         if release["name"] == api_release["name"]:
-    #             maintained_releases.append(release)
-
-
-    # Releases without "upstream"
-    all_releases = []
-    for release in releases_json:
-        if release["codename"] != "upstream":
-            all_releases.append(release)
-
     selected_releases = []
     lts_releases = []
     unmaintained_releases = []
