@@ -1,5 +1,10 @@
 import { Page } from "@playwright/test";
 
+export const getCookies = async ({context}) => {
+  await context.addCookies([
+    // add cookies here
+  ])
+}
 export const login = async (page: Page) => {
   // TODO: mocking Login (To intercept "https://login.ubuntu.com/*/+login", proper mock responses are needed)
   

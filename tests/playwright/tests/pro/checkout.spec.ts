@@ -1,16 +1,18 @@
 import { test, expect } from "@playwright/test";
-import { selectProducts, acceptCookiePolicy, login } from "../../helpers/commands";
+import { selectProducts, acceptCookiePolicy, getCookies } from "../../helpers/commands";
 import { customerInfoResponse, previewResponse } from "../../helpers/mockData";
 import { ENDPOINTS } from "../../helpers/utils";
 
 test.describe("Checkout - Region and taxes", () => {
-  test("It should show correct non-VAT price", async ({page}) => {
+  test("It should show correct non-VAT price", async ({page, context}) => {
+    await getCookies({context});
     await page.goto("/pro/subscribe")
     await acceptCookiePolicy(page)
     await selectProducts(page);
     await page.getByRole("button", { name: "Buy now" }).click();
 
-    await login(page);
+    await page.click('button[type="submit"]') // login with saved cookies
+    await expect(page).toHaveURL('/account/checkout');
     
     await page.route(ENDPOINTS.customerInfo,  async (route) => {
       route.fulfill({
