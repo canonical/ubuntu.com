@@ -48,9 +48,9 @@ const PublicCloudInfo = {
     name: "Azure",
     CTA: [
       {
-        CTAName: "Ubuntu Pro in Azure marketplace",
+        CTAName: "in-place upgrade to Ubuntu Pro",
         link:
-          "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1",
+          "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
         appearance: "positive",
       },
       {
@@ -65,8 +65,9 @@ const PublicCloudInfo = {
         <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=ubuntu%20pro%20canonical&page=1">
           launch new Ubuntu Pro instances on the Azure Marketplace
         </a>{" "}
-        at an hourly, per-machine rate. If you need tech support as well, or to
-        add Ubuntu Pro entitlements to existing Ubuntu LTS instances, please{" "}
+        at an hourly, per-machine rate. If you have a running Ubuntu LTS
+        instance in Azure, you can also in-place upgrade that instance to a
+        Ubuntu Pro. If you need tech support as well,{" "}
         <a href="/azure#get-in-touch">contact us</a>.
       </>
     ),
@@ -112,7 +113,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 18.04 LTS instances",
         link: "/18-04/oci",
         appearance: "",
       },
@@ -135,7 +136,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "Solutions for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 18.04 LTS instances",
         link: "/18-04/ibm",
         appearance: "",
       },
