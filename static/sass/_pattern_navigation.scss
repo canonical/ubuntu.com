@@ -114,10 +114,10 @@ $meganav-height: 3rem;
 
         @media (max-width: $breakpoint-medium) {
           .p-navigation__link {
-            padding-left: calc(1.5rem + $row-margin-small);
+            padding-left: calc(2rem + $row-margin-small);
 
             &::before {
-              left: calc(1.5rem + $row-margin-small);
+              left: calc(2rem + $row-margin-small);
             }
 
             &.js-back::after {
@@ -126,10 +126,10 @@ $meganav-height: 3rem;
           }
 
           & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
-            padding-left: $row-margin-small;
+            padding-left: calc(0.5rem + $row-margin-small);
 
             &::before {
-              left: $row-margin-small;
+              left: calc(0.5rem + $row-margin-small);
             }
           }
 
@@ -167,6 +167,19 @@ $meganav-height: 3rem;
 
     .p-navigation__banner {
       padding-left: 0;
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        padding-left: $row-margin-medium;
+        height: $meganav-height;
+      }
+
+      @media (max-width: $breakpoint-large) {
+        padding-left: $row-margin-medium;
+      }
+  
+      @media (max-width: $breakpoint-small) {
+        padding-left: $row-margin-small;
+      }
     }
 
     @media (max-width: $breakpoint-navigation-threshold) {
@@ -177,17 +190,6 @@ $meganav-height: 3rem;
       .p-navigation__nav {
         margin-left: 0;
         overflow-y: auto;
-      }
-
-      .p-navigation__banner {
-        height: $meganav-height;
-        padding-left: $row-margin-medium;
-      }
-    }
-
-    @media (max-width: $breakpoint-medium) {
-      .p-navigation__banner {
-        padding-left: $row-margin-small;
       }
     }
 
@@ -421,7 +423,11 @@ $meganav-height: 3rem;
         padding-left: $row-margin-medium;
       }
 
-      @media (max-width: $breakpoint-medium) {
+      @media (max-width: $breakpoint-large) {
+        padding-left: $row-margin-medium;
+      }
+  
+      @media (max-width: $breakpoint-small) {
         padding-left: $row-margin-small;
       }
 
@@ -617,7 +623,7 @@ $meganav-height: 3rem;
           padding-left: calc(1rem + $row-margin-medium);
 
           @media (max-width: $breakpoint-medium) {
-            padding-left: calc(1rem + $row-margin-small);
+            padding-left: calc(1.5rem + $row-margin-small);
           }
 
           &::before {
@@ -647,7 +653,13 @@ $meganav-height: 3rem;
       }
     }
 
-    @media (max-width: $breakpoint-medium) {
+    @media (max-width: $breakpoint-large) {
+      .p-navigation__banner {
+        padding-left: $row-margin-medium;
+      }
+    }
+
+    @media (max-width: $breakpoint-small) {
       .p-navigation__banner {
         padding-left: $row-margin-small;
       }
