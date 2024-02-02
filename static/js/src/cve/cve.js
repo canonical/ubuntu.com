@@ -20,6 +20,21 @@ const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
+const releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
+const priorityCheckboxes = priorityFilter.querySelectorAll(
+  ".p-checkbox__input"
+);
+const statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
+const unmaintainedReleasesLink = document.querySelector(
+  ".js-show-unmaintained-releases"
+);
+const unmaintainedReleasesContainer = document.querySelector(
+  ".js-unmaintained-releases"
+);
+
+const maintainedReleases = Object.values(maintainedReleasesObj).map((release) => release.codename);
+const ltsReleases = Object.values(ltsReleasesObj).map((release) => release.codename);
+const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map((release) => release.codename);
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -90,11 +105,6 @@ disableSelectedVersions();
 
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
-
-  releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
-  priorityCheckboxes = priorityFilter.querySelectorAll(".p-checkbox__input");
-  statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
-
   releaseCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function (event) {
       if (event.target.checked) {
@@ -146,7 +156,7 @@ function removeParam(param, value) {
 // Vulnerable filter is handled differently because it is a single value
 function handleFilterPersist() {
   if (urlParams.has("version")) {
-    params = urlParams.getAll("version");
+    const params = urlParams.getAll("version");
 
     releaseCheckboxes.forEach(function (checkbox) {
       if (params.includes(checkbox.value)) {
@@ -156,7 +166,7 @@ function handleFilterPersist() {
   }
 
   if (urlParams.has("priority")) {
-    params = urlParams.getAll("priority");
+    const params = urlParams.getAll("priority");
 
     priorityCheckboxes.forEach(function (checkbox) {
       if (params.includes(checkbox.value)) {
@@ -166,10 +176,10 @@ function handleFilterPersist() {
   }
 
   if (urlParams.has("status")) {
-    params = urlParams.getAll("status");
+    const params = urlParams.getAll("status");
 
     if (params.includes("pending")) {
-      checkbox = statusFilter.querySelector("input[value='vulnerable']");
+      const checkbox = statusFilter.querySelector("input[value='vulnerable']");
       checkbox.checked = true;
     } else {
       statusCheckboxes.forEach(function (checkbox) {
@@ -181,12 +191,12 @@ function handleFilterPersist() {
   }
 }
 handleFilterPersist();
+console.log(maintainedReleases, ltsReleases, unmaintainedReleases);
 
 // Maintained releases and vulnerable statuses are handled differently
 // because they are both arrays instead of individual values
 function addParam(param, value) {
   if (value === "maintained") {
-    urlParams.delete("status");
     urlParams.set(param, maintainedReleases[0]);
     remainingMaintainedReleases = maintainedReleases.slice(1);
     remainingMaintainedReleases.forEach(function (release) {
@@ -210,10 +220,19 @@ function addParam(param, value) {
   window.location.href = url.href;
 }
 
+function showUnmaintaiedReleases() {
+  unmaintainedReleasesLink.onclick = function (event) {
+    event.preventDefault();
+    unmaintainedReleasesLink.classList.add("u-hide");
+    unmaintainedReleasesContainer.classList.remove("u-hide");
+  };
+}
+showUnmaintaiedReleases();
+
 function handleClearFilters() {
   clearFiltersButton.addEventListener("click", function (event) {
     for (const [param, value] of urlParams.entries()) {
-      if (param != "q"){
+      if (param != "q") {
         removeParam(param, value);
       }
     }
