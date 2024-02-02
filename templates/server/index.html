@@ -18,7 +18,7 @@
       <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
     </div>
   </div>
-  <div class="u-fixed-width p-section--shallow">
+  <div class="u-fixed-width p-section--shallow u-hide--small">
     {{ image (
       url="https://assets.ubuntu.com/v1/e55cc8c0-wide-server.png",
       alt="",
@@ -52,7 +52,8 @@
       <h2 class="p-text--small-caps u-no-padding--top">Works with all your hardware</h2>
     </div>
     <div class="col">
-      <a href="/certified" class="u-float-right">Explore all certified hardware partners&nbsp;&rsaquo;</a>
+      <a href="/certified" class="u-hide--smallu-float-right">Explore all certified hardware partners&nbsp;&rsaquo;</a>
+      <a href="/certified" class="u-hide--large u-hide--medium" aria-hidden="true">Explore all certified hardware partners&nbsp;&rsaquo;</a>
     </div>
   </div>
   <div class="u-fixed-width">
@@ -166,7 +167,8 @@
       <h2 class="p-text--small-caps u-no-padding--top">Works with all your software</h2>
     </div>
     <div class="col">
-      <a href="https://partners.ubuntu.com/programmes/software?_ga=2.95723230.315987579.1706516745-1396260062.1706111894" class="u-float-right">Explore all certified software partners&nbsp;&rsaquo;</a>
+      <a href="https://partners.ubuntu.com/programmes/software?_ga=2.95723230.315987579.1706516745-1396260062.1706111894" class="u-hide--small u-float-right">Explore all certified software partners&nbsp;&rsaquo;</a>
+      <a href="https://partners.ubuntu.com/programmes/software?_ga=2.95723230.315987579.1706516745-1396260062.1706111894" class="u-hide--large u-hide--medium" aria-hidden="true">Explore all certified software partners&nbsp;&rsaquo;</a>
     </div>
   </div>
   <div class="u-fixed-width">
@@ -365,10 +367,10 @@
     <h2>Use it with other Canonical products</h2>
   </div>
   <div class="row">
-    <div class="col-9 col-start-large-4 p-section--shallow">
+    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2 p-section--shallow">
       <hr class="p-rule" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-2">
           {{ image (
             url="https://assets.ubuntu.com/v1/ef4ac9e1-juju-tagged-logo.png",
             alt="Juju logo",
@@ -379,7 +381,7 @@
             ) | safe
           }}
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p class="p-heading--5">Multi-cloud orchestration</p>
           <p>With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.</p>
           <hr />
@@ -389,10 +391,10 @@
     </div>
   </div>
   <div class="row p-section--shallow">
-    <div class="col-9 col-start-large-4">
+    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
       <hr class="p-rule" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-2">
           {{ image (
             url="https://assets.ubuntu.com/v1/444371de-maas-tagged-logo.png",
             alt="Maas logo",
@@ -403,7 +405,7 @@
             ) | safe
           }}
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p class="p-heading--5">Bare metal provisioning</p>
           <p>MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.</p>
           <hr />
@@ -413,10 +415,10 @@
     </div>
   </div>
   <div class="row p-section--shallow">
-    <div class="col-9 col-start-large-4">
+    <div class="col-9 col-medium-5 col-start-large-4 col-start-medium-2">
       <hr class="p-rule" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-2">
           {{ image (
             url="https://assets.ubuntu.com/v1/e3805af7-lxd-tagged-logo.png",
             alt="LXD logo",
@@ -427,7 +429,7 @@
             ) | safe
           }}
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p class="p-heading--5">Machine containers</p>
           <p>Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.</p>
           <hr />
