@@ -21,6 +21,7 @@ const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
 const releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
+const applyFiltersButton = document.querySelector("#apply-filters");
 const priorityCheckboxes = priorityFilter.querySelectorAll(
   ".p-checkbox__input"
 );
@@ -31,10 +32,16 @@ const unmaintainedReleasesLink = document.querySelector(
 const unmaintainedReleasesContainer = document.querySelector(
   ".js-unmaintained-releases"
 );
-
-const maintainedReleases = Object.values(maintainedReleasesObj).map((release) => release.codename);
-const ltsReleases = Object.values(ltsReleasesObj).map((release) => release.codename);
-const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map((release) => release.codename);
+const maintainedReleases = Object.values(maintainedReleasesObj).map(
+  (release) => release.codename
+);
+const ltsReleases = Object.values(ltsReleasesObj).map(
+  (release) => release.codename
+);
+const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
+  (release) => release.codename
+);
+let filterParams = [];
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -135,21 +142,17 @@ function handleFilters() {
     });
   });
 }
+handleFilters();
 
-// Removes a parameter from the URL
-// Vulnerable statuses are handled differently because they are multiple values
+// Removes a parameter from the filterParams array
 function removeParam(param, value) {
-  if (urlParams.has(param)) {
-    if (value === "vulnerable") {
-      vulnerableStatuses.forEach(function (status) {
-        urlParams.delete(param, status);
-      });
-    } else {
-      urlParams.delete(param, value);
-    }
-    url.search = urlParams.toString();
-    window.location.href = url.href;
+  if (param === "version") {
+    let statusIndex = filterParams
+      .map((param) => param.param)
+      .indexOf("status");
+    filterParams.splice(statusIndex, 1);
   }
+  filterParams = filterParams.filter((param) => param.value !== value);
 }
 
 // Maintains filter state on page load
@@ -191,33 +194,57 @@ function handleFilterPersist() {
   }
 }
 handleFilterPersist();
-console.log(maintainedReleases, ltsReleases, unmaintainedReleases);
+
+function applyFilters() {
+  applyFiltersButton.addEventListener("click", function (event) {
+    filterParams.forEach(function (param) {
+      urlParams.append(param.param, param.value);
+    });
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  });
+}
+applyFilters();
+
+function handleClearFilters() {
+  clearFiltersButton.addEventListener("click", function (event) {
+    for (const [param] of urlParams.entries()) {
+      if (urlParams.has("q")) {
+        if (param != "q") {
+          urlParams.delete(param);
+        }
+      } else {
+        urlParams.append("q", "");
+      }
+    }
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  });
+}
+handleClearFilters();
 
 // Maintained releases and vulnerable statuses are handled differently
 // because they are both arrays instead of individual values
 function addParam(param, value) {
   if (value === "maintained") {
-    urlParams.set(param, maintainedReleases[0]);
-    remainingMaintainedReleases = maintainedReleases.slice(1);
-    remainingMaintainedReleases.forEach(function (release) {
-      urlParams.append(param, release);
+    maintainedReleases.forEach(function (release) {
+      filterParams.push(
+        { param: param, value: release },
+        { param: "status", value: "" }
+      );
     });
+  } else if (param === "version") {
+    filterParams.push(
+      { param: param, value: value },
+      { param: "status", value: "" }
+    );
   } else if (value === "vulnerable") {
-    urlParams.set(param, vulnerableStatuses[0]);
-    remainingVulnerableStatuses = vulnerableStatuses.slice(1);
-    remainingVulnerableStatuses.forEach(function (status) {
-      value = status;
-      urlParams.append(param, value);
+    vulnerableStatuses.forEach(function (status) {
+      filterParams.push({ param: param, value: status });
     });
   } else {
-    if (urlParams.has(param)) {
-      urlParams.append(param, value);
-    } else {
-      urlParams.set(param, value);
-    }
+    filterParams.push({ param: param, value: value });
   }
-  url.search = urlParams.toString();
-  window.location.href = url.href;
 }
 
 function showUnmaintaiedReleases() {
@@ -228,17 +255,6 @@ function showUnmaintaiedReleases() {
   };
 }
 showUnmaintaiedReleases();
-
-function handleClearFilters() {
-  clearFiltersButton.addEventListener("click", function (event) {
-    for (const [param, value] of urlParams.entries()) {
-      if (param != "q") {
-        removeParam(param, value);
-      }
-    }
-  });
-}
-handleClearFilters();
 
 function handleLimitSelect() {
   if (urlParams.has("limit")) {

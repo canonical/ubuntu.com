@@ -39,7 +39,7 @@
 {% endif %}
 
 <script type="text/javascript">
-  const maintainedReleasesObj = {{ maintained_releases|tojson|safe }};
+  const maintainedReleasesObj =  {{ maintained_releases|tojson|safe }};
   const ltsReleasesObj = {{ lts_releases|tojson|safe }};
   const unmaintainedReleasesObj = {{ unmaintained_releases|tojson|safe }};
 </script>
