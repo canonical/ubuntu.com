@@ -316,7 +316,6 @@ def cve_index():
     statuses = flask.request.args.getlist("status")
     order = flask.request.args.get("order", default="", type=str)
 
-    import ipdb
 
     # All CVEs
     cves_response = security_api.get_cves(
@@ -423,7 +422,6 @@ def cve_index():
                 if yaml_release["name"] == release["name"]:
                     maintained_releases.append(release)
 
-    # ipdb.set_trace()
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
     """
