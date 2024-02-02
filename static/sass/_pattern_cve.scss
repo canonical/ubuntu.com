@@ -330,6 +330,12 @@
       .p-text--small-caps {
         padding-left: 2.2rem;
       }
+
+      @media screen and (min-width: $breakpoint-large) {
+        .p-accordion__tab, .p-accordion__panel {
+          padding-left: 0;
+        }
+      }
     }
 
     .p-icon--chevron-down {

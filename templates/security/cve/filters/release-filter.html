@@ -16,8 +16,9 @@
       <span class="p-checkbox__label" id={{release.version}}>{{release.version}} <span class="u-text--muted">{{release.codename}}</span></span>
     </label>
   {% endfor %}
-  <a>Show unmaintained releases</a>
-  <div class="js-release-filters">
+  <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
+  <div class="js-unmaintained-releases u-hide">
+    <p class="p-text--small-caps">Unmaintained</p>
     {% for release in unmaintained_releases %}
       <label class="p-checkbox">
         <input type="checkbox" aria-labelledby={{release.version}} class="p-checkbox__input" value={{release.codename}} />
