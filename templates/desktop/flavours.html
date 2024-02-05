@@ -15,17 +15,21 @@
         <h1>Ubuntu flavours</h1>
         <h2>What are Ubuntu flavours?</h2>
         <p>Ubuntu flavours offer a unique way to experience Ubuntu, each with their own choice of default applications and settings. Ubuntu flavours are owned and developed by members of our global community and backed by the full Ubuntu archive for packages and updates.</p>
-        <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e84a9007-ubuntu-flavours-23.png",
-            alt="",
-            width="1296",
-            height="460",
-            hi_def=True,
-            loading="auto"
-            ) | safe
-          }}
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-3 col-6">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/fe7c346b-ubuntu-flavours-23.png",
+          alt="",
+          width="1296",
+          height="460",
+          hi_def=True,
+          loading="auto",
+          attrs={"style": "margin-left: 2.5rem"}
+          ) | safe
+        }}
       </div>
     </div>
   </div>
@@ -45,7 +49,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"},
+              attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Edubuntu</h2>
@@ -54,7 +58,7 @@
     </div>
     <div class="col">
       <div class="p-section--shallow">
-        <p>Edubuntu is an official flavor of Ubuntu crafted for use in the education world. Teachers and students will have access to a huge ecosystem of learning software and educational tools built on a familiar and usable desktop. Edubuntu provides a fast, stable, secure and privacy conscious option for schools, universities and other places of learning.</p>
+        <p>Edubuntu is an official flavour of Ubuntu crafted for use in the education world. Teachers and students will have access to a huge ecosystem of learning software and educational tools built on a familiar and usable desktop. Edubuntu provides a fast, stable, secure and privacy conscious option for schools, universities and other places of learning.</p>
         <a href="https://edubuntu.org/" class="p-button--positive">Get Edubuntu</a>
       </div>
       <ul class="p-list--divided">
@@ -93,7 +97,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Kubuntu</h2>
@@ -142,7 +146,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Lubuntu</h2>
@@ -190,7 +194,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu Budgie</h2>
@@ -239,7 +243,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu Cinnamon</h2>
@@ -287,7 +291,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu Kylin</h2>
@@ -335,7 +339,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu MATE</h2>
@@ -383,7 +387,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu Studio</h2>
@@ -431,7 +435,7 @@
             height="64",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
+             attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Ubuntu Unity</h2>
@@ -479,7 +483,7 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+               attrs={"class": "p-heading-icon__img", "style": "margin-top: 0.5rem;"},
             ) | safe
           }}
           <h2 class="p-heading-icon__title">Xubuntu</h2>
@@ -519,23 +523,23 @@
     <h2>More ways to experienc Ubuntu</h2>
   </div>
   <div class="row">
-    <div class="col-start-large-4 col-9">
+    <div class="col-start-large-4 col-9 col-medium-6">
       <hr />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5">Ubuntu-based variants</h3>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
           <p>A complete list of known flavours, editions and customizations is maintained on the <a href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
         </div>
       </div>
       <hr />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5">Looking for Ubuntu?</h3>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p>Download the latest release of Ubuntu desktop, the open source operating system that powers millions of PCs and laptops around the world. It's easy to install on Windows or macOS, or run Ubuntu alongside them!</p>
           <p><a href="/download/desktop" class="p-button">Download now</a></p>
         </div>
@@ -573,16 +577,16 @@
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 <script>
-    canonicalLatestNews.fetchLatestNews(
+  canonicalLatestNews.fetchLatestNews(
     {
       articlesContainerSelector: "#desktop-latest-articles",
       articleTemplateSelector: "#desktop-articles-template",
       excerptLength: 200,
-      groupId: "1920",
+      groupId: "1479",
       linkImage: true,
       limit: 3
     }
-    )
+  )
 </script>
 
 {% endblock content %}
