@@ -15,7 +15,7 @@ const PublicCloudInfo = {
     name: "AWS",
     CTA: [
       {
-        CTAName: "in-place upgrade to Ubuntu Pro",
+        CTAName: "In-place upgrade to Ubuntu Pro",
         link:
           "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
         appearance: "positive",
@@ -48,7 +48,7 @@ const PublicCloudInfo = {
     name: "Azure",
     CTA: [
       {
-        CTAName: "in-place upgrade to Ubuntu Pro",
+        CTAName: "In-place upgrade to Ubuntu Pro",
         link:
           "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
         appearance: "positive",
@@ -77,7 +77,7 @@ const PublicCloudInfo = {
     name: "Google Cloud",
     CTA: [
       {
-        CTAName: "in-place upgrade to Ubuntu Pro",
+        CTAName: "In-place upgrade to Ubuntu Pro",
         link:
           "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
         appearance: "positive",
