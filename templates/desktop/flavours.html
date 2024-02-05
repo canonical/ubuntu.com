@@ -4,33 +4,37 @@
 {% block meta_description %}Ubuntu flavours are different installations of Ubuntu - each with a choice of packages and applications included by default. Here you are able to choose and download the officially recognised flavour that would best suit your particular industry and unique needs.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1M5nkigcSRzq1YVjiXOZkeU4EUCqT0uYBR3Y_sjxM-wM/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row">
-    <div class="col-6">
-      <h1>Ubuntu flavours</h1>
-      <p class="p-heading--3">What are Ubuntu flavours?</p>
-      <p>Ubuntu flavours offer a unique way to experience Ubuntu, each with their own choice of default applications and settings. Ubuntu flavours are owned and developed by members of our global community and backed by the full Ubuntu archive for packages and updates.</p>
-    </div>
-    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/e84a9007-ubuntu-flavours-23.png",
-        alt="",
-        width="1296",
-        height="460",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+<section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
+  <div class="p-section--deep">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <h1>Ubuntu flavours</h1>
+        <h2>What are Ubuntu flavours?</h2>
+        <p>Ubuntu flavours offer a unique way to experience Ubuntu, each with their own choice of default applications and settings. Ubuntu flavours are owned and developed by members of our global community and backed by the full Ubuntu archive for packages and updates.</p>
+        <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e84a9007-ubuntu-flavours-23.png",
+            alt="",
+            width="1296",
+            height="460",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -41,35 +45,29 @@
               width="64",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
+              attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Edubuntu</h3>
+          <h2 class="p-heading-icon__title">Edubuntu</h2>
         </div>
-        <p>Edubuntu is an official flavor of Ubuntu crafted for use in the education world. Teachers and students will have access to a huge ecosystem of learning software and educational tools built on a familiar and usable desktop. Edubuntu provides a fast, stable, secure and privacy conscious option for schools, universities and other places of learning.</p>
-        <p><a href="https://edubuntu.org/" class="p-button--positive">Get Edubuntu</a></p>
-        <p><a href="https://ubuntuforums.org/forumdisplay.php?f=329&pp=20&prefixid=edubuntu">Join the Edubuntu community&nbsp;&rsaquo;</a></p>
-        <p><a href="https://twitter.com/edubuntuproject">Follow Edubuntu&nbsp;&rsaquo;</a></p>
       </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Edubuntu is an official flavor of Ubuntu crafted for use in the education world. Teachers and students will have access to a huge ecosystem of learning software and educational tools built on a familiar and usable desktop. Edubuntu provides a fast, stable, secure and privacy conscious option for schools, universities and other places of learning.</p>
+        <a href="https://edubuntu.org/" class="p-button--positive">Get Edubuntu</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://ubuntuforums.org/forumdisplay.php?f=329&pp=20&prefixid=edubuntu">Join the Edubuntu community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/edubuntuproject">Follow Edubuntu&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/54331fa0-edubuntu-2304-screenshot.png",
-      alt="",
-      width="2560",
-      height="1440",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/7c6fa2da-kubuntu-2204-screenshot.png",
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/54331fa0-edubuntu-2304-screenshot.png",
         alt="",
         width="2560",
         height="1440",
@@ -78,7 +76,13 @@
         ) | safe
       }}
     </div>
-    <div class="col-6">
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -92,23 +96,42 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Kubuntu</h3>
-        </div>
-        <div>
-        <p>Kubuntu unites Ubuntu with KDE and the Plasma desktop, bringing you a full set of applications including productivity, office, email, graphics, photography, and music applications ready to use at startup with extensive additional software installed from not one, but two desktop package managers. </p>
-        <p>Built using the Qt toolkit, Kubuntu is fast, slick and beautiful. Kubuntu is mobile-ready, enabling easy integration between your PC desktop and phone or tablet with KDE Connect.</p>
-        <p><a href="https://kubuntu.org/getkubuntu/" class="p-button--positive">Get Kubuntu</a></p>
-        <p><a href="https://www.kubuntuforums.net/forum">Join the Kubuntu community&nbsp;&rsaquo;</a>
-        <p><a href="https://twitter.com/kubuntu">Follow Kubuntu&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Kubuntu</h2>
         </div>
       </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Kubuntu unites Ubuntu with KDE and the Plasma desktop, bringing you a full set of applications including productivity, office, email, graphics, photography, and music applications ready to use at startup with extensive additional software installed from not one, but two desktop package managers. </p>
+        <p>Built using the Qt toolkit, Kubuntu is fast, slick and beautiful. Kubuntu is mobile-ready, enabling easy integration between your PC desktop and phone or tablet with KDE Connect.</p>
+        <a href="https://kubuntu.org/getkubuntu/" class="p-button--positive">Get Kubuntu</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://www.kubuntuforums.net/forum">Join the Kubuntu community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/kubuntu">Follow Kubuntu&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/7c6fa2da-kubuntu-2204-screenshot.png",
+        alt="",
+        width="2560",
+        height="1440",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -122,18 +145,25 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Lubuntu</h3>
-        </div>
-        <div>
-          <p>Lubuntu is designed to be a simple, easy to use system that is light, fast and modern. Lubuntu provides the LXQt desktop environment which is focused on Qt technologies. Lubuntu comes with the essential applications and services needed to browse the Internet, chat, play and be productive.</p>
-          <p><a href="https://lubuntu.me" class="p-button--positive">Get Lubuntu</a></p>
-          <p><a href="https://discourse.lubuntu.me">Join the Lubuntu community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/lubuntuofficial">Follow Lubuntu&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Lubuntu</h2>
         </div>
       </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Lubuntu is designed to be a simple, easy to use system that is light, fast and modern. Lubuntu provides the LXQt desktop environment which is focused on Qt technologies. Lubuntu comes with the essential applications and services needed to browse the Internet, chat, play and be productive.</p>
+        <a href="https://lubuntu.me" class="p-button--positive">Get Lubuntu</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://discourse.lubuntu.me">Join the Lubuntu community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/lubuntuofficial">Follow Lubuntu&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
         url="https://assets.ubuntu.com/v1/8d50725a-lubuntu-2204-screenshot.png",
         alt="",
         width="1920",
@@ -146,20 +176,10 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/eb97c55b-Ubuntu_Budgie.png",
-        alt="",
-        width="1920",
-        height="1080",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -173,22 +193,42 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu Budgie</h3>
-        </div>
-          <p>Ubuntu Budgie is a proud official Ubuntu flavour. We combine the simplicity and elegance of the Budgie desktop environment with the power and familiarity of an Ubuntu based operative system.</p>
-          <p>The result is a modern and fast desktop distribution with great defaults, yet fully customizable.</p>
-          <p><a href="https://ubuntubudgie.org/downloads/" class="p-button--positive">Get Ubuntu Budgie</a></p>
-          <p><a href="https://discourse.ubuntubudgie.org/">Join the Ubuntu Budgie community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/ubuntubudgie">Follow Ubuntu Budgie&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu Budgie</h2>
         </div>
       </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Ubuntu Budgie is a proud official Ubuntu flavour. We combine the simplicity and elegance of the Budgie desktop environment with the power and familiarity of an Ubuntu based operative system.</p>
+        <p>The result is a modern and fast desktop distribution with great defaults, yet fully customizable.</p>
+        <a href="https://ubuntubudgie.org/downloads/" class="p-button--positive">Get Ubuntu Budgie</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://discourse.ubuntubudgie.org/">Join the Ubuntu Budgie community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://discourse.ubuntubudgie.org/">Join the Ubuntu Budgie community&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/eb97c55b-Ubuntu_Budgie.png",
+        alt="",
+        width="1920",
+        height="1080",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -202,18 +242,25 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu Cinnamon</h3>
-        </div>
-        <div>
-          <p>Ubuntu Cinnamon combines Ubuntu with the intuitive Cinnamon desktop. Built upon the legacy of GNOME 2, Ubuntu Cinnamon provides a traditionally modern experience crafted for professional and home users alike. The hassle free desktop allows for deep personalization options and add-ons for a little extra spice.</p>
-          <p><a href="https://ubuntucinnamon.org/" class="p-button--positive">Get Ubuntu Cinnamon</a></p>
-          <p><a href="https://t.me/ubuntucinnamon">Join the Ubuntu Cinnamon community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/UbuntuCinnamon">Follow Ubuntu Cinnamon&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu Cinnamon</h2>
         </div>
       </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Ubuntu Cinnamon combines Ubuntu with the intuitive Cinnamon desktop. Built upon the legacy of GNOME 2, Ubuntu Cinnamon provides a traditionally modern experience crafted for professional and home users alike. The hassle free desktop allows for deep personalization options and add-ons for a little extra spice.</p>
+        <a href="https://ubuntucinnamon.org/" class="p-button--positive">Get Ubuntu Cinnamon</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://t.me/ubuntucinnamon">Join the Ubuntu Cinnamon community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/UbuntuCinnamon">Follow Ubuntu Cinnamon&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
         url="https://assets.ubuntu.com/v1/70b28e5e-ubuntu-cinnamon-2304-screenshot.png",
         alt="",
         width="1920",
@@ -226,20 +273,10 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/0bd4870d-Kylin2204.png",
-        alt="",
-        width="1360",
-        height="768",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -253,21 +290,41 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu Kylin</h3>
-        </div>
-          <p>The Ubuntu Kylin project is tuned to the needs of Chinese users, providing a thoughtful and elegant experience out-of-the-box. The lightweight Ubuntu Kylin User Interface (UKUI) is perfect for older machines, and an ideal introduction to Linux for first-time users.</p>
-          <p><a href="https://www.ubuntukylin.com/downloads/download-en.html" class="p-button--positive">Get Ubuntu Kylin</a></p>
-          <p><a href="https://www.ubuntukylin.com/community/community-en.html">Join the Ubuntu Kylin community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/Ubuntu_Kylin">Follow Ubuntu Kylin&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu Kylin</h2>
         </div>
       </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>The Ubuntu Kylin project is tuned to the needs of Chinese users, providing a thoughtful and elegant experience out-of-the-box. The lightweight Ubuntu Kylin User Interface (UKUI) is perfect for older machines, and an ideal introduction to Linux for first-time users.</p>
+        <a href="https://www.ubuntukylin.com/downloads/download-en.html" class="p-button--positive">Get Ubuntu Kylin</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://www.ubuntukylin.com/community/community-en.html">Join the Ubuntu Kylin community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/Ubuntu_Kylin">Follow Ubuntu Kylin&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/0bd4870d-Kylin2204.png",
+        alt="",
+        width="1360",
+        height="768",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -281,18 +338,25 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu MATE</h3>
-        </div>
-        <div>
-          <p>Ubuntu MATE is a stable, easy-to-use operating system with a configurable desktop environment. It is ideal for those who want the most out of their computers and prefer a traditional desktop metaphor. With modest hardware requirements it is suitable for modern workstations, single board computers and older hardware alike. Ubuntu MATE makes modern computers fast and old computers usable.</p>
-          <p><a href="https://ubuntu-mate.org/" class="p-button--positive">Get Ubuntu MATE</a></p>
-          <p><a href="https://ubuntu-mate.community">Join the Ubuntu MATE community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/ubuntu_mate">Follow Ubuntu MATE&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu MATE</h2>
         </div>
       </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Ubuntu MATE is a stable, easy-to-use operating system with a configurable desktop environment. It is ideal for those who want the most out of their computers and prefer a traditional desktop metaphor. With modest hardware requirements it is suitable for modern workstations, single board computers and older hardware alike. Ubuntu MATE makes modern computers fast and old computers usable.</p>
+        <a href="https://ubuntu-mate.org/" class="p-button--positive">Get Ubuntu MATE</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://ubuntu-mate.community">Join the Ubuntu MATE community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/ubuntu_mate">Follow Ubuntu MATE&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
         url="https://assets.ubuntu.com/v1/1d7a53b1-UbuntuMATE-screenshot.png",
         alt="",
         width="1664",
@@ -305,20 +369,10 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/777dd5d3-UbuntuStudio.png",
-        alt="",
-        width="1920",
-        height="1080",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -332,24 +386,45 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu Studio</h3>
-        </div>
-        <div>
-          <p>Ubuntu Studio is pre-configured for content creation of all kinds. Whether you're an audio engineer, musician, graphic designer, photographer, video producer, or streamer, this is a full-fledged desktop computing system that will fit your needs. If you can dream it, you can create it with Ubuntu Studio.</p>
-          <p><a href="https://ubuntustudio.org/" class="p-button--positive">Get Ubuntu Studio</a></p>
-          <p><a href="https://ubuntustudio.org/community/">Join the Ubuntu Studio community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/ubuntustudio">Follow Ubuntu Studio&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu Studio</h2>
         </div>
       </div>
     </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Ubuntu Studio is pre-configured for content creation of all kinds. Whether you're an audio engineer, musician, graphic designer, photographer, video producer, or streamer, this is a full-fledged desktop computing system that will fit your needs. If you can dream it, you can create it with Ubuntu Studio.</p>
+        <a href="https://ubuntustudio.org/" class="p-button--positive">Get Ubuntu Studio</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://ubuntustudio.org/community/">Join the Ubuntu Studio community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/ubuntustudio">Follow Ubuntu Studio&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/777dd5d3-UbuntuStudio.png",
+        alt="",
+        width="1920",
+        height="1080",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{ image (
+          {{ 
+            image (
             url="https://assets.ubuntu.com/v1/219d06b0-ubuntu-unity-logo.png",
             alt="Unity Icon",
             width="64",
@@ -359,18 +434,25 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Ubuntu Unity</h3>
-        </div>
-        <div>
-          <p>Bringing the best of Ubuntu and Unity together, Ubuntu Unity is a beautiful, slick and lightweight Ubuntu flavour. With its beautiful design, efficient and elegant workflow, and features like the heads-up display (HUD), the Global Menu, powerful search and a high level of customizability (using the Unity Tweak Tool), you'll be able to work with an unparalleled level of efficiency. You can also choose from a wide range of window animations and effects available in Compiz.</p>
-          <p><a href="https://ubuntuunity.org" class="p-button--positive">Get Ubuntu Unity</a></p>
-          <p><a href="https://discourse.ruds.io/c/ubuntu-unity/5">Join the Ubuntu Unity community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/ubuntu_unity">Follow Ubuntu Unity&nbsp;&rsaquo;</a></p>
+          <h2 class="p-heading-icon__title">Ubuntu Unity</h2>
         </div>
       </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Bringing the best of Ubuntu and Unity together, Ubuntu Unity is a beautiful, slick and lightweight Ubuntu flavour. With its beautiful design, efficient and elegant workflow, and features like the heads-up display (HUD), the Global Menu, powerful search and a high level of customizability (using the Unity Tweak Tool), you'll be able to work with an unparalleled level of efficiency. You can also choose from a wide range of window animations and effects available in Compiz.</p>
+        <a href="https://ubuntuunity.org" class="p-button--positive">Get Ubuntu Unity</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://discourse.ruds.io/c/ubuntu-unity/5">Join the Ubuntu Unity community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/ubuntu_unity">Follow Ubuntu Unity&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
         url="https://assets.ubuntu.com/v1/e96f6b6d-ubuntu-unity-desktop-screenshot.png",
         alt="",
         width="1920",
@@ -382,20 +464,11 @@
     </div>
   </div>
 </section>
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/5f23328b-xubuntu-2204-screenshot.png",
-        alt="",
-        width="1920",
-        height="1080",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
           {{
@@ -409,36 +482,107 @@
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">Xubuntu</h3>
+          <h2 class="p-heading-icon__title">Xubuntu</h2>
         </div>
-        <div>
-          <p>Xubuntu comes with Xfce, which is a stable, light and configurable desktop environment with a lot of consideration for usability. Whether you have a high-end computer or even a moderately older machine, Xubuntu is able to provide you with a smooth and usable desktop experience. Xubuntu has an expansive list of customization options so you can make the desktop your own.</p>
-          <p><a href="https://xubuntu.org/" class="p-button--positive">Get Xubuntu</a></p>
-          <p><a href="https://ubuntuforums.org/forumdisplay.php?f=329&pp=20&prefixid=xubuntu">Join the Xubuntu community&nbsp;&rsaquo;</a></p>
-          <p><a href="https://twitter.com/xubuntu">Follow Xubuntu&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <p>Xubuntu comes with Xfce, which is a stable, light and configurable desktop environment with a lot of consideration for usability. Whether you have a high-end computer or even a moderately older machine, Xubuntu is able to provide you with a smooth and usable desktop experience. Xubuntu has an expansive list of customization options so you can make the desktop your own.</p>
+        <a href="https://xubuntu.org/" class="p-button--positive">Get Xubuntu</a>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://ubuntuforums.org/forumdisplay.php?f=329&pp=20&prefixid=xubuntu">Join the Xubuntu community&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="https://twitter.com/xubuntu">Follow Xubuntu&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/5f23328b-xubuntu-2204-screenshot.png",
+        alt="",
+        width="1920",
+        height="1080",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width p-section--shallow">
+    <hr class="p-rule" />
+    <h2>More ways to experienc Ubuntu</h2>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      <hr />
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Ubuntu-based variants</h3>
+        </div>
+        <div class="col-6">
+          <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
+          <p>A complete list of known flavours, editions and customizations is maintained on the <a href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--5">Looking for Ubuntu?</h3>
+        </div>
+        <div class="col-6">
+          <p>Download the latest release of Ubuntu desktop, the open source operating system that powers millions of PCs and laptops around the world. It's easy to install on Windows or macOS, or run Ubuntu alongside them!</p>
+          <p><a href="/download/desktop" class="p-button">Download now</a></p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--suru is-dark">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h3>Ubuntu-based variants</h3>
-      <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
-      <p>A complete list of known flavours, editions and customizations is maintained on the <a class="p-link--inverted" href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
+<section class="p-section">
+  <div class="row--25-75 is-split-on-medium">
+    <hr class="p-rule"/>
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest Ubuntu Desktop news <br aria-hidden />from our blog&nbsp;&rsaquo;</a></h2>
+      </div>
     </div>
-    <div class="col-6">
-      <h3>Looking for Ubuntu?</h3>
-      <p>Download the latest release of Ubuntu desktop, the open source operating system that powers millions of PCs and laptops around the world. It's easy to install on Windows or macOS, or run Ubuntu alongside them!</p>
-      <p><a href="/download/desktop" class="p-button">Download now</a></p>
+    <div class="col">
+      <div class="row p-section--shallow" id="desktop-latest-articles">
+      </div>
+      <hr class="is-muted">
+      <p class="u-float-right"><a href="/blog/desktop">Explore all</a></p>
     </div>
   </div>
+
+  <template style="display:none" id="desktop-articles-template">
+    <div class="col-3">
+      <div class="u-crop--16-9">
+        <div class="article-image p-image-wrapper"></div>
+      </div>
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
+      <p class="article-excerpt"></p>
+    </div>
+  </template>
 </section>
 
-{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='ubuntu-desktop', tag_id='1920', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+    canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#desktop-latest-articles",
+      articleTemplateSelector: "#desktop-articles-template",
+      excerptLength: 200,
+      groupId: "1920",
+      linkImage: true,
+      limit: 3
+    }
+    )
+</script>
 
 {% endblock content %}
