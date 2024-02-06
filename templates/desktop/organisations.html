@@ -4,28 +4,118 @@
 {% block meta_description %}Ubuntu Desktop combines enterprise-grade support, security and functionality with the best of open source.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1RuxCA6GYh9UriNv26HCZP9UHo4b4_9fYaaMtGQuH_xc/edit#{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock %}
+
 {% block content %}
-<section class="p-strip--suru-bottomed">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Bring Ubuntu to your <br> organisation</h1>
-      <p>
-        Ubuntu Desktop combines enterprise-grade support, security <br>and functionality with the best of open source.
-      </p>
-      <p><a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a></p>
-      <p><a href="/pro">Secure open-source with Ubuntu Pro&nbsp;&rsaquo;</a></p>
-      <p><a class="p-button" href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf">Download the datasheet</a></p>
+<section class="p-strip--whitesuru is-shallow u-no-margin--bottom">
+  <section class="p-section--deep">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-section--shallow">
+          <h1>Bring Ubuntu to your organisation</h1>
+          <p>Ubuntu Desktop combines enterprise-grade support, security <br />and functionality with the best of open source.</p>
+        </div>
+        <hr />
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+          <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
+          <a href="/pro">Secure open-source with Ubuntu Pro&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f29015c6-image-laptop.png",
+  </section>
+</section>
+
+<section class="p-section">
+  <div class="row--25-75 p-section--shallow">
+    <hr class="p-rule"/>
+    <div class="col">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/5cdf69d6-Ubuntu+Pro.svg",
         alt="",
-        width="750",
-        height="484",
+        width="225",
+        height="58",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
+    </div>
+    <div class="col">
+      <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Secure open source stack</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Receive 10 years of security patches for Ubuntu LTS releases with Expanded Security Maintenance (<a href="/security/esm">ESM</a>) and coverage for over 23,000 packages in the Ubuntu Universe repository. Minimise downtime with Kernel <a href="/security/livepatch">Livepatch</a>.</p>
+          <hr />
+          <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Landscape fleet management</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Software updates, configuration management, policy compliance, and permission control for your entire physical and virtual fleet. Landscape is easy to use and smoothly integrates with other tooling through a robust API.</p>
+          <hr />
+          <a href="/landscape">Learn more about Landscape&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Advanced Active Directory policies</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Increase your management capabilities with full Group Policy Object support, remote script execution and privilege management.</p>
+          <hr />
+          <a href="/engage/New-Active-Directory-integration-features">Learn more about Active Directory integration&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Compliance, certification and hardening</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Ubuntu Pro delivers security and compliance for even the most sensitive workloads with <a href="/security/certifications#fips">FIPS 140-2 certified modules</a>, <a href="/security/certifications#cis">CIS hardening</a> and <a href="/security/certifications#common-criteria">Common Criteria EAL2</a> certification available.</p>
+          <hr />
+          <a href="/security">Learn more about Ubuntu's security practices&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Weekday or 24/7 support</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Advanced support customers get direct 24/7 access to our enterprise open source support team through our web portal, knowledge base or via phone.</p>
+          <hr />
+          <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Adopting a secure enterprise <br /> Linux descktop</h2>
+    </div>
+    <div class="col">
+      <p>Learn more about how you can adopt Linux securely for development teams in a Windows-centric organisation, without compromising on manageability and compliance.</p>
+      <hr />
+      <a class="p-button--positive" href="/engage/adopting-secure-enterprise-linux-desktop">Download our guide</a>
     </div>
   </div>
 </section>
