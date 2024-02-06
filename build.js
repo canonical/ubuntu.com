@@ -26,7 +26,6 @@ let entries = {
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
   blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
-  tabbedContent: "./static/js/src/tabbed-content.js",
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",

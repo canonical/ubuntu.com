@@ -1,278 +1,512 @@
-// Vanilla 2.32 removes internal $grid-margin-width variable,
-// $grid-margin-widths map should be used instead
-$grid-margin-width: map-get($grid-margin-widths, default);
-
-$ubuntu-logo-svg-width: 5rem; // width in rems
-$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
-$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
+$row-margin-medium: 1.5rem;
+$row-margin-small: 1rem;
+$meganav-height: 3rem;
 
 @mixin ubuntu-p-navigation {
-  html {
-    overflow-x: hidden !important; // prevent horizontal overflow full width breakout
+  #control-height {
+    height: 100vh;
+    position: absolute;
+    width: 0;
   }
 
-  %row-no-margins-on-mobile {
-    @media (max-width: $breakpoint-navigation-threshold) {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    @media (min-width: $breakpoint-navigation-threshold + 1) {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
+  #all-canonical-mobile .global-nav__header-link-anchor::after {
+    @media (max-width: $breakpoint-small) {
+      right: 1rem !important;
+      top: 1.25rem !important;
     }
   }
 
-  .p-navigation {
-    background-color: $nav-bg-color;
-    flex-direction: column;
+  #all-canonical-content-mobile {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      display: none;
+    }
+  }
+
+  body:has(header.p-navigation--sliding.has-menu-open) {
+    overflow: hidden;
+  }
+
+  .global-nav-desktop .global-nav-dropdown {
+    position: relative;
+    top: 0;
+
+    .global-nav-dropdown__content {
+      max-width: $grid-max-width;
+    }
+
+    .global-nav__link {
+      color: #69c;
+    }
+  }
+
+  .p-navigation--sliding {
+    position: sticky;
+    top: 0;
     z-index: 40;
 
-    &__items {
-      @media (max-width: $breakpoint-x-small - 1) {
-        font-size: 0.875rem;
-      }
+    .p-navigation__secondary-link {
+      @extend .dropdown-window__side-panel-link;
+    }
 
-      @media (max-width: $breakpoint-navigation-threshold) {
-        align-items: stretch;
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        order: 2;
+    .p-link--inverted {
+      font-weight: 400;
+    }
 
-        .p-navigation__dropdown-link {
-          flex: 1;
-          text-align: center;
+    .p-navigation__nav {
+      margin-left: -1rem;
+      margin-right: 0;
+      max-height: calc(100vh - 3rem);
+      width: auto;
+
+      .p-navigation__items {
+        width: 100%;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          .p-navigation__link {
+            padding-left: calc(1.5rem + $row-margin-medium);
+
+            &::before {
+              left: calc(1.5rem + $row-margin-medium);
+            }
+
+            &.js-back::after {
+              left: $row-margin-medium;
+            }
+          }
+
+          & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
+            padding-left: $row-margin-medium;
+
+            &::before {
+              left: $row-margin-medium;
+            }
+          }
+
+          .p-navigation__item--dropdown-toggle {
+            &:first-child .p-navigation__link::before {
+              content: "";
+            }
+
+            &.is-selected > .p-navigation__link::before {
+              content: none;
+            }
+          }
+
+          .p-navigation__item--dropdown-toggle:first-of-type,
+          .p-navigation__item--dropdown-close:first-of-type {
+            > .p-navigation__link::before {
+              content: none;
+            }
+          }
+
+          .p-navigation__dropdown-item {
+            padding-left: calc(1.5rem + $row-margin-medium);
+
+            &::before {
+              left: calc(1.5rem + $row-margin-medium);
+            }
+          }
+
+          .p-muted-heading {
+            padding-left: 0;
+          }
+        }
+
+        @media (max-width: $breakpoint-medium) {
+          .p-navigation__link {
+            padding-left: calc(1.5rem + $row-margin-small);
+
+            &::before {
+              left: calc(1.5rem + $row-margin-small);
+            }
+
+            &.js-back::after {
+              left: $row-margin-small;
+            }
+          }
+
+          & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
+            padding-left: $row-margin-small;
+
+            &::before {
+              left: $row-margin-small;
+            }
+          }
+
+          .p-navigation__dropdown-item {
+            padding-left: calc(1.5rem + $row-margin-small);
+
+            &::before {
+              left: calc(1.5rem + $row-margin-small);
+            }
+          }
+
+          .p-muted-heading {
+            padding-left: 0;
+          }
+        }
+
+        .global-nav {
+          margin-left: auto;
         }
       }
-    }
 
-    &__link-anchor {
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-left: math.div($grid-margin-width, 4) !important;
-        padding-right: math.div($grid-margin-width, 4) !important;
+      .p-search-box__input {
+        background-color: $color-light !important;
+
+        &:focus,
+        &:hover {
+          background-color: $color-light !important;
+        }
+      }
+
+      .p-search-box__input::placeholder {
+        color: #000;
       }
     }
 
-    &__banner {
-      background-color: $color-brand;
-      padding-left: 1rem;
+    .p-navigation__banner {
+      padding-left: 0;
+    }
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .row {
+        display: unset;
+      }
+
+      .p-navigation__nav {
+        margin-left: 0;
+        overflow-y: auto;
+      }
+
+      .p-navigation__banner {
+        height: $meganav-height;
+        padding-left: $row-margin-medium;
+      }
+    }
+
+    @media (max-width: $breakpoint-medium) {
+      .p-navigation__banner {
+        padding-left: $row-margin-small;
+      }
+    }
+
+    .row {
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .p-navigation__dropdown {
+        height: calc(100vh - $meganav-height);
+        overflow: hidden;
+
+        &[aria-hidden="false"] {
+          overflow: unset;
+
+          &::before {
+            pointer-events: none;
+          }
+        }
+
+        &::before {
+          box-shadow: none;
+        }
+
+        .p-muted-heading {
+          padding-left: 3rem;
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: 2.5rem;
+          }
+        }
+
+        .p-navigation__secondary-links .p-muted-heading {
+          padding-left: 0;
+        }
+      }
+
+      .p-navigation__link--search-toggle::after {
+        right: 1rem;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          right: 0.5rem;
+        }
+      }
 
       @media (max-width: $breakpoint-navigation-threshold - 1) {
-        padding-left: 1.5rem;
+        .subsection-active & {
+          transform: translateX(-100vw);
+        }
       }
-    }
 
-    &::after {
-      // disable rule under nav
-      background-color: none;
-      height: 0;
-    }
+      .p-navigation__secondary-links {
+        margin-top: 1.5rem;
+        padding-left: calc(1.5rem + $row-margin-medium);
 
-    & &__nav {
-      border-bottom: 0;
-      display: flex;
-      margin-right: 0;
-      width: 100%;
+        @media (max-width: $breakpoint-medium) {
+          padding-left: calc(1.5rem + $row-margin-small);
+        }
 
-      &.has-active-search {
-        @media (min-width: $breakpoint-navigation-threshold) {
-          .p-navigation__items {
-            display: none;
+        a {
+          color: #69c;
+        }
+      }
+
+      ul.p-navigation__dropdown {
+        li.p-navigation__dropdown-item {
+          line-height: 1.5rem;
+          margin: 0;
+          padding-bottom: 0.25rem;
+          padding-top: 0.25rem;
+          position: relative;
+
+          a {
+            &:not(.p-button--positive) {
+              display: block;
+              padding: 0.25rem 0;
+              white-space: normal;
+            }
+
+            &:hover {
+              text-decoration: none;
+            }
           }
         }
       }
-    }
 
-    &__user .p-navigation__link-anchor {
-      max-width: 160px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition-duration: 0s;
-      white-space: nowrap;
+      .p-navigation__item--dropdown-toggle {
+        .p-navigation__account-name {
+          @extend .p-navigation__dropdown-item;
 
-      @media (min-width: $breakpoint-large) {
-        max-width: 240px;
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1.5rem + $row-margin-small);
+          }
+
+          pointer-events: none;
+
+          @media (min-width: $breakpoint-navigation-threshold - 1) {
+            .p-text--small {
+              max-width: 13rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          @media (max-width: $breakpoint-navigation-threshold - 1) {
+            hr {
+              display: none;
+            }
+          }
+        }
+
+        &.js-account {
+          .p-navigation__dropdown-item {
+            padding-bottom: 0.75rem;
+            padding-top: 0.75rem;
+          }
+
+          @media (min-width: $breakpoint-navigation-threshold - 1) {
+            .p-navigation__dropdown {
+              height: auto;
+              min-width: 10rem;
+              right: 3rem;
+            }
+          }
+
+          a.p-navigation__link {
+            &::after {
+              @media (min-width: $breakpoint-navigation-threshold - 1) {
+                content: none;
+              }
+            }
+          }
+
+          a.p-navigation__link:not(.is-signed-in) {
+            &::after {
+              content: none;
+            }
+          }
+
+          button[aria-expanded="true"] {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+        }
+
+        &.is-active[role="menuitem"] {
+          @extend .is-selected;
+
+          > a.p-navigation__link {
+            background-color: #2d2d2d;
+          }
+        }
+
+        .p-navigation__link::before {
+          &:first-of-type {
+            content: "";
+          }
+        }
       }
-    }
 
-    & &__link-anchor {
-      color: $color-light;
-      display: block;
-      line-height: 1.5rem;
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        padding: $spv--large $grid-margin-width $spv--large $grid-margin-width;
+      a.p-navigation__dropdown-item {
+        padding-bottom: 0.75rem;
+        padding-top: 0.75rem;
       }
 
-      @media (min-width: $breakpoint-navigation-threshold + 1) {
-        padding: $spv--large 2rem $spv--large $sph--large;
-      }
-
-      &:focus,
-      &:visited {
-        background-color: $nav-bg-color;
-        color: $color-light;
-      }
-
-      &:hover {
-        background-color: darken($nav-bg-color, 3%);
-        color: $color-x-light;
-      }
-
-      .p-icon--search {
-        margin-left: 0.25rem;
-      }
-    }
-
-    .p-navigation__dropdown-link--noscript {
-      position: relative;
-
-      .p-navigation__link-anchor {
-        padding: 0.75rem 1rem;
-      }
-    }
-
-    .p-navigation__user .p-navigation__dropdown--right {
-      border-radius: 0 0 0.125rem 0.125rem;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
-
-      &[aria-hidden="true"] {
-        display: none;
-      }
-
-      &[aria-hidden="false"] {
-        display: block;
-      }
-    }
-
-    & &__row {
-      @extend %row-no-margins-on-mobile;
-
-      &.row {
-        grid-gap: 0;
-
-        @media (max-width: $breakpoint-x-small) {
-          display: block;
-          padding-left: 0 !important;
-          padding-right: 0 !important;
+      .p-navigation__link::after {
+        top: 1.25rem;
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          right: 1.5rem;
+          top: 1rem;
         }
       }
     }
+  }
 
-    .p-navigation__banner .p-navigation__link-anchor {
-      @media (max-width: $breakpoint-x-small) {
-        margin-right: calc(1rem - 6px);
-      }
-
-      .p-link--inverted:visited {
-        color: $color-x-light;
-      }
-    }
-
-    &__dropdown-link {
-      position: relative;
+  .p-navigation--sliding:not(.js-enabled) {
+    .p-navigation__item--dropdown-toggle > .p-navigation__link {
+      padding-right: 1rem;
 
       &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+        content: none;
+      }
+    }
+  }
 
-        background-position: top 52% right 50%;
-        background-repeat: no-repeat;
-        background-size: 0.75rem;
-        content: "";
-        height: 100%;
-        pointer-events: none;
+  .p-navigation--sliding.has-menu-open {
+    height: fit-content;
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .row {
+        height: 100vh;
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-navigation-reduced {
+  @media (min-width: $breakpoint-navigation-threshold - 1) {
+    .p-navigation--sliding.is-reduced.has-search-open {
+      .p-navigation__nav .p-navigation__items {
+        display: inline-flex;
+      }
+
+      .p-navigation__search {
+        align-items: center;
+        background-color: #262626;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        padding: 1rem;
         position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform 0.1s;
-        width: 2rem;
-        @media (max-width: $breakpoint-navigation-threshold) {
-          display: none;
-        }
-      }
+        top: 2rem;
+        width: 100%;
 
-      &.is-selected {
-        &::after {
-          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
-
-          transform: rotate(-180deg);
-        }
-
-        .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
-          &::after {
-            background-color: transparent;
-          }
-
-          &:focus,
-          &:visited {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-
-          &:hover {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
+        .p-search-box {
+          margin: 0;
+          max-width: 50rem;
         }
       }
     }
+  }
 
-    .p-navigation__banner .p-navigation__link-anchor:hover {
-      background-color: transparent;
-    }
+  .p-navigation--sliding.is-reduced {
+    margin-bottom: 0;
+    position: relative;
 
-    &__image {
-      max-height: 1.5rem;
-      max-width: $ubuntu-logo-svg-width;
-    }
+    .p-navigation__banner {
+      height: auto;
 
-    &__logo {
-      background: $color-brand;
-      height: 3.5rem;
-    }
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        padding-left: $row-margin-medium;
+      }
 
-    &__search {
-      align-items: center;
-      display: inline-flex;
-      flex-grow: 1;
-      margin: 0;
+      @media (max-width: $breakpoint-medium) {
+        padding-left: $row-margin-small;
+      }
 
-      @media (max-width: $breakpoint-navigation-threshold) {
-        margin-top: $sp-medium !important;
-        order: 1;
+      @media (min-width: $breakpoint-x-large) {
+        height: 2rem;
+        width: calc(21rem - 1px);
       }
     }
 
-    &--secondary {
-      background-color: $color-light;
-      display: flex;
-      margin-top: 0;
-      position: relative;
-      width: 100%;
-      z-index: 36;
+    .p-navigation__tagged-logo {
+      .p-navigation__link {
+        padding-left: 0;
+        padding-top: 0.5rem;
 
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-bottom: $sp-medium;
-        padding-top: math.div($sp-small, 2);
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          padding-top: 0.75rem;
+        }
+      }
+    }
+
+    .p-navigation__user {
+      .p-navigation__link span {
+        display: none;
+      }
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__link span {
+        display: initial;
+        padding-right: 0.5rem;
       }
 
-      &__banner {
-        background-color: $color-brand;
-        float: left;
+      .p-navigation__link::after {
+        top: 0.5rem;
+      }
+    }
+
+    .p-navigation__item {
+      .p-navigation__link {
+        color: $color-mid-light;
+      }
+
+      .js-menu-button.p-navigation__link {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    .p-navigation__link--search-toggle {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+
+      @media (max-width: $breakpoint-large) {
+        padding-right: 3rem;
+      }
+
+      &::after {
+        color: $color-mid-light;
+        right: 1rem;
+        top: 1rem;
+      }
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold - 1) {
+      background-color: $color-dark;
+      margin-bottom: 0;
+
+      .p-navigation__item {
+        color: $color-mid-light;
+      }
+
+      .p-navigation__link {
+        color: $color-mid-light;
+        font-size: 0.875rem;
         font-weight: 300;
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+        transition: none;
+      }
 
-        &:hover {
-          color: $color-x-light;
-        }
+      .p-navigation__tagged-logo > .p-navigation__link {
+        padding-left: 0;
       }
 
       &__logo {
-        @extend %paragraph;
-
         align-items: center;
         color: $color-x-light;
         display: flex;
@@ -298,12 +532,9 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         }
 
         &::after {
-          // white separator inside lockup
-          @extend %vf-pseudo-border--top;
-
           display: none;
 
-          @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          @media only screen and (min-width: $breakpoint-navigation-threshold - 1) {
             background-color: $color-light;
             display: block;
             left: $sph--large;
@@ -311,237 +542,160 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
             right: $sph--large - $circle-of-friends-compensation;
           }
         }
+      }
 
-        @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          padding-left: $sph--large;
-          padding-right: $sph--large - $circle-of-friends-compensation;
-          width: $ubuntu-logo-svg-width + 2 * $sph--large -
-            $circle-of-friends-compensation;
+      .p-navigation__link--search-toggle {
+        color: $color-mid-light;
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+
+        &::after {
+          color: $color-mid-light;
+          top: 0.5rem;
+        }
+
+        .p-navigation__search-label {
+          font-size: 0.875rem;
+          font-weight: 300;
+          padding-left: 0.5rem;
         }
       }
 
-      .breadcrumbs {
-        &--secondary {
-          @extend .p-inline-list;
-
-          display: flex;
-          flex-wrap: wrap;
-          margin-bottom: 0;
-          width: auto;
+      .p-navigation__item--dropdown-toggle {
+        &::after {
+          top: 0.5rem;
         }
 
-        &__item {
-          color: $color-dark;
-          display: inline-flex;
-          list-style: none;
-        }
+        &.is-selected {
+          background-color: rgba(255, 255, 255, 0.1);
 
-        &__chevron {
-          font-size: 0.875rem;
-          padding: 0.55rem 0 0.2rem 0;
-        }
-
-        &__space {
-          display: none;
-
-          @media (max-width: $breakpoint-small - 1) {
-            display: block;
-          }
-        }
-
-        &__link {
-          font-size: math.div(
-            1rem,
-            pow($ms-ratio, 1)
-          ); //XXX: move font-sizes to map in vanilla so it can be changed globally
-
-          padding-left: $spv--medium;
-          padding-right: $spv--medium;
-          padding-top: $nudge--small;
-
-          @media (max-width: $breakpoint-x-small - 1) {
-            padding-bottom: 0;
-            padding-left: 0;
-            padding-right: 0;
+          &::after {
+            transform: rotate(-180deg);
           }
 
-          @media (min-width: $breakpoint-x-small) and (max-width: $breakpoint-medium - 1) {
-            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff -
-              $nudge--small;
-          }
-
-          &:first-child {
+          .p-navigation__link {
+            color: $color-x-light;
             padding-left: 1rem;
           }
 
-          &.p-link--active {
-            color: $color-brand;
+          .p-navigation__link::before {
+            display: none;
+          }
+        }
+
+        &.js-account .p-navigation__dropdown {
+          right: 2.75rem;
+        }
+      }
+
+      .p-navigation__dropdown--right {
+        top: 2rem;
+      }
+    }
+
+    & ~ .global-nav-dropdown {
+      top: 2.1rem !important;
+    }
+  }
+
+  .p-navigation.is-secondary {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    .p-navigation__nav {
+      margin-left: -1rem;
+
+      &.is-open {
+        display: flex;
+
+        .p-navigation__items {
+          display: block;
+        }
+
+        .p-navigation__link {
+          padding-left: calc(1rem + $row-margin-medium);
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1rem + $row-margin-small);
+          }
+
+          &::before {
+            left: $row-margin-small;
           }
         }
       }
+    }
+
+    .p-navigation__banner {
+      padding-left: 0;
+    }
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__banner {
+        padding-left: $row-margin-medium;
+      }
 
       .row {
-        @extend %row-no-margins-on-mobile;
+        display: unset;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .p-navigation__nav {
+        margin-left: -1rem;
       }
     }
 
-    &__toggle--open,
-    &__toggle--close {
-      color: $color-light !important;
-      font-size: 0.875rem;
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        margin-right: math.div($grid-margin-width, 1.5) !important;
+    @media (max-width: $breakpoint-medium) {
+      .p-navigation__banner {
+        padding-left: $row-margin-small;
       }
     }
 
-    @media (min-width: $breakpoint-navigation-threshold) {
-      .p-search-box {
-        margin-left: 1rem;
-        max-width: none;
+    .p-navigation__toggle--open.is-open {
+      transform: rotate(-180deg);
+    }
 
-        .p-search-box__button {
-          display: none;
-        }
+    .p-navigation__tagged-logo {
+      width: 17.5rem;
 
-        .p-search-box__input:not(:valid) ~ .p-search-box__reset {
-          display: inherit;
-          margin-bottom: 0;
-          margin-top: 0.3rem;
-        }
+      @media (min-width: $breakpoint-x-large) {
+        width: 19.5rem;
       }
-    }
-  }
-
-  .dropdown-window-overlay {
-    background-color: rgba(17, 17, 17, 0.4);
-    height: 100%;
-    opacity: 1;
-    position: fixed;
-    top: 0;
-    transition: opacity 0.5s ease-in-out;
-    width: 100%;
-    z-index: 38;
-  }
-
-  .dropdown-window {
-    @include vf-animation(all, brisk, in);
-
-    background-color: $color-x-light;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
-    flex-direction: column;
-    position: absolute;
-    width: 100%;
-    z-index: 39;
-
-    &.slide-animation {
-      box-shadow: none;
-    }
-    .row {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
-    }
-
-    &__content {
-      @extend %p-strip--very-shallow;
-
-      background-color: $color-x-light;
-      color: $color-dark;
-
-      &:last-child {
-        padding-bottom: math.div($spv--x-large, 1.5);
-      }
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        .p-inline-list--middot.is-x-dense {
-          margin-bottom: 0.3rem;
-        }
-      }
-    }
-
-    & .p-inline-list__item {
-      @extend %small-text-fixed;
-
-      list-style-type: none;
-
-      &::after {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          display: none;
-        }
-      }
-    }
-
-    &__summary {
-      @extend %small-text-fixed;
-
-      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff -
-        $nudge--small;
-      max-width: $text-max-width;
-    }
-  }
-
-  .slide-animation {
-    transform: translateY(-101%);
-  }
-
-  .fade-animation {
-    opacity: 0;
-    visibility: hidden;
-
-    .u-visible-nav & {
-      opacity: 1;
-      transform: none;
-      visibility: visible;
     }
   }
 }
 
-.p-card--navigation {
-  @include vf-p-card;
+@mixin ubuntu-p-nojs-navigation {
+  .nojs-meganav {
+    background: #262626;
+    overflow-x: unset !important;
 
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0;
-  padding: 0;
-}
+    h2 {
+      color: $color-light;
+      padding-left: 1.5rem;
+    }
 
-.p-card--light {
-  @extend %vf-has-round-corners;
+    .p-side-navigation {
+      padding-top: 1rem;
+    }
 
-  @extend %bg--light;
+    .dropdown-window__tab-panel {
+      height: fit-content;
+      padding-bottom: 3rem;
+      position: sticky;
+      top: 3rem;
+    }
 
-  @include vf-p-card;
+    .dropdown-window__footer {
+      padding-bottom: 3rem;
+    }
 
-  flex-direction: column;
-  margin-bottom: $spv--large;
-  padding: calc(#{$spv--large} - 1px);
-  transition: all 0.2s;
-}
-
-.u-hide--nav-threshold-down {
-  @media (max-width: $breakpoint-navigation-threshold - 1) {
-    display: none !important;
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .dropdown-window__tab-panel {
+        display: none;
+      }
+    }
   }
-}
-
-.u-hide--nav-threshold-up {
-  @media (min-width: $breakpoint-navigation-threshold) {
-    display: none !important;
-  }
-}
-
-.p-logomark {
-  display: inline-block;
-  margin-bottom: $spv--large;
-  margin-right: $sph--small;
-  max-height: 4 * $sp-unit;
-  max-width: 4 * $sp-unit;
-  position: relative;
-  top: 0.1rem;
-}
-
-.p-button--small {
-  @extend %small-text;
-
-  padding-top: $sp-unit * 0.5 + map-get($nudges, nudge--small);
 }

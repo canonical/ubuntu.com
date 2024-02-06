@@ -141,6 +141,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    navigation_nojs,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -203,6 +204,7 @@ app.add_url_rule(
     view_func=pro_activate_activation_key,
     methods=["POST"],
 )
+app.add_url_rule("/navigation", view_func=navigation_nojs)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(

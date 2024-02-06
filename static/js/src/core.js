@@ -1,12 +1,11 @@
-import { createNav } from "@canonical/global-nav";
 import { cookiePolicy } from "@canonical/cookie-policy";
-
-// Initalise the global navigation.
-createNav({
-  showLogins: false,
-  hiring: "https://canonical.com/careers/start",
-  maxWidth: "80rem",
-});
+import { createNav } from "@canonical/global-nav";
 
 // Initalise the cookie policy notification.
 cookiePolicy();
+
+createNav({
+  breakpoint: 1150,
+  mobileContainerSelector: ".global-nav-mobile",
+  desktopContainerSelector: ".global-nav-desktop",
+});
