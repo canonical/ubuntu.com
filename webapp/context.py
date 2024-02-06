@@ -4,7 +4,6 @@ import datetime
 import calendar
 import logging
 import json
-import numpy
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -12,7 +11,6 @@ import flask
 import requests
 import yaml
 import dateutil.parser
-from slugify import slugify
 from canonicalwebteam.http import CachedSession
 
 
@@ -23,10 +21,6 @@ api_session = CachedSession(fallback_cache_duration=3600)
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
     nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
-
-# Read meganav.yaml
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
 
 
 # Process data from YAML files
@@ -42,23 +36,6 @@ def releases():
 
     with open("releases.yaml") as releases:
         return yaml.load(releases, Loader=yaml.FullLoader)
-
-
-def get_meganav(section):
-    """
-    Set "meganav_section" as global template variable
-    """
-    sections = {}
-    meganav_sections = copy.deepcopy(meganav)
-
-    if section == "all":
-        return meganav_sections
-
-    for section_name, meganav_section in meganav_sections.items():
-        if section_name == section:
-            sections = meganav_section
-
-    return {"sections": sections}
 
 
 def get_navigation(path):
@@ -137,14 +114,6 @@ def month_name(string):
 def descending_years(end_year):
     now = datetime.datetime.now()
     return range(now.year, end_year, -1)
-
-
-def split_list(array, parts):
-    return numpy.array_split(array, parts)
-
-
-def format_to_id(string):
-    return slugify(string)
 
 
 def get_json_feed(url, offset=0, limit=None):

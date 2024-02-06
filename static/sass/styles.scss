@@ -64,7 +64,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_lists";
 @import "pattern_matrix";
 @import "pattern_navigation";
-@import "pattern_navigation-dropdown";
 @import "pattern_pie_chart";
 @import "pattern_ratings";
 @import "pattern_renewal-modal";
@@ -119,12 +118,9 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-lists;
 @include ubuntu-p-matrix;
 @include ubuntu-p-navigation;
-@include ubuntu-p-navigation-dropdown;
-@include ubuntu-p-navigation-reduced;
-@include ubuntu-p-nojs-navigation;
 @include ubuntu-p-strip;
-@include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-pie-chart;
+@include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-ua-shop-cart;
 @include ubuntu-p-ua-subscribe;
 @include ubuntu-p-ua-subscriptions;
@@ -541,10 +537,6 @@ summary {
       color: inherit;
     }
   }
-
-  .is-muted {
-    color: $colors--dark-theme--text-muted;
-  }
 }
 
 .u-disable {
@@ -628,6 +620,12 @@ td.p-accordion {
 
 .p-icon--dark-tick {
   background-image: url("#{$assets-path}f1a7515d-tick-darkaubergine.svg");
+}
+
+// Prevent the page from jumping as the global nav loads
+.global-nav__header {
+  background-color: #262626;
+  height: 32px;
 }
 
 .article-title {
