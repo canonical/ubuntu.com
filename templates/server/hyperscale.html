@@ -7,21 +7,33 @@
 {% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<div class="p-strip is-shallow u-no-padding-bottom">
-  <div class="row--50-50 p-section">
-    <div class="col">
-      <h1>Ubuntu leads in hyperscale</h1>
+<div class="p-strip is-shallow u-no-padding--bottom">
+  <div class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <div class="col">
+        <h1>Ubuntu leads in hyperscale</h1>
+      </div>
+      <div class="col">
+        <p>Ubuntu is the hyperscale OS, natively powering scale-out workloads on a new wave of low-cost, ultra-dense hardware based on x86 and ARM processors.</p>
+        <hr>
+        <p>
+          <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
+          <a href="/download/arm">Download&nbsp;Ubuntu&nbsp;for&nbsp;ARM&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
-    <div class="col">
-      <p>Ubuntu is the hyperscale OS, natively powering scale-out workloads on a new wave of low-cost, ultra-dense hardware based on x86 and ARM processors.</p>
-      <p>
-        <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
-        <a href="/download/arm">Download&nbsp;Ubuntu&nbsp;for&nbsp;ARM&nbsp;&rsaquo;</a>
-      </p>
+    <div class="u-fixed-width p-section u-align--center">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/4679027f-hyperscale.png",
+          alt="hyperscale",
+          width="600",
+          hi_def=True,
+          ) | safe
+          }}
     </div>
   </div>
 </div>
-
 <div class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
@@ -31,7 +43,6 @@
     <div class="col">
       <p>Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social and entertainment services.</p>
       <p>Providing compute capacity at that magnitude is today's top infrastructure challenge. That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.</p>
-      <p>Tomorrow's servers will be built upon multiple architectures, including Intel x86 and ARM, and will be connected into datacentre-wide clusters via flexible, high-speed fabrics. At the heart of these clusters lies Ubuntu Server, the OS leading the cloud computing revolution.</p>
     </div>
   </div>
 </div>
