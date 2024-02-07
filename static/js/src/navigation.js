@@ -21,6 +21,12 @@ const mainList = document.querySelector(
 
 navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
+document.addEventListener("DOMContentLoaded", () => {
+  setUpGlobalNav();
+});
+window.addEventListener("load", () => {
+  handleUrlHash();
+});
 
 //Helper functions
 
@@ -69,7 +75,6 @@ mainList.addEventListener("click", function (e) {
   }
 });
 
-window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
@@ -136,6 +141,15 @@ function updateUrlHash(id, open) {
       document.title,
       window.location.pathname + window.location.search
     );
+  }
+}
+
+function handleUrlHash() {
+  const targetId = window.location.hash
+  if(targetId !== "") {
+    const targetDropdown = navigation.querySelector(targetId);
+    fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
+    targetDropdown?.querySelector("a").click();
   }
 }
 
@@ -754,9 +768,6 @@ function setUpGlobalNav() {
       dropdown.prepend(backButton);
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  setUpGlobalNav();
-});
 
 // Initiate login
 var accountContainer = document.querySelector(".js-account");
