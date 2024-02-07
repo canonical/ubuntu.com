@@ -50,47 +50,52 @@
 
       <form class="col-6" action="/marketo/submit" method="post" id="mktoForm_4960"
         onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
-        <h1 style="font-weight: 100;">Newsletter signup</h1>
+        <h1 style="font-weight: 100;">Sign up for our newsletter</h1>
         <p>Get the latest Ubuntu news and updates in your inbox.</p>
-        <div>
-            <label for="email" class="u-no-margin--top u-no-margin--bottom is-required">Work email:</span>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label for="email">* Email:</label>
             <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-        </div>
-      
-        <div>
-          <div class="p-section--shallow">
+          </li>
+          <li class="p-list__item u-no-margin--top">
             <label class="p-checkbox">
-              <input required class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
-                name="canonicalUpdatesOptIn" type="checkbox">
-              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's
-                products and services.&ast;</span>
+              <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
+                name="canonicalUpdatesOptIn" type="checkbox" required="" />
+              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about
+                Canonical’s
+                products
+                and services.</span>
             </label>
+          </li>
+          <li class="p-list__item u-no-margin--top">
             <p>By submitting this form, I confirm that I have read and agree to <a
-                href="https://www.ubuntu.com/legal/dataprivacy" target="_blank">Canonical's Privacy Policy</a>.</p>
-          </div>
-      
-          <div>
-            <span class="p-card--content">
-              <button type="submit" class="u-no-margin--bottom">Sign up</button>
-            </span>
-      
-            <input value="1212" name="formid" type="hidden">
-            <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/blog#newsletter-signup" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
-              value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c"
-              id="Facebook_Click_ID__c" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage"
-              maxlength="255" value="" />
-            <input type="hidden" name="thankyoumessage"
-              value="Thank you for signing up for our newsletter!<br/>In these regular emails you will find the latest updates from Ubuntu and upcoming events where you can meet our team.">
-          </div>
+                href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+                href="/legal/data-privacy">Privacy Policy</a>.</p>
+          </li>
+        </ul>
+        <div>
+          <span class="p-card--content">
+            <button type="submit" class="p-button--positive">Subscribe now</button>
+          </span>
+          <input value="4960" name="formid" type="hidden">
+          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" name="returnURL"
+            value="http://{{ http_host }}/download/desktop/thank-you#newsletter-signup" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c"
+            id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage"
+            name="preferredLanguage" maxlength="255" value="" />
+        </div>
       </form>
     </div>
 </section>
