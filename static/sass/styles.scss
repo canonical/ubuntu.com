@@ -1366,20 +1366,6 @@ $color-link-dark: #69c !default;
   }
 }
 
-// XXX: @bartaz: this will be covered in Vanilla
-// can be removed once https://github.com/canonical/vanilla-framework/issues/4875 is done and released
-.p-logo-section.has-misaligned-images {
-  .p-logo-section__item {
-    margin-bottom: $spv--x-large;
-  }
-
-  .p-logo-section__logo {
-    max-height: 5rem;
-    // make sure image aspect ratio is kept
-    object-fit: contain;
-  }
-}
-
 // XXX: pete f: vanilla issue here -
 // https://github.com/canonical/vanilla-framework/issues/4877
 .p-divider {
