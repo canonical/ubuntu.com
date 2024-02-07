@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="p-strip is-shallow u-no-padding-bottom">
-  <div class="row--50-50 p-section">
+  <div class="row--50-50 p-section--shallow">
     <div class="col">
       <h1>Ubuntu leads in hyperscale</h1>
     </div>
@@ -19,6 +19,17 @@
         <a href="/download/arm">Download&nbsp;Ubuntu&nbsp;for&nbsp;ARM&nbsp;&rsaquo;</a>
       </p>
     </div>
+  </div>
+  <div class="u-fixed-width u-align--center">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/d8656f9d-server-illustration.png",
+      alt="",
+      width="600",
+      height="403",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+    }}
   </div>
 </div>
 
