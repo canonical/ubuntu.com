@@ -148,8 +148,15 @@ function handleUrlHash() {
   const targetId = window.location.hash;
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
   if (targetDropdown) {
+    const currViewportWidth = window.innerWidth;
+    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT
+    if (isMobile) {
+      const menuToggle = navigation.querySelector(".js-menu-button");
+      console.log("menuToggle", menuToggle);
+      menuToggle?.click();
+    }
     fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
-    targetDropdown?.querySelector("a").click();
+    handleDropdownClick(targetDropdown);
   }
 }
 
