@@ -145,7 +145,7 @@ function updateUrlHash(id, open) {
 }
 
 function handleUrlHash() {
-  const targetId = window.location.hash
+  const targetId = window.location.hash;
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
   if (targetDropdown) {
     fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
