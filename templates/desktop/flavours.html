@@ -508,21 +508,21 @@
   <div class="row">
     <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
       <hr class="p-rule"/>
-      <div class="row">
-        <div class="col-3 col-medium-1">
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Ubuntu-based variants</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
           <p>A complete list of known flavours, editions and customizations is maintained on the <a href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
         </div>
       </div>
       <hr class="p-rule"/>
-      <div class="row">
-        <div class="col-3 col-medium-1">
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Looking for Ubuntu?</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>Download the latest release of Ubuntu desktop, the open source operating system that powers millions of PCs and laptops around the world. It's easy to install on Windows or macOS, or run Ubuntu alongside them!</p>
           <p><a href="/download/desktop" class="p-button">Download now</a></p>
         </div>
@@ -531,45 +531,6 @@
   </div>
 </section>
 
-<section class="p-section">
-  <div class="row--25-75 is-split-on-medium">
-    <hr class="p-rule"/>
-    <div class="col">
-      <div class="p-section--shallow">
-        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest Ubuntu Desktop news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
-      </div>
-    </div>
-    <div class="col">
-      <div class="row p-section--shallow" id="desktop-latest-articles">
-      </div>
-      <hr class="is-muted">
-      <p class="u-float-right"><a href="/blog/desktop">Explore all</a></p>
-    </div>
-  </div>
-
-  <template style="display:none" id="desktop-articles-template">
-    <div class="col-3">
-      <div class="u-crop--16-9">
-        <div class="article-image p-image-wrapper"></div>
-      </div>
-      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
-      <p class="article-excerpt"></p>
-    </div>
-  </template>
-</section>
-
-<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-<script>
-  canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#desktop-latest-articles",
-      articleTemplateSelector: "#desktop-articles-template",
-      excerptLength: 200,
-      groupId: "1479",
-      linkImage: true,
-      limit: 3
-    }
-  )
-</script>
+{% include "desktop/partial/_desktop-latest-news.html" %}
 
 {% endblock content %}
