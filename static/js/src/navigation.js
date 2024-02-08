@@ -149,10 +149,9 @@ function handleUrlHash() {
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
   if (targetDropdown) {
     const currViewportWidth = window.innerWidth;
-    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT
+    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
     if (isMobile) {
       const menuToggle = navigation.querySelector(".js-menu-button");
-      console.log("menuToggle", menuToggle);
       menuToggle?.click();
     }
     fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
@@ -242,8 +241,8 @@ function updateNavMenu(dropdown, show) {
     else updateDropdownStates(dropdown, show);
     showDesktopDropdown(show);
   } else if (dropdownContentMobile) {
-    updateMobileDropdownState(dropdown, show);
     updateWindowHeight();
+    updateMobileDropdownState(dropdown, show);
   } else {
     const observer = new MutationObserver(handleMutation);
     const observerConfig = { childList: true, subtree: true };
@@ -263,9 +262,9 @@ function updateDropdownStates(dropdown, show, delay) {
         updateMobileDropdownState(filteredDropdown, !show);
       });
   }
+  updateWindowHeight();
   updateDesktopDropdownStates(dropdown, show, delay);
   updateMobileDropdownState(dropdown, show, isNested);
-  updateWindowHeight();
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
