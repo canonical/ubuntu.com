@@ -124,6 +124,7 @@ function handleFilters() {
 
   priorityCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function (event) {
+      console.log(event.target.value, priorityFilter);
       if (event.target.checked) {
         addParam(priorityFilter.name, event.target.value);
       } else {
