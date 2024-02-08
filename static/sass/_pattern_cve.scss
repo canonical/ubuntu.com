@@ -323,6 +323,27 @@
         position: unset;
       }
 
+      .release-accordion-group {
+        max-height: 30rem;
+        overflow: scroll;
+      }
+
+      .releases-tab-container {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #f3f3f3;
+      }
+
+      .p-accordion__tab {
+        z-index: -1;     
+        
+      }
+      .is-affected-packages {
+        z-index: 1;
+        background-color: #f3f3f3;
+      }
+
       .p-checkbox__label {
         padding-left: 2.2rem;
       }
@@ -346,5 +367,15 @@
     .p-text--small-caps:not(:first-child) {
       padding-left: 2rem;
     }
+  }
+
+  .cve-filter-buttons {
+    hr {
+      margin-bottom: 1rem;
+    }
+
+    background: #f3f3f3;
+    bottom: 0;
+    position: sticky;
   }
 }

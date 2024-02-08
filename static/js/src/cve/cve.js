@@ -32,12 +32,15 @@ const unmaintainedReleasesLink = document.querySelector(
 const unmaintainedReleasesContainer = document.querySelector(
   ".js-unmaintained-releases"
 );
+// eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
   (release) => release.codename
 );
+// eslint-disable-next-line no-undef
 const ltsReleases = Object.values(ltsReleasesObj).map(
   (release) => release.codename
 );
+// eslint-disable-next-line no-undef
 const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
   (release) => release.codename
 );
