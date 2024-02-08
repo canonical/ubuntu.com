@@ -7,20 +7,26 @@
 {% block body_class %}is-paper{% endblock %}
 
 {% block content %}
-<section class="p-strip--whitesuru is-shallow u-no-margin--bottom">
-  <div class="p-section--deep">
+<section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
+  <div class="p-section">
     <div class="row">
-      <div class="col-start-large-4 col-9">
-        <div class="p-section--shallow">
-          <h1>Bring Ubuntu to your organisation</h1>
+      <div class="col-9 col-start-large-4">
+        <div class="row">
+          <div class="col-medium-3">
+            <div class="p-section--shallow">
+              <h1>Bring Ubuntu to your organisation</h1>
+            </div>
+          </div>
+          <div class="col-medium-3">
           <p>Ubuntu Desktop combines enterprise-grade support, security <br />and functionality with the best of open source.</p>
+          <hr />
+          <p>
+            <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+            <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
+            <a href="/pro">Secure&nbsp;open&#8209;source&nbsp;with&nbsp;Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a>
+          </p>
+          </div>
         </div>
-        <hr />
-        <p>
-          <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
-          <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
-          <a href="/pro">Secure open-source with Ubuntu Pro&nbsp;&rsaquo;</a>
-        </p>
       </div>
     </div>
   </div>
@@ -29,7 +35,7 @@
 <section class="p-section">
   <div class="row--25-75 p-section--shallow">
     <hr class="p-rule"/>
-    <div class="col">
+    <div class="col u-hide--medium u-hide--small">
       {{
         image (
         url="https://assets.ubuntu.com/v1/5cdf69d6-Ubuntu+Pro.svg",
@@ -292,10 +298,10 @@
     <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
       <hr class="p-rule" />
       <div class="row p-section--shallow">
-        <div class="col-3 col-medium-1">
+        <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Advanced Active Directory policies</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>System Security Services Daemon (SSSD) and GPO are available by default to manage desktop settings. Ubuntu Pro users receive access to advanced policies like remote script execution and privilege management.</p>
           <hr class="p-rule" />
           <p>
@@ -306,10 +312,10 @@
       </div>
       <hr class="p-rule" />
       <div class="row p-section--shallow">
-        <div class="col-3 col-medium-1">
+        <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Supported by key Microsoft tools</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>Microsoft Intune on Ubuntu Desktop enables custom policy compliance and gated access to corporate resources via the Microsoft Edge browser. Ubuntu also supports critical business and administration applications such as Powershell and Microsoft Teams.</p>
           <hr />
           <a href="https://www.linkedin.com/events/6991037067392618497/comments/">Watch our webinar&nbsp;&rsaquo;</a>
@@ -317,10 +323,10 @@
       </div>
       <hr class="p-rule" />
       <div class="row p-section--shallow">
-        <div class="col-3 col-medium-1">
-          <h3 class="p-heading--5">Ubuntu on Windows Subsystem for Linux</h3>
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Ubuntu on Windows&nbsp;Subsystem&nbsp;for&nbsp;Linux</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>Windows Subsystem for Linux (WSL) gives Windows developers a full Ubuntu terminal experience and easy access to cutting edge open source tools. IT administrators can leverage Ubuntu Pro to remotely manage and secure their developer instances.</p>
           <hr />
           <a href="/wsl">Learn more about Ubuntu on WSL&nbsp;&rsaquo;</a>
@@ -419,17 +425,17 @@
 </section>
 
 <section class="p-section">
-  <div class="row--25-75 is-split-on-medium">
+  <div class="row">
     <hr class="p-rule"/>
-    <div class="col">
+    <div class="col-3 col-medium-3">
       <div class="p-section--shallow">
         <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest Ubuntu Desktop news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
       </div>
     </div>
-    <div class="col">
+    <div class="col-9 col-medium-3">
       <div class="row p-section--shallow" id="desktop-latest-articles">
       </div>
-      <hr class="is-muted">
+      <hr/>
       <p class="u-float-right"><a href="/blog/desktop">Explore all</a></p>
     </div>
   </div>
