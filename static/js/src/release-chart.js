@@ -305,7 +305,7 @@ function addXAxisVerticalLines(svg, height, margin) {
  *
  * Builds key for supplied chart based on task status
  */
-function buildChartKey(chartSelector, taskStatus) {
+function buildChartKey(svg, chartSelector, taskStatus) {
   var taskStatusKeys = Object.keys(taskStatus);
   var rectDimensions = 25;
   var rowHeight = rectDimensions + 5;
@@ -314,7 +314,7 @@ function buildChartKey(chartSelector, taskStatus) {
   var containerWidth = document.querySelector(chartSelector).clientWidth;
 
   var numberOfExtraLines =
-    getMaxNumberOfLines(taskStatusKeys, containerWidth) - 1;
+    getMaxNumberOfLines(svg, taskStatusKeys, containerWidth) - 1;
   var extraChartHeight = numberOfExtraLines * 9;
 
   var chartKey = d3
@@ -363,7 +363,7 @@ function buildChartKey(chartSelector, taskStatus) {
  * Find the max number of lines that any given text will occupy from
  * a list of texts, based on a given container width
  */
-function getMaxNumberOfLines(textList, width) {
+function getMaxNumberOfLines(svg, textList, width) {
   var tempSvg = (svg = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "svg"
@@ -412,7 +412,7 @@ function wrapText(text, width) {
       x = text.attr("x"),
       y = text.attr("y"),
       dy = 0;
-    tspan = text
+    var tspan = text
       .text(null)
       .append("tspan")
       .attr("x", x)
@@ -611,7 +611,7 @@ export function createReleaseChart(
   addXAxisVerticalLines(svg, height, margin);
   addYAxisHorizontalLines(svg, yAxis, width, margin);
   cleanUpChart(svg);
-  buildChartKey(keyAttachmentSelector, taskStatus);
+  buildChartKey(svg, keyAttachmentSelector, taskStatus);
 
   highlightChartRow(svg, y, highlightVersion);
 }
