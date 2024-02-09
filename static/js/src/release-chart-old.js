@@ -440,7 +440,13 @@ export function createChartWithTitles(
   if (!taskTypesTitle || !taskVersionsTitle) return;
 
   // build regular chart
-  createReleaseChartOld(chartSelector, taskTypes, taskStatus, tasks, taskVersions);
+  createReleaseChartOld(
+    chartSelector,
+    taskTypes,
+    taskStatus,
+    tasks,
+    taskVersions
+  );
 
   // adjust chart height to fit titles
   margin.left = calculateYAxisWidth(taskTypes);
