@@ -53,7 +53,6 @@ $meganav-height: 3rem;
     }
 
     .p-navigation__nav {
-      margin-left: -1rem;
       margin-right: 0;
       max-height: calc(100vh - 3rem);
       width: auto;
@@ -63,6 +62,7 @@ $meganav-height: 3rem;
 
         & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
           padding-left: $row-margin-small;
+          padding-right: 2rem;
 
           &::before {
             left: $row-margin-small;
@@ -178,7 +178,7 @@ $meganav-height: 3rem;
     }
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
-      .row {
+      .p-navigation__row--25-75 {
         display: unset;
       }
 
@@ -199,7 +199,7 @@ $meganav-height: 3rem;
       }
     }
 
-    .row {
+    .p-navigation__row--25-75 {
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         padding-left: 0;
         padding-right: 0;
@@ -363,6 +363,7 @@ $meganav-height: 3rem;
 
       .p-navigation__link::after {
         top: 1.25rem;
+        right: 0.5rem;
         @media (max-width: $breakpoint-navigation-threshold - 1) {
           right: 1.5rem;
           top: 1rem;
@@ -385,7 +386,7 @@ $meganav-height: 3rem;
     height: fit-content;
 
     @media (max-width: $breakpoint-navigation-threshold - 1) {
-      .row {
+      .p-navigation__row--25-75 {
         height: 100vh;
       }
     }
@@ -618,8 +619,6 @@ $meganav-height: 3rem;
     z-index: 10;
 
     .p-navigation__nav {
-      margin-left: -1rem;
-
       &.is-open {
         display: flex;
 
@@ -654,14 +653,10 @@ $meganav-height: 3rem;
         padding-left: $row-margin-medium;
       }
 
-      .row {
+      .p-navigation__row--25-75 {
         display: unset;
         padding-left: 0;
         padding-right: 0;
-      }
-
-      .p-navigation__nav {
-        margin-left: -1rem;
       }
     }
 
