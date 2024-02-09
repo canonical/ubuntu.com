@@ -312,7 +312,6 @@ def cve_index():
     statuses = flask.request.args.getlist("status")
     order = flask.request.args.get("order", default="", type=str)
 
-
     # All CVEs
     cves_response = security_api.get_cves(
         query=query,
@@ -406,7 +405,7 @@ def cve_index():
             support_date > datetime.now() or esm_date > datetime.now()
         ) and release_date < datetime.now():
             selected_releases.append(release)
-        
+
         if support_date < datetime.now():
             if esm_date > datetime.now():
                 if release["lts"] and release_date < datetime.now():
