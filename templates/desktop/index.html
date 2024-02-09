@@ -6,20 +6,24 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1ZhMkLlkXcimHTIe1taXy24vbbR9pBkZd49H2sJqeQH0/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
 
 {# 0 -180px #}
 
-<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom desktop-hero">
-  <div class="p-strip--suru">
-    <div class="row">
-      <div class="col-6">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="p-section">
+    <div class="row--50-50">
+      <div class="col">
         <h1>Ubuntu for desktops</h1>
         <p class="desktop-hero--subtext">The open source Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
-        <p><a href="/download/desktop" class="p-button--positive">Download Ubuntu</a></p>
-        <p><a href="/desktop/features" class="p-link--inverted">Take a look&nbsp;&rsaquo;</a></p>
+        <p>
+          <a href="/download/desktop" class="p-button--positive">Download Ubuntu</a>
+          <a href="/desktop/features">Take a look&nbsp;&rsaquo;</a>
+        </p>
       </div>
-      <div class="col-6 u-vertically-center">
+      <div class="col">
         <div class="u-embedded-media">
           <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -28,121 +32,236 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-8 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/741b30ec-desktop-logos.png",
-        alt="Apps you can use on Ubuntu 20.04.LTS",
-        height="235",
-        width="510",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>The OS trusted by millions</h2>
     </div>
-    <div class="col-4">
-      <h2>Complete</h2>
-      <p>Ubuntu comes with everything you need to run your organisation, school, home or enterprise. All the essential applications, like an office suite, browsers, email and media apps come pre-installed and thousands more games and applications are available in the Ubuntu Software Centre.</p>
+    <div class="col">
+      <p>Ubuntu comes with everything you need to run your organisation, school, home or enterprise.  All the essential applications, like an office suite, browsers, email and media apps, come pre-installed and thousands more games and applications are available in the Ubuntu Software Centre.</p>
       <p><a href="/desktop/features">Explore features&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h2>Open source</h2>
-      <p>Ubuntu has always been free to download, use and share. We believe in the power of open source software; Ubuntu could not exist without its worldwide community of voluntary developers.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2>Secure</h2>
-      <p>With a built-in firewall and virus protection software, Ubuntu is one of the most secure operating systems around. And the long-term support releases give you five years of security patches and updates.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2>Accessible</h2>
-      <p>Computing is for everyone regardless of nationality, gender or disability. Ubuntu is fully translated into over 50 languages and includes essential assistive technologies.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6 u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
-        alt="",
-        width="2557",
-        height="1321",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6 u-vertically-center">
-      <div>
-        <h2>
-          Visually stunning, wherever it's used
-        </h2>
-        <p>
-          Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.
-        </p>
+  <div class="u-fixed-width">
+    <div class="p-icon-section">
+      <div class="p-icon-section__items">
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/9917aba6-spotify-linux-256.png",
+            alt="Spotify",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/f099c20f-vlc.png",
+            alt="VLC",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/034147e9-code_ozwVHSV.png",
+            alt="VSCode",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/eb5ccb1d-clion.ico.png",
+            alt="CLion",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/8daf0eb5-firefox_logo.png",
+            alt="Firefox",
+            width="196",
+            height="196",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/dcc61b66-Skype.png",
+            alt="Skype",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/d77f0f3a-icon256.png",
+            alt="Telegram",
+            width="256",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>
-      Get Linux on the largest range of&nbsp;hardware
-    </h2>
+<section class="p-section">
+  <div class="row--25-75 is-split-on-medium">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2 class="p-text--small-caps">Why choose Ubuntu desktop</h2>
+    </div>
+    <div class="col">
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">Open source</h3>
+        </div>
+        <div class="col-6">
+          <p>Ubuntu has always been free to download, use and share.  We believe in the power of open source software; Ubuntu could not exist without its worldwide community of voluntary developers.</p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">Secure</h3>
+        </div>
+        <div class="col-6">
+          <p>With a built-in firewall and virus protection software, Ubuntu is one of the most secure operating systems around.  And the long-term support releases give you five years of security patches and updates.</p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3">
+          <h3 class="p-heading--2">Accessible</h3>
+        </div>
+        <div class="col-6">
+          <p>Computing is for everyone regardless of nationality, gender or disability. Ubuntu is fully translated into over 50 languages and includes essential assistive technologies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Visually stunning,<br /> wherever it's used</h2>
+    </div>
+    <div class="col">
+      <p>Ubuntu gets the most from your screen, with high definition, touchscreen support, fractional scaling and touchpad gestures. 22.04 refreshes its signature Yaru theme, with system-wide dark style preference support, accent colours and the largest selection of community wallpapers yet.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width p-section--shallow">
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/acdf946a-Screenshot+from+2022-04-18+13-05-17.png",
+      alt="",
+      width="2557",
+      height="1321",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Get Linux on the largest range of hardware</h2>
+    </div>
+    <div class="col">
+      <p>Canonical works closely with Dell, Lenovo and HP  to certify that Ubuntu works on a wide range of their laptops and workstations. It means that a seamless Ubuntu experience is available out of the box with more hardware choice than ever.</p>
+      <p>And Ubuntu isn't just for the desktop, it is used in data centres around the world powering every kind of server imaginable and is by far, the most popular operating system in the cloud.</p>
+      <a href="/certified">Learn more about Ubuntu certified hardware&nbsp;&rsaquo;</a>
+      <div class="u-align--center">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/7f76ac3a-hp-laptop-studio-jammy.png",
+          alt="",
+          width="1659",
+          height="1246",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width p-section--shallow">
+    <hr class="p-rule" />
+    <h2>Ubuntu Desktop for the enterprise</h2>
   </div>
   <div class="row">
-    <div class="col-6">
-      <p>
-        Canonical works closely with Dell, Lenovo and HP  to certify that Ubuntu works on a wide range of their laptops and workstations. It means that a seamless Ubuntu experience  is available out of the box with more hardware choice than ever.
-      </p>
-      <p>
-        And Ubuntu isn't just for the desktop, it is used in data centres around the world powering every kind of server imaginable and is by far, the most popular operating system in the cloud.
-      </p>
-      <p><a href="https://partners.ubuntu.com/programmes">Find out more about our partners&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 col-start-large-8 u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/a8e96807-desktop-xps13-small.png",
-        alt="Laptop running Ubuntu",
-        width="1088",
-        height="630",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>
-      Ubuntu Desktop for the enterprise
-    </h2>
-  </div>
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h3>Support and management tools</h3>
-      <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
-      <p><a href="/desktop/organisations">Learn more about Ubuntu for enterprises&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h3>Backed by Canonical</h3>
-      <p>Canonical is a global software company and the number-one Ubuntu services provider. Companies can choose to receive expert training, support or consultancy for a fee that goes towards the continued development of Ubuntu.</p>
-      <p><a href="https://canonical.com">Learn more about Canonical&nbsp;&rsaquo;</a></p>
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Support and management tools</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
+          <hr />
+          <a href="/desktop/organisations">Learn more about Ubuntu for enterprises&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Backed by Canonical</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Canonical is a global software company and the number-one Ubuntu services provider. Companies can choose to receive expert training, support or consultancy for a fee that goes towards the continued development of Ubuntu.</p>
+          <hr />
+          <a href="https://www.canonical.com">Learn more about Canonical&nbsp;&rsaquo;</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-{% with first_item="_desktop_download", second_item="_support-image", third_item="_desktop_flavours" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "shared/contextual_footers/_desktop.html" %}
 
 {% endblock content %}

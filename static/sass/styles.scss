@@ -53,7 +53,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-table";
 @import "pattern_cve";
 @import "pattern_desktop-statistics";
-@import "pattern_gaming";
 @import "pattern_grid";
 @import "pattern_footer";
 @import "pattern_hardware-details-table";
@@ -110,7 +109,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-desktop-statistics;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
-@include ubuntu-p-gaming;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-inline-list-midline;
@@ -1404,4 +1402,94 @@ $color-link-dark: #69c !default;
   &.is-product {
     background-color: #f3f3f3;
   }
+}
+
+.p-icon-section {
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 3rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      row-gap: 1rem;
+    }
+  }
+
+  &__item {
+    margin-bottom: -0.5rem;
+    margin-right: 3rem;
+    margin-top: -0.5rem;
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__icon {
+    height: 6rem;
+    width: auto;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      height: 4rem;
+    }
+  }
+}
+
+.p-icon-section--dense {
+  @extend .p-icon-section;
+
+  .p-icon-section__items {
+    line-height: 2rem;
+    row-gap: calc(1rem + 1vw);
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      row-gap: 1.5rem;
+    }
+  }
+
+  .p-icon-section__item {
+    margin-right: 2.5rem;
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      margin-right: 1rem;
+    }
+  }
+
+  .p-icon-section__icon {
+    height: 3.75rem;
+
+    @media screen and (max-width: $breakpoint-large - 1) {
+      height: 3rem;
+    }
+  }
+}
+
+// XXX: MPT: Can be removed once this is fixed in Vanilla
+// https://github.com/canonical/vanilla-framework/pull/4950
+.desktop-footer {
+  &__container {
+    @media screen and (max-width: $breakpoint-small - 1) {
+      padding-bottom: 1rem;
+    }
+  }
+  &__content {
+    height: 12rem;
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
+      height: 14rem;
+    }
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      height: auto;
+    }
+  }
+}
+
+// XXX: Pete F: Can be removed once this is fixed in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/4955
+hr.is-extra-muted {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.5;
 }
