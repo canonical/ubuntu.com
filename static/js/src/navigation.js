@@ -18,6 +18,9 @@ let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
+// Get the navigations initial height for use in 'updateWindowHeight'
+const navEle = document.querySelector(".p-navigation__nav");
+const originalMaxHeight = navEle.style.maxHeight;
 
 navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
@@ -241,8 +244,8 @@ function updateNavMenu(dropdown, show) {
     else updateDropdownStates(dropdown, show);
     showDesktopDropdown(show);
   } else if (dropdownContentMobile) {
-    updateWindowHeight();
     updateMobileDropdownState(dropdown, show);
+    updateWindowHeight();
   } else {
     const observer = new MutationObserver(handleMutation);
     const observerConfig = { childList: true, subtree: true };
@@ -262,9 +265,9 @@ function updateDropdownStates(dropdown, show, delay) {
         updateMobileDropdownState(filteredDropdown, !show);
       });
   }
-  updateWindowHeight();
   updateDesktopDropdownStates(dropdown, show, delay);
   updateMobileDropdownState(dropdown, show, isNested);
+  updateWindowHeight();
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
@@ -334,8 +337,6 @@ function getUrlBarHeight(element) {
 }
 
 // Handles mobile navigation height taking up veiwport space
-const navEle = document.querySelector(".p-navigation__nav");
-const originalMaxHeight = navEle.style.maxHeight;
 function updateWindowHeight() {
   navEle.style.maxHeight = originalMaxHeight;
   const isInDropdownList = mainList.classList.contains("is-active");
