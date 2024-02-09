@@ -323,12 +323,39 @@
         position: unset;
       }
 
+      .release-accordion-group {
+        max-height: 30rem;
+        overflow: scroll;
+      }
+
+      .releases-tab-container {
+        background: #f3f3f3;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .p-accordion__tab {
+        z-index: -1;
+      }
+      .is-affected-packages {
+        background-color: #f3f3f3;
+        z-index: 1;
+      }
+
       .p-checkbox__label {
         padding-left: 2.2rem;
       }
 
       .p-text--small-caps {
         padding-left: 2.2rem;
+      }
+
+      @media screen and (min-width: $breakpoint-large) {
+        .p-accordion__tab,
+        .p-accordion__panel {
+          padding-left: 0;
+        }
       }
     }
 
@@ -339,5 +366,15 @@
     .p-text--small-caps:not(:first-child) {
       padding-left: 2rem;
     }
+  }
+
+  .cve-filter-buttons {
+    hr {
+      margin-bottom: 1rem;
+    }
+
+    background: #f3f3f3;
+    bottom: 0;
+    position: sticky;
   }
 }

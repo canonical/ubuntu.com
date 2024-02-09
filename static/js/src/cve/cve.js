@@ -15,6 +15,36 @@ const limitSelect = document.querySelector(".js-limit-select");
 const orderSelect = document.querySelector(".js-order-select");
 const exportLink = document.querySelector("#js-export-link");
 const apiBase = "https://ubuntu.com/security/cves.json";
+const releaseFilter = document.querySelector("#release-filter");
+const priorityFilter = document.querySelector("#priority-filter");
+const statusFilter = document.querySelector("#status-filter");
+const clearFiltersButton = document.querySelector("#clear-filters");
+const vulnerableStatuses = ["pending", "needed", "deferred"];
+const releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
+const applyFiltersButton = document.querySelector("#apply-filters");
+const priorityCheckboxes = priorityFilter.querySelectorAll(
+  ".p-checkbox__input"
+);
+const statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
+const unmaintainedReleasesLink = document.querySelector(
+  ".js-show-unmaintained-releases"
+);
+const unmaintainedReleasesContainer = document.querySelector(
+  ".js-unmaintained-releases"
+);
+// eslint-disable-next-line no-undef
+const maintainedReleases = Object.values(maintainedReleasesObj).map(
+  (release) => release.codename
+);
+// eslint-disable-next-line no-undef
+const ltsReleases = Object.values(ltsReleasesObj).map(
+  (release) => release.codename
+);
+// eslint-disable-next-line no-undef
+const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
+  (release) => release.codename
+);
+let filterParams = [];
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
@@ -83,77 +113,152 @@ attachEvents();
 handleButtons();
 disableSelectedVersions();
 
-const priorities = {
-  critical:
-    "<strong>Critical:</strong> A world-burning problem that is exploitable for most Ubuntu users. Examples include remote root privilege escalations or remote data theft.",
-  high:
-    "<strong>High:</strong> Exploitable for many users in the default configuration of the affected software. Examples include serious remote denial of service of the system, local root privilege escalations or local data theft.",
-  medium:
-    "<strong>Medium:</strong> Exploitable for many users of the affected software. Examples include network daemon denial of service, cross-site scripting and gaining user privileges.",
-  low:
-    "<strong>Low:</strong> Does very little damage or is otherwise hard to exploit, due to small user base or other factors such as requiring specific environment, uncommon configuration, or user assistance. These tend to be included in security updates only when higher priority issues require an update or if many low-priority issues have built up.",
-  negligible:
-    "<strong>Negligible:</strong> May be a problem, but does not impose a security risk due to various factors. Examples include when the vulnerability is only theoretical in nature, requires a very special situation, has almost no install base or does no real damage. These typically will not receive security updates unless there is an easy fix and some other issue causes an update.",
-  unknown:
-    "<strong>Unknown:</strong> Open vulnerability where the priority is currently unknown and needs to be triaged.",
-};
-
-const statuses = {
-  "not-affected":
-    "<strong>Not vulnerable:</strong> Packages which do not exist in the archive, are not affected by the vulnerability or have a fix applied in the archive.",
-  pending:
-    "<strong>Pending:</strong> A fix has been applied and updated packages are awaiting arrival into the archive. For example, this might be used when wider testing is requested for the updated package.",
-};
-
-const tooltipIconList = document.querySelectorAll(".cve-tooltip-icon");
-
-tooltipIconList.forEach(function (tooltipIcon) {
-  tooltipIcon.addEventListener(
-    "mouseover",
-    function () {
-      if (tooltipIcon.parentElement.querySelector(".cve-tooltip") == null) {
-        const priority = this.dataset.priority;
-        const status = this.dataset.status;
-
-        if (!(priority in priorities) && !(status in statuses)) {
-          return;
-        }
-
-        const tooltip = document.createElement("div");
-        tooltip.classList.add("cve-tooltip");
-
-        tooltip.innerHTML +=
-          "<div class='arrow-up back'></div><div class='arrow-up front'></div>";
-
-        if (priority in priorities) {
-          tooltip.innerHTML += priorities[priority];
-        }
-
-        if (priority in priorities && status in statuses) {
-          tooltip.innerHTML += "<br><br>";
-        }
-
-        if (status in statuses) {
-          tooltip.innerHTML += statuses[status];
-        }
-
-        tooltipIcon.parentElement.append(tooltip);
+// Adds event listeners to all filter checkboxes
+function handleFilters() {
+  releaseCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        addParam(releaseFilter.name, event.target.value);
+      } else {
+        removeParam(releaseFilter.name, event.target.value);
       }
-    },
-    false
-  );
-  tooltipIcon.addEventListener(
-    "mouseout",
-    function () {
-      const tooltip = tooltipIcon.parentElement.querySelector(".cve-tooltip");
+    });
+  });
 
-      if (tooltip != null) {
-        tooltipIcon.parentElement.removeChild(tooltip);
+  priorityCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      console.log(event.target.value, priorityFilter);
+      if (event.target.checked) {
+        addParam(priorityFilter.name, event.target.value);
+      } else {
+        removeParam(priorityFilter.name, event.target.value);
       }
-    },
-    false
-  );
-});
+    });
+  });
+
+  statusCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function (event) {
+      if (event.target.checked) {
+        addParam(statusFilter.name, event.target.value);
+      } else {
+        removeParam(statusFilter.name, event.target.value);
+      }
+    });
+  });
+}
+handleFilters();
+
+// Removes a parameter from the filterParams array
+function removeParam(param, value) {
+  if (param === "version") {
+    let statusIndex = filterParams
+      .map((param) => param.param)
+      .indexOf("status");
+    filterParams.splice(statusIndex, 1);
+  }
+  filterParams = filterParams.filter((param) => param.value !== value);
+}
+
+// Maintains filter state on page load
+// Vulnerable filter is handled differently because it is a single value
+function handleFilterPersist() {
+  if (urlParams.has("version")) {
+    const params = urlParams.getAll("version");
+
+    releaseCheckboxes.forEach(function (checkbox) {
+      if (params.includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  if (urlParams.has("priority")) {
+    const params = urlParams.getAll("priority");
+
+    priorityCheckboxes.forEach(function (checkbox) {
+      if (params.includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  if (urlParams.has("status")) {
+    const params = urlParams.getAll("status");
+
+    if (params.includes("pending")) {
+      const checkbox = statusFilter.querySelector("input[value='vulnerable']");
+      checkbox.checked = true;
+    } else {
+      statusCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
+  }
+}
+handleFilterPersist();
+
+function applyFilters() {
+  applyFiltersButton.addEventListener("click", function (event) {
+    filterParams.forEach(function (param) {
+      urlParams.append(param.param, param.value);
+    });
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  });
+}
+applyFilters();
+
+function handleClearFilters() {
+  clearFiltersButton.addEventListener("click", function (event) {
+    for (const [param] of urlParams.entries()) {
+      if (urlParams.has("q")) {
+        if (param != "q") {
+          urlParams.delete(param);
+        }
+      } else {
+        urlParams.append("q", "");
+      }
+    }
+    url.search = urlParams.toString();
+    window.location.href = url.href;
+  });
+}
+handleClearFilters();
+
+// Maintained releases and vulnerable statuses are handled differently
+// because they are both arrays instead of individual values
+function addParam(param, value) {
+  if (value === "maintained") {
+    maintainedReleases.forEach(function (release) {
+      filterParams.push(
+        { param: param, value: release },
+        { param: "status", value: "" }
+      );
+    });
+  } else if (param === "version") {
+    filterParams.push(
+      { param: param, value: value },
+      { param: "status", value: "" }
+    );
+  } else if (value === "vulnerable") {
+    vulnerableStatuses.forEach(function (status) {
+      filterParams.push({ param: param, value: status });
+    });
+  } else {
+    filterParams.push({ param: param, value: value });
+  }
+}
+
+function showUnmaintaiedReleases() {
+  unmaintainedReleasesLink.onclick = function (event) {
+    event.preventDefault();
+    unmaintainedReleasesLink.classList.add("u-hide");
+    unmaintainedReleasesContainer.classList.remove("u-hide");
+  };
+}
+showUnmaintaiedReleases();
 
 function handleLimitSelect() {
   if (urlParams.has("limit")) {
