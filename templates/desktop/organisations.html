@@ -4,129 +4,149 @@
 {% block meta_description %}Ubuntu Desktop combines enterprise-grade support, security and functionality with the best of open source.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1RuxCA6GYh9UriNv26HCZP9UHo4b4_9fYaaMtGQuH_xc/edit#{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock %}
+
 {% block content %}
-<section class="p-strip--suru-bottomed">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Bring Ubuntu to your <br> organisation</h1>
-      <p>
-        Ubuntu Desktop combines enterprise-grade support, security <br>and functionality with the best of open source.
-      </p>
-      <p><a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a></p>
-      <p><a href="/pro">Secure open-source with Ubuntu Pro&nbsp;&rsaquo;</a></p>
-      <p><a class="p-button" href="https://assets.ubuntu.com/v1/a48fc9cd-Ubuntu%20Desktop%20DS%2021.06.23.pdf">Download the datasheet</a></p>
+<section class="p-strip--whitesuru is-shallow u-no-padding--bottom">
+  <div class="p-section">
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="row">
+          <div class="col-medium-3">
+            <div class="p-section--shallow">
+              <h1>Bring Ubuntu to your organisation</h1>
+            </div>
+          </div>
+          <div class="col-medium-3">
+          <p>Ubuntu Desktop combines enterprise-grade support, security <br class="u-hide--small u-hide--medium" />and functionality with the best of open source.</p>
+          <hr />
+          <p>
+            <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+            <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
+            <a href="/pro">Secure&nbsp;open&nbsp;source&nbsp;with&nbsp;Ubuntu&nbsp;Pro&nbsp;&rsaquo;</a>
+          </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f29015c6-image-laptop.png",
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--25-75 p-section--shallow">
+    <hr class="p-rule"/>
+    <div class="col u-hide--medium u-hide--small">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/5cdf69d6-Ubuntu+Pro.svg",
         alt="",
-        width="750",
-        height="484",
+        width="225",
+        height="58",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
     </div>
+    <div class="col">
+      <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
+    </div>
   </div>
-</section>
-
-<section class="p-strip">
   <div class="row">
-    <div class="col-7">
-      <h2 class="u-sv2">Secure enterprise management with Ubuntu Pro Desktop</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card col-medium-3">
-      <h4>Secure open-source stack</h4>
-      <hr />
-      <p>
-        Receive 10 years of security patches for Ubuntu LTS releases with Expanded Security Maintenance (<a href="/security/esm">ESM</a>) and coverage for over 23,000 packages in the Ubuntu Universe repository. Minimise downtime with Kernel <a href="/security/livepatch">Livepatch</a>.
-      </p>
-      <p>
-        <a href="/pro">
-          Learn more about Ubuntu Pro
-        </a>
-      </p>
-    </div>
-    <div class="col-4 p-card col-medium-3">
-      <h4>Landscape Fleet Management</h4>
-      <hr />
-      <p>
-        Software updates, configuration management, policy compliance, and permission control for your entire physical and virtual fleet. Landscape is easy to use and smoothly integrates with other tooling through a robust API.
-      </p>
-      <p>
-        <a href="https://landscape.canonical.com/">
-          Learn more about Landscape
-        </a>
-      </p>
-    </div>
-    <div class="col-4 p-card col-medium-3">
-      <h4>Advanced Active Directory Policies</h4>
-      <hr />
-      <p>
-        Increase your management capabilities with full Group Policy Object support, remote script execution and privilege management.
-      </p>
-      <p>
-        <a href="/engage/New-Active-Directory-integration-features">
-          Learn more about Active <br/>Directory integration
-        </a>
-      </p>
-    </div>
-    <div class="col-4 p-card col-medium-3">
-      <h4>Compliance, certification and hardening</h4>
-      <hr />
-      <p>
-        Ubuntu Pro delivers security and compliance for even the most sensitive workloads with <a href="/security/certifications#fips">FIPS 140-2 certified modules</a>, <a href="/security/certifications#cis">CIS hardening</a> and <a href="/security/certifications#common-criteria">Common Criteria EAL2</a> certification available.
-      </p>
-      <p>
-        <a href="/security">
-          Learn more about Ubuntu's security practices
-        </a>
-      </p>
-    </div>
-    <div class="col-4 p-card col-medium-3">
-      <h4>Certified hardware</h4>
-      <hr />
-      <p>
-        Ubuntu Desktop is certified across a wide range of laptops, desktops, and workstations, including the HP Z series and Dell  XPS and Precision lines.
-      </p>
-      <p>
-        <a href="/certified">
-          Learn more about Ubuntu certified hardware
-        </a>
-      </p>
-    </div>
-    <div class="col-4 p-card col-medium-3">
-      <h4>Weekday or 24/7 Support</h4>
-      <hr />
-      <p>
-        Advanced support customers get direct 24/7 access to our enterprise open source support team through our web portal, knowledge base or via phone.
-      </p>
-      <p>
-        <a href="/desktop/contact-us" class="js-invoke-modal p-button">
-          Contact us
-        </a>
-      </p>
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Secure open source stack</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Receive 10 years of security patches for Ubuntu LTS releases with Expanded Security Maintenance (<a href="/security/esm">ESM</a>) and coverage for over 23,000 packages in the Ubuntu Universe repository. Minimise downtime with Kernel <a href="/security/livepatch">Livepatch</a>.</p>
+          <hr />
+          <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Landscape fleet management</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Software updates, configuration management, policy compliance, and permission control for your entire physical and virtual fleet. Landscape is easy to use and smoothly integrates with other tooling through a robust API.</p>
+          <hr />
+          <a href="/landscape">Learn more about Landscape&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Advanced Active Directory policies</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Increase your management capabilities with full Group Policy Object support, remote script execution and privilege management.</p>
+          <hr />
+          <a href="/engage/New-Active-Directory-integration-features">Learn more about Active Directory integration&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Compliance, certification and hardening</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Ubuntu Pro delivers security and compliance for even the most sensitive workloads with <a href="/security/certifications#fips">FIPS 140-2 certified modules</a>, <a href="/security/certifications#cis">CIS hardening</a> and <a href="/security/certifications#common-criteria">Common Criteria EAL2</a> certification available.</p>
+          <hr />
+          <a href="/security">Learn more about Ubuntu's security practices&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Weekday or 24/7 support</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="p-section--shallow">Advanced support customers get direct 24/7 access to our enterprise open source support team through our web portal, knowledge base or via phone.</p>
+          <hr />
+          <a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Seamless operations on your choice of hardware</h2>
-    <p>To offer the best performance on Ubuntu, manufacturers are pre-loading devices with an Ubuntu certified image. Canonical is committed to working closely with the world's leading manufacturers to optimise and certify Ubuntu on their laptops and PCs.</p>
-    <p><a href="https://ubuntu.com/desktop/partners">Visit our partners page to find out more&nbsp;&rsaquo;</a></p>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Adopting a secure enterprise <br /> Linux desktop</h2>
+    </div>
+    <div class="col">
+      <p>Learn more about how you can adopt Linux securely for development teams in a Windows-centric organisation, without compromising on manageability and compliance.</p>
+      <hr />
+      <a class="p-button--positive" href="/engage/adopting-secure-enterprise-linux-desktop">Download our guide</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>High performance <br />on your choice of hardware</h2>
+    </div>
+    <div class="col">
+      <p>To offer the best performance on Ubuntu, manufacturers are pre-loading devices with an Ubuntu certified image. Canonical is committed to working closely with the world’s leading manufacturers to optimise and certify Ubuntu on their laptops and PCs.</p>
+      <a href="/certified">Learn more about Ubuntu certified hardware&nbsp;&rsaquo;</a>
+    </div>
   </div>
   <div class="u-fixed-width">
     <div class="p-logo-section">
-      <div class="p-logo-section__items u-no-margin--bottom">
+      <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/11814428-hp-logo.png",
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/a5bec84b-hp-logo.png",
             alt="Hewlett Packard",
-            width="288",
-            height="288",
+            width="159",
+            height="372",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -134,10 +154,50 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c70b529e-lenovo-logo.png",
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/3b24973b-lenovo-logo.png",
             alt="Lenovo",
-            width="288",
+            width="169",
+            height="256",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/25514caf-dell-logo.svg",
+            alt="Dell",
+            width="71",
+            height="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/dac5c9d7-amd-logo.png",
+            alt="AMD",
+            width="186",
+            height="257",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+            alt="Intel",
+            width="149",
             height="288",
             hi_def=True,
             loading="lazy",
@@ -146,11 +206,25 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/987acdaa-dell-logo.png",
-            alt="Dell",
-            width="288",
-            height="288",
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
+            alt="ARM",
+            width="183",
+            height="372",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/5ac7ab41-nvidia-logo.png",
+            alt="Nvidia",
+            width="369",
+            height="372",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -160,408 +234,126 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="p-section">
   <div class="u-fixed-width">
-    <hr />
+    {{ image (
+      url="https://assets.ubuntu.com/v1/1819c545-woman-working.jpg",
+      alt="",
+      width="2464",
+      height="1052",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
   </div>
+</section>
+
+<section class="p-section">
   <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <div class="p-logo-section__items u-no-margin--bottom">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
-            alt="AMD",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/67f81bfe-intel-new-logo.png",
-          alt="Intel",
-          width="288",
-          height="288",
+    <h2 class="p-text--small-caps">Endorsed by partners and customers</h2>
+  </div>
+  <div class="row p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-1">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/ed098196-nvidia.png",
+          alt="",
+          width="110",
+          height="41",
           hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}
+          loading="lazy"
           ) | safe
         }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/711be910-arm-logo.png",
-            alt="ARM",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
-            alt="Nvidia",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <div class="p-strip u-no-padding-top">
+    <div class="col-9 col-medium-5">
+      <div class="p-section--shallow">
+        <p class="p-heading--4">
+          <em>“Developers and data science teams use the Ubuntu platform to support their most important work. Our collaboration with Canonical enables industry innovators to get AI-powered insights from their data faster”.</em>
+        </p>
+      </div>
+      <hr class="p-rule" />
       <div class="row">
-        <div class="col-5">
-          <h2>Ubuntu delivers the best <br class="u-hide--medium u-hide--small"/>of open source</h2>
+        <div class="col-3 col-medium-2">
+          <p class="p-heading--5">Manuvir Das</p>
         </div>
-        <div class="col-6">
-          <p>Drive innovation in high-growth areas such as data science and machine learning with support for the latest libraries and apps  in addition to critical workflow tools like <a href="https://multipass.run/">Multipass</a>, <a href="https://jaas.ai/">Juju</a>, <a href="/lxd">LXD</a> and <a href="https://microk8s.io/">MicroK8s</a>.</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/be56a944-tensor-flow-logo.png",
-              alt="TensorFlow",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/96c4727f-OpenCV-logo.png",
-              alt="OpenCV",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/5154773b-docker-logo-horizontal.png",
-              alt="Docker",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/94ae6189-edgexfoundry-logo.png",
-              alt="EdgeX Foundry",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/a20afc7d-kubeflow-logo.png",
-              alt="Kubeflow",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/835a5d08-Juju.png",
-              alt="Canonical Juju",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/75145268-acrn-logo.png",
-              alt="Acrn",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/eac2a3ad-openvino-logo.png",
-              alt="OpenVINO",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/1d3e5eaf-flutter-logo.png",
-              alt="Flutter",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/49e6dfc2-ros-logo.png",
-              alt="ROS",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/a984834a-LXD.png",
-              alt="Canonical LXD",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d60029cc-pytorch-logo.png",
-              alt="Pytorch",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/1ad80137-Multipass.png",
-              alt="Canonical Multipass",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/083fd46b-open-v-switch.png",
-              alt="Open vSwitch",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/3f49251c-MicroK8s.png",
-              alt="Canonical MicroK8s",
-              width="158",
-              height="158",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
+        <div class="col-6 col-medium-3">
+          <p>NVIDIA, Head of Enterprise Computing</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator">
-</div>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-7 u-vertically-center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/750a8ab6-ubuntu-for-datascience.svg",
-        alt="Ubuntu for datascience",
-        width="538",
-        height="133",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-5">
-      <h2>Ubuntu for Data Science</h2>
-      <p>Develop AI models on high-end Ubuntu workstations. Train on racks of bare-metal or public clouds with hardware acceleration. Deploy to cloud, edge and IoT. All on Ubuntu.</p>
-      <p><a href="/ai" class="p-button--positive">How Ubuntu enables AI innovation</a></p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <blockquote class="p-pull-quote has-image">
-      <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg" alt="">
-      <p class="p-pull-quote__quote">Developers and data science teams use the Ubuntu platform to support their most important work. Our collaboration with Canonical enables industry innovators to get AI-powered insights from their data faster.</p>
-      <span class="p-pull-quote__citation">Manuvir Das &mdash; NVIDIA, Head of Enterprise Computing</span>
-    </blockquote>
-  </div>
-</section>
-
-<div class="u-fixed-width">
-  <hr class="p-separator">
-</div>
-
-<section class="p-strip">
-  <div class="u-fixed-width u-sv3">
-    <h2>Write once and deploy anywhere</h2>
-    <p>Using Ubuntu Desktop provides a common platform for development, test, and production environments.</p>
-    <div class="u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/c1a2b136-Screenshot+from+2022-04-12+16-20-18.png",
-        alt="",
-        width="650",
-        height="169",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
+<section class="p-section">
+  <div class="u-fixed-width p-section--shallow">
+    <hr class="p-rule" />
+    <h2>Seamless integration with your existing infrastructure</h2>
   </div>
   <div class="row">
-    <div class="col-6">
-      <h3>Ubuntu in the cloud</h3>
-      <p>Canonical fully supports public clouds and provides its own solutions for private cloud implementation and management, as well as workload orchestration in hybrid cloud and multicloud environments.</p>
-      <p><a href="/cloud" class="p-button--positive">Ubuntu on cloud</a></p>
-    </div>
-    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-         url="https://assets.ubuntu.com/v1/ab87e245-Private-v-Public-Mulit-Cloud.svg",
-         alt="Private vs public cloud",
-         width="250",
-         height="214",
-         hi_def=True,
-         loading="auto",
-        ) | safe
-      }}
+    <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Advanced Active Directory policies</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>System Security Services Daemon (SSSD) and GPO are available by default to manage desktop settings. Ubuntu Pro users receive access to advanced policies like remote script execution and privilege management.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="/engage/microsoft-active-directory">Integrating Ubuntu Desktop with Active Directory&nbsp;&rsaquo;</a>
+            <a href="https://canonical-adsys.readthedocs-hosted.com/en/latest/">ADSys documentation&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Supported by key Microsoft tools</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Microsoft Intune on Ubuntu Desktop enables custom policy compliance and gated access to corporate resources via the Microsoft Edge browser. Ubuntu also supports critical business and administration applications such as Powershell and Microsoft Teams.</p>
+          <hr />
+          <a href="https://www.linkedin.com/events/6991037067392618497/comments/">Watch our webinar&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Ubuntu on Windows&nbsp;Subsystem&nbsp;for&nbsp;Linux</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Windows Subsystem for Linux (WSL) gives Windows developers a full Ubuntu terminal experience and easy access to cutting edge open source tools. IT administrators can leverage Ubuntu Pro to remotely manage and secure their developer instances.</p>
+          <hr />
+          <a href="/wsl">Learn more about Ubuntu on WSL&nbsp;&rsaquo;</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="u-sv2">Easily manage your IT estate</h2>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h3>Landscape</h3>
-      <p>Lower the complexity and cost of running a Linux desktop estate using Landscape, Canonical's systems management tool for monitoring, managing, patching and compliance reporting on all your Ubuntu desktops. Included in an Ubuntu Pro Desktop subscription.</p>
-      <p><a href="https://landscape.canonical.com/" class="p-button--positive">Learn more about Landscape</a></p>
-    </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/990093e1-cn-home-landscape.png",
-        alt="",
-        width="515",
-        height="255",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/e7bcb9fa-4b9bad4c100c73cc2c1c839f3eb5ec03_active-directory-logo.png",
-        alt="",
-        width="400",
-        height="99",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h3>Active Directory</h3>
-      <p>Integrating Ubuntu Desktop into an existing Active Directory architecture can be an automated and effortless process when using System Security Services Daemon (SSSD). GPO is available by default to manage desktop settings and Ubuntu Pro users receive access to additional Active Directory policies like remote script execution and privilege management.</p>
-      <p><a href="https://github.com/ubuntu/adsys/wiki" class="p-button">ADSys documentation</a></p>
-      <p><a href="/engage/microsoft-active-directory" class="p-button--positive">Integrating Ubuntu Desktop with Active Directory</a></p>
-    </div>
-  </div>
-</section>
-<section class="p-strip is-bordered">
-  {% include "shared/_pro_strip.html" %}
-  <div class="u-fixed-width">
-    <p>For more information, download our whitepaper:</p>
-      <p>
-        <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux desktop</a>
-      </p>
-      <p><a href="/pro">More details and pricing&nbsp;&rsaquo;</a></p>
-  </div>
-</section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-6">
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <h2>Virtual desktops, powered by AWS</h2>
+    </div>
+    <div class="col">
       <p>Ubuntu Desktop on Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code &mdash; spinning up and tearing down instances as required.</p>
       <p>IT organisations benefit from rapid deployment, configuration and scalability for their managed Ubuntu Desktops whilst their applications and data remain secured in the AWS cloud, even when their developers are working remotely.</p>
-      <p>
-        <a href="/aws/workspaces">Find out more about Ubuntu WorkSpaces&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6 u-vertically-center u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/55bb92be-aws_workspaces.png",
+      <hr />
+      <a href="/aws/workspaces">Find out more about Ubuntu WorkSpaces&nbsp;&rsaquo;</a>
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/1624c0a0-55bb92be-aws_workspaces.png.png",
         alt="",
-        width="400",
-        height="143",
+        width="603",
+        height="215",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -570,84 +362,68 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h3>Read more about Ubuntu Desktop in organisations</h3>
-  </div>
-  <div class="row p-divider">
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
-            alt="",
-            width="88",
-            height="72",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="/engage/Z-Workstation-Ubuntu">Unleashing Z Workstations by HP Powered by Ubuntu</a></h3>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Day zero support with Ubuntu<br /> Desktop Enterprise Services</h2>
     </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-            alt="",
-            width="171",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="/engage/linux-enterprise-whitepaper">Ubuntu Desktop for the enterprise</a></h3>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-            alt="",
-            width="171",
-            height="150",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="/engage/developer-desktop-productivity-whitepaper">How to increase developer productivity with Ubuntu Desktop</a></h3>
-    </div>
-    <div class="col-3 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-          <h4 class="p-heading-icon__title">Blog</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></h3>
+    <div class="col">
+      <p>Designed to help your developers get up and running on Ubuntu as quickly as possible. Canonical engineers partner with you to deliver a solution tailored to your needs, including:</p>
+      <hr class="is-muted"/>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Custom image creation</li>
+        <li class="p-list__item is-ticked">Post-deployment automation</li>
+        <li class="p-list__item is-ticked">Active Directory integration</li>
+        <li class="p-list__item is-ticked">Security configuration</li>
+        <li class="p-list__item is-ticked">Landscape deployment and registration</li>
+      </ul>
+      <hr />
+      <a class="p-button" href="/pricing/desktop">Learn more about our enterprise services</a>
     </div>
   </div>
 </section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Learn more about Ubuntu<br /> Desktop in organisations</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-2">
+          <h3 class="p-text--small-caps">Webinars</h3>
+        </div>
+        <div class="col-4">
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="https://www.linkedin.com/events/6991037067392618497/comments/">Adopting Linux securely in a Windows-centric enterprise</a></li>
+            <li class="p-list__item"><a href="/engage/Z-Workstation-Ubuntu">Unleashing Z Workstations by HP Powered by Ubuntu</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-2">
+          <h3 class="p-text--small-caps">Whitepapers</h3>
+        </div>
+        <div class="col-4">
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="/engage/adopting-secure-enterprise-linux-desktop">Adopting a secure enterprise Linux desktop</a></li>
+            <li class="p-list__item"><a href="/engage/microsoft-active-directory">How to integrate Ubuntu Desktop with Active Directory</a></li>
+            <li class="p-list__item"><a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Maximizing security and compliance in the US public sector with Ubuntu Pro</a></li>
+            <li class="p-list__item"><a href="/engage/developer-desktop-productivity-whitepaper">How to increase developer productivity with Ubuntu Desktop</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "desktop/partial/_desktop-latest-news.html" %}
 
 {% endblock content %}
