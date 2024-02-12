@@ -200,6 +200,10 @@ $meganav-height: 3rem;
     }
 
     .p-navigation__row--25-75 {
+      .p-navigation__items:first-child {
+        margin-left: -1rem;
+      }
+
       @media (max-width: $breakpoint-navigation-threshold - 1) {
         padding-left: 0;
         padding-right: 0;
