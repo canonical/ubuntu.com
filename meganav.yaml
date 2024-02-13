@@ -150,15 +150,15 @@ products:
             - title: Anbox Cloud
               description: Virtualised Android on demand
               url: https://anbox-cloud.io/
-            - title: Open Source MANO
-              description: Network Functions Virtualisation
-              url: /telco/osm
-            - title: JAAS
-              description: Juju as a Service
-              url: https://jaas.ai/
+            - title: Juju
+              description: Orchestrator engine for operators
+              url: https://juju.is/
             - title: Private cloud build
               description: OpenStack implementation
               url: /openstack/consulting
+            - title: MicroCloud
+              description: Lightweight, automated clouds
+              url: https://canonical.com/microcloud
       secondary_links:
         - title: Quick links
           links:
@@ -180,6 +180,9 @@ products:
     - title: Public cloud
       primary_links:
         - links:
+            - title: Ubuntu on public clouds
+              description: The most popular cloud OS
+              url: /cloud/public-cloud
             - title: Ubuntu on AWS
               description: AWS Marketplace
               url: /aws
@@ -200,7 +203,7 @@ products:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: LXD
-              description: Linux containers
+              description: Linux containers and VMs
               url: https://canonical.com/lxd
             - title: WSL
               description: Windows Subsystem for Linux
@@ -276,6 +279,9 @@ products:
             - title: MicroK8s
               description: Simplest way to get Kubernetes
               url: https://microk8s.io/
+            - title: Charmed Kubernetes
+              description: Composable K8s for the enterprise
+              url: /kubernetes/charmed-k8s
             - title: Kubeflow
               description: Machine learning toolkit for K8s
               url: /ai/what-is-kubeflow
@@ -303,10 +309,10 @@ products:
               description: Store for Juju operators
               url: https://charmhub.io/
             - title: Juju
-              description: Model-driven operations for apps
+              description: Orchestrator engine for operators
               url: https://juju.is/
             - title: JAAS
-              description: Juju as a Service
+              description: Auditing and compliance for Juju
               url: https://jaas.ai/
 
       secondary_links:
@@ -314,15 +320,15 @@ products:
           links:
             - title: Juju documentation
               url: https://juju.is/docs
-            - title: Juju tutorials
+            - title: Getting started with Juju
               url: https://juju.is/tutorials
             - title: Charmhub forum
               url: https://discourse.charmhub.io/
             - title: Juju blog
               url: https://juju.is/blog
-            - title: About JAAS
-              url: https://jaas.ai/jaas
-            - title: Build and deploy a mini charm
+            - title: Matrix community
+              url: https://matrix.to/#/#charmhub-juju:ubuntu.com
+            - title: Write your first charm
               url: https://juju.is/tutorials/build-and-deploy-mini-charm
 
     - title: Snapcraft
@@ -397,7 +403,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Core
-              description: Minimal embedded Ubuntu
+              description: Embedded Linux
               url: /core
             - title: IoT App Store
               description: Private app store for Linux and IoT
@@ -503,7 +509,7 @@ use_case:
           description: The factory of the future
           url: /industrial
         - title: Robotics
-          description: Build robots with Ubuntu and ROS
+          description: Build and deploy robots with Ubuntu
           url: /robotics
         - title: Telco
           description: Carrier-grade solutions
@@ -730,7 +736,7 @@ community:
               url: /blog
             - title: Weekly Newsletter
               description: Sign up for our newsletter
-              url: https://wiki.ubuntu.com/UbuntuWeeklyNewsletter
+              url: https://discourse.ubuntu.com/c/uwn/124
             - title: Mailing lists
               description: All the public mailing lists
               url: https://lists.ubuntu.com/
@@ -739,13 +745,13 @@ community:
               url: http://planet.ubuntu.com/
             - title: Teams
               description: The teams in the project
-              url: https://wiki.ubuntu.com/Teams
+              url: /community/governance/teams
 
       secondary_links:
         - title: Quick links
           links:
-            - title: Become a blog contributor
-              url: https://community.ubuntu.com/t/call-for-contributors-to-the-ubuntu-weekly-newsletter/1542
+            - title: Join the Weekly Newsletter Team
+              url: https://discourse.ubuntu.com/t/joining-the-ubuntu-weekly-newsletter-team/40929
             - title: Facebook
               url: https://www.facebook.com/ubuntulinux
             - title: Twitter
@@ -832,7 +838,7 @@ get_ubuntu:
               secondary_cta_title: Get Ubuntu for Raspberry Pi
               secondary_cta_url: /download/raspberry-pi
             - title: Ubuntu Core for Raspberry Pi
-              description: Embedded OS
+              description: Embedded Linux
               url: /download/raspberry-pi-core
             - title: Ubuntu-ready Pi devices
               description: Certified hardware
@@ -854,7 +860,7 @@ get_ubuntu:
       primary_links:
         - links:
             - title: Ubuntu Core
-              description: OS designed for IoT
+              description: Embedded Linux
               url: /core
             - title: Internet of Things
               description: Ubuntu for IoT

@@ -1,232 +1,336 @@
 {% extends "server/base_server.html" %}
 
-
 {% block title %}Ubuntu Server and hyperscale | Server{% endblock %}
 {% block meta_description %}Unlock the promise of new extreme low-energy server technology{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1f56CCzH519lIVa4KvxDt0QpxYFMK-bMdVlKo4TvPSIk/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-<div class="p-strip--suru-bottomed">
-  <div class="row u-equal-height">
-    <div class="col-8 u-vertically-center">
+<div class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section--shallow">
+    <div class="col">
       <h1>Ubuntu leads in hyperscale</h1>
-      <p>Ubuntu is the hyperscale OS, natively powering scale-out workloads on a new wave of low-cost, ultra-dense hardware based on x86 and Arm processors.</p>
-      <p><a class="p-button--positive" href="/download/server">Download Ubuntu Server</a></p>
-      <p><a href="/download/arm">Download Ubuntu for ARM&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col">
+      <p>Ubuntu is the hyperscale OS, natively powering scale-out workloads on a new wave of low-cost, ultra-dense hardware based on x86 and ARM processors.</p>
+      <hr>
+      <p>
+        <a href="/download/server" class="p-button--positive">Download Ubuntu Server</a>
+        <a href="/download/arm">Download&nbsp;Ubuntu&nbsp;for&nbsp;ARM&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width p-section u-align--center">
+        {{
+        image(
+        url="https://assets.ubuntu.com/v1/4679027f-hyperscale.png",
+        alt="hyperscale",
+        width="600",
+        hi_def=True,
+        ) | safe
+        }}
   </div>
 </div>
 
-<div class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-12">
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <h2>Welcome to hyperscale, the future of the datacentre</h2>
+    </div>
+    <div class="col">
       <p>Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social and entertainment services.</p>
       <p>Providing compute capacity at that magnitude is today's top infrastructure challenge. That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.</p>
-      <p>Tomorrow's servers will be built upon multiple architectures, including Intel x86 and ARM, and will be connected into datacentre-wide clusters via flexible, high-speed fabrics. At the heart of these clusters lies Ubuntu Server, the OS leading the cloud computing revolution.</p>
     </div>
   </div>
 </div>
 
-<div class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Ubuntu Server for hyperscale</h2>
-  </div>
-
-  <div class="u-fixed-width">
-    <p>Ubuntu Server embraces the scale-out philosophy and comes out of the box with tools that make deploying a complex network of services as easy as drawing up a diagram and pressing "go".</p>
-
-    <p>Ubuntu works seamlessly across x86 and ARM. And it comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB and many others.</p>
-  </div>
-
-  <div class="u-fixed-width">
-    <p></p>
-    <h3>Here's why Ubuntu is the best answer to the scale-out challenge:</h3>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked"><strong>Scale-out at the core</strong>: Ubuntu Server supports the scale-out compute model and provides tools which make it simple to manage the entire cluster.</li>
-      <li class="p-list__item is-ticked"><strong>No end-user licence fee</strong>: Ubuntu is offered free to end-users. Adding 100 more nodes shouldn't require you to pay another 100 times for the OS!</li>
-      <li class="p-list__item is-ticked"><strong>Partners</strong>: Canonical has a global program with SoC vendors and OEMs to ensure that platforms are enabled and certified to run Ubuntu.</li>
-      <li class="p-list__item is-ticked"><strong>Seamless platform support</strong>: Ubuntu Server runs exactly the same on every enabled architecture, be it x86, ARM or PowerPC; with the same applications and tools.</li>
-      <li class="p-list__item is-ticked"><strong>Commercially supported</strong>: Canonical backs its free OS commitment with Ubuntu Advantage including commercial support, systems management and access to top experts.</li>
-    </ul>
-    <p><a href="/pricing">Find out more about plans and pricing&nbsp;&rsaquo;</a></p>
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Ubuntu Server for hyperscale</h2>
+    </div>
+    <div class="col">
+      <p>Ubuntu Server embraces the scale-out philosophy and comes out of the box with tools that make deploying a complex network of services as easy as drawing up a diagram and pressing “go”.</p>
+      <p>Ubuntu works seamlessly across x86 and ARM. And it comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB and many others.</p>
+    </div>
   </div>
 </div>
 
-<div class="p-strip--suru-accent is-dark">
-  <div class="u-fixed-width">
-    <blockquote class="p-pull-quote">
-      <p class="p-pull-quote__quote">A new wave of workloads demand breakthrough efficiencies in density, energy, and operational costs which can be scaled to a customer's IT environment</p>
-      <cite class="p-pull-quote__citation">Paul Santeler, VP &amp; GM, Hyperscale Business Unit, HP</cite>
-    </blockquote>
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Here's why Ubuntu is the best answer to the scale-out challenge:</h2>
+    </div>
+    <div class="col">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked"><strong>Scale-out at the core</strong>: Ubuntu Server supports the scale-out compute model and provides tools which make it simple to manage the entire cluster.</li>
+        <li class="p-list__item is-ticked"><strong>No end-user licence fee</strong>: Ubuntu is offered free to end-users. Adding 100 more nodes shouldn't require you to pay another 100 times for the OS!</li>
+        <li class="p-list__item is-ticked"><strong>Partners</strong>: Canonical has a global program with SoC vendors and OEMs to ensure that platforms are enabled and certified to run Ubuntu.</li>
+        <li class="p-list__item is-ticked"><strong>Seamless platform support</strong>: Ubuntu Server runs exactly the same on every enabled architecture, be it x86, ARM or PowerPC; with the same applications and tools.</li>
+        <li class="p-list__item is-ticked"><strong>Commercially supported</strong>: Canonical backs its free OS commitment with Ubuntu Pro including commercial support, systems management and access to top experts.</li>
+      </ul>
+      <hr class="is-muted" />
+      <a href="/pricing">Find out more about plans and pricing&nbsp;&rsaquo;</a>
+    </div>
   </div>
 </div>
 
-<div class="p-strip is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-7">
+<div class="p-section">
+  <div class="u-fixed-width">
+    <h2 class="p-text--small-caps">Endorsed by partners and customers</h2>
+  </div>
+  <div class="row p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-1">
+      <div class="p-image-wrapper">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c9a2aab2-logo-hp.svg",
+          alt="Hewlett Packard",
+          width="70",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+    <div class="col-9 col-medium-5">
+      <div class="p-section--shallow">
+        <p class="p-heading--4"><em>
+          “A new wave of workloads demand breakthrough efficiencies in density, energy, and operational costs which can be scaled to a customer's IT environment”
+        </em></p>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <p class="p-heading--5">Paul Santeler</p>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>VP &amp; GM, Hyperscale Business Unit, HP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <h2>Canonical's long-term commitment</h2>
+    </div>
+    <div class="col">
       <p>Canonical's first investment in hyperscale dates back to 2008. We invested early in at scale management tools like Landscape and Juju, supporting the management of machines and services at scale through enterprise-class automation.</p>
-      <p>Canonical is also a pioneer with ARM Servers, building the first commercial general-purpose ARM Linux OS in 2007 and the first ARM-based Server OS in 2009. We founded Linaro along with Arm in 2010.</p>
+      <p>Canonical is also a pioneer with ARM Servers, building the first commercial general-purpose ARM Linux OS in 2007 and the first ARM-based Server OS in 2009. We founded Linaro along with ARM in 2010.</p>
       <p>Ubuntu now runs on every significant ARM platform deployed in the datacentre, including the recently-announced Baidu storage cluster.</p>
     </div>
   </div>
 </div>
 
-<div class="p-strip--light is-deep"  style="padding-bottom: 2rem;">
-  <div class="u-fixed-width">
-    <h2>The complete solution for hyperscale</h2>
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>The complete solution<br class="u-hide--medium u-hide--small" /> for hyperscale</h2>
+    </div>
+    <div class="p-section col">
+      <div class="p-tabs js-tabbed-content">
+        <div class="p-tabs__list" role="tablist" aria-label="Juju technology">
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="juju-tab" id="juju">Juju</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="maas-tab" id="maas" tabindex="-1">MAAS</button>
+          </div>
+        </div>
+      
+        <div tabindex="0" role="tabpanel" id="juju-tab" aria-labelledby="juju">
+          <p class="p-heading--5">Workload-level orchestration with Juju</p>
+          <p>Canonical's Juju framework goes beyond traditional orchestration systems to create a new paradigm in workload deployment.</p>
+          <p>Juju decouples services deployed onto the cluster from the nodes running them, and makes the deployment of the individual service easy.</p>
+          <p>Juju also supports deployment to cloud services like Amazon EC2 and Rackspace Cloud, and includes charms for open source workloads and key server ISV products.</p>
+          <hr class="is-muted" />
+          <a href="https://juju.is/">Learn more about Juju&nbsp;&rsaquo;</a>
+        </div>
+      
+        <div class="u-hide" tabindex="0" role="tabpanel" id="maas-tab" aria-labelledby="maas">
+          <p class="p-heading--5">Bare-metal provisioning with MAAS</p>
+          <p>With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical's <strong>Metal As A Service (MAAS)</strong> addresses the problem of deploying hundreds of OS instances to a cluster of nodes:</p>
+          <p>MAAS provides a flexible mechanism to automatically detect, provision and configure individual nodes with Ubuntu server without any complex or manual configuration.   </p>
+          <p></p>
+          <hr class="is-muted" />
+          <a href="https://maas.io">Learn more about MAAS&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h3 class="p-heading--4">Workload-level orchestration with Juju</h3>
-      <p>Canonical's Juju framework goes beyond traditional orchestration systems to create a new paradigm in workload deployment.</p>
-      <p>Juju decouples services deployed onto the cluster from the nodes running them, and makes the deployment of the individual service easy.</p>
-      <p>Juju also supports deployment to cloud services like Amazon EC2 and Rackspace Cloud, and includes charms for open source workloads and key server ISV products.</p>
-      <p><a href="https://jujucharms.com/">Get more details on Juju here</a></p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h3 class="p-heading--4">Bare metal provisioning with MAAS</h3>
-      <p>With their unique architecture, hyperscale servers need to be provisioned through scalable automation. Canonical's Metal as a Service (MAAS) addresses the problem of deploying hundreds of OS instances to a cluster of nodes:</p>
-      <p>MAAS provides a flexible mechanism to automatically detect, provision and configure individual nodes with Ubuntu server without any complex or manual configuration </p>
-      <p><a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--light is-deep is-bordered" style="padding-top: 2rem;">
-  <div class="row u-equal-height u-vertically-spaced">
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Deployment-time workload acceleration</h3>
-      <p class="p-card__content">Hyperscale systems with Juju and MAAS can provide nodes optimised to specific applications, including crypto, vector compute and transcoding.  </p>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Landscape</h3>
-      <p class="p-card__content">Ubuntu's systems management tool supports management of ARM devices on equal footing alongside your x86 infrastructure.</p>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">x86 and ARM support</h3>
-      <p class="p-card__content">With Ubuntu, general-purpose hyperscale clusters may be deployed with a combination of Xeon or Opteron-class x86, low-power x86 and ARM nodes. </p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="col-8">
-      <h2>Your roadmap for hyperscale success</h2>
-      <p >Canonical offers a range of services tailored to the needs of SoC and OEM partners as well as end users deploying hyperscale clusters.</p>
+    <div class="col-9 col-medium-6 col-start-large-4">
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Deployment-time workload acceleration</h3>
+          <p>Hyperscale systems with Juju and MAAS can provide nodes optimised to specific applications, including crypto, vector compute and transcoding.</p>
+        </div>
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Machine management<br class="u-hide--medium u-hide--small" /> with Landscape</h3>
+          <p>Ubuntu's systems management tool supports management of ARM devices on equal footing alongside your x86 infrastructure.</p>
+          <hr class="is-muted" />
+          <a href="/landscape">Learn more about Landscape&nbsp;&rsaquo;</a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">x86 and ARM support</h3>
+          <p>With Ubuntu, general-purpose hyperscale clusters may be deployed with a combination of Xeon or Opteron-class x86, low-power x86 and ARM nodes.</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <div class="row p-divider u-no-padding--left u-no-padding--right">
-      <div class="col-4 p-divider__block">
-        <h3>SoC partners</h3>
-        <p>Canonical offers hardware enablement services to ensure that new System On Chip (SoC) silicon is tightly integrated and tuned with Ubuntu, and a certification program to give OEMs and end users the highest level of confidence that the complete system, including chip, enclosure and OS work together in the most optimal way. </p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>OEM and product developers</h3>
-        <p>Canonical offers a range of engineering services to all companies within the value chain developing boards, sub-systems, appliances and complete server suites to ensure that systems are fully certified to meet the rigorous demands of the hyperscale datacentre.</p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>End users</h3>
-        <p>Canonical, together with OEM and ODM partners, delivers critical support and services to ensure customers can realise the full benefits of hyperscale technology.</p>
-      </div>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p><a href="/server/contact-us?product=server-hyperscale" class="js-invoke-modal">Contact us about hyperscale&nbsp;&rsaquo;</a></p>
   </div>
 </div>
 
-<div class="p-strip--light is-deep is-bordered">
+<div class="p-section">
+  <div class="row--50-50 p-section">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Your roadmap for<br class="u-hide--medium u-hide--small" /> hyperscale success</h2>
+    </div>
+    <div class="col">
+      <p>Canonical offers a range of services tailored to the needs of SoC and OEM partners as well as end users deploying hyperscale clusters.</p>
+      <hr class="is-muted" />
+      <a class="js-invoke-modal" href="/server/contact-us?product=server-hyperscale">Contact us about hyperscale&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+  <div class="p-section--shallow row">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">SoC partners</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Canonical offers hardware enablement services to ensure that new System On Chip (SoC) silicon is tightly integrated and tuned with Ubuntu, and a certification program to give OEMs and end users the highest level of confidence that the complete system, including chip, enclosure and OS work together in the most optimal way.</p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">OEM and product developers</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Canonical offers a range of engineering services to all companies within the value chain developing boards, sub-systems, appliances and complete server suites to ensure that systems are fully certified to meet the rigorous demands of the hyperscale datacentre.</p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">End-users</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Canonical, together with OEM and ODM partners, delivers critical support and services to ensure customers can realise the full benefits of hyperscale technology.</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="u-fixed-width">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/8253ee4b-AdobeStock_201641700%201.jpg",
+      alt="",
+      width="2464",
+      height="1053",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+</div>
+
+<div class="p-section">
+  <div class="p-section--shallow u-fixed-width">
+    <hr class="p-rule" />
     <h2>Hyperscale partners</h2>
   </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/f38c9ed1-hpe_pri_grn_pos_rgb.svg",
-          alt="Hewlett Packard Enterprise",
-          width="200",
-          height="133",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0ad256cf-hpe_pri_grn_pos_rgb.png",
+            alt="Hewlett Packard Enterprise",
+            width="153",
+            height="64",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="u-no-padding--top">Canonical has been involved in the development of Moonshot, Hewlett Packard Enterprise's hyperscale platform, from its inception. Ubuntu is the only OS that supports the full range of HP Moonshot x86 and ARM Systems, announced by HP in April 2013, providing scale out innovation at speed.</p>
+        </div>
       </div>
       <hr />
-      <div class="u-sv2 u-hide--medium u-hide--large"></div>
-      <p class="p-card__content">Canonical has been involved in the development of Moonshot, Hewlett Packard Enterprise's hyperscale platform, from its inception. Ubuntu is the only OS that supports the full range of HP Moonshot x86 and ARM Systems, announced by HP in April 2013, providing scale out innovation at speed.</p>
-    </div>
-    <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
-          alt="Arm",
-          width="150",
-          height="45",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7b6a888b-arm-logo.png",
+            alt="Arm",
+            width="90",
+            height="27",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="u-no-padding--top">ARM and Canonical have worked in close collaboration for a number of years to ensure that datacentres running advanced workloads such as distributed data processing or cloud infrastructure, run best on Ubuntu.</p>
+        </div>
       </div>
       <hr />
-      <div class="u-sv2 u-hide--medium u-hide--large"></div>
-      <p class="p-card__content">Arm and Canonical have worked in close collaboration for a number of years to ensure that datacentres running advanced workloads such as distributed data processing or cloud infrastructure, run best on Ubuntu.</p>
-    </div>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d0e5bf77-partners-logo-cavium.png",
-          alt="Cavium",
-          width="150",
-          height="34",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d0e5bf77-partners-logo-cavium.png",
+            alt="Cavium",
+            width="150",
+            height="34",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="u-no-padding--top">Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.</p>
+        </div>
       </div>
       <hr />
-      <div class="u-sv2 u-hide--medium u-hide--large"></div>
-      <p class="p-card__content">Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.</p>
-    </div>
-
-    <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/ca664713-partners-logo-apm.svg",
-          alt="Applied Micro Circuits Corporation",
-          width="150",
-          height="50",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ca664713-partners-logo-apm.svg",
+            alt="Applied Micro",
+            width="162",
+            height="54",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="col-6 col-medium-3">
+          <p class="u-no-padding--top">Applied Micro Circuits Corporation is a global leader in computing and connectivity solutions for next-generation cloud infrastructure and data centers. AppliedMicro delivers silicon solutions that dramatically lower total cost of ownership.</p>
+        </div>
       </div>
-      <hr />
-      <div class="u-sv2 u-hide--medium u-hide--large"></div>
-      <p class="p-card__content">Applied Micro Circuits Corporation is a global leader in computing and connectivity solutions for next-generation cloud infrastructure and data centers. AppliedMicro delivers silicon solutions that dramatically lower total cost of ownership.</p>
     </div>
   </div>
 </div>
 
-{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "server/partial/_server-footer.html" %}
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1254" data-lp-id="2152" data-return-url="https://ubuntu.com/server/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
-
 
 {% endblock content %}

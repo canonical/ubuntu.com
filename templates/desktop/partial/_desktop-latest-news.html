@@ -1,0 +1,40 @@
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule"/>
+    <div class="col-3 col-medium-3">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest Ubuntu Desktop news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
+      </div>
+    </div>
+    <div class="col-9 col-medium-3">
+      <div class="row p-section--shallow" id="desktop-latest-articles">
+      </div>
+      <hr/>
+      <p class="u-float-right"><a href="/blog/desktop">Explore all</a></p>
+    </div>
+  </div>
+
+  <template style="display:none" id="desktop-articles-template">
+    <div class="col-3">
+      <div class="u-crop--16-9">
+        <div class="article-image p-image-wrapper"></div>
+      </div>
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
+      <p class="article-excerpt"></p>
+    </div>
+  </template>
+</section>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#desktop-latest-articles",
+      articleTemplateSelector: "#desktop-articles-template",
+      excerptLength: 200,
+      groupId: "1479",
+      linkImage: true,
+      limit: 3
+    }
+  )
+</script>

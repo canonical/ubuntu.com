@@ -18,9 +18,18 @@ let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
+// Get the navigations initial height for use in 'updateWindowHeight'
+const navEle = document.querySelector(".p-navigation__nav");
+const originalMaxHeight = navEle.style.maxHeight;
 
 navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
+document.addEventListener("DOMContentLoaded", () => {
+  setUpGlobalNav();
+});
+window.addEventListener("load", () => {
+  handleUrlHash();
+});
 
 //Helper functions
 
@@ -69,7 +78,6 @@ mainList.addEventListener("click", function (e) {
   }
 });
 
-window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
@@ -136,6 +144,21 @@ function updateUrlHash(id, open) {
       document.title,
       window.location.pathname + window.location.search
     );
+  }
+}
+
+function handleUrlHash() {
+  const targetId = window.location.hash;
+  const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
+  if (targetDropdown) {
+    const currViewportWidth = window.innerWidth;
+    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
+    if (isMobile) {
+      const menuToggle = navigation.querySelector(".js-menu-button");
+      menuToggle?.click();
+    }
+    fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
+    handleDropdownClick(targetDropdown);
   }
 }
 
@@ -314,8 +337,6 @@ function getUrlBarHeight(element) {
 }
 
 // Handles mobile navigation height taking up veiwport space
-const navEle = document.querySelector(".p-navigation__nav");
-const originalMaxHeight = navEle.style.maxHeight;
 function updateWindowHeight() {
   navEle.style.maxHeight = originalMaxHeight;
   const isInDropdownList = mainList.classList.contains("is-active");
@@ -754,9 +775,6 @@ function setUpGlobalNav() {
       dropdown.prepend(backButton);
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  setUpGlobalNav();
-});
 
 // Initiate login
 var accountContainer = document.querySelector(".js-account");
