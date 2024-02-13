@@ -37,7 +37,7 @@ meta_copydoc %}
           </div>
           <ul>
             <li class="p-side-navigation__item">
-              <a class="highlight-link" href="#bit-torrent">BitTorrent</a>
+              <a class="highlight-link is-active" href="#bit-torrent">BitTorrent</a>
             </li>
             <li class="p-side-navigation__item">
               <a class="highlight-link" href="#other-images-and-mirrors">Other images and mirrors</a>
@@ -217,10 +217,8 @@ meta_copydoc %}
           const questionId = entry[0].target.id;
           navigationLinks.forEach(function(link) {
             if (link.getAttribute("href") === `#${questionId}`) {
-              console.log("adding")
               link.classList.add("is-active");
             } else {
-              console.log("removing")
               link.classList.remove("is-active");
             }
           });
@@ -232,84 +230,6 @@ meta_copydoc %}
 
       observer.observe(question);
     });
-  };
-
-
-  /**
-   Toggles the expanded/collapsed classed on side navigation element.
-
-  @param {HTMLElement} sideNavigation The side navigation element.
-  @param {Boolean} show Whether to show or hide the drawer.
-  @param {Boolean} ignoreTogglerFocus when we click on menu there is no redirect, the focus should jump into selected section
-  */
-  function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
-    const toggleButtonOutsideDrawer = sideNavigation.querySelector(
-      ".p-side-navigation__toggle"
-    );
-    const toggleButtonInsideDrawer = sideNavigation.querySelector(
-      ".p-side-navigation__toggle--in-drawer"
-    );
-
-    if (sideNavigation) {
-      if (show) {
-        sideNavigation.classList.remove("is-collapsed");
-        sideNavigation.classList.add("is-expanded");
-
-        if (!ignoreTogglerFocus) {
-          toggleButtonInsideDrawer.focus();
-        }
-        toggleButtonOutsideDrawer.setAttribute("aria-expanded", "true");
-        toggleButtonInsideDrawer.setAttribute("aria-expanded", "true");
-      } else {
-        sideNavigation.classList.remove("is-expanded");
-        sideNavigation.classList.add("is-collapsed");
-
-        if (!ignoreTogglerFocus) {
-          toggleButtonOutsideDrawer.focus();
-        }
-        toggleButtonOutsideDrawer.setAttribute("aria-expanded", "false");
-        toggleButtonInsideDrawer.setAttribute("aria-expanded", "false");
-      }
-    }
-  }
-
-  /**
-   Setup default values of aria-expanded for the toggle button, list title and list itself
-
-  @param {HTMLButtonElement} toggleMenu
-  */
-  const setupToggleMenu = (toggleMenu) => {
-    const isExpanded = toggleMenu.getAttribute("aria-expanded") === "true";
-    if (!isExpanded) {
-      toggleMenu.setAttribute("aria-expanded", isExpanded);
-    }
-    const item = toggleMenu.closest(".p-side-navigation__item");
-    const link = item.querySelector(".p-side-navigation__link");
-    const nestedList = item.querySelector(".p-side-navigation__list");
-    if (!link?.hasAttribute("aria-expanded")) {
-      link.setAttribute("aria-expanded", isExpanded);
-    }
-    if (!nestedList?.hasAttribute("aria-expanded")) {
-      nestedList.setAttribute("aria-expanded", isExpanded);
-    }
-  };
-
-  /**
-   Handle toggle button to show/hide submenu
-
-  @param {Event} e
-  */
-  const handleToggleMenu = (e) => {
-    const item = e.currentTarget.closest(".p-side-navigation__item");
-    const button = item.querySelector(".p-side-navigation__expand");
-    const link = item.querySelector(".p-side-navigation__link");
-    const nestedList = item.querySelector(".p-side-navigation__list");
-    [button, link, nestedList].forEach((el) =>
-      el.setAttribute(
-        "aria-expanded",
-        el.getAttribute("aria-expanded") === "true" ? "false" : "true"
-      )
-    );
   };
 
   (function() {
