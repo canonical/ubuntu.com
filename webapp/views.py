@@ -1072,13 +1072,13 @@ def thank_you():
 
 
 def get_user_country_by_ip():
-    x_forwarded_for = flask.request.headers.get('X-Forwarded-For')
+    x_forwarded_for = flask.request.headers.get("X-Forwarded-For")
 
     if x_forwarded_for:
-        client_ip = x_forwarded_for.split(',')[0]
+        client_ip = x_forwarded_for.split(",")[0]
     else:
         client_ip = flask.request.remote_addr
-    
+
     ip_location = ip_reader.get(client_ip)
 
     try:
