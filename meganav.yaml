@@ -140,7 +140,7 @@ products:
               url: /server
             - title: Landscape
               description: Monitor and manage machines
-              url: https://landscape.canonical.com/
+              url: /landscape
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
@@ -255,6 +255,9 @@ products:
             - title: Certifications and hardening
               description: CIS, DISA-STIG, FIPS compliance
               url: /security/certifications
+            - title: Confidential computing
+              description: Protect your data in use
+              url: /confidential-computing
 
       secondary_links:
         - title: Quick links
@@ -492,6 +495,9 @@ use_case:
         - title: Signage
           description: Smart displays and kiosks
           url: /internet-of-things/smart-displays
+        - title: Storage
+          description: Scalable software-defined storage
+          url: /ceph
 
   highlighted_secondary_links:
     - title: By industry
@@ -677,9 +683,12 @@ community:
             - title: Report bugs
               description: Report bugs on Launchpad
               url: https://help.ubuntu.com/community/ReportingBugs
-            - title: Software development
+            - title: Ubuntu development
+              description: Help maintain Ubuntu OS
+              url: /community/contribute/ubuntu-development
+            - title: Application development
               description: Create and maintain software
-              url: /community/contribute/software-development
+              url: /community/contribute/application-development
             - title: Improve documentation
               description: Help write the docs
               url: https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation
@@ -886,8 +895,6 @@ get_ubuntu:
               url: /download/iot/intel-iotg
             - title: Intel NUC
               url: /download/intel-nuc
-            - title: KVM
-              url: /download/kvm
             - title: Qualcomm Dragonboard 410c
               url: /download/qualcomm-dragonboard-410c
             - title: Intel IEI TANK 870
