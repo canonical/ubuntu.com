@@ -1,0 +1,62 @@
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6 p-section--shallow">
+      <h2>Resources</h2>
+    </div>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <hr class="p-rule u-hide--small u-hide--large" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Learn more</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="http://docs.ubuntu.com/core" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'docs.ubuntu.com/core', 'eventLabel' : 'Ubuntu Core Docs', 'eventValue' : undefined });">Read the docs</a><li>
+            <li class="p-list__item"><a href="http://askubuntu.com/search?q=snap" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'ask.ubuntu.com', 'eventLabel' : 'ask.ubuntu.com', 'eventValue' : undefined });">Visit ask.ubuntu.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Contribute</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="https://snapcraft.io/first-snap" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'snapcraft.io/docs/build-snaps/your-first-snap', 'eventLabel' : 'Contribute to Ubuntu Core', 'eventValue' : undefined });">Learn how to create a snap</a></li>
+            <li class="p-list__item"><a href="https://github.com/snapcore/snapd" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'github.com/snapcore/snapd', 'eventLabel' : 'Contribute to Ubuntu Core', 'eventValue' : undefined });">Check out the project on GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Further reading</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided" id="latest-articles">
+            <li class="p-list__item"><i class="p-icon--spinner u-animation--spin">Loading...</i></li>
+          </ul>
+          <template style="display:none" id="article-template">
+            <li class="p-list__item">
+              <a class="article-link article-title"></a>
+            </li>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#article-template",
+      limit: "5",
+      groupId: "1666",
+    }
+  )
+</script>
