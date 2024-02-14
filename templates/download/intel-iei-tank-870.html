@@ -43,9 +43,9 @@
           <hr class="p-rule u-hide--large" />
           <h2 class="p-stepped-list__title">Prepare the two USB flash drives</h2>
           <div class="p-stepped-list__content">
-            <ol class="u-no-margin--left">
-              <li>Download and flash an <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a>.</li>
-              <li>Copy the Ubuntu Core image file to the second USB flash drive.</li>
+            <ol class="p-list--divided">
+              <li class="p-list__item">Download and flash an <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a>.</li>
+              <li class="p-list__item">Copy the Ubuntu Core image file to the second USB flash drive.</li>
             </ol>
           </div>
         </li>
@@ -53,12 +53,12 @@
           <hr class="p-rule u-hide--large" />
           <h2 class="p-stepped-list__title">Boot the live Ubuntu Desktop image</h2>
           <div class="p-stepped-list__content">
-            <ol class="u-no-margin--left">
-              <li>Connect the keyboard and monitor to the Intel IEI TANK 870.</li>
-              <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
-              <li>Start the device and press F7 to enter the boot menu.</li>
-              <li>Select the USB flash drive as a boot option.</li>
-              <li>Select "Try Ubuntu without installing".</li>
+            <ol class="p-list--divided">
+              <li class="p-list__item">Connect the keyboard and monitor to the Intel IEI TANK 870.</li>
+              <li class="p-list__item">Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
+              <li class="p-list__item">Start the device and press F7 to enter the boot menu.</li>
+              <li class="p-list__item">Select the USB flash drive as a boot option.</li>
+              <li class="p-list__item">Select "Try Ubuntu without installing".</li>
             </ol>
           </div>
         </li>
@@ -66,13 +66,13 @@
           <hr class="p-rule u-hide--large" />
           <h2 class="p-stepped-list__title">Flash Ubuntu Core to the internal memory</h2>
           <div class="p-stepped-list__content">
-            <ol class="u-no-margin--left">
-              <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
-              <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
+            <ol class="u-no-margin--left p-list--divided">
+              <li class="p-list__item">Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
+              <li class="p-list__item"><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
               <pre><code>sudo fdisk -l</code></pre></li>
-              <li><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
+              <li class="p-list__item"><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
               <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/&lt;name of the image&gt;.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre></li>
-              <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
+              <li class="p-list__item">Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
             </ol>
           </div>
         </li>
