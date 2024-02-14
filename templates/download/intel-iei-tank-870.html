@@ -28,90 +28,58 @@
 
 <section class="p-section">
   <div class="row">
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item ">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Set up an Ubuntu SSO account</h2>
-        <div class="p-stepped-list__content">
-          <p>An Ubuntu SSO account is required to create the first user on an Ubuntu Core installation.</p>
-          <ol class="u-no-margin--left">
-            <li>Start by creating an <a href="https://login.ubuntu.com/">Ubuntu SSO account</a>.</li>
-            <li>Import an SSH Key into your <a href="https://login.ubuntu.com/ssh-keys">Ubuntu SSO account</a>. (<a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys">instructions</a>)</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Download Ubuntu Core</h2>
-        <div class="p-stepped-list__content">
-          <p>Download the <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64+kassel.img.xz">Ubuntu Core 18 image for the Intel IEI TANK 870</a>.</p>
-          <p>You can then verify the integrity of the download using the associated <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUMS file</a> and the <code>md5sum</code> command on most Linux distributions.</p>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Prepare the two USB flash drives</h2>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Download and flash an <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a>.</li>
-            <li>Copy the Ubuntu Core image file to the second USB flash drive.</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Boot the live Ubuntu Desktop image</h2>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Connect the keyboard and monitor to the Intel IEI TANK 870.</li>
-            <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
-            <li>Start the device and press F7 to enter the boot menu.</li>
-            <li>Select the USB flash drive as a boot option.</li>
-            <li>Select "Try Ubuntu without installing".</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Flash Ubuntu Core to the internal memory</h2>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
-            <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
-            <pre><code>sudo fdisk -l</code></pre></li>
-            <li><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
-            <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/&lt;name of the image&gt;.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre></li>
-            <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">First boot setup</h2>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>The system will boot then become ready to configure.</li>
-            <li>The device will display the prompt "Press enter to configure".</li>
-            <li>Press enter then select "Start" to begin configuring your network and an administrator account. Follow the instructions on the screen, you will be asked to configure your network and enter your Ubuntu SSO credentials.</li>
-            <li>
-              <p>At the end of the process, you will see your credentials to access your Ubuntu Core machine:</p>
-              <pre><code>This device is registered to &lt;Ubuntu SSO email address&gt;.
-      Remote access was enabled via authentication with the SSO user &lt;Ubuntu SSO user name&gt;
-      Public SSH keys were added to the device for remote access.</code></pre>
-            </li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Connect to the device</h2>
-        <div class="p-stepped-list__content">
-          <p>Once setup is done, you can login with SSH into Ubuntu Core, from a machine on the same network, using the following command:</p>
-          <pre><code>ssh &lt;Ubuntu SSO user name&gt;@&lt;device IP address&gt;</code></pre>
-          <p>Your user name is your Ubuntu SSO user name, and the command should be displayed on the RPi.</p>
-        </div>
-      </li>
-    </ol>
+    <div class="u-fixed-width">
+      <ol class="p-stepped-list--detailed">
+        {% include "download/shared/_setup-ubuntu-sso.html" %}
+        <li class="p-stepped-list__item">
+          <hr class="p-rule u-hide--large" />
+          <h2 class="p-stepped-list__title">Download Ubuntu Core</h2>
+          <div class="p-stepped-list__content">
+            <p>Download the <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64+kassel.img.xz">Ubuntu Core 18 image for the Intel IEI TANK 870</a>.</p>
+            <p>You can then verify the integrity of the download using the associated <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUMS file</a> and the <code>md5sum</code> command on most Linux distributions.</p>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <hr class="p-rule u-hide--large" />
+          <h2 class="p-stepped-list__title">Prepare the two USB flash drives</h2>
+          <div class="p-stepped-list__content">
+            <ol class="u-no-margin--left">
+              <li>Download and flash an <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a>.</li>
+              <li>Copy the Ubuntu Core image file to the second USB flash drive.</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <hr class="p-rule u-hide--large" />
+          <h2 class="p-stepped-list__title">Boot the live Ubuntu Desktop image</h2>
+          <div class="p-stepped-list__content">
+            <ol class="u-no-margin--left">
+              <li>Connect the keyboard and monitor to the Intel IEI TANK 870.</li>
+              <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
+              <li>Start the device and press F7 to enter the boot menu.</li>
+              <li>Select the USB flash drive as a boot option.</li>
+              <li>Select "Try Ubuntu without installing".</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <hr class="p-rule u-hide--large" />
+          <h2 class="p-stepped-list__title">Flash Ubuntu Core to the internal memory</h2>
+          <div class="p-stepped-list__content">
+            <ol class="u-no-margin--left">
+              <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
+              <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
+              <pre><code>sudo fdisk -l</code></pre></li>
+              <li><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
+              <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/&lt;name of the image&gt;.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre></li>
+              <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
+            </ol>
+          </div>
+        </li>
+        {% include "download/shared/_first-boot-setup.html" %}
+        {% include "download/shared/_login.html" %}
+      </ol>
+    </div>
   </div>
 </section>
 
