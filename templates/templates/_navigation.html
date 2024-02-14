@@ -2,7 +2,7 @@
 <header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   {% block header_banner %}
   <div class="p-navigation__row--25-75">
-    <div class="p-navigation__banner col">
+    <div class="p-navigation__banner">
       <div class="p-navigation__tagged-logo">
         <a class="p-navigation__link" href="/">
           {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
@@ -27,7 +27,7 @@
         </li>
       </ul>
     </div>
-    <nav class="p-navigation__nav col js-show-nav" aria-label="Categories">
+    <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
       <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
           <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
@@ -76,7 +76,7 @@
 {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
 <div id="secondary-navigation" class="p-navigation is-secondary is-dark">
   <div class="p-navigation__row--25-75">
-    <div class="p-navigation__banner col">
+    <div class="p-navigation__banner">
       <div class="p-navigation__tagged-logo">
         <a class="p-navigation__link" href="{{ breadcrumbs.section.path }}">
           <div class="p-navigation__logo-tag">
@@ -92,7 +92,7 @@
       {% endif %}
     </div>
 
-    <nav class="p-navigation__nav col" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
+    <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
       {% if breadcrumbs.children %}
       <ul class="p-navigation__items">
         {% for child in breadcrumbs.children %}
