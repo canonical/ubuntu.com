@@ -12,7 +12,7 @@
     <div class="col-7">
       <h1>Install Kubernetes</h1>
       <p>
-        Canonical Kubernetes is pure upstream and works on any cloud, from bare metal to public and edge. Deploy single node and multi-node clusters with Charmed Kubernetes and MicroK8s to support container orchestration, from testing to production. Both distributions bring the latest innovations from the Kubernetes community within a week of upstream release, allowing for time to learn, experiment and upskill.
+        Canonical Kubernetes is pure upstream and works on any cloud, from bare metal to public and edge. Deploy single node and multi-node clusters with Charmed Kubernetes and MicroK8s to support container orchestration, from testing to production. Our distributions bring the latest innovations from the Kubernetes community within a week of upstream release, allowing for time to learn, experiment and upskill.
       </p>
       <p>
         <a class="p-button--positive" href="/kubernetes/managed">
@@ -60,6 +60,48 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td data-heading="Product"><a href="/kubernetes">Canonical Kubernetes</a></td>
+          <td data-heading="Infrastructure">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Laptops (Linux)</li>
+              <li class="p-list__item">Workstations</li>
+              <li class="p-list__item">Edge/Micro clouds</li>
+              <li class="p-list__item">IoT devices</li>
+              <li class="p-list__item">Bare metal</li>
+              <li class="p-list__item">Private clouds</li>
+              <li class="p-list__item">Public clouds</li>
+              <li class="p-list__item">Hybrid clouds</li>
+            </ul>
+          </td>
+          <td data-heading="Use cases">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Opinionated Kubernetes</li>
+              <li class="p-list__item">Small to large clusters</li>
+              <li class="p-list__item">Long Term Support (LTS)</li>
+            </ul>
+          </td>
+          <td class="u-align--center" data-heading="Enterprise Support">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+          <td class="u-align--center" data-heading="Managed Kubernetes">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+        </tr>
         <tr>
           <td data-heading="Product"><a href="https://microk8s.io">MicroK8s</a></td>
           <td data-heading="Infrastructure">
@@ -191,7 +233,7 @@
     </table>
     <p><strong>(i).</strong> Use Ubuntu’s platform to run worker nodes on all public clouds (AKS, EKS, and GKE)</p>
     <p>
-      <a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Looking for help running Kubernetes? Get in touch&nbsp;&rsaquo;</a>
+      <a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Looking for help running Kubernetes? Get in touch</a>.
     </p>
   </div>
 </section>
@@ -202,13 +244,15 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <h3>Single node Kubernetes with MicroK8s</h3>
-      <h4>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h4>
-      <p>MicroK8s is a lightweight, zero-ops Kubernetes for Linux, Windows and macOS. A single command installs all
-        upstream Kubernetes services and their dependencies. With support for x86 and ARM64, MicroK8s runs from local
-        workstations to the edge and IoT appliances.</p>
+      <h3>Single node Kubernetes with Canonical Kubernetes and MicroK8s</h3>
+      <h4>Canonical Kubernetes and MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h4>
+      <p>Canonical Kubernetes is an opinionated Kubernetes distribution. It brings Long Term Support (LTS for short) and simplified operations from the local workstations, through the IoT and edge to large clusters.</p>
+      <p>MicroK8s is a lightweight, zero-ops Kubernetes for Linux, Windows and macOS. A single command installs all upstream Kubernetes services and their dependencies. With support for x86 and ARM64, MicroK8s runs from local workstations to the edge and IoT appliances.</p>
       <p>
-        <a href="https://microk8s.io/">Learn more about Microk8s</a>
+        <a href="/kubernetes">Learn more about Canonical Kubernetes&nbsp;&rsaquo;</a>
+      </p>
+      <p>
+        <a href="https://microk8s.io/">Learn more about Microk8s&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
@@ -281,10 +325,12 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <h4>Charmed Kubernetes installs CNCF-certified Kubernetes clusters across clouds</h4>
-      <p>Charmed Kubernetes is a fully automated, model-driven approach to installing and managing Kubernetes from
-        bare-metal to the cloud. Build your Kubernetes cloud from the ground up, integrate it with your favorite tools,
-        and create multi-cloud topologies.</p>
+      <h4>Canonical Kubernetes and Charmed Kubernetes installs CNCF-certified Kubernetes clusters across clouds</h4>
+      <p>Canonical Kubernetes is an opinionated Kubernetes distribution. It brings Long Term Support (LTS) and fully automated, model-driven operations from bare-metal to the cloud.</p>
+      <p>Canonical Kubernetes and Charmed Kubernetes is a fully automated, model-driven approach to installing and managing Kubernetes from bare-metal to the cloud. Build your Kubernetes cloud from the ground up, integrate it with your favorite tools, and create multi-cloud topologies.</p>
+      <p>
+        <a href="/kubernetes">Learn more about Canonical Kubernetes&nbsp;&rsaquo;</a>
+      </p>
       <p>
         <a href="/kubernetes/features">Learn more about Charmed Kubernetes&nbsp;&rsaquo;</a>
       </p>
@@ -386,7 +432,7 @@
       <pre class="p-code-snippet__block--icon"><code>microk8s kubectl get no</code></pre>
     </div>
     <p>
-      <a href="https://microk8s.io/docs/clustering">Learn more about MicroK8s clustering</a>
+      <a href="https://microk8s.io/docs/clustering">Learn more about MicroK8s clustering&nbsp;&rsaquo;</a>
     </p>
   </div>
 </section>
@@ -432,7 +478,7 @@
         </div>
       </div>
       <p>Are you a developer looking to quickly run local K8s clusters or an enterprise looking for K8s at the edge?
-        Read the <a href="https://microk8s.io/docs">MicroK8s documentation</a></p>
+        Read the <a href="https://microk8s.io/docs">MicroK8s documentation</a>.</p>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
@@ -447,10 +493,10 @@
           attrs={"class": "p-heading-icon__img"},
           ) | safe
           }}
-          <p class="p-heading-icon__title p-muted-heading">Juju</p>
+          <p class="p-heading-icon__title p-muted-heading">Canonical Kubernetes</p>
         </div>
       </div>
-      <p>Curious to learn about our Charmed Operators and how they automate DevOps and application lifecycle tasks? Browse through the <a href="https://jaas.ai/docs">Charmed OLM documentation</a></p>
+      <p>Curious to learn about Canonical Kubernetes, which will come with 12 years of long term support and built-in features like networking, local storage, dns or ingress? Browse through the <a href="/kubernetes">Canonical Kubernetes documentation</a>.</p>
     </div>
   </div>
 </section>
@@ -477,14 +523,14 @@
           <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Data Sheet</p>
         </div>
       </div>
-      <p><a class="p-link--inverted" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
+      <p><a class="p-link--inverted" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
             alt="",
             width="32",
             height="28",
@@ -496,7 +542,7 @@
           <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Industry Report</p>
         </div>
       </div>
-      <p><a class="p-link--inverted" href="https://juju.is/cloud-native-kubernetes-usage-report-2021">The Kubernetes and cloud native operations report 2021</a></p>
+      <p><a class="p-link--inverted" href="https://juju.is/cloud-native-kubernetes-usage-report-2022">The Kubernetes and cloud native operations report 2022&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--small">
@@ -515,7 +561,7 @@
           <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Whitepaper</p>
         </div>
       </div>
-      <p><a class="p-link--inverted" href="/engage/kubernetes-deployment-enterprise-whitepaper">Five strategies to accelerate Kubernetes deployment in the enterprise</a></p>
+      <p><a class="p-link--inverted" href="/engage/kubernetes-deployment-enterprise-whitepaper">Five strategies to accelerate Kubernetes deployment in the enterprise&nbsp;&rsaquo;</a></p>
       <p><a class="p-link--inverted" href="/kubernetes/resources">Find more resources&nbsp;&rsaquo;</a></p>
     </div>
   </div>
