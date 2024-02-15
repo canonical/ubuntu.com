@@ -76,12 +76,7 @@ const Form = () => {
                 <hr />
               </Row>
               <Strip includeCol={false}>
-                <Col size={12}>
-                  <h2>What security coverage do you need?</h2>
-                </Col>
-                <Col size={12}>
-                  <Feature />
-                </Col>
+                <Feature />
               </Strip>
               <Row>
                 <hr />

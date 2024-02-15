@@ -25,170 +25,116 @@ const Feature = () => {
   const proDisabled = version === LTSVersions.trusty;
 
   return (
-    <div
-      className={classNames({
-        row: true,
-        "p-divider": true,
-      })}
-      data-testid="wrapper"
-    >
-      <Row style={{ gap: "0" }} className="u-hide--small">
-        <Col size={6} className="description-column">
-          <div className="heading">
-            <strong>
-              Security coverage for critical, high and selected medium CVEs for:
-            </strong>
-          </div>
-          <div className="main">
-            <p>
-              Over 2,300 open source deb packages in Ubuntu Main repository for
-              10 years, including:
-            </p>
-            <div className="logos-wrapper">
-              <img
-                src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
-                alt="Systemd"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
-                alt="RabbitMQ"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
-                alt="OpenSSL"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
-                alt="Ruby"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
-                alt="PHP"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
-                alt="NGINX"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
-                alt="MySQL"
-              />
-            </div>
-          </div>
-          <div className="universe">
-            <p>
-              Over 23,000 open source deb packages in Ubuntu Universe repository
-              for 10 years, including:
-            </p>
-            <div className="logos-wrapper">
-              <img
-                src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
-                alt="Apache Tomcat"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
-                alt="Agios"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
-                alt="NodeJS"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
-                alt="Puppet"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
-                alt="Redis"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
-                alt="Rust"
-              />
-              <img
-                src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
-                alt="Wordpress"
-              />
-            </div>
-          </div>
-        </Col>
-        <Col size={3}>
-          <div
-            className={classNames({
-              "p-card--radio--column": true,
-              "is-selected": feature === Features.pro,
-            })}
-          >
-            <label className="p-radio u-align-text--center">
-              <input
-                data-testid="pro"
-                className="p-radio__input"
-                autoComplete="off"
-                type="radio"
-                aria-labelledby={`pro-label`}
-                value={Features.pro}
-                checked={feature === Features.pro}
-                onChange={handleChange}
-                disabled={proDisabled}
-              />
-              <span className="p-radio__label" id={`pro-label`}>
-                <RadioInput
-                  labelClassName="inner-label"
-                  label={"Ubuntu Pro"}
-                  checked={feature === Features.pro}
-                  value={Features.pro}
-                  onChange={handleChange}
-                  disabled={proDisabled}
-                />
-                <div className="included">
-                  <i className="p-icon--success"></i>Included
-                </div>
-                <div className="included">
-                  <i className="p-icon--success"></i> Included
-                </div>
-              </span>
-            </label>
-          </div>
-        </Col>
-        <Col size={3}>
-          <div
-            className={classNames({
-              "p-card--radio--column": true,
-              "is-selected": feature === Features.infra,
-            })}
-          >
-            <label className="p-radio u-align-text--center">
-              <input
-                data-testid="infra-only"
-                className="p-radio__input"
-                autoComplete="off"
-                type="radio"
-                aria-labelledby={`infra-label`}
-                value={Features.infra}
-                checked={feature === Features.infra}
-                onChange={handleChange}
-                disabled={infraOnlyDisabled}
-              />
-              <span className="p-radio__label" id={`infra-label`}>
-                <RadioInput
-                  labelClassName="inner-label"
-                  label={"Ubuntu Pro (Infra-only)"}
-                  checked={feature === Features.infra}
-                  value={Features.infra}
-                  onChange={handleChange}
-                  disabled={infraOnlyDisabled}
-                />
-                <div className="included">
-                  <i className="p-icon--success"></i>Included
-                </div>
-                <div className="included">
-                  <i className="p-icon--error"></i> Not included
-                </div>
-              </span>
-            </label>
-          </div>
-        </Col>
-      </Row>
+    <>
+    <Row className="u-hide--small">
+      <Col size={6}><h2>What security coverage do you need?</h2></Col>
+      <Col size={6}>
+        <div
+          className={classNames({
+            row: true,
+            "p-divider": true,
+          })}
+          data-testid="wrapper">
+          <p>Not sure? Run [command] to find out which packages and repositories you are currently using.</p>
+          <RadioInput 
+            label="Pro - all repositories" 
+            checked={feature === Features.pro}
+            value={Features.pro}
+            onChange={handleChange}
+            disabled={proDisabled}
+          />
+          <hr/>
+          <RadioInput label="Infra only - limited subset"
+            checked={feature === Features.infra}
+            value={Features.infra}
+            onChange={handleChange}
+            disabled={infraOnlyDisabled}
+          />
+        </div>
+      </Col>
+      <hr className="is-fixed-width"/>
+    </Row>
+    <Row  className="u-hide--small">
+      <Col size={3}>
+        <h1>{ feature === Features.pro ? "25000" : "2300" }</h1>
+      </Col>
+      <Col size={3}>
+        <p>Covers { feature === Features.pro ? "25000" : "2300" } packages in Ubuntu Main { feature === Features.pro ? "and Universe":""}</p>
+      </Col>
+      <Col size={6}>
+        <div className="p-graphic-main"/>
+        <div className={classNames({
+          "p-graphic-universe": feature === Features.pro,
+          "p-graphic-universe--empty": feature === Features.infra
+        })}/>
+        <p className="p-text--small graphic-legend-main">LTS standard security maintenance for Ubuntu Main (initial 5 years)</p>
+        { feature===Features.pro && <p className="p-text--small graphic-legend-universe">LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)</p> }
+      </Col>
+    </Row>
+    <Row>
+      <div className={classNames({"logos-wrapper": true, "col-6": feature===Features.infra})}>
+        <img
+          src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
+          alt="Systemd"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
+          alt="RabbitMQ"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
+          alt="OpenSSL"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
+          alt="Ruby"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
+          alt="PHP"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
+          alt="NGINX"
+        />
+        <img
+          src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
+          alt="MySQL"
+        />
+        { feature===Features.pro && <>
+          <img
+            src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
+            alt="Apache Tomcat"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
+            alt="Agios"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
+            alt="NodeJS"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
+            alt="Puppet"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
+            alt="Redis"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
+            alt="Rust"
+            />
+          <img
+            src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
+            alt="Wordpress"
+            />
+        </>}
+      </div>
+    </Row>
+
+  
       <Col className="u-hide u-show--small" size={12} small={4}>
         <RadioInput
           label="Ubuntu Pro"
@@ -224,8 +170,166 @@ const Feature = () => {
         <h4>23,000+</h4>
         <p>packages in Ubuntu universe, including:</p>
       </Col>
-    </div>
+    </>
   );
 };
 
 export default Feature;
+
+{/* <Row style={{ gap: "0" }} className="u-hide--small">
+            <Col size={6} className="description-column">
+              <div className="heading">
+                <strong>
+                  Security coverage for critical, high and selected medium CVEs for:
+                </strong>
+              </div>
+              <div className="main">
+                <p>
+                  Over 2,300 open source deb packages in Ubuntu Main repository for
+                  10 years, including:
+                </p>
+                <div className="logos-wrapper">
+                  <img
+                    src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
+                    alt="Systemd"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
+                    alt="RabbitMQ"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
+                    alt="OpenSSL"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
+                    alt="Ruby"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
+                    alt="PHP"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
+                    alt="NGINX"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
+                    alt="MySQL"
+                  />
+                </div>
+              </div>
+              <div className="universe">
+                <p>
+                  Over 23,000 open source deb packages in Ubuntu Universe repository
+                  for 10 years, including:
+                </p>
+                <div className="logos-wrapper">
+                  <img
+                    src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
+                    alt="Apache Tomcat"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
+                    alt="Agios"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
+                    alt="NodeJS"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
+                    alt="Puppet"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
+                    alt="Redis"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
+                    alt="Rust"
+                  />
+                  <img
+                    src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
+                    alt="Wordpress"
+                  />
+                </div>
+              </div>
+            </Col>
+            <Col size={3}>
+              <div
+                className={classNames({
+                  "p-card--radio--column": true,
+                  "is-selected": feature === Features.pro,
+                })}
+              >
+                <label className="p-radio u-align-text--center">
+                  <input
+                    data-testid="pro"
+                    className="p-radio__input"
+                    autoComplete="off"
+                    type="radio"
+                    aria-labelledby={`pro-label`}
+                    value={Features.pro}
+                    checked={feature === Features.pro}
+                    onChange={handleChange}
+                    disabled={proDisabled}
+                  />
+                  <span className="p-radio__label" id={`pro-label`}>
+                    <RadioInput
+                      labelClassName="inner-label"
+                      label={"Ubuntu Pro"}
+                      checked={feature === Features.pro}
+                      value={Features.pro}
+                      onChange={handleChange}
+                      disabled={proDisabled}
+                    />
+                    <div className="included">
+                      <i className="p-icon--success"></i>Included
+                    </div>
+                    <div className="included">
+                      <i className="p-icon--success"></i> Included
+                    </div>
+                  </span>
+                </label>
+              </div>
+            </Col>
+            <Col size={3}>
+              <div
+                className={classNames({
+                  "p-card--radio--column": true,
+                  "is-selected": feature === Features.infra,
+                })}
+              >
+                <label className="p-radio u-align-text--center">
+                  <input
+                    data-testid="infra-only"
+                    className="p-radio__input"
+                    autoComplete="off"
+                    type="radio"
+                    aria-labelledby={`infra-label`}
+                    value={Features.infra}
+                    checked={feature === Features.infra}
+                    onChange={handleChange}
+                    disabled={infraOnlyDisabled}
+                  />
+                  <span className="p-radio__label" id={`infra-label`}>
+                    <RadioInput
+                      labelClassName="inner-label"
+                      label={"Ubuntu Pro (Infra-only)"}
+                      checked={feature === Features.infra}
+                      value={Features.infra}
+                      onChange={handleChange}
+                      disabled={infraOnlyDisabled}
+                    />
+                    <div className="included">
+                      <i className="p-icon--success"></i>Included
+                    </div>
+                    <div className="included">
+                      <i className="p-icon--error"></i> Not included
+                    </div>
+                  </span>
+                </label>
+              </div>
+            </Col>
+          </Row> */}
