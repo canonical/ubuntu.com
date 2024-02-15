@@ -26,131 +26,290 @@ const Feature = () => {
 
   return (
     <>
-    <Row className="u-hide--small">
-      <Col size={6}><h2>What security coverage do you need?</h2></Col>
-      <Col size={6}>
-        <div
-          className={classNames({
-            row: true,
-            "p-divider": true,
-          })}
-          data-testid="wrapper">
-          <p>Not sure? Run [command] to find out which packages and repositories you are currently using.</p>
-          <RadioInput 
-            label="Pro - all repositories" 
-            checked={feature === Features.pro}
-            value={Features.pro}
-            onChange={handleChange}
-            disabled={proDisabled}
-          />
-          <hr/>
-          <RadioInput label="Infra only - limited subset"
-            checked={feature === Features.infra}
-            value={Features.infra}
-            onChange={handleChange}
-            disabled={infraOnlyDisabled}
-          />
-        </div>
-      </Col>
-      <hr className="is-fixed-width"/>
-    </Row>
-    <Row  className="u-hide--small">
-      <Col size={3}>
-        <h1>{ feature === Features.pro ? "25000" : "2300" }</h1>
-      </Col>
-      <Col size={3}>
-        <p>Covers { feature === Features.pro ? "25000" : "2300" } packages in Ubuntu Main { feature === Features.pro ? "and Universe":""}</p>
-      </Col>
-      <Col size={6}>
-        <div className="p-graphic-main"/>
-        <div className={classNames({
-          "p-graphic-universe": feature === Features.pro,
-          "p-graphic-universe--empty": feature === Features.infra
-        })}/>
-        <p className="p-text--small graphic-legend-main">LTS standard security maintenance for Ubuntu Main (initial 5 years)</p>
-        { feature===Features.pro && <p className="p-text--small graphic-legend-universe">LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)</p> }
-      </Col>
-    </Row>
-    <Row>
-      <div className={classNames({"logos-wrapper": true, "col-6": feature===Features.infra})}>
-        <img
-          src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
-          alt="Systemd"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
-          alt="RabbitMQ"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
-          alt="OpenSSL"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
-          alt="Ruby"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
-          alt="PHP"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
-          alt="NGINX"
-        />
-        <img
-          src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
-          alt="MySQL"
-        />
-        { feature===Features.pro && <>
-          <img
-            src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
-            alt="Apache Tomcat"
+      <Row>
+        <Col size={6}><h2>What security coverage do you need?</h2></Col>
+        <Col size={6}>
+          <div
+            className={classNames({
+              row: true,
+              "p-divider": true,
+            })}
+            data-testid="wrapper">
+            <p>Not sure? Run <code> pro security-status</code> to find out which packages and repositories you are currently using.</p>
+            <RadioInput
+              label="Pro - all repositories"
+              checked={feature === Features.pro}
+              value={Features.pro}
+              onChange={handleChange}
+              disabled={proDisabled}
             />
-          <img
-            src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
-            alt="Agios"
+            <hr />
+            <RadioInput label="Infra only - limited subset"
+              checked={feature === Features.infra}
+              value={Features.infra}
+              onChange={handleChange}
+              disabled={infraOnlyDisabled}
             />
-          <img
-            src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
-            alt="NodeJS"
-            />
-          <img
-            src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
-            alt="Puppet"
-            />
-          <img
-            src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
-            alt="Redis"
-            />
-          <img
-            src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
-            alt="Rust"
-            />
-          <img
-            src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
-            alt="Wordpress"
-            />
-        </>}
-      </div>
-    </Row>
+          </div>
+        </Col>
+        <Col size={11} emptyMedium={2} emptyLarge={2}>
+          <hr className="is-fixed-width" />
+        </Col>
+      </Row>
+      <Row >
+        <Col size={2} emptyMedium={2} emptyLarge={2}>
+          <h1>{feature === Features.pro ? "25000" : "2300"}</h1>
+        </Col>
+        <Col size={3}>
+          <p>Covers {feature === Features.pro ? "25000" : "2300"} packages in Ubuntu Main {feature === Features.pro ? "and Universe" : ""}</p>
+        </Col>
+        <Col size={6}>
+          <div className="p-graphic-main" />
+          <div className={classNames({
+            "p-graphic-universe": feature === Features.pro,
+            "p-graphic-universe--empty": feature === Features.infra
+          })} />
+          <p className="p-text--small graphic-legend-main">LTS standard security maintenance for Ubuntu Main (initial 5 years)</p>
+          {feature === Features.pro && <p className="p-text--small graphic-legend-universe">LTS Expanded Security Maintenance (ESM) for Ubuntu Main (additional 5 years)</p>}
+        </Col>
+      </Row>
+      <Row>
+        <Col size={11} emptySmall={2} emptyLarge={2}>
+          <div className="p-logo-section--dense">
+            <div className="p-logo-section__items u-sv3">
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
+                  alt="Systemd"
+                  width="67"
+                  height="64"
+                  className="p-logo-section__logo"
+                  />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/3b69f369-ruby-logo.png"
+                  alt=""
+                  width="104"
+                  height="252"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/bedc5d63-rabbitmq-logo.png"
+                  alt=""
+                  width="248"
+                  height="257"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/c2cd0bc4-php-logo.png"
+                  alt=""
+                  width="160"
+                  height="252"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/86fdc1d7-openssl-logo.png"
+                  alt=""
+                  width="172"
+                  height="252"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/a92957da-nginex logo.png"
+                  alt=""
+                  width="184"
+                  height="258"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/0e5bcec1-mysql logo.png"
+                  alt=""
+                  width="180"
+                  height="252"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              { feature===Features.pro &&
+              <>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/6cdc1a69-ansible logo.png"
+                  alt=""
+                  width="124"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/605af026-apache tomcat logo.png"
+                  alt=""
+                  width="204"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/5dbf023e-docker logo.png"
+                  alt=""
+                  width="244"
+                  height="245"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/933cc587-etcd logo.png"
+                  alt=""
+                  width="196"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/1f55452f-glusterfs logo.png"
+                  alt=""
+                  width="196"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/973c8e10-Frame 19.png"
+                  alt=""
+                  width="232"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/3ec28413-powerdns logo.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/7e68a46f-perl logo.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/35e5c439-puppet logo.png"
+                  alt=""
+                  width="236"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/2ad3b2ba-python logo.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/8279fc01-go logo.png"
+                  alt=""
+                  width="168"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/94f1e342-nagios logo.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/5b13a988-nginex logo-1.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/56d8741e-node-logo.png"
+                  alt=""
+                  width="196"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/fa78f5b4-openjdk logo.png"
+                  alt=""
+                  width="240"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/05c01589-redis logo.png"
+                  alt=""
+                  width="252"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/850af73c-ruby-rails logo.png"
+                  alt=""
+                  width="240"
+                  height="253"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              <div className="p-logo-section__item u-sv1">
+                <img
+                  src="https://assets.ubuntu.com/v1/93af6c88-rust logo.png"
+                  alt=""
+                  width="120"
+                  height="252"
+                  className="p-logo-section__logo"
+                />
+              </div>
+              </>}
+            </div>
+          </div>
+        </Col>
+      </Row>
 
-  
-      <Col className="u-hide u-show--small" size={12} small={4}>
-        <RadioInput
-          label="Ubuntu Pro"
-          value={Features.pro}
-          checked={feature === Features.pro}
-          onChange={handleChange}
-          disabled={proDisabled}
-        />
-        <RadioInput
-          label="Ubuntu Pro (Infra-only)"
-          value={Features.infra}
-          checked={feature === Features.infra}
-          onChange={handleChange}
-          disabled={infraOnlyDisabled}
-        />
-      </Col>
       <Col
         className="p-divider__block u-align--center u-hide u-show--small"
         size={6}
@@ -175,161 +334,3 @@ const Feature = () => {
 };
 
 export default Feature;
-
-{/* <Row style={{ gap: "0" }} className="u-hide--small">
-            <Col size={6} className="description-column">
-              <div className="heading">
-                <strong>
-                  Security coverage for critical, high and selected medium CVEs for:
-                </strong>
-              </div>
-              <div className="main">
-                <p>
-                  Over 2,300 open source deb packages in Ubuntu Main repository for
-                  10 years, including:
-                </p>
-                <div className="logos-wrapper">
-                  <img
-                    src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
-                    alt="Systemd"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
-                    alt="RabbitMQ"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
-                    alt="OpenSSL"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
-                    alt="Ruby"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
-                    alt="PHP"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
-                    alt="NGINX"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
-                    alt="MySQL"
-                  />
-                </div>
-              </div>
-              <div className="universe">
-                <p>
-                  Over 23,000 open source deb packages in Ubuntu Universe repository
-                  for 10 years, including:
-                </p>
-                <div className="logos-wrapper">
-                  <img
-                    src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
-                    alt="Apache Tomcat"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
-                    alt="Agios"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
-                    alt="NodeJS"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
-                    alt="Puppet"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
-                    alt="Redis"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
-                    alt="Rust"
-                  />
-                  <img
-                    src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
-                    alt="Wordpress"
-                  />
-                </div>
-              </div>
-            </Col>
-            <Col size={3}>
-              <div
-                className={classNames({
-                  "p-card--radio--column": true,
-                  "is-selected": feature === Features.pro,
-                })}
-              >
-                <label className="p-radio u-align-text--center">
-                  <input
-                    data-testid="pro"
-                    className="p-radio__input"
-                    autoComplete="off"
-                    type="radio"
-                    aria-labelledby={`pro-label`}
-                    value={Features.pro}
-                    checked={feature === Features.pro}
-                    onChange={handleChange}
-                    disabled={proDisabled}
-                  />
-                  <span className="p-radio__label" id={`pro-label`}>
-                    <RadioInput
-                      labelClassName="inner-label"
-                      label={"Ubuntu Pro"}
-                      checked={feature === Features.pro}
-                      value={Features.pro}
-                      onChange={handleChange}
-                      disabled={proDisabled}
-                    />
-                    <div className="included">
-                      <i className="p-icon--success"></i>Included
-                    </div>
-                    <div className="included">
-                      <i className="p-icon--success"></i> Included
-                    </div>
-                  </span>
-                </label>
-              </div>
-            </Col>
-            <Col size={3}>
-              <div
-                className={classNames({
-                  "p-card--radio--column": true,
-                  "is-selected": feature === Features.infra,
-                })}
-              >
-                <label className="p-radio u-align-text--center">
-                  <input
-                    data-testid="infra-only"
-                    className="p-radio__input"
-                    autoComplete="off"
-                    type="radio"
-                    aria-labelledby={`infra-label`}
-                    value={Features.infra}
-                    checked={feature === Features.infra}
-                    onChange={handleChange}
-                    disabled={infraOnlyDisabled}
-                  />
-                  <span className="p-radio__label" id={`infra-label`}>
-                    <RadioInput
-                      labelClassName="inner-label"
-                      label={"Ubuntu Pro (Infra-only)"}
-                      checked={feature === Features.infra}
-                      value={Features.infra}
-                      onChange={handleChange}
-                      disabled={infraOnlyDisabled}
-                    />
-                    <div className="included">
-                      <i className="p-icon--success"></i>Included
-                    </div>
-                    <div className="included">
-                      <i className="p-icon--error"></i> Not included
-                    </div>
-                  </span>
-                </label>
-              </div>
-            </Col>
-          </Row> */}
