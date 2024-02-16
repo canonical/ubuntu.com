@@ -203,7 +203,7 @@ meta_copydoc %}
     }
   };
 
-  function setUpDynamicSideNav() {
+  function setUpDynamicSideNav(viewPortHeight) {
     const questions = Array.prototype.slice.call(
       document.querySelectorAll(".question-heading")
     );
@@ -225,8 +225,8 @@ meta_copydoc %}
           });
         }
       }, {
-        rootMargin: "0px 0px -800px",
-        threshold: 1,
+        rootMargin: `0px 0px -80%`,
+        threshold: 0.5,
       });
 
       observer.observe(question);
@@ -237,6 +237,10 @@ meta_copydoc %}
     setUpTogglableSideNav();
     setUpDynamicSideNav();
   })();
+
+
+// start observing a DOM node
+
 </script>
 
 {% endblock content %}
