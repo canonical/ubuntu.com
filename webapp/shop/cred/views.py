@@ -869,8 +869,16 @@ def cred_shop_thank_you(**kwargs):
     )
 
 
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
-    keys = get_activation_keys().json
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
+
+    keys = []
+    for contract in contracts:
+        contract_id = contract.id
+        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+
     unused_keys = []
     active_keys = []
     for i in range(len(keys)):
@@ -1065,19 +1073,6 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         return flask.render_template(
             "/credentials/redeem_with_captcha.html", key=activation_key
         )
-
-
-@shop_decorator(area="cube", permission="user", response="json")
-def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account("canonical-ua")
-    contracts = advantage_mapper.get_activation_key_contracts(account.id)
-
-    keys = []
-    for contract in contracts:
-        contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
-
-    return flask.jsonify(keys)
 
 
 @shop_decorator(area="cube", permission="user", response="json")
