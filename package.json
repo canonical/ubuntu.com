@@ -24,8 +24,6 @@
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/dist etc/",
     "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
-    "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT:-8001}/",
-    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT:-8001}/",
     "check-prettier": "prettier -c 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
     "format-prettier": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'"
   },
@@ -44,7 +42,6 @@
     "@babel/preset-react": "7.14.5",
     "@babel/preset-typescript": "7.16.7",
     "@playwright/test": "^1.40.0",
-    "@testing-library/cypress": "8.0.0",
     "@testing-library/dom": "8.13.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
@@ -63,12 +60,9 @@
     "babel-loader": "8.2.3",
     "concurrently": "6.5.1",
     "csstype": "3.0.8",
-    "cypress": "8.7.0",
-    "cypress-axe": "0.14.0",
     "enzyme": "3.11.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "7.2.0",
-    "eslint-plugin-cypress": "2.12.1",
     "eslint-plugin-react": "7.28.0",
     "exports-loader": "2.0.0",
     "fishery": "1.4.0",
@@ -87,6 +81,7 @@
     "watch-cli": "0.2.3"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.8.5",
     "@canonical/cookie-policy": "3.5.0",
     "@canonical/global-nav": "3.6.2",
     "@canonical/latest-news": "1.5.0",
