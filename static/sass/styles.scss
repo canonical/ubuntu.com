@@ -1533,3 +1533,18 @@ hr.is-extra-muted {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.5;
 }
+
+// Decimal number bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/4998
+ol.p-list--divided .p-list__item::before {
+  content: counter(list-item) ". ";
+}
+
+// Fix stepped list title grid bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
+@media screen and (max-width: $breakpoint-small - 1) {
+  .p-stepped-list--detailed .p-stepped-list__title {
+    grid-column-end: span 4;
+    margin-left: 0;
+  }
+}
