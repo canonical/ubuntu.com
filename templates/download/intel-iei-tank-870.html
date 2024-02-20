@@ -85,32 +85,8 @@
           </ol>
         </div>
       </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">First boot setup</h2>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>The system will boot then become ready to configure.</li>
-            <li>The device will display the prompt "Press enter to configure".</li>
-            <li>Press enter then select "Start" to begin configuring your network and an administrator account. Follow the instructions on the screen, you will be asked to configure your network and enter your Ubuntu SSO credentials.</li>
-            <li>
-              <p>At the end of the process, you will see your credentials to access your Ubuntu Core machine:</p>
-              <pre><code>This device is registered to &lt;Ubuntu SSO email address&gt;.
-      Remote access was enabled via authentication with the SSO user &lt;Ubuntu SSO user name&gt;
-      Public SSH keys were added to the device for remote access.</code></pre>
-            </li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <hr class="p-rule u-hide--large" />
-        <h2 class="p-stepped-list__title">Connect to the device</h2>
-        <div class="p-stepped-list__content">
-          <p>Once setup is done, you can login with SSH into Ubuntu Core, from a machine on the same network, using the following command:</p>
-          <pre><code>ssh &lt;Ubuntu SSO user name&gt;@&lt;device IP address&gt;</code></pre>
-          <p>Your user name is your Ubuntu SSO user name, and the command should be displayed on the RPi.</p>
-        </div>
-      </li>
+      {% include "download/shared/_first-boot-setup.html" %}
+      {% include "download/shared/_login.html" %}
     </ol>
   </div>
 </section>
@@ -151,6 +127,5 @@
 {% include "download/shared/_download-security.html" %}
 
 {% include "download/shared/_resources.html" %}
-
 
 {% endblock content %}
