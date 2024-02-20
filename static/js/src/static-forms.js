@@ -159,8 +159,10 @@ function setUpStaticForms(form, formId) {
     submitButton.appendChild(spinnerIcon);
   }
   const submitButton = form.querySelector('button[type="submit"]');
+
   // Exclude forms that don't need loader
   const cancelLoader = submitButton.classList.contains("no-loader");
+
   if (submitButton && !cancelLoader) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }

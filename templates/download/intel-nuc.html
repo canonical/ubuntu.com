@@ -1,135 +1,170 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Core on the Intel&reg; NUC{% endblock %}}
+{% block title %}Install Ubuntu Core on the Intel&reg; NUC{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1e2aWvVEEXvxDWSbxDzs-_tqKbKbW9sapjCjIRiuAdMg/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Install Ubuntu Core on the Intel<sup>&reg;</sup> NUC</h1>
-      <p>There are two install options for the Intel NUC: <a href="#core">Ubuntu Core</a> or <a href="intel-nuc-desktop">Ubuntu Desktop</a>  This page is for Ubuntu Core.</p>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row p-section">
+    <div class="col-6 col-medium-3">
+      <h1>Install Ubuntu Core<br /> on the Intel<sup>&reg;</sup> NUC</h1>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>There are two install options for the Intel NUC: <a href="/download/intel-nuc">Ubuntu Core</a> or <a href="/download/intel-nuc-desktop">Ubuntu Desktop</a>. This page is for Ubuntu Core.</p>
+      <p>We will walk you through the steps of flashing Ubuntu Core on an Intel NUC. At the end of this process, you will have a board ready for production or testing snaps.</p>
+      <hr class="p-rule" />
+      <p class="p-heading--5">Minimum requirements</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+        <li class="p-list__item is-ticked">An Intel<sup>&reg;</sup>with BIOS updated to the latest version (<a href="https://www.intel.com/content/www/us/en/support/articles/000033300/intel-nuc.html">update instructions</a>)</li>
+        <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
+        <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+        <li class="p-list__item is-ticked">A monitor with VGA or HDMI interface</li>
+        <li class="p-list__item is-ticked">A VGA or HDMI cable</li>
+        <li class="p-list__item is-ticked">A network connection with Internet access</li>
+        <li class="p-list__item is-ticked">An Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> image</li>
+        <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+      </ul>
     </div>
   </div>
-  <div class="row" id="core">
-    <div class="col-12 p-card">
-      <div class="u-equal-height row p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Core</h2>
-          <p>We will walk you through the steps of flashing Ubuntu Core on an Intel NUC. At the end of this process, you will have a board ready for production or testing snaps.</p>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width">
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Set up an Ubuntu SSO account
+        </h2>
+        <div class="p-stepped-list__content">
+          <p>An Ubuntu SSO account is required to create the first user on an Ubuntu Core installation.</p>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Start by creating an <a href="https://login.ubuntu.com/">Ubuntu SSO account</a>.</li>
+            <li class="p-list__item">Import an SSH Key into your <a href="https://login.ubuntu.com/ssh-keys">Ubuntu SSO account</a>. (<a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys">instructions</a>)</li>
+          </ol>
         </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
-            <li class="p-list__item is-ticked">An Intel NUC with BIOS updated to the latest version (<a href="https://www.intel.com/content/www/us/en/support/articles/000033300/intel-nuc.html">update instructions</a>)</li>
-            <li class="p-list__item is-ticked">2 USB 2.0 or 3.0 flash drives (2GB minimum)</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
-            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
-            <li class="p-list__item is-ticked">A monitor with VGA or HDMI interface</li>
-            <li class="p-list__item is-ticked">A VGA or HDMI cable</li>
-            <li class="p-list__item is-ticked">A network connection with Internet access</li>
-            <li class="p-list__item is-ticked">An Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> image</li>
-            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Download Ubuntu Core
+        </h2>
+        <div class="p-stepped-list__content">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              Download the <a href="https://cdimage.ubuntu.com/ubuntu-core/22/stable/current/ubuntu-core-22-amd64.img.xz">Ubuntu Core 22 generic image for Intel platforms</a>
+            </li>
+            <li class="p-list__item">
+              Or download the <a href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz">Ubuntu Core 18 image for Intel Dawson Canyon and June Canyon NUC</a>. This image is certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE, NUC7i3DNHE, NUC7i3DNKE, and NUC7i3DNBE, and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH
+            </li>
+            <li class="p-list__item">You can then verify the integrity of the download using the associated <a href="https://cdimage.ubuntu.com/ubuntu-core/22/beta/current/SHA256SUMS">MD5SUM file</a> and the <code>md5sum</code> command on most Linux distributions.</li>
           </ul>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Flash the USB drives
+        </h2>
+        <div class="p-stepped-list__content">
+          <ol class="p-list--divided u-no-margin--left">
+            <li class="p-list__item">Download and copy the <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a  href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a></li>
+            <li class="p-list__item">Copy the Ubuntu Core image for Intel NUC on the second USB flash drive</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Install Ubuntu Core
+        </h2>
+        <div class="p-stepped-list__content">
+          <ol class="p-list--divided u-no-margin--left">
+            <li class="p-list__item">Connect your USB hub, keyboard, mouse, monitor to the NUC.</li>
+            <li class="p-list__item">Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
+            <li class="p-list__item">Connect the USB hub, keyboard, mouse and the monitor to the NUC.</li>
+            <li class="p-list__item">Insert the Live USB Ubuntu Desktop flash drive in the NUC.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Boot from the Live USB flash drive
+        </h2>
+        <div class="p-stepped-list__content">
+          <ol class="p-list--divided u-no-margin--left">
+            <li class="p-list__item">Start the NUC and push F10 to enter the boot menu.</li>
+            <li class="p-list__item">Select the USB flash drive as a boot option.</li>
+            <li class="p-list__item">Select "Try Ubuntu without installing".</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Flash Ubuntu Core
+        </h2>
+        <div class="p-stepped-list__content">
+          <ol class="p-list--divided u-no-margin--left">
+            <li class="p-list__item">Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
+            <li class="p-list__item">Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:
+              <p><pre><code>sudo fdisk -l</code></pre></p>
+            </li>
+            <li class="p-list__item">Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:
+              <p></p>
+              <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre>
+            <li class="p-list__item">Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
+          </ol>
+        </div>
+      </li>
+      {% include "download/shared/_first-boot-setup.html" %}
+      {% include "download/shared/_login.html" %}
+    </ol>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6 p-section--shallow">
+      <h2>Next steps</h2>
+    </div>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <div class="row">
+        <hr class="p-rule u-hide--small u-hide--large" />
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">First boot tips</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ol class="p-list--divided">
+            <li class="p-list__item">During setup, <code>console-conf</code> will download the SSH key registered with your Store account and configure it so you can log into the device via <code>ssh &lt;Ubuntu SSO account name&gt;@&lt;device IP address&gt;</code> without a password.</li>
+            <li class="p-list__item">There is no default <code>ubuntu</code> user on these images, but you can run <code>sudo passwd &lt;account name&gt;</code> to set a password if you need a local console login.</li>
+          </ol>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Get started with snaps</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Your board is now ready to have snaps installed, it's time to use the snap command to install your first snap.</p>
+          <p>The <a href="https://snapcraft.io/store">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
-    <ol class="p-stepped-list--detailed">
-      {% include "download/iot/_setup-ubuntu-sso.html" %}
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
 
-          Download Ubuntu Core
-        </h3>
-        <div class="p-stepped-list__content">
-          <ul>
-            <li>
-              Download the <a href="https://cdimage.ubuntu.com/ubuntu-core/22/stable/current/ubuntu-core-22-amd64.img.xz">Ubuntu Core 22 generic image for Intel platforms</a>
-            </li>
-            <li>
-              Or download the <a href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz">Ubuntu Core 18 image for Intel Dawson Canyon and June Canyon NUC</a>
-              <ul>
-                <li>This image is certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE, NUC7i3DNHE, NUC7i3DNKE, and NUC7i3DNBE, and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH</li>
-              </ul>
-            </li>
-            <li>You can then verify the integrity of the download using the associated <a href="https://cdimage.ubuntu.com/ubuntu-core/22/beta/current/SHA256SUMS">MD5SUM file</a> and the <code>md5sum</code> command on most Linux distributions.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-          Flash the USB drives
-        </h3>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Download and copy the <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a  href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a></li>
-            <li>Copy the Ubuntu Core image for Intel NUC on the second USB flash drive</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
+{% include "download/shared/_download-security.html" %}
 
-          Install Ubuntu Core
-        </h3>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Connect your USB hub, keyboard, mouse, monitor to the NUC.</li>
-            <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
-            <li>Connect the USB hub, keyboard, mouse and the monitor to the NUC.</li>
-            <li>Insert the Live USB Ubuntu Desktop flash drive in the NUC.</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
-          Boot from the Live USB flash drive
-        </h3>
-        <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Start the NUC and push F10 to enter the boot menu.</li>
-            <li>Select the USB flash drive as a boot option.</li>
-            <li>Select "Try Ubuntu without installing".</li>
-          </ol>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
-            Flash Ubuntu Core
-          </h3>
-          <div class="p-stepped-list__content">
-            <ol class="u-no-margin--left">
-              <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
-              <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>
-              <pre><code>sudo fdisk -l</code></pre></li>
-              <li><p>Run the following command, where <code>&lt;disk label&gt;</code> is the label of the second USB flash drive:</p>
-              <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre></li>
-              <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where Ubuntu Core has been flashed.</li>
-            </ol>
-          </div>
-        </li>
-        {% with number=7 %}{% include "download/shared/_first-boot-setup.html" %}{% endwith %}
-        {% with number=8 %}{% include "download/shared/_login.html" %}{% endwith %}
-      </ol>
-    </div>
-</section>
-
-{% with strip="p-strip--light" %}{% include "download/iot/_boot-tips-strip.html" %}{% endwith %}
-
-{% include "download/iot/_install-snaps-strip.html" %}
-
-{% include "download/shared/_get-ebook-security.html"%}
-
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_resources.html" %}
 
 {% endblock content %}
