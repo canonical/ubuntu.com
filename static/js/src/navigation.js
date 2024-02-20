@@ -1,5 +1,5 @@
 const ANIMATION_DELAY = 200;
-const MOBILE_VIEW_BREAKPOINT = 1281;
+const MOBILE_VIEW_BREAKPOINT = 1228;
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(
   ".dropdown-window-overlay"
