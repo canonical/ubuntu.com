@@ -8,19 +8,20 @@
 
 {% block content %}
 
-<section class="p-strip">
-  <div class="row--25-75">
-    <div class="col">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
-        alt="Nvidia",
-        width="150",
-        height="111",
-        hi_def=True,
-        loading="auto",
-        attrs={"style": "margin-top: 1.1rem;"}
-        ) | safe
-      }}
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--25-75 p-section">
+    <div class="col u-hide--small u-hide--medium">
+      <div class="p-image-wrapper">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+          alt="Nvidia",
+          width="100",
+          height="74",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
     </div>
     <div class="col">
       <h1>Install Ubuntu on NVIDIA Jetson</h1>
