@@ -14,6 +14,14 @@
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       display: none !important;
     }
+
+    .global-nav-dropdown .global-nav__row {
+      padding: 0 2rem;
+
+      .col-9 {
+        margin-left: 0.25rem;
+      }
+    }
   }
 
   .dropdown-window-overlay {
@@ -114,11 +122,12 @@
 
   .dropdown-window__main-panel,
   .dropdown-window__side-panel {
-    margin: 2.5rem 0 2.5rem -0.5rem;
+    margin: 2rem 0 2.5rem -0.5rem;
 
     .p-muted-heading {
       color: rgba(255, 255, 255, 0.6);
       padding-left: 0.5rem;
+      padding-top: 0.25rem;
     }
 
     .p-navigation__dropdown-item {
@@ -168,7 +177,7 @@
   }
 
   .dropdown-window__side-panel {
-    margin: 2.5rem 0;
+    margin: 2rem 0;
     padding: 0;
 
     .p-list {
