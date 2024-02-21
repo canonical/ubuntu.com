@@ -3,45 +3,40 @@
 {% block title %}Install Ubuntu Core on a Raspberry Pi{% endblock %}
 
 {% block meta_description %}Ubuntu is an open-source operating system for cross platform development, there's no better place to get started than with Ubuntu on a Raspberry Pi{% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1Ig906jbgB39QHw61uHMvIsRbSBUjchJBDkMZl0WzlWM/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Install Ubuntu Core on a Raspberry Pi</h1>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
+    <div class="col">
+      <h1>Install Ubuntu Core <br />on a Raspberry Pi</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 p-card">
-      <div class="u-equal-height row p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Core</h2>
-          <p>This is a brief overview of the steps for installing Ubuntu Core on a Raspberry Pi 2, 3, or 4. At the end of this process, you will have a board ready for production or testing. Check the <a href="/core/docs/uc20/install-raspberry-pi">Ubuntu Core documentation for more detailed instructions</a>.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">A Raspberry Pi 2, 3 or 4</li>
-            <li class="p-list__item is-ticked">A 4 GB+ microSD card and reader</li>
-            <li class="p-list__item is-ticked">A Wi-Fi network or an ethernet cable with an Internet connection</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">An HDMI cable</li>
-            <li class="p-list__item is-ticked">A USB keyboard</li>
-            <li>An <a href="https://login.ubuntu.com/">Ubuntu SSO account</a> with an associated SSH key</li>
-          </ul>
-        </div>
-      </div>
+    <div class="col">
+      <p>This is a brief overview of the steps for installing Ubuntu Core on a Raspberry Pi 2, 3, or 4. At the end of this process, you will have a board ready for production or testing. Check the <a href="/core/docs/uc20/install-raspberry-pi">Ubuntu Core documentation for more detailed instructions</a>.</p>
+      <hr class="p-rule" />
+      <p class="p-heading--5">Minimum requirements</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">A Raspberry Pi 2, 3 or 4</li>
+        <li class="p-list__item is-ticked">A 4 GB+ microSD card and reader</li>
+        <li class="p-list__item is-ticked">A Wi-Fi network or an ethernet cable with an Internet connection</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable</li>
+        <li class="p-list__item is-ticked">A USB keyboard</li>
+        <li>An <a href="https://login.ubuntu.com/">Ubuntu SSO account</a> with an associated SSH key</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-section">
   <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Prepare the SD card</h3>
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">Prepare the SD card</h2>
         <div class="p-stepped-list__content">
           <p>Use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> to download and write the latest Ubuntu Core release to the SD card. To get started on Ubuntu you can run:</p>
           <code>sudo snap install rpi-imager</code>
@@ -50,22 +45,24 @@
         </div>
       </li>
       <li class="p-stepped-list__item ">
-        <h3 class="p-stepped-list__title">Set up an Ubuntu SSO account</h3>
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">Set up an Ubuntu SSO account</h2>
         <div class="p-stepped-list__content">
           <p>An Ubuntu SSO account is required to create the first user on an Ubuntu Core installation.</p>
-          <ol class="u-no-margin--left">
-            <li>Start by creating an <a href="https://login.ubuntu.com/">Ubuntu SSO account</a>.</li>
-            <li>Import an SSH Key into your <a href="https://login.ubuntu.com/ssh-keys">Ubuntu SSO account</a>.</li>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Start by creating an <a href="https://login.ubuntu.com/">Ubuntu SSO account</a>.</li>
+            <li class="p-list__item">Import an SSH Key into your <a href="https://login.ubuntu.com/ssh-keys">Ubuntu SSO account</a>.</li>
           </ol>
           <p>More information on <a href="/tutorials/how-to-install-ubuntu-core-on-raspberry-pi#4-boot-and-configure-ubuntu-core">generating an SSH key pair</a> can be found in the tutorial and <a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys">community help wiki</a>.</p>
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install Ubuntu Core</h3>
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">Install Ubuntu Core</h2>
         <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
-            <li>Insert the SD card and plug the power adaptor into the board</li>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Attach the monitor and keyboard to the board. You can alternatively use a serial cable.</li>
+            <li class="p-list__item">Insert the SD card and plug the power adaptor into the board</li>
           </ol>
         </div>
       </li>
@@ -75,55 +72,43 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h3>Get started with snaps</h3>
-      <p>Congratulations! Your board is now ready to have applications installed, it's time to use the snap command to install your first snap.</p>
-      <p>The <a href="https://snapcraft.io/store">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and <a href="https://snapcraft.io/docs/getting-started">get started</a> with your secure IoT journey.</p>
-      <p>Visit the <a href="https://snapcraft.io/docs/snapcraft-overview">Snapcraft documentation</a> and learn <a href="/tutorials/create-your-first-snap#1-overview">how to create your first snap</a>.</p>
-    </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/bd695c08-app+store.svg",
-          alt="",
-          height="150",
-          width="150",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
+<section class="p-section">
   <div class="row">
-    <div class="col-4 u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f833f94a-Core-stacked.svg",
-        alt="",
-        width="120",
-        height="162",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6 p-section--shallow">
+      <h2>Next steps</h2>
     </div>
-    <div class="col-8">
-      <h3>Learning more and getting help</h3>
-      <ul>
-        <li><a href="/core/docs/getting-started">Get started with Ubuntu Core documentation</a> to learn more about your new system and how to customise it.</li>
-        <li>Check out the <a href="https://askubuntu.com/questions/tagged/raspberrypi">Ask Ubuntu Q&amp;A</a>.</li>
-      </ul>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <div class="row">
+        <hr class="p-rule u-hide--large" />
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Get started with snaps</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Congratulations! Your board is now ready to have applications installed, it's time to use the snap command to install your first snap.</p>
+          <p>The <a href="https://snapcraft.io/store">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and <a href="https://snapcraft.io/docs/getting-started">get started</a> with your secure IoT journey.</p>
+          <p>Visit the <a href="https://snapcraft.io/docs/snapcraft-overview">Snapcraft documentation</a> and learn <a href="/tutorials/create-your-first-snap#1-overview">how to create your first snap</a>.</p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Learning more and getting help</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided">
+            <li class="p-list__item has-bullet"><a href="/core/docs/getting-started">Get started with Ubuntu Core documentation</a> to learn more about your new system and how to customise it.</li>
+            <li class="p-list__item has-bullet">Check out the <a href="https://askubuntu.com/questions/tagged/raspberrypi">Ask Ubuntu Q&A</a>.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width u-align--left">
-    <div class="jsBrightTALKEmbedWrapper u-vertically-center" style="width:100%; height:100%; position:relative;background: #ffffff;">
+<section class="p-strip--white">
+  <div class="u-fixed-width">
+    <div class="jsBrightTALKEmbedWrapper">
       <script class="jsBrightTALKEmbedConfig" type="application/json">
         { "channelId" : 6793, "language": "en-US", "commId" : 470687, "displayMode" : "standalone", "height" : "auto" }
       </script>
@@ -138,6 +123,6 @@
   </div>
 </section>
 
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_resources.html" %}
 
 {% endblock content %}
