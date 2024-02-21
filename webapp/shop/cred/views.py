@@ -282,18 +282,32 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         }
                     )
                 elif state == "Complete":
-                    exams_complete.append(
-                        {
-                            "name": name,
-                            "date": starts_at.strftime("%d %b %Y"),
-                            "time": starts_at.strftime("%I:%M %p %Z"),
-                            "timezone": timezone,
-                            "state": state,
-                            "uuid": r["uuid"],
-                            "actions": actions,
-                        }
-                    )
+                    if starts_at > now:
+                        exams_complete.append(
+                            {
+                                "name": name,
+                                "date": starts_at.strftime("%d %b %Y"),
+                                "time": starts_at.strftime("%I:%M %p %Z"),
+                                "timezone": timezone,
+                                "state": state,
+                                "uuid": r["uuid"],
+                                "actions": actions,
+                            }
+                        )
+                    else:
+                        exams_not_taken.append(
+                            {
+                                "name": name,
+                                "date": starts_at.strftime("%d %b %Y"),
+                                "time": starts_at.strftime("%I:%M %p %Z"),
+                                "timezone": timezone,
+                                "state": state,
+                                "uuid": r["uuid"],
+                                "actions": actions,
+                            }
+                        )
                 elif state == "Cancelled":
+                    actions = [{"text":"Take", "button_class":"p-button--base", "href":""}]
                     exams_cancelled.append(
                         {
                             "name": name,
