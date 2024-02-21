@@ -1,70 +1,71 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Core on the DragonBoard 410c{% endblock %}}
+{% block title %}Install Ubuntu Core on the DragonBoard 410c{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1nV3782gOD7q0RxWDUmQXJoGG_paRtIpFpa_eBbMwdJI/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Install Ubuntu Core on the Qualcomm DragonBoard 410c</h1>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
+    <div class="col">
+      <h1>Install Ubuntu Core<br /> on the Qualcomm DragonBoard 410c</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 p-card">
-      <div class="u-equal-height row p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Core</h2>
-          <p>We will walk you through the steps of flashing Ubuntu Core on a DragonBoard 410c. At the end of this process, you will have a board ready for production or testing snaps.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
-            <li class="p-list__item is-ticked">A DragonBoard 410c</li>
-            <li class="p-list__item is-ticked">A microSD card</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">An HDMI cable</li>
-            <li class="p-list__item is-ticked">A USB keyboard</li>
-            <li class="p-list__item is-ticked">A USB to RJ45 adaptor or a WiFi connection</li>
-            <li class="p-list__item is-ticked">An Ubuntu Core image</li>
-          </ul>
-        </div>
-      </div>
+    <div class="col">
+      <p>We will walk you through the steps of flashing Ubuntu Core on a DragonBoard 410c. At the end of this process, you will have a board ready for production or testing snaps.</p>
+      <hr class="p-rule" />
+      <p class="p-heading--5">Minimum requirements</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
+        <li class="p-list__item is-ticked">A DragonBoard 410c</li>
+        <li class="p-list__item is-ticked">A microSD card</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable</li>
+        <li class="p-list__item is-ticked">A USB keyboard</li>
+        <li class="p-list__item is-ticked">A USB to RJ45 adaptor or a WiFi connection</li>
+        <li class="p-list__item is-ticked">An Ubuntu Core image</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
+<section class="p-section">
+  <div class="row">
     <ol class="p-stepped-list--detailed">
-      {% include "download/iot/_setup-ubuntu-sso.html" %}
+      {% include "download/shared/_setup-ubuntu-sso.html" %}
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Download Ubuntu Core
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
           <p>Get the correct Ubuntu Core image for your board:</p>
-          <ul class="u-no-margin--left">
-            <li><a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-arm64+snapdragon.img.xz">Ubuntu Core 18 image for DragonBoard 410c</a></li>
-            <li>You can verify the integrity of the files using the <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-arm64+snapdragon.img.xz">Ubuntu Core 18 image for DragonBoard 410c</a></li>
+            <li class="p-list__item">You can verify the integrity of the files using the <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
           </ul>
         </div>
       </li>
-      {% with card="microSD card" %}{% include "download/iot/_flash-image.html" %}{% endwith %}
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
-          Install Ubuntu Core
-        </h3>
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Flash the microSD card
+        </h2>
         <div class="p-stepped-list__content">
-          <ol class="u-no-margin--left">
-            <li>Make sure the DragonBoard is unplugged from power.</li>
-            <li>Set the S6 switch to 0-1-0-0, where 1 is the "SD boot" option.</li>
-            <li>Attach the monitor and keyboard to the board.</li>
-            <li>Insert the SD card and plug the power adaptor into the board.</li>
+          <p>Copy the Ubuntu image on a microSD card by following the <a href="/download/iot/installation-media">installation media instructions</a>.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
+          Install Ubuntu Core
+        </h2>
+        <div class="p-stepped-list__content">
+          <ol class="p-list--divided">
+            <li class="p-list__item">Make sure the DragonBoard is unplugged from power.</li>
+            <li class="p-list__item">Set the S6 switch to 0-1-0-0, where 1 is the "SD boot" option.</li>
+            <li class="p-list__item">Attach the monitor and keyboard to the board.</li>
+            <li class="p-list__item">Insert the SD card and plug the power adaptor into the board.</li>
           </ol>
         </div>
       </li>
@@ -74,12 +75,41 @@
   </div>
 </section>
 
-{% with strip="p-strip--light" %}{% include "download/iot/_boot-tips-strip.html" %}{% endwith %}
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6 p-section--shallow">
+      <h2>Next steps</h2>
+    </div>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <div class="row">
+        <hr class="p-rule u-hide--small u-hide--large" />
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">First boot tips</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ol class="p-list--divided">
+            <li class="p-list__item">During setup, <code>console-conf</code> will download the SSH key registered with your Store account and configure it so you can log into the device via <code>ssh &lt;Ubuntu SSO account name&gt;@&lt;device IP address&gt;</code> without a password.</li>
+            <li class="p-list__item">There is no default <code>ubuntu</code> user on these images, but you can run <code>sudo passwd &lt;account name&gt;</code> to set a password if you need a local console login.</li>
+          </ol>
+        </div>
+      </div>
+      <hr class="p-rule">
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Get started with snaps</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Your board is now ready to have snaps installed, it's time to use the snap command to install your first snap.</p>
+          <p>The <a href="https://snapcraft.io/store">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% include "download/iot/_install-snaps-strip.html" %}
+{% include "download/shared/_download-security.html" %}
 
-{% include "download/shared/_get-ebook-security.html"%}
-
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_resources.html" %}
 
 {% endblock content %}
