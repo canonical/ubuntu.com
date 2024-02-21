@@ -34,7 +34,7 @@ When used in this Agreement, the following terms mean:
 
 **Licensed IP**: Canonical’s Intellectual Property Rights in the Software and Services.
 
-**Order**: If Customer is buying Services directly from Canonical: Customer's order for Services which incorporates this Agreement and identifies Customer's name, contact information, Services, fees. An Order may be in the form of a statement of work. If Customer is buying Services through Canonical's reseller: Customer's agreement to purchase the Services and pay applicable fees.
+**Order**: If Customer is buying Services directly from Canonical: Customer's order for Services which incorporates this Agreement and identifies Customer's name, contact information, Services, and fees. An Order may be in the form of a statement of work. If Customer is buying Services through Canonical's reseller: Customer's agreement to purchase the Services and pay applicable fees.
 
 **Registration Process**: The process under which a Customer registers with Canonical to receive Services purchased through Canonical's reseller.
 
