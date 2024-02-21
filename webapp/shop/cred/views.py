@@ -114,33 +114,35 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         contract_item_id = data["contractItemID"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
-
-        response = ua_contracts_api.post_assessment_reservation(
-            contract_item_id,
-            first_name,
-            last_name,
-            timezone,
-            starts_at.isoformat(),
-            country_code,
-        )
-
-        if response and "error" in response:
-            error = response["message"]
-            return flask.render_template(
-                "/credentials/schedule.html", error=error
+        try:
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
+                first_name,
+                last_name,
+                timezone,
+                starts_at.isoformat(),
+                country_code,
             )
-        else:
-            uuid = response.get("reservation", {}).get("IDs", [])[-1]
-            exam = {
-                "name": "CUE: Linux",
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p %Z"),
-                "uuid": uuid,
-                "contract_item_id": contract_item_id,
-            }
-            return flask.render_template(
-                "/credentials/schedule-confirm.html", exam=exam
-            )
+
+            if response and "error" in response:
+                error = response["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html", error=error
+                )
+            else:
+                uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                exam = {
+                    "name": "CUE: Linux",
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p %Z"),
+                    "uuid": uuid,
+                    "contract_item_id": contract_item_id,
+                }
+                return flask.render_template(
+                    "/credentials/schedule-confirm.html", exam=exam
+                )
+        except Exception as e:
+            print("Exception:",e)
 
     contract_item_id = flask.request.args.get("contractItemID")
     if contract_item_id is None:
@@ -209,17 +211,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             contract_item_id = (
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
-
-            if (
-                "effectivenessContext" in exam_contract
-                and "status" in exam_contract["effectivenessContext"]
-                and exam_contract["effectivenessContext"]["status"]
-                == "expired"
-            ):
-                exams_expired.append(
-                    {"name": name, "state": "Expired", "actions": []}
-                )
-                continue
 
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
@@ -314,6 +305,15 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
+            elif (
+                "effectivenessContext" in exam_contract
+                and "status" in exam_contract["effectivenessContext"]
+                and exam_contract["effectivenessContext"]["status"]
+                == "expired"
+            ):
+                exams_expired.append(
+                    {"name": name, "state": "Expired", "actions": []}
+                )
             else:
                 actions = [
                     {
