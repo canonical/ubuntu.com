@@ -101,7 +101,7 @@ export var kernelReleases = [
   {
     startDate: null,
     endDate: null,
-    taskName: "22.04.3 LTS",
+    taskName: "22.04.4 LTS",
     taskVersion: "6.5 kernel",
     status: "LTS",
   },
@@ -115,7 +115,7 @@ export var kernelReleases = [
   {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "22.04.3 LTS",
+    taskName: "22.04.4 LTS",
     taskVersion: "6.2 kernel",
     status: "LTS",
   },
@@ -317,7 +317,7 @@ export var kernelReleases2204 = [
   {
     startDate: new Date("2023-08-16T00:00:00"),
     endDate: new Date("2024-01-18T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
+    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -602,7 +602,7 @@ export var kernelReleasesALL = [
   {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
+    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
     status: "LTS",
   },
   {
@@ -767,7 +767,7 @@ export var kernelReleasesLTS = [
   {
     startDate: new Date("2023-08-01T00:00:00"),
     endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "Ubuntu 22.04.3 LTS (v6.2)",
+    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
     status: "LTS",
   },
 ];
@@ -1288,9 +1288,9 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
-  "22.04.3 LTS (soon)",
+  "22.04.4 LTS (soon)",
   "23.10",
-  "22.04.3 LTS",
+  "22.04.4 LTS",
   "22.04.2 LTS",
   "22.04.1 LTS",
   "20.04.5 LTS",
@@ -1329,7 +1329,7 @@ export var kernelReleaseNames2204 = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
   "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.3 LTS (v6.2)",
+  "Ubuntu 22.04.4 LTS (v6.2)",
 ];
 
 export var kernelReleaseNames2004 = [
@@ -1366,7 +1366,7 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
   "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.3 LTS (v6.2)",
+  "Ubuntu 22.04.4 LTS (v6.2)",
   "Ubuntu 23.10 (v6.5)",
 ];
 
@@ -1384,7 +1384,7 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
   "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.3 LTS (v6.2)",
+  "Ubuntu 22.04.4 LTS (v6.2)",
 ];
 
 export var openStackReleaseNames = [
