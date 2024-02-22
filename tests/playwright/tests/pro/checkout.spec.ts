@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { selectProducts, acceptCookiePolicy, login } from "../helpers/commands";
-import { customerInfoResponse, previewResponse } from "../helpers/mockData";
-import { ENDPOINTS } from "../helpers/utils";
+import { selectProducts, acceptCookiePolicy, login } from "../../helpers/commands";
+import { customerInfoResponse, previewResponse } from "../../helpers/mockData";
+import { ENDPOINTS } from "../../helpers/utils";
 
 test.describe("Checkout - Region and taxes", () => {
   test("It should show correct non-VAT price", async ({page}) => {

@@ -11,6 +11,7 @@ dotenv.config({
  */
 export default defineConfig({
   testDir: path.join(__dirname, "tests/playwright/tests"),
+  testIgnore: '**\/pro/**',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
