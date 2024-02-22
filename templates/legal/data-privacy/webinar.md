@@ -6,12 +6,12 @@ context:
   copydoc: https://docs.google.com/document/d/1wMKqustrdcGK-yzGGe9we6nyHDvLUPukQaPpMA5T6wk/edit
 ---
 
-<h4 class="p-muted-heading">Version - July 2023</h4>
+<h4 class="p-muted-heading">Version - February 2024</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice – Webinars via BrightTALK
+# Privacy notice – Webinars
 
-This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the BrightTALK website. BrightTALK are a third party webinar platform provider and you may be directed to their website to register your details in order to watch a Canonical webinar. In collecting this information, BrightTALK are acting as a data controller and details of their privacy policy can be found here: [business.brighttalk.com/company/privacy-policy/](https://business.brighttalk.com/company/privacy-policy/). BrightTALK will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
+This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars. The webinar may be hosted on a third party website and the third party webinar platform provider may direct you to their website to register your details in order to watch a Canonical webinar. In collecting this information, the third party webinar platform provider are acting as a data controller and data collection may be subject to their privacy policy. The third party webinar platform provider will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
 
 ## Who are we?
 
@@ -21,13 +21,13 @@ We are not required to have a data protection officer, so any enquiries about ou
 
 ## What personal data do we collect?
 
-When you sign up to watch one of our webinars, BrightTALK may ask you for your name and your email address and related information. They will share this information with us.
+When you sign up to watch one of our webinars, the third party webinar platform provider may ask you for your name and your email address and related information. They will share this information with us.
 
 ## Why do we collect this information?
 
 Your information will be used by us to conduct existing and future research of Canonical's products and services.
 
-Where you have agreed on BrightTALK's website, we will use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
+Where you have agreed on the third party webinar platform provider's website, we will use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
 
 Consent is requested to do this, and we will only send you or tell you about news and product updates for as long as you continue to consent.
 
