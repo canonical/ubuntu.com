@@ -1,63 +1,56 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Server on an UP Squared IoT Grove Development Kit{% endblock %}}
+{% block title %}Install Ubuntu Server on an UP Squared IoT Grove Development Kit{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1-q8NzhmqYvPCAT2AwSv7N9sr_TgJdCc8_gLT7RmaoNE/edit{% endblock meta_copydoc %}
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
+    <div class="col">
       <h1>Install Ubuntu Server on an UP<sup>2</sup> IoT Grove Development Kit</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 p-card">
-      <div class="u-equal-height row p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Server</h2>
-          <p>We will walk you through the steps of installing Ubuntu Server on the UP<sup>2</sup> IoT Grove Development Kit. At the end of this process, you will have a fully fledged development or production environment.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An UP2 IoT Grove Development Kit</li>
-            <li class="p-list__item is-ticked">A USB flash drive</li>
-            <li class="p-list__item is-ticked">An Ubuntu Server image</li>
-          </ul>
-        </div>
-      </div>
+    <div class="col">
+      <p>We will walk you through the steps of installing Ubuntu Server on the UP<sup>2</sup> IoT Grove Development Kit. At the end of this process, you will have a fully fledged development or production environment.</p>
+      <hr class="p-rule" />
+      <p class="p-heading--5">Minimum requirements</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">An UP<sup>2</sup> IoT Grove Development Kit</li>
+        <li class="p-list__item is-ticked">A USB flash drive</li>
+        <li class="p-list__item is-ticked">An Ubuntu Server image</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
+<section class="p-section">
+  <div class="row">
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-          
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Download Ubuntu Server
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
           <p>Get the correct Ubuntu Server image for your board:</p>
-          <ul class="u-no-margin--left">
-            <li>Intel provides a modified Ubuntu Server 16.04.3 LTS image shipped with a custom 4.10 kernel and the Intel IoT Developer Kit.</li>
-            <li>Download and copy the <a href="https://downloads.up-community.org/download/up-squared-iot-grove-development-kit-ubuntu-16-04-server-image/">Ubuntu Server 16.04 LTS</a> image on a USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a></li>
+          <ul class="p-list--divided">
+            <li class="p-list__item">Intel provides a modified Ubuntu Server 16.04.3 LTS image shipped with a custom 4.10 kernel and the Intel IoT Developer Kit.</li>
+            <li class="p-list__item">Download and copy the <a href="https://downloads.up-community.org/download/up-squared-iot-grove-development-kit-ubuntu-16-04-server-image/">Ubuntu Server 16.04 LTS</a> image on a USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a href="/tutorials/tutorial-create-a-usb-stick-on-windows">Windows</a>, or <a href="/tutorials/tutorial-create-a-usb-stick-on-macos">macOS</a></li>
           </ul>
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-          
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Install Ubuntu Server
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
           <p>Booting the board from the USB flash drive will start the Ubuntu installer.</p>
-          <ol class="u-no-margin--left">
-            <li>Insert the USB flash drive in the Up<sup>2</sup> board.</li>
-            <li>Power on the board.</li>
-            <li>The installer will start automatically. Follow the prompts to install Ubuntu Server on the on-board eMMC disk. You can refer to <a href="/tutorials/tutorial-install-ubuntu-server#4">this tutorial</a> for complete Ubuntu Server installation guidance.</li>
+          <hr class="p-rule" />
+          <ol class="p-list--divided">
+            <li class="p-list__item">Insert the USB flash drive in the Up<sup>2</sup> board.</li>
+            <li class="p-list__item">Power on the board.</li>
+            <li class="p-list__item">The installer will start automatically. Follow the prompts to install Ubuntu Server on the on-board eMMC disk. You can refer to <a href="/tutorials/tutorial-install-ubuntu-server#4">this tutorial</a> for complete Ubuntu Server installation guidance.</li>
           </ol>
         </div>
       </li>
@@ -65,30 +58,20 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/0c16085c-network-equipment_2px.svg",
-          alt="",
-          height="125",
-          width="142",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+<section class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Install and develop snaps</h2>
     </div>
-    <div class="col-8">
-      <h3>Install and develop snaps</h3>
-      <p>Your {{ board or "board" }} is now ready to have snaps installed — <a href="http://snapcraft.io/docs/core/usage">get started with the <code>snap</code> command</a></p>
+    <div class="col">
+      <p>Your {{ board or "board" }} is now ready to have snaps installed — <a href="http://snapcraft.io/docs/core/usage">get started with the <code>snap</code> command</a>.</p>
       <p>Your board is ready to develop and run snaps, secured application packages tailored for IoT, this tutorial will show you <a href="/tutorials/create-your-first-snap">how to create your first snap</a>.</p>
-    </div>
   </div>
 </section>
 
-{% include "download/shared/_get-ebook-security.html"%}
+{% include "download/shared/_download-security.html" %}
 
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_resources.html" %}
 
 {% endblock content %}
