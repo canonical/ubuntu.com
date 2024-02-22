@@ -1,3 +1,4 @@
+from distutils.util import strtobool
 from datetime import datetime, timedelta
 import math
 import pytz
@@ -195,6 +196,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             }
         )
         exam_contracts = []
+
     exams_in_progress = []
     exams_scheduled = []
     exams_not_taken = []
@@ -403,9 +405,15 @@ def cred_assessments(trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_exam(trueability_api, **_):
     email = flask.session["openid"]["email"].lower()
-    if os.getenv(
-        "CREDENTIALS_CONFIDENTIALITY_ENABLED"
-    ) and not has_filed_confidentiality_agreement(email):
+
+    confidentiality_agreement_enabled = strtobool(
+        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
+    )
+
+    if (
+        confidentiality_agreement_enabled
+        and not has_filed_confidentiality_agreement(email)
+    ):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
 
     assessment_id = flask.request.args.get("id")
