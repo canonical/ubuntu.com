@@ -99,8 +99,8 @@ export var serverAndDesktopReleases = [
 
 export var kernelReleases = [
   {
-    startDate: null,
-    endDate: null,
+    startDate: new Date("2024-02-01T00:00:00"),
+    endDate: new Date("2024-08-01T00:00:00"),
     taskName: "22.04.4 LTS",
     taskVersion: "6.5 kernel",
     status: "LTS",
@@ -111,20 +111,6 @@ export var kernelReleases = [
     taskName: "23.10",
     taskVersion: "",
     status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2023-08-01T00:00:00"),
-    endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "22.04.4 LTS",
-    taskVersion: "6.2 kernel",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2023-02-01T00:00:00"),
-    endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "22.04.2 LTS",
-    taskVersion: "5.19 kernel",
-    status: "LTS",
   },
   {
     startDate: new Date("2022-08-01T00:00:00"),
@@ -309,15 +295,9 @@ export var kernelReleases2204 = [
     status: "LTS",
   },
   {
-    startDate: new Date("2023-02-17T00:00:00"),
-    endDate: new Date("2023-07-22T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2023-08-16T00:00:00"),
-    endDate: new Date("2024-01-18T00:00:00"),
-    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
+    startDate: new Date("2024-02-01T00:00:00"),
+    endDate: new Date("2024-08-01T00:00:00"),
+    taskName: "Ubuntu 22.04.4 LTS (v6.5)",
     status: "LTS",
   },
 ];
@@ -594,22 +574,16 @@ export var kernelReleasesALL = [
     status: "LTS",
   },
   {
-    startDate: new Date("2023-02-01T00:00:00"),
-    endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2023-08-01T00:00:00"),
-    endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
-    status: "LTS",
-  },
-  {
     startDate: new Date("2023-10-01T00:00:00"),
     endDate: new Date("2024-07-01T00:00:00"),
     taskName: "Ubuntu 23.10 (v6.5)",
     status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2024-02-01T00:00:00"),
+    endDate: new Date("2024-08-01T00:00:00"),
+    taskName: "Ubuntu 22.04.4 LTS (v6.5)",
+    status: "LTS",
   },
 ];
 
@@ -759,15 +733,9 @@ export var kernelReleasesLTS = [
     status: "CVE",
   },
   {
-    startDate: new Date("2023-02-01T00:00:00"),
-    endDate: new Date("2023-07-01T00:00:00"),
-    taskName: "Ubuntu 22.04.2 LTS (v5.19)",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2023-08-01T00:00:00"),
-    endDate: new Date("2024-01-01T00:00:00"),
-    taskName: "Ubuntu 22.04.4 LTS (v6.2)",
+    startDate: new Date("2024-02-01T00:00:00"),
+    endDate: new Date("2024-08-01T00:00:00"),
+    taskName: "Ubuntu 22.04.4 LTS (v6.5)",
     status: "LTS",
   },
 ];
@@ -1288,10 +1256,8 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
-  "22.04.4 LTS (soon)",
+  "22.04.4 LTS",
   "23.10",
-  "22.04.3 LTS",
-  "22.04.2 LTS",
   "22.04.1 LTS",
   "20.04.5 LTS",
   "22.04.0 LTS",
@@ -1309,8 +1275,6 @@ export var kernelReleaseNames = [
 export var kernelVersionNames = [
   "6.5",
   "",
-  "6.2",
-  "5.19",
   "5.15",
   "",
   "",
@@ -1328,8 +1292,7 @@ export var kernelVersionNames = [
 export var kernelReleaseNames2204 = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.4 LTS (v6.2)",
+  "Ubuntu 22.04.4 LTS (v6.5)",
 ];
 
 export var kernelReleaseNames2004 = [
@@ -1365,9 +1328,8 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.4 LTS (v6.2)",
   "Ubuntu 23.10 (v6.5)",
+  "Ubuntu 22.04.4 LTS (v6.5)",
 ];
 
 export var kernelReleaseNamesLTS = [
@@ -1383,8 +1345,7 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 22.04.0 LTS (v5.15)",
   "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
-  "Ubuntu 22.04.2 LTS (v5.19)",
-  "Ubuntu 22.04.4 LTS (v6.2)",
+  "Ubuntu 22.04.4 LTS (v6.5)",
 ];
 
 export var openStackReleaseNames = [
