@@ -47,6 +47,26 @@ You can also ask for it to be erased and you can ask for us to give you a copy o
 
 You can also ask us to stop using your information for news or product updates – the simplest way to do this is to withdraw your consent, which you can do at any time, either by clicking the unsubscribe link at the end of any email, or by emailing, writing or telephoning us using the contact details above.
 
+## Email marketing communications
+
+Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service to ensure that the emails you receive are relevant to your interests.
+
+Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with “STOP”,  (iii) sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com), or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate. 
+
+## Links to other websites
+
+The third party webinar platform provider site may contain links to other third party websites with whom we have a relationship. However, we are not responsible for these websites and their privacy practices. We therefore suggest that you read the privacy policy statements on any website that you visit from a link on this site, as their policies and procedures may differ from our own.
+
+## Keeping your personal information secure
+
+We have appropriate security measures in place to prevent personal information from being accidentally lost, or used or accessed in an unauthorised way. We limit access to your personal information to those who have a genuine business need to know it. Those processing your information will do so only in an authorised manner and are subject to a duty of confidentiality.
+
+We also have procedures in place to deal with any suspected data security breach. We will notify you and any applicable regulator of a suspected data breach where we are legally required to do so.
+
+## Changes to this Privacy Notice
+
+This Privacy Notice will be reviewed from time to time. If we decide to change this Privacy Notice we will post the changes here. However, if we intend to make material changes to the way we use your personal information we will notify you before doing so. Any personal information held will be governed by our most current notice.
+
 ## Your right to complain
 
 We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) or to the address below:
