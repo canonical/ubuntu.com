@@ -2,7 +2,7 @@
 wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice - Webinar sign-up"
-  description: "This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the BrightTALK website."
+  description: "This privacy notice tells you about the information collected from you when you sign up to watch one of our webinars via the third party webinar platform provider website."
   copydoc: https://docs.google.com/document/d/1wMKqustrdcGK-yzGGe9we6nyHDvLUPukQaPpMA5T6wk/edit
 ---
 
