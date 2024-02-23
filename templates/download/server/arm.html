@@ -37,6 +37,7 @@
           <p class="u-sv3">
             This is the default iso image of the Ubuntu Server installer.
           </p>
+
         <p>
           <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
@@ -49,16 +50,20 @@
           </a>
         </p>
         {% endif %}
-        <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
-        <p><a href="https://wiki.ubuntu.com/ARM/Server/Install">How to install&nbsp;&rsaquo;</a></p>
+
+        <p>
+          <a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a>
+          &nbsp;&nbsp;
+          <a href="https://wiki.ubuntu.com/ARM/Server/Install" style="white-space: nowrap">How to install&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
     <div class="col-6 p-card is-divided">
       <h3 class="p-card__title">Ubuntu Server (64k page size)</h3>
       <div class="p-card__content">
-          <p>
-            This iso is suited for servers with ample memory running memory-intensive applications.
-          </p>
+        <p>
+          This iso is suited for servers with ample memory running memory-intensive applications.
+        </p>
         <p>
           <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64+largemem.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> (64k page size)
