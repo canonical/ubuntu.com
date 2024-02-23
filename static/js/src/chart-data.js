@@ -1290,7 +1290,7 @@ export var desktopServerReleaseNames = [
 export var kernelReleaseNames = [
   "22.04.4 LTS (soon)",
   "23.10",
-  "22.04.4 LTS",
+  "22.04.3 LTS",
   "22.04.2 LTS",
   "22.04.1 LTS",
   "20.04.5 LTS",
