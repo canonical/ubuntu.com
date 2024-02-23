@@ -130,6 +130,11 @@ def init_handlers(app, sentry):
             error.response.status_code or 500,
         )
 
+    @app.before_request
+    def print_cookies():
+        print(flask.session)
+        print("flask.request.cookies", flask.request.cookies)
+
     @app.errorhandler(UAContractsAPIErrorView)
     @app.errorhandler(UnauthorizedErrorView)
     def ua_contracts_api_error_view(error):

@@ -30,8 +30,10 @@ def user_info(user_session):
     Checks if the user is authenticated from the session
     Returns True if the user is authenticated
     """
+    print("usersession", user_session)
 
     if "openid" in user_session and "authentication_token" in user_session:
+        print("authentication_token", user_session["authentication_token"])
         return {
             "fullname": user_session["openid"]["fullname"],
             "email": user_session["openid"]["email"],

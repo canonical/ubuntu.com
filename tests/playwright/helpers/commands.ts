@@ -2,7 +2,20 @@ import { Page } from "@playwright/test";
 
 export const getCookies = async ({context}) => {
   await context.addCookies([
-    // add cookies here
+    {
+      "name": "_cookies_accepted",
+      "value": "all",
+      "domain": "login.ubuntu.com",
+      "path": "/",
+      "expires": 1738330111,
+    },
+    {
+      "name": "session",
+      "value": ".eJxFjUEOwzAIBL9ScY76AJ96r_oGy3FIimxwFcOhivL3GrVST8Cys3tAMn2iKOWk1CRqKygQ4DsnaC8UWiAcgJyojg-TXHNrhfCm2HXsPHyr1SqJcRgeJJc7uUiLJ-s72u5kbdtgbTZR-2HEaXPGk_zscehs4hAjz7hDWFPtOIFQLv8GOM8PmJhCPQ.ZcOEbg.hdmQV5CSJdmmh2aAL5a3DCCPiP8",
+      "domain": "0.0.0.0",
+      "path": "/",
+      "expires": Date.now() / 1000 + 100000,
+    },
   ])
 }
 export const login = async (page: Page) => {
