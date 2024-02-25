@@ -48,6 +48,7 @@ const Feature = () => {
               value={Features.pro}
               onChange={handleChange}
               disabled={proDisabled}
+              data-testid="pro"
             />
             <hr />
             <RadioInput
@@ -56,6 +57,7 @@ const Feature = () => {
               value={Features.infra}
               onChange={handleChange}
               disabled={infraOnlyDisabled}
+              data-testid="infra-only"
             />
           </div>
         </Col>
