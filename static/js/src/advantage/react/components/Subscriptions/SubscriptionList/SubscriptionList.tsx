@@ -13,6 +13,7 @@ import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
+import { UserSubscription } from "advantage/api/types";
 
 type Props = {
   selectedId?: SelectedId;
@@ -86,6 +87,21 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     )
   );
 
+  const checkActiveSubscription = (subscriptions: UserSubscription[]) => {
+    let activeSubscription = false;
+    subscriptions?.length > 0 &&
+      subscriptions?.forEach((subscription) => {
+        if (subscription?.statuses?.is_subscription_active == true) {
+          activeSubscription = true;
+        }
+      });
+    return activeSubscription;
+  };
+
+  const showFreeSubscription =
+    !checkActiveSubscription(sortedUASubscriptions) &&
+    !checkActiveSubscription(sortedBlenderSubscriptions);
+
   return (
     <div className="p-subscriptions__list p-card" style={{ overflow: "unset" }}>
       {sortedUASubscriptions.length ? (
@@ -108,7 +124,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
         </ListGroup>
       ) : null}
 
-      {freeSubscription ? (
+      {freeSubscription && showFreeSubscription ? (
         <ListGroup
           title="Free personal token"
           marketplace={UserSubscriptionMarketplace.Free}
