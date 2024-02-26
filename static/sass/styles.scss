@@ -1467,38 +1467,38 @@ $color-link-dark: #69c !default;
 }
 
 .p-graphic-main {
-  width: 10%;
   background: #923a66;
-  height: 48px;
   display: inline-block;
+  height: 48px;
+  width: 10%;
 }
 
 .p-graphic-universe {
-  width: 90%;
-  background: #000000;
-  height: 48px;
+  background: #000;
   display: inline-block;
+  height: 48px;
+  width: 90%;
 }
 .p-graphic-universe--empty {
-  border-width: 1px;
   border-color: #757575;
   border-style: dashed;
-  width: 90%;
-  height: 48px;
+  border-width: 1px;
   display: inline-block;
+  height: 48px;
+  width: 90%;
 }
 
 .graphic-legend-main,
 .graphic-legend-universe {
-  gap: 1.2rem;
   display: flex;
   flex-direction: row;
+  gap: 1.2rem;
   &::before {
+    content: "";
     display: inline-flex;
+    flex-shrink: 0;
     height: 25px;
     width: 25px;
-    content: "";
-    flex-shrink: 0;
   }
 }
 .graphic-legend-main::before {
