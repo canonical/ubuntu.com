@@ -1,4 +1,12 @@
 export const ENDPOINTS = {
-   customerInfo: "/account/customer-info*",
-   preview: "/pro/purchase/preview*"
+  calculate: "/account/canonical-ua/purchase/calculate*",
+  customerInfo: "/account/customer-info*",
+  ensure: "/account/purchase-account*",
+  getPurchase: "/account/purchases/*",
+  getSubscription: "/pro/user-subscriptions*",
+  marketo: "/marketo/submit",
+  postPurchase: "/pro/purchase*",
+  postInvoice: "/account/purchases/*/retry*",
+  preview: "/pro/purchase/preview*",
+  stripePaymentMethod : "https://api.stripe.com/v1/payment_methods",
  };
