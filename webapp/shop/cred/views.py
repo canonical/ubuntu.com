@@ -694,9 +694,16 @@ def cred_shop_webhook_responses(trueability_api, **kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_shop_keys(**kwargs):
-    cue_key_product = get_cue_products(type="keys").json
+    products = get_cue_products(type="keys").json
+    for item in products:
+        if item["id"] == "cue-activation-key":
+            cue_key_product = item
+            break
+    if not cue_key_product:
+        return flask.abort(404)
+
     return flask.render_template(
-        "credentials/shop/keys.html", cue_key_product=cue_key_product[0]
+        "credentials/shop/keys.html", cue_key_product=cue_key_product
     )
 
 
