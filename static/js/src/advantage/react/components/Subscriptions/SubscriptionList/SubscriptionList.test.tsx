@@ -98,7 +98,7 @@ describe("SubscriptionList", () => {
     );
   });
 
-  it("displays a free subscription", () => {
+  it("displays a free subscription when no subscriptions exist", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -121,6 +121,57 @@ describe("SubscriptionList", () => {
     expect(
       wrapper.find("[data-test='free-subscription']").prop("isSelected")
     ).toBe(true);
+  });
+
+  it("hide free subscription if an active paid subscription exists", () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_subscription_active: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+          is_subscription_active: false,
+        }),
+      }),
+      freeSubscription,
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    const token = wrapper.find("[data-test='free-subscription']");
+    expect(token.exists()).toBe(false);
+  });
+
+  it("display free subscription if there is no active paid subscription", () => {
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_cancelled: true,
+          is_subscription_active: false,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+          is_subscription_active: false,
+        }),
+      }),
+      freeSubscription,
+    ]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    const token = wrapper.find("[data-test='free-subscription']");
+    expect(token.exists()).toBe(true);
+    expect(token.prop("subscription")).toStrictEqual(freeSubscription);
   });
 
   it("shows the renewal settings if there subscriptions for which we should present the auto-renewal option", () => {
