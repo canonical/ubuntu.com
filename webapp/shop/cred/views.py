@@ -15,7 +15,11 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
+from webapp.shop.utils import (
+    get_exam_contract_id,
+    get_user_first_last_name,
+    get_tab_keys,
+)
 from webapp.login import user_info
 
 from google.oauth2 import service_account
@@ -571,14 +575,22 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
     keys = []
+    # Get keys for each contract
     for contract in contracts:
         contract_id = contract.id
         keys.extend(ua_contracts_api.list_activation_keys(contract_id))
 
-    unused_keys = []
-    active_keys = []
     for i in range(len(keys)):
         key = keys[i]
+
+        # Check if key is expired
+        expiry_date = datetime.fromisoformat(key["expirationDate"].rstrip("Z"))
+        if expiry_date < datetime.now():
+            key["expired"] = True
+        else:
+            key["expired"] = False
+
+        # Format datetime
         parsed_date = (
             datetime.strptime(key["expirationDate"], "%Y-%m-%dT%H:%M:%SZ")
             .replace(tzinfo=pytz.timezone("UTC"))
@@ -588,17 +600,14 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
         key["expirationDate"] = parsed_date.strftime(
             "%a %b %d %Y %H:%M:%S %Z%z"
         )
-        if "activatedBy" in key:
-            active_keys.append(key)
-        else:
-            unused_keys.append(key)
 
     tab = flask.request.args.get("tab", None)
     page = int(flask.request.args.get("page", 1))
-    per_page = 5
 
+    # Get the keys to display based on the selected tab
     display_keys = get_tab_keys(keys, tab)
 
+    per_page = 5
     total_pages = (len(display_keys) // per_page) + 1
     start_page = (page - 1) * per_page
     end_page = page * per_page
@@ -613,14 +622,6 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
             total_pages=total_pages,
         )
     )
-
-
-def get_tab_keys(keys, tab):
-    if tab == "active":
-        return [key for key in keys if "activatedBy" in key]
-    elif tab == "unused":
-        return [key for key in keys if "activatedBy" not in key]
-    return keys
 
 
 @shop_decorator(area="cube", permission="user", response="html")
