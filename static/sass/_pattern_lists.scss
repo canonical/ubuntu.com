@@ -17,6 +17,7 @@
   $color-twitter: #111;
   $color-google: #dc4e41;
   $color-linkedin: #0274b3;
+  $color-instagram: #111;
   $color-facebook: #3b5898;
   $color-rss: #ea781a;
 
@@ -64,6 +65,14 @@
 
         &:hover .linkedin-icon {
           fill: $color-linkedin;
+        }
+      }
+
+      &--instagram {
+        @extend %list-link;
+
+        &:hover .instagram-icon {
+          fill: $color-instagram;
         }
       }
 
