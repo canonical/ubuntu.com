@@ -87,15 +87,21 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     )
   );
 
-  const checkActiveSubscription = (subscriptions: UserSubscription[]) => {
-    return subscriptions?.some(
-      (subscription) => subscription?.statuses?.is_subscription_active === true
-    );
+  const checkValidSubscription = (subscriptions: UserSubscription[]) => {
+    const now = Date.now();
+    return subscriptions.some(({ start_date, end_date }) => {
+      if (start_date && end_date) {
+        const startDate = new Date(start_date).getTime();
+        const endDate = new Date(end_date).getTime();
+        return startDate <= now && endDate >= now;
+      }
+      return false;
+    });
   };
 
   const showFreeSubscription =
-    !checkActiveSubscription(sortedUASubscriptions) &&
-    !checkActiveSubscription(sortedBlenderSubscriptions);
+    !checkValidSubscription(sortedUASubscriptions) &&
+    !checkValidSubscription(sortedBlenderSubscriptions);
 
   return (
     <div className="p-subscriptions__list p-card" style={{ overflow: "unset" }}>
