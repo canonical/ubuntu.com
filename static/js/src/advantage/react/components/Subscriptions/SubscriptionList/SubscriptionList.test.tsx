@@ -123,18 +123,15 @@ describe("SubscriptionList", () => {
     ).toBe(true);
   });
 
-  it("hide free subscription if an active paid subscription exists", () => {
+  it("hide free subscription if a valid paid subscription exists", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: true,
-        }),
+        start_date: new Date("2023-12-31T02:56:54Z"),
+        end_date: new Date("2024-12-31T02:56:54Z"),
       }),
       userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          is_expired: true,
-          is_subscription_active: false,
-        }),
+        start_date: new Date("2020-08-11T02:56:54Z"),
+        end_date: new Date("2021-08-11T02:56:54Z"),
       }),
       freeSubscription,
     ];
@@ -148,19 +145,11 @@ describe("SubscriptionList", () => {
     expect(token.exists()).toBe(false);
   });
 
-  it("display free subscription if there is no active paid subscription", () => {
+  it("display free subscription if there is no valid paid subscription", () => {
     queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          is_cancelled: true,
-          is_subscription_active: false,
-        }),
-      }),
-      userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          is_expired: true,
-          is_subscription_active: false,
-        }),
+        start_date: new Date("2020-08-11T02:56:54Z"),
+        end_date: new Date("2021-08-11T02:56:54Z"),
       }),
       freeSubscription,
     ]);
