@@ -88,14 +88,9 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   );
 
   const checkActiveSubscription = (subscriptions: UserSubscription[]) => {
-    let activeSubscription = false;
-    subscriptions?.length > 0 &&
-      subscriptions?.forEach((subscription) => {
-        if (subscription?.statuses?.is_subscription_active == true) {
-          activeSubscription = true;
-        }
-      });
-    return activeSubscription;
+    return subscriptions?.some(
+      (subscription) => subscription?.statuses?.is_subscription_active === true
+    );
   };
 
   const showFreeSubscription =
