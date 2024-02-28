@@ -195,25 +195,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-x-shallow">
-  <div class="row u-vertically-center">
-    <div class="col-1 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg",
-        alt="",
-        width="100",
-        height="100",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-11 u-no-margin--left u-no-margin--bottom">
-      <h4 style="margin-bottom: 0.5rem;">Any questions?</h4>
-      <a href="/pricing/devices#get-in-touch" class="p-button">Contact us online</a></p>
-    </div>
-</section>
+{% with colour="white", bordered="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
