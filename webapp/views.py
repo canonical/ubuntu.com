@@ -518,7 +518,7 @@ def engage_thank_you(engage_pages):
             "resource_url" not in metadata or metadata["resource_url"] == ""
         ) and (
             "contact_form_only" not in metadata
-            or metadata["contact_form_only"] == "true"
+            or metadata["contact_form_only"] != "true"
         ):
             return flask.abort(404)
 
