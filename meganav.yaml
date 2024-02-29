@@ -66,7 +66,7 @@ products:
             - title: Ubuntu Pro
               description: Security & compliance subscription
               url: /pro
-            - title: Enteprise-grade support
+            - title: Enterprise-grade support
               description: 24/7 support for the full-stack
               url: /support
             - title: Livepatch
@@ -140,7 +140,7 @@ products:
               url: /server
             - title: Landscape
               description: Monitor and manage machines
-              url: https://landscape.canonical.com/
+              url: /landscape
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
@@ -150,15 +150,15 @@ products:
             - title: Anbox Cloud
               description: Virtualised Android on demand
               url: https://anbox-cloud.io/
-            - title: Open Source MANO
-              description: Network Functions Virtualisation
-              url: /telco/osm
-            - title: JAAS
-              description: Juju as a Service
-              url: https://jaas.ai/
+            - title: Juju
+              description: Orchestrator engine for operators
+              url: https://juju.is/
             - title: Private cloud build
               description: OpenStack implementation
               url: /openstack/consulting
+            - title: MicroCloud
+              description: Lightweight, automated clouds
+              url: https://canonical.com/microcloud
       secondary_links:
         - title: Quick links
           links:
@@ -180,6 +180,9 @@ products:
     - title: Public cloud
       primary_links:
         - links:
+            - title: Ubuntu on public clouds
+              description: The most popular cloud OS
+              url: /cloud/public-cloud
             - title: Ubuntu on AWS
               description: AWS Marketplace
               url: /aws
@@ -200,8 +203,8 @@ products:
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: LXD
-              description: Linux containers
-              url: /lxd
+              description: Linux containers and VMs
+              url: https://canonical.com/lxd
             - title: WSL
               description: Windows Subsystem for Linux
               url: /wsl
@@ -252,6 +255,9 @@ products:
             - title: Certifications and hardening
               description: CIS, DISA-STIG, FIPS compliance
               url: /security/certifications
+            - title: Confidential computing
+              description: Protect your data in use
+              url: /confidential-computing
 
       secondary_links:
         - title: Quick links
@@ -276,6 +282,9 @@ products:
             - title: MicroK8s
               description: Simplest way to get Kubernetes
               url: https://microk8s.io/
+            - title: Charmed Kubernetes
+              description: Composable K8s for the enterprise
+              url: /kubernetes/charmed-k8s
             - title: Kubeflow
               description: Machine learning toolkit for K8s
               url: /ai/what-is-kubeflow
@@ -303,10 +312,10 @@ products:
               description: Store for Juju operators
               url: https://charmhub.io/
             - title: Juju
-              description: Model-driven operations for apps
+              description: Orchestrator engine for operators
               url: https://juju.is/
             - title: JAAS
-              description: Juju as a Service
+              description: Auditing and compliance for Juju
               url: https://jaas.ai/
 
       secondary_links:
@@ -314,15 +323,15 @@ products:
           links:
             - title: Juju documentation
               url: https://juju.is/docs
-            - title: Juju tutorials
+            - title: Getting started with Juju
               url: https://juju.is/tutorials
             - title: Charmhub forum
               url: https://discourse.charmhub.io/
             - title: Juju blog
               url: https://juju.is/blog
-            - title: About JAAS
-              url: https://jaas.ai/jaas
-            - title: Build and deploy a mini charm
+            - title: Matrix community
+              url: https://matrix.to/#/#charmhub-juju:ubuntu.com
+            - title: Write your first charm
               url: https://juju.is/tutorials/build-and-deploy-mini-charm
 
     - title: Snapcraft
@@ -397,7 +406,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Core
-              description: Minimal embedded Ubuntu
+              description: Embedded Linux
               url: /core
             - title: IoT App Store
               description: Private app store for Linux and IoT
@@ -455,7 +464,7 @@ use_case:
           url: /containers
         - title: Data fabric
           description: Deploy and operate databases
-          url: /data
+          url: https://canonical.com/data
         - title: Edge computing
           description: Micro clouds
           url: /edge-computing
@@ -486,6 +495,9 @@ use_case:
         - title: Signage
           description: Smart displays and kiosks
           url: /internet-of-things/smart-displays
+        - title: Storage
+          description: Scalable software-defined storage
+          url: /ceph
 
   highlighted_secondary_links:
     - title: By industry
@@ -503,7 +515,7 @@ use_case:
           description: The factory of the future
           url: /industrial
         - title: Robotics
-          description: Build robots with Ubuntu and ROS
+          description: Build and deploy robots with Ubuntu
           url: /robotics
         - title: Telco
           description: Carrier-grade solutions
@@ -541,6 +553,8 @@ support:
           links:
             - title: Upgrade from 18.04
               url: /18-04
+            - title: Why Ubuntu Pro?
+              url: /pro/why-pro
             - title: Expanded Security Maintenance
               url: /security/esm
             - title: Pricing
@@ -662,28 +676,31 @@ community:
         - links:
             - title: Translate and localise
               description: Translate into your language
-              url: https://ubuntu.com/community/contribute/translation-localisation
+              url: /community/contribute/translation-localisation
             - title: QA and testing
               description: Test releases and features
-              url: https://ubuntu.com/community/contribute/qa-testing
+              url: /community/contribute/qa-testing
             - title: Report bugs
               description: Report bugs on Launchpad
               url: https://help.ubuntu.com/community/ReportingBugs
-            - title: Software development
+            - title: Ubuntu development
+              description: Help maintain Ubuntu OS
+              url: /community/contribute/ubuntu-development
+            - title: Application development
               description: Create and maintain software
-              url: https://ubuntu.com/community/contribute/software-development
+              url: /community/contribute/application-development
             - title: Improve documentation
               description: Help write the docs
               url: https://wiki.ubuntu.com/DocumentationTeam/SystemDocumentation
             - title: Art and design
               description: Contribute your artwork
-              url: https://ubuntu.com/community/contribute/art-design
+              url: /community/contribute/art-design
             - title: Donate
               description: Donate to the Ubuntu project
               url: /download/desktop/thank-you
             - title: Local community teams
               description: Join a community team
-              url: http://loco.ubuntu.com/teams/
+              url: /community/locos/join
 
     - title: Mission and governance
       primary_links:
@@ -708,7 +725,7 @@ community:
               url: /community/governance/teams
             - title: Local community teams
               description: Join a community team
-              url: http://loco.ubuntu.com/teams/
+              url: /community/locos/join
 
       secondary_links:
         - title: Quick links
@@ -728,7 +745,7 @@ community:
               url: /blog
             - title: Weekly Newsletter
               description: Sign up for our newsletter
-              url: https://wiki.ubuntu.com/UbuntuWeeklyNewsletter
+              url: https://discourse.ubuntu.com/c/uwn/124
             - title: Mailing lists
               description: All the public mailing lists
               url: https://lists.ubuntu.com/
@@ -737,13 +754,13 @@ community:
               url: http://planet.ubuntu.com/
             - title: Teams
               description: The teams in the project
-              url: https://wiki.ubuntu.com/Teams
+              url: /community/governance/teams
 
       secondary_links:
         - title: Quick links
           links:
-            - title: Become a blog contributor
-              url: https://community.ubuntu.com/t/call-for-contributors-to-the-ubuntu-weekly-newsletter/1542
+            - title: Join the Weekly Newsletter Team
+              url: https://discourse.ubuntu.com/t/joining-the-ubuntu-weekly-newsletter-team/40929
             - title: Facebook
               url: https://www.facebook.com/ubuntulinux
             - title: Twitter
@@ -762,7 +779,7 @@ get_ubuntu:
               description: Free and reliable desktop OS
               url: /download/desktop
               secondary_cta_title: Download 22.04 LTS
-              secondary_cta_url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
+              secondary_cta_url: /download/desktop/thank-you?version=22.04.3&architecture=amd64
             - title: Ubuntu flavours
               description: Variations of Ubuntu OS
               url: /download/flavours
@@ -770,7 +787,7 @@ get_ubuntu:
               description: Certified hardware
               url: /certified
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
             - title: Upgrade Ubuntu Desktop
               url: /tutorials/upgrading-ubuntu-desktop
@@ -830,13 +847,13 @@ get_ubuntu:
               secondary_cta_title: Get Ubuntu for Raspberry Pi
               secondary_cta_url: /download/raspberry-pi
             - title: Ubuntu Core for Raspberry Pi
-              description: Embedded OS
+              description: Embedded Linux
               url: /download/raspberry-pi-core
             - title: Ubuntu-ready Pi devices
               description: Certified hardware
               url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
             - title: Desktop installation tutorial
               url: /tutorials/install-ubuntu-desktop
@@ -852,7 +869,7 @@ get_ubuntu:
       primary_links:
         - links:
             - title: Ubuntu Core
-              description: OS designed for IoT
+              description: Embedded Linux
               url: /core
             - title: Internet of Things
               description: Ubuntu for IoT
@@ -878,8 +895,6 @@ get_ubuntu:
               url: /download/iot/intel-iotg
             - title: Intel NUC
               url: /download/intel-nuc
-            - title: KVM
-              url: /download/kvm
             - title: Qualcomm Dragonboard 410c
               url: /download/qualcomm-dragonboard-410c
             - title: Intel IEI TANK 870
@@ -910,7 +925,7 @@ get_ubuntu:
               description: Professional endorsement
               url: /credentials
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
             - title: Ubuntu on public clouds
               url: /cloud/public-cloud
@@ -941,7 +956,7 @@ get_ubuntu:
               description: Ubuntu VMs for Windows and macOS
               url: https://multipass.run/
       secondary_links:
-        - title: Tutorials and docs
+        - title: Quick links
           links:
             - title: Install Ubuntu on WSL for Windows 11
               url: /tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support

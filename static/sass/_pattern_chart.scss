@@ -1,7 +1,3 @@
-.chart {
-  margin-top: $sp-unit * 3;
-}
-
 .chart__bar--orange {
   fill: #e95420;
   stroke: #e95420;
@@ -20,9 +16,27 @@
   stroke-width: 1px;
 }
 
+.chart__bar--light-grey {
+  fill: #c2c2c2;
+  stroke: #c2c2c2;
+  stroke-width: 1px;
+}
+
 .chart__bar--aubergine {
   fill: #772953;
   stroke: #772953;
+  stroke-width: 1px;
+}
+
+.chart__bar--aubergine-mid-light {
+  fill: #923a66;
+  stroke: #923a66;
+  stroke-width: 1px;
+}
+
+.chart__bar--aubergine-light {
+  fill: #cba7b8;
+  stroke: #cba7b8;
   stroke-width: 1px;
 }
 
@@ -38,6 +52,12 @@
   stroke-width: 1px;
 }
 
+.chart__bar--black {
+  fill: #111;
+  stroke: #111;
+  stroke-width: 1px;
+}
+
 .chart__label--bold {
   font-weight: bold;
 }
@@ -47,7 +67,8 @@
   opacity: 0.2;
 }
 
-.x.axis line {
+.x.axis line,
+.y.axis line {
   shape-rendering: crispEdges;
   stroke: #d6d3cf;
   stroke-dasharray: 3 2;
@@ -72,4 +93,33 @@
 
 .chart-key__row {
   display: block;
+}
+
+.horizontal-bar-chart {
+  .tick text {
+    font-size: 16px;
+    font-weight: 350;
+  }
+
+  .x.axis text {
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+#server-desktop-eol {
+  .tick text {
+    font-size: 16px;
+  }
+
+  .x.axis text {
+    color: #666;
+    font-size: 16px;
+    text-anchor: start !important;
+  }
+
+  .chart__label--bold {
+    font-weight: 600;
+  }
 }

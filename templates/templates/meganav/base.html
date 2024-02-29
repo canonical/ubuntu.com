@@ -244,7 +244,7 @@
               <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
               {% for link in links_section.links %}
                 <li class="p-list__item">
-                  <a class="dropdown-window__side-panel-link" href="{{ link.url }}" tabindex="-1">{{ link.title }}</a>
+                  <a class="p-navigation__secondary-link" href="{{ link.url }}" tabindex="-1">{{ link.title }}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -271,5 +271,24 @@
         {% endwith %}
       {% endfor %}
     {% endfor %}
+    {% if "highlighted_secondary_links" in sections %}
+      {% for links_section in sections.highlighted_secondary_links %}
+        {% if links_section.title %}
+        <p class="p-muted-heading is-muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
+        {% endif %}
+        {% for link in links_section.links %}
+          {% with 
+            url = link.url, 
+            title = link.title, 
+            description = link.description,
+            secondary_cta_url = link.secondary_cta_url,
+            secondary_cta_title = link.secondary_cta_title,
+            tabindex = "-1"
+          %}
+            {% include "templates/meganav/_list-item.html" %}
+          {% endwith %}
+        {% endfor %}
+      {% endfor %}
+    {% endif%}
   {% endif %}
 </ul>

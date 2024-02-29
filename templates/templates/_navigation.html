@@ -164,11 +164,11 @@
 
 <header id="navigation" class="p-navigation--sliding is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   {% block header_banner %}
-  <div class="row">
-    <div class="p-navigation__banner col-3">
+  <div class="p-navigation__row--25-75">
+    <div class="p-navigation__banner">
       {{ banner_content() }}
     </div>
-    <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
+    <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
       {{ nav_items() }}
     </nav>
   </div>
@@ -179,11 +179,11 @@
 {% if not(hide_subnav == True) %}
   {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
   <div id="secondary-navigation" class="p-navigation is-secondary is-dark">
-    <div class="row">
-      <div class="p-navigation__banner col-3">
+    <div class="p-navigation__row--25-75">
+      <div class="p-navigation__banner">
         {{ secondary_nav_banner_contents() }}
       </div>
-      <nav class="p-navigation__nav col-9" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
+      <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
         {{ secondary_nav_items() }}
       </nav>
     </div>

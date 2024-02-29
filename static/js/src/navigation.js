@@ -18,9 +18,18 @@ let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
+// Get the navigations initial height for use in 'updateWindowHeight'
+const navEle = document.querySelector(".p-navigation__nav");
+const originalMaxHeight = navEle.style.maxHeight;
 
 navigation.classList.add("js-enabled");
 nav.classList.remove("u-hide");
+document.addEventListener("DOMContentLoaded", () => {
+  setUpGlobalNav();
+});
+window.addEventListener("load", () => {
+  handleUrlHash();
+});
 
 //Helper functions
 
@@ -59,15 +68,16 @@ mainList.addEventListener("click", function (e) {
       handleDropdownClick(e.target.parentNode);
     }
   } else if (
-    target.classList.contains("p-navigation__dropdown") &&
-    target.tagName == "A"
+    target.classList.contains("p-navigation__dropdown-item") ||
+    target.classList.contains("p-navigation__secondary-link") ||
+    target.classList.contains("p-button--positive")
   ) {
-    // This handles the globa-nav using a slightly different class naming convention
-    window.location.href = target.href;
+    if (target.tagName === "A" || target.firstChild.tagName === "A") {
+      window.location.href = target.href;
+    }
   }
 });
 
-window.addEventListener("load", closeAll);
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
   // Only closeAll if the resize event crosses the MOBILE_VIEW_BREAKPOINT threshold
@@ -137,6 +147,21 @@ function updateUrlHash(id, open) {
   }
 }
 
+function handleUrlHash() {
+  const targetId = window.location.hash;
+  const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
+  if (targetDropdown) {
+    const currViewportWidth = window.innerWidth;
+    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
+    if (isMobile) {
+      const menuToggle = navigation.querySelector(".js-menu-button");
+      menuToggle?.click();
+    }
+    fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
+    handleDropdownClick(targetDropdown);
+  }
+}
+
 function goBackOneLevel(e, backButton) {
   e.preventDefault();
   const target = backButton.parentNode.parentNode;
@@ -148,6 +173,7 @@ function goBackOneLevel(e, backButton) {
   if (target.parentNode.getAttribute("role") == "menuitem") {
     updateNavMenu(target.parentNode, false);
   }
+  updateWindowHeight();
 }
 
 function escKeyPressHandler(e) {
@@ -219,6 +245,7 @@ function updateNavMenu(dropdown, show) {
     showDesktopDropdown(show);
   } else if (dropdownContentMobile) {
     updateMobileDropdownState(dropdown, show);
+    updateWindowHeight();
   } else {
     const observer = new MutationObserver(handleMutation);
     const observerConfig = { childList: true, subtree: true };
@@ -240,6 +267,7 @@ function updateDropdownStates(dropdown, show, delay) {
   }
   updateDesktopDropdownStates(dropdown, show, delay);
   updateMobileDropdownState(dropdown, show, isNested);
+  updateWindowHeight();
 }
 
 function updateDesktopDropdownStates(dropdown, show, delay) {
@@ -298,6 +326,25 @@ function toggleGlobalNavVisibility(dropdown, show, delay) {
     setTimeout(() => {
       globalNavInnerContent.classList.add("u-hide");
     }, delay);
+  }
+}
+
+function getUrlBarHeight(element) {
+  const visibleHeight = window.innerHeight;
+  const fullHeight = document.querySelector("#control-height").clientHeight;
+  const barHeight = fullHeight - visibleHeight;
+  return barHeight;
+}
+
+// Handles mobile navigation height taking up veiwport space
+function updateWindowHeight() {
+  navEle.style.maxHeight = originalMaxHeight;
+  const isInDropdownList = mainList.classList.contains("is-active");
+  if (isInDropdownList) {
+    const newHeight = navEle.clientHeight - getUrlBarHeight() - 20 + "px";
+    navEle.style.maxHeight = newHeight;
+  } else {
+    navEle.style.maxHeight = originalMaxHeight;
   }
 }
 
@@ -420,8 +467,8 @@ function keyboardNavigationHandler(e) {
 }
 
 function handleEscapeKey(e) {
-  // If '.dropdown-window__sidenav-content' exists we are in the dropdown window
-  // so we want to move up to the side-tabs
+  // If '.dropdown-window__sidenav-content' exists we are in the
+  // dropdown window so we want to move up to the side-tabs
   const targetTabId = e.target.closest(
     ".dropdown-window__sidenav-content.is-active"
   )?.id;
@@ -616,6 +663,7 @@ function closeAll() {
   closeNav();
   updateUrlHash();
   setTabIndex(mainList);
+  updateWindowHeight();
 }
 
 function openMenu(e) {
@@ -727,9 +775,6 @@ function setUpGlobalNav() {
       dropdown.prepend(backButton);
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  setUpGlobalNav();
-});
 
 // Initiate login
 var accountContainer = document.querySelector(".js-account");

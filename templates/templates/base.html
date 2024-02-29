@@ -15,15 +15,19 @@
   <script src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
   <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
   <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}"></script>
-
+  
   <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}">
   <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}">
   <script>performance.mark("Stylesheets finished")</script>
 
   <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}">
 
-  <link rel="shortcut icon" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" type="image/x-icon">
-  <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/17b68252-apple-touch-icon-180x180-precomposed-ubuntu.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://assets.ubuntu.com/v1/16c27f81-COF%20favicon-16x16.png">
+  <link rel="manifest" href="{{ versioned_static('files/site.webmanifest') }}">
+  <!-- Serving favicon for search engines locally -->
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ versioned_static('favicons/COF-favicon-48x48.png') }}">
 
   {% block head_extra %}{% endblock %}
 
@@ -110,7 +114,7 @@
       <div class="u-fixed-width">
         <div class="p-notification--positive u-no-margin--bottom">
           <div class="p-notification__content">
-            <p class="p-notification__message">Thank you for signing up for our newsletter!<a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
+            <p class="p-notification__message">Thank you for signing up for our newsletter!<br/>In these regular emails you will find the latest updates about Ubuntu and upcoming events where you can meet our team.<a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
           </div>
         </div>
       </div>

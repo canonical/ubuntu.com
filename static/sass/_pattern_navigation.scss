@@ -3,6 +3,12 @@ $row-margin-small: 1rem;
 $meganav-height: 3rem;
 
 @mixin ubuntu-p-navigation {
+  #control-height {
+    height: 100vh;
+    position: absolute;
+    width: 0;
+  }
+
   #all-canonical-mobile .global-nav__header-link-anchor::after {
     @media (max-width: $breakpoint-small) {
       right: 1rem !important;
@@ -33,25 +39,234 @@ $meganav-height: 3rem;
     }
   }
 
+  .p-navigation__row--25-75 {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      .p-navigation__items:first-child {
+        margin-left: -1rem;
+      }
+    }
+  }
+
   .p-navigation--sliding {
     position: sticky;
     top: 0;
     z-index: 40;
 
+    .p-navigation__secondary-link {
+      @extend .dropdown-window__side-panel-link;
+    }
+
     .p-link--inverted {
       font-weight: 400;
     }
 
+    .p-navigation__row--25-75 {
+      @media (min-width: $breakpoint-navigation-threshold - 1) {
+        .p-navigation__items:first-child {
+          margin-left: -1rem;
+        }
+      }
+
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .p-navigation__dropdown {
+        height: calc(100vh - $meganav-height);
+        overflow: hidden;
+
+        &[aria-hidden="false"] {
+          overflow: unset;
+
+          &::before {
+            pointer-events: none;
+          }
+        }
+
+        &::before {
+          box-shadow: none;
+        }
+
+        .p-muted-heading {
+          padding-left: 3rem;
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: 2.5rem;
+          }
+        }
+
+        .p-navigation__secondary-links .p-muted-heading {
+          padding-left: 0;
+        }
+      }
+
+      .p-navigation__link--search-toggle::after {
+        right: 1.5rem;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          right: 0.5rem;
+        }
+      }
+
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        .subsection-active & {
+          transform: translateX(-100vw);
+        }
+      }
+
+      .p-navigation__secondary-links {
+        margin-top: 1.5rem;
+        padding-left: calc(1.5rem + $row-margin-medium);
+
+        @media (max-width: $breakpoint-medium) {
+          padding-left: calc(1.5rem + $row-margin-small);
+        }
+
+        a {
+          color: #69c;
+        }
+      }
+
+      ul.p-navigation__dropdown {
+        li.p-navigation__dropdown-item {
+          line-height: 1.5rem;
+          margin: 0;
+          padding-bottom: 0.25rem;
+          padding-top: 0.25rem;
+          position: relative;
+
+          a {
+            &:not(.p-button--positive) {
+              display: block;
+              padding: 0.25rem 0;
+              white-space: normal;
+            }
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+
+      .p-navigation__item--dropdown-toggle {
+        .p-navigation__account-name {
+          @extend .p-navigation__dropdown-item;
+
+          @media (max-width: $breakpoint-medium) {
+            padding-left: calc(1.5rem + $row-margin-small);
+          }
+
+          pointer-events: none;
+
+          @media (min-width: $breakpoint-navigation-threshold - 1) {
+            .p-text--small {
+              max-width: 13rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          @media (max-width: $breakpoint-navigation-threshold - 1) {
+            hr {
+              display: none;
+            }
+          }
+        }
+
+        &.js-account {
+          .p-navigation__dropdown-item {
+            padding-bottom: 0.75rem;
+            padding-top: 0.75rem;
+          }
+
+          @media (min-width: $breakpoint-navigation-threshold - 1) {
+            .p-navigation__dropdown {
+              height: auto;
+              min-width: 10rem;
+              right: 3rem;
+            }
+          }
+
+          a.p-navigation__link {
+            &::after {
+              @media (min-width: $breakpoint-navigation-threshold - 1) {
+                content: none;
+              }
+            }
+          }
+
+          a.p-navigation__link:not(.is-signed-in) {
+            &::after {
+              content: none;
+            }
+          }
+
+          button[aria-expanded="true"] {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+        }
+
+        &.is-active[role="menuitem"] {
+          @extend .is-selected;
+
+          > a.p-navigation__link {
+            background-color: #2d2d2d;
+          }
+        }
+
+        .p-navigation__link::before {
+          &:first-of-type {
+            content: "";
+          }
+        }
+      }
+
+      a.p-navigation__dropdown-item {
+        padding-bottom: 0.75rem;
+        padding-top: 0.75rem;
+      }
+
+      .p-navigation__link::after {
+        right: 0.5rem;
+        top: 1.25rem;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          right: 1.5rem;
+          top: 1rem;
+        }
+      }
+    }
+
+    .p-navigation--sliding:not(.js-enabled) {
+      .p-navigation__item--dropdown-toggle > .p-navigation__link {
+        padding-right: 1rem;
+
+        &::after {
+          content: none;
+        }
+      }
+    }
+
     .p-navigation__nav {
-      margin-left: -1rem;
-      margin-right: 0;
+      margin-right: -1rem;
       max-height: calc(100vh - 3rem);
       width: auto;
 
       .p-navigation__items {
         width: 100%;
 
-        @media (max-width: $breakpoint-navigation-threshold) {
+        & > .p-navigation__item--dropdown-toggle > .p-navigation__link {
+          padding-left: $row-margin-small;
+          padding-right: 2rem;
+
+          &::before {
+            left: $row-margin-small;
+          }
+        }
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
           .p-navigation__link {
             padding-left: calc(1.5rem + $row-margin-medium);
 
@@ -98,7 +313,7 @@ $meganav-height: 3rem;
           }
 
           .p-muted-heading {
-            padding-left: 0 !important;
+            padding-left: 0;
           }
         }
 
@@ -132,7 +347,7 @@ $meganav-height: 3rem;
           }
 
           .p-muted-heading {
-            padding-left: 0 !important;
+            padding-left: 0;
           }
         }
 
@@ -159,8 +374,8 @@ $meganav-height: 3rem;
       padding-left: 0;
     }
 
-    @media (max-width: $breakpoint-navigation-threshold) {
-      .row {
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__row--25-75 {
         display: unset;
       }
 
@@ -180,184 +395,13 @@ $meganav-height: 3rem;
         padding-left: $row-margin-small;
       }
     }
-
-    .row {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .p-navigation__dropdown {
-        height: calc(100vh - $meganav-height);
-        overflow: hidden;
-
-        &[aria-hidden="false"] {
-          overflow: unset;
-
-          &::before {
-            pointer-events: none;
-          }
-        }
-
-        &::before {
-          box-shadow: none;
-        }
-      }
-
-      .p-navigation__link--search-toggle::after {
-        right: 1rem;
-
-        @media (max-width: $breakpoint-navigation-threshold) {
-          right: 0.5rem;
-        }
-      }
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        .subsection-active & {
-          transform: translateX(-100vw);
-        }
-      }
-
-      .p-navigation__secondary-links {
-        @extend .dropdown-window__side-panel;
-
-        margin-top: 1.5rem;
-        padding-left: calc(1.5rem + $row-margin-medium) !important;
-
-        @media (max-width: $breakpoint-medium) {
-          padding-left: calc(1rem + $row-margin-small) !important;
-        }
-
-        a {
-          color: #69c;
-        }
-      }
-
-      ul.p-navigation__dropdown {
-        li.p-navigation__dropdown-item {
-          line-height: 1.5rem;
-          margin: 0;
-          padding-bottom: 0.25rem;
-          padding-top: 0.25rem;
-          position: relative;
-
-          a {
-            &:not(.p-button--positive) {
-              display: block;
-              padding: 0.25rem 0;
-              white-space: normal;
-            }
-
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-      }
-
-      .p-navigation__item--dropdown-toggle {
-        .p-navigation__account-name {
-          @extend .p-navigation__dropdown-item;
-
-          @media (max-width: $breakpoint-medium) {
-            padding-left: calc(1.5rem + $row-margin-small);
-          }
-
-          pointer-events: none;
-
-          @media (min-width: $breakpoint-navigation-threshold) {
-            .p-text--small {
-              max-width: 13rem;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-
-          @media (max-width: $breakpoint-navigation-threshold) {
-            hr {
-              display: none;
-            }
-          }
-        }
-
-        &.js-account {
-          .p-navigation__dropdown-item {
-            padding-bottom: 0.75rem;
-            padding-top: 0.75rem;
-          }
-
-          @media (min-width: $breakpoint-navigation-threshold) {
-            .p-navigation__dropdown {
-              height: auto;
-              min-width: 10rem;
-              right: 3rem;
-            }
-          }
-
-          a.p-navigation__link {
-            &::after {
-              @media (min-width: $breakpoint-navigation-threshold) {
-                content: none;
-              }
-            }
-          }
-
-          a.p-navigation__link:not(.is-signed-in) {
-            &::after {
-              content: none;
-            }
-          }
-
-          button[aria-expanded="true"] {
-            background-color: rgba(255, 255, 255, 0.05);
-          }
-        }
-
-        &.is-active[role="menuitem"] {
-          @extend .is-selected;
-
-          > a.p-navigation__link {
-            background-color: #2d2d2d;
-          }
-        }
-
-        .p-navigation__link::before {
-          &:first-of-type {
-            content: "";
-          }
-        }
-      }
-
-      a.p-navigation__dropdown-item {
-        padding-bottom: 0.75rem;
-        padding-top: 0.75rem;
-      }
-
-      .p-navigation__link::after {
-        top: 1.25rem;
-        @media (max-width: $breakpoint-navigation-threshold) {
-          right: 1.5rem;
-          top: 1rem;
-        }
-      }
-    }
-  }
-
-  .p-navigation--sliding:not(.js-enabled) {
-    .p-navigation__item--dropdown-toggle > .p-navigation__link {
-      padding-right: 1rem;
-
-      &::after {
-        content: none;
-      }
-    }
   }
 
   .p-navigation--sliding.has-menu-open {
     height: fit-content;
 
-    @media (max-width: $breakpoint-navigation-threshold) {
-      .row {
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__row--25-75 {
         height: 100vh;
       }
     }
@@ -365,7 +409,7 @@ $meganav-height: 3rem;
 }
 
 @mixin ubuntu-p-navigation-reduced {
-  @media (min-width: $breakpoint-navigation-threshold) {
+  @media (min-width: $breakpoint-navigation-threshold - 1) {
     .p-navigation--sliding.is-reduced.has-search-open {
       .p-navigation__nav .p-navigation__items {
         display: inline-flex;
@@ -397,7 +441,7 @@ $meganav-height: 3rem;
     .p-navigation__banner {
       height: auto;
 
-      @media (max-width: $breakpoint-navigation-threshold) {
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
         padding-left: $row-margin-medium;
       }
 
@@ -416,7 +460,7 @@ $meganav-height: 3rem;
         padding-left: 0;
         padding-top: 0.5rem;
 
-        @media (max-width: $breakpoint-navigation-threshold) {
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
           padding-top: 0.75rem;
         }
       }
@@ -428,7 +472,7 @@ $meganav-height: 3rem;
       }
     }
 
-    @media (min-width: $breakpoint-navigation-threshold) {
+    @media (min-width: $breakpoint-navigation-threshold - 1) {
       .p-navigation__link span {
         display: initial;
         padding-right: 0.5rem;
@@ -436,6 +480,12 @@ $meganav-height: 3rem;
 
       .p-navigation__link::after {
         top: 0.5rem;
+      }
+    }
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__link::after {
+        top: 1rem;
       }
     }
 
@@ -514,7 +564,7 @@ $meganav-height: 3rem;
         &::after {
           display: none;
 
-          @media only screen and (min-width: $breakpoint-navigation-threshold) {
+          @media only screen and (min-width: $breakpoint-navigation-threshold - 1) {
             background-color: $color-light;
             display: block;
             left: $sph--large;
@@ -583,9 +633,11 @@ $meganav-height: 3rem;
     top: 0;
     z-index: 10;
 
-    .p-navigation__nav {
-      margin-left: -1rem;
+    .p-navigation__item > .p-navigation__link {
+      padding-left: $row-margin-small;
+    }
 
+    .p-navigation__nav {
       &.is-open {
         display: flex;
 
@@ -594,10 +646,10 @@ $meganav-height: 3rem;
         }
 
         .p-navigation__link {
-          padding-left: calc(1rem + $row-margin-medium);
+          padding-left: $row-margin-medium;
 
           @media (max-width: $breakpoint-medium) {
-            padding-left: calc(1rem + $row-margin-small);
+            padding-left: $row-margin-small;
           }
 
           &::before {
@@ -611,19 +663,15 @@ $meganav-height: 3rem;
       padding-left: 0;
     }
 
-    @media (max-width: $breakpoint-navigation-threshold) {
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
       .p-navigation__banner {
         padding-left: $row-margin-medium;
       }
 
-      .row {
+      .p-navigation__row--25-75 {
         display: unset;
         padding-left: 0;
         padding-right: 0;
-      }
-
-      .p-navigation__nav {
-        margin-left: -1rem;
       }
     }
 
@@ -675,27 +723,6 @@ $meganav-height: 3rem;
     @media (max-width: $breakpoint-navigation-threshold - 1) {
       .dropdown-window__tab-panel {
         display: none;
-      }
-    }
-  }
-}
-
-@mixin ubuntu-p-docs-navigation {
-  body:is(.docs) {
-    .p-navigation--sliding,
-    .p-navigation.is-secondary {
-      .p-navigation__banner {
-        padding-left: 1rem;
-      }
-
-      .p-navigation__nav {
-        margin-left: 0;
-      }
-    }
-
-    .p-navigation--sliding.is-reduced {
-      .js-account a:after {
-        content: none;
       }
     }
   }
