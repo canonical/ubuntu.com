@@ -213,7 +213,7 @@
   const boards = document.querySelectorAll(`[role=tabpanel]`);
   const dropdownSelect = document.getElementById("boardSelect");
 
-  dropdownSelect.addEventListener("change", (event) => {
+  dropdownSelect?.addEventListener("change", (event) => {
     selectBoard();
   });
 

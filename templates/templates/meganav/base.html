@@ -1,7 +1,7 @@
 <nav class="dropdown-window__content-container desktop-dropdown-content">
-  <div class="dropdown-window__content row">
+  <div class="dropdown-window__content row--25-75">
     {% if "side_nav_sections" in sections %}
-      <div class="dropdown-window__tab-panel col-3">
+      <div class="dropdown-window__tab-panel col">
         <div class="p-side-navigation is-dark">
           <div class="p-side-navigation__drawer">
             <ul class="p-side-navigation__list js-tabs u-no-margin--bottom" role="tablist" aria-label="Categories">
@@ -14,8 +14,8 @@
           </div>
         </div>
       </div>
-      
-      <div class="col-9 u-no-padding">
+
+      <div class="col u-no-padding">
         {% for side_nav_section in sections.side_nav_sections %}
           <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
             <div class="row u-no-padding"> 
@@ -32,7 +32,7 @@
                       {% set split_links_list = split_list(links_section.links, 3) %}
                     {% endif %}
 
-                    <div class="col-3">
+                    <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
                       <ul class="p-list">
                         {% for link in split_links_list[0] %}
                           {% with 
@@ -48,7 +48,7 @@
                       </ul>
                     </div>
 
-                    <div class="col-3">
+                    <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
                       <ul class="p-list">
                         {% for link in split_links_list[1] %}
                           {% with 

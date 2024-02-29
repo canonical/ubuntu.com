@@ -179,7 +179,7 @@
                   <p class="u-no-padding--top">Set your hostname using variables</p>
                   <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server, and set the HOSTNAME and DOMAIN variables based on the FQDN.</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>HOSTNAME=landscape
+                    <pre class="p-code-snippet__block is-wrapped"><code>HOST_NAME=landscape
 DOMAIN=yourdomain.com
 FQDN=$HOST_NAME.$DOMAIN
 sudo hostnamectl set-hostname "$FQDN"</code></pre>
