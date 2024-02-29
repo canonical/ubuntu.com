@@ -50,9 +50,11 @@ Canonical employs a comprehensive approach to due diligence in identifying and m
 Canonical has established reporting mechanisms to encourage the reporting of any concerns or suspicions related to modern slavery. Canonical is dedicated to fostering an environment that encourages openness and transparency, empowering all stakeholders to contribute to the eradication of modern slavery from our operations and supply chain.
 
 ## Our Effectiveness and Continuous Improvement
+
 Canonical is committed to the ongoing improvement of its efforts to combat modern slavery. The company regularly reviews and updates its policies, procedures, and due diligence processes to adapt to emerging risks and incorporate best practices. Canonical actively seeks feedback from stakeholders to enhance its approach to ethical sourcing continually.
 
 ## Further actions and sign-off
+
 Following our review of our actions this financial year, ending 31st December 2023, to prevent slavery or human trafficking from occurring in our business or supply chains, we intend to take the following further steps to tackle slavery and human trafficking:
 
 - We are committed to enhancing our reporting mechanisms by developing and implementing a whistleblowing tool that allows individuals to anonymously report any concerns or suspicions related to slavery or human trafficking. This tool will facilitate a secure and confidential platform for reporting, ensuring that information is promptly received and appropriately addressed.
