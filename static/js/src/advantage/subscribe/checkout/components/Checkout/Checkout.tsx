@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import {
   Col,
@@ -31,6 +31,33 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
+
+  useEffect(() => {
+    const handleInputChange = () => {
+      error ? setError(null) : null;
+    };
+
+    const inputElements = document.querySelectorAll("input");
+    const selectElements = document.querySelectorAll("select");
+
+    inputElements.forEach((input) => {
+      input.addEventListener("change", handleInputChange);
+    });
+
+    selectElements.forEach((select) => {
+      select.addEventListener("change", handleInputChange);
+    });
+
+    return () => {
+      inputElements.forEach((input) => {
+        input.removeEventListener("change", handleInputChange);
+      });
+
+      selectElements.forEach((select) => {
+        select.removeEventListener("change", handleInputChange);
+      });
+    };
+  }, [error]);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
