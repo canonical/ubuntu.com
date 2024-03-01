@@ -19,6 +19,7 @@ installation steps for a number of different substrates. The 'Cloud' install
 page covers many different scenarios with Juju-supported clouds.
 
 - [Install on a cloud](/kubernetes/docs/install-manual)
+- [Install on existing machines](/kubernetes/docs/install-existing)
 - [Install locally with LXD](/kubernetes/docs/install-local)
 - [Install on Equinix](/kubernetes/docs/equinix)
 

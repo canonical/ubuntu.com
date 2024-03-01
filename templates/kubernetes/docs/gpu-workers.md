@@ -13,45 +13,56 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-**Charmed Kubernetes** supports GPU-enabled instances for applications that
-can use them. The `kubernetes-worker` application will automatically detect
-NVIDIA hardware and enable the appropriate support. This page describes
-recommended deployment and verification steps when using GPU workers with
-Charmed Kubernetes.
+**Charmed Kubernetes** can automatically detect GPU-enabled hardware and install
+required drivers from NVIDIA repositories. With the release of Charmed Kubernetes 1.29,
+the [NVIDIA GPU Operator charm][nvidia-gpu-operator] is available to simplify GPU
+software management and configuration.
 
-### Deploying Charmed Kubernetes with GPU workers
+This page describes recommended deployment and verification steps for using GPU workers
+with Charmed Kubernetes.
 
-When deploying the Charmed Kubernetes bundle, you can use a YAML overlay file
-with constraints to ensure worker units are deployed on GPU-enabled machines.
-Because GPU support varies depending on the underlying cloud, this requires
-specifying a particular instance type.
+## Deploying Charmed Kubernetes with GPU workers
 
-For example, when deploying to AWS, you may decide to use a `p3.2xlarge`
-instance from the available [AWS GPU-enabled instance types][aws-instance].
-Similarly, you could choose Azure's `Standard_NC6s_v3` instance from the
-available [Azure GPU-enabled instance types][azure-instance].
+GPU support varies depending on the underlying cloud, so you will need to determine a
+particular instance type for the `kubernetes-worker` application.
 
-NVIDIA updates its list of supported GPUs frequently, so be sure to cross
-reference the GPU included in a specific cloud instance against the
+For example, when deploying to AWS, you may decide to use a `p3.2xlarge` instance from
+the available [AWS GPU-enabled instance types][aws-instance].
+Similarly, you could choose an Azure `Standard_NC6s_v3` instance from the available
+[Azure GPU-enabled instance types][azure-instance].
+
+NVIDIA updates its list of supported GPUs frequently, so be sure to cross-reference the
+GPU included in a specific cloud instance against the
 [Supported NVIDIA GPUs and Systems][nvidia-gpu-support] documentation.
 
-Example overlay files that set GPU worker constraints:
+When deploying the Charmed Kubernetes bundle, you can use a YAML overlay file to ensure
+application instance types and configuration are optimised for use in a GPU-enabled
+environemnt. Broadly, the following should be noted when constructing an overlay file:
+
+- The GPU operator charm manages software packages and drivers on a host. Therefore,
+the `kubernetes-control-plane` application needs to be deployed in privileged mode.
+- The automatic configuration of NVIDIA software repositories should be disabled for
+the `containerd` application as this is now managed by the GPU operator charm.
+- A suitable GPU-enabled instance constraint will need to be specified for the
+`kubernetes-worker` application.
+
+The following is an example overlay file that meets the above considerations for AWS:
 
 ```yaml
 # AWS gpu-overlay.yaml
 applications:
+  containerd:
+    options:
+      gpu_driver: none
+  kubernetes-control-plane:
+    options:
+      allow-privileged: "true"
   kubernetes-worker:
-    constraints: instance-type=p3.2xlarge
+    constraints: "instance-type=p3.2xlarge root-disk=128G"
+    num_units: 1
 ```
 
-```yaml
-# Azure gpu-overlay.yaml
-applications:
-  kubernetes-worker:
-    constraints: instance-type=Standard_NC6s_v3
-```
-
-Deploy Charmed Kubernetes with an overlay like this:
+Deploy Charmed Kubernetes with your overlay(s) like this:
 
 ```bash
 juju deploy charmed-kubernetes --overlay ~/path/my-overlay.yaml --overlay ~/path/gpu-overlay.yaml
@@ -59,8 +70,6 @@ juju deploy charmed-kubernetes --overlay ~/path/my-overlay.yaml --overlay ~/path
 
 As demonstrated here, you can use multiple overlay files when deploying, so you
 can combine GPU support with an integrator charm or other custom configuration.
-
-You may then want to [test a GPU workload](#test).
 
 ### Adding GPU workers post deployment
 
@@ -106,6 +115,39 @@ juju add-unit kubernetes-worker --to 10
 
 ...replacing `10` in the above with the previously noted number. As the charm
 installs, the GPU will be detected and the relevant support will be installed.
+
+## Deploying the GPU Operator
+
+Operator charms use Kubernetes as a secondary cloud on your Juju controller. The primary
+cloud (e.g. AWS) hosts machine-style workloads like Charmed Kubernetes, which in turn
+provides the platform needed for Kubernetes operators.
+
+Create an `operator-cloud` based on the Charmed Kubernetes configuration:
+
+```bash
+kubeconfig="$(juju ssh kubernetes-control-plane/leader -- cat config)"
+controller="$(juju controller-config controller-name)"
+echo "$kubeconfig" | \
+    juju add-k8s operator-cloud --controller "$controller" --skip-storage
+```
+
+Switch to this cloud and create a model for our GPU operator:
+
+```bash
+juju switch operator-cloud
+juju add-model operator-model operator-cloud
+```
+
+Now deploy the NVIDIA GPU Operator charm. As mentioned above, this charm will install
+requisite drivers and software packages on the worker machine, therefore we use the
+`--trust` flag to ensure the charm has host administrative privileges:
+
+```bash
+juju deploy nvidia-gpu-operator --channel 1.29/stable --trust
+```
+
+Deployment of this charm will typically take 15-30 minutes. Once complete, Kubernetes
+will be ready to run GPU optimised workloads.
 
 <a  id="test"> </a>
 ## Testing
@@ -186,6 +228,8 @@ Tue Apr 11 22:46:04 2023
 ```
 
 <!-- LINKS -->
+
+[nvidia-gpu-operator]: https://charmhub.io/nvidia-gpu-operator?channel=1.29/stable
 [asset-nvidia]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/main/assets/nvidia-test.yaml
 [nvidia-supported-tags]: https://gitlab.com/nvidia/container-images/cuda/blob/master/doc/README.md#supported-tags
 [quickstart]: /kubernetes/docs/quickstart

@@ -103,7 +103,7 @@ By default, Versions 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
-juju upgrade-charm containerd
+juju refresh containerd --channel=1.26/stable
 ```
 
 ### Upgrading etcd
@@ -116,7 +116,7 @@ problems).
 Upgrade the charm with the command:
 
 ```bash
-juju upgrade-charm etcd
+juju refresh etcd --channel=1.26/stable
 ```
 
 To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
@@ -136,18 +136,18 @@ juju config etcd channel=3.4/stable
 
 ### Upgrading additional components
 
-The other infrastructure applications can be upgraded by running the `upgrade-charm`
+The other infrastructure applications can be upgraded by running the `refresh`
 command:
 
 ```bash
-juju upgrade-charm easyrsa
+juju refresh easyrsa --channel=1.26/stable
 ```
 
 Any other infrastructure charms should be upgraded in a similar way. For
 example, if you are using the flannel CNI:
 
 ```bash
-juju upgrade-charm flannel
+juju refresh flannel --channel=1.26/stable
 ```
 
 <div class="p-notification--caution">
@@ -187,7 +187,7 @@ continuity this upgrade should precede any upgrades to the **Kubernetes** master
 worker units.
 
 ```bash
-juju upgrade-charm kubeapi-load-balancer
+juju refresh kubeapi-load-balancer --channel=1.26/stable
 ```
 
 The load balancer itself is based on NGINX, and the version reported by `juju status` is
@@ -204,13 +204,13 @@ substitute `kubernetes-control-plane`for `kubernetes-master`in the following com
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
 ```bash
-juju upgrade-charm kubernetes-control-plane 
+juju refresh kubernetes-control-plane --channel=1.26/stable
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.25 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.26 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-control-plane channel=1.25/stable
+juju config kubernetes-control-plane channel=1.26/stable
 ```
 
 If you wanted to try a release candidate for 1.26, the channel would be `1.26/candidate`.
@@ -255,13 +255,13 @@ Both methods are outlined below. The blue-green method is recommended for produc
 To begin, upgrade the kubernetes-worker charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju refresh kubernetes-worker --channel=1.26/stable
 ```
 
 Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.19/stable
+juju config kubernetes-worker channel=1.26/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -307,13 +307,13 @@ A variation on this method is to add, pause, remove  and recycle units one at a 
 To proceed with an in-place upgrade, first upgrade the charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju refresh kubernetes-worker --channel=1.26/stable
 ```
 
 Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.26/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
@@ -358,8 +358,7 @@ It is recommended that you run a [cluster validation][validation] to ensure that
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.25/upgrading.md" >edit this page</a>
     or
-     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-     <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
-
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
+    <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>

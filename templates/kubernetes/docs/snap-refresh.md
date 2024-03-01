@@ -44,7 +44,7 @@ or the special keyword *max*.
 
     An explicit timer may be a simple `mon` (scan every Monday) or a more
     complex `mon3,23:00` (scan on the third Monday of the month at 23:00). See
-    possible values for explicit timers in the the *refresh.timer* section of
+    possible values for explicit timers in the *refresh.timer* section of
     the [system options][system-snap-opts] documentation.
 
 - Empty string
