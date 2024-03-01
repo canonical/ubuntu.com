@@ -1073,13 +1073,17 @@ def thank_you():
 
 
 def get_user_country_by_tz():
-    APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
+    APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     timezone = flask.request.args.get("tz")
 
-    timezones = json.load(open(os.path.join(APP_ROOT, "static/files/timezones.json")))
-    countries = json.load(open(os.path.join(APP_ROOT, "static/files/countries.json")))
+    timezones = json.load(
+        open(os.path.join(APP_ROOT, "static/files/timezones.json"))
+    )
+    countries = json.load(
+        open(os.path.join(APP_ROOT, "static/files/countries.json"))
+    )
 
-    _country = timezones[timezone]['c'][0]
+    _country = timezones[timezone]["c"][0]
     country = countries[_country]
     return flask.jsonify(
         {
