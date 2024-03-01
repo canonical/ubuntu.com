@@ -127,7 +127,7 @@ from webapp.views import (
     engage_thank_you,
     french_why_openstack,
     german_why_openstack,
-    get_user_country_by_ip,
+    get_user_country_by_tz,
     json_asset_query,
     marketo_submit,
     mirrors_query,
@@ -628,7 +628,7 @@ app.add_url_rule(
 core_services_guide.init_app(app)
 
 
-app.add_url_rule("/user-country.json", view_func=get_user_country_by_ip)
+app.add_url_rule("/user-country.json", view_func=get_user_country_by_tz)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
