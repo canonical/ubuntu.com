@@ -52,7 +52,7 @@ const Feature = () => {
             />
             <hr />
             <RadioInput
-              label="Infra only - limited subset"
+              label="Infra - only limited subset"
               checked={feature === Features.infra}
               value={Features.infra}
               onChange={handleChange}
@@ -67,11 +67,11 @@ const Feature = () => {
       </Row>
       <Row>
         <Col size={2} emptyMedium={2} emptyLarge={2}>
-          <h1>{feature === Features.pro ? "25000" : "2300"}</h1>
+          <h1>{feature === Features.pro ? "25,000" : "2,300"}</h1>
         </Col>
         <Col size={3}>
           <p>
-            Covers {feature === Features.pro ? "25000" : "2300"} packages in
+            Covers {feature === Features.pro ? "25,000" : "2,300"} packages in
             Ubuntu Main {feature === Features.pro ? "and Universe" : ""}
           </p>
         </Col>
@@ -84,18 +84,17 @@ const Feature = () => {
             })}
           />
           <p className="p-text--small graphic-legend-main">
-            LTS standard security maintenance for Ubuntu Main (initial 5 years)
+            10 years of security maintenance for packages in Ubuntu Main repository
           </p>
           {feature === Features.pro && (
             <p className="p-text--small graphic-legend-universe">
-              LTS Expanded Security Maintenance (ESM) for Ubuntu Main
-              (additional 5 years)
+              10 years of security maintenance for packages in Ubuntu Universe repository
             </p>
           )}
         </Col>
       </Row>
       <Row>
-        <Col size={11} emptySmall={2} emptyLarge={2}>
+        <Col size={11} emptyLarge={2}>
           <div className="p-logo-section--dense">
             <div className="p-logo-section__items u-sv3">
               <div className="p-logo-section__item u-sv1">
@@ -331,26 +330,6 @@ const Feature = () => {
           </div>
         </Col>
       </Row>
-
-      <Col
-        className="p-divider__block u-align--center u-hide u-show--small"
-        size={6}
-        small={2}
-      >
-        <h4>2,300+</h4>
-        <p>packages in Ubuntu main, including:</p>
-      </Col>
-      <Col
-        className={classNames({
-          "p-divider__block u-align--center u-hide u-show--small": true,
-          "u-disable": Features.infra === feature,
-        })}
-        size={6}
-        small={2}
-      >
-        <h4>23,000+</h4>
-        <p>packages in Ubuntu universe, including:</p>
-      </Col>
     </>
   );
 };
