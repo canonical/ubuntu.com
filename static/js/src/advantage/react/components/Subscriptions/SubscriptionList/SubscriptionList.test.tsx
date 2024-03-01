@@ -98,7 +98,7 @@ describe("SubscriptionList", () => {
     );
   });
 
-  it("displays a free subscription", () => {
+  it("displays a free subscription when no subscriptions exist", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -121,6 +121,46 @@ describe("SubscriptionList", () => {
     expect(
       wrapper.find("[data-test='free-subscription']").prop("isSelected")
     ).toBe(true);
+  });
+
+  it("hide free subscription if a valid paid subscription exists", () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        start_date: new Date("2023-12-31T02:56:54Z"),
+        end_date: new Date("2024-12-31T02:56:54Z"),
+      }),
+      userSubscriptionFactory.build({
+        start_date: new Date("2020-08-11T02:56:54Z"),
+        end_date: new Date("2021-08-11T02:56:54Z"),
+      }),
+      freeSubscription,
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    const token = wrapper.find("[data-test='free-subscription']");
+    expect(token.exists()).toBe(false);
+  });
+
+  it("display free subscription if there is no valid paid subscription", () => {
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        start_date: new Date("2020-08-11T02:56:54Z"),
+        end_date: new Date("2021-08-11T02:56:54Z"),
+      }),
+      freeSubscription,
+    ]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    const token = wrapper.find("[data-test='free-subscription']");
+    expect(token.exists()).toBe(true);
+    expect(token.prop("subscription")).toStrictEqual(freeSubscription);
   });
 
   it("shows the renewal settings if there subscriptions for which we should present the auto-renewal option", () => {

@@ -13,6 +13,7 @@ import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
+import { UserSubscription } from "advantage/api/types";
 
 type Props = {
   selectedId?: SelectedId;
@@ -86,6 +87,20 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     )
   );
 
+  const hasActiveSubscription = (subscriptions: UserSubscription[]) => {
+    const now = Date.now();
+    return subscriptions.some(({ start_date, end_date }) => {
+      if (start_date && end_date) {
+        const startDate = new Date(start_date).getTime();
+        const endDate = new Date(end_date).getTime();
+        return startDate <= now && endDate >= now;
+      }
+      return false;
+    });
+  };
+
+  const showFreeSubscription = !hasActiveSubscription(sortedUASubscriptions);
+
   return (
     <div className="p-subscriptions__list p-card" style={{ overflow: "unset" }}>
       {sortedUASubscriptions.length ? (
@@ -108,7 +123,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
         </ListGroup>
       ) : null}
 
-      {freeSubscription ? (
+      {freeSubscription && showFreeSubscription ? (
         <ListGroup
           title="Free personal token"
           marketplace={UserSubscriptionMarketplace.Free}
