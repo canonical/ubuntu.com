@@ -25,9 +25,9 @@
         <hr>
         <li class="p-list--divided">For hardware: a dual core 2 Ghz processor, 4 GB of RAM, and 20 GB of disk space</li>
         <hr>
-        <li class="p-list--divided">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
+        <li class="p-list--divided">For networking: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), HTTPS (port 443), and gRPC (6554)</li>
         <hr>
-        <li class="p-list--divided">DNS administration access for the hostname you will use to access Landscape is necessary, if you wish to use LetsEncrypt to obtain an SSL certificate.</li>
+        <li class="p-list--divided">DNS administration access for the domain you will use to access Landscape is necessary, if you wish to use LetsEncrypt to obtain an SSL certificate.</li>
       </ul>
     </div>
   </div>
@@ -177,12 +177,9 @@
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set your hostname using variables</p>
-                  <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server, and set the HOSTNAME and DOMAIN variables based on the FQDN.</p>
+                  <p>Set <strong>landscape.example.com</strong> with the FQDN pointing to your server.</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>HOST_NAME=landscape
-DOMAIN=yourdomain.com
-FQDN=$HOST_NAME.$DOMAIN
-sudo hostnamectl set-hostname "$FQDN"</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo hostnamectl set-hostname "$FQDN"</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -229,7 +226,7 @@ sudo hostnamectl set-hostname "$FQDN"</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Get and install your certificate</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache --non-interactive --no-redirect --agree-tos --email $EMAIL --domains $FQDN</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache --non-interactive --no-redirect --agree-tos --email $EMAIL --domains $(hostname --long)</code></pre>
                   </div>
                 </li>
               </ol>
@@ -267,10 +264,10 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Configure postfix</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo postconf -e myhostname="$FQDN"
-sudo postconf -e mydomain="$DOMAIN"
-sudo postconf -e myorigin="$DOMAIN"
-sudo postconf -e masquerade_domains="$DOMAIN"
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo postconf -e myhostname="$(hostname --long)"
+sudo postconf -e mydomain="$(hostname --domain)"
+sudo postconf -e myorigin="$(hostname --domain)"
+sudo postconf -e masquerade_domains="$(hostname --domain)"
 sudo postconf -e mydestination=localhost
 sudo postconf -e default_transport=smtp
 sudo postconf -e relay_transport=smtp
@@ -420,7 +417,7 @@ sudo postconf -e smtp_sasl_tls_security_options=noanonymous</code></pre>
                   <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
-LANDSCAPE_FQDN='landscape.yourdomain.com'
+LANDSCAPE_FQDN='landscape.example.com'
 LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   </div>
                 </li>
@@ -483,7 +480,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
-LANDSCAPE_FQDN='landscape.yourdomain.com'
+LANDSCAPE_FQDN='landscape.example.com'
 LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   </div>
                 </li>
@@ -515,7 +512,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   <p>Self-hosted Landscape users should set LANDSCAPE_ACCOUNT_NAME as <code>standalone</code>, Landscape SaaS customers should specify their <a href="https://landscape.canonical.com/settings">account name</a> and set LANDSCAPE_FQDN as <code>landscape.canonical.com</code>.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>LANDSCAPE_ACCOUNT_NAME='standalone'
-LANDSCAPE_FQDN='landscape.yourdomain.com'</code></pre>
+LANDSCAPE_FQDN='landscape.example.com'</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -577,8 +574,8 @@ LANDSCAPE_FQDN='landscape.yourdomain.com'</code></pre>
   client:
     account_name: standalone
     computer_title: "My Computer"
-    url: "https://landscape.yourdomain.com/message-system"
-    ping_url: "http://landscape.yourdomain.com/ping"
+    url: "https://landscape.example.com/message-system"
+    ping_url: "http://landscape.example.com/ping"
             </code></pre>
             </div>
           </div>
