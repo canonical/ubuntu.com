@@ -21,7 +21,11 @@ from webapp.shop.decorators import (
     get_trueability_api_instance,
     init_trueability_session,
 )
-from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
+from webapp.shop.utils import (
+  get_exam_contract_id,
+  get_user_first_last_name,
+  get_tab_keys,
+)
 from webapp.login import user_info
 
 from google.oauth2 import service_account
@@ -907,8 +911,8 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
     # Get the keys to display based on the selected tab
     display_keys = get_tab_keys(keys, tab)
 
-    per_page = 5
-    total_pages = (len(display_keys) // per_page) + 1
+    per_page = 10
+    total_pages = math.ceil(len(display_keys) / per_page)
     start_page = (page - 1) * per_page
     end_page = page * per_page
 
