@@ -1,9 +1,10 @@
 # Standard library
+import datetime
+import html
 import math
 import os
 import re
-import html
-import datetime
+import json
 
 # Packages
 import dateutil
@@ -1068,6 +1069,35 @@ def marketo_submit():
 def thank_you():
     return flask.render_template(
         "thank-you.html", referrer=flask.request.args.get("referrer")
+    )
+
+
+def get_user_country_by_tz():
+    """
+    Get user country by timezone using ISO 3166 country codes.
+    We store the country codes and timezones as static JSON files in the
+    static/files directory.
+
+    Eventually we plan to merge this function with the one below, once we
+    are confident that takeovers won't be broken.
+    """
+    APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    timezone = flask.request.args.get("tz")
+
+    timezones = json.load(
+        open(os.path.join(APP_ROOT, "static/files/timezones.json"))
+    )
+    countries = json.load(
+        open(os.path.join(APP_ROOT, "static/files/countries.json"))
+    )
+
+    _country = timezones[timezone]["c"][0]
+    country = countries[_country]
+    return flask.jsonify(
+        {
+            "country": country,
+            "country_code": _country,
+        }
     )
 
 
