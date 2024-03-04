@@ -32,40 +32,36 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
-        {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
-  
+      {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
 
-        <h3>Nous avons envoyé une copie de {{ resource_name }} à {{ form_details.email }}</h3>
-        <p>
-          <a class="p-button--positive" href="{{ request_url }}">Retour à la dernière page</a>
-          <a class="p-button" href="/contact-us">Contactez-nous</a>
-        </p>          
-        <p>
-          Pas reçu? Vérifiez votre dossier spam et vérifiez que vous avez utilisé la bonne adresse e-mail.
-        </p>
-        <p>
-          <a href="{{ request_url }}">Ou essayez de le renvoyer</a>
-        </p>
 
+      <h3>Nous avons envoyé une copie de {{ resource_name }} à {{ form_details.email }}</h3>
+      <p>
+        <a class="p-button--positive" href="{{ request_url }}">Retour à la dernière page</a>
+        <a class="p-button" href="/contact-us">Contactez-nous</a>
+      </p>          
+      <p>
+        Pas reçu? Vérifiez votre dossier spam et vérifiez que vous avez utilisé la bonne adresse e-mail.
+      </p>
+      <p>
+        <a href="{{ request_url }}">Ou essayez de le renvoyer</a>
+      </p>
+
+      {% else %}
+        {% if "thank_you_text" in metadata %}
+          <p>{{ metadata["thank_you_text"] }}</p>
         {% else %}
-          {% if "thank_you_text" in metadata %}
-            <p>{{ metadata["thank_you_text"] }}</p>
-          {% else %}
+        <p>
+          La {{ resource_name }} est prête à être téléchargée.
+        </p>
+        {% endif %}
+        {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+          {% if metadata.resource_url and metadata.resource_url != "" %}
           <p>
-            La {{ resource_name }} est prête à être téléchargée.
+            <a class="p-button--positive" href="{{ resource_url }}">Téléchargée</a>
           </p>
           {% endif %}
-          {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
-            <p>
-              <a class="p-button--positive" href="{{ resource_url }}">Téléchargée</a>
-            </p>
-          {% endif %}
         {% endif %}
-      {% else %}
-        <p>
-            Désolé, nous ne reconnaissons pas cette demande de téléchargement. Veuillez nous le <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">faire savoir en déposant et en émettant un problème sur GitHub</a>. Et dites-nous ce que vous attendiez de télécharger.
-        </p>
       {% endif %}
     </div>
   </div>
