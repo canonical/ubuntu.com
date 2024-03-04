@@ -607,8 +607,8 @@ def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
     # Get the keys to display based on the selected tab
     display_keys = get_tab_keys(keys, tab)
 
-    per_page = 5
-    total_pages = (len(display_keys) // per_page) + 1
+    per_page = 10
+    total_pages = math.ceil(len(display_keys) / per_page)
     start_page = (page - 1) * per_page
     end_page = page * per_page
 
