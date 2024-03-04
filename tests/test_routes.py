@@ -225,6 +225,34 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/18-04/ibm")
         self.assertEqual(response.status_code, 200)
 
+    def test_get_country_code(self):
+        """
+        Test that the country code is extracted from the timezone
+        """
+        # Case 1: American timezone
+        response = self.client.get("/user-country-tz.json?tz=America/Detroit")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json, {"country": "United States of America", "country_code": "US"}
+        )
+
+        # Case 2: European timezone
+        response = self.client.get("/user-country-tz.json?tz=Europe/Vilnius")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"country": "Lithuania", "country_code": "LT"})
+
+        # Case 3: African timezone
+        response = self.client.get("/user-country-tz.json?tz=Africa/Bissau")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json, {"country": "Guinea-Bissau", "country_code": "GW"}
+        )
+
+        # Case 4: Asian timezone
+        response = self.client.get("/user-country-tz.json?tz=Asia/Kolkata")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {"country": "India", "country_code": "IN"})
+
 
 if __name__ == "__main__":
     unittest.main()

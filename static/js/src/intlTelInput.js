@@ -15,7 +15,7 @@ function setupIntlTelInput(phoneInput) {
     initialCountry: "auto",
     geoIpLookup: async function fetchUserIp(success, failure) {
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const response = await fetch("/user-country.json?tz=" + timezone);
+      const response = await fetch("/user-country-tz.json?tz=" + timezone);
       if (!response.ok) {
         throw new Error(response.status);
       }
