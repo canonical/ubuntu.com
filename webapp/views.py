@@ -1074,8 +1074,8 @@ def thank_you():
 
 def get_user_country_by_tz():
     """
-    Get user country by timezone using ISO 3166 country codes. 
-    We store the country codes and timezones as static JSON files in the 
+    Get user country by timezone using ISO 3166 country codes.
+    We store the country codes and timezones as static JSON files in the
     static/files directory.
 
     Eventually we plan to merge this function with the one below, once we
