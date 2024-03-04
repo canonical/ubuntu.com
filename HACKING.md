@@ -121,11 +121,11 @@ For the most part this will happen automatically as long as the subpages (/ai/wh
 ### Working on Credentials
 
 If you want to work on [Credentials](https://ubuntu.com/credentials) you need to add some environment vars into your `.env.local`.
-If you have a TrueAbility account with API access enabled, you can find your API key in [Settings](https://app.trueability.com/settings).
+If you have a TrueAbility account with API access enabled, you can find your API key in [Settings](https://app3.trueability.com/settings).
 
 
 ```
-TRUEABILITY_URL="https://app.trueability.com"
+TRUEABILITY_URL="https://app3.trueability.com"
 TRUEABILITY_API_KEY=<trueability_api_key>
 BADGR_URL=https://api.test.badgr.com
 BAGDR_USER=<badgr_user>
