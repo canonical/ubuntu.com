@@ -1,0 +1,239 @@
+@mixin ubuntu-p-navigation-dropdown {
+  $dropdown-border: 1px solid $colors--dark-theme--border-low-contrast;
+
+  .dropdown-content-mobile {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      display: none !important;
+    }
+  }
+
+  .dropdown-content-desktop {
+    background-color: #2d2d2d;
+    border-top: $dropdown-border;
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      display: none !important;
+    }
+
+    .global-nav-dropdown .global-nav__row {
+      padding: 0 2rem;
+
+      .col-9 {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+
+  .dropdown-window-overlay {
+    @include vf-animation(opacity, brisk, out);
+
+    background-color: rgba(17, 17, 17, 0.4);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+  }
+
+  .dropdown-window {
+    @include vf-animation(all, brisk, out);
+
+    background-color: #262626;
+    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
+    flex-direction: column;
+    height: auto;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    position: fixed;
+    width: 100%;
+    z-index: 11;
+  }
+
+  .p-navigation--sliding.is-reduced ~ .dropdown-window {
+    position: absolute;
+  }
+
+  .dropdown-window__content {
+    color: $color-light;
+
+    [hidden="true"] {
+      display: none;
+    }
+
+    &__tab-panel {
+      padding-left: 1rem;
+    }
+
+    .p-side-navigation {
+      height: 100%;
+      padding: 2rem 0;
+      position: relative;
+
+      &::after {
+        background: #262626;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: -50vw;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      &__drawer {
+        height: 100%;
+        position: relative;
+      }
+
+      &__link {
+        border-bottom: $dropdown-border;
+        padding: 0.25rem 1rem 0.25rem 0.5rem;
+
+        &::before,
+        &:focus::before {
+          display: none;
+        }
+
+        &.is-active {
+          background: #2d2d2d;
+        }
+      }
+
+      &__item:last-child {
+        .p-side-navigation__link {
+          border: 0;
+        }
+      }
+    }
+  }
+
+  .dropdown-window__footer {
+    align-items: start;
+    border-top: $dropdown-border;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    [class*="p-button"] {
+      background: transparent;
+      margin: 0;
+    }
+  }
+
+  .dropdown-window__main-panel,
+  .dropdown-window__side-panel {
+    margin: 2rem 0 2.5rem -0.5rem;
+
+    .p-muted-heading {
+      color: rgba(255, 255, 255, 0.6);
+      padding-left: 0.5rem;
+      padding-top: 0.25rem;
+    }
+
+    .p-navigation__dropdown-item {
+      border-bottom: $dropdown-border;
+      line-height: 1.5rem;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      a {
+        display: block;
+        font-weight: 400;
+        padding: 0.25rem 0.5rem;
+        white-space: normal;
+
+        &.p-button--positive {
+          display: inline-block;
+          margin: 0.5rem 0.5rem 0.75rem;
+        }
+
+        &:visited {
+          color: #f7f7f7;
+        }
+
+        &:hover:not([class*="p-button--positive"]) {
+          background-color: rgba(170, 170, 170, 0.1);
+          text-decoration: none;
+        }
+
+        small.is-muted {
+          color: #aaa;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &::before {
+        left: 2rem;
+      }
+
+      .p-muted-heading {
+        padding-left: 0.5rem;
+      }
+    }
+  }
+
+  .dropdown-window__side-panel {
+    margin: 2rem 0;
+    padding: 0;
+
+    .p-list {
+      .p-list__item {
+        padding-left: 0.5rem;
+
+        a.dropdown-window__side-panel-link {
+          color: #69c;
+
+          &:visited {
+            color: #a679d2;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-window__sidenav-back {
+    color: $color-light;
+    display: block;
+    padding: 0.75rem 0.25rem 0.75rem 2.5rem;
+    position: relative;
+
+    @media (min-width: $breakpoint-small) {
+      padding-left: 3rem;
+    }
+
+    &:hover {
+      background-color: $colors--dark-theme--background-hover;
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: $color-light;
+    }
+
+    &::before {
+      @extend %icon;
+      @include vf-icon-chevron;
+
+      bottom: 0;
+      content: "";
+      left: 1.25rem;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      transform: rotate(90deg);
+    }
+  }
+
+  .slide-animation {
+    transform: translateY(-101%);
+  }
+
+  .fade-animation {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

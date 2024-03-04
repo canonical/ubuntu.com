@@ -7,17 +7,14 @@ import ProductType from "./ProductType";
 import Version from "./Version";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
-  IoTDevices,
   ProductUsers,
   isIoTDevice,
   isPublicCloud,
 } from "advantage/subscribe/react/utils/utils";
 import ProductUser from "./ProductUser/ProductUser";
 const Form = () => {
-  const { productType, iotDevice, productUser } = useContext(FormContext);
-  const disabled =
-    isPublicCloud(productType) ||
-    (isIoTDevice(productType) && iotDevice === IoTDevices.core);
+  const { productType, productUser } = useContext(FormContext);
+  const disabled = isPublicCloud(productType) || isIoTDevice(productType);
 
   return (
     <form className="product-selector">

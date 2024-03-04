@@ -1,0 +1,64 @@
+<div class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-3">
+      <h2>Get started today</h2>
+    </div>
+    <div class="col-9">
+      <hr class="p-rule u-hide--large" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-text--small-caps">Download</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of guaranteed free upgrades.</p>
+          <hr />
+          <a href="/download/server" class="p-button--positive">Get Ubuntu Server</a>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-text--small-caps">Ubuntu Pro for business</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Get professional support for Ubuntu Server from Canonical.</p>
+          <hr />
+          <p>
+            <a href="https://buy.ubuntu.com/" class="p-button">Buy Ubuntu Pro</a>
+            <a class="js-invoke-modal" href="/server/contact-us">Get in touch&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-text--small-caps">Further reading</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <ul class="p-list--divided" id="latest-articles">
+            <li><i class="p-icon--spinner u-animation--spin">Loading...</i></li>
+          </ul>
+        </div>
+
+        <template style="display:none" id="article-template">
+          <li class="p-list__item">
+            <a class="article-link article-title"></a>
+          </li>
+        </template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#article-template",
+      limit: 5,
+      tagId: 1833,
+    }
+  )
+</script>

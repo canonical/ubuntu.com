@@ -8,7 +8,8 @@ let entries = {
   "side-navigation": "./static/js/src/side-navigation.js",
   "image-download": "./static/js/src/image-download.js",
   main: "./static/js/src/main.js",
-  "release-chart": "./static/js/src/release-chart.js",
+  "release-chart-manager": "./static/js/src/release-chart-manager.js",
+  "developer-chart": "./static/js/src/developer-chart.js",
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   costCalculator: "./static/js/src/openstack/react/app.jsx",
@@ -26,12 +27,12 @@ let entries = {
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
   blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
-  tabbedContent: "./static/js/src/tabbed-content.js",
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
   "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx",
-  activate: "./static/js/src/activate.js"
+  activate: "./static/js/src/activate.js",
+  "chiselled-chart": "./static/js/src/charts/chiselled-chart.js"
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

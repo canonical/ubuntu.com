@@ -229,8 +229,10 @@ cloud/tools/bootstack/contact-us/?: "/openstack/contact-us?product=managed-cloud
 cloud/tools/cluster/?: "/openstack/training"
 cloud/tools/juju/?: "https://jaas.ai/"
 cloud/tools/jumpstart.*?: "/openstack/training"
-cloud/tools/lxd/?: "/lxd"
-cloud/lxd/?: "/lxd"
+cloud/tools/lxd/?: "https://canonical.com/lxd"
+cloud/lxd/?: "https://canonical.com/lxd"
+lxd/?: "https://canonical.com/lxd/"
+lxd/(?P<path>.*)/?: "https://canonical.com/lxd/{path}"
 cloud/tools/maas/?: "https://maas.io/"
 cloud/tools/openstack/?: "/openstack"
 cloud/tools/openstack/reference-architechure/?: "/blog/ubuntu-openstack-reference-implementation/"
@@ -264,7 +266,7 @@ contact/whitepaper-thankyou/?: "/blog/white-papers/"
 contact/whitepaper/?: "/blog/white-papers/"
 containers/docker-ubuntu/?: "/containers"
 containers/kubernetes/?: "/kubernetes"
-containers/lxd/?: "/lxd"
+containers/lxd/?: "https://canonical.com/lxd"
 core/smartstart(?P<path>.*)/?: "/core/services{path}"
 credentialing/?: "/credentials"
 credentialling/(?P<path>.*)/?: "/credentials/{path}"
@@ -295,8 +297,10 @@ desktop/get-ubuntu/upgrade/?: "/tutorials/tutorial-upgrading-ubuntu-desktop"
 desktop/get.*/?: "/download/desktop"
 desktop/government/?: "/desktop/organisations"
 desktop/management/?: "/pricing/pro"
+desktop/partners/?: "https://canonical.com/partners/desktop"
 desktop/services/?: "/pricing/pro"
 desktop/snappy/?: "/desktop/developers"
+desktop/statistics/?: "/desktop"
 desktop/take-the-tour-gallery/?: "http://tour.ubuntu.com/"
 desktop/take-the-tour/?: "http://tour.ubuntu.com/"
 desktop/tenders/?: "/desktop/contact-us"
@@ -428,7 +432,8 @@ download/intel-joule/?: "/download/iot/"
 download/intel-joule-desktop/?: "/download/iot/"
 download/samsung-artik-5-10/?: "/download/iot/"
 download/samsung-artik-5-10-server/?: "/download/iot/"
-download/iot/kvm/?: "/download/kvm"
+download/iot/kvm/?: "/core/docs/getting-started"
+download/kvm/?: "/core/docs/getting-started"
 download/iot/up-squared-iot-grove-server/?: "/download/up-squared-iot-grove-server"
 download/releasenotes.*/?: "https://wiki.ubuntu.com/Releases"
 download/server/download/?: "/download/server"
@@ -535,12 +540,13 @@ intellectual-property-policy/?: "/legal/intellectual-property-policy"
 internet-of-things/partners/?: "/internet-of-things#get-in-touch"
 internet-of-things/developers/?: "/desktop/developers"
 internet-of-things/digital-signage/?: "/internet-of-things/smart-displays"
+internet-of-things/edgex/?: "/internet-of-things"
 iot/?: "/internet-of-things"
 iot/gateways/?: "/internet-of-things/gateways"
 iot/digital-signage/?: "/internet-of-things/smart-displays"
 iot/smart-displays/?: "/internet-of-things/smart-displays"
 iot/appstore/?: "/internet-of-things/appstore"
-iot/edgex/?: "/internet-of-things/edgex"
+iot/edgex/?: "/internet-of-things"
 iot/networking/?: "/internet-of-thing/networking"
 iot/smart-city/?: "/internet-of-thing/smart-city"
 iot/management/?: "/internet-of-thing/management"
@@ -725,7 +731,7 @@ promo.*/?: "/download"
 public-cloud/?: "/cloud/public-cloud"
 qct/?: "https://pages.canonical.com/QCTCloudHardware.html"
 raspberrypi(?P<page>.*)/?:  "/raspberry-pi{page}"
-realtime-kernel/?: "/embedded#beta-signup"
+realtime-kernel/?: "/real-time"
 release-end-of-life/?: "/about/release-cycle"
 release-notes/oneiric-ocelot/?: "https://wiki.ubuntu.com/OneiricOcelot/ReleaseNotes"
 release-notes/precise-pangolin/?: "https://wiki.ubuntu.com/PrecisePangolin/ReleaseNotes"
@@ -833,6 +839,9 @@ ua/?: "/support"
 ua-assurance-terms/?: "/legal/ubuntu-advantage-assurance"
 ua-dell-tc/?: "/legal/ua-dell-tc"
 ua-servicedescription/?: "/legal/ubuntu-pro-description"
+legal/ubuntu-pro-description/?: "https://assets.ubuntu.com/v1/a4163c80-Ubuntu%20Pro%20description%20(unified).pdf"
+legal/ubuntu-pro-description/ja?: "https://assets.ubuntu.com/v1/a4163c80-Ubuntu%20Pro%20description%20(unified).pdf"
+legal/ubuntu-pro-description/jp?: "https://assets.ubuntu.com/v1/a4163c80-Ubuntu%20Pro%20description%20(unified).pdf"
 ubuntu-advantage/?: "/support"
 ubuntu-advantage-storage/?: "/ceph"
 ubuntu-core/?: "/core"
@@ -943,6 +952,7 @@ blog/kubernetes-1-19-available-from-canonical..*: /blog/kubernetes-1-19-availabl
 blog/kubernetes-1-21-available-from-canonical..*: /blog/kubernetes-1-21-available-from-canonical
 blog/what-is-elasticsearch-and-how-are-enterprises-using-it: /blog/what-is-elasticsearch
 blog/managed-postgresql: /blog/what-is-postgresql
+blog/howto-host-your-own-snap-store: /internet-of-things/appstore
 
 # Move snappy topic to snapcraft
 blog/topics/snappy/?: /blog/topics/snapcraft
@@ -963,6 +973,7 @@ tutorial/(?P<path>.*)/?: /tutorials/{path}
 tutorials/microstack-get-started? : /openstack/tutorials
 tutorials/install-openstack-with-conjure-up? : /openstack/tutorials
 tutorials/electron-kiosk/?: https://mir-server.io/docs/make-a-secure-ubuntu-web-kiosk
+tutorials/get-started-with-edgex-as-snaps?: /internet-of-things
 
 # Image builder
 build: /core/build
@@ -1019,3 +1030,8 @@ security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{
 
 # Fix search results https://github.com/canonical/ubuntu.com/issues/12510
 pricing/desktops: "/pricing/desktop"
+
+# Documentation pages (coming from discourse)
+server/docs/virtualization-introduction: /server/docs/introduction-to-virtualization
+
+wsl/?: "/desktop/wsl"

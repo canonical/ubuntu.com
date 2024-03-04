@@ -2,325 +2,91 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Software-defined storage</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Contact us about software-defined storage</h2>
     </header>
-    <div class="js-pagination js-pagination--1">
-      <div class="js-formfield">
-        <h3 class="p-heading--5">Which storage solutions are you currently using?</h3>
-        <div class="row u-no-padding">
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Ceph" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Ceph">Ceph</span>
-            </label>
 
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Swift" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Swift">Swift</span>
-            </label>
+    <p>Please fill out this form and a member of our Cloud sales team will be in touch with you</p>
 
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Nexenta" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Nexenta">Nexenta</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-SwiftStack" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-SwiftStack">SwiftStack</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Public-cloud" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Public-cloud">Public cloud (e.g. S3)</span>
-            </label>
-
-          </div>
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-IBM-RedHat" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-IBM-RedHat">IBM/RedHat</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Hitachi" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Hitachi">Hitachi</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-EMC" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-EMC">EMC</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Hedvig" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Hedvig">Hedvig</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-VMware " class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-VMware ">VMware </span>
-            </label>
-
-          </div>
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Scality-RING" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Scality-RING">Scality RING</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Caringo" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Caringo">Caringo</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Portworx" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Portworx">Portworx</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-StorageOS" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-StorageOS">StorageOS</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Rook-io" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Rook-io">Rook.io</span>
-            </label>
-
-          </div>
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Other-NAS" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Other-NAS">Other NAS</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Other-SAN" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Other-SAN">Other SAN</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="storage-solutions-Local-storage" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="storage-solutions-Local-storage">Local storage</span>
-            </label>
-
-            <div class="js-other-container">
+    <div class="js-pagination js-pagination--1 row u-no-padding">
+      <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+        <div class="row">
+          <ul class="p-list col-6">
+            <li class="p-list__item">
+              <label for="firstName" class="is-required">First name:</label>
+              <input id="firstName" name="firstName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="lastName" class="is-required">Last name:</label>
+              <input id="lastName" name="lastName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="email" class="is-required">Email:</label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
+                required />
+            </li>
+            <li class="p-list__item">
+              <label for="phone">Phone number:</label>
+              <input id="phone" name="phone" maxlength="255" type="tel" />
+            </li>
+            <li class="p-list__item">
+              {% include "shared/forms/_country.html" %}
+            </li>
+            <li class="p-list__item">
+              <label for="company" class="is-required">Company Name:</label>
+              <input required id="company" name="company" maxlength="255" type="text">
+            </li>
+            <li class="p-list__item">
+              <label for="title" class="is-required">Job title:</label>
+              <input required id="title" name="title" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="What would you like to talk to us about?" rows="3"></textarea>
+            </li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website"
+                tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            <li class="p-list__item">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="storage-solutions-other" class="js-other-container__checkbox" class="p-checkbox__input">
-                <span class="p-checkbox__label" id="storage-solutions-other" class="js-other-container__checkbox">Other</span>
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
+                  name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about
+                  Canonical's products and services.</span>
               </label>
-
-              <input type="text" id="storage-solutions-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
-            </div>
+            </li>
+            <li class="p-list__item">
+              By submitting this form, I confirm that I have read and agree to <a
+              href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+              href="/legal/data-privacy">Privacy Policy</a>.
+            </li>
+          </ul>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="1233" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c"
+            id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage"
+            maxlength="255" value="" />
+          <div>
+            <button type="submit" class="p-button--positive" aria-label="Submit">Submit
+              form</button>
           </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--5">Tell us a little about your compute infrastructure.</h3>
-        <div class="row u-no-padding">
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-OpenStack" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-OpenStack">OpenStack</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-Kubernetes" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-Kubernetes">Kubernetes</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-KVM " class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-KVM ">KVM </span>
-            </label>
-
-          </div>
-          <div class="col-3 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-LXD" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-LXD">LXD</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-Docker" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-Docker">Docker</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="compute-infrastructure-Public-cloud" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="compute-infrastructure-Public-cloud">Public cloud</span>
-            </label>
-
-            <div class="js-other-container">
-              <label class="p-checkbox">
-                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="compute-infrastructure-other">
-                <span class="p-checkbox__label" id="compute-infrastructure-other">Other</span>
-              </label>
-              <input type="text" id="compute-infrastructure-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--2 u-hide">
-      <div class="js-formfield">
-        <h3 class="p-heading--5">How are you consuming your storage?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="consuming-storage-Object-store" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="consuming-storage-Object-store">Object store (S3 or Swift)</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="consuming-storage-Virtual-volumes-SAN" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="consuming-storage-Virtual-volumes-SAN">Virtual volumes (SAN)</span>
-            </label>
-
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="consuming-storage-File-system-NAS" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="consuming-storage-File-system-NAS">File system (NAS)</span>
-            </label>
-
-            <div class="js-other-container">
-              <label class="p-checkbox">
-                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="consuming-storage-other">
-                <span class="p-checkbox__label" id="consuming-storage-other">Other</span>
-              </label>
-              <input type="text" id="consuming-storage-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--5">Are you currently paying for redundant data storage?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="storage-Yes" name="redundant-storage" value="Yes">
-              <span class="p-radio__label" id="storage-Yes">Yes</span>
-            </label>
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="storage-No" name="redundant-storage" value="No">
-              <span class="p-radio__label" id="storage-No">No</span>
-            </label>
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="storage-Dont-know" name="redundant-storage" value="I don't know">
-              <span class="p-radio__label" id="storage-Dont-know">I don't know</span>
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="row u-no-padding">
-        <div class="u-sv3 js-formfield">
-          <h3 class="p-heading--5">Tell us about your project and team</h3>
-          <textarea id="about-your-project-or-interest" name="sector-specific-requirements" aria-label="Tell us about your project and team" placeholder="Where are you located? Do you already have OpenStack? Is this initiative for a specific workload or for the business as a whole? Do you have particular regulatory constraints or priorities?" rows="3"></textarea>
-        </div>
-      </div>
-      <div class="pagination">
-        <a class="pagination__link--previous p-button" href="">Previous</a>
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--3 u-hide">
-      <h3 class="p-heading--5">How should we get in touch?</h3>
-      <div class="row u-no-padding">
-        <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
-            <ul class="p-list">
-              <li class="p-list__item">
-                <label for="firstName">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="lastName">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="email">Work email:</label>
-                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="phone">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label class="p-checkbox">
-                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
-                </label>
-              </li>
-              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              {# These are honey pot fields to catch bots #}
-              <li class="u-off-screen">
-                <label class="website" for="website">Website:</label>
-                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-              </li>
-              <li class="u-off-screen">
-                <label class="name" for="name">Name:</label>
-                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-              </li>
-              {# End of honey pots #}
-            </ul>
-
-            <div class="u-hide">
-              <h3>Your comments</h3>
-              <ul class="p-list">
-                <li class="p-list__item">
-                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-                </li>
-              </ul>
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
-            </div>
-
-            <div class="pagination">
-              <a class="pagination__link--previous p-button" href="">Previous</a>
-              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--4 u-hide">
-      <div class="row u-no-padding">
-        <div class="u-equal-height">
-          <div class="col-7">
-            <h3 class="p-heading--2">Thank you for enquiring about Storage solutions</h3>
-            <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
-          </div>
-          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
-              alt="smile",
-              width="200",
-              height="200",
-              hi_def=True,
-              loading="auto",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-      <a class="js-close p-button" href="">Close</a>
+      </form>
     </div>
   </div>
 </div>

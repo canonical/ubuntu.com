@@ -15,6 +15,10 @@ from webapp.context import (
     months_list,
     releases,
     schedule_banner,
+    sort_by_key_and_ordered_list,
+    get_meganav,
+    split_list,
+    format_to_id,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -45,6 +49,10 @@ def init_handlers(app, sentry):
 
         if flask.request.path.startswith(disable_cache_on):
             response.cache_control.no_store = True
+
+        # Prevent XSS
+        if flask.request.path.startswith("/certified"):
+            response.headers["X-Frame-Options"] = "DENY"
 
         return response
 
@@ -172,6 +180,9 @@ def init_handlers(app, sentry):
             ),
             "http_host": flask.request.host,
             "schedule_banner": schedule_banner,
+            "get_meganav": get_meganav,
+            "split_list": split_list,
+            "format_to_id": format_to_id,
         }
 
     @app.context_processor
@@ -179,3 +190,5 @@ def init_handlers(app, sentry):
         return {"image": image_template}
 
     app.add_template_filter(date_has_passed)
+
+    app.add_template_filter(sort_by_key_and_ordered_list)

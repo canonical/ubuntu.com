@@ -74,6 +74,7 @@ from webapp.shop.cred.views import (
     cred_schedule,
     cred_self_study,
     cred_shop,
+    cred_shop_thank_you,
     cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
@@ -140,6 +141,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    navigation_nojs,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -202,6 +204,7 @@ app.add_url_rule(
     view_func=pro_activate_activation_key,
     methods=["POST"],
 )
+app.add_url_rule("/navigation", view_func=navigation_nojs)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
@@ -450,6 +453,11 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
+
+app.add_url_rule(
+    "/security/notices/<notice_id>",
+    view_func=notice,
+)
 
 app.add_url_rule(
     r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
@@ -874,6 +882,9 @@ app.add_url_rule(
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule(
+    "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
+)
+app.add_url_rule(
     "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
 )
 app.add_url_rule(
@@ -1103,3 +1114,22 @@ def render_blogs():
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
+
+
+# Supermicro blog section
+def render_supermicro_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
+        tag_ids=[2247],
+        per_page=3,
+        blog_title="Supermicro blogs",
+    )
+    supermicro_articles = blogs.get_tag("supermicro")
+    return flask.render_template(
+        "/supermicro/index.html", blogs=supermicro_articles["articles"]
+    )
+
+
+app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)

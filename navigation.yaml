@@ -7,6 +7,8 @@ automotive:
       path: /automotive
     - title: Developers
       path: /automotive/developers
+    - title: Resources
+      path: /automotive/resources
 
 azure:
   title: Azure
@@ -78,7 +80,7 @@ managedapps:
       path: /observability/managed
 
 openstack:
-  title: OpenStack
+  title: Canonical OpenStack
   path: /openstack
 
   children:
@@ -120,7 +122,7 @@ financial-services:
       path: /financial-services/resources
 
 ceph:
-  title: Ceph
+  title: Canonical Ceph
   path: /ceph
 
   children:
@@ -156,7 +158,7 @@ cloud:
       path: /cloud/public-cloud
 
 server:
-  title: Server
+  title: Ubuntu Server
   path: /server
 
   children:
@@ -195,6 +197,8 @@ containers:
     - title: What are containers
       path: /containers/what-are-containers
     - title: Chiselled Ubuntu
+      path: /containers/chiselled
+    - title: Chiselled and .NET
       path: /containers/chiselled/dotnet
 
 ai:
@@ -216,7 +220,7 @@ ai:
       path: /ai/roadshow
 
 kubernetes:
-  title: Kubernetes
+  title: Canonical Kubernetes
   path: /kubernetes
 
   children:
@@ -250,8 +254,6 @@ blog:
       path: /blog/cloud-and-server
     - title: Web and Design
       path: /blog/topics/design
-    - title: Robotics
-      path: /blog/topics/robotics
     - title: People and culture
       path: /blog/people-and-culture
     - title: Archives
@@ -260,7 +262,7 @@ blog:
       path: /blog/upcoming
 
 desktop:
-  title: Desktop
+  title: Ubuntu Desktop
   path: /desktop
 
   children:
@@ -272,13 +274,13 @@ desktop:
       path: /desktop/organisations
     - title: Developers
       path: /desktop/developers
-    - title: Partners
-      path: /desktop/partners
     - title: Flavours
       path: /desktop/flavours
+    - title: WSL
+      path: /desktop/wsl
 
 core:
-  title: Core
+  title: Ubuntu Core
   path: /core
 
   children:
@@ -306,8 +308,6 @@ iot:
       path: /internet-of-things/appstore
     - title: Embedded Linux
       path: /embedded
-    - title: EdgeX
-      path: /internet-of-things/edgex
     - title: Management
       path: /internet-of-things/management
 
@@ -328,7 +328,7 @@ support:
       path: https://discourse.ubuntu.com/c/ubuntu-pro
 
 pro:
-  title: Pro
+  title: Ubuntu Pro
   path: /pro
 
   children:
@@ -398,22 +398,6 @@ legal:
       path: /legal/ubuntu-pro
     - title: Contributors
       path: /legal/contributors
-
-lxd:
-  title: LXD
-  path: /lxd
-
-  children:
-    - title: Overview
-      path: /lxd
-    - title: Install
-      path: /lxd/install
-    - title: Manage
-      path: /lxd/manage
-    - title: Docs
-      path: https://documentation.ubuntu.com/lxd/
-    - title: Forum
-      path: https://discourse.ubuntu.com/c/lxd/126
 
 observability:
   title: Observability
@@ -488,8 +472,6 @@ pricing:
   children:
     - title: Overview
       path: /pricing
-    - title: Support
-      path: /pricing/infra
     - title: Consulting
       path: /pricing/consulting
     - title: Desktops
@@ -614,11 +596,9 @@ telco:
       path: /telco/openran
     - title: Magma
       path: /telco/magma
-    - title: OSM
-      path: /telco/osm
 
 certification:
-  title: Hardware
+  title: Ubuntu Certified
   path: /certified
 
   children:
@@ -665,10 +645,3 @@ landscape:
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
 
-wsl:
-  title: WSL
-  path: /wsl
-
-  children:
-    - title: Overview
-      path: /wsl

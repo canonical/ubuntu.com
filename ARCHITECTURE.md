@@ -64,7 +64,7 @@ The blog pages under https://ubuntu.com/blog make use of [the blog module](https
 
 There are a large number of documentation areas on ubuntu.com (complete at the time of writing, I think):
 
-- [ubuntu.com/servers/docs](http://ubuntu.com/servers/docs) ([code](webapp/app.py#L642-L651))
+- [ubuntu.com/server/docs](http://ubuntu.com/server/docs) ([code](webapp/app.py#L642-L651))
 - [ubuntu.com/core/services/guide](https://ubuntu.com/core/services/guide) ([code](webapp/app.py#L606-L616))
 - [ubuntu.com/core/docs](http://ubuntu.com/core/docs) ([code](webapp/app.py#L748-L756))
   - Also [core sub docs sets](webapp/app.py#L757-L858): bluez, networkmanager, wpa-supplicant, easy-openvpn, wifi-ap, asla-utils
@@ -88,7 +88,7 @@ We have had trouble with search spam in the past which has led to us hitting API
 
 The download pages, e.g. https://ubuntu.com/download/desktop, include links for people to download Ubuntu. These pages get extremely busy on our six-monthly release days.
 
-When people click the "Download" button they are sent to the thank-you page, e.g. `https://ubuntu.com/download/desktop/thank-you?version=22.04.3&architecture=amd64` ([url rule](webapp/app.py#L396-L403), [view function](webapp/views.py#L170-L184)). Similar to the homepage, it's important that this page is served as straightforwardly as possible with no back-end API/database calls so the page can remain responsive.
+When people click the "Download" button they are sent to the thank-you page, e.g. `https://ubuntu.com/download/desktop/thank-you?version=22.04.4&architecture=amd64` ([url rule](webapp/app.py#L396-L403), [view function](webapp/views.py#L170-L184)). Similar to the homepage, it's important that this page is served as straightforwardly as possible with no back-end API/database calls so the page can remain responsive.
 
 After the page has loaded, JavaScript will download the list of download mirrors from https://ubuntu.com/mirrors.json and choose one to trigger the download with. If JavaScript isn't available, the download will instead be triggered from our own download server, releases.ubuntu.com.
 

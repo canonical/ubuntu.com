@@ -112,12 +112,14 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
+          tabElement.classList.add("is-active");
           content.classList.remove("u-hide");
           if (triggerReload) {
             window.dispatchEvent(new Event("resize"));
           }
         } else {
           tabElement.setAttribute("aria-selected", false);
+          tabElement.classList.remove("is-active");
           content.classList.add("u-hide");
         }
       });
@@ -184,11 +186,24 @@
 
     return false;
   };
-  const targetScript = "release-chart.js";
+  const targetScript = "release-chart-manager.js";
   const triggerReload = isScriptIncluded(targetScript);
 
   document.addEventListener("DOMContentLoaded", () => {
     initTabs(".js-tabbed-content");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("js-tab")) {
+      const tabContainer = e.target.closest(".js-tabs");
+      const tabs = [].slice.call(
+        tabContainer.querySelectorAll("[aria-controls]")
+      );
+
+      if (tabs) {
+        setActiveTab(e.target, tabs);
+      }
+    }
   });
 })();
 
@@ -198,7 +213,7 @@
   const boards = document.querySelectorAll(`[role=tabpanel]`);
   const dropdownSelect = document.getElementById("boardSelect");
 
-  dropdownSelect.addEventListener("change", (event) => {
+  dropdownSelect?.addEventListener("change", (event) => {
     selectBoard();
   });
 

@@ -36,11 +36,6 @@
           <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
         </label>
       </li>
-      <li>
-        <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
-          <input name="RichText" aria-label="RichText" type="hidden">
-        </p>
-      </li>
       {# These are honey pot fields to catch bots #}
       <li class="u-off-screen">
         <label class="website" for="website">Website:</label>
@@ -53,6 +48,19 @@
       {# End of honey pots #}
       <li>
         <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden">
+      </li>
+      {% if "partner_permission" in metadata %}
+        <li>
+          <label class="p-checkbox">
+            <input class="p-checkbox__input" name="Partner_Marketing_Opt_in__c" aria-label="Partner Permission" value="true" type="checkbox">
+            <span class="p-checkbox__label" id="Partner_Marketing_Opt_in__c">From time to time, Canonical or the identified co-host(s) may wish to contact you by email to provide you with information about events and other news or product updates that may be of interest to you. If you are happy to be contacted by Canonical or the identified co-host(s) for these purposes please select the check box. Further information on Canonical's processing of your personal data can be found in <a href="/legal/data-privacy/newsletter">Canonical's privacy notice</a>. If you choose to give your consent, you may withdraw it at any time by clicking "unsubscribe" at the bottom of any Canonical email. See Canonical's <a href="/legal/data-privacy">data privacy policy</a>.</span>
+          </label>
+        </li>
+      {% endif %}
+      <li>
+        <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+          <input name="RichText" aria-label="RichText" type="hidden">
+        </p>
       </li>
       <li>
         <button type="submit" class="u-no-margin--bottom {% if cta_class %}{{ cta_class }}{% endif %}" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>

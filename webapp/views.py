@@ -518,7 +518,7 @@ def engage_thank_you(engage_pages):
             "resource_url" not in metadata or metadata["resource_url"] == ""
         ) and (
             "contact_form_only" not in metadata
-            or metadata["contact_form_only"] == "true"
+            or metadata["contact_form_only"] != "true"
         ):
             return flask.abort(404)
 
@@ -736,10 +736,15 @@ class BlogRedirects(BlogView):
         if "article" not in context:
             return flask.abort(404)
 
-        # Redirect canonical annoucements
+        # Redirect canonical announcements
         group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
-            return flask.redirect(f"https://canonical.com/blog/{slug}")
+            redirect_url = f"https://canonical.com/blog/{slug}"
+            # Append the original query string to the redirect URL
+            original_query_string = flask.request.query_string.decode("utf-8")
+            if original_query_string:
+                redirect_url += f"?{original_query_string}"
+            return flask.redirect(redirect_url)
 
         # Set blog notice date
         blog_notice = {}
@@ -1067,9 +1072,13 @@ def thank_you():
 
 
 def get_user_country_by_ip():
-    client_ip = flask.request.headers.get(
-        "X-Real-IP", flask.request.remote_addr
-    )
+    x_forwarded_for = flask.request.headers.get("X-Forwarded-For")
+
+    if x_forwarded_for:
+        client_ip = x_forwarded_for.split(",")[0]
+    else:
+        client_ip = flask.request.remote_addr
+
     ip_location = ip_reader.get(client_ip)
 
     try:
@@ -1161,3 +1170,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
         return response
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
+
+
+def navigation_nojs():
+    return flask.render_template("templates/meganav/navigation-nojs.html")
