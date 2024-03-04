@@ -240,7 +240,7 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
         return None
 
     return TrueAbilityAPI(
-        os.getenv("TRUEABILITY_URL", "https://app.trueability.com"),
+        os.getenv("TRUEABILITY_URL", "https://app3.trueability.com"),
         os.getenv("TRUEABILITY_API_KEY", ""),
         trueability_session,
     )
