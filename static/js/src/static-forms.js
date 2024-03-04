@@ -129,7 +129,9 @@ function setUpStaticForms(form, formId) {
         });
       });
 
-      commentsFromLead.value = message;
+      if (formFields.length) {
+        commentsFromLead.value = message;
+      }
       return message;
     });
   }
