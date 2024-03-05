@@ -11,145 +11,197 @@ meta_copydoc %}
 
 {% block meta_image %}https://assets.ubuntu.com/v1/4d42e36c-Jammy+Jellyfish+RGB.svg{% endblock %}
 
+{% block body_class %}is-paper{% endblock %}
+
 {% block content %}
-<section class="p-strip--suru-shape-light is-deep">
-  <div class="row u-vertically-center u-pull-up--large">
-    <div class="col-6">
-      <h1 class="p-heading--2 u-no-margin--bottom"><strong>Ubuntu downloads</strong></h1>
-      <h2 class="u-no-padding--top u-text--muted">Ubuntu Desktop</h2>
-      <p>
-        Fast, free and full of new features. The latest release of Ubuntu Desktop delivers new tools and enhancements
-        for developers,
-        creators, gamers and administrators.
-      </p>
-      <p>
-        Download Ubuntu Desktop and replace your current operating system or run Ubuntu alongside it.
-      </p>
-      <p><a href="/download/desktop" class="p-button--positive">Download Ubuntu Desktop</a></p>
-      <p>
-        <strong>Do you want to upgrade?</strong> <a href="/tutorials/tutorial-upgrading-ubuntu-desktop">Follow our
-          simple guide</a>
-      </p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/e55bf8b8-mascots-minotaur+jj.png",
-      alt="",
-      width="540",
-      height="230",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-      }}
-    </div>
-  </div>
-</section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-1 u-hide--small u-vertically-center u-align--center">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
+    <div class="col">
+      <h1 class="p-heading--2"><strong>Download Ubuntu</strong></h1>
+    </div>
+    <div class="col">
+      <p class="u-sv3">
+        Ubuntu is the world's favourite Linux operating system. Run it on your laptop, workstation, server or IoT device, with five years of free security updates.
+      </p>
       {{
-      image(
-      url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
-      alt="Ubuntu",
-      width="40",
-      height="40",
-      hi_def=True,
-      loading="auto",
-      ) | safe
+        image(
+          url="https://assets.ubuntu.com/v1/c21652ab-laptop-forubuntu-desktop.jpg",
+          alt="",
+          width="1201",
+          height="636",
+          hi_def=True,
+          loading="auto",
+        ) | safe
       }}
     </div>
-    <div class="col-5 u-vertically-center">
-      <span>
-        Using Ubuntu in virtual machines? For a mini-cloud of instant Ubuntu VMs on Linux, Windows or macOS.<br />
-        <a href="https://multipass.run/">Try Multipass</a>
-      </span>
-    </div>
-    <div class="col-1 u-hide--small u-vertically-center u-align--center">
-      {{
-      image(
-      url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
-      alt="Windows",
-      width="40",
-      height="40",
-      hi_def=True,
-      loading="auto",
-      ) | safe
-      }}
-    </div>
-    <div class="col-5 u-vertically-center">
-      <span>
-        Use the Ubuntu terminal and run Linux applications on&nbsp;Windows.<br />
-        <a href="/wsl">Enable Ubuntu on Windows Subsystem for Linux (WSL)&nbsp;&rsaquo;</a>
-      </span>
-    </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-section">
   <div class="row">
-    <div class="col-6 u-sv3">
-      <h3>
-        <a href="/download/server">
-          Ubuntu Server&nbsp;&rsaquo;
-        </a>
-      </h3>
-      <p>
-        Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu
-        Server and its five years of free updates.
-      </p>
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6">
+      <h2 class="p-heading--5">Choose the OS you need</h2>
     </div>
-    <div class="col-6 u-sv3">
-      <h3>
-        <a href="/download/cloud">
-          Ubuntu Cloud&nbsp;&rsaquo;
-        </a>
-      </h3>
-      <p>
-        Ubuntu is the reference OS for OpenStack. Try <a href="/openstack/install">Canonical OpenStack</a> on a single
-        machine or start building a production cloud on a cluster &mdash; just add servers.
-      </p>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <div class="p-section--shallow">
+        <hr class="p-rule u-hide--small u-hide--large" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/desktop">
+              <h2>Desktop&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Fast, free and full of new features. The latest release of Ubuntu Desktop delivers new tools and enhancements for developers, creators, gamers and administrators. Replace your current operating system or run Ubuntu alongside it.</p>
+            <hr />
+            <div class="p-section--shallow">
+              <a href="/download/desktop" class="p-button--positive">Download Ubuntu Desktop</a>
+              <span style="white-space: nowrap;">
+                Do you want to upgrade?
+                <a href="/tutorials/tutorial-upgrading-ubuntu-desktop">Follow our guide&nbsp;&rsaquo;</a>
+              </span>
+            </div>
+            <hr />
+            <div class="p-heading-icon--small p-section--shallow">
+              <div class="p-heading-icon__header">
+                <img 
+                  alt="Windows logo"
+                  class="p-heading-icon__img"
+                  src="https://assets.ubuntu.com/v1/183c7231-windows_logo.svg"
+                  style="width: 2.2rem; height: 2.2rem;"
+                />
+                <span class="p-heading-icon__title">
+                  Use the Ubuntu terminal and run Linux applications on Windows.<br />
+                  <a href="/wsl">Enable Windows Subsystem for Linux (WSL)</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/server">
+              <h2>Server&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Whether you want to configure a simple file server or build a fifty thousand-node cloud, you can rely on Ubuntu Server and its five years of free updates.</p>
+            <hr />
+            <a href="/download/server" class="p-button--positive">Get Ubuntu Server</a>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/desktop/flavours">
+              <h2>Flavours&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and settings, backed by the full Ubuntu archive for packages and updates.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/cloud">
+              <h2>Cloud&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu is the leading cloud guest OS and the only free cloud operating system with the option of enterprise-grade commercial support.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/iot">
+              <h2>IoT&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and devices.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<section class="p-section">
   <div class="row">
-    <div class="col-6 u-sv3">
-      <h3>
-        <a href="/desktop/flavours">
-          Ubuntu flavours&nbsp;&rsaquo;
-        </a>
-      </h3>
-      <p>
-        Ubuntu flavours offer a unique way to experience Ubuntu with different choices of default applications and
-        settings, backed by the full Ubuntu archive for packages and updates.
-      </p>
+    <hr class="p-rule" />
+    <div class="col-3 col-medium-6">
+      <h2 class="p-heading--5">Alternative downloads</h2>
     </div>
-    <div class="col-6 u-sv3">
-      <h3>
-        <a href="/download/core">
-          Ubuntu for IoT&nbsp;&rsaquo;
-        </a>
-      </h3>
-      <p>
-        Are you a developer who wants to try snappy Ubuntu Core? The new, transactionally updated Ubuntu for clouds and
-        devices.
-      </p>
+    <div class="col-9 col-medium-5 col-start-medium-2">
+      <div class="p-section--shallow">
+        <hr class="p-rule u-hide--small u-hide--large" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/alternative-downloads#bittorrent">
+              <h2 class="p-heading--5">BitTorrent downloads&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>BitTorrent is a peer-to-peer download network that sometimes enables higher download speeds and more reliable downloads of large files.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="https://launchpad.net/ubuntu/+cdmirrors">
+              <h2 class="p-heading--5">Mirrors&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>For the full list of available Ubuntu images, we recommend you select a mirror local to you.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="https://releases.ubuntu.com/">
+              <h2 class="p-heading--5">Past releases and other flavours&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <a href="/download/alternative-downloads#network-installer">
+              <h2 class="p-heading--5">Network installer&nbsp;&rsaquo;</h2>
+            </a>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Alternative downloads</h2>
-    <p>There are several other ways to get Ubuntu including torrents, which can potentially mean a quicker download, our
-      network installer for older systems and special configurations and links to our regional mirrors for our older
-      (and newer) releases.</p>
-    <p>
-      <a href="/download/alternative-downloads" class="p-button">Alternative downloads</a>
-    </p>
-  </div>
-</section>
-
-{% with first_item="_download_enterprise_support", second_item="_download_documentation",
-third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_footer.html" %}
 
 {% endblock content %}
