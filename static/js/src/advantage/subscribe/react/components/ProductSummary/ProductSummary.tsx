@@ -37,7 +37,7 @@ const ProductSummary = () => {
   return (
     <>
       <section
-        className={`p-strip--light is-shallow p-shop-cart u-hide--small ${
+        className={`p-strip--light is-shallow p-shop-cart u-hide--small u-hide--medium ${
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
@@ -134,7 +134,7 @@ const ProductSummary = () => {
         </Row>
       </section>
       <section
-        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--small ${
+        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--medium ${
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
