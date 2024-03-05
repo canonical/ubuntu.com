@@ -31,33 +31,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const [formChanged, setFormChanged] = useState({});
 
   useEffect(() => {
-    const handleInputChange = () => {
-      error ? setError(null) : null;
-    };
-
-    const inputElements = document.querySelectorAll("input");
-    const selectElements = document.querySelectorAll("select");
-
-    inputElements.forEach((input) => {
-      input.addEventListener("change", handleInputChange);
-    });
-
-    selectElements.forEach((select) => {
-      select.addEventListener("change", handleInputChange);
-    });
-
-    return () => {
-      inputElements.forEach((input) => {
-        input.removeEventListener("change", handleInputChange);
-      });
-
-      selectElements.forEach((select) => {
-        select.removeEventListener("change", handleInputChange);
-      });
-    };
-  }, [error]);
+    error ? setError(null) : null;
+  }, [formChanged]);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
@@ -92,6 +70,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
             </>
           ) : (
             <Formik
+              innerRef={(formikActions) =>
+                formikActions && formikActions.errors
+                  ? setFormChanged(formikActions.values)
+                  : setFormChanged({})
+              }
               onSubmit={() => {}}
               initialValues={initialValues}
               enableReinitialize={
