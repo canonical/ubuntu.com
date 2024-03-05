@@ -24,7 +24,7 @@ class TrueAbilityAPI:
         allow_redirects: bool = True,
     ):
         uri = f"{self.base_url}{path}"
-        headers["X-API_KEY"] = f"{self.api_key}"
+        headers["X-API-KEY"] = f"{self.api_key}"
 
         response = self.session.request(
             method,
@@ -232,7 +232,7 @@ class TrueAbilityAPI:
             f"?ability_screen_id={ability_screen_id}"
             f"&page={page}"
         )
-        headers = {"X-API_KEY": self.api_key}
+        headers = {"X-API-KEY": self.api_key}
         response = self.session.request(
             method="GET", url=uri, headers=headers
         ).json()
