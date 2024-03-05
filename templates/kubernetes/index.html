@@ -21,7 +21,7 @@
       <div class="p-strip is-shallow" style="display: flex; align-items: flex-start; gap: 2rem;">
         {{ image (
           url="https://assets.ubuntu.com/v1/62b09bad-certified-kubernetes-color.svg",
-          alt="",
+          alt="Certified Kubernetes",
           width="96",
           height="128",
           hi_def=True,
@@ -30,7 +30,7 @@
         }}
         {{ image (
           url="https://assets.ubuntu.com/v1/48ee616b-kubernetes-kcsp-color.svg",
-          alt="",
+          alt="Certified Kubernetes Service Provider",
           width="131",
           height="128",
           hi_def=True,
@@ -50,7 +50,7 @@
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-text--small-caps p-section--shallow">Public cloud Kubernetes<br /> powered by Ubuntu</h2>
-      <h3 class="p-heading--2">Cloud-tailored experience, optimised kernels, unlimited options</h3>
+      <p class="p-heading--2">Cloud-tailored experience, optimised kernels, unlimited options</p>
     </div>
     <div class="col">
       <div class="row">
@@ -59,7 +59,7 @@
             <li class="p-list__item">
               {{ image (
                 url="https://assets.ubuntu.com/v1/d6bb76c7-aws%20logo.png",
-                alt="",
+                alt="AWS",
                 width="41",
                 height="24",
                 hi_def=True,
@@ -71,7 +71,7 @@
               {{ 
                 image (
                 url="https://assets.ubuntu.com/v1/5f2a687f-ms%20azure%20logo.png",
-                alt="",
+                alt="Microsoft Azure",
                 width="85",
                 height="24",
                 hi_def=True,
@@ -83,7 +83,7 @@
               {{ 
                 image (
                 url="https://assets.ubuntu.com/v1/de136903-googlecloud%20logo.png",
-                alt="",
+                alt="Google Cloud",
                 width="154",
                 height="24",
                 hi_def=True,
@@ -95,7 +95,7 @@
               {{ 
                 image (
                 url="https://assets.ubuntu.com/v1/43adb0a3-ibm%20cloud%20logo.png",
-                alt="",
+                alt="IBM Cloud",
                 width="104",
                 height="24",
                 hi_def=True,
@@ -107,7 +107,7 @@
               {{ 
                 image (
                 url="https://assets.ubuntu.com/v1/94f00081-oracle%20logo.png",
-                alt="",
+                alt="Oracle",
                 width="99",
                 height="13",
                 hi_def=True,
@@ -136,16 +136,18 @@
     <div class="col">
       <div class="row">
         <div class="col-3 p-image-wrapper">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/0e7e4a7a-k8s%20logo.png",
-            alt="",
-            width="230",
-            height="34",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+          <h3 class="u-no-padding--top">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/0e7e4a7a-k8s%20logo.png",
+              alt="Canonical Kubernetes",
+              width="230",
+              height="34",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </h3>
         </div>
         <div class="col-6">
           <p>Canonical Kubernetes, currently in beta, provides 12 years of security maintenance and enterprise support on any infrastructure.</p>
@@ -167,16 +169,18 @@
       <hr class="p-rule" />
       <div class="row">
         <div class="col-3 p-image-wrapper">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/2db04010-microk8s%20logo.png",
-            alt="",
-            width="230",
-            height="35",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+          <h3 class="u-no-padding--top"><a href="https://microk8s.io/">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/2db04010-microk8s%20logo.png",
+              alt="MicroK8s",
+              width="230",
+              height="35",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </a></h3>
         </div>
         <div class="col-6">
           <p>Low-touch Kubernetes for cloud, edge and IoT</p>
@@ -199,16 +203,18 @@
       <hr class="p-rule" />
       <div class="row">
         <div class="col-3 p-image-wrapper">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/c5161bf1-charmedk8s%20logo.png",
-            alt="",
-            width="230",
-            height="34",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+          <h3 class="u-no-padding--top"><a href="/kubernetes/charmed-k8s">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/c5161bf1-charmedk8s%20logo.png",
+              alt="Charmed Kubernetes",
+              width="230",
+              height="34",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </a></h3>
         </div>
         <div class="col-6">
           <p>Composable, operator-based Kubernetes for the enterprise</p>
@@ -245,8 +251,8 @@
             image (
             url="https://assets.ubuntu.com/v1/3948d6dd-openstack-logo.png",
             alt="OpenStack",
-            width="127",
-            height="96",
+            width="182",
+            height="138",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -258,8 +264,8 @@
             image (
             url="https://assets.ubuntu.com/v1/4452b734-vmware-logo.png",
             alt="VMWare",
-            width="100",
-            height="96",
+            width="140",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -271,8 +277,8 @@
             image (
             url="https://assets.ubuntu.com/v1/d987ba27-Rackspace%20logo.png",
             alt="Rackspace",
-            width="111",
-            height="96",
+            width="155",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -284,8 +290,8 @@
             image (
             url="https://assets.ubuntu.com/v1/05285685-equinix-logo.png",
             alt="Equinix",
-            width="81",
-            height="96",
+            width="113",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -297,8 +303,8 @@
             image (
             url="https://assets.ubuntu.com/v1/dae49585-joyent-logo.png",
             alt="Joyent",
-            width="75",
-            height="96",
+            width="105",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -310,8 +316,8 @@
             image (
             url="https://assets.ubuntu.com/v1/b526fd14-cloud-sigma-logo.png",
             alt="CloudSigma",
-            width="101",
-            height="96",
+            width="141",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -323,8 +329,8 @@
             image (
             url="https://assets.ubuntu.com/v1/4ec1a195-maas-logo.png",
             alt="Canonical MAAS",
-            width="62",
-            height="96",
+            width="87",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -336,8 +342,8 @@
             image (
             url="https://assets.ubuntu.com/v1/cd584004-lxd-logo.png",
             alt="Canonical LXD",
-            width="47",
-            height="96",
+            width="66",
+            height="135",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"}
@@ -354,7 +360,7 @@
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-text--small-caps p-section--shallow">Fully-managed Kubernetes</h2>
-      <h3 class="p-heading--2">Cost-effective<br />Kubernetes-as-a-service<br /> on public and private clouds</h3>
+      <p class="p-heading--2">Cost-effective<br />Kubernetes-as-a-service<br /> on public and private clouds</p>
     </div>
     <div class="col">
       <div class="p-section--shallow">
@@ -424,7 +430,7 @@
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-text--small-caps p-section--shallow">Integrated cluster management platforms</h2>
-      <h3 class="p-heading--2">Remove the toil of Kubernetes cluster management </h3>
+      <p class="p-heading--2">Remove the toil of Kubernetes cluster management </p>
       <div class="p-logo-section--dense p-strip is-shallow">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -457,7 +463,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/d0e0b382-spectro-cloud-logo.png",
-              alt="",
+              alt="Spectro Cloud",
               width="72",
               height="96",
               hi_def=True,
@@ -502,7 +508,7 @@
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-text--small-caps p-section--shallow">Full stack K8s services</h2>
-      <h3 class="p-heading--2">Transform your business and safeguard your infrastructure</h3>
+      <p class="p-heading--2">Transform your business and safeguard your infrastructure</p>
     </div>
     <div class="col">
       <p class="p-heading--5">Long-term Enterprise Support</p>
@@ -521,15 +527,15 @@
 <section class="p-section">
   <div class="u-fixed-width p-section--shallow">
     <hr class="p-rule is-fixed-width" />
-    <h2 class="p-text--small-caps p-section--shallow">Bootstrap your Kubernetes journey</h2>
-    <h3 class="p-heading--2">Canonical Kubernetes consulting and cluster&nbsp;deployment&nbsp;services</h3>
+    <p class="p-text--small-caps p-section--shallow">Bootstrap your Kubernetes journey</p>
+    <h2>Canonical Kubernetes consulting and cluster&nbsp;deployment&nbsp;services</h2>
   </div>
   <div class="row">
     <div class="col-start-large-4 col-9 col-start-medium-2 col-medium-5">
       <hr class="p-rule" />
       <div class="row p-section--shallow">
         <div class="col-3 col-medium-2">
-          <h4 class="p-heading--5 u-no-margin--bottom">Kubernetes Explorer</h4>
+          <h3 class="p-heading--5 u-no-margin--bottom">Kubernetes Explorer</h3>
           <p class="u-text--muted">Training & onboarding package</p>
         </div>
         <div class="col-6 col-medium-3">
@@ -548,7 +554,7 @@
       <hr class="p-rule" />
       <div class="row p-section--shallow">
         <div class="col-3 col-medium-2">
-          <h4 class="p-heading--5 u-no-margin--bottom">Kubernetes Discoverer</h4>
+          <h3 class="p-heading--5 u-no-margin--bottom">Kubernetes Discoverer</h3>
           <p class="u-text--muted">Reference architecture design & deployment</p>
         </div>
         <div class="col-6 col-medium-3">
@@ -567,7 +573,7 @@
       <hr class="p-rule" />
       <div class="row p-section--shallow">
         <div class="col-3 col-medium-2">
-          <h4 class="p-heading--5 u-no-margin--bottom">Kubernetes Discoverer Plus</h4>
+          <h3 class="p-heading--5 u-no-margin--bottom">Kubernetes Discoverer Plus</h3>
           <p class="u-text--muted">Custom architecture design & deployment</p>
         </div>
         <div class="col-6 col-medium-3">
