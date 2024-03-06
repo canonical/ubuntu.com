@@ -361,7 +361,7 @@ class UAContractsAPI:
         starts_at,
         country_code,
     ) -> dict:
-        return self._request(
+        req = self._request(
             method="get",
             path="v1/cue/schedule",
             json={
@@ -374,7 +374,8 @@ class UAContractsAPI:
             },
             error_rules=["default"],
         ).json()
-
+        return req
+    
     def delete_assessment_reservation(self, contract_item_id) -> dict:
         self._request(
             method="delete",
