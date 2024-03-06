@@ -1,0 +1,35 @@
+<div>
+	<h2>Sign up for our newsletter</h2>
+	<p>Get the latest Ubuntu news and updates in your inbox.</p>
+</div>
+
+<form action="/marketo/submit" method="post" id="mktoForm_4960" onsubmit="ga('send', 'Newsletter', 'Signup', 'Ubuntu Server download newsletter signup');">
+	<label for="email">Email*:</label>
+	<input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+
+	<div class="p-section--shallow">
+		<label class="p-checkbox">
+			<input required class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+			<span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+		</label>
+		<p>By submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/dataprivacy" target="_blank">Canonical's Privacy Policy</a>.</p>
+		<hr />
+		<button type="submit" class="p-button--positive">Subscribe now</button>
+	</div>
+
+	<div class="p-section--shallow">
+		<input value="4960" name="formid" type="hidden">
+		<input type="hidden" name="Consent_to_Processing__c" value="yes" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/download/server#newsletter-signup" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
+			value="" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+		<input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage"
+			maxlength="255" value="" />
+		<input type="hidden" name="thankyoumessage"
+			value="Thank you for signing up for our newsletter!<br/>In these regular emails you will find the latest updates from Ubuntu and upcoming events where you can meet our team.">
+	</div>
+</form>
