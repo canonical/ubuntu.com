@@ -375,7 +375,7 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
         return req
-    
+
     def delete_assessment_reservation(self, contract_item_id) -> dict:
         self._request(
             method="delete",

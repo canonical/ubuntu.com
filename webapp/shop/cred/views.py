@@ -52,7 +52,7 @@ RESERVATION_STATES = {
     "graded": "Complete",
     "archiving": "Complete",
     "archived": "Complete",
-    "canceling": "Cancelled"
+    "canceling": "Cancelled",
 }
 
 
@@ -135,7 +135,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         contract_item_id = data["contractItemID"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
-        
+
         response = ua_contracts_api.post_assessment_reservation(
             contract_item_id,
             first_name,
@@ -155,14 +155,14 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             exam = {
                 "name": "CUE: Linux",
                 "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p ")+timezone,
+                "time": starts_at.strftime("%I:%M %p ") + timezone,
                 "uuid": uuid,
                 "contract_item_id": contract_item_id,
             }
             return flask.render_template(
                 "/credentials/schedule-confirm.html", exam=exam
             )
-        
+
     contract_item_id = flask.request.args.get("contractItemID")
     if contract_item_id is None:
         return flask.redirect("/credentials/your-exams")
@@ -251,7 +251,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
                 if "assessment" in r and r["assessment"] is not None:
-                    state = RESERVATION_STATES.get(r["assessment"]["state"], r["state"])
+                    state = RESERVATION_STATES.get(
+                        r["assessment"]["state"], r["state"]
+                    )
                 else:
                     state = RESERVATION_STATES.get(r["state"], r["state"])
 
