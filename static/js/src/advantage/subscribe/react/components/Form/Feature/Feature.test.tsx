@@ -23,7 +23,7 @@ test("Feature section renders correctly", () => {
   );
 
   screen.getAllByText("Pro - all repositories");
-  screen.getAllByText("Infra only - limited subset");
+  screen.getAllByText("Infra - only limited subset");
 });
 
 test("Feature sections disables Infra + Apps if destkop is selected", () => {

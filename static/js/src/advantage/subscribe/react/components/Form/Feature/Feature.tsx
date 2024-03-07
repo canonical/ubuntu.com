@@ -84,11 +84,13 @@ const Feature = () => {
             })}
           />
           <p className="p-text--small graphic-legend-main">
-            10 years of security maintenance for packages in Ubuntu Main repository
+            10 years of security maintenance for packages in Ubuntu Main
+            repository
           </p>
           {feature === Features.pro && (
             <p className="p-text--small graphic-legend-universe">
-              10 years of security maintenance for packages in Ubuntu Universe repository
+              10 years of security maintenance for packages in Ubuntu Universe
+              repository
             </p>
           )}
         </Col>
