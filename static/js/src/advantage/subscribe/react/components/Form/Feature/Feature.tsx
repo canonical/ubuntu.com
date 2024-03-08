@@ -71,7 +71,7 @@ const Feature = () => {
         </Col>
         <Col size={3}>
           <p>
-            Covers {feature === Features.pro ? "25,000" : "2,300"} packages in
+            {feature === Features.pro ? "25,000" : "2,300"} packages in
             Ubuntu Main {feature === Features.pro ? "and Universe" : ""}
           </p>
         </Col>
