@@ -1,0 +1,80 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on NVIDIA Jetson{% endblock %}
+
+{% block meta_description %}Use Ubuntu on NVIDIA Jetson for the familiar developer experience and an accelerated path to production{% endblock meta_description %}
+
+{% block meta_copydoc%}https://docs.google.com/document/d/1DHLqBbo6xIHDp-Uc8ngo1t5-GJgeTdTVwBvZRIKyZ0Y/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--25-75 p-section">
+    <div class="col u-hide--small u-hide--medium">
+      <div class="p-image-wrapper">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+          alt="Nvidia",
+          width="180",
+          height="138",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+    <div class="col">
+      <h1>Install Ubuntu on NVIDIA Jetson</h1>
+      <p>Run Ubuntu on your NVIDIA&reg; Jetson&trade; Orin platforms to create breakthrough AI solutions across all industries, being available for all the enthusiasts for hands-on AI learning and making amazing projects and for enterprises delivering commercial solutions.</p>
+      <p>Pick the OS image to match your hardware, flash it onto a USB or NVMe disk, load it onto your board and away you go.</p>
+      <p>All images are 64-bit builds of Ubuntu.</p>
+      <hr />
+      <p>
+        <a href="/internet-of-things/nvidia/contact-us" class="p-button--positive">Get in touch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <hr class="is-fixed-width u-no-margin--bottom" />
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-strip is-shallow u-no-padding--top"><h2 class="p-text--small-caps">Choose a Jetson board</h2></div>
+      <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="Jetson boards">
+        <li><button class="p-tabs__item" id="jetson-agx-orin" role="tab" aria-selected="true" aria-controls="jetson-agx-orin-tab">Jetson AGX Orin Series</button></li>
+        <li><button class="p-tabs__item" id="jetson-orin-nano" role="tab" aria-selected="false" aria-controls="jetson-orin-nano-tab">Jetson Orin Nano Series</button></li>
+      </ul>
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="jetson-agx-orin-tab" selected="">Jetson AGX Orin Series</option>
+          <option value="jetson-orin-nano-tab">Jetson Orin Nano Series</option>
+        </select>
+      </form>
+    </div>
+    <div class="col-9 col-medium-4">
+      {% include "download/nvidia-jetson/tab-1-jetson-agx-orin.html" %}
+      {% include "download/nvidia-jetson/tab-2-jetson-orin-nano.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3">
+          <h2 class="p-text--small-caps">Are you working on a commercial project?</h2>
+        </div>
+        <div class="col-6">
+          <p>Canonical partners with silicon vendors, board manufacturers and leading enterprises to shorten time-to-market. If you are deploying Ubuntu on NVIDIA Jetson platforms at-scale, <a href="/internet-of-things/nvidia/contact-us">reach out to Canonical</a> to get access to ongoing bug fixes, critical security patching, long-term support; or to learn more about our solutions for custom board enablement and application development services.</p>
+          <p>For information about using Canonical's Ubuntu images on a commercial project, <a href="/legal/intellectual-property-policy">read Canonical's IP policy</a>.</p>
+          <p>If you have any questions about the platform or would like information about our certification program, <a href="/internet-of-things/nvidia/contact-us">contact us</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
