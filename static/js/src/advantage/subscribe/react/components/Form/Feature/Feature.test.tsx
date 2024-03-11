@@ -22,8 +22,8 @@ test("Feature section renders correctly", () => {
     </FormProvider>
   );
 
-  screen.getAllByText("Ubuntu Pro");
-  screen.getAllByText("Ubuntu Pro (Infra-only)");
+  screen.getAllByText("Pro - all repositories");
+  screen.getAllByText("Infra - only limited subset");
 });
 
 test("Feature sections disables Infra + Apps if destkop is selected", () => {
