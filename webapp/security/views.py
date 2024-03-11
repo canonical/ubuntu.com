@@ -41,7 +41,11 @@ def get_processed_details(notice):
 
 
 def notice(notice_id):
-    notice = security_api.get_notice(notice_id)
+    # Check if notice_id is a valid USN or LSN
+    if re.fullmatch(r"(USN|LSN|SSN)-\d{1,5}-\d{1,2}", notice_id):
+        notice = security_api.get_notice(notice_id)
+    else:
+        flask.abort(404)
 
     if not notice:
         flask.abort(404)
