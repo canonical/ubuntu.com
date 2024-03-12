@@ -142,6 +142,7 @@ from webapp.views import (
     thank_you,
     unlisted_engage_page,
     navigation_nojs,
+    get_meganav,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -197,6 +198,7 @@ app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
+app.add_url_rule("/meganav/dropdown/<section>", view_func=get_meganav)
 app.add_url_rule("/thank-you", view_func=thank_you)
 app.add_url_rule("/pro/activate", view_func=get_activate_view)
 app.add_url_rule(

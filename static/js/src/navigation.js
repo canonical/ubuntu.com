@@ -9,21 +9,27 @@ const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(
   document.querySelectorAll(
-    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
+    ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back), .p-navigation__item--account-toggle"
   )
 );
-const nav = navigation.querySelector(".js-show-nav");
+const nav = [...navigation.querySelectorAll(".js-show-nav")];
+const mainLists = nav.flatMap(e => Array.from(e.querySelectorAll(".p-navigation__items")));
 const menuButtons = document.querySelectorAll(".js-menu-button");
 let dropdowns = [];
-const mainList = document.querySelector(
-  "nav.p-navigation__nav > .p-navigation__items"
+const navigationItems = navigation.querySelectorAll(
+  ".p-navigation__items > .p-navigation__item:not(.search-toggle-item), .p-navigation__items > .p-navigation__item--dropdown-toggle, .p-navigation__items > .p-navigation__item--account-toggle"
 );
+const navigationItemsList = Array.from(navigationItems);
+
 // Get the navigations initial height for use in 'updateWindowHeight'
 const navEle = document.querySelector(".p-navigation__nav");
 const originalMaxHeight = navEle.style.maxHeight;
 
+// Define if it is a documentation page
+const isDocs = document.querySelector("[data-is-documentation-page]") ? true : false;
+
 navigation.classList.add("js-enabled");
-nav.classList.remove("u-hide");
+
 document.addEventListener("DOMContentLoaded", () => {
   setUpGlobalNav();
 });
@@ -34,7 +40,13 @@ window.addEventListener("load", () => {
 //Helper functions
 
 function toggleIsActiveState(element, active) {
-  element.classList.toggle("is-active", active);
+  if (element.classList.contains("p-navigation__items")) {
+    mainLists.forEach((list) => {
+      list.classList.toggle("is-active", active);
+    });
+  } else {
+    element.classList.toggle("is-active", active);
+  }
 }
 
 function addClassesToElements(elements, classes) {
@@ -48,7 +60,7 @@ function removeClassesFromElements(elements, classes) {
 }
 
 function getAllElements(queryString) {
-  const lists = [...dropdowns, mainList];
+  const lists = [...dropdowns, ...mainLists];
   let listItems = [];
   lists.forEach(function (list) {
     const items = list.querySelectorAll(queryString);
@@ -58,12 +70,16 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
-mainList.addEventListener("click", function (e) {
+navigation.addEventListener("click", function (e) {
   e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
     if (target.classList.contains("js-back")) {
       goBackOneLevel(e, target);
+    } else if (target.parentNode.classList.contains("p-navigation__tagged-logo")) {
+      window.location.href = target.href;
+    } else if (target.classList.contains("js-menu-button")) {
+      e.preventDefault();
     } else {
       handleDropdownClick(e.target.parentNode);
     }
@@ -157,7 +173,7 @@ function handleUrlHash() {
       const menuToggle = navigation.querySelector(".js-menu-button");
       menuToggle?.click();
     }
-    fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
+    fetchDropdown("/meganav/dropdown/" + targetDropdown.id, targetDropdown.id, isDocs);
     handleDropdownClick(targetDropdown);
   }
 }
@@ -339,7 +355,7 @@ function getUrlBarHeight(element) {
 // Handles mobile navigation height taking up veiwport space
 function updateWindowHeight() {
   navEle.style.maxHeight = originalMaxHeight;
-  const isInDropdownList = mainList.classList.contains("is-active");
+  const isInDropdownList = mainLists.some(list => list.classList.contains("is-active"));
   if (isInDropdownList) {
     const newHeight = navEle.clientHeight - getUrlBarHeight() - 20 + "px";
     navEle.style.maxHeight = newHeight;
@@ -349,9 +365,12 @@ function updateWindowHeight() {
 }
 
 function makeRequest(url, callback) {
+  const urlWithParam = `${url}?isDocs=${isDocs}`;
   const req = new XMLHttpRequest();
-  req.open("GET", url);
-  req.addEventListener("load", callback);
+  req.open("GET", urlWithParam, true);
+  req.addEventListener("load", function() {
+    callback.apply(req, arguments);
+  });
   req.send();
 }
 
@@ -410,23 +429,28 @@ function fetchDropdown(url, id) {
   or <ul class="p-navigation__dropdown">
 */
 function setTabIndex(target) {
-  const lists = [...dropdowns, mainList];
+  const lists = [...dropdowns, ...mainLists];
   lists.forEach((list) => {
-    const elements = list.querySelectorAll("ul > li > a, ul > li > button");
+    const elements = list.querySelectorAll("ul > li > a, ul > li > button, ul > li > p");
     elements.forEach(function (element) {
       element.setAttribute("tabindex", "-1");
     });
   });
 
-  const targetLiItems = target.querySelectorAll("li");
-  targetLiItems.forEach((element, index) => {
-    if (
-      element.parentNode === target ||
-      element.parentNode.parentNode === target
-    ) {
-      element.children[0].setAttribute("tabindex", "0");
-    }
-  });
+  // Check if target is top level
+  if (target && target.classList.contains("p-navigation__items")) {
+    focusTopLevelItems();
+  } else if (target){
+    const targetLiItems = target.querySelectorAll("li");
+    targetLiItems.forEach((element, index) => {
+      if (
+        element.parentNode === target ||
+        element.parentNode.parentNode === target
+      ) {
+        element.children[0].setAttribute("tabindex", "0");
+      }
+    });
+  }
 
   // If on desktop, update the nav items tab index.
   // Keep the active nav item at tabindex 0
@@ -438,11 +462,25 @@ function setTabIndex(target) {
     if (currActiveNavItem) {
       currActiveNavItem.children[0].setAttribute("tabindex", "0");
     } else {
-      mainList.querySelectorAll(":scope > li").forEach((element) => {
-        element.children[0].setAttribute("tabindex", "0");
+      mainLists.forEach((list) => {
+        list.querySelectorAll(":scope > li").forEach((element) => {
+          element.children[0].setAttribute("tabindex", "0");
+        });
       });
     }
   }
+}
+
+/**
+ * Top level items are contained within two lists, so need
+ * to be focused separately
+*/
+function focusTopLevelItems() {
+  navigation.querySelectorAll(".p-navigation__items").forEach((list) => {
+    list.querySelectorAll(":scope > li").forEach((element) => {
+      element.children[0].setAttribute("tabindex", "0");
+    });
+  });
 }
 
 /** 
@@ -503,7 +541,7 @@ function handleTabKey(e) {
     );
     canonicalLogo.focus();
   } else if (dropdownPanel && isLastLinkFocused(e, dropdownPanel)) {
-    const currDropdownToggle = mainList.querySelector(
+    const currDropdownToggle = mainLists[0].querySelector(
       ":scope > .p-navigation__item--dropdown-toggle.is-active"
     );
     const nextDropdownToggleLink =
@@ -542,14 +580,12 @@ function isLastLinkFocused(e, dropdownPanel) {
 
 function isLastMobileLinkFocused(e, dropdownPanel) {
   // Find what level of the navigation we are in, 'menuItems' being the top level
-  const listOfMenuItems = dropdownPanel?.querySelectorAll(
-    "li[role='menuitem']"
-  );
+  const isTopLevel = dropdownPanel?.classList.contains("p-navigation__items");
   const listOfLinks = Array.from(
     dropdownPanel?.querySelectorAll(":scope > li")
   );
-  if (listOfMenuItems?.length > 0) {
-    const lastLink = Array.from(listOfMenuItems).pop();
+  if (isTopLevel) {
+    const lastLink = navigationItemsList[navigationItemsList.length - 1];
     return e.target === lastLink.firstElementChild;
   } else if (listOfLinks?.length > 0) {
     // Sometimes there is a secondary list of links, so we need to add those to the list
@@ -618,8 +654,8 @@ function toggleMenu(e) {
 }
 
 function closeNav() {
-  menuButtons.forEach((searchButton) => {
-    searchButton.removeAttribute("aria-pressed");
+  menuButtons.forEach((menuButton) => {
+    menuButton.removeAttribute("aria-pressed");
   });
   closeMobileDropdown();
   closeDesktopDropdown();
@@ -629,7 +665,9 @@ function closeNav() {
 
 function closeDesktopDropdown() {
   showDesktopDropdown(false);
-  removeClassesFromElements([mainList], ["is-active"]);
+  mainLists.forEach((list) => {
+    list.classList.toggle("is-active", false);
+  });
   [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
     if (!dropdownContent.classList.contains("u-hide")) {
       dropdownContent.classList.add("u-hide");
@@ -639,12 +677,15 @@ function closeDesktopDropdown() {
 
 function closeMobileDropdown() {
   const dropdownElements = getAllElements(
-    ".p-navigation__item--dropdown-toggle"
+    ".p-navigation__item--dropdown-toggle, .p-navigation__item--account-toggle"
   );
   removeClassesFromElements(
-    [navigation, mainList],
-    ["has-menu-open", "is-active"]
+    [navigation],
+    ["has-menu-open"]
   );
+  mainLists.forEach((list) => {
+    list.classList.toggle("is-active", false);
+  });
   if (secondaryNav) {
     toggleSecondaryMobileNavDropdown();
   }
@@ -662,7 +703,7 @@ function closeAll() {
   closeSearch();
   closeNav();
   updateUrlHash();
-  setTabIndex(mainList);
+  setTabIndex(mainLists[0]);
   updateWindowHeight();
 }
 
@@ -674,8 +715,7 @@ function openMenu(e) {
   });
 
   navigation.classList.add("has-menu-open");
-  document.addEventListener("keyup", escKeyPressHandler);
-  setTabIndex(mainList);
+  setTabIndex(mainLists[0]);
   addKeyboardEvents();
 }
 
@@ -819,7 +859,7 @@ var origin = window.location.href;
 
 addGANavEvents("#all-canonical-link", "www.ubuntu.com-nav-global");
 addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
-addGANavEvents("#use-case", "www.ubuntu.com-nav-1-use-case");
+addGANavEvents("#use-cases", "www.ubuntu.com-nav-1-use-case");
 addGANavEvents("#support", "www.ubuntu.com-nav-1-support");
 addGANavEvents("#community", "www.ubuntu.com-nav-1-community");
 addGANavEvents("#get-ubuntu", "www.ubuntu.com-nav-1-get-ubuntu");

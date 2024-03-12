@@ -12,7 +12,8 @@
   {% block content_experiment %}{% endblock %}
   <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
 
-  <script src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
+  <script src="{{ versioned_static('js/src/navigation.js') }}" defer>
+  </script>
   <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
   <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}"></script>
   
@@ -62,6 +63,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
   <meta property="og:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
+  {% endif %}
+
+  {% if is_docs %}
+  <!-- Define whether this is a documentation page -->
+  <meta data-is-documentation-page="true">
   {% endif %}
 
   {% block extra_metatags %}{% endblock %}

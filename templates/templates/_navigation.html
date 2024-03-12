@@ -26,43 +26,41 @@
 </ul>
 {% endmacro %}
 
-{% macro nav_items() %}
+{% macro nav_items(is_docs) %}
 <ul class="p-navigation__items">
-  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="fetchDropdown('/templates/meganav/products', 'products', event); this.onmouseenter = null;">
-    <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/products', 'products');">Products</a>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseenter="('/meganav/dropdown/products', 'products', '{% if is_docs %}true{% else %}false{% endif %}', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#products-navigation" aria-controls="products-content" tabindex="0" onfocus="fetchDropdown('/meganav/dropdown/products', 'products', '{% if is_docs %}true{% else %}false{% endif %}', event);">Products</a>
   </li>
-  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseenter="fetchDropdown('/templates/meganav/use-case', 'use-case', event); this.onmouseenter = null;">
-    <a class="p-navigation__link" href="/navigation#use-case-navigation" aria-controls="use-case-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case');">Use cases</a>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-cases" onmouseenter="fetchDropdown('/meganav/dropdown/use-cases', 'use-cases', '{% if is_docs %}true{% else %}false{% endif %}', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#use-cases-navigation" aria-controls="use-cases-content" tabindex="0" onfocus="fetchDropdown('/meganav/dropdown/use-cases', 'use-cases', '{% if is_docs %}true{% else %}false{% endif %}', event);">Use cases</a>
   </li>
-  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseenter="fetchDropdown('/templates/meganav/support', 'support', event); this.onmouseenter = null;">
-    <a class="p-navigation__link" href="/navigation#support-navigation" aria-controls="support-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/support', 'support');">Support</a>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseenter="fetchDropdown('/meganav/dropdown/support', 'support', '{% if is_docs %}true{% else %}false{% endif %}', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#support-navigation" aria-controls="support-content" tabindex="0" onfocus="fetchDropdown('/meganav/dropdown/support', 'support', '{% if is_docs %}true{% else %}false{% endif %}', event);">Support</a>
   </li>
-  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseenter="fetchDropdown('/templates/meganav/community', 'community', event); this.onmouseenter = null;">
-    <a class="p-navigation__link" href="/navigation#community-navigation" aria-controls="community-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/community', 'community');">Community</a>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseenter="fetchDropdown('/meganav/dropdown/community', 'community', '{% if is_docs %}true{% else %}false{% endif %}', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#community-navigation" aria-controls="community-content" tabindex="0" onfocus="fetchDropdown('/meganav/dropdown/community', 'community', '{% if is_docs %}true{% else %}false{% endif %}', event);">Community</a>
   </li>
-  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseenter="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu', event); this.onmouseenter = null;">
-    <a class="p-navigation__link" href="/navigation#get-ubuntu-navigation" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu');">Get Ubuntu</a>
+  <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseenter="fetchDropdown('/meganav/dropdown/get-ubuntu', 'get-ubuntu', '{% if is_docs %}true{% else %}false{% endif %}', event); this.onmouseenter = null;">
+    <a class="p-navigation__link" href="/navigation#get-ubuntu-navigation" aria-controls="#get-ubuntu-content" tabindex="0" onfocus="fetchDropdown('/meganav/dropdown/get-ubuntu', 'get-ubuntu', '{% if is_docs %}true{% else %}false{% endif %}', event);">Get Ubuntu</a>
   </li>
+</ul>
+{% endmacro %}
+
+{% macro nav_items_global(is_docs) %}
+<ul class="p-navigation__items">
   <li class="p-navigation__item--dropdown-toggle global-nav-mobile global-nav" role="menuitem" id="all-canonical"></li>
-  <li class="p-navigation__item--dropdown-toggle js-account" role="menuitem" id="canonical-login"></li>
-  <li class="p-navigation__item">
+  <li class="p-navigation__item--account-toggle js-account" role="menuitem" id="canonical-login"></li>
+  <li class="p-navigation__item search-toggle-item">
     <a href="/search" class="js-search-button p-navigation__link--search-toggle"></a>
   </li>
 </ul>
-<div class="p-navigation__search">
-  <form action="/search" class="p-search-box">
-    <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-    <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-    <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-  </form>
-</div>
 {% endmacro %}
 
 {% macro nav_dropdown() %}
 <div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   <div class="u-hide dropdown-content-desktop" id="products-content"></div>
-  <div class="u-hide dropdown-content-desktop" id="use-case-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="use-cases-content"></div>
   <div class="u-hide dropdown-content-desktop" id="support-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
   <div class="u-hide dropdown-content-desktop" id="get-ubuntu-content"></div>
@@ -133,12 +131,25 @@
       </div>
     </div>
     <div class="l-docs__main">
-      <nav class="p-navigation__nav col-9 js-show-nav" aria-label="Categories">
-        {{ nav_items() }}
+      <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
+        {{ nav_items(is_docs) }}
+        <div class="p-navigation__search">
+          <form action="/search" class="p-search-box">
+            <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
+            <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+            <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div class="l-docs__meta">
+      <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
+        {{ nav_items_global(is_docs) }}
       </nav>
     </div>
   </div>
   <div class="p-navigation__search-overlay"></div>
+  <div id="control-height"></div>
 </header>
 {{ nav_dropdown() }}
 {% if not(hide_subnav == True) %}
@@ -169,11 +180,20 @@
       {{ banner_content() }}
     </div>
     <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
-      {{ nav_items() }}
+      {{ nav_items(is_docs) }}
+      {{ nav_items_global(is_docs) }}
+      <div class="p-navigation__search">
+        <form action="/search" class="p-search-box">
+          <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
+          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        </form>
+      </div>
     </nav>
   </div>
   {% endblock header_banner %}
   <div class="p-navigation__search-overlay"></div>
+  <div id="control-height"></div>
 </header>
 {{ nav_dropdown() }}
 {% if not(hide_subnav == True) %}
