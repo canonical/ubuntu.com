@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:experimental
-
 # Build stage: Install python dependencies
 # ===
 FROM ubuntu:jammy AS python-dependencies
