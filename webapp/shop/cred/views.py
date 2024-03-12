@@ -15,7 +15,12 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
-from webapp.shop.decorators import shop_decorator, canonical_staff
+from webapp.shop.decorators import (
+    shop_decorator,
+    canonical_staff,
+    get_trueability_api_instance,
+    init_trueability_session,
+)
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 
@@ -634,12 +639,50 @@ def cred_shop_thank_you(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
-def cred_shop_webhook_responses(**kwargs):
+def cred_shop_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = "4190"
-    page = flask.request.args.get("page", 1)
-    webhook = get_filtered_webhook_responses(
-        ability_screen_id=ability_screen_id, page=page
-    ).json
+    if "page" in kwargs:
+        page = int(kwargs["page"])
+    else:
+        page = flask.request.args.get("page", 1)
+        page = int(page)
+
+    per_page = flask.request.args.get("per_page", 10)
+    per_page = int(per_page)
+    ta_results_per_page = 100
+    ta_page = math.ceil(page * per_page // ta_results_per_page)
+
+    trueability_session = init_trueability_session("cred")
+    trueability_api = get_trueability_api_instance("cred", trueability_session)
+    webhook_responses = trueability_api.get_filtered_webhook_responses(
+        ability_screen_id=ability_screen_id,
+        page=ta_page,
+    )
+    total_count = webhook_responses["meta"]["total_count"]
+    ta_webhook_responses = webhook_responses["webhook_responses"]
+    ta_webhook_responses = [
+        ta_webhook_responses[i]
+        for i in range(
+            page * per_page % ta_results_per_page - per_page,
+            min(page * per_page % ta_results_per_page, total_count),
+        )
+    ]
+    page_metadata = {}
+    page_metadata["current_page"] = page
+    page_metadata["total_pages"] = math.ceil(
+        webhook_responses["meta"]["total_count"] // per_page
+    )
+    page_metadata["total_count"] = total_count
+    page_metadata["next_page"] = (
+        page + 1 if page < page_metadata["total_pages"] else None
+    )
+    page_metadata["prev_page"] = page - 1 if page > 1 else None
+
+    webhook = {
+        "webhook_responses": ta_webhook_responses,
+        "meta": page_metadata,
+    }
+
     return flask.render_template(
         "credentials/shop/webhook_responses.html", webhook_responses=webhook
     )
@@ -763,52 +806,6 @@ def cred_beta_activation(**_):
         marketo_api.update_leads(leads)
 
     return flask.render_template("credentials/beta-activation.html")
-
-
-@shop_decorator(area="cred", permission="user", response="json")
-@canonical_staff()
-def get_filtered_webhook_responses(trueability_api, **kwargs):
-    if kwargs["ability_screen_id"]:
-        ability_screen_id = kwargs["ability_screen_id"]
-    else:
-        ability_screen_id = flask.request.args.get("ability_screen_id", None)
-
-    if kwargs["page"]:
-        page = int(kwargs["page"])
-    else:
-        page = flask.request.args.get("page", 1)
-        page = int(page)
-    per_page = flask.request.args.get("per_page", 10)
-    per_page = int(per_page)
-    ta_results_per_page = 100
-    ta_page = math.ceil(page * per_page // ta_results_per_page)
-    webhook_responses = trueability_api.get_filtered_webhook_responses(
-        ability_screen_id=ability_screen_id,
-        page=ta_page,
-    )
-    total_count = webhook_responses["meta"]["total_count"]
-    ta_webhook_responses = webhook_responses["webhook_responses"]
-    ta_webhook_responses = [
-        ta_webhook_responses[i]
-        for i in range(
-            page * per_page % ta_results_per_page - per_page,
-            min(page * per_page % ta_results_per_page, total_count),
-        )
-    ]
-    page_metadata = {}
-    page_metadata["current_page"] = page
-    page_metadata["total_pages"] = math.ceil(
-        webhook_responses["meta"]["total_count"] // per_page
-    )
-    page_metadata["total_count"] = total_count
-    page_metadata["next_page"] = (
-        page + 1 if page < page_metadata["total_pages"] else None
-    )
-    page_metadata["prev_page"] = page - 1 if page > 1 else None
-
-    return flask.jsonify(
-        {"webhook_responses": ta_webhook_responses, "meta": page_metadata}
-    )
 
 
 @shop_decorator(area="cred", permission="user", response="json")
