@@ -18,8 +18,6 @@ from webapp.context import (
     split_list,
     format_to_id,
     sort_by_key_and_ordered_list,
-        split_list,
-    format_to_id,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError

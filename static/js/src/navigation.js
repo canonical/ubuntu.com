@@ -13,7 +13,9 @@ const topLevelNavDropdowns = Array.from(
   )
 );
 const nav = [...navigation.querySelectorAll(".js-show-nav")];
-const mainLists = nav.flatMap(e => Array.from(e.querySelectorAll(".p-navigation__items")));
+const mainLists = nav.flatMap((e) =>
+  Array.from(e.querySelectorAll(".p-navigation__items"))
+);
 const menuButtons = document.querySelectorAll(".js-menu-button");
 let dropdowns = [];
 const navigationItems = navigation.querySelectorAll(
@@ -26,7 +28,9 @@ const navEle = document.querySelector(".p-navigation__nav");
 const originalMaxHeight = navEle.style.maxHeight;
 
 // Define if it is a documentation page
-const isDocs = document.querySelector("[data-is-documentation-page]") ? true : false;
+const isDocs = document.querySelector("[data-is-documentation-page]")
+  ? true
+  : false;
 
 navigation.classList.add("js-enabled");
 
@@ -76,7 +80,9 @@ navigation.addEventListener("click", function (e) {
   if (target.classList.contains("p-navigation__link")) {
     if (target.classList.contains("js-back")) {
       goBackOneLevel(e, target);
-    } else if (target.parentNode.classList.contains("p-navigation__tagged-logo")) {
+    } else if (
+      target.parentNode.classList.contains("p-navigation__tagged-logo")
+    ) {
       window.location.href = target.href;
     } else if (target.classList.contains("js-menu-button")) {
       e.preventDefault();
@@ -173,7 +179,11 @@ function handleUrlHash() {
       const menuToggle = navigation.querySelector(".js-menu-button");
       menuToggle?.click();
     }
-    fetchDropdown("/meganav/dropdown/" + targetDropdown.id, targetDropdown.id, isDocs);
+    fetchDropdown(
+      "/meganav/dropdown/" + targetDropdown.id,
+      targetDropdown.id,
+      isDocs
+    );
     handleDropdownClick(targetDropdown);
   }
 }
@@ -355,7 +365,9 @@ function getUrlBarHeight(element) {
 // Handles mobile navigation height taking up veiwport space
 function updateWindowHeight() {
   navEle.style.maxHeight = originalMaxHeight;
-  const isInDropdownList = mainLists.some(list => list.classList.contains("is-active"));
+  const isInDropdownList = mainLists.some((list) =>
+    list.classList.contains("is-active")
+  );
   if (isInDropdownList) {
     const newHeight = navEle.clientHeight - getUrlBarHeight() - 20 + "px";
     navEle.style.maxHeight = newHeight;
@@ -368,7 +380,7 @@ function makeRequest(url, callback) {
   const urlWithParam = `${url}?isDocs=${isDocs}`;
   const req = new XMLHttpRequest();
   req.open("GET", urlWithParam, true);
-  req.addEventListener("load", function() {
+  req.addEventListener("load", function () {
     callback.apply(req, arguments);
   });
   req.send();
@@ -431,7 +443,9 @@ function fetchDropdown(url, id) {
 function setTabIndex(target) {
   const lists = [...dropdowns, ...mainLists];
   lists.forEach((list) => {
-    const elements = list.querySelectorAll("ul > li > a, ul > li > button, ul > li > p");
+    const elements = list.querySelectorAll(
+      "ul > li > a, ul > li > button, ul > li > p"
+    );
     elements.forEach(function (element) {
       element.setAttribute("tabindex", "-1");
     });
@@ -440,7 +454,7 @@ function setTabIndex(target) {
   // Check if target is top level
   if (target && target.classList.contains("p-navigation__items")) {
     focusTopLevelItems();
-  } else if (target){
+  } else if (target) {
     const targetLiItems = target.querySelectorAll("li");
     targetLiItems.forEach((element, index) => {
       if (
@@ -474,7 +488,7 @@ function setTabIndex(target) {
 /**
  * Top level items are contained within two lists, so need
  * to be focused separately
-*/
+ */
 function focusTopLevelItems() {
   navigation.querySelectorAll(".p-navigation__items").forEach((list) => {
     list.querySelectorAll(":scope > li").forEach((element) => {
@@ -679,10 +693,7 @@ function closeMobileDropdown() {
   const dropdownElements = getAllElements(
     ".p-navigation__item--dropdown-toggle, .p-navigation__item--account-toggle"
   );
-  removeClassesFromElements(
-    [navigation],
-    ["has-menu-open"]
-  );
+  removeClassesFromElements([navigation], ["has-menu-open"]);
   mainLists.forEach((list) => {
     list.classList.toggle("is-active", false);
   });

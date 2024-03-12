@@ -15,7 +15,7 @@
       display: none !important;
     }
 
-    .row--25-75 > .col:nth-of-type(n+2) {
+    .row--25-75 > .col:nth-of-type(n + 2) {
       grid-column-end: span 9;
 
       .row {
@@ -63,6 +63,7 @@
 
   .p-navigation__heading--muted {
     @extend .p-muted-heading;
+
     color: rgba(255, 255, 255, 0.6);
     padding-left: 0.5rem;
   }

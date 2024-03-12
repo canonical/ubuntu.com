@@ -4,8 +4,6 @@ import html
 import math
 import os
 import re
-import html
-import datetime
 import copy
 
 import json
@@ -1209,6 +1207,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
 
+
 # Meganav sections
 def get_meganav(section):
     """
@@ -1228,10 +1227,11 @@ def get_meganav(section):
     for section_name, meganav_section in meganav_sections.items():
         if section_name == section_key:
             sections = meganav_section
-    
+
     return flask.render_template(
-            "templates/meganav/dropdown.html",
-            sections=sections,
-            key=section_key,
-            id=section,
-            is_docs=is_docs)
+        "templates/meganav/dropdown.html",
+        sections=sections,
+        key=section_key,
+        id=section,
+        is_docs=is_docs,
+    )
