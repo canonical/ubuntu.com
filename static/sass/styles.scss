@@ -1465,6 +1465,48 @@ $color-link-dark: #69c !default;
   }
 }
 
+.p-graphic-main {
+  background: #923a66;
+  display: inline-block;
+  height: 48px;
+  width: 10%;
+}
+
+.p-graphic-universe {
+  background: #000;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+.p-graphic-universe--empty {
+  border-color: #757575;
+  border-style: dashed;
+  border-width: 1px;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+
+.graphic-legend-main,
+.graphic-legend-universe {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  &::before {
+    content: "";
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 25px;
+    width: 25px;
+  }
+}
+.graphic-legend-main::before {
+  background: #923a66;
+}
+.graphic-legend-universe::before {
+  background: #000;
+}
+
 // XXX: MPT: Can be removed once this is fixed in Vanilla
 // https://github.com/canonical/vanilla-framework/pull/4950
 .desktop-footer {

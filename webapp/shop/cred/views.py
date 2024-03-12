@@ -44,6 +44,16 @@ RESERVATION_STATES = {
     "scheduled": "Scheduled",
     "processed": "Complete",
     "canceled": "Cancelled",
+    "finalized": "Complete",
+    "provisioning": "In Progress",
+    "provisioned": "In Progress",
+    "in_progress": "In Progress",
+    "completed": "Complete",
+    "grading": "Complete",
+    "graded": "Complete",
+    "archiving": "Complete",
+    "archived": "Complete",
+    "canceling": "Cancelled",
 }
 
 
@@ -108,10 +118,21 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
-        scheduled_time = f"{data['date']}T{data['time']}"
-        starts_at = tz_info.localize(
-            datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
+        scheduled_time = datetime.strptime(
+            f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
+        if scheduled_time < datetime.now():
+            error = "You cannot schedule an exam in the past."
+            return flask.render_template(
+                "/credentials/schedule.html", error=error
+            )
+        if scheduled_time < now + timedelta(minutes=30):
+            error = """You cannot schedule an exam less than 30 minutes in
+             the future."""
+            return flask.render_template(
+                "/credentials/schedule.html", error=error
+            )
+        starts_at = tz_info.localize(scheduled_time)
         contract_item_id = data["contractItemID"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
@@ -125,7 +146,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             country_code,
         )
 
-        if response and "error" in response:
+        if response and "reservation" not in response:
             error = response["message"]
             return flask.render_template(
                 "/credentials/schedule.html", error=error
@@ -135,7 +156,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             exam = {
                 "name": "CUE: Linux",
                 "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p %Z"),
+                "time": starts_at.strftime("%I:%M %p ") + timezone,
                 "uuid": uuid,
                 "contract_item_id": contract_item_id,
             }
@@ -212,17 +233,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
 
-            if (
-                "effectivenessContext" in exam_contract
-                and "status" in exam_contract["effectivenessContext"]
-                and exam_contract["effectivenessContext"]["status"]
-                == "expired"
-            ):
-                exams_expired.append(
-                    {"name": name, "state": "Expired", "actions": []}
-                )
-                continue
-
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -242,7 +252,12 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
-                state = RESERVATION_STATES.get(r["state"], r["state"])
+                if "assessment" in r and r["assessment"] is not None:
+                    state = RESERVATION_STATES.get(
+                        r["assessment"]["state"], r["state"]
+                    )
+                else:
+                    state = RESERVATION_STATES.get(r["state"], r["state"])
 
                 if assessment_id and now > starts_at and now < end:
                     actions.extend(
@@ -267,8 +282,36 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
+                elif (
+                    assessment_id
+                    and now < starts_at
+                    and now > starts_at - timedelta(minutes=30)
+                ):
+                    actions.extend(
+                        [
+                            {
+                                "text": "Take exam",
+                                "href": "/credentials/exam?"
+                                f"id={ assessment_id }",
+                                "button_class": "p-button",
+                            }
+                        ]
+                    )
 
-                elif state == "Scheduled":
+                    exams_in_progress.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": "In progress",
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Scheduled" and starts_at > now + timedelta(
+                    minutes=30
+                ):
                     actions.extend(
                         [
                             {
@@ -305,6 +348,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         }
                     )
                 elif state == "Cancelled":
+                    actions = [
+                        {
+                            "text": "Take",
+                            "button_class": "p-button--base",
+                            "href": "",
+                        }
+                    ]
                     exams_cancelled.append(
                         {
                             "name": name,
@@ -316,6 +366,15 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
+            elif (
+                "effectivenessContext" in exam_contract
+                and "status" in exam_contract["effectivenessContext"]
+                and exam_contract["effectivenessContext"]["status"]
+                == "expired"
+            ):
+                exams_expired.append(
+                    {"name": name, "state": "Expired", "actions": []}
+                )
             else:
                 actions = [
                     {

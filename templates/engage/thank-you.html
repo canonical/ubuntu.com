@@ -31,7 +31,6 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
-  {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
     {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
     
       <h3>We've emailed a copy of the {{ resource_name }} to {{ form_details.email }}</h3>
@@ -53,17 +52,13 @@
         <p>The {{ resource_name }} is now ready to download.</p>
       {% endif %}
       {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+        {% if metadata.resource_url and metadata.resource_url != "" %}
         <p>
           <a class="p-button--positive" href="{{ resource_url }}">Download</a>
         </p>
+        {% endif %}
       {% endif %}
     {% endif %}
-      
-  {% else %}
-    <p>
-      Sorry, we do not recognise this download request.  Please let us know by <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">filing and issue on GitHub</a>. And let us know what you excepted to download.
-    </p>
-  {% endif %}
   </div>
 </section>
 
