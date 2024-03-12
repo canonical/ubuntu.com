@@ -4,6 +4,8 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 {% block content_experiment %}
 <style>.async-hide { opacity: 0 !important} </style>
@@ -25,12 +27,11 @@
 {% endif %}
 {% endif %}
 
-<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
-  <div class="p-strip--suru-topped">
-    <div class="row">
-      <div class="col-6">
-        {% if version %}
-        <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50">
+    <div class="col">
+      {% if version %}
+        <h1>Thank you for downloading Ubuntu Desktop {{ version }}</h1>
         <p>Your download should start automatically. If it doesn't,
           {% if architecture == 'amd64+mac' %}
           <a
@@ -40,240 +41,323 @@
           <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download
             now</a>.
           {% endif %}
+
+          <br />You can <a href="/tutorials/tutorial-how-to-verify-ubuntu">verify your download</a>, or <a href="/tutorials/install-ubuntu-desktop">get help installing</a>.
+
         </p>
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
         {% endif %}
+    </div>
+    <div class="col">
+      {% include 'shared/_server-download-newsletter.html' %}
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <div class="col-9">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2 class="p-muted-heading">Resources</h2>
       </div>
-
-
-      <form class="col-6" action="/marketo/submit" method="post" id="mktoForm_4960"
-        onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
-        <h1 style="font-weight: 100;">Sign up for our newsletter</h1>
-        <p>Get the latest Ubuntu news and updates in your inbox.</p>
-        <ul class="p-list">
-          <li class="p-list__item">
-            <label for="email">* Email:</label>
-            <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-          </li>
-          <li class="p-list__item u-no-margin--top">
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
-                name="canonicalUpdatesOptIn" type="checkbox" required="" />
-              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about
-                Canonical’s
-                products
-                and services.</span>
-            </label>
-          </li>
-          <li class="p-list__item u-no-margin--top">
-            <p>By submitting this form, I confirm that I have read and agree to <a
-                href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
-                href="/legal/data-privacy">Privacy Policy</a>.</p>
-          </li>
-        </ul>
-        <div>
-          <span class="p-card--content">
-            <button type="submit" class="p-button--positive">Subscribe now</button>
-          </span>
-          <input value="4960" name="formid" type="hidden">
-          <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-          <input type="hidden" name="returnURL"
-            value="http://{{ http_host }}/download/desktop/thank-you#newsletter-signup" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
-            value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium"
-            value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source"
-            value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content"
-            value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c"
-            id="Facebook_Click_ID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage"
-            name="preferredLanguage" maxlength="255" value="" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></h3>
+          <div>
+            <p>Follow this tutorial to install Ubuntu Desktop on your laptop or PC.</p>
+            <p>You can also run Ubuntu from a USB to try it without installing.</p>
+          </div>
         </div>
-      </form>
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop using VirtualBox</a></h3>
+          <p>Run Ubuntu Desktop in a virtual machine using VirtualBox. A quick start guide that will work across any operating system.</p>
+        </div>
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
+          <p>A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
+        </div>
+      </div>
     </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3">Getting started with Ubuntu Desktop</h2>
-  </div>
-  <div class="row p-divider">
-    <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></h3>
-      <hr>
-      <p>Follow this tutorial to install Ubuntu Desktop on your laptop or PC.</p>
-      <p>You can also run Ubuntu from a USB to try it without installing.</p>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop using VirtualBox</a></h3>
-      <hr>
-      <p>Run Ubuntu Desktop in a virtual machine using VirtualBox. A quick start guide that will work across any operating system.</p>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
-      <hr>
-      <p>A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu Desktop</a></h3>
-      <hr>
-      <p>If you're already running Ubuntu, you can upgrade in a few clicks from the Software Updater.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Verify your download</h3>
-      <p>If you want to verify the  data integrity and authenticity of your Ubuntu download, follow our guide.</p>
-      <p><a href="/tutorials/tutorial-how-to-verify-ubuntu">Learn how to verify&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Desktop guide</h3>
-      <p>Read the official Ubuntu Desktop documentation.</p>
-      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu documentation&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Help is always at hand</h3>
-      <p>Join our global community for support and tips on how to get started with Ubuntu.</p>
-      <ul class="p-list">
-          <li><a href="https://discourse.ubuntu.com/">Ubuntu Discourse&nbsp;&rsaquo;</a></li>
-          <li><a href="https://askubuntu.com/">Ask Ubuntu&nbsp;&rsaquo;</a></li>
-          <li><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers&nbsp;&rsaquo;</a></li>
-          <li><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support&nbsp;&rsaquo;</a></li>
+    <div class="col-3">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2 class="p-muted-heading">Help is always at hand</h2>
+      </div>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu documentation</a></li>
+        <li class="p-list__item"><a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a></li>
+        <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
+        <li class="p-list__item"><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  {% include "shared/_pro_strip.html" %}
+<section class="p-section">
   <div class="u-fixed-width">
-    <p>For more information, download our whitepaper:</p>
-    <p><a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux desktop</a></p>
+    <a href="/pro">
+    {{
+      image (
+      url="https://assets.ubuntu.com/v1/2f32b5f5-Ubuntu-Pro-logo.svg",
+      alt="Ubuntu Pro",
+      width="170",
+      height="42",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+    </a>
+    <hr class="p-rule" />
   </div>
-  <div class="u-fixed-width">
-    <p><a class="p-button--positive" href="/pro">Register today</a></p>
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Secure enterprise management<br class="u-hide--medium u-hide--small"/> with Ubuntu Pro Desktop</h2>
+    </div>
+    <div class="col">
+      <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
+      <hr class="p-rule" />
+      <ul class="p-list--divided u-no-padding--bottom">
+        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
+        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration.</li>
+        <li class="p-list__item is-ticked">Estate <a href="/landscape/features">monitoring and management</a></li>
+        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
+        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
+        <li class="p-list__item is-ticked">Optional weekday or 24/7 support tiers</li>
+      </ul>
+      <hr />
+      <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
+      <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Download our whitepaper</a>
+    </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-section">
+  <div class="p-section--shallow u-fixed-width">
+    <hr class="p-rule" />
+    <h2 class="p-muted-heading">More from Canonical</h2>
+  </div>
   <div class="row">
-    <div class="col-7">
-      <h2 class="p-heading--3">Help us to keep Ubuntu free to download, share and use by contributing to ...</h2>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="/desktop/wsl">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/7a019410-ms logo.png",
+                  alt="Ubuntu on WSL",
+                  width="41",
+                  height="42",
+                  hi_def=True,
+                  loading="lazy"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Use the Ubuntu terminal and run Linux applications on Windows.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="/desktop/wsl">Learn about Ubuntu on WSL&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="/raspberry-pi">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/e44a608d-rpi-logo.png",
+                  alt="Ubuntu for Raspberry Pi",
+                  width="33",
+                  height="42",
+                  hi_def=True,
+                  loading="lazy"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Use your Raspberry Pi as a desktop, server or IoT device with Ubuntu.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="/raspberry-pi">Learn about Ubuntu for Raspberry Pi&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://multipass.run/">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/ede1a596-Multipass-logo.svg",
+                  alt="Multipass",
+                  width="141",
+                  height="42",
+                  hi_def=True,
+                  loading="auto"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://multipass.run/">Learn about Multipass&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://canonical.com/lxd">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/84ed7eb1-LXD-logo.svg",
+                  alt="LXD",
+                  width="80",
+                  height="42",
+                  hi_def=True,
+                  loading="auto"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Fast, dense, and secure container and VM management at any scale.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://canonical.com/lxd">Learn about LXD&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Help us to keep Ubuntu free to download, share and use by contributing to...</h2>
+    </div>
+    <div class="col">
       <noscript>
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
       </noscript>
-      <form class="p-card contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        <section id="community-projects" class="u-sv3">
-          <p class="p-heading--4">Community projects</p>
-          <div class="p-slider__wrapper">
-            <label for="amount-community" class="u-off-screen">Contribution to community projects in US dollars</label>
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-community" type="range">
-            <label for="amount-community-input" class="u-off-screen">Contribution amount to community projects in US dollars</label>
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
-            <input type="hidden" name="item_name_4" value="Community projects">
-          </div>
-          <p>
-            I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.
-          </p>
-        </section>
+      <form class="contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
 
-        <section id="ubuntu-desktop" class="u-sv3">
-          <p class="p-heading--4">Ubuntu Desktop</p>
-          <div class="p-slider__wrapper">
-            <label for="amount-desktop" class="u-off-screen">Contribution to desktop projects in US dollars</label>
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
-            <label for="amount-desktop-input" class="u-off-screen">Contribution to desktop projects in US dollars</label>
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
-            <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
+        <div class="p-section--shallow">
+          <div id="community-projects">
+            <p class="p-heading--5 u-no-margin--bottom">Community projects</p>
+            <p>I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.</p>
+            <div class="p-slider__wrapper">
+              <label for="amount-community" class="u-off-screen">Contribution to community projects in US dollars</label>
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-community" type="range">
+              <label for="amount-community-input" class="u-off-screen">Contribution amount to community projects in US dollars</label>
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-community-input" name="amount_4" value="3" tabindex="4" type="number">
+              <input type="hidden" name="item_name_4" value="Community projects">
+            </div>
           </div>
-          <p>
-            Make the desktop even more amazing.
-          </p>
-        </section>
-
-        <section id="tip-to-canonical" class="u-sv3">
-          <p class="p-heading--4">Tip to Canonical</p>
-          <div class="p-slider__wrapper">
-            <label for="amount-canonical" class="u-off-screen">Contribution to canonical projects in US dollars</label>
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-canonical" type="range">
-            <label for="amount-canonical-input" class="u-off-screen">Contribution to canonical projects in US dollars</label>
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
-            <input type="hidden" name="item_name_5" value="Tip to Canonical">
+  
+          <div id="ubuntu-desktop">
+            <p class="p-heading--5 u-no-margin--bottom">Ubuntu Desktop</p>
+            <p>Make the desktop even more amazing.</p>
+            <div class="p-slider__wrapper">
+              <label for="amount-desktop" class="u-off-screen">Contribution to desktop projects in US dollars</label>
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-desktop" type="range">
+              <label for="amount-desktop-input" class="u-off-screen">Contribution to desktop projects in US dollars</label>
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-desktop-input" name="amount_1" value="3" tabindex="1" type="number">
+              <input type="hidden" name="item_name_1" value="Ubuntu Desktop">
+            </div>
           </div>
-          <p>
-            Hats off for making Ubuntu possible. Keep it up.
-          </p>
-        </section>
-
-        <section id="ubuntu-for-things" class="u-sv3">
-          <p class="p-heading--4">Ubuntu for IoT</p>
-          <div class="p-slider__wrapper">
-            <label for="amount-things" class="u-off-screen">Contribution to IOT projects in US dollars</label>
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
-            <label for="amount-things-input" class="u-off-screen">Contribution to IOT projects in US dollars</label>
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
-            <input type="hidden" name="item_name_3" value="Ubuntu for things">
+  
+          <div id="tip-to-canonical">
+            <p class="p-heading--5 u-no-margin--bottom">Tip to Canonical</p>
+            <p>Hats off for making Ubuntu possible. Keep it up.</p>
+            <div class="p-slider__wrapper">
+              <label for="amount-canonical" class="u-off-screen">Contribution to canonical projects in US dollars</label>
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-canonical" type="range">
+              <label for="amount-canonical-input" class="u-off-screen">Contribution to canonical projects in US dollars</label>
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-canonical-input" name="amount_5" value="3" tabindex="5" type="number">
+              <input type="hidden" name="item_name_5" value="Tip to Canonical">
+            </div>
           </div>
-          <p>
-            I want a secure, upgradeable Internet of Things, powered by Ubuntu.
-          </p>
-        </section>
-
-        <section id="ubuntu-for-cloud" class="u-sv3">
-          <p class="p-heading--4">Ubuntu Server & Cloud</p>
-          <div class="p-slider__wrapper">
-            <label for="amount-cloud" class="u-off-screen">Contribution to server and cloud projects in US dollars</label>
-            <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
-            <label for="amount-cloud-input" class="u-off-screen">Contribution to server and cloud projects in US dollars</label>
-            <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
-            <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
+  
+          <div id="ubuntu-for-things">
+            <p class="p-heading--5 u-no-margin--bottom">Ubuntu for IoT</p>
+            <p>
+              I want a secure, upgradeable Internet of Things, powered by Ubuntu.
+            </p>
+            <div class="p-slider__wrapper">
+              <label for="amount-things" class="u-off-screen">Contribution to IOT projects in US dollars</label>
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-things" type="range">
+              <label for="amount-things-input" class="u-off-screen">Contribution to IOT projects in US dollars</label>
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-things-input" name="amount_3" value="3" tabindex="3" type="number">
+              <input type="hidden" name="item_name_3" value="Ubuntu for things">
+            </div>
           </div>
-          <p>
-            I want Ubuntu Server running my servers, cloud and as a guest everywhere.
-          </p>
-        </section>
-
-        <div class="p-media-object u-no-margin--bottom u-sv3 u-vertically-center">
-          <img alt="T-shirt" src="https://assets.ubuntu.com/v1/b26d26e5-t-shirt.png?w=78" width="78" class="p-media-object__image js-equivalent-image">
-          <div class="p-media-object__details">
-            <h3 class="p-media-object__title">The same price as</h3>
-            <p class="p-media-object__content u-no-margin--bottom js-equivalent-description">Peace, Love and Linux t-shirt</p>
+  
+          <div id="ubuntu-for-cloud">
+            <p class="p-heading--5 u-no-margin--bottom">Ubuntu Server & Cloud</p>
+            <p>
+              I want Ubuntu Server running my servers, cloud and as a guest everywhere.
+            </p>
+            <div class="p-slider__wrapper">
+              <label for="amount-cloud" class="u-off-screen">Contribution to server and cloud projects in US dollars</label>
+              <input class="p-slider" min="0" max="125" value="3" step="1" id="amount-cloud" type="range">
+              <label for="amount-cloud-input" class="u-off-screen">Contribution to server and cloud projects in US dollars</label>
+              <input class="p-slider__input" style="min-width: 4rem;" min="0" max="125" id="amount-cloud-input" name="amount_2" value="3" tabindex="2" type="number">
+              <input type="hidden" name="item_name_2" value="Ubuntu for cloud computing">
+            </div>
           </div>
         </div>
+        
+        <hr />
 
-        <hr class="u-sv3" />
-
-        <div class="row">
-          <div class="col-4">
-            <p>Your contribution&nbsp;<span class="p-card" style="padding: .5rem;">&#36;<span class="js-total-amount">16</span></span></p>
+        <div class="u-clearfix">
+          <div class="u-float-left">
+            <p class="u-no-margin--bottom">Your contribution:&nbsp;<span>&#36;<span class="js-total-amount">16</span></span></p>
+            <p>The same price as <span class="js-equivalent-description">Peace, Love and Linux t-shirt</span></p>
           </div>
-          <div class="u-align--right">
-            <input type="hidden" name="cmd" value="_cart">
-            <input type="hidden" name="business" value="donations@ubuntu.com">
-            <input type="hidden" name="lc" value="GB">
-            <input type="hidden" name="upload" value="1">
-            <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="button_subtype" value="services">
-            <input type="hidden" name="no_note" value="1">
-            <input type="hidden" name="no_shipping" value="1">
-            <input type="hidden" name="rm" value="1">
-
-            <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you">
-            <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop">
-
-            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-            <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
+          <div class="u-float-right u-hide--small">
+            <div class="p-image-wrapper u-align-center u-vertically-center">
+              <img alt="T-shirt" src="https://assets.ubuntu.com/v1/b26d26e5-t-shirt.png?w=78" width="78" class="js-equivalent-image u-hide--medium u-hide--small" />
+            </div>
           </div>
+        </div>
+        <div class="p-section--shallow">
+          <input type="hidden" name="cmd" value="_cart" />
+          <input type="hidden" name="business" value="donations@ubuntu.com" />
+          <input type="hidden" name="lc" value="GB" />
+          <input type="hidden" name="upload" value="1" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="button_subtype" value="services" />
+          <input type="hidden" name="no_note" value="1" />
+          <input type="hidden" name="no_shipping" value="1" />
+          <input type="hidden" name="rm" value="1" />
+
+          <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you" />
+          <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop" />
+
+          <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted" />
+          <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
         </div>
       </form>
     </div>
@@ -282,22 +366,44 @@
 
 {% if version %}
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule"/>
+    <div class="col-3 col-medium-6">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
+      </div>
+    </div>
+    <div class="col-9 col-medium-6">
+      <div class="row p-section--shallow" id="ubuntu-desktop-latest">
+      </div>
+    </div>
   </div>
-  <div class="row p-divider" id="latest-articles">
-  </div>
+
+  <template style="display:none" id="ubuntu-desktop-template">
+    <div class="col-3 col-medium-2 u-equal-height-items">
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
+      <p class="article-excerpt"></p>
+    </div>
+  </template>
 </section>
 
-<template style="display:none" class="" id="articles-template">
-  <article class="col-3 p-divider__block">
-    <p><a class="article-title article-link" href=""></a></p>
-    <p><em>by <span class="article-author"></span>on <time datetime="" class="article-time"></time></em></p>
-  </article>
-</template>
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#ubuntu-desktop-latest",
+      articleTemplateSelector: "#ubuntu-desktop-template",
+      excerptLength: 200,
+      groupId: "1479",
+      linkImage: true,
+      limit: 3
+    }
+  )
+</script>
 
 {% endif %}
+
 
 {% endblock content %}
 
@@ -317,17 +423,6 @@
 
     window.initImageDownload(imagePath, GAlabel);
   }
-
-  canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#latest-articles",
-      articleTemplateSelector: "#articles-template",
-      hostname: "ubuntu.com",
-      groupId: "1479",
-      limit: "4",
-    }
-  )
-  
 </script>
 {% endif %}
 

@@ -1548,3 +1548,11 @@ ol.p-list--divided .p-list__item::before {
     margin-left: 0;
   }
 }
+
+// Fix slider background
+// https://github.com/canonical/vanilla-framework/issues/5025
+@-moz-document url-prefix() {
+  .p-slider {
+    @extend .is-paper;
+  }
+}
