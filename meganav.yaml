@@ -46,7 +46,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Desktop
-              description: Secure enterprise Linux
+              description: Fast, modern and secure Linux
               url: /desktop
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -93,7 +93,7 @@ products:
       primary_links:
         - links:
             - title: Ubuntu Desktop
-              description: Secure enterprise Linux
+              description: Fast, modern and secure Linux
               url: /desktop
             - title: Ubuntu Server
               description: Scalable Linux for the cloud
@@ -109,7 +109,7 @@ products:
               url: /security/fips
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
             - title: Multipass
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
@@ -156,6 +156,9 @@ products:
             - title: Private cloud build
               description: OpenStack implementation
               url: /openstack/consulting
+            - title: MicroStack
+              description: Cloud-native OpenStack
+              url: https://microstack.run/
             - title: MicroCloud
               description: Lightweight, automated clouds
               url: https://canonical.com/microcloud
@@ -207,7 +210,7 @@ products:
               url: https://canonical.com/lxd
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
 
       secondary_links:
         - title: Quick links
@@ -305,66 +308,53 @@ products:
             - title: Kubeflow installation tutorial
               url: https://charmed-kubeflow.io/docs/install
 
-    - title: Charmhub and Juju
+    - title: AI and data
       primary_links:
         - links:
-            - title: Charmhub
-              description: Store for Juju operators
-              url: https://charmhub.io/
-            - title: Juju
-              description: Orchestrator engine for operators
-              url: https://juju.is/
-            - title: JAAS
-              description: Auditing and compliance for Juju
-              url: https://jaas.ai/
+            - title: AI/ML
+              description: AI and machine learning on Ubuntu
+              url: /ai
+            - title: Kubeflow
+              description: End-to-end MLOps platform
+              url: https://charmed-kubeflow.io/
+            - title: MLflow
+              description: Lightweight ML platform
+              url: /ai/mlflow
+            - title: Data solutions
+              description: Enterprise data management at scale
+              url: https://canonical.com/data
+            - title: Kafka
+              description: Streaming data platform
+              url: https://canonical.com/data/kafka
+            - title: Spark
+              description: Big data processing
+              url: https://canonical.com/data/spark
+            - title: MongoDB
+              description: NoSQL database management
+              url: https://canonical.com/data/mongodb
+            - title: PostgreSQL
+              description: Relational database management
+              url: https://canonical.com/data/postgresql
+            - title: MySQL
+              description: Relational database management
+              url: https://canonical.com/data/mysql
+            - title: OpenSearch
+              description: Search and analytics suite
+              url: https://canonical.com/data/opensearch
 
       secondary_links:
         - title: Quick links
           links:
-            - title: Juju documentation
-              url: https://juju.is/docs
-            - title: Getting started with Juju
-              url: https://juju.is/tutorials
-            - title: Charmhub forum
-              url: https://discourse.charmhub.io/
-            - title: Juju blog
-              url: https://juju.is/blog
-            - title: Matrix community
-              url: https://matrix.to/#/#charmhub-juju:ubuntu.com
-            - title: Write your first charm
-              url: https://juju.is/tutorials/build-and-deploy-mini-charm
-
-    - title: Snapcraft
-      primary_links:
-        - links:
-            - title: Snap Store
-              description: App store for Linux
-              url: https://snapcraft.io/
-            - title: Snaps
-              description: Universal Linux packages
-              url: https://snapcraft.io/about
-            - title: Snapcraft
-              description: Build and publish your snaps
-              url: https://snapcraft.io/build
-            - title: IoT App Store
-              description: Private app store for Linux and IoT
-              url: /internet-of-things/appstore
-
-      secondary_links:
-        - title: Quick links
-          links:
-            - title: Getting started with snaps
-              url: http://snapcraft.io/docs/getting-started
-            - title: Snap documentation
-              url: https://snapcraft.io/docs
-            - title: "Tutorial: Create your first snap"
-              url: /tutorials/create-your-first-snap
-            - title: Snapcraft forum
-              url: https://forum.snapcraft.io/
-            - title: Snapcraft blog
-              url: https://snapcraft.io/blog
-            - title: Build from GitHub
-              url: https://snapcraft.io/build
+            - title: Kubeflow documentation
+              url: https://charmed-kubeflow.io/docs
+            - title: MLflow documentation
+              url: https://documentation.ubuntu.com/charmed-mlflow/en/latest/
+            - title: Data documentation
+              url: https://canonical.com/data/docs
+            - title: MLOps toolkit
+              url: /engage/mlops-toolkit/
+            - title: Guide to big data and AI
+              url: /engage/open-source-big-data-ai
 
     - title: Certified hardware
       primary_links:
@@ -402,7 +392,7 @@ products:
             - title: Why buy a preinstalled workstation?
               url: /blog/why-you-should-buy-a-pre-installed-ubuntu-workstation
 
-    - title: IoT and Edge
+    - title: IoT and edge
       primary_links:
         - links:
             - title: Ubuntu Core
@@ -445,6 +435,42 @@ products:
               url: /download/raspberry-pi-core
             - title: Industry 4.0 webinar
               url: /engage/bridge-the-IT-OT-gap-Industry4
+
+    - title: Developer tools
+      primary_links:
+        - links:
+            - title: Snaps
+              description: Containerised applications for Linux
+              url: https://snapcraft.io/about
+            - title: Snapcraft
+              description: Build and publish your snaps
+              url: https://snapcraft.io/build
+            - title: Snap Store
+              description: App store for Linux
+              url: https://snapcraft.io
+            - title: Juju
+              description: Orchestrator engine for operators
+              url: https://juju.is/
+            - title: Charmhub
+              description: Software operators collection
+              url: https://charmhub.io/
+            - title: JAAS
+              description: Auditing and compliance for Juju
+              url: https://jaas.ai/
+
+      secondary_links:
+        - title: Quick links
+          links:
+            - title: Snap documentation
+              url: https://snapcraft.io/docs
+            - title: Create your first snap
+              url: /tutorials/create-your-first-snap
+            - title: Juju documentation
+              url: https://juju.is/docs
+            - title: Getting started with Juju
+              url: https://juju.is/docs/juju/tutorial
+            - title: Write your first charm
+              url: https://juju.is/docs/sdk/from-zero-to-hero-write-your-first-kubernetes-charm
 
 use_case:
   primary_links:
@@ -952,7 +978,7 @@ get_ubuntu:
         - links:
             - title: WSL
               description: Windows Subsystem for Linux
-              url: /wsl
+              url: /desktop/wsl
             - title: Multipass
               description: Ubuntu VMs for Windows and macOS
               url: https://multipass.run/
