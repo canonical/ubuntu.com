@@ -4,77 +4,77 @@
 function chooseEquivalentItem(totalAmount) {
   const items = [
     {
-      imageFile: "86981cf1-skull.png?w=78",
+      imageFile: "76474def-skull.png?w=78",
       price: 0,
-      description: "Nothing. Use Ubuntu for free.",
+      description: "nothing. Use Ubuntu for free.",
     },
     {
-      imageFile: "0617b159-ace-of-spades.png?w=78",
+      imageFile: "5ed9443e-ace-of-spades.png?w=78",
       price: 1,
       description: "the Ace of Spades download",
     },
     {
-      imageFile: "b52102d9-mocca.png?w=78",
+      imageFile: "9541c073-mocca.png?w=78",
       price: 2,
-      description: "grande extra shot mocha latta chino",
+      description: "a grande extra shot mocha latte chino",
     },
     {
-      imageFile: "0ca1e249-pint-of-ale.png?w=78",
+      imageFile: "2077e905-pint-of-ale.png?w=78",
       price: 5,
-      description: "pint of Micro-brew Nevada Pale Ale",
+      description: "a pint of Micro-brew Nevada Pale Ale",
     },
     {
-      imageFile: "bd982caa-happy-meal.png?w=78",
+      imageFile: "915166a2-happy-meal.png?w=78",
       price: 7,
-      description: "A Royale with Cheese ",
+      description: "a Royale with Cheese ",
     },
     {
-      imageFile: "e474c36d-cinema-ticket.png?w=78",
+      imageFile: "174302ef-cinema-ticket.png?w=78",
       price: 10,
       description: "a night at the movies. By yourself.",
     },
     {
-      imageFile: "274c40d3-king-kong.png?w=78",
+      imageFile: "a1188f35-king-kong.png?w=78",
       price: 15,
-      description: "King Kong versus Godzilla on DVD",
+      description: "a King Kong versus Godzilla on DVD",
     },
     {
-      imageFile: "b26d26e5-t-shirt.png?w=78",
+      imageFile: "691d844b-t-shirt.png?w=78",
       price: 20,
-      description: "Peace, Love and Linux t-shirt (shirt not included)",
+      description: "a Peace, Love and Linux t-shirt (shirt not included)",
     },
     {
-      imageFile: "86f3bcab-frying-pan.png?w=78",
+      imageFile: "20ff74f6-frying-pan.png?w=78",
       price: 30,
-      description: "stainless steel copper-bottom frying pan",
+      description: "a stainless steel copper-bottom frying pan",
     },
     {
-      imageFile: "733a3650-sega-controller.png?w=78",
+      imageFile: "57efdbf6-sega-controller.png?w=78",
       price: 50,
-      description: "vintage SNES game bundle",
+      description: "a vintage SNES game bundle",
     },
     {
-      imageFile: "d6d7d638-levi-501.png?w=78",
+      imageFile: "6f306318-levi-501.png?w=78",
       price: 60,
-      description: "pair of vintage acid wash Levi 501s",
+      description: "a pair of vintage acid wash Levi 501s",
     },
     {
-      imageFile: "76f933b2-drum-kit.png?w=78",
+      imageFile: "6568bb40-drum-kit.png?w=78",
       price: 100,
-      description: "pair of LP Matador bongo drums",
+      description: "a pair of LP Matador bongo drums",
     },
     {
-      imageFile: "ae1705f2-emu-chicks.png?w=78",
+      imageFile: "d68d7f92-emu-chicks.png?w=78",
       price: 200,
-      description: "pair of sexed Emu chicks",
+      description: "a pair of sexed Emu chicks",
     },
     {
-      imageFile: "4cbbd365-ldn-nyc-flight.png?w=78",
+      imageFile: "bf4a2dd8-ldn-nyc-flight.png?w=78",
       price: 500,
-      description: "flight from New York to London (one way)",
+      description: "a flight from New York to London (one way)",
     },
     {
-      imageFile: "7a47693f-camel.png?w=78",
+      imageFile: "8a0db30e-camel.png?w=78",
       price: 1000,
       description: "an eight year-old dromedary camel",
     },
@@ -232,8 +232,8 @@ function initContributionSummary(optionsArea) {
 
 function initSliders(sliders) {
   const browser = detectBrowser();
-  const progressColour = "#E95420";
-  const emptyColour = "#fff";
+  const progressColour = "#0066CC";
+  const emptyColour = "#D9D9D9";
 
   sliders.forEach((slider) => {
     let input = document.getElementById(slider.id + "-input");
