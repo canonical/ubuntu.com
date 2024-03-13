@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" onsubmit="getCustomFields()">
+      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" onsubmit="getCustomFields(event)">
         <fieldset class="u-no-margin--bottom">
           <legend class="u-off-screen">Tell us about your project and team</legend>
           <h2 class="p-heading--3">Tell us about your project</h2>
@@ -22,88 +22,115 @@
             <div class="col-4 u-sv3">
               <strong>LTS within standard support</strong>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="22-04" class="p-checkbox__input" value="22.04 LTS">
+                <input type="checkbox" aria-labelledby="22-04" class="p-checkbox__input" value="22.04 LTS" />
                 <span class="p-checkbox__label" id="22-04">22.04 LTS</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="20-04" class="p-checkbox__input" value="20.04 LTS">
+                <input type="checkbox" aria-labelledby="20-04" class="p-checkbox__input" value="20.04 LTS" />
                 <span class="p-checkbox__label" id="20-04">20.04 LTS</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <strong>LTS out of standard support</strong>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="18-04" class="p-checkbox__input" value="18.04 LTS">
+                <input type="checkbox" aria-labelledby="18-04" class="p-checkbox__input" value="18.04 LTS" />
                 <span class="p-checkbox__label" id="18-04">18.04 LTS</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="16-04" class="p-checkbox__input" value="16.04 LTS">
+                <input type="checkbox" aria-labelledby="16-04" class="p-checkbox__input" value="16.04 LTS" />
                 <span class="p-checkbox__label" id="16-04">16.04 LTS</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="14-04" class="p-checkbox__input" value="14.04 LTS">
+                <input type="checkbox" aria-labelledby="14-04" class="p-checkbox__input" value="14.04 LTS" />
                 <span class="p-checkbox__label" id="14-04">14.04 LTS</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <strong>Outdated or non-LTS releases</strong>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="22-10" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="22-10" class="p-checkbox__input /"
                   value="22.10 (interim release)">
                 <span class="p-checkbox__label" id="22-10">22.10 (interim release)</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input /"
                   value="21.04 (interim release)">
                 <span class="p-checkbox__label" id="21-04">21.04 (interim release)</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="12-04" class="p-checkbox__input" value="12.04 LTS">
+                <input type="checkbox" aria-labelledby="12-04" class="p-checkbox__input" value="12.04 LTS" />
                 <span class="p-checkbox__label" id="12-04">12.04 LTS</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <strong>Other</strong>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="dont-use-ubuntu-today" class="p-checkbox__input"
-                  value="I don't use Ubuntu today">
+                <input type="checkbox" aria-labelledby="dont-use-ubuntu-today" class="p-checkbox__input" value="I don't use Ubuntu today" />
                 <span class="p-checkbox__label" id="dont-use-ubuntu-today">I don't use
                   Ubuntu today</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know" />
                 <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
               </label>
             </div>
           </div>
         </fieldset>
+        <fieldset class="u-no-margin--bottom" id="kind-of-device" aria-required="true">
+          <legend class="u-off-screen">*What kind of device are you using?</legend>
+          <h2 class="p-heading--3">*What kind of device are you using?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input required class="p-checkbox__input" type="checkbox" aria-labelledby="desktop/workstation" value="desktop/workstation" onclick="validateCheckbox(event, 'kind-of-device')">
+                <span class="p-checkbox__label" id="desktop-workstation">Desktop/workstation</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="physical server" class="p-checkbox__input" value="physical server" onclick="validateCheckbox(event, 'kind-of-device')" />
+                <span class="p-checkbox__label" id="physical-server">Physical server</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="public-cloud" class="p-checkbox__input" value="public cloud" onclick="validateCheckbox(event, 'kind-of-device')" />
+                <span class="p-checkbox__label" id="public-cloud">Public cloud</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="virtual-machine" class="p-checkbox__input" value="virtual machine" onclick="validateCheckbox(event, 'kind-of-device')" />
+                <span class="p-checkbox__label" id="virtual-machine">Virtual machine</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="iot-edge-device" class="p-checkbox__input" value="iot/edge device" onclick="validateCheckbox(event, 'kind-of-device')" />
+                <span class="p-checkbox__label" id="iot-edge-device">IoT/Edge device</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
         <fieldset class="u-no-margin--bottom" id="how-many-machines">
-          <legend class="u-off-screen">How many machines?</legend>
-          <h2 class="p-heading--3">How many machines?</h2>
+          <legend class="u-off-screen">*How many devices?</legend>
+          <h2 class="p-heading--3">*How many devices?</h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-radio">
-                <input class="p-radio__input" type="radio" aria-labelledby="less-5-machines" name="how-many-machines-do-you-have" value="less than 5">
+                <input required class="p-radio__input" type="radio" aria-labelledby="less-5-machines" name="how-many-machines-do-you-have" value="less than 5">
                 <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
                 <p id="5-machines-help" class="p-form-help-text u-no-margin--top u-hide" style="text-indent: 0;">
                   <a href="/pro">Ubuntu Pro</a> is free for personal use, on up to 5 machines.
                 </p>
               </label>
               <label class="p-radio">
-                <input type="radio" aria-labelledby="5-to-50-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="5 to 50 machines">
-                <span class="p-radio__label" id="5-to-50-machines">5&nbsp;&ndash;&nbsp;50 machines</span>
+                <input type="radio" aria-labelledby="15-to-15-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="5 to 15 machines">
+                <span class="p-radio__label" id="15-to-15-machines">5&nbsp;&ndash;&nbsp;15 machines</span>
               </label>
               <label class="p-radio">
-                <input type="radio" aria-labelledby="51-to-500-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="51 to 500 machines">
-                <span class="p-radio__label" id="51-to-500-machines">51&nbsp;&ndash;&nbsp;500 machines</span>
+                <input type="radio" aria-labelledby="15-to-50-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="15 to 50 machines">
+                <span class="p-radio__label" id="15-to-50-machines">15&nbsp;&ndash;&nbsp;50 machines</span>
               </label>
               <label class="p-radio">
-                <input type="radio" aria-labelledby="501-to-1000-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="501 to 1000 machines">
-                <span class="p-radio__label" id="501-to-1000-machines">501&nbsp;&ndash;&nbsp;1000 machines</span>
+                <input type="radio" aria-labelledby="50-to-100-machines" class="p-radio__input" name="how-many-machines-do-you-have" value="50 to 100 machines">
+                <span class="p-radio__label" id="50-to-100-machines">50&nbsp;&ndash;&nbsp;100 machines</span>
               </label>
               <label class="p-radio">
-                <input type="radio" aria-labelledby="greater-than-1000" class="p-radio__input" name="how-many-machines-do-you-have" value="greater than 1000">
-                <span class="p-radio__label" id="greater-than-1000">&gt;&nbsp;1000 machines</span>
+                <input type="radio" aria-labelledby="greater-than-100" class="p-radio__input" name="how-many-machines-do-you-have" value="greater than 100">
+                <span class="p-radio__label" id="greater-than-100">&gt;&nbsp;100 machines</span>
               </label>
             </div>
           </div>
@@ -114,24 +141,24 @@
           <div class="row u-no-padding">
             <div class="col-4 u-sv3 u-no-padding--bottom">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="ubuntu-repositories" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="ubuntu-repositories" class="p-checkbox__input /"
                   value="Ubuntu repositories">
                 <span class="p-checkbox__label" id="ubuntu-repositories">Ubuntu repositories</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="github-upstream" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="github-upstream" class="p-checkbox__input /"
                   value="Github/Upstream">
                 <span class="p-checkbox__label" id="github-upstream">Github/Upstream</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="internally-approved-repository" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="internally-approved-repository" class="p-checkbox__input /"
                   value="Internally approved repository">
                 <span class="p-checkbox__label" id="internally-approved-repository">Internally approved repository</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know" />
                 <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
               </label>
             </div>
@@ -143,37 +170,37 @@
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="pci" class="p-checkbox__input" value="PCI-DSS">
+                <input type="checkbox" aria-labelledby="pci" class="p-checkbox__input" value="PCI-DSS" />
                 <span class="p-checkbox__label" id="pci">PCI-DSS</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="hipaa" class="p-checkbox__input" value="HIPAA">
+                <input type="checkbox" aria-labelledby="hipaa" class="p-checkbox__input" value="HIPAA" />
                 <span class="p-checkbox__label" id="hipaa">HIPAA</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="fisma" class="p-checkbox__input" value="FISMA">
+                <input type="checkbox" aria-labelledby="fisma" class="p-checkbox__input" value="FISMA" />
                 <span class="p-checkbox__label" id="fisma">FISMA</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="fips-140" class="p-checkbox__input" value="FIPS 140">
+                <input type="checkbox" aria-labelledby="fips-140" class="p-checkbox__input" value="FIPS 140" />
                 <span class="p-checkbox__label" id="fips-140">FIPS 140</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="ncsc" class="p-checkbox__input" value="NCSC">
+                <input type="checkbox" aria-labelledby="ncsc" class="p-checkbox__input" value="NCSC" />
                 <span class="p-checkbox__label" id="ncsc">NCSC</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="disa-stig" class="p-checkbox__input" value="DISA-STIG">
+                <input type="checkbox" aria-labelledby="disa-stig" class="p-checkbox__input" value="DISA-STIG" />
                 <span class="p-checkbox__label" id="disa-stig">DISA-STIG</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="fedramp" class="p-checkbox__input" value="FedRAMP">
+                <input type="checkbox" aria-labelledby="fedramp" class="p-checkbox__input" value="FedRAMP" />
                 <span class="p-checkbox__label" id="fedramp">FedRAMP</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="cis-benchmark" class="p-checkbox__input" value="CIS Benchmark">
+                <input type="checkbox" aria-labelledby="cis-benchmark" class="p-checkbox__input" value="CIS Benchmark" />
                 <span class="p-checkbox__label" id="cis-benchmark">CIS Benchmark</span>
               </label>
             </div>
@@ -185,23 +212,23 @@
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="pindividual-developers" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="pindividual-developers" class="p-checkbox__input /"
                   value="Individual developers">
                 <span class="p-checkbox__label" id="pindividual-developers">Individual developers</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="project-team" class="p-checkbox__input"
+                <input type="checkbox" aria-labelledby="project-team" class="p-checkbox__input /"
                   value="The project team">
                 <span class="p-checkbox__label" id="project-team">The project team</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="3rd-party" class="p-checkbox__input" value="3rd party vendor">
-                <span class="p-checkbox__label" id="3rd-party">3rd party vendor</span>
+                <input type="checkbox" aria-labelledby="3rd-party" class="p-checkbox__input" value="Third-party vendor" />
+                <span class="p-checkbox__label" id="3rd-party">Third-party vendor</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know" />
                 <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
               </label>
             </div>
@@ -218,38 +245,32 @@
           <h2 class="p-heading--3">About you</h2>
           <ul class="p-list">
             <li class="p-list__item">
-              <label for="firstName">First name:</label>
+              <label class="is-required" for="firstName">First name:</label>
               <input required id="firstName" name="firstName" maxlength="255" type="text" />
             </li>
             <li class="p-list__item">
-              <label for="lastName">Last name:</label>
+              <label class="is-required" for="lastName">Last name:</label>
               <input required id="lastName" name="lastName" maxlength="255" type="text" />
             </li>
             <li class="p-list__item">
-              <label for="email">Email address:</label>
+              <label class="is-required" for="email">Work email:</label>
               <input required id="email" name="email" maxlength="255" type="email"
                 pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
             </li>
             <li class="p-list__item">
-              <label for="phone">Mobile/cell phone number:</label>
-              <input required id="phone" name="phone" maxlength="255" type="tel" />
+              <label for="phone">Phone number:</label>
+              <input id="phone" name="phone" maxlength="255" type="tel" />
             </li>
-            <!-- country -->
-            {% include "shared/forms/_country.html" %}
-          </ul>
-        </fieldset>
-        <fieldset class="u-no-margin--bottom">
-          <legend class="u-off-screen">About your company</legend>
-          <h2 class="p-heading--3">About your company</h2>
-          <ul class="p-list">
             <li class="p-list__item">
-              <label for="company">Company name:</label>
-              <input required id="company" name="company" maxlength="255" type="text" />
+              <label for="company">Company:</label>
+              <input id="company" name="company" maxlength="255" type="text" />
             </li>
             <li class="p-list__item">
               <label for="jobTitle">Job title:</label>
-              <input required id="jobTitle" name="title" maxlength="255" type="text" />
+              <input id="jobTitle" name="title" maxlength="255" type="text" />
             </li>
+            <!-- country -->
+            {% include "shared/forms/_country.html" %}
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
@@ -264,7 +285,7 @@
               </label>
             </li>
             <li class="p-list__item">
-              In submitting this form, I confirm that I have read and agree to <a
+              By submitting this form, I confirm that I have read and agree to <a
                 href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
                 href="/legal/data-privacy">Privacy Policy</a>.
             </li>
@@ -282,7 +303,7 @@
           </ul>
           <ul class="p-list">
             <li class="p-list__item">
-              <button type="submit" class="p-button--positive" id="form-submit"
+              <button type="submit" class="p-button--positive no-loader" id="form-submit"
                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
@@ -311,18 +332,6 @@
         </fieldset>
       </form>
     </div>
-
-    <div class="col-4">
-      <div class="p-card">
-        <h2 class="p-heading--3 p-card__title">Need help with Ubuntu?</h2>
-        <p>If you are just looking for some free support for yourself, you can try:</p>
-        <ul class="p-list--divided">
-          <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
-          <li class="p-list__item"><a href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
-          <li class="p-list__item"><a href="https://help.ubuntu.com/">Help docs</a></li>
-        </ul>
-      </div>
-    </div>
 </section>
 <script>
   let fiveMachinesHelpText = document.getElementById("5-machines-help");
@@ -338,12 +347,11 @@
     }
   )
 
-  function getCustomFields() {
-    // disable submit button when form is submitted to stop duplicates
-    document.getElementById("form-submit").setAttribute("disabled", "true");
-
+  function getCustomFields(event) {
     // If you use Ubuntu, which version(s) are you using?
     const ubuntuVersionsFieldset = document.getElementById("ubuntu-versions");
+    // What kind of device are you using?
+    const deviceUsedFieldset = document.getElementById("kind-of-device");
     // How many machines?
     const howManyMachinesFieldset = document.getElementById("how-many-machines");
     // How do you consume open source?
@@ -351,11 +359,12 @@
     // Do you have specific compliance or hardening requirements?
     const hardeningRequirementsFieldset = document.getElementById("hardening-requirements");
     // Who is responsible for tracking, testing and applying CVE patches in a timely manner?
-    const responsibleForTracking = document.getElementById("responsible-for-tracking")
+    const responsibleForTracking = document.getElementById("responsible-for-tracking");
 
     const data = `Tell us about your project: ${document.getElementById("about-your-project").value}.\n
       If you use Ubuntu, which version(s) are you using?: ${getCheckboxItemsAsCSV(ubuntuVersionsFieldset)}.\n
-      How many machines?: ${getRadioItemValue(howManyMachinesFieldset)}.\n
+      What kind of device are you using?: ${getCheckboxItemsAsCSV(deviceUsedFieldset)}.\n
+      How many devices?: ${getRadioItemValue(howManyMachinesFieldset)}.\n
       How do you consume open source?: ${getCheckboxItemsAsCSV(consumeOpenSourceFieldset)}.\n
       Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
       Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
@@ -379,5 +388,12 @@
   function getCheckboxItemsAsCSV(fieldset) {
     const checkboxes = Array.from(fieldset.querySelectorAll("input[class='p-checkbox__input']"));
     return checkboxes.filter(item => item.checked).map(item => item.value).join(", ");
+  }
+
+  function validateCheckbox(event, fieldsetId) {
+    const checkboxes = Array.from(document.getElementById(fieldsetId).querySelectorAll("input[class='p-checkbox__input']"));
+    if (event.currentTarget.checked) {
+      checkboxes[0].removeAttribute("required");
+    }
   }
 </script>
