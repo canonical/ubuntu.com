@@ -3,46 +3,104 @@
 {% block title %}Ubuntu for POWER | Download{% endblock %}
 {% block meta_description %}Ubuntu for POWER brings the Ubuntu Server and Ubuntu ecosystem to POWER.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row">
-    <div class="col-10">
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section--shallow">
+    <div class="col">
       <h1>Ubuntu Server for IBM POWER</h1>
+    </div>
+    <div class="col">
       <p>Ubuntu Server for IBM POWER brings Ubuntu Server and Ubuntu Server for Cloud to the POWER platform (little endian), opening the door to the scale-out and cloud markets. POWER is optimised for workloads in the mobile, social, cloud, Big Data, analytics and machine learning spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads trivial.</p>
       <p>Starting with Ubuntu 22.04 LTS, POWER9 and POWER10 processors are supported.</p>
       <p>The support for POWER8 ends with Ubuntu 21.10, respectively Ubuntu 20.04 LTS, which is still supported for several years.</p>
     </div>
   </div>
-</section>
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6 p-card" >
-      <h3 class="p-card__title">Ubuntu Server</h3>
-      <div class="p-card__content">
-        <p>
-          This is the iso image of the Ubuntu Server installer.
-        </p>
-        <p>
-          <a class="p-button--positive is-wide" href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-            Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-          </a>
-        </p>
-        {% if releases.latest.short_version > releases.lts.short_version %}
-        <p>
-          <a class="p-button is-wide" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            Download Ubuntu {{ releases.latest.full_version }}
-          </a>
-        </p>
-        {% endif %}
-        <p>
-          <a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a>
-        </p>
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-start-medium-2 col-medium-5">
+      <hr class="p-rule" />
+      <div class="row p-section">
+        <div class="col-3 col-medium-2">
+          <h2 class="p-heading--5">Ubuntu Server</h2>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>This is the ISO image of the Ubuntu Server installer.</p>
+          <p>
+            <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+              Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+            </a>
+            {% if releases.latest.short_version > releases.lts.short_version %}
+            &nbsp;&nbsp;
+            <a class="p-button" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+              Download {{ releases.latest.full_version }}
+            </a>
+            {% endif %}
+          <p>
+            <a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+<section class="p-section--deep">
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>Get started with Ubuntu today</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9 col-start-large-4 col-start-medium-2 col-medium-5">
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Installation guides</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>
+            If you need some help installing Ubuntu, please check out our step-by-step guides.
+          </p>
+          <p>
+            <a href="/tutorials/tutorial-install-ubuntu-server">Installation instructions for Ubuntu Server&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Ubuntu Server documentation</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>
+            Read the official Ubuntu Server documentation.
+          </p>
+          <p><a href="/server/docs">Ubuntu Server documentation&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <h3 class="p-heading--5">Helping hands</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>
+            <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
+          </p>
+          <hr class="p-rule is-muted" />
+          <p>
+            <a href="https://askubuntu.com/">Ask Ubuntu</a>
+          </p>
+          <hr class="p-rule is-muted" />
+          <p>
+            <a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock content %}
