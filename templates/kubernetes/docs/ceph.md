@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Ceph storage"
-  description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.
+  description: How to include Ceph CSI for Ceph storage support.
 keywords: quickstart
 tags: [getting_started]
 sidebar: k8smain-sidebar
@@ -13,39 +13,35 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-## How to add **Ceph** storage
+Many workloads that you may want to run on your Kubernetes cluster will require some
+form of available storage. This guide will help you deploy **Charmed Kubernetes** with
+**Ceph** container storage support. Available storage backends include `ceph-xfs`,
+`ceph-ext4`, and `cephfs`.
 
-Many things you will want to use your Kubernetes cluster for will require some
-form of available storage. Storage is quite a large topic -- this guide will
-focus on just adding some quick storage using **Ceph**, so you can get up and
-running quickly.
+## Deploying Ceph and Charmed Kubernetes
 
-### What you'll need
+In this section, we'll create a small Ceph cluster along with a basic Charmed Kubernetes
+environment that includes Ceph CSI support.
 
-- A **Charmed Kubernetes** environment set up and running. See the [quickstart][quickstart] if you haven't .
-- An existing **Ceph** cluster or the ability to create one.
+### Deploy Ceph
 
-### Deploying Ceph
-
-Setting up a Ceph cluster is easy with Juju. For this example we will deploy
-three ceph monitor nodes:
+Start by deploying three Ceph monitor nodes:
 
 ```bash
- juju deploy -n 3 ceph-mon
+juju deploy -n 3 ceph-mon
 ```
 
-...and then we'll add three storage nodes. For the storage nodes, we will also
-specify some actual storage for these nodes to use by using `-- storage`. In
-this case the Juju charm uses labels for different types of storage:
+...and then add three storage nodes. For the storage nodes, we will specify additional
+deployment parameters by using the `--storage` flag:
 
 ```bash
- juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1
+juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1
 ```
 
-This will deploy a storage node, and attach two 32GB devices for storage and
-8GB for journalling. As we have asked for 3 machines, this means a total of
-192GB of storage and 24GB of journal space. The storage comes from whatever the
-default storage class is for the cloud (e.g., on AWS this will be EBS volumes).
+The storage nodes above will have two 32GB devices for storage and 8GB for journaling.
+As we have asked for 3 machines, this means a total of 192GB of storage and 24GB of
+journal space. The storage comes from whatever the default storage class is for the
+cloud (e.g., on AWS this will be EBS volumes).
 
 ```bash
 juju integrate ceph-osd ceph-mon
@@ -55,88 +51,75 @@ juju integrate ceph-osd ceph-mon
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">For more on how Juju makes use of storage, please see the relevant
-<a href="https://juju.is/docs/juju/defining-and-using-persistent-storage"> Juju documentation</a></p>
+<a href="https://juju.is/docs/juju/manage-storage">Juju documentation</a></p>
   </div>
 </div>
 
-### Relating to Charmed Kubernetes
+### Deploy Charmed Kubernetes with Ceph CSI
 
-Making **Charmed Kubernetes** aware of your **Ceph** cluster just requires a **Juju** relation.
-
-```bash
-juju integrate ceph-mon kubernetes-control-plane
-```
-
-Note that the **Ceph** CSI containers require privileged access:
+Ceph CSI creates various Kubernetes resources, including pods. Therefore it requires the
+`kubernetes-control-plane` application to run in privileged mode. Create a suitable environment as follows:
 
 ```bash
+juju deploy charmed-kubernetes
 juju config kubernetes-control-plane allow-privileged=true
+
+juju deploy ceph-csi
+juju deploy ceph-fs
+juju config ceph-csi cephfs-enable=True
 ```
 
-And finally, you need the pools that are defined in the storage class:
+Now add the relevant Ceph integrations:
 
 ```bash
-juju run ceph-mon/0 create-pool name=xfs-pool
+juju integrate ceph-csi:kubernetes kubernetes-control-plane:juju-info
+juju integrate ceph-csi:ceph-client ceph-mon:client
+juju integrate ceph-fs:ceph-mds ceph-mon:mds
 ```
 
-```yaml
-unit-ceph-mon-0:
-  id: c12f0688-f31b-4956-8314-abacd2d6516f
-  status: completed
-  timing:
-    completed: 2018-08-20 20:49:34 +0000 UTC
-    enqueued: 2018-08-20 20:49:31 +0000 UTC
-    started: 2018-08-20 20:49:31 +0000 UTC
-  unit: ceph-mon/0
-```
+## Verify things are working
+
+Check the Charmed Kubernetes cluster to verify Ceph cluster resources are
+available. Running:
 
 ```bash
-juju run ceph-mon/0 create-pool name=ext4-pool
+juju ssh kubernetes-control-plane/leader -- kubectl get sc,po --namespace default
 ```
 
-```yaml
-unit-ceph-mon-0:
-  id: 4e82d93d-546f-441c-89e1-d36152c082f2
-  status: completed
-  timing:
-    completed: 2018-08-20 20:49:45 +0000 UTC
-    enqueued: 2018-08-20 20:49:41 +0000 UTC
-    started: 2018-08-20 20:49:43 +0000 UTC
-  unit: ceph-mon/0
-```
-
-### Verifying things are working
-
-Now you can look at your **Charmed Kubernetes** cluster to verify things are
-working. Running:
-
-```bash
-kubectl get sc,po
-```
-
-... should return output similar to:
+...should return output similar to:
 
 ```no-highlight
-NAME                                             PROVISIONER     AGE
-storageclass.storage.k8s.io/ceph-ext4            csi-rbdplugin    7m
-storageclass.storage.k8s.io/ceph-xfs (default)   csi-rbdplugin    7m
+NAME                                             PROVISIONER           RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/ceph-ext4            rbd.csi.ceph.com      Delete          Immediate           true                   142m
+storageclass.storage.k8s.io/ceph-xfs (default)   rbd.csi.ceph.com      Delete          Immediate           true                   142m
+storageclass.storage.k8s.io/cephfs               cephfs.csi.ceph.com   Delete          Immediate           true                   127m
 
-NAME                                                   READY     STATUS    RESTARTS   AGE
-pod/csi-rbdplugin-attacher-0                           1/1       Running   0          7m
-pod/csi-rbdplugin-cnh9k                                2/2       Running   0          7m
-pod/csi-rbdplugin-lr66m                                2/2       Running   0          7m
-pod/csi-rbdplugin-mnn94                                2/2       Running   0          7m
-pod/csi-rbdplugin-provisioner-0                        1/1       Running   0          7m
+NAME                                               READY   STATUS    RESTARTS   AGE
+pod/csi-cephfsplugin-4gs22                         3/3     Running   0          127m
+pod/csi-cephfsplugin-ljfw9                         3/3     Running   0          127m
+pod/csi-cephfsplugin-mlbdx                         3/3     Running   0          127m
+pod/csi-cephfsplugin-provisioner-9f479bcc4-48v8f   5/5     Running   0          127m
+pod/csi-cephfsplugin-provisioner-9f479bcc4-92bt6   5/5     Running   0          127m
+pod/csi-cephfsplugin-provisioner-9f479bcc4-hbb82   5/5     Running   0          127m
+pod/csi-cephfsplugin-wlp2w                         3/3     Running   0          127m
+pod/csi-cephfsplugin-xwdb2                         3/3     Running   0          127m
+pod/csi-rbdplugin-b8nk8                            3/3     Running   0          142m
+pod/csi-rbdplugin-bvqwn                            3/3     Running   0          142m
+pod/csi-rbdplugin-provisioner-85dc49c6c-9rckg      7/7     Running   0          142m
+pod/csi-rbdplugin-provisioner-85dc49c6c-f6h6k      7/7     Running   0          142m
+pod/csi-rbdplugin-provisioner-85dc49c6c-n47fx      7/7     Running   0          142m
+pod/csi-rbdplugin-vm25h                            3/3     Running   0          142m
 ```
 
-If you have installed **Helm**, you can then add a chart to verify the persistent volume is automatically created for you.
+If you have installed **Helm**, you can then add a chart to verify the persistent volume
+is automatically created for you:
 
 ```bash
 helm install stable/phpbb
 kubectl get pvc
 ```
 
-Which should return something similar to:
+...which should return output similar to:
 
 ```ǹo-highlight
 NAME                            STATUS    VOLUME                 CAPACITY   ACCESS MODES   STORAGECLASS   AGE
@@ -145,9 +128,15 @@ calling-wombat-phpbb-phpbb      Bound     pvc-b1d1131da4bd11e8   8Gi        RWO 
 data-calling-wombat-mariadb-0   Bound     pvc-b1df7ac9a4bd11e8   8Gi        RWO            ceph-xfs       34s
 ```
 
-### Conclusion
+## Warning: Removal
 
-Now you have a **Ceph** cluster talking to your **Kubernetes** cluster. From
+When the `ceph-csi` charm is removed, it will not clean up Ceph pools that were created
+when the relation with `ceph-mon:client` was joined. If you wish to remove ceph pools,
+use the `delete-pool` action on a `ceph-mon` unit.
+
+## Conclusion
+
+Now you have a **Ceph** cluster integrated with your **Charmed Kubernetes** cluster. From
 here you can install any of the things that require storage out of the box.
 
 <!-- FEEDBACK -->
@@ -160,4 +149,3 @@ here you can install any of the things that require storage out of the box.
     <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-

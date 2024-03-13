@@ -23,19 +23,19 @@ Charmed Kubernetes officially supports the three most recent minor releases
 of Kubernetes. The support window for Charmed Kubernetes is explained more
 fully on the [Ubuntu release cycle page](/about/release-cycle#canonical-kubernetes-release-cycle).
 
-Current release: **1.28**
+Current release: **1.29**
 
 Supported releases (click buttons for more information): 
 
 <div class="row">
  <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/docs/1.29/components" class="p-button--positive">1.29.x</a></span>
+ </div>
+ <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/docs/1.28/components" class="p-button--positive">1.28.x</a></span>
  </div>
  <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/docs/1.27/components" class="p-button--positive">1.27.x</a></span>
- </div>
- <div class="col-2">
-  <span class="u-vertically-center"><a href="/kubernetes/docs/1.26/components" class="p-button--positive">1.26.x</a></span>
  </div>
 </div>
 
@@ -50,10 +50,10 @@ juju deploy charmed-kubernetes
 
 It is also possible to deploy a specific version of the bundle by including
 the `--channel` argument. For example, to deploy the Charmed Kubernetes
-bundle for the Kubernetes 1.27 release, run the command:
+bundle for the Kubernetes 1.28 release, run the command:
 
 ```bash
-juju deploy charmed-kubernetes --channel=1.27/stable
+juju deploy charmed-kubernetes --channel=1.28/stable
 ```
 
 It is still possible to deploy older, unsupported versions of Charmed Kubernetes.
@@ -70,11 +70,15 @@ Only the latest three versions of Charmed Kubernetes are supported at any time.
 
 ## Professional support
 
-For additional support, learn more about [Ubuntu Pro][support] as well as
+For additional support, learn more about [Ubuntu Pro][pro] as well as
 [managed Kubernetes solutions][managed] from Canonical.
+
+Please visit the Canonical [Support page][support] for more details of our 
+professional support programmes. 
 
 <!-- LINKS -->
 
+[pro]: /pro
 [support]: /support
 [managed]: /kubernetes/managed
 [releases]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
