@@ -100,7 +100,7 @@ def cred_self_study(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
-    sign_up_open = False
+    sign_up_open = True
     return flask.render_template(
         "credentials/sign-up.html", sign_up_open=sign_up_open
     )
