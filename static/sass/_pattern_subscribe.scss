@@ -27,11 +27,9 @@
     margin-bottom: 2rem;
 
     &::before {
-      @extend .p-heading--3;
+      @extend .p-heading--2;
 
       align-items: center;
-      border: 1px solid;
-      border-radius: 100%;
       content: counter(headings);
       display: inline-flex;
       flex-shrink: 0;
