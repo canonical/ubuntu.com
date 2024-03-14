@@ -74,7 +74,7 @@ def confidentiality_agreement_webhook():
     return flask.jsonify({"message": "Webhook handled."}), 200
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
