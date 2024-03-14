@@ -487,7 +487,9 @@ def cred_exam(trueability_api, **_):
     if assessment_user != sso_user:
         return flask.abort(403)
 
-    url = trueability_api.get_assessment_redirect(assessment_id)
+    url = trueability_api.get_assessment_redirect(assessment_id).replace(
+        "http://", "https://"
+    )
     return flask.render_template("credentials/exam.html", url=url)
 
 
