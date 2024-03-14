@@ -203,6 +203,19 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     email = flask.request.args.get("email", None)
+
+    agreement_notification = False
+    confidentiality_agreement_enabled = strtobool(
+        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
+    )
+    if (
+        confidentiality_agreement_enabled
+        and not has_filed_confidentiality_agreement(
+            flask.session["openid"]["email"].lower()
+        )
+    ):
+        agreement_notification = True
+
     try:
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
             product_tags=["cue"], email=email
@@ -239,7 +252,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
                 r = response["assessment_reservation"]
-
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
                 starts_at = (
@@ -400,6 +412,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     response = flask.make_response(
         flask.render_template(
             "credentials/your-exams.html",
+            agreement_notification=agreement_notification,
             exams=exams,
         )
     )

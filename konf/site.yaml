@@ -241,7 +241,7 @@ production:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -716,7 +716,7 @@ staging:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -932,6 +932,9 @@ staging:
 
 demo:
   env:
+    - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+      value: false
+
     - name: GOOGLE_CLOUD_DISABLE_GRPC
       value: true
 
