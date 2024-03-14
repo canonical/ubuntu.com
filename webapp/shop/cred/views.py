@@ -41,6 +41,7 @@ EXAM_NAMES = {
 
 RESERVATION_STATES = {
     "created": "Scheduled",
+    "notified": "Scheduled",
     "scheduled": "Scheduled",
     "processed": "Complete",
     "canceled": "Cancelled",
@@ -309,20 +310,19 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Scheduled" and starts_at > now + timedelta(
-                    minutes=30
-                ):
-                    actions.extend(
-                        [
-                            {
-                                "text": "Reschedule",
-                                "href": "/credentials/schedule?"
-                                f"contractItemID={contract_item_id}"
-                                f"&uuid={r['uuid']}",
-                                "button_class": "p-button",
-                            },
-                        ]
-                    )
+                elif state == "Scheduled":
+                    if now + timedelta(minutes=30) < starts_at:
+                        actions.extend(
+                            [
+                                {
+                                    "text": "Reschedule",
+                                    "href": "/credentials/schedule?"
+                                    f"contractItemID={contract_item_id}"
+                                    f"&uuid={r['uuid']}",
+                                    "button_class": "p-button",
+                                },
+                            ]
+                        )
 
                     exams_scheduled.append(
                         {
