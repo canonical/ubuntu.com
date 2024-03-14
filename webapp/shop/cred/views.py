@@ -74,7 +74,7 @@ def confidentiality_agreement_webhook():
     return flask.jsonify({"message": "Webhook handled."}), 200
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
@@ -93,7 +93,7 @@ def cred_home(ua_contracts_api, **_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
@@ -491,7 +491,7 @@ def cred_exam(trueability_api, **_):
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
