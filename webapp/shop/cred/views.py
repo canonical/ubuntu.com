@@ -122,17 +122,6 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         scheduled_time = datetime.strptime(
             f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
-        if scheduled_time < datetime.now():
-            error = "You cannot schedule an exam in the past."
-            return flask.render_template(
-                "/credentials/schedule.html", error=error
-            )
-        if scheduled_time < now + timedelta(minutes=30):
-            error = """You cannot schedule an exam less than 30 minutes in
-             the future."""
-            return flask.render_template(
-                "/credentials/schedule.html", error=error
-            )
         starts_at = tz_info.localize(scheduled_time)
         contract_item_id = data["contractItemID"]
         first_name, last_name = get_user_first_last_name()
