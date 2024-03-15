@@ -1,10 +1,78 @@
 {% extends "security/cve/base_cve.html" %}
+
 {% block title %}{{ cve.id }}{% endblock %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
+
 {% if cve.impact %}
  {% set cvssV3 = cve.impact.baseMetricV3.cvssV3 %}
 {% endif %}
+
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row p-section">
+    <div class="col-start-large-4 col-9">
+      <h1>{{ cve.id }}</h1>
+      <span>Name</span><span>Test</span>
+      {% if cve.published %}
+      <p>Publication date <span>{{ cve.published }}</span></p>
+      {% endif %}
+      {% if cve.updated_at %}
+      <p>Last updated <span>{{ cve.updated_at }}</span></p>
+      {% endif %}
+      <hr class="p-rule" />
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <aside class="col-3">
+      <div class="p-side-navigation--raw-html is-sticky" id="drawer">
+        <button class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
+          Toggle side navigation
+        </button>
+        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+        <nav class="p-side-navigation__drawer" aria-label="documentation side navigation">
+          <div class="p-side-navigation__drawer-header">
+            <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+              Toggle table of contents
+            </button>
+          </div>
+          <ul>
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#description">Description</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#mitigation">Mitigation</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#status">Status</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#severity-breakdown">Severity score breakdown</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#refrences">Refrences</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <main class="col-9">
+      {% if cve.description %}
+      <p>{{ cve.description }}</p>
+      {% endif %}
+
+      {% if cve.ubuntu_description %}
+      <h2 class="p-heading--3">From the Ubuntu Security Team</h2>
+      <p>{{ cve.ubuntu_description }}</p>
+      {% endif %}
+    </main>
+  </div>
+</section>
+
 
 {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
   <section class="p-strip--light is-bordered--top">
@@ -15,9 +83,6 @@
     <div class="col-9">
       <h1>{{ cve.id }}</h1>
 
-      {% if cve.published %}
-      <p>Published: <strong>{{ cve.published }}</strong></p>
-      {% endif %}
 
       {% if cve.status == 'not-in-ubuntu' %}
         <p>This CVE does not apply to software in Ubuntu archives.</p>
