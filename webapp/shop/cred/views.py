@@ -16,7 +16,11 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
+from webapp.shop.utils import (
+    get_exam_contract_id,
+    get_user_first_last_name,
+    get_tab_keys,
+)
 from webapp.login import user_info
 
 from google.oauth2 import service_account
@@ -637,6 +641,61 @@ def cred_shop_thank_you(**kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+def cred_shop_manage(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
+
+    keys = []
+    # Get keys for each contract
+    for contract in contracts:
+        contract_id = contract.id
+        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+
+    for i in range(len(keys)):
+        key = keys[i]
+
+        # Check if key is expired
+        expiry_date = datetime.fromisoformat(key["expirationDate"].rstrip("Z"))
+        if expiry_date < datetime.now():
+            key["expired"] = True
+        else:
+            key["expired"] = False
+
+        # Format datetime
+        parsed_date = (
+            datetime.strptime(key["expirationDate"], "%Y-%m-%dT%H:%M:%SZ")
+            .replace(tzinfo=pytz.timezone("UTC"))
+            .astimezone()
+        )
+        key["index"] = i
+        key["expirationDate"] = parsed_date.strftime(
+            "%a %b %d %Y %H:%M:%S %Z%z"
+        )
+
+    tab = flask.request.args.get("tab", None)
+    page = int(flask.request.args.get("page", 1))
+
+    # Get the keys to display based on the selected tab
+    display_keys = get_tab_keys(keys, tab)
+
+    per_page = 10
+    total_pages = math.ceil(len(display_keys) / per_page)
+    start_page = (page - 1) * per_page
+    end_page = page * per_page
+
+    return flask.make_response(
+        flask.render_template(
+            "credentials/shop/manage.html",
+            keys=display_keys[start_page:end_page],
+            tab=tab,
+            per_page=per_page,
+            page=page,
+            total_pages=total_pages,
+        )
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     exam = None
     action = flask.request.args.get("action")
@@ -703,19 +762,6 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         return flask.render_template(
             "/credentials/redeem_with_captcha.html", key=activation_key
         )
-
-
-@shop_decorator(area="cube", permission="user", response="json")
-def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account("canonical-ua")
-    contracts = advantage_mapper.get_activation_key_contracts(account.id)
-
-    keys = []
-    for contract in contracts:
-        contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
-
-    return flask.jsonify(keys)
 
 
 @shop_decorator(area="cube", permission="user", response="json")
