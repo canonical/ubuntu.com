@@ -494,6 +494,17 @@ def cve(cve_id):
         cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
             "%-d %B %Y"
         )
+    
+    if cve.get("updated_at"):
+        cve["updated_at"] = dateutil.parser.parse(cve["updated_at"]).strftime(
+            "%-d %B %Y"
+        )
+
+    if cve.get("notices"):
+        for notice in cve["notices"]:
+            notice["published"] = dateutil.parser.parse(
+                notice["published"]
+            ).strftime("%-d %B %Y")
 
     # format patches
     formatted_patches = []
