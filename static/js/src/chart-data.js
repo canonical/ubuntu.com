@@ -1258,8 +1258,8 @@ export var desktopServerReleaseNames = [
 export var kernelReleaseNames = [
   "22.04.4 LTS",
   "23.10",
-  "22.04.1 LTS",
   "20.04.5 LTS",
+  "22.04.1 LTS",
   "22.04.0 LTS",
   "18.04.5 LTS",
   "20.04.1 LTS",
@@ -1326,16 +1326,16 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 20.04.1 LTS (v5.4)",
   "Ubuntu 18.04.5 LTS (v5.4)",
   "Ubuntu 22.04.0 LTS (v5.15)",
-  "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
+  "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 23.10 (v6.5)",
   "Ubuntu 22.04.4 LTS (v6.5)",
 ];
 
 export var kernelReleaseNamesLTS = [
   "Ubuntu 16.04.0 LTS (v4.4)",
-  "Ubuntu 14.04.5 LTS (v4.4)",
   "Ubuntu 16.04.1 LTS (v4.4)",
+  "Ubuntu 14.04.5 LTS (v4.4)",
   "Ubuntu 18.04.0 LTS (v4.15)",
   "Ubuntu 18.04.1 LTS (v4.15)",
   "Ubuntu 16.04.5 LTS (v4.15)",
@@ -1343,8 +1343,8 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 20.04.1 LTS (v5.4)",
   "Ubuntu 18.04.5 LTS (v5.4)",
   "Ubuntu 22.04.0 LTS (v5.15)",
-  "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.1 LTS (v5.15)",
+  "Ubuntu 20.04.5 LTS (v5.15)",
   "Ubuntu 22.04.4 LTS (v6.5)",
 ];
 
