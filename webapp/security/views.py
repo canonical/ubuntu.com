@@ -13,7 +13,6 @@ from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from operator import itemgetter
 
 # Local
 from webapp.context import api_session
@@ -529,12 +528,12 @@ def cve(cve_id):
     formatted_patches = []
 
     # TODO: Format references
-    default_reference_urls = [
-        "https://cve.mitre.org/",
-        "https://nvd.nist.gov",
-        "https://launchpad.net/",
-        "https://security-tracker.debian.org",
-    ]
+    # default_reference_urls = [
+    #     "https://cve.mitre.org/",
+    #     "https://nvd.nist.gov",
+    #     "https://launchpad.net/",
+    #     "https://security-tracker.debian.org",
+    # ]
 
     if cve["patches"]:
         for package_name, patches in cve["patches"].items():
