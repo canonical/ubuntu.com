@@ -494,7 +494,7 @@ def cve(cve_id):
         cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
             "%-d %B %Y"
         )
-    
+
     if cve.get("updated_at"):
         cve["updated_at"] = dateutil.parser.parse(cve["updated_at"]).strftime(
             "%-d %B %Y"
@@ -506,8 +506,35 @@ def cve(cve_id):
                 notice["published"]
             ).strftime("%-d %B %Y")
 
+    if cve.get("notes"):
+        for note in cve["notes"]:
+            if "Priority reason" in note["note"]:
+                text = note["note"]
+                pattern = r"Priority reason:\n(.*)"
+                match = re.search(pattern, text)
+                if match:
+                    cve["priority_reason"] = match.group(1)
+
+    if cve.get("packages"):
+        for package in cve["packages"]:
+            for status in package["statuses"]:
+                if (
+                    status["pocket"] == "esm-infra"
+                    or status["pocket"] == "esm-apps"
+                ):
+                    cve["expanded_coverage"] = True
+                    break
+
     # format patches
     formatted_patches = []
+
+    # TODO: Format references
+    default_reference_urls = [
+        "https://cve.mitre.org/",
+        "https://nvd.nist.gov",
+        "https://launchpad.net/",
+        "https://security-tracker.debian.org",
+    ]
 
     if cve["patches"]:
         for package_name, patches in cve["patches"].items():
@@ -538,10 +565,19 @@ def cve(cve_id):
                     or "http://" in suffix
                     or "https://" in suffix
                 ):
+                    pattern = r"/commit/(.*)"
+                    match = re.search(pattern, suffix)
+                    if match:
+                        suffix_text = match.group(1)
+
                     formatted_patches.append(
                         {
                             "type": "link",
-                            "content": {"prefix": prefix, "suffix": suffix},
+                            "content": {
+                                "prefix": prefix,
+                                "suffix": suffix,
+                                "suffix_text": suffix_text,
+                            },
                             "name": package_name,
                         }
                     )

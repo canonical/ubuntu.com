@@ -14,6 +14,7 @@
   <div class="row p-section">
     <div class="col-start-large-4 col-9">
       <h1>{{ cve.id }}</h1>
+      
       {% if cve.codename %}
       <p class="u-cve-gap">
         <span>Name</span><span>{{ cve.codename }}</span>
@@ -73,17 +74,33 @@
               <h2 class="p-text--small-caps">Cvss 3 Severity Score</h2>
               <div class="p-heading-icon--small">
                 <div class="p-heading-icon__header p-section--shallow">
-                  <img src="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
-                  
-                  <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
-                    <strong>{{ cvssV3.baseScore | capitalize }}</strong>
-                  </p>
-
+                  {% set baseScore = cvssV3.baseScore  %}
+                  {% if baseScore <= 3.9 %}
+                    <img src="https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" alt="" class="p-heading-icon__img">
+                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                      <strong>{{ cvssV3.baseScore | capitalize }} &middot; Low</strong>
+                    </p>
+                  {% elif baseScore <= 6.9 %}
+                    <img src="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
+                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                      <strong>{{ cvssV3.baseScore | capitalize }} &middot; Medium</strong>
+                    </p>
+                  {% elif baseScore <= 8.9 %}
+                    <img src="https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg" alt="" class="p-heading-icon__img">
+                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                      <strong>{{ cvssV3.baseScore | capitalize }} &middot; High</strong>
+                    </p>
+                  {% elif baseScore <= 10 %}
+                    <img src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" alt="" class="p-heading-icon__img">
+                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                      <strong>{{ cvssV3.baseScore | capitalize }} &middot; Critical</strong>
+                    </p>
+                  {% endif %}
                 </div>
               </div>
-              <p class="p-heading--5 u-no-margin--bottom"><a href="#impact-score">Score breakdown</a></p>
-            {% elif cve.cvss3 %}
-                <p>CVSS 3 base score: {{ cve.cvss3 }} Medium</p>
+              <p><a href="#impact-score">Score breakdown</a></p>
+              {% elif cve.cvss3 %}
+                <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
             </div>
           {% endif %}
         </div>
@@ -95,7 +112,7 @@
 <section class="p-section">
   <div class="row">
     <aside class="col-3">
-      <div class="p-side-navigation--raw-html is-sticky" id="drawer">
+      <div class="p-side-navigation--raw-html" id="drawer" style="position: sticky; top: 4rem;">
         <button class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
           Toggle side navigation
         </button>
@@ -107,28 +124,43 @@
             </button>
           </div>
           <ul>
+            {% if cve.description %}
             <li class="p-side-navigation__item">
               <a class="highlight-link is-active" href="#description">Description</a>
             </li>
+            {% endif %}
+            {% if cve.mitigation %}
             <li class="p-side-navigation__item">
               <a class="highlight-link" href="#mitigation">Mitigation</a>
             </li>
+            {% endif %}
+            {% if cve.status %}
             <li class="p-side-navigation__item">
               <a class="highlight-link" href="#status">Status</a>
             </li>
+            {% endif %}
+            {% if cve.notes and not cve.priority_reason %}
+            <li class="p-side-navigation__item">
+              <a class="highlight-link" href="#notes">Notes</a>
+            </li>
+            {% endif %}
+            {% if cve.impact %}
             <li class="p-side-navigation__item">
               <a class="highlight-link" href="#impact-score">Severity score breakdown</a>
             </li>
+            {% endif %}
+            {% if cve.references %}
             <li class="p-side-navigation__item">
               <a class="highlight-link" href="#references">References</a>
             </li>
+            {% endif %}
           </ul>
         </nav>
       </div>
     </aside>
     
     <main class="col-9">
-      <div class="p-section section-heading" id="description">
+      <div class="p-section section-heading" id="description" style="scroll-margin-top: 3.5rem;">
         {% if cve.description %}
           <p class=" u-no-padding--top">{{ cve.description }}</p>
         {% endif %}
@@ -138,19 +170,21 @@
           <p>{{ cve.ubuntu_description }}</p>
           <a href="#notes">Read the notes from the security team</a>
         {% endif %}
-  
-        <h3>Why is this CVE high priority?</h3>
-        <p>By using unprivileged user namespaces, this can be exploited to achieve local privilege escalation.</p>  
+        
+        {% if cve.priority_reason %}
+          <h3>Why is this CVE {{ cve.priority }} priority?</h3>
+          <p>{{ cve.priority_reason }}</p>
+        {% endif %}
       </div>
 
       {% if cve.mitigation %}
-        <div class="p-section section-heading" id="mitigation">
+        <div class="p-section section-heading" id="mitigation" style="scroll-margin-top: 3.5rem;">
           <h2>Mitigation</h2>
           <p>{{ cve.mitigation }}</p>
         </div>
       {% endif %}
       
-      <div class="p-section section-heading" id="status">
+      <div class="p-section section-heading" id="status" style="scroll-margin-top: 3.5rem;">
         <h2>Status</h2>
         <div class="u-fixed-width p-section">
           <label class="p-switch" style="float: right;">
@@ -166,16 +200,16 @@
             <table class="cve-table">
               <thead>
                 <tr>
-                  <th style="width: 15rem;">Package</th>
-                  <th>Ubuntu Release</th>
-                  <th style="padding-left: 1.5rem;">Status</th>
+                  <th style="width: 12rem;">Package</th>
+                  <th style="width: 18rem;">Ubuntu Release</th>
+                  <th style="padding-left: 1.5rem; width:25rem">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {% for package in cve.packages %}
                   {% for status in package.statuses %}
                     <tr>
-                      {% if status.release_codename %}
+                      {% if status.release_codename and status.release_codename != "upstream" %}
                         {% if loop.index == 1 %}
                           <td rowspan="{{ package.statuses | length }}">
                             {{ package["name"] }}
@@ -186,29 +220,28 @@
                         </td>
                         
                         {% if status.status == "DNE" %}
-                          <td class="u-text--muted" style="padding-left: 1.5rem;">  
+                          <td class="u-text--muted">  
                             Not in release
                         {% elif status.status == "not-affected" %}
-                          <td class="u-text--muted" style="padding-left: 1.5rem;">  
-                            Not affected
+                          <td class="u-text--muted">  
+                            <i class="p-icon--success"></i> <span>Not affected</span>
                         {% elif status.status == "needs-triage" %}
                           <td>
-                          Needs triage
+                          Needs evaluation
                         {% elif status.status == "needed" %}
                           <td>
-                          Needed
+                            <i class="p-icon--error"></i> <span>Vulnerable</span>
                         {% elif status.status == "deferred" %}
                           <td>
-                          Deferred
+                            <i class="p-icon--error"></i> <span>Vulnerable, fix deferred</span>
                         {% elif status.status == "ignored" %}
-                          <td style="padding-left: 1.5rem;">
-                          Ignored
+                          <td>
+                            <i class="p-icon--hide"></i> <span>Ignored</span>
                         {% elif status.status == "pending" %}
                           <td>
-                          Pending
+                            <i class="p-icon--error"></i> <span>Vulnerable, work in progress</span>
                         {% elif status.status == "released" %}
                         <td>
-
                         <i class="p-icon--success"></i> <span>Fixed</span>
                           {% if status.description %}
                             <span class="u-text--muted">{{ status.description }}</span>
@@ -242,10 +275,32 @@
         </p>
       </div>
 
-      <div class="p-section question-heading" id="#notes">
+      {% if cve.expanded_coverage %}
+      <div class="p-section">
+        <h3>Get expanded security coverage with Ubuntu Pro</h3>
+        <p>Reduce your average CVE exposure time from 98 days to 1 day with expanded CVE patching, ten-years security maintenance and optional support for the full stack of open-source applications. Free for personal use.</p>
+        <a class="p-button--positive" href="/pro">Get Ubuntu Pro</a>
       </div>
+      {% endif %}
 
-      <div class="p-section" id="#patch-details">
+      {% if cve.notes and not cve.priority_reason %}
+      <div class="p-section section-heading" id="notes" style="scroll-margin-top: 3.5rem;">
+        <h2>Notes</h2>
+        <div class="row">
+          <div class="col-6">
+            {% for note in cve.notes %}
+            <hr />
+            {% if note.author %}
+              <h3 class="p-heading--5"><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></h3>
+            {% endif %}
+            <p>{{ note.note }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="p-section" id="#patch-details" style="scroll-margin-top: 3.5rem;">
         <h3>Patch details</h3>
         <div class="p-notification--information">
           <div class="p-notification__content">
@@ -275,15 +330,15 @@
                         {% elif patch.type == "break-fix" %}
                           <li class="p-list__item has-bullet">
                             Introduced by
-                            <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a>,
+                            <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced[:7] }}</a>,
                             fixed by
-                            <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
+                            <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed[:7] }}</a>
                           </li>
                         {% elif patch.type == "link" %}
                           <li class="p-list__item has-bullet">
                             {{ patch.content.prefix | capitalize }}:
                             {% if patch.content.suffix %}
-                            <a href="{{ patch.content.suffix }}">{{ patch.content.suffix }}</a>
+                            <a href="{{ patch.content.suffix }}">{{ patch.content.suffix_text[:7] }}</a>
                           </li>
                         {% else %}
                         <li class="p-list__item has-bullet">
@@ -303,7 +358,7 @@
       </div>
 
       {% if cvssV3 %}
-      <div class="p-section question-heading" id="impact-score">
+      <div class="p-section section-heading" id="impact-score">
         <div class="">
           <h2>Severity score breakdown</h2>
           <table>
@@ -316,7 +371,22 @@
             <tbody>
               <tr>
                 <th>Base score</th>
-                <td>{{cvssV3.baseScore}}</td>
+                <td  class="u-cve-base-score">
+                  {% set baseScore = cvssV3.baseScore  %}
+                  {% if baseScore <= 3.9 %}
+                    <img src="https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" alt="" class="p-heading-icon__img">
+                      <span>{{ cvssV3.baseScore | capitalize }} &middot; Low</span>
+                  {% elif baseScore <= 6.9 %}
+                    <img src="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
+                      <span>{{ cvssV3.baseScore | capitalize }} &middot; Medium</span>
+                  {% elif baseScore <= 8.9 %}
+                    <img src="https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg" alt="" class="p-heading-icon__img">
+                      <span>{{ cvssV3.baseScore | capitalize }} &middot; High</span>
+                  {% elif baseScore <= 10 %}
+                    <img src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" alt="" class="p-heading-icon__img">
+                      <span>{{ cvssV3.baseScore | capitalize }} &middot; Critical</span>
+                  {% endif %}
+                </td>
               </tr>
               <tr>
                 <th>Attack vector</th>
@@ -360,64 +430,56 @@
       </div>
       {% endif %}
 
-      <div class="p-section section-heading" id="references">
-        <h2>References</h2>
-        <ul class="p-inline-list p-section--shallow">
-          <li class="p-inline-list__item">
-            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
-              MITRE
-            </a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}">
-              NVD
-            </a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="https://launchpad.net/bugs/cve/{{ cve.id }}">
-              Launchpad
-            </a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="https://security-tracker.debian.org/tracker/{{ cve.id }}">Debian</a>
-          </li>
-        </ul>
-
-        <h3>Related Ubuntu Security Notices (USN)</h3>
-        <ul class="p-list">
-          {% for notice in cve.notices %}
+      <div class="p-section section-heading" id="references" style="scroll-margin-top: 3.5rem;">
+        <div class="p-section">
+          <h2>References</h2>
           <ul class="p-inline-list p-section--shallow">
             <li class="p-inline-list__item">
-              <a href="https://usn.ubuntu.com/{{ notice.id }}">
-                {{ notice.id }}
+              <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
+                MITRE
               </a>
             </li>
             <li class="p-inline-list__item">
-              {{ notice.title }}
+              <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}">
+                NVD
+              </a>
             </li>
-            <li class="p-inline-list__item u-text--muted">
-              {{ notice.published }}
+            <li class="p-inline-list__item">
+              <a href="https://launchpad.net/bugs/cve/{{ cve.id }}">
+                Launchpad
+              </a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="https://security-tracker.debian.org/tracker/{{ cve.id }}">Debian</a>
             </li>
           </ul>
-          {% endfor %}
-        </ul>
+        </div>
+
+        <div class="p-section">
+          <h3>Related Ubuntu Security Notices (USN)</h3>
+          <ul class="p-list">
+            {% for notice in cve.notices %}
+            <ul class="p-inline-list">
+              <li class="p-inline-list__item">
+                <a href="https://usn.ubuntu.com/{{ notice.id }}">
+                  {{ notice.id }}
+                </a>
+              </li>
+              <li class="p-inline-list__item">
+                {{ notice.title }}
+              </li>
+              <li class="p-inline-list__item u-text--muted">
+                {{ notice.published }}
+              </li>
+            </ul>
+            {% endfor %}
+          </ul>
+        </div>
+
       </div>
     </main>
   </div>
 </section>
-
-      {% if cve.status == 'active' and cve.notes %}
-        <h2>Notes</h2>
-        <table>
-          <tr><th style="width: 10em;">Author</th><th>Note</th></tr>
-          {% for note in cve.notes %}
-          <tr>
-            <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
-            <td><pre>{{ note.note }}</pre></td>
-          </tr>
-          {% endfor %}
-        </table>
-      {% endif %}
 
 <script>
    function setUpDynamicSideNav() {
