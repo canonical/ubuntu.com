@@ -13,7 +13,6 @@ from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from operator import itemgetter
 
 # Local
 from webapp.security.api import SecurityAPI
