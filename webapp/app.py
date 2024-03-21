@@ -75,13 +75,13 @@ from webapp.shop.cred.views import (
     cred_self_study,
     cred_shop,
     cred_shop_thank_you,
+    cred_shop_webhook_responses,
     cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
     get_activation_keys,
     get_cue_products,
-    get_filtered_webhook_responses,
     get_issued_badges,
     get_my_issued_badges,
     get_webhook_response,
@@ -887,6 +887,10 @@ app.add_url_rule(
     "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
 )
 app.add_url_rule(
+    "/credentials/shop/webhook_responses",
+    view_func=cred_shop_webhook_responses,
+)
+app.add_url_rule(
     "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
 )
 app.add_url_rule(
@@ -913,11 +917,6 @@ app.add_url_rule(
     "/credentials/beta/activation",
     view_func=cred_beta_activation,
     methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/get_filtered_webhook_responses",
-    view_func=get_filtered_webhook_responses,
-    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/get_webhook_response",

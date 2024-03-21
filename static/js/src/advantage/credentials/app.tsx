@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredKeyShop from "./components/CredKeyShop";
 import CredExamShop from "./components/CredExamShop/CredExamShop";
-import CredWebhookResponses from "./components/CredWebhookResponses";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -42,10 +41,6 @@ function App() {
             <Route path="/" element={<CredExamShop />} />
             <Route path="/keys" element={<CredKeyShop />} />
             <Route path="/manage" element={<CredManage />} />
-            <Route
-              path="/webhook_responses"
-              element={<CredWebhookResponses />}
-            />
           </Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
