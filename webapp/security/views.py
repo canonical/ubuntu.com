@@ -568,6 +568,8 @@ def cve(cve_id):
                     match = re.search(pattern, suffix)
                     if match:
                         suffix_text = match.group(1)
+                    else:
+                        suffix_text = ""
 
                     formatted_patches.append(
                         {
