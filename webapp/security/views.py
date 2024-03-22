@@ -493,7 +493,6 @@ def cve_index():
         detailed=detailed,
     )
 
-
 def does_not_include_base_url(link):
     default_reference_urls = [
         "https://cve.mitre.org/",
@@ -555,7 +554,7 @@ def cve(cve_id):
 
     # Format remaining references
     other_references = []
-
+    
     if cve.get("references"):
         for reference in cve["references"]:
             if does_not_include_base_url(reference):
