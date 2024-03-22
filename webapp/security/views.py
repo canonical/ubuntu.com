@@ -453,7 +453,7 @@ def cve_index():
                     "pocket": status["pocket"],
                     "icon": friendly_status["icon"],
                 }
-                
+
     return flask.render_template(
         "security/cves/index.html",
         all_releases=all_releases,
@@ -476,6 +476,19 @@ def cve_index():
         order=order,
         detailed=detailed,
     )
+
+def does_not_include_base_url(link):
+    default_reference_urls = [
+        "https://cve.mitre.org/",
+        "https://nvd.nist.gov",
+        "https://launchpad.net/",
+        "https://security-tracker.debian.org",
+        "https://ubuntu.com/security/notices"
+    ]
+    for base_url in default_reference_urls:
+        if base_url in link:
+            return False
+    return True
 
 
 def does_not_include_base_url(link):
@@ -539,7 +552,6 @@ def cve(cve_id):
 
     # Format remaining references
     other_references = []
-
     if cve.get("references"):
         for reference in cve["references"]:
             if does_not_include_base_url(reference):
