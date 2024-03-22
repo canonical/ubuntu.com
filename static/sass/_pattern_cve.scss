@@ -19,21 +19,16 @@
   .cve-table {
     @extend %small-text;
     @media only screen and (max-width: $breakpoint-small) {
+      display: block;
       overflow-x: auto;
+      white-space: nowrap;
     }
   }
 
   .cve-table thead th {
     word-wrap: break-word;
-    @media only screen and (max-width: $breakpoint-small) {
-      &:nth-child(1) {
-        background-color: #fff;
-        left: 0;
-        position: sticky;
-        z-index: 1;
-      }
-    }
   }
+
   .cve-table thead tr {
     border-bottom: 0;
   }
@@ -397,4 +392,23 @@
       margin-top: 0.2rem;
     }
   }
+
+  .cve-hero-scores {
+    display: flex;
+
+    @media screen and (min-width: $breakpoint-large) {
+      gap: 9%;
+    }
+
+    @media screen and (max-width: $breakpoint-small) {
+      flex-direction: column;
+    }
+  }
+
+  .u-adjust-table-heading {
+    width: 19rem;
+    @media screen and (max-width: $breakpoint-small) {
+      width: fit-content;
+    }
+  } 
 }
