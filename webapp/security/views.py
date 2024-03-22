@@ -478,6 +478,19 @@ def cve_index():
         order=order,
     )
 
+def does_not_include_base_url(link):
+    default_reference_urls = [
+        "https://cve.mitre.org/",
+        "https://nvd.nist.gov",
+        "https://launchpad.net/",
+        "https://security-tracker.debian.org",
+        "https://ubuntu.com/security/notices"
+    ]
+    for base_url in default_reference_urls:
+        if base_url in link:
+            return False
+    return True
+
 
 def cve(cve_id):
     """
@@ -524,17 +537,17 @@ def cve(cve_id):
                     cve["expanded_coverage"] = True
                     break
 
+    # Format remaining references
+    other_references = []
+   
+    if cve.get("references"):
+        for reference in cve["references"]:
+            if does_not_include_base_url(reference):
+                other_references.append(reference)
+    
     # format patches
     formatted_patches = []
-
-    # TODO: Format references
-    # default_reference_urls = [
-    #     "https://cve.mitre.org/",
-    #     "https://nvd.nist.gov",
-    #     "https://launchpad.net/",
-    #     "https://security-tracker.debian.org",
-    # ]
-
+    
     if cve["patches"]:
         for package_name, patches in cve["patches"].items():
             for patch in patches:
@@ -611,6 +624,7 @@ def cve(cve_id):
         tags=formatted_tags,
         kenetic_packages=kenetic_packages,
         melodic_packages=melodic_packages,
+        other_references=other_references,
     )
 
 
