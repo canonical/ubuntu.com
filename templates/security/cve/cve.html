@@ -77,12 +77,12 @@
                   {% set baseScore = cvssV3.baseScore  %}
                   {% if baseScore <= 3.9 %}
                     <img src="https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" alt="" class="p-heading-icon__img">
-                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                    <p class="p-heading-icon__title p-heading--4">
                       <strong>{{ cvssV3.baseScore | capitalize }} &middot; Low</strong>
                     </p>
                   {% elif baseScore <= 6.9 %}
                     <img src="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
-                    <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
+                    <p class="p-heading-icon__title p-heading--4">
                       <strong>{{ cvssV3.baseScore | capitalize }} &middot; Medium</strong>
                     </p>
                   {% elif baseScore <= 8.9 %}
@@ -432,7 +432,7 @@
 
       <div class="p-section section-heading" id="references" style="scroll-margin-top: 3.5rem;">
         <h2>References</h2>
-        <ul class="p-inline-list p-section--shallow">
+        <ul class="p-inline-list">
           <li class="p-inline-list__item">
             <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">MITRE</a>
           </li>
