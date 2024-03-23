@@ -2,6 +2,10 @@
 {% extends "templates/base.html" %}
 
 {% block title %}{{ document.title }}{% endblock %}
+{% set is_docs = True %}
+{% block body_class %}docs{% endblock %}
+
+{% block body %}
 
 {% macro create_navigation(nav_items, expandable=False, expanded=False) %}
   <ul class="p-side-navigation__list">
@@ -43,21 +47,23 @@
   </ul>
 {% endmacro %}
 
-{% block outer_content %}
-{% with
-  search_action=search_action,
-  siteSearch=siteSearch,
-  placeholder=placeholder
-%}
-  {% if not disableSearch %}
-    {% include "templates/docs/shared/_search-box.html" %}
-  {% endif %}
-  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
-{% endwith %}
+<div class="l-docs">
+  <div class="l-docs__header">
+    {% include "templates/_navigation.html" %}
+    {% with
+      search_action=search_action,
+      siteSearch=siteSearch,
+      placeholder=placeholder
+    %}
+      {% if not disableSearch %}
+        {% include "templates/docs/shared/_search-box.html" %}
+      {% endif %}
+      <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
+    {% endwith %}
+  </div>
 
-<div class="p-strip is-shallow">
-  <div class="row">
-    <aside class="col-3">
+  <div class="l-docs__sidebar">
+    <div class="l-docs__sticky-container">
       {% if versions | length > 1 %}
       <label for="version-select" class="u-off-screen">Version selection</label>
       <select name="version-select" id="version-select">
@@ -97,14 +103,52 @@
           {% endfor %}
         </div>
       </nav>
-    </aside>
+    </div>
+  </div>
 
-    <main class="col-9">
-      {% if not disable_title %}
-      <h1>{{ document.title }}</h1>
+  <div class="l-docs__title">
+    <div class="u-fixed-width">
+      {% if document.title and not disable_title %}
+        <div class="p-section--shallow u-no-padding--top">
+          <h1 class="u-no-margin--bottom">{{ document.title }}</h1>
+        </div>
       {% endif %}
+    </div>
+  </div>
 
-      {{ document.body_html | safe }}
+  {% if document.headings_map is defined and document.headings_map|length > 0 %}
+    <div class="l-docs__meta">
+      <div class="l-docs__sticky-container">
+        <aside class="p-table-of-contents">
+          <div class="p-table-of-contents__section">
+            <h4 class="p-table-of-contents__header">On this page</h4>
+            <nav class="p-table-of-contents__nav" aria-label="Table of contents">
+              <ul class="p-table-of-contents__list">
+                {% for heading in document.headings_map %}
+                <li class="p-table-of-contents__item"><a class="p-table-of-contents__link" href="#{{ heading.heading_slug }}">{{ heading.heading_text }}</a></li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+        </aside>  
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="l-docs__main u-text-max-width">
+    <main class="u-fixed-width">
+
+      <div class="p-strip is-shallow" style="overflow: visible;">
+        {{ document.body_html | safe }}
+      </div>
+
+      <div class="p-strip is-shallow">
+        <div class="p-notification--information">
+          <div class="p-notification__content">
+            <p class="p-notification__message">This page was last modified {{ document.updated }}. <a href="{{ forum_url }}{{ document.topic_path }}">Help improve this document in the forum</a>.</p>
+          </div>
+        </div>
+      </div>
 
       <div class="p-strip">
         <hr class="u-no-margin--bottom">
@@ -151,22 +195,19 @@
           {%- endfor %}
         </div>
       </div>
-
-			<div class="p-strip is-shallow">
-				<div class="p-notification--information">
-					<div class="p-notification__content">
-            <p class="p-notification__message">This page was last modified {{ document.updated }}. <a href="{{ forum_url }}{{ document.topic_path }}">Help improve this document in the forum</a>.</p>
-          </div>
-				</div>
-			</div>
     </main>
   </div>
+
+  <div class="l-docs__footer">
+    {% include "templates/footer.html" %}
+  </div>
+
 </div>
 
 <script>
 // Allows the 'onchange' listener to be used on a select field, while still being accessible.
 (function initSelect() {
-	var selectField = document.querySelector("#version-select");
+  var selectField = document.querySelector("#version-select");
 
   selectField.changed = false;
   selectField.onfocus = selectFocussed;
@@ -176,7 +217,7 @@
 })();
 
 function updatePage(e) {
-	this.changed = true;
+  this.changed = true;
   window.location.href =  e.target.value;
 }
 
@@ -187,30 +228,31 @@ function selectFocussed() {
 function selectUnFocussed() {
   if (this.value != this.initValue) {
     this.changed = true;
-		window.location.href = this.value;
+    window.location.href = this.value;
   }
 }
 
 function selectKeyed(e) {
   e.preventDefault();
-	var theKeyPressed;
+  var theKeyPressed;
   var validConfirmKeys = [9, "Tab", 13, "Enter"]
   var validCancleKeys = [27, "Escape", "esc"]
 
-	if (e) {
+  if (e) {
     theKeyPressed = e.key || e.keyCode;
   } else {
     return false;
   }
 
-	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
-		this.changed = true;
-		window.location.href = this.value;
-	} else if (validCancleKeys.includes(theKeyPressed)) {
-		this.value = this.initValue;
-	} else {
-		this.changed = false;
-	}
+  if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
+    this.changed = true;
+    window.location.href = this.value;
+  } else if (validCancleKeys.includes(theKeyPressed)) {
+    this.value = this.initValue;
+  } else {
+    this.changed = false;
+  }
 }
 </script>
-{% endblock %}
+
+{% endblock body %}

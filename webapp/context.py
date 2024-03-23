@@ -24,10 +24,6 @@ api_session = CachedSession(fallback_cache_duration=3600)
 with open("navigation.yaml") as navigation_file:
     nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
-# Read meganav.yaml
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
-
 
 # Process data from YAML files
 # ===
@@ -42,23 +38,6 @@ def releases():
 
     with open("releases.yaml") as releases:
         return yaml.load(releases, Loader=yaml.FullLoader)
-
-
-def get_meganav(section):
-    """
-    Set "meganav_section" as global template variable
-    """
-    sections = {}
-    meganav_sections = copy.deepcopy(meganav)
-
-    if section == "all":
-        return meganav_sections
-
-    for section_name, meganav_section in meganav_sections.items():
-        if section_name == section:
-            sections = meganav_section
-
-    return {"sections": sections}
 
 
 def get_navigation(path):

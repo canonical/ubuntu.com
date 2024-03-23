@@ -1,191 +1,67 @@
-<nav class="dropdown-window__content-container desktop-dropdown-content">
-  <div class="dropdown-window__content row--25-75">
-    {% if "side_nav_sections" in sections %}
-      <div class="dropdown-window__tab-panel col">
-        <div class="p-side-navigation is-dark">
-          <div class="p-side-navigation__drawer">
-            <ul class="p-side-navigation__list js-tabs u-no-margin--bottom" role="tablist" aria-label="Categories">
-              {% for side_nav_section in sections.side_nav_sections %}
-                <li class="p-side-navigation__item" data-id="{{id}}-{{format_to_id(side_nav_section.title)}}">
-                  <a href="#" class="p-side-navigation__link{{ ' is-active' if loop.index == 1 }}" id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
-                </li>
-              {% endfor %}
-              </ul>
-          </div>
-        </div>
-      </div>
+{% macro dropdown_tab_content() %}
+<div class="p-side-navigation is-dark">
+  <div class="p-side-navigation__drawer">
+    <ul class="p-side-navigation__list js-tabs u-no-margin--bottom" role="tablist" aria-label="Categories">
+      {% for side_nav_section in sections.side_nav_sections %}
+        <li class="p-side-navigation__item" data-id="{{id}}-{{format_to_id(side_nav_section.title)}}">
+          <a href="#" class="p-side-navigation__link{{ ' is-active' if loop.index == 1 }}" id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" aria-controls="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="toggleSection(event);">{{ side_nav_section.title }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+  </div>
+</div>
+{% endmacro %}
 
-      <div class="col u-no-padding">
-        {% for side_nav_section in sections.side_nav_sections %}
-          <div class="dropdown-window__sidenav-content" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab" >
-            <div class="row u-no-padding"> 
-              <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel">
-                {% for links_section in side_nav_section.primary_links %}
-                  {% if links_section.title %}
-                    <p class="p-muted-heading">{{ links_section.title }}</p>
-                  {% endif %}
-                  
-                  <div class="row">
-                    {% if side_nav_section.secondary_links %}
-                      {% set split_links_list = split_list(links_section.links, 2) %}
-                    {% else %}
-                      {% set split_links_list = split_list(links_section.links, 3) %}
-                    {% endif %}
-
-                    <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
-                      <ul class="p-list">
-                        {% for link in split_links_list[0] %}
-                          {% with 
-                            url = link.url, 
-                            title = link.title, 
-                            description = link.description,
-                            secondary_cta_url = link.secondary_cta_url,
-                            secondary_cta_title = link.secondary_cta_title 
-                          %}
-                            {% include "templates/meganav/_list-item.html" %}
-                          {% endwith %}
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    <div class="{% if side_nav_section.secondary_links %}col-4{% else %}col-3{% endif %}">
-                      <ul class="p-list">
-                        {% for link in split_links_list[1] %}
-                          {% with 
-                            url = link.url, 
-                            title = link.title, 
-                            description = link.description 
-                          %}
-                            {% include "templates/meganav/_list-item.html" %}
-                          {% endwith %}
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    {% if secondary_links not in side_nav_section %}
-                      <div class="col-3">
-                        <ul class="p-list">
-                          {% for link in split_links_list[2] %}
-                            {% with 
-                              url = link.url, 
-                              title = link.title, 
-                              description = link.description 
-                            %}
-                              {% include "templates/meganav/_list-item.html" %}
-                            {% endwith %}
-                          {% endfor %}
-                        </ul>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-              </div>      
-
-              {% if side_nav_section.secondary_links %}
-              <div class="col-3 dropdown-window__side-panel">
-                {% for links_section in side_nav_section.secondary_links %}
-                  <p class="p-muted-heading">{{ links_section.title }}</p>
-                  
-                  <ul class="p-list">
-                    {% for link in links_section.links %}
-                      <li class="p-list__item">
-                        <a class="dropdown-window__side-panel-link" href="{{ link.url }}">{{ link.title }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-
-            {% if side_nav_section.section_footer %}
-              <div class="col-9 dropdown-window__footer">
-                {% if "copy" in side_nav_section.section_footer %}
-                  <p>{{ side_nav_section.section_footer['copy'] }}</p>
-                {% endif %}
-
-                <a href="{{side_nav_section.section_footer['cta_url'] }}" class="p-button is-dark">{{ side_nav_section.section_footer['cta_title'] }}</a>
-              </div>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    {% elif "primary_links" in sections %}
-      <div class="row u-no-padding"> 
-        <div class="col-9 dropdown-window__main-panel">
-          {% for links_section in sections.primary_links %}
-            {% if links_section.title %}
-              <p class="p-muted-heading">{{ links_section.title }}</p>
-            {% endif %}
-            
-            <div class="row">
-              {% set split_links_list = split_list(links_section.links, 3) %}
-
-              <div class="col-3">
-                <ul class="p-list">
-                  {% for link in split_links_list[0] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
-                      description = link.description,
-                      secondary_cta_url = link.secondary_cta_url,
-                      secondary_cta_title = link.secondary_cta_title 
-                    %}
-                      {% include "templates/meganav/_list-item.html" %}
-                    {% endwith %}
-                  {% endfor %}
-                </ul>
-              </div>
-
-              <div class="col-3">
-                <ul class="p-list">
-                  {% for link in split_links_list[1] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
-                      description = link.description 
-                    %}
-                      {% include "templates/meganav/_list-item.html" %}
-                    {% endwith %}
-                  {% endfor %}
-                </ul>
-              </div>
-
-              <div class="col-3">
-                <ul class="p-list">
-                  {% for link in split_links_list[2] %}
-                    {% with 
-                      url = link.url, 
-                      title = link.title, 
-                      description = link.description 
-                    %}
-                      {% include "templates/meganav/_list-item.html" %}
-                    {% endwith %}
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          {% endfor %}
-        </div>      
-
-        <div class="col-3 dropdown-window__side-panel">
-          {% if sections.secondary_links %}
-            {% for links_section in sections.secondary_links %}
-              <p class="p-muted-heading">{{ links_section.title }}</p>
-              
-              <ul class="p-list">
-                {% for link in links_section.links %}
-                  <li class="p-list__item">
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endfor %}
+{% macro dropdown_content(is_docs) %}
+{% if "side_nav_sections" in sections %}
+  {% for side_nav_section in sections.side_nav_sections %}
+    <div class="dropdown-window__sidenav-content col" {% if loop.index != 1 %}hidden="true"{% endif %} id="{{id}}-{{format_to_id(side_nav_section.title)}}-tab-content" tabindex="-1" role="tabpanel" aria-labelledby="{{id}}-{{format_to_id(side_nav_section.title)}}-tab">
+      <div class="dropdown-window__main-panel row"> 
+        {% for links_section in side_nav_section.primary_links %}
+          {% if links_section.title %}
+            <p class="p-navigation__heading--muted">{{ links_section.title }}</p>
+          {% endif %}
+          
+          {% if side_nav_section.secondary_links %}
+            {% set split_links_list = split_list(links_section.links, 2) %}
           {% else %}
-            {% for links_section in sections.highlighted_secondary_links %}
-              <p class="p-muted-heading" style="padding-left:0.5rem;">{{ links_section.title }}</p>
+            {% set split_links_list = split_list(links_section.links, 3) %}
+          {% endif %}
+
+          <div class="col-{% if is_docs %}4{% else %}3{% endif %}">
+            <ul class="p-list">
+              {% for link in split_links_list[0] %}
+                {% with 
+                  url = link.url, 
+                  title = link.title, 
+                  description = link.description,
+                  secondary_cta_url = link.secondary_cta_url,
+                  secondary_cta_title = link.secondary_cta_title 
+                %}
+                  {% include "templates/meganav/_list-item.html" %}
+                {% endwith %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="col-{% if is_docs %}4{% else %}3{% endif %}">
+            <ul class="p-list">
+              {% for link in split_links_list[1] %}
+                {% with 
+                  url = link.url, 
+                  title = link.title, 
+                  description = link.description 
+                %}
+                  {% include "templates/meganav/_list-item.html" %}
+                {% endwith %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          {% if secondary_links not in side_nav_section and split_links_list[2] is not undefined %}
+            <div class="{% if is_docs %}col-4{% else %}col-3{% endif %}">
               <ul class="p-list">
-                {% for link in links_section.links %}
+                {% for link in split_links_list[2] %}
                   {% with 
                     url = link.url, 
                     title = link.title, 
@@ -195,13 +71,155 @@
                   {% endwith %}
                 {% endfor %}
               </ul>
-            {% endfor %}
+            </div>
           {% endif %}
+        {% endfor %}
+
+        {% if side_nav_section.secondary_links %}
+          <div class="col-{% if is_docs %}4{% else %}3{% endif %} dropdown-window__side-panel u-no-margin">
+            {% for links_section in side_nav_section.secondary_links %}
+              <p class="p-navigation__heading--muted u-no-padding--top">{{ links_section.title }}</p>
+              
+              <ul class="p-list">
+                {% for link in links_section.links %}
+                  <li class="p-list__item">
+                    <a class="dropdown-window__side-panel-link" href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if side_nav_section.section_footer %}
+        <div class="col-9 dropdown-window__footer">
+          {% if "copy" in side_nav_section.section_footer %}
+            <p>{{ side_nav_section.section_footer['copy'] }}</p>
+          {% endif %}
+
+          <a href="{{side_nav_section.section_footer['cta_url'] }}" class="p-button is-dark">{{ side_nav_section.section_footer['cta_title'] }}</a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% elif "primary_links" in sections %}
+<div class="row {% if is_docs %}u-no-padding{% endif %}"> 
+  <div class="col-9 dropdown-window__main-panel">
+    {% for links_section in sections.primary_links %}
+      {% if links_section.title %}
+        <p class="p-navigation__heading--muted">{{ links_section.title }}</p>
+      {% endif %}
+      
+      <div class="row">
+        {% set split_links_list = split_list(links_section.links, 3) %}
+
+        <div class="col-3">
+          <ul class="p-list">
+            {% for link in split_links_list[0] %}
+              {% with 
+                url = link.url, 
+                title = link.title, 
+                description = link.description,
+                secondary_cta_url = link.secondary_cta_url,
+                secondary_cta_title = link.secondary_cta_title 
+              %}
+                {% include "templates/meganav/_list-item.html" %}
+              {% endwith %}
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-3">
+          <ul class="p-list">
+            {% for link in split_links_list[1] %}
+              {% with 
+                url = link.url, 
+                title = link.title, 
+                description = link.description 
+              %}
+                {% include "templates/meganav/_list-item.html" %}
+              {% endwith %}
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-3">
+          <ul class="p-list">
+            {% for link in split_links_list[2] %}
+              {% with 
+                url = link.url, 
+                title = link.title, 
+                description = link.description 
+              %}
+                {% include "templates/meganav/_list-item.html" %}
+              {% endwith %}
+            {% endfor %}
+          </ul>
         </div>
       </div>
+    {% endfor %}
+  </div>      
+
+  <div class="col-3 dropdown-window__side-panel">
+    {% if sections.secondary_links %}
+      {% for links_section in sections.secondary_links %}
+        <p class="p-navigation__heading--muted">{{ links_section.title }}</p>
+        
+        <ul class="p-list">
+          {% for link in links_section.links %}
+            <li class="p-list__item">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    {% else %}
+      {% for links_section in sections.highlighted_secondary_links %}
+        <p class="p-navigation__heading--muted" style="padding-left:0.5rem;">{{ links_section.title }}</p>
+        <ul class="p-list">
+          {% for link in links_section.links %}
+            {% with 
+              url = link.url, 
+              title = link.title, 
+              description = link.description 
+            %}
+              {% include "templates/meganav/_list-item.html" %}
+            {% endwith %}
+          {% endfor %}
+        </ul>
+      {% endfor %}
     {% endif %}
   </div>
+</div>
+{% endif %}
+{% endmacro %}
+
+{% if is_docs == "true" %}
+<nav class="dropdown-window__content-container desktop-dropdown-content">
+  <div class="dropdown-window__content l-docs__subgrid">
+    {% if not "primary_links" in sections %}
+    <div class="l-docs__sidebar">
+      {{ dropdown_tab_content() }}
+    </div>
+    {% endif %}
+    <div class="l-docs__main">
+      {{ dropdown_content(is_docs) }}
+    </div>
+  </div>
 </nav>
+{% else %}
+<nav class="dropdown-window__content-container desktop-dropdown-content">
+  <div class="dropdown-window__content {% if not "primary_links" in sections %}row--25-75{% endif %}">
+    {% if not "primary_links" in sections %}
+    <div class="dropdown-window__tab-panel col">
+      {{ dropdown_tab_content() }}
+    </div>
+    {% endif %}
+    {{ dropdown_content() }}
+  </div>
+</nav>
+{% endif %}
 
 <ul class="p-navigation__dropdown dropdown-content-mobile" id="{{id}}-content-mobile" aria-hidden="true" data-level="1">
   <li class="p-navigation__item--dropdown-close" id="{{id}}-back">
@@ -223,7 +241,7 @@
         </li>
         {% for links_section in side_nav_section.primary_links %}
           {% if links_section.title %}
-          <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+          <p class="p-navigation__heading--muted u-no-padding--top">{{ links_section.title }}</p>
           {% endif %}
           {% for link in links_section.links %}
             {% with 
@@ -241,7 +259,7 @@
         {% if side_nav_section.secondary_links %}
           {% for links_section in side_nav_section.secondary_links %}
           <ul class="p-list p-navigation__secondary-links">
-              <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
+              <p class="p-navigation__heading--muted">{{ links_section.title }}</p>
               {% for link in links_section.links %}
                 <li class="p-list__item">
                   <a class="p-navigation__secondary-link" href="{{ link.url }}" tabindex="-1">{{ link.title }}</a>
@@ -256,7 +274,7 @@
   {% elif "primary_links" in sections %}
     {% for links_section in sections.primary_links %}
       {% if links_section.title %}
-      <p class="p-muted-heading is-muted u-no-padding--top">{{ links_section.title }}</p>
+      <p class="p-navigation__heading--muted u-no-padding--top">{{ links_section.title }}</p>
       {% endif %}
       {% for link in links_section.links %}
         {% with 
@@ -274,7 +292,7 @@
     {% if "highlighted_secondary_links" in sections %}
       {% for links_section in sections.highlighted_secondary_links %}
         {% if links_section.title %}
-        <p class="p-muted-heading is-muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
+        <p class="p-navigation__heading--muted" style="padding-top: 1rem;">{{ links_section.title }}</p>
         {% endif %}
         {% for link in links_section.links %}
           {% with 
