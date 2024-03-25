@@ -4,93 +4,45 @@
 {% block canonical_url %}https://ubuntu.com/download/server/s390x{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1GptXtMfbgOjOmqb8DZCCTRwogkiP_cM95U9Z0gFSt7g/edit{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block head_extra %}
 <meta name="robots" content="noindex" />
 {% endblock %}
 
 {% block content %}
 
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Thank you for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--25-75 p-section">
+    <div class="col">
+      <h1 class="p-section--shallow">Thank you for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
       <p>Please select the release you wish to download.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <a  class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
-      </p>
+      <hr />
+        <a  class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
       {% if releases.latest.short_version > releases.lts.short_version %}
-      <p>
-        <a  class="p-button is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases.latest.full_version }}</a>
-      </p>
+        <a  class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases.latest.full_version }}</a>
       {% endif %}
     </div>
   </div>
 </section>
 
 <section class="p-strip is-shallow">
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
-                alt="",
-                width="32",
-                height="28",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-          }}
-          <h4 class="p-heading-icon__title">eBook</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="https://pages.ubuntu.com/Forrester_TAP_Report_2016.html">Forrester Research - get more from the cloud</a></h3>
+  <hr class="p-rule" />
+  <div class="row">
+    <div class="col-3">
+      <h2 class="p-heading--2">Resources</h2>
     </div>
-
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-                alt="",
-                width="32",
-                height="28",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="http://www-01.ibm.com/marketing/iwm/dre/signup?source=stg-web&S_PKG=ov47989&S_TACT=C47305CW">IDC - next generation applications on Ubuntu for LinuxONE/z</a></h3>
+    <div class="col-3 col-medium-2">
+      <h3 class="p-heading--5">eBook</h3>
+      <p><a href="https://pages.ubuntu.com/Forrester_TAP_Report_2016.html">Forrester Research &mdash; get more from the cloud</a></p>
     </div>
-
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-                alt="",
-                width="32",
-                height="28",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Webinar</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="https://www.youtube.com/watch?v=WxTAd0zqruA">Discover the Cloud and scale out world of Ubuntu on IBM</a></h3>
+    <div class="col-3 col-medium-2">
+      <h3 class="p-heading--5">Whitepaper</h3>
+      <p><a href="http://www-01.ibm.com/marketing/iwm/dre/signup?source=stg-web&S_PKG=ov47989&S_TACT=C47305CW">IDC &mdash; next generation applications on Ubuntu for LinuxONE/z</a></p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <h3 class="p-heading--5">Webinar</h3>
+      <p><a href="https://www.youtube.com/watch?v=WxTAd0zqruA">Discover the Cloud and scale out world of Ubuntu on IBM</a></p>
     </div>
   </div>
 </section>
