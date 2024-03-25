@@ -1,130 +1,261 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Thanks for downloading Ubuntu Server{% endblock %}
+{% block title %}Thank you for downloading Ubuntu Server{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1S5zY7HN_Q8eQWch0mCEfLICfj8pW1bct9_wGArCNIqc/edit{% endblock meta_copydoc %}
+
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block head_extra %}
   <meta name="robots" content="noindex" />
 {% endblock %}
 
 {% block content %}
-  <noscript>
-    <meta
-      http-equiv="refresh"
-      content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso"
-    />
-  </noscript>
+<noscript>
+  <meta
+    http-equiv="refresh"
+    content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso"
+  />
+</noscript>
 
-  <section class="p-strip u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
-    <div class="p-strip--suru-topped">
-      <div class="row">
-        <div class="col-6">
-          <h1 class="js-download-option">Thank you!</h1>
-          <p>Your download of Ubuntu Server {{ version }} should start in the background.</p>
-          <p>
-            If your download doesn't start automatically,
-            <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.
-          </p>
-          {% with version=version, system="live-server", architecture="amd64" %}
-            {% include "download/shared/_verify-checksums.html" %}
-          {% endwith %}
-          <h4 class="p-muted-heading">Explore:</h4>
-          <ul class="p-inline-list">
-            <li class="p-inline-list__item">
-              <a href="https://multipass.run" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">
-                <img src="https://assets.ubuntu.com/v1/4e0ff71e-Multipass+logo_thin_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
-            </li>
-            <li class="p-inline-list__item">
-              <a href="https://maas.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'MAAS', 'eventValue' : undefined });">
-                <img src="https://assets.ubuntu.com/v1/038514e8-MAAS_black-orange_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <div class="p-card">
-            <div class="row">
-              <div class="col-3">
-                {{
-                  image(
-                      url="https://assets.ubuntu.com/v1/39a8dac8-Ubuntu_Server_CLI_pro_tips_2020-04.jpg",
-                      alt="",
-                      width="440",
-                      height="331",
-                      hi_def=True,
-                      loading="eager",
-                  ) | safe
-                }}
-              </div>
-            </div>
-            <h2 class="p-heading--3">Get Ubuntu Server pro tips</h2>
-            <p>Get the "Ubuntu Server CLI pro tips 2020" and learn how to use the command line efficiently and get started with DevOps &mdash; from basic file management to deploying Kubernetes and OpenStack.</p>
-            <p><a href="#" class="p-button--positive" aria-controls="modal">Download the pro tips</a></p>
-          </div>
-        </div>
-      </div>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50">
+    <div class="col">
+      <h1 class="js-download-option">Thank you for downloading Ubuntu Server {{ version }}</h1>
+      <p>Your download should start in the background. If it doesn't,
+        <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.<br />
+        {% with version=version, system="live-server", architecture="amd64" %}
+          {% include "download/shared/_verify-checksums.html" %}
+        {% endwith %}
+      </p>
     </div>
-  </section>
+    <div class="col">
+      {% include 'shared/_server-download-newsletter.html' %}
+    </div>
+  </div>
+</section>
 
-  {% include "download/shared/_server_weekly_news.html" %}
+{% include 'download/shared/_server_weekly_news.html' %}
 
-  <div class="p-strip--light">
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h3>Enterprise Support for Ubuntu Server</h3>
-        <p>Looking for commercial support for Ubuntu Server? Ubuntu Advantage for Infrastructure (UA-I) provides production-grade SLAs, phone and ticket support, Expanded Security Maintenance (ESM) and more.</p>
-        <p>
-          <a href="/pro" class="p-button">Purchase a subscription</a>
-          <a href="/support">Learn more about UA-I&nbsp;&rsaquo;</a>
-        </p>
+<section class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Ubuntu CLI cheatsheet</h2>
+      <div class="p-section--shallow">
+        <p>Learn how to use the command line efficiently and get started with DevOps &mdash; from basic file management to LXD virtualisation and Ubuntu Pro.</p>
       </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      <button class="p-button--positive" onclick="toggleModal()">Download the CLI cheat sheet</button>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow p-image-wrapper">
         {{
-          image(
-              url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
-              alt="",
-              width="180",
-              height="180",
-              hi_def=True,
-              loading="lazy",
+          image (
+          url="https://assets.ubuntu.com/v1/639c1f12-server-cli-cheatsheet.png",
+          alt="CLI cheat sheet",
+          width="1200",
+          height="849",
+          hi_def=True,
+          loading="auto"
           ) | safe
         }}
       </div>
     </div>
   </div>
+</section>
 
-  <div class="p-strip">
-    <div class="row">
-      <h3 class="u-sv3">More documentation and resources</h3>
+<section class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  <div class="row">
+    <div class="col-3 col-medium-2">
+      <div class="p-section">
+        <h2 class="p-muted-heading">Resources</h2>
+      </div>
     </div>
-    <div class="row u-equal-height p-divider">
-      <div class="col-4 p-divider__block">
-        <h4><a href="/server/docs">Ubuntu Server Guide&nbsp;&rsaquo;</a></h4>
+    <div class="col-9">
+     <div class="row">
+      <div class="col-3 col-medium-2">
+        <h3 class="p-heading--5"><a href="/server/docs">Ubuntu Server documentation</a></h3>
         <p>The Ubuntu Server documentation, curated by community and Ubuntu developers.</p>
       </div>
-      <div class="col-4 p-divider__block">
-        <h4><a href="https://askubuntu.com/">Ask Ubuntu</a></h4>
+      <div class="col-3 col-medium-2">
+        <h3 class="p-heading--5"><a href="https://askubuntu.com/">Ask Ubuntu</a></h3>
         <p>Stuck somewhere? Get your Ubuntu questions answered by power users.</p>
       </div>
-      <div class="col-4 p-divider__block">
-        <h4><a href="https://discourse.ubuntu.com/">Community Hub</a></h4>
+      <div class="col-3 col-medium-2">
+        <h3 class="p-heading--5"><a href="https://discourse.ubuntu.com/">Community Discourse</a></h3>
         <p>Discuss with Ubuntu developers and make your voice heard.</p>
+      </div>  
+     </div> 
+    </div>
+  </div>
+</section>
+
+{% include 'shared/_download-ubuntu-thank-you-pro-section.html' %}
+
+<section class="p-section">
+  <div class="p-section--shallow u-fixed-width">
+    <hr class="p-rule" />
+    <h2 class="p-muted-heading">More from Canonical</h2>
+  </div>
+  <div class="row">
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://maas.io/?_gl=1*1y3394w*_gcl_au*Mzg2MjE3ODk3LjE3MDI0NjY1NDY.&_ga=2.256850242.873815666.1709630805-805571671.1709630804">
+              {{
+                image (
+                url="https://assets.ubuntu.com/v1/d3039f38-MAAS-logo.svg",
+                alt="MAAS",
+                width="104",
+                height="42",
+                hi_def=True,
+                loading="auto"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Build a bare metal cloud with super fast server provisioning.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://canonical.com/lxd">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/84ed7eb1-LXD-logo.svg",
+                  alt="LXD",
+                  width="80",
+                  height="42",
+                  hi_def=True,
+                  loading="auto"
+                ) | safe
+              }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Fast, dense, and secure container and VM management at any scale.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://canonical.com/lxd">Learn more about LXD&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://juju.is/">
+            {{
+              image (
+                url="https://assets.ubuntu.com/v1/35f593dd-Juju-logo.svg",
+                alt="Juju",
+                width="79",
+                height="42",
+                hi_def=True,
+                loading="auto"
+              ) | safe
+            }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Design and deploy entire workloads in just a few clicks.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://juju.is/">Learn more about Juju&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 col-medium-6">
+      <div class="row">
+        <div class="col-6 col-medium-2">
+          <h3>
+            <a href="https://multipass.run/">
+            {{
+              image (
+                url="https://assets.ubuntu.com/v1/ede1a596-Multipass-logo.svg",
+                alt="Multipass",
+                width="141",
+                height="42",
+                hi_def=True,
+                loading="auto"
+              ) | safe
+            }}
+            </a>
+          </h3>
+        </div>
+        <div class="col-6 col-medium-4">
+          <p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://multipass.run/">Learn more about Multipass&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule"/>
+    <div class="col-3 col-medium-6">
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps"><a href="/blog/tag/ubuntu-server">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
+      </div>
+    </div>
+    <div class="col-9 col-medium-6">
+      <div class="row p-section--shallow" id="ubuntu-server-latest">
       </div>
     </div>
   </div>
 
+  <template style="display:none" id="ubuntu-server-template">
+    <div class="col-3 col-medium-2">
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
+      <p class="article-excerpt"></p>
+    </div>
+  </template>
+</section>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#ubuntu-server-latest",
+      articleTemplateSelector: "#ubuntu-server-template",
+      excerptLength: 200,
+      tagId: 1610,
+      limit: 3
+    }
+  )
+</script>
+
 {% endblock content %}
 
 {% block footer_extra %}
-  <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+<script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
 
-  <script defer>
-    var version = '{{ version }}';
+<script defer>
+  var version = '{{ version }}';
 
-    var GAlabel = version + '-server-amd64';
-    var imagePath = version + '/ubuntu-' + version + '-live-server-amd64.iso';
+  var GAlabel = version + '-server-amd64';
+  var imagePath = version + '/ubuntu-' + version + '-live-server-amd64.iso';
 
-    window.initImageDownload(imagePath, GAlabel);
-  </script>
+  window.initImageDownload(imagePath, GAlabel);
+</script>
 {% endblock footer_extra %}

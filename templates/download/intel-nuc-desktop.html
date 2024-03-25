@@ -1,81 +1,77 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Desktop on the Intel&reg; NUC{% endblock %}}
+{% block title %}Install Ubuntu Desktop on the Intel&reg; NUC{% endblock %}
+{% block description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1hDkrBqpJXWaENYZMSxd8P-XLFQ2LQqS1wNe4o2MGLho/edit{% endblock meta_copydoc %}
+{% block body_class %}is-paper{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--light is-bordered" id="core">
-  <div class="row">
-    <div class="col-8">
-      <h1>Install Ubuntu Desktop on the Intel<sup>&reg;</sup> NUC</h1>
-      <p>There are two install options for the Intel NUC: <a href="intel-nuc">Ubuntu Core</a> or <a href="#desktop">Ubuntu Desktop</a>  This page is for Ubuntu Desktop.</p>
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="row--50-50 p-section">
+    <div class="col">
+      <h1>Install Ubuntu Desktop<br /> on the Intel<sup>&reg;</sup> NUC</h1>
     </div>
-  </div>
-  <div class="row" id="desktop">
-    <div class="col-12 p-card">
-      <div class="u-equal-height row p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install Ubuntu Desktop</h2>
-          <p>Use your favourite development tools, install snaps and access the vast Ubuntu ecosystem with your NUC.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Minimum requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An Intel NUC with BIOS updated to the latest version (<a href="https://www.intel.com/content/www/us/en/support/articles/000033300/intel-nuc.html">update instructions</a>)</li>
-            <li class="p-list__item is-ticked">1 USB 2.0 or 3.0 flash drive (4GB minimum for Dawson Canyon NUCs, 2GB for older generations)</li>
-            <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">An HDMI cable</li>
-            <li class="p-list__item is-ticked">A network connection with Internet access</li>
-          </ul>
-        </div>
-      </div>
+    <div class="col">
+      <p>There are two install options for the Intel NUC: <a href="/download/iot/intel-nuc">Ubuntu Core</a> or <a href="/download/iot/intel-nuc-desktop#desktop">Ubuntu Desktop</a>. This page is for Ubuntu Desktop.</p>
+      <p>Use your favourite development tools, install snaps and access the vast Ubuntu ecosystem with your NUC.</p>
+      <hr class="p-rule" />
+      <h2 class="p-heading--5">Minimum requirements</h2>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">An Intel<sup>&reg;</sup> NUC with BIOS updated to the latest version (<a href="https://www.intel.com/content/www/us/en/support/articles/000033300/intel-nuc.html">update instructions</a>)</li>
+        <li class="p-list__item is-ticked">1 USB 2.0 or 3.0 flash drive (4GB minimum for Dawson Canyon NUCs, 2GB for older generations)</li>
+        <li class="p-list__item is-ticked">A USB keyboard and a mouse</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable</li>
+        <li class="p-list__item is-ticked">A network connection with Internet access</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
+<section class="p-section">
+  <div class="row">
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Download Ubuntu Desktop
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
           <p>Download the correct Ubuntu image for your device:</p>
-          <ul class="u-no-margin--left u-no-margin--top">
-            <li><a href="http://people.canonical.com/~platform/images/nuc/pc-dawson-xenial-amd64-m4-20180507-32.iso"> Dawson Canyon and June Canyon NUC &ndash; Ubuntu Desktop 16.04 LTS image</a>
+          <hr class="p-rule" />
+          <ul class="p-list--divided">
+            <li class="p-list__item"><a href="http://people.canonical.com/~platform/images/nuc/pc-dawson-xenial-amd64-m4-20180507-32.iso">Dawson Canyon and June Canyon NUC – Ubuntu Desktop 16.04 LTS image</a>
             <br>Certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE NUC7i3DNHE, NUC7i3DNKE, NUC7i3DNBE and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH.</li>
           </ul>
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Flash the USB drive
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
-          <p>Copy the image on a USB drive by following the <a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">installation media instructions</a>.</p>
+          <p>Copy the image on a USB drive by following the <a href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-
+        <hr class="p-rule u-hide--large" />
+        <h2 class="p-stepped-list__title">
           Install Ubuntu Desktop
-        </h3>
+        </h2>
         <div class="p-stepped-list__content">
           <p>Booting the system from the USB flash drive will start the Ubuntu installer.</p>
-          <ol class="u-no-margin--left">
-            <li>Insert the USB flash drive in the NUC.</li>
-            <li>Start the NUC and push F10 to enter the boot menu.</li>
-            <li>Select the USB flash drive as a boot option.</li>
-            <li>The system will automatically execute the first stage of installation and prompt for an acknowledgement of a complete system recovery.</li>
-            <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
-            <li>Pick a hostname, user account and password.</li>
-            <li>Wait for the configuration to finish. If you are connected to an active network, it will take several minutes to download and apply additional updates.</li>
-            <li>Ubuntu is installed. Use your account and password to log in.</li>
+          <hr class="p-rule" />
+          <ol class="p-list--divided">
+            <li class="p-list__item">Insert the USB flash drive in the NUC.</li>
+            <li class="p-list__item">Start the NUC and push F10 to enter the boot menu.</li>
+            <li class="p-list__item">Select the USB flash drive as a boot option.</li>
+            <li class="p-list__item">The system will automatically execute the first stage of installation and prompt for an acknowledgement of a complete system recovery.</li>
+            <li class="p-list__item">Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
+            <li class="p-list__item">Pick a hostname, user account and password.</li>
+            <li class="p-list__item">Wait for the configuration to finish. If you are connected to an active network, it will take several minutes to download and apply additional updates.</li>
+            <li class="p-list__item">Ubuntu is installed. Use your account and password to log in.</li>
           </ol>
         </div>
       </li>
@@ -83,8 +79,8 @@
   </div>
 </section>
 
-{% include "download/shared/_get-ebook-security.html"%}
+{% include "download/shared/_download-security.html" %}
 
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "download/shared/_resources.html" %}
 
 {% endblock content %}
