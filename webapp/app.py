@@ -76,6 +76,7 @@ from webapp.shop.cred.views import (
     cred_shop,
     cred_shop_thank_you,
     cred_shop_webhook_responses,
+    cred_shop_keys,
     cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
@@ -883,6 +884,7 @@ app.add_url_rule(
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
+app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
 app.add_url_rule(
     "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
 )
