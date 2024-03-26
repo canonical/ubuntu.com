@@ -40,8 +40,8 @@ TIMEZONE_COUNTRIES = {
 TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 EXAM_NAMES = {
-    "cue-test": "CUE: Linux Beta",
-    "cue-linux-essentials": "CUE.01: Linux",
+    "cue-test": "CUE Linux Beta",
+    "cue-linux-essentials": "CUE.01 Linux",
 }
 
 RESERVATION_STATES = {
@@ -245,7 +245,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
-                r = response["assessment_reservation"]
+                r = response.get("assessment_reservation")
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
                 starts_at = (
