@@ -35,6 +35,7 @@ from googleapiclient.discovery import build
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
+from webapp.context import api_session
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -1204,3 +1205,15 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 
 def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
+
+
+def desktop_download_size():
+    url = "https://releases.ubuntu.com/23.10/"
+    source = api_session.get(url).text
+    soup = BeautifulSoup(source, "lxml")
+    download_size = soup.find(
+        "td",
+        string="Desktop image for 64-bit PC (AMD64) computers (standard download)",
+    ).previous_sibling.contents[0]
+
+    return flask.render_template("/download/desktop/index.html", download_size=download_size)

@@ -143,6 +143,7 @@ from webapp.views import (
     thank_you,
     unlisted_engage_page,
     navigation_nojs,
+    desktop_download_size,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -1134,3 +1135,5 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+app.add_url_rule("/download/desktop", view_func=desktop_download_size)
