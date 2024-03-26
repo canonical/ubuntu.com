@@ -56,200 +56,11 @@
   </div>
 </section>
 
-<section class="p-section">
-  <div class="row">
-    <div class="col-9">
-      <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2 class="p-muted-heading">Resources</h2>
-      </div>
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></h3>
-          <div>
-            <p>Follow this tutorial to install Ubuntu Desktop on your laptop or PC.</p>
-            <p>You can also run Ubuntu from a USB to try it without installing.</p>
-          </div>
-        </div>
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop using VirtualBox</a></h3>
-          <p>Run Ubuntu Desktop in a virtual machine using VirtualBox. A quick start guide that will work across any operating system.</p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <h3 class="p-heading--5"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
-          <p>A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2 class="p-muted-heading">Help is always at hand</h2>
-      </div>
-      <ul class="p-list--divided">
-        <li class="p-list__item"><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu documentation</a></li>
-        <li class="p-list__item"><a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a></li>
-        <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
-        <li class="p-list__item"><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+{% include "download/shared/_downloads-resources.html" %}
 
-<section class="p-section">
-  <div class="u-fixed-width">
-    <a href="/pro">
-    {{
-      image (
-      url="https://assets.ubuntu.com/v1/2f32b5f5-Ubuntu-Pro-logo.svg",
-      alt="Ubuntu Pro",
-      width="170",
-      height="42",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-    </a>
-    <hr class="p-rule" />
-  </div>
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Secure enterprise management<br class="u-hide--medium u-hide--small"/> with Ubuntu Pro Desktop</h2>
-    </div>
-    <div class="col">
-      <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
-      <hr class="p-rule" />
-      <ul class="p-list--divided u-no-padding--bottom">
-        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
-        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration.</li>
-        <li class="p-list__item is-ticked">Estate <a href="/landscape/features">monitoring and management</a></li>
-        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
-        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
-        <li class="p-list__item is-ticked">Optional weekday or 24/7 support tiers</li>
-      </ul>
-      <hr />
-      <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
-      <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Download our whitepaper</a>
-    </div>
-  </div>
-</section>
+{% include "download/shared/_secure-enterprise-management.html" %}
 
-<section class="p-section">
-  <div class="p-section--shallow u-fixed-width">
-    <hr class="p-rule" />
-    <h2 class="p-muted-heading">More from Canonical</h2>
-  </div>
-  <div class="row">
-    <div class="col-3 col-medium-6">
-      <div class="row">
-        <div class="col-6 col-medium-2">
-          <h3>
-            <a href="/desktop/wsl">
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/7a019410-ms logo.png",
-                  alt="Ubuntu on WSL",
-                  width="41",
-                  height="42",
-                  hi_def=True,
-                  loading="lazy"
-                ) | safe
-              }}
-            </a>
-          </h3>
-        </div>
-        <div class="col-6 col-medium-4">
-          <p>Use the Ubuntu terminal and run Linux applications on Windows.</p>
-          <hr class="p-rule" />
-          <p>
-            <a href="/desktop/wsl">Learn about Ubuntu on WSL&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3 col-medium-6">
-      <div class="row">
-        <div class="col-6 col-medium-2">
-          <h3>
-            <a href="/raspberry-pi">
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/e44a608d-rpi-logo.png",
-                  alt="Ubuntu for Raspberry Pi",
-                  width="33",
-                  height="42",
-                  hi_def=True,
-                  loading="lazy"
-                ) | safe
-              }}
-            </a>
-          </h3>
-        </div>
-        <div class="col-6 col-medium-4">
-          <p>Use your Raspberry Pi as a desktop, server or IoT device with Ubuntu.</p>
-          <hr class="p-rule" />
-          <p>
-            <a href="/raspberry-pi">Learn about Ubuntu for Raspberry Pi&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3 col-medium-6">
-      <div class="row">
-        <div class="col-6 col-medium-2">
-          <h3>
-            <a href="https://multipass.run/">
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/ede1a596-Multipass-logo.svg",
-                  alt="Multipass",
-                  width="141",
-                  height="42",
-                  hi_def=True,
-                  loading="auto"
-                ) | safe
-              }}
-            </a>
-          </h3>
-        </div>
-        <div class="col-6 col-medium-4">
-          <p>Spin up Ubuntu VMs on Windows, Mac and Linux.</p>
-          <hr class="p-rule" />
-          <p>
-            <a href="https://multipass.run/">Learn about Multipass&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3 col-medium-6">
-      <div class="row">
-        <div class="col-6 col-medium-2">
-          <h3>
-            <a href="https://canonical.com/lxd">
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/84ed7eb1-LXD-logo.svg",
-                  alt="LXD",
-                  width="80",
-                  height="42",
-                  hi_def=True,
-                  loading="auto"
-                ) | safe
-              }}
-            </a>
-          </h3>
-        </div>
-        <div class="col-6 col-medium-4">
-          <p>Fast, dense, and secure container and VM management at any scale.</p>
-          <hr class="p-rule" />
-          <p>
-            <a href="https://canonical.com/lxd">Learn about LXD&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{% include "download/shared/_more-from-canonical.html" %}
 
 <section class="p-section">
   <hr class="p-rule is-fixed-width" />
@@ -366,41 +177,7 @@
 
 {% if version %}
 
-<section class="p-section--deep">
-  <div class="row">
-    <hr class="p-rule"/>
-    <div class="col-3 col-medium-6">
-      <div class="p-section--shallow">
-        <h2 class="p-text--small-caps"><a href="/blog/desktop">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
-      </div>
-    </div>
-    <div class="col-9 col-medium-6">
-      <div class="row p-section--shallow" id="ubuntu-desktop-latest">
-      </div>
-    </div>
-  </div>
-
-  <template style="display:none" id="ubuntu-desktop-template">
-    <div class="col-3 col-medium-2 u-equal-height-items">
-      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
-      <p class="article-excerpt"></p>
-    </div>
-  </template>
-</section>
-
-<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-<script>
-  canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#ubuntu-desktop-latest",
-      articleTemplateSelector: "#ubuntu-desktop-template",
-      excerptLength: 200,
-      groupId: "1479",
-      linkImage: true,
-      limit: 3
-    }
-  )
-</script>
+{% include "download/shared/_desktop-latest-news.html" %}
 
 {% endif %}
 
@@ -412,7 +189,6 @@
 
 {% if version %}
 <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
-<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 <script defer>
   var architecture = '{{ architecture }}';
   var version = '{{ version }}';
