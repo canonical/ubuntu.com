@@ -53,15 +53,7 @@
       <pre><code>sudo snap install rpi-imager</code></pre>
       <p>And follow our <a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4#1-overview">Desktop</a>, <a href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview">Server</a> and <a href="/download/raspberry-pi-core">Core</a> tutorials to get started.</p>
       <div class="p-image--wrapper p-section--shallow">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/e24d92fc-raspberry-pi-imager-2024.png",
-          alt="",
-          width="450",
-          height="303",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
+        <img src="https://assets.ubuntu.com/v1/e24d92fc-raspberry-pi-imager-2024.png" />
       </div>
     </div>
   </div>
@@ -78,37 +70,35 @@
       <hr />
       <p>
         <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button u-no-margin--bottom">Download Ubuntu Desktop 23.10</a>
-        &nbsp;&nbsp;
-        <span class="u-text--muted">ISO image, {{ releases.latest.desktop_iso_size }}</span>
+        &nbsp;
+        <span class="u-text--muted">ISO image, 2.4GB</span>
       </p>
       <p>Minimum 4GBs of RAM required</p>
       <hr />
       <p>
         <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Server 23.10</a>
-        &nbsp;&nbsp;
-        <span class="u-text--muted">ISO image, {{ releases.latest.iso_size }}</span>
+        &nbsp;
+        <span class="u-text--muted">ISO image, 1.1GB</span>
       </p>
     </div>
   </div>
   <hr class="p-rule is-fixed-width" />
   <div class="row p-section">
     <div class="col-6">
-      <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+      <h2>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></h2>
     </div>
     <div class="col-6">
       <p>The latest Long Term Supported release of Ubuntu with five years of security patching and maintenance until April 2027, extended to ten years with <a href="/pro">Ubuntu Pro</a>.</p>
       <hr />
       <p>
         <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });" class="p-button u-no-margin--bottom">Download Ubuntu Desktop {{ releases.lts.full_version }} LTS</a>
-        &nbsp;&nbsp;
-        <span class="u-text--muted">ISO image, {{ releases.lts.desktop_iso_size }}</span>
+        <span class="u-text--muted">ISO image, 2.2GB</span>
       </p>
       <p>Minimum 2GBs of RAM and 16GB storage required</p>
       <hr />
       <p>
         <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Server {{ releases.lts.full_version }} LTS</a>
-        &nbsp;&nbsp;
-        <span class="u-text--muted">ISO image, {{ releases.lts.iso_size }}</span>
+        <span class="u-text--muted">ISO image, 986MB</span>
       </p>
     </div>
   </div>
@@ -122,7 +112,6 @@
       <hr />
       <p>
         <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });" class="p-button">Download Ubuntu Core 22</a>
-        &nbsp;&nbsp;
         <span class="u-text--muted">ISO image, 263MB</span>
       </p>
     </div>
@@ -139,15 +128,14 @@
       <p>Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience. Ubuntu LTS releases are certified on select Raspberry Pi hardware.</p>
       <hr />
       <a href="/certified">Learn more about Ubuntu Certified&nbsp;&rsaquo;</a>
-      &nbsp;&nbsp;
       <a href="/certified/iot?q=&limit=13&vendor=Raspberry+Pi+Foundation">All certified Raspberry Pi hardware&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
 
 <section class="p-section">
-  <div class="u-fixed-width">
-    <table aria-label="Raspberry pi support with Ubuntu">
+  <div class="u-fixed-width u-table-horizontal-scroll">
+    <table class="u-table-horizontal-scroll__table" aria-label="Raspberry Pi support with Ubuntu">
       <thead>
         <tr>
           <th></th>
@@ -159,7 +147,7 @@
       </thead>
       <tbody>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi 2</p>
             </div>
@@ -182,7 +170,7 @@
           <td>-</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi 3</p>
             </div>
@@ -206,7 +194,7 @@
           <td>-</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi 4</p>
             </div>
@@ -230,7 +218,7 @@
           <td>Yes</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi 400</p>
             </div>
@@ -253,7 +241,7 @@
           <td>Yes</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi CM4</p>
             </div>
@@ -276,7 +264,7 @@
           <td>Yes</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi Zero 2 W</p>
             </div>
@@ -299,7 +287,7 @@
           <td>Yes</td>
         </tr>
         <tr>
-          <th class="row--50-50">
+          <th>
             <div class="col u-vertically-center">
               <p>Raspberry Pi 5</p>
             </div>
@@ -356,7 +344,7 @@
     <hr class="p-rule"/>
     <div class="col-3 col-medium-6">
       <div class="p-section--shallow">
-        <h2 class="p-text--small-caps"><a href="/blog/tag/ubuntu-server">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
+        <h2 class="p-text--small-caps"><a href="/blog/tag/raspberry-pi">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a></h2>
       </div>
     </div>
     <div class="col-9 col-medium-6">
@@ -367,7 +355,7 @@
 
   <template style="display:none" id="blog-template">
     <div class="col-3 col-medium-2">
-      <div class="article-image p-image-wrapper"></div>
+      <div class="article-image u-blog-thumbnails p-image--wrapper"></div>
       <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
       <p class="article-excerpt"></p>
     </div>
