@@ -1211,9 +1211,14 @@ def desktop_download_size():
     url = "https://releases.ubuntu.com/23.10/"
     source = api_session.get(url).text
     soup = BeautifulSoup(source, "lxml")
+    string = (
+        "Desktop image for 64-bit PC (AMD64) computers (standard download)"
+    )
     download_size = soup.find(
         "td",
-        string="Desktop image for 64-bit PC (AMD64) computers (standard download)",
+        string=string,
     ).previous_sibling.contents[0]
 
-    return flask.render_template("/download/desktop/index.html", download_size=download_size)
+    return flask.render_template(
+        "/download/desktop/index.html", download_size=download_size
+    )
