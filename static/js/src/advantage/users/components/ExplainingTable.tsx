@@ -25,10 +25,6 @@ const ExplainingTable = () => (
           content: "Payment & Invoices",
           className: "u-align--center",
         },
-        {
-          content: "Support Portal seat",
-          className: "u-align--center",
-        },
       ]}
       rows={[
         {
@@ -36,10 +32,6 @@ const ExplainingTable = () => (
             {
               content: "Admin",
               role: "rowheader",
-            },
-            {
-              content: <Icon name={ICONS.success} />,
-              className: "u-align--center",
             },
             {
               content: <Icon name={ICONS.success} />,
@@ -81,10 +73,6 @@ const ExplainingTable = () => (
               content: <Icon name={ICONS.error} />,
               className: "u-align--center",
             },
-            {
-              content: <Icon name={ICONS.success} />,
-              className: "u-align--center",
-            },
           ],
         },
         {
@@ -107,10 +95,6 @@ const ExplainingTable = () => (
             },
             {
               content: <Icon name={ICONS.success} />,
-              className: "u-align--center",
-            },
-            {
-              content: <Icon name={ICONS.error} />,
               className: "u-align--center",
             },
           ],
