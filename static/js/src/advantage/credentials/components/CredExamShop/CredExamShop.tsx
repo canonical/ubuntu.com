@@ -17,7 +17,7 @@ const CredExamShop = () => {
   const ExamProductDescriptions: Product[] = [
     {
       id: "cue-linux-essentials",
-      name: "CUE Linux Essentials",
+      name: "CUE.01 Linux",
       metadata: [
         {
           key: "description",
@@ -28,7 +28,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-02-desktop",
-      name: "CUE Desktop",
+      name: "CUE.02 Desktop",
       metadata: [
         {
           key: "description",
@@ -39,7 +39,7 @@ const CredExamShop = () => {
     },
     {
       id: "cue-03-server",
-      name: "CUE Server",
+      name: "CUE.03 Server",
       metadata: [
         {
           key: "description",
