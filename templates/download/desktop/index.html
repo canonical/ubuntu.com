@@ -16,7 +16,7 @@
     <div class="col">
       <p>The open-source desktop operating system that powers millions of PCs and laptops around the world. Find out more about Ubuntu's features and how we support developers and organisations below.</p>
       <hr />
-      <ul class="p-inline-list">
+      <ul class="p-inline-list u-realign-on-small">
         <li class="p-inline-list__item"><a href="/desktop">About Ubuntu Desktop&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="/blog/desktop">Check out the blog&nbsp;&rsaquo;</a></li>
       </ul>
@@ -29,6 +29,17 @@
     <hr class="p-rule" />
     <div class="col">
       <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+      <div class="p-image-wrapper">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/b743f1ee-jj-in-circle.png",
+          alt="",
+          width="200",
+          height="200",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
     </div>
     <div class="col">
       <p>
@@ -42,12 +53,12 @@
           class="p-button--positive"
           href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
           onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
-          {{ releases.lts.full_version }}
+          {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
         </a>
-        <span class="u-text--muted">ISO image, {% if download_size %}{{ download_size }}{% endif %}</span>
+        <span class="u-text--muted">ISO image, {{ releases.lts.iso_download_size }}</span>
         <script>performance.mark("Download (Desktop) button rendered")</script>
       </p>
-      <p>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</p>
+      <p>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.</p>
       <!-- Start tab container -->
       <div class="p-tabs">
         <div class="p-tabs__list u-no-margin--bottom" role="tablist" aria-label="Download resources">
@@ -64,7 +75,7 @@
       </div>
       <!-- End tab container -->
       <!-- tab 1 -->
-      <div id="release-notes" class="u-offset-auto-scroll" >
+      <div id="release-notes">
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Linux 5.15 kernel</li>
           <li class="p-list__item is-ticked">New Ubuntu theme with accent colours, improved integration for snaps and system-wide dark style preference support</li>
@@ -80,24 +91,27 @@
         </p>
       </div>
       <!-- tab 2 -->
-      <div class="u-hide u-offset-auto-scroll" id="system-requirements">
+      <div class="u-hide" id="system-requirements">
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
           <li class="p-list__item is-ticked">4 GB system memory</li>
           <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-          <li class="p-list__item is-ticked">GNOME desktop performance improvements most notably on the Raspberry Pi</li>
           <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
           <li class="p-list__item is-ticked">Internet access is helpful</li>
         </ul>
       </div>
       <!-- tab 3 -->
-      <div class="u-hide u-offset-auto-scroll" id="how-to-install">
+      <div class="u-hide" id="how-to-install">
         <p>To install or try Ubuntu Desktop:</p>
         <ol class="p-list--divided">
           <li class="p-list__item">Download the ISO image</li>
           <li class="p-list__item">Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar</li>
           <li class="p-list__item">Boot your laptop or PC from the USB flash drive</li>
         </ol>
+        <hr class="p-rule" />
+        <p>
+          <a href="/tutorials/install-ubuntu-desktop">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
   </div>
@@ -127,7 +141,7 @@
           Download {{ releases.latest.short_version }} (Legacy Desktop Installer)&nbsp;&rsaquo;
         </a>      
       </p>
-      <p>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</p>
+      <p>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">checkout our alternative downloads</a>.</p>
     </div>
   </div>
 </section>
@@ -153,7 +167,6 @@
         loading="lazy"
         ) | safe
       }}
-      
     </div>
   </div>
 </section>
@@ -176,6 +189,15 @@
       
       tab.addEventListener('click', (e) => {
         toggletabs(e.target, tabContent);
+
+        // Retain the hash in the URL on click
+        let targetId = e.target.getAttribute("href").substr(1);
+        let newUrl = window.location.href.split('#')[0] + '#' + targetId;
+
+        history.replaceState(null, null, newUrl);
+        
+        // Prevent default action to remove auto scroll
+        event.preventDefault();
       });
     })
 
@@ -193,7 +215,7 @@
     tabContent.classList.remove("u-hide");
   }
 
-  // If the URL includes a hash, set show the matching tab
+  // If the URL includes a hash, show the matching tab on load
   function setTabOnLoad() {
     const hash = window.location.hash;
 
