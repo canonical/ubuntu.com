@@ -51,7 +51,9 @@
         {% endif %}
     </div>
     <div class="col">
-      {% include 'shared/_server-download-newsletter.html' %}
+      {% with returnUrl="/download/desktop", ga_event_title="Ubuntu Desktop download" %}
+        {% include 'shared/_download-newsletter.html' %}
+      {% endwith %}
     </div>
   </div>
 </section>
