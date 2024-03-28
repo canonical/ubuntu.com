@@ -111,7 +111,7 @@ def cred_sign_up(**_):
         return flask.render_template(
             "credentials/sign-up.html", sign_up_open=sign_up_open
         )
-    
+
     form_fields = {}
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
@@ -174,20 +174,20 @@ def cred_sign_up(**_):
         )
 
         return (
-            flask.render_template("credentials/sign-up.html", error="Something went wrong"),
+            flask.render_template(
+                "credentials/sign-up.html", error="Something went wrong"
+            ),
             400,
         )
 
     service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": os.getenv(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
+            "\\n", "\n"
+        ),
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    }
 
     credentials = service_account.Credentials.from_service_account_info(
         service_account_info,
@@ -214,7 +214,7 @@ def cred_sign_up(**_):
             ]
         },
     ).execute()
-    
+
     if return_url:
         # Personalize thank-you page
         flask.session["form_details"] = {
@@ -227,6 +227,7 @@ def cred_sign_up(**_):
         return flask.redirect(f"/thank-you?referrer={referrer}")
     else:
         return flask.redirect("/thank-you")
+
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_schedule(ua_contracts_api, trueability_api, **_):

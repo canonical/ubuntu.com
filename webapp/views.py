@@ -29,8 +29,6 @@ from canonicalwebteam.discourse import (
     DocParser,
 )
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
 
 # Local
 from webapp.login import user_info
