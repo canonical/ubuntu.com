@@ -374,7 +374,9 @@ import setupIntlTelInput from "./intlTelInput.js";
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
           var comma = "";
-          var fieldTitle = formField.querySelector(".p-heading--5") ?? formField.querySelector(".p-modal__question-heading");
+          var fieldTitle =
+            formField.querySelector(".p-heading--5") ??
+            formField.querySelector(".p-modal__question-heading");
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {
             message += fieldTitle.innerText + "\r\n";
