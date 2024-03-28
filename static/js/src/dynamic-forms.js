@@ -191,6 +191,7 @@ import setupIntlTelInput from "./intlTelInput.js";
       var otherContainers = document.querySelectorAll(".js-other-container");
       var phoneInput = document.querySelector("#phone");
       var modalTrigger = document.activeElement || document.body;
+      var isMutlipage = contactModal.querySelector(".js-pagination").length > 1;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -198,6 +199,13 @@ import setupIntlTelInput from "./intlTelInput.js";
           close();
         }
       };
+
+      contactModal.addEventListener("submit", function (e) {
+        addLoadingSpinner();
+        if (!isMutlipage) {
+          comment.value = createMessage();
+        }
+      });
 
       if (closeModal) {
         closeModal.addEventListener("click", function (e) {
@@ -366,7 +374,7 @@ import setupIntlTelInput from "./intlTelInput.js";
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
           var comma = "";
-          var fieldTitle = formField.querySelector(".p-heading--5");
+          var fieldTitle = formField.querySelector(".p-heading--5") ?? formField.querySelector(".p-modal__question-heading");
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {
             message += fieldTitle.innerText + "\r\n";
@@ -529,21 +537,17 @@ import setupIntlTelInput from "./intlTelInput.js";
       setpreferredLanguage();
 
       // Disables submit button and adds visual queue when it is submitted
-      function setupSubmitButton() {
+      function addLoadingSpinner() {
         const modalForm = formContainer.querySelector("form");
         const spinnerIcon = document.createElement("i");
         spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
-        modalForm.addEventListener("submit", function (e) {
-          const buttonRect = submitButton.getBoundingClientRect();
-          submitButton.style.width = buttonRect.width + "px";
-          submitButton.style.height = buttonRect.height + "px";
-          submitButton.disabled = true;
-          submitButton.innerText = "";
-          submitButton.appendChild(spinnerIcon);
-        });
+        const buttonRect = submitButton.getBoundingClientRect();
+        submitButton.style.width = buttonRect.width + "px";
+        submitButton.style.height = buttonRect.height + "px";
+        submitButton.disabled = true;
+        submitButton.innerText = "";
+        submitButton.appendChild(spinnerIcon);
       }
-
-      setupSubmitButton();
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
