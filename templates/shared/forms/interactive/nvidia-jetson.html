@@ -4,49 +4,49 @@
       <div class="js-formfield">
         <div class="row--50-50 p-strip is-shallow">
           <div class="col">
-            <h2 class="p-heading--1" id="modal-title">Open source AI: a scalable path to production</h2>
-            <p>Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.</p>
+            <h2 class="p-heading--1" id="modal-title">Interested in optimised Ubuntu on NVIDIA platforms?</h2>
+            <p>Canonical announced plans to certify Ubuntu to run on NVIDIA platforms powered by the Orin architecture. Ubuntu will run on the full range of NVIDIA IoT platforms, bringing Ubuntu to the automotive industry with the NVIDIA DRIVE&reg; platform, to industrial applications with the NVIDIA IGX Orin&trade; platform, as well as to advanced embedded systems with NVIDIA Jetson Orin&trade;  system-on-modules. The optimised kernel and images will combine software features from NVIDIA with unparalleled security, reliability, and support for regulated enterprise deployments.</p>
+            <p>With this collaboration, optimised Ubuntu and Ubuntu Core images will be available for commercial-grade IoT deployments for a wide range of popular silicon platforms across a variety of vendors, establishing a de facto standard across enterprise IoT &ndash; from software- defined vehicles and industry 4.0 to retail and robotics.</p>
+            <p>Fill out the form to receive the latest update from us!</p>
           </div>
           <div class="col">
             <button class="p-modal__close" aria-label="Close active modal">Close</button>
-            <form action="/marketo/submit" onsubmit="stringifyCustomFields()" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
               <div class="p-section--shallow">
-                <p>Do you already have any AI projects rolled out in your enterprise?</p>
-                <label class="p-radio">
-                  <input type="radio" value="Yes" class="p-radio__input" id="aiProjectsYes" name="aiProjects" aria-labelledby="aiProjectsYes" required>
-                  <span class="p-radio__label" id="aiProjectsYes">Yes</span>
+                <h3 class="p-text--default">Which NVIDIA platforms are you interested in?</h3>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="drive-orin" name="which-nvidia-orin-platforms" value="DRIVE Orin">
+                  <span class="p-checkbox__label" id="drive-orin">Xavier</span>
                 </label>
-                <label class="p-radio">
-                  <input type="radio" value="No" class="p-radio__input" id="aiProjectsNo" name="aiProjects" aria-labelledby="aiProjectsNo" required>
-                  <span class="p-radio__label" id="aiProjectsNo">No</span>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="drive-orin" name="which-nvidia-orin-platforms" value="DRIVE Orin">
+                  <span class="p-checkbox__label" id="drive-orin">DRIVE Orin</span>
+                </label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="igx-orin" name="which-nvidia-orin-platforms" value="IGX Orin">
+                  <span class="p-checkbox__label" id="igx-orin">IGX Orin</span>
+                </label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-agx-orin" name="which-nvidia-orin-platforms" value="Jetson AGX Orin">
+                  <span class="p-checkbox__label" id="jetson-agx-orin">Jetson AGX Orin</span>
+                </label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nx" name="which-nvidia-orin-platforms" value="Jetson Orin NX">
+                  <span class="p-checkbox__label" id="jetson-orin-nx">Jetson Orin NX</span>
+                </label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nano" name="which-nvidia-orin-platforms" value="Jetson Orin Nano">
+                  <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
                 </label>
               </div>
               <div class="p-section--shallow">
                 <hr class="p-rule">
-                <p>What are you interested in from our AI offering?</p>
-                <label class="p-checkbox js-checkbox">
-                  <input type="checkbox" aria-labelledby="canonicalMlopsSolution" class="p-checkbox__input">
-                  <span class="p-checkbox__label" id="canonicalMlopsSolution">Canonical MLOps solution</span>
-                </label>
-                <label class="p-checkbox js-checkbox">
-                  <input type="checkbox" aria-labelledby="aiConsultingServices" class="p-checkbox__input">
-                  <span class="p-checkbox__label" id="aiConsultingServices">AI consultancy services</span>
-                </label>
-                <label class="p-checkbox js-checkbox">
-                  <input type="checkbox" aria-labelledby="mlopsWorkshop" class="p-checkbox__input">
-                  <span class="p-checkbox__label" id="mlopsWorkshop">MLOps Workshop</span>
-                </label>
-                <label class="p-checkbox js-checkbox">
-                  <input type="checkbox" aria-labelledby="notSure" class="p-checkbox__input">
-                  <span class="p-checkbox__label" id="notSure">Not sure</span>
-                </label>
+                <h3 class="p-text--default">Tell us more about your project</h3>
+                <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="4" maxlength="2000"></textarea>
               </div>
               <div class="p-section--shallow">
                 <hr class="p-rule">
-                <label for="mlopsRequirements">Add details about your AI or MLOps requirements</label>
-                <textarea id="mlopsRequirements"></textarea>
-                <hr class="p-rule">
-                <p>Add your information</p>
+                <h3 class="p-text--default">Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Tegra SoCs.</h3>
                 <label for="firstName">First name:</label>
                 <input required id="firstName" name="firstName" maxlength="255" type="text"/>
 
@@ -56,13 +56,13 @@
                 <label for="company">Company:</label>
                 <input required id="company" name="company" maxlength="255" type="text"/>
 
-                <label for="company">Title:</label>
+                <label for="company">Job title:</label>
                 <input required id="title" name="title" maxlength="255" type="text"/>
 
                 <label for="email">Email:</label>
                 <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
 
-                <label for="phone">Phone number:</label>
+                <label for="phone">Mobile/cell phone number:</label>
                 <input required id="phone" name="phone" maxlength="255" type="tel" />
               </div>
 
