@@ -60,22 +60,24 @@
       </p>
       <p class="p-text--small">For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.</p>
       <!-- Start tab container -->
-      <div class="p-tabs">
-        <div class="p-tabs__list u-no-margin--bottom" role="tablist" aria-label="Download resources">
-          <div class="p-tabs__item">
-            <a class="p-tabs__link" role="tab" aria-selected="true" aria-controls="release-notes-tab" href="#release-notes" data-id="release-notes">Release notes</a>
-          </div>
-          <div class="p-tabs__item">
-            <a class="p-tabs__link" role="tab" aria-selected="false" aria-controls="system-requirements-tab" href="#system-requirements" data-id="system-requirements" tabindex="-1">System requirements</a>
-          </div>
-          <div class="p-tabs__item">
-            <a class="p-tabs__link" role="tab" aria-selected="false" aria-controls="how-to-install-tab" href="#how-to-install" data-id="how-to-install" tabindex="-1">How to install</a>
-          </div>
-        </div>
+      <div class="js-tab-container">
+        <nav class="p-tabs">
+          <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom" role="tablist" data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link" role="tab" aria-selected="true" id="release-notes-tab" href="#release-notes" aria-controls="release-notes">Release notes</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link" role="tab" aria-selected="false" id="system-requirements-tab" href="#system-requirements" aria-controls="system-requirements" tabindex="-1">System requirements</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link" role="tab" aria-selected="false" id="how-to-install-tab" href="#how-to-install" aria-controls="how-to-install" tabindex="-1">How to install</a>
+            </li>
+          </ul>
+        </nav>
       </div>
       <!-- End tab container -->
       <!-- tab 1 -->
-      <div id="release-notes">
+      <div id="release-notes" class="p-tabs__content" role="tabpanel" aria-labelledby="release-notes-tab">
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Linux 5.15 kernel</li>
           <li class="p-list__item is-ticked">New Ubuntu theme with accent colours, improved integration for snaps and system-wide dark style preference support</li>
@@ -91,7 +93,7 @@
         </p>
       </div>
       <!-- tab 2 -->
-      <div class="u-hide" id="system-requirements">
+      <div class="p-tabs__content" id="system-requirements" role="tabpanel" aria-labelledby="system-requirements-tab">
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
           <li class="p-list__item is-ticked">4 GB system memory</li>
@@ -101,7 +103,7 @@
         </ul>
       </div>
       <!-- tab 3 -->
-      <div class="u-hide" id="how-to-install">
+      <div class=" p-tabs__content" id="how-to-install" role="tabpanel" aria-labelledby="how-to-install-tab">
         <p>To install or try Ubuntu Desktop:</p>
         <ol class="p-list--divided">
           <li class="p-list__item">Download the ISO image</li>
@@ -178,57 +180,6 @@
 
 {% include "download/shared/_desktop-latest-news.html" %}
 
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-<script>
-  function handleTabListeners() {
-    const tabs = document.querySelectorAll('.p-tabs__link'); 
-    tabs.forEach((tab) => {
-      
-      const tabId = tab.getAttribute('data-id');
-      const tabContent = document.getElementById(tabId);
-      
-      tab.addEventListener('click', (e) => {
-        toggletabs(e.target, tabContent);
-
-        // Retain the hash in the URL on click
-        let targetId = e.target.getAttribute("href").substr(1);
-        let newUrl = window.location.href.split('#')[0] + '#' + targetId;
-
-        history.replaceState(null, null, newUrl);
-        
-        // Prevent default action to remove auto scroll
-        event.preventDefault();
-      });
-    })
-
-  }
-
-  function toggletabs(targetTab, tabContent) {
-    const prevActiveTab = document.querySelector('.p-tabs__link[aria-selected="true"]');
-    const prevId = prevActiveTab.getAttribute("data-id");
-    const prevContent = document.getElementById(prevId);
-
-    prevActiveTab.setAttribute('aria-selected', 'false');
-    targetTab.setAttribute('aria-selected', 'true');
-
-    prevContent.classList.add("u-hide");
-    tabContent.classList.remove("u-hide");
-  }
-
-  // If the URL includes a hash, show the matching tab on load
-  function setTabOnLoad() {
-    const hash = window.location.hash;
-
-    if (hash) {
-      const tagetID = hash.replace("#", "");
-      const targetTab = document.querySelector(`.p-tabs__link[data-id="${tagetID}"]`);
-      const targetContent = document.getElementById(tagetID);
-
-      toggletabs(targetTab, targetContent);      
-    }
-  }
-
-  handleTabListeners();
-  setTabOnLoad();
-</script>
 {% endblock content %}
