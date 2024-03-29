@@ -43,12 +43,14 @@
       <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist" aria-label="MediaTek Genio board">
         <li><button class="p-tabs__item" id="genio-1200-evk" role="tab" aria-selected="true" aria-controls="genio-1200-evk-tab">Genio 1200 EVK</button></li>
         <li><button class="p-tabs__item" id="genio-700-evk" role="tab" aria-selected="false" aria-controls="genio-700-evk-tab">Genio 700 EVK</button></li>
+        <li><button class="p-tabs__item" id="genio-510-evk" role="tab" aria-selected="false" aria-controls="genio-510-evk-tab">Genio 510 EVK</button></li>
         <li><button class="p-tabs__item" id="genio-350-evk" role="tab" aria-selected="false" aria-controls="genio-350-evk-tab">Genio 350 EVK</button></li>
       </ul>
       <form class="u-hide--large u-hide--medium">
         <select name="boardSelect" id="boardSelect">
           <option value="genio-1200-evk-tab" selected="">Genio 1200 EVK</option>
           <option value="genio-700-evk-tab">Genio 700 EVK</option>
+          <option value="genio-510-evk-tab">Genio 510 EVK</option>
           <option value="genio-350-evk-tab">Genio 350 EVK</option>
         </select>
       </form>
@@ -57,6 +59,7 @@
       {% include "download/mediatek-genio/tab-1.html" %}
       {% include "download/mediatek-genio/tab-2.html" %}
       {% include "download/mediatek-genio/tab-3.html" %}
+      {% include "download/mediatek-genio/tab-4.html" %}
     </div>
   </div>
 </section>
