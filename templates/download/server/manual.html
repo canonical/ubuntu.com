@@ -40,7 +40,7 @@
         <li class="p-inline-list__item">
           <a class="p-button--positive"
           href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
-          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</a>
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</a>
         </li>
         <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
@@ -87,12 +87,9 @@
       <p>
         The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{ releases.latest.eol }}.
       </p>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.latest.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
-      </form>
+      <a class="p-button--positive"
+        href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</a>
       <p>
         <a href="{{ releases.latest.release_notes_url }}">
           Read the Ubuntu Server {{ releases.latest.short_version }} release notes&nbsp;&rsaquo;
@@ -144,12 +141,9 @@
       <p>
         The previous long-term support version of Ubuntu Server, including support guaranteed until {{ releases.previous_lts.eol }}.
       </p>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.previous_lts.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.full_version }} LTS</button>
-      </form>
+      <a class="p-button"
+        href="/download/server/thank-you?version={{ releases.previous_lts.full_version }}&amp;architecture=amd64"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.full_version }} LTS</a>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Other versions</h3>
