@@ -149,21 +149,12 @@ def download_server_steps():
         "server": "download/server/manual.html",
         "multipass": "download/server/multipass.html",
         "choose": "download/server/choose.html",
-        "download": "download/server/download.html",
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
 
     if step not in templates:
         flask.abort(400)
-
-    if step == "download":
-        version = flask.request.form.get("version")
-
-        if not version:
-            flask.abort(400)
-
-        context = {"version": version}
 
     return flask.render_template(templates[step], **context)
 

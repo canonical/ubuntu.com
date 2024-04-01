@@ -38,12 +38,9 @@
     <div class="col-12">
       <ul class="p-inline-list u-no-margin--bottom">
         <li class="p-inline-list__item">
-          <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
-            <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
-            <input type="hidden" name="architecture" value="amd64">
-            <input type="hidden" name="next-step" value="download">
-            <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-        </form>
+          <a class="p-button--positive"
+          href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</a>
         </li>
         <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
