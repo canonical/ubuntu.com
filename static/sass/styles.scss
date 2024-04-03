@@ -473,6 +473,15 @@ summary {
   }
 }
 
+// Align blog thumbnails
+.u-blog-thumbnails {
+  // Images are populated by JS
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
 // Styling for ubuntu navigation logo for engage pages
 .navigation-logo-engage {
   margin-top: -2.2rem;
@@ -1567,4 +1576,15 @@ ol.p-list--divided .p-list__item::before {
   flex-direction: row;
   flex-wrap: wrap;
   row-gap: 0.5rem;
+}
+
+@media screen and (max-width: $breakpoint-small - 1) {
+  .u-table-horizontal-scroll {
+    overflow-x: hidden;
+    .u-table-horizontal-scroll__table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
 }
