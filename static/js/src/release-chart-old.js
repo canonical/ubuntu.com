@@ -78,6 +78,59 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
 }
 
 /**
+ * @param {*} svg
+ * 
+ * Adds tooltip to bars
+ */
+function addTooltipToBars(svg) {
+  const tooltip = createTooltip();
+
+  svg.selectAll(".chart rect")
+    .on("mouseover", function(e, d) {
+      const tooltipStatus = formatTooltipStatus(d.status);
+      const dateRange = `${formatDate(d.startDate)} - ${formatDate(d.endDate)}`;
+      const tooltipContent = tooltipStatus ? `${tooltipStatus}: ${dateRange}` : dateRange;
+      tooltip.select(".p-tooltip__message").text(tooltipContent);
+      tooltip.classed("u-hide", false);
+    })
+    .on("mousemove", function(e) {
+      tooltip
+        .style("left", (e.pageX + 2) + "px")
+        .style("top", (e.pageY - 3) + "px");
+    })
+    .on("mouseout", function() {
+      tooltip.classed("u-hide", true);
+    });
+}
+
+/**
+ * Creates a tooltip and appends it to the page body
+ */
+function createTooltip() {
+  const tooltip = d3.select("body").select(".p-tooltip--top-center.is-detached");
+  if (tooltip.empty()) {
+    tooltip = d3.select("body").append("div")
+      .attr("class", "p-tooltip--top-center is-detached u-hide");
+    tooltip.append("span")
+      .attr("class", "p-tooltip__message")
+      .attr("role", "tooltip");
+  }
+  
+  return tooltip;
+}
+
+/**
+ * 
+ * @param {String} date
+ * 
+ * Parse the date to be more readable
+ */
+function formatDate(date) {
+  var formatDate = d3.timeFormat("%b %Y");
+  return formatDate(date);
+}
+
+/**
  *
  * @param {*} svg
  * @param {Int} height
@@ -129,11 +182,10 @@ function cleanUpChart(svg) {
   svg.selectAll(".domain").remove();
 }
 
-/* @param {*} svg
+/**
+ * @param {*} svg
  *
- * Embolden LTS labels on y axis**
- *
-
+ * Embolden LTS labels on y axis
  */
 function emboldenLTSLabels(svg, yScale) {
   const domain = yScale.domain();
@@ -245,10 +297,46 @@ function buildChartKey(chartSelector, taskStatus) {
 }
 
 /**
+ * 
+ * @param {String} key
+ * 
+ * Formats tooltip key into readable string
+ */
+function formatTooltipStatus(key) {
+  const standardisedKey = key.toLowerCase().trim();
+  switch (standardisedKey) {
+    case "lts":
+      return "Standard support";
+    case "esm":
+      return "Expanded Security Maintenance";
+    case "interim_release":
+      return "Interim release standard security maintenance";
+    case "early":
+      return "Early preview";
+    case "cve":
+      return "CVE/Critical fixes only";
+    case "main_universe":
+      return "LTS standard security maintenance for Ubuntu Main";
+    case "hardware_and_maintenance_updates":
+      return "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe";
+    case "matching_openstack_release_support":
+      return "Matching OpenStack release support";
+    case "extended_support_for_customers":
+      return "Extended support for customers";
+    case "canonical_kubernetes_expanded_security_maintenance":
+      return "Canonical Kubernetes Expanded Security Maintenance";
+    case "canonical_kubernetes_support":
+      return "Canonical Kubernetes support";
+    default:
+      return null;
+  }
+}
+
+/**
  *
  * @param {String} key
  *
- * Formats key into readable string
+ * Formats label key into readable string
  */
 function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, " ");
@@ -403,6 +491,7 @@ export function createReleaseChartOld(
   addYAxisVerticalLines(svg, width);
 
   addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
+  addTooltipToBars(svg);
 
   if (taskVersions) {
     addVersionAxis(svg, versionAxis);
