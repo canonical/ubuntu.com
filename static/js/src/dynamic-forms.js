@@ -191,7 +191,7 @@ import setupIntlTelInput from "./intlTelInput.js";
       var otherContainers = document.querySelectorAll(".js-other-container");
       var phoneInput = document.querySelector("#phone");
       var modalTrigger = document.activeElement || document.body;
-      var isMutlipage = contactModal.querySelector(".js-pagination").length > 1;
+      var isMultipage = contactModal.querySelector(".js-pagination").length > 1;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -202,7 +202,7 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
-        if (!isMutlipage) {
+        if (!isMultipage) {
           comment.value = createMessage();
         }
       });
