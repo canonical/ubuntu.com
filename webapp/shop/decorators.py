@@ -1,11 +1,12 @@
-from distutils.util import strtobool
 import os
+
+from distutils.util import strtobool
 from functools import wraps
 from datetime import datetime
 from dateutil.parser import parse
-import pytz
 
 import flask
+import pytz
 import talisker.requests
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
@@ -117,7 +118,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     return flask.redirect(f"/login?next={redirect_path}")
 
             ua_contracts_api = get_ua_contracts_api_instance(
-                user_token, response, session
+                user_token, response, session, flask.request.remote_addr
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
             is_community_member = False
@@ -247,7 +248,7 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
 
 
 def get_ua_contracts_api_instance(
-    user_token, response, session
+    user_token, response, session, remote_addr
 ) -> UAContractsAPI:
     ua_contracts_api = UAContractsAPI(
         session=session,
@@ -256,6 +257,7 @@ def get_ua_contracts_api_instance(
         api_url=os.getenv(
             "CONTRACTS_API_URL", "https://contracts.canonical.com"
         ),
+        remote_addr=remote_addr,
     )
 
     if response == "html":
