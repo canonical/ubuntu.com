@@ -1205,25 +1205,25 @@ export var desktopServerStatus = {
 };
 
 export var kernelStatus = {
-  LTS: "chart__bar--orange",
-  ESM: "chart__bar--aubergine",
+  LTS: "chart__bar--black",
+  ESM: "chart__bar--aubergine-light",
   INTERIM_RELEASE: "chart__bar--grey",
 };
 
 export var kernelReleaseScheduleStatus = {
-  LTS: "chart__bar--orange",
+  LTS: "chart__bar--black",
   INTERIM_RELEASE: "chart__bar--grey",
 };
 
 export var kernelStatusLTS = {
-  LTS: "chart__bar--orange",
+  LTS: "chart__bar--black",
   CVE: "chart__bar--grey",
 };
 
 export var kernelStatusALL = {
-  LTS: "chart__bar--orange",
+  LTS: "chart__bar--black",
   INTERIM_RELEASE: "chart__bar--grey",
-  EARLY: "chart__bar--aubergine",
+  EARLY: "chart__bar--aubergine-light",
 };
 
 export var openStackStatus = {
