@@ -4,45 +4,55 @@
 {% block meta_description %}Charmed Kubeflow is an enterprise-ready, fully supported MLOps platform for any cloud. A complete, free, open source solution for sophisticated data science labs.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1m-96RlGkbzFa1KaGAxYFpY0ztIlsTuViCjXSAlErQlg{% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
 {% block content %}
 
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h1 class="u-sv2">What is Kubeflow?</h1>
-        <p class="p-heading--4">Kubeflow is the open source machine learning toolkit on top of Kubernetes.</p>
-        <p class="u-sv3">Kubeflow translates steps in your data science workflow into Kubernetes jobs,  providing the cloud-native interface for your ML libraries, frameworks, pipelines and notebooks.</p>
-        <p>
-          <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/install">
-          Charmed Kubeflow
-          </a>
-          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact&nbsp;us&nbsp;now&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-4 col-start-large-8 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg",
-          alt="",
-          height="230",
-          width="230",
+<section class="p-strip is-shallow u-no-padding--bottom">
+  <div class="p-section">
+    <div class="row--25-75">
+      <div class="col p-strip is-shallow u-no-padding--bottom">
+        <div
+          class="p-section">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
+          alt="Kubeflow",
+          width="197",
+          height="45",
           hi_def=True,
-          loading="auto",
+          loading="auto"
           ) | safe
-        }}
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+        <div class="col-5 p-section--shallow">
+          <h1 class=u-no-margin--bottom>What is Kubeflow?</h1>
+          <h2>Kubeflow is the open source machine learning MLOps platform</h2>
+        </div>
+        <div class="col-3">
+          <p>Kubeflow enables you to develop and deploy machine learning models at any scale. It is a cloud-native application that runs on any cloud.</p>
+          <p> Charmed Kubeflow is  Canonical’s distribution. It is secure and seamlessly integrated with other leading tools such as MLflow.</p>
+        </div>
+        </div>
+
+        <hr />
+        <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/install">Try out Charmed Kubeflow</a>
+        <a class="p-button" href="/engage/mlops-toolkit">Read our MLOps toolkit</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-section--shallow">
   <div class="u-fixed-width">
-    <p class="p-muted-heading">Contributors to Kubeflow</p>
-    <div class="p-logo-section has-misaligned-images">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{
+    <hr class="p-rule" />
+    <h2 class="p-section--shallow">Contributors to Kubeflow</h2>
+    <div class="row--25-75">
+      <div class="col p-logo-section has-misaligned-images">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/bc4d28f8-Google_2015_logo.svg",
             alt="Google",
@@ -52,10 +62,10 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/b179abab-microsoft-logo+copy.svg",
             alt="Microsoft",
@@ -65,10 +75,10 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/563c0d9b-_Canonical.svg",
             alt="Canonical",
@@ -78,10 +88,10 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/16aec8e3-cisco-logo-transparent.png",
             alt="Cisco",
@@ -91,10 +101,10 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/67db21e0-logo-ibm.png",
             alt="IBM",
@@ -104,10 +114,10 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
             image(
             url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
             alt="intel",
@@ -117,7 +127,8 @@
             attrs={"class": "p-logo-section__logo"},
             loading="lazy",
             ) | safe
-          }}
+            }}
+          </div>
         </div>
       </div>
     </div>
@@ -126,44 +137,16 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2 class="u-sv3">What's inside Kubeflow?</h2>
+    <hr class="p-rule" />
+    <h2 class="p-section--shallow">What's inside Kubeflow?</h2>
   </div>
-  <div class="row">
-    <div class="col-7">
-      <p class="p-heading--4">Kubeflow dashboard</p>
-      <p><a href="https://www.kubeflow.org/docs/components/central-dash/overview/">Central dashboard</a> with <a href="https://www.kubeflow.org/docs/components/multi-tenancy/overview/">multi-user isolation</a> provides a platform for data scientists and engineers to leverage K8s to develop, deploy and monitor their models in production.</p>
-
-      <p class="p-heading--4">JupyterLab and VSCode</p>
-      <p>With Kubeflow users can <a href="https://www.kubeflow.org/docs/components/notebooks/setup/">spin-up Jupyter notebook servers</a> but also VSCode directly from the dashboard, allocating the right storage, CPUs and GPUs.</p>
-
-      <p class="p-heading--4">ML libraries & frameworks</p>
-      <p>Kubeflow is compatible with your choice of data science libraries and frameworks. <a href="https://www.kubeflow.org/docs/components/training/tftraining/">TensorFlow</a>, <a href="https://www.kubeflow.org/docs/components/training/pytorch/">PyTorch</a>, <a href="https://www.kubeflow.org/docs/components/training/mxnet/">MXNet</a>, <a href="https://github.com/kubeflow/xgboost-operator">XGBoost</a>, <a href="https://scikit-learn.org/stable/">scikit-learn</a> and more.</p>
-
-      <p class="p-heading--4">Kubeflow Pipelines</p>
-      <p>Automate your ML workflow into pipelines by containerizing steps as pipeline components and defining inputs, outputs, parameters and generated artifacts. <a class="/blog/data-science-workflows-on-kubernetes-with-kubeflow-pipelines-part-1">Learn more&nbsp;&rsaquo;</a></p>
-      
-      <p class="p-heading--4">Experiments, Runs and Recurring Runs</p>
-      <p>Experiments, groups of <a href="https://www.kubeflow.org/docs/pipelines/pipelines-quickstart/#run-an-ml-pipeline">Kubeflow Pipeline 'Runs'</a> and <a href="https://www.kubeflow.org/docs/components/pipelines/overview/concepts/run/">Recurring Runs</a>, allow you to find the right parameters for your model, compare and replicate results.</p>
-      
-      <p class="p-heading--4">Hyperparameter tuning / AutoML</p>
-      <p>Kubeflow includes <a href="https://www.kubeflow.org/docs/components/katib/">Katib</a> for hyperparameter tuning. Katib runs pipelines with different hyperparameters (e.g. learning rate, # of hidden layers) optimising for the best ML model.</p>
-
-      <p class="p-heading--4">KServe for inference serving</p>
-      <p><a href="https://www.kubeflow.org/docs/components/serving/kfserving/">KServe</a> is a multi-framework model deployment tool with serverless inferencing, canary roll-outs, pre & post-processing and explainability. <a href="/blog/what-is-kfserving">Learn more&nbsp;&rsaquo;</a></p>
-
-      <p class="p-heading--4">The integrations you need</p>
-      <p>Charmed Kubeflow integrates with <a href="https://github.com/mlopsworks/charms">MLFlow</a> for model registry, staging, and monitoring in production, <a href="https://github.com/SeldonIO/seldon-core">Seldon Core</a> for inference serving and <a href="https://spark.apache.org/">Apache Spark</a> for parallel data processing.
-
-      <p class="p-heading--4">More...</p>
-      <p>Save, compare and share generated artifacts - models, images, plots.</p>
-
-    </div>
-    <div class="col-5 u-hide--small u-hide--medium">
+  <div class="row--25-75">
+    <div class="col">
       <div class="p-logo-section has-misaligned-images">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-        {{
-          image(
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/8ee86883-jupyter-logo.png",
             alt="Jupyter",
             height="90",
@@ -171,103 +154,38 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item ">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/c4da5b86-Tensor-flow-logo.png",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
             alt="TensorFlow",
             height="90",
             width="90",
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/6d6b4148-seldon-logo.png",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/86dc5036-Seldon_logo.svg",
             alt="Seldon",
             height="90",
             width="100",
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/a774cbbb-py-torch-logo.png",
-            alt="PyTorch",
-            height="90",
-            width="100",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/5d796b1c-itsio-logo.png",
-            alt="Istio",
-            height="60",
-            width="100",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/6b57da22-mxnet-logo.png",
-            alt="MXNet",
-            height="40",
-            width="110",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/41913ead-katib-logo.png",
-            alt="Katib",
-            height="90",
-            width="75",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
-            alt="Prometheus",
-            height="80",
-            width="80",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/3d0a8131-ambassador-logo.png",
             alt="Ambassador",
             height="100",
@@ -275,12 +193,82 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/9b1d457f-PyTorch_logo.svg",
+            alt="PyTorch",
+            height="90",
+            width="100",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logos"},
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/5d796b1c-itsio-logo.png",
+            alt="Istio",
+            height="60",
+            width="100",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logos"},
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/6b57da22-mxnet-logo.png",
+            alt="MXNet",
+            height="40",
+            width="110",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logos"},
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/41913ead-katib-logo.png",
+            alt="Katib",
+            height="90",
+            width="75",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logos"},
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
+            alt="Prometheus",
+            height="80",
+            width="80",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logos"},
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
         </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
+      </div>
+      <hr class="p-rule" />
+      <div class="p-logo-section has-misaligned-images p-section--shallow">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/653daa8b-onnx-logo.png",
             alt="ONNX",
             height="30",
@@ -288,12 +276,12 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/2af7ca99-xgboost-logo.png",
             alt="XGBoost",
             height="37",
@@ -301,12 +289,12 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item">
-        {{
-          image(
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/f4ffa06e-scikit-learn-logo.png",
             alt="Scikit",
             height="60",
@@ -314,12 +302,12 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
-        </div>
-        <div class="p-logo-section__item ">
-        {{
-          image(
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{
+            image(
             url="https://assets.ubuntu.com/v1/7c4d800a-pachyderm-logo.png",
             alt="Pachyderm",
             height="100",
@@ -327,286 +315,274 @@
             hi_def=True,
             attrs={"class": "p-logo-section__logos"},
             loading="lazy",
-          ) | safe
-        }}
+            ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <hr class="p-rule" />
+        <div class="col-3">
+          <p class="p-heading--5">Kubeflow dashboard</p>
+          <p><a href="https://www.kubeflow.org/docs/components/central-dash/overview/">Central dashboard</a> with <a
+              href="https://www.kubeflow.org/docs/components/multi-tenancy/overview/">multi-user isolation</a> provides
+            a
+            platform for data scientists and engineers to leverage K8s to develop, deploy and monitor their models in
+            production.</p>
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">JupyterLab and VSCode</p>
+          <p>With Kubeflow users can <a href="https://www.kubeflow.org/docs/components/notebooks/setup/">spin-up Jupyter
+              notebook servers</a> but also VSCode directly from the dashboard, allocating the right storage, CPUs and
+            GPUs.
+          </p>
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">ML libraries & frameworks</p>
+          <p>Kubeflow is compatible with your choice of data science libraries and frameworks. <a
+              href="https://www.kubeflow.org/docs/components/training/tftraining/">TensorFlow</a>, <a
+              href="https://www.kubeflow.org/docs/components/training/pytorch/">PyTorch</a>, <a
+              href="https://www.kubeflow.org/docs/components/training/mxnet/">MXNet</a>, <a
+              href="https://github.com/kubeflow/xgboost-operator">XGBoost</a>, <a
+              href="https://scikit-learn.org/stable/">scikit-learn</a> and more.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <hr class="p-rule" />
+        <div class="col-3">
+          <p class="p-heading--5">Kubeflow Pipelines</p>
+          <p>Automate your ML workflow into pipelines by containerizing steps as pipeline components and defining
+            inputs,
+            outputs, parameters and generated artifacts. <a
+              class="/blog/data-science-workflows-on-kubernetes-with-kubeflow-pipelines-part-1">Learn
+              more&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">Experiments, Runs and Recurring Runs</p>
+          <p>Experiments, groups of <a
+              href="https://www.kubeflow.org/docs/pipelines/pipelines-quickstart/#run-an-ml-pipeline">Kubeflow Pipeline
+              'Runs'</a> and <a
+              href="https://www.kubeflow.org/docs/components/pipelines/overview/concepts/run/">Recurring
+              Runs</a>, allow you to find the right parameters for your model, compare and replicate results.</p>
+
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">Hyperparameter tuning / AutoML</p>
+          <p>Kubeflow includes <a href="https://www.kubeflow.org/docs/components/katib/">Katib</a> for hyperparameter
+            tuning.
+            Katib runs pipelines with different hyperparameters (e.g. learning rate, # of hidden layers) optimising for
+            the
+            best ML model.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <hr class="p-rule" />
+        <div class="col-3">
+          <p class="p-heading--5">KServe for inference serving</p>
+          <p><a href="https://www.kubeflow.org/docs/components/serving/kfserving/">KServe</a> is a multi-framework model
+            deployment tool with serverless inferencing, canary roll-outs, pre & post-processing and explainability. <a
+              href="/blog/what-is-kfserving">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">The integrations you need</p>
+          <p>Charmed Kubeflow integrates with <a href="https://github.com/mlopsworks/charms">MLFlow</a> for model
+            registry,
+            staging, and monitoring in production, <a href="https://github.com/SeldonIO/seldon-core">Seldon Core</a> for
+            inference serving and <a href="https://spark.apache.org/">Apache Spark</a> for parallel data processing.
+        </div>
+        <div class="col-3">
+          <p class="p-heading--5">More...</p>
+          <p>Save, compare and share generated artifacts - models, images, plots.</p>
         </div>
       </div>
     </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule"/>
+    <h2 class="col">MLOps at any scale</h2>
+    <div class="col">
+      <p>Enterprise-ready Charmed Kubeflow, the fully supported MLOps platform for any cloud, is validate and certified on high-end AI hardware, such as NVIDIA DGX.</p>
+      <p class="p-section--shallow">A complete solution for sophisticated data science labs. Upgrades and security updates - all supported in the free, open source distribution.</p>
+
+      <hr />
+      <a class="p-button--positive" href="https://ubuntu.com/engage/run-ai-at-scale">Get the whitepaper</a>
+    </div>
   </div>
 </section>
 
-<section class="p-strip--square-darksuru is-dark">
-  <div class="row u-equal-height">
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Kubeflow AI and MLOps at any scale</h2>
-        <p>Enterprise-ready Charmed Kubeflow, the fully supported MLOps platform for any cloud.</p>
-        <p>A complete solution for sophisticated data science labs. Upgrades and security updates - all supported in the free, open source distribution.</p>
-        <p>
-          <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">Install now</a>
-          <a href="https://www.youtube.com/watch?v=kutDYSB-_PI&t=149s" class="p-button">Watch demo</a>
-        </p>
-      </div>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule"/>
+    <h2 class="col">Why MLOps?</h2>
+    <div class="col p-section--shallow">
+      <p>Bringing AI solutions to market can involve many steps: data pre-processing, training, model deployment or inference serving at scale... The list of tasks is complex and keeping them in a set of notebooks or scripts is hard to maintain, share and collaborate on, leading to inefficient processes.</p>
+      <p class="p-section--shallow"><a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Google describes</a> that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.</p>
+      <hr />
+      <a href="https://ubuntu.com/blog/what-is-mlops">Read more about MLOps.</a>
     </div>
-    <div class="col-5 u-align--center">
+    <div class="u-align--center u-hide--small p-image-wrapper">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/20f5bfae-Kubeflow-nicely-packaged-simple-transparent.svg",
+          url="https://assets.ubuntu.com/v1/c58561f9-why-mlops-viz.png",
           alt="",
-          width="212",
-          height="201",
+          width="1200",
           hi_def=True,
+          loading="lazy",
         ) | safe
       }}
-
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width u-sv1">
-    <h2>Why MLOps?</h2>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p>Bringing AI solutions to market can involve many steps: data pre-processing, training, model deployment or inference serving at scale... The list of tasks is complex and keeping them in a set of notebooks or scripts is hard to maintain, share and collaborate on, leading to inefficient processes.</p>
-      <p>
-      In the study, <a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden Technical Debt in Machine Learning Systems</a>, Google describes that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.
-      </p>
-      <div class="u-fixed-width u-hide--small">
-        <figure class="u-no-margin">
-          {{
-            image(
-             url="https://assets.ubuntu.com/v1/aa8145e8-what+is+kubeflow+-+outlined.svg",
-             alt="",
-             height="274",
-             width="800",
-             hi_def=True,
-             loading="lazy",
-           ) | safe
-          }}
-         <figcaption>
-         Area = effort & code
-         </figcaption>
-       </figure>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-
-  <div class="row">
-    <div class="col-6">
-      <h2 class="u-fixed-width u-sv1">Who uses Kubeflow?</h2>
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <h2 class="col">Who uses Kubeflow?</h2>
+    <div class="col p-section">
       <p>Thousands of companies have chosen Kubeflow for their AI/ML stack.</p>
-      <p>From research institutions like CERN, to transport and logistics companies &ndash; Uber, Lyft, GoJek &ndash; to financial and media industries with Spotify, Bloomberg, Shopify and&nbsp;PayPal.</p>
-      <p>Forward-looking enterprises are using Kubeflow to empower their data scientists.</p>
+      <p>From research institutions like CERN, to transport and logistics companies - Uber, Lyft, GoJek - to financial
+        and media industries with Spotify, Bloomberg, Shopify and PayPal.</p>
+      <p class="p-section--shallow">Forward-looking enterprises are using Kubeflow to empower their data scientists.</p>
+      <hr />
+      <a href="https://ubuntu.com/engage/ai-ml-casestudy-tasmania/">Read our case study with
+        the University of Tasmania</a>
     </div>
- <div class="col-6 u-vertically-center">
-   <div class="p-logo-section has-misaligned-images">
+    <div class="p-logo-section has-misaligned-images">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{
-            image(
-              url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
-              alt="PayPal",
-              height="22",
-              width="85",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/c4da5b86-Tensor-flow-logo.png",
-              alt="TensorFlow",
-              height="90",
-              width="90",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/6d6b4148-seldon-logo.png",
-              alt="Seldon",
-              height="90",
-              width="100",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/a774cbbb-py-torch-logo.png",
-              alt="PyTorch",
-              height="90",
-              width="100",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/5d796b1c-itsio-logo.png",
-              alt="Istio",
-              height="60",
-              width="100",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/6b57da22-mxnet-logo.png",
-              alt="MXNet",
-              height="40",
-              width="110",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/41913ead-katib-logo.png",
-              alt="Katib",
-              height="90",
-              width="75",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
-              alt="Prometheus",
-              height="80",
-              width="80",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/3d0a8131-ambassador-logo.png",
-              alt="Ambassador",
-              height="100",
-              width="80",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/653daa8b-onnx-logo.png",
-              alt="ONNX",
-              height="30",
-              width="110",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/2af7ca99-xgboost-logo.png",
-              alt="XGBoost",
-              height="37",
-              width="110",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/f4ffa06e-scikit-learn-logo.png",
-              alt="Scikit",
-              height="60",
-              width="110",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/7c4d800a-pachyderm-logo.png",
-              alt="Pachyderm",
-              height="100",
-              width="110",
-              hi_def=True,
-              attrs={"class": "p-logo-section__logo"},
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
+          image(
+          url="https://assets.ubuntu.com/v1/1688fbe0-Spotify_logo.svg",
+          alt="Spotify",
+          height="42",
+          width="128",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/6889bfcb-uber-logo.png",
+          alt="Uber",
+          height="115",
+          width="128",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
+          alt="PayPal",
+          height="42",
+          width="128",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/4a1c3691-lyft.svg",
+          alt="Lyft",
+          height="60",
+          width="128",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/202457a2-CERN_logo2.svg",
+          alt="Cern",
+          height="128",
+          width="128",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
+          alt="Bloomberg",
+          height="32",
+          width="138",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+          image(
+          url="https://assets.ubuntu.com/v1/4f597a36-Shopify.svg",
+          alt="Shopify",
+          height="150",
+          width="150",
+          hi_def=True,
+          attrs={"class": "p-logo-section__logo"},
+          loading="lazy",
+          ) | safe
+          }}
         </div>
       </div>
     </div>
   </div>
 </section>
-  
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/a1317807-Install+Kubeflow.svg",
-        alt="Uber",
-        height="175",
-        width="250",
-        hi_def=True,
-        attrs={"class": "u-hide--small"},
-        loading="lazy",
-      ) | safe
-    }}
+
+<section>
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <h2 class="col u-no-margin--bottom">Kubeflow resources</h2>
+    <ul class="col p-list--divided u-no-margin--bottom">
+      <li class="p-list__item row--50-50">
+        <a class="col" href="https://charmed-kubeflow.io/docs">Charmed Kubeflow docs</a>
+        <p class="col">Read more about Charmed MLflow’s capabilities and follow our tutorials.</p>
+      </li>
+      <li class="p-list__item row--50-50">
+        <a class="col" href="/engage/kubeflow-vs-mlflow">Kubeflow vs. MLflow</a>
+        <p class="col">Understand the differences between the most famous open source solutions.</p>
+      </li>
+      <li class="p-list__item row--50-50">
+        <a class="col" href="/engage/mlops-guide">Guide to MLOps</a>
+        <p class="col">Learn how to take models to production using open source MLOps platforms.</p>
+      </li>
+    </ul>
   </div>
-  <div class="col-8">
-    <h2 class="u-fixed-width u-sv1">Get started today</h2>
-    <p class="u-sv2 p-heading--4">Try-out Kubeflow on your Kubernetes environment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
-    <p>Deploy locally on your workstation, cloud VM or on-prem server.</p>
-    <p>
-      <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">
-      Try Kubeflow on MicroK8s
-      </a>
-      <a href="https://charmed-kubeflow.io/#get-in-touch">
-        Contact us now&nbsp;&rsaquo;
-      </a>
-    </p>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <h2 class="col">Get started today</h2>
+    <div class="col">
+      <p>Try-out Kubeflow on your Kubernetes environment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
+      <p class="p-section--shallow">Deploy locally on your workstation, cloud VM or on-prem server.</p>
+      <hr />
+      <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">Try Kubeflow on MicroK8s</a>
+      <a class="p-button" href="https://charmed-kubeflow.io/#get-in-touch">Contact us now</a>
+    </div>
   </div>
 </section>
 
