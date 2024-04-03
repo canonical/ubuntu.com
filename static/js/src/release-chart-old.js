@@ -79,26 +79,29 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
 
 /**
  * @param {*} svg
- * 
+ *
  * Adds tooltip to bars
  */
 function addTooltipToBars(svg) {
   const tooltip = createTooltip();
 
-  svg.selectAll(".chart rect")
-    .on("mouseover", function(e, d) {
+  svg
+    .selectAll(".chart rect")
+    .on("mouseover", function (e, d) {
       const tooltipStatus = formatTooltipStatus(d.status);
       const dateRange = `${formatDate(d.startDate)} - ${formatDate(d.endDate)}`;
-      const tooltipContent = tooltipStatus ? `${tooltipStatus}: ${dateRange}` : dateRange;
+      const tooltipContent = tooltipStatus
+        ? `${tooltipStatus}: ${dateRange}`
+        : dateRange;
       tooltip.select(".p-tooltip__message").text(tooltipContent);
       tooltip.classed("u-hide", false);
     })
-    .on("mousemove", function(e) {
+    .on("mousemove", function (e) {
       tooltip
-        .style("left", (e.pageX + 2) + "px")
-        .style("top", (e.pageY - 3) + "px");
+        .style("left", e.pageX + 2 + "px")
+        .style("top", e.pageY - 3 + "px");
     })
-    .on("mouseout", function() {
+    .on("mouseout", function () {
       tooltip.classed("u-hide", true);
     });
 }
@@ -107,22 +110,27 @@ function addTooltipToBars(svg) {
  * Creates a tooltip and appends it to the page body
  */
 function createTooltip() {
-  const tooltip = d3.select("body").select(".p-tooltip--top-center.is-detached");
+  let tooltip = d3
+    .select("body")
+    .select(".p-tooltip--top-center.is-detached");
   if (tooltip.empty()) {
-    tooltip = d3.select("body").append("div")
+    tooltip = d3
+      .select("body")
+      .append("div")
       .attr("class", "p-tooltip--top-center is-detached u-hide");
-    tooltip.append("span")
+    tooltip
+      .append("span")
       .attr("class", "p-tooltip__message")
       .attr("role", "tooltip");
   }
-  
+
   return tooltip;
 }
 
 /**
- * 
+ *
  * @param {String} date
- * 
+ *
  * Parse the date to be more readable
  */
 function formatDate(date) {
@@ -297,9 +305,9 @@ function buildChartKey(chartSelector, taskStatus) {
 }
 
 /**
- * 
+ *
  * @param {String} key
- * 
+ *
  * Formats tooltip key into readable string
  */
 function formatTooltipStatus(key) {
