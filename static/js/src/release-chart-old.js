@@ -117,7 +117,8 @@ function createTooltip() {
     tooltip = d3
       .select("body")
       .append("div")
-      .attr("class", "p-tooltip--top-center is-detached u-hide");
+      .attr("class", "p-tooltip--top-center is-detached u-hide")
+      .attr("style", "pointer-events: none;");
     tooltip
       .append("span")
       .attr("class", "p-tooltip__message")
