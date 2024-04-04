@@ -61,7 +61,7 @@
           <input type="hidden" name="next-step" value="download">
           <button style="margin-right: 1rem;" type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS</button>
         </form>
-        <span class="u-text--muted">ISO image, {% if releases.lts.iso_download_size %}{{ releases.lts.iso_download_size }}{% endif %}</span>
+        <span class="u-text--muted">ISO image{% if releases.lts.iso_download_size %}, {{ releases.lts.iso_download_size }}{% endif %}</span>
         <p><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
         <p><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></p>
       </div>
