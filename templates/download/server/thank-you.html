@@ -30,7 +30,9 @@
       </p>
     </div>
     <div class="col">
-      {% include 'shared/_server-download-newsletter.html' %}
+      {% with returnUrl="/download/server", ga_event_title="Ubuntu Server download" %}
+        {% include 'shared/_download-newsletter.html' %}
+      {% endwith %}
     </div>
   </div>
 </section>
