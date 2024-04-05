@@ -110,9 +110,7 @@ function addTooltipToBars(svg) {
  * Creates a tooltip and appends it to the page body
  */
 function createTooltip() {
-  let tooltip = d3
-    .select("body")
-    .select(".p-tooltip--top-center.is-detached");
+  let tooltip = d3.select("body").select(".p-tooltip--top-center.is-detached");
   if (tooltip.empty()) {
     tooltip = d3
       .select("body")
@@ -193,6 +191,7 @@ function cleanUpChart(svg) {
 
 /**
  * @param {*} svg
+ * @param {*} yScale
  *
  * Embolden LTS labels on y axis
  */
