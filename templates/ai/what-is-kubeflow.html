@@ -10,13 +10,13 @@
 <section class="p-strip is-shallow u-no-padding--bottom">
   <div class="p-section">
     <div class="row--25-75">
-      <div class="col u-no-padding--bottom p-section">
+      <div class="col u-no-padding--bottom">
         <div>
           {{ image (
           url="https://assets.ubuntu.com/v1/6d72759e-kubeflow-logo.png",
           alt="Kubeflow",
-          width="852",
-          height="175",
+          width="182",
+          height="42",
           hi_def=True,
           loading="auto"
           ) | safe
@@ -48,25 +48,87 @@
     <hr class="p-rule" />
     <h2 class="p-section--shallow">Contributors to Kubeflow</h2>
     <div class="row--25-75">
-      <div class="col p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/7577d797-google-logo.svg" alt="Google" class="p-logo-section__logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/6ece1a68-microsoft-logo.png" alt="Microsoft" class="p-logo-section__logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/756d9941-canonical-logo.png" alt="Canonical" class="p-logo-section__logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/1c72e761-cisco-logo.png" alt="Cisco" class="p-logo-section__logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/c8792945-ibm-logo.png" alt="IBM" class="p-logo-section__logo" />
-          </div>
-          <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png" alt="Intel" class="p-logo-section__logo" />
+      <div class="col">
+        <div class="p-logo-section--dense p-section--shallow">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/7577d797-google-logo.svg",
+                  alt="Google",
+                  width="71",
+                  height="96",
+                  hi_def=True,
+                  loading="auto",
+                  attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/6ece1a68-microsoft-logo.png",
+                  alt="Microsoft",
+                  width="105",
+                  height="96",
+                  hi_def=True,
+                  loading="auto",
+                  attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+                image (
+                url="https://assets.ubuntu.com/v1/756d9941-canonical-logo.png",
+                alt="Canonical",
+                width="91",
+                height="96",
+                hi_def=True,
+                loading="auto"
+                attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/1c72e761-cisco-logo.png",
+                  alt="Cisco",
+                  width="232",
+                  height="384",
+                  hi_def=True,
+                  loading="auto",
+                  attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+                image (
+                url="https://assets.ubuntu.com/v1/c8792945-ibm-logo.png",
+                alt="IBM",
+                width="47",
+                height="96",
+                hi_def=True,
+                loading="auto",
+                attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{
+                image (
+                  url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+                  alt="Intel",
+                  width="48",
+                  height="96",
+                  hi_def=True,
+                  loading="auto",
+                  attr={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
