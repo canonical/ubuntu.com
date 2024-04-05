@@ -20,7 +20,7 @@
     <nav class="p-tabs">
       <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom" role="tablist" data-maintain-hash="true">
         <li class="p-tabs__item">
-          <a class="p-tabs__link" role="tab" aria-selected="true" id="manual-install-tab" href="#manual-install" aria-controls="manual-install">Manual install</a>
+          <a class="p-tabs__link" role="tab" aria-selected="true" id="manual-install-tab" href="#manual-install" aria-controls="manual-install">Manual installation</a>
         </li>
         <li class="p-tabs__item">
           <a class="p-tabs__link" role="tab" aria-selected="false" id="instant-vms-tab" href="#instant-vms" aria-controls="instant-vms" tabindex="-1">Instant VMs</a>
@@ -55,14 +55,12 @@
       <div class="p-section--shallow">
         <p>The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to 10 years with <a href="/pro">Ubuntu Pro</a>.</p>
         <hr />
-        <form action="/download/server" method="post" style="display: inline">
-          <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
-          <input type="hidden" name="architecture" value="amd64">
-          <input type="hidden" name="next-step" value="download">
-          <button style="margin-right: 1rem;" type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS</button>
-        </form>
+        <a class="p-button--positive"
+          href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
+          onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
+        </a>
         <span class="u-text--muted">ISO image{% if releases.lts.iso_download_size %}, {{ releases.lts.iso_download_size }}{% endif %}</span>
-        <p><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
+        <p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
         <p><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></p>
       </div>
 
@@ -70,7 +68,7 @@
         <nav class="p-tabs">
           <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom" role="tablist" data-maintain-hash="true">
             <li class="p-tabs__item">
-              <a class="p-tabs__link" role="tab" aria-selected="true" id="release-notes-tab" href="#release-notes" aria-controls="release-notes">Release notes</a>
+              <a class="p-tabs__link" role="tab" aria-selected="true" id="release-notes-tab" href="#release-notes" aria-controls="release-notes">What's new</a>
             </li>
             <li class="p-tabs__item">
               <a class="p-tabs__link" role="tab" aria-selected="false" id="system-requirements-tab" href="#system-requirements" aria-controls="system-requirements" tabindex="-1">System requirements</a>
@@ -93,7 +91,7 @@
         </ul>
         <hr class="p-rule" />
         <p>
-          <a href="https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668">Full {{ releases.lts.full_version }} release notes&nbsp;&rsaquo;</a>
+          <a href="https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668">Full {{ releases.lts.short_version }} release notes&nbsp;&rsaquo;</a>
         </p>
       </div>
 
@@ -129,30 +127,28 @@
       <div class="col">
         <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates, until July 2024.</p>
         <hr />
-        <form action="/download/server" method="post" style="display: inline">
-          <input type="hidden" name="version" value="{{ releases.latest.full_version }}">
-          <input type="hidden" name="architecture" value="amd64">
-          <input type="hidden" name="next-step" value="download">
-          <button style="margin-right: 1rem;" type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}</button>
-        </form>
-        <span class="u-text--muted">ISO image, {{ releases.lts.iso_download_size }}</span>
+        <a class="p-button--positive"
+        href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}
+        </a>
+        <span class="u-text--muted">ISO image{% if releases.latest.iso_download_size %}, {{ releases.latest.iso_download_size }} {% endif %}</span>
         <p><a href="https://discourse.ubuntu.com/t/mantic-minotaur-release-notes/35534">Read the 23.10 release notes&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </section>
   
   <section class="p-section">
-    <div class="row--25-75">
+    <div class="row">
       <hr class="p-rule" />
-      <div class="col">
+      <div class="col-3 p-section--shallow">
         <h3 class="p-text--small-caps">Alternative downloads</h3>
       </div>
-      <div class="col">
+      <div class="col-9 col-medium-6">
         <div class="row p-section--shallow">
-          <div class="col-3">
+          <div class="col-3 col-medium-3">
             <h4 class="p-heading--5">BitTorrent</h4>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
             <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
             <hr />
             <a class="p-button" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
@@ -161,10 +157,10 @@
         </div>
         <hr />
         <div class="row p-section--shallow">
-          <div class="col-3">
+          <div class="col-3 col-medium-3">
             <h4 class="p-heading--5">Ubuntu Server {{ releases.previous_lts.short_version }} LTS</h4>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
             <p>The previous long-term support version of Ubuntu Server, including support guaranteed until April 2025.</p>
             <hr />
             <form action="/download/server" method="post" style="display: inline">
@@ -177,13 +173,67 @@
         </div>
         <hr />
         <div class="row p-section--shallow">
-          <div class="col-3">
+          <div class="col-3 col-medium-3">
             <h4 class="p-heading--5">
               <a href="/download/alternative-downloads">Other versions&nbsp;&rsaquo;</a>
             </h4>
           </div>
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
             <p>Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="architectures" style="scroll-margin-top: 3.4rem;">
+    <div class="row">
+      <hr class="p-rule" />
+      <div class="col-3 p-section--shallow">
+        <h3 class="p-text--small-caps">Alternative architectures</h3>
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="row p-section--shallow">
+          <div class="col-3 col-medium-3">
+            <h4 class="p-heading--5">
+              <a href="/download/server/arm">ARM&nbsp;&rsaquo;</a>
+            </h4>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Optimised for hyperscale deployments and certified on ARM chipsets &mdash; Ubuntu Server for ARM includes the 64-bit ARMv7 and ARMv8 platforms.</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row p-section--shallow">
+          <div class="col-3 col-medium-3">
+            <h4 class="p-heading--5">
+              <a href="/download/server/power">IBM POWER&nbsp;&rsaquo;</a>
+            </h4>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row p-section--shallow">
+          <div class="col-3 col-medium-3">
+            <h4 class="p-heading--5">
+              <a href="/download/server/s390x">IBM Z (s390x)&nbsp;&rsaquo;</a>
+            </h4>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available on those platforms with Multipass, MicroK8s and more.</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row p-section--shallow">
+          <div class="col-3 col-medium-3">
+            <h4 class="p-heading--5">
+              <a href="/download/server/s390x">RISC-V&nbsp;&rsaquo;</a>
+            </h4>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>Ubuntu &mdash; now available for multiple RISC-V platforms to accelerate innovation.</p>
           </div>
         </div>
       </div>
