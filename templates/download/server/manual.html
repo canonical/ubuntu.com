@@ -59,7 +59,7 @@
           href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
           onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
         </a>
-        <span class="u-text--muted">ISO image{% if releases.lts.iso_download_size %}, {{ releases.lts.iso_download_size }}{% endif %}</span>
+        <span class="u-text--muted">ISO image, 2GB</span>
         <p><a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a></p>
         <p><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></p>
       </div>
@@ -131,7 +131,7 @@
         href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
         onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}
         </a>
-        <span class="u-text--muted">ISO image{% if releases.latest.iso_download_size %}, {{ releases.latest.iso_download_size }} {% endif %}</span>
+        <span class="u-text--muted">ISO image, 2.5GB</span>
         <p><a href="https://discourse.ubuntu.com/t/mantic-minotaur-release-notes/35534">Read the 23.10 release notes&nbsp;&rsaquo;</a></p>
       </div>
     </div>
@@ -436,15 +436,37 @@
         ".p-tabs__link[href='" + currentHash + "']"
       );
     const targetIds = ["release-notes", "system-requirements", "how-to-install"];
-    const targetControl = activeTab.getAttribute("aria-controls")
 
-    if (targetIds.includes(targetControl)) {
-      indexTab = document.getElementById("manual-install")
-      indexTab.classList.remove("u-hide")
+    if (activeTab) {
+      const targetControl = activeTab.getAttribute("aria-controls")
+  
+      if (targetIds.includes(targetControl)) {
+        indexTab = document.getElementById("manual-install")
+        indexTab.classList.remove("u-hide")
+      }
+    }
+  }
+
+  // Prevents non-tab hash links from hiding the tab content
+  function handleNonTabHashClick () {
+    const currentHash = window.location.hash;
+    const activeTab = document.querySelector(
+        ".p-tabs__link[href='#release-notes']"
+      );
+    const targetControl = activeTab.getAttribute("aria-controls")
+    const tabContentContainers = document.querySelectorAll(".p-tabs__content");
+
+    if (currentHash && currentHash == "#architectures") {
+      tabContentContainers.forEach(container => {
+        if (container.id !== targetControl && container.id !== "manual-install") {
+          container.classList.add("u-hide")
+        }
+      })
     }
   }
 
   addEventListener("DOMContentLoaded", () => {
+    handleNonTabHashClick()
     showParentTab()
   });
   
