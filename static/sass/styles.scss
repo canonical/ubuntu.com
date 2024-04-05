@@ -1366,6 +1366,12 @@ $color-link-dark: #69c !default;
   }
 }
 
+// XXX: Lyubo: reduce logo section component height globally (to be moved to vanilla)
+.p-logo-section--dense .p-logo-section__logo,
+.p-logo-section--dense .p-logo-section__logo {
+  height: 6rem;
+}
+
 .p-logo-section.has-misaligned-images {
   .p-logo-section__item {
     margin-bottom: $spv--x-large;
@@ -1534,14 +1540,3 @@ hr.is-extra-muted {
   opacity: 0.5;
 }
 
-// Needed to adjusted logos of different sizes
-// design may need to provide logos with same height
-.u-kube-logo-height {
-  height: 96px;
-}
-
-// XXX: Lyubo: reduce logo section component height globally (to be moved to vanilla)
-.p-logo-section--dense .p-logo-section__logo,
-.p-logo-section--dense .p-logo-section__logo {
-  height: 6rem;
-}
