@@ -1366,6 +1366,11 @@ $color-link-dark: #69c !default;
   }
 }
 
+// XXX: Lyubo: reduce logo section component height globally (to be moved to vanilla)
+.p-logo-section--dense .p-logo-section__logo {
+  height: 6rem;
+}
+
 .p-logo-section.has-misaligned-images {
   .p-logo-section__item {
     margin-bottom: $spv--x-large;
