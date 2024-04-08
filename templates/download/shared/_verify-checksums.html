@@ -1,19 +1,24 @@
-<p>
-  You can
-  <span class="p-contextual-menu--left">
-    <a href="#" class="p-contextual-menu__toggle" data-trigger="click" aria-controls="menu-4" aria-expanded="false" aria-haspopup="true">verify your download</a>
-    <span class="p-contextual-menu__dropdown" id="menu-4" aria-hidden="true" aria-label="Verification instructions:" style="width: 600px; max-width: 70vw; padding: 1rem;">
-      {% if releases.checksums[system] and releases.checksums[system][version] %}
-      <span class="p-contextual-menu__group">
-        <small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small><br />
-        <code style="display: block; margin-top: 1rem;">echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code><br />
-        <small>You should get the following output:</small><br />
-        <code style="display: block; margin-top: 1rem;">ubuntu-{{ version }}-{% if system != architecture %}{{ system }}-{% else %}preinstalled-server-{% endif %}{{ architecture }}.iso: OK</code><br />
-        <small>Or follow this tutorial to learn <a href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
-      </span>
-      {% else %}
-        <small>Please check the <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256SUMS page</a> for the checksum numbers.</small>
-      {% endif %}
-    </span>
-  </span>{% if not 'raspi' in system %}, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}/thank-you">help on installing</a>{% endif %}.
-</p>
+You can <button class="p-button--link" onclick="verifyDownloadContent()">verify your download</button>{% if not 'raspi' in system %}, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}/thank-you">help on installing</a>{% endif %}.
+
+
+<div class="u-hide" id="menu-4" aria-hidden="true" aria-label="Verification instructions:">
+  {% if releases.checksums[system] and releases.checksums[system][version] %}
+    <p>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</p>
+    <pre>echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</pre>
+    <p>You should get the following output:</p>
+    <pre>ubuntu-{{ version }}-{% if system != architecture %}{{ system }}-{% else %}preinstalled-server-{% endif %}{{ architecture }}.iso: OK</pre>
+    <p>Or follow this tutorial to learn <a href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a>.</p>
+  {% else %}
+    <p>Please check the <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256SUMS page</a> for the checksum numbers.</p>
+  {% endif %}
+</div>
+
+
+<script type="text/javascript">
+  function verifyDownloadContent() {
+    var targetControls = document.getElementById("menu-4");
+    if (targetControls) {
+      targetControls.classList.toggle('u-hide');
+    }
+  }
+</script>

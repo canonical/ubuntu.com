@@ -1,3 +1,4 @@
+import logging
 from typing import List, Optional
 
 from requests.exceptions import HTTPError
@@ -11,6 +12,7 @@ class UAContractsAPI:
         token_type="Macaroon",
         api_url="https://contracts.canonical.com",
         is_for_view=False,
+        remote_addr=None,
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -22,6 +24,7 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
+        self.remote_addr = remote_addr
 
     def set_authentication_token(self, token):
         self.authentication_token = token
@@ -44,6 +47,13 @@ class UAContractsAPI:
         headers[
             "Authorization"
         ] = f"{self.token_type} {self.authentication_token}"
+
+        if self.remote_addr:
+            headers["X-Forwarded-For"] = self.remote_addr
+            logger = logging.getLogger("talisker.requests")
+            logger.info(
+                "remote address", extra={"remote_addr": self.remote_addr}
+            )
 
         response = self.session.request(
             method=method,
