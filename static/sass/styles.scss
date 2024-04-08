@@ -473,6 +473,15 @@ summary {
   }
 }
 
+// Align blog thumbnails
+.u-blog-thumbnails {
+  // Images are populated by JS
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
 // Styling for ubuntu navigation logo for engage pages
 .navigation-logo-engage {
   margin-top: -2.2rem;
@@ -1537,4 +1546,45 @@ $color-link-dark: #69c !default;
 hr.is-extra-muted {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.5;
+}
+
+// Decimal number bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/4998
+ol.p-list--divided .p-list__item::before {
+  content: counter(list-item) ". ";
+}
+
+// Fix stepped list title grid bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
+@media screen and (max-width: $breakpoint-small - 1) {
+  .p-stepped-list--detailed .p-stepped-list__title {
+    grid-column-end: span 4;
+    margin-left: 0;
+  }
+}
+
+// Fix slider background
+// https://github.com/canonical/vanilla-framework/issues/5025
+@-moz-document url-prefix() {
+  .p-slider {
+    @extend .is-paper;
+  }
+}
+
+.u-responsive-realign {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+@media screen and (max-width: $breakpoint-small - 1) {
+  .u-table-horizontal-scroll {
+    overflow-x: hidden;
+    .u-table-horizontal-scroll__table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
 }
