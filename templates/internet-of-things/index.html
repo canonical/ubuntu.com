@@ -13,7 +13,9 @@
 {% block content %}
 
   <section class="p-strip--suru is-dark">
-    {% include "shared/_pro-for-devices-banner.html" %}
+    {% if schedule_banner("2024-04-09", "2024-06-09") %}
+      {% include "shared/_pro-for-devices-banner.html" %}
+    {% endif %}
 
     <div class="row u-vertically-center">
       <div class="col-6">
