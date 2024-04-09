@@ -27,7 +27,7 @@
 
 {% include "/shared/_ubuntu_pro_on_public_cloud.html" %}
 
-<section class="p-strip is-deep">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-10">
       <h2>Use Ubuntu in the cloud</h2>
@@ -55,7 +55,7 @@
         <p>Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
       </div>
       <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide">Ubuntu's guide to using EC2</a></li>
+        <li class="p-list__item u-no-margin--top"><a href="https://documentation.ubuntu.com/aws/en/latest/aws-how-to/instances">Ubuntu's guide to using EC2</a></li>
         <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/">Amazon EC2 AMI Locator</a></li>
         <li class="p-list__item"><a href="/aws/pro">Launch Ubuntu Pro for AWS&nbsp;&rsaquo;</a></li>
       </ul>
@@ -156,26 +156,6 @@
       <ul class="p-list">
         <li class="p-list__item u-no-margin--top"><a href="https://docs.oracle.com/en/cloud/get-started/index.html">Guide to using Oracle Cloud</a></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/cf5198aa-desktop-22.04-laptop-developers.png",
-        alt="",
-        width="826",
-        height="498",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h2>Develop with Ubuntu cloud images</h2>
-      <p>If you want to modify the standard images, develop locally with a specific public cloud image, or use an image on your private cloud, you can download them from  <a href="http://cloud-images.ubuntu.com/">cloud-images.ubuntu.com</a>.</p>
     </div>
   </div>
 </section>
