@@ -137,3 +137,7 @@ BADGR_PASSWORD=<badgr_password>
 Parts of this site use [React Query](https://react-query.tanstack.com/overview) to manage data from the API.
 
 To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `dotrun -e NODE_ENV="development"`.
+
+## Linting / formatting
+
+When making changes to the codebase please make sure it's properly formatted and linted. This [discourse topic](https://discourse.canonical.com/t/configuring-editors-for-formatting-and-linting/188) explains which tools we use for formatting and linting, as well as how to configure your IDE to support it.
