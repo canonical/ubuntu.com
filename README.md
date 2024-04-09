@@ -34,6 +34,8 @@ PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
+For more information on how to work with ubuntu.com project please refer to [HACKING.md](HACKING.md).
+
 # Deploy
 
 You can find the deployment config in the deploy folder.
