@@ -91,7 +91,7 @@
         </ul>
         <hr class="p-rule" />
         <p>
-          <a href="https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668">Full {{ releases.lts.short_version }} release notes&nbsp;&rsaquo;</a>
+          <a href="https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668">{{ releases.lts.short_version }} release notes&nbsp;&rsaquo;</a>
         </p>
       </div>
 
@@ -118,24 +118,6 @@
       </div>
     </div>
   </div>
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr />
-      <div class="col">
-        <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-      </div>
-      <div class="col">
-        <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates, until July 2024.</p>
-        <hr />
-        <a class="p-button--positive"
-        href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }}
-        </a>
-        <span class="u-text--muted">ISO image, 2.5GB</span>
-        <p><a href="https://discourse.ubuntu.com/t/mantic-minotaur-release-notes/35534">Read the 23.10 release notes&nbsp;&rsaquo;</a></p>
-      </div>
-    </div>
-  </section>
   
   <section class="p-section">
     <div class="row">
@@ -152,7 +134,6 @@
             <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
             <hr />
             <a class="p-button" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
-            <a class="p-button" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.latest.full_version }}</a>
           </div>
         </div>
         <hr />
@@ -445,7 +426,7 @@
   }
 
   // Prevents non-tab hash links from hiding the tab content
-  function handleNonTabHashClick () {
+  function handleNonTabHashClick() {
     const currentHash = window.location.hash;
     const activeTab = document.querySelector(
         ".p-tabs__link[href='#release-notes']"
