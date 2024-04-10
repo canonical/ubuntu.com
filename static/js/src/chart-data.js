@@ -94,6 +94,23 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2024-07-20T00:00:00"),
     taskName: "23.10 (Mantic Minotaur)",
     status: "INTERIM_RELEASE",
+  },{
+    startDate: new Date("2024-04-25T00:00:00"),
+    endDate: new Date("2034-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
+    startDate: new Date("2024-04-25T00:00:00"),
+    endDate: new Date("2029-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2029-04-25T00:00:00"),
+    endDate: new Date("2034-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "ESM",
   },
 ];
 
@@ -1246,8 +1263,8 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "24.04 LTS (Noble Numbat)",
   "23.10 (Mantic Minotaur)",
-  "23.04 (Lunar Lobster)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
