@@ -83,12 +83,6 @@ export var serverAndDesktopReleases = [
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "ESM",
   },
-  // {
-  //   startDate: new Date("2023-04-20T00:00:00"),
-  //   endDate: new Date("2024-01-20T00:00:00"),
-  //   taskName: "23.04 (Lunar Lobster)",
-  //   status: "INTERIM_RELEASE",
-  // },
   {
     startDate: new Date("2023-10-20T00:00:00"),
     endDate: new Date("2024-07-20T00:00:00"),
