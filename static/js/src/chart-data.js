@@ -94,7 +94,8 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2024-07-20T00:00:00"),
     taskName: "23.10 (Mantic Minotaur)",
     status: "INTERIM_RELEASE",
-  },{
+  },
+  {
     startDate: new Date("2024-04-25T00:00:00"),
     endDate: new Date("2034-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
