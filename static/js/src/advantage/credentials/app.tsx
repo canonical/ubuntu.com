@@ -34,8 +34,7 @@ function App() {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Router basename="/credentials/shop">
-          <Routes>
-          </Routes>
+          <Routes></Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

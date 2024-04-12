@@ -22,9 +22,9 @@ from webapp.shop.decorators import (
     init_trueability_session,
 )
 from webapp.shop.utils import (
-  get_exam_contract_id,
-  get_user_first_last_name,
-  get_tab_keys,
+    get_exam_contract_id,
+    get_user_first_last_name,
+    get_tab_keys,
 )
 from webapp.login import user_info
 
