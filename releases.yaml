@@ -10,6 +10,7 @@ latest:
   past_eol_date: false
   release_notes_url: "https://discourse.ubuntu.com/t/mantic-minotaur-release-notes/35534"
   iso_download_size: "4.5GB"
+  server_iso_size: "2.5GB"
 lts:
   slug: NobleNumbat
   name: "Noble Numbat"
@@ -21,16 +22,23 @@ lts:
   iso_download_size: "3.8GB"
   raspi_server_iso_size: "2.2GB"
   raspi_desktop_iso_size: "986MB"
+  server_iso_size: "2.6GB"
 previous_lts:
+  slug: JammyJellyfish
+  name: "Jammy Jellyfish"
+  short_version: "22.04"
+  full_version: "22.04.4"
+  release_date: "April 2022"
+  eol: "April 2027"
+  release_notes_url: "https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668"
+  iso_download_size: "4.7GB"
+  server_iso_size: "2GB"
+previous_previous_lts:
   name: "Focal Fossa"
   short_version: "20.04"
   full_version: "20.04.6"
   release_date: "April 2020"
   eol: "April 2025"
-previous_previous_lts:
-  name: "Bionic Beaver"
-  short_version: "18.04"
-  full_version: "18.04.6"
 openstack_lts:
   slug: Yoga
 
