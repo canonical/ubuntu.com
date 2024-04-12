@@ -1,35 +1,49 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Ubuntu for ARM | Download{% endblock %}
-{% block meta_description %}Download Ubuntu Server for ARM with support for the very latest ARM-based server systems powered by certified 64-bit processors.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1whVU3DvB9j5k6Ed3UvLZCEN6BU-lZcow4ZefqKQqokg/edit{% endblock meta_copydoc %}
+
+{% block meta_description %}
+  Download Ubuntu Server for ARM with support for the very latest ARM-based server systems powered by certified 64-bit processors.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1whVU3DvB9j5k6Ed3UvLZCEN6BU-lZcow4ZefqKQqokg/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-shallow u-no-padding--bottom">
-  <div class="row--50-50">
-    <div class="col">
-      <h1>Ubuntu Server for ARM</h1>
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Ubuntu Server for ARM</h1>
+      </div>
+      <div class="col p-section--shallow">
+        <p>
+          Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> includes support for the very latest ARM-based server systems powered by certified 64-bit processors.
+        </p>
+        <p>
+          Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.
+        </p>
+      </div>
     </div>
-    <div class="col p-section--shallow">
-      <p>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> includes support for the very latest ARM-based server systems powered by certified 64-bit processors.</p>
-      <p>Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
-      <hr class="p-rule" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h2 class="p-heading--5">Ubuntu Server</h2>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>This is the default ISO image of the Ubuntu Server installer.</p>
-          <hr />
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-            Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-          </a>
-          {% if releases.latest.short_version > releases.lts.short_version %}
-            &nbsp;&nbsp;<a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h2 class="p-heading--5">Ubuntu Server</h2>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>This is the default ISO image of the Ubuntu Server installer.</p>
+            <hr />
+            <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso"
+               class="p-button--positive"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+              Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+            </a>
+            {% if releases.latest.short_version > releases.lts.short_version %}
+              &nbsp;&nbsp;<a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso"
+   class="p-button"
+   onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
               Download {{ releases.latest.full_version }}
             </a>
           {% endif %}
@@ -48,7 +62,9 @@
         <div class="col-6 col-medium-3 p-section">
           <p>This ISO image is suited for servers with ample memory running memory-intensive applications.</p>
           <hr />
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64+largemem.iso" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64+largemem.iso"
+             class="p-button"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> (64k page size)
           </a>
           <p>
@@ -64,16 +80,26 @@
   <hr class="p-rule is-fixed-width" />
   <div class="row--50-50">
     <div class="col">
-      <h2>Containers, databases, web <br class="u-hide--small u-hide--medium" /> more</h2>
+      <h2>
+        Containers, databases, web
+        <br class="u-hide--small u-hide--medium" />
+        and more
+      </h2>
     </div>
     <div class="col">
       <p>Ubuntu Server for&nbsp;ARM includes everything you are looking for in a server operating system, including:</p>
       <hr class="p-rule" />
       <ul class="p-list--divided u-no-padding--bottom u-no-margin--bottom">
-        <li class="p-list__item is-ticked">The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance.</li>
-        <li class="p-list__item is-ticked">Application container technology based on Docker and Kubernetes, including FAN-based networking.</li>
+        <li class="p-list__item is-ticked">
+          The LXD container hypervisor, giving you instant access to isolated, secured environments running with bare-metal performance.
+        </li>
+        <li class="p-list__item is-ticked">
+          Application container technology based on Docker and Kubernetes, including FAN-based networking.
+        </li>
         <li class="p-list__item is-ticked">SQL and NoSQL databases including CouchDB, MySQL, PostgreSQL, Redis and SQLite.</li>
-        <li class="p-list__item is-ticked">A wide collection of web technologies, from HTTP servers to frameworks including Apache, Django, memcached, Nginx, WordPress and Varnish.</li>
+        <li class="p-list__item is-ticked">
+          A wide collection of web technologies, from HTTP servers to frameworks including Apache, Django, memcached, Nginx, WordPress and Varnish.
+        </li>
       </ul>
     </div>
   </div>
@@ -86,17 +112,23 @@
       <h2>Commercially supported and ready to deploy today</h2>
     </div>
     <div class="col">
-      <p>Pair your ARM server deployment with enterprise-grade 24/7 support with <a href="/pro">Ubuntu Pro</a> to get the SLA-backed assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.</p>
-      <p>Built for cutting-edge hardware, from the HP Moonshot range to standard form-factor certified systems, Ubuntu and ARM Server provide truly compelling economics for cloud-scale deployment.</p>
+      <p>
+        Pair your ARM server deployment with enterprise-grade 24/7 support with <a href="/pro">Ubuntu Pro</a> to get the SLA-backed assurance that you are fully covered by our system and architecture experts &mdash; no matter what comes up.
+      </p>
+      <p>
+        Built for cutting-edge hardware, from the HP Moonshot range to standard form-factor certified systems, Ubuntu and ARM Server provide truly compelling economics for cloud-scale deployment.
+      </p>
       <hr class="p-rule" />
-      <p><a href="/server/contact-us?product=server-arm">Contact us about your ARM server plans&nbsp;&rsaquo;</a></p>
+      <p>
+        <a href="/server/contact-us?product=server-arm">Contact us about your ARM server plans&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
 
 <section class="p-section--deep">
   <div class="u-fixed-width">
-    <hr class="p-rule">
+    <hr class="p-rule" />
     <div class="p-section--shallow">
       <h2>Get started with Ubuntu today</h2>
     </div>
@@ -109,10 +141,11 @@
           <h3 class="p-heading--5">Installation guides</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>For help with installing Ubuntu on an ARM-based platform, check out our step-by-step installation guides.
-          </p>
+          <p>For help with installing Ubuntu on an ARM-based platform, check out our step-by-step installation guides.</p>
           <hr class="p-rule" />
-          <p><a href="https://wiki.ubuntu.com/ARM/Server/Install">ARM guides&nbsp;&rsaquo;</a></p>
+          <p>
+            <a href="https://wiki.ubuntu.com/ARM/Server/Install">ARM guides&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
       <hr class="p-rule" />
@@ -121,10 +154,14 @@
           <h3 class="p-heading--5">Professional support for Ubuntu</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Get professional support for Ubuntu from Canonical. We help organisations around the world to manage their
-            Ubuntu cloud, server and desktop deployments.</p>
+          <p>
+            Get professional support for Ubuntu from Canonical. We help organisations around the world to manage their
+            Ubuntu cloud, server and desktop deployments.
+          </p>
           <hr class="p-rule" />
-          <p><a href="/pro">Ubuntu Pro&nbsp;&rsaquo;</a></p>
+          <p>
+            <a href="/pro">Ubuntu Pro&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
       <hr class="p-rule" />
