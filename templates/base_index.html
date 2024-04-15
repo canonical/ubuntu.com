@@ -1,1624 +1,1777 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Enterprise Open Source and Linux{% endblock %}
+{% block meta_description %}Ubuntu is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.{% endblock meta_description %}
+{% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
 
-{% block meta_description %}
-  Ubuntu is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.
-{% endblock meta_description %}
-
-{% block extra_body_class %}
-  homepage
-
-  {% block takeover_body_class %}
-  {% endblock takeover_body_class %}
-{% endblock extra_body_class %}
-
-{% block meta_copydoc %}
-  https://docs.google.com/document/d/1ySJxQbqVdeH4Tra0zwBm2Tn0s56kFGnEF7d8xDRTxwU/edit
-{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1ySJxQbqVdeH4Tra0zwBm2Tn0s56kFGnEF7d8xDRTxwU/edit{% endblock %}
 
 {% block body_class %}
   is-dark
 {% endblock body_class %}
 
 {% block outer_content %}
+{% block content %}
 
-  {% block content %}
 
-    <!-- Test takeover template -->
-    <!-- {% block test_takeover_content %}
-    {% with title_1="A CTO's guide", title_2="to real-time Linux", subtitle='Understanding real-time systems, their use
-    cases and inner workings.', button_url="/", button_text="Download now",
-    img_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png", img_width="508", img_height="364" %}
-    {% include "takeovers/_test_template.html" %}
-    {% endwith %}
-    {% endblock test_takeover_content %} -->
-    <!-- Default Takeover: Download the latest Ubuntu -->
-    <section data-lang="all" id="takeover" class="p-strip">
-      <div class="row p-takeover-animation" id="takeover-animaition">
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h1 id="takeover-title" class="u-no-margin--bottom">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
-            <p class="p-heading--2" id="takeover-subtitle">
-              Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.
-            </p>
-          </div>
-          <hr class="is-muted" />
-          <div id="takeover-ctas">
-            <p>
-              <a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a>
-              <a id="takeover-secondary-url" href="/raspberry-pi">Learn more about Ubuntu on the Raspberry Pi&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-        <div class="col-3 u-align--center u-hide--medium u-hide--small">
-          <img id="takeover-image"
-               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               width="200"
-               alt="" />
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section notice">
-      <div class="u-fixed-width">
-        <div style="background-color: #2d2d2d;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                    padding-bottom: 0.5rem">
-          <h2>
-            <a href="/18-04">End of standard support for 18.04 LTS &mdash; 31 May 2023</a>
-          </h2>
-          <hr class="p-rule is-muted" />
-          <p>Upgrade to the latest Ubuntu LTS or get extended coverage until 2028 with Ubuntu Pro</p>
-        </div>
-      </div>
-    </section>
-
-    {% block notices_content %}
-    {% endblock notices_content %}
-
-    <section class="p-section">
-      <hr class="p-rule is-fixed-width" />
-      <div class="row">
-        <div class="col-9 col-medium-4">
-          <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
-          <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
-          <p>
-            <a class="p-button--positive" href="/pro">Get Ubuntu Pro</a>
+  <!-- Test takeover template -->
+  <!-- {% block test_takeover_content %}
+  {% with title_1="A CTO's guide", title_2="to real-time Linux", subtitle='Understanding real-time systems, their use
+  cases and inner workings.', button_url="/", button_text="Download now",
+  img_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png", img_width="508", img_height="364" %}
+  {% include "takeovers/_test_template.html" %}
+  {% endwith %}
+  {% endblock test_takeover_content %} -->
+  <!-- Default Takeover: Download the latest Ubuntu -->
+  <section data-lang="all" id="takeover" class="p-strip">
+    <div class="row p-takeover-animation" id="takeover-animaition">
+      <div class="col-9">
+        <div class="p-section--shallow">
+          <h1 id="takeover-title" class="u-no-margin--bottom">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
+          <p class="p-heading--2" id="takeover-subtitle">
+            Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.
           </p>
         </div>
-        <div class="col-3 col-medium-2">
-          <ul class="p-list--divided u-no-margin--bottom">
-            <li class="p-list__item u-no-padding">
-              {{ image(url="https://assets.ubuntu.com/v1/66d21279-aws.png",
-                            alt="AWS",
-                            width="51",
-                            height="63",
-                            hi_def=True,
-                            loading="lazy") | safe
-              }}
-            </li>
-            <li class="p-list__item u-no-padding">
-              {{ image(url="https://assets.ubuntu.com/v1/d24afe72-azure.png",
-                            alt="Microsoft Azure",
-                            width="126",
-                            height="67",
-                            hi_def=True,
-                            loading="auto") | safe
-              }}
-            </li>
-            <li class="p-list__item u-no-padding">
-              {{ image(url="https://assets.ubuntu.com/v1/79de55f4-att.png",
-                            alt="AT&T",
-                            width="98",
-                            height="72",
-                            hi_def=True,
-                            loading="lazy") | safe
-              }}
-            </li>
-            <li class="p-list__item u-no-padding">
-              {{ image(url="https://assets.ubuntu.com/v1/5c8b5aef-google%20cloud.png",
-                            alt="Google Cloud",
-                            width="164",
-                            height="59",
-                            hi_def=True,
-                            loading="lazy") | safe
-              }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-    </div>
-
-    {% with section_classes='p-section', spotlight='True' %}
-      {% include "shared/_latest_news_strip.html" %}
-    {% endwith %}
-
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9 col-medium-4">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Energise your engineers</h2>
-            <p class="p-heading--2">Better security. More packages. Newer tools. All your open source, from cloud to edge.</p>
-          </div>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            66% of experienced developers prefer Ubuntu. That's why Ubuntu supports the fastest, biggest and most successful digital operations.
-          </p>
-        </div>
-      </div>
-      <div class="row p-section--shallow">
-        <div class="col-9 col-medium-4">
-          <hr class="p-rule is-muted" />
-          <div class="row p-section--shallow">
-            <div class="col-3 col-medium-2 col-small-2">
-              <p class="u-no-margin--bottom">
-                <a href="/contact-us" class="js-invoke-modal">Let's talk open source&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <div class="col-3 col-medium-2 col-small-2">
-              <p class="u-no-margin--bottom">
-                <a href="/masters-conference">Watch Ubuntu Masters in action&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-3 col-medium-2">
-          <hr class="p-rule is-muted" />
-          <div class="row">
-            <div class="col-small-2">
-              <p>
-                <a href="https://media.hackerearth.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf"
-                   aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
-                  The 2020 HackerEarth Developer Survey
-                </a>
-              </p>
-            </div>
-            <div class="col-small-2 p-image-wrapper">
-              {{ image(url="https://assets.ubuntu.com/v1/d0dc6306-hackerearth.png",
-                            alt="",
-                            width="120",
-                            height="24",
-                            hi_def=True,
-                            loading="lazy") | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        {{ image(url="https://assets.ubuntu.com/v1/d5915fd9-Energise-your-engineers-image.jpg",
-                alt="",
-                width="2464",
-                height="1054",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col p-section--shallow">
-          <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
-          <p class="p-heading--2">
-            <a href="/pro">Ubuntu Pro</a> is more than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
-          </p>
-        </div>
-        <div class="col">
-          <div class="row">
-            <div class="col-3">
-              <ul class="p-list--divided u-hide--medium u-hide--small">
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/22c5fb07-nist-logo.png",
-                                    alt="NIST",
-                                    width="57",
-                                    height="39",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/2354ee4f-@sec-logo.png",
-                                    alt="ASEC",
-                                    width="96",
-                                    height="54",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/c7af6eb5-disa-logo.png",
-                                    alt="DISA",
-                                    width="68",
-                                    height="48",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/4710d3ba-cis-logo.png",
-                                    alt="CIS",
-                                    width="51",
-                                    height="80",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/aa0ad2ff-csec-logo.png",
-                                    alt="CSEC",
-                                    width="39",
-                                    height="69",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-              </ul>
-            </div>
-            <div class="col-3 p-section--shallow">
-              <p>Secure your open source apps.</p>
-              <p>Patch the full stack, from kernel to library and applications, for CVE compliance.</p>
-              <p>Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.</p>
-              <p>
-                <a href="/security">Secure all your open source with us&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>10 year security maintenance and CVE Patching</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/livepatch">Extended security</a> for infrastructure and applications
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
-          </p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr>
-            compliance
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <section class="p-section">
-      <div class="u-fixed-width p-section">
-        {{ image(url="https://assets.ubuntu.com/v1/39667d98-Open%20source%20security.jpg",
-                alt="",
-                width="2464",
-                height="1055",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-      </div>
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Significant enterprise savings</h2>
-            <p class="p-heading--2">Sustainable open source at the lowest cost, everywhere.</p>
-          </div>
-          <p>
-            Rethink what's possible with Linux and open source. Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.
-          </p>
-        </div>
-        <div class="col">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">No mandatory subscriptions for Ubuntu</li>
-            <li class="p-list__item is-ticked">
-              <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed/apps">apps</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              <a href="/cloud/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              <a href="/about/release-cycle">Long term maintenance commitment</a>
-            </li>
-            <li class="p-list__item is-ticked">Transparent pricing for enterprise and ISV</li>
-            <li class="p-list__item is-ticked">
-              <a href="/engage/vmware-to-charmed-openstack">Switch from VMware to OpenStack</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              <a href="/openstack/tco-calculator">TCO analysis of Open Infra</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
-            </li>
-          </ul>
-          <hr class="p-rule is-muted" />
-          <div class="row">
-            <div class="col-3 col-start-large-4">
-              <p class="u-no-margin--bottom">
-                <a href="/contact-us" class="js-invoke-modal">Let's talk open source&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Public cloud optimisation</h2>
-            <p class="p-heading--2">Most public cloud instances are Ubuntu, for performance and security.</p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
-                                alt="Uber",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
-                                alt="Spotify",
-                                width="90",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
-                                alt="BNP",
-                                width="109",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/117ae9b9-Canonical-AI-ML-Illustrations-v5-03%201-1.png",
-                        alt="",
-                        width="276",
-                        height="327",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-      </div>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Optimised kernels for AWS, Azure, Google, Oracle, IBM</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Network & storage performance optimisation</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>GPU enablement for machines and containers</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Pay-as-you-go billing, no more licenses</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Cloud workload migration service</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>Containerisation and cloud-native migration service</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>Fully managed application service</p>
-        </li>
-      </ul>
-
-      <div class="row">
         <hr class="is-muted" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <div id="takeover-ctas">
           <p>
-            <a href="/cloud/public-cloud"
-               aria-label="Learn more about public cloud optimisation">Learn more&nbsp;&rsaquo;</a>
+            <a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a>
+            <a id="takeover-secondary-url" href="/raspberry-pi">Learn more about Ubuntu on the Raspberry Pi&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-3 u-align--center u-hide--medium u-hide--small">
+        <img id="takeover-image"
+              src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+              width="200"
+              alt="" />
+      </div>
+    </div>
+  </section>
+
+<section class="p-section notice">
+  <div class="u-fixed-width">
+    <div style="background-color: #2d2d2d; padding-left: 1rem; padding-right: 1rem; padding-bottom: 0.5rem;">
+      <h2><a href="/18-04">End of standard support for 18.04 LTS &mdash; 31 May 2023</a></h2>
+      <hr class="p-rule is-muted"/>
+      <p>Upgrade to the latest Ubuntu LTS or get extended coverage until 2028 with Ubuntu Pro</p>
+    </div>
+  </div>
+</section>
+
+{% block notices_content %}
+{% endblock notices_content %}
+
+<section class="p-section">
+  <hr class="is-fixed-width" />
+  <div class="row">
+    <div class="col-9 col-medium-4">
+      <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
+      <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
+      <p>
+        <a class="p-button--positive" href="/pro">
+          Get Ubuntu Pro
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/8d999320-aws.png",
+            alt="AWS",
+            width="51",
+            height="30",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/2ef140ac-azure.png",
+            alt="Microsoft Azure",
+            width="126",
+            height="35",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}</li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/99762d0f-att.png",
+            alt="AT&T",
+            width="98",
+            height="40",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}</li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a8c409a4-google cloud.png",
+            alt="Google Cloud",
+            width="164",
+            height="27",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr class="p-rule" />
+</div>
+
+{% with section_classes='p-section', spotlight='True' %}
+{% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-9 col-medium-4">
+      <div class="p-section--shallow">
+        <h2 class="p-heading--1 u-no-margin--bottom">Energise your engineers</h2>
+        <p class="p-heading--2">Better security. More packages. Newer tools. All your open source, from cloud to edge.</p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>66% of experienced developers prefer Ubuntu. That's why Ubuntu supports the fastest, biggest and most successful digital operations.</p>
+    </div>
+  </div>
+  <div class="row p-section">
+    <div class="col-9 col-medium-4">
+      <hr class="p-rule is-muted" />
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-2">
+          <p class="u-no-margin--bottom">
+            <a href="/contact-us" class="js-invoke-modal">
+              Let's talk open source&nbsp;&rsaquo;
+            </a>
           </p>
         </div>
         <div class="col-3 col-medium-2">
-          <p>
-            <a href="/cloud/public-cloud/contact-us"
-               aria-label="Contact us about public cloud optimisation"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+          <p class="u-no-margin--bottom">
+            <a href="/masters-conference">
+              Watch Ubuntu Masters in action&nbsp;&rsaquo;
+            </a>
           </p>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="col-3 col-medium-2">
+      <hr class="p-rule is-muted"/>
+      <p class="p-section--shallow">
+        <a href="https://media.hackerearth.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
+          The 2020 HackerEarth Developer Survey
+        </a>
+      </p>
+      {{ image(
+        url="https://assets.ubuntu.com/v1/d0dc6306-hackerearth.png",
+        alt="",
+        width="120",
+        height="24",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/d5915fd9-Energise-your-engineers-image.jpg",
+      alt="",
+      width="2464",
+      height="1054",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+</section>
 
-    <section class="p-section">
-      <div class="row--50-50 p-section--shallow">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud Kubernetes and containers</h2>
-        </div>
-        <div class="col">
-          <p class="p-heading--2">
-            <a title="external link - docs.microsoft.com/en-us/azure/aks/cluster-configuration"
-               href="https://docs.microsoft.com/en-us/azure/aks/cluster-configuration">AKS.</a> <a title="external link - cloud-images.ubuntu.com/docs/aws/eks"
-    href="https://cloud-images.ubuntu.com/docs/aws/eks">EKS.</a> <a title="external link - cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu"
-    href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">GKE.</a> Kubeadm. <a title="external link - microk8s.io" href="https://microk8s.io">MicroK8s.</a> <a href="/kubernetes/features">Charmed Kubernetes.</a>
-          </p>
-        </div>
-      </div>
-      <div class="row--50-50">
-        <hr class="p-rule is-muted" />
-        <div class="col">
-          <div class="p-logo-section--dense">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/b0292231-aws-logo.png",
-                                alt="AWS",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/01edb5d4-google-cloud-logo.png",
-                                alt="GCP",
-                                width="149",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png",
-                                alt="Microsoft Azure",
-                                width="84",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png",
-                                alt="Liberty Global",
-                                width="40",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png",
-                                alt="ACI",
-                                width="95",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <p class="p-heading--2">All on Ubuntu.</p>
-        </div>
-        <hr class="p-rule is-muted" />
-      </div>
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
+      <p class="p-heading--2">
+        <a href="/pro">Ubuntu Pro</a> is more than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
+      </p>
+    </div>
+    <div class="col">
       <div class="row">
-        <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
-          <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Support for all public cloud Kubernetes</li>
-            <li class="p-list__item is-ticked">On-prem MicroK8s, Charmed K8s, kubeadm</li>
-            <li class="p-list__item is-ticked">
-              <a href="/kubernetes/managed">Fully managed kubernetes</a> on-prem or public cloud
+        <div class="col-3">
+          <ul class="p-list--divided u-hide--medium u-hide--small">
+            <li class="p-list__item">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/5f8ed524-Vector.png",
+                alt="NIST",
+                width="68",
+                height="19",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
             </li>
-            <li class="p-list__item is-ticked">
-              <a href="https://juju.is/docs/kubernetes">Model-driven Kubernetes Operators</a>
+            <li class="p-list__item">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/f63065ea-d05ddc19-@sec-logo.png",
+                alt="ASEC",
+                width="115",
+                height="36",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
             </li>
-            <li class="p-list__item is-ticked">
-              Full stack support for <a href="/managed">apps</a>, <a href="/pricing/infra">Kubernetes</a> and <a href="/support">OS</a>
+            <li class="p-list__item">
+              {{ 
+                image (
+                url="https://assets.ubuntu.com/v1/d703ce1c-Group.png",
+                alt="DISA",
+                width="81",
+                height="28",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
             </li>
-            <li class="p-list__item is-ticked">
-              <a href="https://jaas.ai/canonical-kubernetes">K8s architecture and deployment consulting</a>
+            <li class="p-list__item">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/2798718d-00644094-cis-logo.png",
+                alt="CIS",
+                width="61",
+                height="68",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
             </li>
-            <li class="p-list__item is-ticked">Cloud-native workload migration services</li>
-            <li class="p-list__item is-ticked">
-              GPU enablement for <a href="https://charmed-kubeflow.io/">AI/ML workloads</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              <a href="https://maas.io/">Bare metal</a>, <a href="/openstack">OpenStack</a> and VMware
-            </li>
-            <li class="p-list__item is-ticked">
-              Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
+            <li class="p-list__item">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/f9e94ad1-Group%203392.png",
+                alt="CSEC",
+                width="46",
+                height="54",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
             </li>
           </ul>
-          <hr class="p-rule is-muted u-hide--medium u-hide--small" />
-        </div>
-      </div>
-      <div class="row">
-        <hr class="is-muted p-rule u-hide--large" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="/kubernetes"
-               aria-label="Learn more about multi-cloud Kubernetes and containers">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="/kubernetes/contact-us"
-               aria-label="Contact us about multi-cloud Kubernetes and containers"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Carrier-grade private cloud</h2>
-            <p class="p-heading--2">
-              Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
-            </p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png",
-                                alt="Best Buy",
-                                width="43",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png",
-                                alt="BT",
-                                width="41",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png",
-                                alt="Deutsche Telekom",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png",
-                                alt="Rabobank",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png",
-                                alt="Bloomberg",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png",
-                                alt="AT&T",
-                                width="89",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-
-            {{ image(url="https://assets.ubuntu.com/v1/f94265e6-Canonical-AI-ML-Illustrations-v5-03%201-2.png",
-                        alt="",
-                        width="852",
-                        height="1083",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-      </div>
-
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/openstack/features">Hyperconverged</a> or segregated architecture
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security">Encryption at rest for GDPR, HIPAA, FedRAMP</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Wide choice of SDN and storage</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/engage/charmed-openstack-adoption-whitepaper">Upgrades and day-2 operations, automated</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Integrated logging, monitoring and alerting</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Platform and infrastructure hardening</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>High availability</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/telco">Carrier-grade NFVI</a>
-          </p>
-        </li>
-      </ul>
-      <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="/openstack"
-               aria-label="Learn more about carrier-grade private cloud">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="/openstack/contact-us"
-               aria-label="Contact us about carrier-grade private cloud"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Ultra secure things</h2>
-            <p class="p-heading--2">
-              <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
-            </p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow p-section">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-                                alt="Intel",
-                                width="50",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png",
-                                alt="Rexroth",
-                                width="66",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
-                                alt="ARM",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-                                alt="Dell",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png",
-                                alt="Advantech",
-                                width="94",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/a69032bb-Canonical-AI-ML-Illustrations-v5-03%201.png",
-                        alt="",
-                        width="256",
-                        height="333",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
-          </div>
-        </div>
-      </div>
-
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>OTA compressed updates for apps, kernel and OS</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Automatic rollback and data snapshots</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>DevSecOps pipeline for edge app delivery</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Built-in device recovery and remote disk repair</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>10 year security maintenance for every device</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Provable system and software integrity</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Secure boot backed by root of trust</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>Full disk encryption with hardware keys</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>
-            <a href="/real-time">Support for real-time compute</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>FIPS certifiable embedded Linux</p>
-        </li>
-      </ul>
-
-      <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="/core" aria-label="Learn more about Ubuntu Core">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="/core/contact-us"
-               aria-label="Contact us about Ubuntu Core"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Workstations and desktops</h2>
-            <p class="p-heading--2">
-              <a href="/ai">Optimised AI/ML</a> and cloud devops.
-              <br />
-              The professional developer's preference.
-            </p>
-          </div>
         </div>
         <div class="col-3">
-          <div class="p-logo-section--dense">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
-                                alt="Nvidia",
-                                width="95",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-                                alt="Intel",
-                                width="50",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item u-no-margin--right">
-                {{ image(url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
-                                alt="AMD",
-                                width="69",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-          <hr class="p-rule is-muted u-hide--medium" />
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
-                                alt="HP",
-                                width="41",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-                                alt="Dell",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item u-no-margin--right">
-                {{ image(url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
-                                alt="Lenovo",
-                                width="69",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
+          <p>Secure your open source apps.</p>
+          <p>Patch the full stack, from kernel to library and applications, for CVE compliance.</p>
+          <p>Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.</p>
+          <p>
+            <a href="/security">
+              Secure all your open source with us&nbsp;&rsaquo;
+            </a>
+          </p>
         </div>
+      </div>      
+    </div>
+  </div>
+
+  <div class="p-equal-height-row has-1st-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        10 year security maintenance and CVE Patching
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/livepatch">Extended security</a> for infrastructure and applications
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr
+        title="Department of Defence, USA">DoD</abbr>
+        compliance
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width">
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/5a35c042-Open%20source%20security.jpg",
+      alt="",
+      width="2464",
+      height="1055",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <div class="p-section--shallow">
+        <h2 class="p-heading--1 u-no-margin--bottom">Significant enterprise savings</h2>
+        <p class="p-heading--2">Sustainable open source at the lowest cost, everywhere.</p>
       </div>
-
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
-          </p>
+      <p>Rethink what's possible with Linux and open source. Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.</p>
+    </div>
+    <div class="col">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">
+          No mandatory subscriptions for Ubuntu
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Full disk encryption</p>
+        <li class="p-list__item is-ticked">
+          <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed/apps">apps</a>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
+        <li class="p-list__item is-ticked">
+          <a href="/cloud/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>DevSecOps pipeline for edge app delivery</p>
+        <li class="p-list__item is-ticked">
+          <a href="/about/release-cycle">Long term maintenance commitment</a>
         </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Security updates for the <a href="/esm">full open source stack</a>
-          </p>
+        <li class="p-list__item is-ticked">
+          Transparent pricing for enterprise and ISV
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Estate <a href="/landscape/features">monitoring and management</a>
-          </p>
+        <li class="p-list__item is-ticked">
+          <a href="/engage/vmware-to-charmed-openstack">Switch from VMware to OpenStack</a>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Configuration lockdown</p>
+        <li class="p-list__item is-ticked">
+          <a href="/openstack/tco-calculator">TCO analysis of Open Infra</a>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Local Kubernetes for offline development</p>
+        <li class="p-list__item is-ticked">
+          <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
         </li>
       </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>
-            Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a href="https://multipass.run">Multipass</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>
-            Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>FIPS certifiable embedded Linux</p>
-        </li>
-      </ul>
-
+      <hr class="p-rule" />
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="/desktop"
-               aria-label="Learn more about workstations and desktops">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="/desktop/contact-us"
-               aria-label="Contact us about workstations and desktops"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+        <div class="col-3 col-start-large-4">
+          <p class="u-no-margin--bottom">
+            <a href="/contact-us" class="js-invoke-modal">
+              Let's talk open source&nbsp;&rsaquo;
+            </a>
           </p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Data centre automation</h2>
-            <p class="p-heading--2">
-              Turn a rack into a bare metal cloud.
-              <br />
-              <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
-            </p>
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-8">
+      <div class="p-section--shallow">
+        <h2 class="p-heading--1 u-no-margin--bottom">
+          Public cloud optimisation
+        </h2>
+        <p class="p-heading--2">
+          Most public cloud instances are Ubuntu, for performance and security.
+        </p>
+      </div>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
+            alt="Uber",
+            width="44",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
           </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png",
-                                alt="Verizon",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png",
-                                alt="Telefonica",
-                                width="121",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png",
-                                alt="Tele2",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png",
-                                alt="Telecom Italia",
-                                width="57",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png",
-                                alt="NEC",
-                                width="60",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png",
-                                alt="Barclays",
-                                width="113",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
+          <div class="p-logo-section__item">            
+            {{ image (
+              url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
+              alt="Spotify",
+              width="90",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
-
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
+              alt="BNP",
+              width="109",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
         </div>
-        <div class="col-3 u-hide--small u-hide--medium p-image-wrapper">
-          {{ image(url="https://assets.ubuntu.com/v1/3bc32183-Canonical-AI-ML-Illustrations-v5-03%201-3.png",
-                    alt="",
-                    width="272",
-                    height="312",
-                    hi_def=True,
-                    loading="lazy") | safe
+      </div>
+    </div>
+    <div class="col-4 u-hide--medium u-hide--small">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/1d3e0a99-Asset 3@2x 1.png",
+          alt="",
+          width="494",
+          height="313",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Optimised kernels for AWS, Azure, Google, Oracle, IBM
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Network & storage performance optimisation
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        GPU enablement for machines and containers
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Pay-as-you-go billing, no more licenses
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Cloud workload migration service
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Containerisation and cloud-native migration service
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Fully managed application service
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr class="is-muted" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/cloud/public-cloud">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/cloud/public-cloud/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50 p-section--shallow">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud Kubernetes and containers</h2>
+    </div>
+    <div class="col">
+      <p class="p-heading--2">
+        <a title="external link - docs.microsoft.com/en-us/azure/aks/cluster-configuration" href="https://docs.microsoft.com/en-us/azure/aks/cluster-configuration">AKS.</a> <a title="external link - cloud-images.ubuntu.com/docs/aws/eks" href="https://cloud-images.ubuntu.com/docs/aws/eks">EKS.</a> <a title="external link - cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">GKE.</a> Kubeadm. <a title="external link - microk8s.io" href="https://microk8s.io">MicroK8s.</a> <a href="/kubernetes/features">Charmed Kubernetes.</a>
+      </p>
+    </div>
+  </div>
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/b0292231-aws-logo.png",
+              alt="AWS",
+              width="47",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/01edb5d4-google-cloud-logo.png",
+              alt="GCP",
+              width="149",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png",
+              alt="Microsoft Azure",
+              width="84",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png",
+              alt="Liberty Global",
+              width="40",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png",
+              alt="ACI",
+              width="95",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <p class="p-heading--2" style="margin-top: 1rem;">All on Ubuntu.</p>
+    </div>
+    <hr class="p-rule" />
+  </div>
+  <div class="row">
+    <div class="col-6 col-start-large-7">
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">
+          Support for all public cloud Kubernetes
+        </li>
+        <li class="p-list__item is-ticked">
+          On-prem MicroK8s, Charmed K8s, kubeadm
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security">
+            <a href="/kubernetes/managed">Fully managed kubernetes</a> on-prem or public cloud
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="https://juju.is/docs/kubernetes">Model-driven Kubernetes Operators</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Full stack support for <a href="/managed">apps</a>, <a href="/pricing/infra">Kubernetes</a> and <a href="/support">OS</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="https://jaas.ai/canonical-kubernetes">K8s architecture and deployment consulting</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Cloud-native workload migration services
+        </li>
+        <li class="p-list__item is-ticked">
+          GPU enablement for <a href="https://charmed-kubeflow.io/">AI/ML workloads</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="https://maas.io/">Bare metal</a>, <a href="/openstack">OpenStack</a> and VMware
+        </li>
+        <li class="p-list__item is-ticked">
+          Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
+      </ul>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/kubernetes">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/kubernetes/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-8">
+      <div class="p-section">
+        <h2 class="p-heading--1 u-no-margin--bottom">
+          Carrier-grade private cloud
+        </h2>
+        <p class="p-heading--2">
+          Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
+        </p>
+      </div>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/b1b15386-bestbuy-logo.png",
+              alt="Best Buy",
+              width="43",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">            
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/81edb230-bt-logo.png",
+              alt="BT",
+              width="41",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">            
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/ef824cd6-deutsche-telekom.png",
+              alt="Deutsche Telekom",
+              width="96",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/717f5cb2-rabobank-logo.png",
+              alt="Rabobank",
+              width="96",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item"> 
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/7f57f3ba-Bloomberg-Logo.png",
+              alt="Bloomberg",
+              width="96",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item"> 
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/f55643b6-AT&T-Logo.png",
+              alt="AT&T",
+              width="89",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 u-hide--medium u-hide--small">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/995af329-Asset 5@2x 1.png",
+          alt="",
+          width="428",
+          height="321",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/openstack/features">Hyperconverged</a> or segregated architecture
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security">Encryption at rest for GDPR, HIPAA, FedRAMP</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Wide choice of SDN and storage
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/engage/charmed-openstack-adoption-whitepaper">Upgrades and day-2 operations, automated</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Integrated logging, monitoring and alerting
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Platform and infrastructure hardening
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        High availability
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/telco">Carrier-grade NFVI</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/openstack">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/openstack/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-8">
+      <h2 class="p-heading--1 u-no-margin--bottom">
+        Ultra secure things
+      </h2>
+      <p class="p-heading--2">
+        <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
+      </p>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+              alt="Intel",
+              width="50",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png",
+              alt="Rexroth",
+              width="66",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
+              alt="ARM",
+              width="47",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
+              alt="Dell",
+              width="44",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png",
+              alt="Advantech",
+              width="94",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 u-hide--medium u-hide--small">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/e5861aaf-Asset 4@2x 1.png",
+          alt="",
+          width="282",
+          height="236",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        OTA compressed updates for apps, kernel and OS
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Automatic rollback and data snapshots
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        DevSecOps pipeline for edge app delivery
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Built-in device recovery and remote disk repair
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        10 year security maintenance for every device
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Provable system and software integrity
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Secure boot backed by root of trust
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Full disk encryption with hardware keys
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/real-time">Support for real-time compute</a>
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        FIPS certifiable embedded Linux
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/core">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/core/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="row p-section">
+    <hr class="p-rule" />
+    <div class="col-9">
+      <h2 class="p-heading--1 u-no-margin--bottom">
+        Workstations and desktops
+      </h2>
+      <p class="p-heading--2">
+        <a href="/ai">Optimised AI/ML</a> and cloud devops.<br />The professional developer's preference.
+      </p>
+    </div>
+    <div class="col-3">
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
+              alt="Nvidia",
+              width="95",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">            
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+              alt="Intel",
+              width="50",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item u-no-margin--right">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
+              alt="AMD",
+              width="69",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule" />
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
+              alt="HP",
+              width="41",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
+              alt="Dell",
+              width="44",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item u-no-margin--right">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
+              alt="Lenovo",
+              width="69",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Full disk encryption
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        DevSecOps pipeline for edge app delivery
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Security updates for the <a href="/esm">full open source stack</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Estate <a href="/landscape/features">monitoring and management</a>
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Configuration lockdown
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Local Kubernetes for offline development
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a href="https://multipass.run">Multipass</a>
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        FIPS certifiable embedded Linux
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/desktop">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/desktop/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+    <h2 class="p-heading--1 u-no-margin--bottom">
+      Data centre automation
+    </h2>
+    <p class="p-heading--2">
+      Turn a rack into a bare metal cloud.<br /> <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
+    </p>
+    <div class="p-logo-section--dense">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png",
+            alt="Verizon",
+            width="96",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png",
+            alt="Telefonica",
+            width="121",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png",
+            alt="Tele2",
+            width="47",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png",
+            alt="Telecom Italia",
+            width="57",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png",
+            alt="NEC",
+            width="60",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png",
+            alt="Barclays",
+            width="113",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
           }}
         </div>
       </div>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Remote edge cluster operations</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Infrastructure <a href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery
-          </p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Ansible, Chef, Puppet, SALT, <a href="https://juju.is">Juju</a> integration
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="https://maas.io/install">Super fast install</a> from scratch
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>VMWare ESXi, Windows, CentOS, RHEL, Ubuntu</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Custom images with pre-installed apps</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">API-driven DHCP, DNS, PXE, IPAM, provisioning</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">LDAP authentication and RBAC</li>
-      </ul>
-      <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="https://maas.io"
-               aria-label="Learn more about data centre automation">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="https://maas.io/contact-us"
-               aria-label="Contact us about data centre automation">Contact us&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <h2 class="p-heading--1 u-no-margin--bottom">Smart robots of all shapes and sizes</h2>
-          <p class="p-heading--2">
-            From turtles to trucks,
-            <br />
-            <a href="/robotics">Ubuntu drives the robot revolution</a>.
-          </p>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png",
-                                alt="ABB",
-                                width="45",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png",
-                                alt="Pal Robotics",
-                                width="56",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png",
-                                alt="Kuka",
-                                width="89",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
-                                alt="Apollo",
-                                width="77",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
-                                alt="Bosch",
-                                width="103",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png",
-                                alt="BMW",
-                                width="40",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Remote edge cluster operations
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Infrastructure <a href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Ansible, Chef, Puppet, SALT, <a href="https://juju.is">Juju</a> integration
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="https://maas.io/install">Super fast install</a> from scratch
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        VMWare ESXi, Windows, CentOS, RHEL, Ubuntu
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Custom images with pre-installed apps
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        API-driven DHCP, DNS, PXE, IPAM, provisioning
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        LDAP authentication and RBAC
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="https://maas.io">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="https://maas.io/contact-us">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row">
+    <hr class="p-rule" />
+    <div class="col-8">
+      <h2 class="p-heading--1 u-no-margin--bottom">
+        Smart robots of all shapes and sizes
+      </h2>
+      <p class="p-heading--2">
+        From turtles to trucks,<br /><a href="/robotics">Ubuntu drives the robot revolution</a>.
+      </p>
+      <div class="p-logo-section--dense">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png",
+              alt="ABB",
+              width="45",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/a0537c7a-Canonical-AI-ML-Illustrations-v5-03%202.png",
-                        alt="",
-                        width="273",
-                        height="328",
-                        hi_def=True,
-                        loading="lazy") | safe
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png",
+              alt="Pal Robotics",
+              width="56",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png",
+              alt="Kuka",
+              width="89",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
+              alt="Apollo",
+              width="77",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
+              alt="Bosch",
+              width="103",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png",
+              alt="BMW",
+              width="40",
+              height="96",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
             }}
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-4 u-hide--medium u-hide--small">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/193f6298-Frame%203395.png",
+          alt="",
+          width="579",
+          height="407",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Security patches for long-term ROS</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Fault tolerant over-the-air updates</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
-          </p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">Trim time-to-market with SMART START consulting</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">Leading Robot-as-a-Platform ecosystem</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">Curated app stores</li>
-      </ul>
+  <div class="p-equal-height-row has-1st-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Security patches for long-term ROS
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Fault tolerant over-the-air updates
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Trim time-to-market with SMART START consulting
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Leading Robot-as-a-Platform ecosystem
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Curated app stores
+      </li>
+    </ul>
+  </div>
 
-      <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="/robotics" aria-label="Learn more about robotics">Learn more&nbsp;&rsaquo;</a>
-          </p>
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="/robotics">
+          Learn more&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-3 col-medium-2">
+      <p>
+        <a href="/contact-us" class="js-invoke-modal">
+          Contact us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--1 u-no-margin--bottom">
+      Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS
+    </h2>
+    <p class="p-heading--2">
+      <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
+    </p>
+    <div class="p-logo-section--dense">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png",
+            alt="Panasonic",
+            width="99",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
         </div>
-        <div class="col-3 col-medium-2">
-          <p>
-            <a href="/contact-us"
-               aria-label="Contact us about robotics"
-               class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
-          </p>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png",
+            alt="Scania",
+            width="142",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png",
+            alt="SBI BTS",
+            width="90",
+            height="96",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png",
+            alt="Swissquote",
+            width="532",
+            height="385",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="p-section--deep">
-      <div class="u-fixed-width">
-        <hr class="p-rule" />
-        <div class="p-section--shallow">
-          <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS</h2>
-          <p class="p-heading--2">
-            <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
-          </p>
-        </div>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png",
-                            alt="Panasonic",
-                            width="99",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png",
-                            alt="Scania",
-                            width="142",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png",
-                            alt="SBI BTS",
-                            width="90",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png",
-                            alt="Swissquote",
-                            width="133",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="p-equal-height-row has-1st-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Operate smoothly across public and private cloud
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Reusable integration code as open source packages
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Python Operator Framework for rapid development
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        Bring the K8s operator pattern to classic workloads
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        Lifecycle management and Day 2 operations
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="https://jaas.ai/store">Open collection</a> of community-driven operators
+      </li>
+    </ul>
+  </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Operate smoothly across public and private cloud</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Reusable integration code as open source packages</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Python Operator Framework for rapid development</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Bring the K8s operator pattern to classic workloads</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>Lifecycle management and Day 2 operations</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>
-            <a href="https://jaas.ai/store">Open collection</a> of community-driven operators
-          </p>
-        </li>
-      </ul>
+  <div class="row">
+    <hr class="is-muted p-rule" />
+    <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+      <p>
+        <a href="https://juju.is">
+          Learn more about universal operators&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
 
-      <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
-          <p>
-            <a href="https://juju.is">Learn more about universal operators&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </section>
+{% block footer_content %}
+{# include "ubuntu/takeovers/_footer_homepage.html" #}
+{% endblock footer_content %}
 
-    {% block footer_content %}
-      {# include "ubuntu/takeovers/_footer_homepage.html" #}
-    {% endblock footer_content %}
+<script>
+  // get the users language and remove any extra detail suffix (e.g. -gb)
+  var primaryParentLanguage = getPrimaryParentLanguage();
 
-    <script>
-      // get the users language and remove any extra detail suffix (e.g. -gb)
-      var primaryParentLanguage = getPrimaryParentLanguage();
+  // get notices matching the user language
+  var notices = document.querySelectorAll(".notice[lang=" + primaryParentLanguage + "]");
 
-      // get notices matching the user language
-      var notices = document.querySelectorAll(".notice[lang=" + primaryParentLanguage + "]");
+  // display only one matching notice
+  if (notices.length > 0) {
+    notices[0].classList.remove("u-hide")
+  }
 
-      // display only one matching notice
-      if (notices.length > 0) {
-        notices[0].classList.remove("u-hide")
-      }
+  var baseTakeover = document.getElementById('takeover');
+  var takeoverAnimation = document.getElementById("takeover-animaition");
 
-      var baseTakeover = document.getElementById('takeover');
-      var takeoverAnimation = document.getElementById("takeover-animaition");
+  if (window.localStorage && baseTakeover) {
+    /**
+    * Choose a takeover
+    * ===
+    *
+    * From the list of provided takeovers from /.takeovers.json,
+    * choose one (that matches the client's language), and replace the
+    * base template with it.
+    */
 
-      if (window.localStorage && baseTakeover) {
-        /**
-         * Choose a takeover
-         * ===
-         *
-         * From the list of provided takeovers from /.takeovers.json,
-         * choose one (that matches the client's language), and replace the
-         * base template with it.
-         */
+    var xhr = new XMLHttpRequest();
+    if (window.ActiveXObject) {
+      xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    var fetchUserCountry = new XMLHttpRequest();
+    if (window.ActiveXObject) {
+      fetchUserCountry = new ActiveXObject('Microsoft.XMLHTTP');
+    }
 
-        var xhr = new XMLHttpRequest();
-        if (window.ActiveXObject) {
-          xhr = new ActiveXObject('Microsoft.XMLHTTP');
-        }
-        var fetchUserCountry = new XMLHttpRequest();
-        if (window.ActiveXObject) {
-          fetchUserCountry = new ActiveXObject('Microsoft.XMLHTTP');
-        }
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var takeovers = JSON.parse(xhr.responseText);
 
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              var takeovers = JSON.parse(xhr.responseText);
-
-              // Get the selected takeovers based on the primary language
-              if (
-                fetchUserCountry.readyState == XMLHttpRequest.DONE &&
-                fetchUserCountry.status == 200
-              ) {
-                var userCountry = JSON.parse(fetchUserCountry.responseText).country_code;
-                var selectedTakeovers = takeovers.filter(function(item) {
-                  if (item.target_country && item.target_country == userCountry) {
-                    return true;
-                  } else if (item.lang === primaryParentLanguage || item.lang === "") {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                });
+          // Get the selected takeovers based on the primary language
+          if (
+            fetchUserCountry.readyState == XMLHttpRequest.DONE &&
+            fetchUserCountry.status == 200
+          ) {
+            var userCountry = JSON.parse(fetchUserCountry.responseText).country_code;
+            var selectedTakeovers = takeovers.filter(function (item) {
+              if (item.target_country && item.target_country == userCountry) {
+                return true;
+              } else if (item.lang === primaryParentLanguage || item.lang === "") {
+                return true;
               } else {
-                var selectedTakeovers = takeovers.filter(function(item) {
-                  if (item.lang === primaryParentLanguage || item.lang === "") {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                });
+                return false;
               }
-
-              if (selectedTakeovers && selectedTakeovers.length > 0) {
-                var selectedIndex = null;
-
-                if (window.localStorage.getItem("selected_takeover_index") !== null) {
-                  // If we previously visited a takeover, increment the number to show the next takeover
-                  var nextIndex =
-                    parseInt(window.localStorage.getItem("selected_takeover_index")) + 1;
-                  selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
-                } else {
-                  // Otherwise, randomly choose one of the takeovers and store it for next time
-                  selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
-                }
-                showTakeover(selectedTakeovers, selectedIndex);
-
-                // Store the current takeover index
-                localStorage.setItem("selected_takeover_index", selectedIndex);
+            });
+          } else {
+            var selectedTakeovers = takeovers.filter(function (item) {
+              if (item.lang === primaryParentLanguage || item.lang === "") {
+                return true;
+              } else {
+                return false;
               }
+            });
+          }
 
+          if (selectedTakeovers && selectedTakeovers.length > 0) {
+            var selectedIndex = null;
 
+            if (window.localStorage.getItem("selected_takeover_index") !== null) {
+              // If we previously visited a takeover, increment the number to show the next takeover
+              var nextIndex =
+                parseInt(window.localStorage.getItem("selected_takeover_index")) + 1;
+              selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
             } else {
-              takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
-              takeoverAnimation.className += " is-loaded";
+              // Otherwise, randomly choose one of the takeovers and store it for next time
+              selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
             }
+            showTakeover(selectedTakeovers, selectedIndex);
+
+            // Store the current takeover index
+            localStorage.setItem("selected_takeover_index", selectedIndex);
           }
-        };
 
-        xhr.open("GET", "/takeovers.json", true);
-        xhr.send();
-        fetchUserCountry.open("GET", "/user-country.json", true);
-        fetchUserCountry.send();
-        takeoverAnimation.className += " is-loading";
-      }
 
-      function showTakeover(takeovers, index) {
-        // Default parameter
-        index = typeof index !== 'undefined' ? index : 0;
-
-        // Get HTML elements
-        var takeover = document.getElementById("takeover");
-        var title = document.getElementById("takeover-title");
-        var subtitle = document.getElementById("takeover-subtitle");
-        var image = document.getElementById("takeover-image");
-        var primaryUrl = document.getElementById("takeover-primary-url");
-        var secondaryUrl = document.getElementById("takeover-secondary-url");
-
-        // Set values to homepage takeover
-        var selectedTakeover = takeovers[index];
-
-        takeover.className = "";
-        takeover.removeAttribute("style");
-
-        // Add takeover classes
-        var classNameString = "js-takeover p-takeover--" + selectedTakeover.class;
-        takeover.className += classNameString;
-
-        // Set language attributes
-        if (selectedTakeover.lang) {
-          takeover.setAttribute("lang", selectedTakeover.lang);
-        }
-        if (selectedTakeover.lang_skip) {
-          takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
-        }
-
-        // Set takeover content
-        if (title.textContent.length > 80 || subtitle.textContent.length > 80) {
-          title.classList.remove("u-no-margin--bottom")
-          subtitle.classList.remove("p-heading--2")
-          subtitle.classList.add("p-section--shallow")
-        }
-
-        title.textContent = selectedTakeover.title;
-        subtitle.textContent = selectedTakeover.subtitle;
-
-        image.src = selectedTakeover.image;
-        image.onload = function() {
-          // Remove animation delay
-          if (takeoverAnimation) {
-            takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
-            takeoverAnimation.className += " is-loaded";
-          }
-        }
-
-        if (image.getAttribute("src") === "") {
+        } else {
           takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
-          takeoverAnimation.className += " is-loaded";
+          takeoverAnimation.className +=  " is-loaded";
         }
-
-        image.removeAttribute("style");
-        image.width = selectedTakeover.image_width;
-        image.height = selectedTakeover.image_height;
-
-        if (selectedTakeover.primary_url && selectedTakeover.primary_cta) {
-          primaryUrl.href = selectedTakeover.primary_url;
-          primaryUrl.textContent = selectedTakeover.primary_cta;
-        } else {
-          primaryUrl.remove();
-        }
-
-        if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
-          secondaryUrl.href = selectedTakeover.secondary_url;
-          secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
-        } else {
-          secondaryUrl.remove();
-        }
-
-        dataLayer.push({
-          event: "NonInteractiveGAEvent",
-          eventCategory: "www.ubuntu.com-impression-takeover",
-          eventAction: "from:" + window.location.href + " to:" + selectedTakeover.primary_url,
-          eventLabel: selectedTakeover.primary_cta,
-          eventValue: undefined,
-        });
       }
-    </script>
+    };
 
-    <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide"
-         id="contact-form-container"
-         data-form-location="/shared/forms/interactive/general"
-         data-form-id="1257"
-         data-lp-id="2154"
-         data-return-url="https://ubuntu.com/contact-us/form/thank-you"
-         data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+    xhr.open("GET", "/takeovers.json", true);
+    xhr.send();
+    fetchUserCountry.open("GET", "/user-country.json", true);
+    fetchUserCountry.send();
+    takeoverAnimation.className +=  " is-loading";
+  }
 
-  {% endblock content %}
+  function showTakeover(takeovers, index) {
+    // Default parameter
+    index = typeof index !== 'undefined' ? index : 0;
+
+    // Get HTML elements
+    var takeover = document.getElementById("takeover");
+    var title = document.getElementById("takeover-title");
+    var subtitle = document.getElementById("takeover-subtitle");
+    var image = document.getElementById("takeover-image");
+    var primaryUrl = document.getElementById("takeover-primary-url");
+    var secondaryUrl = document.getElementById("takeover-secondary-url");
+
+    // Set values to homepage takeover
+    var selectedTakeover = takeovers[index];
+
+    takeover.className = "";
+    takeover.removeAttribute("style");
+
+    // Add takeover classes
+    var classNameString = "js-takeover p-takeover--" + selectedTakeover.class;
+    takeover.className += classNameString;
+
+    // Set language attributes
+    if (selectedTakeover.lang) {
+      takeover.setAttribute("lang", selectedTakeover.lang);
+    }
+    if (selectedTakeover.lang_skip) {
+      takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
+    }
+
+    // Set takeover content
+    title.textContent = selectedTakeover.title;
+    subtitle.textContent = selectedTakeover.subtitle;
+    image.src = selectedTakeover.image;
+    image.onload = function () {
+      // Remove animation delay
+      if (takeoverAnimation) {
+        takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
+        takeoverAnimation.className +=  " is-loaded";
+      }
+    }
+
+    if (image.getAttribute("src") === "") {
+      takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
+      takeoverAnimation.className +=  " is-loaded";
+    }
+
+    image.removeAttribute("style");
+    image.width = selectedTakeover.image_width;
+    image.height = selectedTakeover.image_height;
+
+    if (selectedTakeover.primary_url && selectedTakeover.primary_cta) {
+      primaryUrl.href = selectedTakeover.primary_url;
+      primaryUrl.textContent = selectedTakeover.primary_cta;
+    } else {
+      primaryUrl.remove();
+    }
+
+    if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+      secondaryUrl.href = selectedTakeover.secondary_url;
+      secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
+    } else {
+      secondaryUrl.remove();
+    }
+
+    dataLayer.push({
+      event: "NonInteractiveGAEvent",
+      eventCategory: "www.ubuntu.com-impression-takeover",
+      eventAction: "from:" + window.location.href + " to:" + selectedTakeover.primary_url,
+      eventLabel: selectedTakeover.primary_cta,
+      eventValue: undefined,
+    });
+  }
+</script>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="1257" data-lp-id="2154" data-return-url="https://ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}
 {% endblock outer_content %}
