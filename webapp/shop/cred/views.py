@@ -167,7 +167,6 @@ def cred_sign_up(**_):
 
     try:
         marketo_api.submit_form(payload).json()
-        print("sent to marketo_api")
     except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
