@@ -8,7 +8,11 @@
 
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
   <div class="row">
-    <h3>
+    {% if request.path == "/" %}
+    <h2 class="p-heading--1 p-section--shallow">
+    {% else %}
+    <h2 class="p-heading--3">
+    {% endif %}
       {% if request.path == "/observability" %}
         More about {{ heading_topic }} in
       {% else %}
@@ -17,24 +21,23 @@
         <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
           our blog&nbsp;&rsaquo;
         </a>
-    </h3>
+    </h2>
   </div>
-  <div class="row p-divider">
+  <div class="row">
     <div class="{% if spotlight %}col-9{% else %}col-12{% endif %}">
       <div id="horizontal-latest-articles" class="row">
         <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
     {% if spotlight %}
-    <div id="spotlight" class="col-3 p-divider__block">
+    <div id="spotlight" class="col-3">
     </div>
     {% endif %}
-  </div>
 
   <template style="display:none" id="horizontal-articles-template">
     <div class="col-3">
       <p class="u-no-margin--bottom p-muted-heading"><time datetime="" class="article-time"></time></p>
-      <h2 class="p-heading--5"><a class="article-link article-title"></a></h2>
+      <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
     </div>
   </template>
 
@@ -44,9 +47,9 @@
       <p class="u-no-margin--bottom p-muted-heading">
         Spotlight
       </p>
-      <h2 class="p-heading--5">
+      <h3 class="p-heading--5">
         <a class="article-link article-title"></a>
-      </h2>
+      </h3>
     </div>
   </template>
   {% endif %}
