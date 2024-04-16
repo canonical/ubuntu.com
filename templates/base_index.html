@@ -50,7 +50,7 @@
 <section class="p-section">
   <hr class="is-fixed-width">
   <div class="row">
-    <div class="col-9">
+    <div class="col-9 col-medium-4">
       <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
       <p class="p-heading--2">Security, support, and managed services from&nbsp;the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
       <p>
@@ -59,7 +59,7 @@
         </a>
       </p>
     </div>
-    <div class="col-3">
+    <div class="col-3 col-medium-2">
       <ul class="p-list--divided">
         <li class="p-list__item">
           {{ 
@@ -130,7 +130,7 @@
       <p>66% of experienced developers prefer Ubuntu. That's why Ubuntu supports the fastest, biggest and most successful digital operations.</p>
     </div>
   </div>
-  <div class="row">
+  <div class="row p-section">
     <div class="col-9">
       <ul class="p-inline-list--stretch">
         <li class="p-inline-list__item">
@@ -164,7 +164,16 @@
     </div>
   </div>
   <div class="u-fixed-width">
-    <!-- Image to go here -->
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/795d2c15-Energise your engineers.jpg",
+      alt="",
+      width="2464",
+      height="1102",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
   </div>
 </section>
 
@@ -257,36 +266,46 @@
 <section class="p-section">
   <div class="row p-section--shallow">
     <hr class="is-muted" />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>10 year security maintenance and CVE Patching</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/esm">Extended security</a> for infrastructure and applications</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST</span>
     </div>
   </div>
   <div class="row p-section">
     <hr class="is-muted" />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr> compliance</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention</span>
     </div>
   </div>
 </section>
 
-<!-- Image to go here -->
-
 <section class="p-section">
+  <div class="u-fixed-width">
+    {{ 
+      image (
+      url="https://assets.ubuntu.com/v1/5a35c042-Open source security.jpg",
+      alt="",
+      width="2464",
+      height="1055",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
@@ -336,9 +355,9 @@
 </section>
 
 <section class="p-section--deep">
-  <div class="row--50-50">
+  <div class="row">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="col-7">
       <div class="p-section--shallow">
         <h2 class="p-heading--1 u-no-margin--bottom">
           Public cloud optimisation
@@ -365,7 +384,7 @@
           <div class="p-logo-section__item">            
             {{ image (
               url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
-              alt="",
+              alt="Spotify",
               width="363",
               height="385",
               hi_def=True,
@@ -377,7 +396,7 @@
           <div class="p-logo-section__item">
             {{ image (
               url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
-              alt="",
+              alt="BNP",
               width="436",
               height="385",
               hi_def=True,
@@ -389,46 +408,57 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <!-- Image to go here -->
+    <div class="col-5">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/1d3e0a99-Asset 3@2x 1.png",
+          alt="",
+          width="1482",
+          height="941",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Optimised kernels for AWS, Azure, Google, Oracle, IBM</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Network &amp; storage performance optimisation</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>GPU enablement for machines and containers</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Pay-as-you-go billing, no more licenses</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Cloud workload migration service</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Containerisation and cloud-native migration service</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Fully managed application service</span>
     </div>
   </div>
@@ -482,7 +512,7 @@
           <div class="p-logo-section__item">
             {{ image (
               url="https://assets.ubuntu.com/v1/01edb5d4-google-cloud-logo.png",
-              alt="",
+              alt="GCP",
               width="596",
               height="385",
               hi_def=True,
@@ -495,7 +525,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png",
-              alt="",
+              alt="Microsoft Azure",
               width="335",
               height="385",
               hi_def=True,
@@ -508,7 +538,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png",
-              alt="",
+              alt="Liberty Global",
               width="162",
               height="385",
               hi_def=True,
@@ -520,7 +550,7 @@
           <div class="p-logo-section__item">
             {{ image (
               url="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png",
-              alt="",
+              alt="ACI",
               width="380",
               height="385",
               hi_def=True,
@@ -609,7 +639,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/b1b15386-bestbuy-logo.png",
-              alt="",
+              alt="Best Buy",
               width="172",
               height="289",
               hi_def=True,
@@ -622,8 +652,21 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/81edb230-bt-logo.png",
-              alt="",
+              alt="BT",
               width="166",
+              height="289",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">            
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/ef824cd6-deutsche-telekom.png",
+              alt="Deutsche Telekom",
+              width="385",
               height="289",
               hi_def=True,
               loading="lazy",
@@ -635,7 +678,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/717f5cb2-rabobank-logo.png",
-              alt="",
+              alt="Rabobank",
               width="385",
               height="289",
               hi_def=True,
@@ -648,7 +691,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/7f57f3ba-Bloomberg-Logo.png",
-              alt="",
+              alt="Bloomberg",
               width="385",
               height="289",
               hi_def=True,
@@ -661,7 +704,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/f55643b6-AT&T-Logo.png",
-              alt="",
+              alt="AT&T",
               width="357",
               height="289",
               hi_def=True,
@@ -674,42 +717,53 @@
       </div>
     </div>
     <div class="col-4">
-      <!-- Image to go here -->
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/995af329-Asset 5@2x 1.png",
+          alt="",
+          width="1284",
+          height="964",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/openstack/features">Hyperconverged</a> or segregated architecture</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security">Encryption at rest for GDPR, HIPAA, FedRAMP</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Wide choice of SDN and storage</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/engage/charmed-openstack-adoption-whitepaper">Upgrades and day-2 operations, automated</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Integrated logging, monitoring and alerting</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Platform and infrastructure hardening</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>High availability</span>
     </div>
   </div>
   <div class="row p-section">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/telco">Carrier-grade NFVI</a></span>
     </div>
   </div>
@@ -733,11 +787,11 @@
 <section class="p-section--deep">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-9">
+    <div class="col-8">
       <h2 class="p-heading--1 u-no-margin--bottom">
         Ultra secure things
       </h2>
-      <p class="p-heading--4">
+      <p class="p-heading--2">
         <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
       </p>
       <div class="p-logo-section--dense">
@@ -746,7 +800,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-              alt="",
+              alt="Intel",
               width="200",
               height="385",
               hi_def=True,
@@ -759,7 +813,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png",
-              alt="",
+              alt="Rexroth",
               width="263",
               height="385",
               hi_def=True,
@@ -772,7 +826,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
-              alt="",
+              alt="ARM",
               width="188",
               height="385",
               hi_def=True,
@@ -785,7 +839,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-              alt="",
+              alt="Dell",
               width="179",
               height="385",
               hi_def=True,
@@ -798,7 +852,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png",
-              alt="",
+              alt="Advantech",
               width="379",
               height="385",
               hi_def=True,
@@ -810,49 +864,60 @@
         </div>
       </div>
     </div>
-    <div class="col-3">
-      <!-- Image goes here -->
+    <div class="col-4">
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/e5861aaf-Asset 4@2x 1.png",
+          alt="",
+          width="846",
+          height="709",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>OTA compressed updates for apps, kernel and OS</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Automatic rollback and data snapshots</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>DevSecOps pipeline for edge app delivery</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Built-in device recovery and remote disk repair</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>10 year security maintenance for every device</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Provable system and software integrity</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Secure boot backed by root of trust</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Full disk encryption with hardware keys</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>FIPS certifiable embedded Linux</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/real-time">Support for real-time compute</a></span>
     </div>
   </div>
@@ -891,7 +956,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
-              alt="",
+              alt="Nvidia",
               width="380",
               height="385",
               hi_def=True,
@@ -904,7 +969,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-              alt="",
+              alt="Intel",
               width="200",
               height="385",
               hi_def=True,
@@ -917,7 +982,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
-              alt="",
+              alt="AMD",
               width="278",
               height="385",
               hi_def=True,
@@ -935,7 +1000,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
-              alt="",
+              alt="HP",
               width="164",
               height="385",
               hi_def=True,
@@ -948,7 +1013,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-              alt="",
+              alt="Dell",
               width="179",
               height="385",
               hi_def=True,
@@ -961,7 +1026,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
-              alt="",
+              alt="Lenovo",
               width="277",
               height="385",
               hi_def=True,
@@ -976,31 +1041,31 @@
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Full disk encryption</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Security updates for the <a href="/esm">full open source stack</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Estate <a href="/landscape/features">monitoring and management</a></span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Configuration lockdown</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Local Kubernetes for offline development</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a href="https://multipass.run">Multipass</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a></span>
     </div>
   </div>
@@ -1035,7 +1100,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png",
-            alt="",
+            alt="Verizon",
             width="384",
             height="390",
             hi_def=True,
@@ -1048,7 +1113,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png",
-            alt="",
+            alt="Telefonica",
             width="484",
             height="385",
             hi_def=True,
@@ -1061,7 +1126,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png",
-            alt="",
+            alt="Tele2",
             width="188",
             height="385",
             hi_def=True,
@@ -1074,7 +1139,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png",
-            alt="",
+            alt="Telecom Italia",
             width="227",
             height="385",
             hi_def=True,
@@ -1087,7 +1152,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png",
-            alt="",
+            alt="NEC",
             width="240",
             height="385",
             hi_def=True,
@@ -1100,7 +1165,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png",
-            alt="",
+            alt="Barclays",
             width="451",
             height="385",
             hi_def=True,
@@ -1114,40 +1179,40 @@
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Remote edge cluster operations</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Infrastructure <a href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Ansible, Chef, Puppet, SALT, <a href="https://juju.is">Juju</a> integration</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="https://maas.io/install">Super fast install</a> from scratch</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>VMWare ESXi, Windows, CentOS, RHEL, Ubuntu</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Custom images with pre-installed apps</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration</span>
     </div>
   </div>
   <div class="row p-section--shallow">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>API-driven DHCP, DNS, PXE, IPAM, provisioning</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>LDAP authentication and RBAC</span>
     </div>
   </div>
@@ -1184,7 +1249,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png",
-              alt="",
+              alt="ABB",
               width="178",
               height="385",
               hi_def=True,
@@ -1197,7 +1262,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png",
-              alt="",
+              alt="Pal Robotics",
               width="225",
               height="385",
               hi_def=True,
@@ -1210,7 +1275,7 @@
             {{
               image (
               url="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png",
-              alt="",
+              alt="Kuka",
               width="357",
               height="385",
               hi_def=True,
@@ -1223,7 +1288,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
-              alt="",
+              alt="Apollo",
               width="311",
               height="385",
               hi_def=True,
@@ -1236,7 +1301,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
-              alt="",
+              alt="Bosch",
               width="413",
               height="385",
               hi_def=True,
@@ -1249,7 +1314,7 @@
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png",
-              alt="",
+              alt="BMW",
               width="161",
               height="385",
               hi_def=True,
@@ -1262,33 +1327,44 @@
       </div>
     </div>
     <div class="col-4">
-      <!-- image to go here -->
+      <div class="p-image-wrapper">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/193f6298-Frame 3395.png",
+          alt="",
+          width="1737",
+          height="1222",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
   <div class="row p-section">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Security patches for long-term ROS</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Fault tolerant over-the-air updates</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2</span>
     </div>
   </div>
   <div class="row p-section">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Trim time-to-market with SMART START consulting</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Leading Robot-as-a-Platform ecosystem</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Curated app stores</span>
     </div>
   </div>
@@ -1323,7 +1399,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png",
-            alt="",
+            alt="Panasonic",
             width="395",
             height="385",
             hi_def=True,
@@ -1336,7 +1412,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png",
-            alt="",
+            alt="Scania",
             width="567",
             height="385",
             hi_def=True,
@@ -1349,7 +1425,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png",
-            alt="",
+            alt="SBI BTS",
             width="361",
             height="385",
             hi_def=True,
@@ -1362,7 +1438,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
-            alt="",
+            alt="Apollo",
             width="311",
             height="385",
             hi_def=True,
@@ -1375,7 +1451,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
-            alt="",
+            alt="Bosch",
             width="413",
             height="385",
             hi_def=True,
@@ -1388,7 +1464,7 @@
           {{ 
             image (
             url="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png",
-            alt="",
+            alt="Swissquote",
             width="532",
             height="385",
             hi_def=True,
@@ -1402,25 +1478,25 @@
   </div>
   <div class="row p-section">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Operate smoothly across public and private cloud</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Reusable integration code as open source packages</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Python Operator Framework for rapid development</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Bring the K8s operator pattern to classic workloads</span>
     </div>
   </div>
   <div class="row p-section">
     <hr />
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span>Lifecycle management and Day 2 operations</span>
     </div>
-    <div class="col-3">
+    <div class="col-3 u-icon-nudge">
       <i class="p-icon--success-grey"></i><span><a href="https://jaas.ai/store">Open collection</a> of community-driven operators</span>
     </div>
   </div>
