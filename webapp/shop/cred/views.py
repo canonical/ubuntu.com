@@ -265,7 +265,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         else:
             uuid = response.get("reservation", {}).get("IDs", [])[-1]
             exam = {
-                "name": "CUE: Linux",
+                "name": "CUE.01 Linux",
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%I:%M %p ") + timezone,
                 "uuid": uuid,
