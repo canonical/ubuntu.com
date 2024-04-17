@@ -14,20 +14,38 @@ meta_copydoc %}
   <div class="p-section row--50-50">
     <div class="col">
       <h1 class="u-no-margin--bottom">Ubuntu Core</h1>
-      <h2 class="p-section--shallow">The embedded Linux OS for devices</h1>
-        <p class="p-heading--4 p-section--shallow">Ubuntu Core is a minimal, secure and strictly confined operating
-          system powering devices around the world. Build your Ubuntu Core image today.</p>
-        <hr />
-        <p>
-          <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
-          <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read the Ubuntu Core
-            datasheet</a>
-        </p>
+      <div class="p-section--shallow">
+        <h2>The embedded Linux OS for devices</h2>
+      </div>
+      <div class="p-section--shallow">
+        <p class="p-heading--4">Ubuntu Core is a minimal, secure and strictly confined operating system powering devices around the world. Build your Ubuntu Core image today.</p>
+      </div>
+      <hr />
+      <p>
+        <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
+        <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
+      </p>
     </div>
-    <div class="col u-embedded-media">
-      <iframe title="UC22 video" class="u-embedded-media__element" src="https://www.youtube.com/embed/6NDWqH1SrGs"
-        allowfullscreen=""></iframe>
+    <div class="col u-hide--small">
+      <a href="#" aria-label="What is Ubuntu Core" class="p-hero-video-link">
+        <img src="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png" alt="" class="p-hero-video__play">
+      </a>
+      <div class="p-hero-video-container u-embedded-media u-hide">
+        <iframe class="p-hero-video u-embedded-media__element" src="https://www.youtube.com/embed/6NDWqH1SrGs?autoplay=1" allow="autoplay;" frameborder="0" allowfullscreen=""></iframe>
+      </div>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const videoLink = document.querySelector('.p-hero-video-link');
+        const video = document.querySelector('.p-hero-video');
+        const videoContainer = document.querySelector('.p-hero-video-container');
+        videoLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          videoContainer.classList.remove('u-hide');
+          videoLink.classList.add('u-hide');
+        });
+      });
+    </script>
   </div>
 </section>
 
@@ -283,7 +301,7 @@ meta_copydoc %}
   <div class="p-tabs">
     <div class="row--25-75">
       <div class="col">
-        <hr />
+        <hr class="p-rule" />
         <div class="p-tabs__list js-tabbed-content" role="tablist" aria-label="Customer stories">
           <div class="p-tabs__item">
             <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="industrial-tab"
@@ -305,7 +323,7 @@ meta_copydoc %}
       </div>
     </div>
     <div tabindex="0" role="tabpanel" id="industrial-tab" aria-labelledby="industrial">
-      <div class="row--25-75">
+      <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
           {{ image (
             url="https://assets.ubuntu.com/v1/ffd88101-rexroth-for-testimonial.png",
@@ -323,33 +341,35 @@ meta_copydoc %}
               <h3 class="p-heading--2">Bosch Rexroth reinvents automation</h3>
             </div>
             <div class="col-3 p-section--shallow">
-              <p class="p-section--shallow">Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform.</p>
+              <div class="p-section--shallow">
+                <p>Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform.</p>
+              </div>
               <hr />
               <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">Read the press release&nbsp;&rsaquo;</a>
             </div>
-            <div>
-              {{ image (
-                url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
-                alt="Rexroth",
-                width="917",
-                height="392",
-                hi_def=True,
-                loading="auto",
-                ) | safe
-              }}
-            </div>
+          </div>
+          <div>
+            {{ image (
+              url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
+              alt="Rexroth",
+              width="917",
+              height="392",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
           </div>
         </div>
       </div>
     </div>
     <div tabindex="0" role="tabpanel" id="smart-kiosk-tab" aria-labelledby="smart-kiosk" aria-hidden="hidden">
-      <div class="row--25-75">
+      <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
           {{ image (
             url="https://assets.ubuntu.com/v1/ea8fc1a8-pudo-testimonial-logo.png",
             alt="Pudo",
             width="180",
-            height="70",
+            height="89",
             hi_def=True,
             loading="auto",
             ) | safe
@@ -361,27 +381,29 @@ meta_copydoc %}
               <h3 class="p-heading--2">Pudo deploys fleet for robust last-mile logistics</h3>
             </div>
             <div class="col-3 p-section--shallow">
-              <p class="p-section--shallow">Pudo chooses Ubuntu Core as the foundation for its IoT-based APMs to maximise security and uptime.</p>
+              <div class="p-section--shallow">
+                <p>Pudo chooses Ubuntu Core as the foundation for its IoT-based APMs to maximise security and uptime.</p>
+              </div>
               <hr />
               <a href="/engage/pudo-case-study">Read the case study&nbsp;&rsaquo;</a>
             </div>
-            <div>
-              {{ image (
-                url="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg",
-                alt="Pudo",
-                width="917",
-                height="392",
-                hi_def=True,
-                loading="auto",
-                ) | safe
-              }}
-            </div>
+          </div>
+          <div>
+            {{ image (
+              url="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg",
+              alt="Pudo",
+              width="917",
+              height="392",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
           </div>
         </div>
       </div>
     </div>
     <div tabindex="0" role="tabpanel" id="network-tab" aria-labelledby="network" aria-hidden="hidden">
-      <div class="row--25-75">
+      <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
           {{ image (
             url="https://assets.ubuntu.com/v1/80f5af45-rigado-testimonial-logo.png",
@@ -399,27 +421,29 @@ meta_copydoc %}
               <h3 class="p-heading--2">Rigado cuts customers’ time to market</h3>
             </div>
             <div class="col-3 p-section--shallow">
-              <p class="p-section--shallow">Ubuntu Core enables Rigado to manage end-to-end security for commercial IoT gateways.</p>
+              <div class="p-section--shallow">
+                <p>Ubuntu Core enables Rigado to manage end-to-end security for commercial IoT gateways.</p>
+              </div>
               <hr />
               <a href="/engage/case-study-rigado">Read the case study&nbsp;&rsaquo;</a>
             </div>
-            <div>
-              {{ image (
-                url="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg",
-                alt="Rigado",
-                width="917",
-                height="392",
-                hi_def=True,
-                loading="auto",
-                ) | safe
-              }}
-            </div>
+          </div>
+          <div>
+            {{ image (
+              url="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg",
+              alt="Rigado",
+              width="917",
+              height="392",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
           </div>
         </div>
       </div>
     </div>
     <div tabindex="0" role="tabpanel" id="cloud-tab" aria-labelledby="cloud" aria-hidden="hidden">
-      <div class="row--25-75">
+      <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
           {{ image (
             url="https://assets.ubuntu.com/v1/e110996e-ibm-cloud-testimonial-logo.png",
@@ -437,21 +461,23 @@ meta_copydoc %}
               <h3 class="p-heading--2">IBM Cloud provides highly isolated and performant bare metal servers</h3>
             </div>
             <div class="col-3 p-section--shallow">
-              <p class="p-section--shallow">IBM Cloud's bare metal servers offer highly isolated and high-performing tenant-cloud isolation through the use of Ubuntu Core.</p>
+              <div class="p-section--shallow">
+                <p>IBM Cloud's bare metal servers offer highly isolated and high-performing tenant-cloud isolation through the use of Ubuntu Core.</p>
+              </div>
               <hr />
               <a href="/engage/case-study-rigado">Read the press release&nbsp;&rsaquo;</a>
             </div>
-            <div>
-              {{ image (
-                url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
-                alt="IBM",
-                width="917",
-                height="392",
-                hi_def=True,
-                loading="auto",
-                ) | safe
-              }}
-            </div>
+          </div>
+          <div>
+            {{ image (
+              url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
+              alt="IBM",
+              width="917",
+              height="392",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
           </div>
         </div>
       </div>
@@ -463,7 +489,9 @@ meta_copydoc %}
 <section class="p-section">
   <div class="u-fixed-width p-section--shallow">
     <hr class="p-rule" />
-    <h2 class="p-section--shallow">Get to market fast with our hardware ecosystem</h2>
+    <div class="p-section--shallow">
+      <h2>Get to market fast with our hardware ecosystem</h2>
+    </div>
     <div class="p-logo-section--dense">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
@@ -676,7 +704,9 @@ meta_copydoc %}
       <h2>Ready to innovate?</h2>
     </div>
     <div class="col">
-      <p class="p-section--shallow">Whether you are a startup bringing your concept to market or already have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
+      <div class="-section--shallow">
+        <p>Whether you are a startup bringing your concept to market or already have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
+      </div>
       <hr />
       <a class="p-button--positive" href="/core/contact-us">Get in touch</a>
     </div>
