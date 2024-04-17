@@ -11,7 +11,9 @@
       <div class="col-7">
         <h1>Robotics</h1>
 
-        <p class="p-heading--4">Whether you're starting in the lab or already in production, Canonical can help manage the complexity of the open-source software underpinning your robot's brains and personality.</p>
+        <p class="p-heading--4">
+          Whether you're starting in the lab or already in production, Canonical can help manage the complexity of the open-source software underpinning your robot's brains and personality.
+        </p>
 
         <p>
           <a class="p-link--inverted" href="/internet-of-things/robotics">Learn more about robotics from Canonical&nbsp;&rsaquo;</a>
@@ -19,16 +21,13 @@
       </div>
 
       <div class="col-5 u-align--center u-vertically-center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/5ee71af0-Robot+arm+-+white.svg",
-            alt="",
-            height="201",
-            width="200",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "u-hide--small"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/5ee71af0-Robot+arm+-+white.svg",
+                alt="",
+                height="201",
+                width="200",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "u-hide--small"}) | safe
         }}
       </div>
     </div>
@@ -45,5 +44,5 @@
       {% include "shared/_pagination.html" %}
     {% endwith %}
   </section>
-</section>
+
 {% endblock %}
