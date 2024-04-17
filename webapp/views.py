@@ -162,6 +162,7 @@ def download_server_steps():
 def download_thank_you(category):
     version = flask.request.args.get("version", "")
     architecture = flask.request.args.get("architecture", "").replace(" ", "+")
+    lts = flask.request.args.get("lts", "")
 
     if version and not architecture:
         flask.abort(400)
@@ -171,6 +172,7 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
+            lts=lts,
         ),
         {"Cache-Control": "no-cache"},
     )
