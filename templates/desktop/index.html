@@ -528,6 +528,8 @@
   </div>
 </section>
 
-{% include "download/shared/_desktop-latest-news.html" %}
+{% with title_link="/blog/desktop", group_id="1479" %}
+  {% include "download/shared/_latest-blogs_download.html" %}
+{% endwith %}
 
 {% endblock content %}
