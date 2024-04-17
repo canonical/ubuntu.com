@@ -115,10 +115,17 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
     <div>
       <Row className="u-sv4">
         {generateFeatures([
-          {
-            title: "Cost",
-            value: currencyFormatter.format((subscription.price ?? 0) / 100),
-          },
+          ...(subscription.type === UserSubscriptionType.Legacy
+            ? // Don't show the cost for legacy subscriptions.
+              []
+            : [
+                {
+                  title: "Cost",
+                  value: currencyFormatter.format(
+                    (subscription.price ?? 0) / 100
+                  ),
+                },
+              ]),
           ...(subscription.type === UserSubscriptionType.Legacy
             ? // Don't show the billing column for legacy subscriptions.
               []
