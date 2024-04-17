@@ -100,10 +100,7 @@
     <section class="p-strip has-shadow">
       <div class="row u-equal-height">
         {% if query %}
-          <h4 class="col-12">
-            {{ total_results }} search result
-            {% if total_results > 1 %}s{% endif %}
-          </h4>
+          <h4 class="col-12">{{ total_results }} search result{%- if total_results > 1 -%}s{%- endif -%}</h4>
         {% endif %}
 
         {% for item in tutorials %}
