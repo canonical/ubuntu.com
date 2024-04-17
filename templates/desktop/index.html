@@ -13,19 +13,17 @@
 {# 0 -180px #}
 
 <section class="p-section--hero">
-  <div class="p-section">
-    <div class="row--50-50">
-      <div class="col">
-        <h1>Ubuntu for desktops</h1>
-        <p>The number 1 open source operating system powers millions of PCs and laptops around the world.</p>
-        <p>
-          <a href="/download/desktop" class="p-button--positive">Download Ubuntu Desktop</a>
-        </p>
-      </div>
-      <div class="col">
-        <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+  <div class="row--50-50">
+    <div class="col">
+      <h1>Ubuntu for desktops</h1>
+      <p>The number 1 open source operating system powers millions of PCs and laptops around the world.</p>
+      <p>
+        <a href="/download/desktop" class="p-button--positive">Download Ubuntu Desktop</a>
+      </p>
+    </div>
+    <div class="col">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -87,7 +85,7 @@
   </div>
 </section>
 
-<section class="p-section">
+<section class="p-section--deep">
   <div class="u-fixed-width p-section--shallow">
     <hr class="p-rule" />
     <h2>Thousands of applications</h2>
@@ -202,6 +200,19 @@
         <div class="p-icon-section__item">
           {{ 
             image (
+            url="https://assets.ubuntu.com/v1/7f08620e-Snapcraft_144.png",
+            alt="Slack",
+            width="144",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-icon-section__icon"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-icon-section__item">
+          {{ 
+            image (
             url="https://assets.ubuntu.com/v1/88ff7b82-steam.png",
             alt="Steam",
             width="256",
@@ -226,7 +237,7 @@
     <div class="col">
       <p>We partner with the world's leading hardware manufacturers to deliver an extensive range of Ubuntu certified laptops, desktops and workstations</p>
       <div class="p-logo-section">
-        <div class="p-logo-section__items">
+        <div class="p-logo-section__items u-align-last--logo">
           <div class="p-logo-section__item">
             {{
             image (
@@ -266,7 +277,7 @@
             ) | safe
             }}
           </div>
-          <div class="p-logo-section__item">
+          <div class="p-logo-section__item u-no-margin--right">
             {{
             image (
             url="https://assets.ubuntu.com/v1/3b24973b-lenovo-logo.png",
@@ -360,7 +371,7 @@
               }}
             </div>
           </div>
-          <p class="p-equal-height-row__item p-heading--5">Ubuntu Pro Desktop</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Ubuntu Pro Desktop</h3>
           <p class="p-equal-height-row__item">A comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -376,15 +387,15 @@
                 image (
                 url="https://assets.ubuntu.com/v1/7a019410-ms logo.png",
                 alt="",
-                width="50",
-                height="51",
+                width="40",
+                height="41",
                 hi_def=True,
                 loading="auto|lazy"
                 ) | safe
               }}
             </div>
           </div>
-          <p class="p-equal-height-row__item p-heading--5">Ubuntu on Windows with WSL</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Ubuntu on Windows with WSL</h3>
           <p class="p-equal-height-row__item">The power of a full Ubuntu terminal environment on Windows with Windows Subsystem for Linux. Streamline web application development, leverage cutting-edge AI/ML tooling, develop cross-platform applications and manage IT infrastructure without leaving Windows.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -398,17 +409,17 @@
             <div class="p-media-container p-section--shallow">
               {{ 
                 image (
-                url="https://assets.ubuntu.com/v1/2f32b5f5-Ubuntu-Pro-logo.svg",
-                alt="Ubuntu Pro",
-                width="170",
-                height="42",
+                url="https://assets.ubuntu.com/v1/476cc8de-amazon-workspaces-icon.png",
+                alt="Amazon Workspaces",
+                width="40",
+                height="51",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
               }}
             </div>
           </div>
-          <p class="p-equal-height-row__item p-heading--5">Virtual desktops with Amazon Workspaces</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Virtual desktops with Amazon Workspaces</h3>
           <p class="p-equal-height-row__item">Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code. Applications and data remain secured in the AWS cloud, even when your developers are working remotely.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -434,10 +445,10 @@
   </div>
   <div class="row">
     <div class="col-start-large-4 col-9">
-      <hr />
+      <hr class="u-hide--small u-hide--medium"/>
       <div class="p-equal-height-row">
         <div class="p-equal-height-row__col">
-          <p class="p-equal-height-row__item p-heading--5">Ask Ubuntu</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Ask Ubuntu</h3>
           <p class="p-equal-height-row__item">A forum for users to ask and answer troubleshooting questions regarding Ubuntu, part of the Stack Exchange network.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -447,7 +458,7 @@
           </div>
         </div>
         <div class="p-equal-height-row__col">
-          <p class="p-equal-height-row__item p-heading--5">Ubuntu Discourse</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Ubuntu Discourse</h3>
           <p class="p-equal-height-row__item">Here is where the Ubuntu developers discuss new features and progress updates and share tutorials and advice for community members who wish to get involved.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -457,7 +468,7 @@
           </div>
         </div>
         <div class="p-equal-height-row__col">
-          <p class="p-equal-height-row__item p-heading--5">Official flavours</p>
+          <h3 class="p-equal-height-row__item p-heading--5">Official flavours</h3>
           <p class="p-equal-height-row__item">Experience Ubuntu with different choices of default desktop environment, applications and settings, backed by the full Ubuntu archive for packages and updates.</p>
           <div class="p-equal-height-row__item">
             <hr class="p-rule">
@@ -474,7 +485,7 @@
 <section class="p-section">
   <div class="u-fixed-width p-section--shallow">
     <hr class="p-rule" />
-    <h2>Get started with Ubuntu Today</h2>
+    <h2>Get started with Ubuntu today</h2>
   </div>
   <div class="row">
     <div class="col-start-large-4 col-9 col-start-medium-2 col-medium-5">
@@ -484,9 +495,7 @@
           <h3 class="p-heading--5">Download and install</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <div class="p-section--shallow">
-            <p>Download Ubuntu Desktop and replace your current operating system. It's easy to install in place of Windows, or run Ubuntu alongside it.</p>
-          </div>
+          <p>Download Ubuntu Desktop and replace your current operating system. It's easy to install in place of Windows, or run Ubuntu alongside it.</p>
           <hr />
           <a class="p-button--positive" href="/download/desktop">Download now</a>
         </div>
@@ -497,11 +506,11 @@
           <h3 class="p-heading--5">Buy it pre-installed</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <div class="p-section--shallow">
-            <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers, including Dell, HP, and Lenovo.</p>
-          </div>
+          <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers, including Dell, HP, and Lenovo.</p>
           <hr />
-          <a href="/certified">Find out more about Ubuntu Certified&nbsp;&rsaquo;</a>
+          <p>
+            <a href="/certified">Find out more about Ubuntu Certified&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
       <hr class="p-rule" />
@@ -510,9 +519,7 @@
           <h3 class="p-heading--5">Professional support</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <div class="p-section--shallow">
-            <p>Get comprehensive security coverage and management tooling with support from Canonical to cover your Ubuntu Desktop and Server deployments.</p>
-          </div>
+          <p>Get comprehensive security coverage and management tooling with support from Canonical to cover your Ubuntu Desktop and Server deployments.</p>
           <hr />
           <a class="p-button" href="/pro">Get Ubuntu Pro Desktop</a>
         </div>
