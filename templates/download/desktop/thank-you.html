@@ -23,12 +23,12 @@
       s.className += ' ' + y;
       h.start = 1 * new Date;
       h.end = i = function() {
-        s.className = s.className.replace(RegExp(' ?' + y), '')
+        s.className = s.className.replace(RegExp(' ?' + y), '');
       };
       (a[n] = a[n] || []).hide = h;
       setTimeout(function() {
         i();
-        h.end = null
+        h.end = null;
       }, c);
       h.timeout = c;
     })(window, document.documentElement, 'async-hide', 'dataLayer', 1000, {
@@ -55,7 +55,7 @@
     <div class="row--50-50">
       <div class="col">
         {% if version %}
-          <h1>Thank you for downloading Ubuntu Desktop {{ version }}</h1>
+          <h1>Thank you for downloading Ubuntu Desktop {{ version }}{{ " LTS" if lts }}</h1>
           <p>
             Your download should start automatically. If it doesn't,
             {% if architecture == 'amd64+mac' %}
@@ -65,10 +65,8 @@
                 <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download
                   now</a>.
                 {% endif %}
-
                 <br />
                 You can <a href="/tutorials/tutorial-how-to-verify-ubuntu">verify your download</a>, or <a href="/tutorials/install-ubuntu-desktop">get help installing</a>.
-
               </p>
             {% else %}
               <h1>Thank you for your contribution</h1>
