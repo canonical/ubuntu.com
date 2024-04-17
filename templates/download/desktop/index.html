@@ -19,14 +19,10 @@
                 The open source desktop operating system that powers millions of PCs and laptops around the world. Find out more about Ubuntu's features and how we support developers and organisations below.
             </p>
             <hr />
-            <ul class="p-inline-list u-responsive-realign">
-                <li class="p-inline-list__item">
-                    <a href="/desktop">About Ubuntu Desktop&nbsp;&rsaquo;</a>
-                </li>
-                <li class="p-inline-list__item">
-                    <a href="/blog/desktop">Check out the blog&nbsp;&rsaquo;</a>
-                </li>
-            </ul>
+            <p class="u-responsive-realign">
+                <a href="/desktop" class="p-button">Discover Ubuntu Desktop</a>
+                <a href="/blog/desktop">Check out the blog&nbsp;&rsaquo;</a>
+            </p>
         </div>
     </div>
 </section>
@@ -64,7 +60,7 @@
                         onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
                         {{ releases.lts.full_version }} LTS
                     </a>
-                    <span class="u-text--muted">ISO image, {{ releases.lts.iso_download_size }}</span>
+                    {% if releases.lts.iso_download_size %}<span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>{% endif %}
                     <script>
                       performance.mark("Download (Desktop) button rendered")
                     </script>

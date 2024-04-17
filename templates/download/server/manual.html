@@ -86,13 +86,13 @@
                     The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to 10 years with <a href="/pro">Ubuntu Pro</a>.
                 </p>
                 <hr />
-                <a class="p-button--positive"
-                    href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
-                    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
-                </a>
-                <span class="u-text--muted">ISO image
-                    {% if releases.lts.server_iso_size %}, {{ releases.lts.server_iso_size }}{% endif %}
-                </span>
+                <p class="u-responsive-realign">
+                  <a class="p-button--positive"
+                      href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64"
+                      onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.lts.full_version }} LTS
+                  </a>
+                  {% if releases.lts.server_iso_size %}<span class="u-text--muted">{{ releases.lts.server_iso_size }}</span>{% endif %}
+                </p>
                 <p>
                     <a href="/download/alternative-downloads">Alternative downloads&nbsp;&rsaquo;</a>
                 </p>
