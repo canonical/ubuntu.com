@@ -31,7 +31,7 @@ meta_copydoc %}
         <img src="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png" alt="" class="p-hero-video__play">
       </a>
       <div class="p-hero-video-container u-embedded-media u-hide">
-        <iframe class="p-hero-video u-embedded-media__element" src="https://www.youtube.com/embed/6NDWqH1SrGs?autoplay=1" allow="autoplay;" frameborder="0" allowfullscreen=""></iframe>
+        <iframe class="p-hero-video u-embedded-media__element" src="https://www.youtube.com/embed/6NDWqH1SrGs" allow="autoplay;" frameborder="0" allowfullscreen=""></iframe>
       </div>
     </div>
     <script>
@@ -41,6 +41,7 @@ meta_copydoc %}
         const videoContainer = document.querySelector('.p-hero-video-container');
         videoLink.addEventListener('click', function(e) {
           e.preventDefault();
+          video.src += "?autoplay=1";
           videoContainer.classList.remove('u-hide');
           videoLink.classList.add('u-hide');
         });
