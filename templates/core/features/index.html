@@ -35,36 +35,36 @@
     <div class="col">
       <div class="row">
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="https://snapcraft.io/docs/snap-confinement">Strict confinement&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="https://snapcraft.io/docs/snap-confinement">Strict confinement&nbsp;&rsaquo;</a>
+          </h3>
           <p>A whole new armoury of Linux security capabilities to ensure strict confinement. Leverage a clean separation between the kernel, OS image and the developers’ applications, providing a secure and immutable OS.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/features/full-disk-encryption">Full disk encryption&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a  href="/core/features/full-disk-encryption">Full disk encryption&nbsp;&rsaquo;</a>
+          </h3>
           <p>Disks are locked with private key-based cryptography. Private keys for hardware, TPM and other layers are securely stored. Symmetric key encryption is enabled by the use of specialised software-enabled stores.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/features/secure-boot">Secure boot&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/core/features/secure-boot">Secure boot&nbsp;&rsaquo;</a>
+          </h3>
           <p>Each component in the boot sequence cryptographically validates the authenticity of the subsequent component. Every component is measured before it’s loaded in the runtime memory space.</p>
         </div>
       </div>
-      <div class="u-hide--small">
-        {{ image (
-         url="https://assets.ubuntu.com/v1/80d597dd-security.jpg",
-          alt="",
-          width="916",
-          height="392",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
+      <div class="row">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/80d597dd-security.jpg",
+            alt="Three big robotic arms in a factory",
+            width="916",
+            height="392",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
       </div>
     </div>
   </div>
@@ -79,30 +79,30 @@
     <div class="col">
       <div class="row">
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/features/ota-updates">OTA update control&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/core/features/ota-updates">OTA update control&nbsp;&rsaquo;</a>
+          </h3>
           <p>Over-the-air (OTA) updates guarantee secure and stable software in any location. You decide which updates are signed, certified and delivered to your devices. Plus, Ubuntu Core keeps the last working boot so you always have a safety net.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/internet-of-things/management">Fleet management&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/internet-of-things/management">Fleet management&nbsp;&rsaquo;</a>
+          </h3>
           <p>Landscape delivers comprehensive management capabilities across the full scope of your device fleets. Stay in control with features including canary releases, remote device remodelling and system monitoring.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/features/secure-boot">Validations sets&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/core/features/secure-boot">Validations sets&nbsp;&rsaquo;</a>
+          </h3>
           <p>Validation sets guarantee the installation of required applications with fine-grained permissions. What’s more, you can update applications consistently and simultaneously, improving out-of-the-box experience for end-users.</p>
         </div>
       </div>
-      <div class="u-hide--small">
+      <div class="row">
         {{ image (
          url="https://assets.ubuntu.com/v1/4769d9d3-updates.jpg",
-          alt="",
+          alt="Drone grounded close to what seems to be a corn field",
           width="916",
           height="392",
           hi_def=True,
@@ -123,30 +123,30 @@
     <div class="col">
       <div class="row">
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/features/recovery">Low-touch recovery&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/core/features/recovery">Low-touch recovery&nbsp;&rsaquo;</a>
+          </h3>
           <p>Ubuntu Core offers a recovery mode that can be activated manually when booting, or remotely via an API call. It additionally offers a graphical user interface to manage recovery options. Configuration settings are backed up in the recovery system.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/real-time">Real-time systems&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/real-time">Real-time systems&nbsp;&rsaquo;</a>
+          </h3>
           <p>The real-time kernel integrates the PREEMPT_RT patchset to reduce kernel latencies as required by the most demanding workloads, guaranteeing a time-predictable task execution.</p>
           <hr class="u-hide--large" />
         </div>
         <div class="col-3">
-          <p>
-            <a class="p-heading--5" href="/core/docs/remodelling">Device remodelling&nbsp;&rsaquo;</a>
-          </p>
+          <h3 class="p-heading--5">
+            <a href="/core/docs/remodelling">Device remodelling&nbsp;&rsaquo;</a>
+          </h3>
           <p>Ubuntu Core’s remodelling feature enables you to change any of the elements of your device’s model assertion. Brand, model, IoT App Store ID or version can be changed to simplify device rebranding for resellers.</p>
         </div>
       </div>
-      <div class="u-hide--small">
+      <div class="row">
         {{ image (
          url="https://assets.ubuntu.com/v1/95bdf51d-operations.jpg",
-          alt="",
+          alt="Uncrewed tractor plows a field",
           width="916",
           height="392",
           hi_def=True,
@@ -171,9 +171,9 @@
 
   <div class="row--25-75">
     <div class="col">
+      <hr />
       <div class="row">
-        <hr />
-        <div class="col-4 col-medium-2">
+        <div class="col-3 col-medium-2">
           <ul class="js-tabbed-content p-tabs--vertical is-black u-hide--small" role="tablist"
             aria-label="Dev to deployment">
             <li>
@@ -198,7 +198,7 @@
             </select>
           </form>
         </div>
-        <div class="col-8 col-medium-4">
+        <div class="col-6 col-medium-4">
           <div tabindex="0" role="tabpanel" id="snaps-tab" aria-labelledby="snaps-tab-cta">
             <div class="row u-equal-height">
               <h3>Snaps</h3>
