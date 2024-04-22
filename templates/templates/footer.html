@@ -40,9 +40,6 @@
           {% with section=nav_sections.iot %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.raspberrypi %}
-          {% include 'templates/_footer_item.html' %}
-          {% endwith %}
           {% with section=nav_sections.core %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
@@ -120,6 +117,7 @@
       </div>
     </nav>
     <hr class="p-footer__divider" />
+    <!-- djlint:off -->
     <div class="p-footer--secondary row">
       <div class="col-7">
         <nav aria-label="Resources navigation">
@@ -150,7 +148,6 @@
             </li>
           </ul>
         </nav>
-
         {% include "templates/_footer-copyright-and-legal.html" %}
         </div>
         <div class="p-footer__nav-col col-5">
@@ -266,6 +263,7 @@
         </ul>
       </div>
     </div>
+    <!-- djlint:off -->
 
     <script>
       /* Add the page to the report a bug link */
