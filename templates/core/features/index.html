@@ -8,20 +8,18 @@
 
 {% block content %}
 
-<section class="p-strip is-shallow u-no-padding--bottom">
-  <div class="p-section">
-    <div class="row--50-50">
-      <div class="col">
-        <h1 class="u-no-margin--bottom">Ubuntu Core features</h1>
+<section class="p-section--hero">
+  <div class="row--50-50">
+    <div class="col">
+      <h1 class="u-no-margin--bottom">Ubuntu Core features</h1>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow u-no-padding--top">
+        <p class="p-heading--2">A minimal OS for IoT, devices and embedded systems.</p>
       </div>
-      <div class="col">
-        <div class="p-section--shallow u-no-padding--top">
-          <p class="p-heading--2">A minimal OS for IoT, devices and embedded systems.</p>
-        </div>
-        <hr />
-        <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
-        <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
-      </div>
+      <hr />
+      <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
+      <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
     </div>
   </div>
 </section>
@@ -57,17 +55,15 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-6">
-      <div>
-        {{ image (
-          url="https://assets.ubuntu.com/v1/80d597dd-security.jpg",
-          alt="Three big robotic arms in a factory",
-          width="916",
-          height="392",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-      </div>
+      {{ image (
+        url="https://assets.ubuntu.com/v1/80d597dd-security.jpg",
+        alt="Three big robotic arms in a factory",
+        width="916",
+        height="392",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -94,7 +90,7 @@
         </div>
         <div class="p-equal-height-row__col">
           <h3 class="p-heading--5 p-equal-height-row__item">
-            <a href="/core/features/secure-boot">Validations sets&nbsp;&rsaquo;</a>
+            <a href="https://snapcraft.io/docs/validation-sets">Validations sets&nbsp;&rsaquo;</a>
           </h3>
           <p class="p-equal-height-row__item">Validation sets guarantee the installation of required applications with fine-grained permissions. What’s more, you can update applications consistently and simultaneously, improving out-of-the-box experience for end-users.</p>
         </div>
@@ -106,17 +102,15 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-6">
-      <div>
-        {{ image (
-         url="https://assets.ubuntu.com/v1/4769d9d3-updates.jpg",
-          alt="Drone grounded close to what seems to be a corn field",
-          width="916",
-          height="392",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}  
-      </div>
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4769d9d3-updates.jpg",
+        alt="Drone grounded close to what seems to be a corn field",
+        width="916",
+        height="392",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}  
     </div>
   </div>
 </section>
@@ -152,17 +146,15 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-6">
-      <div>
         {{ image (
           url="https://assets.ubuntu.com/v1/95bdf51d-operations.jpg",
-           alt="Uncrewed tractor plows a field",
-           width="916",
-           height="392",
-           hi_def=True,
-           loading="auto"
-           ) | safe
-         }}
-      </div>
+          alt="Uncrewed tractor plows a field",
+          width="916",
+          height="392",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
     </div>
   </div>
 </section>
@@ -210,7 +202,6 @@
         <div class="col-6 col-medium-3">
           <div tabindex="0" role="tabpanel" id="snaps-tab" aria-labelledby="snaps-tab-cta">
             <div class="row u-equal-height">
-              <h5>Snaps</h5>
               <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center"> 
                 {{ image (
                   url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
@@ -234,7 +225,6 @@
   
           <div tabindex="0" role="tabpanel" id="snapd-tab" aria-labelledby="snapd-tab-cta" aria-hidden="hidden">
             <div class="row u-equal-height">
-              <h5>Snapd</h5>
               <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
                   {{ image (
                     url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
@@ -262,7 +252,6 @@
   
           <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" aria-hidden="hidden">
             <div class="row u-equal-height">
-              <h5>Snapcraft</h5>
               <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/86b8b783-snapcraft-logo-120.svg",
@@ -289,7 +278,6 @@
 
           <div tabindex="0" role="tabpanel" id="ubuntu-tab" aria-labelledby="ubuntu-tab-cta" aria-hidden="hidden">
             <div class="row u-equal-height">
-              <h5>Ubuntu-image</h5>
               <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
@@ -348,7 +336,7 @@
         <li class="p-list__item u-no-padding--top u-no-padding--bottom">
           <div class="row--50-50">
             <div class="col">
-              <p class="p-heading--5">Docs</p>
+              <h3 class="p-heading--5">Docs</h3>
             </div>
             <div class="col">
               <p>
@@ -360,7 +348,7 @@
         <li class="p-list__item u-no-padding--top u-no-padding--bottom">
           <div class="row--50-50">
             <div class="col">
-              <p class="p-heading--5">Webinar</p>
+              <h3 class="p-heading--5">Webinar</h3>
             </div>
             <div class="col">
               <p>
@@ -372,7 +360,7 @@
         <li class="p-list__item u-no-padding--top u-no-padding--bottom">
           <div class="row--50-50">
             <div class="col">
-              <p class="p-heading--5">Whitepaper</p>
+              <h3 class="p-heading--5">Whitepaper</h3>
             </div>
             <div class="col">
               <p>
