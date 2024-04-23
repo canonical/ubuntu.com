@@ -1,8 +1,8 @@
-{% extends 'base_index.html' %}
+{% extends "wsl/base_wsl.html" %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1M7e2B08GgPA7K6Wx0ThE6s9_xQINM0MSkarfdKUTEYI/edit#{% endblock meta_copydoc %}
 
-{% block title %}WSL{% endblock %}
+{% block title %}Windows Subsystem for Linux (WSL){% endblock %}
 
 {% block meta_description %}Access the Ubuntu terminal on Windows with WSL. Develop cross-platform applications and manage IT infrastructure without leaving Windows.{% endblock %}
 
@@ -11,18 +11,18 @@
 {% block content %}
 
 <section class="p-strip is-shallow">
-	<div class="row p-section--shallow is-split-on-medium"">
-		<div class="col-6">
-			<h1>The full Ubuntu experience, now available on Windows</h1>
+	<div class="row--50-50 p-section--shallow">
+		<div class="col">
+			<h1>The full Ubuntu experience, now&nbsp;available on Windows</h1>
 		</div>
-		<div class="col-6">
+		<div class="col">
 			<div class="p-section--shallow">
 					<p>Access the power of a full Ubuntu terminal environment on Windows with Windows Subsystem for Linux (WSL).</p>
 					<p>Streamline web application development, leverage cutting-edge AI/ML tooling, develop cross-platform applications and manage IT infrastructure without leaving Windows.</p>
 			</div>
-			<hr>
+			<hr />
 			<a class="p-button--positive" href="https://www.microsoft.com/p/ubuntu/9pdxgncfsczv">Download from the Microsoft Store</a>
-			<a class="js-invoke-modal" href="/desktop/wsl/contact-us">Looking for support? Contact us&nbsp;&rsaquo;</a>
+			<a class="js-invoke-modal" href="/desktop/wsl/contact-us">Looking&nbsp;for&nbsp;support?&nbsp;Contact&nbsp;us&nbsp;&rsaquo;</a>
 		</div>
 	</div>
 	<div class="u-fixed-width p-section">
@@ -41,12 +41,12 @@
 
 <section class="p-section">
 	<div class="u-fixed-width p-section--shallow">
-		<hr class="p-rule">
+		<hr class="p-rule" />
     <h2>Develop with the best of both worlds</h2>
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">The freedom of Ubuntu</h3>
@@ -55,7 +55,7 @@
           <p>Run your choice of Linux text editors, including vim, emacs, and nano. Install applications, compilers and libraries from the Ubuntu repository, securely maintained by Canonical.</p>
         </div>
       </div>
-     <hr class="p-rule">
+     <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Highly performant AI/ML</h3>
@@ -64,7 +64,7 @@
           <p>Ubuntu is the target platform for all major open source AI/ML frameworks. NVIDIA Data Science Stack lets you maximise the performance of your Data Science and Machine Learning projects on top of native Windows NVIDIA drivers.</p>
         </div>
       </div>
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Fully flexible web applications</h3>
@@ -73,7 +73,7 @@
           <p>Build, test, and deploy Kubernetes clusters on Windows. Develop in WSL using native Windows IDEs including VS Code and IntelliJ. Use containers to improve your workflow and benefit from full NodeJS and Ruby support.</p>
         </div>
       </div>
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Ideal for cross-platform development</h3>
@@ -82,7 +82,7 @@
           <p>Create and test your CI/CD pipelines locally on an Ubuntu WSL instance. When ready, publish to a cloud production environment running Ubuntu VMs. Develop and test graphical Linux applications using WSLg and development frameworks like Flutter or React Native.</p>
         </div>
       </div>
-      <hr class="p-rule">
+      <hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Critical tools for security specialists</h3>
@@ -91,7 +91,7 @@
           <p>Leverage Linux security tools to test and harden your network. Achieve the same first-class, out-of-the-box, compliant security that is synonymous with Ubuntu.</p>
         </div>
       </div>
-			<hr class="p-rule">
+			<hr class="p-rule" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Mixed IT infrastructure management</h3>
@@ -106,7 +106,7 @@
 
 <section class="p-section">
 	<div class="u-fixed-width p-section--shallow">
-		<hr class="p-rule">
+		<hr class="p-rule" />
 		<h2>Get started with Ubuntu WSL today</h2>
 	</div>
 	<div class="row">
@@ -147,16 +147,16 @@
 
 <section class="p-section--deep">
   <hr class="p-rule is-fixed-width" />
-  <div class="row--25-75 is-split-on-medium">
-    <div class="col">
+  <div class="row">
+    <div class="col-3 col-medium-3">
       <h3 class="p-heading--2">Resources</h3>
     </div>
-    <div class="col">
+    <div class="col-9 col-medium-3">
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5 p-text--small-caps">Tutorials</h3>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
 					<ul class="p-list--divided u-no-margin--bottom">
 						<li class="p-list__item">
 							<a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/">Install Ubuntu on WSL2</a>
@@ -181,10 +181,10 @@
       </div>
       <hr class="p-rule" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5 p-text--small-caps">Documentation</h3>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
 					<ul class="p-list--divided u-no-margin--bottom">
 						<li class="p-list__item">
 							<a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/">Ubuntu on WSL</a>
@@ -201,12 +201,12 @@
 					</ul>
         </div>
       </div>
-			<hr class="p-rule" />
+	    <hr class="p-rule" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5 p-text--small-caps">Contact us</h3>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
 					<p>If you have further questions around Ubuntu on WSL or want to share your experiences, join the conversation on the <a href="https://discourse.ubuntu.com/c/wsl/27">Ubuntu Discourse</a>.</p>
 					<p>If you want to hear more about the benefits of securing Ubuntu on WSL at your organisation, please <a class="js-invoke-modal" href="/desktop/wsl/contact-us">get in touch</a>.</p>
         </div>
@@ -222,8 +222,6 @@
   });
 </script>
 
-<script defer src="{{ versioned_static('js/modals.js') }}"></script>
-
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/wsl.html" data-form-id="3755" data-lp-id="" data-return-url="https://ubuntu.com/desktop/wsl/thank-you" data-lp-url="">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/wsl.html" data-form-id="3755" data-lp-id="" data-return-url="https://ubuntu.com/wsl/thank-you" data-lp-url="">
 </div>
 {% endblock %}
