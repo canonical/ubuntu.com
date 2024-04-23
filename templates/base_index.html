@@ -48,75 +48,6 @@
 {% block notices_content %}
 {% endblock notices_content %}
 
-<!-- temp example -->
-
-<div class="row">
-  <div class="col-start-large-4 col-9">
-    <div class="p-equal-height-row has-1st-divider">
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <h3 class="p-heading--5">Ubuntu Pro Desktop</h3>
-        </div>
-        <p class="p-equal-height-row__item">
-          A comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule is-muted" />
-          <p>
-            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container p-section--shallow">
-            {{ image(url="https://assets.ubuntu.com/v1/7a019410-ms logo.png",
-                            alt="",
-                            width="40",
-                            height="41",
-                            hi_def=True,
-                            loading="auto|lazy") | safe
-            }}
-          </div>
-        </div>
-        <h3 class="p-equal-height-row__item p-heading--5">Ubuntu on Windows with WSL</h3>
-        <p class="p-equal-height-row__item">
-          The power of a full Ubuntu terminal environment on Windows with Windows Subsystem for Linux. Streamline web application development, leverage cutting-edge AI/ML tooling, develop cross-platform applications and manage IT infrastructure without leaving Windows.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule is-muted" />
-          <p>
-            <a href="/wsl">How we support Ubuntu on WSL&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item">
-          <div class="p-media-container p-section--shallow">
-            {{ image(url="https://assets.ubuntu.com/v1/476cc8de-amazon-workspaces-icon.png",
-                            alt="Amazon Workspaces",
-                            width="40",
-                            height="51",
-                            hi_def=True,
-                            loading="lazy") | safe
-            }}
-          </div>
-        </div>
-        <h3 class="p-equal-height-row__item p-heading--5">Virtual desktops with Amazon Workspaces</h3>
-        <p class="p-equal-height-row__item">
-          Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code. Applications and data remain secured in the AWS cloud, even when your developers are working remotely.
-        </p>
-        <div class="p-equal-height-row__item">
-          <hr class="p-rule is-muted" />
-          <p>
-            <a href="/aws/workspaces">Learn more about Ubuntu WorkSpaces&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end temp example -->
 <section class="p-section">
   <hr class="is-fixed-width">
   <div class="row">
@@ -336,7 +267,44 @@
       </div>      
     </div>
   </div>
+  
+  <div class="p-equal-height-row has-1st-divider">
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        10 year security maintenance and CVE Patching
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/livepatch">Extended security</a> for infrastructure and applications
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
+      </li>
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr
+        title="Department of Defence, USA">DoD</abbr>
+        compliance
+      </li>
+    </ul>
+    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
+      <li class="p-list__item is-ticked col-medium-3">
+        <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
+      </li>
+    </ul>
+  </div>
 </section>
+
+
+
 
 <section class="p-section">
   <div class="row p-section--shallow">
@@ -432,7 +400,7 @@
 <section class="p-section--deep">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-7">
+    <div class="col-8">
       <div class="p-section--shallow">
         <h2 class="p-heading--1 u-no-margin--bottom">
           Public cloud optimisation
@@ -440,50 +408,50 @@
         <p class="p-heading--2">
           Most public cloud instances are Ubuntu, for performance and security.
         </p>
-      </div>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
-            alt="Uber",
-            width="176",
-            height="385",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-          </div>
-          <div class="p-logo-section__item">            
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
-              alt="Spotify",
-              width="363",
+        <div class="p-logo-section--dense">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
+              alt="Uber",
+              width="176",
               height="385",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
-              alt="BNP",
-              width="436",
-              height="385",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
+            </div>
+            <div class="p-logo-section__item">            
+              {{ image (
+                url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
+                alt="Spotify",
+                width="363",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
+                alt="BNP",
+                width="436",
+                height="385",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-5">
+    <div class="col-4 u-hide--medium u-hide--small">
       <div class="p-image-wrapper">
         {{ 
           image (
@@ -792,7 +760,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="p-image-wrapper">
+      <div class="p-image-wrapper p-section--sh">
         {{ 
           image (
           url="https://assets.ubuntu.com/v1/995af329-Asset 5@2x 1.png",
@@ -940,7 +908,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="p-image-wrapper">
+      <div class="p-image-wrapper p-section--shallow">
         {{ 
           image (
           url="https://assets.ubuntu.com/v1/e5861aaf-Asset 4@2x 1.png",
@@ -1402,7 +1370,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="p-image-wrapper">
+      <div class="p-image-wrapper p-section--shallow">
         {{ 
           image (
           url="https://assets.ubuntu.com/v1/193f6298-Frame 3395.png",
