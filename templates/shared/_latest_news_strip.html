@@ -16,10 +16,7 @@
       {% if request.path == "/observability" %}
         More about {{ heading_topic }} in
       {% else %}
-        Latest {{ heading_topic }} news from
-      {% endif %}
-        <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
-          our blog&nbsp;&rsaquo;
+        Latest {{ heading_topic }} news from{% endif %}&nbsp;<a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">our&nbsp;blog&nbsp;&rsaquo;
         </a>
     </h2>
   </div>

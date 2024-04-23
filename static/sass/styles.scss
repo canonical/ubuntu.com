@@ -7,6 +7,26 @@
 @import "global-settings";
 @import "settings_colors";
 
+$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
+$colors--light-theme--text-default: #000 !default;
+
+$colors--dark-theme--border-default: rgba(
+  $colors--dark-theme--text-default,
+  0.2
+);
+$colors--dark-theme--border-low-contrast: rgba(
+  $colors--dark-theme--text-default,
+  0.1
+);
+$colors--light-theme--border-default: rgba(
+  $colors--light-theme--text-default,
+  0.2
+);
+$colors--light-theme--border-low-contrast: rgba(
+  $colors--light-theme--text-default,
+  0.1
+);
+
 // custom mixins
 @import "mixins/full-width-breakout";
 
@@ -1601,6 +1621,6 @@ ol.p-list--divided .p-list__item::before {
   margin-left: 1rem;
 }
 
-.p-list--divided .p-list__item { 
-  box-shadow: inset 0px 1px 0px 0px $colors--theme--border-low-contrast; 
+.p-list--divided .p-list__item {
+  box-shadow: inset 0px 1px 0px 0px $colors--theme--border-low-contrast;
 }
