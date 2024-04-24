@@ -488,6 +488,7 @@
       const activeTab = document.querySelector(
         ".p-tabs__link[href='" + currentHash + "']"
       );
+      console.log(currentHash, "tab", activeTab)
       const targetIds = ["release-notes", "system-requirements", "how-to-install"];
 
       if (activeTab) {
@@ -517,6 +518,17 @@
         })
       }
     }
+
+    // Show release notes tab when the manual install tab is clicked
+    function showBaseNestedTab() {
+      const targetTab = document.querySelector(".p-tabs__link[href='#manual-install']");
+
+      targetTab.addEventListener("click", () => {
+        const relaseNotesTabContainer = document.getElementById("release-notes");
+        relaseNotesTabContainer.classList.remove("u-hide")
+      })
+    } 
+    showBaseNestedTab()
 
     addEventListener("DOMContentLoaded", () => {
       handleNonTabHashClick()
