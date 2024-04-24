@@ -15,7 +15,7 @@ meta_copydoc %}
     <div class="col">
       <h1 class="u-no-margin--bottom">Ubuntu Core</h1>
       <div class="p-section--shallow">
-        <p class="p-heading--2">The embedded Linux OS for devices</p>
+        <p class="p-heading--2">The embedded Linux OS<br />for devices</p>
       </div>
       <div class="p-section--shallow">
         <p class="p-heading--4">Ubuntu Core is a minimal, secure and strictly confined operating system powering devices around the world. Build your Ubuntu Core image today.</p>
@@ -34,35 +34,6 @@ meta_copydoc %}
         <iframe class="p-hero-video u-embedded-media__element" src="https://www.youtube.com/embed/6NDWqH1SrGs" allow="autoplay;" frameborder="0" allowfullscreen=""></iframe>
       </div>
     </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const videoLink = document.querySelector('.p-hero-video-link');
-        const style = document.querySelector("style");
-        style.textContent += `
-                              .p-hero-video-link {
-                                display: inline-block;
-                                overflow: hidden;
-                              }
-                              .p-hero-video-link img {
-                                display: block;
-                                transition: .3s ease-in-out;
-                              }
-                              .p-hero-video-link:hover img {
-                                transform: scale(1.3);
-                              }
-                              .p-equal-height-row__col:before {
-                                content: none !important;
-                              }
-                            `;
-        const video = document.querySelector('.p-hero-video');
-        const videoContainer = document.querySelector('.p-hero-video-container');
-        videoLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          videoContainer.classList.remove('u-hide');
-          videoLink.classList.add('u-hide');
-        });
-      });
-    </script>
   </div>
 </section>
 
@@ -81,14 +52,14 @@ meta_copydoc %}
   </div>
   <div class="p-equal-height-row has-3rd-divider">
     <div class="p-equal-height-row__col">
-      <div class="p-equal-height-row__item u-hide--small">
+      <div class="p-equal-height-row__item u-hide--small u-hide--medium">
         <div class="p-media-container">
           <img width="320" src="https://assets.ubuntu.com/v1/834e417a-continuous-security.jpg" alt="" />
         </div>
       </div>
       <div class="p-equal-height-row__item">
         <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
-        <h5 class="p-heading--5">Continuous security</h5>
+        <h3 class="p-heading--5">Continuous security</h3>
       </div>
       <p class="p-equal-height-row__item">
         Imagine a world where every device is trustworthy. We designed every aspect of Ubuntu Core to create the most
@@ -101,14 +72,14 @@ meta_copydoc %}
       </div>
     </div>
     <div class="p-equal-height-row__col">
-      <div class="p-equal-height-row__item u-hide--small">
+      <div class="p-equal-height-row__item u-hide--small u-hide--medium">
         <div class="p-media-container">
           <img width="320" src="https://assets.ubuntu.com/v1/d1d161a9-fleet-management.jpg" alt="" />
         </div>
       </div>
       <div class="p-equal-height-row__item">
         <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
-        <h5 class="p-heading--5">Device management</h5>
+        <h3 class="p-heading--5">Device management</h3>
       </div>
       <p class="p-equal-height-row__item">
         Enjoy reliable, remotely accessible and recoverable devices which are always up-to-date with mission-critical
@@ -121,14 +92,14 @@ meta_copydoc %}
       </div>
     </div>
     <div class="p-equal-height-row__col">
-      <div class="p-equal-height-row__item u-hide--small">
+      <div class="p-equal-height-row__item u-hide--small u-hide--medium">
         <div class="p-media-container">
           <img width="320" src="https://assets.ubuntu.com/v1/373f7039-agile-containerisation.png" alt="" />
         </div>
       </div>
       <div class="p-equal-height-row__item">
         <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
-        <h5 class="p-heading--5">Agile containerisation</h5>
+        <h3 class="p-heading--5">Agile containerisation</h3>
       </div>
       <p class="p-equal-height-row__item">
         Ubuntu Core is immutable and strictly confined. There is a clean separation between the kernel, OS image and
@@ -141,14 +112,14 @@ meta_copydoc %}
       </div>
     </div>
     <div class="p-equal-height-row__col">
-      <div class="p-equal-height-row__item u-hide--small">
+      <div class="p-equal-height-row__item u-hide--small u-hide--medium">
         <div class="p-media-container">
           <img width="320" src="https://assets.ubuntu.com/v1/166ec7c6-hardware-ecosystem.jpg" alt="" />
         </div>
       </div>
       <div class="p-equal-height-row__item">
         <hr class="p-rule--highlight u-hide--medium u-hide--small is-muted" />
-        <h5 class="p-heading--5">A strong hardware ecosystem</h5>
+        <h3 class="p-heading--5">A strong hardware ecosystem</h3>
       </div>
       <p class="p-equal-height-row__item">
         We enable Ubuntu Core with the best ODMs and silicon vendors in the world. We continuously test it on leading
@@ -159,6 +130,14 @@ meta_copydoc %}
           <a href="/certified">Browse all certified hardware&nbsp;&rsaquo;</a> 
         </p>
       </div>
+    </div>
+  </div>
+  <hr class="p-rule is-muted" />
+  <div class="row">
+    <div class="col-3 col-start-large-7">
+      <p>
+        <a href="/core/features">Discover the full feature list&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
@@ -216,7 +195,7 @@ meta_copydoc %}
   </div>
   <div class="row">
     <hr class="is-muted col-9 col-start-large-4 col-medium-6 col-start-medium-2" />
-    <div class="col-6 col-start-large-4 col-medium-4 col-start-medium-3">
+    <div class="col-6 col-start-large-7 col-medium-4 col-start-medium-4">
       <p>
         <a href="/core/docs">Get started with Ubuntu Core&nbsp;&rsaquo;</a>
       </p>
@@ -236,7 +215,7 @@ meta_copydoc %}
         <div class="col-3 col-medium-2">
           <a href="/automotive">
             <h3 class="p-heading--5">Automotive</h3>
-            {{ image (
+            {{ image(
                 url="https://assets.ubuntu.com/v1/f867c883-For-smart-use-cases__Automotivew.png",
                 alt="",
                 width="285",
@@ -250,7 +229,7 @@ meta_copydoc %}
         <div class="col-3 col-medium-2">
           <a href="/industrial">
             <h3 class="p-heading--5">Industrial</h3>
-            {{ image (
+            {{ image(
                 url="https://assets.ubuntu.com/v1/0162bc71-For-smart-use-cases__Industrial.png",
                 alt="",
                 width="285",
@@ -264,7 +243,7 @@ meta_copydoc %}
         <div class="col-3 col-medium-2">
           <a href="/robotics">
             <h3 class="p-heading--5">Robotics</h3>
-            {{ image (
+            {{ image(
                 url="https://assets.ubuntu.com/v1/aeeeb32d-For-smart-use-cases__Robotics.png",
                 alt="",
                 width="285",
@@ -285,7 +264,7 @@ meta_copydoc %}
         <div class="col-3 col-medium-2">
           <a href="/internet-of-things/digital-signage">
             <h3 class="p-heading--5">Signage</h3>
-            {{ image (
+            {{ image(
                 url="https://assets.ubuntu.com/v1/9db3f004-For-smart-use-cases__Signage.png",
                 alt="",
                 width="285",
@@ -299,7 +278,7 @@ meta_copydoc %}
         <div class="col-3 col-medium-2">
           <a href="/internet-of-things/smart-city">
             <h3 class="p-heading--5">Smart cities</h3>
-            {{ image (
+            {{ image(
                 url="https://assets.ubuntu.com/v1/8dd2f04d-For-smart-use-cases__Smart-cities.png",
                 alt="",
                 width="285",
@@ -354,7 +333,7 @@ meta_copydoc %}
     <div tabindex="0" role="tabpanel" id="industrial-tab" aria-labelledby="industrial">
       <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/ffd88101-rexroth-for-testimonial.png",
             alt="Rexroth",
             width="284",
@@ -370,9 +349,7 @@ meta_copydoc %}
               <h3 class="p-heading--2">Bosch Rexroth reinvents automation</h3>
             </div>
             <div class="col-3">
-              <div>
-                <p>Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform.</p>
-              </div>
+              <p>Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform.</p>
               <hr class="p-rule is-muted" />
               <p>
                 <a href="/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform">Read the press release&nbsp;&rsaquo;</a>
@@ -380,7 +357,7 @@ meta_copydoc %}
             </div>
           </div>
           <div>
-            {{ image (
+            {{ image(
               url="https://assets.ubuntu.com/v1/2d152c25-rexroth-testimonial-image.jpg",
               alt="Rexroth",
               width="917",
@@ -396,7 +373,7 @@ meta_copydoc %}
     <div tabindex="0" role="tabpanel" id="smart-kiosk-tab" aria-labelledby="smart-kiosk" aria-hidden="hidden">
       <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/ea8fc1a8-pudo-testimonial-logo.png",
             alt="Pudo",
             width="180",
@@ -412,9 +389,7 @@ meta_copydoc %}
               <h3 class="p-heading--2">Pudo deploys fleet for robust last-mile logistics</h3>
             </div>
             <div class="col-3">
-              <div>
-                <p>Pudo chooses Ubuntu Core as the foundation for its IoT-based APMs to maximise security and uptime.</p>
-              </div>
+              <p>Pudo chooses Ubuntu Core as the foundation for its IoT-based APMs to maximise security and uptime.</p>
               <hr class="is-muted p-rule" />
               <p>
                 <a href="/engage/pudo-case-study">Read the case study&nbsp;&rsaquo;</a>
@@ -422,7 +397,7 @@ meta_copydoc %}
             </div>
           </div>
           <div>
-            {{ image (
+            {{ image(
               url="https://assets.ubuntu.com/v1/576c8402-pudo-testimonial-image.jpg",
               alt="Pudo",
               width="917",
@@ -438,7 +413,7 @@ meta_copydoc %}
     <div tabindex="0" role="tabpanel" id="network-tab" aria-labelledby="network" aria-hidden="hidden">
       <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/80f5af45-rigado-testimonial-logo.png",
             alt="Rigado",
             width="200",
@@ -454,9 +429,7 @@ meta_copydoc %}
               <h3 class="p-heading--2">Rigado cuts customers’ time to market</h3>
             </div>
             <div class="col-3">
-              <div>
-                <p>Ubuntu Core enables Rigado to manage end-to-end security for commercial IoT gateways.</p>
-              </div>
+              <p>Ubuntu Core enables Rigado to manage end-to-end security for commercial IoT gateways.</p>
               <hr class="is-muted p-rule" />
               <p>
                 <a href="/engage/case-study-rigado">Read the case study&nbsp;&rsaquo;</a>
@@ -464,7 +437,7 @@ meta_copydoc %}
             </div>
           </div>
           <div>
-            {{ image (
+            {{ image(
               url="https://assets.ubuntu.com/v1/297369c0-rigado--testimonial-image.jpg",
               alt="Rigado",
               width="917",
@@ -480,7 +453,7 @@ meta_copydoc %}
     <div tabindex="0" role="tabpanel" id="cloud-tab" aria-labelledby="cloud" aria-hidden="hidden">
       <div class="row--25-75 u-no-margin--bottom">
         <div class="col">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/e110996e-ibm-cloud-testimonial-logo.png",
             alt="IBM",
             width="200",
@@ -496,17 +469,15 @@ meta_copydoc %}
               <h3 class="p-heading--2">IBM Cloud provides highly isolated and performant bare metal servers</h3>
             </div>
             <div class="col-3">
-              <div>
-                <p>IBM Cloud's bare metal servers offer highly isolated and high-performing tenant-cloud isolation through the use of Ubuntu Core.</p>
-              </div>
+              <p>IBM Cloud's bare metal servers offer highly isolated and high-performing tenant-cloud isolation through the use of Ubuntu Core.</p>
               <hr class="is-muted p-rule" />
               <p>
-                <a href="/engage/case-study-rigado">Read the press release&nbsp;&rsaquo;</a>
+                <a href="https://canonical.com/blog/cloud-isolation-ibm-bare-metal-ubuntu-core">Read the press release&nbsp;&rsaquo;</a>
               </p>
             </div>
           </div>
           <div>
-            {{ image (
+            {{ image(
               url="https://assets.ubuntu.com/v1/534be2a2-ibm-leadspace.jpg",
               alt="IBM",
               width="917",
@@ -532,7 +503,7 @@ meta_copydoc %}
     <div class="p-logo-section--dense">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
               url="https://assets.ubuntu.com/v1/59996fad-intel-new-logo.png",
               alt="Intel",
               width="50",
@@ -544,7 +515,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
               url="https://assets.ubuntu.com/v1/4bf8a9bc-amd-logo.png",
               alt="AMD",
               width="69",
@@ -556,7 +527,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/e7b81879-nvidia-logo.png",
             alt="Nvidia",
             width="94",
@@ -568,7 +539,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/9a25ec68-arm-logo.png",
             alt="ARM",
             width="47",
@@ -580,7 +551,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/31b259ec-qualcom-logo.png",
             alt="Qualcom",
             width="96",
@@ -592,7 +563,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/d65da7f3-advantech-logo.png",
             alt="Advantech",
             width="95",
@@ -604,7 +575,7 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/6eff0263-adlink-logo.png",
             alt="Adlink",
             width="101",
@@ -616,9 +587,9 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/be8db080-nxp-logo.png",
-            alt="Nxp",
+            alt="NXP",
             width="41",
             height="96",
             hi_def=True,
@@ -628,9 +599,9 @@ meta_copydoc %}
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ image (
+          {{ image(
             url="https://assets.ubuntu.com/v1/96d65ee2-mediatek-logo.png",
-            alt="Mediatech",
+            alt="MediaTeK",
             width="77",
             height="96",
             hi_def=True,
@@ -661,7 +632,7 @@ meta_copydoc %}
   <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
-      <h2>Learn more about Ubuntu Core</h2>
+      <h2>Learn more about&nbsp;Ubuntu&nbsp;Core</h2>
     </div>
     <div class="col">
       <div class="row--50-50">
@@ -736,7 +707,7 @@ meta_copydoc %}
       <div class="-section--shallow">
         <p>Whether you are a startup bringing your concept to market or already have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
       </div>
-      <hr class="is-muted p-rule" />
+      <hr class="is-muted" />
       <p>
         <a class="p-button--positive" href="/core/contact-us">Get in touch</a>
       </p>
@@ -749,5 +720,35 @@ meta_copydoc %}
   data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you"
   data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const videoLink = document.querySelector('.p-hero-video-link');
+    const style = document.querySelector("style");
+    style.textContent += `
+                          .p-hero-video-link {
+                            display: inline-block;
+                            overflow: hidden;
+                          }
+                          .p-hero-video-link img {
+                            display: block;
+                            transition: @include vf-transition($property: background-size, $duration: fast, $easing: out)
+                          }
+                          .p-hero-video-link:hover img {
+                            transform: scale(1.03);
+                          }
+                          .p-equal-height-row__col:before {
+                            content: none !important;
+                          }
+                        `;
+    const video = document.querySelector('.p-hero-video');
+    const videoContainer = document.querySelector('.p-hero-video-container');
+    videoLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      videoContainer.classList.remove('u-hide');
+      videoLink.classList.add('u-hide');
+    });
+  });
+</script>
 
 {% endblock content %}
