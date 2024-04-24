@@ -35,7 +35,7 @@ can be added to your cluster, or further configuration made to the default
 setup which are covered in these guides:
 
 - [Configure and use CDK addons](/kubernetes/docs/cdk-addons)
-- [Monitor with Grafana/Prometheus](/kubernetes/docs/monitoring)
+- [Monitor with COS Lite](/kubernetes/docs/how-to-cos-lite)
 - [Use K8s Operator Charms](/kubernetes/docs/operator-charms)
 - [Schedule containers with Volcano](/kubernetes/docs/volcano)
 - [Use the cluster autoscaler](/kubernetes/docs/autoscaler)
