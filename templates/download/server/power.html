@@ -28,7 +28,7 @@
           <p>This is the ISO image of the Ubuntu Server installer.</p>
           <p>
             <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-              Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+              Download {{ releases.lts.full_version }} LTS
             </a>
             {% if releases.latest.short_version > releases.lts.short_version %}
             &nbsp;&nbsp;
