@@ -66,7 +66,7 @@
         <div class="p-section">
           <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
         </div>
-        <div class="p-image-wrapper">
+        <div class="p-image-wrapper u-hide--small u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
                     alt="Noble Numbat",
                     width="182",
@@ -488,7 +488,6 @@
       const activeTab = document.querySelector(
         ".p-tabs__link[href='" + currentHash + "']"
       );
-      console.log(currentHash, "tab", activeTab)
       const targetIds = ["release-notes", "system-requirements", "how-to-install"];
 
       if (activeTab) {
