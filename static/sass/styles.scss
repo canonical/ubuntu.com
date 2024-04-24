@@ -164,6 +164,26 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 @include layout-whitepapers;
 
+// Theming overrides, to be removed once V4.10.1 is released
+$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
+$colors--light-theme--text-default: #000 !default;
+$colors--dark-theme--border-default: rgba(
+  $colors--dark-theme--text-default,
+  0.2
+);
+$colors--dark-theme--border-low-contrast: rgba(
+  $colors--dark-theme--text-default,
+  0.1
+);
+$colors--light-theme--border-default: rgba(
+  $colors--light-theme--text-default,
+  0.2
+);
+$colors--light-theme--border-low-contrast: rgba(
+  $colors--light-theme--text-default,
+  0.1
+);
+
 // Overide the path to flags for dial codes
 .iti__flag {
   background-image: url("#{$assets-path}21572c97-flags.png");
