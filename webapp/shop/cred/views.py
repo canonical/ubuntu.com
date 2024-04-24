@@ -1023,12 +1023,12 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
     )
     filtered_products = [
         {
-            "id": listing["productID"],
-            "longId": listing["id"],
-            "period": listing["period"],
-            "marketplace": listing["marketplace"],
-            "name": listing["name"],
-            "price": listing["price"],
+            "id": listing.get("productID", ""),
+            "longId": listing.get("id", ""),
+            "period": listing.get("period", ""),
+            "marketplace": listing.get("marketplace", ""),
+            "name": listing.get("name", ""),
+            "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings
         if (listing["productID"].endswith("key") and type == "keys")
