@@ -51,8 +51,8 @@ RESERVATION_STATES = {
     "processed": "Complete",
     "canceled": "Cancelled",
     "finalized": "Complete",
-    "provisioning": "In Progress",
-    "provisioned": "In Progress",
+    "provisioning": "Pending",
+    "provisioned": "Pending",
     "in_progress": "In Progress",
     "completed": "Complete",
     "grading": "Complete",
@@ -361,15 +361,29 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
-                r = response.get("assessment_reservation")
-                timezone = r["user"]["time_zone"]
-                tz_info = pytz.timezone(timezone)
-                starts_at = (
-                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-                    .replace(tzinfo=pytz.timezone("UTC"))
-                    .astimezone(tz_info)
-                )
-                assessment_id = r.get("assessment") and r["assessment"]["id"]
+                if "assessment_reservation" not in response:
+                    exams_not_taken.append(
+                        {
+                            "name": name,
+                            "state": "Cannot fetch information",
+                            "actions": [],
+                        }
+                    )
+                    continue
+                else:
+                    r = response.get("assessment_reservation")
+                    timezone = r["user"]["time_zone"]
+                    tz_info = pytz.timezone(timezone)
+                    starts_at = (
+                        datetime.strptime(
+                            r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                        )
+                        .replace(tzinfo=pytz.timezone("UTC"))
+                        .astimezone(tz_info)
+                    )
+                    assessment_id = (
+                        r.get("assessment") and r["assessment"]["id"]
+                    )
 
                 actions = []
                 utc = pytz.timezone("UTC")
