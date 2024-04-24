@@ -620,8 +620,87 @@
           <h3 class="p-heading--5">Fully supported data solutions</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Simplify operations and focus on innovation with fully-supported <a href="https://canonical.com/data">enterprise data solutions</a> from Canonical, including Spark, Kafka&reg;, MongoDB and OpenSearch, as well as MySQL and PostgreSQL. Get the predictable pricing you need to scale your projects, backed by expert support.</p>
-          <p>Learn more about our supported solution for <a href="https://canonical.com/blog/canonical-releases-charmed-spark">Apache Spark</a> and <a href="https://ubuntu.com/blog/charmed-mongodb-beta">MongoDB</a> on Kubernetes.</p>
+          <p>Simplify operations and focus on innovation with fully-supported enterprise data solutions from Canonical, including <a href="https://canonical.com/data/spark">Spark</a>, <a href="https://canonical.com/data/kafka">Kafka&reg;</a>, <a href="https://canonical.com/data/mongodb">MongoDB&reg;</a> and <a href="https://canonical.com/data/opensearch">OpenSearch</a>, <a href="https://canonical.com/data/mysql">MySQL</a> and <a href="https://canonical.com/data/postgresql">PostgreSQL</a>. Get the predictable pricing you need to scale your projects, backed by expert support.</p>
+          <hr class="is-muted">
+          <a href="https://canonical.com/data">Learn more about our data solutions&nbsp;&rsaquo;</a>
+          <div class="u-fixed-width">
+            <div class="p-logo-section--dense">
+              <div class="p-logo-section__items">
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/6e18d17f-apache-spark-logo.png",
+                    alt="",
+                    width="150",
+                    height="256",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/c2d27381-kafka.png",
+                    alt="",
+                    width="228",
+                    height="256",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/662c72e2-mongodb.png",
+                    alt="",
+                    width="425",
+                    height="512",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/7cf825b5-opensearch-logo.png",
+                    alt="",
+                    width="407",
+                    height="384",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/0c7a5744-mysql-logo.png",
+                    alt="",
+                    width="490",
+                    height="512",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+                <div class="p-logo-section__item">
+                  {{ image (
+                    url="https://assets.ubuntu.com/v1/3fb0b600-postgresql-logo.png",
+                    alt="",
+                    width="67",
+                    height="192",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}
+                    ) | safe
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <hr class="p-rule" />
@@ -630,8 +709,39 @@
           <h3 class="p-heading--5">Modular MLOps platforms</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Rely on secure and supported leading open source tools like Kubeflow and MLFlow as part of <a href="https://ubuntu.com/ai/mlops">Canonical MLOps</a> to scale your AI initiatives and move from experimentation to production. Benefit from a modular solution to develop and deploy machine learning projects.</p>
-          <p>Let our team handle the maintenance and back up your team with any unexpected events.</p>
+          <p>Rely on secure and supported leading open source tools like <a href="/ai/what-is-kubeflow">Kubeflow</a> and <a href="/ai/mlflow">MLFlow</a> as part of Canonical MLOps to scale your AI initiatives and move from experimentation to production. Benefit from a modular solution to develop and deploy machine learning projects. Let our team handle the maintenance and back up your team with any unexpected events. </p>
+          <hr class="is-muted">
+          <a href="/ai/mlops">Learn more about Canonical MLOps&nbsp;&rsaquo;</a>
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items">
+              <div class="p-logo-section__item">
+                {{
+                  image (
+                  url="https://assets.ubuntu.com/v1/913372cb-kubeflow-logo.png",
+                  alt="Kubeflow",
+                  width="379",
+                  height="384",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item">
+                {{
+                  image (
+                  url="https://assets.ubuntu.com/v1/d49635e3-mlflow-logo.png",
+                  alt="ML Flow",
+                  width="273",
+                  height="384",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-logo-section__logo"}
+                  ) | safe
+                }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <hr class="p-rule" />
@@ -640,12 +750,47 @@
           <h3 class="p-heading--5">Cost-effective private and hybrid cloud</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Rely on Canonical's <a href="/openstack">Charmed OpenStack</a> to build a cost-effective hybrid multi-cloud infrastructure with the peace of mind of experts on your side.</p>
-          <p>Want to deploy your clouds in minutes, with just a simple command? Check out Canonical's <a href="https://canonical.com/microcloud">Microcloud</a>, the low-touch cloud solution, optimized for easy and repeatable deployments.</p>
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-wrapper">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/6ac07c33-canonical-openstack.png",
+                  alt="",
+                  width="126",
+                  height="34",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </div>
+            </div>
+            <div class="col-3">
+              <p>Rely on <a href="/openstack">Canonical OpenStack</a> to build a cost-effective hybrid multi-cloud infrastructure with the peace of mind of experts on your side.</p>
+            </div>
+          </div>
+          <hr class="p-rule">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-wrapper">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/eab36658-MicroCloud%20logo@2x.png",
+                  alt="",
+                  width="132",
+                  height="34",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </div>
+            </div>
+            <div class="col-3">
+              <p>Want to deploy your clouds in minutes, with just a simple command? Check out Canonical's <a href="https://canonical.com/microcloud">MicroCloud</a>, the low-touch cloud solution, optimised for easy and repeatable deployments.</p>
+            </div>
+          </div>
         </div>
       </div>
       <hr class="p-rule" />
-      <div class="u-fixed-width p-strip u-no-padding--bottom">
+      <div class="p-section">
         <p>All Canonical-maintained applications are security maintained under Ubuntu Pro. Add operational and bug-fix support on top of it to ensure any potential issues with your specific workload are addressed in advance.</p>
         <p>
           <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us</a>

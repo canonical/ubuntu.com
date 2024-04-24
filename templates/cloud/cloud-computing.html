@@ -440,15 +440,13 @@
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-6">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/2cdf1c98-Canonical%20OpenStack.svg",
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6ac07c33-canonical-openstack.png",
         alt="",
-        width="219",
+        width="126",
         height="34",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-card__thumbnail"}
+        loading="lazy"
         ) | safe
       }}
       <hr class="u-sv1">
@@ -457,6 +455,7 @@
         <p><a href="/openstack">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a></p>
       </div>
     </div>
+    <hr class="is-muted">
     <div class="p-card col-6">
       {{
         image (
@@ -465,8 +464,16 @@
         width="131",
         height="34",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-card__thumbnail"}
+        loading="lazy"
+        ) | safe
+      }}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6ac07c33-canonical-openstack.png",
+        alt="",
+        width="126",
+        height="34",
+        hi_def=True,
+        loading="lazy"
         ) | safe
       }}
       <hr class="u-sv1">
