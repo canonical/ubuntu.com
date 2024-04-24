@@ -1028,7 +1028,7 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
             "period": listing.get("period", ""),
             "marketplace": listing.get("marketplace", ""),
             "name": listing.get("name", ""),
-            "price": listing.get("price", ""),
+            "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings
         if (listing["productID"].endswith("key") and type == "keys")
