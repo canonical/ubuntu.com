@@ -18,8 +18,10 @@
         <p class="p-heading--2">A minimal OS for IoT, devices and embedded systems.</p>
       </div>
       <hr class="is-muted" />
-      <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
-      <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
+      <p>
+        <a class="p-button--positive" href="/core/docs/getting-started">Try Ubuntu Core</a>
+        <a href="https://assets.ubuntu.com/v1/1870ea66-Ubuntu_Core22_DS.06.06.22.pdf">Read&nbsp;the&nbsp;Ubuntu&nbsp;Core&nbsp;datasheet</a>
+      </p>
     </div>
   </div>
 </section>
@@ -227,86 +229,87 @@
       </div>
   
       <div tabindex="0" role="tabpanel" id="snapd-tab" aria-labelledby="snapd-tab-cta" aria-hidden="hidden">
-          <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
-            alt="",
-            width="120",
-            height="120",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and
-            management functions, snapd:</p>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Provides an API used to install and remove snaps and interact with snaps
-            </li>
-            <li class="p-list__item is-ticked">Implements confinement policies that isolate snaps from the base system and
-              from other snaps</li>
-            <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources
-              outside of their container</li>
-            <li class="p-list__item is-ticked">Integrates with Landscape for advanced fleet management</li>
-          </ul>
-          <hr class="p-rule is-muted" />
-          <p>
-            <a href="https://github.com/snapcore/snapd">Learn more about Snapd&nbsp;&rsaquo;</a>
-          </p>
-      </div>
-  
-      <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" aria-hidden="hidden">
-
-          <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/86b8b783-snapcraft-logo-120.svg",
-            alt="",
-            width="120",
-            height="114",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Build and then publish your snaps to your IoT app store</li>
-            <li class="p-list__item is-ticked">Fine version control of updates and releases</li>
-            <li class="p-list__item is-ticked">Build and debug snaps within a confined environment</li>
-            <li class="p-list__item is-ticked">Update and iterate over new builds without rebuilding the environment</li>
-            <li class="p-list__item is-ticked">Test and share your snaps locally</li>
-          </ul>
-          <hr class="p-rule is-muted" />
-          <p><a href="https://snapcraft.io/docs/snapcraft-overview">Learn more about Snapcraft&nbsp;&rsaquo;</a></p>
-      </div>
-  
-      <div tabindex="0" role="tabpanel" id="ubuntu-tab" aria-labelledby="ubuntu-tab-cta" aria-hidden="hidden">
-
-          <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
-            alt="",
-            width="120",
-            height="114",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </div>
-          <p>Ubuntu-image is your tool to generate bootable Ubuntu Core images for your application and targeted hardware.
-            With Ubuntu-image, you can:</p>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Build production-ready images from a model assertion</li>
-            <li class="p-list__item is-ticked">Specify sets of snaps, including fixed revisions, that must be installed
-            </li>
-            <li class="p-list__item is-ticked">Dynamically customise and modify snap selection at build time</li>
-            <li class="p-list__item is-ticked">Optimise image boot speed by pre-installing and initialising specific snaps
-            </li>
-          </ul>
-          <hr class="p-rule is-muted" />
-          <p>Ubuntu-image can be installed on a snap-supporting Linux system as follows:</p>
-          <p><a href="/core/docs/image-building">Learn how to create your image&nbsp;&rsaquo;</a></p>
+        <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
+          alt="",
+          width="120",
+          height="120",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
         </div>
+        <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and
+          management functions, snapd:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Provides an API used to install and remove snaps and interact with snaps
+          </li>
+          <li class="p-list__item is-ticked">Implements confinement policies that isolate snaps from the base system and
+            from other snaps</li>
+          <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources
+            outside of their container</li>
+          <li class="p-list__item is-ticked">Integrates with Landscape for advanced fleet management</li>
+        </ul>
+        <hr class="p-rule is-muted" />
+        <p>
+          <a href="https://github.com/snapcore/snapd">Learn more about Snapd&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      
+      <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" aria-hidden="hidden">
+      
+        <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/86b8b783-snapcraft-logo-120.svg",
+          alt="",
+          width="120",
+          height="114",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+        </div>
+        <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Build and then publish your snaps to your IoT app store</li>
+          <li class="p-list__item is-ticked">Fine version control of updates and releases</li>
+          <li class="p-list__item is-ticked">Build and debug snaps within a confined environment</li>
+          <li class="p-list__item is-ticked">Update and iterate over new builds without rebuilding the environment</li>
+          <li class="p-list__item is-ticked">Test and share your snaps locally</li>
+        </ul>
+        <hr class="p-rule is-muted" />
+        <p>
+          <a href="https://snapcraft.io/docs/snapcraft-overview">Learn more about Snapcraft&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      
+      <div tabindex="0" role="tabpanel" id="ubuntu-tab" aria-labelledby="ubuntu-tab-cta" aria-hidden="hidden">
+        <div class="p-image-wrapper p-image__background--3-2 u-vertically-center u-align--center">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
+          alt="",
+          width="120",
+          height="114",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+        </div>
+        <p>Ubuntu-image is your tool to generate bootable Ubuntu Core images for your application and targeted hardware.
+          With Ubuntu-image, you can:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Build production-ready images from a model assertion</li>
+          <li class="p-list__item is-ticked">Specify sets of snaps, including fixed revisions, that must be installed
+          </li>
+          <li class="p-list__item is-ticked">Dynamically customise and modify snap selection at build time</li>
+          <li class="p-list__item is-ticked">Optimise image boot speed by pre-installing and initialising specific snaps
+          </li>
+        </ul>
+        <hr class="p-rule is-muted" />
+        <p>Ubuntu-image can be installed on a snap-supporting Linux system as follows:</p>
+        <p><a href="/core/docs/image-building">Learn how to create your image&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </section>
@@ -323,8 +326,10 @@
         <p>You need to know your software is pristine; not just for installation, but for the lifetime of the device. Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any time, to guard against corruption and attack.</p> 
         <p>Comply with cybersecurity requirements and build a reliable business.</p>
       </div>
-      <hr class="is-muted" />
-      <a href="/engage/ubuntu-core-security-audit">Read an independent security audit of Ubuntu Core&nbsp;&rsaquo;</a>
+      <hr class="is-muted p-rule" />
+      <p>
+        <a href="/engage/ubuntu-core-security-audit">Read an independent security audit of Ubuntu Core&nbsp;&rsaquo;</a>
+      </p>
     </div>
   </div>
 </section>
@@ -388,8 +393,10 @@
       <div class="p-section--shallow">
         <p>Whether you are a startup bringing your concept to market or already have large fleets of devices deployed in the field, we have the expertise and infrastructure to launch and support you.</p>
       </div>
-      <hr class="is-muted"/>
-      <a class="p-button--positive" href="/core/contact-us">Get in touch</a>
+      <hr class="is-muted p-rule"/>
+      <p>
+        <a class="p-button--positive" href="/core/contact-us">Get in touch</a>
+      </p>
     </div>
   </div>
 </section>
