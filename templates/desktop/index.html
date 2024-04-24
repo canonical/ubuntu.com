@@ -43,23 +43,9 @@
 </section>
 
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="u-fixed-width p-section--shallow">
     <hr class="p-rule" />
-    <div class="col">
-      <h2>The secure, modern operating system used by millions</h2>
-    </div>
-    <div class="col">
-      <div class="p-image-wrapper">
-        {{ image(
-          url="https://assets.ubuntu.com/v1/e629fd1d-numbat-screenshot.jpg",
-          alt="",
-          width="720",
-          height="406",
-          hi_def=True,
-          loading="auto") | safe
-        }}
-      </div>
-    </div>
+    <h2>The secure, modern operating system used by millions</h2>
   </div>
   <div class="row">
     <div class="col-start-large-4 col-9 col-medium-5 col-start-medium-2">
@@ -108,7 +94,7 @@
         </div>
       </div>
       <hr class="p-rule is-muted" />
-      <div class="row p-section--shallow">
+      <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-heading--5">Fully open source</h3>
         </div>
@@ -124,111 +110,131 @@
 
 <section class="p-section--deep">
   <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule is-muted" />
+    <hr class="p-rule" />
     <h2>Thousands of applications</h2>
   </div>
   <div class="u-fixed-width">
     <div class="p-icon-section--dense">
       <div class="p-icon-section__items">
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/f0bd491c-blender.png",
-                      alt="Blender",
-                      width="512",
-                      height="512",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/blender">
+            {{ image(url="https://assets.ubuntu.com/v1/f0bd491c-blender.png",
+                        alt="Blender",
+                        width="512",
+                        height="512",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/9917aba6-spotify-linux-256.png",
-                      alt="Spotify",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/spotify">
+            {{ image(url="https://assets.ubuntu.com/v1/9917aba6-spotify-linux-256.png",
+                        alt="Spotify",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/034147e9-code_ozwVHSV.png",
-                      alt="Visual Studio Code",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/code">
+            {{ image(url="https://assets.ubuntu.com/v1/034147e9-code_ozwVHSV.png",
+                        alt="Visual Studio Code",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/eb5ccb1d-clion.ico.png",
-                      alt="CLion",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/clion">
+            {{ image(url="https://assets.ubuntu.com/v1/eb5ccb1d-clion.ico.png",
+                        alt="CLion",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/8daf0eb5-firefox_logo.png",
-                      alt="Firefox",
-                      width="196",
-                      height="196",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/firefox">
+            {{ image(url="https://assets.ubuntu.com/v1/8daf0eb5-firefox_logo.png",
+                        alt="Firefox",
+                        width="196",
+                        height="196",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/d77f0f3a-icon256.png",
-                      alt="Telegram",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/telegram-desktop">
+            {{ image(url="https://assets.ubuntu.com/v1/d77f0f3a-icon256.png",
+                        alt="Telegram",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/43dcefb8-discord.png",
-                      alt="Discord",
-                      width="128",
-                      height="128",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/discord">
+            {{ image(url="https://assets.ubuntu.com/v1/43dcefb8-discord.png",
+                        alt="Discord",
+                        width="128",
+                        height="128",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/8d51d7ff-powershell.png",
-                      alt="Powershell",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/powershell">
+            {{ image(url="https://assets.ubuntu.com/v1/8d51d7ff-powershell.png",
+                        alt="Powershell",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/7f08620e-Snapcraft_144.png",
-                      alt="Slack",
-                      width="144",
-                      height="145",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/slack">
+            {{ image(url="https://assets.ubuntu.com/v1/7f08620e-Snapcraft_144.png",
+                        alt="Slack",
+                        width="144",
+                        height="145",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
         <div class="p-icon-section__item">
-          {{ image(url="https://assets.ubuntu.com/v1/88ff7b82-steam.png",
-                      alt="Steam",
-                      width="256",
-                      height="256",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-icon-section__icon"},) | safe
-          }}
+          <a href="https://snapcraft.io/steam">
+            {{ image(url="https://assets.ubuntu.com/v1/88ff7b82-steam.png",
+                        alt="Steam",
+                        width="256",
+                        height="256",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-icon-section__icon"},) | safe
+            }}
+          </a>
         </div>
       </div>
     </div>
@@ -237,7 +243,7 @@
 
 <section class="p-section">
   <div class="row--50-50 p-section">
-    <hr class="p-rule is-muted" />
+    <hr class="p-rule" />
     <div class="col">
       <h2>High performance on your favourite hardware</h2>
     </div>
@@ -348,9 +354,9 @@
   </div>
 </section>
 
-<section class="p-section">
+<section>
   <div class="row--50-50 p-section">
-    <hr class="p-rule is-muted" />
+    <hr class="p-rule" />
     <div class="col">
       <h2>Enterprise-grade support and integration</h2>
     </div>
@@ -422,7 +428,7 @@
               }}
             </div>
           </div>
-          <h3 class="p-equal-height-row__item p-heading--5">Virtual desktops with Amazon Workspaces</h3>
+          <h3 class="p-equal-height-row__item p-heading--5">Virtual desktops with Amazon WorkSpaces</h3>
           <p class="p-equal-height-row__item">
             Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code. Applications and data remain secured in the AWS cloud, even when your developers are working remotely.
           </p>
@@ -438,9 +444,9 @@
   </div>
 </section>
 
-<section class="p-section">
+<section>
   <div class="row--50-50 p-section--shallow">
-    <hr class="p-rule is-muted" />
+    <hr class="p-rule" />
     <div class="col">
       <h2>Backed by a global community</h2>
     </div>
@@ -452,7 +458,15 @@
   </div>
   <div class="row">
     <div class="col-start-large-4 col-9">
-      <hr class="u-hide--small u-hide--medium is-muted" />
+      {{
+        image(url="https://assets.ubuntu.com/v1/83e4e4c5-summit2022_crowd%201.jpg",
+        alt="",
+        width="1108",
+        height="474",
+        hi_def=True,
+        loading="lazy") | safe
+        }}
+      <hr class="u-hide--small u-hide--medium is-muted p-rule" />
       <div class="p-equal-height-row">
         <div class="p-equal-height-row__col">
           <h3 class="p-equal-height-row__item p-heading--5">Ask Ubuntu</h3>
@@ -498,7 +512,7 @@
 
 <section class="p-section">
   <div class="u-fixed-width p-section--shallow">
-    <hr class="p-rule is-muted" />
+    <hr class="p-rule" />
     <h2>Get started with Ubuntu today</h2>
   </div>
   <div class="row">
@@ -525,7 +539,7 @@
           <p>
             Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers, including Dell, HP, and Lenovo.
           </p>
-          <hr class="is-muted" />
+          <hr class="is-muted p-rule" />
           <p>
             <a href="/certified">Find out more about Ubuntu Certified&nbsp;&rsaquo;</a>
           </p>
@@ -541,7 +555,9 @@
             Get comprehensive security coverage and management tooling with support from Canonical to cover your Ubuntu Desktop and Server deployments.
           </p>
           <hr class="is-muted" />
-          <a class="p-button" href="/pro">Get Ubuntu Pro Desktop</a>
+          <p>
+            <a class="p-button" href="/pro">Get Ubuntu Pro Desktop</a>
+          </p>
         </div>
       </div>
     </div>

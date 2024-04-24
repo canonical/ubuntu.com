@@ -38,7 +38,7 @@
             <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso"
                class="p-button--positive"
                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-              Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+              Download {{ releases.lts.full_version }} LTS
             </a>
             {% if releases.latest.short_version > releases.lts.short_version %}
               &nbsp;&nbsp;<a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso"
@@ -65,7 +65,7 @@
           <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64+largemem.iso"
              class="p-button"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-            Download {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> (64k page size)
+            Download {{ releases.lts.full_version }} LTS (64k page size)
           </a>
           <p>
             <a href="/server/docs/choosing-between-the-arm64-and-arm64+largemem-installer-options">Find out if 64k page size is for you&nbsp;&rsaquo;</a>
