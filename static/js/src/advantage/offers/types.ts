@@ -7,6 +7,11 @@ export type Item = {
   price: number;
 };
 
+export type ExternalId = {
+  origin: string;
+  ids: string[];
+};
+
 export type Offer = {
   account_id: string;
   actionable: boolean;
@@ -16,4 +21,11 @@ export type Offer = {
   marketplace: UserSubscriptionMarketplace;
   total: number;
   discount: number | null;
+  can_change_items?: boolean;
+  external_ids?: ExternalId[] | null;
+  activation_account_id?: string | null;
+  distributor_account_name?: string | null;
+  reseller_account_name?: string | null;
+  end_user_account_name?: string | null;
+  technical_contact?: string | null;
 };

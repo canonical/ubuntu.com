@@ -1,6 +1,12 @@
-from typing import List
+from typing import List, Optional
 
 from dateutil.parser import parse
+
+
+class ExternalID:
+    def __init__(self, origin: str, ids: List[str]):
+        self.origin = origin
+        self.ids = ids
 
 
 class Entitlement:
@@ -124,6 +130,13 @@ class Offer:
         total: int,
         items: List[OfferItem],
         discount: int = None,
+        can_change_items: Optional[bool] = False,
+        external_ids: Optional[List[ExternalID]] = None,
+        activation_account_id: Optional[str] = None,
+        distributor_account_name: Optional[str] = None,
+        reseller_account_name: Optional[str] = None,
+        end_user_account_name: Optional[str] = None,
+        technical_contact: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -133,6 +146,16 @@ class Offer:
         self.created_at = created_at
         self.actionable = actionable
         self.discount = discount
+        # Properties below apply only to channel offers.
+        # If activation_account_id exist, it's a channel offer.
+        if activation_account_id is not None:
+            self.can_change_items = can_change_items
+            self.external_ids = external_ids
+            self.activation_account_id = activation_account_id
+            self.distributor_account_name = distributor_account_name
+            self.reseller_account_name = reseller_account_name
+            self.end_user_account_name = end_user_account_name
+            self.technical_contact = technical_contact
 
 
 class Invoice:
