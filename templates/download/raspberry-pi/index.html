@@ -1,22 +1,28 @@
 {% extends "download/_base_download.html" %}
+
 {% block title %}Install Ubuntu on a Raspberry Pi{% endblock %}
+
 {% block meta_image %}
   https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg
 {% endblock meta_image %}
+
 {% block meta_description %}
   Ubuntu is an open-source operating system for cross-platform development, there's no better place to get started than with Ubuntu on a Raspberry Pi
 {% endblock meta_description %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1KgnSBa8mbR7qwlxxtqbE5a1wXh5GjtVums8TIB7IGVw/edit#
 {% endblock meta_copydoc %}
+
 {% block body_class %}is-paper{% endblock %}
+
 {% block content %}
   <section class="p-strip is-shallow u-no-margin--bottom">
     <div class="row--50-50">
       <div class="col">
         <h1>
           Install Ubuntu
-          <br class="u-hide--small">
+          <br class="u-hide--small" />
           on a Raspberry Pi
         </h1>
       </div>
@@ -28,14 +34,12 @@
           With full Ubuntu support, open source developers have everything they need to get up and running quickly and securely.
         </p>
         <div class="p-section">
-          {{ image(
-              url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
-              alt="Raspberry Pi",
-              height="48",
-              width="36",
-              hi_def=True,
-              loading="auto"
-            ) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
+                    alt="Raspberry Pi",
+                    height="48",
+                    width="36",
+                    hi_def=True,
+                    loading="auto") | safe
           }}
         </div>
       </div>
@@ -63,59 +67,43 @@
       </div>
     </div>
   </section>
+  <hr class="p-rule is-fixed-width" />
   <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50 p-section">
-      <div class="col">
-        <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-      </div>
-      <div class="col">
-        <p>
-          The Raspberry Pi 5 is supported on the latest development release of Ubuntu with nine months of support, until July 2024.
-        </p>
-        <hr />
-        <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button u-no-margin--bottom">Download Ubuntu Desktop {{ releases.latest.full_version }}</a>
-          &nbsp;
-          <span class="u-text--muted">ISO image, 2.4GB</span>
-        </p>
-        <p>Minimum 4GBs of RAM required</p>
-        <hr />
-        <p class="u-responsive-realign">
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases.latest.full_version }}</a>
-          &nbsp;
-          <span class="u-text--muted">ISO image, 1.1GB</span>
-        </p>
-      </div>
-    </div>
-    <hr class="p-rule is-fixed-width" />
-    <div class="row--50-50 p-section">
-      <div class="col">
+      <div class="col u-image-position">
         <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+        <div class="u-image-position--bottom">
+          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
+                    alt="Noble Numbat",
+                    width="182",
+                    height="135",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
       </div>
       <div class="col">
         <p>
-          The latest Long Term Supported release of Ubuntu with five years of security patching and maintenance until April 2027, extended to ten years with <a href="/pro">Ubuntu Pro</a>.
+          The latest LTS version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support — which means five years of free security and maintenance updates, extended to 10 years with <a href="/pro">Ubuntu Pro</a>.
         </p>
         <hr />
         <p class="u-responsive-realign">
-          <a class="p-button--positive"
-             href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
+          <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=desktop-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Desktop', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button u-no-margin--bottom">Download Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
-          <span class="u-text--muted">ISO image, 2.2GB</span>
+             class="p-button--positive u-no-margin--bottom">Download Ubuntu Desktop {{ releases.lts.full_version }} LTS</a>
+          {% if releases.lts.raspi_desktop_iso_size %}
+            <span class="u-text--muted">{{ releases.lts.raspi_desktop_iso_size }}</span>
+          {% endif %}
         </p>
-        <p>Minimum 2GBs of RAM and 16GB storage required</p>
+        <p>Minimum 4GBs of RAM and 16GB storage required</p>
         <hr />
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
-             class="p-button">Download Ubuntu Server {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a>
-          <span class="u-text--muted">ISO image, 986MB</span>
+             class="p-button">Download Ubuntu Server {{ releases.lts.full_version }} LTS</a>
+          {% if releases.lts.raspi_server_iso_size %}
+            <span class="u-text--muted">{{ releases.lts.raspi_server_iso_size }}</span>
+          {% endif %}
         </p>
       </div>
     </div>
@@ -133,7 +121,9 @@
           <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
              class="p-button">Download Ubuntu Core {{ releases.latest.core_version }}</a>
-          <span class="u-text--muted">ISO image, 263MB</span>
+          {% if releases.latest.rasp_pi_core_22_size %}
+            <span class="u-text--muted">{{ releases.latest.rasp_pi_core_22_size }}</span>
+          {% endif %}
         </p>
       </div>
     </div>
@@ -161,169 +151,126 @@
     </div>
   </section>
   <section class="p-section">
-    <div class="u-fixed-width u-table-horizontal-scroll">
-      <table class="u-table-horizontal-scroll__table" aria-label="Raspberry Pi support with Ubuntu">
-        <thead>
-          <tr>
-            <th style="width: 15%;"></th>
-            <th style="width: 10%;"></th>
-            <th style="width: 26%">
-              Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-            </th>
-            <th style="width: 20%">Ubuntu Core {{ releases.latest.core_version }}</th>
-            <th>Ubuntu {{ releases.latest.full_version }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>
-              <p>Raspberry Pi 2</p>
-            </th>
-            <td>
-              {{
-                image (
-                url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
-                alt="Raspberry Pi 2",
-                width="73",
-                height="48",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi 3</p>
-            </th>
-            <td>
-              {{
-                image(
-                  url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
-                  alt="Rapsberry Pi 3",
-                  height="48",
-                  width="75",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi 4</p>
-            </th>
-            <td>
-              {{
-                image(
-                  url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-                  alt="Raspberry Pi 4",
-                  height="48",
-                  width="75",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi 400</p>
-            </th>
-            <td>
-              {{
-                image(
-                  url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
-                  alt="Raspberry Pi 400",
-                  height="48",
-                  width="93",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi CM4</p>
-            </th>
-            <td>
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
-                  alt="Raspberry Pi CM4",
-                  height="48",
-                  width="68",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi Zero 2 W</p>
-            </th>
-            <td>
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/a79a3cee-raspberry-pi-z-2.png",
-                  alt="Raspberry Pi Zero 2 W",
-                  width="70",
-                  height="46",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-                ) | safe
-              }}
-            </td>
-            <td>Yes, certified</td>
-            <td>Yes, certified</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th>
-              <p>Raspberry Pi 5</p>
-            </th>
-            <td>
-              {{
-                image (
-                  url="https://assets.ubuntu.com/v1/14667b44-raspberry-pi_5.png",
-                  alt="Raspberry Pi 5",
-                  width="61",
-                  height="46",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small"},
-              ) | safe
-              }}
-            </td>
-            <td>-</td>
-            <td>-</td>
-            <td>Yes</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="col-medium-6 col-9 col-start-large-4 u-table-horizontal-scroll">
+        <table class="u-table-horizontal-scroll__table"
+               aria-label="Raspberry Pi support with Ubuntu">
+          <thead>
+            <tr>
+              <th style="width: 15%;"></th>
+              <th style="width: 10%;"></th>
+              <th style="width: 26%">
+                Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+              </th>
+              <th style="width: 20%">Ubuntu Core {{ releases.latest.core_version }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>
+                <p>Raspberry Pi 5</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/14667b44-raspberry-pi_5.png",
+                                alt="Raspberry Pi 5",
+                                width="61",
+                                height="46",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>Yes, certified</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th>
+                <p>Raspberry Pi Zero 2 W</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/a79a3cee-raspberry-pi-z-2.png",
+                                alt="Raspberry Pi Zero 2 W",
+                                width="70",
+                                height="46",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>Yes</td>
+              <td>Yes, certified</td>
+            </tr>
+            <tr>
+              <th>
+                <p>Raspberry Pi CM4</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
+                                alt="Raspberry Pi CM4",
+                                height="48",
+                                width="68",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>Yes, certified</td>
+              <td>Yes, certified</td>
+            </tr>
+            <tr>
+              <th>
+                <p>Raspberry Pi 400</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
+                                alt="Raspberry Pi 400",
+                                height="48",
+                                width="93",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>Yes, certified</td>
+              <td>Yes, certified</td>
+            </tr>
+            <tr>
+              <th>
+                <p>Raspberry Pi 4</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
+                                alt="Raspberry Pi 4",
+                                height="48",
+                                width="75",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>Yes, certified</td>
+              <td>Yes, certified</td>
+            </tr>
+            <tr>
+              <th>
+                <p>Raspberry Pi 3</p>
+              </th>
+              <td>
+                {{ image(url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
+                                alt="Rapsberry Pi 3",
+                                height="48",
+                                width="75",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "u-hide--small"},) | safe
+                }}
+              </td>
+              <td>-</td>
+              <td>Yes, certified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
   <section class="p-section">
@@ -367,7 +314,7 @@
     <template style="display:none" id="blog-template">
       <div class="col-3 col-medium-2">
         <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
-         <h3 class="p-heading--5">
+        <h3 class="p-heading--5">
           <a class="article-link article-title"></a>
         </h3>
         <p class="article-excerpt"></p>
@@ -376,15 +323,13 @@
   </section>
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
-  canonicalLatestNews.fetchLatestNews(
-    {
+    canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#blog-latest",
       articleTemplateSelector: "#blog-template",
       excerptLength: 200,
       tagId: 1672,
       limit: 3,
       linkImage: true,
-    }
-  )
+    })
   </script>
 {% endblock %}

@@ -84,20 +84,46 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2023-04-20T00:00:00"),
-    endDate: new Date("2024-01-20T00:00:00"),
-    taskName: "23.04 (Lunar Lobster)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2023-10-20T00:00:00"),
     endDate: new Date("2024-07-20T00:00:00"),
     taskName: "23.10 (Mantic Minotaur)",
     status: "INTERIM_RELEASE",
   },
+  {
+    startDate: new Date("2024-04-25T00:00:00"),
+    endDate: new Date("2034-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
+    startDate: new Date("2024-04-25T00:00:00"),
+    endDate: new Date("2029-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2029-04-25T00:00:00"),
+    endDate: new Date("2034-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "ESM",
+  },
 ];
 
 export var kernelReleases = [
+  {
+    startDate: new Date("2024-04-01T00:00:00"),
+    endDate: new Date("2029-04-01T00:00:00"),
+    taskName: "24.04.0 LTS",
+    taskVersion: "6.8 kernel",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2029-04-01T00:00:00"),
+    endDate: new Date("2034-03-31T00:00:00"),
+    taskName: "24.04.0 LTS",
+    taskVersion: "6.8 kernel",
+    status: "ESM",
+  },
   {
     startDate: new Date("2024-02-01T00:00:00"),
     endDate: new Date("2024-08-01T00:00:00"),
@@ -1126,8 +1152,8 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "24.04 LTS (Noble Numbat)",
   "23.10 (Mantic Minotaur)",
-  "23.04 (Lunar Lobster)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
@@ -1136,6 +1162,7 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "24.04.0 LTS",
   "22.04.4 LTS",
   "23.10",
   "20.04.5 LTS",
@@ -1153,6 +1180,7 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "6.8",
   "6.5",
   "",
   "5.15",
