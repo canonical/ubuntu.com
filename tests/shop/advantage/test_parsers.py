@@ -622,6 +622,7 @@ class TestParsers(unittest.TestCase):
             ],
         )
 
+        self.assertFalse(expectation.check_is_channel_offer())
         self.assertIsInstance(parsed_offer, Offer)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
 
@@ -654,12 +655,49 @@ class TestParsers(unittest.TestCase):
                 ],
             )
         ]
-
+        self.assertFalse(expectation[0].check_is_channel_offer())
         self.assertIsInstance(parsed_offers, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offers))
 
-    # Channel offers
+    # Channel offer
     def test_parse_channel_offer(self):
+        raw_offer = get_fixture("channel-offer")
+
+        parsed_offer = parse_offer(raw_offer)
+
+        expectation = Offer(
+            id="id-aAbBcCdDeEfFgG",
+            account_id="account-id-aAbBcCdDeEfFgG",
+            total=60000,
+            discount=10,
+            actionable=True,
+            created_at="2024-04-22T17:44:36Z",
+            marketplace="canonical-pro-channel",
+            can_change_items=True,
+            external_ids=[
+                ExternalID(origin="Zift", ids=["zift-id-test"]),
+            ],
+            activation_account_id="activation-account-id-aAbBcCdDeEfFgG",
+            distributor_account_name="Distributor, Ltd.",
+            reseller_account_name="Resellers, Inc.",
+            end_user_account_name="End Users, Ltd.",
+            technical_contact="contact@example.com",
+            items=[
+                OfferItem(
+                    id="product-id-AaBbCcDdEeFfGg",
+                    name="uai-advanced-desktop-channel-two-year-usd",
+                    price=60000,
+                    allowance=2,
+                ),
+            ],
+        )
+
+        self.assertTrue(expectation.check_is_channel_offer())
+        self.assertIsInstance(parsed_offer, Offer)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
+
+    # Channel offers
+    def test_parse_channel_offers(self):
         raw_offers = get_fixture("channel-offers")
 
         parsed_offers = parse_offers(raw_offers)
@@ -693,5 +731,6 @@ class TestParsers(unittest.TestCase):
             )
         ]
 
+        self.assertTrue(expectation[0].check_is_channel_offer())
         self.assertIsInstance(parsed_offers, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offers))

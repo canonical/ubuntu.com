@@ -146,9 +146,12 @@ class Offer:
         self.created_at = created_at
         self.actionable = actionable
         self.discount = discount
-        # Properties below apply only to channel offers.
+
         # If activation_account_id exist, it's a channel offer.
-        if activation_account_id is not None:
+        self.is_channel_offer = activation_account_id is not None
+
+        # Properties below apply only to channel offers.
+        if self.is_channel_offer:
             self.can_change_items = can_change_items
             self.external_ids = external_ids
             self.activation_account_id = activation_account_id
@@ -156,6 +159,9 @@ class Offer:
             self.reseller_account_name = reseller_account_name
             self.end_user_account_name = end_user_account_name
             self.technical_contact = technical_contact
+
+    def check_is_channel_offer(self) -> bool:
+        return self.is_channel_offer
 
 
 class Invoice:
