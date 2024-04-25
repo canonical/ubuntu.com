@@ -559,6 +559,32 @@ def accept_renewal(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
+def get_channel_offers(advantage_mapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account(
+            "canonical-pro-channel"
+        )
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({"error": "User has no purchase account"}), 400
+    except AccessForbiddenError:
+        return (
+            flask.jsonify({"error": "User has no permission to purchase"}),
+            403,
+        )
+    offers = [
+        offer for offer in advantage_mapper.get_account_offers(account.id)
+    ]
+    return flask.jsonify(to_dict(offers))
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def get_distributor_view(**kwargs):
+    return flask.render_template(
+        "/pro/distributor/index.html",
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
 def get_account_offers(advantage_mapper, ua_contracts_api, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")

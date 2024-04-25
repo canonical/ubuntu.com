@@ -61,6 +61,8 @@ from webapp.shop.advantage.views import (
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
+    get_channel_offers,
+    get_distributor_view,
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
@@ -279,6 +281,13 @@ app.add_url_rule(
     methods=["GET"],
 )
 
+app.add_url_rule("/pro/distributor", view_func=get_distributor_view)
+app.add_url_rule("/pro/distributor/<path>", view_func=get_distributor_view)
+app.add_url_rule(
+    "/pro/channel-offers.json",
+    view_func=get_channel_offers,
+    methods=["GET"],
+)
 app.add_url_rule(
     "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
 )

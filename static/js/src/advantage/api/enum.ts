@@ -23,6 +23,7 @@ export enum UserSubscriptionMarketplace {
   CanonicalUA = "canonical-ua",
   Blender = "blender",
   CanonicalCUBE = "canonical-cube",
+  CanonicalProChannel = "canonical-pro-channel",
 }
 
 export enum UserSubscriptionType {
