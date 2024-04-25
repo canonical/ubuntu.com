@@ -95,7 +95,7 @@
             <span class="u-text--muted">{{ releases.lts.raspi_desktop_iso_size }}</span>
           {% endif %}
         </p>
-        <p>Minimum 2GBs of RAM and 16GB storage required</p>
+        <p>Minimum 4GBs of RAM and 16GB storage required</p>
         <hr />
         <p class="u-responsive-realign">
           <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
@@ -121,7 +121,9 @@
           <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.core_version }}&amp;architecture=core-22-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Core', 'eventLabel' : '{{ releases.latest.core_version }}', 'eventValue' : undefined });"
              class="p-button">Download Ubuntu Core {{ releases.latest.core_version }}</a>
-          {% if releases.latest.rasp_pi_core_22_size %}<span class="u-text--muted">{{ releases.latest.rasp_pi_core_22_size }}</span>{% endif %}
+          {% if releases.latest.rasp_pi_core_22_size %}
+            <span class="u-text--muted">{{ releases.latest.rasp_pi_core_22_size }}</span>
+          {% endif %}
         </p>
       </div>
     </div>
