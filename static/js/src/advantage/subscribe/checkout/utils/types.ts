@@ -56,13 +56,18 @@ export interface FormValues {
   isInfoSaved: boolean;
 }
 
-export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
+export type marketplace =
+  | "canonical-ua"
+  | "canonical-cube"
+  | "blender"
+  | "canonical-pro-channel";
 
 export const marketplaceDisplayName = {
   "canonical-ua": "Ubuntu Pro",
   "canonical-cube": "CUE",
   blender: "Blender",
   free: "Personal Subscription",
+  "canonical-pro-channel": "Pro Channel",
 };
 
 export interface Product {

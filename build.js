@@ -20,6 +20,7 @@ let entries = {
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
   shopCheckout: "./static/js/src/advantage/subscribe/checkout/app.tsx",
   advantageOffers: "./static/js/src/advantage/offers/app.jsx",
+  distributor: "./static/js/src/advantage/distributor/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
   uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
