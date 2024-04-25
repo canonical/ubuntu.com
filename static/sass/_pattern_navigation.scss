@@ -300,12 +300,16 @@ $meganav-height: 3rem;
           .p-navigation__item--dropdown-toggle:first-of-type,
           .p-navigation__item--dropdown-close:first-of-type {
             > .p-navigation__link {
-              &:after {
-                transform: rotate(90deg);
-              }
-
-              &:before {
+              &::before {
                 content: none;
+              }
+            }
+          }
+
+          .p-navigation__item--dropdown-close:first-of-type {
+            > .p-navigation__link {
+              &::after {
+                transform: rotate(90deg);
               }
             }
           }
