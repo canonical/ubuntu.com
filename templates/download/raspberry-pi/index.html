@@ -101,7 +101,7 @@
           <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - Ubuntu Server', 'eventLabel' : '{{ releases.lts.full_version }}', 'eventValue' : undefined });"
              class="p-button">Download Ubuntu Server {{ releases.lts.full_version }} LTS</a>
-          {% if releases.lts.raspi_desktop_iso_size %}
+          {% if releases.lts.raspi_server_iso_size %}
             <span class="u-text--muted">{{ releases.lts.raspi_server_iso_size }}</span>
           {% endif %}
         </p>
