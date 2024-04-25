@@ -72,6 +72,13 @@ def pro_page_view(advantage_mapper, **kwargs):
 def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
+        channel_account = advantage_mapper.get_purchase_account(
+            "canonical-pro-channel"
+        )
+        if channel_account:
+            return flask.render_template(
+                "account/forbidden.html", reason="channel_account"
+            )
         advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         pass
@@ -196,6 +203,13 @@ def advantage_shop_view(advantage_mapper, **kwargs):
     account = None
     if user_info(flask.session):
         try:
+            channel_account = advantage_mapper.get_purchase_account(
+                "canonical-pro-channel"
+            )
+            if channel_account:
+                return flask.render_template(
+                    "account/forbidden.html", reason="channel_account"
+                )
             account = advantage_mapper.get_purchase_account("canonical-ua")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
@@ -594,8 +608,15 @@ def get_distributor_view(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def get_account_offers(advantage_mapper, ua_contracts_api, **kwargs):
+def get_account_offers(advantage_mapper, **kwargs):
     try:
+        channel_account = advantage_mapper.get_purchase_account(
+            "canonical-pro-channel"
+        )
+        if channel_account:
+            return flask.render_template(
+                "account/forbidden.html", reason="channel_account"
+            )
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         return flask.jsonify({"error": "User has no purchase account"}), 400
