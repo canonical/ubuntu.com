@@ -1,0 +1,23 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Activate Ubuntu Pro subscription{% endblock %}
+
+{% block outer_content %}
+  {% block content %}
+  <div id="react-root">
+    <div class="row u-align--center">
+        <section class="p-strip">
+            <div class="row u-align--center">
+                <div class="col-12 u-no-margin--bottom p-card">
+                  <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
+                </div>
+            </div>
+        </section>
+    </div>
+  </div>
+  <script src="/static/js/dist/distributor.js" type="module"></script>
+  <script>
+      window.stripePublishableKey = '{{ get_stripe_publishable_key }}';
+  </script>
+  {% endblock %}
+{% endblock %}
