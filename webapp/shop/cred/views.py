@@ -45,21 +45,21 @@ EXAM_NAMES = {
 }
 
 RESERVATION_STATES = {
-    "created": "Scheduled",
-    "notified": "Scheduled",
+    "created": "Created",
+    "notified": "Notified",
     "scheduled": "Scheduled",
-    "processed": "Complete",
+    "processed": "Processed",
     "canceled": "Cancelled",
-    "finalized": "Complete",
-    "provisioning": "Pending",
-    "provisioned": "Pending",
+    "finalized": "Finalized",
+    "provisioning": "Provisioning",
+    "provisioned": "Provisioned",
     "in_progress": "In Progress",
-    "completed": "Complete",
-    "grading": "Complete",
-    "graded": "Complete",
-    "archiving": "Complete",
-    "archived": "Complete",
-    "canceling": "Cancelled",
+    "completed": "Completed",
+    "grading": "Grading",
+    "graded": "Graded",
+    "archiving": "Archiving",
+    "archived": "Archived",
+    "canceling": "Canceling",
 }
 
 
@@ -471,7 +471,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Complete":
+                elif state in (
+                    "Completed",
+                    "Graded",
+                    "Grading",
+                    "Finalized",
+                    "Processed",
+                ):
                     exams_complete.append(
                         {
                             "name": name,
@@ -483,14 +489,11 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Cancelled":
-                    actions = [
-                        {
-                            "text": "Take",
-                            "button_class": "p-button--base",
-                            "href": "",
-                        }
-                    ]
+                elif state in (
+                    "Cancelled",
+                    "Archiving",
+                    "Archived",
+                ):
                     exams_cancelled.append(
                         {
                             "name": name,
@@ -499,7 +502,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "timezone": timezone,
                             "state": state,
                             "uuid": r["uuid"],
-                            "actions": actions,
+                            "actions": [],
                         }
                     )
             elif (
