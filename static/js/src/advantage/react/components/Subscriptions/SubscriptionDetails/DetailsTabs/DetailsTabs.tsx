@@ -111,6 +111,14 @@ const DetailsTabs = ({
               </thead>
               <tbody>
                 <tr>
+                  <td data-test="doc-link">Ubuntu Pro documentation</td>
+                  <td>
+                    <a href="https://documentation.ubuntu.com/pro">
+                      Ubuntu Pro documentation
+                    </a>
+                  </td>
+                </tr>
+                <tr>
                   <td data-test="doc-link">Knowledge Base</td>
                   <td>
                     <a href="https://support-portal.canonical.com/knowledge-base">
