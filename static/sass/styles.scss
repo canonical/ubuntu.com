@@ -1554,6 +1554,22 @@ ol.p-list--divided .p-list__item::before {
   content: counter(list-item) ". ";
 }
 
+//XXX: styles from Liza's js snippet, taken here because the scss is not parsed inside js and the include doesn't work there. This should be refactored.
+.p-hero-video-link {
+  .p-hero-video__play {
+    @include vf-transition(background-size, fast, out);
+    display: block;
+  }
+
+  &:hover img {
+    opacity: 0.9;
+  }
+
+  &.p-equal-height-row__col:before {
+    content: none !important;
+  }
+}
+
 // Fix stepped list title grid bug
 // To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
 @media screen and (max-width: $breakpoint-small - 1) {
