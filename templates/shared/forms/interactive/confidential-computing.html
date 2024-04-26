@@ -19,49 +19,34 @@
                 class="modal-form">
             <ul class="p-list">
               <li class="p-list__item">
-                <label for="customerName">Name:</label>
-                <input required
-                       id="customerName"
-                       name="name"
-                       maxlength="255"
-                       type="text"
-                       required="required" />
+                <label class="is-required" for="customerName">Name:</label>
+                <input required id="customerName" name="name" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
                 <label for="email">Email:</label>
-                <input required
+                <input class="is-required"
+                       required
                        id="email"
                        name="email"
                        maxlength="255"
                        type="email"
-                       pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
-                       required="required" />
+                       pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
               </li>
               <li class="p-list__item">
                 <label for="phone">Phone number:</label>
-                <input required
-                       id="phone"
-                       name="phone"
-                       maxlength="255"
-                       type="tel"
-                       required="required" />
+                <input id="phone" name="phone" maxlength="255" type="tel" />
               </li>
               <li class="p-list__item">
-                <label for="company">Company:</label>
+                <label class="is-required" for="company">Company:</label>
                 <input id="company"
                        name="company"
                        maxlength="255"
                        type="text"
-                       required="required" />
+                       class="is-required" />
               </li>
               <li>
-                <label for="title">Job title:</label>
-                <input required
-                       id="title"
-                       name="title"
-                       maxlength="255"
-                       type="text"
-                       required="required" />
+                <label class="is-required" for="title">Job title:</label>
+                <input required id="title" name="title" maxlength="255" type="text" />
               </li>
 
               {% include "shared/forms/_country.html" %}
