@@ -49,7 +49,7 @@
 {% endblock notices_content %}
 
 <section class="p-section">
-  <hr class="is-fixed-width" />
+  <hr class="p-rule is-fixed-width" />
   <div class="row">
     <div class="col-9 col-medium-4">
       <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
@@ -62,44 +62,44 @@
     </div>
     <div class="col-3 col-medium-2">
       <ul class="p-list--divided">
-        <li class="p-list__item">
+        <li class="p-list__item u-no-padding">
           {{ 
             image (
-            url="https://assets.ubuntu.com/v1/8d999320-aws.png",
+            url="https://assets.ubuntu.com/v1/66d21279-aws.png",
             alt="AWS",
             width="51",
-            height="30",
+            height="63",
             hi_def=True,
             loading="lazy"
             ) | safe
           }}
         </li>
-        <li class="p-list__item">
+        <li class="p-list__item u-no-padding">
           {{ image (
-            url="https://assets.ubuntu.com/v1/2ef140ac-azure.png",
+            url="https://assets.ubuntu.com/v1/d24afe72-azure.png",
             alt="Microsoft Azure",
             width="126",
-            height="35",
+            height="67",
             hi_def=True,
-            loading="lazy"
+            loading="auto"
             ) | safe
           }}</li>
-        <li class="p-list__item">
+        <li class="p-list__item u-no-padding">
           {{ image (
-            url="https://assets.ubuntu.com/v1/99762d0f-att.png",
+            url="https://assets.ubuntu.com/v1/79de55f4-att.png",
             alt="AT&T",
             width="98",
-            height="40",
+            height="72",
             hi_def=True,
             loading="lazy"
             ) | safe
           }}</li>
-        <li class="p-list__item">
+        <li class="p-list__item u-no-padding">
           {{ image (
-            url="https://assets.ubuntu.com/v1/a8c409a4-google cloud.png",
+            url="https://assets.ubuntu.com/v1/5c8b5aef-google%20cloud.png",
             alt="Google Cloud",
             width="164",
-            height="27",
+            height="59",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -184,7 +184,7 @@
 </section>
 
 <section class="p-section">
-  <div class="row--50-50 p-section--shallow">
+  <div class="row--50-50">
     <hr class="p-rule" />
     <div class="col">
       <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
@@ -195,58 +195,58 @@
     <div class="col">
       <div class="row">
         <div class="col-3">
-          <ul class="p-list--divided u-hide--medium u-hide--small">
-            <li class="p-list__item">
+          <ul class="p-list--divided u-no-margin--bottom u-hide--medium u-hide--small">
+            <li class="p-list__item u-no-padding">
               {{ image (
-                url="https://assets.ubuntu.com/v1/5f8ed524-Vector.png",
+                url="https://assets.ubuntu.com/v1/22c5fb07-nist-logo.png",
                 alt="NIST",
-                width="68",
-                height="19",
+                width="57",
+                height="39",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
               }}
             </li>
-            <li class="p-list__item">
+            <li class="p-list__item u-no-padding">
               {{ image (
-                url="https://assets.ubuntu.com/v1/f63065ea-d05ddc19-@sec-logo.png",
+                url="https://assets.ubuntu.com/v1/2354ee4f-@sec-logo.png",
                 alt="ASEC",
-                width="115",
-                height="36",
+                width="96",
+                height="54",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
               }}
             </li>
-            <li class="p-list__item">
+            <li class="p-list__item u-no-padding">
               {{ 
                 image (
-                url="https://assets.ubuntu.com/v1/d703ce1c-Group.png",
+                url="https://assets.ubuntu.com/v1/c7af6eb5-disa-logo.png",
                 alt="DISA",
-                width="81",
-                height="28",
+                width="68",
+                height="48",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
               }}
             </li>
-            <li class="p-list__item">
+            <li class="p-list__item u-no-padding">
               {{ image (
-                url="https://assets.ubuntu.com/v1/2798718d-00644094-cis-logo.png",
+                url="https://assets.ubuntu.com/v1/4710d3ba-cis-logo.png",
                 alt="CIS",
-                width="61",
-                height="68",
+                width="51",
+                height="80",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
               }}
             </li>
-            <li class="p-list__item">
+            <li class="p-list__item u-no-padding">
               {{ image (
-                url="https://assets.ubuntu.com/v1/f9e94ad1-Group%203392.png",
+                url="https://assets.ubuntu.com/v1/aa0ad2ff-csec-logo.png",
                 alt="CSEC",
-                width="46",
-                height="54",
+                width="39",
+                height="69",
                 hi_def=True,
                 loading="lazy"
                 ) | safe
@@ -268,7 +268,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider">
+  <div class="p-equal-height-row has-1st-divider u-no-padding--bottom">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         10 year security maintenance and CVE Patching
@@ -304,10 +304,10 @@
 </section>
 
 <section class="p-section">
-  <div class="u-fixed-width">
+  <div class="u-fixed-width p-section">
     {{ 
       image (
-      url="https://assets.ubuntu.com/v1/5a35c042-Open%20source%20security.jpg",
+      url="https://assets.ubuntu.com/v1/39667d98-Open%20source%20security.jpg",
       alt="",
       width="2464",
       height="1055",
@@ -352,7 +352,7 @@
           <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
         </li>
       </ul>
-      <hr class="p-rule" />
+      <hr class="p-rule is-muted" />
       <div class="row">
         <div class="col-3 col-start-large-4">
           <p class="u-no-margin--bottom">
