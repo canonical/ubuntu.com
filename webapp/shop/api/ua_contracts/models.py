@@ -82,6 +82,7 @@ class UserSubscription:
         period: str = None,
         listing_id: str = None,
         renewal_id: str = None,
+        max_tracking_reached: bool = False,
     ):
         self.id = id
         self.account_id = account_id
@@ -103,6 +104,7 @@ class UserSubscription:
         self.contract_id = contract_id
         self.listing_id = listing_id
         self.renewal_id = renewal_id
+        self.max_tracking_reached = max_tracking_reached
 
 
 class OfferItem:

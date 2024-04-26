@@ -152,9 +152,12 @@ def parse_contract(raw_contract: Dict) -> Contract:
     items = parse_contract_items(raw_items)
 
     number_of_active_machines = 0
+    max_tracking_reached = False
     if "activeMachines" in contract_info:
         active_machines = contract_info["activeMachines"]
         number_of_active_machines = active_machines["activeMachines"]
+        # WIP
+        active_machines["maximumTrackingReached"] = True
 
     return Contract(
         id=contract_info.get("id"),
@@ -164,6 +167,7 @@ def parse_contract(raw_contract: Dict) -> Contract:
         entitlements=entitlements,
         number_of_active_machines=number_of_active_machines,
         items=items,
+        max_tracking_reached=max_tracking_reached,
     )
 
 
