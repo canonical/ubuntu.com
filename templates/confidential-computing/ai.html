@@ -1,13 +1,13 @@
 {% extends "confidential-computing/base_confidential-computing.html" %}
 
-{% block title %}Confidential Computing{% endblock %}
+{% block title %}Confidential computing{% endblock %}
 
 {% block meta_description %}
   Run your confidential AI workloads with our Ubuntu confidential computing stack.
 {% endblock %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1QGwS5CYlwXkaPibSFvcag6zLcUH5lNDUbM18hCqbOJM/edit
+  https://docs.google.com/document/d/1TZ_jK3ReetAU2qA_YxfZL8i4j_lFidcF6F2Xup8R8Nc/edit
 {% endblock %}
 
 {% block body_class %}
@@ -16,23 +16,19 @@
 
 {% block content %}
 
-  <section class="p-strip is-shallow u-no-padding--bottom">
+  <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
-        <h1>Ubuntu for confidential AI</h1>
+        <h1>Ubuntu for confidential&nbsp;AI</h1>
       </div>
-      <div class="col">
+      <div class="col p-section--shallow">
         <p>Protect the confidentiality and integrity of your AI workloads at run-time across public and private clouds.</p>
 
-        <hr />
-
-        <p>
-          <a class="js-invoke-modal p-button--positive" href="/contact-us">Contact us</a>
-
-        </p>
+        <hr class="is-muted"/>
+        <a class="js-invoke-modal p-button--positive" href="/contact-us">Contact us</a>
       </div>
     </div>
-    <div class="u-fixed-width p-section">
+    <div class="u-fixed-width">
       {{ image (
       url="https://assets.ubuntu.com/v1/3ff12e71-Image.png",
       alt="",
@@ -42,18 +38,17 @@
       loading="auto"
       ) | safe
       }}
-
     </div>
   </section>
 
   <section class="p-section">
-    <hr class="is-fixed-width" />
+    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
         <h2>Why you need  Ubuntu for confidential AI</h2>
       </div>
       <div class="col">
-        <ul class="p-list--divided">
+        <ul class="p-list--divided u-no-margin--bottom">
           <li class="p-list__item is-ticked">Harness AI's power with utmost security assurance</li>
           <li class="p-list__item is-ticked">Protect your security-sensitive AI data at run-time</li>
           <li class="p-list__item is-ticked">Fine-tune your model securely with your enterprise data</li>
@@ -66,33 +61,16 @@
   </section>
 
   <section class="p-section">
-    <hr class="is-fixed-width" />
+    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Benefits of Ubuntu for confidential computing</h2>
-      </div>
-      <div class="col">
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">Protect sensitive data by encrypting it when it’s being processed</li>
-          <li class="p-list__item is-ticked">Secure your workloads in untrusted environments</li>
-          <li class="p-list__item is-ticked">Build data clean rooms for collaborative AI analytics</li>
-
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <hr class="is-fixed-width" />
-    <div class="row--50-50">
-      <div class="col">
-        <h2>How confidential AI works</h2>
+        <h2>How confidential AI&nbsp;works</h2>
       </div>
       <div class="col p-section--shallow ">
         <p>
           Confidential AI is made possible thanks to confidential computing. Unlike traditional VMs, where you have to trust that the host software is also secure, confidential VMs only require you to trust the software running within it and the platform's hardware root of trust.
         </p>
-        <div class="p-image__background--3-2 u-align--center u-vertically-center">
+        <div class="u-aspect-ratio--16-9 u-background--fade u-align--center u-vertically-center">
           {{ image (
           url="https://assets.ubuntu.com/v1/01006e0d-ai-diagram@2x.png",
           alt="",
@@ -106,19 +84,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-9 col-start-large-4 col-start-medium-3">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
 
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule is-fixed-width is-muted" />
 
         <div class="row">
 
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
 
             <h3 class="p-heading-icon__title p-heading--5">CPU-based confidential computing</h3>
 
           </div>
 
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
 
             <p>
               Ubuntu confidential VMs protect your workload's computation while in the CPU. It makes use of the newer hardware encryption engines to keep your data encrypted in system memory.
@@ -129,17 +107,17 @@
 
         </div>
 
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule is-fixed-width is-muted" />
 
         <div class="row">
 
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
 
             <h3 class="p-heading-icon__title p-heading--5">GPU-based confidential computing</h3>
 
           </div>
 
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
 
             <p>
               Nvidia H100 Tensor Core GPUs protect the confidentiality and integrity of the workload's computation within the GPU, using built-in firewalls.
@@ -150,28 +128,27 @@
 
         </div>
 
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule is-fixed-width is-muted" />
 
         <div class="row">
 
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
 
             <h3 class="p-heading-icon__title p-heading--5">Securely integrated CPU-GPU solution</h3>
 
           </div>
 
-          <div class="col-6">
+          <div class="col-6 col-medium-3">
 
             <p>
               The CPU-GPU communication is encrypted, and a strong cryptographic guarantee is available for all remote parties to remotely attest the security claims of the platform.
 
             </p>
 
-            <hr class="p-rule is-fixed-width" />
+            <hr class="p-rule is-fixed-width is-muted" />
 
             <p>
               <a href="/confidential-computing">Learn more about confidential computing&nbsp;&rsaquo;</a>
-
             </p>
 
           </div>
@@ -181,74 +158,72 @@
     </div>
   </section>
 
-  <hr class="is-fixed-width" />
-
-  <section class="p-strip u-no-padding--top">
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Confidential AI with Ubuntu and Nvidia H100 GPUs</h2>
+        <h2>Confidential AI with Ubuntu and Nvidia&nbsp;H100&nbsp;GPUs</h2>
       </div>
       <div class="col">
-
-        <div class="p-image__background--3-2 u-vertically-center u-align--center">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/fc0006be-cvm-diagram@2x.png",
-          alt="",
-          width="600",
-          height="338",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-          }}
-
-        </div>
         <p>
           Enterprises using machine learning in the cloud are concerned about the security of their data and the protection of their models. Industry regulations often prevent sharing sensitive data, hindering AI's full potential in important fields.
         </p>
         <p>
           To address these challenges on Azure, a confidential AI preview is available with Ubuntu confidential VM using AMD 4th Gen EPYC processors with SEV-SNP, alongside  NVIDIA H100 GPUs.
         </p>
-
-        <hr />
-        <a href="https://aka.ms/accgpusignup">Sign up for the Azure preview of confidential AI with Ubuntu&nbsp;&rsaquo;</a>
+        <div class="p-section--shallow">
+          <div class="u-aspect-ratio--16-9 u-background--fade u-vertically-center u-align--center">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/fc0006be-cvm-diagram@2x.png",
+            alt="Ubuntu confidential VMs establish a secure encrypted communication channel with Nvidia H100 GPUs",
+            width="600",
+            height="338",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+            }}
+          </div>
+        </div>
+        <hr class="p-rule is-muted" />
+        <p>
+          <a href="https://aka.ms/accgpusignup">Sign up for the Azure preview of confidential AI with Ubuntu&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
   </section>
 
-  <hr class="is-fixed-width" />
-
   <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Use Ubuntu Pro to further harden your confidential VMs</h2>
+        <h2>Use Ubuntu Pro to further harden your confidential&nbsp;VMs</h2>
       </div>
       <div class="col">
         <p>
           While confidential VMs can protect your workload from external threats, vulnerabilities from within their boundaries remain a concern. This is where Ubuntu Pro becomes essential, to keep your guest CVM software stack always patched and up-to-date.
         </p>
 
-        <hr />
+        <hr class="is-muted" />
         <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
 
-  <hr class="is-fixed-width" />
-
   <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Learn more about confidential computing</h2>
+        <h2>Learn&nbsp;more about confidential&nbsp;computing</h2>
       </div>
       <div class="col">
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item">
             <a href="/engage/webinar-confidential-computing-intro">Delve into the main building blocks of confidential computing</a>
           </li>
-          <li class="p-list__item is-ticked">
+          <li class="p-list__item">
             <a href="/blog/introducing-confidential-vms-on-ubuntu-pro-for-azure">Introducing Confidential VMs on Ubuntu Pro for Azure</a>
           </li>
-          <li class="p-list__item is-ticked">
+          <li class="p-list__item">
             <a href="/blog/confidential-computing-in-public-clouds-isolation-and-remote-attestation-explained">Confidential computing in public clouds: isolation and remote attestation explained</a>
           </li>
         </ul>
@@ -256,7 +231,7 @@
     </div>
   </section>
 
-  <hr class="is-fixed-width" />
+  <hr class="p-rule is-fixed-width" />
 
   <section class="p-strip is-deep">
     <div class="row">

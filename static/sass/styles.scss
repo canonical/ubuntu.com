@@ -1300,9 +1300,17 @@ $color-link-dark: #69c !default;
 .p-image__background--3-2 {
   @extend .u-aspect-ratio--3-2;
 
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.05);
   margin-top: 0.5rem;
   width: 100%;
+}
+
+.u-background--fade {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.u-aspect-ratio--16-9 {
+  aspect-ratio: 16/9;
 }
 
 .risc-v-container {
