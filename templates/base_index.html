@@ -61,7 +61,7 @@
       </p>
     </div>
     <div class="col-3 col-medium-2">
-      <ul class="p-list--divided">
+      <ul class="p-list--divided u-no-margin--bottom">
         <li class="p-list__item u-no-padding">
           {{ 
             image (
@@ -131,18 +131,18 @@
       <p>66% of experienced developers prefer Ubuntu. That's why Ubuntu supports the fastest, biggest and most successful digital operations.</p>
     </div>
   </div>
-  <div class="row p-section">
+  <div class="row p-section--shallow">
     <div class="col-9 col-medium-4">
       <hr class="p-rule is-muted" />
       <div class="row p-section--shallow">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-small-2">
           <p class="u-no-margin--bottom">
             <a href="/contact-us" class="js-invoke-modal">
               Let's talk open source&nbsp;&rsaquo;
             </a>
           </p>
         </div>
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-2 col-small-2">
           <p class="u-no-margin--bottom">
             <a href="/masters-conference">
               Watch Ubuntu Masters in action&nbsp;&rsaquo;
@@ -153,20 +153,26 @@
     </div>
     <div class="col-3 col-medium-2">
       <hr class="p-rule is-muted"/>
-      <p class="p-section--shallow">
-        <a href="https://media.hackerearth.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
-          The 2020 HackerEarth Developer Survey
-        </a>
-      </p>
-      {{ image(
-        url="https://assets.ubuntu.com/v1/d0dc6306-hackerearth.png",
-        alt="",
-        width="120",
-        height="24",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+      <div class="row">
+        <div class="col-small-2">
+          <p>
+            <a href="https://media.hackerearth.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
+              The 2020 HackerEarth Developer Survey
+            </a>
+          </p>
+        </div>
+        <div class="col-small-2 p-image-wrapper">
+          {{ image(
+            url="https://assets.ubuntu.com/v1/d0dc6306-hackerearth.png",
+            alt="",
+            width="120",
+            height="24",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </div>
     </div>
   </div>
   <div class="u-fixed-width">
@@ -186,7 +192,7 @@
 <section class="p-section">
   <div class="row--50-50">
     <hr class="p-rule" />
-    <div class="col">
+    <div class="col p-section--shallow">
       <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
       <p class="p-heading--2">
         <a href="/pro">Ubuntu Pro</a> is more than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
@@ -195,7 +201,7 @@
     <div class="col">
       <div class="row">
         <div class="col-3">
-          <ul class="p-list--divided u-no-margin--bottom u-hide--medium u-hide--small">
+          <ul class="p-list--divided u-hide--medium u-hide--small">
             <li class="p-list__item u-no-padding">
               {{ image (
                 url="https://assets.ubuntu.com/v1/22c5fb07-nist-logo.png",
@@ -254,7 +260,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-3">
+        <div class="col-3 p-section--shallow">
           <p>Secure your open source apps.</p>
           <p>Patch the full stack, from kernel to library and applications, for CVE compliance.</p>
           <p>Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.</p>
@@ -267,7 +273,7 @@
       </div>      
     </div>
   </div>
-
+  <hr class="p-rule is-fixed-width is-muted">
   <div class="p-equal-height-row has-1st-divider u-no-padding--bottom">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
@@ -366,10 +372,10 @@
   </div>
 </section>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-8">
+    <div class="col-9">
       <div class="p-section--shallow">
         <h2 class="p-heading--1 u-no-margin--bottom">
           Public cloud optimisation
@@ -378,8 +384,8 @@
           Most public cloud instances are Ubuntu, for performance and security.
         </p>
       </div>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+      <div class="p-logo-section--dense p-section--shallow">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
           {{ 
             image (
@@ -420,7 +426,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small">
+    <div class="col-3 u-hide--medium u-hide--small">
       <div class="p-image-wrapper">
         {{ 
           image (
@@ -513,10 +519,10 @@
     </div>
   </div>
   <div class="row--50-50">
-    <hr class="p-rule" />
+    <hr class="p-rule is-muted" />
     <div class="col">
       <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -584,9 +590,9 @@
       </div>
     </div>
     <div class="col">
-      <p class="p-heading--2" style="margin-top: 1rem;">All on Ubuntu.</p>
+      <p class="p-heading--2">All on Ubuntu.</p>
     </div>
-    <hr class="p-rule" />
+    <hr class="p-rule is-muted" />
   </div>
   <div class="row">
     <div class="col-6 col-start-large-7">
@@ -623,7 +629,7 @@
         <li class="p-list__item is-ticked">
           Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
       </ul>
-      <hr />
+      <hr class="p-rule is-muted"/>
     </div>
   </div>
   <div class="row">
@@ -644,11 +650,11 @@
   </div>
 </section>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-8">
-      <div class="p-section">
+    <div class="col-9">
+      <div class="p-section--shallow">
         <h2 class="p-heading--1 u-no-margin--bottom">
           Carrier-grade private cloud
         </h2>
@@ -656,8 +662,8 @@
           Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
         </p>
       </div>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+      <div class="p-logo-section--dense p-section--shallow">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -739,7 +745,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small">
+    <div class="col-3 u-hide--medium u-hide--small">
       <div class="p-image-wrapper">
         {{ 
           image (
@@ -755,7 +761,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
@@ -794,7 +800,6 @@
       </li>
     </ul>
   </div>
-
   <div class="row">
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
@@ -814,18 +819,20 @@
   </div>
 </section>
 
-<section class="p-section--deep">
+<section class="p-section">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-8">
-      <h2 class="p-heading--1 u-no-margin--bottom">
-        Ultra secure things
-      </h2>
-      <p class="p-heading--2">
-        <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
-      </p>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+    <div class="col-9">
+      <div class="p-section--shallow">
+        <h2 class="p-heading--1 u-no-margin--bottom">
+          Ultra secure things
+        </h2>
+        <p class="p-heading--2">
+          <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
+        </p>
+      </div>
+      <div class="p-logo-section--dense p-section--shallow p-section">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -894,7 +901,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small">
+    <div class="col-3 u-hide--medium u-hide--small">
       <div class="p-image-wrapper">
         {{ 
           image (
@@ -910,7 +917,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider has-2nd-divider">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         OTA compressed updates for apps, kernel and OS
@@ -979,20 +986,22 @@
   </div>
 </section>
 
-<section class="p-section--deep">
-  <div class="row p-section">
+<section class="p-section">
+  <div class="row">
     <hr class="p-rule" />
     <div class="col-9">
-      <h2 class="p-heading--1 u-no-margin--bottom">
-        Workstations and desktops
-      </h2>
-      <p class="p-heading--2">
-        <a href="/ai">Optimised AI/ML</a> and cloud devops.<br />The professional developer's preference.
-      </p>
+      <div class="p-section--shallow">
+        <h2 class="p-heading--1 u-no-margin--bottom">
+          Workstations and desktops
+        </h2>
+        <p class="p-heading--2">
+          <a href="/ai">Optimised AI/ML</a> and cloud devops.<br />The professional developer's preference.
+        </p>
+      </div>
     </div>
     <div class="col-3">
       <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -1006,7 +1015,7 @@
               ) | safe
             }}
           </div>
-          <div class="p-logo-section__item">            
+          <div class="p-logo-section__item">
             {{ 
               image (
               url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
@@ -1034,9 +1043,9 @@
           </div>
         </div>
       </div>
-      <hr class="p-rule" />
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+      <hr class="p-rule is-muted u-hide--medium" />
+      <div class="p-logo-section--dense p-section--shallow">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -1081,7 +1090,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
@@ -1153,14 +1162,16 @@
 <section class="p-section">
   <div class="u-fixed-width">
     <hr class="p-rule" />
-    <h2 class="p-heading--1 u-no-margin--bottom">
-      Data centre automation
-    </h2>
-    <p class="p-heading--2">
-      Turn a rack into a bare metal cloud.<br /> <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
-    </p>
-    <div class="p-logo-section--dense">
-      <div class="p-logo-section__items">
+    <div class="p-section--shallow">
+      <h2 class="p-heading--1 u-no-margin--bottom">
+        Data centre automation
+      </h2>
+      <p class="p-heading--2">
+        Turn a rack into a bare metal cloud.<br /> <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
+      </p>
+    </div>
+    <div class="p-logo-section--dense p-section--shallow">
+      <div class="p-logo-section__items u-no-padding">
         <div class="p-logo-section__item">
           {{ 
             image (
@@ -1243,7 +1254,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider">
+  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider has-2nd-divider">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         <a href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
@@ -1315,15 +1326,15 @@
 <section class="p-section">
   <div class="row">
     <hr class="p-rule" />
-    <div class="col-8">
+    <div class="col-9">
       <h2 class="p-heading--1 u-no-margin--bottom">
         Smart robots of all shapes and sizes
       </h2>
       <p class="p-heading--2">
         From turtles to trucks,<br /><a href="/robotics">Ubuntu drives the robot revolution</a>.
       </p>
-      <div class="p-logo-section--dense">
-        <div class="p-logo-section__items">
+      <div class="p-logo-section--dense p-section--shallow">
+        <div class="p-logo-section__items u-no-padding">
           <div class="p-logo-section__item">
             {{ 
               image (
@@ -1405,7 +1416,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small">
+    <div class="col-3 u-hide--medium u-hide--small">
       <div class="p-image-wrapper">
         {{ 
           image (
@@ -1421,7 +1432,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider">
+  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
@@ -1472,17 +1483,19 @@
   </div>
 </section>
 
-<section class="p-section">
+<section class="p-section--deep">
   <div class="u-fixed-width">
     <hr class="p-rule" />
-    <h2 class="p-heading--1 u-no-margin--bottom">
-      Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS
-    </h2>
-    <p class="p-heading--2">
-      <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
-    </p>
-    <div class="p-logo-section--dense">
-      <div class="p-logo-section__items">
+    <div class="p-section--shallow">
+      <h2 class="p-heading--1 u-no-margin--bottom">
+        Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS
+      </h2>
+      <p class="p-heading--2">
+        <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
+      </p>
+    </div>
+    <div class="p-logo-section--dense p-section--shallow">
+      <div class="p-logo-section__items u-no-padding">
         <div class="p-logo-section__item">
           {{ 
             image (
@@ -1539,7 +1552,7 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider">
+  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider">
     <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
       <li class="p-list__item is-ticked col-medium-3">
         Operate smoothly across public and private cloud

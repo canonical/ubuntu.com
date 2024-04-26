@@ -27,6 +27,27 @@
 
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
+// XXX: remove once these are updated in vanilla (v 4.12 or later)
+$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
+$colors--light-theme--text-default: #000 !default;
+
+$colors--dark-theme--border-default: rgba(
+  $colors--dark-theme--text-default,
+  0.3
+);
+$colors--dark-theme--border-low-contrast: rgba(
+  $colors--dark-theme--text-default,
+  0.1
+);
+$colors--light-theme--border-default: rgba(
+  $colors--light-theme--text-default,
+  0.3
+);
+$colors--light-theme--border-low-contrast: rgba(
+  $colors--light-theme--text-default,
+  0.1
+);
+
 // import site specific patterns and overrides
 @import "pattern_accordion";
 @import "pattern_active-reveal";
