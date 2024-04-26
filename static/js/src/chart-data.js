@@ -146,6 +146,13 @@ export var kernelReleases = [
     status: "LTS",
   },
   {
+    startDate: new Date("2027-04-01T00:00:00"),
+    endDate: new Date("2032-03-01T00:00:00"),
+    taskName: "22.04.1 LTS",
+    taskVersion: "5.15 kernel",
+    status: "ESM",
+  },
+  {
     startDate: new Date("2022-08-01T00:00:00"),
     endDate: new Date("2025-04-30T00:00:00"),
     taskName: "20.04.5 LTS",
@@ -1165,8 +1172,8 @@ export var kernelReleaseNames = [
   "24.04.0 LTS",
   "22.04.4 LTS",
   "23.10",
-  "20.04.5 LTS",
   "22.04.1 LTS",
+  "20.04.5 LTS",
   "22.04.0 LTS",
   "18.04.5 LTS",
   "20.04.1 LTS",
