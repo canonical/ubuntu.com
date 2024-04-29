@@ -1558,6 +1558,7 @@ ol.p-list--divided .p-list__item::before {
 .p-hero-video-link {
   .p-hero-video__play {
     @include vf-transition(background-size, fast, out);
+
     display: block;
   }
 
@@ -1565,7 +1566,7 @@ ol.p-list--divided .p-list__item::before {
     opacity: 0.9;
   }
 
-  &.p-equal-height-row__col:before {
+  &.p-equal-height-row__col::before {
     content: none !important;
   }
 }
