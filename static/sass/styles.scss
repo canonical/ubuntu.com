@@ -5,27 +5,6 @@
 
 // settings
 @import "global-settings";
-@import "settings_colors";
-
-// custom mixins
-@import "mixins/full-width-breakout";
-
-// import cookie policy
-@import "@canonical/cookie-policy/build/css/cookie-policy";
-
-// import dial-code dropdown
-@import "intl-tel-input/build/css/intlTelInput";
-
-// import vanilla-framework
-@import "vanilla-framework";
-@include vanilla;
-
-@import "vanilla-placeholders";
-
-// import flickity
-@import "flickity/dist/flickity";
-
-$color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // XXX: remove once these are updated in vanilla (v 4.12 or later)
 $colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
@@ -47,6 +26,28 @@ $colors--light-theme--border-low-contrast: rgba(
   $colors--light-theme--text-default,
   0.1
 );
+
+@import "settings_colors";
+
+// custom mixins
+@import "mixins/full-width-breakout";
+
+// import cookie policy
+@import "@canonical/cookie-policy/build/css/cookie-policy";
+
+// import dial-code dropdown
+@import "intl-tel-input/build/css/intlTelInput";
+
+// import vanilla-framework
+@import "vanilla-framework";
+@include vanilla;
+
+@import "vanilla-placeholders";
+
+// import flickity
+@import "flickity/dist/flickity";
+
+$color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
 @import "pattern_accordion";
@@ -184,26 +185,6 @@ $colors--light-theme--border-low-contrast: rgba(
 @import "layout-whitepapers";
 
 @include layout-whitepapers;
-
-// Theming overrides, to be removed once V4.10.1 is released
-$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
-$colors--light-theme--text-default: #000 !default;
-$colors--dark-theme--border-default: rgba(
-  $colors--dark-theme--text-default,
-  0.2
-);
-$colors--dark-theme--border-low-contrast: rgba(
-  $colors--dark-theme--text-default,
-  0.1
-);
-$colors--light-theme--border-default: rgba(
-  $colors--light-theme--text-default,
-  0.2
-);
-$colors--light-theme--border-low-contrast: rgba(
-  $colors--light-theme--text-default,
-  0.1
-);
 
 // Overide the path to flags for dial codes
 .iti__flag {
@@ -1674,3 +1655,14 @@ ol.p-list--divided .p-list__item::before {
 .p-list--divided .p-list__item { 
   box-shadow: inset 0px 1px 0px 0px $colors--theme--border-low-contrast; 
 }
+
+// .u-has-icon {
+//   padding-left: $sp-x-large;
+//   position: relative;
+
+//   &::before {
+//     left: 0;
+//     position: absolute;
+//     width: $sp-medium;
+//   }
+// }
