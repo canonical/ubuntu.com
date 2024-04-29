@@ -41,10 +41,10 @@
   }
 
   .l-tutorial__nav-title {
-    // TODO: Come up with a better stepped list solution that is supported by Vanialla 4.0
     &::before {
       border: 1px solid $colors--light-theme--text-default;
       border-radius: 50%;
+      content: counter(list-item);
       height: $sp-large;
       // line height is calculated to vertically center the number, which is size of the circle minus the border
       line-height: calc($sp-large - 2px);
