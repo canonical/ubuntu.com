@@ -73,24 +73,24 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="u-fixed-width">{% include 'telco/shared/_telco-logo-section.html' %}</div>
   </section>
 
   <section class="p-strip--suru-blog-header">
     <div class="row">
       <div class="col-7 u-vertically-center">
-        <h2>Open source private 5G and LTE networks</h2>
-        <p>Use-cases, tools and technologies</p>
+        <h2>Reduce 5G infrastructure costs with open source</h2>
         <p>
-          <a href="/engage/5g-and-lte-networks-webinar" class="p-button--positive">Watch webinar</a>
+          <a href="/engage/telco-dilemma-reduce-5g-infra-cost"
+             class="p-button--positive">Download our whitepaper</a>
         </p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/55cff1c7-Anbox_Telco_5G.svg",
+        {{ image(url="https://assets.ubuntu.com/v1/707119b1-5G_Telco_cost2.png",
                 alt="",
-                width="179",
-                height="230",
+                width="600",
+                height="400",
                 hi_def=True,
                 loading="lazy") | safe
         }}
@@ -178,21 +178,23 @@
     </div>
   </section>
 
-  <section class="p-strip--suru-blog-header">
+  <section class="p-strip--suru-blog-header is-dark">
     <div class="row">
-      <div class="col-7 u-vertically-center">
-        <h2>
-          With Canonical's Anbox Cloud technology, Vodafone delivered a full smartphone experience on entry-level smartphones and other connected devices via 5G connectivity.
-        </h2>
-      </div>
-      <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/be72de6b-Vodafone-Logo.png",
+      <div class="col-4 u-vertically-center">
+        {{ image(url="https://assets.ubuntu.com/v1/162a6ea6-Vodafone-Logo.png",
                 alt="Vodafone",
-                width="3840",
-                height="2160",
+                width="103",
+                height="90",
                 hi_def=True,
                 loading="lazy") | safe
         }}
+      </div>
+      <div class="col-8 u-vertically-center">
+        <p class="p-heading--3">
+          With Canonical's Anbox Cloud technology, Vodafone delivered a full smartphone experience on entry-level smartphones and other connected devices via 5G connectivity
+        </p>
+        <a class="p-link--inverted"
+           shref="https://www.vodafone.com/news/technology/powering-devices-through-cloud">Read the story on Vodafone's website&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
@@ -260,12 +262,12 @@
                         loading="lazy") | safe
             }}
           </p>
-          <p class="p-heading--5">Virtual infrastructure for VMs,  engineered for best price–performance</p>
+          <p class="p-heading--5">Virtual infrastructure for VMs,  engineered for best price-performance</p>
           <div class="p-card__content">
             <ul class="p-list">
-              <li class="p-list__item has-bullet">Economical in every way.</li>
-              <li class="p-list__item has-bullet">Smart operations, optimal architecture and better pricing.</li>
-              <li class="p-list__item has-bullet">
+              <li class="p-list__item is-ticked">Economical in every way.</li>
+              <li class="p-list__item is-ticked">Smart operations, optimal architecture and better pricing.</li>
+              <li class="p-list__item is-ticked">
                 TCO reduction of your cloud, while expanding your budget for innovation with <a href="/openstack">Canonical OpenStack</a> and <a href="https://canonical.com/microcloud">Canonical MicroCloud</a>
               </li>
             </ul>
@@ -275,8 +277,7 @@
     </div>
   </section>
 
-  <hr class="p-separator u-fixed-width" />
-  <section class="p-strip is-bordered">
+  <section class="p-strip is-shallow">
     <div class="row">
       <div class="col-4">
         {{ image(url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
@@ -298,20 +299,62 @@
     </div>
   </section>
 
-  <section class="p-strip--suru-blog-header">
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <div class="p-card">
+        <div class="row">
+          <div class="col-4">
+            <a href="/kubernetes">
+              {{ image(url="https://assets.ubuntu.com/v1/cee82ecd-Canonical Kubernetes logo.svg",
+                            alt="Canonical Kubernetes",
+                            width="187",
+                            height="48",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </a>
+          </div>
+          <div class="col-8">
+            <p class="p-heading--5">Infrastructure for cloud native telco</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">
+                Modular and scalable edge clouds with Canonical Kubernetes on MicroCloud or bare metal
+              </li>
+              <li class="p-list__item is-ticked">
+                Reliable and stable core clouds with Canonical Kubernetes on OpenStack or bare metal
+              </li>
+              <li class="p-list__item is-ticked">Repeatable and trusted deployment and operations for CNFs</li>
+              <li class="p-list__item is-ticked">Optimal and minimally-sized containers with chiselled Ubuntu images</li>
+            </ul>
+            <p>Learn how we support cloud-native telco with:</p>
+            <ul class="p-inline-list u-responsive-realign">
+              <li class="p-inline-list__item">
+                <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Chiselled Ubuntu&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-inline-list__item">
+                <a href="/kubernetes">Canonical Kubernetes&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light">
     <div class="row">
       <div class="col-7 u-vertically-center">
-        <h2>Reduce 5G infrastructure costs with open source</h2>
+        <h2>Open source private 5G and LTE networks</h2>
+        <p>Use-cases, tools and technologies</p>
         <p>
-          <a href="/engage/telco-dilemma-reduce-5g-infra-cost"
-             class="p-button--positive">Download our whitepaper</a>
+          <a href="/engage/5g-and-lte-networks-webinar" class="p-button--positive">Watch webinar</a>
         </p>
       </div>
       <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/707119b1-5G_Telco_cost2.png",
+        {{ image(url="https://assets.ubuntu.com/v1/55cff1c7-Anbox_Telco_5G.svg",
                 alt="",
-                width="600",
-                height="400",
+                width="179",
+                height="230",
                 hi_def=True,
                 loading="lazy") | safe
         }}
@@ -349,7 +392,6 @@
         }}
       </div>
     </div>
-
   </section>
 
   <section class="p-strip--light">
@@ -492,13 +534,13 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/48a8eddf-juju_black-orange_hex.svg",
-                        alt="Juju",
-                        width="407",
-                        height="147",
+            {{ image(url="https://assets.ubuntu.com/v1/b0441e88-Canonical Juju.svg",
+                        alt="Canonical Juju",
+                        width="765",
+                        height="400",
                         hi_def=True,
-                        attrs={"class": "p-logo-section__logo"},
-                        loading="lazy") | safe
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"},) | safe
             }}
           </div>
         </div>
@@ -515,8 +557,8 @@
         <div>
           {{ image(url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
                     alt="AT&T",
-                    width="100",
-                    height="41",
+                    width="98",
+                    height="40",
                     hi_def=True,
                     loading="lazy") | safe
           }}
@@ -530,10 +572,10 @@
       </div>
       <div class="col-4">
         <div>
-          {{ image(url="https://assets.ubuntu.com/v1/c2b1de52-BT_logo.svg",
-                    alt="",
-                    width="99",
-                    height="48",
+          {{ image(url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
+                    alt="BT",
+                    width="40",
+                    height="40",
                     hi_def=True,
                     loading="lazy") | safe
           }}
@@ -545,15 +587,16 @@
           <cite class="p-pull-quote__citation">Neil J. McRae, BT Group Chief Architect.</cite>
         </blockquote>
         <p>
-          <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core">Read the case study&nbsp;&rsaquo;</a>
+          <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core"
+             aria-label="Read the BT case study">Read the case study&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="col-4">
         <div>
-          {{ image(url="https://assets.ubuntu.com/v1/0bb4a28e-vodafone_logo.png",
-                    alt="",
-                    width="84",
-                    height="52",
+          {{ image(url="https://assets.ubuntu.com/v1/162a6ea6-Vodafone-Logo.png",
+                    alt="Vodafone",
+                    width="46",
+                    height="40",
                     hi_def=True,
                     loading="lazy") | safe
           }}
@@ -565,7 +608,7 @@
           <cite class="p-pull-quote__citation">Johan Wibergh, Chief Technology Officer of Vodafone.</cite>
         </blockquote>
         <p>
-          <a href="https://www.vodafone.com/news/technology/powering-devices-through-cloud">Read Vodafone's tech news&nbsp;&rsaquo;</a>
+          <a href="https://www.vodafone.com/news/technology/powering-devices-through-cloud">Read the story on Vodafone's website&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
