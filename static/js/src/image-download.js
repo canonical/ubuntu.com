@@ -20,7 +20,10 @@ function initImageDownload(imagePath, GAlabel) {
     )
     .then((response) => response.json())
     .then((mirrors) => startDownload(mirrors, imagePath))
-    .catch(() => startDownload([], imagePath));
+    .catch(() => {
+      // in case of error just download the default image
+      startDownload([], imagePath);
+    });
 }
 
 function startDownload(mirrors, imagePath) {
