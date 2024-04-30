@@ -55,7 +55,6 @@ def _build_mirror_list(local=False, country_code=None):
     try:
         with open(f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml") as rss:
             mirrors = feedparser.parse(rss.read()).entries
-            
     except IOError:
         pass
 
@@ -1033,12 +1032,15 @@ def get_user_country_by_tz():
     APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     timezone = flask.request.args.get("tz")
 
-    timezones = json.load(
-        open(os.path.join(APP_ROOT, "static/files/timezones.json"))
-    )
-    countries = json.load(
-        open(os.path.join(APP_ROOT, "static/files/countries.json"))
-    )
+    with open(
+        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+    ) as file:
+        timezones = json.load(file)
+
+    with open(
+        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+    ) as file:
+        countries = json.load(file)
 
     _country = timezones[timezone]["c"][0]
     country = countries[_country]

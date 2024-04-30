@@ -7,28 +7,20 @@ function initImageDownload(imagePath, GAlabel) {
     eventValue: undefined,
   });
 
+  // Get the user's timezone and use this to find the country_code before fetching the mirrors
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  fetch("/user-country-tz.json?tz=" + timezone)
-  .then((response) => {
-    return response.json();
-  })
-  .then((userData) => {
-    if (userData && userData.country_code) {
-      return fetch("/mirrors.json?local=True&country_code=" + userData.country_code);
-    } else {
-      throw new Error('Country code is missing');
-    }
-  })
-  .then((response) => {
-    return response.json();
-  })
-  .then((mirrors) => {
-    startDownload(mirrors, imagePath);
-  })
-  .catch((error) => {
-    startDownload([], imagePath);
-  });
-
+  fetch(`/user-country-tz.json?tz=${timezone}`)
+    .then((response) => response.json())
+    .then((userData) =>
+      fetch(
+        `/mirrors.json?local=${!!userData?.country_code}&country_code=${
+          userData?.country_code || ""
+        }`
+      )
+    )
+    .then((response) => response.json())
+    .then((mirrors) => startDownload(mirrors, imagePath))
+    .catch(() => startDownload([], imagePath));
 }
 
 function startDownload(mirrors, imagePath) {
@@ -43,7 +35,6 @@ function startDownload(mirrors, imagePath) {
   }
 
   var downloadLink = downloadLocation + imagePath;
-  console.log(" DOWNLOAD LINK", downloadLink);
   // Start download
   delayStartDownload(downloadLink, 3000);
 }
