@@ -362,7 +362,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
                 if "assessment_reservation" not in response:
-                    exams_not_taken.append(
+                    exams_expired.append(
                         {
                             "name": name,
                             "state": "Cannot fetch information",
