@@ -7,15 +7,28 @@ function initImageDownload(imagePath, GAlabel) {
     eventValue: undefined,
   });
 
-  fetch("/mirrors.json?local=True")
-    .then((response) => response.json())
-    .then((mirrors) => {
-      startDownload(mirrors, imagePath);
-    })
-    .catch(() => {
-      // in case of error just download the default image
-      startDownload([], imagePath);
-    });
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  fetch("/user-country-tz.json?tz=" + timezone)
+  .then((response) => {
+    return response.json();
+  })
+  .then((userData) => {
+    if (userData && userData.country_code) {
+      return fetch("/mirrors.json?local=True&country_code=" + userData.country_code);
+    } else {
+      throw new Error('Country code is missing');
+    }
+  })
+  .then((response) => {
+    return response.json();
+  })
+  .then((mirrors) => {
+    startDownload(mirrors, imagePath);
+  })
+  .catch((error) => {
+    startDownload([], imagePath);
+  });
+
 }
 
 function startDownload(mirrors, imagePath) {
@@ -30,7 +43,7 @@ function startDownload(mirrors, imagePath) {
   }
 
   var downloadLink = downloadLocation + imagePath;
-
+  console.log(" DOWNLOAD LINK", downloadLink);
   // Start download
   delayStartDownload(downloadLink, 3000);
 }
