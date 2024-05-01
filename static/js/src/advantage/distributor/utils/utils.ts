@@ -113,6 +113,11 @@ export type SubscriptionList = {
   type: DistributorProductTypes;
 };
 
+export type TechnicalContact = {
+  name: string;
+  email: string;
+};
+
 export enum DistributorProductTypes {
   virtual = "virtual",
   physical = "physical",
