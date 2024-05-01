@@ -18,7 +18,7 @@ const CredExamShop = () => {
     {
       id: "cue-linux-essentials",
       name: "CUE.01 Linux",
-      displayName: "CUE.01 Linux \n ($100 off promotion)",
+      displayName: "CUE.01 Linux",
       metadata: [
         {
           key: "description",

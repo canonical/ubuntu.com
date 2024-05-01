@@ -57,7 +57,7 @@ function Summary({ quantity, product, action, setError }: Props) {
   const productName =
     action !== "offer"
       ? product?.name === "cue-linux-essentials-free"
-        ? "CUE.01 Linux ($100 off promotion)"
+        ? "CUE.01 Linux"
         : product?.name
       : product?.name.replace(", ", "<br>");
   const discount =
