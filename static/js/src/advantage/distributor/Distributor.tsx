@@ -15,20 +15,20 @@ const Distributor = () => {
             }}
           >
             <h2>Available deal registreations</h2>
-            {/* Todo: update link */}
-            <Button appearance="positive" hasIcon={true}>
+            <Button
+              appearance="positive"
+              hasIcon={true}
+              onClick={() =>
+                (window.location.href =
+                  "https://www.partner.canonical.com/#/deals/new")
+              }
+            >
               <Icon name={ICONS.externalLink} light={true} />
               <span>Register new deal</span>
             </Button>
           </div>
           <ChannelOffersList />
         </Col>
-        <p>
-          {/* Todo: update link */}
-          <a href="" className="p-distributor-link--external">
-            View all deal registreations
-          </a>
-        </p>
       </Row>
     </div>
   );

@@ -4,8 +4,9 @@ import {
   Offer as OfferType,
   ExternalId as ExternalIdType,
 } from "../../../offers/types";
-import { MainTable, Button } from "@canonical/react-components";
+import { MainTable } from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
+import InitiateButton from "../InitiateButton/InitiateButton";
 
 const ChannelOffersList = () => {
   const {
@@ -84,14 +85,7 @@ const ChannelOffersList = () => {
                 content: offer.distributor_account_name,
               },
               {
-                content: (
-                  <Button
-                    element="a"
-                    href={`/pro/distributor/shop/${offer.id}`}
-                  >
-                    Initiate order
-                  </Button>
-                ),
+                content: <InitiateButton offer={offer} />,
                 className: "u-align--right",
               },
             ],
