@@ -147,7 +147,7 @@ const CredExamShop = () => {
                           <span>Coming Soon</span>
                         ) : (
                           <span>
-                            Price: {" "}
+                            Price:{" "}
                             {examElement.metadata[1].value !== undefined ? (
                               <s>
                                 {currencyFormatter.format(
@@ -202,7 +202,7 @@ const CredExamShop = () => {
                       <span>Coming Soon</span>
                     ) : (
                       <span>
-                        Price: {" "}
+                        Price:{" "}
                         {examElement.metadata[1].value !== undefined ? (
                           <s>
                             {currencyFormatter.format(
