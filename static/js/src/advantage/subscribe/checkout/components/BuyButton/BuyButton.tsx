@@ -315,16 +315,15 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
           if (product.marketplace == "canonical-cube") {
-            if(product.name==="cue-linux-essentials-free"){
+            if (product.name === "cue-linux-essentials-free") {
               location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
                 "CUE.01 Linux"
               )}&quantity=${quantity}`;
+            } else {
+              location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+                product.name
+              )}&quantity=${quantity}`;
             }
-            else{
-          location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
-            product.name
-          )}&quantity=${quantity}`;
-          }
           } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
             let urlBase = "/pro/subscribe";
