@@ -578,7 +578,11 @@ def get_channel_offers(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def get_distributor_view(**kwargs):
+def get_distributor_view(advantage_mapper, **kwargs):
+    try:
+        advantage_mapper.get_purchase_account("canonical-pro-channel")
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
     return flask.render_template(
         "/pro/distributor/index.html",
     )
