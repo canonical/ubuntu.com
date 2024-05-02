@@ -55,7 +55,11 @@ function Summary({ quantity, product, action, setError }: Props) {
       ? "Plan type"
       : "Products";
   const productName =
-    action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
+    action !== "offer"
+      ? product?.name === "cue-linux-essentials-free"
+        ? "CUE.01 Linux"
+        : product?.name
+      : product?.name.replace(", ", "<br>");
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
@@ -124,6 +128,7 @@ function Summary({ quantity, product, action, setError }: Props) {
             <>
               {total == 0 &&
                 priceData !== undefined &&
+                product?.name !== "cue-linux-essentials-free" &&
                 "This is because you have likely already paid for this product for the current billing period."}
             </>
           </p>
