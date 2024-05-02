@@ -1620,3 +1620,12 @@ ol.p-list--divided .p-list__item::before {
   height: 21rem; // provided by design
   justify-content: center;
 }
+// Following two classes can be removed once Github issue is completed
+// https://github.com/canonical/vanilla-framework/issues/4876
+.u-background--fade {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.u-aspect-ratio--16-9 {
+  aspect-ratio: 16/9;
+}
