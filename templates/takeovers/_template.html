@@ -1,6 +1,6 @@
 <section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if active == 'true' %}is-active {% endif %} p-strip js-takeover" {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %} >
-  <div class="row u-equal-height">
-    <div class="col-9 u-vertically-center">
+  <div class="row">
+    <div class="col-9">
       {% if stacked_image %}
         <!-- FIXME: why using heading icon component if there is no title in the component? -->
         <div class="u-hide u-show--small p-heading-icon--large">
