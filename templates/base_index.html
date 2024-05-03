@@ -15,7 +15,7 @@
 <section data-lang="all" id="takeover" class="p-strip">
   <div class="row p-takeover-animation" id="takeover-animaition">
     <div class="col-9">
-      <div class="p-section">
+      <div class="p-section--shallow">
         <h1 id="takeover-title" class="u-no-margin--bottom">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
         <p class="p-heading--2" id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</p>
       </div>
@@ -35,6 +35,7 @@
   </div>
 </section>
 
+<!-- The following is for testing purposes only, to be deleted once this has design +1 -->
 <section class="p-strip">
   <div class="row">
     <div class="col-9">
@@ -44,7 +45,7 @@
       <p class="p-section--shallow">test (over 80 chars) Active Directory (AD) Integration is one of the most popular Ubuntu desktop enterprise features. Read our whitepaper to
       learn more about our exclusive Ubuntu features.</p>
       <hr class="is-muted" />
-      <div">
+      <div>
         <p>
           <a href="/download" class="p-button--positive">Get Ubuntu {{
             releases.latest.short_version }}</a>
@@ -59,6 +60,7 @@
     </div>
   </div>
 </section>
+<!-- end temp section -->
 
 <section class="p-section notice">
   <div class="u-fixed-width">
@@ -298,40 +300,47 @@
       </div>      
     </div>
   </div>
-  <hr class="p-rule is-fixed-width is-muted">
-  <div class="p-equal-height-row has-1st-divider u-no-padding--bottom">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
-        10 year security maintenance and CVE Patching
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>10 year security maintenance and CVE Patching</p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/livepatch">Extended security</a> for infrastructure and applications
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr
         title="Department of Defence, USA">DoD</abbr>
         compliance
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
 </section>
 
 <section class="p-section">
@@ -455,7 +464,7 @@
       <div class="p-image-wrapper">
         {{ 
           image (
-          url="https://assets.ubuntu.com/v1/1d3e0a99-Asset 3@2x 1.png",
+          url="https://assets.ubuntu.com/v1/1d3e0a99-Asset%203@2x%201.png",
           alt="",
           width="494",
           height="313",
@@ -466,64 +475,78 @@
       </div>
     </div>
   </div>
-
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Optimised kernels for AWS, Azure, Google, Oracle, IBM
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Network & storage performance optimisation
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         GPU enablement for machines and containers
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Pay-as-you-go billing, no more licenses
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Cloud workload migration service
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Containerisation and cloud-native migration service
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Fully managed application service
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
 
   <div class="row">
     <hr class="is-muted" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/cloud/public-cloud">
+        <a href="/cloud/public-cloud" aria-label="Learn more about public cloud optimisation">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/cloud/public-cloud/contact-us" class="js-invoke-modal">
+        <a href="/cloud/public-cloud/contact-us" aria-label="Contact us about public cloud optimisation" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -660,14 +683,14 @@
   <div class="row">
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/kubernetes">
+        <a href="/kubernetes" aria-label="Learn more about multi-cloud Kubernetes and containers">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/kubernetes/contact-us" class="js-invoke-modal">
+        <a href="/kubernetes/contact-us" aria-label="Contact us about multi-cloud Kubernetes and containers" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -786,57 +809,72 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/openstack/features">Hyperconverged</a> or segregated architecture
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security">Encryption at rest for GDPR, HIPAA, FedRAMP</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Wide choice of SDN and storage
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/engage/charmed-openstack-adoption-whitepaper">Upgrades and day-2 operations, automated</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Integrated logging, monitoring and alerting
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Platform and infrastructure hardening
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         High availability
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/telco">Carrier-grade NFVI</a>
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
   <div class="row">
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/openstack">
+        <a href="/openstack" aria-label="Learn more about carrier-grade private cloud">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/openstack/contact-us" class="js-invoke-modal">
+        <a href="/openstack/contact-us" aria-label="Contact us about carrier-grade private cloud" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -942,68 +980,82 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider has-2nd-divider">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         OTA compressed updates for apps, kernel and OS
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Automatic rollback and data snapshots
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         DevSecOps pipeline for edge app delivery
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Built-in device recovery and remote disk repair
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         10 year security maintenance for every device
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Provable system and software integrity
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Secure boot backed by root of trust
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list">
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Full disk encryption with hardware keys
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         <a href="/real-time">Support for real-time compute</a>
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         FIPS certifiable embedded Linux
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
 
   <div class="row">
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/core">
+        <a href="/core" aria-label="Learn more about Ubuntu Core">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/core/contact-us" class="js-invoke-modal">
+        <a href="/core/contact-us" aria-label="Contact us about Ubuntu Core" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -1115,68 +1167,82 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row has-1st-divider has-2nd-divider u-no-padding--bottom">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Full disk encryption
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         DevSecOps pipeline for edge app delivery
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Security updates for the <a href="/esm">full open source stack</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Estate <a href="/landscape/features">monitoring and management</a>
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Configuration lockdown
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Local Kubernetes for offline development
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list">
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a href="https://multipass.run">Multipass</a>
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         FIPS certifiable embedded Linux
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
 
   <div class="row">
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/desktop">
+        <a href="/desktop" aria-label="Learn more about workstations and desktops">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/desktop/contact-us" class="js-invoke-modal">
+        <a href="/desktop/contact-us" aria-label="Contact us about workstations and desktops" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -1324,14 +1390,14 @@
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="https://maas.io">
+        <a href="https://maas.io" aria-label="Learn more about data centre automation">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="https://maas.io/contact-us">
+        <a href="https://maas.io/contact-us" aria-label="Contact us about data centre automation">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -1448,50 +1514,53 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Security patches for long-term ROS
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Fault tolerant over-the-air updates
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
-        Trim time-to-market with SMART START consulting
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
-        Leading Robot-as-a-Platform ecosystem
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
-        Curated app stores
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list">
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      Trim time-to-market with SMART START consulting
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      Leading Robot-as-a-Platform ecosystem
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      Curated app stores
+    </li>
+  </ul>
 
   <div class="row">
     <hr class="is-muted p-rule" />
     <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
       <p>
-        <a href="/robotics">
+        <a href="/robotics" aria-label="Learn more about robotics">
           Learn more&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-3 col-medium-2">
       <p>
-        <a href="/contact-us" class="js-invoke-modal">
+        <a href="/contact-us" aria-label="Contact us about robotics" class="js-invoke-modal">
           Contact us&nbsp;&rsaquo;
         </a>
       </p>
@@ -1568,34 +1637,41 @@
     </div>
   </div>
 
-  <div class="p-equal-height-row u-no-padding--bottom has-1st-divider">
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+  <ul class="row p-list u-no-margin--bottom">
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Operate smoothly across public and private cloud
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Reusable integration code as open source packages
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Python Operator Framework for rapid development
-      </li>
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
+      <p>
         Bring the K8s operator pattern to classic workloads
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+  </ul>
+  <hr class="p-rule is-muted is-fixed-width u-hide--small u-hide--medium u-sv1" />
+  <ul class="row p-list">
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         Lifecycle management and Day 2 operations
-      </li>
-    </ul>
-    <ul class="p-equal-height-row__col p-list--divided u-no-margin--bottom col-6 col-medium-3">
-      <li class="p-list__item is-ticked col-medium-3">
+      </p>
+    </li>
+    <li class="p-list__item is-ticked col-medium-3 col-3">
+      <p>
         <a href="https://jaas.ai/store">Open collection</a> of community-driven operators
-      </li>
-    </ul>
-  </div>
+      </p>
+    </li>
+  </ul>
 
   <div class="row">
     <hr class="is-muted p-rule" />
@@ -1741,8 +1817,15 @@
     }
 
     // Set takeover content
+    if (title.textContent.length > 80 || subtitle.textContent.length > 80) {
+      title.classList.remove("u-no-margin--bottom")
+      subtitle.classList.remove("p-heading--2")
+      subtitle.classList.add("p-section--shallow")
+    }
+
     title.textContent = selectedTakeover.title;
     subtitle.textContent = selectedTakeover.subtitle;
+    
     image.src = selectedTakeover.image;
     image.onload = function () {
       // Remove animation delay
