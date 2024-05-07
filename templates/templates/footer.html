@@ -3,7 +3,7 @@
 {% block footer %}
 
   <footer class="is-dark p-strip u-clearfix" style="background-color: #2d2d2d;">
-    <nav aria-label="Footer navigation" id="main-navigation" class="p-footer__nav p-section--shallow">
+    <nav aria-label="Footer navigation" id="main-navigation" class="p-footer__nav p-section">
       {% with section=nav_sections.openstack %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
@@ -126,7 +126,7 @@
           More
         </h2>
       </div>
-      <div class="col-9 col-medium-4 u-hide--small">
+      <div class="col-9 col-medium-4">
         <ul class="p-inline-list u-responsive-realign">
           <li class="p-inline-list__item">
             <a href="/containers">Containers</a>
@@ -158,12 +158,12 @@
     </nav>
 
     <nav aria-label="Resources navigation">
-      <div class="row p-section--shallow">
+      <div class="row p-section">
         <hr class="is-muted" />
           <div class="col-3 col-medium-2 col-small-2">
             <a class="p-button--positive" href="/contact-us">Contact us</a>
           </div>
-          <div class="col-6 col-medium-2 u-hide--small">
+          <div class="col-6 col-large-2 col-medium-4">
             <ul class="p-inline-list u-responsive-realign">
               <li class="p-inline-list__item">
                 <a href="/about">About us</a>
@@ -185,8 +185,8 @@
               </li>
             </ul>
           </div>
-          <div class="col-3 col-medium-2 col-small-2">
-            <ul class="p-inline-list-icons">
+          <div class="col-3 col-large-2 col-start-medium-3 col-medium-4">
+            <ul class="p-inline-list-icons u-no-margin--left u-no-padding--left">
               <li class="p-inline-list__item">
                 <a class="p-inline-list__link--twitter"
                   title="Follow Ubuntu on Twitter"
@@ -328,7 +328,7 @@
 
     <div class="u-fixed-width">
       <p class="u-hide--large link-to-top">
-        <a href="#"><small>Back to top</small></a>
+        <a href="#">Back to top</a>
       </p>
 
       <script>
