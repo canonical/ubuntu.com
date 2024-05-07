@@ -32,17 +32,89 @@ meta_copydoc %}
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Ubuntu Core {{ releases.core_lts.version }}</h2>
+        <div class="p-section">
+          <h2>Ubuntu Core {{ releases.core_lts.version }}</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small u-hide--medium">
+          {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
+                    alt="Noble Numbat",
+                    width="182",
+                    height="135",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
       </div>
       <div class="col">
-        <p>Build your Ubuntu Core image for your application and targeted hardware.</p>
-        <p>
-          Ubuntu Core {{ releases.core_lts.version }} is the latest LTS version of Ubuntu for deployment on embedded devices and edge systems. LTS stands for long-term support &mdash; which means 10 years of free security and maintenance updates guaranteed until {{ releases.core_lts.eol }}.
-        </p>
-        <hr />
-        <p>
-          <a class="p-button--positive" href="/core/docs/getting-started">Build your Core {{ releases.core_lts.version }}</a>
-        </p>
+        <div class="p-section--shallow">
+          <p>Build your Ubuntu Core image for your application and targeted hardware.</p>
+          <p>
+            Ubuntu Core {{ releases.core_lts.version }} is the latest LTS version of Ubuntu for deployment on embedded devices and edge systems. LTS stands for long-term support &mdash; which means 10 years of free security and maintenance updates guaranteed until {{ releases.core_lts.eol }}.
+          </p>
+          <hr />
+          <p>
+            <a class="p-button--positive" href="/core/docs/getting-started">Build your Core {{ releases.core_lts.version }}</a>
+          </p>
+        </div>
+        <!-- Start tab container -->
+        <div class="js-tab-container">
+          <nav class="p-tabs">
+            <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
+                role="tablist"
+                data-maintain-hash="true">
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                    role="tab"
+                    aria-selected="true"
+                    id="release-notes-tab"
+                    href="#release-notes"
+                    aria-controls="release-notes">What's new</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                    role="tab"
+                    aria-selected="false"
+                    id="system-requirements-tab"
+                    href="#system-requirements"
+                    aria-controls="system-requirements"
+                    tabindex="-1">System requirements</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- End tab container -->
+        <!-- tab 1 -->
+        <div id="release-notes"
+              class="p-tabs__content"
+              role="tabpanel"
+              aria-labelledby="release-notes-tab">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Reduced installation time and size</li>
+            <li class="p-list__item is-ticked">Improvements to image builds</li>
+            <li class="p-list__item is-ticked">Enhanced graphics operations </li>
+            <li class="p-list__item is-ticked">Fleet management via Landscape</li>
+            <li class="p-list__item is-ticked">armhf support</li>
+          </ul>
+          <hr />
+          <ul class="u-responsive-realign p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890">Core 24 release notes&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
+        </div>
+        <!-- tab 2 -->
+        <div class="p-tabs__content"
+              id="system-requirements"
+              role="tabpanel"
+              aria-labelledby="system-requirements-tab">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Minimum 512 MB of RAM</li>
+            <li class="p-list__item is-ticked">Minimum 1 GB of storage</li>
+            <li class="p-list__item is-ticked">amd64, arm64 & armhf, and riscv architectures</li>
+            <li class="p-list__item is-ticked">TPM 2.0 on x86, or OP-TEE on ARM for full disk encryption</li>
+            <li class="p-list__item is-ticked">Supports NVME, SSD, and eMMC storage</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -87,7 +159,7 @@ meta_copydoc %}
             <p>Try the pre-built Ubuntu Core images on a range of x86 and ARM devices.</p>
             <hr />
             <p>
-              <a class="p-button" href="/core/docs/getting-started">Install on a board</a>
+              <a class="p-button" href="/core/docs/install-on-a-device">Install on a board</a>
             </p>
           </div>
         </div>
