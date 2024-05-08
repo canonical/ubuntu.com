@@ -803,7 +803,7 @@ export var kernelReleaseSchedule = [
 export var openStackReleases = [
   {
     startDate: new Date("2024-04-01T00:00:00"),
-    endDate: new Date("2027-04-01T00:00:00"),
+    endDate: new Date("2032-04-01T00:00:00"),
     taskName: "OpenStack 2024.1",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
@@ -824,12 +824,6 @@ export var openStackReleases = [
     endDate: new Date("2026-04-01T00:00:00"),
     taskName: "OpenStack 2023.1",
     status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
-  },
-  {
-    startDate: new Date("2022-10-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Zed",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2022-04-01T00:00:00"),
@@ -860,18 +854,6 @@ export var openStackReleases = [
     endDate: new Date("2025-04-01T00:00:00"),
     taskName: "OpenStack Yoga",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2022-10-01T00:00:00"),
-    taskName: "OpenStack Wallaby",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2022-10-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Wallaby",
-    status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
   },
   {
     startDate: new Date("2020-05-15T00:00:00"),
@@ -925,30 +907,6 @@ export var openStackReleases = [
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "Ubuntu 18.04 LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2016-04-01T00:00:00"),
-    endDate: new Date("2021-04-01T00:00:00"),
-    taskName: "OpenStack Mitaka LTS",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Mitaka LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2016-04-01T00:00:00"),
-    endDate: new Date("2021-04-01T00:00:00"),
-    taskName: "Ubuntu 16.04 LTS",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "Ubuntu 16.04 LTS",
     status: "ESM",
   },
 ];
@@ -1267,17 +1225,13 @@ export var openStackReleaseNames = [
   "OpenStack 2024.1",
   "OpenStack 2023.2",
   "OpenStack 2023.1",
-  "OpenStack Zed",
   "OpenStack Yoga LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Yoga",
-  "OpenStack Wallaby",
   "OpenStack Ussuri LTS",
   "Ubuntu 20.04 LTS",
   "OpenStack Queens LTS",
   "Ubuntu 18.04 LTS",
-  "OpenStack Mitaka LTS",
-  "Ubuntu 16.04 LTS",
 ];
 
 export var microStackReleaseNames = [
