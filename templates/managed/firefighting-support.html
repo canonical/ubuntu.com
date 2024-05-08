@@ -10,7 +10,9 @@
   https://docs.google.com/document/d/1sWNMmLoyOFUI9qZE3fqPhgZWJSpb-e6-juGrW7A5rr0/edit
 {% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
@@ -29,16 +31,16 @@
         </div>
       </div>
     </div>
-    <div class="p-section">
+    <div class="p-section u-hide--small">
       <div class="u-fixed-width u-align--center">
         {{ image (
-          url="https://assets.ubuntu.com/v1/81320e0d-smart-city.png",
-          alt="",
-          width="916",
-          height="526",
-          hi_def=True,
-          loading="auto"
-          ) | safe
+        url="https://assets.ubuntu.com/v1/81320e0d-smart-city.png",
+        alt="",
+        width="916",
+        height="526",
+        hi_def=True,
+        loading="auto"
+        ) | safe
         }}
       </div>
     </div>
@@ -60,7 +62,8 @@
         <p>
           You thus get managed service-level security and peace of mind, while still completely managing your environments by yourself.
         </p>
-        {{ image (
+        <div class="u-hide--small u-hide--medium">
+          {{ image (
           url="https://assets.ubuntu.com/v1/774930ee-security.png",
           alt="",
           width="1202",
@@ -68,7 +71,8 @@
           hi_def=True,
           loading="lazy"
           ) | safe
-        }}
+          }}
+        </div>
       </div>
     </div>
   </section>
@@ -123,9 +127,9 @@
     </div>
     <div class="row--25-75">
       <div class="col">
-        <div class="row">
-          <div class="col-3">
-          {{ image (
+        <div class="row u-hide--small">
+          <div class="col-3 col-medium-2">
+            {{ image (
             url="https://assets.ubuntu.com/v1/a5f69f96-File system type@2x 1.png",
             alt="",
             width="561",
@@ -133,10 +137,10 @@
             hi_def=True,
             loading="lazy"
             ) | safe
-          }}
+            }}
           </div>
-          <div class="col-3">
-          {{ image (
+          <div class="col-3 col-medium-2">
+            {{ image (
             url="https://assets.ubuntu.com/v1/79fba6f3-Create a security key@3x 1.png",
             alt="",
             width="561",
@@ -144,35 +148,38 @@
             hi_def=True,
             loading="lazy"
             ) | safe
-          }}
+            }}
           </div>
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             {{ image (
-              url="https://assets.ubuntu.com/v1/d2a8836e-Connect to the Internet@3x 1.png",
-              alt="",
-              width="561",
-              height="562",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
+            url="https://assets.ubuntu.com/v1/d2a8836e-wifi.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
             }}
           </div>
         </div>
         <hr class="p-rule is-muted" />
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Government clouds</h3>
             <p>
               Generally, governments and intergovernmental institutions have very stringent regulations that forbid third parties from providing direct operational management. This, however, does not make your operations easier. Firefighting Support gives you extra peace of mind while allowing you to remain fully compliant with your security policies.
             </p>
           </div>
-          <div class="col-3">
+          <hr class="p-rule is-muted u-hide--medium u-hide--large" />
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Highly private telecommunications networks</h3>
             <p>
               There are telco networks that even the most secure third parties can't touch. But managing their workloads can be tough, especially for emerging teams. Canonical's Firefighting Support can allow your private networks to operate more smoothly by having your back in urgent situations.
             </p>
           </div>
-          <div class="col-3">
+          <hr class="p-rule is-muted u-hide--medium u-hide--large" />
+
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Cloud upgrades</h3>
             <p>
               It's time to upgrade your cloud to the newest version, and it's rightfully intimidating. Consider Firefighting Support, so you can benefit from the expertise and experience of our Managed Solutions engineers, who will help you immediately fix any issues that arise during the upgrade.
@@ -184,149 +191,85 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
+    <div class="row--25-75-on-large">
+      <hr class="p-rule">
       <div class="col">
         <h2>Your options</h2>
       </div>
       <div class="col">
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Fully managed solutions</p>
-          </div>
-          <div class="col-3">
-            <p class="p-heading--5">Firefighting Support</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row--25-75">
-      <div class="col">
-        <div class="p-section--shallow">
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>What it is</p>
-            </div>
-            <div class="col-3">
-              <p>
+        <table aria-label="Vanilla framework table example">
+          <thead style="height:100px;">
+            <tr>
+              <th></th>
+              <th>
+                <a href="/managed">Fully managed solutions</a>
+              </th>
+              <th>Firefighting Support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>What it is</th>
+              <td>
                 Canonical engineers deploy your environment and manage all operations. We maintain admin rights and a permanent connection.
-              </p>
-            </div>
-            <div class="col-3">
-              <p>
+              </td>
+              <td>
                 Canonical engineers provide cloud support and guidance in high-severity situations, while you manage your operations.
-              </p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>
+              </td>
+            </tr>
+            <tr>
+              <th>
                 <a href="/pro">Ubuntu Pro</a> + Support 24/7
-              </p>
-            </div>
-            <div class="col-3">
-              <p>Included</p>
-            </div>
-            <div class="col-3">
-              <p>Included</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Service levels</p>
-            </div>
-            <div class="col-3">
-              <p>1-hour SLA for high severity cases, all other cases addressed in under 24 hours</p>
-            </div>
-            <div class="col-3">
-              <p>1-hour SLA for high severity cases</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Incident management</p>
-            </div>
-            <div class="col-3">
-              <p>Unlimited, covering cases we identify ourselves or flagged by you</p>
-            </div>
-            <div class="col-3">
-              <p>Only for high severity cases that impact the product's core functionality</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Service requests</p>
-            </div>
-            <div class="col-3">
-              <p>Unlimited</p>
-            </div>
-            <div class="col-3">
-              <p>One at a time per environment</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Backup and recovery</p>
-            </div>
-            <div class="col-3">
-              <p>Unlimited</p>
-            </div>
-            <div class="col-3">
-              <p>Not covered</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Software and package updates</p>
-            </div>
-            <div class="col-3">
-              <p>Unlimited</p>
-            </div>
-            <div class="col-3">
-              <p>Not covered</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Capacity reports</p>
-            </div>
-            <div class="col-3">
-              <p>Available</p>
-            </div>
-            <div class="col-3">
-              <p>Unavailable</p>
-            </div>
-          </div>
-          <hr class="is-muted p-rule" />
-          <div class="row">
-            <div class="col-3">
-              <p>Admin access</p>
-            </div>
-            <div class="col-3">
-              <p>Required</p>
-            </div>
-            <div class="col-3">
-              <p>Not required</p>
-            </div>
-          </div>
-        </div>
-        <div class="p-section--shallow">
+              </th>
+              <td>Included</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <th>Service levels</th>
+              <td>1-hour SLA for high severity cases, all other cases addressed in under 24 hours</td>
+              <td>1-hour SLA for high severity cases</td>
+            </tr>
+            <tr>
+              <th>Incident management</th>
+              <td>Unlimited, covering cases we identify ourselves or flagged by you</td>
+              <td>Only for high severity cases that impact the product's core functionality</td>
+            </tr>
+            <tr>
+              <th>Service requests</th>
+              <td>Unlimited</td>
+              <td>One at a time per environment</td>
+            </tr>
+            <tr>
+              <th>Backup and recovery</th>
+              <td>Unlimited</td>
+              <td>Not covered</td>
+            </tr>
+            <tr>
+              <th>Software and package updates</th>
+              <td>Unlimited</td>
+              <td>Not covered</td>
+            </tr>
+            <tr>
+              <th>Capacity reports</th>
+              <td>Available</td>
+              <td>Unavailable</td>
+            </tr>
+            <tr>
+              <th>Admin access</th>
+              <td>Required</td>
+              <td>Not required</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="p-section--shallow u-hide--small">
           {{ image (
-            url="https://assets.ubuntu.com/v1/530afcbc-GettyImages-1340944503 1.png",
-            alt="",
-            width="1832",
-            height="745",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
+          url="https://assets.ubuntu.com/v1/530afcbc-GettyImages-1340944503 1.png",
+          alt="",
+          width="1832",
+          height="745",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
           }}
         </div>
       </div>
@@ -406,9 +349,9 @@
     </div>
     <div class="row--25-75">
       <div class="col">
-        <div class="row">
-          <div class="col-3">
-          {{ image (
+        <div class="row u-hide--small">
+          <div class="col-3 col-medium-2">
+            {{ image (
             url="https://assets.ubuntu.com/v1/7c4e7c58-Summary of installation settings@2x.png",
             alt="",
             width="561",
@@ -416,10 +359,10 @@
             hi_def=True,
             loading="lazy"
             ) | safe
-          }}
+            }}
           </div>
-          <div class="col-3">
-          {{ image (
+          <div class="col-3 col-medium-2">
+            {{ image (
             url="https://assets.ubuntu.com/v1/cd172f35-Hardware Check@2x.png",
             alt="",
             width="561",
@@ -427,10 +370,10 @@
             hi_def=True,
             loading="lazy"
             ) | safe
-          }}
+            }}
           </div>
-          <div class="col-3">
-          {{ image (
+          <div class="col-3 col-medium-2">
+            {{ image (
             url="https://assets.ubuntu.com/v1/745df342-Accessibility@2x.png",
             alt="",
             width="561",
@@ -438,24 +381,27 @@
             hi_def=True,
             loading="lazy"
             ) | safe
-          }}
+            }}
           </div>
         </div>
         <hr class="p-rule is-muted" />
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Upgrade support</h3>
             <p>
               We understand that upgrading infrastructure or apps can be challenging. If we can't upgrade it for you via Managed Services, you can still discuss the best upgrade practices with our engineers through Ops Consulting and get guidance on how to do it yourself.
             </p>
           </div>
-          <div class="col-3">
+          <hr class="p-rule is-muted u-hide--medium u-hide--large" />
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Operational experience</h3>
             <p>
               If there are topics that give you headaches when managing your environments, our engineers can advise you on how to avoid common mistakes and how to fix recurrent problems. We've been managing environments for over a decade, so we've always got insightful tips.
             </p>
           </div>
-          <div class="col-3">
+          <hr class="p-rule is-muted u-hide--medium u-hide--large" />
+
+          <div class="col-3 col-medium-2">
             <h3 class="p-heading--5">Team training</h3>
             <p>
               Have you already benefited from our Managed Solutions offering, and feel confident to take over the reins and manage your environments by yourself? We've still got you covered, with training material and best practices to be shared in consulting sessions.
@@ -486,7 +432,7 @@
     <div class="row--25-75">
       <div class="col">
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             <hr class="p-rule--highlight" />
             <p class="p-heading--3">10h/month</p>
             <p class="p-heading--4">$3,500</p>
@@ -494,7 +440,7 @@
               Occasional meetings for non-urgent matters, allowing you to discuss concerns and improve the efficiency of your operations.
             </p>
           </div>
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             <hr class="p-rule--highlight" />
             <p class="p-heading--3">20h/month</p>
             <p class="p-heading--4">$6,000</p>
@@ -502,7 +448,7 @@
               Regular meetings that allow you to have in-depth discussions on pressing matters, or get a baseline training in operational management for your products.
             </p>
           </div>
-          <div class="col-3">
+          <div class="col-3 col-medium-2">
             <hr class="p-rule--highlight" />
             <p class="p-heading--3">40h/month</p>
             <p class="p-heading--4">$10,000</p>
