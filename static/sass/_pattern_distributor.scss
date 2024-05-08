@@ -8,7 +8,7 @@
       padding-top: 2rem;
 
       h2 {
-        width: $breakpoint-x-small;
+        width: $breakpoint-x-small + 100px;
       }
       > .p-strip {
         padding-bottom: 3rem;
@@ -206,6 +206,36 @@
     margin-right: 0.1rem;
     .p-card__title {
       @extend .p-heading--4;
+    }
+  }
+  .add-subscription-card-container {
+    position: relative;
+
+    .add-subscription-card {
+      @extend .is-paper;
+      @extend .p-card--highlighted;
+
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+      padding-left: 3.5rem;
+
+      .p-card__title {
+        @extend .p-heading--4;
+
+        padding-top: 0;
+      }
+    }
+
+    .p-icon--close {
+      cursor: pointer;
+      left: 1.2rem;
+      position: absolute;
+      top: 1.4rem;
+    }
+    .p-card__content {
+      h5 {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 }

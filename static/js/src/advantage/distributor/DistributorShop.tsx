@@ -1,6 +1,7 @@
 import React from "react";
 import { Strip } from "@canonical/react-components";
 import DistributorShopForm from "./components/DistributorShopForm/DistributorShopForm";
+import { Offer as OfferType } from "../offers/types";
 
 const DistributorShop = () => {
   const channelOfferData = localStorage.getItem("channel-offer-data") || "";
@@ -20,7 +21,7 @@ const DistributorShop = () => {
 
   return (
     <Strip className="u-no-padding--top" style={{ overflow: "unset" }}>
-      <DistributorShopForm offer={offer} />
+      <DistributorShopForm offer={offer as OfferType} />
     </Strip>
   );
 };
