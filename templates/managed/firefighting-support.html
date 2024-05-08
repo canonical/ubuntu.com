@@ -10,10 +10,12 @@
   https://docs.google.com/document/d/1sWNMmLoyOFUI9qZE3fqPhgZWJSpb-e6-juGrW7A5rr0/edit
 {% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
 
   <section class="p-strip is-shallow">
-    <div class="p-section ">
+    <div class="p-section">
       <div class="row--50-50">
         <div class="col">
           <h1>Firefighting Support</h1>
@@ -25,6 +27,19 @@
           <hr class="is-muted" />
           <a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Enhance your cloud support now</a>
         </div>
+      </div>
+    </div>
+    <div class="p-section">
+      <div class="u-fixed-width u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/81320e0d-smart-city.png",
+          alt="",
+          width="916",
+          height="526",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
@@ -45,6 +60,15 @@
         <p>
           You thus get managed service-level security and peace of mind, while still completely managing your environments by yourself.
         </p>
+        {{ image (
+          url="https://assets.ubuntu.com/v1/774930ee-security.png",
+          alt="",
+          width="1202",
+          height="784",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
@@ -100,9 +124,39 @@
     <div class="row--25-75">
       <div class="col">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-3"></div>
-          <div class="col-3"></div>
+          <div class="col-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a5f69f96-File system type@2x 1.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          </div>
+          <div class="col-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/79fba6f3-Create a security key@3x 1.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          </div>
+          <div class="col-3">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/d2a8836e-Connect to the Internet@3x 1.png",
+              alt="",
+              width="561",
+              height="562",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
         </div>
         <hr class="p-rule is-muted" />
         <div class="row">
@@ -127,7 +181,6 @@
         </div>
       </div>
     </div>
-
   </section>
 
   <section class="p-section">
@@ -149,119 +202,132 @@
     </div>
     <div class="row--25-75">
       <div class="col">
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>What it is</p>
+        <div class="p-section--shallow">
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>What it is</p>
+            </div>
+            <div class="col-3">
+              <p>
+                Canonical engineers deploy your environment and manage all operations. We maintain admin rights and a permanent connection.
+              </p>
+            </div>
+            <div class="col-3">
+              <p>
+                Canonical engineers provide cloud support and guidance in high-severity situations, while you manage your operations.
+              </p>
+            </div>
           </div>
-          <div class="col-3">
-            <p>
-              Canonical engineers deploy your environment and manage all operations. We maintain admin rights and a permanent connection.
-            </p>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>
+                <a href="/pro">Ubuntu Pro</a> + Support 24/7
+              </p>
+            </div>
+            <div class="col-3">
+              <p>Included</p>
+            </div>
+            <div class="col-3">
+              <p>Included</p>
+            </div>
           </div>
-          <div class="col-3">
-            <p>
-              Canonical engineers provide cloud support and guidance in high-severity situations, while you manage your operations.
-            </p>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Service levels</p>
+            </div>
+            <div class="col-3">
+              <p>1-hour SLA for high severity cases, all other cases addressed in under 24 hours</p>
+            </div>
+            <div class="col-3">
+              <p>1-hour SLA for high severity cases</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Incident management</p>
+            </div>
+            <div class="col-3">
+              <p>Unlimited, covering cases we identify ourselves or flagged by you</p>
+            </div>
+            <div class="col-3">
+              <p>Only for high severity cases that impact the product's core functionality</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Service requests</p>
+            </div>
+            <div class="col-3">
+              <p>Unlimited</p>
+            </div>
+            <div class="col-3">
+              <p>One at a time per environment</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Backup and recovery</p>
+            </div>
+            <div class="col-3">
+              <p>Unlimited</p>
+            </div>
+            <div class="col-3">
+              <p>Not covered</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Software and package updates</p>
+            </div>
+            <div class="col-3">
+              <p>Unlimited</p>
+            </div>
+            <div class="col-3">
+              <p>Not covered</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Capacity reports</p>
+            </div>
+            <div class="col-3">
+              <p>Available</p>
+            </div>
+            <div class="col-3">
+              <p>Unavailable</p>
+            </div>
+          </div>
+          <hr class="is-muted p-rule" />
+          <div class="row">
+            <div class="col-3">
+              <p>Admin access</p>
+            </div>
+            <div class="col-3">
+              <p>Required</p>
+            </div>
+            <div class="col-3">
+              <p>Not required</p>
+            </div>
           </div>
         </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>
-              <a href="/pro">Ubuntu Pro</a> + Support 24/7
-            </p>
-          </div>
-          <div class="col-3">
-            <p>Included</p>
-          </div>
-          <div class="col-3">
-            <p>Included</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Service levels</p>
-          </div>
-          <div class="col-3">
-            <p>1-hour SLA for high severity cases, all other cases addressed in under 24 hours</p>
-          </div>
-          <div class="col-3">
-            <p>1-hour SLA for high severity cases</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Incident management</p>
-          </div>
-          <div class="col-3">
-            <p>Unlimited, covering cases we identify ourselves or flagged by you</p>
-          </div>
-          <div class="col-3">
-            <p>Only for high severity cases that impact the product’s core functionality</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Service requests</p>
-          </div>
-          <div class="col-3">
-            <p>Unlimited</p>
-          </div>
-          <div class="col-3">
-            <p>One at a time per environment</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Backup and recovery</p>
-          </div>
-          <div class="col-3">
-            <p>Unlimited</p>
-          </div>
-          <div class="col-3">
-            <p>Not covered</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Software and package updates</p>
-          </div>
-          <div class="col-3">
-            <p>Unlimited</p>
-          </div>
-          <div class="col-3">
-            <p>Not covered</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Capacity reports</p>
-          </div>
-          <div class="col-3">
-            <p>Available</p>
-          </div>
-          <div class="col-3">
-            <p>Unavailable</p>
-          </div>
-        </div>
-        <hr class="is-muted p-rule" />
-        <div class="row">
-          <div class="col-3">
-            <p>Admin access</p>
-          </div>
-          <div class="col-3">
-            <p>Required</p>
-          </div>
-          <div class="col-3">
-            <p>Not required</p>
-          </div>
+        <div class="p-section--shallow">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/530afcbc-GettyImages-1340944503 1.png",
+            alt="",
+            width="1832",
+            height="745",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
         </div>
       </div>
     </div>
@@ -341,9 +407,39 @@
     <div class="row--25-75">
       <div class="col">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-3"></div>
-          <div class="col-3"></div>
+          <div class="col-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7c4e7c58-Summary of installation settings@2x.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          </div>
+          <div class="col-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cd172f35-Hardware Check@2x.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          </div>
+          <div class="col-3">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/745df342-Accessibility@2x.png",
+            alt="",
+            width="561",
+            height="562",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          </div>
         </div>
         <hr class="p-rule is-muted" />
         <div class="row">
