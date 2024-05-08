@@ -3,8 +3,9 @@ import { Row, Col, Strip } from "@canonical/react-components";
 import DealRegistration from "./DealRegistration/DealRegistration";
 import Currency from "./Currency/Currency";
 import Duration from "./Duration";
-import { Offer as OfferType } from "../../../offers/types";
 import TechnicalUserContact from "./TechnicalUserContact/TechnicalUserContact";
+import AddSubscriptions from "./AddSubscriptions/AddSubscriptions";
+import { Offer as OfferType } from "../../../offers/types";
 
 type Prop = {
   offer: OfferType;
@@ -55,6 +56,19 @@ const DistributorShopForm = ({ offer }: Prop) => {
       <Strip includeCol={false}>
         <Row>
           <Col size={6}>
+            <h2>Add subscriptions</h2>
+          </Col>
+          <Col size={6}>
+            <AddSubscriptions />
+          </Col>
+        </Row>
+      </Strip>
+      <Row>
+        <hr />
+      </Row>
+      <Strip includeCol={false}>
+        <Row>
+          <Col size={6}>
             <h2>Select the subscription duration</h2>
           </Col>
           <Col size={6}>
@@ -62,6 +76,9 @@ const DistributorShopForm = ({ offer }: Prop) => {
           </Col>
         </Row>
       </Strip>
+      <Row>
+        <hr />
+      </Row>
     </form>
   );
 };

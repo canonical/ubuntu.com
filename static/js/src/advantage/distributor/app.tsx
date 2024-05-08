@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Distributor from "./Distributor";
 import DistributorShop from "./DistributorShop";
 import { FormProvider } from "./utils/FormContext";
+import { ProductListings } from "./utils/utils";
 
 const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -25,6 +26,12 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+declare global {
+  interface Window {
+    channelProductList: ProductListings;
+  }
+}
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",

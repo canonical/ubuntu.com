@@ -1,116 +1,15 @@
-import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 import { marketplace } from "advantage/subscribe/checkout/utils/types";
-
-interface DefaultPaymentMethod {
-  brand: PaymentMethod.Card["brand"];
-  last4: PaymentMethod.Card["last4"];
-  expMonth: PaymentMethod.Card["exp_month"];
-  expYear: PaymentMethod.Card["exp_year"];
-}
-
-interface CustomerInfo extends PaymentMethodCreateParams.BillingDetails {
-  defaultPaymentMethod: DefaultPaymentMethod;
-  taxID: { value?: string };
-}
-
-interface UserInfo {
-  customerInfo: CustomerInfo;
-  accountInfo: {
-    name?: string;
-  };
-}
-
-interface Data {
-  accountId?: string;
-  paymentMethod?: PaymentMethod.Card;
-}
-
-export interface FormValues {
-  email?: string;
-  name?: string;
-  buyingFor?: "organisation" | "myself";
-  organisationName?: string;
-  address?: string;
-  postalCode?: string;
-  country?: string;
-  city?: string;
-  usState?: string;
-  caProvince?: string;
-  VATNumber?: string;
-  freeTrial?: string;
-}
 
 export function generateUniqueId() {
   return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
-function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
-  return {
-    customerInfo: {
-      email: variables.email,
-      name: variables.name,
-      address: {
-        line1: variables.address,
-        postal_code: variables.postalCode,
-        country: variables.country,
-        city: variables.city,
-        state:
-          variables.country === "US" ? variables.usState : variables.caProvince,
-      },
-      defaultPaymentMethod: {
-        brand: data?.paymentMethod?.brand ?? "",
-        last4: data?.paymentMethod?.last4 ?? "",
-        expMonth: data?.paymentMethod?.exp_month ?? 0,
-        expYear: data?.paymentMethod?.exp_year ?? 0,
-      },
-      taxID: { value: variables.VATNumber },
-    },
-    accountInfo: {
-      name: variables.organisationName,
-    },
-  };
-}
-
-function getInitialFormValues(
-  userInfo: UserInfo,
-  accountId?: string
-): FormValues {
-  return {
-    email: userInfo?.customerInfo?.email ?? "",
-    name: userInfo?.customerInfo?.name ?? "",
-    buyingFor:
-      !accountId || userInfo?.accountInfo?.name ? "organisation" : "myself",
-    organisationName: userInfo?.accountInfo?.name ?? "",
-    address: userInfo?.customerInfo?.address?.line1 ?? "",
-    postalCode: userInfo?.customerInfo?.address?.postal_code ?? "",
-    country: userInfo?.customerInfo?.address?.country ?? "",
-    city: userInfo?.customerInfo?.address?.city ?? "",
-    usState: userInfo?.customerInfo?.address?.state ?? "",
-    caProvince: userInfo?.customerInfo?.address?.state ?? "",
-    VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
-  };
-}
-
-export { getInitialFormValues, getUserInfoFromVariables };
-
-export const getIsFreeTrialEnabled = () =>
-  process.env.NODE_ENV === "development";
-
-export type BuyButtonProps = {
-  areTermsChecked: boolean;
-  isUsingFreeTrial: boolean;
-  isDescriptionChecked: boolean;
-  isMarketingOptInChecked: boolean;
-  setTermsChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsDescriptionChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsMarketingOptInChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export type SubscriptionList = {
+export type SubscriptionItem = {
   id: string;
   type: DistributorProductTypes;
+  support: Support;
+  sla: SLA;
+  quantity: number;
 };
 
 export type TechnicalContact = {
@@ -118,66 +17,165 @@ export type TechnicalContact = {
   email: string;
 };
 
-export enum DistributorProductTypes {
-  virtual = "virtual",
-  physical = "physical",
-  desktop = "desktop",
-}
-
-export enum LTSVersions {
-  jammy = "22.04",
-  focal = "20.04",
-  bionic = "18.04",
-  xenial = "16.04",
-  trusty = "14.04",
-}
-
-export enum Support {
-  none = "none",
-  infra = "essential",
-  full = "advanced",
-}
-
-export enum SLA {
-  none = "none",
-  weekday = "weekday",
-  everyday = "everyday",
-}
-
-export enum Currencies {
-  usd = "USD",
-  gbp = "GBP",
-  eur = "EUR",
-}
-
-export enum Durations {
-  one = "one-year",
-  two = "two-years",
-  three = "three-years",
-}
-export type ProductIDs = `${DistributorProductTypes}-${Support}-${SLA}-${Durations}`;
-
 export type ValidProducts =
-  | "uaia-essential-physical-one-year"
-  | "uaia-essential-physical-two-years"
-  | "uaia-essential-physical-three-years"
-  | "uaia-advanced-physical-one-year"
-  | "uaia-advanced-physical-two-years"
-  | "uaia-advanced-physical-three-years"
-  | "uaia-standard-physical-one-year"
-  | "uaia-standard-physical-two-years"
-  | "uaia-standard-physical-three-years"
-  | "uaia-standard-desktop-one-year"
-  | "uaia-advanced-desktop-two-years"
-  | "uaia-advanced-desktop-three-years"
+  | "Ubuntu Pro-one-year-usd"
+  | "Ubuntu Pro-one-year-gbp"
+  | "Ubuntu Pro-one-year-eur"
+  | "Ubuntu Pro-two-year-usd"
+  | "Ubuntu Pro-two-year-gbp"
+  | "Ubuntu Pro-two-year-eur"
+  | "Ubuntu Pro-three-year-usd"
+  | "Ubuntu Pro-three-year-gbp"
+  | "Ubuntu Pro-three-year-eur"
+  | "Ubuntu Pro + Support (weekday)-one-year-usd"
+  | "Ubuntu Pro + Support (weekday)-one-year-gbp"
+  | "Ubuntu Pro + Support (weekday)-one-year-eur"
+  | "Ubuntu Pro + Support (weekday)-two-year-usd"
+  | "Ubuntu Pro + Support (weekday)-two-year-gbp"
+  | "Ubuntu Pro + Support (weekday)-two-year-eur"
+  | "Ubuntu Pro + Support (weekday)-three-year-usd"
+  | "Ubuntu Pro + Support (weekday)-three-year-gbp"
+  | "Ubuntu Pro + Support (weekday)-three-year-eur"
+  | "Ubuntu Pro + Support (24/7)-one-year-usd"
+  | "Ubuntu Pro + Support (24/7)-one-year-gbp"
+  | "Ubuntu Pro + Support (24/7)-one-year-eur"
+  | "Ubuntu Pro + Support (24/7)-two-year-usd"
+  | "Ubuntu Pro + Support (24/7)-two-year-gbp"
+  | "Ubuntu Pro + Support (24/7)-two-year-eur"
+  | "Ubuntu Pro + Support (24/7)-three-year-usd"
+  | "Ubuntu Pro + Support (24/7)-three-year-gbp"
+  | "Ubuntu Pro + Support (24/7)-three-year-eur"
+  | "Ubuntu Pro + Infra Support (weekday)-one-year-usd"
+  | "Ubuntu Pro + Infra Support (weekday)-one-year-gbp"
+  | "Ubuntu Pro + Infra Support (weekday)-one-year-eur"
+  | "Ubuntu Pro + Infra Support (weekday)-two-year-usd"
+  | "Ubuntu Pro + Infra Support (weekday)-two-year-gbp"
+  | "Ubuntu Pro + Infra Support (weekday)-two-year-eur"
+  | "Ubuntu Pro + Infra Support (weekday)-three-year-usd"
+  | "Ubuntu Pro + Infra Support (weekday)-three-year-gbp"
+  | "Ubuntu Pro + Infra Support (weekday)-three-year-eur"
+  | "Ubuntu Pro + Infra Support (24/7)-one-year-usd"
+  | "Ubuntu Pro + Infra Support (24/7)-one-year-gbp"
+  | "Ubuntu Pro + Infra Support (24/7)-one-year-eur"
+  | "Ubuntu Pro + Infra Support (24/7)-two-year-usd"
+  | "Ubuntu Pro + Infra Support (24/7)-two-year-gbp"
+  | "Ubuntu Pro + Infra Support (24/7)-two-year-eur"
+  | "Ubuntu Pro + Infra Support (24/7)-three-year-usd"
+  | "Ubuntu Pro + Infra Support (24/7)-three-year-gbp"
+  | "Ubuntu Pro + Infra Support (24/7)-three-year-eur"
+  | "Ubuntu Pro - Virtual-one-year-usd"
+  | "Ubuntu Pro - Virtual-one-year-gbp"
+  | "Ubuntu Pro - Virtual-one-year-eur"
+  | "Ubuntu Pro - Virtual-two-year-usd"
+  | "Ubuntu Pro - Virtual-two-year-gbp"
+  | "Ubuntu Pro - Virtual-two-year-eur"
+  | "Ubuntu Pro - Virtual-three-year-usd"
+  | "Ubuntu Pro - Virtual-three-year-gbp"
+  | "Ubuntu Pro - Virtual-three-year-eur"
+  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-usd"
+  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-eur"
+  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-usd"
+  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-eur"
+  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-usd"
+  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-eur"
+  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-usd"
+  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-eur"
+  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-usd"
+  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-eur"
+  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-usd"
+  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-gbp"
+  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-eur"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-usd"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-gbp"
+  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-eur"
+  | "Ubuntu Pro Desktop-one-year-usd"
+  | "Ubuntu Pro Desktop-one-year-gbp"
+  | "Ubuntu Pro Desktop-one-year-eur"
+  | "Ubuntu Pro Desktop-two-year-usd"
+  | "Ubuntu Pro Desktop-two-year-gbp"
+  | "Ubuntu Pro Desktop-two-year-eur"
+  | "Ubuntu Pro Desktop-three-year-usd"
+  | "Ubuntu Pro Desktop-three-year-gbp"
+  | "Ubuntu Pro Desktop-three-year-eur"
+  | "Ubuntu Pro Desktop + Support (weekday)-one-year-usd"
+  | "Ubuntu Pro Desktop + Support (weekday)-one-year-gbp"
+  | "Ubuntu Pro Desktop + Support (weekday)-one-year-eur"
+  | "Ubuntu Pro Desktop + Support (weekday)-two-year-usd"
+  | "Ubuntu Pro Desktop + Support (weekday)-two-year-gbp"
+  | "Ubuntu Pro Desktop + Support (weekday)-two-year-eur"
+  | "Ubuntu Pro Desktop + Support (weekday)-three-year-usd"
+  | "Ubuntu Pro Desktop + Support (weekday)-three-year-gbp"
+  | "Ubuntu Pro Desktop + Support (weekday)-three-year-eur"
+  | "Ubuntu Pro Desktop + Support (24/7)-one-year-usd"
+  | "Ubuntu Pro Desktop + Support (24/7)-one-year-gbp"
+  | "Ubuntu Pro Desktop + Support (24/7)-one-year-eur"
+  | "Ubuntu Pro Desktop + Support (24/7)-two-year-usd"
+  | "Ubuntu Pro Desktop + Support (24/7)-two-year-gbp"
+  | "Ubuntu Pro Desktop + Support (24/7)-two-year-eur"
+  | "Ubuntu Pro Desktop + Support (24/7)-three-year-usd"
+  | "Ubuntu Pro Desktop + Support (24/7)-three-year-gbp"
+  | "Ubuntu Pro Desktop + Support (24/7)-three-year-eur"
   | "no-product";
 
 export type ProductListings = {
   [key in ValidProducts]?: Product;
 };
 
+export enum DistributorProductTypes {
+  physical = "physical",
+  desktop = "desktop",
+  virtual = "virtual",
+}
+
+export enum SLA {
+  none = "none",
+  weekday = "weekday",
+  everyday = "24/7",
+}
+
+export enum Support {
+  none = "none",
+  infra = "Infra Support",
+  full = "Support",
+}
+
+export enum Durations {
+  one = "one-year",
+  two = "two-year",
+  three = "three-year",
+}
+
+export enum Currencies {
+  usd = "usd",
+  gbp = "gbp",
+  eur = "eur",
+}
+
+export type ProductIDs = `${DistributorProductTypes}-${Durations}-${Currencies}`;
+
 export type Product = {
-  longId: string;
+  allowanceMetric: string;
+  bundleQuantity: number;
   name: string;
   duration: Durations;
   price: {
@@ -187,6 +185,8 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
+  productName: string;
+  status: string;
   marketplace: marketplace;
 };
 
@@ -195,32 +195,55 @@ export const formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export const getProduct = (
+export type ValidProductName =
+  | "Ubuntu Pro"
+  | "Ubuntu Pro + Infra Support (weekday)"
+  | "Ubuntu Pro + Infra Support (24/7)"
+  | "Ubuntu Pro + Support (weekday)"
+  | "Ubuntu Pro + Support (24/7)"
+  | "Ubuntu Pro - Virtual"
+  | "Ubuntu Pro + Support (weekday) - Virtual"
+  | "Ubuntu Pro + Support (24/7) - Virtual"
+  | "Ubuntu Pro + Infra Support (weekday) - Virtual"
+  | "Ubuntu Pro + Infra Support (24/7) - Virtual"
+  | "Ubuntu Pro Desktop"
+  | "Ubuntu Pro Desktop + Support (weekday)"
+  | "Ubuntu Pro Desktop + Support (24/7)"
+  | "no-product";
+
+export const getProductName = (
   productType: DistributorProductTypes,
   support: Support,
-  sla: SLA,
-  durations: Durations
-): ValidProducts => {
-  const productKey = `${productType}-${support}-${sla}-${durations}`;
+  sla: SLA
+): ValidProductName => {
+  const productKey = `${productType}-${support}-${sla}`;
   switch (productKey) {
-    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.one}`:
-      return "uaia-essential-physical-one-year";
-    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.two}`:
-      return "uaia-essential-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.three}`:
-      return "uaia-essential-physical-three-years";
-    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.one}`:
-      return "uaia-standard-physical-one-year";
-    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.two}`:
-      return "uaia-standard-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.three}`:
-      return "uaia-standard-physical-three-years";
-    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.none}-${Durations.one}`:
-      return "uaia-advanced-physical-one-year";
-    case `${DistributorProductTypes.physical}-${Support.full}-${SLA}-${Durations.two}`:
-      return "uaia-advanced-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.none}-${Durations.three}`:
-      return "uaia-advanced-physical-three-years";
+    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.weekday}`:
+      return "Ubuntu Pro + Infra Support (weekday)";
+    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.everyday}`:
+      return "Ubuntu Pro + Infra Support (24/7)";
+    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}`:
+      return "Ubuntu Pro";
+    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.weekday}`:
+      return "Ubuntu Pro + Support (weekday)";
+    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.everyday}`:
+      return "Ubuntu Pro + Support (24/7)";
+    case `${DistributorProductTypes.virtual}-${Support.none}-${SLA.none}`:
+      return "Ubuntu Pro - Virtual";
+    case `${DistributorProductTypes.virtual}-${Support.full}-${SLA.weekday}`:
+      return "Ubuntu Pro + Support (weekday) - Virtual";
+    case `${DistributorProductTypes.virtual}-${Support.full}-${SLA.everyday}`:
+      return "Ubuntu Pro + Support (24/7) - Virtual";
+    case `${DistributorProductTypes.virtual}-${Support.infra}-${SLA.weekday}`:
+      return "Ubuntu Pro + Infra Support (weekday) - Virtual";
+    case `${DistributorProductTypes.virtual}-${Support.infra}-${SLA.everyday}`:
+      return "Ubuntu Pro + Infra Support (24/7) - Virtual";
+    case `${DistributorProductTypes.desktop}-${Support.none}-${SLA.none}`:
+      return "Ubuntu Pro Desktop";
+    case `${DistributorProductTypes.desktop}-${Support.full}-${SLA.weekday}`:
+      return "Ubuntu Pro Desktop + Support (weekday)";
+    case `${DistributorProductTypes.desktop}-${Support.full}-${SLA.everyday}`:
+      return "Ubuntu Pro Desktop + Support (24/7)";
     default:
       return "no-product";
   }
