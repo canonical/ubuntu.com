@@ -1,33 +1,25 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
-  LTSVersions,
-  Product,
   DistributorProductTypes as ProductTypes,
-  Durations,
-  SLA,
   Support,
-  SubscriptionList,
+  SLA,
+  Durations,
+  SubscriptionItem,
   Currencies,
+  getProductName,
+  ValidProductName,
 } from "./utils";
 
 interface FormContext {
   productType: ProductTypes;
   setProductType: React.Dispatch<React.SetStateAction<ProductTypes>>;
-  subscriptionList: SubscriptionList[];
-  setSubscriptionList: React.Dispatch<React.SetStateAction<SubscriptionList[]>>;
-  version: LTSVersions;
-  setVersion: React.Dispatch<React.SetStateAction<LTSVersions>>;
-  support: Support;
-  setSLA: React.Dispatch<React.SetStateAction<SLA>>;
-  sla: SLA;
-  setSupport: React.Dispatch<React.SetStateAction<Support>>;
-  quantity: number | string;
-  setQuantity: React.Dispatch<React.SetStateAction<number | string>>;
+  subscriptionList: SubscriptionItem[];
+  setSubscriptionList: React.Dispatch<React.SetStateAction<SubscriptionItem[]>>;
   duration: Durations;
   setDuration: React.Dispatch<React.SetStateAction<Durations>>;
   currency: Currencies;
   setCurrency: React.Dispatch<React.SetStateAction<Currencies>>;
-  product: Product | null;
+  product: ValidProductName[] | null;
 }
 
 export const defaultValues: FormContext = {
@@ -35,14 +27,6 @@ export const defaultValues: FormContext = {
   setProductType: () => {},
   subscriptionList: [],
   setSubscriptionList: () => {},
-  version: LTSVersions.focal,
-  setVersion: () => {},
-  sla: SLA.none,
-  setSLA: () => {},
-  support: Support.none,
-  setSupport: () => {},
-  quantity: 1,
-  setQuantity: () => {},
   duration: Durations.one,
   setDuration: () => {},
   currency: Currencies.usd,
@@ -53,12 +37,8 @@ export const defaultValues: FormContext = {
 export const FormContext = createContext<FormContext>(defaultValues);
 
 interface FormProviderProps {
-  initialSubscriptionList?: SubscriptionList[];
+  initialSubscriptionList?: SubscriptionItem[];
   initialType?: ProductTypes;
-  initialVersion?: LTSVersions;
-  initialSLA?: SLA;
-  initialSupport?: Support;
-  initialQuantity?: number | string;
   initialDuration?: Durations;
   initialCurrency?: Currencies;
   children: React.ReactNode;
@@ -67,10 +47,6 @@ interface FormProviderProps {
 export const FormProvider = ({
   initialSubscriptionList = defaultValues.subscriptionList,
   initialType = defaultValues.productType,
-  initialVersion = defaultValues.version,
-  initialSLA = defaultValues.sla,
-  initialSupport = defaultValues.support,
-  initialQuantity = defaultValues.quantity,
   initialDuration = defaultValues.duration,
   initialCurrency = defaultValues.currency,
   children,
@@ -81,14 +57,10 @@ export const FormProvider = ({
   const localProductType = localStorage.getItem(
     "distributor-selector-productType"
   );
-  const localVersion = localStorage.getItem("distributor-selector-version");
-  const localQuantity = localStorage.getItem("distributor-selector-quantity");
-  const localSupport = localStorage.getItem("distributor-selector-support");
-  const localSLA = localStorage.getItem("distributor-selector-sla");
   const localDuration = localStorage.getItem("distributor-selector-duration");
   const localCurrency = localStorage.getItem("distributor-selector-currency");
 
-  const [subscriptionList, setSubscriptionList] = useState<SubscriptionList[]>(
+  const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
     localSubscriptionList
       ? JSON.parse(localSubscriptionList)
       : initialSubscriptionList
@@ -96,29 +68,26 @@ export const FormProvider = ({
   const [productType, setProductType] = useState<ProductTypes>(
     localProductType ? JSON.parse(localProductType) : initialType
   );
-  const [version, setVersion] = useState<LTSVersions>(
-    localVersion ? JSON.parse(localVersion) : initialVersion
-  );
-  const [sla, setSLA] = useState<SLA>(
-    localSLA ? JSON.parse(localSLA) : initialSLA
-  );
-  const [support, setSupport] = useState<Support>(
-    localSupport ? JSON.parse(localSupport) : initialSupport
-  );
-  const [quantity, setQuantity] = useState(
-    localQuantity ? JSON.parse(localQuantity) : initialQuantity
-  );
   const [duration, setDuration] = useState<Durations>(
     localDuration ? JSON.parse(localDuration) : initialDuration
   );
   const [currency, setCurrency] = useState<Currencies>(
     localCurrency ? JSON.parse(localCurrency) : initialCurrency
   );
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ValidProductName[] | null>(null);
 
   useEffect(() => {
+    const product = subscriptionList.map((subscription) =>
+      getProductName(
+        subscription.type as ProductTypes,
+        subscription.support as Support,
+        subscription.sla as SLA
+      )
+    );
     setProduct(product);
-  }, []);
+  }, [productType, duration, currency, subscriptionList]);
+
+  console.log("product", product);
   return (
     <FormContext.Provider
       value={{
@@ -126,14 +95,6 @@ export const FormProvider = ({
         setSubscriptionList,
         productType,
         setProductType,
-        version,
-        setVersion,
-        sla,
-        setSLA,
-        support,
-        setSupport,
-        quantity,
-        setQuantity,
         duration,
         setDuration,
         product,
