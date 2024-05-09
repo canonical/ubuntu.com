@@ -471,6 +471,10 @@ function formatKeyLabel(key) {
     "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
   );
   formattedKey = formattedKey.replace(
+    "Pro legacy support",
+    "Legacy support (years 11 and 12)"
+  );
+  formattedKey = formattedKey.replace(
     "Microstack esm",
     "Expanded Security Maintenance (ESM)"
   );

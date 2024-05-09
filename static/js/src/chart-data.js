@@ -12,6 +12,12 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
+    startDate: new Date("2024-04-02T00:00:00"),
+    endDate: new Date("2026-04-02T00:00:00"),
+    taskName: "14.04 LTS (Trusty Tahr)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2016-04-01T00:00:00"),
     endDate: new Date("2021-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
@@ -28,6 +34,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2026-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
     status: "MAIN_UNIVERSE",
+  },
+  {
+    startDate: new Date("2026-04-01T00:00:00"),
+    endDate: new Date("2028-04-02T00:00:00"),
+    taskName: "16.04 LTS (Xenial Xerus)",
+    status: "PRO_LEGACY_SUPPORT",
   },
   {
     startDate: new Date("2018-04-01T00:00:00"),
@@ -48,6 +60,12 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
+    startDate: new Date("2028-04-01T00:00:00"),
+    endDate: new Date("2030-04-01T00:00:00"),
+    taskName: "18.04 LTS (Bionic Beaver)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2025-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
@@ -66,6 +84,12 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
+    startDate: new Date("2030-04-01T00:00:00"),
+    endDate: new Date("2032-04-02T00:00:00"),
+    taskName: "20.04 LTS (Focal Fossa)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
@@ -82,6 +106,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2032-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "ESM",
+  },
+  {
+    startDate: new Date("2032-04-01T00:00:00"),
+    endDate: new Date("2034-04-01T00:00:00"),
+    taskName: "22.04 LTS (Jammy Jellyfish)",
+    status: "PRO_LEGACY_SUPPORT",
   },
   {
     startDate: new Date("2023-10-20T00:00:00"),
@@ -106,6 +136,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2034-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "ESM",
+  },
+  {
+    startDate: new Date("2034-04-25T00:00:00"),
+    endDate: new Date("2036-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "PRO_LEGACY_SUPPORT",
   },
 ];
 
@@ -1073,6 +1109,7 @@ export var desktopServerStatus = {
   ESM: "chart__bar--aubergine-light",
   MAIN_UNIVERSE: "chart__bar--aubergine-mid-light",
   INTERIM_RELEASE: "chart__bar--grey",
+  PRO_LEGACY_SUPPORT: "chart__bar--black",
 };
 
 export var kernelStatus = {

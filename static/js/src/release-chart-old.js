@@ -58,7 +58,12 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     })
     .attr("y", 0)
     .attr("transform", function (d) {
-      if (d.status === "MAIN_UNIVERSE" || d.status === "PRO_SUPPORT") {
+      if (
+        d.status === "MAIN_UNIVERSE" ||
+        d.status === "PRO_SUPPORT" ||
+        (d.status === "PRO_LEGACY_SUPPORT" &&
+          d.taskName !== "14.04 LTS (Trusty Tahr)")
+      ) {
         return (
           "translate(" +
           x(d.startDate) +
@@ -69,7 +74,13 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
       }
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
-    .attr("height", function () {
+    .attr("height", function (d) {
+      if (
+        d.status === "PRO_LEGACY_SUPPORT" &&
+        d.taskName !== "14.04 LTS (Trusty Tahr)"
+      ) {
+        return y.bandwidth() * 2;
+      }
       return y.bandwidth();
     })
     .attr("width", function (d) {
@@ -335,6 +346,8 @@ function formatTooltipStatus(key) {
       return "Canonical Kubernetes Expanded Security Maintenance";
     case "canonical_kubernetes_support":
       return "Canonical Kubernetes support";
+    case "pro_legacy_support":
+      return "Legacy support";
     default:
       return null;
   }
@@ -374,6 +387,10 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace(
     "Microstack esm",
     "Expanded Security Maintenance (ESM)"
+  );
+  formattedKey = formattedKey.replace(
+    "Pro legacy support",
+    "Legacy support (years 11 and 12)"
   );
   formattedKey = formattedKey.replace(
     "Pro support",
