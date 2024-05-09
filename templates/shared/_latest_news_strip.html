@@ -1,3 +1,4 @@
+{# djlint: off #}
 <noscript>
   <section class="{% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}">
     <div class="row">
@@ -67,15 +68,15 @@
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
     canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#horizontal-latest-articles",
-      articleTemplateSelector: "#horizontal-articles-template",
-      {% if spotlight %}spotlightContainerSelector: "#spotlight",
-      spotlightTemplateSelector: "#spotlight-template",{% endif %}
-      gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
-      {% if tag_name %}tagId: "{{ tag_id }}",{% endif %}
-      {% if limit %}limit: "{{ limit }}",{% endif %}
-    }
+      {
+        articlesContainerSelector: "#horizontal-latest-articles",
+        articleTemplateSelector: "#horizontal-articles-template",
+        {% if spotlight %}spotlightContainerSelector: "#spotlight",
+        spotlightTemplateSelector: "#spotlight-template",{% endif %}
+        gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
+        {% if tag_name %}tagId: "{{ tag_id }}",{% endif %}
+        {% if limit %}limit: "{{ limit }}",{% endif %}
+      }
     )
-  </script>
+</script>
 </section>
