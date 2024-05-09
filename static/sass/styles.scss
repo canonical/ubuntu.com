@@ -548,6 +548,10 @@ summary {
   color: $color-mid-dark;
 }
 
+.p-list--divided .p-list__item {
+  box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
+}
+
 .p-list--no-borders {
   .p-list__item {
     &::after,
@@ -1670,14 +1674,3 @@ ol.ordered-counter {
     margin-right: 0.25rem;
   }
 }
-
-// .u-has-icon {
-//   padding-left: $sp-x-large;
-//   position: relative;
-
-//   &::before {
-//     left: 0;
-//     position: absolute;
-//     width: $sp-medium;
-//   }
-// }
