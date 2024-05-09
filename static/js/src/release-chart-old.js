@@ -58,7 +58,12 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     })
     .attr("y", 0)
     .attr("transform", function (d) {
-      if (d.status === "MAIN_UNIVERSE" || d.status === "PRO_SUPPORT" || (d.status === "PRO_LEGACY_SUPPORT" && d.taskName!=="14.04 LTS (Trusty Tahr)")){
+      if (
+        d.status === "MAIN_UNIVERSE" ||
+        d.status === "PRO_SUPPORT" ||
+        (d.status === "PRO_LEGACY_SUPPORT" &&
+          d.taskName !== "14.04 LTS (Trusty Tahr)")
+      ) {
         return (
           "translate(" +
           x(d.startDate) +
@@ -70,7 +75,10 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
     .attr("height", function (d) {
-      if(d.status==="PRO_LEGACY_SUPPORT" && d.taskName!=="14.04 LTS (Trusty Tahr)") {
+      if (
+        d.status === "PRO_LEGACY_SUPPORT" &&
+        d.taskName !== "14.04 LTS (Trusty Tahr)"
+      ) {
         return y.bandwidth() * 2;
       }
       return y.bandwidth();

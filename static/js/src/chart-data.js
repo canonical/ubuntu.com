@@ -142,7 +142,7 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2036-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "PRO_LEGACY_SUPPORT",
-  }
+  },
 ];
 
 export var kernelReleases = [
@@ -1151,7 +1151,7 @@ export var desktopServerStatus = {
   ESM: "chart__bar--aubergine-light",
   MAIN_UNIVERSE: "chart__bar--aubergine-mid-light",
   INTERIM_RELEASE: "chart__bar--grey",
-  PRO_LEGACY_SUPPORT: "chart__bar--orange",
+  PRO_LEGACY_SUPPORT: "chart__bar--black",
 };
 
 export var kernelStatus = {
