@@ -1140,15 +1140,14 @@ export var kernelStatusALL = {
 };
 
 export var openStackStatus = {
-  //TECH_PREVIEW: "chart__bar--orange-light",
-  LTS: "chart__bar--orange",
-  MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
+  LTS: "chart__bar--black",
+  MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--mid-dark",
   ESM: "chart__bar--aubergine",
-  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--green",
+  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--aubergine-light",
 };
 
 export var kubernetesStatus = {
-  CANONICAL_KUBERNETES_SUPPORT: "chart__bar--orange",
+  CANONICAL_KUBERNETES_SUPPORT: "chart__bar--black",
   CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
 };
 

@@ -461,7 +461,7 @@ export function createReleaseChartOld(
     }
     containerWidth = closestCol.clientWidth - margin.left;
   }
-  var width = containerWidth - margin.right - margin.left;
+  var width = containerWidth - margin.left;
   var x = d3
     .scaleTime()
     .domain([timeDomainStart, timeDomainEnd])
