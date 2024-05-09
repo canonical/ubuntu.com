@@ -13,7 +13,7 @@
       <h1 class="p-text--small-caps">Celebrating smart innovation</h1>
       <p class="p-heading--1">
         Our customers transform industries
-        <br />
+        <br class="u-hide--small" />
         with Ubuntu Core
       </p>
     </div>
@@ -21,15 +21,15 @@
 
   <section class="p-section">
     <div class="row">
-      <hr />
-      <div class="col-3 col-medium-2">
+      <hr class="u-hide--medium u-hide--small" />
+      <div class="col-3">
         <div class="p-side-navigation--raw-html is-sticky"
              id="drawer"
              style="position: sticky;
                     top: 4rem">
           <a href="#drawer"
              class="p-side-navigation__toggle js-drawer-toggle"
-             aria-controls="drawer">Toggle side navigation</a>
+             aria-controls="drawer">Toggle table of contents</a>
 
           <div class="p-side-navigation__overlay js-drawer-toggle"
                aria-controls="drawer"></div>
@@ -38,7 +38,7 @@
             <div class="p-side-navigation__drawer-header">
               <a href="#"
                  class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                 aria-controls="drawer">Toggle side navigation</a>
+                 aria-controls="drawer">Toggle table of contents</a>
             </div>
 
             <ul>
@@ -59,10 +59,14 @@
           </nav>
         </div>
       </div>
-      <div class="col-9 col-medium-4">
-        <div class="p-section">
+      <div class="col-9">
+        <div id="industrial-iot"
+             class="p-section question-heading"
+             style="scroll-margin-top: 4rem">
+          <h2 class="p-text--small-caps u-hide--large">Industrial IoT</h2>
+          <hr class="p-rule u-hide--large" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/156ddbf8-rexroth_logo.svg",
                             alt="Rexroth",
                             width="127",
@@ -73,9 +77,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2 class="question-heading"
-                    id="industrial-iot"
-                    style="scroll-margin-top: 4rem">Bosch Rexroth reinvents&nbsp;automation</h2>
+                <h3 class="p-heading--2">Bosch Rexroth reinvents&nbsp;automation</h3>
               </div>
               <p>
                 Bosch adopts Ubuntu Core and snaps for app-based ctrl-X industry 4.0 platform. ctrlX AUTOMATION leverages Ubuntu Core, designed for embedded devices, and snaps - the universal Linux application containers - to deliver an open source platform that removes the barriers between machine control, IT and OT.
@@ -98,7 +100,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/0aa9c999-rigado.svg",
                             alt="Rigado",
                             width="184",
@@ -109,7 +111,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>Rigado cuts customers' time to market with Ubuntu Core</h2>
+                <h3 class="p-heading--2">Rigado cuts customers' time to market with Ubuntu Core</h3>
               </div>
               <p>
                 In the fast-paced world of IoT, being able to reduce time-to-market is a priority. Rigado's core mission is to provide scalable and secure infrastructure for their customers' commercial IoT deployments.
@@ -122,7 +124,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/7365803b-Logo_azeti.png",
                             alt="Azeti",
                             width="128",
@@ -132,7 +134,7 @@
               }}
             </div>
             <div class="col-6">
-              <h2>Azeti uses Ubuntu Core to improve deployment and security</h2>
+              <h3 class="p-heading--2">Azeti uses Ubuntu Core to improve deployment and security</h3>
               <blockquote class="p-pull-quote--small">
                 <p class="p-pull-quote__quote">
                   Security is fantastic in Ubuntu Core - it's a self contained system that houses all the libraries. The Ubuntu stack is read only, isolating it from interference from the outside, that's really important for industrial environments, it prevents people from changing anything vital.
@@ -147,7 +149,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/78676842-azlogica.png",
                             alt="Azlogica",
                             width="160",
@@ -158,7 +160,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>AZLOGICA utilise Ubuntu Core for agricultural IoT solutions</h2>
+                <h3 class="p-heading--2">AZLOGICA utilise Ubuntu Core for agricultural IoT solutions</h3>
               </div>
               <p>
                 Learn how Azlogica, a Latin American IoT company, turned to Ubuntu to help their client, Oceanos, to maximise shrimp production and revenues using Ubuntu Core and Dell Edge Gateways.
@@ -171,7 +173,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/0492e7d8-ims-logo.svg",
                             alt="IMS",
                             width="188",
@@ -182,7 +184,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain</h2>
+                <h3 class="p-heading--2">IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain</h3>
               </div>
               <p>
                 IMS Evolve has delivered rapidly scalable IoT Solutions to the world's largest food retailers, from their refrigeration systems to their petrol filling stations. Overall, IMS Evolve’s systems monitor 25 million data points every minute of every day, and manage almost 98,000 sites across 12 countries.
@@ -199,10 +201,13 @@
           </p>
         </div>
         <!-- tab 2 -->
-        <hr class="p-rule" />
         <div class="p-section">
+          <h2 id="robotics"
+              class="p-text--small-caps question-heading"
+              style="scroll-margin-top: 4rem">Robotics</h2>
+          <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/92506599-arx_logo_black.svg",
                             alt="Arx logo",
                             width="150",
@@ -213,11 +218,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2 class="question-heading"
-                    id="robotics"
-                    style="scroll-margin-top: 4rem">
-                  ARX Fit builds the world's most effective and efficient fitness machines
-                </h2>
+                <h3 class="p-heading--2">ARX Fit builds the world's most effective and efficient fitness machines</h3>
               </div>
               <p>
                 When the time came to develop its new line of Adaptive Resistance exercise machines, ARX decided to modernise its software strategy. With its legacy software, ARX struggled to deliver over-the-air (OTA) updates to deployed machines and users had too much control over the Windows-based environment, creating a host of maintenance issues.
@@ -237,7 +238,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/3dd69506-SRC+logo+black+and+white.png",
                             alt="A small robot company",
                             width="64",
@@ -248,7 +249,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>Small Robot Company sows the seeds for autonomous farming</h2>
+                <h3 class="p-heading--2">Small Robot Company sows the seeds for autonomous farming</h3>
               </div>
               <p>
                 In Europe, the cost of running a cereal farm &mdash; cultivating wheat, rice, and other grains &mdash; has risen by 85% in the last 25 years, yet crop yields and revenues have stagnated. And while farms struggle to remain profitable, it won’t be long before those static yields become insufficient to support growing populations.
@@ -261,7 +262,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/33cd9d84-cyberdyne_owler_20200106_095918_original.png",
                             alt="Cyberdyne",
                             width="128",
@@ -272,7 +273,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>Cyberdyne keeps cleaning robots up-to-date in the field with snaps</h2>
+                <h3 class="p-heading--2">Cyberdyne keeps cleaning robots up-to-date in the field with snaps</h3>
               </div>
               <p>
                 As Japan's workforce ages, certain roles are being supported by advanced robots to help bridge the gap. Cyberdyne, a Japanese robotics company, are building such robots and have rolled them out into shopping centres and Tokyo’s two main airports.
@@ -285,7 +286,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/f3c8cf7f-SD-Trademark-RedANDBlue-RGB.png",
                             alt="Smartdrone",
                             width="180",
@@ -296,7 +297,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>SmartDrone fast&ndash;tracks drone infrastructure revolution with Ubuntu Core</h2>
+                <h3 class="p-heading--2">SmartDrone fast&ndash;tracks drone infrastructure revolution with Ubuntu Core</h3>
               </div>
               <p>
                 The number of use cases for industrial drones has grown exponentially over the last couple of years. Being aware of the market potential, SmartDrone decided to take its current surveying and mapping drone solution to the next level.
@@ -313,12 +314,13 @@
           </p>
         </div>
         <!-- tab 3 -->
-        <div class="p-section"
-             id="digital-signage"
-             style="scroll-margin-top: 4rem">
+        <div class="p-section">
+          <h2 id="digital-signage"
+              class="p-text--small-caps question-heading"
+              style="scroll-margin-top: 4rem">Digital signage</h2>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/a182b1e8-Full%20Logo.png",
                             alt="Screenly logo",
                             width="150",
@@ -329,9 +331,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2 class="question-heading"
-                    id="digital-signage"
-                    style="scroll-margin-top: 4rem">Screenly takes the next step in secure screen technology</h2>
+                <h3 class="p-heading--2">Screenly takes the next step in secure screen technology</h3>
               </div>
               <p>
                 With this new business model targeting technical decision makers within high-tier enterprises and large public companies, Screenly knew that its security strategy would face a new level of scrutiny. Fortunately, Screenly was already using Ubuntu Core to power its solutions, providing the security capabilities, hardening and OTA update infrastructure necessary to satisfy the most demanding enterprise buyers.
@@ -354,7 +354,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/ec3429ec-Cinergy-Logo-White.svg",
                             alt="Cinergy",
                             width="196",
@@ -365,7 +365,7 @@
             </div>
             <div class="col-6">
               <div class="p-section--shallow">
-                <h2>Cinergy makes significant digital signage saving with Screenly Pro and Ubuntu Core</h2>
+                <h3 class="p-heading--2">Cinergy makes significant digital signage saving with Screenly Pro and Ubuntu Core</h3>
               </div>
               <p>
                 Cinema entertainment centres (CECs) are an all in one venue incorporating cinemas, restaurants, bowling and other activities such as escape rooms and are a growing market. Find out why they turned to Screenly Pro and Ubuntu Core to help with their content management needs in such a marketing driven business.
@@ -382,10 +382,13 @@
           </p>
         </div>
         <!-- tab 4 -->
-        <div>
+        <div class="p-section">
+          <h2 id="consumer-iot"
+              class="p-text--small-caps question-heading"
+              style="scroll-margin-top: 4rem">Consumer IoT</h2>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/258ac4a1-logo.png",
                             alt="Fing",
                             width="126",
@@ -395,9 +398,7 @@
               }}
             </div>
             <div class="col-6">
-              <h2 id="consumer-iot"
-                  class="question-heading"
-                  style="scroll-margin-top: 4rem">Future-proofing Fingbox, the home network monitoring device</h2>
+              <h3 class="p-heading--2">Future-proofing Fingbox, the home network monitoring device</h3>
               <p>
                 Fing App is a network scanning and troubleshooting tool used by millions. Fingbox is a complementary hardware device which plugs into Wi-Fi routers to monitor, secure and troubleshoot networks and their connected devices. Fing's engineering team built Fingbox using Ubuntu Core and Snaps to speed up development time, save on budget and resources, and to ensure a future-proof product went to market.
               </p>
@@ -416,7 +417,7 @@
           </div>
           <hr class="p-rule" />
           <div class="row p-section--shallow">
-            <div class="col-3 p-image-wrapper u-hide--medium u-hide--small">
+            <div class="col-3 p-image-wrapper">
               {{ image(url="https://assets.ubuntu.com/v1/84d82478-domotz.svg",
                             alt="Domotz",
                             width="154",
@@ -426,7 +427,7 @@
               }}
             </div>
             <div class="col-6">
-              <h2>How Domotz streamlined provisioning of IoT devices</h2>
+              <h3 class="p-heading--2">How Domotz streamlined provisioning of IoT devices</h3>
               <blockquote class="p-pull-quote--small">
                 <p class="p-pull-quote__quote">
                   I absolutely believe that Ubuntu Core and snaps give us a competitive advantage. We are the only company in the IoT network management space that can guarantee a secure, always-up-to-date device for our customers’ on-premises deployments.
