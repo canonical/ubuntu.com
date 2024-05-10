@@ -396,7 +396,7 @@ function formatKeyLabel(key) {
     "Pro support",
     "Ubuntu Pro + Support coverage"
   );
-  formattedKey = formattedKey.replace("Hwe", "Hardware Enablement (HWE)");
+  formattedKey = formattedKey.replace("Hwe", "HWE: Hardware Enablement");
   return formattedKey;
 }
 
