@@ -1104,7 +1104,7 @@ export var microStackReleases = [
 ];
 
 export var desktopServerStatus = {
-  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--black",
+  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
   ESM: "chart__bar--aubergine-light",
   MAIN_UNIVERSE: "chart__bar--aubergine-mid-light",
