@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  ChannelProduct,
   DistributorProductTypes as ProductTypes,
   Support,
   SLA,
@@ -7,6 +8,7 @@ import {
   SubscriptionItem,
   Currencies,
   getProductName,
+  getProducID,
   ValidProductName,
 } from "./utils";
 
@@ -19,7 +21,7 @@ interface FormContext {
   setDuration: React.Dispatch<React.SetStateAction<Durations>>;
   currency: Currencies;
   setCurrency: React.Dispatch<React.SetStateAction<Currencies>>;
-  product: ValidProductName[] | null;
+  products: ChannelProduct[] | null;
 }
 
 export const defaultValues: FormContext = {
@@ -31,7 +33,7 @@ export const defaultValues: FormContext = {
   setDuration: () => {},
   currency: Currencies.usd,
   setCurrency: () => {},
-  product: null,
+  products: null,
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -74,18 +76,28 @@ export const FormProvider = ({
   const [currency, setCurrency] = useState<Currencies>(
     localCurrency ? JSON.parse(localCurrency) : initialCurrency
   );
-  const [product, setProduct] = useState<ValidProductName[] | null>(null);
+  const [products, setProducts] = useState<ChannelProduct[] | null>(null);
 
   useEffect(() => {
-    const product = subscriptionList.map((subscription) =>
-      getProductName(
-        subscription.type as ProductTypes,
-        subscription.support as Support,
-        subscription.sla as SLA
-      )
+    const productNames: ValidProductName[] = subscriptionList.map(
+      (subscription) =>
+        getProductName(
+          subscription.type as ProductTypes,
+          subscription.support as Support,
+          subscription.sla as SLA
+        )
     );
-    setProduct(product);
-  }, [productType, duration, currency, subscriptionList]);
+    const validproducts: string[] = productNames.map(
+      (productName: ValidProductName) => {
+        return `${getProducID(productName)}-channel-${duration}-${currency}`;
+      }
+    );
+    setProducts(
+      validproducts?.map((validproduct) => {
+        return window.channelProductList[validproduct];
+      })
+    );
+  }, [duration, currency, subscriptionList]);
 
   return (
     <FormContext.Provider
@@ -96,9 +108,9 @@ export const FormProvider = ({
         setProductType,
         duration,
         setDuration,
-        product,
         currency,
         setCurrency,
+        products,
       }}
     >
       {children}
