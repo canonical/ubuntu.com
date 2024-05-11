@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
 import { Offer as OfferType } from "../../../../offers/types";
-import { currencyFormatter } from "advantage/react/utils";
 import PaymentButton from "../PaymentButton";
+import { FormContext } from "advantage/distributor/utils/FormContext";
+import { currencyFormatter } from "advantage/distributor/utils/utils";
 type Prop = {
   offer: OfferType;
 };
 
 const DistributorShopSummary = ({ offer }: Prop) => {
-  const { total, discount } = offer;
+  const { discount } = offer;
+  const { products, currency } = useContext(FormContext);
+
+  const total = Number(
+    products?.reduce(
+      (total, product) => Number(total) + Number(product.price.value),
+      0
+    )
+  );
 
   return (
     <>
@@ -30,7 +39,9 @@ const DistributorShopSummary = ({ offer }: Prop) => {
           <hr />
           <Col size={4}>
             <p className="p-heading--2" data-testid="summary-product-name">
-              {currencyFormatter.format((total ?? 0) / 100)}
+              {currency
+                ? currencyFormatter(currency).format((total ?? 0) / 100)
+                : 0}
             </p>
           </Col>
           <Col size={6}>
@@ -43,7 +54,7 @@ const DistributorShopSummary = ({ offer }: Prop) => {
           <Col size={2} className="u-align--right">
             <p className="p-heading--2">
               {discount &&
-                currencyFormatter.format(
+                currencyFormatter(currency).format(
                   (total - total * (discount / 100)) / 100
                 )}
             </p>{" "}

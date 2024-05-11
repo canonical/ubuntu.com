@@ -4,7 +4,6 @@ const useGetChannelOffersList = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["channelOffers"],
     async () => {
-      console.log("window.location.search", window.location.search);
       const response = await fetch(
         `/pro/channel-offers.json${window.location.search}`,
         {

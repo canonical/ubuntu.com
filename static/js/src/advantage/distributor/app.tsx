@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Distributor from "./Distributor";
 import DistributorShop from "./DistributorShop";
 import { FormProvider } from "./utils/FormContext";
-import { ProductListings } from "./utils/utils";
+import { ProductListings, mockProducList } from "./utils/utils";
 
 const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -26,6 +26,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+window.channelProductList = mockProducList;
 
 declare global {
   interface Window {
