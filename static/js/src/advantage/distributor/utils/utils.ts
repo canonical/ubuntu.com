@@ -1,3 +1,4 @@
+import { ExternalId } from "advantage/offers/types";
 import { marketplace } from "advantage/subscribe/checkout/utils/types";
 
 export function generateUniqueId() {
@@ -18,128 +19,124 @@ export type TechnicalContact = {
 };
 
 export type ValidProducts =
-  | "Ubuntu Pro-one-year-usd"
-  | "Ubuntu Pro-one-year-gbp"
-  | "Ubuntu Pro-one-year-eur"
-  | "Ubuntu Pro-two-year-usd"
-  | "Ubuntu Pro-two-year-gbp"
-  | "Ubuntu Pro-two-year-eur"
-  | "Ubuntu Pro-three-year-usd"
-  | "Ubuntu Pro-three-year-gbp"
-  | "Ubuntu Pro-three-year-eur"
-  | "Ubuntu Pro + Support (weekday)-one-year-usd"
-  | "Ubuntu Pro + Support (weekday)-one-year-gbp"
-  | "Ubuntu Pro + Support (weekday)-one-year-eur"
-  | "Ubuntu Pro + Support (weekday)-two-year-usd"
-  | "Ubuntu Pro + Support (weekday)-two-year-gbp"
-  | "Ubuntu Pro + Support (weekday)-two-year-eur"
-  | "Ubuntu Pro + Support (weekday)-three-year-usd"
-  | "Ubuntu Pro + Support (weekday)-three-year-gbp"
-  | "Ubuntu Pro + Support (weekday)-three-year-eur"
-  | "Ubuntu Pro + Support (24/7)-one-year-usd"
-  | "Ubuntu Pro + Support (24/7)-one-year-gbp"
-  | "Ubuntu Pro + Support (24/7)-one-year-eur"
-  | "Ubuntu Pro + Support (24/7)-two-year-usd"
-  | "Ubuntu Pro + Support (24/7)-two-year-gbp"
-  | "Ubuntu Pro + Support (24/7)-two-year-eur"
-  | "Ubuntu Pro + Support (24/7)-three-year-usd"
-  | "Ubuntu Pro + Support (24/7)-three-year-gbp"
-  | "Ubuntu Pro + Support (24/7)-three-year-eur"
-  | "Ubuntu Pro + Infra Support (weekday)-one-year-usd"
-  | "Ubuntu Pro + Infra Support (weekday)-one-year-gbp"
-  | "Ubuntu Pro + Infra Support (weekday)-one-year-eur"
-  | "Ubuntu Pro + Infra Support (weekday)-two-year-usd"
-  | "Ubuntu Pro + Infra Support (weekday)-two-year-gbp"
-  | "Ubuntu Pro + Infra Support (weekday)-two-year-eur"
-  | "Ubuntu Pro + Infra Support (weekday)-three-year-usd"
-  | "Ubuntu Pro + Infra Support (weekday)-three-year-gbp"
-  | "Ubuntu Pro + Infra Support (weekday)-three-year-eur"
-  | "Ubuntu Pro + Infra Support (24/7)-one-year-usd"
-  | "Ubuntu Pro + Infra Support (24/7)-one-year-gbp"
-  | "Ubuntu Pro + Infra Support (24/7)-one-year-eur"
-  | "Ubuntu Pro + Infra Support (24/7)-two-year-usd"
-  | "Ubuntu Pro + Infra Support (24/7)-two-year-gbp"
-  | "Ubuntu Pro + Infra Support (24/7)-two-year-eur"
-  | "Ubuntu Pro + Infra Support (24/7)-three-year-usd"
-  | "Ubuntu Pro + Infra Support (24/7)-three-year-gbp"
-  | "Ubuntu Pro + Infra Support (24/7)-three-year-eur"
-  | "Ubuntu Pro - Virtual-one-year-usd"
-  | "Ubuntu Pro - Virtual-one-year-gbp"
-  | "Ubuntu Pro - Virtual-one-year-eur"
-  | "Ubuntu Pro - Virtual-two-year-usd"
-  | "Ubuntu Pro - Virtual-two-year-gbp"
-  | "Ubuntu Pro - Virtual-two-year-eur"
-  | "Ubuntu Pro - Virtual-three-year-usd"
-  | "Ubuntu Pro - Virtual-three-year-gbp"
-  | "Ubuntu Pro - Virtual-three-year-eur"
-  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-usd"
-  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (weekday)-one-year-eur"
-  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-usd"
-  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-eur"
-  | "Ubuntu Pro - Virtual + Support (weekday)-two-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-usd"
-  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (weekday)-three-year-eur"
-  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-usd"
-  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (24/7)-one-year-eur"
-  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-usd"
-  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (24/7)-two-year-eur"
-  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-usd"
-  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-gbp"
-  | "Ubuntu Pro - Virtual + Support (24/7)-three-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-one-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-two-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (weekday)-three-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-one-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-two-year-eur"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-usd"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-gbp"
-  | "Ubuntu Pro - Virtual + Infra Support (24/7)-three-year-eur"
-  | "Ubuntu Pro Desktop-one-year-usd"
-  | "Ubuntu Pro Desktop-one-year-gbp"
-  | "Ubuntu Pro Desktop-one-year-eur"
-  | "Ubuntu Pro Desktop-two-year-usd"
-  | "Ubuntu Pro Desktop-two-year-gbp"
-  | "Ubuntu Pro Desktop-two-year-eur"
-  | "Ubuntu Pro Desktop-three-year-usd"
-  | "Ubuntu Pro Desktop-three-year-gbp"
-  | "Ubuntu Pro Desktop-three-year-eur"
-  | "Ubuntu Pro Desktop + Support (weekday)-one-year-usd"
-  | "Ubuntu Pro Desktop + Support (weekday)-one-year-gbp"
-  | "Ubuntu Pro Desktop + Support (weekday)-one-year-eur"
-  | "Ubuntu Pro Desktop + Support (weekday)-two-year-usd"
-  | "Ubuntu Pro Desktop + Support (weekday)-two-year-gbp"
-  | "Ubuntu Pro Desktop + Support (weekday)-two-year-eur"
-  | "Ubuntu Pro Desktop + Support (weekday)-three-year-usd"
-  | "Ubuntu Pro Desktop + Support (weekday)-three-year-gbp"
-  | "Ubuntu Pro Desktop + Support (weekday)-three-year-eur"
-  | "Ubuntu Pro Desktop + Support (24/7)-one-year-usd"
-  | "Ubuntu Pro Desktop + Support (24/7)-one-year-gbp"
-  | "Ubuntu Pro Desktop + Support (24/7)-one-year-eur"
-  | "Ubuntu Pro Desktop + Support (24/7)-two-year-usd"
-  | "Ubuntu Pro Desktop + Support (24/7)-two-year-gbp"
-  | "Ubuntu Pro Desktop + Support (24/7)-two-year-eur"
-  | "Ubuntu Pro Desktop + Support (24/7)-three-year-usd"
-  | "Ubuntu Pro Desktop + Support (24/7)-three-year-gbp"
-  | "Ubuntu Pro Desktop + Support (24/7)-three-year-eur"
+  | "uaia-essential-physical-channel-one-year-usd"
+  | "uaia-essential-physical-channel-one-year-gbp"
+  | "uaia-essential-physical-channel-one-year-eur"
+  | "uaia-essential-physical-channel-two-year-usd"
+  | "uaia-essential-physical-channel-two-year-gbp"
+  | "uaia-essential-physical-channel-two-year-eur"
+  | "uaia-essential-physical-channel-three-year-usd"
+  | "uaia-essential-physical-channel-three-year-gbp"
+  | "uaia-essential-physical-channel-three-year-eur"
+  | "uaia-standard-physical-channel-one-year-usd"
+  | "uaia-standard-physical-channel-one-year-gbp"
+  | "uaia-standard-physical-channel-one-year-eur"
+  | "uaia-standard-physical-channel-two-year-usd"
+  | "uaia-standard-physical-channel-two-year-gbp"
+  | "uaia-standard-physical-channel-two-year-eur"
+  | "uaia-standard-physical-channel-three-year-usd"
+  | "uaia-standard-physical-channel-three-year-gbp"
+  | "uaia-standard-physical-channel-three-year-eur"
+  | "uaia-advanced-physical-channel-one-year-usd"
+  | "uaia-advanced-physical-channel-one-year-gbp"
+  | "uaia-advanced-physical-channel-one-year-eur"
+  | "uaia-advanced-physical-channel-two-year-usd"
+  | "uaia-advanced-physical-channel-two-year-gbp"
+  | "uaia-advanced-physical-channel-two-year-eur"
+  | "uaia-advanced-physical-channel-three-year-usd"
+  | "uaia-advanced-physical-channel-three-year-gbp"
+  | "uaia-advanced-physical-channel-three-year-eur"
+  | "uio-standard-physical-channel-one-year-usd"
+  | "uio-standard-physical-channel-one-year-gbp"
+  | "uio-standard-physical-channel-one-year-eur"
+  | "uio-standard-physical-channel-two-year-usd"
+  | "uio-standard-physical-channel-two-year-gbp"
+  | "uio-standard-physical-channel-two-year-eur"
+  | "uio-standard-physical-channel-three-year-usd"
+  | "uio-standard-physical-channel-three-year-gbp"
+  | "uio-standard-physical-channel-three-year-eur"
+  | "uio-advanced-physical-channel-one-year-usd"
+  | "uio-advanced-physical-channel-one-year-gbp"
+  | "uio-advanced-physical-channel-one-year-eur"
+  | "uio-advanced-physical-channel-two-year-usd"
+  | "uio-advanced-physical-channel-two-year-gbp"
+  | "uio-advanced-physical-channel-two-year-eur"
+  | "uio-advanced-physical-channel-three-year-usd"
+  | "uio-advanced-physical-channel-three-year-gbp"
+  | "uio-advanced-physical-channel-three-year-eur"
+  | "uaia-essential-virtual-channel-one-year-usd"
+  | "uaia-essential-virtual-channel-one-year-gbp"
+  | "uaia-essential-virtual-channel-one-year-eur"
+  | "uaia-essential-virtual-channel-two-year-usd"
+  | "uaia-essential-virtual-channel-two-year-gbp"
+  | "uaia-essential-virtual-channel-two-year-eur"
+  | "uaia-essential-virtual-channel-three-year-usd"
+  | "uaia-essential-virtual-channel-three-year-gbp"
+  | "uaia-essential-virtual-channel-three-year-eur"
+  | "uaia-standard-virtual-channel-one-year-usd"
+  | "uaia-standard-virtual-channel-one-year-gbp"
+  | "uaia-standard-virtual-channel-one-year-eur"
+  | "uaia-standard-virtual-channel-two-year-usd"
+  | "uaia-standard-virtual-channel-two-year-eur"
+  | "uaia-standard-virtual-channel-two-year-gbp"
+  | "uaia-standard-virtual-channel-three-year-usd"
+  | "uaia-standard-virtual-channel-three-year-gbp"
+  | "uaia-standard-virtual-channel-three-year-eur"
+  | "uaia-advanced-virtual-channel-one-year-usd"
+  | "uaia-advanced-virtual-channel-one-year-gbp"
+  | "uaia-advanced-virtual-channel-one-year-eur"
+  | "uaia-advanced-virtual-channel-two-year-usd"
+  | "uaia-advanced-virtual-channel-two-year-gbp"
+  | "uaia-advanced-virtual-channel-two-year-eur"
+  | "uaia-advanced-virtual-channel-three-year-usd"
+  | "uaia-advanced-virtual-channel-three-year-gbp"
+  | "uaia-advanced-virtual-channel-three-year-eur"
+  | "uio-standard-virtual-channel-one-year-usd"
+  | "uio-standard-virtual-channel-one-year-gbp"
+  | "uio-standard-virtual-channel-one-year-eur"
+  | "uio-standard-virtual-channel-two-year-usd"
+  | "uio-standard-virtual-channel-two-year-gbp"
+  | "uio-standard-virtual-channel-two-year-eur"
+  | "uio-standard-virtual-channel-three-year-usd"
+  | "uio-standard-virtual-channel-three-year-gbp"
+  | "uio-standard-virtual-channel-three-year-eur"
+  | "uio-advanced-virtual-channel-one-year-usd"
+  | "uio-advanced-virtual-channel-one-year-gbp"
+  | "uio-advanced-virtual-channel-one-year-eur"
+  | "uio-advanced-virtual-channel-two-year-usd"
+  | "uio-advanced-virtual-channel-two-year-gbp"
+  | "uio-advanced-virtual-channel-two-year-eur"
+  | "uio-advanced-virtual-channel-three-year-usd"
+  | "uio-advanced-virtual-channel-three-year-gbp"
+  | "uio-advanced-virtual-channel-three-year-eur"
+  | "uai-essential-desktop-channel-one-year-usd"
+  | "uai-essential-desktop-channel-one-year-gbp"
+  | "uai-essential-desktop-channel-one-year-eur"
+  | "uai-essential-desktop-channel-two-year-usd"
+  | "uai-essential-desktop-channel-two-year-gbp"
+  | "uai-essential-desktop-channel-two-year-eur"
+  | "uai-essential-desktop-channel-three-year-usd"
+  | "uai-essential-desktop-channel-three-year-gbp"
+  | "uai-essential-desktop-channel-three-year-eur"
+  | "uai-standard-desktop-channel-one-year-usd"
+  | "uai-standard-desktop-channel-one-year-gbp"
+  | "uai-standard-desktop-channel-one-year-eur"
+  | "uai-standard-desktop-channel-two-year-usd"
+  | "uai-standard-desktop-channel-two-year-gbp"
+  | "uai-standard-desktop-channel-two-year-eur"
+  | "uai-standard-desktop-channel-three-year-usd"
+  | "uai-standard-desktop-channel-three-year-gbp"
+  | "uai-standard-desktop-channel-three-year-eur"
+  | "uai-advanced-desktop-channel-one-year-usd"
+  | "uai-advanced-desktop-channel-one-year-gbp"
+  | "uai-advanced-desktop-channel-one-year-eur"
+  | "uai-advanced-desktop-channel-two-year-usd"
+  | "uai-advanced-desktop-channel-two-year-gbp"
+  | "uai-advanced-desktop-channel-two-year-eur"
+  | "uai-advanced-desktop-channel-three-year-usd"
+  | "uai-advanced-desktop-channel-three-year-gbp"
+  | "uai-advanced-desktop-channel-three-year-eur"
   | "no-product";
-
-export type ProductListings = {
-  [key in ValidProducts]?: Product;
-};
 
 export enum DistributorProductTypes {
   physical = "physical",
@@ -171,29 +168,40 @@ export enum Currencies {
   eur = "eur",
 }
 
-export type ProductIDs = `${DistributorProductTypes}-${Durations}-${Currencies}`;
+export type ProductListings = Record<string, ChannelProduct>;
 
-export type Product = {
-  allowanceMetric: string;
-  bundleQuantity: number;
-  name: string;
-  duration: Durations;
+export type ChannelProduct = {
+  allowanceMetric?: string;
+  bundleQuantity?: number;
+  createdAt?: string;
+  effectiveDays?: number;
+  externalIDs?: ExternalId;
+  externalMarketplaceIDs?: ExternalId;
+  externalPricingID?: ExternalId;
+  id?: string;
+  lastModifiedAt?: string;
+  marketplace?: marketplace;
+  metadata?: {
+    key: string;
+    value: string;
+  };
+  name: ValidProducts;
+  period?: string;
   price: {
     value: number;
     currency: string;
   };
-  private: boolean;
-  id: ProductIDs;
-  productID: string;
-  productName: string;
-  status: string;
-  marketplace: marketplace;
+  productID: ValidProductID;
+  productName: ValidProductName;
+  status?: string;
 };
 
-export const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+export const currencyFormatter = (currency: Currencies) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency.toUpperCase(),
+  });
+};
 
 export type ValidProductName =
   | "Ubuntu Pro"
@@ -209,6 +217,22 @@ export type ValidProductName =
   | "Ubuntu Pro Desktop"
   | "Ubuntu Pro Desktop + Support (weekday)"
   | "Ubuntu Pro Desktop + Support (24/7)"
+  | "no-product";
+
+export type ValidProductID =
+  | "uaia-essential-physical"
+  | "uio-standard-physical"
+  | "uio-advanced-physical"
+  | "uaia-standard-physical"
+  | "uaia-advanced-physical"
+  | "uaia-essential-virtual"
+  | "uaia-standard-virtual"
+  | "uaia-advanced-virtual"
+  | "uio-standard-virtual"
+  | "uio-advanced-virtual"
+  | "uai-essential-desktop"
+  | "uai-standard-desktop"
+  | "uai-advanced-desktop"
   | "no-product";
 
 export const getProductName = (
@@ -249,9 +273,122 @@ export const getProductName = (
   }
 };
 
-export const getLabel = (
-  toFind: string,
-  array: { label: string; value: string }[]
-) => {
-  return array.find((element) => element.value === toFind)?.label;
+export const getProducID = (productName: ValidProductName): ValidProductID => {
+  const responseMap: Record<ValidProductName, ValidProductID> = {
+    "Ubuntu Pro": "uaia-essential-physical",
+    "Ubuntu Pro + Infra Support (weekday)": "uio-standard-physical",
+    "Ubuntu Pro + Infra Support (24/7)": "uio-advanced-physical",
+    "Ubuntu Pro + Support (weekday)": "uaia-standard-physical",
+    "Ubuntu Pro + Support (24/7)": "uaia-advanced-physical",
+    "Ubuntu Pro - Virtual": "uaia-essential-virtual",
+    "Ubuntu Pro + Support (weekday) - Virtual": "uaia-standard-virtual",
+    "Ubuntu Pro + Support (24/7) - Virtual": "uaia-advanced-virtual",
+    "Ubuntu Pro + Infra Support (weekday) - Virtual": "uio-standard-virtual",
+    "Ubuntu Pro + Infra Support (24/7) - Virtual": "uio-advanced-virtual",
+    "Ubuntu Pro Desktop": "uai-essential-desktop",
+    "Ubuntu Pro Desktop + Support (weekday)": "uai-standard-desktop",
+    "Ubuntu Pro Desktop + Support (24/7)": "uai-advanced-desktop",
+    "no-product": "no-product",
+  };
+
+  return responseMap[productName] || "no-product";
 };
+
+export const getPrice = (productId: ValidProductID) => {
+  const responseMap: Record<ValidProductID, number> = {
+    "uai-essential-desktop": 2500,
+    "uai-standard-desktop": 15000,
+    "uai-advanced-desktop": 30000,
+    "uaia-essential-physical": 50000,
+    "uio-advanced-physical": 177500,
+    "uio-standard-physical": 88500,
+    "uaia-advanced-physical": 340000,
+    "uaia-standard-physical": 170000,
+    "uaia-essential-virtual": 16700,
+    "uio-advanced-virtual": 59200,
+    "uio-standard-virtual": 29500,
+    "uaia-advanced-virtual": 113300,
+    "uaia-standard-virtual": 56700,
+    "no-product": 0,
+  };
+  return responseMap[productId] || 0;
+};
+
+export const mockProductNames: ValidProductName[] = [
+  "Ubuntu Pro",
+  "Ubuntu Pro + Infra Support (weekday)",
+  "Ubuntu Pro + Infra Support (24/7)",
+  "Ubuntu Pro + Support (weekday)",
+  "Ubuntu Pro + Support (24/7)",
+  "Ubuntu Pro - Virtual",
+  "Ubuntu Pro + Support (weekday) - Virtual",
+  "Ubuntu Pro + Support (24/7) - Virtual",
+  "Ubuntu Pro + Infra Support (weekday) - Virtual",
+  "Ubuntu Pro + Infra Support (24/7) - Virtual",
+  "Ubuntu Pro Desktop",
+  "Ubuntu Pro Desktop + Support (weekday)",
+  "Ubuntu Pro Desktop + Support (24/7)",
+];
+
+const mockCurrencies: Currencies[] = [
+  Currencies.eur,
+  Currencies.gbp,
+  Currencies.usd,
+];
+const mockDurations: Durations[] = [
+  Durations.one,
+  Durations.two,
+  Durations.three,
+];
+const generateProductList = (
+  productNames: ValidProductName[],
+  currencies: Currencies[],
+  durations: Durations[]
+) => {
+  const allList: ProductListings = {};
+
+  for (const productName of productNames) {
+    if (productName !== "no-product") {
+      for (const currency of currencies) {
+        for (const duration of durations) {
+          const durationsNumber =
+            duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
+          const productID = getProducID(productName);
+          const name = `${getProducID(
+            productName
+          )}-channel-${duration}-${currency}` as ValidProducts;
+          const value = Number(
+            converCurrency(currency, getPrice(getProducID(productName))) *
+              durationsNumber
+          );
+
+          allList[name] = {
+            productName: productName,
+            productID: productID,
+            name: name,
+            price: { currency: currency.toUpperCase(), value },
+          };
+        }
+      }
+    }
+  }
+  return allList;
+};
+
+function converCurrency(currency: Currencies, price: number): number {
+  const usdToGbp = 0.72;
+  const usdToEur = 0.85;
+  if (currency === Currencies.gbp) {
+    return price * usdToGbp;
+  } else if (currency === Currencies.eur) {
+    return price * usdToEur;
+  } else {
+    return price;
+  }
+}
+
+export const mockProducList = generateProductList(
+  mockProductNames,
+  mockCurrencies,
+  mockDurations
+);
