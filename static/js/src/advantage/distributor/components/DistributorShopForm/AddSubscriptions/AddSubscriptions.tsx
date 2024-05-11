@@ -44,8 +44,7 @@ const AddSubscriptions = () => {
       JSON.stringify([...subscriptionList, subscriptionItem])
     );
   };
-
-  const products = [
+  const subscriptionTypes = [
     { label: "Ubuntu Pro Physical", value: ProductTypes.physical },
     { label: "Ubuntu Pro Desktop", value: ProductTypes.desktop },
     { label: "Ubuntu Pro Virtual", value: ProductTypes.virtual },
@@ -72,11 +71,11 @@ const AddSubscriptions = () => {
                 name="subscription-select"
                 defaultValue={productType}
                 options={
-                  products &&
-                  products.map((product) => {
+                  subscriptionTypes &&
+                  subscriptionTypes.map((subscriptionType) => {
                     return {
-                      label: product.label,
-                      value: product.value,
+                      label: subscriptionType.label,
+                      value: subscriptionType.value,
                     };
                   })
                 }

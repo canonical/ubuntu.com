@@ -3,26 +3,48 @@ import { Chip, Col, Row } from "@canonical/react-components";
 import { Offer as OfferType } from "../../../../offers/types";
 import PaymentButton from "../PaymentButton";
 import { FormContext } from "advantage/distributor/utils/FormContext";
-import { currencyFormatter } from "advantage/distributor/utils/utils";
+import {
+  ChannelProduct,
+  SubscriptionItem,
+  currencyFormatter,
+  getProductName,
+} from "advantage/distributor/utils/utils";
 type Prop = {
   offer: OfferType;
 };
 
 const DistributorShopSummary = ({ offer }: Prop) => {
   const { discount } = offer;
-  const { products, currency } = useContext(FormContext);
+  const { products, currency, subscriptionList } = useContext(FormContext);
 
-  const total = Number(
-    products?.reduce(
-      (total, product) => Number(total) + Number(product.price.value),
-      0
-    )
-  );
+  let totalPrice = 0;
+
+  subscriptionList?.forEach((subscription: SubscriptionItem) => {
+    totalPrice +=
+      products?.reduce((total: number, product: ChannelProduct | undefined) => {
+        if (subscription && product) {
+          const productName = getProductName(
+            subscription.type,
+            subscription.support,
+            subscription.sla
+          );
+          if (
+            productName === product?.productName &&
+            product.price?.value !== undefined
+          ) {
+            const productTotalPrice =
+              subscription.quantity * product.price.value;
+            return total + productTotalPrice;
+          }
+        }
+        return total;
+      }, 0) || 0;
+  });
 
   return (
     <>
       <section
-        className="p-strip--light is-shallow p-shop-cart u-hide--small u-hide--medium"
+        className="p-strip--light is-shallow p-shop-cart"
         id="summary-section"
         data-testid="summary-section"
       >
@@ -40,7 +62,7 @@ const DistributorShopSummary = ({ offer }: Prop) => {
           <Col size={4}>
             <p className="p-heading--2" data-testid="summary-product-name">
               {currency
-                ? currencyFormatter(currency).format((total ?? 0) / 100)
+                ? currencyFormatter(currency).format((totalPrice ?? 0) / 100)
                 : 0}
             </p>
           </Col>
@@ -55,7 +77,7 @@ const DistributorShopSummary = ({ offer }: Prop) => {
             <p className="p-heading--2">
               {discount &&
                 currencyFormatter(currency).format(
-                  (total - total * (discount / 100)) / 100
+                  (totalPrice - totalPrice * (discount / 100)) / 100
                 )}
             </p>{" "}
             <p className="p-text--small">

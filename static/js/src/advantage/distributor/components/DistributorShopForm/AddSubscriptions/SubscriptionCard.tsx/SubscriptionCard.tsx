@@ -14,13 +14,18 @@ import {
   SLA as SLAEnum,
   SubscriptionItem,
   Support as SupportEnum,
+  getProductName,
+  currencyFormatter,
+  Currencies,
 } from "../../../../utils/utils";
 
 type Prop = {
   subscription: SubscriptionItem;
 };
 const SubscriptionCard = ({ subscription }: Prop) => {
-  const { subscriptionList, setSubscriptionList } = useContext(FormContext);
+  const { subscriptionList, setSubscriptionList, products } = useContext(
+    FormContext
+  );
 
   const handleRemoveSubscription = (subscriptionId: string) => {
     const updatedList = subscriptionList.filter(
@@ -43,6 +48,13 @@ const SubscriptionCard = ({ subscription }: Prop) => {
         return "Ubuntu Pro Virtual";
     }
   };
+  const price = products?.filter(
+    (product) =>
+      product.productName ===
+      getProductName(subscription.type, subscription.support, subscription.sla)
+  )?.[0]?.price;
+  const priceCurrency = price?.currency as Currencies;
+  const priceValue = price?.value as number;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;
@@ -175,7 +187,15 @@ const SubscriptionCard = ({ subscription }: Prop) => {
               style={{ minWidth: "unset", width: "4rem" }}
               aria-label="number of machines"
             />
-            <p className="u-text--muted"> $price / year per machine</p>
+            <p className="u-text--muted">
+              {" "}
+              {priceCurrency
+                ? currencyFormatter(priceCurrency).format(
+                    (priceValue ?? 0) / 100
+                  )
+                : 0}{" "}
+              / year per machine
+            </p>
           </Col>
         </Row>
       </Card>
