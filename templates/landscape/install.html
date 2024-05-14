@@ -405,7 +405,7 @@ sudo postconf -e smtp_sasl_tls_security_options=noanonymous</code></pre>
             </h2>
           </div>
           <p>
-            Landscape Client can be installed from Ubuntu's <a href="https://packages.ubuntu.com/search?keywords=landscape-client">main repository</a>. The latest version can be obtained from the Landscape 24.04 PPA. The latest features, including awareness of Ubuntu Pro, is only available in Landscape Client hosted in the 24.04 PPA for Ubuntu versions 18.04 (Bionic Beaver), 20.04 (Focal Fossa), and 22.04 (Jammy Jellyfish). The latest features are available in the main repository for 24.04 (Noble Numbat).
+            Landscape Client can be installed from Ubuntu's <a href="https://packages.ubuntu.com/search?keywords=landscape-client">main repository</a>. The latest version can be obtained from the Landscape Beta PPA.
           </p>
         </div>
         <div class="col-9 col-start-large-4">
@@ -428,7 +428,7 @@ sudo postconf -e smtp_sasl_tls_security_options=noanonymous</code></pre>
                           aria-selected="false"
                           aria-controls="ppa-tab"
                           id="ppa"
-                          tabindex="-1">24.04 PPA</button>
+                          tabindex="-1">Beta PPA</button>
                 </div>
                 <div class="p-tabs__item">
                   <button class="p-tabs__link"
@@ -458,15 +458,7 @@ sudo postconf -e smtp_sasl_tls_security_options=noanonymous</code></pre>
              id="main-repository-tab"
              aria-labelledby="main"
              style="scroll-margin-top:86px">
-          <div class="row">
-            <div class="col-8 col-start-large-4 p-strip is-shallow">
-              <p>
-                The main repository and PPA installation methods are suitable when performing the installation through a terminal or shell scripting. Cloud Init is suitable if it is available during a machine's provisioning stage, and the subordinate charm is most appropriate when using charmed operators.
-              </p>
-            </div>
-          </div>
           <div class="p-stepped-list--grid">
-            <hr class="u-no-margin--bottom" />
             <div class="col-3 col-medium-1 u-hide--small">
               <p class="p-step-counter"></p>
             </div>
@@ -543,7 +535,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   <li class="p-list__item">
                     <p class="u-no-padding--top">Add the PPA</p>
                     <div class="p-code-snippet">
-                      <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository -y ppa:landscape/self-hosted-24.04</code></pre>
+                      <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository -y ppa:landscape/self-hosted-beta</code></pre>
                     </div>
                   </li>
                   <li class="p-list__item">
