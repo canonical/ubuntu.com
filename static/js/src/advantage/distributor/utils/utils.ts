@@ -1,4 +1,3 @@
-import { ExternalId } from "advantage/offers/types";
 import { marketplace } from "advantage/subscribe/checkout/utils/types";
 
 export function generateUniqueId() {
@@ -171,29 +170,12 @@ export enum Currencies {
 export type ProductListings = Record<string, ChannelProduct>;
 
 export type ChannelProduct = {
-  allowanceMetric?: string;
-  bundleQuantity?: number;
-  createdAt?: string;
-  effectiveDays?: number;
-  externalIDs?: ExternalId;
-  externalMarketplaceIDs?: ExternalId;
-  externalPricingID?: ExternalId;
-  id?: string;
-  lastModifiedAt?: string;
-  marketplace?: marketplace;
-  metadata?: {
-    key: string;
-    value: string;
-  };
+  id: string;
   name: ValidProducts;
-  period?: string;
-  price: {
-    value: number;
-    currency: string;
-  };
-  productID: ValidProductID;
-  productName: ValidProductName;
-  status?: string;
+  marketplace: marketplace;
+  product: { id: ValidProductID; name: ValidProductName };
+  price: number;
+  currency: string;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
@@ -235,45 +217,47 @@ export type ValidProductID =
   | "uai-advanced-desktop"
   | "no-product";
 
-export const getProductName = (
+export const getProductId = (
   productType: DistributorProductTypes,
   support: Support,
   sla: SLA
-): ValidProductName => {
+): ValidProductID => {
   const productKey = `${productType}-${support}-${sla}`;
   switch (productKey) {
     case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.weekday}`:
-      return "Ubuntu Pro + Infra Support (weekday)";
+      return "uio-standard-physical";
     case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.everyday}`:
-      return "Ubuntu Pro + Infra Support (24/7)";
+      return "uio-advanced-physical";
     case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}`:
-      return "Ubuntu Pro";
+      return "uaia-essential-physical";
     case `${DistributorProductTypes.physical}-${Support.full}-${SLA.weekday}`:
-      return "Ubuntu Pro + Support (weekday)";
+      return "uaia-standard-physical";
     case `${DistributorProductTypes.physical}-${Support.full}-${SLA.everyday}`:
-      return "Ubuntu Pro + Support (24/7)";
+      return "uaia-advanced-physical";
     case `${DistributorProductTypes.virtual}-${Support.none}-${SLA.none}`:
-      return "Ubuntu Pro - Virtual";
+      return "uaia-essential-virtual";
     case `${DistributorProductTypes.virtual}-${Support.full}-${SLA.weekday}`:
-      return "Ubuntu Pro + Support (weekday) - Virtual";
+      return "uaia-standard-virtual";
     case `${DistributorProductTypes.virtual}-${Support.full}-${SLA.everyday}`:
-      return "Ubuntu Pro + Support (24/7) - Virtual";
+      return "uaia-advanced-virtual";
     case `${DistributorProductTypes.virtual}-${Support.infra}-${SLA.weekday}`:
-      return "Ubuntu Pro + Infra Support (weekday) - Virtual";
+      return "uio-standard-virtual";
     case `${DistributorProductTypes.virtual}-${Support.infra}-${SLA.everyday}`:
-      return "Ubuntu Pro + Infra Support (24/7) - Virtual";
+      return "uio-advanced-virtual";
     case `${DistributorProductTypes.desktop}-${Support.none}-${SLA.none}`:
-      return "Ubuntu Pro Desktop";
+      return "uai-essential-desktop";
     case `${DistributorProductTypes.desktop}-${Support.full}-${SLA.weekday}`:
-      return "Ubuntu Pro Desktop + Support (weekday)";
+      return "uai-standard-desktop";
     case `${DistributorProductTypes.desktop}-${Support.full}-${SLA.everyday}`:
-      return "Ubuntu Pro Desktop + Support (24/7)";
+      return "uai-advanced-desktop";
     default:
       return "no-product";
   }
 };
 
-export const getProducID = (productName: ValidProductName): ValidProductID => {
+export const getMockProductId = (
+  productName: ValidProductName
+): ValidProductID => {
   const responseMap: Record<ValidProductName, ValidProductID> = {
     "Ubuntu Pro": "uaia-essential-physical",
     "Ubuntu Pro + Infra Support (weekday)": "uio-standard-physical",
@@ -294,7 +278,7 @@ export const getProducID = (productName: ValidProductName): ValidProductID => {
   return responseMap[productName] || "no-product";
 };
 
-export const getPrice = (productId: ValidProductID) => {
+export const getMockPrice = (productId: ValidProductID) => {
   const responseMap: Record<ValidProductID, number> = {
     "uai-essential-desktop": 2500,
     "uai-standard-desktop": 15000,
@@ -340,7 +324,7 @@ const mockDurations: Durations[] = [
   Durations.two,
   Durations.three,
 ];
-const generateProductList = (
+const generateMockProductList = (
   productNames: ValidProductName[],
   currencies: Currencies[],
   durations: Durations[]
@@ -353,20 +337,27 @@ const generateProductList = (
         for (const duration of durations) {
           const durationsNumber =
             duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
-          const productID = getProducID(productName);
-          const name = `${getProducID(
+          const productID = getMockProductId(productName);
+          const name = `${getMockProductId(
             productName
           )}-channel-${duration}-${currency}` as ValidProducts;
           const value = Number(
-            converCurrency(currency, getPrice(getProducID(productName))) *
-              durationsNumber
+            converMockCurrency(
+              currency,
+              getMockPrice(getMockProductId(productName))
+            ) * durationsNumber
           );
 
           allList[name] = {
-            productName: productName,
-            productID: productID,
+            id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
             name: name,
-            price: { currency: currency.toUpperCase(), value },
+            marketplace: "canonical-pro-channel",
+            product: {
+              id: productID,
+              name: productName,
+            },
+            price: value,
+            currency: currency.toUpperCase(),
           };
         }
       }
@@ -375,7 +366,7 @@ const generateProductList = (
   return allList;
 };
 
-function converCurrency(currency: Currencies, price: number): number {
+function converMockCurrency(currency: Currencies, price: number): number {
   const usdToGbp = 0.72;
   const usdToEur = 0.85;
   if (currency === Currencies.gbp) {
@@ -387,7 +378,7 @@ function converCurrency(currency: Currencies, price: number): number {
   }
 }
 
-export const mockProducList = generateProductList(
+export const mockProducList = generateMockProductList(
   mockProductNames,
   mockCurrencies,
   mockDurations

@@ -7,9 +7,8 @@ import {
   Durations,
   SubscriptionItem,
   Currencies,
-  getProductName,
-  getProducID,
-  ValidProductName,
+  getProductId,
+  ValidProductID,
 } from "./utils";
 
 interface FormContext {
@@ -79,17 +78,16 @@ export const FormProvider = ({
   const [products, setProducts] = useState<ChannelProduct[] | null>(null);
 
   useEffect(() => {
-    const productNames: ValidProductName[] = subscriptionList.map(
-      (subscription) =>
-        getProductName(
-          subscription.type as ProductTypes,
-          subscription.support as Support,
-          subscription.sla as SLA
-        )
+    const productIds: ValidProductID[] = subscriptionList.map((subscription) =>
+      getProductId(
+        subscription.type as ProductTypes,
+        subscription.support as Support,
+        subscription.sla as SLA
+      )
     );
-    const validproducts: string[] = productNames.map(
-      (productName: ValidProductName) => {
-        return `${getProducID(productName)}-channel-${duration}-${currency}`;
+    const validproducts: string[] = productIds.map(
+      (productId: ValidProductID) => {
+        return `${productId}-channel-${duration}-${currency}`;
       }
     );
     setProducts(
