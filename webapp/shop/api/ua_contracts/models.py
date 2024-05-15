@@ -65,6 +65,24 @@ class Listing:
         self.can_be_trialled = can_be_trialled
 
 
+class ChannelListing:
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        marketplace: str,
+        price: int,
+        currency: str,
+        product: Product = None,
+    ):
+        self.id = id
+        self.name = name
+        self.marketplace = marketplace
+        self.product = product
+        self.price = price
+        self.currency = currency
+
+
 class UserSubscription:
     def __init__(
         self,

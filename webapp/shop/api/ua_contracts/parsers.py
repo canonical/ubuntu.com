@@ -12,6 +12,7 @@ from webapp.shop.api.ua_contracts.primitives import (
 from webapp.shop.api.ua_contracts.models import (
     ExternalID,
     Listing,
+    ChannelListing,
     Product,
     OfferItem,
     Offer,
@@ -48,10 +49,44 @@ def parse_product_listing(
     )
 
 
+def parse_channel_product_listing(
+    raw_product_listing: Dict, raw_products: List[Dict] = None
+) -> ChannelListing:
+    product = None
+    raw_products = raw_products or []
+    for raw_product in raw_products:
+        if raw_product.get("id") == raw_product_listing.get("productID"):
+            product = parse_product(raw_product)
+            break
+
+    return ChannelListing(
+        id=raw_product_listing.get("id"),
+        name=raw_product_listing.get("name"),
+        marketplace=raw_product_listing.get("marketplace"),
+        product=product,
+        price=raw_product_listing.get("price").get("value"),
+        currency=raw_product_listing.get("price").get("currency"),
+    )
+
+
 def parse_product_listings(
     raw_product_listings: List[Dict] = None,
     raw_products: List[Dict] = None,
 ) -> Dict[str, Listing]:
+    raw_product_listings = raw_product_listings or {}
+
+    return {
+        product_listing.get("id"): parse_product_listing(
+            product_listing, raw_products
+        )
+        for product_listing in raw_product_listings
+    }
+
+
+def parse_channel_product_listings(
+    raw_product_listings: List[Dict] = None,
+    raw_products: List[Dict] = None,
+) -> Dict[str, ChannelListing]:
     raw_product_listings = raw_product_listings or {}
 
     return {
