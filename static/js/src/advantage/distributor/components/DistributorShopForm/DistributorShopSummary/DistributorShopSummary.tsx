@@ -7,7 +7,7 @@ import {
   ChannelProduct,
   SubscriptionItem,
   currencyFormatter,
-  getProductName,
+  getProductId,
 } from "advantage/distributor/utils/utils";
 type Prop = {
   offer: OfferType;
@@ -23,17 +23,17 @@ const DistributorShopSummary = ({ offer }: Prop) => {
     totalPrice +=
       products?.reduce((total: number, product: ChannelProduct | undefined) => {
         if (subscription && product) {
-          const productName = getProductName(
+          const productId = getProductId(
             subscription.type,
             subscription.support,
             subscription.sla
           );
+
           if (
-            productName === product?.productName &&
-            product.price?.value !== undefined
+            productId === product?.product.id &&
+            product?.price !== undefined
           ) {
-            const productTotalPrice =
-              subscription.quantity * product.price.value;
+            const productTotalPrice = subscription.quantity * product.price;
             return total + productTotalPrice;
           }
         }
@@ -66,14 +66,14 @@ const DistributorShopSummary = ({ offer }: Prop) => {
                 : 0}
             </p>
           </Col>
-          <Col size={6}>
+          <Col size={5}>
             <Chip
               value={`${discount}% discount applied`}
               appearance="information"
               style={{ marginTop: "0.5rem" }}
             />
           </Col>
-          <Col size={2} className="u-align--right">
+          <Col size={3} className="u-align--right">
             <p className="p-heading--2">
               {discount &&
                 currencyFormatter(currency).format(

@@ -14,9 +14,9 @@ import {
   SLA as SLAEnum,
   SubscriptionItem,
   Support as SupportEnum,
-  getProductName,
   currencyFormatter,
   Currencies,
+  getProductId,
 } from "../../../../utils/utils";
 
 type Prop = {
@@ -48,13 +48,15 @@ const SubscriptionCard = ({ subscription }: Prop) => {
         return "Ubuntu Pro Virtual";
     }
   };
-  const price = products?.filter(
-    (product) =>
-      product.productName ===
-      getProductName(subscription.type, subscription.support, subscription.sla)
-  )?.[0]?.price;
-  const priceCurrency = price?.currency as Currencies;
-  const priceValue = price?.value as number;
+
+  const product = products?.filter(
+    (prod) =>
+      prod.product.id ===
+      getProductId(subscription.type, subscription.support, subscription.sla)
+  )[0];
+
+  const priceCurrency = product?.currency as Currencies;
+  const priceValue = product?.price as number;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;
