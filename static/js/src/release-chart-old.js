@@ -99,7 +99,7 @@ function addTooltipToBars(svg) {
   svg
     .selectAll(".chart rect")
     .on("mouseover", function (e, d) {
-      const tooltipStatus = formatTooltipStatus(d.status);
+      const tooltipStatus = formatTooltip(d.status);
       const dateRange = `${formatDate(d.startDate)} - ${formatDate(d.endDate)}`;
       const tooltipContent = tooltipStatus
         ? `${tooltipStatus}: ${dateRange}`
@@ -212,7 +212,6 @@ function adjustUbuntuVersionLabels(svg) {
   svg
     .selectAll(".y.axis .tick text:not(.chart__kernel-version)")
     .each(function () {
-      console.log("Current ele", d3.select(this));
       d3.select(this).attr("transform", `translate(${kernelVersionWidth}, 0)`);
     });
 }
@@ -325,36 +324,45 @@ function buildChartKey(chartSelector, taskStatus) {
 
     keyRow
       .append("text")
-      .text(formatKeyLabel(key))
+      .text(formatLabel(key))
       .attr("class", "chart-key__label")
       .attr("x", 24)
       .attr("y", 13);
   });
 }
 
+
+function formatTooltip(label) {
+  return formatLabel(label, true);
+}
+
 /**
  *
- * @param {String} key
+ * @param {String} label
  *
- * Formats tooltip key into readable string
+ * Formats tooltip label into readable string
  */
-function formatTooltipStatus(key) {
-  const standardisedKey = key.toLowerCase().trim();
-  switch (standardisedKey) {
+function formatLabel(label, isTooltip = false) {
+  const standardisedLabel = label.toLowerCase().trim();
+  switch (standardisedLabel) {
     case "lts":
-      return "Standard support";
+      return `Standard support${!isTooltip ? " (4-5 years)" : ""}`;
+    case "openstack":
+      return "Openstack";
+    case "kub":
+      return "Kub";
     case "esm":
-      return "Expanded Security Maintenance";
+      return `Expanded Security Maintenance${!isTooltip ? " (extra 5 years)" : ""}`;
     case "interim_release":
-      return "Interim release standard security maintenance";
+      return `Interim release standard security maintenance${!isTooltip ? " (9 months)" : ""}`;
     case "early":
       return "Early preview";
     case "cve":
       return "CVE/Critical fixes only";
     case "main_universe":
-      return "LTS standard security maintenance for Ubuntu Main";
+      return `LTS Expanded Security Maintenance (ESM) for Ubuntu Universe${!isTooltip ? " (initial 5 years)" : ""}`;
     case "hardware_and_maintenance_updates":
-      return "LTS Expanded Security Maintenance (ESM) for Ubuntu Universe";
+      return "LTS standard security maintenance for Ubuntu Main";
     case "matching_openstack_release_support":
       return "Matching OpenStack release support";
     case "extended_support_for_customers":
@@ -364,7 +372,12 @@ function formatTooltipStatus(key) {
     case "canonical_kubernetes_support":
       return "Canonical Kubernetes support";
     case "pro_legacy_support":
-      return "Legacy support";
+      return `Legacy support${!isTooltip ? " (years 11 and 12)" : ""}`;
+    case "microstack_esm":
+      return "Expanded Security Maintenance (ESM)";
+    case "pro_support":
+      return "Ubuntu Pro + Support coverage";
+
     default:
       return null;
   }
@@ -380,38 +393,9 @@ function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, " ");
   var formattedKey =
     keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
-  formattedKey = formattedKey.replace("Lts", "Standard support (4-5 years)");
-  formattedKey = formattedKey.replace(" openstack ", " OpenStack ");
-  formattedKey = formattedKey.replace("kub", "Kub");
-  formattedKey = formattedKey.replace(
-    "Interim release",
-    "Interim release standard security maintenance (9 months)"
-  );
-  formattedKey = formattedKey.replace(
-    "Esm",
-    "Expanded Security Maintenance (extra 5 years)"
-  );
-  formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
-  formattedKey = formattedKey.replace("Early", "Early preview");
-  formattedKey = formattedKey.replace(
-    "Hardware and maintenance updates",
-    "LTS standard security maintenance for Ubuntu Main (initial 5 years)"
-  );
   formattedKey = formattedKey.replace(
     "Main universe",
     "Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
-  );
-  formattedKey = formattedKey.replace(
-    "Microstack esm",
-    "Expanded Security Maintenance (ESM)"
-  );
-  formattedKey = formattedKey.replace(
-    "Pro legacy support",
-    "Legacy support (years 11 and 12)"
-  );
-  formattedKey = formattedKey.replace(
-    "Pro support",
-    "Ubuntu Pro + Support coverage"
   );
   formattedKey = formattedKey.replace("Hwe", "HWE: Hardware Enablement");
   return formattedKey;
