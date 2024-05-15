@@ -89,4 +89,8 @@ export type LastPurchaseIds = {
     monthly: string;
     yearly: string;
   };
+  [UserSubscriptionMarketplace.CanonicalProChannel]?: {
+    monthly: string;
+    yearly: string;
+  };
 };
