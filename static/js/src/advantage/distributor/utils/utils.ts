@@ -207,19 +207,19 @@ export const getProduct = (
       return "uaia-essential-physical-one-year";
     case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.two}`:
       return "uaia-essential-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.two}`:
+    case `${DistributorProductTypes.physical}-${Support.infra}-${SLA.none}-${Durations.three}`:
       return "uaia-essential-physical-three-years";
     case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.one}`:
       return "uaia-standard-physical-one-year";
     case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.two}`:
       return "uaia-standard-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.two}`:
+    case `${DistributorProductTypes.physical}-${Support.none}-${SLA.none}-${Durations.three}`:
       return "uaia-standard-physical-three-years";
     case `${DistributorProductTypes.physical}-${Support.full}-${SLA.none}-${Durations.one}`:
       return "uaia-advanced-physical-one-year";
     case `${DistributorProductTypes.physical}-${Support.full}-${SLA}-${Durations.two}`:
       return "uaia-advanced-physical-two-years";
-    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.none}-${Durations.two}`:
+    case `${DistributorProductTypes.physical}-${Support.full}-${SLA.none}-${Durations.three}`:
       return "uaia-advanced-physical-three-years";
     default:
       return "no-product";
