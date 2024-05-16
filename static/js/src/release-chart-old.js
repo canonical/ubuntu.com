@@ -331,7 +331,6 @@ function buildChartKey(chartSelector, taskStatus) {
   });
 }
 
-
 function formatTooltip(label) {
   return formatLabel(label, true);
 }
@@ -352,15 +351,21 @@ function formatLabel(label, isTooltip = false) {
     case "kub":
       return "Kub";
     case "esm":
-      return `Expanded Security Maintenance${!isTooltip ? " (extra 5 years)" : ""}`;
+      return `Expanded Security Maintenance${
+        !isTooltip ? " (extra 5 years)" : ""
+      }`;
     case "interim_release":
-      return `Interim release standard security maintenance${!isTooltip ? " (9 months)" : ""}`;
+      return `Interim release standard security maintenance${
+        !isTooltip ? " (9 months)" : ""
+      }`;
     case "early":
       return "Early preview";
     case "cve":
       return "CVE/Critical fixes only";
     case "main_universe":
-      return `LTS Expanded Security Maintenance (ESM) for Ubuntu Universe${!isTooltip ? " (initial 5 years)" : ""}`;
+      return `LTS Expanded Security Maintenance (ESM) for Ubuntu Universe${
+        !isTooltip ? " (initial 5 years)" : ""
+      }`;
     case "hardware_and_maintenance_updates":
       return "LTS standard security maintenance for Ubuntu Main";
     case "matching_openstack_release_support":
