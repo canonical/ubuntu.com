@@ -9,6 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Distributor from "./Distributor";
 import DistributorShop from "./DistributorShop";
+import { FormProvider } from "./utils/FormContext";
 
 const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -40,13 +41,15 @@ function App() {
     <Sentry.ErrorBoundary>
       <Elements stripe={stripePromise}>
         <QueryClientProvider client={queryClient}>
-          <Router basename="/pro/distributor">
-            <Routes>
-              <Route path="/" element={<Distributor />} />
-              <Route path="/shop" element={<DistributorShop />} />
-            </Routes>
-          </Router>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <FormProvider>
+            <Router basename="/pro/distributor">
+              <Routes>
+                <Route path="/" element={<Distributor />} />
+                <Route path="/shop" element={<DistributorShop />} />
+              </Routes>
+            </Router>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </FormProvider>
         </QueryClientProvider>
       </Elements>
     </Sentry.ErrorBoundary>
