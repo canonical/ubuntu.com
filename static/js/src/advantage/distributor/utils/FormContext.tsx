@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   LTSVersions,
   Product,
@@ -116,6 +116,9 @@ export const FormProvider = ({
   );
   const [product, setProduct] = useState<Product | null>(null);
 
+  useEffect(() => {
+    setProduct(product);
+  }, []);
   return (
     <FormContext.Provider
       value={{

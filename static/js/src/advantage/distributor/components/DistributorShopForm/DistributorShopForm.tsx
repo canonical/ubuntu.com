@@ -29,7 +29,7 @@ const DistributorShopForm = ({ offer }: Prop) => {
       <Strip includeCol={false}>
         <Row>
           <Col size={6}>
-            <h2>Fill in technical user's contact</h2>
+            <h2>Fill in technical user&lsquo;s contact</h2>
           </Col>
           <Col size={6}>
             <TechnicalUserContact offer={offer} />
