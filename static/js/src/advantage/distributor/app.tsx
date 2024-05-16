@@ -8,6 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Distributor from "./Distributor";
+import DistributorShop from "./DistributorShop";
 
 const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -42,6 +43,7 @@ function App() {
           <Router basename="/pro/distributor">
             <Routes>
               <Route path="/" element={<Distributor />} />
+              <Route path="/shop" element={<DistributorShop />} />
             </Routes>
           </Router>
           <ReactQueryDevtools initialIsOpen={false} />
