@@ -59,7 +59,7 @@ const DistributorShopForm = ({ offer }: Prop) => {
             <h2>Add subscriptions</h2>
           </Col>
           <Col size={6}>
-            <AddSubscriptions />
+            <AddSubscriptions offer={offer} />
           </Col>
         </Row>
       </Strip>
