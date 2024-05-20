@@ -17,15 +17,19 @@ import {
   currencyFormatter,
   Currencies,
   getProductId,
+  Durations,
 } from "../../../../utils/utils";
 
 type Prop = {
   subscription: SubscriptionItem;
 };
 const SubscriptionCard = ({ subscription }: Prop) => {
-  const { subscriptionList, setSubscriptionList, products } = useContext(
-    FormContext
-  );
+  const {
+    subscriptionList,
+    setSubscriptionList,
+    products,
+    duration,
+  } = useContext(FormContext);
 
   const handleRemoveSubscription = (subscriptionId: string) => {
     const updatedList = subscriptionList.filter(
@@ -55,8 +59,10 @@ const SubscriptionCard = ({ subscription }: Prop) => {
       getProductId(subscription.type, subscription.support, subscription.sla)
   )[0];
 
+  const durationsNumber: number =
+    duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
   const priceCurrency = product?.currency as Currencies;
-  const priceValue = product?.price as number;
+  const priceValue = (product?.price as number) / durationsNumber;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;

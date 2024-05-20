@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Col, Row, Select } from "@canonical/react-components";
 import { FormContext } from "../../../utils/FormContext";
 import {
@@ -7,16 +7,24 @@ import {
   generateUniqueId,
   Support as SupportEnum,
   SLA as SLAEnum,
+  getPreSelectedItem,
 } from "advantage/distributor/utils/utils";
 import SubscriptionCard from "./SubscriptionCard.tsx/SubscriptionCard";
+import { Offer as OfferType } from "../../../../offers/types";
 
-const AddSubscriptions = () => {
+type Prop = {
+  offer: OfferType;
+};
+
+const AddSubscriptions = ({ offer }: Prop) => {
   const {
     productType,
     setProductType,
     subscriptionList,
     setSubscriptionList,
   } = useContext(FormContext);
+
+  const { items } = offer;
 
   const handleProductTypeChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -49,6 +57,19 @@ const AddSubscriptions = () => {
     { label: "Ubuntu Pro Desktop", value: ProductTypes.desktop },
     { label: "Ubuntu Pro Virtual", value: ProductTypes.virtual },
   ];
+
+  useEffect(() => {
+    if (subscriptionList?.length === 0) {
+      const preSetItem = getPreSelectedItem(items);
+      items.length > 0 &&
+        preSetItem?.length > 0 &&
+        setSubscriptionList(preSetItem as SubscriptionItem[]);
+      localStorage.setItem(
+        "distributor-selector-subscriptionList",
+        JSON.stringify(preSetItem as SubscriptionItem[])
+      );
+    }
+  }, [offer]);
 
   return (
     <div data-testid="wrapper">
