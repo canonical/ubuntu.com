@@ -87,7 +87,6 @@ export const FormProvider = ({
     setProduct(product);
   }, [productType, duration, currency, subscriptionList]);
 
-  console.log("product", product);
   return (
     <FormContext.Provider
       value={{

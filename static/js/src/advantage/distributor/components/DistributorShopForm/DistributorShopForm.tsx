@@ -76,9 +76,6 @@ const DistributorShopForm = ({ offer }: Prop) => {
           </Col>
         </Row>
       </Strip>
-      <Row>
-        <hr />
-      </Row>
     </form>
   );
 };
