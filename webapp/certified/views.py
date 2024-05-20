@@ -362,7 +362,6 @@ def get_filters(request_args=None, json: bool = False):
     release_filters.extend(all_releases)
 
     if json:
-        print("TESTING JSON")
         filters = {
             "laptop_releases": laptop_releases,
             "laptop_vendors": laptop_vendors,
