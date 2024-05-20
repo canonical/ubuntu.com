@@ -5,13 +5,8 @@ import Currency from "./Currency/Currency";
 import Duration from "./Duration";
 import TechnicalUserContact from "./TechnicalUserContact/TechnicalUserContact";
 import AddSubscriptions from "./AddSubscriptions/AddSubscriptions";
-import { Offer as OfferType } from "../../../offers/types";
 
-type Prop = {
-  offer: OfferType;
-};
-
-const DistributorShopForm = ({ offer }: Prop) => {
+const DistributorShopForm = () => {
   return (
     <form className="distributor-shop-selector">
       <Strip includeCol={false}>
@@ -20,7 +15,7 @@ const DistributorShopForm = ({ offer }: Prop) => {
             <h2>Verify deal registration information</h2>
           </Col>
           <Col size={6}>
-            <DealRegistration offer={offer} />
+            <DealRegistration />
           </Col>
         </Row>
       </Strip>
@@ -33,7 +28,7 @@ const DistributorShopForm = ({ offer }: Prop) => {
             <h2>Fill in technical user&lsquo;s contact</h2>
           </Col>
           <Col size={6}>
-            <TechnicalUserContact offer={offer} />
+            <TechnicalUserContact />
           </Col>
         </Row>
       </Strip>
@@ -59,7 +54,7 @@ const DistributorShopForm = ({ offer }: Prop) => {
             <h2>Add subscriptions</h2>
           </Col>
           <Col size={6}>
-            <AddSubscriptions offer={offer} />
+            <AddSubscriptions />
           </Col>
         </Row>
       </Strip>
