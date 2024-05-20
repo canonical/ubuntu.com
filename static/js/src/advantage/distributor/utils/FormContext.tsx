@@ -9,6 +9,9 @@ import {
   Currencies,
   getProductId,
   ValidProductID,
+  getPreSelectedItem,
+  getPreCurrency,
+  getPreDuration,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
 
@@ -106,6 +109,33 @@ export const FormProvider = ({
       })
     );
   }, [duration, currency, subscriptionList]);
+
+  useEffect(() => {
+    const items = offer?.items ?? [];
+    if (subscriptionList?.length === 0 && items.length > 0) {
+      const preSetItem = getPreSelectedItem(items);
+      preSetItem?.length > 0 &&
+        setSubscriptionList(preSetItem as SubscriptionItem[]);
+      localStorage.setItem(
+        "distributor-selector-subscriptionList",
+        JSON.stringify(preSetItem as SubscriptionItem[])
+      );
+
+      const preSetCurrency = getPreCurrency(items);
+      preSetCurrency?.length > 0 && setCurrency(preSetCurrency as Currencies);
+      localStorage.setItem(
+        "distributor-selector-currency",
+        JSON.stringify(preSetCurrency as Currencies)
+      );
+
+      const preSetDration = getPreDuration(items);
+      preSetDration?.length > 0 && setDuration(preSetDration as Durations);
+      localStorage.setItem(
+        "distributor-selector-duration",
+        JSON.stringify(preSetDration as Durations)
+      );
+    }
+  }, [offer]);
 
   return (
     <FormContext.Provider
