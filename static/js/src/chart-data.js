@@ -12,6 +12,12 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
+    startDate: new Date("2024-04-02T00:00:00"),
+    endDate: new Date("2026-04-02T00:00:00"),
+    taskName: "14.04 LTS (Trusty Tahr)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2016-04-01T00:00:00"),
     endDate: new Date("2021-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
@@ -28,6 +34,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2026-04-02T00:00:00"),
     taskName: "16.04 LTS (Xenial Xerus)",
     status: "MAIN_UNIVERSE",
+  },
+  {
+    startDate: new Date("2026-04-01T00:00:00"),
+    endDate: new Date("2028-04-02T00:00:00"),
+    taskName: "16.04 LTS (Xenial Xerus)",
+    status: "PRO_LEGACY_SUPPORT",
   },
   {
     startDate: new Date("2018-04-01T00:00:00"),
@@ -48,6 +60,12 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
+    startDate: new Date("2028-04-01T00:00:00"),
+    endDate: new Date("2030-04-01T00:00:00"),
+    taskName: "18.04 LTS (Bionic Beaver)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2025-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
@@ -66,6 +84,12 @@ export var serverAndDesktopReleases = [
     status: "MAIN_UNIVERSE",
   },
   {
+    startDate: new Date("2030-04-01T00:00:00"),
+    endDate: new Date("2032-04-02T00:00:00"),
+    taskName: "20.04 LTS (Focal Fossa)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
@@ -82,6 +106,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2032-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "ESM",
+  },
+  {
+    startDate: new Date("2032-04-01T00:00:00"),
+    endDate: new Date("2034-04-01T00:00:00"),
+    taskName: "22.04 LTS (Jammy Jellyfish)",
+    status: "PRO_LEGACY_SUPPORT",
   },
   {
     startDate: new Date("2023-10-20T00:00:00"),
@@ -107,6 +137,12 @@ export var serverAndDesktopReleases = [
     taskName: "24.04 LTS (Noble Numbat)",
     status: "ESM",
   },
+  {
+    startDate: new Date("2034-04-25T00:00:00"),
+    endDate: new Date("2036-04-25T00:00:00"),
+    taskName: "24.04 LTS (Noble Numbat)",
+    status: "PRO_LEGACY_SUPPORT",
+  },
 ];
 
 export var kernelReleases = [
@@ -127,7 +163,7 @@ export var kernelReleases = [
   {
     startDate: new Date("2024-02-01T00:00:00"),
     endDate: new Date("2024-08-01T00:00:00"),
-    taskName: "22.04.4 LTS",
+    taskName: "22.04.4 LTS (HWE)",
     taskVersion: "6.5 kernel",
     status: "LTS",
   },
@@ -155,14 +191,14 @@ export var kernelReleases = [
   {
     startDate: new Date("2022-08-01T00:00:00"),
     endDate: new Date("2025-04-30T00:00:00"),
-    taskName: "20.04.5 LTS",
+    taskName: "20.04.5 LTS (HWE)",
     taskVersion: "",
     status: "LTS",
   },
   {
     startDate: new Date("2025-04-30T00:00:00"),
     endDate: new Date("2030-04-29T00:00:00"),
-    taskName: "20.04.5 LTS",
+    taskName: "20.04.5 LTS (HWE)",
     taskVersion: "",
     status: "ESM",
   },
@@ -183,14 +219,14 @@ export var kernelReleases = [
   {
     startDate: new Date("2020-08-13T00:00:00"),
     endDate: new Date("2023-04-30T00:00:00"),
-    taskName: "18.04.5 LTS",
+    taskName: "18.04.5 LTS (HWE)",
     taskVersion: "5.4 kernel",
     status: "LTS",
   },
   {
     startDate: new Date("2023-04-30T00:00:00"),
     endDate: new Date("2028-04-28T00:00:00"),
-    taskName: "18.04.5 LTS",
+    taskName: "18.04.5 LTS (HWE)",
     taskVersion: "5.4 kernel",
     status: "ESM",
   },
@@ -225,14 +261,14 @@ export var kernelReleases = [
   {
     startDate: new Date("2018-08-02T00:00:00"),
     endDate: new Date("2021-04-30T00:00:00"),
-    taskName: "16.04.5 LTS",
+    taskName: "16.04.5 LTS (HWE)",
     taskVersion: "4.15 kernel",
     status: "LTS",
   },
   {
     startDate: new Date("2021-04-30T00:00:00"),
     endDate: new Date("2026-04-29T00:00:00"),
-    taskName: "16.04.5 LTS",
+    taskName: "16.04.5 LTS (HWE)",
     taskVersion: "4.15 kernel",
     status: "ESM",
   },
@@ -267,14 +303,14 @@ export var kernelReleases = [
   {
     startDate: new Date("2016-08-04T00:00:00"),
     endDate: new Date("2019-04-30T00:00:00"),
-    taskName: "14.04.5 LTS",
+    taskName: "14.04.5 LTS (HWE)",
     taskVersion: "4.4 kernel",
     status: "LTS",
   },
   {
     startDate: new Date("2019-04-30T00:00:00"),
     endDate: new Date("2024-04-29T00:00:00"),
-    taskName: "14.04.5 LTS",
+    taskName: "14.04.5 LTS (HWE)",
     taskVersion: "4.4 kernel",
     status: "ESM",
   },
@@ -803,7 +839,7 @@ export var kernelReleaseSchedule = [
 export var openStackReleases = [
   {
     startDate: new Date("2024-04-01T00:00:00"),
-    endDate: new Date("2027-04-01T00:00:00"),
+    endDate: new Date("2032-04-01T00:00:00"),
     taskName: "OpenStack 2024.1",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
@@ -824,12 +860,6 @@ export var openStackReleases = [
     endDate: new Date("2026-04-01T00:00:00"),
     taskName: "OpenStack 2023.1",
     status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
-  },
-  {
-    startDate: new Date("2022-10-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Zed",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2022-04-01T00:00:00"),
@@ -860,18 +890,6 @@ export var openStackReleases = [
     endDate: new Date("2025-04-01T00:00:00"),
     taskName: "OpenStack Yoga",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2022-10-01T00:00:00"),
-    taskName: "OpenStack Wallaby",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2022-10-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Wallaby",
-    status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
   },
   {
     startDate: new Date("2020-05-15T00:00:00"),
@@ -925,30 +943,6 @@ export var openStackReleases = [
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "Ubuntu 18.04 LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2016-04-01T00:00:00"),
-    endDate: new Date("2021-04-01T00:00:00"),
-    taskName: "OpenStack Mitaka LTS",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "OpenStack Mitaka LTS",
-    status: "ESM",
-  },
-  {
-    startDate: new Date("2016-04-01T00:00:00"),
-    endDate: new Date("2021-04-01T00:00:00"),
-    taskName: "Ubuntu 16.04 LTS",
-    status: "LTS",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2024-04-01T00:00:00"),
-    taskName: "Ubuntu 16.04 LTS",
     status: "ESM",
   },
 ];
@@ -1110,11 +1104,12 @@ export var microStackReleases = [
 ];
 
 export var desktopServerStatus = {
-  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--black",
+  HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
   ESM: "chart__bar--aubergine-light",
   MAIN_UNIVERSE: "chart__bar--aubergine-mid-light",
   INTERIM_RELEASE: "chart__bar--grey",
+  PRO_LEGACY_SUPPORT: "chart__bar--black",
 };
 
 export var kernelStatus = {
@@ -1140,15 +1135,14 @@ export var kernelStatusALL = {
 };
 
 export var openStackStatus = {
-  //TECH_PREVIEW: "chart__bar--orange-light",
-  LTS: "chart__bar--orange",
-  MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
+  LTS: "chart__bar--black",
+  MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--mid-dark",
   ESM: "chart__bar--aubergine",
-  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--green",
+  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--aubergine-light",
 };
 
 export var kubernetesStatus = {
-  CANONICAL_KUBERNETES_SUPPORT: "chart__bar--orange",
+  CANONICAL_KUBERNETES_SUPPORT: "chart__bar--black",
   CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
 };
 
@@ -1170,18 +1164,18 @@ export var desktopServerReleaseNames = [
 
 export var kernelReleaseNames = [
   "24.04.0 LTS",
-  "22.04.4 LTS",
+  "22.04.4 LTS (HWE)",
   "23.10",
   "22.04.1 LTS",
-  "20.04.5 LTS",
+  "20.04.5 LTS (HWE)",
   "22.04.0 LTS",
-  "18.04.5 LTS",
+  "18.04.5 LTS (HWE)",
   "20.04.1 LTS",
   "20.04.0 LTS",
-  "16.04.5 LTS",
+  "16.04.5 LTS (HWE)",
   "18.04.1 LTS",
   "18.04.0 LTS",
-  "14.04.5 LTS",
+  "14.04.5 LTS (HWE)",
   "16.04.1 LTS",
   "16.04.0 LTS",
 ];
@@ -1267,17 +1261,13 @@ export var openStackReleaseNames = [
   "OpenStack 2024.1",
   "OpenStack 2023.2",
   "OpenStack 2023.1",
-  "OpenStack Zed",
   "OpenStack Yoga LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Yoga",
-  "OpenStack Wallaby",
   "OpenStack Ussuri LTS",
   "Ubuntu 20.04 LTS",
   "OpenStack Queens LTS",
   "Ubuntu 18.04 LTS",
-  "OpenStack Mitaka LTS",
-  "Ubuntu 16.04 LTS",
 ];
 
 export var microStackReleaseNames = [

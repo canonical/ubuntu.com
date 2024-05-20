@@ -18,17 +18,23 @@ const CredExamShop = () => {
     {
       id: "cue-linux-essentials",
       name: "CUE.01 Linux",
+      displayName: "CUE.01 Linux",
       metadata: [
         {
           key: "description",
           value:
             "Prove your basic operational knowledge of Linux by demonstrating your ability to secure, operate and maintain basic system resources. Topics include user and group management, file and filesystem navigation, and logs and installation tasks related to system maintenance.",
         },
+        {
+          key: "originalPrice",
+          value: "10000",
+        },
       ],
     },
     {
       id: "cue-02-desktop",
       name: "CUE.02 Desktop",
+      displayName: "CUE.02 Desktop",
       metadata: [
         {
           key: "description",
@@ -40,6 +46,7 @@ const CredExamShop = () => {
     {
       id: "cue-03-server",
       name: "CUE.03 Server",
+      displayName: "CUE.03 Server",
       metadata: [
         {
           key: "description",
@@ -121,7 +128,7 @@ const CredExamShop = () => {
                     <span className="p-radio__label">
                       <RadioInput
                         labelClassName="inner-label"
-                        label={examElement?.name}
+                        label={examElement?.displayName}
                         checked={exam == examIndex}
                         value={examIndex}
                         onChange={handleChange}
@@ -136,12 +143,25 @@ const CredExamShop = () => {
                         className="u-align--right"
                         style={{ paddingRight: "1rem" }}
                       >
-                        {examElement.price === undefined
-                          ? "Coming Soon!"
-                          : "Price: " +
-                            currencyFormatter.format(
+                        {examElement.price === undefined ? (
+                          <span>Coming Soon</span>
+                        ) : (
+                          <span>
+                            Price:{" "}
+                            {examElement.metadata[1].value !== undefined ? (
+                              <s>
+                                {currencyFormatter.format(
+                                  parseInt(examElement.metadata[1].value) / 100
+                                )}
+                              </s>
+                            ) : (
+                              <></>
+                            )}{" "}
+                            {currencyFormatter.format(
                               examElement.price.value / 100
                             )}
+                          </span>
+                        )}
                       </h5>
                     </span>
                   </label>
@@ -162,7 +182,7 @@ const CredExamShop = () => {
               >
                 <RadioInput
                   inline
-                  label={examElement?.name}
+                  label={examElement?.displayName}
                   checked={exam == examIndex}
                   value={examIndex}
                   onChange={handleChange}
@@ -178,10 +198,25 @@ const CredExamShop = () => {
                     className="u-align--right"
                     style={{ paddingRight: "1rem" }}
                   >
-                    {examElement.price === undefined
-                      ? "Coming Soon!"
-                      : "Price: " +
-                        currencyFormatter.format(examElement.price.value / 100)}
+                    {examElement.price === undefined ? (
+                      <span>Coming Soon</span>
+                    ) : (
+                      <span>
+                        Price:{" "}
+                        {examElement.metadata[1].value !== undefined ? (
+                          <s>
+                            {currencyFormatter.format(
+                              parseInt(examElement.metadata[1].value) / 100
+                            )}
+                          </s>
+                        ) : (
+                          <></>
+                        )}{" "}
+                        {currencyFormatter.format(
+                          examElement.price.value / 100
+                        )}
+                      </span>
+                    )}
                   </h5>
                 </span>
               </div>
@@ -198,7 +233,7 @@ const CredExamShop = () => {
         <Row>
           <Col size={6} style={{ display: "flex" }}>
             <p className="p-heading--2" style={{ marginBlock: "auto" }}>
-              {ExamProducts[exam]?.name}
+              {ExamProducts[exam]?.displayName}
             </p>
           </Col>
           <Col size={3} small={2} style={{ display: "flex" }}>

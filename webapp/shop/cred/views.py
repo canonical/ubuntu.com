@@ -45,21 +45,21 @@ EXAM_NAMES = {
 }
 
 RESERVATION_STATES = {
-    "created": "Scheduled",
-    "notified": "Scheduled",
+    "created": "Created",
+    "notified": "Notified",
     "scheduled": "Scheduled",
-    "processed": "Complete",
+    "processed": "Processed",
     "canceled": "Cancelled",
-    "finalized": "Complete",
-    "provisioning": "In Progress",
-    "provisioned": "In Progress",
+    "finalized": "Finalized",
+    "provisioning": "Provisioning",
+    "provisioned": "Provisioned",
     "in_progress": "In Progress",
-    "completed": "Complete",
-    "grading": "Complete",
-    "graded": "Complete",
-    "archiving": "Complete",
-    "archived": "Complete",
-    "canceling": "Cancelled",
+    "completed": "Completed",
+    "grading": "Grading",
+    "graded": "Graded",
+    "archiving": "Archiving",
+    "archived": "Archived",
+    "canceling": "Canceling",
 }
 
 
@@ -361,15 +361,29 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
-                r = response.get("assessment_reservation")
-                timezone = r["user"]["time_zone"]
-                tz_info = pytz.timezone(timezone)
-                starts_at = (
-                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-                    .replace(tzinfo=pytz.timezone("UTC"))
-                    .astimezone(tz_info)
-                )
-                assessment_id = r.get("assessment") and r["assessment"]["id"]
+                if "assessment_reservation" not in response:
+                    exams_expired.append(
+                        {
+                            "name": name,
+                            "state": "Cannot fetch information",
+                            "actions": [],
+                        }
+                    )
+                    continue
+                else:
+                    r = response.get("assessment_reservation")
+                    timezone = r["user"]["time_zone"]
+                    tz_info = pytz.timezone(timezone)
+                    starts_at = (
+                        datetime.strptime(
+                            r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                        )
+                        .replace(tzinfo=pytz.timezone("UTC"))
+                        .astimezone(tz_info)
+                    )
+                    assessment_id = (
+                        r.get("assessment") and r["assessment"]["id"]
+                    )
 
                 actions = []
                 utc = pytz.timezone("UTC")
@@ -457,7 +471,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Complete":
+                elif state in (
+                    "Completed",
+                    "Graded",
+                    "Grading",
+                    "Finalized",
+                    "Processed",
+                ):
                     exams_complete.append(
                         {
                             "name": name,
@@ -469,14 +489,11 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Cancelled":
-                    actions = [
-                        {
-                            "text": "Take",
-                            "button_class": "p-button--base",
-                            "href": "",
-                        }
-                    ]
+                elif state in (
+                    "Cancelled",
+                    "Archiving",
+                    "Archived",
+                ):
                     exams_cancelled.append(
                         {
                             "name": name,
@@ -485,7 +502,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "timezone": timezone,
                             "state": state,
                             "uuid": r["uuid"],
-                            "actions": actions,
+                            "actions": [],
                         }
                     )
             elif (

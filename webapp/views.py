@@ -47,7 +47,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list(local=False):
+def _build_mirror_list(local=False, country_code=None):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -57,10 +57,6 @@ def _build_mirror_list(local=False):
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
-
-    ip_location = ip_reader.get(
-        flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
-    )
 
     # get all mirrors
     if not local:
@@ -74,9 +70,7 @@ def _build_mirror_list(local=False):
         return mirror_list
 
     # get local mirrors based on IP location
-    if ip_location and "country" in ip_location:
-        country_code = ip_location["country"]["iso_code"]
-
+    if country_code:
         for mirror in mirrors:
             is_local_mirror = mirror["mirror_countrycode"] == country_code
             is_https = mirror["link"].startswith("https")
@@ -255,6 +249,7 @@ def mirrors_query():
     A JSON endpoint to request list of Ubuntu mirrors
     """
     local = flask.request.args.get("local", default=False)
+    country = flask.request.args.get("country_code", default=None)
 
     if not local or local.lower() != "true":
         local = False
@@ -262,7 +257,7 @@ def mirrors_query():
         local = True
 
     return (
-        flask.jsonify(_build_mirror_list(local)),
+        flask.jsonify(_build_mirror_list(local, country)),
         {"Cache-Control": "private"},
     )
 
@@ -1037,12 +1032,15 @@ def get_user_country_by_tz():
     APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     timezone = flask.request.args.get("tz")
 
-    timezones = json.load(
-        open(os.path.join(APP_ROOT, "static/files/timezones.json"))
-    )
-    countries = json.load(
-        open(os.path.join(APP_ROOT, "static/files/countries.json"))
-    )
+    with open(
+        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+    ) as file:
+        timezones = json.load(file)
+
+    with open(
+        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+    ) as file:
+        countries = json.load(file)
 
     _country = timezones[timezone]["c"][0]
     country = countries[_country]

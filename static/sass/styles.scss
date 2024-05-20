@@ -1554,6 +1554,23 @@ ol.p-list--divided .p-list__item::before {
   content: counter(list-item) ". ";
 }
 
+//XXX: styles from Liza's js snippet, taken here because the scss is not parsed inside js and the include doesn't work there. This should be refactored.
+.p-hero-video-link {
+  .p-hero-video__play {
+    @include vf-transition(background-size, fast, out);
+
+    display: block;
+  }
+
+  &:hover img {
+    opacity: 0.9;
+  }
+
+  &.p-equal-height-row__col::before {
+    content: none !important;
+  }
+}
+
 // Fix stepped list title grid bug
 // To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
 @media screen and (max-width: $breakpoint-small - 1) {
@@ -1595,4 +1612,24 @@ ol.p-list--divided .p-list__item::before {
       margin-right: 2rem;
     }
   }
+}
+
+.u-center-illutrations {
+  align-items: center;
+  display: flex;
+  height: 21rem; // provided by design
+  justify-content: center;
+}
+// Following two classes can be removed once Github issue is completed
+// https://github.com/canonical/vanilla-framework/issues/4876
+.u-background--fade {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.u-aspect-ratio--16-9 {
+  aspect-ratio: 16/9;
+}
+
+.u-darker-background {
+  background-color: rgba(0, 0, 0, 0.03);
 }

@@ -82,6 +82,8 @@ managedapps:
       path: /managed/apps
     - title: Observability
       path: /observability/managed
+    - title: Firefighting
+      path: /managed/firefighting-support
 
 openstack:
   title: Canonical OpenStack
@@ -274,14 +276,12 @@ core:
   children:
     - title: Overview
       path: /core
-    - title: Consulting
-      path: /core/services
-    - title: Success stories
-      path: /core/stories
     - title: Features
       path: /core/features
-    - title: Tutorials
-      path: /tutorials?q=core
+    - title: Success stories
+      path: /core/stories
+    - title: Services
+      path: /core/services
     - title: Docs
       path: /core/docs
 
@@ -442,7 +442,7 @@ engage:
       path: /engage
 
 about:
-  title: About
+  title: About Ubuntu
   path: /about
 
   children:
@@ -524,6 +524,8 @@ credentials:
       path: /credentials/syllabus
     - title: Study guide
       path: /credentials/self-study
+    - title: FAQ
+      path: /credentials/faq
     # - title: Schedule
     #   path: /credentials/schedule
     # - title: Your exams
@@ -632,3 +634,13 @@ landscape:
       path: /landscape/docs
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
+
+confidential-ai:
+  title: Confidential Computing
+  path: /confidential-computing
+
+  children:
+    - title: Overview
+      path: /confidential-computing
+    - title: AI
+      path: /confidential-computing/ai
