@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import DistributorShopForm from "./components/DistributorShopForm/DistributorShopForm";
-import { Offer as OfferType } from "../offers/types";
 import DistributorShopSummary from "./components/DistributorShopForm/DistributorShopSummary/DistributorShopSummary";
 import { Strip } from "@canonical/react-components";
+import { FormContext } from "./utils/FormContext";
 
 const DistributorShop = () => {
-  const channelOfferData = localStorage.getItem("channel-offer-data");
-  const parsedChannelOfferData =
-    channelOfferData && JSON.parse(channelOfferData);
-  const offer = parsedChannelOfferData?.offer;
+  const { offer } = useContext(FormContext);
 
-  if (!channelOfferData || !parsedChannelOfferData || !offer) {
+  if (!offer) {
     return (
       <Strip className="p-section">
         <h1>Somethinig is wrong.</h1>
@@ -23,8 +20,8 @@ const DistributorShop = () => {
 
   return (
     <>
-      <DistributorShopForm offer={offer as OfferType} />
-      <DistributorShopSummary offer={offer as OfferType} />
+      <DistributorShopForm />
+      <DistributorShopSummary />
     </>
   );
 };

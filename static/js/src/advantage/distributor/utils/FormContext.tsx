@@ -10,6 +10,7 @@ import {
   getProductId,
   ValidProductID,
 } from "./utils";
+import { Offer } from "advantage/offers/types";
 
 interface FormContext {
   productType: ProductTypes;
@@ -21,6 +22,8 @@ interface FormContext {
   currency: Currencies;
   setCurrency: React.Dispatch<React.SetStateAction<Currencies>>;
   products: ChannelProduct[] | null;
+  offer: Offer | null;
+  setOffer: React.Dispatch<React.SetStateAction<Offer | null>>;
 }
 
 export const defaultValues: FormContext = {
@@ -33,6 +36,8 @@ export const defaultValues: FormContext = {
   currency: Currencies.usd,
   setCurrency: () => {},
   products: null,
+  offer: null,
+  setOffer: () => {},
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -42,6 +47,7 @@ interface FormProviderProps {
   initialType?: ProductTypes;
   initialDuration?: Durations;
   initialCurrency?: Currencies;
+  initialOffer?: Offer;
   children: React.ReactNode;
 }
 
@@ -60,6 +66,7 @@ export const FormProvider = ({
   );
   const localDuration = localStorage.getItem("distributor-selector-duration");
   const localCurrency = localStorage.getItem("distributor-selector-currency");
+  const localOffer = localStorage.getItem("channel-offer-data");
 
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
     localSubscriptionList
@@ -76,6 +83,9 @@ export const FormProvider = ({
     localCurrency ? JSON.parse(localCurrency) : initialCurrency
   );
   const [products, setProducts] = useState<ChannelProduct[] | null>(null);
+  const [offer, setOffer] = useState<Offer | null>(
+    localOffer ? JSON.parse(localOffer) : null
+  );
 
   useEffect(() => {
     const productIds: ValidProductID[] = subscriptionList.map((subscription) =>
@@ -109,6 +119,8 @@ export const FormProvider = ({
         currency,
         setCurrency,
         products,
+        offer,
+        setOffer,
       }}
     >
       {children}

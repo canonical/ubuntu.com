@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Col, Row } from "@canonical/react-components";
-import {
-  Offer as OfferType,
-  ExternalId as ExternalIdType,
-} from "../../../../offers/types";
+import { ExternalId as ExternalIdType } from "../../../../offers/types";
+import { FormContext } from "advantage/distributor/utils/FormContext";
 
-type Prop = {
-  offer: OfferType;
-};
-const DealRegistration = ({ offer }: Prop) => {
+const DealRegistration = () => {
+  const { offer } = useContext(FormContext);
+
   const deal_registration_id = offer?.external_ids?.filter(
     (external_id: ExternalIdType) => (external_id.origin = "Zift")
   )[0]["ids"];

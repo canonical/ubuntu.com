@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@canonical/react-components";
 import { Offer as OfferType } from "../../../offers/types";
+import { FormContext } from "advantage/distributor/utils/FormContext";
 
 type Prop = {
   offer: OfferType;
 };
 
 export default function InitiateButton({ offer }: Prop) {
-  const channelOfferData = {
-    offer: offer,
-  };
+  const { setOffer } = useContext(FormContext);
+
   return (
     <>
       <Button
@@ -17,10 +17,8 @@ export default function InitiateButton({ offer }: Prop) {
         disabled={!offer.actionable}
         onClick={(e) => {
           e.preventDefault();
-          localStorage.setItem(
-            "channel-offer-data",
-            JSON.stringify(channelOfferData)
-          );
+          setOffer(offer);
+          localStorage.setItem("channel-offer-data", JSON.stringify(offer));
           location.href = "/pro/distributor/shop";
         }}
       >

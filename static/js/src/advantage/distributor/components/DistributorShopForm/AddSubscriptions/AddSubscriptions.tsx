@@ -10,21 +10,17 @@ import {
   getPreSelectedItem,
 } from "advantage/distributor/utils/utils";
 import SubscriptionCard from "./SubscriptionCard.tsx/SubscriptionCard";
-import { Offer as OfferType } from "../../../../offers/types";
 
-type Prop = {
-  offer: OfferType;
-};
-
-const AddSubscriptions = ({ offer }: Prop) => {
+const AddSubscriptions = () => {
   const {
     productType,
     setProductType,
     subscriptionList,
     setSubscriptionList,
+    offer,
   } = useContext(FormContext);
 
-  const { items } = offer;
+  const items = offer?.items ?? [];
 
   const handleProductTypeChange = (
     event: React.ChangeEvent<HTMLSelectElement>
