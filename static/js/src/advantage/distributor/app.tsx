@@ -11,6 +11,7 @@ import Distributor from "./Distributor";
 import DistributorShop from "./DistributorShop";
 import { FormProvider } from "./utils/FormContext";
 import { ProductListings, mockProducList } from "./utils/utils";
+import Order from "./Order";
 
 const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -55,6 +56,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Distributor />} />
                 <Route path="/shop" element={<DistributorShop />} />
+                <Route path="/order" element={<Order />} />
               </Routes>
             </Router>
           </FormProvider>
