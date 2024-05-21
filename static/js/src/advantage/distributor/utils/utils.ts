@@ -146,14 +146,14 @@ export enum DistributorProductTypes {
 
 export enum SLA {
   none = "none",
-  weekday = "weekday",
+  weekday = "Weekday",
   everyday = "24/7",
 }
 
 export enum Support {
   none = "none",
-  infra = "Infra Support",
-  full = "Support",
+  infra = "Infra",
+  full = "Full",
 }
 
 export enum Durations {
