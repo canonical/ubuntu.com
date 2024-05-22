@@ -78,8 +78,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo chmod -R 777 .
-          dotrun install
+          pip3 install dotrun requests==2.31.0
 
       - name: Build assets
         run: dotrun build
