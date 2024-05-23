@@ -1,5 +1,5 @@
 import "infer-preferred-language.js";
-import prepareInputFields from "./prepare-form-inputs.js.js";
+import { prepareInputFields } from "./prepare-form-inputs.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {

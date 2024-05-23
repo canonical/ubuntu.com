@@ -6,10 +6,9 @@ import intlTelInput from "intl-tel-input";
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  * @param {HTMLElement} countryInput - The select element for the country.
  */
-async function prepareInputFields(phoneInput, countryInput) {
+export async function prepareInputFields(phoneInput, countryInput) {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const response = await fetch(`/user-country-tz.json?tz=${timezone}`);
-
   if (!response.ok) {
     throw new Error(`HTTP error with status: ${response.status}`);
   }
@@ -41,7 +40,8 @@ function preFormatCountry(countryCode, countryInput) {
  * @param {string} countryCode - ISO country code for initializing the plugin.
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  */
-function setupIntlTelInput(countryCode, phoneInput) {
+export function setupIntlTelInput(countryCode, phoneInput) {
+  console.log("Setting up intlTelInput with", phoneInput);
   phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
 
   intlTelInput(phoneInput, {
@@ -133,4 +133,7 @@ if (phoneNumberInput || countryInput) {
   prepareInputFields(phoneNumberInput, countryInput);
 }
 
-export default prepareInputFields;
+export default { 
+  prepareInputFields,
+  setupIntlTelInput
+};
