@@ -5,6 +5,7 @@ import calendar
 import logging
 import json
 import numpy
+from functools import wraps
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -195,9 +196,11 @@ def date_has_passed(date_str):
 def sort_by_key_and_ordered_list(list_to_sort, obj_key, ordered_list):
     return sorted(
         list_to_sort,
-        key=lambda item: ordered_list.index(item[obj_key])
-        if item[obj_key] in ordered_list
-        else len(ordered_list),
+        key=lambda item: (
+            ordered_list.index(item[obj_key])
+            if item[obj_key] in ordered_list
+            else len(ordered_list)
+        ),
     )
 
 
@@ -206,6 +209,7 @@ def add_rate_limiting(request_limit="100/hour"):
     # To adjust this rate visit
     # https://limits.readthedocs.io/en/latest/quickstart.html#examples
     def decorator(fn):
+        @wraps(fn)
         def wrapper(*args, **kwargs):
             limit = parse(request_limit)
             rate_limit = fixed_window.hit(limit)
@@ -213,9 +217,6 @@ def add_rate_limiting(request_limit="100/hour"):
                 return flask.abort(429, f"The rate limit is: {request_limit}")
             return fn(*args, **kwargs)
 
-        # Prevent naming conflicts
-        # https://stackoverflow.com/questions/17256602/assertionerror-view-function-mapping-is-overwriting-an-existing-endpoint-functi
-        wrapper.__name__ = fn.__name__
         return wrapper
 
     return decorator
