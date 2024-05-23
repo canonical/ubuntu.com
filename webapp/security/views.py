@@ -14,7 +14,7 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 
 # Local
-from webapp.context import api_session
+from webapp.context import add_rate_limiting, api_session
 from webapp.security.api import SecurityAPI
 
 markdown_parser = Markdown(
@@ -36,6 +36,7 @@ def get_processed_details(notice):
     )
 
 
+@add_rate_limiting(request_limit="80/hour")
 def notice(notice_id):
     # Check if notice_id is a valid USN or LSN
     if re.fullmatch(r"(USN|LSN|SSN)-\d{1,5}-\d{1,2}", notice_id):
@@ -117,6 +118,7 @@ def notice(notice_id):
     return flask.render_template(template, notice=notice)
 
 
+@add_rate_limiting(request_limit="80/hour")
 def notices():
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
@@ -247,9 +249,9 @@ def single_notices_sitemap(offset):
         links.append(
             {
                 "url": f"https://ubuntu.com/security/notices/{notice_id}",
-                "last_updated": notice["published"]
-                if notice["published"]
-                else "",
+                "last_updated": (
+                    notice["published"] if notice["published"] else ""
+                ),
             }
         )
 
@@ -403,6 +405,7 @@ def cve_index():
     )
 
 
+@add_rate_limiting(request_limit="80/hour")
 def cve(cve_id):
     """
     Retrieve and display an individual CVE details page
