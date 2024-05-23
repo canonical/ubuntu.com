@@ -14,6 +14,10 @@ import yaml
 import dateutil.parser
 from slugify import slugify
 from canonicalwebteam.http import CachedSession
+from limits import storage, strategies, parse
+
+memory_storage = storage.MemoryStorage()
+fixed_window = strategies.MovingWindowRateLimiter(memory_storage)
 
 
 logger = logging.getLogger(__name__)
@@ -76,9 +80,9 @@ def get_navigation(path):
         child_to_set_active = None
 
         for child in nav_section["children"]:
-            if (
-                child["path"] == path and path.startswith(nav_section["path"])
-            ) or (path.startswith(child["path"])):
+            if (child["path"] == path and path.startswith(nav_section["path"])) or (
+                path.startswith(child["path"])
+            ):
                 # look for the closest patch match
                 if len(child["path"]) > longest_match_path:
                     longest_match_path = len(child["path"])
@@ -161,9 +165,7 @@ def get_json_feed(url, offset=0, limit=None):
         json.JSONDecodeError,
         requests.exceptions.RequestException,
     ) as fetch_error:
-        logger.warning(
-            "Error getting feed from {}: {}".format(url, str(fetch_error))
-        )
+        logger.warning("Error getting feed from {}: {}".format(url, str(fetch_error)))
         return False
 
     return content[offset:end]
@@ -195,3 +197,20 @@ def sort_by_key_and_ordered_list(list_to_sort, obj_key, ordered_list):
         if item[obj_key] in ordered_list
         else len(ordered_list),
     )
+
+
+def add_rate_limiting(request_limit="100/hour"):
+    # Rate limit requests to protect from spamming
+    # To adjust this rate visit
+    # https://limits.readthedocs.io/en/latest/quickstart.html#examples
+    def decorator(fn):
+        def wrapper(*args, **kwargs):
+            limit = parse(request_limit)
+            rate_limit = fixed_window.hit(limit)
+            if not rate_limit:
+                return flask.abort(429, f"The rate limit is: {request_limit}")
+            return fn(*args, **kwargs)
+
+        return wrapper
+    
+    return decorator

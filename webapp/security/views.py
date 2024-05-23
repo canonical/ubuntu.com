@@ -14,7 +14,7 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 
 # Local
-from webapp.context import api_session
+from webapp.context import add_rate_limiting, api_session
 from webapp.security.api import SecurityAPI
 
 markdown_parser = Markdown(
@@ -35,7 +35,7 @@ def get_processed_details(notice):
         pattern, r'<a href="/security/\g<0>">\g<0></a>', notice["description"]
     )
 
-
+@add_rate_limiting(request_limit="80/hour")
 def notice(notice_id):
     # Check if notice_id is a valid USN or LSN
     if re.fullmatch(r"(USN|LSN|SSN)-\d{1,5}-\d{1,2}", notice_id):
@@ -116,7 +116,7 @@ def notice(notice_id):
 
     return flask.render_template(template, notice=notice)
 
-
+@add_rate_limiting(request_limit="80/hour")
 def notices():
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
@@ -402,7 +402,7 @@ def cve_index():
         selected_releases=selected_releases,
     )
 
-
+@add_rate_limiting(request_limit="80/hour")
 def cve(cve_id):
     """
     Retrieve and display an individual CVE details page
