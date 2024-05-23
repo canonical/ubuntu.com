@@ -211,6 +211,9 @@ def add_rate_limiting(request_limit="100/hour"):
                 return flask.abort(429, f"The rate limit is: {request_limit}")
             return fn(*args, **kwargs)
 
+        # Prevent naming conflicts
+        # https://stackoverflow.com/questions/17256602/assertionerror-view-function-mapping-is-overwriting-an-existing-endpoint-functi
+        wrapper.__name__ = fn.__name__
         return wrapper
-    
+
     return decorator

@@ -35,6 +35,7 @@ def get_processed_details(notice):
         pattern, r'<a href="/security/\g<0>">\g<0></a>', notice["description"]
     )
 
+
 @add_rate_limiting(request_limit="80/hour")
 def notice(notice_id):
     # Check if notice_id is a valid USN or LSN
@@ -115,6 +116,7 @@ def notice(notice_id):
     }
 
     return flask.render_template(template, notice=notice)
+
 
 @add_rate_limiting(request_limit="80/hour")
 def notices():
@@ -247,9 +249,9 @@ def single_notices_sitemap(offset):
         links.append(
             {
                 "url": f"https://ubuntu.com/security/notices/{notice_id}",
-                "last_updated": notice["published"]
-                if notice["published"]
-                else "",
+                "last_updated": (
+                    notice["published"] if notice["published"] else ""
+                ),
             }
         )
 
@@ -401,6 +403,7 @@ def cve_index():
         statuses=statuses,
         selected_releases=selected_releases,
     )
+
 
 @add_rate_limiting(request_limit="80/hour")
 def cve(cve_id):
