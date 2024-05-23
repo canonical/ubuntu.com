@@ -1,8 +1,7 @@
 import intlTelInput from "intl-tel-input";
 
 /**
- * Initializes phone input field with international telephone input functionality
- * and pre-fills the country input based on the user's detected country.
+ * Initializes phone input field with intlTelInput and pre-fills the country input based on the user's timezone.
  *
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  * @param {HTMLElement} countryInput - The select element for the country.
@@ -37,7 +36,7 @@ function preFormatCountry(countryCode, countryInput) {
 }
 
 /**
- * Configures the intlTelInput plugin on the specified input.
+ * Configures intlTelInput.
  *
  * @param {string} countryCode - ISO country code for initializing the plugin.
  * @param {HTMLElement} phoneInput - The input element for the phone number.
@@ -56,7 +55,7 @@ function setupIntlTelInput(countryCode, phoneInput) {
 }
 
 /**
- * Adds validation logic and styling to the phone input.
+ * Adds validation logic and styling to the phone input field.
  *
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  */
@@ -75,7 +74,7 @@ function addInputValidation(phoneInput) {
 }
 
 /**
- * Creates and returns an error message element.
+ * Creates and returns an error message.
  *
  * @returns {HTMLElement} errorElement - The error message element.
  *
@@ -105,7 +104,7 @@ function validateInput(phoneInput, errorElement) {
 }
 
 /**
- * Checks if the provided number matches the required pattern.
+ * Checks the phone number is valid.
  *
  * @param {string} number - The phone number to validate.
  * @returns {boolean} - True if the number is valid, otherwise false.
@@ -116,7 +115,7 @@ function isValidNumber(number) {
 }
 
 /**
- * Resets the error state by removing the error message and class.
+ * Resets the error states.
  *
  * @param {HTMLElement} errorElement - The error message element to remove.
  */
