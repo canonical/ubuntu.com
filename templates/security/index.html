@@ -31,13 +31,7 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row p-card">
-    <p style="max-width: none;">Need information about the CRA? Canonical is committed to delivering Cyber Resilience Act (CRA) compliant Ubuntu. To learn more, 
-      <a href="#get-in-touch">contact our sales team.</a>
-    </p>
-  </div>
- </section>
+{% include "shared/_cra-banner.html" %}
 
 <section class="p-strip is-deep">
   <div class="row p-divider">
@@ -198,7 +192,7 @@
       <li class="p-matrix__item">
         <div>
           <h3 class="p-matrix__title p-heading--4">Protected VMs</h3>
-          <p class="p-matrix__desc">LXD containers, libvirt VMs and OpenStack VMs are protected by AppArmor by default. A rich set of profiles are provided so users can opt-in to protection for other applications.</p>
+          <!-- <p class="p-matrix__desc">LXD containers, libvirt VMs and OpenStack VMs are protected by AppArmor by default. A rich set of profiles are provided so users can opt-in to protection for other applications.</p> -->
         </div>
       </li>
       <li class="p-matrix__item">
