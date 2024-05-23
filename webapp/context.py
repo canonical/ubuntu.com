@@ -80,9 +80,9 @@ def get_navigation(path):
         child_to_set_active = None
 
         for child in nav_section["children"]:
-            if (child["path"] == path and path.startswith(nav_section["path"])) or (
-                path.startswith(child["path"])
-            ):
+            if (
+                child["path"] == path and path.startswith(nav_section["path"])
+            ) or (path.startswith(child["path"])):
                 # look for the closest patch match
                 if len(child["path"]) > longest_match_path:
                     longest_match_path = len(child["path"])
@@ -165,7 +165,9 @@ def get_json_feed(url, offset=0, limit=None):
         json.JSONDecodeError,
         requests.exceptions.RequestException,
     ) as fetch_error:
-        logger.warning("Error getting feed from {}: {}".format(url, str(fetch_error)))
+        logger.warning(
+            "Error getting feed from {}: {}".format(url, str(fetch_error))
+        )
         return False
 
     return content[offset:end]
