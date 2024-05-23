@@ -1,6 +1,6 @@
 import fetchMock from "jest-fetch-mock";
 import intlTelInput from "intl-tel-input";
-import setupIntlTelInput from "../intlTelInput";
+import setupIntlTelInput from "../prepare-form-inputs.js";
 import { fireEvent } from "@testing-library/dom";
 
 jest.mock("intl-tel-input");
@@ -43,7 +43,6 @@ describe("setupIntlTelInput", () => {
       separateDialCode: expect.any(Boolean),
       hiddenInput: expect.any(String),
       initialCountry: expect.any(String),
-      geoIpLookup: expect.any(Function),
     };
 
     fetch.mockResponseOnce(JSON.stringify({ country_code: "gb" }));

@@ -9,5 +9,5 @@ import "./static-forms.js";
 import "./core.js";
 import "./mobile-footer-navigation.js";
 import "./smart-quotes.js";
-import "./intlTelInput.js";
+import "./prepare-form-inputs.js.js";
 import "./tabbed-content.js";
