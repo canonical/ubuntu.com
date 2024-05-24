@@ -41,7 +41,6 @@ function preFormatCountry(countryCode, countryInput) {
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  */
 export function setupIntlTelInput(countryCode, phoneInput) {
-  console.log("Setting up intlTelInput with", phoneInput);
   phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
 
   intlTelInput(phoneInput, {
@@ -126,6 +125,7 @@ function resetErrorState(errorElement, phoneInput) {
   }
 }
 
+// This block checks for the presence of 'phone number' and 'country' input fields on the page. If either input field exists, it triggers the `prepareInputFields` function to set them up. Note: In a modal form scenario, these inputs are not present at page load and thus, `prepareInputFields` is not invoked here. Instead, the function is imported and executed within `dynamic-forms.js` when the modal is opened.
 const phoneNumberInput = document.querySelector("input#phone");
 const countryInput = document.querySelector("select#country");
 
