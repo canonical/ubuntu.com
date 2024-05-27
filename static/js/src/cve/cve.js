@@ -123,8 +123,11 @@ function handleFilters() {
   releaseCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function (event) {
       if (event.target.checked) {
+        console.log(checkbox);
         addParam(releaseFilter.name, event.target.value);
       } else {
+        console.log("unchecked",checkbox);
+
         removeParam(releaseFilter.name, event.target.value);
       }
     });
@@ -144,8 +147,10 @@ function handleFilters() {
   statusCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function (event) {
       if (event.target.checked) {
+        console.log("cchecked filter",checkbox);
         addParam(statusFilter.name, event.target.value);
       } else {
+        console.log("unchecked filter",checkbox);
         removeParam(statusFilter.name, event.target.value);
       }
     });
@@ -158,7 +163,6 @@ function removeParam(param, value) {
   if (param === "version") {
     let statusIndex = filterParams
       .map((param) => param.param)
-      .indexOf("status");
     filterParams.splice(statusIndex, 1);
   }
   filterParams = filterParams.filter((param) => {
@@ -213,6 +217,7 @@ handleFilterPersist();
 
 function applyFilters() {
   applyFiltersButton.addEventListener("click", function (event) {
+    console.log(filterParams)
     filterParams.forEach(function (param) {
       urlParams.append(param.param, param.value);
     });
@@ -252,7 +257,7 @@ function addParam(param, value) {
   } else if (param === "version") {
     filterParams.push(
       { param: param, value: value },
-      { param: "status", value: "" }
+      // { param: "status", value: "" }
     );
   } else if (value === "vulnerable") {
     vulnerableStatuses.forEach(function (status) {
