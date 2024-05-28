@@ -168,6 +168,11 @@ export enum Currencies {
   eur = "eur",
 }
 
+export type TechincalUserContact = {
+  name: string;
+  email: string;
+};
+
 export type ProductListings = Record<string, ChannelProduct>;
 
 export type ChannelProduct = {

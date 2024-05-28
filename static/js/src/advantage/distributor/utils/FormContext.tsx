@@ -12,6 +12,7 @@ import {
   getPreSelectedItem,
   getPreCurrency,
   getPreDuration,
+  TechincalUserContact,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
 
@@ -24,6 +25,10 @@ interface FormContext {
   setDuration: React.Dispatch<React.SetStateAction<Durations>>;
   currency: Currencies;
   setCurrency: React.Dispatch<React.SetStateAction<Currencies>>;
+  techincalUserContact: TechincalUserContact;
+  setTechnicalUserContact: React.Dispatch<
+    React.SetStateAction<TechincalUserContact>
+  >;
   products: ChannelProduct[] | null;
   offer: Offer | null;
   setOffer: React.Dispatch<React.SetStateAction<Offer | null>>;
@@ -40,6 +45,11 @@ export const defaultValues: FormContext = {
   setCurrency: () => {},
   products: null,
   offer: null,
+  techincalUserContact: {
+    name: "",
+    email: "",
+  },
+  setTechnicalUserContact: () => {},
   setOffer: () => {},
 };
 
@@ -51,6 +61,7 @@ interface FormProviderProps {
   initialDuration?: Durations;
   initialCurrency?: Currencies;
   initialOffer?: Offer;
+  initialTechnicalUserContact?: TechincalUserContact;
   children: React.ReactNode;
 }
 
@@ -59,6 +70,7 @@ export const FormProvider = ({
   initialType = defaultValues.productType,
   initialDuration = defaultValues.duration,
   initialCurrency = defaultValues.currency,
+  initialTechnicalUserContact = defaultValues.techincalUserContact,
   children,
 }: FormProviderProps) => {
   const localSubscriptionList = localStorage.getItem(
@@ -69,6 +81,9 @@ export const FormProvider = ({
   );
   const localDuration = localStorage.getItem("distributor-selector-duration");
   const localCurrency = localStorage.getItem("distributor-selector-currency");
+  const localTechnicalUserContact = localStorage.getItem(
+    "distributor-selector-techincalUserContact"
+  );
   const localOffer = localStorage.getItem("channel-offer-data");
 
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
@@ -81,6 +96,14 @@ export const FormProvider = ({
   );
   const [duration, setDuration] = useState<Durations>(
     localDuration ? JSON.parse(localDuration) : initialDuration
+  );
+  const [
+    techincalUserContact,
+    setTechnicalUserContact,
+  ] = useState<TechincalUserContact>(
+    localTechnicalUserContact
+      ? JSON.parse(localTechnicalUserContact)
+      : initialTechnicalUserContact
   );
   const [currency, setCurrency] = useState<Currencies>(
     localCurrency ? JSON.parse(localCurrency) : initialCurrency
@@ -137,6 +160,15 @@ export const FormProvider = ({
     }
   }, [offer]);
 
+  useEffect(() => {
+    if (!localTechnicalUserContact) {
+      setTechnicalUserContact({
+        name: offer?.technical_contact,
+        email: offer?.technical_contact,
+      } as TechincalUserContact);
+    }
+  }, [offer]);
+
   return (
     <FormContext.Provider
       value={{
@@ -151,6 +183,8 @@ export const FormProvider = ({
         products,
         offer,
         setOffer,
+        techincalUserContact,
+        setTechnicalUserContact,
       }}
     >
       {children}
