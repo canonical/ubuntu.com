@@ -1,6 +1,6 @@
 import fetchMock from "jest-fetch-mock";
 import intlTelInput from "intl-tel-input";
-import setupIntlTelInput from "../intlTelInput";
+import { setupIntlTelInput } from "../prepare-form-inputs.js";
 import { fireEvent } from "@testing-library/dom";
 
 jest.mock("intl-tel-input");
@@ -9,6 +9,7 @@ fetchMock.enableMocks();
 describe("setupIntlTelInput", () => {
   let phoneInput;
   let mobileInput;
+  let countryCode = "GB";
 
   beforeEach(() => {
     document.body.innerHTML = `
@@ -28,7 +29,7 @@ describe("setupIntlTelInput", () => {
 
     phoneInput = document.querySelector("input#phone");
     mobileInput = document.querySelector(".iti");
-    setupIntlTelInput(phoneInput);
+    setupIntlTelInput(countryCode, phoneInput);
     fetch.resetMocks();
     intlTelInput.mockClear();
   });
@@ -43,18 +44,17 @@ describe("setupIntlTelInput", () => {
       separateDialCode: expect.any(Boolean),
       hiddenInput: expect.any(String),
       initialCountry: expect.any(String),
-      geoIpLookup: expect.any(Function),
     };
 
     fetch.mockResponseOnce(JSON.stringify({ country_code: "gb" }));
 
-    setupIntlTelInput(phoneInput);
+    setupIntlTelInput(countryCode, phoneInput);
 
     expect(intlTelInput).toBeCalledWith(phoneInput, expectedOptions);
   });
 
   it("validates phone number correctly", async () => {
-    setupIntlTelInput(phoneInput);
+    setupIntlTelInput(countryCode, phoneInput);
 
     phoneInput.value = "1-2,3.4(5)6/";
     const blurEvent = new Event("blur");

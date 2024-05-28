@@ -1,5 +1,5 @@
 import "infer-preferred-language.js";
-import setupIntlTelInput from "./intlTelInput.js";
+import { prepareInputFields } from "./prepare-form-inputs.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -189,7 +189,8 @@ import setupIntlTelInput from "./intlTelInput.js";
       var submitButton = contactModal.querySelector('button[type="submit"]');
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
-      var phoneInput = document.querySelector("#phone");
+      var phoneNumberInput = document.querySelector("#phone");
+      var countryInput = document.querySelector("#country");
       var modalTrigger = document.activeElement || document.body;
       var isMultipage = contactModal.querySelector(".js-pagination").length > 1;
 
@@ -520,8 +521,9 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       setCheckboxLimit();
 
-      // Setup dial code dropdown options (intlTelInput.js)
-      setupIntlTelInput(phoneInput);
+      // Sets up dial code dropdown options aka. intlTelInput.js
+      // and pre fills the country field
+      prepareInputFields(phoneNumberInput, countryInput);
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
