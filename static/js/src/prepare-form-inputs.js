@@ -133,7 +133,7 @@ if (phoneNumberInput || countryInput) {
   prepareInputFields(phoneNumberInput, countryInput);
 }
 
-export default { 
+export default {
   prepareInputFields,
-  setupIntlTelInput
+  setupIntlTelInput,
 };
