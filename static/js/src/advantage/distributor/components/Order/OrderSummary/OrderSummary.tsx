@@ -4,17 +4,19 @@ import { FormContext } from "advantage/distributor/utils/FormContext";
 import { ExternalId as ExternalIdType } from "../../../../offers/types";
 
 const OrderSummary = () => {
-  const { offer } = useContext(FormContext);
+  const { offer, techincalUserContact } = useContext(FormContext);
 
+  const order_id = offer?.id;
   const deal_registration_id = offer?.external_ids?.filter(
     (external_id: ExternalIdType) => (external_id.origin = "Zift")
   )[0]["ids"];
   const reseller_account_name = offer?.reseller_account_name;
+
   return (
     <>
       <div className="p-section--shallow">
         <div className="order-summary-label">Order ID</div>
-        <div className="order-summary-value">12345</div>
+        <div className="order-summary-value">{order_id}</div>
         <div className="order-summary-label">Deal registreation ID</div>
         <div className="order-summary-value">{deal_registration_id}</div>
         <div>
@@ -37,8 +39,10 @@ const OrderSummary = () => {
             <div className="p-text--small-caps">
               Techinical user&lsquo;s contact
             </div>
-            <div>Maya Sardegna</div>
-            <div className="order-summary-value">Maya.sardegna@tuc.com</div>
+            <div>{techincalUserContact.name}</div>
+            <div className="order-summary-value">
+              {techincalUserContact.email}
+            </div>
             <div>TechUserCorp. Germany</div>
             <div className="u-text--muted">456 Address place,</div>
             <div className="u-text--muted">Berlin</div>
