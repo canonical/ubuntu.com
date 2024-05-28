@@ -23,13 +23,9 @@ type Props = {
 
 function Summary({ products, action, setError }: Props) {
   const { values } = useFormikContext<FormValues>();
-  const product = products[0].product;
-  const quantity = products[0].quantity;
 
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
-    quantity: quantity,
-    marketplace: product.marketplace,
-    productListingId: product.longId,
+    products,
     country: values.country,
     VATNumber: values.VATNumber,
     isTaxSaved: values.isTaxSaved,
@@ -40,8 +36,7 @@ function Summary({ products, action, setError }: Props) {
     isFetching: isPreviewFetching,
     error: error,
   } = usePreview({
-    quantity,
-    product,
+    products,
     action,
   });
 
@@ -49,14 +44,17 @@ function Summary({ products, action, setError }: Props) {
   const priceData: TaxInfo | undefined = preview || calculate;
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
+  const product = products[0].product;
+  const marketplace = product?.marketplace;
+  const quantity = products[0].quantity;
   const units =
-    product?.marketplace === "canonical-ua"
+    marketplace === "canonical-ua"
       ? "Machines"
-      : product?.marketplace === "canonical-cube"
+      : marketplace === "canonical-cube"
       ? "Exams"
       : "Users";
   const planType =
-    product?.marketplace === "canonical-cube"
+    marketplace === "canonical-cube"
       ? "Product"
       : action !== "offer"
       ? "Plan type"
