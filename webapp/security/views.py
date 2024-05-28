@@ -26,7 +26,7 @@ session = talisker.requests.get_session()
 
 security_api = SecurityAPI(
     session=session,
-    base_url="http://0.0.0.0:8030/security/",
+    base_url="https://ubuntu.com/security/",
 )
 
 
