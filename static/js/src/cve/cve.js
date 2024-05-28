@@ -70,7 +70,7 @@ handlePackageInput();
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
   releaseCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {
+    checkbox.addEventListener("change", function (event) {      
       if (event.target.checked) {
         addParam(releaseFilter.name, event.target.value);
       } else {
