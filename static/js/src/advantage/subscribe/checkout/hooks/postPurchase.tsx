@@ -6,6 +6,7 @@ import {
   CheckoutProducts,
   PaymentPayload,
 } from "../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
   products: CheckoutProducts[];
@@ -22,36 +23,40 @@ const postPurchase = () => {
         // prevent re-purchase attemp
         return window.currentPaymentId;
       }
-      let payload: PaymentPayload | null = null;
+
+      const marketplace = products[0].product.marketplace;
+
+      let payload: PaymentPayload = {
+        account_id: window.accountId,
+        marketplace: marketplace,
+        action: action,
+        coupon: coupon,
+        previous_purchase_id:
+          window.previousPurchaseIds?.[products[0].product.period],
+      };
+
+      if (action === "purchase" || action === "trial") {
+        payload = {
+          ...payload,
+          products: products.map((product) => {
+            return {
+              product_listing_id: product.product.longId,
+              quantity: product.quantity,
+            };
+          }),
+        };
+      }
 
       if (products && products.length === 1) {
         const product = products[0].product;
-        const quantity = products[0].quantity;
-        payload = {
-          account_id: window.accountId,
-          marketplace: product.marketplace,
-          action: action,
-          coupon: coupon,
-          previous_purchase_id: window.previousPurchaseIds?.[product.period],
-        };
-
-        if (action === "purchase" || action === "trial") {
-          payload = {
-            ...payload,
-            products: [
-              {
-                product_listing_id: product.longId,
-                quantity: quantity,
-              },
-            ],
-          };
-        }
-
         if (action === "renewal") {
           payload = { ...payload, renewal_id: product.longId };
         }
 
-        if (action === "offer") {
+        if (
+          action === "offer" &&
+          marketplace === UserSubscriptionMarketplace.CanonicalUA
+        ) {
           payload = { ...payload, offer_id: product.longId };
         }
       }

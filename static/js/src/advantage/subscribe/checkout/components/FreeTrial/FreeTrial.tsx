@@ -23,20 +23,15 @@ const DATE_FORMAT = "dd MMMM yyyy";
 
 const FreeTrial = ({ products, action, coupon }: Props) => {
   const { values } = useFormikContext<FormValues>();
-  const product = products[0].product;
-  const quantity = products[0].quantity;
   const { data: calculate } = useCalculate({
-    quantity: quantity,
-    marketplace: product.marketplace,
-    productListingId: product.longId,
+    products,
     country: values.country,
     VATNumber: values.VATNumber,
     isTaxSaved: values.isTaxSaved,
   });
 
   const { data: preview } = usePreview({
-    quantity,
-    product,
+    products,
     action,
     coupon,
   });

@@ -22,6 +22,7 @@ import FreeTrial from "../FreeTrial";
 import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
   products: CheckoutProducts[];
@@ -34,14 +35,20 @@ const Checkout = ({ products, action, coupon }: Props) => {
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
   const product = products[0].product;
-  const productCanBeTrialled = product?.canBeTrialled;
-  const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
+  let canTrial = false;
+
+  if (product.marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
+    const productCanBeTrialled = product?.canBeTrialled;
+    canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
+  }
+
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
     checkoutEvent(window.GAFriendlyProduct, "2");
   }
+
   return (
     <>
       <div className="p-strip">

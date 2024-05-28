@@ -100,18 +100,18 @@ export type Cart = {
 
 export type Action = "purchase" | "resize" | "trial" | "offer" | "renewal";
 
+export type PaymentPayloadProducts = {
+  product_listing_id: string;
+  quantity: number;
+};
+
 export type PaymentPayload = {
   account_id?: string;
   marketplace: UserSubscriptionMarketplace;
   action: Action;
   previous_purchase_id?: string | null;
   captcha_value?: string | null;
-  products?: [
-    {
-      product_listing_id: string;
-      quantity: number;
-    }
-  ];
+  products?: PaymentPayloadProducts[];
   renewal_id?: string;
   offer_id?: string;
   coupon?: Coupon;

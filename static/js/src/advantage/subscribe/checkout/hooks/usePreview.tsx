@@ -2,50 +2,56 @@ import { useQuery } from "react-query";
 import {
   Action,
   Coupon,
+  CheckoutProducts,
   PaymentPayload,
-  Product,
   TaxInfo,
 } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
-  quantity: number;
-  product: Product;
+  products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
 };
 
-const usePreview = ({ quantity, product, action, coupon }: Props) => {
+const usePreview = ({ products, action, coupon }: Props) => {
   const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
-    ["preview", product],
+    ["preview", products],
     async () => {
+      const marketplace = products[0].product.marketplace;
+
       let payload: PaymentPayload = {
         account_id: window.accountId,
-        marketplace: product.marketplace,
+        marketplace: marketplace,
         action: action,
-        previous_purchase_id: window.previousPurchaseIds?.[product.period],
         coupon: coupon,
+        previous_purchase_id:
+          window.previousPurchaseIds?.[products[0].product.period],
       };
 
       if (action === "purchase" || action === "trial") {
         payload = {
           ...payload,
-          products: [
-            {
-              product_listing_id: product.longId,
-              quantity: quantity,
-            },
-          ],
+          products: products.map((product) => {
+            return {
+              product_listing_id: product.product.longId,
+              quantity: product.quantity,
+            };
+          }),
         };
       }
 
       if (action === "renewal") {
-        payload = { ...payload, renewal_id: product.longId };
+        payload = { ...payload, renewal_id: products[0].product.longId };
       }
 
-      if (action === "offer") {
-        payload = { ...payload, offer_id: product.longId };
+      if (
+        action === "offer" &&
+        marketplace === UserSubscriptionMarketplace.CanonicalUA
+      ) {
+        payload = { ...payload, offer_id: products[0].product.longId };
       }
 
       const response = await fetch(
@@ -93,7 +99,7 @@ const usePreview = ({ quantity, product, action, coupon }: Props) => {
       enabled:
         !!window.accountId &&
         !window.currentPaymentId &&
-        !!product &&
+        !!products &&
         !!userInfo?.accountInfo?.name &&
         !isUserInfoError,
     }
