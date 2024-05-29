@@ -1,6 +1,6 @@
 import { getCookie, setCookie } from "./utils/cookies";
 
-(function () {
+window.onload = function () {
   // check if user doesn't already have a group
   if (!getCookie("control_or_variant")) {
     // randomly assign to 'control' or 'variant' group
@@ -16,4 +16,4 @@ import { getCookie, setCookie } from "./utils/cookies";
       control_or_variant: group,
     });
   }
-})();
+};
