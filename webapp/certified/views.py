@@ -176,7 +176,6 @@ def get_vendors_releases_filters():
         vendors,
         releases,
     ) = get_filters(request.args)
-
     new_certified_params = _parse_query_params(vendors, releases)
     if not new_certified_params:
         vendor_filters = []
@@ -210,6 +209,8 @@ def get_vendors_releases_filters():
                 cat = "soc"
 
             for vendor in certified_makes:
+                if vendor["make"] == "nVidia":
+                    vendor["make"] = "NVIDIA"
                 make = vendor["make"]
 
                 if (
@@ -933,6 +934,10 @@ def certified_vendors(vendor):
         # Replace "Ubuntu Core" with "Device"
         if model["category"] == "Ubuntu Core":
             results[index]["category"] = "Device"
+
+        # Replace "nVidia" with "NVIDIA"
+        if model["make"] == "nVidia":
+            model["make"] = "NVIDIA"
 
     total_results = models["count"]
 
