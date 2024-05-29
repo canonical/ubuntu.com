@@ -68,8 +68,9 @@
           <hr class="p-separator is-shallow"/>
           <ol class="p-stepped-list">
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 To get started, install the MicroCeph snap with the following command on each node to be used in the cluster:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo snap install microceph</code></pre>
@@ -77,8 +78,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Then bootstrap the cluster:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph cluster bootstrap</code></pre>
@@ -86,8 +88,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Check the cluster status with the following command:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph.ceph status</code></pre>
@@ -98,8 +101,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 To use MicroCeph as a single node, the default CRUSH rules need to be modified:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph.ceph osd crush rule rm replicated_rule<br/>sudo microceph.ceph osd crush rule create-replicated single default osd</code></pre>
@@ -107,8 +111,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Next, add some disks that will be used as OSDs:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph disk add /dev/sd[x] --wipe</code></pre>
@@ -144,8 +149,9 @@
           <hr class="p-separator is-shallow"/>
           <ol class="p-stepped-list">
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 To get started, install the MicroCeph snap with the following command on each node to be used in the cluster:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo snap install microceph</code></pre>
@@ -153,8 +159,9 @@
               </div> 
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Then bootstrap the cluster from the first node:
+              </p>
               <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph cluster bootstrap</code></pre>
@@ -162,8 +169,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 On the first node, add other nodes to the cluster:
+              </p>
 \              <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph cluster add node[x]</code></pre>
@@ -171,8 +179,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Copy the resulting output to be used on node[x]:
+              </p>
 \              <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph cluster join pasted-output-from-node1</code></pre>
@@ -181,8 +190,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Check the cluster status with the following command:
+              </p>
 \              <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph.ceph status</code></pre>
@@ -190,8 +200,9 @@
               </div>
             </li>
             <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--4"/>
+              <p class="p-stepped-list__title p-heading--4">
                 Next, add some disks to each node that will be used as OSDs:
+              </p>
 \              <div class="p-stepped-list__content">
                 <div class="p-code-snippet">
                   <pre class="p-code-snippet__block"><code>sudo microceph disk add /dev/sd[x] --wipe</code></pre>
