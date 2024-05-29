@@ -1,9 +1,8 @@
-import { getCookie, setCookie} from "./utils/cookies";
+import { getCookie, setCookie } from "./utils/cookies";
 
-(function() {
+(function () {
   // check if user doesn't already have a group
   if (!getCookie("control_or_variant")) {
-
     // randomly assign to 'control' or 'variant' group
     const group = Math.random() > 0.5 ? "control" : "variant";
 
@@ -12,9 +11,9 @@ import { getCookie, setCookie} from "./utils/cookies";
 
     // send group info in GA event
     dataLayer.push({
-      'event' : 'test',
-      'test_type' : 'element visibility',
-      'control_or_variant' : group,
+      event: "test",
+      test_type: "element visibility",
+      control_or_variant: group,
     });
   }
 })();
