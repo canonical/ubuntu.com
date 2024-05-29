@@ -125,9 +125,9 @@ const OrderDetail = () => {
       </div>
       <hr />
       <div className="order-field">
-        <div className="order-label">Discount ({discount}% off subtotal) </div>
+        <div className="order-label">Discount ({discount}% off subtotal)</div>
         <div className="order-value">
-          -
+          &minus;
           {discount &&
             currencyFormatter(currency).format(
               (totalPrice * (discount / 100)) / 100
@@ -135,14 +135,14 @@ const OrderDetail = () => {
         </div>
       </div>
       <hr />
-      <div className="order-field">
-        <div className="order-label">VAT(7% on subtotal)</div>
-        <div className="order-value">$XX</div>
-      </div>
-      <hr />
       <div className="order-total-field">
         <div className="order-label">Total per year</div>
-        <div className="order-value">$XX</div>
+        <div className="order-value">
+          {discount &&
+            currencyFormatter(currency).format(
+              (totalPrice - totalPrice * (discount / 100)) / 100
+            )}
+        </div>
       </div>
       <DistributorBuyButton />
     </Card>
