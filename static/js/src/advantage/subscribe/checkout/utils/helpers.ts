@@ -1,7 +1,8 @@
-import { FormValues, Product, UserInfo } from "./types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { FormValues, UserInfo } from "./types";
 
 export function getInitialFormValues(
-  product: Product,
+  marketplace: UserSubscriptionMarketplace,
   canTrial?: boolean,
   userInfo?: UserInfo
 ): FormValues {
@@ -27,7 +28,7 @@ export function getInitialFormValues(
     TermsAndConditions: false,
     MarketingOptIn: false,
     Description: false,
-    marketplace: product.marketplace,
+    marketplace: marketplace,
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
     isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,

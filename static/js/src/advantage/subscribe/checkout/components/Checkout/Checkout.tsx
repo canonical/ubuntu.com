@@ -34,15 +34,19 @@ const Checkout = ({ products, action, coupon }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
-  const product = products[0].product;
+  const marketplace = products[0].product.marketplace;
   let canTrial = false;
-
-  if (product.marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
+  if (
+    marketplace !== UserSubscriptionMarketplace.CanonicalProChannel &&
+    products?.length === 1
+  ) {
+    const product = products[0].product;
     const productCanBeTrialled = product?.canBeTrialled;
     canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   }
 
-  const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const product = products[0].product;
+  const initialValues = getInitialFormValues(marketplace, canTrial, userInfo);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");

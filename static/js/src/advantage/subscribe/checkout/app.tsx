@@ -66,28 +66,35 @@ const products = checkoutProducts.map((product) => {
   };
 });
 
-const product = products[0].product;
-const quantity = products[0].quantity;
-
 const action: Action = parsedCheckoutData?.action;
 const coupon: Coupon = parsedCheckoutData?.coupon || undefined;
+const marketplace = products[0].product.marketplace;
 
-window.previousPurchaseIds = {
-  monthly: "",
-  yearly: "",
-};
+window.marketplace = marketplace;
 window.canTrial = undefined;
 window.currentPaymentId = "";
 window.accountId = "";
 window.captcha = null;
 
-window.marketplace = product.marketplace;
-window.GAFriendlyProduct = {
-  id: product?.id,
-  name: product?.name,
-  price: (product?.price?.value ?? 0) / 100,
-  quantity: quantity,
-};
+if (
+  marketplace !== UserSubscriptionMarketplace.CanonicalProChannel &&
+  products?.length === 1
+) {
+  window.previousPurchaseIds = {
+    monthly: "",
+    yearly: "",
+  };
+
+  const product = products[0].product;
+  const quantity = products[0].quantity;
+
+  window.GAFriendlyProduct = {
+    id: product?.id,
+    name: product?.name,
+    price: (product?.price?.value ?? 0) / 100,
+    quantity: quantity,
+  };
+}
 
 const App = () => {
   return (

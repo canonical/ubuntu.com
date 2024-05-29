@@ -47,27 +47,31 @@ function Summary({ products, action, coupon, setError }: Props) {
   const priceData: TaxInfo | undefined = preview || calculate;
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
-  const product = products[0].product;
-  const marketplace = product?.marketplace;
-  const quantity = products[0].quantity;
+  const marketplace = products[0]?.product.marketplace;
+  const product = products[0]?.product;
+  const quantity = products[0]?.quantity;
+
   const units =
     marketplace === "canonical-ua"
       ? "Machines"
       : marketplace === "canonical-cube"
       ? "Exams"
       : "Users";
+
   const planType =
     marketplace === "canonical-cube"
       ? "Product"
       : action !== "offer"
       ? "Plan type"
       : "Products";
+
   const productName =
     action !== "offer"
       ? product?.name === "cue-linux-essentials-free"
         ? "CUE.01 Linux"
         : product?.name
       : product?.name.replace(", ", "<br>");
+
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;

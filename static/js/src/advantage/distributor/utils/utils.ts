@@ -1,5 +1,5 @@
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import { Item } from "advantage/offers/types";
-import { marketplace } from "advantage/subscribe/checkout/utils/types";
 
 export function generateUniqueId() {
   return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -178,7 +178,7 @@ export type ProductListings = Record<string, ChannelProduct>;
 export type ChannelProduct = {
   id: string;
   name: ValidProducts;
-  marketplace: marketplace;
+  marketplace: UserSubscriptionMarketplace;
   product: { id: ValidProductID; name: ValidProductName };
   price: number;
   currency: string;
@@ -357,7 +357,7 @@ const generateMockProductList = (
           allList[name] = {
             id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
             name: name,
-            marketplace: "canonical-pro-channel",
+            marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
             product: {
               id: productID,
               name: productName,

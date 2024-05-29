@@ -25,40 +25,57 @@ const postPurchase = () => {
       }
 
       const marketplace = products[0].product.marketplace;
+      let payload: PaymentPayload;
 
-      let payload: PaymentPayload = {
-        account_id: window.accountId,
-        marketplace: marketplace,
-        action: action,
-        coupon: coupon,
-        previous_purchase_id:
-          window.previousPurchaseIds?.[products[0].product.period],
-      };
+      if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
+        const product = products[0].product;
 
-      if (action === "purchase" || action === "trial") {
         payload = {
-          ...payload,
+          account_id: window.accountId,
+          marketplace: marketplace,
+          action: action,
+          coupon: coupon,
+        };
+
+        if (window.previousPurchaseIds !== undefined && product.period) {
+          payload.previous_purchase_id =
+            window.previousPurchaseIds?.[product.period];
+        }
+
+        if (action === "purchase" || action === "trial") {
+          payload = {
+            ...payload,
+            products: products.map((product) => {
+              return {
+                product_listing_id: product?.product?.longId,
+                quantity: product.quantity,
+              };
+            }),
+          };
+        }
+
+        if (products && products.length === 1) {
+          const product = products[0].product;
+          if (action === "renewal") {
+            payload = { ...payload, renewal_id: product.longId };
+          }
+
+          if (action === "offer") {
+            payload = { ...payload, offer_id: product.longId };
+          }
+        }
+      } else {
+        payload = {
+          account_id: window.accountId,
+          marketplace: marketplace,
+          action: action,
           products: products.map((product) => {
             return {
-              product_listing_id: product.product.longId,
+              product_listing_id: product?.product?.longId,
               quantity: product.quantity,
             };
           }),
         };
-      }
-
-      if (products && products.length === 1) {
-        const product = products[0].product;
-        if (action === "renewal") {
-          payload = { ...payload, renewal_id: product.longId };
-        }
-
-        if (
-          action === "offer" &&
-          marketplace === UserSubscriptionMarketplace.CanonicalUA
-        ) {
-          payload = { ...payload, offer_id: product.longId };
-        }
       }
 
       // preview

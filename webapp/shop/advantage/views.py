@@ -276,7 +276,7 @@ def advantage_account_users_view(advantage_mapper, **kwargs):
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     account_id = kwargs.get("account_id")
-    marketplace = kwargs.get("marketplace", "canonical-ua")
+    marketplace = kwargs.get("marketplace")
     action = kwargs.get("action", "purchase")
     coupon = kwargs.get("coupon")
 
