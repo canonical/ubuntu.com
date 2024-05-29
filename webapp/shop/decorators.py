@@ -170,6 +170,25 @@ def canonical_staff():
     return decorator
 
 
+def credentials_group():
+    def decorator(func):
+        @wraps(func)
+        def decorated_function(*args, **kwargs):
+            sso_user = user_info(flask.session)
+            if (
+                sso_user
+                and sso_user.get("is_credentials_admin", False) is True
+            ):
+                return func(*args, **kwargs)
+
+            message = {"error": "unauthorized"}
+            return flask.jsonify(message), 403
+
+        return decorated_function
+
+    return decorator
+
+
 def init_badgr_session(area) -> Session:
     if area != "cred":
         return None

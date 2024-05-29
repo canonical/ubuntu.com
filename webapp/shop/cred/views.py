@@ -16,6 +16,7 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import (
+    credentials_group,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1052,3 +1053,8 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
         or (type == "exam")
     ]
     return flask.jsonify(filtered_products)
+
+@shop_decorator(area="cred", permission="user", response="html")
+@credentials_group()
+def cred_dashboard(trueability_api, **_):
+    return "<p>Dashboard</p>"
