@@ -42,7 +42,7 @@ def user_info(user_session):
             ),
             "is_credentials_admin": (
                 user_session["openid"].get("is_credentials_admin", False)
-            )
+            ),
         }
     else:
         return None

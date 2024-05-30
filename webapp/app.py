@@ -934,9 +934,7 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard",
-    view_func=cred_dashboard,
-    methods=["GET"]
+    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
 )
 
 app.add_url_rule(
