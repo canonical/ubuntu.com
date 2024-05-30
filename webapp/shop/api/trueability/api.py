@@ -74,7 +74,7 @@ class TrueAbilityAPI:
         return self.make_request("GET", uri).json()
 
     def get_assessment_reservations(
-        self, ability_screen_id: int = 4229, page: int = 1, per_page: int = 500
+        self, ability_screen_id: int = None, page: int = 1, per_page: int = 50
     ):
         params = {
             "ability_screen_id": ability_screen_id,
