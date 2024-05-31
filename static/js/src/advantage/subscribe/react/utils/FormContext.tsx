@@ -155,9 +155,7 @@ export const FormProvider = ({
   }, [productType, support]);
 
   useEffect(() => {
-    if (
-      productType === ProductTypes.desktop
-    ) {
+    if (productType === ProductTypes.desktop) {
       setFeature(Features.pro);
     }
   }, [productType, feature, version]);

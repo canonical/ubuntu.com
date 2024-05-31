@@ -35,7 +35,6 @@ test("Feature sections disables Infra + Apps if destkop is selected", () => {
   expect(screen.getByTestId("infra-only")).toBeDisabled();
 });
 
-
 test("The section is disabled if a public cloud is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.publicCloud}>

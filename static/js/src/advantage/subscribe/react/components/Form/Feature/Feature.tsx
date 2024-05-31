@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
-import {
-  Features,
-  ProductTypes,
-} from "advantage/subscribe/react/utils/utils";
+import { Features, ProductTypes } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
@@ -19,7 +16,6 @@ const Feature = () => {
   };
 
   const infraOnlyDisabled = productType === ProductTypes.desktop;
-
 
   return (
     <>

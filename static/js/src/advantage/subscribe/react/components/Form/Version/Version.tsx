@@ -97,7 +97,7 @@ const PhysicalServerVersionDetails: {
     KVMDrivers,
     landscape,
     knowledgeBase,
-  ]
+  ],
 };
 
 const DesktopVersionDetails: {
@@ -148,7 +148,7 @@ const DesktopVersionDetails: {
     CommonCriteria,
     landscape,
     knowledgeBase,
-  ]
+  ],
 };
 
 const Version = () => {
