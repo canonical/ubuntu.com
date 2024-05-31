@@ -176,12 +176,16 @@ export type TechincalUserContact = {
 export type ProductListings = Record<string, ChannelProduct>;
 
 export type ChannelProduct = {
+  longId: string;
+  name: string;
+  price: {
+    value: number;
+    currency: string;
+  };
+  private: boolean;
   id: string;
-  name: ValidProducts;
+  productID: ValidProductID;
   marketplace: UserSubscriptionMarketplace;
-  product: { id: ValidProductID; name: ValidProductName };
-  price: number;
-  currency: string;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
@@ -330,6 +334,7 @@ const mockDurations: Durations[] = [
   Durations.two,
   Durations.three,
 ];
+
 const generateMockProductList = (
   productNames: ValidProductName[],
   currencies: Currencies[],
@@ -355,15 +360,16 @@ const generateMockProductList = (
           );
 
           allList[name] = {
-            id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-            name: name,
-            marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
-            product: {
-              id: productID,
-              name: productName,
+            id: name, // valid product e.g. uai-standard-desktop-channel-one-year-usd
+            longId: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE", // listing.id
+            name: productName, // listing.product.name e.g. Ubuntu Pro + Infra Support (weekday)
+            price: {
+              value: value, // listing.price
+              currency: currency.toUpperCase(), // listing.currency
             },
-            price: value,
-            currency: currency.toUpperCase(),
+            productID: productID, // listing.product.id e.g. uai-standard-desktop
+            private: false,
+            marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
           };
         }
       }

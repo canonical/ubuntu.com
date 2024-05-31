@@ -66,6 +66,7 @@ def parse_channel_product_listing(
         product=product,
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
+        status=raw_product_listing.get("status"),
     )
 
 

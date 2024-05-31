@@ -3,17 +3,12 @@ import { Button } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {
   ChannelProduct,
-  Durations,
   SubscriptionItem,
   getProductId,
 } from "advantage/distributor/utils/utils";
-import { Product } from "advantage/subscribe/checkout/utils/types";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
 
 const DistributorBuyButton = () => {
-  const { products, subscriptionList, offer, duration } = useContext(
-    FormContext
-  );
+  const { products, subscriptionList, offer } = useContext(FormContext);
 
   const getProductQauntity = (product: ChannelProduct) => {
     let quantity = 0;
@@ -24,7 +19,7 @@ const DistributorBuyButton = () => {
           subscription.support,
           subscription.sla
         );
-        if (productId === product?.product.id && product?.price !== undefined) {
+        if (productId === product?.productID && product?.price !== undefined) {
           quantity = subscription.quantity;
         }
       }
@@ -32,26 +27,25 @@ const DistributorBuyButton = () => {
     return quantity;
   };
 
-  const checkoutProduct = products?.map((product: ChannelProduct) => {
+  const checkoutProducts = products?.map((product: ChannelProduct) => {
     const prod = {
-      longId: product.product.id,
-      marketplace: product.marketplace,
+      longId: product?.longId,
+      marketplace: product?.marketplace,
       id: offer?.id ?? "",
-      name: product.product.name,
+      name: product?.name,
       price: {
-        value: Number(product.price),
+        value: Number(product?.price?.value),
         discount: Number(offer?.discount) ?? 0,
       },
-      period: duration as UserSubscriptionPeriod | Durations,
     };
     return {
-      product: prod as Product,
+      product: prod,
       quantity: getProductQauntity(product),
     };
   });
 
   const shopCheckoutData = {
-    products: checkoutProduct,
+    products: checkoutProducts,
     action: "offer",
   };
 
