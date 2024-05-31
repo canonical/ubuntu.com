@@ -32,6 +32,10 @@ window.channelProductList = mockProducList;
 
 declare global {
   interface Window {
+    stripePublishableKey?: string;
+    isLoggedIn?: boolean;
+    accountId?: string;
+    tempAccountId?: string;
     channelProductList: ProductListings;
   }
 }

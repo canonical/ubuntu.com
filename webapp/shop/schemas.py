@@ -66,7 +66,7 @@ account_purhcase = {
     "previous_purchase_id": String(allow_none=True),
     "captcha_value": String(allow_none=True),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender", "canonical-pro-channel"]),
         required=True,
     ),
     "action": String(
@@ -93,7 +93,7 @@ cancel_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "product_listing_id": String(required=True),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender", "canonical-pro-channel"]),
         required=True,
     ),
 }
@@ -102,7 +102,7 @@ post_offer_schema = {
     "account_id": String(),
     "offer_id": String(),
     "marketplace": String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"])
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender", "canonical-pro-channel"])
     ),
 }
 
@@ -136,7 +136,7 @@ ensure_purchase_account = {
 get_purchase_account_status = {
     "marketplace": String(
         validate=validate.OneOf(
-            ["", "canonical-ua", "canonical-cube", "blender"]
+            ["", "canonical-ua", "canonical-cube", "blender", "canonical-pro-channel" ]
         )
     ),
 }
@@ -144,7 +144,7 @@ get_purchase_account_status = {
 invoice_view = {
     "marketplace": String(
         validate=validate.OneOf(
-            ["", "canonical-ua", "canonical-cube", "blender"]
+            ["", "canonical-ua", "canonical-cube", "blender", "canonical-pro-channel"]
         )
     ),
     "page": Int(),
