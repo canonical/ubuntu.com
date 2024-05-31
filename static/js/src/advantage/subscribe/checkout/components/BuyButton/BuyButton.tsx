@@ -206,7 +206,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       setError(
         <>
           The chosen product cannot be renewed as it has been deprecated.
-          Contact <a href="https://ubuntu.com/contact-us">Canonical sales</a>
+          Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
           to choose a substitute offering.
         </>
       );
