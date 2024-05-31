@@ -4,12 +4,11 @@ import { Col, RadioInput, Row } from "@canonical/react-components";
 import {
   Features,
   ProductTypes,
-  LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { productType, feature, setFeature, version } = useContext(FormContext);
+  const { productType, feature, setFeature } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
@@ -19,10 +18,8 @@ const Feature = () => {
     );
   };
 
-  const infraOnlyDisabled =
-    productType === ProductTypes.desktop && version !== LTSVersions.trusty;
+  const infraOnlyDisabled = productType === ProductTypes.desktop;
 
-  const proDisabled = version === LTSVersions.trusty;
 
   return (
     <>
@@ -47,7 +44,7 @@ const Feature = () => {
               checked={feature === Features.pro}
               value={Features.pro}
               onChange={handleChange}
-              disabled={proDisabled}
+              disabled={false}
               data-testid="pro"
             />
             <hr />

@@ -33,6 +33,12 @@ const CIS = (
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
   </>
 );
+const CISComingSoon = (
+  <>
+    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
+  </>
+);
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate =
   "Expanded Security Maintenance (ESM) for packages in 'main' repository until";
@@ -44,6 +50,15 @@ const AAD =
 const PhysicalServerVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.noble]: [
+    `${ESMEndDate} 2034`,
+    livepatch,
+    CISComingSoon,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
@@ -82,19 +97,21 @@ const PhysicalServerVersionDetails: {
     KVMDrivers,
     landscape,
     knowledgeBase,
-  ],
-  [LTSVersions.trusty]: [
-    `${ESMEndDate} 2024`,
-    livepatch,
-    KVMDrivers,
-    landscape,
-    knowledgeBase,
-  ],
+  ]
 };
 
 const DesktopVersionDetails: {
   [key in LTSVersions]: Array<React.ReactNode>;
 } = {
+  [LTSVersions.noble]: [
+    `${DesktopESMEndDate} 2034`,
+    AAD,
+    livepatch,
+    CISComingSoon,
+    landscape,
+    knowledgeBase,
+    realtimeKernel,
+  ],
   [LTSVersions.jammy]: [
     `${DesktopESMEndDate} 2032`,
     AAD,
@@ -131,13 +148,7 @@ const DesktopVersionDetails: {
     CommonCriteria,
     landscape,
     knowledgeBase,
-  ],
-  [LTSVersions.trusty]: [
-    `${ESMEndDate} 2024`,
-    livepatch,
-    landscape,
-    knowledgeBase,
-  ],
+  ]
 };
 
 const Version = () => {
