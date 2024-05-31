@@ -313,7 +313,6 @@ def cve_index():
     order = flask.request.args.get("order", default="", type=str)
     detailed = flask.request.args.get("detailed", default="", type=str)
 
-    import ipdb
 
     with open("releases.yaml") as releases_yaml:
         releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
@@ -322,7 +321,6 @@ def cve_index():
 
     temp = [releases_yaml.get(key) for key in yaml_keys]
 
-    ipdb.set_trace()
     # All CVEs
     cves_response = security_api.get_cves(
         query=query,
@@ -554,7 +552,7 @@ def cve(cve_id):
 
     # Format remaining references
     other_references = []
-    
+
     if cve.get("references"):
         for reference in cve["references"]:
             if does_not_include_base_url(reference):
