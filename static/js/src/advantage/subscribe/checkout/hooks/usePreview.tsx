@@ -58,10 +58,13 @@ const usePreview = ({ products, action }: Props) => {
           }
         }
       } else {
+        const product = products[0].product;
+
         payload = {
           account_id: window.accountId,
           marketplace: marketplace,
           action: action,
+          offer_id: product?.id,
           products: products.map((product) => {
             return {
               product_listing_id: product?.product?.longId,

@@ -17,8 +17,29 @@
       </div>
     </div>
     <script src="/static/js/dist/distributor.js" type="module"></script>
-    <script>
-      window.stripePublishableKey = '{{ get_stripe_publishable_key }}';
+    <script defer>
+      // Remove commented out code when product_listings is available.
+      // var channelProductList = {
+      //   {% for listing_id, listing in product_listings.items() %}
+      //     "{{ listing.name }}": {
+      //       id: "{{ listing.name }}",
+      //       longId: "{{ listing.id }}",
+      //       name: "{{ listing.product.name }}",
+      //       price: {
+      //         value: {{ listing.price }},
+      //         currency: "{{ listing.currency }}"
+      //       },
+      //       productID: "{{ listing.product.id }}",
+      //       marketplace: "canonical-pro-channel",
+      //     },
+      //   {% endfor %}
+      // };
+    
+      // var accountId = "{% if account %}{{ account.id }}{% endif %}";
+      // var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
+      // var accountName = "{% if account %}{{ account.name }}{% endif %}";
+    
+      window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
     </script>
   {% endblock %}
 {% endblock %}

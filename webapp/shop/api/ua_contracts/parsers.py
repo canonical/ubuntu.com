@@ -90,7 +90,7 @@ def parse_channel_product_listings(
     raw_product_listings = raw_product_listings or {}
 
     return {
-        product_listing.get("id"): parse_product_listing(
+        product_listing.get("id"): parse_channel_product_listing(
             product_listing, raw_products
         )
         for product_listing in raw_product_listings

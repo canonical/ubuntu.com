@@ -77,7 +77,7 @@ class PurchaseSchema(BaseSchema):
         Nested(PurchaseItemSchema), required=True, attribute="items"
     )
     marketplace = String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender", "canonical-pro-channel"]),
         required=True,
     )
 

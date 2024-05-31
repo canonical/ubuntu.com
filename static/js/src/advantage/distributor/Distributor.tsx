@@ -14,7 +14,7 @@ const Distributor = () => {
               marginBottom: "1rem",
             }}
           >
-            <h2>Available deal registreations</h2>
+            <h2>Available deal registrations</h2>
             <Button
               appearance="positive"
               hasIcon={true}
