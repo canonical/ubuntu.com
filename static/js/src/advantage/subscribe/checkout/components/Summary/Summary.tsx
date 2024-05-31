@@ -12,6 +12,8 @@ import {
   FormValues,
   TaxInfo,
 } from "../../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import DistributorSummary from "../DistributorSummary.tsx/DistributorSummary";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -49,7 +51,7 @@ function Summary({ products, action, setError }: Props) {
   const quantity = products[0]?.quantity;
 
   const units =
-    marketplace === "canonical-ua"
+    marketplace === UserSubscriptionMarketplace.CanonicalUA
       ? "Machines"
       : marketplace === "canonical-cube"
       ? "Exams"
@@ -243,7 +245,15 @@ function Summary({ products, action, setError }: Props) {
       </>
     );
   }
-  return (
+  return marketplace === UserSubscriptionMarketplace.CanonicalProChannel ? (
+    <DistributorSummary
+      products={products}
+      priceData={priceData}
+      taxAmount={taxAmount}
+      isSummaryLoading={isSummaryLoading}
+      error={error}
+    />
+  ) : (
     <section
       id="summary-section"
       className="p-strip is-shallow u-no-padding--top"

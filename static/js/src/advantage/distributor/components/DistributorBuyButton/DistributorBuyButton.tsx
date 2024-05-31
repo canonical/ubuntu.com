@@ -29,14 +29,16 @@ const DistributorBuyButton = () => {
 
   const checkoutProducts = products?.map((product: ChannelProduct) => {
     const prod = {
-      longId: product?.longId,
+      id: product?.id,
+      longId: product?.longId, // product listing id
       marketplace: product?.marketplace,
-      id: offer?.id ?? "",
       name: product?.name,
       price: {
         value: Number(product?.price?.value),
         discount: Number(offer?.discount) ?? 0,
+        currency: product?.price?.currency,
       },
+      offerId: offer?.id,
     };
     return {
       product: prod,

@@ -79,7 +79,9 @@ export interface Product {
   price: {
     value: number;
     discount?: null | number;
+    currency?: string;
   };
+  offerId?: string;
   canBeTrialled?: boolean;
 }
 
