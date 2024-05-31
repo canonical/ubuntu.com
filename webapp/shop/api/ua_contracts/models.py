@@ -73,6 +73,7 @@ class ChannelListing:
         marketplace: str,
         price: int,
         currency: str,
+        status: str,
         product: Product = None,
     ):
         self.id = id
@@ -81,6 +82,7 @@ class ChannelListing:
         self.product = product
         self.price = price
         self.currency = currency
+        self.status = status
 
 
 class UserSubscription:

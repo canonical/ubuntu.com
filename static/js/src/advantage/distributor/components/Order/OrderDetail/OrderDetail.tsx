@@ -34,10 +34,11 @@ const OrderDetail = () => {
           );
 
           if (
-            productId === product?.product.id &&
+            productId === product?.productID &&
             product?.price !== undefined
           ) {
-            const productTotalPrice = subscription.quantity * product.price;
+            const productTotalPrice =
+              subscription.quantity * product.price.value;
             return total + productTotalPrice;
           }
         }
@@ -62,7 +63,7 @@ const OrderDetail = () => {
       {subscriptionList?.map((subscription) => {
         const prod = products?.filter(
           (prod) =>
-            prod.product.id ===
+            prod.productID ===
             getProductId(
               subscription.type,
               subscription.support,
@@ -72,8 +73,8 @@ const OrderDetail = () => {
         const quantityNumber: number = subscription.quantity;
         const durationsNumber: number =
           duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
-        const priceCurrency = prod?.currency as Currencies;
-        const priceValue = (prod?.price as number) * quantityNumber;
+        const priceCurrency = prod?.price.currency as Currencies;
+        const priceValue = (prod?.price.value as number) * quantityNumber;
 
         const support =
           subscription?.type === ProductTypes.desktop

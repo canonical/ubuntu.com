@@ -28,10 +28,11 @@ const DistributorShopSummary = () => {
           );
 
           if (
-            productId === product?.product.id &&
-            product?.price !== undefined
+            productId === product?.productID &&
+            product?.price?.value !== undefined
           ) {
-            const productTotalPrice = subscription.quantity * product.price;
+            const productTotalPrice =
+              subscription.quantity * product.price.value;
             return total + productTotalPrice;
           }
         }

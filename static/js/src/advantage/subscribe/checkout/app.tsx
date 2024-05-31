@@ -57,9 +57,9 @@ declare global {
 const checkoutData = localStorage.getItem("shop-checkout-data") || "";
 const parsedCheckoutData = JSON.parse(checkoutData);
 const stripePromise = loadStripe(window.stripePublishableKey || "");
-const checkoutProducts: CheckoutProducts[] = parsedCheckoutData?.products;
+const parsedCheckoutProducts: CheckoutProducts[] = parsedCheckoutData?.products;
 
-const products = checkoutProducts.map((product) => {
+const products = parsedCheckoutProducts.map((product) => {
   return {
     product: product?.product,
     quantity: product?.quantity,
