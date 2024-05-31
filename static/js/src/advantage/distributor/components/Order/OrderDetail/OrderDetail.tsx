@@ -103,7 +103,6 @@ const OrderDetail = () => {
                 {quantity}
                 {years}
               </div>
-              <div className="order-value">CQC1X1902????</div>
             </div>
             <div className="order-value">
               {priceCurrency

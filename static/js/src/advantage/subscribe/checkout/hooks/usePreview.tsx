@@ -67,7 +67,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
           account_id: window.accountId,
           marketplace: marketplace,
           action: action,
-          offer_id: product?.id,
+          offer_id: product?.offerId,
           products: products.map((product) => {
             return {
               product_listing_id: product?.product?.longId,
