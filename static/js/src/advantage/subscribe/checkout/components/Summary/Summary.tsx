@@ -85,6 +85,19 @@ function Summary({ quantity, product, action, setError }: Props) {
             purchase, cancel your current trial subscription.
           </>
         );
+      } else if (
+        error.message.includes(
+          "missing one-off product listing for renewal product"
+        )
+      ) {
+        message = (
+          <>
+            {" "}
+            The chosen product cannot be renewed as it has been deprecated.
+            Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+            to choose a substitute offering.
+          </>
+        );
       } else {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }
