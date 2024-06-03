@@ -1,16 +1,15 @@
 import { useMutation } from "react-query";
 import { retryPurchase } from "advantage/api/contracts";
-import { Action, PaymentPayload, Product } from "../utils/types";
+import { Action, CheckoutProducts, PaymentPayload } from "../utils/types";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
 };
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>(
-    async ({ product, quantity, action }: Props) => {
+    async ({ products, action }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -18,31 +17,37 @@ const postPurchase = () => {
         return window.currentPaymentId;
       }
 
-      let payload: PaymentPayload = {
-        account_id: window.accountId,
-        marketplace: product.marketplace,
-        action: action,
-        previous_purchase_id: window.previousPurchaseIds?.[product.period],
-      };
+      let payload: PaymentPayload | null = null;
 
-      if (action === "purchase" || action === "trial") {
+      if (products && products.length === 1) {
+        const product = products[0].product;
+        const quantity = products[0].quantity;
         payload = {
-          ...payload,
-          products: [
-            {
-              product_listing_id: product.longId,
-              quantity: quantity,
-            },
-          ],
+          account_id: window.accountId,
+          marketplace: product.marketplace,
+          action: action,
+          previous_purchase_id: window.previousPurchaseIds?.[product.period],
         };
-      }
 
-      if (action === "renewal") {
-        payload = { ...payload, renewal_id: product.longId };
-      }
+        if (action === "purchase" || action === "trial") {
+          payload = {
+            ...payload,
+            products: [
+              {
+                product_listing_id: product.longId,
+                quantity: quantity,
+              },
+            ],
+          };
+        }
 
-      if (action === "offer") {
-        payload = { ...payload, offer_id: product.longId };
+        if (action === "renewal") {
+          payload = { ...payload, renewal_id: product.longId };
+        }
+
+        if (action === "offer") {
+          payload = { ...payload, offer_id: product.longId };
+        }
       }
 
       // preview

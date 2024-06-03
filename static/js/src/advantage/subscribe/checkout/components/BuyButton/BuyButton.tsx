@@ -12,16 +12,15 @@ import postPurchase from "../../hooks/postPurchase";
 import postPurchaseAccount from "../../hooks/postPurchaseAccount";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
-import { Action, FormValues, Product } from "../../utils/types";
+import { Action, CheckoutProducts, FormValues } from "../../utils/types";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  quantity: number;
-  product: Product;
+  products: CheckoutProducts[];
   action: Action;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({ setError, products, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -121,8 +120,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     // Attempt or re-attempt the purchase
     await postPurchaseMutation.mutateAsync(
       {
-        product,
-        quantity,
+        products,
         action: buyAction,
       },
       {
@@ -314,6 +312,8 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
+          const product = products[0].product;
+          const quantity = products[0].quantity;
           if (product.marketplace == "canonical-cube") {
             if (product.name === "cue-linux-essentials-free") {
               location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(

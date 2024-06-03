@@ -50,7 +50,7 @@ export interface FormValues {
   MarketingOptIn: boolean;
   Description: boolean;
   marketplace: UserSubscriptionMarketplace;
-  FreeTrial: string;
+  FreeTrial?: string;
   isTaxSaved: boolean;
   isCardValid: boolean;
   isInfoSaved: boolean;
@@ -82,6 +82,11 @@ export interface Product {
   };
   canBeTrialled?: boolean;
 }
+
+export type CheckoutProducts = {
+  product: Product;
+  quantity: number;
+};
 
 export type Cart = {
   items: Product[];

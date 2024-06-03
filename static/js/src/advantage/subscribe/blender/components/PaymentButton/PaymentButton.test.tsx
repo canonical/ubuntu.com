@@ -40,7 +40,7 @@ describe("PaymentButton", () => {
 
     expect(window.location.href).toBe("/account/checkout");
     expect(localStorage.getItem("shop-checkout-data")).toBe(
-      '{"product":{"longId":"lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ","period":"yearly","marketplace":"blender","id":"blender-support-standard-yearly","name":"Blender Support Yearly","price":{"value":50000},"canBeTrialled":false},"quantity":2,"action":"purchase"}'
+      '{"products":[{"product":{"longId":"lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ","period":"yearly","marketplace":"blender","id":"blender-support-standard-yearly","name":"Blender Support Yearly","price":{"value":50000},"canBeTrialled":false},"quantity":2}],"action":"purchase"}'
     );
   });
 });

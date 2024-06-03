@@ -8,7 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import Checkout from "./components/Checkout";
-import { Action, LoginSession, Product } from "./utils/types";
+import { Action, CheckoutProducts, LoginSession } from "./utils/types";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -57,8 +57,18 @@ declare global {
 const checkoutData = localStorage.getItem("shop-checkout-data") || "";
 const parsedCheckoutData = JSON.parse(checkoutData);
 const stripePromise = loadStripe(window.stripePublishableKey || "");
-const product: Product = parsedCheckoutData?.product;
-const quantity: number = parsedCheckoutData?.quantity;
+const checkoutProducts: CheckoutProducts[] = parsedCheckoutData?.products;
+
+const products = checkoutProducts.map((product) => {
+  return {
+    product: product?.product,
+    quantity: product?.quantity,
+  };
+});
+
+const product = products[0].product;
+const quantity = products[0].quantity;
+
 const action: Action = parsedCheckoutData?.action;
 
 window.previousPurchaseIds = {
@@ -83,7 +93,7 @@ const App = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout product={product} quantity={quantity} action={action} />
+          <Checkout products={products} action={action} />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

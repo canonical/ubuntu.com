@@ -6,8 +6,12 @@ export default function PaymentButton() {
   const { quantity, product } = useContext(FormContext);
 
   const shopCheckoutData = {
-    product: product,
-    quantity: Number(quantity) ?? 0,
+    products: [
+      {
+        product: product,
+        quantity: Number(quantity) ?? 0,
+      },
+    ],
     action: "purchase",
   };
 

@@ -17,13 +17,19 @@ describe("FreeTrial", () => {
 
   it("displays a message explaining the trial if free trial is selected", () => {
     queryClient.setQueryData("calculate", taxes);
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik
           initialValues={{ FreeTrial: "useFreeTrial" }}
           onSubmit={jest.fn()}
         >
-          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
+          <FreeTrial products={products} action={"purchase"} />
         </Formik>
       </QueryClientProvider>
     );
@@ -41,10 +47,16 @@ describe("FreeTrial", () => {
   });
 
   it("does not display the message if pay now is selected", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
+          <FreeTrial products={products} action={"purchase"} />
         </Formik>
       </QueryClientProvider>
     );

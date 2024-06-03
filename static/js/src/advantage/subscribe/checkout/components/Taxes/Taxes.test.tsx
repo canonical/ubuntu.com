@@ -16,11 +16,17 @@ describe("TaxesTests", () => {
   });
 
   it("renders country select correctly", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -31,11 +37,17 @@ describe("TaxesTests", () => {
   });
 
   it("When non VAT Country is selected, VAT Number input does not displays", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -48,11 +60,17 @@ describe("TaxesTests", () => {
   });
 
   it("When VAT country is selected, VAT Number input displays", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -67,11 +85,17 @@ describe("TaxesTests", () => {
   });
 
   it("When USA is selected, State select displays", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     const { getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -92,12 +116,17 @@ describe("TaxesTests", () => {
     const intialValues = {
       country: "GB",
     };
-
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -107,11 +136,17 @@ describe("TaxesTests", () => {
   });
 
   it("sets status right if country is not stored", () => {
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -129,11 +164,17 @@ describe("TaxesTests", () => {
       VATNumber: "GB123123123",
     };
 
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 1,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
+            <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
