@@ -1,49 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Input, Notification } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 
 const TechnicalUserContact = () => {
-  const { offer } = useContext(FormContext);
-
-  const [technicalContact, setTechnicalContact] = useState({
-    name: "",
-    email: "",
-  });
+  const { techincalUserContact, setTechnicalUserContact } = useContext(
+    FormContext
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTechnicalContact({
-      ...technicalContact,
+    setTechnicalUserContact({
+      ...techincalUserContact,
       [event.target.name]: event.target.value,
     });
     localStorage.setItem(
-      `distributor-selector-technicalContact`,
+      `distributor-selector-techincalUserContact`,
       JSON.stringify({
-        ...technicalContact,
+        ...techincalUserContact,
         [event.target.name]: event.target.value,
       })
     );
   };
-
-  useEffect(() => {
-    const localTechnicalContact = localStorage.getItem(
-      "distributor-selector-technicalContact"
-    );
-    const defaultValue =
-      localTechnicalContact && JSON.parse(localTechnicalContact);
-    if (defaultValue?.name) {
-      setTechnicalContact({
-        ...technicalContact,
-        name: defaultValue.name,
-        email: defaultValue.email,
-      });
-    } else {
-      setTechnicalContact({
-        ...technicalContact,
-        name: offer?.end_user_account_name ?? "",
-        email: offer?.technical_contact ?? "",
-      });
-    }
-  }, [offer]);
 
   return (
     <div data-testid="wrapper">
@@ -57,7 +33,7 @@ const TechnicalUserContact = () => {
           placeholder="Min Kim"
           required
           onChange={handleChange}
-          value={technicalContact.name}
+          value={techincalUserContact.name}
         />
       </div>
       <div>
@@ -70,7 +46,7 @@ const TechnicalUserContact = () => {
           placeholder="user@test.com"
           required
           onChange={handleChange}
-          value={technicalContact.email}
+          value={techincalUserContact.email}
         ></Input>
       </div>
       <Notification severity="caution" title="Warning">

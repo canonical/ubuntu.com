@@ -198,7 +198,8 @@
     }
   }
 
-  .deal-registration-card {
+  .deal-registration-card,
+  .order-detail-card {
     @extend .is-paper;
     @extend .p-card--highlighted;
 
@@ -238,4 +239,56 @@
       }
     }
   }
+}
+
+.order-detail-card {
+  padding: 2rem;
+
+  .order-field,
+  .order-total-field {
+    display: flex;
+    justify-content: space-between;
+    max-width: none;
+  }
+
+  .order-total-field {
+    @extend .p-heading--4;
+
+    margin-bottom: 2rem;
+  }
+
+  .order-field {
+    @extend .p-heading--5;
+
+    width: 100%;
+  }
+
+  .order-field-product {
+    margin-bottom: 1rem;
+
+    .order-label {
+      margin-bottom: 0;
+    }
+  }
+  .order-value {
+    color: $colors--theme--text-muted;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+  }
+}
+
+.order-summary-label {
+  @extend .p-text--small-caps;
+
+  margin-bottom: 0;
+}
+
+.order-summary-value {
+  @extend .u-text--muted;
+
+  margin-bottom: 1rem;
+}
+
+.order-checkout-button {
+  width: 100%;
 }
