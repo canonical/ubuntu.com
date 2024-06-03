@@ -157,7 +157,11 @@ def parse_contract(raw_contract: Dict) -> Contract:
     if "activeMachines" in contract_info:
         active_machines = contract_info["activeMachines"]
         number_of_active_machines = active_machines["activeMachines"]
-        max_tracking_reached = active_machines["maximumTrackingReached"] if "maximumTrackingReached" in active_machines else False
+        max_tracking_reached = (
+            active_machines["maximumTrackingReached"]
+            if "maximumTrackingReached" in active_machines
+            else False
+        )
 
     return Contract(
         id=contract_info.get("id"),
