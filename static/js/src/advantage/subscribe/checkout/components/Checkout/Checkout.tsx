@@ -13,8 +13,8 @@ import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
 import {
   Action,
   Coupon,
+  CheckoutProducts,
   marketplaceDisplayName,
-  Product,
 } from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
@@ -24,16 +24,16 @@ import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
   coupon: Coupon;
 };
 
-const Checkout = ({ product, quantity, action, coupon }: Props) => {
+const Checkout = ({ products, action, coupon }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
+  const product = products[0].product;
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
@@ -91,19 +91,14 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                     {
                       title: "Region and taxes",
                       content: (
-                        <Taxes
-                          product={product}
-                          quantity={quantity}
-                          setError={setError}
-                        />
+                        <Taxes products={products} setError={setError} />
                       ),
                     },
                     {
                       title: "Your purchase",
                       content: (
                         <Summary
-                          quantity={quantity}
-                          product={product}
+                          products={products}
                           action={action}
                           coupon={coupon}
                           setError={setError}
@@ -123,11 +118,7 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                           {
                             title: "Free trial",
                             content: (
-                              <FreeTrial
-                                quantity={quantity}
-                                product={product}
-                                action={action}
-                              />
+                              <FreeTrial products={products} action={action} />
                             ),
                           },
                         ]
@@ -136,12 +127,11 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                       title: "Confirm and buy",
                       content: (
                         <>
-                          <ConfirmAndBuy product={product} action={action} />
+                          <ConfirmAndBuy products={products} action={action} />
                           <Row>
                             <Col emptyLarge={7} size={6}>
                               <BuyButton
-                                product={product}
-                                quantity={quantity}
+                                products={products}
                                 action={action}
                                 setError={setError}
                                 coupon={coupon}

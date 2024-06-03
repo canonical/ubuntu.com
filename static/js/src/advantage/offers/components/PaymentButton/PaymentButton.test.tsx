@@ -24,7 +24,7 @@ describe("PaymentButton", () => {
 
     expect(window.location.href).toBe("/account/checkout");
     expect(localStorage.getItem("shop-checkout-data")).toBe(
-      '{"product":{"longId":"oAaBbCcDdEe","period":"yearly","marketplace":"canonical-ua","id":"oAaBbCcDdEe","name":"1x Ubuntu Pro, 2x Ubuntu Pro (Infra)","price":{"value":50000},"canBeTrialled":false},"quantity":1,"action":"offer"}'
+      '{"products":[{"product":{"longId":"oAaBbCcDdEe","period":"yearly","marketplace":"canonical-ua","id":"oAaBbCcDdEe","name":"1x Ubuntu Pro, 2x Ubuntu Pro (Infra)","price":{"value":50000},"canBeTrialled":false},"quantity":1}],"action":"offer"}'
     );
   });
 });

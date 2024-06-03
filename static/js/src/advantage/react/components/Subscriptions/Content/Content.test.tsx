@@ -152,7 +152,7 @@ describe("Content", () => {
 
     expect(window.accountId).toBe("aAaBbCcDd");
     expect(localStorage.getItem("shop-checkout-data")).toBe(
-      '{"product":{"canBeTrialled":false,"longId":"lAaBbCcDdEe","name":"Ubuntu Pro","period":"yearly","price":{"value":7500},"id":"physical-uai-essential-weekday-yearly","marketplace":"canonical-ua"},"quantity":12,"action":"purchase"}'
+      '{"products":[{"product":{"canBeTrialled":false,"longId":"lAaBbCcDdEe","name":"Ubuntu Pro","period":"yearly","price":{"value":7500},"id":"physical-uai-essential-weekday-yearly","marketplace":"canonical-ua"},"quantity":12}],"action":"purchase"}'
     );
     expect(window.location.href).toBe("/account/checkout");
   });

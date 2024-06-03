@@ -8,22 +8,23 @@ import usePreview from "../../hooks/usePreview";
 import {
   Action,
   Coupon,
+  CheckoutProducts,
   FormValues,
-  Product,
   TaxInfo,
 } from "../../utils/types";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
 };
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
-const FreeTrial = ({ quantity, product, action, coupon }: Props) => {
+const FreeTrial = ({ products, action, coupon }: Props) => {
   const { values } = useFormikContext<FormValues>();
+  const product = products[0].product;
+  const quantity = products[0].quantity;
   const { data: calculate } = useCalculate({
     quantity: quantity,
     marketplace: product.marketplace,

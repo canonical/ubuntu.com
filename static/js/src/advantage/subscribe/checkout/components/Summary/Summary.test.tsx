@@ -58,14 +58,18 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
-
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
@@ -107,13 +111,18 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
@@ -143,13 +152,18 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
@@ -181,13 +195,18 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={jest.fn()}
               coupon={{ origin: "", IDs: [] }}
@@ -218,14 +237,19 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
               coupon={{ origin: "", IDs: [] }}
@@ -261,14 +285,19 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
               coupon={{ origin: "", IDs: [] }}
@@ -304,14 +333,19 @@ describe("Summary", () => {
         isFetching: false,
       };
     });
+    const products = [
+      {
+        product: UAProduct,
+        quantity: 3,
+      },
+    ];
     const setError = jest.fn();
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Summary
-              quantity={3}
-              product={UAProduct}
+              products={products}
               action={"purchase"}
               setError={setError}
               coupon={{ origin: "", IDs: [] }}

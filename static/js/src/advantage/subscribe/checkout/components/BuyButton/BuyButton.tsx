@@ -12,17 +12,21 @@ import postPurchase from "../../hooks/postPurchase";
 import postPurchaseAccount from "../../hooks/postPurchaseAccount";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
-import { Action, Coupon, FormValues, Product } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  CheckoutProducts,
+  FormValues,
+} from "../../utils/types";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  quantity: number;
-  product: Product;
+  products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
 };
 
-const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
+const BuyButton = ({ setError, products, action, coupon }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -107,7 +111,10 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
     }
 
     // Update customer information
-    if (!values.defaultPaymentMethod && product?.price?.value !== 0) {
+    const hasZeroPriceValue = products.some(
+      (item) => item.product.price.value === 0
+    );
+    if (!values.defaultPaymentMethod && !hasZeroPriceValue) {
       await postCustomerInfoMutation.mutateAsync(
         { formData: values },
         {
@@ -121,8 +128,7 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
     // Attempt or re-attempt the purchase
     await postPurchaseMutation.mutateAsync(
       {
-        product,
-        quantity,
+        products,
         action: buyAction,
         coupon,
       },
@@ -327,6 +333,8 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
+          const product = products[0].product;
+          const quantity = products[0].quantity;
           if (product.marketplace == "canonical-cube") {
             if (product.name === "cue-linux-essentials-free") {
               location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
