@@ -8,8 +8,12 @@ type Prop = {
 
 export default function PaymentButton({ product }: Prop) {
   const shopCheckoutData = {
-    product: product,
-    quantity: 1,
+    products: [
+      {
+        product,
+        quantity: 1,
+      },
+    ],
     action: "offer",
   };
 

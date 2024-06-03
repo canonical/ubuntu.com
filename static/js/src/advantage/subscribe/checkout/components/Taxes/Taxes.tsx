@@ -17,11 +17,10 @@ import {
 } from "advantage/countries-and-states";
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
-import { FormValues, Product } from "../../utils/types";
+import { CheckoutProducts, FormValues } from "../../utils/types";
 
 type TaxesProps = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 

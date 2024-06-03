@@ -74,8 +74,12 @@ const CredExamShop = () => {
     localStorage.setItem(
       "shop-checkout-data",
       JSON.stringify({
-        product: ExamProducts[exam],
-        quantity: 1,
+        products: [
+          {
+            product: ExamProducts[exam],
+            quantity: 1,
+          },
+        ],
         action: "purchase",
       })
     );

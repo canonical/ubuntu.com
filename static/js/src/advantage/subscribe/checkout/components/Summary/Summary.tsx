@@ -6,19 +6,26 @@ import * as Sentry from "@sentry/react";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
+import {
+  Action,
+  CheckoutProducts,
+  FormValues,
+  TaxInfo,
+} from "../../utils/types";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-function Summary({ quantity, product, action, setError }: Props) {
+function Summary({ products, action, setError }: Props) {
   const { values } = useFormikContext<FormValues>();
+  const product = products[0].product;
+  const quantity = products[0].quantity;
+
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
     quantity: quantity,
     marketplace: product.marketplace,
