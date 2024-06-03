@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
-import { Offer as OfferType } from "../../../../offers/types";
 import PaymentButton from "../PaymentButton";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {
@@ -9,13 +8,12 @@ import {
   currencyFormatter,
   getProductId,
 } from "advantage/distributor/utils/utils";
-type Prop = {
-  offer: OfferType;
-};
 
-const DistributorShopSummary = ({ offer }: Prop) => {
-  const { discount } = offer;
-  const { products, currency, subscriptionList } = useContext(FormContext);
+const DistributorShopSummary = () => {
+  const { products, currency, subscriptionList, offer } = useContext(
+    FormContext
+  );
+  const discount = offer?.discount;
 
   let totalPrice = 0;
 

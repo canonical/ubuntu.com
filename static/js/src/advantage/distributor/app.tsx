@@ -57,8 +57,8 @@ function App() {
                 <Route path="/shop" element={<DistributorShop />} />
               </Routes>
             </Router>
-            <ReactQueryDevtools initialIsOpen={false} />
           </FormProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Elements>
     </Sentry.ErrorBoundary>

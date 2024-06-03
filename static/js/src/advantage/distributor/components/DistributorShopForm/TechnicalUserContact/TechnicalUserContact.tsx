@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Input, Notification } from "@canonical/react-components";
-import { Offer as OfferType } from "../../../../offers/types";
+import { FormContext } from "advantage/distributor/utils/FormContext";
 
-type Prop = {
-  offer: OfferType;
-};
-const TechnicalUserContact = ({ offer }: Prop) => {
+const TechnicalUserContact = () => {
+  const { offer } = useContext(FormContext);
+
   const [technicalContact, setTechnicalContact] = useState({
     name: "",
     email: "",
   });
-  useState;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTechnicalContact({

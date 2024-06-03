@@ -1,3 +1,4 @@
+import { Item } from "advantage/offers/types";
 import { marketplace } from "advantage/subscribe/checkout/utils/types";
 
 export function generateUniqueId() {
@@ -383,3 +384,142 @@ export const mockProducList = generateMockProductList(
   mockCurrencies,
   mockDurations
 );
+
+export const getPreSelectedItem = (items: Item[]) => {
+  const preSelectedItem = items.map((item: Item) => {
+    const { id } = item;
+    const names = item?.name.split("-channel-");
+    const name = names[0];
+    const quantity = item?.allowance;
+    switch (name) {
+      case "uio-standard-physical":
+        return {
+          id,
+          type: DistributorProductTypes.physical,
+          support: Support.infra,
+          sla: SLA.weekday,
+          quantity,
+        };
+      case "uio-advanced-physical":
+        return {
+          id,
+          type: DistributorProductTypes.physical,
+          support: Support.infra,
+          sla: SLA.everyday,
+          quantity,
+        };
+      case "uaia-essential-physical":
+        return {
+          id,
+          type: DistributorProductTypes.physical,
+          support: Support.none,
+          sla: SLA.none,
+          quantity,
+        };
+      case "uaia-standard-physical":
+        return {
+          id,
+          type: DistributorProductTypes.physical,
+          support: Support.full,
+          sla: SLA.weekday,
+          quantity,
+        };
+      case "uaia-advanced-physical":
+        return {
+          id,
+          type: DistributorProductTypes.physical,
+          support: Support.full,
+          sla: SLA.everyday,
+          quantity,
+        };
+      case "uaia-essential-virtual":
+        return {
+          id,
+          type: DistributorProductTypes.virtual,
+          support: Support.none,
+          sla: SLA.none,
+          quantity,
+        };
+      case "uaia-standard-virtual":
+        return {
+          id,
+          type: DistributorProductTypes.virtual,
+          support: Support.full,
+          sla: SLA.weekday,
+          quantity,
+        };
+      case "uaia-advanced-virtual":
+        return {
+          id,
+          type: DistributorProductTypes.virtual,
+          support: Support.full,
+          sla: SLA.everyday,
+          quantity,
+        };
+      case "uio-standard-virtual":
+        return {
+          id,
+          type: DistributorProductTypes.virtual,
+          support: Support.infra,
+          sla: SLA.weekday,
+          quantity,
+        };
+      case "uio-advanced-virtual":
+        return {
+          id,
+          type: DistributorProductTypes.virtual,
+          support: Support.infra,
+          sla: SLA.everyday,
+          quantity,
+        };
+      case "uai-essential-desktop":
+        return {
+          id,
+          type: DistributorProductTypes.desktop,
+          support: Support.none,
+          sla: SLA.none,
+          quantity,
+        };
+      case "uai-standard-desktop":
+        return {
+          id,
+          type: DistributorProductTypes.desktop,
+          support: Support.full,
+          sla: SLA.weekday,
+          quantity,
+        };
+      case "uai-advanced-desktop":
+        return {
+          id,
+          type: DistributorProductTypes.desktop,
+          support: Support.full,
+          sla: SLA.everyday,
+          quantity,
+        };
+      default:
+        return null;
+    }
+  });
+  return preSelectedItem;
+};
+
+export const getPreCurrency = (items: Item[]) => {
+  const preSelectedCurrency = items.map((item: Item) => {
+    const names = item?.name.split("-channel-");
+    const name = names[1];
+    const year = name.split("-year-");
+    const currency = year[1];
+    return currency as keyof typeof Currencies;
+  });
+  return preSelectedCurrency[0];
+};
+
+export const getPreDuration = (items: Item[]) => {
+  const preSelectedDuration = items.map((item: Item) => {
+    const names = item?.name.split("-channel-");
+    const name = names[1];
+    const year = name.split("-year-")[0] as keyof typeof Durations;
+    return Durations[year];
+  });
+  return preSelectedDuration[0];
+};
