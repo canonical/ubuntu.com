@@ -134,7 +134,7 @@ const ProductSummary = () => {
         </Row>
       </section>
       <section
-        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--medium ${
+        className={`p-strip--light is-shallow p-shop-cart--small u-hide u-show--small u-show--medium ${
           isHidden ? "p-shop-cart--hidden" : ""
         }`}
         id="summary-section"
