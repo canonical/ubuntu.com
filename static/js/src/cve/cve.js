@@ -45,11 +45,11 @@ const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
 function handleSearchInput(event) {
   if (event.key === "Enter") {
     searchForm.submit();
-  } 
+  }
 }
 searchInput.addEventListener("keyup", handleSearchInput);
 
-// Adds listener to package filter text field and adds value 
+// Adds listener to package filter text field and adds value
 // to URLSearchParams object
 function handlePackageInput() {
   packageInput.addEventListener("input", function (event) {
@@ -61,7 +61,7 @@ handlePackageInput();
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
   releaseCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {      
+    checkbox.addEventListener("change", function (event) {
       if (event.target.checked) {
         addParam(releaseFilter.name, event.target.value);
       } else {
@@ -117,9 +117,9 @@ applyFilters();
 
 let includesFilterSubset = (parentArray, subsetArray) => {
   return subsetArray.every((el) => {
-      return parentArray.includes(el)
-  })
-}
+    return parentArray.includes(el);
+  });
+};
 
 // Maintains filter state on page load
 function handleFilterPersist() {
@@ -133,7 +133,9 @@ function handleFilterPersist() {
     });
 
     if (includesFilterSubset(params, maintainedReleases)) {
-      let maintainedCheckbox = releaseFilter.querySelector("input[value='maintained']");
+      let maintainedCheckbox = releaseFilter.querySelector(
+        "input[value='maintained']"
+      );
       maintainedCheckbox.checked = true;
     }
   }
@@ -202,7 +204,7 @@ function addParam(param, value) {
     vulnerableStatuses.forEach(function (status) {
       if (!urlParams.has(param, status)) {
         urlParams.append(param, status);
-      }    
+      }
     });
   } else {
     if (!urlParams.has(param, value)) {
