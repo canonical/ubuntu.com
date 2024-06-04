@@ -41,7 +41,7 @@ test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => 
     <FormProvider
       initialType={ProductTypes.desktop}
       initialUser={ProductUsers.organisation}
-      initialVersion={LTSVersions.trusty}
+      initialVersion={LTSVersions.jammy}
     >
       <ProductSummary />
     </FormProvider>

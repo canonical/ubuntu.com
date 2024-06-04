@@ -30,14 +30,10 @@ const Support = () => {
   };
 
   const isInfraOnlyDisabled =
-    productType === ProductTypes.desktop ||
-    version === LTSVersions.trusty ||
-    version === LTSVersions.xenial;
+    productType === ProductTypes.desktop || version === LTSVersions.xenial;
 
   const isFullSupportDisabled =
-    feature === Features.infra ||
-    version === LTSVersions.trusty ||
-    version === LTSVersions.xenial;
+    feature === Features.infra || version === LTSVersions.xenial;
 
   return (
     <div

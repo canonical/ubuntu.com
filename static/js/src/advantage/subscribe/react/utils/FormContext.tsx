@@ -133,9 +133,6 @@ export const FormProvider = ({
   }, [support, sla]);
 
   useEffect(() => {
-    if (version === LTSVersions.trusty) {
-      setSupport(Support.none);
-    }
     if (version === LTSVersions.xenial) {
       setSupport(Support.none);
     }
@@ -158,13 +155,8 @@ export const FormProvider = ({
   }, [productType, support]);
 
   useEffect(() => {
-    if (
-      productType === ProductTypes.desktop &&
-      version !== LTSVersions.trusty
-    ) {
+    if (productType === ProductTypes.desktop) {
       setFeature(Features.pro);
-    } else if (version === LTSVersions.trusty) {
-      setFeature(Features.infra);
     }
   }, [productType, feature, version]);
 
