@@ -249,15 +249,17 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         country_code = TIMEZONE_COUNTRIES[timezone]
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            minutes=30
+            hours=1
         ):
             template_data = {
                 key: data[key]
                 for key in ["date", "time", "timezone", "contractItemID"]
             }
+            template_data[
+                "error"
+            ] = "Start time should be at least 1 hour from now or later."
             return flask.render_template(
                 "/credentials/schedule.html",
-                error="Start time should be at least 30 minutes ahead of current time",
                 **template_data,
                 min_date=min_date,
                 max_date=max_date,
