@@ -248,6 +248,22 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
 
+        if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
+            minutes=30
+        ):
+            template_data = {
+                key: data[key]
+                for key in ["date", "time", "timezone", "contractItemID"]
+            }
+            return flask.render_template(
+                "/credentials/schedule.html",
+                error="Start time should be at least 30 minutes ahead of current time",
+                **template_data,
+                min_date=min_date,
+                max_date=max_date,
+                assessment_reservation_uuid = flask.request.args.get("uuid")
+            )
+
         response = ua_contracts_api.post_assessment_reservation(
             contract_item_id,
             first_name,
@@ -260,7 +276,8 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         if response and "reservation" not in response:
             error = response["message"]
             return flask.render_template(
-                "/credentials/schedule.html", error=error
+                "/credentials/schedule.html",
+                error=error,
             )
         else:
             uuid = response.get("reservation", {}).get("IDs", [])[-1]
