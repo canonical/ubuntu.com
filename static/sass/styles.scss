@@ -821,6 +821,16 @@ td.p-accordion {
   z-index: 10;
 }
 
+#contact-success {
+  display: none;
+  position: absolute;
+}
+
+#contact-success:target {
+  display: block;
+  z-index: 10;
+}
+
 #updated {
   display: none;
 }
