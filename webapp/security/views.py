@@ -2,13 +2,11 @@
 import re
 from datetime import datetime
 from math import ceil, floor
-from collections import Counter
 
 # Packages
 import flask
 import dateutil
 import talisker.requests
-import yaml
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
@@ -313,14 +311,6 @@ def cve_index():
     order = flask.request.args.get("order", default="", type=str)
     detailed = flask.request.args.get("detailed", default="", type=str)
 
-
-    with open("releases.yaml") as releases_yaml:
-        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
-
-    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
-
-    temp = [releases_yaml.get(key) for key in yaml_keys]
-
     # All CVEs
     cves_response = security_api.get_cves(
         query=query,
@@ -333,7 +323,7 @@ def cve_index():
         statuses=statuses,
         order=order,
     )
-    
+
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
 
@@ -381,13 +371,6 @@ def cve_index():
         if release["codename"] != "upstream":
             all_releases.append(release)
 
-    # Create list of maintained releases from releases.yaml
-    with open("releases.yaml") as releases_yaml:
-        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
-
-    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
-    yaml_releases = [releases_yaml.get(key) for key in yaml_keys]
-
     maintained_releases = []
     selected_releases = []
     lts_releases = []
@@ -430,10 +413,11 @@ def cve_index():
                     lts_releases.append(release)
             else:
                 unmaintained_releases.append(release)
-        else:
-            for yaml_release in yaml_releases:
-                if yaml_release["name"] == release["name"]:
-                    maintained_releases.append(release)
+        elif release_date < datetime.now():
+            maintained_releases.append(release)
+
+    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
+
     """
     TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
@@ -490,6 +474,7 @@ def cve_index():
         order=order,
         detailed=detailed,
     )
+
 
 def does_not_include_base_url(link):
     default_reference_urls = [
