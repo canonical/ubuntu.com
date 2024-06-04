@@ -70,6 +70,7 @@ class Contract:
         entitlements: List[Entitlement],
         number_of_active_machines: int,
         items: List[ContractItem] = None,
+        max_tracking_reached: bool = False,
     ):
         self.id = id
         self.account_id = account_id
@@ -78,6 +79,7 @@ class Contract:
         self.entitlements = entitlements
         self.number_of_active_machines = number_of_active_machines
         self.items = items
+        self.max_tracking_reached = max_tracking_reached
 
 
 class SubscriptionItem:
