@@ -261,7 +261,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 **template_data,
                 min_date=min_date,
                 max_date=max_date,
-                assessment_reservation_uuid = flask.request.args.get("uuid")
+                assessment_reservation_uuid=flask.request.args.get("uuid"),
             )
 
         response = ua_contracts_api.post_assessment_reservation(
