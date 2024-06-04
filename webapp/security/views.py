@@ -609,33 +609,13 @@ def cve(cve_id):
 
     base_lp = "https://git.launchpad.net/ubuntu-cve-tracker/tree"
 
-    kenetic_packages = list_package_names(
-        f"{base_lp}/ros-esm-xenial-kinetic-supported.txt"
-    )
-    melodic_packages = list_package_names(
-        f"{base_lp}/ros-esm-bionic-melodic-supported.txt"
-    )
-
     return flask.render_template(
         "security/cve/cve.html",
         cve=cve,
         patches=formatted_patches,
         tags=formatted_tags,
-        kenetic_packages=kenetic_packages,
-        melodic_packages=melodic_packages,
         other_references=other_references,
     )
-
-
-# This is a temporary fix. To be removed pending redesign
-# Parses given URL to create a list of package names
-def list_package_names(url):
-    source = api_session.get(url).text
-    soup = bs.BeautifulSoup(source, "lxml")
-    raw_string = soup.code(string=True)[0].split()
-    package_list = list(raw_string)
-
-    return package_list
 
 
 # CVE API
