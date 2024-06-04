@@ -147,6 +147,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
                   title: "Active machines",
                   value: (
                     <React.Fragment>
+                      {subscription.max_tracking_reached ? "+" : ""}
                       {subscription.number_of_active_machines}
                       <Tooltip
                         tooltipClassName="p-subscriptions-tooltip"

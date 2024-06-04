@@ -66,6 +66,7 @@ export type UserSubscription = {
   statuses: UserSubscriptionStatuses;
   subscription_id: string | null;
   type: UserSubscriptionType;
+  max_tracking_reached: boolean;
 };
 
 export type ContractToken = {
