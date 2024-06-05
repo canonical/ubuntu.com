@@ -234,6 +234,10 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
     max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
+    time_delay = "6 hours" if is_staging else "1 hour"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -244,36 +248,86 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
         starts_at = tz_info.localize(scheduled_time)
-        contract_item_id = data["contractItemID"]
+        contract_item_id = data["contract_item_id"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
+        assessment_reservation_uuid = None
+        if flask.request.args.get("uuid", default=None, type=str):
+            assessment_reservation_uuid = flask.request.args.get("uuid")
 
-        response = ua_contracts_api.post_assessment_reservation(
-            contract_item_id,
-            first_name,
-            last_name,
-            timezone,
-            starts_at.isoformat(),
-            country_code,
-        )
-
-        if response and "reservation" not in response:
-            error = response["message"]
-            return flask.render_template(
-                "/credentials/schedule.html", error=error
-            )
-        else:
-            uuid = response.get("reservation", {}).get("IDs", [])[-1]
-            exam = {
-                "name": "CUE.01 Linux",
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p ") + timezone,
-                "uuid": uuid,
-                "contract_item_id": contract_item_id,
+        if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
+            hours=6 if is_staging else 1
+        ):
+            template_data = {
+                key: data[key]
+                for key in ["date", "time", "timezone", "contract_item_id"]
             }
-            return flask.render_template(
-                "/credentials/schedule-confirm.html", exam=exam
+            template_data["error"] = (
+                f"Start time should be at least {time_delay}"
+                + " from now or later."
             )
+            return flask.render_template(
+                "/credentials/schedule.html",
+                **template_data,
+                min_date=min_date,
+                max_date=max_date,
+                time_delay=time_delay,
+            )
+
+        if assessment_reservation_uuid:
+            response = trueability_api.patch_assessment_reservation(
+                starts_at=starts_at.isoformat(),
+                timezone=timezone,
+                country_code=country_code,
+                uuid=assessment_reservation_uuid,
+            )
+            if response and "assessment_reservation" not in response:
+                error = response["error"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
+            else:
+                exam = {
+                    "name": "CUE.01 Linux",
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p ") + timezone,
+                    "uuid": assessment_reservation_uuid,
+                    "contract_item_id": contract_item_id,
+                }
+                return flask.render_template(
+                    "/credentials/schedule-confirm.html", exam=exam
+                )
+        else:
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
+                first_name,
+                last_name,
+                timezone,
+                starts_at.isoformat(),
+                country_code,
+            )
+
+            if response and "reservation" not in response:
+                error = response["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
+            else:
+                uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                exam = {
+                    "name": "CUE.01 Linux",
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p ") + timezone,
+                    "uuid": uuid,
+                    "contract_item_id": contract_item_id,
+                }
+                return flask.render_template(
+                    "/credentials/schedule-confirm.html", exam=exam
+                )
 
     contract_item_id = flask.request.args.get("contractItemID")
     if contract_item_id is None:
@@ -307,6 +361,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         min_date=min_date,
         max_date=max_date,
         error=error,
+        time_delay=time_delay,
     )
 
 
