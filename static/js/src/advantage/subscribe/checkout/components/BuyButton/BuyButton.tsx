@@ -354,6 +354,12 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
               email
             )}`;
+          } else if (product.marketplace === "canonical-pro-channel") {
+            const email = userInfo?.customerInfo?.email || values.email || "";
+            const urlBase = "/pro/distributor";
+            location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
+              email
+            )}`;
           } else {
             location.href = "/pro/dashboard";
           }
