@@ -1,13 +1,13 @@
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-8">
-      <h1>{{h1}}</h1>
-      <p>{{intro_text}}</p>
+      <h1>{{ h1 }}</h1>
+      <p>{{ intro_text }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
+      <form action="/marketo/submit" method="post" id="mktoForm_{{ formid }}">
         <fieldset class="u-no-margin--bottom">
           <legend class="u-off-screen">About you</legend>
           <h2 class="p-heading--3">About you</h2>
@@ -22,7 +22,12 @@
             </li>
             <li class="p-list__item">
               <label for="email">Email address:</label>
-              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+              <input required
+                     id="email"
+                     name="email"
+                     maxlength="255"
+                     type="email"
+                     pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
             </li>
             <li class="p-list__item">
               <label for="phone">Mobile/cell phone number:</label>
@@ -45,6 +50,60 @@
               <input required id="job-title" name="title" maxlength="255" type="text" />
             </li>
 
+            <li>
+              <legend class="u-off-screen">*How many devices?</legend>
+              <h2 class="p-heading--3">*How many devices will be running Ubuntu?</h2>
+              <div class="row u-no-padding">
+                <div class="col-4 u-sv3">
+                  <label class="p-radio">
+                    <input required
+                           class="p-radio__input"
+                           type="radio"
+                           aria-labelledby="less-5-machines"
+                           name="how-many-machines-do-you-have"
+                           value="less than 5" />
+                    <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
+                    <p id="5-machines-help"
+                       class="p-form-help-text u-no-margin--top u-hide"
+                       style="text-indent: 0">
+                      <a href="/pro">Ubuntu Pro</a> is free for personal use, on up to 5 machines.
+                    </p>
+                  </label>
+                  <label class="p-radio">
+                    <input type="radio"
+                           aria-labelledby="15-to-15-machines"
+                           class="p-radio__input"
+                           name="how-many-machines-do-you-have"
+                           value="5 to 15 machines" />
+                    <span class="p-radio__label" id="15-to-15-machines">5&nbsp;&ndash;&nbsp;15 machines</span>
+                  </label>
+                  <label class="p-radio">
+                    <input type="radio"
+                           aria-labelledby="15-to-50-machines"
+                           class="p-radio__input"
+                           name="how-many-machines-do-you-have"
+                           value="15 to 50 machines" />
+                    <span class="p-radio__label" id="15-to-50-machines">15&nbsp;&ndash;&nbsp;50 machines</span>
+                  </label>
+                  <label class="p-radio">
+                    <input type="radio"
+                           aria-labelledby="50-to-100-machines"
+                           class="p-radio__input"
+                           name="how-many-machines-do-you-have"
+                           value="50 to 100 machines" />
+                    <span class="p-radio__label" id="50-to-100-machines">50&nbsp;&ndash;&nbsp;100 machines</span>
+                  </label>
+                  <label class="p-radio">
+                    <input type="radio"
+                           aria-labelledby="greater-than-100"
+                           class="p-radio__input"
+                           name="how-many-machines-do-you-have"
+                           value="greater than 100" />
+                    <span class="p-radio__label" id="greater-than-100">&gt;&nbsp;100 machines</span>
+                  </label>
+                </div>
+              </div>
+            </li>
           </ul>
         </fieldset>
 
@@ -54,46 +113,130 @@
           <ul class="p-list">
             <li class="p-list__item">
               <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+              <textarea required
+                        id="Comments_from_lead__c"
+                        name="Comments_from_lead__c"
+                        rows="5"
+                        maxlength="2000"></textarea>
             </li>
             <li class="p-list__item">
               <label class="p-checkbox">
-                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <input class="p-checkbox__input"
+                       value="yes"
+                       aria-labelledby="canonicalUpdatesOptIn"
+                       name="canonicalUpdatesOptIn"
+                       type="checkbox" />
                 <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
               </label>
             </li>
-            <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+            <li class="p-list__item">
+              In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            </li>
             {# These are honey pot fields to catch bots #}
             <li class="u-off-screen">
               <label class="website" for="website">Website:</label>
-              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+              <input name="website"
+                     type="text"
+                     class="website"
+                     autocomplete="off"
+                     value=""
+                     id="website"
+                     tabindex="-1" />
             </li>
             <li class="u-off-screen">
               <label class="name" for="name">Name:</label>
-              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              <input name="name"
+                     type="text"
+                     class="name"
+                     autocomplete="off"
+                     value=""
+                     id="name"
+                     tabindex="-1" />
             </li>
             {# End of honey pots #}
             <li class="p-list__item">
-              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+              <button type="submit"
+                      class="p-button--positive"
+                      onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{ product }}', 'eventValue' : undefined });">
+                Submit
+              </button>
             </li>
           </ul>
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{formid}}" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="formid"
+                 value="{{ formid }}" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="returnURL"
+                 value="{{ returnURL }}" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="Consent_to_Processing__c"
+                 value="yes" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="utm_campaign"
+                 id="utm_campaign"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="utm_medium"
+                 id="utm_medium"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="utm_source"
+                 id="utm_source"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="utm_content"
+                 id="utm_content"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="utm_term"
+                 id="utm_term"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="GCLID__c"
+                 id="GCLID__c"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 name="Facebook_Click_ID__c"
+                 id="Facebook_Click_ID__c"
+                 value="" />
+          <input type="hidden"
+                 aria-hidden="true"
+                 aria-label="hidden field"
+                 id="preferredLanguage"
+                 name="preferredLanguage"
+                 maxlength="255"
+                 value="" />
         </fieldset>
       </form>
     </div>
     <div class="col-4">
-      {% if side1 %}{% include side1 %}{% endif %}
-      {% if side2 %}{% include side2 %}{% endif %}
+      {% if side1 %}
+        {% include side1 %}
+      {% endif %}
+      {% if side2 %}
+        {% include side2 %}
+      {% endif %}
     </div>
   </div>
 </section>
+<script src="/static/js/src/contact-forms.js"></script>
