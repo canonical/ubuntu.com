@@ -29,17 +29,17 @@ function getCustomFields(event) {
     // Who is responsible for tracking, testing and applying CVE patches in a timely manner?
     const responsibleForTracking = document.getElementById("responsible-for-tracking");
 
-    const data = `Tell us about your project: ${document.getElementById("about-your-project").value}.\n
+    const data = `Tell us about your project: ${document.getElementById("about-your-project")?.value}.\n
       If you use Ubuntu, which version(s) are you using?: ${getCheckboxItemsAsCSV(ubuntuVersionsFieldset)}.\n
       What kind of device are you using?: ${getCheckboxItemsAsCSV(deviceUsedFieldset)}.\n
       How many devices?: ${getRadioItemValue(howManyMachinesFieldset)}.\n
       How do you consume open source?: ${getCheckboxItemsAsCSV(consumeOpenSourceFieldset)}.\n
       Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
       Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
-      What advice are you looking for: ${document.getElementById("advice").value}.\n
+      What advice are you looking for: ${document.getElementById("advice")?.value}.\n
     `
 
-    const inputs = howManyMachinesFieldset.querySelectorAll("input[name='how-many-machines-do-you-have']")
+    const inputs = howManyMachinesFieldset?.querySelectorAll("input[name='how-many-machines-do-you-have']")
     inputs.forEach(function (input) {
         input.removeAttribute("name");
     })
