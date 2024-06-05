@@ -88,7 +88,7 @@ def cred_home(ua_contracts_api, **_):
     user_purchasing = False
     enterprise_purchasing = False
     for product in available_products:
-        if product.get("name") == "CUE Linux Essentials":
+        if product.get("name") == "cue-linux-essentials":
             user_purchasing = True
         if product.get("name") == "CUE Activation Key":
             enterprise_purchasing = True
