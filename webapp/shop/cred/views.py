@@ -237,6 +237,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
+    time_delay = "6 hours" if is_staging else "1 hour"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -250,18 +251,16 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         contract_item_id = data["contract_item_id"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
-        time_delay = 6 if is_staging else 1
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            hours=time_delay
+            hours=6 if is_staging else 1
         ):
             template_data = {
                 key: data[key]
                 for key in ["date", "time", "timezone", "contract_item_id"]
             }
             template_data["error"] = (
-                "Start time should be at least"
-                + f" {time_delay} hour{'s' if is_staging else ''}"
+                f"Start time should be at least {time_delay}"
                 + " from now or later."
             )
             return flask.render_template(
@@ -269,6 +268,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 **template_data,
                 min_date=min_date,
                 max_date=max_date,
+                time_delay=time_delay,
                 assessment_reservation_uuid=flask.request.args.get("uuid"),
             )
 
@@ -332,6 +332,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         min_date=min_date,
         max_date=max_date,
         error=error,
+        time_delay=time_delay,
     )
 
 
