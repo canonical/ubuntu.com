@@ -293,6 +293,8 @@ def notices_sitemap():
 # CVE views
 # ===
 def cve_index():
+    import ipdb
+
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
@@ -428,31 +430,32 @@ def cve_index():
     """
 
     # Format summarized statuses
-    # friendly_names = {
-    #     "DNE": "Not in release",
-    #     "needs-triage": "Needs evaluation",
-    #     "not-affected": "Not vulnerable",
-    #     "needed": "Vulnerable",
-    #     "deferred": "Vulnerable",
-    #     "ignored": "Ignored",
-    #     "pending": "Vulnerable",
-    #     "released": "Fixed",
-    # }
+    friendly_names = {
+        "DNE": "Not in release",
+        "needs-triage": "Needs evaluation",
+        "not-affected": "Not vulnerable",
+        "needed": "Vulnerable",
+        "deferred": "Vulnerable",
+        "ignored": "Ignored",
+        "pending": "Vulnerable",
+        "released": "Fixed",
+        "ignored-low": "ignored-low", # workaround for new status
+    }
 
+    ipdb.set_trace()
     for cve in cves:
         cve["summarized_status"] = {}
         get_summarized_status(
             cve, ignored_low_indicators, vulnerable_indicators
         )
-        # for cve_package in cve["packages"]:
-        #     cve_package["release_statuses"] = {}
-        #     for status in cve_package["statuses"]:
-        #         cve_package["release_statuses"][status["release_codename"]] =
-        # {
-        #             "slug": status["status"],
-        #             "name": friendly_names[status["status"]],
-        #             "pocket": status["pocket"],
-        #         }
+        for cve_package in cve["packages"]:
+            cve_package["release_statuses"] = {}
+            for status in cve_package["statuses"]:
+                cve_package["release_statuses"][status["release_codename"]] = {
+                    "slug": status["status"],
+                    "name": friendly_names[status["status"]],
+                    "pocket": status["pocket"],
+                }
 
     return flask.render_template(
         "security/cve/index.html",
