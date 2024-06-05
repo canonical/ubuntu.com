@@ -286,7 +286,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             return flask.render_template(
                 "/credentials/schedule.html",
                 error=error,
-                time_delay=time_delay
+                time_delay=time_delay,
             )
         else:
             uuid = response.get("reservation", {}).get("IDs", [])[-1]
