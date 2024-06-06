@@ -12,3 +12,4 @@ import "./smart-quotes.js";
 import "./prepare-form-inputs.js";
 import "./tabbed-content.js";
 import "./takeover-tracking.js";
+import "./meganav/meganav.js";
