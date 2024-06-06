@@ -458,6 +458,19 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def get_cue_annotated_contract_items(
+        self, email: str = "", product_tags: List[str] = []
+    ) -> List[dict]:
+        params = {"email": email}
+        params["productTags"] = ["cue"]
+
+        return self._request(
+            method="get",
+            path="/web/annotated-contract-items",
+            params=params,
+            error_rules=[],
+        ).json()
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return

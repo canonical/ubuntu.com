@@ -399,20 +399,25 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         agreement_notification = True
 
     try:
-        exam_contracts = ua_contracts_api.get_annotated_contract_items(
-            product_tags=["cue"], email=email
+        exam_contracts = ua_contracts_api.get_cue_annotated_contract_items(
+            email=email
         )
-    except UAContractsAPIErrorView as error:
+    except Exception as error:
+        print(error)
         flask.current_app.extensions["sentry"].captureException(
             extra={
                 "user_info": user_info(flask.session),
-                "request_url": error.request.url,
-                "request_headers": error.request.headers,
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
                 "response_headers": error.response.headers,
                 "response_body": error.response.json(),
             }
         )
-        exam_contracts = []
+        if error.response.status_code == 401:
+            return flask.redirect("/login?next=/credentials/your-exams")
+        else:
+            exam_contracts = []
+
 
     exams_in_progress = []
     exams_scheduled = []
