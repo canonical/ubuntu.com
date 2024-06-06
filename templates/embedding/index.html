@@ -9,24 +9,26 @@
 {% block content %}
 
 <section class="p-suru--50-50">
-  <div class="row--50-50">
-    <div class="col">
-      <h1>Canonical Embedding programme</h1>
-      <p>Our Embedding programme offers the optimal technical, commercial and legal framework to deploy your products and solutions with Canonical offerings, including cost-effective support across the lifecycle of your product.</p>
-      <p>
-        <a class="p-button--positive js-invoke-modal" href="/embedding#get-in-touch">Get in touch</a>
-      </p>
-    </div>
-    <div class="col u-hide--small u-hide--medium u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
-        alt="",
-        width="250",
-        height="270",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+  <div class="p-strip u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Canonical Embedding programme</h1>
+        <p>Our Embedding programme offers the optimal technical, commercial and legal framework to deploy your products and solutions with Canonical offerings, including cost-effective support across the lifecycle of your product.</p>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/embedding#get-in-touch">Get in touch</a>
+        </p>
+      </div>
+      <div class="col u-hide--small u-hide--medium u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
+          alt="",
+          width="250",
+          height="270",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
 </section>
