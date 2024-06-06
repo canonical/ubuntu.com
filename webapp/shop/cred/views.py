@@ -300,14 +300,31 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                     "/credentials/schedule-confirm.html", exam=exam
                 )
         else:
-            response = ua_contracts_api.post_assessment_reservation(
-                contract_item_id,
-                first_name,
-                last_name,
-                timezone,
-                starts_at.isoformat(),
-                country_code,
-            )
+            try:
+                response = ua_contracts_api.post_assessment_reservation(
+                    contract_item_id,
+                    first_name,
+                    last_name,
+                    timezone,
+                    starts_at.isoformat(),
+                    country_code,
+                )
+            except Exception as error:
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "user_info": user_info(flask.session),
+                        "request_url": error.request.url,
+                        "request_headers": error.request.headers,
+                        "response_headers": error.response.headers,
+                        "response_body": error.response.json(),
+                    }
+                )
+                error = error.response.json()["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
 
             if response and "reservation" not in response:
                 error = response["message"]

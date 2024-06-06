@@ -382,7 +382,7 @@ class UAContractsAPI:
                 "startsAt": starts_at,
                 "countryCode": country_code,
             },
-            error_rules=["default"],
+            error_rules=[],
         ).json()
         return req
 
