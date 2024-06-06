@@ -260,6 +260,16 @@ production:
           secretKeyRef:
             key: api-key
             name: trueability
+            
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+            
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -753,6 +763,16 @@ staging:
           secretKeyRef:
             key: organization
             name: credly
+
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
