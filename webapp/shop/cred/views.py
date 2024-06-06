@@ -234,10 +234,12 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
     max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
+    contract_long_id = flask.request.args.get("contractLongID")
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delay = "6 hours" if is_staging else "1 hour"
+    time_delta = 6 if is_staging else 1
+    time_delay = f"{time_delta} hour{'s' if time_delta > 1 else ''}"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -252,29 +254,61 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
         assessment_reservation_uuid = None
+        template_data = {
+            key: data[key]
+            for key in ["date", "time", "timezone", "contract_item_id"]
+        }
+        template_data["min_date"] = min_date
+        template_data["max_date"] = max_date
+        template_data["time_delay"] = time_delay
+
         if flask.request.args.get("uuid", default=None, type=str):
             assessment_reservation_uuid = flask.request.args.get("uuid")
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
             hours=6 if is_staging else 1
         ):
-            template_data = {
-                key: data[key]
-                for key in ["date", "time", "timezone", "contract_item_id"]
-            }
-            template_data["error"] = (
+            error = (
                 f"Start time should be at least {time_delay}"
                 + " from now or later."
             )
             return flask.render_template(
                 "/credentials/schedule.html",
                 **template_data,
-                min_date=min_date,
-                max_date=max_date,
-                time_delay=time_delay,
+                error=error,
             )
 
         if assessment_reservation_uuid:
+            """check if the rescheduled datetime falls
+            between the contract effectiveness window"""
+            if not contract_long_id:
+                return flask.redirect("/credentials/your-exams")
+            contract_detail = ua_contracts_api.get_contract(contract_long_id)
+            effective_from = now.astimezone(tz_info) + timedelta(
+                hours=time_delta
+            )
+            effective_to = (
+                datetime.strptime(
+                    f"{contract_detail['contractInfo']['effectiveTo']}",
+                    "%Y-%m-%dT%H:%M:%SZ",
+                )
+                .replace(tzinfo=pytz.UTC)
+                .astimezone(tz_info)
+            )
+
+            if starts_at < effective_from or starts_at > effective_to:
+                error = [
+                    "Scheduled time should be between",
+                    f"{effective_from.strftime('%m-%d-%Y %H:%M')}",
+                    "to",
+                    f"{effective_to.strftime('%m-%d-%Y %H:%M')}",
+                ]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=" ".join(error),
+                    **template_data,
+                )
+
             response = trueability_api.patch_assessment_reservation(
                 starts_at=starts_at.isoformat(),
                 timezone=timezone,
@@ -297,7 +331,9 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                     "contract_item_id": contract_item_id,
                 }
                 return flask.render_template(
-                    "/credentials/schedule-confirm.html", exam=exam
+                    "/credentials/schedule-confirm.html",
+                    exam=exam,
+                    contract_long_id=contract_long_id,
                 )
         else:
             response = ua_contracts_api.post_assessment_reservation(
@@ -308,7 +344,6 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 starts_at.isoformat(),
                 country_code,
             )
-
             if response and "reservation" not in response:
                 error = response["message"]
                 return flask.render_template(
@@ -326,7 +361,9 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                     "contract_item_id": contract_item_id,
                 }
                 return flask.render_template(
-                    "/credentials/schedule-confirm.html", exam=exam
+                    "/credentials/schedule-confirm.html",
+                    exam=exam,
+                    contract_long_id=contract_long_id,
                 )
 
     contract_item_id = flask.request.args.get("contractItemID")
@@ -411,6 +448,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             contract_item_id = (
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
+            contract_long_id = exam_contract["contractItem"]["contractID"]
 
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
@@ -509,7 +547,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                                     "text": "Reschedule",
                                     "href": "/credentials/schedule?"
                                     f"contractItemID={contract_item_id}"
-                                    f"&uuid={r['uuid']}",
+                                    f"&uuid={r['uuid']}"
+                                    f"&contractLongID={contract_long_id}",
                                     "button_class": "p-button",
                                 },
                             ]
@@ -574,7 +613,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                     {
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
-                        f"contractItemID={contract_item_id}",
+                        f"contractItemID={contract_item_id}"
+                        f"&contractLongID={contract_long_id}",
                         "button_class": "p-button",
                     },
                 ]
