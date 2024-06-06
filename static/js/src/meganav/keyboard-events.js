@@ -5,7 +5,7 @@ const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
 
-export function keyboardNavigationHandler(e) {
+export default function keyboardNavigationHandler(e) {
   if (e.key === "Escape") {
     handleEscapeKey(e);
   } else if (e.shiftKey && e.key === "Tab") {
@@ -15,9 +15,9 @@ export function keyboardNavigationHandler(e) {
   }
 }
 
-export function handleEscapeKey(e) {
+function handleEscapeKey(e) {
   // If in the main nav, close all dropdowns
-  if (e.target.closest(".p-navigation__items")) {
+  if (e.target.closest(".p-navigation__items") || e.target.classList.contains("p-search-box__input")) {
     closeAll();
   }
   // If '.dropdown-window__sidenav-content' exists we are in the dropdown window so we want to move up to the side-tabs
@@ -49,7 +49,6 @@ function handleTabKey(e) {
   const desktopDropdownPanel = getDesktopContainingDropdown(e.target);
   const mobileDropdownPanel = getMobileContainingDropdown(e.target);
   if (mobileDropdownPanel && isLastMobileLinkFocused(e, mobileDropdownPanel)) {
-    console.log("last mobile link focused");
     e.preventDefault();
     const canonicalLogo = navigation.querySelector(
       ".p-navigation__tagged-logo > a"

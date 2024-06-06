@@ -1,28 +1,25 @@
-import { keyboardNavigationHandler, handleEscapeKey } from "./keyboard-events"; 
+import keyboardNavigationHandler from "./keyboard-events"; 
 import attachGAEvents from "./ga-events";
 
-const ANIMATION_DELAY = 200;
-const MOBILE_VIEW_BREAKPOINT = 1228;
-const dropdownWindow = document.querySelector(".dropdown-window");
-const dropdownWindowOverlay = document.querySelector(
-  ".dropdown-window-overlay"
-);
-const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 const navigation = document.querySelector(".p-navigation--sliding");
 const topLevelNavDropdowns = Array.from(
   document.querySelectorAll(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
-// const nav = navigation.querySelector(".js-show-nav");
-const menuButtons = document.querySelectorAll(".js-menu-button");
-let dropdowns = [];
 const mainList = document.querySelector(
   "nav.p-navigation__nav > .p-navigation__items"
 );
+const dropdownWindow = document.querySelector(".dropdown-window");
+const dropdownWindowOverlay = document.querySelector(
+  ".dropdown-window-overlay"
+);
+let dropdowns = [];
 
+/**
+ * If JS is disabled, we want to apply slightly different styles
+ */
 navigation.classList.add("js-enabled");
-// nav.classList.remove("u-hide");
 
 /**
  * Once the document has loaded, we want to set up the global navigation
@@ -55,6 +52,7 @@ function toggleIsActiveState(element, active) {
   element.classList.toggle("is-active", active);
 }
 
+const MOBILE_VIEW_BREAKPOINT = 1228;
 function isMobile() {
   const currViewportWidth = window.innerWidth;
   const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
@@ -160,32 +158,16 @@ function updateNavigation(dropdown, show) {
     updateMobileNavigation(dropdown, show, isNested);
     updateWindowHeight();
   } else {
+    // Delay the animation to allow the dropdown to slide in
+    const ANIMATION_DELAY = 200;
     updateDesktopNavigation(dropdown, show, isNested, ANIMATION_DELAY);
     showDesktopDropdown(show);
   }
   updateUrlHash(dropdown.id, show);
-
-  // let dropdownContent = document.getElementById(dropdown.id + "-content");
-  // const dropdownContentMobile = document.getElementById(
-  //   dropdown.id + "-content-mobile"
-  // );
-  // let isAccountDropdown = dropdown.classList.contains("js-account");
-
-  // if (dropdownContent) {
-  //   updateUrlHash(dropdown.id, show);
-  // }
-
-  // if ((dropdownContent && dropdownContentMobile) || isAccountDropdown) {
-  //   if (!show) updateDesktopNavigation(dropdown, show, ANIMATION_DELAY);
-  //   else updateDesktopNavigation(dropdown, show);
-  //   showDesktopDropdown(show);
-  // } else if (dropdownContentMobile) {
-  //   updateMobileNavigation(dropdown, show);
-  // }
 }
 
 // MOBILE DROPDOWN FUNCTIONS
-
+const menuButtons = document.querySelectorAll(".js-menu-button");
 if (menuButtons) {
   menuButtons.forEach((menuButton) =>
     menuButton.addEventListener("click", toggleMenu)
@@ -299,7 +281,7 @@ function openMenu(e) {
   });
 
   navigation.classList.add("has-menu-open");
-  document.addEventListener("keyup", handleEscapeKey);
+  // document.addEventListener("keyup", keyboardNavigationHandler);
   setTabIndex(mainList);
   addKeyboardEvents();
 }
@@ -389,7 +371,7 @@ function closeDesktopDropdown() {
 }
 
 // SECONDARY NAV FUNCTIONS
-
+const secondaryNav = document.querySelector(".p-navigation.is-secondary");
 secondaryNav
   ?.querySelector(".p-navigation__toggle--open")
   ?.addEventListener("click", toggleSecondaryMobileNavDropdown);
@@ -502,22 +484,6 @@ function setTabIndex(target) {
       }
     }
   });
-
-  // // If on desktop, update the nav items tab index.
-  // // Keep the active nav item at tabindex 0
-  // // When none are active, set them all to tabindex 0
-  // if (window.innerWidth > MOBILE_VIEW_BREAKPOINT) {
-  //   const currActiveNavItem = navigation.querySelector(
-  //     ".p-navigation__item--dropdown-toggle.is-active"
-  //   );
-  //   if (currActiveNavItem) {
-  //     currActiveNavItem.children[0].setAttribute("tabindex", "0");
-  //   } else {
-  //     mainList.querySelectorAll(":scope > li").forEach((element) => {
-  //       element.children[0].setAttribute("tabindex", "0");
-  //     });
-  //   }
-  // }
 }
 
 /**
@@ -571,9 +537,7 @@ function handleUrlHash() {
   const targetId = window.location.hash;
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
   if (targetDropdown) {
-    const currViewportWidth = window.innerWidth;
-    const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
-    if (isMobile) {
+    if (isMobile()) {
       const menuToggle = navigation.querySelector(".js-menu-button");
       menuToggle?.click();
     }
@@ -615,7 +579,7 @@ function openSearch(e) {
     secondaryNav.classList.add("u-hide");
   }
   searchInput.focus();
-  document.addEventListener("keyup", handleEscapeKey);
+  document.addEventListener("keyup", keyboardNavigationHandler);
 }
 
 function closeSearch() {
@@ -629,7 +593,7 @@ function closeSearch() {
     secondaryNav.classList.remove("u-hide");
   }
 
-  document.removeEventListener("keyup", handleEscapeKey);
+  document.removeEventListener("keyup", keyboardNavigationHandler);
 }
 
 const searchButtons = document.querySelectorAll(".js-search-button");
