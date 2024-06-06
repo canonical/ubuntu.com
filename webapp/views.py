@@ -1052,39 +1052,6 @@ def get_user_country_by_tz():
     )
 
 
-def get_user_country_by_ip():
-    x_forwarded_for = flask.request.headers.get("X-Forwarded-For")
-
-    if x_forwarded_for:
-        client_ip = x_forwarded_for.split(",")[0]
-    else:
-        client_ip = flask.request.remote_addr
-
-    ip_location = ip_reader.get(client_ip)
-
-    try:
-        country_code = ip_location["country"]["iso_code"]
-    except KeyError:
-        # geolite2 can't identify IP address
-        country_code = None
-    except Exception as error:
-        # Errors not documented in the geolite2 module
-        country_code = None
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"ip_location object": ip_location, "error": error}
-        )
-
-    response = flask.jsonify(
-        {
-            "client_ip": client_ip,
-            "country_code": country_code,
-        }
-    )
-    response.cache_control.private = True
-
-    return response
-
-
 def subscription_centre():
     sfdcLeadId = flask.request.args.get("id")
     return_url = flask.request.form.get("returnURL")

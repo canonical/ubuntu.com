@@ -1139,7 +1139,7 @@
               ) {
                 var userCountry = JSON.parse(fetchUserCountry.responseText).country_code;
                 var selectedTakeovers = takeovers.filter(function(item) {
-                  if (item.target_country && item.target_country == userCountry) {
+                  if (item.target_country && item.target_country.toLowerCase() == userCountry.toLowerCase()) {
                     return true;
                   } else if (item.lang === primaryParentLanguage || item.lang === "") {
                     return true;
@@ -1185,7 +1185,8 @@
 
         xhr.open("GET", "/takeovers.json", true);
         xhr.send();
-        fetchUserCountry.open("GET", "/user-country.json", true);
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        fetchUserCountry.open("GET", `/user-country-tz.json?tz=${timezone}`, true);
         fetchUserCountry.send();
         takeoverAnimation.className += " is-loading";
       }
