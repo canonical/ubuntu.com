@@ -1,16 +1,18 @@
 <li class="p-navigation__dropdown-item">
   <a href="{{ url }}"
-     class="p-link--inverted"
+     class="is-muted"
      onclick="event.stopPropagation()"
      tabindex="{% if tabindex %}{{ tabindex }}{% else %}0{% endif %}">
-    <span>{{ title }}</span>
+    <strong>{{ title }}</strong>
     <br />
-    <small class="is-muted">{{ description }}</small>
+    <small>{{ description }}</small>
   </a>
 
   {% if secondary_cta_url and secondary_cta_title %}
+    <br />
     <a href="{{ secondary_cta_url }}"
        class="p-button--positive"
        tabindex="{% if tabindex %}{{ tabindex }}{% else %}0{% endif %}">{{ secondary_cta_title }}</a>
   {% endif %}
+
 </li>
