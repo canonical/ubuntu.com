@@ -17,7 +17,10 @@ export default function keyboardNavigationHandler(e) {
 
 function handleEscapeKey(e) {
   // If in the main nav, close all dropdowns
-  if (e.target.closest(".p-navigation__items") || e.target.classList.contains("p-search-box__input")) {
+  if (
+    e.target.closest(".p-navigation__items") ||
+    e.target.classList.contains("p-search-box__input")
+  ) {
     closeAll();
   }
   // If '.dropdown-window__sidenav-content' exists we are in the dropdown window so we want to move up to the side-tabs
@@ -54,8 +57,10 @@ function handleTabKey(e) {
       ".p-navigation__tagged-logo > a"
     );
     canonicalLogo.focus();
-  } 
-  else if (desktopDropdownPanel && isLastLinkFocused(e, desktopDropdownPanel)) {
+  } else if (
+    desktopDropdownPanel &&
+    isLastLinkFocused(e, desktopDropdownPanel)
+  ) {
     const currDropdownToggle = mainList.querySelector(
       ":scope > .p-navigation__item--dropdown-toggle.is-active"
     );
@@ -118,7 +123,8 @@ function isLastMobileLinkFocused(e, dropdownList) {
   }
 
   // Check if the target is the last link in a dropdown list
-  const dropdownListSelector = ":scope > li, :scope > li > ul.p-navigation__secondary-links > li";
+  const dropdownListSelector =
+    ":scope > li, :scope > li > ul.p-navigation__secondary-links > li";
   const lastDropdownListLink = getLastLink(dropdownListSelector);
   return e.target === lastDropdownListLink;
 }

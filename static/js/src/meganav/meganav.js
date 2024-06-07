@@ -1,4 +1,4 @@
-import keyboardNavigationHandler from "./keyboard-events"; 
+import keyboardNavigationHandler from "./keyboard-events";
 import attachGAEvents from "./ga-events";
 
 const navigation = document.querySelector(".p-navigation--sliding");
@@ -7,9 +7,7 @@ const topLevelNavDropdowns = Array.from(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
-const mainList = document.querySelector(
-  "nav.p-navigation__nav > .p-navigation__items"
-);
+const mainList = document.querySelector("nav.p-navigation__nav");
 const dropdownWindow = document.querySelector(".dropdown-window");
 const dropdownWindowOverlay = document.querySelector(
   ".dropdown-window-overlay"
@@ -31,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * If the url has a hash, we want to open the dropdown that matches the hash
  */
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   handleUrlHash();
 });
 
-/** 
+/**
  * Setup functions for keyboard navigation and trapping
-*/
+ */
 function addKeyboardEvents() {
   document.addEventListener("keydown", keyboardNavigationHandler);
 }
@@ -52,7 +50,7 @@ function toggleIsActiveState(element, active) {
   element.classList.toggle("is-active", active);
 }
 
-const MOBILE_VIEW_BREAKPOINT = 1228;
+const MOBILE_VIEW_BREAKPOINT = 1212;
 function isMobile() {
   const currViewportWidth = window.innerWidth;
   const isMobile = currViewportWidth < MOBILE_VIEW_BREAKPOINT;
@@ -127,7 +125,7 @@ function handleDropdownClick(clickedDropdown) {
 
 /**
  * This is needed as the onhover/onfocus effect does not work with touch screens, but will trigger calling the navigation contents. We then need to manually open the dropdown. See https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/MutationObserver
- */ 
+ */
 function handleMutation(mutationsList, observer) {
   mutationsList.forEach((mutation) => {
     if (mutation.type === "childList") {
@@ -158,10 +156,11 @@ function updateNavigation(dropdown, show) {
     updateMobileNavigation(dropdown, show, isNested);
     updateWindowHeight();
   } else {
+    closeAll();
     // Delay the animation to allow the dropdown to slide in
-    const ANIMATION_DELAY = 200;
+    const ANIMATION_DELAY = 150;
     updateDesktopNavigation(dropdown, show, isNested, ANIMATION_DELAY);
-    showDesktopDropdown(show);
+    showDesktopDropdownContainer(show);
   }
   updateUrlHash(dropdown.id, show);
 }
@@ -353,7 +352,7 @@ function toggleDropdownContentVisibility(contentElement, show, delay = 0) {
   }
 }
 
-function showDesktopDropdown(show) {
+function showDesktopDropdownContainer(show) {
   dropdownWindow.classList.toggle("slide-animation", !show);
   dropdownWindowOverlay.classList.toggle("fade-animation", !show);
   toggleIsActiveState(dropdownWindow, show);
@@ -361,7 +360,7 @@ function showDesktopDropdown(show) {
 }
 
 function closeDesktopDropdown() {
-  showDesktopDropdown(false);
+  showDesktopDropdownContainer(false);
   mainList.classList.remove("is-active");
   [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
     if (!dropdownContent.classList.contains("u-hide")) {
@@ -457,9 +456,12 @@ window.fetchDropdown = fetchDropdown; //make available in HTML
   or <ul class="p-navigation__dropdown">
 */
 function setTabIndex(target) {
+  if (!target) return;
   const lists = [...dropdowns, mainList];
   lists.forEach((list) => {
-    const elements = list.querySelectorAll("ul > li > a, ul > li > button, ul > li > h2");
+    const elements = list.querySelectorAll(
+      "ul > li > a, ul > li > button, ul > li > h2"
+    );
     elements.forEach(function (element) {
       element.setAttribute("tabindex", "-1");
     });
@@ -468,28 +470,47 @@ function setTabIndex(target) {
   const targetLiItems = target?.querySelectorAll("li");
   targetLiItems?.forEach((element) => {
     // function to check if there is a secondary list
-    const isSecondaryList = (ele) => ele.classList.contains("p-navigation__secondary-links");
+    const isSecondaryList = (ele) =>
+      ele.classList.contains("p-navigation__secondary-links");
     if (
-      element.parentNode === target &&
-      !isSecondaryList(element.children[0]) ||
-      element.parentNode.parentNode.parentNode === target &&
-      isSecondaryList(element.parentNode)
+      (element.parentNode === target &&
+        !isSecondaryList(element.children[0])) ||
+      (element.parentNode.parentNode.parentNode === target &&
+        isSecondaryList(element.parentNode))
     ) {
       element.children[0].setAttribute("tabindex", "0");
 
       // check for the a second link withint the li
-      const downloadButton = element.querySelector(":scope > .p-button--positive");
+      const downloadButton = element.querySelector(
+        ":scope > .p-button--positive"
+      );
       if (downloadButton) {
         downloadButton.setAttribute("tabindex", "0");
       }
     }
   });
+
+  // If on desktop, update the nav items tab index.
+  // Keep the active nav item at tabindex 0
+  // When none are active, set them all to tabindex 0
+  if (window.innerWidth > MOBILE_VIEW_BREAKPOINT) {
+    const currActiveNavItem = navigation.querySelector(
+      ".p-navigation__item--dropdown-toggle.is-active"
+    );
+    if (currActiveNavItem) {
+      currActiveNavItem.children[0].setAttribute("tabindex", "0");
+    } else {
+      mainList.querySelectorAll(":scope > li").forEach((element) => {
+        element.children[0]?.setAttribute("tabindex", "0");
+      });
+    }
+  }
 }
 
 /**
  * Close all navigations and reset states
  */
-function closeNav() {
+function closeNavigations() {
   menuButtons.forEach((searchButton) => {
     searchButton.removeAttribute("aria-pressed");
   });
@@ -502,8 +523,9 @@ function closeNav() {
  * Master switch to close and reset everything
  */
 export function closeAll() {
+  console.log("closing all");
   closeSearch();
-  closeNav();
+  closeNavigations();
   updateUrlHash();
   setTabIndex(mainList);
   updateWindowHeight();
@@ -531,15 +553,18 @@ function updateUrlHash(id, open) {
 }
 
 /**
- * Checks if a hash is present in the URL and opens the corresponding dropdown 
-*/ 
+ * Checks if a hash is present in the URL and opens the corresponding dropdown
+ */
 function handleUrlHash() {
   const targetId = window.location.hash;
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
+  console.log("targy d", targetDropdown);
   if (targetDropdown) {
     if (isMobile()) {
       const menuToggle = navigation.querySelector(".js-menu-button");
       menuToggle?.click();
+    } else {
+      targetDropdown.focus();
     }
     fetchDropdown("/templates/meganav/" + targetDropdown.id, targetDropdown.id);
     handleDropdownClick(targetDropdown);
@@ -588,7 +613,7 @@ function closeSearch() {
   });
 
   navigation.classList.remove("has-search-open");
-
+  console.log("navigation", navigation);
   if (secondaryNav) {
     secondaryNav.classList.remove("u-hide");
   }
