@@ -149,7 +149,16 @@
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="how-many-machines">
           <legend class="u-off-screen">*How many devices?</legend>
-          <h2 class="p-heading--3">*How many devices?</h2>
+
+          <h2 class="p-heading--3">
+            *How many
+            {% if howManyVM %}
+              VMs
+            {% else %}
+              devices
+            {% endif %}
+            ?
+          </h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-radio">
@@ -160,11 +169,6 @@
                        name="how-many-machines-do-you-have"
                        value="less than 5" />
                 <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
-                <p id="5-machines-help"
-                   class="p-form-help-text u-no-margin--top u-hide"
-                   style="text-indent: 0">
-                  <a href="/pro">Ubuntu Pro</a> is free for personal use, on up to 5 machines.
-                </p>
               </label>
               <label class="p-radio">
                 <input type="radio"
