@@ -7,7 +7,10 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="/marketo/submit" method="post" id="mktoForm_{{ formid }}">
+      <form action="/marketo/submit"
+            method="post"
+            id="mktoForm_{{ formid }}"
+            onsubmit="getCustomFields(event)">
         <fieldset class="u-no-margin--bottom">
           <legend class="u-off-screen">About you</legend>
           <h2 class="p-heading--3">About you</h2>
@@ -130,7 +133,7 @@
               </label>
             </li>
             <li class="p-list__item">
-              In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+              By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
             </li>
             {# These are honey pot fields to catch bots #}
             <li class="u-off-screen">
@@ -154,6 +157,8 @@
                      tabindex="-1" />
             </li>
             {# End of honey pots #}
+          </ul>
+          <ul class="p-list">
             <li class="p-list__item">
               <button type="submit"
                       class="p-button--positive"
