@@ -16,3 +16,11 @@ def get_user_first_last_name() -> Tuple[str, str]:
     last_name = name[1] if len(name) > 1 else ""
 
     return first_name, last_name
+
+
+def get_tab_keys(keys, tab):
+    if tab == "active":
+        return [key for key in keys if "activatedBy" in key]
+    elif tab == "unused":
+        return [key for key in keys if "activatedBy" not in key]
+    return keys

@@ -77,11 +77,11 @@ from webapp.shop.cred.views import (
     cred_shop_thank_you,
     cred_shop_webhook_responses,
     cred_shop_keys,
+    cred_shop_manage,
     cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
-    get_activation_keys,
     get_cue_products,
     get_issued_badges,
     get_my_issued_badges,
@@ -885,6 +885,7 @@ app.add_url_rule(
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
+app.add_url_rule("/credentials/shop/manage", view_func=cred_shop_manage)
 app.add_url_rule(
     "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
 )
@@ -899,11 +900,6 @@ app.add_url_rule(
     "/credentials/redeem/<code>",
     view_func=cred_redeem_code,
     methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/keys/list",
-    view_func=get_activation_keys,
-    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/keys/rotate/<activation_key>",
