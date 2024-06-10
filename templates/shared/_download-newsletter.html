@@ -119,7 +119,7 @@
 
       checkboxes.forEach(function(checkbox) {
         if (checkbox.children[0].checked) {
-          const text = checkbox.children[1].innerHTML;
+          const text = checkbox.children[1].id;
           usageOptions.push(text);
         }
       });
