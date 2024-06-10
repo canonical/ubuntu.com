@@ -32,12 +32,8 @@ const unmaintainedReleasesLink = document.querySelector(
 const unmaintainedReleasesContainer = document.querySelector(
   ".js-unmaintained-releases"
 );
-const showPackagesLinks = document.querySelectorAll(
-  ".js-show-packages"
-);
-const hidePackagesLinks = document.querySelectorAll(
-  ".js-hide-packages"
-);
+const showPackagesLinks = document.querySelectorAll(".js-show-packages");
+const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
 const detailedSwitch = document.querySelector(".js-detailed-switch");
 const detailedTables = document.querySelectorAll(".detailed-table");
 // eslint-disable-next-line no-undef
@@ -309,7 +305,7 @@ function handleShowPackages() {
   showPackagesLinks.forEach((showPackagesLink) => {
     showPackagesLink.onclick = function (event) {
       event.preventDefault();
-      const id = showPackagesLink.id.split('--')[1];
+      const id = showPackagesLink.id.split("--")[1];
       const cveTable = document.querySelector(`#table--${id}`);
 
       cveTable.querySelectorAll(".expandable-row").forEach((row) => {
@@ -327,7 +323,7 @@ function handleHidePackages() {
   hidePackagesLinks.forEach((hidePackagesLink) => {
     hidePackagesLink.onclick = function (event) {
       event.preventDefault();
-      const id = hidePackagesLink.id.split('--')[1];
+      const id = hidePackagesLink.id.split("--")[1];
       const cveTable = document.querySelector(`#table--${id}`);
 
       cveTable.querySelectorAll(".expandable-row").forEach((row) => {
@@ -337,7 +333,7 @@ function handleHidePackages() {
         showPackagesLink.classList.remove("u-hide");
 
         const card = document.querySelector(`#card--${id}`);
-        card.scrollIntoView({ behavior: 'smooth' });
+        card.scrollIntoView({ behavior: "smooth" });
       });
     };
   });
