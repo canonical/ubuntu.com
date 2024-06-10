@@ -7,7 +7,6 @@ from math import ceil, floor
 import flask
 import dateutil
 import talisker.requests
-import bs4 as bs
 import yaml
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
@@ -15,7 +14,6 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 
 # Local
-from webapp.context import api_session
 from webapp.security.api import SecurityAPI
 from webapp.security.helpers import get_summarized_status
 
@@ -608,8 +606,6 @@ def cve(cve_id):
         for package_name, tags in cve["tags"].items():
             for tag in tags:
                 formatted_tags.append({"name": package_name, "text": tag})
-
-    base_lp = "https://git.launchpad.net/ubuntu-cve-tracker/tree"
 
     return flask.render_template(
         "security/cve/cve.html",
