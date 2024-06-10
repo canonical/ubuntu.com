@@ -293,7 +293,6 @@ def notices_sitemap():
 # CVE views
 # ===
 def cve_index():
-    import ipdb
 
     """
     Display the list of CVEs, with pagination.
@@ -431,30 +430,30 @@ def cve_index():
 
     # Format summarized statuses
     friendly_names = {
-        "DNE": "Not in release",
-        "needs-triage": "Needs evaluation",
-        "not-affected": "Not vulnerable",
-        "needed": "Vulnerable",
-        "deferred": "Vulnerable",
-        "ignored": "Ignored",
-        "pending": "Vulnerable",
-        "released": "Fixed",
-        "ignored-low": "ignored-low", # workaround for new status
+        "DNE": {"name": "Not in release", "icon": None},
+        "needs-triage": {"name": "Needs evaluation", "icon": "help"},
+        "not-affected": {"name": "Not affected", "icon": "success"},
+        "needed": {"name": "Vulnerable", "icon": "warning"},
+        "deferred": {"name": "Vulnerable", "icon": "warning"},
+        "pending": {"name": "Vulnerable", "icon": "warning"},
+        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "released": {"name": "Fixed", "icon": "success"}
     }
 
-    ipdb.set_trace()
     for cve in cves:
-        cve["summarized_status"] = {}
-        get_summarized_status(
-            cve, ignored_low_indicators, vulnerable_indicators
-        )
+        # cve["summarized_status"] = {}
+        # get_summarized_status(
+        #     cve, ignored_low_indicators, vulnerable_indicators
+        # )
         for cve_package in cve["packages"]:
             cve_package["release_statuses"] = {}
             for status in cve_package["statuses"]:
+                friendly_status = friendly_names[status["status"]]
                 cve_package["release_statuses"][status["release_codename"]] = {
                     "slug": status["status"],
-                    "name": friendly_names[status["status"]],
+                    "name": friendly_status["name"],
                     "pocket": status["pocket"],
+                    "icon": friendly_status["icon"],
                 }
 
     return flask.render_template(

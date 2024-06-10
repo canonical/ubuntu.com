@@ -32,6 +32,14 @@ const unmaintainedReleasesLink = document.querySelector(
 const unmaintainedReleasesContainer = document.querySelector(
   ".js-unmaintained-releases"
 );
+const showPackagesLinks = document.querySelectorAll(
+  ".js-show-packages"
+);
+const hidePackagesLinks = document.querySelectorAll(
+  ".js-hide-packages"
+);
+const detailedSwitch = document.querySelector(".js-detailed-switch");
+const detailedTables = document.querySelectorAll(".detailed-table");
 // eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
   (release) => release.codename
@@ -296,3 +304,52 @@ function exportToJSON() {
   };
 }
 exportToJSON();
+
+function handleShowPackages() {
+  showPackagesLinks.forEach((showPackagesLink) => {
+    showPackagesLink.onclick = function (event) {
+      event.preventDefault();
+      const id = showPackagesLink.id.split('--')[1];
+      const cveTable = document.querySelector(`#table--${id}`);
+
+      cveTable.querySelectorAll(".expandable-row").forEach((row) => {
+        row.classList.remove("u-hide");
+        showPackagesLink.classList.add("u-hide");
+        const hidePackagesLink = document.querySelector(`#hide--${id}`);
+        hidePackagesLink.classList.remove("u-hide");
+      });
+    };
+  });
+}
+handleShowPackages();
+
+function handleHidePackages() {
+  hidePackagesLinks.forEach((hidePackagesLink) => {
+    hidePackagesLink.onclick = function (event) {
+      event.preventDefault();
+      const id = hidePackagesLink.id.split('--')[1];
+      const cveTable = document.querySelector(`#table--${id}`);
+
+      cveTable.querySelectorAll(".expandable-row").forEach((row) => {
+        row.classList.add("u-hide");
+        hidePackagesLink.classList.add("u-hide");
+        const showPackagesLink = document.querySelector(`#show--${id}`);
+        showPackagesLink.classList.remove("u-hide");
+
+        const card = document.querySelector(`#card--${id}`);
+        card.scrollIntoView({ behavior: 'smooth' });
+      });
+    };
+  });
+}
+handleHidePackages();
+
+function handleDetailedSwitch(event) {
+  if (event.target.checked) {
+    detailedTables.forEach((table) => table.classList.remove("u-hide"));
+  } else {
+    detailedTables.forEach((table) => table.classList.add("u-hide"));
+  }
+}
+
+detailedSwitch.addEventListener("click", handleDetailedSwitch);
