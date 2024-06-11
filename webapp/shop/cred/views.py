@@ -858,13 +858,6 @@ def cred_submit_form(**_):
 def cred_shop(**kwargs):
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
-    cue_products = get_cue_products(type="exam").json
-
-    for exam in exams:
-        id = exam["id"]
-        for product in cue_products:
-            if id == product["id"]:
-                exam["price"] = product["price"]
 
     return flask.render_template(
         "credentials/shop/index.html", exams=exams, exam_index=0
