@@ -73,7 +73,31 @@ $meganav-height: 3rem;
     position: sticky;
     top: 0;
     z-index: 40;
+
+    .p-navigation__nav {
+      max-height: calc(100vh - $meganav-height);
+    }
+
+    .p-navigation__dropdown {
+      height: calc(100vh - $meganav-height);
+      overflow: hidden;
+
+      &[aria-hidden="false"] {
+        overflow: unset;
+      }
+    }
   }
+
+  .p-navigation--sliding.has-menu-open {
+    height: fit-content;
+
+    @media (max-width: $breakpoint-navigation-threshold - 1) {
+      .p-navigation__row--25-75 {
+        height: 100vh;
+      }
+    }
+  }
+
 }
 
 @mixin ubuntu-p-navigation-reduced {

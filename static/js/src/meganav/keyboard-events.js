@@ -74,11 +74,11 @@ function handleTabKey(e) {
 
 function handleShiftTabKey(e) {
   const dropdownPanel = getDesktopContainingDropdown(e.target);
-  if (
-    isFirstLinkFocused(e, dropdownPanel) &&
-    tabPanelExists(e.target) &&
-    !isInTabPanel(e.target)
-  ) {
+  const isFocused = isFirstLinkFocused(e, dropdownPanel);
+  const hasTabPanel = tabPanelExists(e.target);
+  const inTabPanel = isInTabPanel(e.target);
+
+  if (isFocused && hasTabPanel && !inTabPanel) {
     const parentContainer = dropdownPanel.closest(".dropdown-window__content");
     const targetTab = parentContainer.querySelector(
       ".p-side-navigation__item .p-side-navigation__link.is-active"
@@ -87,6 +87,13 @@ function handleShiftTabKey(e) {
       e.preventDefault();
       targetTab?.focus();
     }
+  } else if (isFocused && (inTabPanel || !hasTabPanel)) {
+    const currrentActiveTab = mainList.querySelector(
+      ":scope > .p-navigation__item--dropdown-toggle.is-active > a"
+    );
+    closeAll();
+    e.preventDefault();
+    currrentActiveTab?.focus();
   }
 }
 

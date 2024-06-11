@@ -490,20 +490,16 @@ function setTabIndex(target) {
     }
   });
 
-  // If on desktop, update the nav items tab index.
-  // Keep the active nav item at tabindex 0
-  // When none are active, set them all to tabindex 0
-  if (window.innerWidth > MOBILE_VIEW_BREAKPOINT) {
-    const currActiveNavItem = navigation.querySelector(
-      ".p-navigation__item--dropdown-toggle.is-active"
-    );
-    if (currActiveNavItem) {
-      currActiveNavItem.children[0].setAttribute("tabindex", "0");
-    } else {
-      mainList.querySelectorAll(":scope > li").forEach((element) => {
-        element.children[0]?.setAttribute("tabindex", "0");
-      });
-    }
+  // We have to handle the top level items differently as they are shared between the mobile and desktop dropdowns
+  const currActiveNavItem = navigation.querySelector(
+    ".p-navigation__item--dropdown-toggle.is-active"
+  );
+  if (currActiveNavItem) {
+    currActiveNavItem.children[0].setAttribute("tabindex", "0");
+  } else {
+    mainList.querySelectorAll(":scope > ul > li").forEach((element) => {
+      element.children[0]?.setAttribute("tabindex", "0");
+    });
   }
 }
 
@@ -523,7 +519,6 @@ function closeNavigations() {
  * Master switch to close and reset everything
  */
 export function closeAll() {
-  console.log("closing all");
   closeSearch();
   closeNavigations();
   updateUrlHash();
@@ -558,7 +553,6 @@ function updateUrlHash(id, open) {
 function handleUrlHash() {
   const targetId = window.location.hash;
   const targetDropdown = targetId ? navigation.querySelector(targetId) : null;
-  console.log("targy d", targetDropdown);
   if (targetDropdown) {
     if (isMobile()) {
       const menuToggle = navigation.querySelector(".js-menu-button");
@@ -613,7 +607,6 @@ function closeSearch() {
   });
 
   navigation.classList.remove("has-search-open");
-  console.log("navigation", navigation);
   if (secondaryNav) {
     secondaryNav.classList.remove("u-hide");
   }
