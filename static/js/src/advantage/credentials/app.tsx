@@ -4,7 +4,6 @@ import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 
 const oneHour = 1000 * 60 * 60;
@@ -34,11 +33,7 @@ function App() {
   return (
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Router basename="/credentials/shop">
-          <Routes>
-            <Route path="/manage" element={<CredManage />} />
-          </Routes>
-        </Router>
+        <CredManage />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>

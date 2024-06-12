@@ -74,6 +74,7 @@ from webapp.shop.cred.views import (
     cred_schedule,
     cred_self_study,
     cred_shop,
+    cred_manage_shop,
     cred_shop_thank_you,
     cred_shop_webhook_responses,
     cred_shop_keys,
@@ -883,6 +884,9 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
+app.add_url_rule(
+    "/credentials/shop/manage/", view_func=cred_manage_shop, methods=["GET"]
+)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
 app.add_url_rule(
