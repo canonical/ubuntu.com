@@ -44,16 +44,12 @@ class UAContractsAPI:
         error_rules=None,
         headers={},
     ):
-        headers[
-            "Authorization"
-        ] = f"{self.token_type} {self.authentication_token}"
+        headers["Authorization"] = f"{self.token_type} {self.authentication_token}"
 
         if self.remote_addr:
             headers["X-Forwarded-For"] = self.remote_addr
             logger = logging.getLogger("talisker.requests")
-            logger.info(
-                "remote address", extra={"remote_addr": self.remote_addr}
-            )
+            logger.info("remote address", extra={"remote_addr": self.remote_addr})
 
         response = self.session.request(
             method=method,
@@ -167,9 +163,7 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def put_anonymous_customer_info(
-        self, account_id, name, address, tax_id
-    ) -> dict:
+    def put_anonymous_customer_info(self, account_id, name, address, tax_id) -> dict:
         return self._request(
             method="put",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
@@ -212,9 +206,7 @@ class UAContractsAPI:
 
         return {}
 
-    def get_product_listings(
-        self, marketplace: str, filters: str = ""
-    ) -> dict:
+    def get_product_listings(self, marketplace: str, filters: str = "") -> dict:
         return self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/product-listings{filters}",
@@ -234,9 +226,7 @@ class UAContractsAPI:
             error_rules=["default", "auth"],
         ).json()
 
-    def get_account_purchases(
-        self, account_id: str, filters: str = ""
-    ) -> dict:
+    def get_account_purchases(self, account_id: str, filters: str = "") -> dict:
         return self._request(
             method="get",
             path=f"v1/accounts/{account_id}/purchases{filters}",
@@ -450,25 +440,15 @@ class UAContractsAPI:
 
         if product_tags:
             params["productTags"] = product_tags
+        error_rules = []
+        if "cue" not in product_tags:
+            error_rules = ["default"]
 
         return self._request(
             method="get",
             path="/web/annotated-contract-items",
             params=params,
-            error_rules=["default"],
-        ).json()
-
-    def get_cue_annotated_contract_items(
-        self, email: str = "", product_tags: List[str] = []
-    ) -> List[dict]:
-        params = {"email": email}
-        params["productTags"] = ["cue"]
-
-        return self._request(
-            method="get",
-            path="/web/annotated-contract-items",
-            params=params,
-            error_rules=[],
+            error_rules=error_rules,
         ).json()
 
     def handle_error(self, error, error_rules=None):

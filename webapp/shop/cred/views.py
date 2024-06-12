@@ -15,6 +15,7 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
+from webapp.shop.cred.mock_logout import get_mock_cue_annotated_contract_items
 from webapp.shop.decorators import (
     shop_decorator,
     canonical_staff,
@@ -399,7 +400,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         agreement_notification = True
 
     try:
-        exam_contracts = ua_contracts_api.get_cue_annotated_contract_items(
+        # exam_contracts = ua_contracts_api.get_annotated_contract_items(
+        #     email=email, product_tags=["cue"]
+        # )
+        exam_contracts = get_mock_cue_annotated_contract_items(
             email=email
         )
     except Exception as error:
@@ -414,7 +418,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             }
         )
         if error.response.status_code == 401:
-            return flask.redirect("/login?next=/credentials/your-exams")
+            return flask.redirect("/logout?return_to=/credentials/your-exams")
         else:
             exam_contracts = []
 
