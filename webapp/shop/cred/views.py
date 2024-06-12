@@ -403,9 +403,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         # exam_contracts = ua_contracts_api.get_annotated_contract_items(
         #     email=email, product_tags=["cue"]
         # )
-        exam_contracts = get_mock_cue_annotated_contract_items(
-            email=email
-        )
+        exam_contracts = get_mock_cue_annotated_contract_items(email=email)
     except Exception as error:
         print(error)
         flask.current_app.extensions["sentry"].captureException(
@@ -421,7 +419,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             return flask.redirect("/logout?return_to=/credentials/your-exams")
         else:
             exam_contracts = []
-
 
     exams_in_progress = []
     exams_scheduled = []

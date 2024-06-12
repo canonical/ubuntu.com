@@ -7,9 +7,8 @@ def get_mock_cue_annotated_contract_items(email):
     if email == "test@fail.com":
         res._content = b'{"code": "unauthorized","message": "unauthorized","traceId": "4f741380-317d-409d-a2e2-ed3e89565f56"}'
         res.status_code = 401
-        
-    else:
 
+    else:
         mock_exams = [
             {
                 "accountContext": {
@@ -62,6 +61,6 @@ def get_mock_cue_annotated_contract_items(email):
         ]
         res._content = json.dumps(mock_exams).encode("utf-8")
         res.status_code = 200
-    
+
     res.raise_for_status()
     return res.json()
