@@ -33,7 +33,7 @@ function App() {
   return (
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-          <CredManage />
+        <CredManage />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
