@@ -382,7 +382,7 @@ class UAContractsAPI:
                 "startsAt": starts_at,
                 "countryCode": country_code,
             },
-            error_rules=["default"],
+            error_rules=[],
         ).json()
         return req
 
@@ -450,12 +450,15 @@ class UAContractsAPI:
 
         if product_tags:
             params["productTags"] = product_tags
+        error_rules = []
+        if "cue" not in product_tags:
+            error_rules = ["default"]
 
         return self._request(
             method="get",
             path="/web/annotated-contract-items",
             params=params,
-            error_rules=["default"],
+            error_rules=error_rules,
         ).json()
 
     def handle_error(self, error, error_rules=None):
