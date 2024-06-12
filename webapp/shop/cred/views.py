@@ -441,7 +441,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             email=email, product_tags=["cue"]
         )
     except Exception as error:
-        print(error)
         flask.current_app.extensions["sentry"].captureException(
             extra={
                 "user_info": user_info(flask.session),
