@@ -291,7 +291,6 @@ def notices_sitemap():
 # CVE views
 # ===
 def cve_index():
-
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
@@ -435,7 +434,7 @@ def cve_index():
         "deferred": {"name": "Vulnerable", "icon": "warning"},
         "pending": {"name": "Vulnerable", "icon": "warning"},
         "ignored": {"name": "Ignored", "icon": "error-grey"},
-        "released": {"name": "Fixed", "icon": "success"}
+        "released": {"name": "Fixed", "icon": "success"},
     }
 
     for cve in cves:
