@@ -877,6 +877,14 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
+def cred_manage_shop(**kwargs):
+    return flask.render_template(
+        "credentials/shop/manage.html",
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_shop_thank_you(**kwargs):
     quantity = flask.request.args.get("quantity", "")
     product = flask.request.args.get("productName", "")
