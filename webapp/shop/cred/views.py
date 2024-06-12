@@ -871,6 +871,7 @@ def cred_shop(**kwargs):
         "credentials/shop/index.html",
         exams=exams,
         exam_index=0,
+        is_manage="manage" in flask.request.full_path,
     )
 
 
