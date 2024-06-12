@@ -90,6 +90,7 @@ const UserInfoForm = ({ setError }: Props) => {
           queryClient.invalidateQueries("preview");
           setIsButtonDisabled(false);
           setIsEditing(false);
+          setError(null);
         },
         onError: (error) => {
           setFieldValue("Description", false);

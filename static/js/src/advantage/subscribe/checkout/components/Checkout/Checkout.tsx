@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import {
   Col,
@@ -31,6 +31,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const [formChanged, setFormChanged] = useState({});
+
+  useEffect(() => {
+    error ? setError(null) : null;
+  }, [formChanged]);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
@@ -65,6 +70,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
             </>
           ) : (
             <Formik
+              innerRef={(formikActions) =>
+                formikActions && formikActions.errors
+                  ? setFormChanged(formikActions.values)
+                  : setFormChanged({})
+              }
               onSubmit={() => {}}
               initialValues={initialValues}
               enableReinitialize={
