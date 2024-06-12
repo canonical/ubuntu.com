@@ -15,7 +15,6 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
-from webapp.shop.cred.mock_logout import get_mock_cue_annotated_contract_items
 from webapp.shop.decorators import (
     shop_decorator,
     canonical_staff,
@@ -438,10 +437,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         agreement_notification = True
 
     try:
-        # exam_contracts = ua_contracts_api.get_annotated_contract_items(
-        #     email=email, product_tags=["cue"]
-        # )
-        exam_contracts = get_mock_cue_annotated_contract_items(email=email)
+        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+            email=email, product_tags=["cue"]
+        )
     except Exception as error:
         print(error)
         flask.current_app.extensions["sentry"].captureException(
