@@ -120,7 +120,6 @@ def notice(notice_id):
 def notices():
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
-    order = flask.request.args.get("order", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
 
@@ -132,7 +131,6 @@ def notices():
         offset=offset,
         details=details,
         release=release,
-        order=order,
     )
 
     # get notices and total results from response object
