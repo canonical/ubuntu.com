@@ -23,25 +23,31 @@
   <section class="p-section--hero">
     <div class="row">
       <div class="col-9">
-        <h1>What are containers?</h1>
-        <h2>
-          Containers are a virtualisation technology that isolates each process in a lightweight and standard environment.
-        </h2>
-        <p class="p-strip is-shallow">
-          They let users package and quickly deploy entire applications parallel to each other on the same kernel and hardware, while maintaining isolation among the workloads.
-        </p>
-        <hr class="is-muted" />
+        <div class="p-section--shallow">
+          <h1 class="u-no-margin--bottom">What are containers?</h1>
+          <h2>
+            Containers are a virtualisation technology
+            <br />
+            that isolates each process
+            <br />
+            in a lightweight and standard environment.
+          </h2>
+        </div>
+        <div class="p-section--shallow">
+          <p>
+            They let users package and quickly deploy entire applications parallel to each other on the same kernel and hardware, while maintaining isolation among the workloads.
+          </p>
+        </div>
       </div>
       <div class="p-media-container u-darker-background col-3 u-align--center u-vertically-center u-hide--small u-hide--medium">
-        <img src="https://assets.ubuntu.com/v1/0b0cef3c-hero.png"
-             alt="" />
+        <img src="https://assets.ubuntu.com/v1/0b0cef3c-hero.png" alt="" />
       </div>
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Container virtualisation</h2>
       </div>
@@ -59,9 +65,9 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>What is Docker?</h2>
       </div>
@@ -76,9 +82,9 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Docker for beginners: docker-cli, containerd, and runc</h2>
       </div>
@@ -90,15 +96,15 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Kubernetes vs. Docker: CRI-O and OCI</h2>
       </div>
       <div class="col">
         <p>
-          With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. <a href="https://www.ubuntu.com/kubernetes/what-is-kubernetes#container-orchestration">"Container orchestration″</a> becomes a problem space of its own. The rise of <a href="https://ubuntu.com/kubernetes">Kubernetes</a> is the industry’s answer to the container orchestration problem, providing a way to manage containers at scale efficiently.
+          With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. <a href="kubernetes/what-is-kubernetes#container-orchestration">"Container orchestration″</a> becomes a problem space of its own. The rise of <a href="kubernetes">Kubernetes</a> is the industry’s answer to the container orchestration problem, providing a way to manage containers at scale efficiently.
         </p>
         <p>
           CRI (Container Runtime Interface) is a Kubernetes API to interface between Kubernetes orchestration features and container runtimes, such as containerd or CRI-O. The <a href="https://opencontainers.org/">Open Container Initiative</a> (OCI) defines a set of specifications to enable all these technologies to work together. Docker, runc, containerd, and CRI-O are all OCI compatible.
@@ -107,9 +113,9 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="u-fixed-width">
+  <section class="p-section">
+    <div class="row">
+      <hr class="p-rule" />
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -119,19 +125,19 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="p-section u-fixed-width u-fixed-width">
-      <p class="p-heading--2">
-        Not clear on how Kubernetes vs Docker differ?
-        <br />
-        <a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a>
-      </p>
+      <div class="p-section">
+        <p class="p-heading--2">
+          Not clear on how Kubernetes vs Docker differ?
+          <br />
+          <a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="u-fixed-width">
     <hr class="p-rule" />
-    <div class="p-strip is-deep u-fixed-width">
+    <div class="p-strip is-deep">
       <p class="p-heading--2">
         Choosing the right Kubernetes distribution is crucial for your business.
         <br />
@@ -140,9 +146,9 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Containers vs. virtual machines</h2>
       </div>
@@ -151,7 +157,7 @@
           Containers are a modern way to virtualise infrastructure, more lightweight than traditional virtual machines: all containers on a single host OS share the kernel and other resources, require less memory space, ensure more efficient resource utilisation and require shorter startup times by orders of magnitude.
         </p>
         <hr class="is-muted" />
-        <a href="https://www.ubuntu.com/containers/contact-us">Get a consultation on your container strategy&nbsp;&rsaquo;</a>
+        <a href="containers/contact-us">Get a consultation on your container strategy&nbsp;&rsaquo;</a>
       </div>
     </div>
     <div class="u-fixed-width">
@@ -164,9 +170,9 @@
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row--50-50 p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
         <h2>Docker vs. LXD: comparing container technologies</h2>
       </div>
@@ -183,9 +189,8 @@
              alt=""
              loading="lazy" />
       </div>
-      <div class="p-strip is-shallow row--50-50 ">
-        <div class="col"></div>
-        <div class="col">
+      <div class="p-strip is-shallow row u-no-padding--bottom">
+        <div class="col-6 col-start-large-7">
           <p>
             Docker is the most popular process container environment and allows for very small, immutable containers, containing only the application binaries and a minimal subset of libraries necessary for an application to run as a single process, requiring limited system resources.
           </p>
@@ -200,16 +205,16 @@
           </p>
           <hr class="p-rule" />
           <p>
-            <a href="https://ubuntu.com/lxd">Learn more about LXD&nbsp;&rsaquo;</a>
+            <a href="lxd">Learn more about LXD&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-section u-fixed-width">
-    <hr class="p-rule" />
-    <div class="row p-section--shallow">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col-3 col-medium-6">
         <h2>Further reading</h2>
       </div>
@@ -252,7 +257,7 @@
 
   <section class="u-fixed-width">
     <hr class="p-rule" />
-    <div class="p-strip is-deep u-fixed-width">
+    <div class="p-strip is-deep">
       <p class="p-heading--2">
         Get your questions on containers answered today.
         <br />
