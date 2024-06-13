@@ -1058,11 +1058,14 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
 @shop_decorator(area="cred", permission="user", response="html")
 @credentials_group()
 def cred_dashboard(trueability_api, **_):
-    first_reservations = trueability_api.get_assessment_reservations(per_page=10)
+    first_reservations = trueability_api.get_assessment_reservations(
+        per_page=10
+    )
     last_page = first_reservations["meta"]["total_pages"]
     latest_reservations = trueability_api.get_assessment_reservations(
         page=last_page, per_page=10
     )
     return flask.render_template(
-        "credentials/dashboard.html", latest_reservations=latest_reservations["assessment_reservations"]
+        "credentials/dashboard.html",
+        latest_reservations=latest_reservations["assessment_reservations"],
     )
