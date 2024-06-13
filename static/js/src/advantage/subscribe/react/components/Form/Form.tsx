@@ -61,7 +61,7 @@ const Form = () => {
                   <h2>What Ubuntu LTS version are you running?</h2>
                   <p style={{ marginLeft: "3.6rem" }}>
                     {" "}
-                    Ubuntu Pro is available for Ubuntu 14.04 and higher.
+                    Ubuntu Pro is available for Ubuntu 16.04 LTS and higher.
                     <br />{" "}
                     <a href="/contact-us/form?product=pro">
                       Are you using an older version?
@@ -76,12 +76,7 @@ const Form = () => {
                 <hr />
               </Row>
               <Strip includeCol={false}>
-                <Col size={12}>
-                  <h2>What security coverage do you need?</h2>
-                </Col>
-                <Col size={12}>
-                  <Feature />
-                </Col>
+                <Feature />
               </Strip>
               <Row>
                 <hr />

@@ -29,7 +29,7 @@ jobs:
       run: npm install -g yarn && yarn
 
     - name: Install dotrun
-      uses: canonical/install-dotrun@main
+      run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256resolved: https://github.com/docker/docker-py/issues/3256
 
     - name: Install dependencies
       run: |

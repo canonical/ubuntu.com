@@ -78,6 +78,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     statuses: userSubscriptionStatusesFactory.build(),
     subscription_id: `VO7AyCYZzvjY3JaBWF0xmUu8vv5S684ZTeXMnJ${sequence}`,
     type: UserSubscriptionType.Yearly,
+    max_tracking_reached: false,
   })
 );
 
@@ -112,6 +113,7 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     statuses: userSubscriptionStatusesFactory.build(),
     subscription_id: null,
     type: UserSubscriptionType.Free,
+    max_tracking_reached: false,
   })
 );
 

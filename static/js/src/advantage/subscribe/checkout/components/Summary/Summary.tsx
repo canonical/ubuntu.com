@@ -55,7 +55,11 @@ function Summary({ quantity, product, action, setError }: Props) {
       ? "Plan type"
       : "Products";
   const productName =
-    action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
+    action !== "offer"
+      ? product?.name === "cue-linux-essentials-free"
+        ? "CUE.01 Linux"
+        : product?.name
+      : product?.name.replace(", ", "<br>");
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
@@ -79,6 +83,19 @@ function Summary({ quantity, product, action, setError }: Props) {
           <>
             You cannot make a purchase during the trial period. To make a new
             purchase, cancel your current trial subscription.
+          </>
+        );
+      } else if (
+        error.message.includes(
+          "missing one-off product listing for renewal product"
+        )
+      ) {
+        message = (
+          <>
+            {" "}
+            The chosen product cannot be renewed as it has been deprecated.
+            Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+            to choose a substitute offering.
           </>
         );
       } else {
@@ -124,6 +141,7 @@ function Summary({ quantity, product, action, setError }: Props) {
             <>
               {total == 0 &&
                 priceData !== undefined &&
+                product?.name !== "cue-linux-essentials-free" &&
                 "This is because you have likely already paid for this product for the current billing period."}
             </>
           </p>

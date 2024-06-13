@@ -131,11 +131,11 @@ export enum PublicClouds {
 }
 
 export enum LTSVersions {
+  noble = "24.04",
   jammy = "22.04",
   focal = "20.04",
   bionic = "18.04",
   xenial = "16.04",
-  trusty = "14.04",
 }
 
 export enum Support {

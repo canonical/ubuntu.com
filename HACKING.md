@@ -121,11 +121,11 @@ For the most part this will happen automatically as long as the subpages (/ai/wh
 ### Working on Credentials
 
 If you want to work on [Credentials](https://ubuntu.com/credentials) you need to add some environment vars into your `.env.local`.
-If you have a TrueAbility account with API access enabled, you can find your API key in [Settings](https://app.trueability.com/settings).
+If you have a TrueAbility account with API access enabled, you can find your API key in [Settings](https://app3.trueability.com/settings).
 
 
 ```
-TRUEABILITY_URL="https://app.trueability.com"
+TRUEABILITY_URL="https://app3.trueability.com"
 TRUEABILITY_API_KEY=<trueability_api_key>
 BADGR_URL=https://api.test.badgr.com
 BAGDR_USER=<badgr_user>
@@ -137,3 +137,7 @@ BADGR_PASSWORD=<badgr_password>
 Parts of this site use [React Query](https://react-query.tanstack.com/overview) to manage data from the API.
 
 To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `dotrun -e NODE_ENV="development"`.
+
+## Linting / formatting
+
+When making changes to the codebase please make sure it's properly formatted and linted. This [discourse topic](https://discourse.canonical.com/t/configuring-editors-for-formatting-and-linting/188) explains which tools we use for formatting and linting, as well as how to configure your IDE to support it.

@@ -37,6 +37,7 @@
           <option value="es">Espa&ntilde;ol</option>
           <option value="fr">Fran&ccedil;ais</option>
           <option value="it">Italiano</option>
+          <option value="kr">Korean</option>
           <option value="pt">Portugu&ecirc;s</option>
           <option value="ru">Русс&#1082;&#1080;&#1081;</option>
         </select>
@@ -86,7 +87,7 @@
   {% if metadata | length > 0 %}
   <div class="row u-equal-height">
     {% for item in metadata %}
-      {% with 
+      {% with
         title=item.topic_name,
         title_link=item.path,
         description=item.subtitle,
@@ -134,14 +135,14 @@ function clearFilters() {
     el.addEventListener("change", function(e) {
       const value = e.target.value;
       const selectFields = document.querySelectorAll("select:checked")
-      
+
       if (url.searchParams.has(key)) {
         url.searchParams.delete(key);
       }
       if (value !== "all") {
         url.searchParams.append(key, value);
       }
-      
+
       window.location = url;
     });
   }

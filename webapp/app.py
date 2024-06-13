@@ -74,14 +74,16 @@ from webapp.shop.cred.views import (
     cred_schedule,
     cred_self_study,
     cred_shop,
+    cred_manage_shop,
     cred_shop_thank_you,
+    cred_shop_webhook_responses,
+    cred_shop_keys,
     cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
     get_activation_keys,
     get_cue_products,
-    get_filtered_webhook_responses,
     get_issued_badges,
     get_my_issued_badges,
     get_webhook_response,
@@ -127,7 +129,7 @@ from webapp.views import (
     engage_thank_you,
     french_why_openstack,
     german_why_openstack,
-    get_user_country_by_ip,
+    get_user_country_by_tz,
     json_asset_query,
     marketo_submit,
     mirrors_query,
@@ -628,7 +630,7 @@ app.add_url_rule(
 core_services_guide.init_app(app)
 
 
-app.add_url_rule("/user-country.json", view_func=get_user_country_by_ip)
+app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -859,7 +861,9 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
-app.add_url_rule("/credentials/sign-up", view_func=cred_sign_up)
+app.add_url_rule(
+    "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
+)
 app.add_url_rule(
     "/credentials/schedule",
     view_func=cred_schedule,
@@ -880,9 +884,17 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
+app.add_url_rule(
+    "/credentials/shop/manage/", view_func=cred_manage_shop, methods=["GET"]
+)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
+app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
 app.add_url_rule(
     "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
+)
+app.add_url_rule(
+    "/credentials/shop/webhook_responses",
+    view_func=cred_shop_webhook_responses,
 )
 app.add_url_rule(
     "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
@@ -911,11 +923,6 @@ app.add_url_rule(
     "/credentials/beta/activation",
     view_func=cred_beta_activation,
     methods=["GET", "POST"],
-)
-app.add_url_rule(
-    "/credentials/get_filtered_webhook_responses",
-    view_func=get_filtered_webhook_responses,
-    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/get_webhook_response",

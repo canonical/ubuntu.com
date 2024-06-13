@@ -13,6 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+
 ## 1.28+ck2 Bugfix release
 
 ### November 7, 2023 - `charmed-kubernetes --channel 1.28/stable`
@@ -20,7 +21,6 @@ toc: False
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.28/bundle.yaml).
 
 ## What's new
-
 ### Containerd
 * [LP#2034080](https://bugs.launchpad.net/bugs/2034080)
   Updated source repository for nvidia debs.

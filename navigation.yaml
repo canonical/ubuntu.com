@@ -25,6 +25,8 @@ azure:
       path: /azure/fips
     - title: SQL
       path: /azure/sql
+    - title: Docs
+      path: https://documentation.ubuntu.com/azure
 
 appliance:
   title: Appliance
@@ -60,6 +62,8 @@ aws:
       path: /aws/fips
     - title: WorkSpaces
       path: /aws/workspaces
+    - title: Docs
+      path: https://documentation.ubuntu.com/aws/en/latest/
 
 managedapps:
   title: Managed
@@ -78,6 +82,8 @@ managedapps:
       path: /managed/apps
     - title: Observability
       path: /observability/managed
+    - title: Firefighting
+      path: /managed/firefighting-support
 
 openstack:
   title: Canonical OpenStack
@@ -98,18 +104,6 @@ openstack:
       path: /openstack/install
     - title: Support
       path: /openstack/support
-
-raspberrypi:
-  title: Raspberry Pi
-  path: /raspberry-pi
-
-  children:
-    - title: Overview
-      path: /raspberry-pi
-    - title: Desktop
-      path: /raspberry-pi/desktop
-    - title: Server
-      path: /raspberry-pi/server
 
 financial-services:
   title: Finance
@@ -216,8 +210,6 @@ ai:
       path: /ai/mlflow
     - title: Consulting
       path: /ai/consulting
-    - title: Roadshow
-      path: /ai/roadshow
 
 kubernetes:
   title: Canonical Kubernetes
@@ -268,8 +260,6 @@ desktop:
   children:
     - title: Overview
       path: /desktop
-    - title: Features
-      path: /desktop/features
     - title: Organisations
       path: /desktop/organisations
     - title: Developers
@@ -286,14 +276,12 @@ core:
   children:
     - title: Overview
       path: /core
-    - title: Consulting
-      path: /core/services
-    - title: Success stories
-      path: /core/stories
     - title: Features
       path: /core/features
-    - title: Tutorials
-      path: /tutorials?q=core
+    - title: Success stories
+      path: /core/stories
+    - title: Services
+      path: /core/services
     - title: Docs
       path: /core/docs
 
@@ -340,8 +328,8 @@ pro:
       path: /pro/users
     - title: Pricing
       path: /pricing/pro
-    - title: Tutorial
-      path: /pro/tutorial
+    - title: Docs
+      path: https://documentation.ubuntu.com/pro
     - title: Discourse
       path: https://discourse.ubuntu.com/c/ubuntu-pro
 
@@ -368,8 +356,8 @@ download:
       path: /download/desktop
     - title: Server
       path: /download/server
-    - title: IoT
-      path: /download/iot
+    - title: Core
+      path: /download/core
     - title: Cloud
       path: /download/cloud
 
@@ -454,7 +442,7 @@ engage:
       path: /engage
 
 about:
-  title: About
+  title: About Ubuntu
   path: /about
 
   children:
@@ -536,10 +524,13 @@ credentials:
       path: /credentials/syllabus
     - title: Study guide
       path: /credentials/self-study
+    - title: FAQ
+      path: /credentials/faq
     # - title: Schedule
     #   path: /credentials/schedule
-    # - title: Your exams
-    #   path: /credentials/your-exams
+    - title: Your exams
+      path: /credentials/your-exams
+      login_required: True
 
 gcp:
   title: GCP
@@ -552,6 +543,8 @@ gcp:
       path: /gcp/pro
     - title: FIPS
       path: /gcp/fips
+    - title: Docs
+      path: https://documentation.ubuntu.com/gcp/en/latest/
 
 ubuntu1604:
   title: 16-04
@@ -588,14 +581,12 @@ telco:
   children:
     - title: Overview
       path: /telco
-    - title: VNF
+    - title: OpenStack
       path: /telco/vnf
-    - title: CNF
+    - title: Kubernetes
       path: /telco/cnf
     - title: OpenRAN
       path: /telco/openran
-    - title: Magma
-      path: /telco/magma
 
 certification:
   title: Ubuntu Certified
@@ -645,3 +636,12 @@ landscape:
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
 
+confidential-ai:
+  title: Confidential Computing
+  path: /confidential-computing
+
+  children:
+    - title: Overview
+      path: /confidential-computing
+    - title: AI
+      path: /confidential-computing/ai

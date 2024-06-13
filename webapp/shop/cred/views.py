@@ -15,7 +15,12 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
-from webapp.shop.decorators import shop_decorator, canonical_staff
+from webapp.shop.decorators import (
+    shop_decorator,
+    canonical_staff,
+    get_trueability_api_instance,
+    init_trueability_session,
+)
 from webapp.shop.utils import get_exam_contract_id, get_user_first_last_name
 from webapp.login import user_info
 
@@ -35,15 +40,26 @@ TIMEZONE_COUNTRIES = {
 TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 EXAM_NAMES = {
-    "cue-test": "CUE: Linux Beta",
-    "cue-linux-essentials": "CUE.01: Linux",
+    "cue-test": "CUE Linux Beta",
+    "cue-linux-essentials": "CUE.01 Linux",
 }
 
 RESERVATION_STATES = {
-    "created": "Scheduled",
+    "created": "Created",
+    "notified": "Notified",
     "scheduled": "Scheduled",
-    "processed": "Complete",
+    "processed": "Processed",
     "canceled": "Cancelled",
+    "finalized": "Finalized",
+    "provisioning": "Provisioning",
+    "provisioned": "Provisioned",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "grading": "Grading",
+    "graded": "Graded",
+    "archiving": "Archiving",
+    "archived": "Archived",
+    "canceling": "Canceling",
 }
 
 
@@ -64,7 +80,7 @@ def confidentiality_agreement_webhook():
     return flask.jsonify({"message": "Webhook handled."}), 200
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_home(ua_contracts_api, **_):
     available_products = ua_contracts_api.get_product_listings(
         "canonical-cube"
@@ -72,7 +88,7 @@ def cred_home(ua_contracts_api, **_):
     user_purchasing = False
     enterprise_purchasing = False
     for product in available_products:
-        if product.get("name") == "CUE Linux Essentials":
+        if product.get("name") == "cue-linux-essentials":
             user_purchasing = True
         if product.get("name") == "CUE Activation Key":
             enterprise_purchasing = True
@@ -83,17 +99,133 @@ def cred_home(ua_contracts_api, **_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
-    sign_up_open = False
-    return flask.render_template(
-        "credentials/sign-up.html", sign_up_open=sign_up_open
+    if flask.request.method == "GET":
+        sign_up_open = True
+        return flask.render_template(
+            "credentials/sign-up.html", sign_up_open=sign_up_open
+        )
+
+    form_fields = {}
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+            if "utm_content" in form_fields:
+                form_fields["utmcontent"] = form_fields.pop("utm_content")
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+    return_url = form_fields.pop("returnURL", None)
+
+    encode_lead_comments = (
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
     )
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
+        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+        form_fields["Comments_from_lead__c"] = encoded_comment
+
+    visitor_data = {
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+    referrer = flask.request.referrer
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+
+    if client_ip and ":" not in client_ip:
+        visitor_data["leadClientIpAddress"] = client_ip
+
+    payload = {
+        "formId": form_fields.pop("formid"),
+        "input": [
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
+        ],
+    }
+
+    try:
+        marketo_api.submit_form(payload).json()
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
+        return (
+            flask.render_template(
+                "credentials/sign-up.html", error="Something went wrong"
+            ),
+            400,
+        )
+
+    service_account_info = {
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
+            "\\n", "\n"
+        ),
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    }
+
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+    )
+
+    service = build("sheets", "v4", credentials=credentials)
+
+    sheet = service.spreadsheets()
+    sheet.values().append(
+        spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
+        range="Sheet1",
+        valueInputOption="RAW",
+        body={
+            "values": [
+                [
+                    form_fields.get("firstName"),
+                    form_fields.get("lastName"),
+                    form_fields.get("email"),
+                    form_fields.get("Job_Role__c"),
+                    form_fields.get("title"),
+                    form_fields.get("Comments_from_lead__c"),
+                    form_fields.get("canonicalUpdatesOptIn"),
+                ]
+            ]
+        },
+    ).execute()
+
+    if return_url:
+        # Personalize thank-you page
+        flask.session["form_details"] = {
+            "name": flask.request.form.get("firstName"),
+            "email": flask.request.form.get("email"),
+        }
+        return flask.redirect(return_url)
+
+    if referrer:
+        return flask.redirect(f"/thank-you?referrer={referrer}")
+    else:
+        return flask.redirect("/thank-you")
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -102,46 +234,155 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
     max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
+    contract_long_id = flask.request.args.get("contractLongID")
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
+    time_delta = 6 if is_staging else 1
+    time_delay = f"{time_delta} hour{'s' if time_delta > 1 else ''}"
 
     if flask.request.method == "POST":
         data = flask.request.form
 
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
-        scheduled_time = f"{data['date']}T{data['time']}"
-        starts_at = tz_info.localize(
-            datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
+        scheduled_time = datetime.strptime(
+            f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
-        contract_item_id = data["contractItemID"]
+        starts_at = tz_info.localize(scheduled_time)
+        contract_item_id = data["contract_item_id"]
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
+        assessment_reservation_uuid = None
+        template_data = {
+            key: data[key]
+            for key in ["date", "time", "timezone", "contract_item_id"]
+        }
+        template_data["min_date"] = min_date
+        template_data["max_date"] = max_date
+        template_data["time_delay"] = time_delay
 
-        response = ua_contracts_api.post_assessment_reservation(
-            contract_item_id,
-            first_name,
-            last_name,
-            timezone,
-            starts_at.isoformat(),
-            country_code,
-        )
+        if flask.request.args.get("uuid", default=None, type=str):
+            assessment_reservation_uuid = flask.request.args.get("uuid")
 
-        if response and "error" in response:
-            error = response["message"]
-            return flask.render_template(
-                "/credentials/schedule.html", error=error
+        if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
+            hours=6 if is_staging else 1
+        ):
+            error = (
+                f"Start time should be at least {time_delay}"
+                + " from now or later."
             )
+            return flask.render_template(
+                "/credentials/schedule.html",
+                **template_data,
+                error=error,
+            )
+
+        if assessment_reservation_uuid:
+            """check if the rescheduled datetime falls
+            between the contract effectiveness window"""
+            if not contract_long_id:
+                return flask.redirect("/credentials/your-exams")
+            contract_detail = ua_contracts_api.get_contract(contract_long_id)
+            effective_from = now.astimezone(tz_info) + timedelta(
+                hours=time_delta
+            )
+            effective_to = (
+                datetime.strptime(
+                    f"{contract_detail['contractInfo']['effectiveTo']}",
+                    "%Y-%m-%dT%H:%M:%SZ",
+                )
+                .replace(tzinfo=pytz.UTC)
+                .astimezone(tz_info)
+            )
+
+            if starts_at < effective_from or starts_at > effective_to:
+                error = [
+                    "Scheduled time should be between",
+                    f"{effective_from.strftime('%m-%d-%Y %H:%M')}",
+                    "to",
+                    f"{effective_to.strftime('%m-%d-%Y %H:%M')}",
+                ]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=" ".join(error),
+                    **template_data,
+                )
+
+            response = trueability_api.patch_assessment_reservation(
+                starts_at=starts_at.isoformat(),
+                timezone=timezone,
+                country_code=country_code,
+                uuid=assessment_reservation_uuid,
+            )
+            if response and "assessment_reservation" not in response:
+                error = response["error"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
+            else:
+                exam = {
+                    "name": "CUE.01 Linux",
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p ") + timezone,
+                    "uuid": assessment_reservation_uuid,
+                    "contract_item_id": contract_item_id,
+                }
+                return flask.render_template(
+                    "/credentials/schedule-confirm.html",
+                    exam=exam,
+                    contract_long_id=contract_long_id,
+                )
         else:
-            uuid = response.get("reservation", {}).get("IDs", [])[-1]
-            exam = {
-                "name": "CUE: Linux",
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p %Z"),
-                "uuid": uuid,
-                "contract_item_id": contract_item_id,
-            }
-            return flask.render_template(
-                "/credentials/schedule-confirm.html", exam=exam
-            )
+            try:
+                response = ua_contracts_api.post_assessment_reservation(
+                    contract_item_id,
+                    first_name,
+                    last_name,
+                    timezone,
+                    starts_at.isoformat(),
+                    country_code,
+                )
+            except Exception as error:
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "user_info": user_info(flask.session),
+                        "request_url": error.request.url,
+                        "request_headers": error.request.headers,
+                        "response_headers": error.response.headers,
+                        "response_body": error.response.json(),
+                    }
+                )
+                error = error.response.json()["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
+
+            if response and "reservation" not in response:
+                error = response["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
+                )
+            else:
+                uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                exam = {
+                    "name": "CUE.01 Linux",
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p ") + timezone,
+                    "uuid": uuid,
+                    "contract_item_id": contract_item_id,
+                }
+                return flask.render_template(
+                    "/credentials/schedule-confirm.html",
+                    exam=exam,
+                    contract_long_id=contract_long_id,
+                )
 
     contract_item_id = flask.request.args.get("contractItemID")
     if contract_item_id is None:
@@ -175,27 +416,44 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         min_date=min_date,
         max_date=max_date,
         error=error,
+        time_delay=time_delay,
     )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     email = flask.request.args.get("email", None)
+
+    agreement_notification = False
+    confidentiality_agreement_enabled = strtobool(
+        os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
+    )
+    if (
+        confidentiality_agreement_enabled
+        and not has_filed_confidentiality_agreement(
+            flask.session["openid"]["email"].lower()
+        )
+    ):
+        agreement_notification = True
+
     try:
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
-            product_tags=["cue"], email=email
+            email=email, product_tags=["cue"]
         )
-    except UAContractsAPIErrorView as error:
+    except Exception as error:
         flask.current_app.extensions["sentry"].captureException(
             extra={
                 "user_info": user_info(flask.session),
-                "request_url": error.request.url,
-                "request_headers": error.request.headers,
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
                 "response_headers": error.response.headers,
                 "response_body": error.response.json(),
             }
         )
-        exam_contracts = []
+        if error.response.status_code == 401:
+            return flask.redirect("/logout?return_to=/credentials/your-exams")
+        else:
+            exam_contracts = []
 
     exams_in_progress = []
     exams_scheduled = []
@@ -211,38 +469,46 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             contract_item_id = (
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
-
-            if (
-                "effectivenessContext" in exam_contract
-                and "status" in exam_contract["effectivenessContext"]
-                and exam_contract["effectivenessContext"]["status"]
-                == "expired"
-            ):
-                exams_expired.append(
-                    {"name": name, "state": "Expired", "actions": []}
-                )
-                continue
+            contract_long_id = exam_contract["contractItem"]["contractID"]
 
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
-                r = response["assessment_reservation"]
-
-                timezone = r["user"]["time_zone"]
-                tz_info = pytz.timezone(timezone)
-                starts_at = (
-                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-                    .replace(tzinfo=pytz.timezone("UTC"))
-                    .astimezone(tz_info)
-                )
-                assessment_id = r.get("assessment") and r["assessment"]["id"]
+                if "assessment_reservation" not in response:
+                    exams_expired.append(
+                        {
+                            "name": name,
+                            "state": "Cannot fetch information",
+                            "actions": [],
+                        }
+                    )
+                    continue
+                else:
+                    r = response.get("assessment_reservation")
+                    timezone = r["user"]["time_zone"]
+                    tz_info = pytz.timezone(timezone)
+                    starts_at = (
+                        datetime.strptime(
+                            r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                        )
+                        .replace(tzinfo=pytz.timezone("UTC"))
+                        .astimezone(tz_info)
+                    )
+                    assessment_id = (
+                        r.get("assessment") and r["assessment"]["id"]
+                    )
 
                 actions = []
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
-                state = RESERVATION_STATES.get(r["state"], r["state"])
+                if "assessment" in r and r["assessment"] is not None:
+                    state = RESERVATION_STATES.get(
+                        r["assessment"]["state"], r["state"]
+                    )
+                else:
+                    state = RESERVATION_STATES.get(r["state"], r["state"])
 
                 if assessment_id and now > starts_at and now < end:
                     actions.extend(
@@ -250,7 +516,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             {
                                 "text": "Take exam",
                                 "href": "/credentials/exam?"
-                                f"id={ assessment_id }",
+                                f"id={assessment_id}",
                                 "button_class": "p-button--positive",
                             }
                         ]
@@ -267,19 +533,47 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-
-                elif state == "Scheduled":
+                elif (
+                    assessment_id
+                    and now < starts_at
+                    and now > starts_at - timedelta(minutes=30)
+                ):
                     actions.extend(
                         [
                             {
-                                "text": "Reschedule",
-                                "href": "/credentials/schedule?"
-                                f"contractItemID={contract_item_id}"
-                                f"&uuid={r['uuid']}",
+                                "text": "Take exam",
+                                "href": "/credentials/exam?"
+                                f"id={ assessment_id }",
                                 "button_class": "p-button",
-                            },
+                            }
                         ]
                     )
+
+                    exams_in_progress.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": "In progress",
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Scheduled":
+                    if now + timedelta(minutes=30) < starts_at:
+                        actions.extend(
+                            [
+                                {
+                                    "text": "Reschedule",
+                                    "href": "/credentials/schedule?"
+                                    f"contractItemID={contract_item_id}"
+                                    f"&uuid={r['uuid']}"
+                                    f"&contractLongID={contract_long_id}",
+                                    "button_class": "p-button",
+                                },
+                            ]
+                        )
 
                     exams_scheduled.append(
                         {
@@ -292,7 +586,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Complete":
+                elif state in (
+                    "Completed",
+                    "Graded",
+                    "Grading",
+                    "Finalized",
+                    "Processed",
+                ):
                     exams_complete.append(
                         {
                             "name": name,
@@ -304,7 +604,11 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state == "Cancelled":
+                elif state in (
+                    "Cancelled",
+                    "Archiving",
+                    "Archived",
+                ):
                     exams_cancelled.append(
                         {
                             "name": name,
@@ -313,15 +617,25 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "timezone": timezone,
                             "state": state,
                             "uuid": r["uuid"],
-                            "actions": actions,
+                            "actions": [],
                         }
                     )
+            elif (
+                "effectivenessContext" in exam_contract
+                and "status" in exam_contract["effectivenessContext"]
+                and exam_contract["effectivenessContext"]["status"]
+                == "expired"
+            ):
+                exams_expired.append(
+                    {"name": name, "state": "Expired", "actions": []}
+                )
             else:
                 actions = [
                     {
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
-                        f"contractItemID={contract_item_id}",
+                        f"contractItemID={contract_item_id}"
+                        f"&contractLongID={contract_long_id}",
                         "button_class": "p-button",
                     },
                 ]
@@ -341,6 +655,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     response = flask.make_response(
         flask.render_template(
             "credentials/your-exams.html",
+            agreement_notification=agreement_notification,
             exams=exams,
         )
     )
@@ -428,11 +743,13 @@ def cred_exam(trueability_api, **_):
     if assessment_user != sso_user:
         return flask.abort(403)
 
-    url = trueability_api.get_assessment_redirect(assessment_id)
+    url = trueability_api.get_assessment_redirect(assessment_id).replace(
+        "http://", "https://"
+    )
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", response="html")
 def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
@@ -560,7 +877,30 @@ def cred_submit_form(**_):
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
 def cred_shop(**kwargs):
-    return flask.render_template("credentials/shop/index.html")
+    exams_file = open("webapp/shop/cred/exams.json", "r")
+    exams = json.load(exams_file)
+    cue_products = get_cue_products(type="exam").json
+    for product in cue_products:
+        for exam in exams:
+            if product["id"] == exam["id"]:
+                exam["longId"] = product["longId"]
+                exam["period"] = product["period"]
+                exam["marketplace"] = product["marketplace"]
+                exam["name"] = product["name"]
+
+    return flask.render_template(
+        "credentials/shop/index.html",
+        exams=exams,
+        exam_index=0,
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_manage_shop(**kwargs):
+    return flask.render_template(
+        "credentials/shop/manage.html",
+    )
 
 
 @shop_decorator(area="cube", permission="user", response="html")
@@ -570,6 +910,72 @@ def cred_shop_thank_you(**kwargs):
     product = flask.request.args.get("productName", "")
     return flask.render_template(
         "credentials/shop/thank-you.html", quantity=quantity, product=product
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_shop_webhook_responses(trueability_api, **kwargs):
+    ability_screen_id = "4190"
+    if "page" in kwargs:
+        page = int(kwargs["page"])
+    else:
+        page = flask.request.args.get("page", 1)
+        page = int(page)
+
+    per_page = flask.request.args.get("per_page", 10)
+    per_page = int(per_page)
+    ta_results_per_page = 100
+    ta_page = math.ceil(page * per_page // ta_results_per_page)
+
+    trueability_session = init_trueability_session("cred")
+    trueability_api = get_trueability_api_instance("cred", trueability_session)
+    webhook_responses = trueability_api.get_filtered_webhook_responses(
+        ability_screen_id=ability_screen_id,
+        page=ta_page,
+    )
+    total_count = webhook_responses["meta"]["total_count"]
+    ta_webhook_responses = webhook_responses["webhook_responses"]
+    ta_webhook_responses = [
+        ta_webhook_responses[i]
+        for i in range(
+            page * per_page % ta_results_per_page - per_page,
+            min(page * per_page % ta_results_per_page, total_count),
+        )
+    ]
+    page_metadata = {}
+    page_metadata["current_page"] = page
+    page_metadata["total_pages"] = math.ceil(
+        webhook_responses["meta"]["total_count"] // per_page
+    )
+    page_metadata["total_count"] = total_count
+    page_metadata["next_page"] = (
+        page + 1 if page < page_metadata["total_pages"] else None
+    )
+    page_metadata["prev_page"] = page - 1 if page > 1 else None
+
+    webhook = {
+        "webhook_responses": ta_webhook_responses,
+        "meta": page_metadata,
+    }
+
+    return flask.render_template(
+        "credentials/shop/webhook_responses.html", webhook_responses=webhook
+    )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_shop_keys(**kwargs):
+    products = get_cue_products(type="keys").json
+    for item in products:
+        if item["id"] == "cue-activation-key":
+            cue_key_product = item
+            break
+    if not cue_key_product:
+        return flask.abort(404)
+
+    return flask.render_template(
+        "credentials/shop/keys.html", cue_key_product=cue_key_product
     )
 
 
@@ -695,45 +1101,6 @@ def cred_beta_activation(**_):
 
 @shop_decorator(area="cred", permission="user", response="json")
 @canonical_staff()
-def get_filtered_webhook_responses(trueability_api, **kwargs):
-    ability_screen_id = flask.request.args.get("ability_screen_id", None)
-    page = flask.request.args.get("page", 1)
-    page = int(page)
-    per_page = flask.request.args.get("per_page", 10)
-    per_page = int(per_page)
-    ta_results_per_page = 100
-    ta_page = math.ceil(page * per_page // ta_results_per_page)
-    webhook_responses = trueability_api.get_filtered_webhook_responses(
-        ability_screen_id=ability_screen_id,
-        page=ta_page,
-    )
-    total_count = webhook_responses["meta"]["total_count"]
-    ta_webhook_responses = webhook_responses["webhook_responses"]
-    ta_webhook_responses = [
-        ta_webhook_responses[i]
-        for i in range(
-            page * per_page % ta_results_per_page - per_page,
-            min(page * per_page % ta_results_per_page, total_count),
-        )
-    ]
-    page_metadata = {}
-    page_metadata["current_page"] = page
-    page_metadata["total_pages"] = (
-        webhook_responses["meta"]["total_count"] // per_page
-    ) + 1
-    page_metadata["total_count"] = total_count
-    page_metadata["next_page"] = (
-        page + 1 if page < page_metadata["total_pages"] else None
-    )
-    page_metadata["prev_page"] = page - 1 if page > 1 else None
-
-    return flask.jsonify(
-        {"webhook_responses": ta_webhook_responses, "meta": page_metadata}
-    )
-
-
-@shop_decorator(area="cred", permission="user", response="json")
-@canonical_staff()
 def get_webhook_response(trueability_api, **kwargs):
     webhook_id = flask.request.args.get("webhook_id", None)
     webhook_responses = trueability_api.get_webhook_response(
@@ -812,12 +1179,12 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
     )
     filtered_products = [
         {
-            "id": listing["productID"],
-            "longId": listing["id"],
-            "period": listing["period"],
-            "marketplace": listing["marketplace"],
-            "name": listing["name"],
-            "price": listing["price"],
+            "id": listing.get("productID", ""),
+            "longId": listing.get("id", ""),
+            "period": listing.get("period", ""),
+            "marketplace": listing.get("marketplace", ""),
+            "name": listing.get("name", ""),
+            "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings
         if (listing["productID"].endswith("key") and type == "keys")

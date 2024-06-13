@@ -57,7 +57,7 @@ These charms are the core components of the Charmed Kubernetes release.
 ## CNI charms
 
 These are the Container Network Interface (CNI) charms supported by Charmed Kubernetes
-(calico is the default CNI and is also included in the core charms table above).
+(Calico is the default CNI and is also included in the core charms table above).
 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
@@ -99,7 +99,7 @@ to extend the capabilities of your Kubernetes cluster.
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [aws-iam](https://charmhub.io/aws-iam) |  | [source](https://github.com/charmed-kubernetes/charm-aws-iam.git) | [docs](https://charmhub.io/aws-iam/docs)  | [bugs](https://bugs.launchpad.net/charm-aws-iam) |
-| [ceph-csi](https://charmhub.io/ceph-csi) | Deploys Container Storage Interface (CSI) plugin that enables Charmed Kubernetes to use ceph as a storage backend. | [source](https://github.com/charmed-kubernetes/ceph-csi-operator.git) | [docs](https://charmhub.io/ceph-csi)  | [bugs](https://bugs.launchpad.net/charm-ceph-csi) |
+| [ceph-csi](https://charmhub.io/ceph-csi) | Deploys Container Storage Interface (CSI) plugin that enables Charmed Kubernetes to use ceph as a storage backend. | [source](https://github.com/charmed-kubernetes/ceph-csi-operator.git) | [docs](https://charmhub.io/ceph-csi/docs)  | [bugs](https://bugs.launchpad.net/charm-ceph-csi) |
 | [coredns](https://charmhub.io/coredns) | The CoreDNS domain name service provider | [source](https://github.com/charmed-kubernetes/charm-coredns.git) | [docs](https://charmhub.io/coredns/docs)  | [bugs](https://bugs.launchpad.net/charm-coredns) |
 | [docker-registry](https://charmhub.io/docker-registry) | Registry for docker images | [source](https://github.com/CanonicalLtd/docker-registry-charm.git) | [docs](https://charmhub.io/docker-registry/docs)  | [bugs](https://bugs.launchpad.net/layer-docker-registry) |
 | [gatekeeper-audit](https://charmhub.io/gatekeeper-audit) | Audit charm for Gatekeeper audit | [source](https://github.com/charmed-kubernetes/opa-gatekeeper-operators.git) | [docs](https://charmhub.io/gatekeeper-audit/docs)  | [bugs](https://bugs.launchpad.net/opa-gatekeeper-operator) |
@@ -135,7 +135,7 @@ These are the container images used by this release:
 -  cdkbot/microbot-amd64:latest
 -  cdkbot/microbot-arm64:latest
 -  cdkbot/microbot-s390x:latest
--  cephcsi/cephcsi:v3.7.2
+-  cephcsi/cephcsi:v3.8.1
 -  cloud-provider-vsphere/cpi/release/manager:v1.26.0
 -  cloud-provider-vsphere/csi/release/driver:v3.0.0
 -  cloud-provider-vsphere/csi/release/syncer:v3.0.0
@@ -149,32 +149,29 @@ These are the container images used by this release:
 -  dns/k8s-dns-sidecar:1.22.23
 -  external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
 -  ingress-nginx/controller:v1.6.4
--  kube-state-metrics/kube-state-metrics:v2.8.2
+-  kube-state-metrics/kube-state-metrics:v2.10.0
 -  kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
 -  kubernetesui/dashboard:v2.7.0
 -  kubernetesui/metrics-scraper:v1.0.8
 -  metrics-server/metrics-server:v0.6.3
--  nvidia/k8s-device-plugin:v0.14.0
--  pause:3.9
--  provider-os/cinder-csi-plugin:v1.26.2
--  provider-os/k8s-keystone-auth:v1.26.2
--  provider-os/openstack-cloud-controller-manager:v1.26.2
--  sig-storage/csi-attacher:v3.5.0
+-  nvidia/k8s-device-plugin:v0.14.2
+-  pause:3.6
+-  provider-os/cinder-csi-plugin:v1.28.1
+-  provider-os/k8s-keystone-auth:v1.28.1
+-  provider-os/openstack-cloud-controller-manager:v1.28.1
 -  sig-storage/csi-attacher:v4.0.0
 -  sig-storage/csi-attacher:v4.2.0
--  sig-storage/csi-node-driver-registrar:v2.5.1
 -  sig-storage/csi-node-driver-registrar:v2.6.2
+-  sig-storage/csi-node-driver-registrar:v2.6.3
 -  sig-storage/csi-node-driver-registrar:v2.7.0
--  sig-storage/csi-provisioner:v3.2.1
 -  sig-storage/csi-provisioner:v3.3.0
 -  sig-storage/csi-provisioner:v3.4.0
--  sig-storage/csi-resizer:v1.4.0
--  sig-storage/csi-resizer:v1.5.0
+-  sig-storage/csi-provisioner:v3.4.1
+-  sig-storage/csi-resizer:v1.6.0
 -  sig-storage/csi-resizer:v1.7.0
--  sig-storage/csi-snapshotter:v6.0.1
+-  sig-storage/csi-resizer:v1.8.0
 -  sig-storage/csi-snapshotter:v6.1.0
 -  sig-storage/csi-snapshotter:v6.2.1
--  sig-storage/livenessprobe:v2.8.0
 -  sig-storage/livenessprobe:v2.9.0
 
 
@@ -194,8 +191,7 @@ These are the container images used by this release:
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.28/components.md" >edit this page</a>
     or
-     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
-     <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
-
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
+    <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>

@@ -1076,17 +1076,17 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@canonical/cookie-policy@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@canonical/cookie-policy/-/cookie-policy-3.5.0.tgz#1c7e6cc2d5a7218375001b2cff2996a927693e89"
-  integrity sha512-XLCIl8+h+3BRfvqADqFsmAfWdaDGDchY/TPCKtpeQdb4r64SR6arsdNftlOb7vX8EuLCK2QRp6evUy0J+qnQTg==
+"@canonical/cookie-policy@^3.6.4":
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/@canonical/cookie-policy/-/cookie-policy-3.6.4.tgz#895c3770f621b73d88b0d5843c43a32d99e4a462"
+  integrity sha512-kfwamTpAaBhtH5TzlMb8wE814a8lIbONUuSYnS7VPiHDfcdmw4NoBPNpldmNY1j3CAT5vMKOx5kulRTWpEXpag==
 
-"@canonical/global-nav@3.6.2":
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-3.6.2.tgz#ee12cf7ebbf212c724a4652f1f4643ac5c4c461c"
-  integrity sha512-ZIC3OhSpDINAHfuDtX/1adrSiWl7qdYC5mqdYVt/2gyH3C8ffz2QmELpkZamSQ6qxYsGjVVzmddFJVP/W8vxaw==
+"@canonical/global-nav@3.6.4":
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-3.6.4.tgz#347401d20a01c51a9d0024f7867ddebd3b407dcf"
+  integrity sha512-CEmFtHOdxAG8kFCOBcTR08u/SbwIVZQ1O0evNa/X+KyS7F9YrI6TXBHO3oLNO8Rv1WZUSMeh1BPhv7ChKfojgQ==
   dependencies:
-    vanilla-framework "4.0.0"
+    vanilla-framework "4.9.0"
 
 "@canonical/latest-news@1.5.0":
   version "1.5.0"
@@ -1392,11 +1392,6 @@
     redux "^4.1.2"
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
-
-"@remix-run/router@1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.3.1.tgz#3bb0b6ddc0a276e8dc1138d08f63035e4e23e8bf"
-  integrity sha512-+eun1Wtf72RNRSqgU7qM2AMX/oHp+dnx7BHk1qhK5ZHzdHTUU4LA1mGG1vT+jMc8sbhG3orvsfOmryjzx2PzQw==
 
 "@sentry/browser@6.11.0":
   version "6.11.0"
@@ -6631,21 +6626,6 @@ react-query@3.34.7:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
-react-router-dom@^6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.8.0.tgz#5e5f4c4b15fdec3965d2ad9d7460d0c61971e744"
-  integrity sha512-hQouduSTywGJndE86CXJ2h7YEy4HYC6C/uh19etM+79FfQ6cFFFHnHyDlzO4Pq0eBUI96E4qVE5yUjA00yJZGQ==
-  dependencies:
-    "@remix-run/router" "1.3.1"
-    react-router "6.8.0"
-
-react-router@6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.8.0.tgz#dd61fd1ec44daa2cceaef8e6baa00f99a01a650f"
-  integrity sha512-760bk7y3QwabduExtudhWbd88IBbuD1YfwzpuDUAlJUJ7laIIcqhMvdhSVh1Fur1PE8cGl84L0dxhR3/gvHF7A==
-  dependencies:
-    "@remix-run/router" "1.3.1"
-
 react-shallow-renderer@^16.13.1:
   version "16.14.1"
   resolved "https://registry.npmjs.org/react-shallow-renderer/-/react-shallow-renderer-16.14.1.tgz"
@@ -7995,15 +7975,15 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vanilla-framework@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.0.0.tgz#a2fee9bd9763ebd6932b764f9d66484dc177d4cc"
-  integrity sha512-fiPnmaTUe15l5MRNJ6IsiJ8qiunfmgtLETOFltaYiE/bQKL7xTI+riBak2iygBKeF1y0Gi/GxUNt4hyb6xDPKA==
+vanilla-framework@4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.11.0.tgz#81636d58bacbd3320a4eb6bf5bef00409cfdc008"
+  integrity sha512-S0AAHNVphn3YJ7BQhyHmvKhrqiZcncQBPedwMan18uavB4VfAT8UN0dwgrHQvY/ypUuJiq/GPA0Xe1xcd+E7dg==
 
-vanilla-framework@4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.7.0.tgz#93934d1df3b99b4d58f96d5dbc8f47c32ae660c2"
-  integrity sha512-jhckCsy/e+nZI1qh5ZVH2bj3YZqpYLxnhovo8W/JgzhjQ2LMDI1L1vaw8pjMLt9G4sZqHB/S7KybGQgbIp9phQ==
+vanilla-framework@4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-4.9.0.tgz#7566b42a22c2394ea1d7ea843d24ec305446cb3e"
+  integrity sha512-iTmvqWlsX0ic69VZ1sR9NPQtYRR9+iM679HZCl7SDQhMQSsEeJEQ6Ejjen3JN5a7YxiYmeIhxaLlmC4rExRT1w==
 
 verbalize@^0.1.2:
   version "0.1.2"

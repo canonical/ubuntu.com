@@ -7,10 +7,10 @@ env:
     value: true
 
   - name: STORE_MAINTENANCE_START
-    value: 2023-10-02T03:00:00Z
+    value: 2024-03-27T03:00:00Z
 
   - name: STORE_MAINTENANCE_END
-    value: 2023-10-02T06:00:00Z
+    value: 2024-03-27T05:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -121,7 +121,7 @@ env:
     value: pk_live_68aXqowUeX574aGsVck8eiIE
 
   - name: TRUEABILITY_URL
-    value: https://app.trueability.com
+    value: https://app3.trueability.com
 
   - name: TRUEABILITY_API_KEY
     secretKeyRef:
@@ -241,7 +241,7 @@ production:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -254,12 +254,22 @@ production:
             name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
-          value: https://app.trueability.com
+          value: https://app3.trueability.com
 
         - name: TRUEABILITY_API_KEY
           secretKeyRef:
             key: api-key
             name: trueability
+            
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+            
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -369,10 +379,10 @@ production:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-10-02T03:00:00Z
+          value: 2024-03-27T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-10-02T06:00:00Z
+          value: 2024-03-27T05:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -479,10 +489,10 @@ staging:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-10-02T03:00:00Z
+      value: 2024-03-27T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-10-02T06:00:00Z
+      value: 2024-03-27T05:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -593,7 +603,7 @@ staging:
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - name: TRUEABILITY_URL
-      value: https://app.trueability.com
+      value: https://app3.trueability.com
 
     - name: TRUEABILITY_API_KEY
       secretKeyRef:
@@ -716,7 +726,7 @@ staging:
             name: ubuntu-google-datastore
 
         - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
-          value: false
+          value: true
 
         - name: CONFIDENTIALITY_AGREEMENT_WEBHOOK_USERNAME
           secretKeyRef:
@@ -729,7 +739,7 @@ staging:
             name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
-          value: https://app.trueability.com
+          value: https://app3.trueability.com
 
         - name: TRUEABILITY_API_KEY
           secretKeyRef:
@@ -753,6 +763,16 @@ staging:
           secretKeyRef:
             key: organization
             name: credly
+
+        - name: MARKETO_API_CLIENT
+          secretKeyRef:
+            key: api_client
+            name: marketo
+
+        - name: MARKETO_API_SECRET
+          secretKeyRef:
+            key: api_secret
+            name: marketo
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -862,10 +882,10 @@ staging:
           value: true
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-10-02T03:00:00Z
+          value: 2024-03-27T03:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-10-02T06:00:00Z
+          value: 2024-03-27T05:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -932,6 +952,9 @@ staging:
 
 demo:
   env:
+    - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
+      value: false
+
     - name: GOOGLE_CLOUD_DISABLE_GRPC
       value: true
 
@@ -939,10 +962,10 @@ demo:
       value: true
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-10-02T03:00:00Z
+      value: 2024-03-27T03:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-10-02T06:00:00Z
+      value: 2024-03-27T05:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -1018,7 +1041,7 @@ demo:
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - name: TRUEABILITY_URL
-      value: https://app.trueability.com
+      value: https://app3.trueability.com
 
     - name: TRUEABILITY_API_KEY
       secretKeyRef:

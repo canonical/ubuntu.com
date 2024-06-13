@@ -37,7 +37,7 @@ For more details, see the various cloud integration pages.
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/explain-cloud.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/how-to-clouds.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
     <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>

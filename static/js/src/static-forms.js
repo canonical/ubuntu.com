@@ -129,7 +129,9 @@ function setUpStaticForms(form, formId) {
         });
       });
 
-      commentsFromLead.value = message;
+      if (formFields.length) {
+        commentsFromLead.value = message;
+      }
       return message;
     });
   }
@@ -157,7 +159,11 @@ function setUpStaticForms(form, formId) {
     submitButton.appendChild(spinnerIcon);
   }
   const submitButton = form.querySelector('button[type="submit"]');
-  if (submitButton) {
+
+  // Exclude forms that don't need loader
+  const cancelLoader = submitButton.classList.contains("no-loader");
+
+  if (submitButton && !cancelLoader) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
 }

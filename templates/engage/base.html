@@ -3,9 +3,9 @@
 {% set section_title="Engage Page" %}
 {% set section_path="/engage" %}
 
-{% block title %}{{metadata['topic_name']}}{% endblock %}
-{% block meta_description %}{{metadata['subtitle']}}{% endblock %}
-{% block meta_image %}{{metadata['meta_image']}}{% endblock %}
+{% block title %}{{ metadata['topic_name'] }}{% endblock %}
+{% block meta_description %}{{ metadata['subtitle'] }}{% endblock %}
+{% block meta_image %}{{ metadata['meta_image'] }}{% endblock %}
 
 {% block head_extra %}
   {% if 'active' in metadata and metadata['active'] == "false" %}
@@ -16,15 +16,18 @@
   {% if metadata['path'] == "/engage/ShellOnboarding" %}
     <meta name="robots" content="noindex, nofollow" />
   {% endif %}
+
+  <meta name="discourse-url" value="{{ metadata['topic_path'] }}" />
+
 {% endblock %}
 
 {% block meta_copydoc %}{{ metadata["meta_copydoc"] }}{% endblock meta_copydoc %}
 
 {% block content %}
 
-<span id="publish_date" class="u-hide">{{metadata["publish_date"]}}</span>
-<span id="created_date" class="u-hide">{{metadata["created_at"]}}</span>
-<section class="p-strip p-engage-banner--{{metadata['banner_class']}}">
+<span id="publish_date" class="u-hide">{{ metadata["publish_date"] }}</span>
+<span id="created_date" class="u-hide">{{ metadata["created_at"] }}</span>
+<section class="p-strip p-engage-banner--{{ metadata['banner_class'] }}">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
       {% if metadata['banner_class'] == 'light' %}
@@ -53,7 +56,7 @@
     </a>
   </div>
   <div class="row">
-    <div class="col-7 u-vertically-center">
+    <div class="col-7">
       <h1>{{ metadata["topic_name"] }}</h1>
       <p class="u-no-padding--top p-heading--4">
         {{ metadata['subtitle'] }}
@@ -73,7 +76,7 @@
     </div>
     {% if metadata["image"] != '' %}
     <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
-      <img src="{{metadata['image']}}" alt="" width="{{metadata['image_width']}}"/>
+      <img src="{{ metadata['image'] }}" alt="" width="{{ metadata['image_width'] }}"/>
     </div>
     {% endif %}
   </div>

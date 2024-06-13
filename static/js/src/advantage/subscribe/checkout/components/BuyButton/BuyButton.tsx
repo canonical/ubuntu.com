@@ -198,6 +198,18 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
           problem persists.
         </>
       );
+    } else if (
+      error.message.includes(
+        "missing one-off product listing for renewal product"
+      )
+    ) {
+      setError(
+        <>
+          The chosen product cannot be renewed as it has been deprecated.
+          Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+          to choose a substitute offering.
+        </>
+      );
     } else {
       const knownErrorMessage = getErrorMessage({
         message: "",
@@ -315,9 +327,15 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
           if (product.marketplace == "canonical-cube") {
-            location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
-              product.name
-            )}&quantity=${quantity}`;
+            if (product.name === "cue-linux-essentials-free") {
+              location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+                "CUE.01 Linux"
+              )}&quantity=${quantity}`;
+            } else {
+              location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+                product.name
+              )}&quantity=${quantity}`;
+            }
           } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
             let urlBase = "/pro/subscribe";

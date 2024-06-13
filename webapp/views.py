@@ -1,9 +1,10 @@
 # Standard library
+import datetime
+import html
 import math
 import os
 import re
-import html
-import datetime
+import json
 
 # Packages
 import dateutil
@@ -28,8 +29,6 @@ from canonicalwebteam.discourse import (
     DocParser,
 )
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
 
 # Local
 from webapp.login import user_info
@@ -48,7 +47,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list(local=False):
+def _build_mirror_list(local=False, country_code=None):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -58,10 +57,6 @@ def _build_mirror_list(local=False):
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
-
-    ip_location = ip_reader.get(
-        flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
-    )
 
     # get all mirrors
     if not local:
@@ -75,9 +70,7 @@ def _build_mirror_list(local=False):
         return mirror_list
 
     # get local mirrors based on IP location
-    if ip_location and "country" in ip_location:
-        country_code = ip_location["country"]["iso_code"]
-
+    if country_code:
         for mirror in mirrors:
             is_local_mirror = mirror["mirror_countrycode"] == country_code
             is_https = mirror["link"].startswith("https")
@@ -148,7 +141,6 @@ def download_server_steps():
         "server": "download/server/manual.html",
         "multipass": "download/server/multipass.html",
         "choose": "download/server/choose.html",
-        "download": "download/server/download.html",
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
@@ -156,20 +148,13 @@ def download_server_steps():
     if step not in templates:
         flask.abort(400)
 
-    if step == "download":
-        version = flask.request.form.get("version")
-
-        if not version:
-            flask.abort(400)
-
-        context = {"version": version}
-
     return flask.render_template(templates[step], **context)
 
 
 def download_thank_you(category):
     version = flask.request.args.get("version", "")
     architecture = flask.request.args.get("architecture", "").replace(" ", "+")
+    lts = flask.request.args.get("lts", "")
 
     if version and not architecture:
         flask.abort(400)
@@ -179,6 +164,7 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
+            lts=lts,
         ),
         {"Cache-Control": "no-cache"},
     )
@@ -263,6 +249,7 @@ def mirrors_query():
     A JSON endpoint to request list of Ubuntu mirrors
     """
     local = flask.request.args.get("local", default=False)
+    country = flask.request.args.get("country_code", default=None)
 
     if not local or local.lower() != "true":
         local = False
@@ -270,7 +257,7 @@ def mirrors_query():
         local = True
 
     return (
-        flask.jsonify(_build_mirror_list(local)),
+        flask.jsonify(_build_mirror_list(local, country)),
         {"Cache-Control": "private"},
     )
 
@@ -1007,44 +994,6 @@ def marketo_submit():
             400,
         )
 
-    if payload["formId"] == "3801":
-        service_account_info = {
-            "token_uri": "https://oauth2.googleapis.com/token",
-            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-            "private_key": os.getenv(
-                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
-            ).replace("\\n", "\n"),
-            "scopes": [
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
-            ],
-        }
-
-        credentials = service_account.Credentials.from_service_account_info(
-            service_account_info,
-        )
-
-        service = build("sheets", "v4", credentials=credentials)
-
-        sheet = service.spreadsheets()
-        sheet.values().append(
-            spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-            range="Sheet1",
-            valueInputOption="RAW",
-            body={
-                "values": [
-                    [
-                        form_fields.get("firstName"),
-                        form_fields.get("lastName"),
-                        form_fields.get("email"),
-                        form_fields.get("Job_Role__c"),
-                        form_fields.get("title"),
-                        form_fields.get("Comments_from_lead__c"),
-                        form_fields.get("canonicalUpdatesOptIn"),
-                    ]
-                ]
-            },
-        ).execute()
-
     # Send enrichment data
     try:
         marketo_api.submit_form(enriched_payload).json()
@@ -1071,37 +1020,36 @@ def thank_you():
     )
 
 
-def get_user_country_by_ip():
-    x_forwarded_for = flask.request.headers.get("X-Forwarded-For")
+def get_user_country_by_tz():
+    """
+    Get user country by timezone using ISO 3166 country codes.
+    We store the country codes and timezones as static JSON files in the
+    static/files directory.
 
-    if x_forwarded_for:
-        client_ip = x_forwarded_for.split(",")[0]
-    else:
-        client_ip = flask.request.remote_addr
+    Eventually we plan to merge this function with the one below, once we
+    are confident that takeovers won't be broken.
+    """
+    APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    timezone = flask.request.args.get("tz")
 
-    ip_location = ip_reader.get(client_ip)
+    with open(
+        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
+    ) as file:
+        timezones = json.load(file)
 
-    try:
-        country_code = ip_location["country"]["iso_code"]
-    except KeyError:
-        # geolite2 can't identify IP address
-        country_code = None
-    except Exception as error:
-        # Errors not documented in the geolite2 module
-        country_code = None
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"ip_location object": ip_location, "error": error}
-        )
+    with open(
+        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
+    ) as file:
+        countries = json.load(file)
 
-    response = flask.jsonify(
+    _country = timezones[timezone]["c"][0]
+    country = countries[_country]
+    return flask.jsonify(
         {
-            "client_ip": client_ip,
-            "country_code": country_code,
+            "country": country,
+            "country_code": _country,
         }
     )
-    response.cache_control.private = True
-
-    return response
 
 
 def subscription_centre():

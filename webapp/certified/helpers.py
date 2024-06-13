@@ -37,3 +37,16 @@ def get_download_url(model_details):
         return f"https://ubuntu.com/download/server/{arch}"
 
     return "https://ubuntu.com/download"
+
+
+def _get_clean_in_filter(filter_in):
+    """
+    Return a clean comma-separated values string from a list of values
+    This is required for the in filter query parameter in the API
+
+    :return: comma separated value of a list or the parameter itself
+    """
+
+    if isinstance(filter_in, list):
+        return ",".join(filter_in)
+    return filter_in

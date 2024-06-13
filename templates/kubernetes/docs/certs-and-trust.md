@@ -116,9 +116,7 @@ be accessed.
 
 See the [operations documentation][vault-cdk] for details on how to deploy Vault as a CA.
 
-
-
-[TLS]: https://www.networkworld.com/article/2303073/lan-wan/lan-wan-what-is-transport-layer-security-protocol.html
+[TLS]: https://en.wikipedia.org/wiki/Transport_Layer_Security
 [PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust
 [CA]: https://en.wikipedia.org/wiki/Certificate_authority
@@ -153,8 +151,7 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/certs-and-trust.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new">file a bug here</a>.</p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
     <p>See the guide to <a href="/kubernetes/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
-

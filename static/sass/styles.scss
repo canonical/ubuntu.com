@@ -473,6 +473,15 @@ summary {
   }
 }
 
+// Align blog thumbnails
+.u-blog-thumbnails {
+  // Images are populated by JS
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
 // Styling for ubuntu navigation logo for engage pages
 .navigation-logo-engage {
   margin-top: -2.2rem;
@@ -1347,7 +1356,7 @@ $color-link-dark: #69c !default;
 .p-modal__dialog.is-paper {
   max-width: $grid-max-width !important;
 
-  &.is-ai-modal {
+  .row--50-50 {
     .p-modal__close {
       background-color: transparent;
       margin-top: 1.5rem;
@@ -1364,6 +1373,11 @@ $color-link-dark: #69c !default;
       }
     }
   }
+}
+
+// XXX: Lyubo: reduce logo section component height globally (to be moved to vanilla)
+.p-logo-section--dense .p-logo-section__logo {
+  height: 6rem;
 }
 
 .p-logo-section.has-misaligned-images {
@@ -1464,6 +1478,48 @@ $color-link-dark: #69c !default;
   }
 }
 
+.p-graphic-main {
+  background: #923a66;
+  display: inline-block;
+  height: 48px;
+  width: 10%;
+}
+
+.p-graphic-universe {
+  background: #000;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+.p-graphic-universe--empty {
+  border-color: #757575;
+  border-style: dashed;
+  border-width: 1px;
+  display: inline-block;
+  height: 48px;
+  width: 90%;
+}
+
+.graphic-legend-main,
+.graphic-legend-universe {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  &::before {
+    content: "";
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 25px;
+    width: 25px;
+  }
+}
+.graphic-legend-main::before {
+  background: #923a66;
+}
+.graphic-legend-universe::before {
+  background: #000;
+}
+
 // XXX: MPT: Can be removed once this is fixed in Vanilla
 // https://github.com/canonical/vanilla-framework/pull/4950
 .desktop-footer {
@@ -1490,4 +1546,91 @@ $color-link-dark: #69c !default;
 hr.is-extra-muted {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.5;
+}
+
+// Decimal number bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/4998
+ol.p-list--divided .p-list__item::before {
+  content: counter(list-item) ". ";
+}
+
+//XXX: styles from Liza's js snippet, taken here because the scss is not parsed inside js and the include doesn't work there. This should be refactored.
+.p-hero-video-link {
+  .p-hero-video__play {
+    @include vf-transition(background-size, fast, out);
+
+    display: block;
+  }
+
+  &:hover img {
+    opacity: 0.9;
+  }
+
+  &.p-equal-height-row__col::before {
+    content: none !important;
+  }
+}
+
+// Fix stepped list title grid bug
+// To be removed once is bug is fixed: https://github.com/canonical/vanilla-framework/issues/5002
+@media screen and (max-width: $breakpoint-small - 1) {
+  .p-stepped-list--detailed .p-stepped-list__title {
+    grid-column-end: span 4;
+    margin-left: 0;
+  }
+}
+
+// Fix slider background
+// https://github.com/canonical/vanilla-framework/issues/5025
+@-moz-document url-prefix() {
+  .p-slider {
+    @extend .is-paper;
+  }
+}
+
+.u-responsive-realign {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+@media screen and (max-width: $breakpoint-small - 1) {
+  .u-table-horizontal-scroll {
+    overflow-x: hidden;
+    .u-table-horizontal-scroll__table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+.u-align-last--logo {
+  @media screen and (max-width: $breakpoint-large - 1) {
+    .p-logo-section__item {
+      margin-right: 2rem;
+    }
+  }
+}
+
+.u-center-illutrations {
+  align-items: center;
+  display: flex;
+  height: 21rem; // provided by design
+  justify-content: center;
+}
+
+// Following two classes can be removed once Github issue is completed
+// https://github.com/canonical/vanilla-framework/issues/4876
+.u-background--fade {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.u-aspect-ratio--16-9 {
+  aspect-ratio: 16/9;
+}
+
+.u-darker-background {
+  background-color: rgba(0, 0, 0, 0.03);
 }

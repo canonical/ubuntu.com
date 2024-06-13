@@ -1,3 +1,4 @@
+import logging
 from typing import List, Optional
 
 from requests.exceptions import HTTPError
@@ -11,6 +12,7 @@ class UAContractsAPI:
         token_type="Macaroon",
         api_url="https://contracts.canonical.com",
         is_for_view=False,
+        remote_addr=None,
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -22,6 +24,7 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
+        self.remote_addr = remote_addr
 
     def set_authentication_token(self, token):
         self.authentication_token = token
@@ -44,6 +47,13 @@ class UAContractsAPI:
         headers[
             "Authorization"
         ] = f"{self.token_type} {self.authentication_token}"
+
+        if self.remote_addr:
+            headers["X-Forwarded-For"] = self.remote_addr
+            logger = logging.getLogger("talisker.requests")
+            logger.info(
+                "remote address", extra={"remote_addr": self.remote_addr}
+            )
 
         response = self.session.request(
             method=method,
@@ -361,7 +371,7 @@ class UAContractsAPI:
         starts_at,
         country_code,
     ) -> dict:
-        return self._request(
+        req = self._request(
             method="get",
             path="v1/cue/schedule",
             json={
@@ -372,8 +382,9 @@ class UAContractsAPI:
                 "startsAt": starts_at,
                 "countryCode": country_code,
             },
-            error_rules=["default"],
+            error_rules=[],
         ).json()
+        return req
 
     def delete_assessment_reservation(self, contract_item_id) -> dict:
         self._request(
@@ -439,12 +450,15 @@ class UAContractsAPI:
 
         if product_tags:
             params["productTags"] = product_tags
+        error_rules = []
+        if "cue" not in product_tags:
+            error_rules = ["default"]
 
         return self._request(
             method="get",
             path="/web/annotated-contract-items",
             params=params,
-            error_rules=["default"],
+            error_rules=error_rules,
         ).json()
 
     def handle_error(self, error, error_rules=None):

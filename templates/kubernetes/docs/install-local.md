@@ -18,100 +18,82 @@ purposes of testing and development.
 
 However, be aware that the full deployment of **Charmed Kubernetes** has system
 requirements which may exceed a standard laptop or desktop machine. It is only
-recommended for a machine with 32GB RAM and 250GB of SSD storage.
+recommended on a machine running at least Ubuntu 20.04 with 32GB RAM and 128GB of
+SSD storage.
 
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">If you don't meet these requirements or want a lightweight way to develop on pure Kubernetes, we recommend  <a href="https://microk8s.io/">MicroK8s</a></p>
+    <p class="p-notification__message">If you don't meet these requirements or want a lightweight way to develop on pure Kubernetes, we recommend  <a href="https://microk8s.io/">MicroK8s</a>.</p>
   </div>
 </div>
 
-In order to run locally, you will need a local cloud. This can be achieved by
-using lightweight containers managed by [LXD][lxd-home]. **LXD** version 3.0
-or better is required.
+## Configure the host environment
 
-## 1. Set up LXD
-
-### If LXD has not previously been installed
-
-LXD 3.0 or above should be installed from a [snap][] and configured
-for **Charmed Kubernetes**
-
-#### Install LXD
+Some default kernel settings are not suitable for running numerous containers.
+Adjust these on the host machine by running:
 
 ```bash
-sudo snap install lxd
+sudo sysctl fs.inotify.max_queued_events=1048576 | sudo tee -a /etc/sysctl.conf
+sudo sysctl fs.inotify.max_user_instances=1048576 | sudo tee -a /etc/sysctl.conf
+sudo sysctl fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
 ```
 
-#### Run the LXD init script
+## Set up LXD
+
+In order to run **Charmed Kubernetes** locally, you will need a local cloud. This can
+be achieved by using lightweight containers managed by [LXD][lxd-home]. **LXD** version
+5.0 or better is required.
+
+### Install LXD
+
+If `lxd` is not present, install the [snap][] package as follows:
 
 ```bash
-/snap/bin/lxd init
+sudo snap install lxd --channel 5.0/stable
+```
+
+If the `lxd` snap is already installed, ensure it is at version 5.0 or better:
+
+```bash
+sudo snap refresh lxd --channel 5.0/stable
+```
+
+Add your user to the `lxd` group if needed:
+
+```bash
+sudo usermod -a -G lxd $USER
+```
+
+You may need to logout and login again for the new group membership to take effect.
+
+### Initialise LXD
+
+For new LXD installations or cases where LXD was installed, but never used,
+there will be no data in the default profile. You should now initialise LXD:
+
+```bash
+lxd init
 ```
 
 The init script itself may vary depending on the version of LXD. The important
-configuration options for the installer are:
+configuration options are:
 
-- Networking: Do **NOT** enable ipv6 networking on the bridge interface
-- Storage Pool: Use the 'dir' storage type
+- Storage backend: `dir`
+- IPv6 address: `none`
 
-You can now move on to the [next step](#step2)
+Currently, **Charmed Kubernetes** only supports `dir` as a storage backend and
+does not support IPv6 on the LXD bridge interface. Additional profiles will be
+added automatically to LXD to support the requirements of **Charmed Kubernetes**.
 
-### If **LXD** is already installed
+## Install Juju
 
-If you installed LXD from a snap, you can skip this step (but if necessary, you
-may need to alter the [default profile](#profile)). If your system
-had LXD pre-installed, or you have installed it from the archive (i.e. with
-`apt install`), you will need to migrate to the snap version.
-
-If you aren't sure whether LXD is installed, you can check
-installed snaps with:
+[Juju][] version 3 or better should be installed from a snap. Because it is strictly
+confined, you will need to manually create a Juju data directory prior to installing:
 
 ```bash
-snap list | grep lxd
-```
-
-and installed deb packages with:
-
-```bash
-dpkg -s lxd |  grep Status
-```
-
-If you do have the deb version of LXD installed, you should migrate to the
-snap version after it has been installed. The snap includes a script to do this
-for you:
-
-```bash
-sudo snap install lxd
-sudo /snap/bin/lxd.migrate
-```
-
-This will move all container specific data to the snap version and clean up
-the unused Debian packages, which may take a few minutes.
-
-If LXD was installed, but never used, there will be no data in the default
-profile, so you should now initialise LXD:
-
-```bash
-sudo lxd init
-```
-
-<a id="profile"></a>
-
-Currently, **Charmed Kubernetes** only supports `dir` as a storage option and
-does not support ipv6, which should be set to `none` from the init script.
-Additional profiles will be added automatically to LXD to support the
-requirements of **Charmed Kubernetes**.
-
-<a id="step2"></a>
-
-## 2. Install **Juju**
-
-[Juju][] should be installed from a snap:
-
-```bash
-sudo snap install juju --classic
+mkdir -p ~/.local/share/juju
+sudo snap install juju --channel 3/stable
 ```
 
 Juju comes preconfigured to work with LXD. A cloud created by using LXD
@@ -122,30 +104,122 @@ need to create a Juju controller for this cloud:
 juju bootstrap localhost
 ```
 
-Juju creates a default model, but it is useful to create a new model for each
-project:
+Once complete, create a new model for **Charmed Kubernetes**:
 
 ```bash
-juju add-model k8s
+export MODEL=ck8s
+juju add-model $MODEL
 ```
 
-## 3. Deploy **Charmed Kubernetes**
+In addition to creating a Juju model, this will also create a LXC profile that will
+be applied to all future units deployed to the model. **Charmed Kubernetes** requires
+privileged access to resources on the host machine. Create a profile that allows the
+necessary access to these resources:
 
-All that remains is to deploy **Charmed Kubernetes**. A simple install can be achieved with one command:
+```bash
+cat <<EOF > $HOME/profile.yaml
+name: juju-$MODEL
+config:
+  boot.autostart: "true"
+  linux.kernel_modules: ip_vs,ip_vs_rr,ip_vs_wrr,ip_vs_sh,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
+  raw.lxc: |
+    lxc.apparmor.profile=unconfined
+    lxc.mount.auto=proc:rw sys:rw cgroup:rw
+    lxc.cgroup.devices.allow=a
+    lxc.cap.drop=
+  security.nesting: "true"
+  security.privileged: "true"
+description: "Juju profile modified for Charmed Kubernetes"
+devices:
+  aadisable:
+    path: /sys/module/nf_conntrack/parameters/hashsize
+    source: /sys/module/nf_conntrack/parameters/hashsize
+    type: disk
+  aadisable2:
+    path: /dev/kmsg
+    source: /dev/kmsg
+    type: unix-char
+  aadisable3:
+    path: /sys/fs/bpf
+    source: /sys/fs/bpf
+    type: disk
+  aadisable4:
+    path: /proc/sys/net/netfilter/nf_conntrack_max
+    source: /proc/sys/net/netfilter/nf_conntrack_max
+    type: disk
+EOF
+```
+
+Update the Juju model profile with this new configuration:
+
+```bash
+cat $HOME/profile.yaml | lxc profile edit juju-$MODEL
+```
+
+## Deploy Charmed Kubernetes
+
+Deploy **Charmed Kubernetes** with the following command:
 
 ```bash
 juju deploy charmed-kubernetes
 ```
 
+The latest stable version of **Charmed Kubernetes** will now be installed with default
+components.
 
-This will install the latest stable version of **Charmed Kubernetes** with
-the default components and configuration. If you wish to customise this install
+### Additional charm requirements
+
+Some charms in the default deployment require additional configuration for installation
+in containers. This can be performed before the deployment is complete or at any time
+after:
+
+- Calico, the default CNI, may complain about an `rp_filter` parameter that cannot be
+set within a container (see the [troubleshooting section](#rp_filter) for details).
+Configure `calico` to ignore this parameter with the following:
+
+  ```bash
+  juju config calico ignore-loose-rpf=true
+  ```
+
+- Containerd, the default CRI, includes a binary resource in the charm that will not
+work within a container. Attach an empty resource to the `containerd` application to
+instruct the charm to use default system binaries instead:
+
+  ```bash
+  touch $HOME/empty.tgz
+  juju attach-resource containerd containerd=$HOME/empty.tgz
+  ```
+
+### Additional profile requirements
+
+Some versions of **Charmed Kubernetes** embed a LXC profile in the Kubernetes
+control-plane and worker charms. Update these to match the `juju-$MODEL` profile created
+in the the last section:
+
+```bash
+for p in $(lxc profile ls -f compact | grep juju-$MODEL-kubernetes | awk '{print $1}')
+do
+  cat $HOME/profile.yaml | lxc profile edit $p
+done
+```
+
+### Monitor the deployment
+
+It may take a while for the deployment to complete. You can watch the progress from the
+command line:
+
+```bash
+watch --color juju status --color
+```
+
+When all applications report `active` status, the deployment is complete.
+If you wish to customise this install
 (which may be helpful if you are close to the system requirements), please see
 the [main install page][install].
 
 ## Next Steps
 
-Now you have a cluster up and running, check out the
+Now that you have a **Charmed Kubernetes** cluster up and running, check out the
 [Operations guide][operations] for how to use it!
 
 ## Troubleshooting
@@ -159,59 +233,50 @@ Error: Get http://unix.socket/1.0: dial unix /var/snap/lxd/common/lxd/unix.socke
 ```
 
 ...is that either you have not run `lxd init`, or you are logged in as a user
-who is not part of the `lxd` group (the user installing the snap is
-automatically added).
-
-To add the current user to the relevant group:
+who is not part of the `lxd` group. To add the current user to the group:
 
 ```bash
 sudo usermod -a -G lxd $USER
 ```
 
-You may need to start a new shell (or logout and login) for this to take effect:
+You may need to start a new shell (or logout and login) for this to take effect.
 
-```bash
-newgrp lxd
-```
+### Services fail to start or are constantly restarting
 
-### Confirm CNIs do not need specific kernel parameters unsupported by the lxd-profile
+Symptoms include:
 
-If the CNI pods fail to start, see notes on the specific CNI page.
+- `kubernetes-control-plane` status stuck: *Restarting snap.kubelet.daemon service*
+- `kubernetes-worker` status stuck: *Waiting for kubelet to start*
+- `systemctl status snap.kube-proxy.daemon` on a control-plane or worker unit reports:
+  ```bash
+  Error: open /proc/sys/net/netfilter/nf_conntrack_max: no such file or directory
+  ```
+- `journalctl -u snap.kubelet.daemon` on a control-plane or worker unit reports:
+  ```bash
+  failed to create kubelet: open /dev/kmsg: no such file or directory
+  ```
 
-CNIs like [Cilium][cilium] and [Calico][calico] need access to `/sys/fs/bpf`, but that
-mountpoint is not supported by the juju's [validation check][juju-validation-check] 
-for the charm specific `lxd-profile.yaml`. See [CNI Overview][cni-overview] for more
-details.
-
-### Services fail to start with errors related to missing files in the /proc filesystem
-
-For example, `systemctl status snap.kube-proxy.daemon` may report the following:
-
-```bash
-Error: open /proc/sys/net/netfilter/nf_conntrack_max: no such file or directory
-```
-
-This is most commonly caused when [lxd-profile.yaml][lxd-profile] is not applied.
-Verify the profile in use by the `kubernetes-worker` charm:
+This is most commonly caused when the [lxd-profile.yaml][lxd-profile] embedded in the
+charms is in conflict with the Juju model profile. Verify the profiles in use by the
+control-plane and worker applications match the `$HOME/profile.yaml` created in the
+**Install Juju** section above:
 
 ```bash
 lxc profile list
-lxc profile show juju-[model]-kubernetes-worker-[revision]
+lxc profile show juju-[model]-kubernetes-[control-plane|worker]-[revision]
 ```
 
-Identify any missing fields from the above `lxd-profile.yaml` file and add them
-as needed with:
+Refresh the application profile(s) as follows:
 
 ```bash
-lxc profile edit juju-[model]-kubernetes-worker-[revision]
+cat $HOME/profile.yaml | lxc profile edit juju-[model]-kubernetes-[control-plane|worker]-[revision]
 ```
 
-You may need to remove and re-add the affected unit for the changes to take
-effect:
+Reboot affected units to force the profile to be reapplied:
 
 ```bash
-juju remove-unit kubernetes-worker/[n]
-juju add-unit kubernetes-worker
+juju ssh kubernetes-control-plane/[n] -- sudo reboot
+juju ssh kubernetes-worker/[m] -- sudo reboot
 ```
 
 ### Kubelet fails to start with errors related to inotify_add_watch
@@ -223,25 +288,29 @@ following error:
 kubelet.go:1414] "Failed to start cAdvisor" err="inotify_add_watch /sys/fs/cgroup/cpu,cpuacct: no space left on device"
 ```
 
-This problem usually is related to the kernel parameters,
+This problem is usually related to the kernel parameters,
 `fs.inotify.max_user_instances` and `fs.inotify.max_user_watches`.
 
-At first, you should increase their values on the machine that is hosting
+Increase their values on the machine that is hosting
 the **Charmed Kubernetes** installation:
 
 ```bash
-sysctl -w fs.inotify.max_user_instances=8192
-sysctl -w fs.inotify.max_user_watches=1048576
+sudo sysctl fs.inotify.max_user_instances=1048576
+sudo sysctl fs.inotify.max_user_watches=1048576
 ```
 
-Then the new values should be applied to the worker units:
+### My CNI needs kernel parameters that are not supported in the charm lxd-profile
 
-```bash
-juju config kubernetes-worker sysctl="{ fs.inotify.max_user_instances=8192 }"
-juju config kubernetes-worker sysctl="{ fs.inotify.max_user_watches=1048576 }"
-```
+If the CNI pods fail to start, see notes on the specific CNI page.
+
+CNIs like [Cilium][cilium] and [Calico][calico] need access to `/sys/fs/bpf`, but that
+mountpoint is not supported by the Juju [validation check][juju-validation-check]
+for the charm-specific `lxd-profile.yaml`. See [CNI Overview][cni-overview] for more
+details.
 
 ### Calico is blocked with warning about ignore-loose-rpf
+
+<a id="rp_filter"></a>
 
 Calico may be blocked with status: `ignore-loose-rpf config is in conflict with rp_filter value`.
 
@@ -250,14 +319,14 @@ because it expects the kernel to have strict reverse path forwarding set (ie. va
 In LXD containers, it's not possible to manipulate the value; it's dependent on the host.
 In this situation we can set the charm config `ignore-loose-rpf=true`.
 
-```
+```bash
 juju config calico ignore-loose-rpf=true
 ```
 
 <!-- LINKS -->
 
 [lxd-home]: https://ubuntu.com/lxd
-[lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/main/lxd-profile.yaml
+[lxd-profile]: https://juju.is/docs/sdk/lxd-profile-yaml
 [calico]: /kubernetes/docs/cni-calico
 [cilium]: /kubernetes/docs/cni-cilium
 [cni-overview]: /kubernetes/docs/cni-overview

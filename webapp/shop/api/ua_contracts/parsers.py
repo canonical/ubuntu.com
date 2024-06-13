@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.primitives import (
     User,
 )
 from webapp.shop.api.ua_contracts.models import (
+    ExternalID,
     Listing,
     Product,
     OfferItem,
@@ -152,9 +153,15 @@ def parse_contract(raw_contract: Dict) -> Contract:
     items = parse_contract_items(raw_items)
 
     number_of_active_machines = 0
+    max_tracking_reached = False
     if "activeMachines" in contract_info:
         active_machines = contract_info["activeMachines"]
         number_of_active_machines = active_machines["activeMachines"]
+        max_tracking_reached = (
+            active_machines["maximumTrackingReached"]
+            if "maximumTrackingReached" in active_machines
+            else False
+        )
 
     return Contract(
         id=contract_info.get("id"),
@@ -164,6 +171,7 @@ def parse_contract(raw_contract: Dict) -> Contract:
         entitlements=entitlements,
         number_of_active_machines=number_of_active_machines,
         items=items,
+        max_tracking_reached=max_tracking_reached,
     )
 
 
@@ -238,6 +246,18 @@ def parse_users(raw_users: List) -> List[User]:
     return [parse_user(raw_user) for raw_user in raw_users]
 
 
+def parse_external_ids(raw_external_ids: List[Dict]) -> List[ExternalID]:
+    external_ids: List[ExternalID] = []
+    for raw_external_id in raw_external_ids:
+        external_ids.append(
+            ExternalID(
+                origin=raw_external_id["origin"],
+                ids=raw_external_id["IDs"],
+            )
+        )
+    return external_ids
+
+
 def parse_offer_items(
     raw_offer_items: List, raw_product_listings: List
 ) -> List[OfferItem]:
@@ -268,7 +288,12 @@ def parse_offer_items(
 
 def parse_offer(raw_offer: Offer) -> Offer:
     items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
-    discount = raw_offer.get("discount", None)
+    external_ids = (
+        parse_external_ids(raw_offer["externalIDs"])
+        if raw_offer.get("activationAccountID") is not None
+        and raw_offer["externalIDs"] is not None
+        else None
+    )
 
     return Offer(
         id=raw_offer["id"],
@@ -278,7 +303,14 @@ def parse_offer(raw_offer: Offer) -> Offer:
         actionable=raw_offer["actionable"],
         total=sum(item.price for item in items),
         items=items,
-        discount=discount,
+        discount=raw_offer.get("discount"),
+        activation_account_id=raw_offer.get("activationAccountID"),
+        can_change_items=raw_offer.get("canChangeItems"),
+        external_ids=external_ids,
+        distributor_account_name=raw_offer.get("distributorAccountName"),
+        reseller_account_name=raw_offer.get("resellerAccountName"),
+        end_user_account_name=raw_offer.get("endUserAccountName"),
+        technical_contact=raw_offer.get("technicalContact"),
     )
 
 

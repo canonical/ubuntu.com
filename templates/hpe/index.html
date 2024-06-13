@@ -396,7 +396,7 @@
           <hr class="is-fixed-width p-rule">
           {% endif %}
           <div class="p-block">
-            <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered }}</a></h2>
+            <h2><a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a></h2>
             <p>
               {% if 4307 in article.tags %}
               <button class="p-chip--information" onclick="location.href='/blog/tag/hpe'">
