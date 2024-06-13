@@ -190,7 +190,7 @@
              loading="lazy" />
       </div>
       <div class="p-strip is-shallow row u-no-padding--bottom">
-        <div class="col-6 col-start-large-7">
+        <div class="col-6 col-start-large-7 col-start-medium-4 col-medium-3">
           <p>
             Docker is the most popular process container environment and allows for very small, immutable containers, containing only the application binaries and a minimal subset of libraries necessary for an application to run as a single process, requiring limited system resources.
           </p>
@@ -214,6 +214,39 @@
 
   <section class="p-section">
     <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>How to secure container images</h2>
+      </div>
+    <div class="col">
+      <div class="p-media-container p-strip is-shallow u-darker-background col-3 u-align--center u-vertically-center">
+        <img 
+             src="https://assets.ubuntu.com/v1/ecbc6997-How%20to%20secure%20container%20images.png"
+             alt=""
+             loading="lazy" />
+      </div>
+    <div>
+      <p>
+        Canonical’s Kubernetes and cloud native operations report showed that the best container images are secure, stable, and easy to use.
+While containerisation adds a layer of security by keeping workloads isolated from one another and the host system, it is not enough to secure an application.
+      </p>
+      <p>
+        Container images are made of software from many different projects and sources, not all equally well-maintained. Developers need to ask themselves what content can developers rely on today, tomorrow, and for a long time thereafter. Particular attention should be paid to the base layer, specifically in selecting a frequently updated one with credible maintenance commitment, a large software ecosystem of well-maintained packages, and a great developer experience.
+      </p>
+      <p>
+        Canonical publishes a portfolio of base, runtime, and application images with an up to 10-year maintenance commitment. In collaboration with Docker, this content is publicly available on Docker Hub.
+      </p>
+      <hr class="p-rule" />
+      <p>
+        <a href="security/docker-images">Secure your software supply chain with LTS Docker Images&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
       <hr class="p-rule" />
       <div class="col-3 col-medium-6">
         <h2>Further reading</h2>
