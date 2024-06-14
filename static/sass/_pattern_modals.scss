@@ -1,9 +1,14 @@
 .is-wide-modal {
-    max-width: calc($grid-max-width + 2 * $spv--large - 2 * map-get($grid-margin-widths, small)) !important;
-  
-    @media (min-width: $threshold-4-6-col) {
-    max-width: calc($grid-max-width + 2 * $spv--large - 2 * map-get($grid-margin-widths, default)) !important;
-    }
-  
-    overflow-x: hidden;
+  max-width: calc(
+    $grid-max-width + 2 * $spv--large - 2 * map-get($grid-margin-widths, small)
+  ) !important;
+
+  @media (min-width: $threshold-4-6-col) {
+    max-width: calc(
+      $grid-max-width + 2 * $spv--large - 2 *
+        map-get($grid-margin-widths, default)
+    ) !important;
+  }
+
+  overflow-x: hidden;
 }
