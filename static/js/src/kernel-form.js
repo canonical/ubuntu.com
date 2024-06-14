@@ -78,13 +78,11 @@
     // Open the contact us modal
     function open() {
       updateHash(triggeringHash);
-      ga(
-        "send",
-        "event",
-        "interactive-forms",
-        "open",
-        window.location.pathname
-      );
+      dataLayer.push({
+        "event": "interactive-forms",
+        "action": "open",
+        "path": window.location.pathname
+      });
     }
 
     // Removes the triggering hash
@@ -195,13 +193,11 @@
 
       if (submitButton) {
         submitButton.addEventListener("click", function () {
-          ga(
-            "send",
-            "event",
-            "interactive-forms",
-            "submitted",
-            window.location.pathname
-          );
+          dataLayer.push({
+              "event": "interactive-forms",
+              "action": "submitted",
+              "path": window.location.pathname
+            });
         });
       }
 
@@ -236,13 +232,11 @@
           if (button.classList.contains("pagination__link--previous")) {
             index = index - 1;
             setState(index);
-            ga(
-              "send",
-              "event",
-              "interactive-forms",
-              "goto:" + index,
-              window.location.pathname
-            );
+            dataLayer.push({
+                "event": "interactive-forms",
+                "action": "goto:" + index,
+                "path": window.location.pathname
+            });
           } else {
             var valid = true;
 
@@ -255,13 +249,11 @@
             if (valid) {
               index = index + 1;
               setState(index);
-              ga(
-                "send",
-                "event",
-                "interactive-forms",
-                "goto:" + index,
-                window.location.pathname
-              );
+              dataLayer.push({
+                "event": "interactive-forms",
+                "action": "goto:" + index,
+                "path": window.location.pathname
+              });
             }
           }
         });
@@ -337,13 +329,11 @@
         formContainer.classList.add("u-hide");
         formContainer.removeChild(contactModal);
         updateHash("");
-        ga(
-          "send",
-          "event",
-          "interactive-forms",
-          "close",
-          window.location.pathname
-        );
+        dataLayer.push({
+          "event": "interactive-forms",
+          "action": "close",
+          "path": window.location.pathname
+        });
       }
 
       // Update the content of the modal based on the current index
