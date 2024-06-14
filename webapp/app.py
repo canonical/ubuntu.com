@@ -68,6 +68,7 @@ from webapp.shop.cred.views import (
     cred_assessments,
     cred_beta_activation,
     cred_cancel_exam,
+    cred_dashboard,
     cred_exam,
     cred_home,
     cred_redeem_code,
@@ -933,6 +934,9 @@ app.add_url_rule(
     "/credentials/assessment_passed",
     view_func=issue_badges,
     methods=["POST"],
+)
+app.add_url_rule(
+    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
 )
 
 app.add_url_rule(
