@@ -2,38 +2,37 @@
   <div class="p-modal__dialog is-wide-modal"
        role="dialog"
        aria-labelledby="modal-title"
-       aria-describedby="modal-description">
-    <header class="p-modal__header"
-            style="display: block;
-                   border-bottom: 0;
-                   overflow: auto">
-      <button class="p-modal__close"
-              aria-label="Close active modal"
-              style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title p-text--small-caps" id="modal-title">Talk to our Landscape team</h2>
-    </header>
+       aria-describedby="modal-description"
+       style="padding-top: 1rem">
+    <button class="p-modal__close"
+            aria-label="Close active modal"
+            style="margin-right: 1rem">Close</button>
+      <h3 id="modal-title">Talk to our Landscape team</h3>
 
     <form action="/marketo/submit"
           method="post"
           id="mktoForm_{{ formid }}"
           onsubmit="getCustomFields(event)">
-      <p>
+          <hr class="is-muted" />
+      <p style="max-width: 100% !important;">
         If you want to learn more about Landscape or our professional services options, meet with us and discuss your needs with one of our advisors.
       </p>
       <hr class="is-muted" />
-      <div class="row--50-50">
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
           <legend class="u-off-screen">Tell us about your project and team</legend>
-          <h2>Tell us about your project</h2>
+          <h4>Tell us about your project</h4>
         </div>
         <div class="col">
           <textarea id="about-your-project" rows="3"></textarea>
         </div>
       </div>
-      <div class="row--50-50" id="ubuntu-versions">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="ubuntu-versions">
         <div class="col">
           <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
-          <h2>If you use Ubuntu, which version(s) are you using?</h2>
+          <h4>If you use Ubuntu, which version(s) are you using?</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -116,10 +115,12 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50" id="kind-of-device">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="kind-of-device">
         <div class="col">
-          <legend class="u-off-screen">*What kind of device are you using?</legend>
-          <h2>*What kind of device are you using?</h2>
+          <legend class="u-off-screen">What kind of device are you using?*</legend>
+          <h4>What kind of device are you using?*</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -169,10 +170,12 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50" id="how-many-machines">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="how-many-machines">
         <div class="col">
-          <legend class="u-off-screen">*How many devices?</legend>
-          <h2>*How many devices?</h2>
+          <legend class="u-off-screen">How many devices?*</legend>
+          <h4>How many devices?*</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -227,10 +230,12 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50" id="how-do-you-consume-open-source">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="how-do-you-consume-open-source">
         <div class="col">
           <legend class="u-off-screen">How do you consume open source?</legend>
-          <h2>How do you consume open source?</h2>
+          <h4>How do you consume open source?</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -246,8 +251,8 @@
                 <input type="checkbox"
                        aria-labelledby="github-upstream"
                        class="p-checkbox__input /"
-                       value="GitHub/Upstream" />
-                <span class="p-checkbox__label" id="github-upstream">GitHub/Upstream</span>
+                       value="Github/Upstream" />
+                <span class="p-checkbox__label" id="github-upstream">Github/Upstream</span>
               </label>
             </div>
             <div class="col-4 u-sv3">
@@ -269,10 +274,12 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50" id="hardening-requirements">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="hardening-requirements">
         <div class="col">
           <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
-          <h2>Do you have specific compliance or hardening requirements?</h2>
+          <h4>Do you have specific compliance or hardening requirements?</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -339,12 +346,14 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50" id="responsible-for-tracking">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
+           id="responsible-for-tracking">
         <div class="col">
           <legend class="u-off-screen">
             Who is responsible for tracking, testing and applying CVE patches in a timely manner?
           </legend>
-          <h2>Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h2>
+          <h4>Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h4>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -383,10 +392,11 @@
           </div>
         </div>
       </div>
-      <div class="row--50-50">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
           <legend class="u-off-screen">What advice are you looking for?</legend>
-          <h2>What advice are you looking for?</h2>
+          <h4>What advice are you looking for?</h4>
         </div>
         <div class="col">
           <textarea id="advice"
@@ -395,9 +405,10 @@
                     rows="3"></textarea>
         </div>
       </div>
-      <div class="row--50-50">
+      <hr class="is-muted" />
+      <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
-          <h2>About you</h2>
+          <h4>About you</h4>
         </div>
         <div class="col">
           <ul class="p-list">
