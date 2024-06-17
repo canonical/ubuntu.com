@@ -1,0 +1,61 @@
+<section class="p-section--hero js-takeover">
+  <div class="row--50-50 p-section">
+    <div class="col">
+      <h1 class="u-no-margin--bottom">
+        {{ title_1 }}
+        <br />
+        {{ title_2 }}
+      </h1>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow u-no-padding--top">
+        <h2>{{ subtitle }}</h2>
+      </div>
+      <hr class="is-muted" />
+      {% if button_url %}<a href="{{ button_url }}" class="p-button--positive">{{ button_text }}</a>{% endif %}
+    </div>
+  </div>
+  <div class="u-align--center">
+    <img class=""
+         src="{{ img_url }}"
+         alt=""
+         width="{{ img_width }}"
+         height="{{ img_height }}" />
+  </div>
+</section>
+<!-- 
+        </div>
+      </div>
+      {% if header_image %}
+        <div class="col-3 {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
+          {% if 'http' not in header_image %}
+            {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
+          {% else %}
+            {% set image_url = header_image %}
+          {% endif %}
+          {#
+            To make it look as close as possible to homepage takeover we can't use image-template
+            the homepage takeover uses JS to populate the HTML attributes
+          #}
+          <img src="{{ header_image }}" alt="" width="{{ image_width }}" height="{{ image_height }}" />
+        </div>
+      {% endif %}
+      <div class="u-hide--medium u-hide--large">
+        {% if button_url %}
+          <p>
+            <a href="{{ button_url }}" class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %}">
+              {% if 'http' in button_url %}<span>{% endif %}
+                {{ primary_cta }}
+                {% if 'http' in button_url %}</span>{% endif %}
+            </a>
+          </p>
+        {% endif %}
+        {% if secondary_url %}
+          <p>
+            <a href="{{ secondary_url }}" class="p-link--inverted">{{ secondary_cta }}&nbsp;&rsaquo;</a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+   -->
