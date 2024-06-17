@@ -104,6 +104,7 @@ class AccountSchema(BaseSchema):
     name = String(required=True)
     type = String(required=True)
     userRoleOnAccount = String(required=True, attribute="role")
+    hasChannelStoreAccess = Boolean(required=True)
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Account:

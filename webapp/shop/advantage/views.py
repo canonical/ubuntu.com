@@ -70,16 +70,13 @@ def pro_page_view(advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
-    is_technical = False
+    is_technical = True
     try:
-        channel_account = advantage_mapper.get_purchase_account(
-            "canonical-pro-channel"
-        )
-        if channel_account:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
             return flask.render_template(
                 "account/forbidden.html", reason="channel_account"
             )
-        advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
@@ -203,14 +200,11 @@ def advantage_shop_view(advantage_mapper, **kwargs):
     account = None
     if user_info(flask.session):
         try:
-            channel_account = advantage_mapper.get_purchase_account(
-                "canonical-pro-channel"
-            )
-            if channel_account:
+            account = advantage_mapper.get_purchase_account("canonical-ua")
+            if (account.hasChannelStoreAccess) is True:
                 return flask.render_template(
                     "account/forbidden.html", reason="channel_account"
                 )
-            account = advantage_mapper.get_purchase_account("canonical-ua")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -575,9 +569,14 @@ def accept_renewal(ua_contracts_api, **kwargs):
 @shop_decorator(area="advantage", permission="user", response="json")
 def get_channel_offers(advantage_mapper, **kwargs):
     try:
-        account = advantage_mapper.get_purchase_account(
-            "canonical-pro-channel"
-        )
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is False:
+            return (
+                flask.jsonify(
+                    {"error": "User has no permission to channel store"}
+                ),
+                403,
+            )
     except UAContractsUserHasNoAccount:
         return flask.jsonify({"error": "User has no purchase account"}), 400
     except AccessForbiddenError:
@@ -594,10 +593,14 @@ def get_channel_offers(advantage_mapper, **kwargs):
 @shop_decorator(area="advantage", permission="user", response="html")
 def get_distributor_view(advantage_mapper, **kwargs):
     try:
-        advantage_mapper.get_purchase_account("canonical-pro-channel")
-        listings = advantage_mapper.get_product_listings(
-            "canonical-pro-channel"
-        )
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            listings = advantage_mapper.get_product_listings(
+                "canonical-pro-channel"
+            )
+        else:
+            return flask.render_template("account/forbidden.html")
+
     except UAContractsUserHasNoAccount:
         return flask.render_template("account/forbidden.html")
 
@@ -610,14 +613,14 @@ def get_distributor_view(advantage_mapper, **kwargs):
 @shop_decorator(area="advantage", permission="user", response="json")
 def get_account_offers(advantage_mapper, **kwargs):
     try:
-        channel_account = advantage_mapper.get_purchase_account(
-            "canonical-pro-channel"
-        )
-        if channel_account:
-            return flask.render_template(
-                "account/forbidden.html", reason="channel_account"
-            )
         account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            return (
+                flask.jsonify(
+                    {"error": "User has no permission to pro store"}
+                ),
+                403,
+            )
     except UAContractsUserHasNoAccount:
         return flask.jsonify({"error": "User has no purchase account"}), 400
     except AccessForbiddenError:
@@ -640,7 +643,12 @@ def get_account_offers(advantage_mapper, **kwargs):
     permission="user",
     response="html",
 )
-def get_advantage_offers(**kwargs):
+def get_advantage_offers(advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    if (account.hasChannelStoreAccess) is True:
+        return flask.render_template(
+            "account/forbidden.html", reason="channel_account"
+        )
     return flask.render_template("advantage/offers/index.html")
 
 
