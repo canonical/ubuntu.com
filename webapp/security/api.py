@@ -90,8 +90,8 @@ class SecurityAPI:
         """
         Makes request for all releases with ongoing support,
         returns json object if found
-        
-        The api returns notices ordered by ascending order of 
+
+        The api returns notices ordered by ascending order of
         their published date, so the most recent notices are
         at the end of the list
         """
@@ -120,21 +120,21 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return notices_response.json()
-    
+
     def get_total_notices(self, show_hidden: bool = False):
         """
         Makes request for total number of notices which aren't hidden,
         returns json object if found
         """
 
-        parameters = {
-            "show_hidden": show_hidden
-        }
+        parameters = {"show_hidden": show_hidden}
 
         filtered_parameters = urlencode(parameters)
 
         try:
-            notices_response = self._get(f"notices/total.json?{filtered_parameters}")
+            notices_response = self._get(
+                f"notices/total.json?{filtered_parameters}"
+            )
         except HTTPError as error:
             raise SecurityAPIError(error)
 
