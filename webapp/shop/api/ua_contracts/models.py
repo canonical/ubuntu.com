@@ -153,6 +153,7 @@ class Offer:
         items: List[OfferItem],
         discount: int = None,
         can_change_items: Optional[bool] = False,
+        purchase: Optional[bool] = False,
         external_ids: Optional[List[ExternalID]] = None,
         activation_account_id: Optional[str] = None,
         distributor_account_name: Optional[str] = None,
@@ -175,6 +176,7 @@ class Offer:
         # Properties below apply only to channel offers.
         if self.is_channel_offer:
             self.can_change_items = can_change_items
+            self.purchase = purchase
             self.external_ids = external_ids
             self.activation_account_id = activation_account_id
             self.distributor_account_name = distributor_account_name

@@ -20,16 +20,12 @@ const DealRegistration = () => {
         <hr />
         <Row>
           <Col size={3}>
-            <h5>Company</h5>
-            <div>Company Name</div>
-            <div>Street</div>
-            <div>City</div>
-            <div>Country</div>
+            <h5>Reseller Company</h5>
+            <div>{distributor_account_name}</div>
           </Col>
           <Col size={3}>
-            <h5>Contact</h5>
+            <h5>Technical user company</h5>
             <div>{distributor_account_name}</div>
-            <div>Contact email</div>
           </Col>
         </Row>
       </Card>

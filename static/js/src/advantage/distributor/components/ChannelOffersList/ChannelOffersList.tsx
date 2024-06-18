@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Sentry from "@sentry/react";
 import {
   Offer as OfferType,
   ExternalId as ExternalIdType,
 } from "../../../offers/types";
-import { MainTable } from "@canonical/react-components";
+import { MainTable, Select, Row, Col } from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
 import InitiateButton from "../InitiateButton/InitiateButton";
 
 const ChannelOffersList = () => {
+  const [selectValue, setSelectValue] = useState("default");
   const {
     isLoading,
     isError,
@@ -38,8 +39,33 @@ const ChannelOffersList = () => {
     return <p>You have no offers available.</p>;
   }
 
+  const filteredOfferList =
+    selectValue === "default"
+      ? offersList?.filter((offer: OfferType) => offer.purchase === false)
+      : offersList;
+
   return (
     <>
+      <Row style={{ display: "flex", justifyContent: "end" }}>
+        <Col size={3}>
+          <Select
+            defaultValue="default"
+            id="offerSelect"
+            name="offerSelect"
+            options={[
+              {
+                label: "Default",
+                value: "default",
+              },
+              {
+                label: "Show used offer",
+                value: "all",
+              },
+            ]}
+            onChange={(e) => setSelectValue(e.target.value)}
+          />
+        </Col>
+      </Row>
       <MainTable
         className="u-no-margin--bottom"
         headers={[
@@ -63,7 +89,7 @@ const ChannelOffersList = () => {
             className: "u-align--right",
           },
         ]}
-        rows={offersList?.map((offer: OfferType) => {
+        rows={filteredOfferList?.map((offer: OfferType) => {
           const deal_registration_id = offer?.external_ids?.filter(
             (external_id: ExternalIdType) => (external_id.origin = "Zift")
           )[0]["ids"];

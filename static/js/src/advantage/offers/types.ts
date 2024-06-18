@@ -22,6 +22,7 @@ export type Offer = {
   total: number;
   discount: number | null;
   can_change_items?: boolean;
+  purchase?: boolean;
   external_ids?: ExternalId[] | null;
   activation_account_id?: string | null;
   distributor_account_name?: string | null;

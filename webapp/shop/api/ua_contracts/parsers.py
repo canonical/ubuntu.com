@@ -330,6 +330,7 @@ def parse_offer(raw_offer: Offer) -> Offer:
         and raw_offer["externalIDs"] is not None
         else None
     )
+    purchase = "purchase" in raw_offer
 
     return Offer(
         id=raw_offer["id"],
@@ -337,6 +338,7 @@ def parse_offer(raw_offer: Offer) -> Offer:
         marketplace=raw_offer["marketplace"],
         created_at=raw_offer["createdAt"],
         actionable=raw_offer["actionable"],
+        purchase=purchase,
         total=sum(item.price for item in items),
         items=items,
         discount=raw_offer.get("discount"),
