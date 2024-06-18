@@ -20,8 +20,7 @@
       <hr class="is-muted" />
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
-          <legend class="u-off-screen">Tell us about your project and team</legend>
-          <h4>Tell us about your project</h4>
+          <label class="p-heading--4">Tell us about your project</label>
         </div>
         <div class="col">
           <textarea id="about-your-project" rows="3"></textarea>
@@ -31,8 +30,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="ubuntu-versions">
         <div class="col">
-          <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
-          <h4>If you use Ubuntu, which version(s) are you using?</h4>
+          <label class="p-heading--4">If you use Ubuntu, which version(s) are you using?</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -126,8 +124,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="kind-of-device">
         <div class="col">
-          <legend class="u-off-screen">What kind of device are you using?*</legend>
-          <h4>What kind of device are you using?*</h4>
+          <label class="p-heading--4">What kind of device are you using?*</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -181,8 +178,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="how-many-machines">
         <div class="col">
-          <legend class="u-off-screen">How many devices?*</legend>
-          <h4>How many devices?*</h4>
+          <label class="p-heading--4">How many devices?*</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -241,8 +237,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="how-do-you-consume-open-source">
         <div class="col">
-          <legend class="u-off-screen">How do you consume open source?</legend>
-          <h4>How do you consume open source?</h4>
+          <label class="p-heading--4">How do you consume open source?</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -283,8 +278,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="hardening-requirements">
         <div class="col">
-          <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
-          <h4>Do you have specific compliance or hardening requirements?</h4>
+          <label class="p-heading--4">Do you have specific compliance or hardening requirements?</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -353,10 +347,7 @@
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right"
            id="responsible-for-tracking">
         <div class="col">
-          <legend class="u-off-screen">
-            Who is responsible for tracking, testing and applying CVE patches in a timely manner?
-          </legend>
-          <h4>Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h4>
+          <label class="p-heading--4">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</label>
         </div>
         <div class="col">
           <div class="row u-no-padding">
@@ -396,8 +387,7 @@
       <hr class="is-muted" />
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
-          <legend class="u-off-screen">What advice are you looking for?</legend>
-          <h4>What advice are you looking for?</h4>
+          <label class="p-heading--4">What advice are you looking for?</label>
         </div>
         <div class="col">
           <textarea id="advice"
@@ -409,20 +399,20 @@
       <hr class="is-muted" />
       <div class="row--50-50 p-section--shallow u-no-padding--left u-no-padding--right">
         <div class="col">
-          <h4>About you</h4>
+          <label class="p-heading--4">About you</label>
         </div>
         <div class="col">
           <ul class="p-list">
             <li class="p-list__item">
-              <label for="firstName">First name:</label>
+              <label class="is-required" for="firstName">First name:</label>
               <input required id="firstName" name="firstName" maxlength="255" type="text" />
             </li>
             <li class="p-list__item">
-              <label for="lastName">Last name:</label>
+              <label class="is-required" for="lastName">Last name:</label>
               <input required id="lastName" name="lastName" maxlength="255" type="text" />
             </li>
             <li class="p-list__item">
-              <label for="email">Email address:</label>
+              <label class="is-required" for="email">Email address:</label>
               <input required
                      id="email"
                      name="email"
@@ -578,4 +568,4 @@
 </div>
 </div>
 
-<script src="/static/js/src/contact-forms.js"></script>
+<script src="{{ versioned_static('js/dist/contact-forms.js') }}"></script>
