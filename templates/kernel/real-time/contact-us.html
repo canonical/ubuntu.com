@@ -26,15 +26,12 @@
               id="mktoForm_4914"
               onsubmit="getCustomFields(event)">
           <fieldset class="u-no-margin--bottom">
-            <legend class="u-off-screen">Tell us about your project and team</legend>
-            <h2 class="p-heading--3">Tell us about your project</h2>
+            <label class="p-heading--3">Tell us about your project</label>
             <textarea id="about-your-project" rows="3"></textarea>
             <div id="about-company">
-              <legend class="u-off-screen">In which industry do you operate?</legend>
-              <h2 class="p-heading--3">In which industry do you operate?</h2>
               <div class="row u-no-padding">
                 <div class="col-4 u-sv3">
-                  <h4 class="p-heading--5">In which industry do you operate?</h4>
+                  <h2 class="p-heading--3">In which industry do you operate?</h2>
                   <label class="p-radio">
                     <input class="p-radio__input"
                            type="radio"
@@ -174,8 +171,7 @@
             </div>
             </fieldset>
             <fieldset class="u-no-margin--bottom" id="ubuntu-versions">
-              <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
-              <h2 class="p-heading--3">If you use Ubuntu, which version(s) are you using?</h2>
+              <label class="p-heading--3">If you use Ubuntu, which version(s) are you using?</label>
               <div class="row u-no-padding">
                 <div class="col-4 u-sv3">
                   <strong>LTS within standard support</strong>
@@ -263,8 +259,7 @@
               </div>
             </fieldset>
             <fieldset class="u-no-margin--bottom" id="kind-of-device" aria-required="true">
-              <legend class="u-off-screen">*What kind of device are you using?</legend>
-              <h2 class="p-heading--3">*What kind of device are you using?</h2>
+              <label class="p-heading--3">*What kind of device are you using?</label>
               <div class="row u-no-padding">
                 <div class="col-4 u-sv3">
                   <label class="p-checkbox">
@@ -312,8 +307,7 @@
               </div>
             </fieldset>
             <fieldset class="u-no-margin--bottom" id="how-many-machines">
-              <legend class="u-off-screen">*How many devices?</legend>
-              <h2 class="p-heading--3">*How many devices?</h2>
+              <label class="p-heading--3">*How many devices?</label>
               <div class="row u-no-padding">
                 <div class="col-4 u-sv3">
                   <label class="p-radio">
@@ -362,8 +356,7 @@
             </div>
           </fieldset>
           <fieldset class="u-no-margin--bottom" id="how-do-you-consume-open-source">
-            <legend class="u-off-screen">How do you consume open source?</legend>
-            <h2 class="p-heading--3">How do you consume open source?</h2>
+            <label class="p-heading--3">How do you consume open source?</label>
             <div class="row u-no-padding">
               <div class="col-4 u-sv3 u-no-padding--bottom">
                 <label class="p-checkbox">
@@ -398,8 +391,7 @@
             </div>
           </fieldset>
           <fieldset class="u-no-margin--bottom" id="hardening-requirements">
-            <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
-            <h2 class="p-heading--3">Do you have specific compliance or hardening requirements?</h2>
+            <label class="p-heading--3">Do you have specific compliance or hardening requirements?</label>
             <div class="row u-no-padding">
               <div class="col-4 u-sv3">
                 <label class="p-checkbox">
@@ -462,10 +454,7 @@
             </div>
           </fieldset>
           <fieldset class="u-no-margin--bottom" id="responsible-for-tracking">
-            <legend class="u-off-screen">
-              Who is responsible for tracking, testing and applying CVE patches in a timely manner?
-            </legend>
-            <h2 class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h2>
+            <label class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</label>
             <div class="row u-no-padding">
               <div class="col-4 u-sv3">
                 <label class="p-checkbox">
@@ -500,35 +489,33 @@
             </div>
           </fieldset>
           <fieldset class="u-no-margin--bottom">
-            <legend class="u-off-screen">What advice are you looking for?</legend>
-            <h2 class="p-heading--3">What advice are you looking for?</h2>
+            <label class="p-heading--3">What advice are you looking for?</label>
             <textarea id="advice"
                       aria-label="Tell us about your challenge and your goals"
                       placeholder="Tell us about your challenge and your goals"
                       rows="3"></textarea>
           </fieldset>
           <fieldset class="u-no-margin--bottom">
-            <legend class="u-off-screen">How should we get in touch?</legend>
-            <h2 class="p-heading--3">How should we get in touch?</h2>
+            <label class="p-heading--3">How should we get in touch?</label>
             <ul class="p-list">
               <li class="p-list__item">
-                <label for="firstName">First name:</label>
+                <label class="is-required" for="firstName">First name:</label>
                 <input required id="firstName" name="firstName" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
-                <label for="lastName">Last name:</label>
+                <label class="is-required" for="lastName">Last name:</label>
                 <input required id="lastName" name="lastName" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
                 <label for="company">Company:</label>
-                <input required id="company" name="company" maxlength="255" type="text" />
+                <input id="company" name="company" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
                 <label for="title">Job title:</label>
-                <input required id="title" name="title" maxlength="255" type="text" />
+                <input id="title" name="title" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
-                <label for="email">Email address:</label>
+                <label class="is-required" for="email">Email address:</label>
                 <input required
                        id="email"
                        name="email"
@@ -538,7 +525,7 @@
               </li>
               <li class="p-list__item">
                 <label for="phone">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" />
+                <input id="phone" name="phone" maxlength="255" type="tel" />
               </li>
             </ul>
             <ul class="p-list">
@@ -660,6 +647,5 @@
     </div>
   </section>
 
+  <script src="{{ versioned_static('js/dist/contact-forms.js') }}"></script>
 {% endblock %}
-
-<script src="/static/js/src/contact-forms.js"></script>
