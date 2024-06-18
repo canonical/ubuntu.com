@@ -43,7 +43,30 @@ const ChannelOffersList = () => {
     selectValue === "default"
       ? offersList?.filter((offer: OfferType) => offer.purchase === false)
       : offersList;
+  const paraseDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
 
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const formattedDate = `${day} ${monthNames[monthIndex]} ${year}`;
+    return formattedDate;
+  };
   return (
     <>
       <Row style={{ display: "flex", justifyContent: "end" }}>
@@ -85,6 +108,9 @@ const ChannelOffersList = () => {
             content: "Created",
           },
           {
+            content: "Status",
+          },
+          {
             content: "Actions",
             className: "u-align--right",
           },
@@ -93,22 +119,26 @@ const ChannelOffersList = () => {
           const deal_registration_id = offer?.external_ids?.filter(
             (external_id: ExternalIdType) => (external_id.origin = "Zift")
           )[0]["ids"];
+          const status = offer?.actionable ? "Valid" : "Invalid";
           return {
             columns: [
               {
                 content: deal_registration_id,
               },
               {
-                content: offer.reseller_account_name,
-              },
-              {
-                content: offer.technical_contact,
-              },
-              {
                 content: offer.end_user_account_name,
               },
               {
+                content: offer.technical_contact_name,
+              },
+              {
                 content: offer.distributor_account_name,
+              },
+              {
+                content: paraseDate(offer.created_at),
+              },
+              {
+                content: status,
               },
               {
                 content: <InitiateButton offer={offer} />,

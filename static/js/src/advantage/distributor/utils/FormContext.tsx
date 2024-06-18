@@ -163,8 +163,8 @@ export const FormProvider = ({
   useEffect(() => {
     if (!localTechnicalUserContact) {
       setTechnicalUserContact({
-        name: offer?.technical_contact,
-        email: offer?.technical_contact,
+        name: offer?.technical_contact_name,
+        email: offer?.technical_contact_email,
       } as TechincalUserContact);
     }
   }, [offer]);
