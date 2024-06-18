@@ -348,7 +348,8 @@ def parse_offer(raw_offer: Offer) -> Offer:
         distributor_account_name=raw_offer.get("distributorAccountName"),
         reseller_account_name=raw_offer.get("resellerAccountName"),
         end_user_account_name=raw_offer.get("endUserAccountName"),
-        technical_contact=raw_offer.get("technicalContact"),
+        technical_contact_email=raw_offer.get("technicalContactEmail"),
+        technical_contact_name=raw_offer.get("technicalContactName"),
     )
 
 

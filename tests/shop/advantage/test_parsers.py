@@ -681,7 +681,8 @@ class TestParsers(unittest.TestCase):
             distributor_account_name="Distributor, Ltd.",
             reseller_account_name="Resellers, Inc.",
             end_user_account_name="End Users, Ltd.",
-            technical_contact="contact@example.com",
+            technical_contact_email="contact@example.com",
+            technical_contact_name="Technical Contact User Test",
             items=[
                 OfferItem(
                     id="product-id-AaBbCcDdEeFfGg",
@@ -719,7 +720,8 @@ class TestParsers(unittest.TestCase):
                 distributor_account_name="Distributor, Ltd.",
                 reseller_account_name="Resellers, Inc.",
                 end_user_account_name="End Users, Ltd.",
-                technical_contact="contact@example.com",
+                technical_contact_email="contact@example.com",
+                technical_contact_name="Technical Contact User Test",
                 items=[
                     OfferItem(
                         id="product-id-AaBbCcDdEeFfGg",

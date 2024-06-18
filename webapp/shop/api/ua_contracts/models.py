@@ -159,7 +159,8 @@ class Offer:
         distributor_account_name: Optional[str] = None,
         reseller_account_name: Optional[str] = None,
         end_user_account_name: Optional[str] = None,
-        technical_contact: Optional[str] = None,
+        technical_contact_email: Optional[str] = None,
+        technical_contact_name: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -182,7 +183,8 @@ class Offer:
             self.distributor_account_name = distributor_account_name
             self.reseller_account_name = reseller_account_name
             self.end_user_account_name = end_user_account_name
-            self.technical_contact = technical_contact
+            self.technical_contact_email = technical_contact_email
+            self.technical_contact_name = technical_contact_name
 
     def check_is_channel_offer(self) -> bool:
         return self.is_channel_offer

@@ -28,5 +28,6 @@ export type Offer = {
   distributor_account_name?: string | null;
   reseller_account_name?: string | null;
   end_user_account_name?: string | null;
-  technical_contact?: string | null;
+  technical_contact_email?: string | null;
+  technical_contact_name?: string | null;
 };
