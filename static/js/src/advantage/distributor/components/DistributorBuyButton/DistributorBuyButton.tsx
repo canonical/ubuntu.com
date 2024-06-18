@@ -65,7 +65,7 @@ const DistributorBuyButton = () => {
           location.href = "/account/checkout";
         }}
       >
-        Checkout
+        Proceed to checkout
       </Button>
     </>
   );
