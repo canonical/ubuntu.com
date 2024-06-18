@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
-import PaymentButton from "../PaymentButton";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {
   ChannelProduct,
@@ -8,6 +7,7 @@ import {
   currencyFormatter,
   getProductId,
 } from "advantage/distributor/utils/utils";
+import DistributorBuyButton from "../../DistributorBuyButton/DistributorBuyButton";
 
 const DistributorShopSummary = () => {
   const { products, currency, subscriptionList, offer } = useContext(
@@ -89,7 +89,7 @@ const DistributorShopSummary = () => {
             emptyLarge={9}
             style={{ display: "flex", alignItems: "center" }}
           >
-            <PaymentButton />
+            <DistributorBuyButton />
           </Col>
         </Row>
       </section>
