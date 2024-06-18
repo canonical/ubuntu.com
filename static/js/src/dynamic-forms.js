@@ -84,9 +84,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     function open() {
       updateHash(triggeringHash);
       dataLayer.push({
-        "event": "interactive-forms",
-        "action": "open",
-        "path": window.location.pathname
+        event: "interactive-forms",
+        action: "open",
+        path: window.location.pathname,
       });
     }
 
@@ -242,9 +242,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             index = index - 1;
             setState(index);
             dataLayer.push({
-              "event": "interactive-forms",
-              "action": "goto:" + index,
-              "path": window.location.pathname
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
             });
           } else {
             var valid = true;
@@ -259,9 +259,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               index = index + 1;
               setState(index);
               dataLayer.push({
-                "event": "interactive-forms",
-                "action": "goto:" + index,
-                "path": window.location.pathname
+                event: "interactive-forms",
+                action: "goto:" + index,
+                path: window.location.pathname,
               });
             }
           }
@@ -341,9 +341,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
-          "event": "interactive-forms",
-          "action": "close",
-          "path": window.location.pathname
+          event: "interactive-forms",
+          action: "close",
+          path: window.location.pathname,
         });
       }
 

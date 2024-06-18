@@ -79,9 +79,9 @@
     function open() {
       updateHash(triggeringHash);
       dataLayer.push({
-        "event": "interactive-forms",
-        "action": "open",
-        "path": window.location.pathname
+        event: "interactive-forms",
+        action: "open",
+        path: window.location.pathname,
       });
     }
 
@@ -194,10 +194,10 @@
       if (submitButton) {
         submitButton.addEventListener("click", function () {
           dataLayer.push({
-              "event": "interactive-forms",
-              "action": "submitted",
-              "path": window.location.pathname
-            });
+            event: "interactive-forms",
+            action: "submitted",
+            path: window.location.pathname,
+          });
         });
       }
 
@@ -233,9 +233,9 @@
             index = index - 1;
             setState(index);
             dataLayer.push({
-                "event": "interactive-forms",
-                "action": "goto:" + index,
-                "path": window.location.pathname
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
             });
           } else {
             var valid = true;
@@ -250,9 +250,9 @@
               index = index + 1;
               setState(index);
               dataLayer.push({
-                "event": "interactive-forms",
-                "action": "goto:" + index,
-                "path": window.location.pathname
+                event: "interactive-forms",
+                action: "goto:" + index,
+                path: window.location.pathname,
               });
             }
           }
@@ -330,9 +330,9 @@
         formContainer.removeChild(contactModal);
         updateHash("");
         dataLayer.push({
-          "event": "interactive-forms",
-          "action": "close",
-          "path": window.location.pathname
+          event: "interactive-forms",
+          action: "close",
+          path: window.location.pathname,
         });
       }
 
