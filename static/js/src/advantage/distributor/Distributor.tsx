@@ -11,7 +11,7 @@ const Distributor = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginBottom: "1rem",
+              marginBottom: "1.5rem",
             }}
           >
             <h2>Available deal registrations</h2>
