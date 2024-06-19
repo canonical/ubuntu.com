@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { format } from "date-fns";
 import { Col, Row, Spinner } from "@canonical/react-components";
 import { CheckoutProducts, TaxInfo } from "../../utils/types";
@@ -171,47 +171,37 @@ function DistributorSummary({
         <Col size={4}>
           <p>Products:</p>
         </Col>
-        {products.map((product) => {
-          const validProduct = product.product?.id;
-          const productName = validProduct.includes("-virtual-")
-            ? "Ubuntu Pro virtual"
-            : validProduct.includes("-desktop-")
-            ? "Ubuntu Pro Desktop"
-            : "Ubuntu Pro";
-          const quantity = product.quantity;
-          const price = product.product?.price?.value;
-          const support = validProduct.includes("advanced")
-            ? "24/7 Support, "
-            : validProduct.includes("standard")
-            ? "Weekday Support, "
-            : "";
-          const infra = validProduct.includes("uio") ? "Infra, " : "";
+        <Col size={6}>
+          {products.map((product) => {
+            const validProduct = product.product?.id;
+            const productName = validProduct.includes("-virtual-")
+              ? "Ubuntu Pro virtual"
+              : validProduct.includes("-desktop-")
+              ? "Ubuntu Pro Desktop"
+              : "Ubuntu Pro";
+            const quantity = product.quantity;
+            const support = validProduct.includes("advanced")
+              ? "24/7 Support, "
+              : validProduct.includes("standard")
+              ? "Weekday Support, "
+              : "";
+            const infra = validProduct.includes("uio") ? "Infra, " : "";
 
-          return (
-            <Col size={6} key={product.product.longId}>
-              <p
-                style={{ fontWeight: "bold" }}
-                data-testid="name"
-                className="u-no-margin--bottom"
-              >
-                {productName}
-              </p>
-              <p className="u-no-margin--bottom">
-                {infra}
-                {support}
-                {quantity} {quantity === 1 ? "machine" : "machines"}, {duration}{" "}
-                {duration === 1 ? "year" : "years"}
-              </p>
-              <p>
-                {currency
-                  ? currencyFormatter(currency).format(
-                      (Number(price * quantity) ?? 0) / 100
-                    )
-                  : 0}
-              </p>
-            </Col>
-          );
-        })}
+            return (
+              <Fragment key={product.product.longId}>
+                <p data-testid="name" className="u-no-margin--bottom">
+                  {quantity} x {productName}
+                </p>
+                <p className="u-text--muted">
+                  {infra}
+                  {support}
+                  {duration}
+                  {duration === 1 ? " year" : " years"}
+                </p>
+              </Fragment>
+            );
+          })}
+        </Col>
       </Row>
       <hr />
       <Row>
@@ -241,6 +231,32 @@ function DistributorSummary({
             </p>
           </Col>
         )}
+      </Row>
+      <hr />
+      <Row>
+        <Col size={4}>
+          <p>Price:</p>
+        </Col>
+        <Col size={6}>
+          {products.map((product) => {
+            console.log("product22", product);
+            const quantity = product.quantity;
+            const price = product.product?.price?.value;
+            return (
+              <p key={product.product.longId}>
+                <strong>
+                  {quantity} x{" "}
+                  {currency
+                    ? currencyFormatter(currency).format(
+                        (Number(price) ?? 0) / 100 / duration
+                      )
+                    : 0}{" "}
+                  x {duration} {duration === 1 ? "year" : "years"}
+                </strong>
+              </p>
+            );
+          })}
+        </Col>
       </Row>
       <hr />
       {displayTotal}
