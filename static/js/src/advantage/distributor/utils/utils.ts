@@ -13,11 +13,6 @@ export type SubscriptionItem = {
   quantity: number;
 };
 
-export type TechnicalContact = {
-  name: string;
-  email: string;
-};
-
 export type ValidProducts =
   | "uaia-essential-physical-channel-one-year-usd"
   | "uaia-essential-physical-channel-one-year-gbp"

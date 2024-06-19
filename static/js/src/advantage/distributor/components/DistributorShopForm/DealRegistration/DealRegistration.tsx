@@ -9,7 +9,9 @@ const DealRegistration = () => {
   const deal_registration_id = offer?.external_ids?.filter(
     (external_id: ExternalIdType) => (external_id.origin = "Zift")
   )[0]["ids"];
-  const distributor_account_name = offer?.distributor_account_name;
+
+  const end_user_account_name = offer?.end_user_account_name;
+  const reseller_account_name = offer?.reseller_account_name;
 
   return (
     <>
@@ -21,11 +23,11 @@ const DealRegistration = () => {
         <Row>
           <Col size={3}>
             <h5>Reseller Company</h5>
-            <div>{distributor_account_name}</div>
+            <div>{reseller_account_name}</div>
           </Col>
           <Col size={3}>
             <h5>Technical user company</h5>
-            <div>{distributor_account_name}</div>
+            <div>{end_user_account_name}</div>
           </Col>
         </Row>
       </Card>

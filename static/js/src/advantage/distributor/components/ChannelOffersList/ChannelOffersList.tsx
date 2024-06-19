@@ -126,10 +126,10 @@ const ChannelOffersList = () => {
                 content: deal_registration_id,
               },
               {
-                content: offer.end_user_account_name,
+                content: offer.reseller_account_name,
               },
               {
-                content: offer.technical_contact_name,
+                content: offer.end_user_account_name,
               },
               {
                 content: offer.distributor_account_name,
