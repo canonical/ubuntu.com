@@ -131,6 +131,7 @@ def notices():
         offset=offset,
         details=details,
         release=release,
+        reduce_cves=True,
     )
 
     # get notices and total results from response object

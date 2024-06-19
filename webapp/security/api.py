@@ -86,6 +86,7 @@ class SecurityAPI:
         offset: int,
         details: str,
         release: str,
+        reduce_cves: bool,
     ):
         """
         Makes request for all releases with ongoing support,
@@ -97,6 +98,7 @@ class SecurityAPI:
             "offset": offset,
             "details": details,
             "release": release,
+            "reduce_cves": reduce_cves,
         }
 
         # Remove falsey items from dictionary
