@@ -25,15 +25,16 @@
 
   {% block content %}
 
-    <!-- Default Takeover: Download the latest Ubuntu -->
-    {% block test_takeover_content %}
+    <!-- Test takeover template -->
+    <!-- {% block test_takeover_content %}
     {% with title_1="A CTO's guide", title_2="to real-time Linux", subtitle='Understanding real-time systems, their use
     cases and inner workings.', button_url="/", button_text="Download now",
     img_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png", img_width="508", img_height="364" %}
     {% include "takeovers/_test_template.html" %}
     {% endwith %}
-    {% endblock test_takeover_content %}
-    <!-- <section data-lang="all" id="takeover" class="p-strip">
+    {% endblock test_takeover_content %} -->
+    <!-- Default Takeover: Download the latest Ubuntu -->
+    <section data-lang="all" id="takeover" class="p-strip">
       <div class="row p-takeover-animation" id="takeover-animaition">
         <div class="col-9">
           <div class="p-section--shallow">
@@ -57,7 +58,7 @@
                alt="" />
         </div>
       </div>
-    </section> -->
+    </section>
 
     <section class="p-section notice">
       <div class="u-fixed-width">
