@@ -41,8 +41,6 @@ function preFormatCountry(countryCode, countryInput) {
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  */
 export function setupIntlTelInput(countryCode, phoneInput) {
-  phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
-
   intlTelInput(phoneInput, {
     utilsScript: "/static/js/dist/utils.js",
     separateDialCode: true,
@@ -50,6 +48,7 @@ export function setupIntlTelInput(countryCode, phoneInput) {
     initialCountry: countryCode,
   });
 
+  phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
   addInputValidation(phoneInput);
 }
 
