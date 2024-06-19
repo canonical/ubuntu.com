@@ -47,7 +47,7 @@ export function setupIntlTelInput(countryCode, phoneInput) {
     hiddenInput: phoneInput.name,
     initialCountry: countryCode,
   });
-  
+
   phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
   addInputValidation(phoneInput);
 }
