@@ -67,17 +67,20 @@ const DistributorShopSummary = () => {
           </Col>
           <Col size={5}>
             <Chip
-              value={`${discount}% discount applied`}
+              value={`${discount ?? 0}% discount applied`}
               appearance="information"
               style={{ marginTop: "0.5rem" }}
             />
           </Col>
           <Col size={3} className="u-align--right">
             <p className="p-heading--2">
-              {discount &&
-                currencyFormatter(currency).format(
-                  (totalPrice - totalPrice * (discount / 100)) / 100
-                )}
+              {discount
+                ? currencyFormatter(currency).format(
+                    (totalPrice - totalPrice * (discount / 100)) / 100
+                  )
+                : currency
+                ? currencyFormatter(currency).format((totalPrice ?? 0) / 100)
+                : 0}
             </p>{" "}
             <p className="p-text--small">
               Any applicable taxes are <br /> calculated at checkout
@@ -85,8 +88,8 @@ const DistributorShopSummary = () => {
           </Col>
           <Col
             className="u-align--right"
-            size={4}
-            emptyLarge={9}
+            size={3}
+            emptyLarge={10}
             style={{ display: "flex", alignItems: "center" }}
           >
             <DistributorBuyButton />

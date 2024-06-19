@@ -52,7 +52,7 @@ const DistributorBuyButton = () => {
   };
 
   return (
-    <>
+    <p>
       <Button
         appearance="positive"
         className="u-no-margin--bottom order-checkout-button"
@@ -67,7 +67,7 @@ const DistributorBuyButton = () => {
       >
         Proceed to checkout
       </Button>
-    </>
+    </p>
   );
 };
 
