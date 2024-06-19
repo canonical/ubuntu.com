@@ -14,12 +14,12 @@
   <div class="row">
     <div class="col-start-large-4 col-9">
       <div class="p-section--shallow">
-        <h1>Build applications at speed with <br aria-hidden="true"/> ultra-secure and supported Ubuntu containers</h1>
+        <h1>Secure, minimal containers<br aria-hidden="true"/> from your trusted distro</h1>
       </div>
-      <p>Experience secure, and long term supported container images built from the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready chiselled containers.</p>
+      <p>Build enterprise-grade applications on the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready containers, or use our open source tooling to create your own.</p>
       <hr />
-      <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our OCI images</a>
-      <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">What are chiselled containers&nbsp;&rsaquo;</a>
+      <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our base image</a>
+      <a href="/containers/contact-us" class="js-invoke-modal">Get a secure, custom-built container&nbsp;&rsaquo;</a>
     </div>
   </div>
   <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
@@ -31,10 +31,10 @@
   <div class="row--50-50">
     <hr class="p-rule"/>
     <div class="col">
-      <h2>Easy for developers, <br aria-hidden="true"/>secured by Ubuntu</h2>
+      <h2>Familiar for developers, <br aria-hidden="true"/>secured by Ubuntu</h2>
     </div>
     <div class="col">
-      <p>Rely on Ubuntu's demonstrated history of security with containers that are:</p>
+      <p>Rely on Ubuntu's demonstrated track record for containers that are:</p>
       <ul class="p-list--divided">
         <li class="p-list__item has-bullet"><strong>Secure.</strong> Timely updates and patches, building on Ubuntu's security track record.</li>
         <li class="p-list__item has-bullet"><strong>Stable.</strong> Long-term support with a consistent, predictable lifecycle and support commitment.</li>
@@ -48,10 +48,10 @@
   <div class="row--50-50">
     <hr class="p-rule"/>
     <div class="col">
-      <h2>Explore our container offerings</h2>
+      <h2>Explore our offering</h2>
     </div>
     <div class="col">
-      <p>Ubuntu containers are designed for modern software deployment. Our solutions, tailored to diverse needs, range from an ecosystem of base OCI images, ultra-optimised chiselled container images to our long-term supported Docker images portfolio.</p>
+      <p>Ubuntu containers are designed for modern software deployments. Our solutions are tailored to diverse needs, from individual developers to large enterprises that need long term supported, secure and compliant containers.</p>
     </div>
   </div>
   <div class="row">
@@ -59,24 +59,17 @@
       <hr class="p-rule"/>
       <div class="row p-section--shallow">
         <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Base images</h3>
+          <h3 class="p-heading--5">Container Build Service</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>Ubuntu base images provide a solid foundation for your applications, offering a stable and secure environment, built from the world’s most popular cloud operating system. Canonical provides commercial support for all Ubuntu-based container images.</p>
+          <p>Have Canonical's expert team custom build secure, minimal and optimised containers for your application. This service is ideal for enterprise that need a trusted partner to create and maintain containers that offer:</p>
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Minimal attack surface, coupled with an optimised and consistent structure</li>
+            <li class="p-list__item is-ticked">12 years of security support</li>
+            <li class="p-list__item is-ticked">Compliance with the most stringent security management, auditing and reporting frameworks</li>
+          </ul>
           <p>
-            <a href="/support">Explore contract support&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule"/>
-      <div class="row p-section--shallow">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Application images</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Canonical's LTS Docker images come with a long-term support and stability commitment. Pre-built and pre-configured application, runtime, and base images supported for up to 10 years with security patches.</p>
-          <p>
-            <a href="https://hub.docker.com/u/ubuntu">Explore our OCI container images&nbsp;&rsaquo;</a>
+            <a href="">Explore the Container Build Service&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -86,9 +79,66 @@
           <h3 class="p-heading--5">Chiselled Ubuntu images</h3>
         </div>
         <div class="col-6 col-medium-3">
-          <p>The future of container images is here. Chiselled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.</p>
+          <p>Canonical's variation of “distroless” containers. Chiselled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.</p>
           <p>
             <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Learn about Chiselled Ubuntu&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule"/>
+    <div class="col">
+      <h2>Explore our opensource tooling</h2>
+    </div>
+    <div class="col">
+      <p>Canonical has developed open source tooling to help developers create containers that are small, secure and with a consistent structure.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9 col-medium-6">
+      <hr class="p-rule"/>
+      <div class="row p-section--shallow">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Rockcraft</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Rockcraft is a tool to create <a href="https://documentation.ubuntu.com/rockcraft/en/latest/explanation/rocks/">Rocks</a> &mdash; a new generation of secure, optimised and OCI-compliant container images, based on Ubuntu. Rockcraft allows the creation of images that offer:</p>
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Opinionated and consistent design, to minimise disparity across your application estate</li>
+            <li class="p-list__item is-ticked">Seamless chiselling experience, to create small and secure images that only includes what's strictly necessary</li>
+            <li class="p-list__item is-ticked">Declarative format, built on top of the same semantic that underpins the Snapcraft and Charmcraft tools</li>
+          </ul>
+          <p>
+            <a href="https://documentation.ubuntu.com/rockcraft/en/latest/">Read Rockcraft documentation&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Chisel</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Chisel is a tool for carving out subsets of Debian packages called <a href="https://github.com/canonical/chisel/#slice-definitions">slices</a>. Chisel supports the creation of ultra small container images by allowing developers to extract only the relevant parts of the dependencies they need to run their applications.</p>
+          <p>
+            <a href="https://documentation.ubuntu.com/rockcraft/en/latest/explanation/chisel/">Read Chisel documentation&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <hr class="p-rule"/>
+      <div class="row">
+        <div class="col-3 col-medium-3">
+          <h3 class="p-heading--5">Pebble</h3>
+        </div>
+        <div class="col-6 col-medium-3">
+          <p>Pebble is a service manager that enables the seamless orchestration of local service processes as an organised set. Pebble is the default entrypoint for all Rocks and it offers a set of functionalities to simplify the container management user experience.</p>
+          <p>
+            <a href="https://documentation.ubuntu.com/rockcraft/en/latest/explanation/pebble/">Read Pebble documentation&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -203,14 +253,11 @@
   </div>
 </div>
 
-<div class="p-strip--white is-deep">
-  <div class="u-fixed-width">
-    <h2>
-      <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact our team for support with Ubuntu containers&nbsp;&rsaquo;</a>
-    </h2>
-  </div>
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container"
+  data-form-location="/shared/forms/interactive/containers-chiselled-dotnet" data-form-id="5486" data-lp-id=""
+  data-return-url="https://ubuntu.com/containers#success"
+  data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
 
 {% endblock content %}
