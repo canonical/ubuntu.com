@@ -408,7 +408,7 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search",
     "search",
-    limiter.limit("500/day")(
+    limiter.limit("3/day")(
         build_search_view(
             session=session,
             template_path="search.html",
