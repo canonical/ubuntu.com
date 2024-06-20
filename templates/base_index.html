@@ -33,10 +33,10 @@
     {% endwith %}
     {% endblock test_takeover_content %} -->
     <!-- Default Takeover: Download the latest Ubuntu -->
-    <section data-lang="all" id="takeover" class="p-strip">
+    <section data-lang="all" id="takeover" class="p-section--hero">
       <div class="row p-takeover-animation" id="takeover-animaition">
         <div class="col-6">
-          <div class="p-section--shallow">
+          <div class="p-section">
             <h1 id="takeover-title" class="u-no-margin--bottom ">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
             <p class="p-heading--2" id="takeover-subtitle">
               Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.
@@ -50,7 +50,7 @@
             </p>
           </div>
         </div>
-        <div class="col-6 u-align--center u-hide--medium u-hide--small">
+        <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
           <img id="takeover-image"
                 src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                 width="200"
@@ -88,8 +88,8 @@
           </p>
         </div>
         <div class="col-3 col-medium-2">
-          <ul class="p-list--divided u-no-margin--bottom">
-            <li class="p-list__item u-no-padding">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
               {{ image(url="https://assets.ubuntu.com/v1/66d21279-aws.png",
                             alt="AWS",
                             width="51",
@@ -358,23 +358,23 @@
         <div class="p-section--shallow">
           <h2 class="p-heading--1 u-no-margin--bottom">Public cloud optimisation</h2>
           <p class="p-heading--2">Most public cloud instances are Ubuntu, for performance and security.</p>
-        </div>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png"
-                   alt="Uber"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png"
-                   alt="Spotify"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png"
-                   alt="BNP"
-                   class="p-logo-section__logo" />
+          <div class="p-logo-section--dense u-no-padding">
+            <div class="p-logo-section__items u-no-padding">
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png"
+                     alt="Uber"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png"
+                     alt="Spotify"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png"
+                     alt="BNP"
+                     class="p-logo-section__logo" />
+              </div>
             </div>
           </div>
         </div>
@@ -544,37 +544,37 @@
           <p class="p-heading--2">
             Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
           </p>
-          <div class="p-logo-section--dense p-section--shallow">
+          <div class="p-logo-section--dense">
             <div class="p-logo-section__items u-no-padding">
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png"
-                     alt="Best Buy"
-                     class="p-logo-section__logo" />
+                      alt="Best Buy"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png"
-                     alt="BT"
-                     class="p-logo-section__logo" />
+                      alt="BT"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png"
-                     alt="Deutsche Telekom"
-                     class="p-logo-section__logo" />
+                      alt="Deutsche Telekom"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png"
-                     alt="Rabobank"
-                     class="p-logo-section__logo" />
+                      alt="Rabobank"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png"
-                     alt="Bloomberg"
-                     class="p-logo-section__logo" />
+                      alt="Bloomberg"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png"
-                     alt="AT&T"
-                     class="p-logo-section__logo" />
+                      alt="AT&T"
+                      class="p-logo-section__logo" />
               </div>
             </div>
           </div>
@@ -660,7 +660,7 @@
             <p class="p-heading--2">
               <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
             </p>
-            <div class="p-logo-section--dense p-section--shallow p-section">
+            <div class="p-logo-section--dense">
               <div class="p-logo-section__items u-no-padding">
                 <div class="p-logo-section__item">
                   <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
@@ -738,38 +738,38 @@
             <br />
             The professional developer's preference.
           </p>
-
+  
           <div class="p-logo-section--dense">
-            <div class="p-logo-section__items">
+            <div class="p-logo-section__items u-no-padding">
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png"
-                     alt="NVIDIA"
-                     class="p-logo-section__logo" />
+                      alt="NVIDIA"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
-                     alt="Intel"
-                     class="p-logo-section__logo" />
+                      alt="Intel"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/cc247653-amd-logo.png"
-                     alt="AMD"
-                     class="p-logo-section__logo" />
+                      alt="AMD"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png"
-                     alt="HP"
-                     class="p-logo-section__logo" />
+                      alt="HP"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png"
-                     alt="Dell"
-                     class="p-logo-section__logo" />
+                      alt="Dell"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
-                     alt="Lenovo"
-                     class="p-logo-section__logo" />
+                      alt="Lenovo"
+                      class="p-logo-section__logo" />
               </div>
             </div>
           </div>
@@ -858,38 +858,38 @@
             <br />
             <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
           </p>
-        </div>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png"
-                   alt="Verizon"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png"
-                   alt="Telefonica"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png"
-                   alt="Tele2"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png"
-                   alt="Telecom Italia"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png"
-                   alt="NEC"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png"
-                   alt="Barclays"
-                   class="p-logo-section__logo" />
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items u-no-padding">
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png"
+                     alt="Verizon"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png"
+                     alt="Telefonica"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png"
+                     alt="Tele2"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png"
+                     alt="Telecom Italia"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png"
+                     alt="NEC"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png"
+                     alt="Barclays"
+                     class="p-logo-section__logo" />
+              </div>
             </div>
           </div>
         </div>
@@ -960,41 +960,43 @@
                alt="" />
         </div>
         <hr class="p-rule" />
-        <h2 class="p-heading--1 u-no-margin--bottom">Smart robots of all shapes and sizes</h2>
-        <p class="p-heading--2">
-          From turtles to trucks, <a href="/robotics">Ubuntu drives the robot revolution</a>.
-        </p>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png"
-                   alt="ABB"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png"
-                   alt="Pal Robotics"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png"
-                   alt="Kuka"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png"
-                   alt="Apollo"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png"
-                   alt="Bosch"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png"
-                   alt="BMW"
-                   class="p-logo-section__logo" />
+        <div class="p-section--shallow">
+          <h2 class="p-heading--1 u-no-margin--bottom">Smart robots of all shapes and sizes</h2>
+          <p class="p-heading--2">
+            From turtles to trucks, <a href="/robotics">Ubuntu drives the robot revolution</a>.
+          </p>
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items u-no-padding">
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png"
+                     alt="ABB"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png"
+                     alt="Pal Robotics"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png"
+                     alt="Kuka"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png"
+                     alt="Apollo"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png"
+                     alt="Bosch"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png"
+                     alt="BMW"
+                     class="p-logo-section__logo" />
+              </div>
             </div>
           </div>
         </div>
@@ -1043,39 +1045,36 @@
       <div class="u-fixed-width">
         <div class="u-vertically-center u-align--center p-image-container--cinematic"
              style="background: rgba(0, 0, 0, 0.15)">
-          <img src="https://assets.ubuntu.com/v1/a3b2f574-Multi-cloud%20applications%C2%A0%C2%A0beyond%20PAAS.png"
-               class="multi-cloud-landing"
+          <img src="https://assets.ubuntu.com/v1/b62f723f-Multi-cloud%20applicationsbeyond%20PAAS.png"
                alt="" />
         </div>
         <hr class="p-rule" />
-        <div class="p-section--shallow">
+        <div class="p-logo-section--dense p-section--shallow">
           <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS</h2>
           <p class="p-heading--2">
             <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
           </p>
-        </div>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
-                   alt="Panasonic"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
-                   alt="Scania"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
-                   alt="SBI BTS"
-                   class="p-logo-section__logo" />
-            </div>
-            <div class="p-logo-section__item">
-              <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
-                   alt="Swissquote"
-                   class="p-logo-section__logo" />
-            </div>
+            <div class="p-logo-section__items u-no-padding">
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
+                    alt="Panasonic"
+                    class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
+                    alt="Scania"
+                    class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
+                    alt="SBI BTS"
+                    class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
+                    alt="Swissquote"
+                    class="p-logo-section__logo" />
+              </div>
           </div>
         </div>
       </div>
@@ -1250,7 +1249,6 @@
         if (title.textContent.length > 80 || subtitle.textContent.length > 80) {
           title.classList.remove("u-no-margin--bottom")
           subtitle.classList.remove("p-heading--2")
-          subtitle.classList.add("p-section--shallow")
         }
 
         title.textContent = selectedTakeover.title;
