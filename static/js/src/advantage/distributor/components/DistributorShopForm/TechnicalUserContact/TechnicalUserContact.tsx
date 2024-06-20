@@ -30,7 +30,7 @@ const TechnicalUserContact = () => {
           label="Technical user name"
           name="name"
           type="text"
-          placeholder="ex: Min Kim"
+          placeholder="Ex: John Doe"
           required
           onChange={handleChange}
           value={techincalUserContact.name}
@@ -43,7 +43,7 @@ const TechnicalUserContact = () => {
           label="Technical user email"
           name="email"
           type="email"
-          placeholder="ex: person@enduser.com"
+          placeholder="Ex: person@enduser.com"
           required
           onChange={handleChange}
           value={techincalUserContact.email}
