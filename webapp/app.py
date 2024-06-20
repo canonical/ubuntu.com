@@ -63,6 +63,7 @@ from webapp.shop.advantage.views import (
     put_contract_entitlements,
     get_channel_offers,
     get_distributor_view,
+    get_distributor_thank_you_view,
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
@@ -282,7 +283,10 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/pro/distributor", view_func=get_distributor_view)
-app.add_url_rule("/pro/distributor/<path>", view_func=get_distributor_view)
+app.add_url_rule("/pro/distributor/shop", view_func=get_distributor_view)
+app.add_url_rule(
+    "/pro/distributor/thank-you", view_func=get_distributor_thank_you_view
+)
 app.add_url_rule(
     "/pro/channel-offers.json",
     view_func=get_channel_offers,
