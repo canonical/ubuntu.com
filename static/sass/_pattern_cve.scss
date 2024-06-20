@@ -32,34 +32,11 @@
   .cve-table thead tr {
     border-bottom: 0;
   }
-  .cve-table tbody tr {
-    border-top: 0;
-  }
 
   .cve-table td {
     border-top: 1px solid $color-mid-light;
     position: relative;
     word-wrap: break-word;
-  }
-
-  .cve-table-cell-id {
-    @media only screen and (max-width: $breakpoint-small) {
-      &:nth-child(1) {
-        background-color: #fff;
-        border-top: none;
-        -moz-box-shadow: inset -1px 1px #d9d9d9;
-        -webkit-box-shadow: inset -1px 1px #d9d9d9;
-        box-shadow: inset -1px 1px #d9d9d9;
-        left: 0;
-        position: sticky;
-        z-index: 1;
-      }
-    }
-  }
-
-  .cve-table .cve-table-cell {
-    border-top: 0;
-    overflow: visible;
   }
 
   .cve-table .icon-cve-info {
@@ -72,23 +49,10 @@
   .cve-table .icon-container__text {
     width: 100%;
   }
-  .cve-table-cell-priority .icon-container__text {
-    @media only screen and (min-width: $breakpoint-medium) {
-      width: calc(100% - 1.5rem);
-    }
-  }
 
   .cve-table .p-icon--information {
     background-color: #fff;
     opacity: 0.8;
-  }
-
-  .cve-table-cell .p-icon--information {
-    visibility: hidden;
-  }
-
-  .cve-table-cell:hover .p-icon--information {
-    visibility: visible;
   }
 
   .cve-tooltip {
@@ -102,14 +66,6 @@
     transform: translateX(-125px);
     width: 272px;
     z-index: 1;
-  }
-
-  .cve-table-cell .cve-tooltip {
-    display: none;
-  }
-
-  .cve-table-cell:hover .p-icon--information:hover + .cve-tooltip {
-    display: block;
   }
 
   .cve-table .icon-container__icon {
@@ -145,22 +101,8 @@
     top: -10px;
   }
 
-  .cve-table-cell-priority {
-    @extend .cve-table-cell;
-
-    border-top: 1px solid $color-mid-light !important;
-  }
-
   .capitalize {
     text-transform: capitalize;
-  }
-
-  .cve-table-cell--muted,
-  .cve-table-cell.status-DNE,
-  .cve-table-cell.status-not-affected {
-    @extend .cve-table-cell;
-
-    color: $color-mid-dark;
   }
 
   .cve-color-strip {
