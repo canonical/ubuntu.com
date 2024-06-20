@@ -117,6 +117,7 @@ export type PaymentPayload = {
   renewal_id?: string;
   offer_id?: string;
   coupon?: Coupon;
+  metadata?: Array<{ key: string; value: string }>;
 };
 
 export type TaxInfo = {

@@ -286,7 +286,19 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         "pro-selector-publicCloud",
       ];
 
+      const distributorSelectorStates = [
+        "distributor-selector-subscriptionList",
+        "distributor-selector-currency",
+        "channel-offer-data",
+        "distributor-selector-duration",
+        "distributor-selector-techincalUserContact",
+        "distributor-selector-productType",
+      ];
+
       proSelectorStates.forEach((state) => localStorage.removeItem(state));
+      distributorSelectorStates.forEach((state) =>
+        localStorage.removeItem(state)
+      );
 
       const address = userInfo
         ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`

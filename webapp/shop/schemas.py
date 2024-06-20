@@ -46,6 +46,11 @@ class CustomerInfo(Schema):
     tax_id = Nested(TaxIdSchema())
 
 
+class Metadata(Schema):
+    key = String()
+    value = String()
+
+
 class PurchaseTotalSchema(Schema):
     currency = String(required=True)
     subtotal = Int(required=True)
@@ -82,6 +87,7 @@ account_purhcase = {
         )
     ),
     "coupon": Nested(CouponSchema),
+    "metadata": List(Nested(Metadata), allow_none=True),
 }
 
 

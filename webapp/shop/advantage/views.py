@@ -339,6 +339,12 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         if flask.session.get(metadata_key)
     ]
 
+    if marketplace == "canonical-pro-channel":
+        channel_metadata = kwargs.get("metadata")
+        if channel_metadata:
+            for data in channel_metadata:
+                metadata.append(data)
+
     if metadata:
         purchase_request["metadata"] = metadata
 
@@ -607,6 +613,24 @@ def get_distributor_view(advantage_mapper, **kwargs):
     return flask.render_template(
         "/pro/distributor/index.html",
         product_listings=to_dict(listings),
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+@use_kwargs({"email": String()}, location="query")
+def get_distributor_thank_you_view(advantage_mapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            email = kwargs.get("email")
+        else:
+            return flask.render_template("account/forbidden.html")
+
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
+    return flask.render_template(
+        "/pro/distributor/thank-you.html",
+        email=email,
     )
 
 
