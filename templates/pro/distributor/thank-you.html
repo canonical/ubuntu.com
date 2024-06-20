@@ -1,14 +1,22 @@
-{% extends "templates/base.html" %}
+{% extends "advantage/base_advantage.html" %}
 
-{% block title %}Ubuntu Pro Distributor Store{% endblock %}
+{% block title %}Thank you for your purchase{% endblock %}
 
-{% block outer_content %}
+{% block content %}
+  <section class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-12 u-sv3">
+        <h1>Thanks for your order!</h1>
 
-  {% block content %}
-    <section class="u-fixed-width p-strip">
-      <div class="row">
-        <h2>Thank You for your order!</h2>
+        {% if email %}
+          <p>
+            We've sent your invoice to <strong>{{ email }}</strong>.
+          </p>
+        {% endif %}
+        <p>
+          You can also view and download your invoice anytime by visiting <a href="/account/invoices">here</a>.
+        </p>
       </div>
-    </section>
-  {% endblock %}
+    </div>
+  </section>
 {% endblock %}
