@@ -10,7 +10,7 @@ import {
 import { checkoutEvent } from "advantage/ecom-events";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
-import { Action, marketplaceDisplayName, Product } from "../../utils/types";
+import { Action, Coupon, marketplaceDisplayName, Product } from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";
@@ -22,9 +22,10 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
+  coupon: Coupon;
 };
 
-const Checkout = ({ product, quantity, action }: Props) => {
+const Checkout = ({ product, quantity, action, coupon }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
@@ -99,6 +100,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                           quantity={quantity}
                           product={product}
                           action={action}
+                          coupon={coupon}
                           setError={setError}
                         />
                       ),
@@ -116,6 +118,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 product={product}
                                 action={action}
+                                coupon={null}
                               />
                             ),
                           },
@@ -133,6 +136,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
+                                coupon={coupon}
                               ></BuyButton>
                             </Col>
                           </Row>

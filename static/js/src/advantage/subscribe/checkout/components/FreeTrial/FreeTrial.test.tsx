@@ -23,7 +23,7 @@ describe("FreeTrial", () => {
           initialValues={{ FreeTrial: "useFreeTrial" }}
           onSubmit={jest.fn()}
         >
-          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
+          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} coupon={null} />
         </Formik>
       </QueryClientProvider>
     );
@@ -44,7 +44,7 @@ describe("FreeTrial", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
+          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} coupon={null}/>
         </Formik>
       </QueryClientProvider>
     );

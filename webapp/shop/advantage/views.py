@@ -264,7 +264,9 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     account_id = kwargs.get("account_id")
     marketplace = kwargs.get("marketplace", "canonical-ua")
     action = kwargs.get("action", "purchase")
-
+    coupon = kwargs.get("coupon")
+    print(coupon)
+    
     subscribed_quantities = {}
     if action == "purchase":
         try:
@@ -299,6 +301,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         "accountID": account_id,
         "purchaseItems": purchase_items,
         "previousPurchaseID": kwargs.get("previous_purchase_id"),
+        "coupon": coupon,
     }
 
     if action == "trial":

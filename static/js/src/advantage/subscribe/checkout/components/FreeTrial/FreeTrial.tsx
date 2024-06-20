@@ -5,17 +5,18 @@ import { Col, RadioInput, Row } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
+import { Action, Coupon, FormValues, Product, TaxInfo } from "../../utils/types";
 
 type Props = {
   product: Product;
   quantity: number;
   action: Action;
+  coupon: Coupon | null;
 };
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
-const FreeTrial = ({ quantity, product, action }: Props) => {
+const FreeTrial = ({ quantity, product, action, coupon }: Props) => {
   const { values } = useFormikContext<FormValues>();
   const { data: calculate } = useCalculate({
     quantity: quantity,
@@ -30,6 +31,7 @@ const FreeTrial = ({ quantity, product, action }: Props) => {
     quantity,
     product,
     action,
+    coupon,
   });
   const taxData: TaxInfo | undefined = preview || calculate;
 

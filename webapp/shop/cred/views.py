@@ -888,7 +888,7 @@ def cred_shop(**kwargs):
                 exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-
+    print(cue_products)
     return flask.render_template(
         "credentials/shop/index.html",
         exams=exams,

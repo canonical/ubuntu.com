@@ -80,6 +80,7 @@ class PurchaseSchema(BaseSchema):
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
     )
+    coupon = dict()
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Purchase:

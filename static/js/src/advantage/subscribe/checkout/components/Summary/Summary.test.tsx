@@ -68,6 +68,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={jest.fn()}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -115,6 +116,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={jest.fn()}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -150,6 +152,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={jest.fn()}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -187,6 +190,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={jest.fn()}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -224,6 +228,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={setError}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -266,6 +271,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={setError}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
@@ -308,6 +314,7 @@ describe("Summary", () => {
               product={UAProduct}
               action={"purchase"}
               setError={setError}
+              coupon={{origin:"", IDs:[]}}
             />
           </Elements>
         </Formik>
