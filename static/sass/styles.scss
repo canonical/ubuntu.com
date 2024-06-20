@@ -80,7 +80,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
 @import "pattern_icons";
-@import "pattern-image-ratios";
 @import "pattern_inline-list-midline";
 @import "pattern_lightbox";
 @import "pattern_lists";
@@ -169,7 +168,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
 @include openstack-carousel;
-@include vf-p-image;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -1661,16 +1659,6 @@ ol.p-list--divided .p-list__item::before {
 
 .u-darker-background {
   background-color: rgba(0, 0, 0, 0.03);
-}
-
-.multi-cloud-landing {
-  @media screen and (min-width: $breakpoint-large) {
-    height: 31rem;
-  }
-
-  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large - 1) {
-    height: 20rem;
-  }
 }
 
 .align-center-bottom {
