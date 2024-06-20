@@ -96,13 +96,13 @@ const ChannelOffersList = () => {
             content: "Deal registration id",
           },
           {
-            content: "Customer",
+            content: "Creator",
           },
           {
             content: "Technical user",
           },
           {
-            content: "Creator",
+            content: "Customer",
           },
           {
             content: "Created",
@@ -126,13 +126,13 @@ const ChannelOffersList = () => {
                 content: deal_registration_id,
               },
               {
-                content: offer.reseller_account_name,
+                content: offer.distributor_account_name,
               },
               {
                 content: offer.end_user_account_name,
               },
               {
-                content: offer.distributor_account_name,
+                content: offer.reseller_account_name,
               },
               {
                 content: paraseDate(offer.created_at),
