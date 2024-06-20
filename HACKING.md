@@ -140,4 +140,109 @@ To enable the React Query devtools you need to add `NODE_ENV="development"` to y
 
 ## Linting / formatting
 
-When making changes to the codebase please make sure it's properly formatted and linted. This [discourse topic](https://discourse.canonical.com/t/configuring-editors-for-formatting-and-linting/188) explains which tools we use for formatting and linting, as well as how to configure your IDE to support it.
+When making changes to the codebase please make sure it's properly formatted and linted.
+[Our standards](https://webteam.canonical.com/practices) suggest that our editors should be configured in the following ways:
+
+- Python files should be formatted with `black` on save, and checked with `flake8`
+- JS files should be formatted with `prettier` and checked with `eslint`
+- CSS files should be formatted with `prettier` and checked with `stylelint`
+- Jinja templates should be formatted and checked with `djLint`
+
+These tools should take their configuration from files stored in our codebases, e.g. `.eslintrc.js`. Additionally, editor settings (indentation etc.) for particular types of files should be picked up from `.editorconfig` files if they exist in the codebase.
+
+### Installing tools
+
+First install the necessary tools globally:
+
+``` bash
+sudo apt update && sudo apt install python3-pip nodejs
+# (for macOS hopefully these can be installed with brew instead?)
+sudo pip3 install black flake8
+sudo npm install -g prettier eslint stylelint
+python -m pip install -U djlint
+```
+
+### Configuring editors
+
+These are instructions for setting up various editors to use the above tools:
+
+***VSCode***
+Install the following extensions:
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [djLint](https://marketplace.visualstudio.com/items?itemName=monosans.djlint)
+
+Then tweak some settings by opening your JSON settings (CTRL+Shift+P, type "Settings", click "Open settings (JSON)"), and adding the following rules:
+
+``` json
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "79"
+    ],
+    "editor.formatOnSave": true,
+    "[html][jinja-html][jinja]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "monosans.djlint"
+    },
+    "html.format.wrapLineLength": 0,
+    "html.format.wrapAttributes": "aligned-multiple",
+    "html.format.indentHandlebars": true,
+    "html.format.preserveNewLines": false,
+}
+```
+
+***Atom***
+Install the following plugins:
+- [linter](https://atom.io/packages/linter) (needed for all linting)
+- [linter-flake8](https://github.com/AtomLinter/linter-flake8)
+- [linter-eslint](https://atom.io/packages/linter-eslint)
+- [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
+- [linter-stylelint](https://atom.io/packages/linter-stylelint)
+- [python-black](https://atom.io/packages/python-black)
+- [prettier-atom](https://atom.io/packages/prettier-atom)
+
+Configure the `python-black` plugin to add the `--line-length 79` option.
+
+***Sublime***
+Install the following plugins:
+- [sublack](https://packagecontrol.io/packages/sublack)
+- [Python Flake8 Lint](https://packagecontrol.io/packages/Python%20Flake8%20Lint)
+- [ESLint](https://packagecontrol.io/packages/ESLint)
+- [JsPrettier](https://packagecontrol.io/packages/JsPrettier)
+- [djLint](https://packagecontrol.io/packages/SublimeLinter-contrib-djlint)
+
+***PyCharm***
+Make sure you have the [File Watcher](https://plugins.jetbrains.com/plugin/7177-file-watchers) plugin installed.
+___
+
+Configure **Black**
+
+Go to  `Preferences or Settings -> Tools -> File Watchers`  and click  `+`  to add a new watcher:
+* Name: **Black**
+* File type: **Python**
+* Scope: **Project Files**
+* Program: run `which black` to find out
+* Arguments:  ` --line-length 79 $FilePath$`
+* Output paths to refresh:  `$FilePath$`
+* Working directory:  `$ProjectFileDir$`
+
+Source: https://black.readthedocs.io/en/stable/editor_integration.html
+___
+Configure **Flake8**
+
+Go to  `Preferences or Settings -> Tools -> File Watchers`  and click  `+`  to add a new watcher:
+* Name: **Flake8**
+* File type: **Python**
+* Scope: **Project Files**
+* Program: run `which flake8` to find out
+* Arguments:  `$FilePath$`
+* Output paths to refresh:  `$FilePath$`
+* Working directory:  `$ProjectFileDir$`
