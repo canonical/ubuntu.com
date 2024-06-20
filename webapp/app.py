@@ -7,6 +7,8 @@ import os
 import flask
 import requests
 import talisker.requests
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -164,6 +166,8 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+limiter = Limiter(app, key_func=get_remote_address, headers_enabled=True)
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
@@ -404,12 +408,12 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search",
     "search",
-    build_search_view(
+    limiter.limit("500/day")
+    (build_search_view(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
-    ),
+    )),
 )
 
 app.add_url_rule(
