@@ -20,6 +20,12 @@ const postPurchase = () => {
 
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
+      const localTechnicalUserContact = localStorage.getItem(
+        "distributor-selector-techincalUserContact"
+      );
+      const technicalUserContact = localTechnicalUserContact
+        ? JSON.parse(localTechnicalUserContact)
+        : "";
 
       if (marketplace !== UserSubscriptionMarketplace.CanonicalProChannel) {
         const product = products[0].product;
@@ -72,6 +78,24 @@ const postPurchase = () => {
             };
           }),
         };
+
+        if (technicalUserContact) {
+          const channelMetaData: Array<{ key: string; value: string }> = [];
+          if (technicalUserContact.name) {
+            channelMetaData.push({
+              key: "technicalContactEmail",
+              value: technicalUserContact.email,
+            });
+          }
+
+          if (technicalUserContact.email) {
+            channelMetaData.push({
+              key: "technicalContactName",
+              value: technicalUserContact.name,
+            });
+          }
+          payload.metadata = channelMetaData;
+        }
       }
 
       // preview

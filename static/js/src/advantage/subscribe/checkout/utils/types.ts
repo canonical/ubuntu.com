@@ -110,6 +110,7 @@ export type PaymentPayload = {
   products?: PaymentPayloadProducts[];
   renewal_id?: string;
   offer_id?: string;
+  metadata?: Array<{ key: string; value: string }>;
 };
 
 export type TaxInfo = {

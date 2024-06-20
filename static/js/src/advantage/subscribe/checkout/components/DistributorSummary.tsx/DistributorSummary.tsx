@@ -52,7 +52,7 @@ function DistributorSummary({
 
   let totalSection = (
     <>
-      {discount && (
+      {discount && discount !== 0 ? (
         <>
           <Row>
             <Col size={4}>
@@ -71,7 +71,7 @@ function DistributorSummary({
           </Row>
           <hr />
         </>
-      )}
+      ) : null}
       <Row>
         <Col size={4}>
           <p>Total:</p>
@@ -92,7 +92,7 @@ function DistributorSummary({
   if (taxAmount && defaultTotal) {
     totalSection = (
       <>
-        {discount && (
+        {discount && discount !== 0 ? (
           <>
             <Row>
               <Col size={4}>
@@ -113,7 +113,7 @@ function DistributorSummary({
             </Row>
             <hr />
           </>
-        )}
+        ) : null}
         <Row>
           <Col size={4}>
             <p>Tax:</p>
@@ -239,7 +239,6 @@ function DistributorSummary({
         </Col>
         <Col size={6}>
           {products.map((product) => {
-            console.log("product22", product);
             const quantity = product.quantity;
             const price = product.product?.price?.value;
             return (
