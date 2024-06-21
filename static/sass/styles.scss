@@ -1408,6 +1408,12 @@ $color-link-dark: #69c !default;
   height: 6rem;
 }
 
+.landing-logos {
+  .p-logo-section__logo {
+    height: 6.5rem;
+  }
+}
+
 .p-logo-section.has-misaligned-images {
   .p-logo-section__item {
     margin-bottom: $spv--x-large;
@@ -1682,4 +1688,8 @@ ol.ordered-counter {
   margin: auto !important;
   right: 0;
   text-align: center;
+}
+
+.js-invoke-modal.p-button.is-dark {
+  color: white !important;
 }
