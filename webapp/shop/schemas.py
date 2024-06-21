@@ -54,7 +54,7 @@ class PurchaseTotalSchema(Schema):
 
 
 class CouponSchema(Schema):
-    origin = String(required=True)
+    origin = String()
     IDs = List(String())
 
 
@@ -72,7 +72,7 @@ account_purhcase = {
     "action": String(
         validate=validate.OneOf(["purchase", "resize", "trial", "offer", "renewal"])
     ),
-    "coupon": CouponSchema(),
+    "coupon": Nested(CouponSchema),
 }
 
 
