@@ -43,7 +43,7 @@ const DistributorShopSummary = () => {
   return (
     <>
       <section
-        className="p-strip--light is-shallow p-shop-cart"
+        className="p-strip--light is-shallow p-shop-cart p-shop-cart--distributor"
         id="summary-section"
         data-testid="summary-section"
       >

@@ -81,7 +81,7 @@ const ChannelOffersList = () => {
                 value: "default",
               },
               {
-                label: "Show used offer",
+                label: "Show used offers",
                 value: "all",
               },
             ]}
