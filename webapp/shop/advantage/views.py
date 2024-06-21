@@ -266,7 +266,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     action = kwargs.get("action", "purchase")
     coupon = kwargs.get("coupon")
     print(coupon)
-    
+
     subscribed_quantities = {}
     if action == "purchase":
         try:

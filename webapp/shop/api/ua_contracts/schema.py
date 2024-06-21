@@ -65,9 +65,11 @@ class PurchaseItemSchema(BaseSchema):
     def make_purchase_item(self, data, **kwargs) -> PurchaseItem:
         return PurchaseItem(**data)
 
+
 class CouponSchema(BaseSchema):
     origin = String(attribute="origin")
     IDs = List(String(), attribute="IDs")
+
 
 class PurchaseSchema(BaseSchema):
     accountID = String(required=True, attribute="account_id")

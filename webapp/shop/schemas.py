@@ -70,7 +70,9 @@ account_purhcase = {
         required=True,
     ),
     "action": String(
-        validate=validate.OneOf(["purchase", "resize", "trial", "offer", "renewal"])
+        validate=validate.OneOf(
+            ["purchase", "resize", "trial", "offer", "renewal"]
+        )
     ),
     "coupon": Nested(CouponSchema),
 }
@@ -133,13 +135,17 @@ ensure_purchase_account = {
 
 get_purchase_account_status = {
     "marketplace": String(
-        validate=validate.OneOf(["", "canonical-ua", "canonical-cube", "blender"])
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
     ),
 }
 
 invoice_view = {
     "marketplace": String(
-        validate=validate.OneOf(["", "canonical-ua", "canonical-cube", "blender"])
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
     ),
     "page": Int(),
 }
