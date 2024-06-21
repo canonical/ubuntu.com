@@ -5,7 +5,13 @@ import { Col, RadioInput, Row } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, Coupon, FormValues, Product, TaxInfo } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  FormValues,
+  Product,
+  TaxInfo,
+} from "../../utils/types";
 
 type Props = {
   product: Product;

@@ -6,7 +6,13 @@ import * as Sentry from "@sentry/react";
 import { currencyFormatter } from "advantage/react/utils";
 import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, Coupon, FormValues, Product, TaxInfo } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  FormValues,
+  Product,
+  TaxInfo,
+} from "../../utils/types";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -37,7 +43,7 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
     quantity,
     product,
     action,
-    coupon
+    coupon,
   });
 
   const isSummaryLoading = isPreviewFetching || isCalculateFetching;

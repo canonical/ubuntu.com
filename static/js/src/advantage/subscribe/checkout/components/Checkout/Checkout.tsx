@@ -10,7 +10,12 @@ import {
 import { checkoutEvent } from "advantage/ecom-events";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
-import { Action, Coupon, marketplaceDisplayName, Product } from "../../utils/types";
+import {
+  Action,
+  Coupon,
+  marketplaceDisplayName,
+  Product,
+} from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";

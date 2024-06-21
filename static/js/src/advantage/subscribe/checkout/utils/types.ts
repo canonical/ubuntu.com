@@ -81,7 +81,7 @@ export interface Product {
 export type Coupon = {
   origin: string;
   IDs: string[];
-}
+};
 
 export type Cart = {
   items: Product[];

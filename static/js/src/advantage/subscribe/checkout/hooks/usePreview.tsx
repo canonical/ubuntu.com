@@ -1,5 +1,11 @@
 import { useQuery } from "react-query";
-import { Action, Coupon, PaymentPayload, Product, TaxInfo } from "../utils/types";
+import {
+  Action,
+  Coupon,
+  PaymentPayload,
+  Product,
+  TaxInfo,
+} from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 
 type Props = {
