@@ -353,4 +353,23 @@
       width: fit-content;
     }
   }
+
+  .cve-table-blur {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f3f3f3);
+      pointer-events: none;
+    }
+  }
+
+  .cve-footer-link {
+    font-size: 0.875rem;
+  }
 }
