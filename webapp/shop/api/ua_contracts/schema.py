@@ -89,7 +89,6 @@ class PurchaseSchema(BaseSchema):
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Purchase:
-        print(data)
         return Purchase(**data)
 
 
