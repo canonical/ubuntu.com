@@ -318,6 +318,10 @@ function handleShowDetailedView() {
       const id = showPackagesLink.id.split("--")[1];
       const cveTable = document.querySelector(`#table--${id}`);
 
+      cveTable.querySelectorAll(".blurred-row").forEach((cell) => {
+        cell.classList.remove("cve-table-blur");
+      });
+
       cveTable.querySelectorAll(".expandable-row").forEach((row) => {
         row.classList.remove("u-hide");
         showPackagesLink.classList.add("u-hide");
@@ -336,6 +340,10 @@ function handleHideDetailedView() {
       event.preventDefault();
       const id = hidePackagesLink.id.split("--")[1];
       const cveTable = document.querySelector(`#table--${id}`);
+
+      cveTable.querySelectorAll(".blurred-row").forEach((cell) => {
+        cell.classList.add("cve-table-blur");
+      });
 
       cveTable.querySelectorAll(".expandable-row").forEach((row) => {
         row.classList.add("u-hide");
