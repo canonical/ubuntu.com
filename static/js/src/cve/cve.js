@@ -163,8 +163,7 @@ function removeParam(param, value) {
   }
   filterParams = filterParams.filter((param) => {
     param.value !== value;
-  }
-);
+  });
 }
 
 // Maintains filter state on page load
@@ -310,6 +309,21 @@ function exportToJSON() {
 }
 exportToJSON();
 
+// Button to handle detailed view of packages
+// Adds and removes param to maintain table view state on filter
+function handleDetailedViewSwitch(event) {
+  if (event.target.checked) {
+    detailedTables.forEach((table) => table.classList.remove("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.add("u-hide"));
+    urlParams.append("detailed", event.target.checked);
+  } else {
+    detailedTables.forEach((table) => table.classList.add("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.remove("u-hide"));
+    urlParams.delete("detailed");
+  }
+}
+detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+
 // Show detailed view of packages
 function handleShowDetailedView() {
   showPackagesLinks.forEach((showPackagesLink) => {
@@ -331,7 +345,6 @@ function handleShowDetailedView() {
     };
   });
 }
-handleShowDetailedView();
 
 // Hide detailed view of packages
 function handleHideDetailedView() {
@@ -357,19 +370,13 @@ function handleHideDetailedView() {
     };
   });
 }
-handleHideDetailedView();
 
-// Button to handle detailed view of packages
-// Adds and removes param to maintain table view state on filter
-function handleDetailedViewSwitch(event) {
-  if (event.target.checked) {
-    detailedTables.forEach((table) => table.classList.remove("u-hide"));
-    cveDescs.forEach((desc) => desc.classList.add("u-hide"));
-    urlParams.append("detailed", event.target.checked);
+// On page load, check if the detailed view switch is checked
+function handleDetailedView() {
+  if (detailedSwitch.checked) {
+    handleShowDetailedView();
   } else {
-    detailedTables.forEach((table) => table.classList.add("u-hide"));
-    cveDescs.forEach((desc) => desc.classList.remove("u-hide"));
-    urlParams.delete("detailed");
+    handleHideDetailedView();
   }
 }
-detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+handleDetailedView();
