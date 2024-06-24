@@ -399,7 +399,11 @@ def cve_index():
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
-                    selected_releases.append(release)
+                    # cap to show maximum of 5 releases
+                    if len(selected_releases) < 5:
+                        selected_releases.append(release)
+                    else:
+                        break
         elif (
             (support_date > datetime.now() or esm_date > datetime.now())
             and release_date < datetime.now()
@@ -418,10 +422,6 @@ def cve_index():
             for yaml_release in yaml_releases:
                 if yaml_release["name"] == release["name"]:
                     maintained_releases.append(release)
-
-    selected_releases = sorted(
-        selected_releases, key=lambda d: d["version"], reverse=True
-    )
     """
     TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
