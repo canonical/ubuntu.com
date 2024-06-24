@@ -36,6 +36,7 @@ const showPackagesLinks = document.querySelectorAll(".js-show-packages");
 const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
 const detailedSwitch = document.querySelector(".js-detailed-switch");
 const detailedTables = document.querySelectorAll(".detailed-table");
+const cveDescs = document.querySelectorAll(".cve-desc");
 // eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
   (release) => release.codename
@@ -160,7 +161,10 @@ function removeParam(param, value) {
       .indexOf("status");
     filterParams.splice(statusIndex, 1);
   }
-  filterParams = filterParams.filter((param) => param.value !== value);
+  filterParams = filterParams.filter((param) => {
+    param.value !== value;
+  }
+);
 }
 
 // Maintains filter state on page load
@@ -199,6 +203,11 @@ function handleFilterPersist() {
         }
       });
     }
+  }
+
+  if (urlParams.has("detailed")) {
+    detailedSwitch.checked = true;
+    handleDetailedViewSwitch({ target: detailedSwitch });
   }
 }
 handleFilterPersist();
@@ -301,7 +310,8 @@ function exportToJSON() {
 }
 exportToJSON();
 
-function handleShowPackages() {
+// Show detailed view of packages
+function handleShowDetailedView() {
   showPackagesLinks.forEach((showPackagesLink) => {
     showPackagesLink.onclick = function (event) {
       event.preventDefault();
@@ -317,9 +327,10 @@ function handleShowPackages() {
     };
   });
 }
-handleShowPackages();
+handleShowDetailedView();
 
-function handleHidePackages() {
+// Hide detailed view of packages
+function handleHideDetailedView() {
   hidePackagesLinks.forEach((hidePackagesLink) => {
     hidePackagesLink.onclick = function (event) {
       event.preventDefault();
@@ -338,14 +349,19 @@ function handleHidePackages() {
     };
   });
 }
-handleHidePackages();
+handleHideDetailedView();
 
-function handleDetailedSwitch(event) {
+// Button to handle detailed view of packages
+// Adds and removes param to maintain table view state on filter
+function handleDetailedViewSwitch(event) {
   if (event.target.checked) {
     detailedTables.forEach((table) => table.classList.remove("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.add("u-hide"));
+    urlParams.append("detailed", event.target.checked);
   } else {
     detailedTables.forEach((table) => table.classList.add("u-hide"));
+    cveDescs.forEach((desc) => desc.classList.remove("u-hide"));
+    urlParams.delete("detailed");
   }
 }
-
-detailedSwitch.addEventListener("click", handleDetailedSwitch);
+detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
