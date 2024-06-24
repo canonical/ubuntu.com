@@ -312,6 +312,7 @@ def cve_index():
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
     order = flask.request.args.get("order", default="", type=str)
+    detailed = flask.request.args.get("detailed", default="", type=str)
 
     # All CVEs
     cves_response = security_api.get_cves(
@@ -478,6 +479,7 @@ def cve_index():
         unmaintained_releases=unmaintained_releases,
         high_priority_cves=high_priority_cves,
         order=order,
+        detailed=detailed,
     )
 
 
