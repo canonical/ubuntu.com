@@ -401,8 +401,11 @@ def cve_index():
                 if version == release["codename"]:
                     selected_releases.append(release)
         elif (
-            support_date > datetime.now() or esm_date > datetime.now()
-        ) and release_date < datetime.now():
+            (support_date > datetime.now() or esm_date > datetime.now())
+            and release_date < datetime.now()
+            and release["codename"] != "xenial"
+            and release["codename"] != "trusty"
+        ):
             selected_releases.append(release)
 
         if support_date < datetime.now():
@@ -416,8 +419,9 @@ def cve_index():
                 if yaml_release["name"] == release["name"]:
                     maintained_releases.append(release)
 
-    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
-
+    selected_releases = sorted(
+        selected_releases, key=lambda d: d["version"], reverse=True
+    )
     """
     TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
@@ -452,7 +456,6 @@ def cve_index():
                     "pocket": status["pocket"],
                     "icon": friendly_status["icon"],
                 }
-
     return flask.render_template(
         "security/cve/index.html",
         all_releases=all_releases,
