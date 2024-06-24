@@ -22,7 +22,6 @@
 {% endblock body_class %}
 
 {% block outer_content %}
-
   {% block content %}
 
     <!-- Test takeover template -->
@@ -34,9 +33,9 @@
     {% endwith %}
     {% endblock test_takeover_content %} -->
     <!-- Default Takeover: Download the latest Ubuntu -->
-    <section data-lang="all" id="takeover" class="p-strip">
+    <section data-lang="all" id="takeover" class="p-section--hero">
       <div class="row p-takeover-animation" id="takeover-animaition">
-        <div class="col-9">
+        <div class="col-6">
           <div class="p-section--shallow">
             <h1 id="takeover-title" class="u-no-margin--bottom">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
             <p class="p-heading--2" id="takeover-subtitle">
@@ -51,23 +50,23 @@
             </p>
           </div>
         </div>
-        <div class="col-3 u-align--center u-hide--medium u-hide--small">
+        <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
           <img id="takeover-image"
-               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               width="200"
-               alt="" />
+                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                width="200"
+                alt="" />
         </div>
       </div>
     </section>
 
     <section class="p-section notice">
       <div class="u-fixed-width">
-        <div style="background-color: #2d2d2d;
+        <div style="background: rgba(0, 0, 0, 0.15);
+                    overflow-y: auto;
                     padding-left: 1rem;
-                    padding-right: 1rem;
-                    padding-bottom: 0.5rem">
+                    padding-right: 1rem;">
           <h2>
-            <a href="/18-04">End of standard support for 18.04 LTS &mdash; 31 May 2023</a>
+            <a href="/18-04">End of standard support for 18.04 LTS &ndash; 31 May 2023</a>
           </h2>
           <hr class="p-rule is-muted" />
           <p>Upgrade to the latest Ubuntu LTS or get extended coverage until 2028 with Ubuntu Pro</p>
@@ -82,15 +81,17 @@
       <hr class="p-rule is-fixed-width" />
       <div class="row">
         <div class="col-9 col-medium-4">
-          <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
-          <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
-          <p>
-            <a class="p-button--positive" href="/pro">Get Ubuntu Pro</a>
-          </p>
+          <div class="p-section--shallow">
+            <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
+            <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
+            </div>
+              <p>
+                <a class="p-button is-dark" href="/pro">Get Ubuntu Pro</a>
+              </p>
         </div>
         <div class="col-3 col-medium-2">
           <ul class="p-list--divided u-no-margin--bottom">
-            <li class="p-list__item u-no-padding">
+            <li class="p-list__item">
               {{ image(url="https://assets.ubuntu.com/v1/66d21279-aws.png",
                             alt="AWS",
                             width="51",
@@ -105,7 +106,7 @@
                             width="126",
                             height="67",
                             hi_def=True,
-                            loading="auto") | safe
+                            loading="lazy") | safe
               }}
             </li>
             <li class="p-list__item u-no-padding">
@@ -140,141 +141,115 @@
     {% endwith %}
 
     <section class="p-section">
-      <div class="row">
+      <div class="row--50-50-on-large">
         <hr class="p-rule" />
-        <div class="col-9 col-medium-4">
+        <div class="col">
           <div class="p-section--shallow">
             <h2 class="p-heading--1 u-no-margin--bottom">Energise your engineers</h2>
             <p class="p-heading--2">Better security. More packages. Newer tools. All your open source, from cloud to edge.</p>
           </div>
-        </div>
-        <div class="col-3 col-medium-2">
+          <div class="p-section--shallow">
+            <p>
+              Loved by developers and trusted by enterprises. Ubuntu is the first pick for organisations to support their software infrastructure and the OS chosen by 66% of experienced developers. <span class="u-text--muted">(HackerEarth, Developer Survey, 2020)</span>
+            </p>
+          </div>
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Authentically open source</li>
+            <li class="p-list__item is-ticked">Secure by design</li>
+            <li class="p-list__item is-ticked">A release cadence you can depend on</li>
+            <li class="p-list__item is-ticked">Stability through long term support</li>
+          </ul>
+          <p>That's why Ubuntu supports the fastest, biggest and most successful digital operations.</p>
+          <hr class="is-muted p-rule" />
+          <p class="u-no-margin--bottom">
+            <a href="/engage/adopting-secure-enterprise-linux-desktop">Download our guide to secure enterprise Linux&nbsp;&rsaquo;</a>
+          </p>
           <p>
-            66% of experienced developers prefer Ubuntu. That's why Ubuntu supports the fastest, biggest and most successful digital operations.
+            <a href="/ai">Build your AI models on Ubuntu&nbsp;&rsaquo;</a>
           </p>
         </div>
-      </div>
-      <div class="row p-section--shallow">
-        <div class="col-9 col-medium-4">
-          <hr class="p-rule is-muted" />
-          <div class="row p-section--shallow">
-            <div class="col-3 col-medium-2 col-small-2">
-              <p class="u-no-margin--bottom">
-                <a href="/contact-us" class="js-invoke-modal">Let's talk open source&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-            <div class="col-3 col-medium-2 col-small-2">
-              <p class="u-no-margin--bottom">
-                <a href="/masters-conference">Watch Ubuntu Masters in action&nbsp;&rsaquo;</a>
-              </p>
-            </div>
+        <div class="col">
+          <div class="p-image-wrapper u-hide--medium">
+            {{ image(url="https://assets.ubuntu.com/v1/e93caaaf-Energise%20your%20engineers.png",
+                        alt="",
+                        width="1200",
+                        height="1801",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "u-aspect-ratio--2-3"}) | safe
+            }}
           </div>
         </div>
-        <div class="col-3 col-medium-2">
-          <hr class="p-rule is-muted" />
-          <div class="row">
-            <div class="col-small-2">
-              <p>
-                <a href="https://media.hackerearth.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf"
-                   aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
-                  The 2020 HackerEarth Developer Survey
-                </a>
-              </p>
-            </div>
-            <div class="col-small-2 p-image-wrapper">
-              {{ image(url="https://assets.ubuntu.com/v1/d0dc6306-hackerearth.png",
-                            alt="",
-                            width="120",
-                            height="24",
-                            hi_def=True,
-                            loading="lazy") | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        {{ image(url="https://assets.ubuntu.com/v1/d5915fd9-Energise-your-engineers-image.jpg",
-                alt="",
-                width="2464",
-                height="1054",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
       </div>
     </section>
 
     <section class="p-section">
-      <div class="row--50-50">
+      <div class="row">
         <hr class="p-rule" />
-        <div class="col p-section--shallow">
-          <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
-          <p class="p-heading--2">
-            <a href="/pro">Ubuntu Pro</a> is more than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
+        <div class="col-9">
+          <div class="p-section--shallow">
+            <h2 class="p-heading--1 u-no-margin--bottom">Open source security</h2>
+            <p class="p-heading--2">
+              <a href="/pro">Ubuntu Pro</a> is more than Linux.
+              <br />
+              <a href="/security/certifications">Security and compliance</a> for the full stack.
+            </p>
+          </div>
+          <p>
+            Secure your open source apps. Patch the full stack, from kernel to library and applications, for CVE compliance. Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.
           </p>
         </div>
-        <div class="col">
-          <div class="row">
-            <div class="col-3">
-              <ul class="p-list--divided u-hide--medium u-hide--small">
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/22c5fb07-nist-logo.png",
-                                    alt="NIST",
-                                    width="57",
-                                    height="39",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/2354ee4f-@sec-logo.png",
-                                    alt="ASEC",
-                                    width="96",
-                                    height="54",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/c7af6eb5-disa-logo.png",
-                                    alt="DISA",
-                                    width="68",
-                                    height="48",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/4710d3ba-cis-logo.png",
-                                    alt="CIS",
-                                    width="51",
-                                    height="80",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-                <li class="p-list__item u-no-padding">
-                  {{ image(url="https://assets.ubuntu.com/v1/aa0ad2ff-csec-logo.png",
-                                    alt="CSEC",
-                                    width="39",
-                                    height="69",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </li>
-              </ul>
-            </div>
-            <div class="col-3 p-section--shallow">
-              <p>Secure your open source apps.</p>
-              <p>Patch the full stack, from kernel to library and applications, for CVE compliance.</p>
-              <p>Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.</p>
-              <p>
-                <a href="/security">Secure all your open source with us&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
+        <div class="col-3">
+          <ul class="p-list--divided u-hide--medium u-hide--small">
+            <li class="p-list__item u-no-padding">
+              {{ image(url="https://assets.ubuntu.com/v1/22c5fb07-nist-logo.png",
+                            alt="NIST",
+                            width="57",
+                            height="39",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </li>
+            <li class="p-list__item u-no-padding">
+              {{ image(url="https://assets.ubuntu.com/v1/2354ee4f-@sec-logo.png",
+                            alt="ASEC",
+                            width="96",
+                            height="54",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </li>
+            <li class="p-list__item u-no-padding">
+              {{ image(url="https://assets.ubuntu.com/v1/c7af6eb5-disa-logo.png",
+                            alt="DISA",
+                            width="68",
+                            height="48",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </li>
+            <li class="p-list__item u-no-padding">
+              {{ image(url="https://assets.ubuntu.com/v1/4710d3ba-cis-logo.png",
+                            alt="CIS",
+                            width="39",
+                            height="60",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </li>
+            <li class="p-list__item u-no-padding">
+              {{ image(url="https://assets.ubuntu.com/v1/aa0ad2ff-csec-logo.png",
+                            alt="CSEC",
+                            width="39",
+                            height="69",
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </li>
+          </ul>
         </div>
       </div>
+
       <ul class="row p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>10 year security maintenance and CVE Patching</p>
@@ -286,7 +261,7 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/livepatch">Extended security</a> for infrastructure and applications
+            <a href="/esm">Extended security</a> for infrastructure and applications
           </p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
@@ -295,7 +270,7 @@
           </p>
         </li>
       </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
@@ -313,34 +288,46 @@
           </p>
         </li>
       </ul>
+
+      <div class="row">
+        <hr class="is-muted" />
+        <div class="col-start-large-7 col-6">
+          <p>
+            <a class="p-button is-dark" href="/security">Secure all your open source&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="p-section">
-      <div class="u-fixed-width p-section">
-        {{ image(url="https://assets.ubuntu.com/v1/39667d98-Open%20source%20security.jpg",
-                alt="",
-                width="2464",
-                height="1055",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-      </div>
-      <div class="row--50-50">
+      <div class="row--50-50-on-large">
         <hr class="p-rule" />
+        <div class="col">
+          <div class="p-image-wrapper u-hide--medium">
+            {{ image(url="https://assets.ubuntu.com/v1/fbd123d4-Significant%20enterprise%20savings.jpg",
+                        alt="",
+                        width="1200",
+                        height="1801",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "u-aspect-ratio--2-3"}) | safe
+            }}
+          </div>
+        </div>
         <div class="col">
           <div class="p-section--shallow">
             <h2 class="p-heading--1 u-no-margin--bottom">Significant enterprise savings</h2>
             <p class="p-heading--2">Sustainable open source at the lowest cost, everywhere.</p>
           </div>
-          <p>
-            Rethink what's possible with Linux and open source. Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.
-          </p>
-        </div>
-        <div class="col">
+          <div class="p-section--shallow">
+            <p>
+              Rethink what's possible with Linux and open source. Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.
+            </p>
+          </div>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">No mandatory subscriptions for Ubuntu</li>
             <li class="p-list__item is-ticked">
-              <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed/apps">apps</a>
+              <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed">apps</a>
             </li>
             <li class="p-list__item is-ticked">
               <a href="/cloud/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
@@ -359,70 +346,38 @@
               <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
             </li>
           </ul>
-          <hr class="p-rule is-muted" />
-          <div class="row">
-            <div class="col-3 col-start-large-4">
-              <p class="u-no-margin--bottom">
-                <a href="/contact-us" class="js-invoke-modal">Let's talk open source&nbsp;&rsaquo;</a>
-              </p>
-            </div>
-          </div>
+          <hr class="is-muted" />
+          <p class="u-no-margin--bottom">
+            <a href="/contact-us" class="js-invoke-modal p-button is-dark">Let's talk open source&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
     </section>
 
     <section class="p-section">
-      <div class="row">
+      <div class="u-fixed-width">
         <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Public cloud optimisation</h2>
-            <p class="p-heading--2">Most public cloud instances are Ubuntu, for performance and security.</p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
+        <div class="p-section--shallow">
+          <h2 class="p-heading--1 u-no-margin--bottom">Public cloud optimisation</h2>
+          <p class="p-heading--2">Most public cloud instances are Ubuntu, for performance and security.</p>
+          <div class="p-logo-section--dense u-no-padding">
+            <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
-                                alt="Uber",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png"
+                     alt="Uber"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
-                                alt="Spotify",
-                                width="90",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png"
+                     alt="Spotify"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
-                                alt="BNP",
-                                width="109",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png"
+                     alt="BNP"
+                     class="p-logo-section__logo" />
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/117ae9b9-Canonical-AI-ML-Illustrations-v5-03%201-1.png",
-                        alt="",
-                        width="276",
-                        height="327",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
           </div>
         </div>
       </div>
@@ -460,11 +415,11 @@
           <p>Cloud workload migration service</p>
         </li>
       </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+      <ul class="row p-list--divided">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Containerisation and cloud-native migration service</p>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Fully managed application service</p>
         </li>
       </ul>
@@ -474,11 +429,8 @@
         <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
           <p>
             <a href="/cloud/public-cloud"
-               aria-label="Learn more about public cloud optimisation">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+               aria-label="Learn more about public cloud optimisation"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/cloud/public-cloud/contact-us"
                aria-label="Contact us about public cloud optimisation"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -488,90 +440,54 @@
     </section>
 
     <section class="p-section">
-      <div class="row--50-50 p-section--shallow">
+      <div class="row--50-50-on-large p-section--shallow">
         <hr class="p-rule" />
         <div class="col">
-          <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud Kubernetes and containers</h2>
-        </div>
-        <div class="col">
+          <h2 class="p-heading--1 u-no-margin--bottom u-no-max-width">Multi-cloud Kubernetes and containers</h2>
           <p class="p-heading--2">
-            <a title="external link - docs.microsoft.com/en-us/azure/aks/cluster-configuration"
-               href="https://docs.microsoft.com/en-us/azure/aks/cluster-configuration">AKS.</a> <a title="external link - cloud-images.ubuntu.com/docs/aws/eks"
-    href="https://cloud-images.ubuntu.com/docs/aws/eks">EKS.</a> <a title="external link - cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu"
-    href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">GKE.</a> Kubeadm. <a title="external link - microk8s.io" href="https://microk8s.io">MicroK8s.</a> <a href="/kubernetes/features">Charmed Kubernetes.</a>
+            <a title="external link - azure.microsoft.com/en-us/services/kubernetes-service"
+               href="https://azure.microsoft.com/en-us/services/kubernetes-service/">AKS.</a> <a title="external link - cloud-images.ubuntu.com/docs/aws/eks"
+    href="https://cloud-images.ubuntu.com/docs/aws/eks/">EKS.</a> <a title="external link - cloud.google.com/kubernetes-engine"
+    href="https://cloud.google.com/kubernetes-engine">GKE.</a> Kubeadm. <a title="external link - microk8s.io" href="https://microk8s.io">MicroK8s.</a> <a href="/kubernetes/features">Charmed Kubernetes.</a>
           </p>
-        </div>
-      </div>
-      <div class="row--50-50">
-        <hr class="p-rule is-muted" />
-        <div class="col">
-          <div class="p-logo-section--dense">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/b0292231-aws-logo.png",
-                                alt="AWS",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/01edb5d4-google-cloud-logo.png",
-                                alt="GCP",
-                                width="149",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png",
-                                alt="Microsoft Azure",
-                                width="84",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png",
-                                alt="Liberty Global",
-                                width="40",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png",
-                                alt="ACI",
-                                width="95",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+          <p class="p-heading--2">All on Ubuntu.</p>
+          <div class="p-section--shallow">
+            <div class="p-logo-section--dense">
+              <div class="p-logo-section__items landing-logos u-no-padding">
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/b0292231-aws-logo.png"
+                       alt="AWS"
+                       class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/01edb5d4-google-cloud-logo.png"
+                       alt="GCP"
+                       class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png"
+                       alt="Microsoft Azure"
+                       class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png"
+                       alt="Liberty Global"
+                       class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png"
+                       alt="ACI"
+                       class="p-logo-section__logo" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <p class="p-heading--2">All on Ubuntu.</p>
-        </div>
-        <hr class="p-rule is-muted" />
-      </div>
-      <div class="row">
-        <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
+
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">Support for all public cloud Kubernetes</li>
             <li class="p-list__item is-ticked">On-prem MicroK8s, Charmed K8s, kubeadm</li>
             <li class="p-list__item is-ticked">
-              <a href="/kubernetes/managed">Fully managed kubernetes</a> on-prem or public cloud
+              <a href="/kubernetes/managed">Fully managed Kubernetes</a> on-prem or public cloud
             </li>
             <li class="p-list__item is-ticked">
               <a href="https://juju.is/docs/kubernetes">Model-driven Kubernetes Operators</a>
@@ -593,19 +509,27 @@
               Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
             </li>
           </ul>
-          <hr class="p-rule is-muted u-hide--medium u-hide--small" />
+        </div>
+        <div class="col">
+          <div class="p-image-wrapper u-hide--medium p-image-container--2-3 u-vertically-center"
+               style="background: rgba(0, 0, 0, 0.15)">
+            {{ image(url="https://assets.ubuntu.com/v1/a4028022-Multi-cloud%20Kubernetes%20%20and%20containers.png",
+                        alt="",
+                        width="1200",
+                        height="770",
+                        hi_def=True,
+                        loading="lazy",) | safe
+            }}
+          </div>
         </div>
       </div>
       <div class="row">
-        <hr class="is-muted p-rule u-hide--large" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-start-large-7 col-6">
           <p>
             <a href="/kubernetes"
-               aria-label="Learn more about multi-cloud Kubernetes and containers">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+               aria-label="Learn more about multi-cloud Kubernetes and containers"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/kubernetes/contact-us"
                aria-label="Contact us about multi-cloud Kubernetes and containers"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -615,90 +539,46 @@
     </section>
 
     <section class="p-section">
-      <div class="row">
+      <div class="u-fixed-width">
         <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Carrier-grade private cloud</h2>
-            <p class="p-heading--2">
-              Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
-            </p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
+        <div class="p-section--shallow">
+          <h2 class="p-heading--1 u-no-margin--bottom">Carrier-grade private cloud</h2>
+          <p class="p-heading--2">
+            Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
+          </p>
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png",
-                                alt="Best Buy",
-                                width="43",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png"
+                      alt="Best Buy"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png",
-                                alt="BT",
-                                width="41",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png"
+                      alt="BT"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png",
-                                alt="Deutsche Telekom",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png"
+                      alt="Deutsche Telekom"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png",
-                                alt="Rabobank",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png"
+                      alt="Rabobank"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png",
-                                alt="Bloomberg",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png"
+                      alt="Bloomberg"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png",
-                                alt="AT&T",
-                                width="89",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png"
+                      alt="AT&T"
+                      class="p-logo-section__logo" />
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-
-            {{ image(url="https://assets.ubuntu.com/v1/f94265e6-Canonical-AI-ML-Illustrations-v5-03%201-2.png",
-                        alt="",
-                        width="852",
-                        height="1083",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
           </div>
         </div>
       </div>
@@ -747,15 +627,12 @@
         </li>
       </ul>
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-6 col-start-large-7">
           <p>
             <a href="/openstack"
-               aria-label="Learn more about carrier-grade private cloud">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+               aria-label="Learn more about carrier-grade private cloud"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/openstack/contact-us"
                aria-label="Contact us about carrier-grade private cloud"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -765,136 +642,83 @@
     </section>
 
     <section class="p-section">
-      <div class="row">
+      <div class="row--50-50-on-large p-section--shallow">
         <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Ultra secure things</h2>
-            <p class="p-heading--2">
-              <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
-            </p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow p-section">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-                                alt="Intel",
-                                width="50",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png",
-                                alt="Rexroth",
-                                width="66",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
-                                alt="ARM",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-                                alt="Dell",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png",
-                                alt="Advantech",
-                                width="94",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/a69032bb-Canonical-AI-ML-Illustrations-v5-03%201.png",
+        <div class="col">
+          <div class="p-image-wrapper u-vertically-center p-image-container--2-3 u-hide--medium"
+               style="background: rgba(0, 0, 0, 0.15)">
+            {{ image(url="https://assets.ubuntu.com/v1/b3e4879c-Ultra%20secure%20things.png",
                         alt="",
-                        width="256",
-                        height="333",
+                        width="1200",
+                        height="983",
                         hi_def=True,
                         loading="lazy") | safe
             }}
           </div>
         </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <h2 class="p-heading--1 u-no-margin--bottom">Ultra secure things</h2>
+            <p class="p-heading--2">
+              <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
+            </p>
+            <div class="p-logo-section--dense">
+              <div class="p-logo-section__items landing-logos u-no-padding">
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
+                       class="p-logo-section__logo"
+                       alt="Intel" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png"
+                       class="p-logo-section__logo"
+                       alt="Rexroth" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png"
+                       class="p-logo-section__logo"
+                       alt="ARM" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png"
+                       class="p-logo-section__logo"
+                       alt="Dell" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png"
+                       class="p-logo-section__logo"
+                       alt="Advantech" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">OTA compressed updates for apps, kernel and OS</li>
+            <li class="p-list__item is-ticked">Automatic rollback and data snapshots</li>
+            <li class="p-list__item is-ticked">
+              <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
+            </li>
+            <li class="p-list__item is-ticked">DevSecOps pipeline for edge app delivery</li>
+            <li class="p-list__item is-ticked">Built-in device recovery and remote disk repair</li>
+            <li class="p-list__item is-ticked">10 year security maintenance for every device</li>
+            <li class="p-list__item is-ticked">Provable system and software integrity</li>
+            <li class="p-list__item is-ticked">Secure boot backed by root of trust</li>
+            <li class="p-list__item is-ticked">Full disk encryption with hardware keys</li>
+            <li class="p-list__item is-ticked">
+              <a href="/real-time">Support for real-time compute</a>
+            </li>
+            <li class="p-list__item is-ticked">FIPS certifiable embedded Linux</li>
+          </ul>
+        </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>OTA compressed updates for apps, kernel and OS</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Automatic rollback and data snapshots</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>DevSecOps pipeline for edge app delivery</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Built-in device recovery and remote disk repair</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>10 year security maintenance for every device</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Provable system and software integrity</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>Secure boot backed by root of trust</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>Full disk encryption with hardware keys</p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>
-            <a href="/real-time">Support for real-time compute</a>
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>FIPS certifiable embedded Linux</p>
-        </li>
-      </ul>
-
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-start-large-7 col-6">
           <p>
-            <a href="/core" aria-label="Learn more about Ubuntu Core">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+            <a href="/core"
+               aria-label="Learn more about Ubuntu Core"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/core/contact-us"
                aria-label="Contact us about Ubuntu Core"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -903,86 +727,51 @@
       </div>
     </section>
 
-    <section class="p-section">
-      <div class="row">
-        <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Workstations and desktops</h2>
-            <p class="p-heading--2">
-              <a href="/ai">Optimised AI/ML</a> and cloud devops.
-              <br />
-              The professional developer's preference.
-            </p>
-          </div>
+    <section class="p-section ">
+      <div class="u-fixed-width ">
+        <div class="u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
+          <img src="https://assets.ubuntu.com/v1/bb296524-Dell%20pcs.jpg" alt="" />
         </div>
-        <div class="col-3">
+        <hr class="p-rule" />
+        <div class="p-section--shallow">
+          <h2 class="p-heading--1 u-no-margin--bottom">Workstations and desktops</h2>
+          <p class="p-heading--2">
+            <a href="/ai">Optimised AI/ML</a> and cloud devops.
+            <br />
+            The professional developer's preference.
+          </p>
+  
           <div class="p-logo-section--dense">
-            <div class="p-logo-section__items u-no-padding">
+            <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
-                                alt="Nvidia",
-                                width="95",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png"
+                      alt="NVIDIA"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
-                                alt="Intel",
-                                width="50",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-              <div class="p-logo-section__item u-no-margin--right">
-                {{ image(url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
-                                alt="AMD",
-                                width="69",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
-              </div>
-            </div>
-          </div>
-          <hr class="p-rule is-muted u-hide--medium" />
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
-              <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
-                                alt="HP",
-                                width="41",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
+                      alt="Intel"
+                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png",
-                                alt="Dell",
-                                width="44",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/cc247653-amd-logo.png"
+                      alt="AMD"
+                      class="p-logo-section__logo" />
               </div>
-              <div class="p-logo-section__item u-no-margin--right">
-                {{ image(url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
-                                alt="Lenovo",
-                                width="69",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png"
+                      alt="HP"
+                      class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png"
+                      alt="Dell"
+                      class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
+                      alt="Lenovo"
+                      class="p-logo-section__logo" />
               </div>
             </div>
           </div>
@@ -1000,16 +789,6 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>DevSecOps pipeline for edge app delivery</p>
-        </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
             Security updates for the <a href="/esm">full open source stack</a>
           </p>
         </li>
@@ -1018,39 +797,33 @@
             Estate <a href="/landscape/features">monitoring and management</a>
           </p>
         </li>
+      </ul>
+      <ul class="row p-list--divided">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Configuration lockdown</p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Local Kubernetes for offline development</p>
         </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a href="https://multipass.run">Multipass</a>
           </p>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
           </p>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
-          <p>FIPS certifiable embedded Linux</p>
-        </li>
       </ul>
 
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-start-large-7 col-6">
           <p>
             <a href="/desktop"
-               aria-label="Learn more about workstations and desktops">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+               aria-label="Learn more about workstations and desktops"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/desktop/contact-us"
                aria-label="Contact us about workstations and desktops"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -1060,91 +833,54 @@
     </section>
 
     <section class="p-section">
-      <div class="row">
+      <div class="u-fixed-width"></div>
+      <div class="u-fixed-width">
+        <div class="p-image-container--cinematic">
+          <img src="https://assets.ubuntu.com/v1/39667d98-Open%20source%20security.jpg"
+               alt="" />
+        </div>
         <hr class="p-rule" />
-        <div class="col-9">
-          <div class="p-section--shallow">
-            <h2 class="p-heading--1 u-no-margin--bottom">Data centre automation</h2>
-            <p class="p-heading--2">
-              Turn a rack into a bare metal cloud.
-              <br />
-              <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
-            </p>
-          </div>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
+        <div class="p-section--shallow">
+          <h2 class="p-heading--1 u-no-margin--bottom">Data centre automation</h2>
+          <p class="p-heading--2">
+            Turn a rack into a bare metal cloud.
+            <br />
+            <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESXi and Linux.
+          </p>
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png",
-                                alt="Verizon",
-                                width="96",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png"
+                     alt="Verizon"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png",
-                                alt="Telefonica",
-                                width="121",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png"
+                     alt="Telefonica"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png",
-                                alt="Tele2",
-                                width="47",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png"
+                     alt="Tele2"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png",
-                                alt="Telecom Italia",
-                                width="57",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png"
+                     alt="Telecom Italia"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png",
-                                alt="NEC",
-                                width="60",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png"
+                     alt="NEC"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png",
-                                alt="Barclays",
-                                width="113",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png"
+                     alt="Barclays"
+                     class="p-logo-section__logo" />
               </div>
             </div>
           </div>
-
-        </div>
-        <div class="col-3 u-hide--small u-hide--medium p-image-wrapper">
-          {{ image(url="https://assets.ubuntu.com/v1/3bc32183-Canonical-AI-ML-Illustrations-v5-03%201-3.png",
-                    alt="",
-                    width="272",
-                    height="312",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
         </div>
       </div>
       <ul class="row p-list--divided u-no-margin--bottom">
@@ -1158,21 +894,16 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-          </p>
-        </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <p>
             Infrastructure <a href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery
           </p>
         </li>
-      </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             Ansible, Chef, Puppet, SALT, <a href="https://juju.is">Juju</a> integration
           </p>
         </li>
+      </ul>
+      <ul class="row p-list--divided u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="https://maas.io/install">Super fast install</a> from scratch
@@ -1184,24 +915,21 @@
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Custom images with pre-installed apps</p>
         </li>
-      </ul>
-      <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">API-driven DHCP, DNS, PXE, IPAM, provisioning</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">LDAP authentication and RBAC</li>
+      </ul>
+      <ul class="row p-list--divided">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">API-driven DHCP, DNS, PXE, IPAM, provisioning</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">LDAP authentication and RBAC</li>
       </ul>
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-6 col-start-large-7">
           <p>
             <a href="https://maas.io"
-               aria-label="Learn more about data centre automation">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+               aria-label="Learn more about data centre automation"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="https://maas.io/contact-us"
                aria-label="Contact us about data centre automation">Contact us&nbsp;&rsaquo;</a>
           </p>
@@ -1210,89 +938,50 @@
     </section>
 
     <section class="p-section">
-      <div class="row">
+      <div class="u-fixed-width">
+        <div class="p-image-container--cinematic">
+          <img src="https://assets.ubuntu.com/v1/465d1258-Smart%20robots%20of%20all%20shapes%20and%20sizes.jpg"
+               alt="" />
+        </div>
         <hr class="p-rule" />
-        <div class="col-9">
+        <div class="p-section--shallow">
           <h2 class="p-heading--1 u-no-margin--bottom">Smart robots of all shapes and sizes</h2>
           <p class="p-heading--2">
-            From turtles to trucks,
-            <br />
-            <a href="/robotics">Ubuntu drives the robot revolution</a>.
+            From turtles to trucks, <a href="/robotics">Ubuntu drives the robot revolution</a>.
           </p>
-          <div class="p-logo-section--dense p-section--shallow">
-            <div class="p-logo-section__items u-no-padding">
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png",
-                                alt="ABB",
-                                width="45",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png"
+                     alt="ABB"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png",
-                                alt="Pal Robotics",
-                                width="56",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png"
+                     alt="Pal Robotics"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png",
-                                alt="Kuka",
-                                width="89",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png"
+                     alt="Kuka"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
-                                alt="Apollo",
-                                width="77",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png"
+                     alt="Apollo"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
-                                alt="Bosch",
-                                width="103",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png"
+                     alt="Bosch"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                {{ image(url="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png",
-                                alt="BMW",
-                                width="40",
-                                height="96",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "p-logo-section__logo"}) | safe
-                }}
+                <img src="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png"
+                     alt="BMW"
+                     class="p-logo-section__logo" />
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-3 u-hide--medium u-hide--small">
-          <div class="p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/a0537c7a-Canonical-AI-ML-Illustrations-v5-03%202.png",
-                        alt="",
-                        width="273",
-                        height="328",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
           </div>
         </div>
       </div>
@@ -1316,20 +1005,18 @@
         </li>
       </ul>
       <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">Trim time-to-market with SMART START consulting</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">Leading Robot-as-a-Platform ecosystem</li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">Curated app stores</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Trim time-to-market with SMART START consulting</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Leading Robot-as-a-Platform ecosystem</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Curated app stores</li>
       </ul>
 
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-6 col-start-large-7">
           <p>
-            <a href="/robotics" aria-label="Learn more about robotics">Learn more&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col-3 col-medium-2">
-          <p>
+            <a href="/robotics"
+               aria-label="Learn more about robotics"
+               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
             <a href="/contact-us"
                aria-label="Contact us about robotics"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -1340,54 +1027,39 @@
 
     <section class="p-section--deep">
       <div class="u-fixed-width">
+        <div class="u-vertically-center u-align--center p-image-container--cinematic"
+             style="background: rgba(0, 0, 0, 0.15)">
+          <img src="https://assets.ubuntu.com/v1/b62f723f-Multi-cloud%20applicationsbeyond%20PAAS.png"
+               alt="" />
+        </div>
         <hr class="p-rule" />
         <div class="p-section--shallow">
           <h2 class="p-heading--1 u-no-margin--bottom">Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS</h2>
           <p class="p-heading--2">
             <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
           </p>
-        </div>
-        <div class="p-logo-section--dense p-section--shallow">
-          <div class="p-logo-section__items u-no-padding">
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png",
-                            alt="Panasonic",
-                            width="99",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png",
-                            alt="Scania",
-                            width="142",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png",
-                            alt="SBI BTS",
-                            width="90",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png",
-                            alt="Swissquote",
-                            width="133",
-                            height="96",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
+          <div class="p-logo-section--dense">
+              <div class="p-logo-section__items landing-logos u-no-padding">
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
+                      alt="Panasonic"
+                      class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
+                      alt="Scania"
+                      class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
+                      alt="SBI BTS"
+                      class="p-logo-section__logo" />
+                </div>
+                <div class="p-logo-section__item">
+                  <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
+                      alt="Swissquote"
+                      class="p-logo-section__logo" />
+                </div>
             </div>
           </div>
         </div>
@@ -1408,10 +1080,10 @@
         </li>
       </ul>
       <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Lifecycle management and Day 2 operations</p>
         </li>
-        <li class="p-list__item is-ticked col-medium-3 col-3">
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="https://jaas.ai/store">Open collection</a> of community-driven operators
           </p>
@@ -1419,10 +1091,10 @@
       </ul>
 
       <div class="row">
-        <hr class="is-muted p-rule" />
-        <div class="col-3 col-start-large-7 col-medium-2 col-medium-start-3">
+        <hr class="is-muted" />
+        <div class="col-6 col-start-large-7">
           <p>
-            <a href="https://juju.is">Learn more about universal operators&nbsp;&rsaquo;</a>
+            <a href="https://juju.is" class="p-button is-dark">Learn more about universal operators&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -1563,7 +1235,6 @@
         if (title.textContent.length > 80 || subtitle.textContent.length > 80) {
           title.classList.remove("u-no-margin--bottom")
           subtitle.classList.remove("p-heading--2")
-          subtitle.classList.add("p-section--shallow")
         }
 
         title.textContent = selectedTakeover.title;

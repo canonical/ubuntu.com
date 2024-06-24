@@ -10,7 +10,7 @@
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
   <div class="row p-section--shallow">
     {% if request.path == "/" %}
-    <h2 class="p-heading--1 p-section--shallow">
+    <h2 class="p-heading--1">
     {% else %}
     <h2 class="p-heading--3">
     {% endif %}
@@ -33,7 +33,6 @@
     </div>
     {% endif %}
   </div>
-
   <template style="display:none" id="horizontal-articles-template">
     <hr class="p-rule is-muted u-hide--large" />
     <div class="col-3">
