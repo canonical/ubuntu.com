@@ -345,6 +345,7 @@ function handleShowDetailedView() {
     };
   });
 }
+handleShowDetailedView();
 
 // Hide detailed view of packages
 function handleHideDetailedView() {
@@ -370,6 +371,7 @@ function handleHideDetailedView() {
     };
   });
 }
+handleHideDetailedView();
 
 // On page load, check if the detailed view switch is checked
 function handleDetailedView() {
