@@ -511,16 +511,25 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 else:
                     state = RESERVATION_STATES.get(r["state"], r["state"])
 
+                state = (
+                    RESERVATION_STATES["finalized"]
+                    if state
+                    in [
+                        RESERVATION_STATES["archived"],
+                        RESERVATION_STATES["archiving"],
+                    ]
+                    else state
+                )
                 # if assessment is provisioned
                 if assessment_id:
                     is_in_window = (now > starts_at and now < end) or (
                         now < starts_at
                         and now > starts_at - timedelta(minutes=30)
                     )
-                    provisioned_but_not_taken = (
-                        is_in_window
-                        and state == RESERVATION_STATES["provisioned"]
-                    )
+                    provisioned_but_not_taken = is_in_window and state in [
+                        RESERVATION_STATES["notified"],
+                        RESERVATION_STATES["provisioned"],
+                    ]
 
                     if (
                         state == RESERVATION_STATES["in_progress"]
@@ -529,7 +538,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         actions.extend(
                             [
                                 {
-                                    "text": "Take exam",
+                                    "text": "Continue exam"
+                                    if state
+                                    == RESERVATION_STATES["in_progress"]
+                                    else "Take exam",
                                     "href": "/credentials/exam?"
                                     f"id={assessment_id}",
                                     "button_class": "p-button--positive",
