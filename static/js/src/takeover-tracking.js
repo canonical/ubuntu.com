@@ -1,10 +1,16 @@
 import { getCookie, setCookie } from "./utils/cookies";
 
 window.onload = function () {
+  // Switch for turning takeover switching on and off on demand
+  const takeoverSwitch = true;
   // check if user doesn't already have a group
   if (!getCookie("control_or_variant")) {
     // randomly assign to 'control' or 'variant' group
-    const group = Math.random() > 0.5 ? "control" : "variant";
+    const group = takeoverSwitch
+      ? Math.random() > 0.5
+        ? "control"
+        : "variant"
+      : "control";
 
     // store group as cookie for 365 days
     setCookie("control_or_variant", group, 365);
