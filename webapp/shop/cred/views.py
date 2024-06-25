@@ -542,7 +542,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         "date": starts_at.strftime("%d %b %Y"),
                         "time": starts_at.strftime("%I:%M %p %Z"),
                         "timezone": timezone,
-                        "state": state,
+                        "state": "Ready to be taken"
+                        if provisioned_but_not_taken
+                        else state,
                         "uuid": r["uuid"],
                         "actions": actions,
                     }
