@@ -2,215 +2,228 @@
 
 {% block title %}Containers{% endblock %}
 
-{% block meta_description %}Containers run best on Ubuntu because it has more modern Linux kernels and the latest tooling for the fast-moving Docker, K8s and LXD communities. Optimised on all major clouds.{% endblock meta_description %}
+{% block meta_description %}
+  Explore Ubuntu's trusted container images built from the world's most popular cloud OS. Enjoy long-term support, regular security updates, and size optimisation.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1OtyfNeA--EJgpgvDzqcbJ8jqa6d9H5H9xyxHNxcKXvc/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1OtyfNeA--EJgpgvDzqcbJ8jqa6d9H5H9xyxHNxcKXvc/edit
+{% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<div class="p-strip is-shallow u-no-padding--bottom">
-  <div class="row">
-    <div class="col-start-large-4 col-9">
-      <div class="p-section--shallow">
-        <h1>Build applications at speed with <br aria-hidden="true"/> ultra-secure and supported Ubuntu containers</h1>
+  <div class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-section--shallow">
+          <h1>
+            Secure, minimal containers
+            <br aria-hidden="true" />
+            from your trusted distro
+          </h1>
+        </div>
+        <p>
+          Build enterprise-grade applications on the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready containers, or use our open source tooling to create your own.
+        </p>
+        <hr />
+        <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our base image</a>
+        <a href="/containers/contact-us" class="js-invoke-modal">Get a secure, custom-built container&nbsp;&rsaquo;</a>
       </div>
-      <p>Experience secure, and long term supported container images built from the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready chiselled containers.</p>
+    </div>
+    <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
+      <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg"
+           alt=""
+           style="aspect-ratio: 5.1775700934579;
+                  width: 100%" />
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Familiar for developers,
+          <br aria-hidden="true" />
+          secured by Ubuntu
+        </h2>
+      </div>
+      <div class="col">
+        <p>Rely on Ubuntu's demonstrated track record for containers that are:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item has-bullet">
+            <strong>Secure.</strong> Timely updates and patches, building on Ubuntu's security track record.
+          </li>
+          <li class="p-list__item has-bullet">
+            <strong>Stable.</strong> Long-term support with a consistent, predictable lifecycle and support commitment.
+          </li>
+          <li class="p-list__item has-bullet">
+            <strong>Seamless.</strong> Developer-friendly, smooth experience from development to production.
+          </li>
+          <li class="p-list__item has-bullet">
+            <strong>Small.</strong> Ultra-small, resource-efficient, yet robust images with chiselled (distroless) Ubuntu.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Explore our offering</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu containers are designed for modern software deployments. Our solutions are tailored to diverse needs, from individual developers to large enterprises that need long term supported, secure and compliant containers.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule" />
+        <div class="row p-section--shallow">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Container Build Service</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Have Canonical's expert team custom build secure, minimal and optimised containers for your application. This service is ideal for enterprise that need a trusted partner to create and maintain containers that offer:
+            </p>
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked">Minimal attack surface, coupled with an optimised and consistent structure</li>
+              <li class="p-list__item is-ticked">12 years of security support</li>
+              <li class="p-list__item is-ticked">
+                Compliance with the most stringent security management, auditing and reporting frameworks
+              </li>
+            </ul>
+            <p>
+              <a href="/containers/contact-us" class="js-invoke-modal">Explore the Container Build Service&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Chiselled Ubuntu images</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Canonical's variation of “distroless” containers. Chiselled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.
+            </p>
+            <p>
+              <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Learn about Chiselled Ubuntu&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <hr class="u-fixed-width" />
+  </div>
+  <div class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/engage/container-security-guide">Read our whitepaper about container security&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <hr class="u-fixed-width" />
+  </div>
+
+  <div class="p-section">
+    <div class="u-fixed-width">
+      <p class="p-text--small-caps">Trusted by industry leaders</p>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/a4c39400-docker-logo-horizontal.png",
+                          alt="Docker",
+                          width="516",
+                          height="558",
+                          hi_def=True,
+                          loading="lazy",
+                          attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+                          alt="Intel",
+                          width="149",
+                          height="288",
+                          hi_def=True,
+                          loading="lazy",
+                          attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
+                          alt="Arm",
+                          width="183",
+                          height="372",
+                          hi_def=True,
+                          loading="lazy",
+                          attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/9e636877-microsoft-logo.png",
+                          alt="Microsoft",
+                          width="288",
+                          height="288",
+                          hi_def=True,
+                          loading="lazy",
+                          attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <div class="row--50-50">
       <hr />
-      <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our OCI images</a>
-      <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">What are chiselled containers&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-  <div class="u-fixed-width u-no-padding u-hide--small u-hide--medium">
-    <img src="https://assets.ubuntu.com/v1/7f34ade9-website_suru_25.jpg" alt="" style="aspect-ratio: 5.1775700934579; width: 100%;">
-  </div>
-</div>
-
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule"/>
-    <div class="col">
-      <h2>Easy for developers, <br aria-hidden="true"/>secured by Ubuntu</h2>
-    </div>
-    <div class="col">
-      <p>Rely on Ubuntu's demonstrated history of security with containers that are:</p>
-      <ul class="p-list--divided">
-        <li class="p-list__item has-bullet"><strong>Secure.</strong> Timely updates and patches, building on Ubuntu's security track record.</li>
-        <li class="p-list__item has-bullet"><strong>Stable.</strong> Long-term support with a consistent, predictable lifecycle and support commitment.</li>
-        <li class="p-list__item has-bullet"><strong>Seamless.</strong> Developer-friendly, smooth experience from development to production.</li>
-        <li class="p-list__item has-bullet"><strong>Small.</strong> Ultra-small, resource-efficient, yet robust images with chiselled (distroless) Ubuntu.</li>
-    </div>
-  </div>
-</div>
-
-<div class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule"/>
-    <div class="col">
-      <h2>Explore our container offerings</h2>
-    </div>
-    <div class="col">
-      <p>Ubuntu containers are designed for modern software deployment. Our solutions, tailored to diverse needs, range from an ecosystem of base OCI images, ultra-optimised chiselled container images to our long-term supported Docker images portfolio.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-start-large-4 col-9 col-medium-6">
-      <hr class="p-rule"/>
-      <div class="row p-section--shallow">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Base images</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Ubuntu base images provide a solid foundation for your applications, offering a stable and secure environment, built from the world’s most popular cloud operating system. Canonical provides commercial support for all Ubuntu-based container images.</p>
-          <p>
-            <a href="/support">Explore contract support&nbsp;&rsaquo;</a>
-          </p>
-        </div>
+      <div class="col">
+        <h2>
+          Take your container strategy
+          <br aria-hidden="true" />
+          to the next level
+        </h2>
       </div>
-      <hr class="p-rule"/>
-      <div class="row p-section--shallow">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Application images</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Canonical's LTS Docker images come with a long-term support and stability commitment. Pre-built and pre-configured application, runtime, and base images supported for up to 10 years with security patches.</p>
-          <p>
-            <a href="https://hub.docker.com/u/ubuntu">Explore our OCI container images&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-      <hr class="p-rule"/>
-      <div class="row">
-        <div class="col-3 col-medium-3">
-          <h3 class="p-heading--5">Chiselled Ubuntu images</h3>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>The future of container images is here. Chiselled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.</p>
-          <p>
-            <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Learn about Chiselled Ubuntu&nbsp;&rsaquo;</a>
-          </p>
-        </div>
+      <div class="col">
+        <p>Dive deeper into the world of containers with Ubuntu on our blog.</p>
+        <hr class="p-rule" />
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/blog/install-dotnet-on-ubuntu">Microsoft and Canonical announce native .NET availability in Ubuntu 22.04 hosts and containers </a>
+          </li>
+          <li class="p-list__item">
+            <a href="/blog/docker-container-security-demystifying-fips-enabled-containers-with-ubuntu-pro">Docker container security: demystifying FIPS-enabled containers with Ubuntu Pro</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Chiselled Ubuntu containers: the benefits of combining Distroless and Ubuntu</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <hr class="u-fixed-width"/>
-</div>
-<div class="p-strip is-deep">
-  <div class="u-fixed-width">
-    <h2>
-      <a href="/engage/container-security-guide">Read our whitepaper about container security&nbsp;&rsaquo;</a>
-    </h2>
-  </div>
-</div>
-<div class="row">
-  <hr class="u-fixed-width"/>
-</div>
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+        id="contact-form-container"
+        data-form-location="/shared/forms/interactive/containers-chiselled-dotnet"
+        data-form-id="5486"
+        data-lp-id=""
+        data-return-url="https://ubuntu.com/containers#success"
+        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
-<div class="p-section">
-  <div class="u-fixed-width">
-    <p class="p-text--small-caps">Trusted by industry leaders</p>
-    <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/a4c39400-docker-logo-horizontal.png",
-            alt="Docker",
-            width="516",
-            height="558",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
-            alt="Intel",
-            width="149",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
-            alt="Arm",
-            width="183",
-            height="372",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ 
-            image (
-            url="https://assets.ubuntu.com/v1/9e636877-microsoft-logo.png",
-            alt="Microsoft",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <hr class="u-fixed-width"/>
-</div>
-<div class="p-strip is-deep">
-  <div class="u-fixed-width">
-    <h2>
-      <a href="https://canonical-oci.readthedocs-hosted.com/en/latest/">Read the docs for Ubuntu OCI and chiselled images&nbsp;&rsaquo;</a>
-    </h2>
-  </div>
-</div>
-<div class="row">
-  <hr class="u-fixed-width"/>
-</div>
-
-<div class="p-section">
-  <div class="row--50-50">
-    <div class="col">
-      <h2>Take your container strategy<br aria-hidden="true"/> to the next level</h2>
-    </div>
-    <div class="col">
-      <p>Dive deeper into the world of containers with Ubuntu on our blog.</p>
-      <hr class="p-rule"/>
-      <ul class="p-list--divided">
-        <li class="p-list__item"><a href="/blog/install-dotnet-on-ubuntu">Microsoft and Canonical announce native .NET availability in Ubuntu 22.04 hosts and containers </a></li>
-        <li class="p-list__item"><a href="/blog/docker-container-security-demystifying-fips-enabled-containers-with-ubuntu-pro">Docker container security: demystifying FIPS-enabled containers with Ubuntu Pro</a></li>
-        <li class="p-list__item"><a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Chiselled Ubuntu containers: the benefits of combining Distroless and Ubuntu</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip--white is-deep">
-  <div class="u-fixed-width">
-    <h2>
-      <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact our team for support with Ubuntu containers&nbsp;&rsaquo;</a>
-    </h2>
-  </div>
-</div>
-
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
-
-{% endblock content %}
+  {% endblock content %}
