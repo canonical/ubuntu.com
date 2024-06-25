@@ -398,7 +398,7 @@ def cve_index():
             release["release_date"], "%Y-%m-%dT%H:%M:%S"
         )
 
-        # filter releases
+        # ilter releases
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
@@ -408,6 +408,8 @@ def cve_index():
                     else:
                         break
         elif (
+            # By default, we only want to show the 5 most recent LTS releases
+            # thus excluding xenial and trusty
             (support_date > datetime.now() or esm_date > datetime.now())
             and release_date < datetime.now()
             and release["codename"] != "xenial"
