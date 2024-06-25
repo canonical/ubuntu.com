@@ -122,6 +122,7 @@ def notices():
     release = flask.request.args.get("release", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
+    order = flask.request.args.get("order", type=str)
 
     # call endpopint to get all releases and notices
     all_releases = security_api.get_releases()
@@ -165,6 +166,7 @@ def notices():
         page_first_result=offset + 1,
         page_last_result=offset + len(notices),
         offset=offset,
+        order=order,
     )
 
 
