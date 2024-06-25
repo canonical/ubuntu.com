@@ -123,7 +123,6 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                                 quantity={quantity}
                                 product={product}
                                 action={action}
-                                coupon={null}
                               />
                             ),
                           },

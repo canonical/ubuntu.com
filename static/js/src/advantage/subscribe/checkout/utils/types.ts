@@ -103,7 +103,7 @@ export type PaymentPayload = {
   ];
   renewal_id?: string;
   offer_id?: string;
-  coupon: Coupon | null;
+  coupon?: Coupon;
 };
 
 export type TaxInfo = {

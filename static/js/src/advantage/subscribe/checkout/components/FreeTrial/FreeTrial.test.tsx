@@ -27,7 +27,6 @@ describe("FreeTrial", () => {
             quantity={1}
             product={UAProduct}
             action={"purchase"}
-            coupon={null}
           />
         </Formik>
       </QueryClientProvider>
@@ -53,7 +52,6 @@ describe("FreeTrial", () => {
             quantity={1}
             product={UAProduct}
             action={"purchase"}
-            coupon={null}
           />
         </Formik>
       </QueryClientProvider>
