@@ -924,7 +924,7 @@ app.add_url_rule(
 app.add_url_rule(
     "/credentials/keys/<key_id>",
     view_func=get_activation_key_info,
-    methods=["GET"]
+    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/beta/activation",
