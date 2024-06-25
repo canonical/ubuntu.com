@@ -149,7 +149,7 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
             <>
               {total == 0 &&
                 priceData !== undefined &&
-                product?.name !== "cue-linux-essentials-free" &&
+                product?.id !== "cue-01-linux" &&
                 "This is because you have likely already paid for this product for the current billing period."}
             </>
           </p>

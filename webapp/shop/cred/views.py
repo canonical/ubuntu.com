@@ -1071,7 +1071,7 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
     return flask.jsonify(new_activation_key)
 
 
-@shop_decorator(area="cube", permission="user", response=json)
+@shop_decorator(area="cube", permission="user", response="json")
 def activate_activation_key(ua_contracts_api, **kwargs):
     data = flask.request.json
     activation_key = data["activationKey"]
@@ -1081,6 +1081,12 @@ def activate_activation_key(ua_contracts_api, **kwargs):
         }
     )
 
+@shop_decorator(area="cube", permission="user", response="json")
+def get_activation_key_info(ua_contracts_api, **kwargs):
+    activation_key = kwargs.get("key_id")
+    return ua_contracts_api.get_activation_key_info(
+        activation_key
+    )
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
