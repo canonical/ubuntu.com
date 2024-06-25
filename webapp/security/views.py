@@ -7,7 +7,6 @@ from math import ceil, floor
 import flask
 import dateutil
 import talisker.requests
-import bs4 as bs
 import yaml
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
@@ -15,7 +14,6 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 
 # Local
-from webapp.context import api_session
 from webapp.security.api import SecurityAPI
 from webapp.security.helpers import get_summarized_status
 
@@ -250,9 +248,9 @@ def single_notices_sitemap(offset):
         links.append(
             {
                 "url": f"https://ubuntu.com/security/notices/{notice_id}",
-                "last_updated": notice["published"]
-                if notice["published"]
-                else "",
+                "last_updated": (
+                    notice["published"] if notice["published"] else ""
+                ),
             }
         )
 
@@ -314,6 +312,7 @@ def cve_index():
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
     order = flask.request.args.get("order", default="", type=str)
+    detailed = flask.request.args.get("detailed", default="", type=str)
 
     # All CVEs
     cves_response = security_api.get_cves(
@@ -399,14 +398,23 @@ def cve_index():
             release["release_date"], "%Y-%m-%dT%H:%M:%S"
         )
 
-        # filter releases
+        # ilter releases
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
-                    selected_releases.append(release)
+                    # cap to show maximum of 5 releases
+                    if len(selected_releases) < 5:
+                        selected_releases.append(release)
+                    else:
+                        break
         elif (
-            support_date > datetime.now() or esm_date > datetime.now()
-        ) and release_date < datetime.now():
+            # By default, we only want to show the 5 most recent LTS releases
+            # thus excluding xenial and trusty
+            (support_date > datetime.now() or esm_date > datetime.now())
+            and release_date < datetime.now()
+            and release["codename"] != "xenial"
+            and release["codename"] != "trusty"
+        ):
             selected_releases.append(release)
 
         if support_date < datetime.now():
@@ -419,9 +427,6 @@ def cve_index():
             for yaml_release in yaml_releases:
                 if yaml_release["name"] == release["name"]:
                     maintained_releases.append(release)
-
-    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
-
     """
     TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
@@ -430,32 +435,32 @@ def cve_index():
     """
 
     # Format summarized statuses
-    # friendly_names = {
-    #     "DNE": "Not in release",
-    #     "needs-triage": "Needs evaluation",
-    #     "not-affected": "Not vulnerable",
-    #     "needed": "Vulnerable",
-    #     "deferred": "Vulnerable",
-    #     "ignored": "Ignored",
-    #     "pending": "Vulnerable",
-    #     "released": "Fixed",
-    # }
+    friendly_names = {
+        "DNE": {"name": "Not in release", "icon": None},
+        "needs-triage": {"name": "Needs evaluation", "icon": "help"},
+        "not-affected": {"name": "Not affected", "icon": "success"},
+        "needed": {"name": "Vulnerable", "icon": "warning"},
+        "deferred": {"name": "Vulnerable", "icon": "warning"},
+        "pending": {"name": "Vulnerable", "icon": "warning"},
+        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "released": {"name": "Fixed", "icon": "success"},
+    }
 
     for cve in cves:
-        cve["summarized_status"] = {}
-        get_summarized_status(
-            cve, ignored_low_indicators, vulnerable_indicators
-        )
-        # for cve_package in cve["packages"]:
-        #     cve_package["release_statuses"] = {}
-        #     for status in cve_package["statuses"]:
-        #         cve_package["release_statuses"][status["release_codename"]] =
-        # {
-        #             "slug": status["status"],
-        #             "name": friendly_names[status["status"]],
-        #             "pocket": status["pocket"],
-        #         }
-
+        # cve["summarized_status"] = {}
+        # get_summarized_status(
+        #     cve, ignored_low_indicators, vulnerable_indicators
+        # )
+        for cve_package in cve["packages"]:
+            cve_package["release_statuses"] = {}
+            for status in cve_package["statuses"]:
+                friendly_status = friendly_names[status["status"]]
+                cve_package["release_statuses"][status["release_codename"]] = {
+                    "slug": status["status"],
+                    "name": friendly_status["name"],
+                    "pocket": status["pocket"],
+                    "icon": friendly_status["icon"],
+                }
     return flask.render_template(
         "security/cve/index.html",
         all_releases=all_releases,
@@ -476,6 +481,7 @@ def cve_index():
         unmaintained_releases=unmaintained_releases,
         high_priority_cves=high_priority_cves,
         order=order,
+        detailed=detailed,
     )
 
 
@@ -608,8 +614,6 @@ def cve(cve_id):
         for package_name, tags in cve["tags"].items():
             for tag in tags:
                 formatted_tags.append({"name": package_name, "text": tag})
-
-    base_lp = "https://git.launchpad.net/ubuntu-cve-tracker/tree"
 
     return flask.render_template(
         "security/cve/cve.html",
