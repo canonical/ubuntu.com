@@ -6,7 +6,7 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  coupon: Coupon | null;
+  coupon?: Coupon;
 };
 
 const postPurchase = () => {

@@ -12,7 +12,7 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
-  coupon: Coupon | null;
+  coupon?: Coupon;
 };
 
 const usePreview = ({ quantity, product, action, coupon }: Props) => {

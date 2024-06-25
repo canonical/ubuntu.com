@@ -17,7 +17,7 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  coupon: Coupon | null;
+  coupon?: Coupon;
 };
 
 const DATE_FORMAT = "dd MMMM yyyy";
