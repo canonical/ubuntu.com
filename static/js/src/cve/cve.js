@@ -1,5 +1,5 @@
-const searchInput = document.querySelector("#q");
 const searchForm = document.querySelector("#searchForm");
+const searchSubmitButton = document.querySelector("#cve-search-button");
 const url = new URL(window.location.href);
 const urlParams = new URLSearchParams(url.search);
 const apiBase = "https://ubuntu.com/security/cves.json";
@@ -42,12 +42,21 @@ const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
   (release) => release.codename
 );
 
-function handleSearchInput(event) {
-  if (event.key === "Enter") {
-    searchForm.submit();
+function handleSearchInput() {
+  const formData = new FormData(searchForm)
+  
+  for (const key of formData.values()) {
+    urlParams.set("q", key)
   }
+
+  url.search = urlParams.toString();
+  window.location.href = url.href;
 }
-searchInput.addEventListener("keyup", handleSearchInput);
+
+searchSubmitButton.addEventListener("click", function(event) {
+  event.preventDefault()
+  handleSearchInput()
+});
 
 // Adds listener to package filter text field and adds value
 // to URLSearchParams object
@@ -96,6 +105,8 @@ handleFilters();
 function removeParam(param, value) {
   if (value === "maintained") {
     maintainedReleases.forEach(function (release) {
+      const checkbox = getCheckboxFromRelease(release);
+      checkbox.checked = false
       urlParams.delete(param, release);
     });
   } else if (value === "vulnerable") {
@@ -103,6 +114,10 @@ function removeParam(param, value) {
       urlParams.delete(param, status);
     });
   } else {
+    if (maintainedReleases.includes(value) ){
+      const maintainedCheckbox = document.querySelector("input[type='checkbox'][value='maintained']");
+      maintainedCheckbox.checked = false
+    }
     urlParams.delete(param, value);
   }
 }
@@ -196,9 +211,9 @@ handleClearFilters();
 function addParam(param, value) {
   if (value === "maintained") {
     maintainedReleases.forEach(function (release) {
-      if (!urlParams.has(param, release)) {
-        urlParams.append(param, release);
-      }
+      const checkbox = getCheckboxFromRelease(release);
+      checkbox.checked = true
+      urlParams.append(param, release);
     });
   } else if (value === "vulnerable") {
     vulnerableStatuses.forEach(function (status) {
@@ -213,14 +228,21 @@ function addParam(param, value) {
   }
 }
 
-function showUnmaintaiedReleases() {
+function getCheckboxFromRelease(release) {
+  const releaseCheckboxesArray = Array.from(releaseCheckboxes);
+  const checkbox = releaseCheckboxesArray.find(checkbox => checkbox.value === release);
+
+  return checkbox;
+}
+
+function showUnmaintainedReleases() {
   unmaintainedReleasesLink.onclick = function (event) {
     event.preventDefault();
     unmaintainedReleasesLink.classList.add("u-hide");
     unmaintainedReleasesContainer.classList.remove("u-hide");
   };
 }
-showUnmaintaiedReleases();
+showUnmaintainedReleases();
 
 function handleLimitSelect() {
   if (urlParams.has("limit")) {
