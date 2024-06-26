@@ -471,7 +471,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
-
+            # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -504,63 +504,73 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
-                if "assessment" in r and r["assessment"] is not None:
+                if assessment_id:
                     state = RESERVATION_STATES.get(
                         r["assessment"]["state"], r["state"]
                     )
                 else:
                     state = RESERVATION_STATES.get(r["state"], r["state"])
 
-                if assessment_id and now > starts_at and now < end:
-                    actions.extend(
-                        [
-                            {
-                                "text": "Take exam",
-                                "href": "/credentials/exam?"
-                                f"id={assessment_id}",
-                                "button_class": "p-button--positive",
-                            }
-                        ]
+                state = (
+                    RESERVATION_STATES["finalized"]
+                    if state
+                    in [
+                        RESERVATION_STATES["archived"],
+                        RESERVATION_STATES["archiving"],
+                    ]
+                    else state
+                )
+                # if assessment is provisioned
+                if assessment_id:
+                    is_in_window = (now > starts_at and now < end) or (
+                        now < starts_at
+                        and now > starts_at - timedelta(minutes=30)
                     )
+                    provisioned_but_not_taken = is_in_window and state in [
+                        RESERVATION_STATES["notified"],
+                        RESERVATION_STATES["provisioned"],
+                    ]
 
-                    exams_in_progress.append(
-                        {
-                            "name": name,
-                            "date": starts_at.strftime("%d %b %Y"),
-                            "time": starts_at.strftime("%I:%M %p %Z"),
-                            "timezone": timezone,
-                            "state": "In progress",
-                            "uuid": r["uuid"],
-                            "actions": actions,
-                        }
-                    )
-                elif (
-                    assessment_id
-                    and now < starts_at
-                    and now > starts_at - timedelta(minutes=30)
-                ):
-                    actions.extend(
-                        [
-                            {
-                                "text": "Take exam",
-                                "href": "/credentials/exam?"
-                                f"id={ assessment_id }",
-                                "button_class": "p-button",
-                            }
-                        ]
-                    )
+                    if (
+                        state == RESERVATION_STATES["in_progress"]
+                        or provisioned_but_not_taken
+                    ):
+                        actions.extend(
+                            [
+                                {
+                                    "text": "Continue exam"
+                                    if state
+                                    == RESERVATION_STATES["in_progress"]
+                                    else "Take exam",
+                                    "href": "/credentials/exam?"
+                                    f"id={assessment_id}",
+                                    "button_class": "p-button--positive",
+                                }
+                            ]
+                        )
 
-                    exams_in_progress.append(
-                        {
-                            "name": name,
-                            "date": starts_at.strftime("%d %b %Y"),
-                            "time": starts_at.strftime("%I:%M %p %Z"),
-                            "timezone": timezone,
-                            "state": "In progress",
-                            "uuid": r["uuid"],
-                            "actions": actions,
-                        }
-                    )
+                    exam_data = {
+                        "name": name,
+                        "date": starts_at.strftime("%d %b %Y"),
+                        "time": starts_at.strftime("%I:%M %p %Z"),
+                        "timezone": timezone,
+                        "state": "Ready to be taken"
+                        if provisioned_but_not_taken
+                        else state,
+                        "uuid": r["uuid"],
+                        "actions": actions,
+                    }
+
+                    if state in [
+                        RESERVATION_STATES["completed"],
+                        RESERVATION_STATES["finalized"],
+                        RESERVATION_STATES["graded"],
+                    ]:
+                        exams_complete.append(exam_data)
+                    else:
+                        exams_in_progress.append(exam_data)
+
+                # if at least 30 minutes away allow reschedule
                 elif state == "Scheduled":
                     if now + timedelta(minutes=30) < starts_at:
                         actions.extend(
@@ -587,40 +597,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                             "actions": actions,
                         }
                     )
-                elif state in (
-                    "Completed",
-                    "Graded",
-                    "Grading",
-                    "Finalized",
-                    "Processed",
-                ):
-                    exams_complete.append(
-                        {
-                            "name": name,
-                            "date": starts_at.strftime("%d %b %Y"),
-                            "time": starts_at.strftime("%I:%M %p %Z"),
-                            "timezone": timezone,
-                            "state": state,
-                            "uuid": r["uuid"],
-                            "actions": actions,
-                        }
-                    )
-                elif state in (
-                    "Cancelled",
-                    "Archiving",
-                    "Archived",
-                ):
-                    exams_cancelled.append(
-                        {
-                            "name": name,
-                            "date": starts_at.strftime("%d %b %Y"),
-                            "time": starts_at.strftime("%I:%M %p %Z"),
-                            "timezone": timezone,
-                            "state": state,
-                            "uuid": r["uuid"],
-                            "actions": [],
-                        }
-                    )
+            # if exam expires
             elif (
                 "effectivenessContext" in exam_contract
                 and "status" in exam_contract["effectivenessContext"]
@@ -630,6 +607,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                 exams_expired.append(
                     {"name": name, "state": "Expired", "actions": []}
                 )
+            # if exam is not used and is not expired
             else:
                 actions = [
                     {
