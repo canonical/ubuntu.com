@@ -43,19 +43,19 @@ const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
 );
 
 function handleSearchInput() {
-  const formData = new FormData(searchForm)
-  
+  const formData = new FormData(searchForm);
+
   for (const key of formData.values()) {
-    urlParams.set("q", key)
+    urlParams.set("q", key);
   }
 
   url.search = urlParams.toString();
   window.location.href = url.href;
 }
 
-searchSubmitButton.addEventListener("click", function(event) {
-  event.preventDefault()
-  handleSearchInput()
+searchSubmitButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  handleSearchInput();
 });
 
 // Adds listener to package filter text field and adds value
@@ -106,7 +106,7 @@ function removeParam(param, value) {
   if (value === "maintained") {
     maintainedReleases.forEach(function (release) {
       const checkbox = getCheckboxFromRelease(release);
-      checkbox.checked = false
+      checkbox.checked = false;
       urlParams.delete(param, release);
     });
   } else if (value === "vulnerable") {
@@ -114,9 +114,11 @@ function removeParam(param, value) {
       urlParams.delete(param, status);
     });
   } else {
-    if (maintainedReleases.includes(value) ){
-      const maintainedCheckbox = document.querySelector("input[type='checkbox'][value='maintained']");
-      maintainedCheckbox.checked = false
+    if (maintainedReleases.includes(value)) {
+      const maintainedCheckbox = document.querySelector(
+        "input[type='checkbox'][value='maintained']"
+      );
+      maintainedCheckbox.checked = false;
     }
     urlParams.delete(param, value);
   }
@@ -212,7 +214,7 @@ function addParam(param, value) {
   if (value === "maintained") {
     maintainedReleases.forEach(function (release) {
       const checkbox = getCheckboxFromRelease(release);
-      checkbox.checked = true
+      checkbox.checked = true;
       urlParams.append(param, release);
     });
   } else if (value === "vulnerable") {
@@ -230,7 +232,9 @@ function addParam(param, value) {
 
 function getCheckboxFromRelease(release) {
   const releaseCheckboxesArray = Array.from(releaseCheckboxes);
-  const checkbox = releaseCheckboxesArray.find(checkbox => checkbox.value === release);
+  const checkbox = releaseCheckboxesArray.find(
+    (checkbox) => checkbox.value === release
+  );
 
   return checkbox;
 }
