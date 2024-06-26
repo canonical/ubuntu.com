@@ -154,7 +154,7 @@ function sendContributionFormAnalytics() {
     let value = amountElement.value || 0;
 
     if (value > 0) {
-      dataLayerObject.name =  value;
+      dataLayerObject[name] =  value;
     }
   });
 
