@@ -443,6 +443,13 @@ class UAContractsAPI:
 
         return {}
 
+    def get_activation_key_info(self, key_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/{key_id}",
+            error_rules=["default"],
+        ).json()
+
     def get_annotated_contract_items(
         self, email: str = "", product_tags: List[str] = []
     ) -> List[dict]:

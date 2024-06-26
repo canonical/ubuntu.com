@@ -66,6 +66,11 @@ class PurchaseItemSchema(BaseSchema):
         return PurchaseItem(**data)
 
 
+class CouponSchema(BaseSchema):
+    origin = String(attribute="origin")
+    IDs = List(String(), attribute="IDs")
+
+
 class PurchaseSchema(BaseSchema):
     accountID = String(required=True, attribute="account_id")
     id = String(required=True)
@@ -80,6 +85,7 @@ class PurchaseSchema(BaseSchema):
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
     )
+    coupon = Nested(CouponSchema)
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Purchase:

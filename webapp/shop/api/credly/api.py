@@ -35,7 +35,6 @@ class CredlyAPI:
         uri = f"{self.base_url}{path}"
         headers["Content-type"] = "application/json"
         auth = HTTPBasicAuth(self.auth_token, "")
-        print(self.auth_token)
 
         response = self.session.request(
             method,
@@ -60,7 +59,6 @@ class CredlyAPI:
         return response
 
     def get_issued_badges(self, filter: dict = {}):
-        print(filter)
         filter_params = ""
         for k, v in filter.items():
             filter_params += f"{k}::{quote_plus(v)}"

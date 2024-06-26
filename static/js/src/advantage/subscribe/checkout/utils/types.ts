@@ -78,6 +78,11 @@ export interface Product {
   canBeTrialled?: boolean;
 }
 
+export type Coupon = {
+  origin: string;
+  IDs: string[];
+};
+
 export type Cart = {
   items: Product[];
 };
@@ -98,6 +103,7 @@ export type PaymentPayload = {
   ];
   renewal_id?: string;
   offer_id?: string;
+  coupon?: Coupon;
 };
 
 export type TaxInfo = {

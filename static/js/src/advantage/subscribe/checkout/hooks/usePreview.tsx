@@ -1,14 +1,21 @@
 import { useQuery } from "react-query";
-import { Action, PaymentPayload, Product, TaxInfo } from "../utils/types";
+import {
+  Action,
+  Coupon,
+  PaymentPayload,
+  Product,
+  TaxInfo,
+} from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 
 type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  coupon?: Coupon;
 };
 
-const usePreview = ({ quantity, product, action }: Props) => {
+const usePreview = ({ quantity, product, action, coupon }: Props) => {
   const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
   const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["preview", product],
@@ -18,6 +25,7 @@ const usePreview = ({ quantity, product, action }: Props) => {
         marketplace: product.marketplace,
         action: action,
         previous_purchase_id: window.previousPurchaseIds?.[product.period],
+        coupon: coupon,
       };
 
       if (action === "purchase" || action === "trial") {
