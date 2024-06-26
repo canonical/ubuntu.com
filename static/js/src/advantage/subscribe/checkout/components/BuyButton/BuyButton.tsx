@@ -12,16 +12,17 @@ import postPurchase from "../../hooks/postPurchase";
 import postPurchaseAccount from "../../hooks/postPurchaseAccount";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
-import { Action, FormValues, Product } from "../../utils/types";
+import { Action, Coupon, FormValues, Product } from "../../utils/types";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   quantity: number;
   product: Product;
   action: Action;
+  coupon?: Coupon;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -124,6 +125,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         product,
         quantity,
         action: buyAction,
+        coupon,
       },
       {
         onSuccess: (purchaseId: string) => {

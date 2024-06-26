@@ -1,16 +1,17 @@
 import { useMutation } from "react-query";
 import { retryPurchase } from "advantage/api/contracts";
-import { Action, PaymentPayload, Product } from "../utils/types";
+import { Action, Coupon, PaymentPayload, Product } from "../utils/types";
 
 type Props = {
   product: Product;
   quantity: number;
   action: Action;
+  coupon?: Coupon;
 };
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>(
-    async ({ product, quantity, action }: Props) => {
+    async ({ product, quantity, action, coupon }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -23,6 +24,7 @@ const postPurchase = () => {
         marketplace: product.marketplace,
         action: action,
         previous_purchase_id: window.previousPurchaseIds?.[product.period],
+        coupon: coupon,
       };
 
       if (action === "purchase" || action === "trial") {

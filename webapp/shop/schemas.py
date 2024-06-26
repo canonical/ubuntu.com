@@ -53,6 +53,11 @@ class PurchaseTotalSchema(Schema):
     total = Int(required=True)
 
 
+class CouponSchema(Schema):
+    origin = String()
+    IDs = List(String())
+
+
 account_purhcase = {
     "account_id": String(),
     "products": List(Nested(ProductListing)),
@@ -69,6 +74,7 @@ account_purhcase = {
             ["purchase", "resize", "trial", "offer", "renewal"]
         )
     ),
+    "coupon": Nested(CouponSchema),
 }
 
 

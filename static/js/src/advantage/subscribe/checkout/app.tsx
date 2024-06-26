@@ -8,7 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import Checkout from "./components/Checkout";
-import { Action, LoginSession, Product } from "./utils/types";
+import { Action, Coupon, LoginSession, Product } from "./utils/types";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -60,6 +60,7 @@ const stripePromise = loadStripe(window.stripePublishableKey || "");
 const product: Product = parsedCheckoutData?.product;
 const quantity: number = parsedCheckoutData?.quantity;
 const action: Action = parsedCheckoutData?.action;
+const coupon: Coupon = parsedCheckoutData?.coupon || undefined;
 
 window.previousPurchaseIds = {
   monthly: "",
@@ -83,7 +84,12 @@ const App = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout product={product} quantity={quantity} action={action} />
+          <Checkout
+            product={product}
+            quantity={quantity}
+            action={action}
+            coupon={coupon}
+          />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

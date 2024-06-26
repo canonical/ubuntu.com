@@ -83,6 +83,7 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
+    get_activation_key_info,
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
@@ -919,6 +920,11 @@ app.add_url_rule(
     "/credentials/keys/activate",
     view_func=activate_activation_key,
     methods=["POST"],
+)
+app.add_url_rule(
+    "/credentials/keys/<key_id>",
+    view_func=get_activation_key_info,
+    methods=["GET"],
 )
 app.add_url_rule(
     "/credentials/beta/activation",

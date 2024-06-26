@@ -217,6 +217,7 @@ class Purchase:
         items: List[PurchaseItem],
         subscription_id: str = None,
         invoice: Invoice = None,
+        coupon: dict = None,
     ):
         self.account_id = account_id
         self.created_at = created_at
@@ -226,6 +227,7 @@ class Purchase:
         self.marketplace = marketplace
         self.status = status
         self.subscription_id = subscription_id
+        self.coupon = coupon
 
     def get_period(self):
         listing = self.items[0].listing
