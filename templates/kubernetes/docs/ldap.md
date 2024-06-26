@@ -24,18 +24,22 @@ or both authentication and authorisation.
 
 ## Requirements
 
-* This document assumes you have already [installed][install] **Charmed Kubernetes**.
+* This document assumes you have already [installed][install] **Charmed Kubernetes**
+  * Support for direct LDAP integration via Keystone is dropped beginning in
+    **Charmed Kubernetes** 1.29, while, upgrades from 1.28 are partially supported.
+    See [upgrading to 1.29][upgrading] for more detail.
 * For LDAP authentication, this documentation assumes you already have a suitable LDAP
    server running.
 * You will need to install the Keystone client. This can be done by running:
    ```bash
-   sudo snap install client-keystone-auth --edge
+   sudo snap install client-keystone-auth
    ```
+
 
 ## Install Keystone
 
-Note: These instructions assume you are working with the `Queens` release of
-**OpenStack**, the default supported version for Ubuntu 18.04 (Bionic)
+Note: These instructions assume you are working with the `Yoga` release of
+**OpenStack**, the default supported version for Ubuntu 22.04 LTS (Jammy)
 
 Keystone should be deployed using **Juju**. This is easily achieved by using a bundle,
 which will deploy and relate, Keystone, the OpenStack dashboard and a suitable
@@ -45,13 +49,6 @@ Deploy the bundle with the following command:
 
 ```bash
 juju deploy ./keystone.yaml
-```
-
-You should now add a relation for the kubernetes-control-plane nodes to accept Keystone
-credentials:
-
-```bash
-juju integrate keystone:identity-credentials kubernetes-control-plane:keystone-credentials
 ```
 
 You can check that the new applications have deployed and are running with:
@@ -81,46 +78,7 @@ juju unexpose openstack-dashboard
 If you have an existing Keystone application deployed as part of OpenStack in a separate Juju model,
 it is possible to re-use it for authenticating and authorising users in Kubernetes.
 
-To do so, first deploy the [openstack-integrator charm][openstack-integrator]
-
-```bash
-juju deploy openstack-integrator
-```
-
-Use 'juju trust' to grant openstack-integrator a permission to access the OpenStack model,
-or configure the credentials config parameter manually
-
-```bash
-juju trust openstack-integrator
-```
-
-Finally add a relation between `kubernetes-control-plane` and `openstack-integrator`
-
-```bash
-juju integrate kubernetes-control-plane:keystone-credentials openstack-integrator:credentials
-```
-
-## Fetch the Keystone script
-
-When related to Keystone directly (or to the `openstack-integrator:keystone-credentials` interface),
-the Kubernetes master application will generate a utility script. 
-This should be copied to the local client with:
-
-```bash
-juju scp kubernetes-control-plane/0:kube-keystone.sh ~/kube-keystone.sh
-```
-
-The file will need to be edited to replace the value for `OS_AUTH_URL`, which should
-point at the public address for Keystone, and the username if different. At this point the
-file should be sourced:
-
-```bash
-source ~/kube-keystone.sh
-```
-
-The script should prompt you to enter an additional command to retrieve the token to
-login to the OpenStack Dashboard. If this step fails, check that the details in the
-`kube-keystone.sh` file are correct.
+No extra steps are needed, other than the credentials to access that OpenStack deployment
 
 ## Access the OpenStack dashboard
 
@@ -178,50 +136,107 @@ Now ensure the user is added to the project created above.
 
 ![dashboard image](https://assets.ubuntu.com/v1/d6149d7c-ldap5.png)
 
+## Deploying the Keystone-Auth Webhook for Kubernetes
+
+### Understanding the Resources
+
+Following the upstream docs for [keystone-auth][], the admin should deploy `keystone-auth`.
+The following components are key for authentication and authorisation.
+
+* `Secret/keystone-auth-certs`
+  * provides the TLS cert/key pair for serving the `keystone-auth` webhook service
+  * provides the TLS ca cert for contacting keystone (if necessary)
+* `ConfigMap/k8s-auth-policy` or `ConfigMap/keystone-sync-policy`
+  * Configuration for the deployment which translates Keystone users/roles into Kubernetes users/roles
+* `Deployment/k8s-keystone-auth`
+  * defines the PODs backing this service
+  * defines the image used in the service
+  * defines the secrets for the service
+  * defines the configuration for the service
+    * the `sync-configmap-name` for `keystone-auth`, and `kubernetes-rbac` for authorisation
+    * the `policy-configmap-name` for `keystone-auth` and Keystone roles
+* `ServiceAccount/k8s-keystone`, `ClusterRole/k8s-keystone-auth` and `ClusterRoleBinding/k8s-keystone-auth`
+  * RBAC rules applied to the deployment to access the cluster `ConfigMap`
+* `Service/k8s-keystone-auth-service`
+  * Service mapping for the above `Deployment/k8s-keystone-auth`.
+
+### Setting up the Resources
+
+The following adjustments are required to deploy the service:
+
+* `Secret/keystone-auth-certs`
+  * requires the admin to generate a server cert/key pair for the service
+  * requires the admin to provide the ca cert for the Keystone TLS endpoint (if required)
+* `ConfigMap/k8s-auth-policy` (Optional)
+  * Definitions for mapping keystone user/project/domain/roles to Kubernetes endpoints
+  * See [keystone-authz-policy][] for details
+* `ConfigMap/keystone-sync-policy` (Optional)
+  * Definitions for mapping keystone user/project/domain/roles to Kubernetes endpoints
+  * See [keystone-authn-policy][] for details
+* `Deployment/k8s-keystone-auth` 
+  * Requires arg `keystone-ca-file` if `keystone-url` is `https`
+  * Requires arg `policy-configmap-name` or `sync-configmap-name`
+  * Requires secret volume mapping for the `tls.crt` and `tls.key`
+
+The following adjustments are required to prepare the API server to use the
+authentication endpoint (for both authentication and authorisation) and the
+authorisation webhook endpoint.
+
+* `authn-webhook-endpoint`
+  **Required** for Authentication and Authorisation
+
+  The API server requires the service endpoint to use as a custom
+  authentication endpoint. Once applied to the cluster, the
+  `Service/k8s-keystone-auth-service` should have a `ClusterIP` which will be
+  used as the `authn-webhook-endpoint`.
+
+  ```
+  SVC_IP=$(kubectl get svc -n kube-system k8s-keystone-auth-service -o json | jq -r '.spec.clusterIP')
+  juju config kubernetes-control-plane authn-webhook-endpoint="https://${SVC_IP}:8443/webhook"
+  ```
+* `authz-webhook-endpoint`
+  **Required** only for Authorisation
+  
+  The API server requires the service endpoint in the `authorization-webhook-config-file`.
+  Also, to use this config, the `authorization-mode` must add the `Webhook` mode.
+
+  The crafting of this `webhook-config.yaml` is defined at in the [Keystone examples][keystone-webhook-config]
+  based on the format defined in the [Kubernetes reference docs][webhook-config]
+
+  First prepare `webhook-config.yaml` using the SVC_IP from above. Then:
+  ```
+  juju config kubernetes-control-plane authorization-webhook-config-file=$(cat webhook-config.yaml)
+  juju config kubernetes-control-plane authorization-mode="Node,RBAC,Webhook"
+  ```
+
 ## Using kubectl with Keystone
 
 At this point, Keystone is set up and we have a domain, project, and user
-created in Keystone. With the updated config file copied above in
-`~/.kube/config`, we can use `kubectl` to authenticate with the api server
-via a token from Keystone. The `client-keystone-auth` snap will automate
-retrieving a token for us using the environment variables common to
-OpenStack such as `OS_USERNAME`. These environment variables are exported in
-the `kube-keystone.sh` script we downloaded earlier. To use it, update the
-variables in `kube-keystone.sh` to match valid user credentials. Pay
-special attention to the `OS_AUTH_URL` variable and ensure it is using an
-IP address that is reachable from the client. Source that file into
-your environment with `source ./kube-keystone.sh`. Any credentials that
-are not supplied via environment variable are queried at run-time for
-each invocation of kubectl.
+created in Keystone.
 
-## Using Keystone with the kubernetes-dashboard
+The authenticating user will need an updated kubeconfig in order to
+authenticate with the cluster. One can use `kubectl` to authenticate
+with the api server via a token from Keystone. The `client-keystone-auth`
+snap automates retrieving a token.
 
-When using Keystone with Kubernetes, the Kubernetes dashboard is
-updated by the charms to use token authentication. This means that a token
-from Keystone is required to log in to the Kubernetes dashboard. There is
-currently no way to automate this, but the `kube-keystone.sh` file includes
-a function called `get_keystone_token`, which uses the `OS_` environment
-variables in order to retrieve a token from Keystone.
+See the [Client configuration][keystone-client-config] to in order to create
+the kubeconfig to use against the Keystone server.
 
-```bash
-source ~/bin/kube-keystone.sh
+The client will require the `client-keystone-auth` binary to use this config,
+which can be installed using
+
 ```
-```
-Function get_keystone_token created. Type get_keystone_token in order to
-generate a login token for the Kubernetes dashboard.
-```
-Enter the command...
-```bash
-get_keystone_token
-```
-...and a token will be generated:
-```
-ccf9b218845f4d67835f8c6a7c2d1cd4
+snap install client-keystone-auth
 ```
 
-This token can then be used to log in to the Kubernetes dashboard.
+The following variables will need to be set:
 
-![dashboard image](https://assets.ubuntu.com/v1/4b79b35c-token-login.png)
+- `OS_USERNAME`
+- `OS_PASSWORD`
+- `OS_PROJECT_NAME`
+- `OS_DOMAIN_NAME`
+- `keystone-url`
+- `keystone-ca-file` if `keystone-url` is `https`
 
 ## LDAP via Keystone
 
@@ -265,7 +280,7 @@ other methods such as RBAC for authorisation but using Keystone for authenticati
 usernames will come from Keystone, but what they can do in the cluster
 is controlled by another system.
 
-In order to enable authorization feature in **Charmed Kubernetes** one should change the default config
+In order to enable authorisation feature in **Charmed Kubernetes** , change the default config
 of the charm and switch to **RBAC** authorization mode as follows:
 
 ```bash
@@ -317,8 +332,13 @@ configuring Keystone/LDAP.
 [keystone-bundle]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/keystone.yaml
 [docs-ldap-keystone]: https://charmhub.io/keystone-ldap
 [trouble]: /kubernetes/docs/troubleshooting/#troubleshooting-keystoneldap-issues
-[openstack-integrator]: /kubernetes/docs/openstack-integration
-
+[upgrading]: /kubernetes/docs/upgrade-notes
+[keystone-auth]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-client-keystone-auth.md
+[keystone-authz-policy]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-keystone-webhook-authenticator-and-authorizer.md#prepare-the-authorization-policy-optional
+[keystone-authn-policy]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-auth-data-synchronization.md
+[keystone-client-config]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-keystone-webhook-authenticator-and-authorizer.md#clientkubectl-configuration
+[keystone-webhook-config]: https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.30/examples/webhook/keystone-apiserver-webhook.yaml
+[webhook-config]: https://kubernetes.io/docs/reference/access-authn-authz/webhook/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

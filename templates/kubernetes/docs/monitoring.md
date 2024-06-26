@@ -13,6 +13,13 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This page describes enabling an external monitoring stack for Charmed Kubernetes 1.28 and below. For 1.29 and above, we recommend integrating Charmed Kubernetes with the Canonical Observability Stack (COS). See the <a href="/kubernetes/docs/how-to-cos-lite">How-to COS guide</a> for more information.</p>
+  </div>
+</div>
+
 **Charmed Kubernetes** includes the standard
 **Kubernetes** dashboard for monitoring your cluster. However, it is often advisable to
 have a monitoring solution which will run whether the cluster itself is running or not. It

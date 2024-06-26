@@ -109,12 +109,12 @@ Deploy the grafana-agent:
 Juju deploy grafana-agent
 ```
 
-Relate `grafana-agent` to `k8s`, `kubernetes-control-plane` and `kubernetes-worker`:
+Relate `grafana-agent` to charmed kubernetes applications:
 
 ```
-juju integrate grafana-agent:cos-agent k8s:cos-agent
 juju integrate grafana-agent:cos-agent kubernetes-control-plane:cos-agent
 juju integrate grafana-agent:cos-agent kubernetes-worker:cos-agent
+juju integrate grafana-agent:cos-agent kubeapi-load-balancer:cos-agent
 ```
 
 Relate `grafana-agent` to the COS Lite offered interfaces:
