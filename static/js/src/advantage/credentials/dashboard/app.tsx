@@ -1,10 +1,14 @@
 import React from "react";
+import { useState, useMemo } from "react";
 import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
-import Table from "./components/Table/Table";
+import { Tabs, Strip } from "@canonical/react-components";
+import UpcomingExams from "./components/UpcomingExams/UpcomingExams";
+import ExamResults from "./components/ExamResults/ExamResults";
+// import Keys from "./components/Keys/Keys";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -30,11 +34,38 @@ Sentry.init({
 });
 
 function App() {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = useMemo(() => {
+    return [
+      {
+        active: activeTab === 0,
+        label: "Upcoming Exams",
+        onClick: () => setActiveTab(0),
+      },
+      {
+        active: activeTab === 1,
+        label: "Exam Results",
+        onClick: () => setActiveTab(1),
+      },
+      {
+        active: activeTab === 2,
+        label: "Keys",
+        onClick: () => setActiveTab(2),
+      },
+    ];
+  }, [activeTab]);
+
   return (
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Table />
+        <Strip>
+          <p className="p-heading--1">Dashboard</p>
+          <Tabs links={tabs} />
+          <UpcomingExams hidden={activeTab !== 0} />
+          <ExamResults hidden={activeTab !== 1} />
+          {/* <Keys hidden={activeTab !== 2} /> */}
+        </Strip>
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   );

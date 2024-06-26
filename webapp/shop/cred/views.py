@@ -1192,3 +1192,35 @@ def cred_dashboard(trueability_api, **_):
         "credentials/dashboard.html",
         latest_reservations=latest_reservations["assessment_reservations"],
     )
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+@credentials_group()
+def cred_dashboard_upcoming_exams(trueability_api, **_):
+    per_page = 10
+    page = int(flask.request.args.get("page", 1)) - 1
+    first_reservations = trueability_api.get_assessment_reservations(
+        per_page=per_page
+    )
+    last_page = first_reservations["meta"]["total_pages"]
+    latest_reservations = trueability_api.get_assessment_reservations(
+        page=last_page-page, per_page=per_page
+    )
+    return flask.jsonify(latest_reservations)
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+@credentials_group()
+def cred_dashboard_exam_results(trueability_api, **_):
+    per_page = 10
+    page = int(flask.request.args.get("page", 1)) - 1
+    exam_state = flask.request.args.get("state", None)
+    first_results = trueability_api.get_results(
+        per_page=per_page,
+        state=exam_state
+    )
+    last_page = first_results["meta"]["total_pages"]
+    latest_results = trueability_api.get_results(
+        page=last_page-page, per_page=per_page, state=exam_state
+    )
+    return flask.jsonify(latest_results)
