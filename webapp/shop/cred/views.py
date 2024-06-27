@@ -1198,7 +1198,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
     )
     last_page = first_reservations["meta"]["total_pages"]
     latest_reservations = trueability_api.get_assessment_reservations(
-        page=last_page-page, per_page=per_page
+        page=last_page - page, per_page=per_page
     )
     return flask.jsonify(latest_reservations)
 
@@ -1210,11 +1210,10 @@ def cred_dashboard_exam_results(trueability_api, **_):
     page = int(flask.request.args.get("page", 1)) - 1
     exam_state = flask.request.args.get("state", None)
     first_results = trueability_api.get_results(
-        per_page=per_page,
-        state=exam_state
+        per_page=per_page, state=exam_state
     )
     last_page = first_results["meta"]["total_pages"]
     latest_results = trueability_api.get_results(
-        page=last_page-page, per_page=per_page, state=exam_state
+        page=last_page - page, per_page=per_page, state=exam_state
     )
     return flask.jsonify(latest_results)
