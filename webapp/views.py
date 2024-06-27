@@ -1042,8 +1042,26 @@ def get_user_country_by_tz():
     ) as file:
         countries = json.load(file)
 
-    _country = timezones[timezone]["c"][0]
-    country = countries[_country]
+    # Fallback to GB if timezone is invalid
+    try:
+        country_tz = timezones[timezone]
+    except KeyError:
+        country_tz = timezones["Europe/London"]
+
+    # Check timezone of country alias if country code not found
+    try:
+        _country = country_tz["c"][0]
+        country = countries[_country]
+    except KeyError:
+        try:
+            alias = country_tz["a"]
+            alias_tz = timezones[alias]
+            _country = alias_tz["c"][0]
+            country = countries[_country]
+        except KeyError:
+            country = "United Kingdom"
+            _country = "GB"
+
     return flask.jsonify(
         {
             "country": country,
