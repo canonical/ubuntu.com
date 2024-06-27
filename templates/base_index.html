@@ -1113,7 +1113,30 @@
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
 
-    <script>
+    <script type="module">
+        // Switch for turning takeover switching on and off on demand
+        const takeoverSwitch = true;
+        const cookieValue = document.cookie.match(new RegExp('(^| )' + "control_or_variant" + '=([^;]+)'));
+        // check if user doesn't already have a group
+        if (!cookieValue) {
+          // randomly assign to 'control' or 'variant' group
+          const group = takeoverSwitch
+            ? Math.random() > 0.5
+              ? "control"
+              : "variant"
+            : "control";
+
+          // store group as cookie for 365 days
+          document.cookie = 'control_or_variant='+group+';max-age=31536000;';
+
+          // send group info in GA event
+          dataLayer.push({
+            event: "test",
+            test_type: "element visibility",
+            control_or_variant: group,
+          });
+        }
+
       // get the users language and remove any extra detail suffix (e.g. -gb)
       var primaryParentLanguage = getPrimaryParentLanguage();
 
