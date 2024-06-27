@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Tabs, Strip } from "@canonical/react-components";
 import UpcomingExams from "./components/UpcomingExams/UpcomingExams";
 import ExamResults from "./components/ExamResults/ExamResults";
-// import Keys from "./components/Keys/Keys";
+import Keys from "./components/Keys/Keys";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -64,7 +64,7 @@ function App() {
           <Tabs links={tabs} />
           <UpcomingExams hidden={activeTab !== 0} />
           <ExamResults hidden={activeTab !== 1} />
-          {/* <Keys hidden={activeTab !== 2} /> */}
+          <Keys hidden={activeTab !== 2} />
         </Strip>
       </QueryClientProvider>
     </Sentry.ErrorBoundary>

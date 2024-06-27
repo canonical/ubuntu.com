@@ -8,6 +8,7 @@ import {
 } from "@canonical/react-components";
 import { useQuery } from "react-query";
 import { getExamResults } from "../../api/keys";
+import { sortFunction } from "../../utils";
 
 interface IProps {
   hidden: boolean;
@@ -28,7 +29,7 @@ const ExamResults = (props: IProps) => {
         key: exam.id,
         columns: [
           { content: exam.id },
-          { content: exam.user.email },
+          { content: exam.user_email },
           { content: exam.score },
           { content: exam.duration_in_minutes },
         ],
@@ -80,11 +81,12 @@ const ExamResults = (props: IProps) => {
     return (
       <>
         <MainTable
+          sortFunction={sortFunction}
           headers={[
             { content: "ID", sortKey: "id" },
-            { content: "User", sortKey: "user" },
+            { content: "User", sortKey: "user_email" },
             { content: "Score", sortKey: "score" },
-            { content: "Time Spent", sortKey: "timeSpent" },
+            { content: "Time Spent", sortKey: "duration_in_minutes" },
           ]}
           paginate={10}
           rows={currentRows}

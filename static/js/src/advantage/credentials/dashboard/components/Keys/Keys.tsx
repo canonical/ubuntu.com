@@ -8,6 +8,7 @@ import {
 } from "@canonical/react-components";
 import { useQuery } from "react-query";
 import { listAllKeys } from "advantage/credentials/api/keys";
+import { sortFunction } from "../../utils";
 
 interface IProps {
   hidden: boolean;
@@ -21,16 +22,15 @@ const Keys = (props: IProps) => {
     () => listAllKeys(),
     { keepPreviousData: true }
   );
-
   const currentRows = useMemo(() => {
     if (data) {
-      return data.map((exam: any) => ({
-        key: exam.id,
+      return data.map((key: any) => ({
+        key: key.key,
         columns: [
-          { content: exam.id },
-          { content: exam.user.email },
-          { content: exam.score },
-          { content: exam.duration_in_minutes },
+          { content: key.key },
+          { content: key.activatedBy },
+          { content: key.productID },
+          { content: key.expirationDate.toString() },
         ],
       }));
     }
@@ -81,14 +81,28 @@ const Keys = (props: IProps) => {
     return (
       <>
         <MainTable
+          sortable
+          sortFunction={sortFunction}
           headers={[
-            { content: "ID", sortKey: "id" },
-            { content: "User", sortKey: "user" },
-            { content: "Score", sortKey: "score" },
-            { content: "Time Spent", sortKey: "timeSpent" },
+            {
+              content: "Exam Key Id",
+            },
+            {
+              content: "Assignee",
+              sortKey: "activatedBy",
+            },
+            {
+              content: "Exam",
+              sortKey: "productID",
+            },
+            {
+              content: "Expiration Date",
+              sortKey: "expirationDate",
+            },
           ]}
           paginate={10}
           rows={currentRows}
+          emptyStateMsg="No keys found"
         />
         {/* {paginationMeta && (
           <Pagination
