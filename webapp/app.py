@@ -958,10 +958,14 @@ app.add_url_rule(
     "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
 )
 app.add_url_rule(
-    "/credentials/dashboard/upcoming-exams", view_func=cred_dashboard_upcoming_exams, methods=["GET"]
+    "/credentials/dashboard/upcoming-exams",
+    view_func=cred_dashboard_upcoming_exams,
+    methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/exam-results", view_func=cred_dashboard_exam_results, methods=["GET"]
+    "/credentials/dashboard/exam-results",
+    view_func=cred_dashboard_exam_results,
+    methods=["GET"],
 )
 
 app.add_url_rule(

@@ -164,7 +164,9 @@ class TrueAbilityAPI:
 
         return None
 
-    def get_results(self, page: int = 1, per_page: int = 50, state: str = None):
+    def get_results(
+        self, page: int = 1, per_page: int = 50, state: str = None
+    ):
         params = {
             "state": state,
             "page": page,
