@@ -164,8 +164,16 @@ class TrueAbilityAPI:
 
         return None
 
-    def get_results(self, id: int = None):
-        uri = "/api/v1/results" + (f"/{id}" if id else "")
+    def get_results(
+        self, page: int = 1, per_page: int = 50, state: str = None
+    ):
+        params = {
+            "state": state,
+            "page": page,
+            "per_page": per_page,
+        }
+        filtered_params = {k: v for k, v in params.items() if v is not None}
+        uri = "/api/v1/results?" + urlencode(filtered_params)
         return self.make_request("GET", uri).json()
 
     def get_candidate_access_token_status(self, id: int):
