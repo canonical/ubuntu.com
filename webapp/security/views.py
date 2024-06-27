@@ -7,7 +7,6 @@ from math import ceil, floor
 import flask
 import dateutil
 import talisker.requests
-import yaml
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
@@ -374,13 +373,6 @@ def cve_index():
         if release["codename"] != "upstream":
             all_releases.append(release)
 
-    # Create list of maintained releases from releases.yaml
-    with open("releases.yaml") as releases_yaml:
-        releases_yaml = yaml.load(releases_yaml, Loader=yaml.FullLoader)
-
-    yaml_keys = ["latest", "lts", "previous_lts", "previous_previous_lts"]
-    yaml_releases = [releases_yaml.get(key) for key in yaml_keys]
-
     maintained_releases = []
     selected_releases = []
     lts_releases = []
@@ -423,10 +415,11 @@ def cve_index():
                     lts_releases.append(release)
             else:
                 unmaintained_releases.append(release)
-        else:
-            for yaml_release in yaml_releases:
-                if yaml_release["name"] == release["name"]:
-                    maintained_releases.append(release)
+        elif release_date < datetime.now():
+            maintained_releases.append(release)
+
+    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
+
     """
     TODO: Lines 407-417 and 422-430 are commented out because they will
     be needed for the detailed view of the cve card
