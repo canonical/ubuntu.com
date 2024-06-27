@@ -8,6 +8,7 @@ import {
 } from "@canonical/react-components";
 import { useQuery } from "react-query";
 import { getUpcomingExams } from "../../api/keys";
+import { sortFunction } from "../../utils";
 
 interface IProps {
   hidden: boolean;
@@ -93,6 +94,8 @@ const UpcomingExams = (props: IProps) => {
     return (
       <>
         <MainTable
+          sortFunction={sortFunction}
+          // sortable
           headers={[
             { content: "ID", sortKey: "id" },
             { content: "User", sortKey: "user" },
