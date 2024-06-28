@@ -132,6 +132,7 @@ def notices():
         offset=offset,
         details=details,
         release=release,
+        order=order,
     )
 
     # get notices and total results from response object
