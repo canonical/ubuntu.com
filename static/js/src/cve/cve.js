@@ -261,7 +261,7 @@ function handleLimitSelect() {
       window.location.href = url.href;
     };
   }
-  }
+}
 handleLimitSelect();
 
 function handleOrderSelect() {
