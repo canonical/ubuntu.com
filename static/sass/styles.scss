@@ -1638,11 +1638,11 @@ ol.p-list--divided .p-list__item::before {
 ol.ordered-counter {
   counter-reset: item;
 
-  >li {
+  > li {
     display: flex;
   }
-  
-  >li:before {
+
+  > li:before {
     content: counters(item, "") ". ";
     counter-increment: item;
     margin-right: 0.25rem;
