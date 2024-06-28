@@ -1,8 +1,6 @@
-<section {% if lang %}lang="{{ lang }}"{% endif %}
-         class="{% if active == 'true' %}is-active {% endif %}{% if class %}{{ class }}{% else %}p-takeover--grad{% endif %} js-takeover is-dark"
-         {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %}>
-  <div class="row u-equal-height">
-    <div class="{% if equal_cols == 'false' %}col-7{% else %}col-6{% endif %} u-vertically-center">
+<section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if active == 'true' %}is-active {% endif %} p-strip js-takeover" {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %} >
+  <div class="row">
+    <div class="col-9">
       {% if stacked_image %}
         <!-- FIXME: why using heading icon component if there is no title in the component? -->
         <div class="u-hide u-show--small p-heading-icon--large">
@@ -11,8 +9,10 @@
           </div>
         </div>
       {% endif %}
-      <h1>{{ title | safe }}</h1>
-      {% if subtitle %}<h4>{{ subtitle | safe }}</h4>{% endif %}
+      <div class="p-section">
+        <h1 class="u-no-margin--bottom">{{ title | safe }}</h1>
+        {% if subtitle %}<h2>{{ subtitle | safe }}</h2>{% endif %}
+      </div>
       <div class="u-hide--small">
         {% if primary_url %}
           <p>
@@ -33,7 +33,7 @@
       </div>
     </div>
     {% if header_image %}
-      <div class="{% if equal_cols == 'false' %}col-5{% else %}col-6{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
+      <div class="col-3 {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
         {% if 'http' not in header_image %}
           {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
         {% else %}

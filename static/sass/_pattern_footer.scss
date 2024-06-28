@@ -14,48 +14,8 @@
 }
 
 @mixin ubuntu-p-footer {
-  $color-shadow: rgba(0, 0, 0, 0.3);
-
-  .p-footer {
-    @include vf-highlight-bar($color-brand);
-
-    background-color: $color-x-light;
-    margin-bottom: 0;
-    padding: 0 0 $sp-xx-large 0;
-
-    @media only screen and (min-width: $breakpoint-small) {
-      padding: $sp-xx-large 0;
-    }
-
-    @media only screen and (max-width: $breakpoint-small - 1) {
-      &__nav-col {
-        width: 100%;
-      }
-    }
-  }
-
-  .p-footer__nav {
-    border-bottom: 1px solid $color-mid-light;
-
-    @media only screen and (max-width: $breakpoint-small - 1) {
-      margin-top: 0 !important;
-    }
-
-    @media only screen and (min-width: $breakpoint-small) {
-      border: 0;
-    }
-
-    &.u-clearfix {
-      @media only screen and (max-width: $breakpoint-small - 1) {
-        padding-bottom: 0;
-      }
-    }
-
-    &-col.col-2 {
-      @media only screen and (max-width: $breakpoint-small - 1) {
-        margin-top: 0;
-      }
-    }
+  .p-footer-list {
+    padding-top: 0.375rem;
   }
 
   .p-footer__divider {
@@ -89,67 +49,6 @@
       @media only screen and (min-width: $breakpoint-small) {
         margin-top: $sp-large;
       }
-    }
-  }
-
-  .p-footer__title {
-    @include footer-title;
-
-    background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
-    background-position: calc(100% - 10px) 50%;
-    background-repeat: no-repeat;
-    background-size: 13px 13px;
-    border-top: 1px solid $color-mid-light;
-    color: $color-dark;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-top: 0;
-    max-width: inherit;
-
-    @media only screen and (min-width: $breakpoint-small) {
-      background: none;
-      border: 0;
-      font-size: 0.8125rem;
-      padding: 0 0 $sp-x-small;
-    }
-
-    @media only screen and (min-width: $breakpoint-large) {
-      font-size: 0.8125rem;
-    }
-
-    a,
-    span {
-      display: block;
-      padding: $sp-medium;
-
-      @media only screen and (min-width: $breakpoint-small) {
-        padding: 0 0 $sp-x-small;
-      }
-    }
-
-    a {
-      &:hover {
-        text-decoration: none;
-
-        @media only screen and (min-width: $breakpoint-small) {
-          text-decoration: underline;
-        }
-      }
-
-      &:link,
-      &:visited {
-        color: $color-dark;
-
-        @media only screen and (min-width: $breakpoint-small) {
-          font-weight: normal;
-        }
-      }
-
-      &::after {
-        content: ""; // hide the default > */
-      }
-
-      /// open and close the primary/secondary navs
     }
   }
 
