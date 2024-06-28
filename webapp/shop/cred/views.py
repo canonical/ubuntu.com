@@ -51,7 +51,7 @@ RESERVATION_STATES = {
     "scheduled": "Scheduled",
     "processed": "Processed",
     "canceled": "Cancelled",
-    "finalized": "Finalized",
+    "finalized": "Finalised",
     "provisioning": "Provisioning",
     "provisioned": "Provisioned",
     "in_progress": "In Progress",
