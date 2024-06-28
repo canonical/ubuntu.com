@@ -1634,3 +1634,17 @@ ol.p-list--divided .p-list__item::before {
 .u-darker-background {
   background-color: rgba(0, 0, 0, 0.03);
 }
+
+ol.ordered-counter {
+  counter-reset: item;
+
+  > li {
+    display: flex;
+  }
+
+  > li::before {
+    content: counters(item, "") ". ";
+    counter-increment: item;
+    margin-right: 0.25rem;
+  }
+}
