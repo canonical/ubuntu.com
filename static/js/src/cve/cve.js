@@ -253,13 +253,15 @@ function handleLimitSelect() {
     limitSelect.value = urlParams.get("limit");
   }
 
-  limitSelect.onchange = function (event) {
-    limitSelect.value = event.target.value;
-    urlParams.set("limit", limitSelect.value);
-    url.search = urlParams.toString();
-    window.location.href = url.href;
-  };
-}
+  if (limitSelect) {
+    limitSelect.onchange = function (event) {
+      limitSelect.value = event.target.value;
+      urlParams.set("limit", limitSelect.value);
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    };
+  }
+  }
 handleLimitSelect();
 
 function handleOrderSelect() {
@@ -267,21 +269,25 @@ function handleOrderSelect() {
     orderSelect.value = urlParams.get("order");
   }
 
-  orderSelect.onchange = function (event) {
-    orderSelect.value = event.target.value;
-    urlParams.set("order", orderSelect.value);
-    url.search = urlParams.toString();
-    window.location.href = url.href;
-  };
+  if (orderSelect) {
+    orderSelect.onchange = function (event) {
+      orderSelect.value = event.target.value;
+      urlParams.set("order", orderSelect.value);
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    };
+  }
 }
 handleOrderSelect();
 
 function exportToJSON() {
-  exportLink.onclick = function (event) {
-    event.preventDefault();
-    let apiURL = new URL(url.search, apiBase);
-    window.location.href = apiURL.href;
-  };
+  if (exportLink) {
+    exportLink.onclick = function (event) {
+      event.preventDefault();
+      let apiURL = new URL(url.search, apiBase);
+      window.location.href = apiURL.href;
+    };
+  }
 }
 exportToJSON();
 
