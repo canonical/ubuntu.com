@@ -1642,7 +1642,7 @@ ol.ordered-counter {
     display: flex;
   }
 
-  > li:before {
+  > li::before {
     content: counters(item, "") ". ";
     counter-increment: item;
     margin-right: 0.25rem;
