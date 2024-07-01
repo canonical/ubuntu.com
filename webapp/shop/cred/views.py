@@ -83,20 +83,8 @@ def confidentiality_agreement_webhook():
 
 @shop_decorator(area="cred", response="html")
 def cred_home(ua_contracts_api, **_):
-    available_products = ua_contracts_api.get_product_listings(
-        "canonical-cube"
-    ).get("productListings")
-    user_purchasing = False
-    enterprise_purchasing = False
-    for product in available_products:
-        if product.get("name") == "cue-linux-essentials":
-            user_purchasing = True
-        if product.get("name") == "CUE Activation Key":
-            enterprise_purchasing = True
     return flask.render_template(
         "credentials/index.html",
-        user_purchasing=user_purchasing,
-        enterprise_purchasing=enterprise_purchasing,
     )
 
 
