@@ -116,6 +116,9 @@ env:
 
   - name: CONTRACTS_API_URL
     value: https://contracts.canonical.com/
+  
+  - name: SECURITY_API_URL
+    value: https://ubuntu.com/security/
 
   - name: STRIPE_PUBLISHABLE_KEY
     value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -208,6 +211,9 @@ production:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
+        
+        - name: SECURITY_API_URL
+          value: https://ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -409,6 +415,9 @@ production:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
+        
+        - name: SECURITY_API_URL
+          value: https://ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
@@ -603,6 +612,9 @@ staging:
 
     - name: CONTRACTS_API_URL
       value: https://contracts.staging.canonical.com/
+    
+    - name: SECURITY_API_URL
+      value: https://staging.ubuntu.com/security/
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -698,6 +710,9 @@ staging:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
+        
+        - name: SECURITY_API_URL
+          value: https://staging.ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -919,6 +934,9 @@ staging:
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
+        
+        - name: SECURITY_API_URL
+          value: https://staging.ubuntu.com/security/
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
@@ -1048,6 +1066,9 @@ demo:
 
     - name: CONTRACTS_API_URL
       value: https://contracts.staging.canonical.com/
+    
+    - name: SECURITY_API_URL
+      value: https://staging.ubuntu.com/security/
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
