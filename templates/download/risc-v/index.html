@@ -69,6 +69,15 @@
           </li>
           <li>
             <button class="p-tabs__item"
+                    id="microchip-curiosity"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="microchip-curiosity-tab">
+              Microchip PIC64GX1000 Curiosity Kit
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="milk-v-mars"
                     role="tab"
                     aria-selected="false"
@@ -107,6 +116,7 @@
           <select name="boardSelect" id="boardSelect">
             <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
             <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
+            <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
             <option value="milk-v-mars-tab">Milk-V Mars</option>
             <option value="qemu-tab">QEMU emulator</option>
             <option value="quemu-sifive-image-tab">SiFive Unmatched</option>
@@ -119,6 +129,7 @@
         {% include "download/risc-v/tab-1.html" %}
         {% include "download/risc-v/tab-2.html" %}
         {% include "download/risc-v/milk-v-mars.html" %}
+        {% include "download/risc-v/microchip-curiosity.html" %}
         {% include "download/risc-v/tab-3.html" %}
         {% include "download/risc-v/tab-4.html" %}
         {% include "download/risc-v/tab-5.html" %}
