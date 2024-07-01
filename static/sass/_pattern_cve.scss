@@ -19,52 +19,24 @@
   .cve-table {
     @extend %small-text;
     @media only screen and (max-width: $breakpoint-small) {
+      display: block;
       overflow-x: auto;
+      white-space: nowrap;
     }
   }
 
   .cve-table thead th {
     word-wrap: break-word;
-    @media only screen and (max-width: $breakpoint-small) {
-      &:nth-child(1) {
-        background-color: #fff;
-        left: 0;
-        position: sticky;
-        z-index: 1;
-      }
-    }
   }
+
   .cve-table thead tr {
     border-bottom: 0;
-  }
-  .cve-table tbody tr {
-    border-top: 0;
   }
 
   .cve-table td {
     border-top: 1px solid $color-mid-light;
     position: relative;
     word-wrap: break-word;
-  }
-
-  .cve-table-cell-id {
-    @media only screen and (max-width: $breakpoint-small) {
-      &:nth-child(1) {
-        background-color: #fff;
-        border-top: none;
-        -moz-box-shadow: inset -1px 1px #d9d9d9;
-        -webkit-box-shadow: inset -1px 1px #d9d9d9;
-        box-shadow: inset -1px 1px #d9d9d9;
-        left: 0;
-        position: sticky;
-        z-index: 1;
-      }
-    }
-  }
-
-  .cve-table .cve-table-cell {
-    border-top: 0;
-    overflow: visible;
   }
 
   .cve-table .icon-cve-info {
@@ -77,23 +49,10 @@
   .cve-table .icon-container__text {
     width: 100%;
   }
-  .cve-table-cell-priority .icon-container__text {
-    @media only screen and (min-width: $breakpoint-medium) {
-      width: calc(100% - 1.5rem);
-    }
-  }
 
   .cve-table .p-icon--information {
     background-color: #fff;
     opacity: 0.8;
-  }
-
-  .cve-table-cell .p-icon--information {
-    visibility: hidden;
-  }
-
-  .cve-table-cell:hover .p-icon--information {
-    visibility: visible;
   }
 
   .cve-tooltip {
@@ -107,14 +66,6 @@
     transform: translateX(-125px);
     width: 272px;
     z-index: 1;
-  }
-
-  .cve-table-cell .cve-tooltip {
-    display: none;
-  }
-
-  .cve-table-cell:hover .p-icon--information:hover + .cve-tooltip {
-    display: block;
   }
 
   .cve-table .icon-container__icon {
@@ -150,22 +101,8 @@
     top: -10px;
   }
 
-  .cve-table-cell-priority {
-    @extend .cve-table-cell;
-
-    border-top: 1px solid $color-mid-light !important;
-  }
-
   .capitalize {
     text-transform: capitalize;
-  }
-
-  .cve-table-cell--muted,
-  .cve-table-cell.status-DNE,
-  .cve-table-cell.status-not-affected {
-    @extend .cve-table-cell;
-
-    color: $color-mid-dark;
   }
 
   .cve-color-strip {
@@ -223,5 +160,216 @@
     @extend .cve-color-strip;
 
     border-bottom-color: #66a61e;
+  }
+
+  .cve-landing {
+    .p-inline-list {
+      margin-top: 0.3rem;
+    }
+  }
+
+  .cve-results {
+    display: flex;
+    justify-content: space-between;
+
+    .p-text--small-caps {
+      display: inline-flex;
+    }
+
+    .p-form {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .p-form__group {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .p-form__control {
+      max-width: fit-content;
+      min-width: 0;
+      padding-right: 1rem;
+    }
+  }
+
+  .cve-card-header {
+    margin-bottom: 1.1rem;
+    padding-top: 0.4rem;
+
+    h2 {
+      display: inline;
+      padding-top: 0;
+    }
+
+    #priority-icon {
+      float: inline-end;
+    }
+  }
+
+  .cve-footer-link {
+    font-size: 0.875rem;
+  }
+
+  .cve-pagination-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .cve-pagination-footer-links {
+    display: flex;
+    gap: inherit;
+
+    a {
+      margin-top: 0.4rem;
+    }
+
+    @media screen and (max-width: $breakpoint-small - 1) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .p-form__control {
+      max-width: fit-content;
+      min-width: 0;
+      padding-right: 1rem;
+    }
+  }
+
+  #cve-search-button {
+    @media screen and (min-width: $breakpoint-small) {
+      margin-top: 2.6rem;
+      width: 100%;
+    }
+  }
+
+  .cve-filters {
+    .p-side-navigation {
+      &__drawer-header {
+        position: relative;
+      }
+
+      li:first-child .p-accordion__panel[aria-hidden="false"] {
+        margin-top: 1rem;
+
+        input {
+          margin-bottom: 0;
+          width: auto;
+        }
+      }
+
+      .p-accordion__group {
+        padding-bottom: 1.5rem;
+        position: unset;
+      }
+
+      .release-accordion-group {
+        max-height: 30rem;
+        overflow-y: auto;
+      }
+
+      .releases-tab-container {
+        background: #f3f3f3;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .p-accordion__tab {
+        z-index: -1;
+      }
+      .is-affected-packages {
+        background-color: #f3f3f3;
+        z-index: 1;
+      }
+
+      .p-checkbox__label {
+        padding-left: 2.2rem;
+      }
+
+      .p-text--small-caps {
+        padding-left: 2.2rem;
+      }
+
+      @media screen and (min-width: $breakpoint-large) {
+        .p-accordion__tab,
+        .p-accordion__panel {
+          padding-left: 0;
+        }
+      }
+    }
+
+    .p-icon--chevron-down {
+      margin-right: 1rem;
+    }
+
+    .p-text--small-caps:not(:first-child) {
+      padding-left: 2rem;
+    }
+  }
+
+  .cve-filter-buttons {
+    hr {
+      margin-bottom: 1rem;
+    }
+
+    background: #f3f3f3;
+    bottom: 0;
+    position: sticky;
+  }
+
+  .u-cve-gap {
+    display: grid;
+    gap: 30px 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .u-cve-base-score {
+    display: flex;
+
+    .p-heading-icon__img {
+      height: 1.5rem;
+      margin-left: -0.5rem;
+      margin-right: 0;
+    }
+
+    span {
+      margin-top: 0.2rem;
+    }
+  }
+
+  .cve-hero-scores {
+    display: flex;
+
+    @media screen and (min-width: $breakpoint-large) {
+      gap: 9%;
+    }
+
+    @media screen and (max-width: $breakpoint-small) {
+      flex-direction: column;
+    }
+  }
+
+  .u-adjust-table-heading {
+    width: 19rem;
+    @media screen and (max-width: $breakpoint-small) {
+      width: fit-content;
+    }
+  }
+
+  .cve-table-blur {
+    position: relative;
+
+    &::after {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f3f3f3);
+      bottom: 0;
+      content: "";
+      height: 100%;
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+    }
   }
 }
