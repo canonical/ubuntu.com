@@ -12,12 +12,11 @@ export default function InitiateButton({ offer }: Prop) {
   const actionButton = offer.purchase ? (
     <Button
       className="u-no-margin--bottom"
-      disabled
-      style={{ backgroundColor: "#262626", color: "#fff" }}
+      style={{ backgroundColor: "#262626", color: "#fff", cursor: "none" }}
     >
       Already used
     </Button>
-  ) : offer.actionable ? (
+  ) : (
     <Button
       className="u-no-margin--bottom"
       onClick={(e) => {
@@ -26,16 +25,9 @@ export default function InitiateButton({ offer }: Prop) {
         localStorage.setItem("channel-offer-data", JSON.stringify(offer));
         location.href = "/pro/distributor/shop";
       }}
+      disabled={!offer.actionable}
     >
       Initiate order
-    </Button>
-  ) : (
-    <Button
-      className="u-no-margin--bottom"
-      appearance="negative"
-      onClick={() => (location.href = "/pro/help")}
-    >
-      Report issue
     </Button>
   );
 
