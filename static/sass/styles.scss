@@ -81,6 +81,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
+@import "pattern_modals";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -817,6 +818,16 @@ td.p-accordion {
 }
 
 #newsletter-signup:target {
+  display: block;
+  z-index: 10;
+}
+
+#contact-success {
+  display: none;
+  position: absolute;
+}
+
+#contact-success:target {
   display: block;
   z-index: 10;
 }

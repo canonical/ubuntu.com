@@ -8,8 +8,7 @@
 {% if product == 'education-discount' %}
   {% with thanks_context="contacting us about discounts for education and research" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% else %}
-  {% with thanks_context="contacting us about Ubuntu Pro." %}{% include "shared/_thank_you.html" %}{% endwith %}
-{% endif %}
+  {% with thanks_context="contacting our team." thanks_message="We will be in touch shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% endblock content %}
 {% block footer_extra %}
 <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->

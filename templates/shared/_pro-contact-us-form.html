@@ -9,18 +9,23 @@
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" onsubmit="getCustomFields(event)">
         <fieldset class="u-no-margin--bottom">
-          <legend class="u-off-screen">Tell us about your project and team</legend>
-          <h2 class="p-heading--3">Tell us about your project</h2>
+          <label class="p-heading--3">Tell us about your project</label>
           <textarea id="about-your-project"
             placeholder="What do you want to achieve, which applications and languages do you use, and what's your team's setup?"
             rows="3"></textarea>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="ubuntu-versions">
-          <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
-          <h2 class="p-heading--3">If you use Ubuntu, which version(s) are you using?</h2>
+          <label class="p-heading--3">If you use Ubuntu, which version(s) are you using?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <strong>LTS within standard support</strong>
+              <label class="p-checkbox">
+                <input type="checkbox"
+                       aria-labelledby="24-04"
+                       class="p-checkbox__input"
+                       value="24.04 LTS" />
+                <span class="p-checkbox__label" id="22-04">24.04 LTS</span>
+              </label>
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="22-04" class="p-checkbox__input" value="22.04 LTS" />
                 <span class="p-checkbox__label" id="22-04">22.04 LTS</span>
@@ -48,12 +53,12 @@
             <div class="col-4 u-sv3">
               <strong>Outdated or non-LTS releases</strong>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="22-10" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="22-10" class="p-checkbox__input"
                   value="22.10 (interim release)">
                 <span class="p-checkbox__label" id="22-10">22.10 (interim release)</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input"
                   value="21.04 (interim release)">
                 <span class="p-checkbox__label" id="21-04">21.04 (interim release)</span>
               </label>
@@ -77,8 +82,7 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="kind-of-device" aria-required="true">
-          <legend class="u-off-screen">*What kind of device are you using?</legend>
-          <h2 class="p-heading--3">*What kind of device are you using?</h2>
+          <label class="p-heading--3">*What kind of device are you using?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
@@ -105,8 +109,7 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="how-many-machines">
-          <legend class="u-off-screen">*How many devices?</legend>
-          <h2 class="p-heading--3">*How many devices?</h2>
+          <label class="p-heading--3">*How many devices?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-radio">
@@ -136,24 +139,21 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="how-do-you-consume-open-source">
-          <legend class="u-off-screen">How do you consume open source?</legend>
-          <h2 class="p-heading--3">How do you consume open source?</h2>
+          <label class="p-heading--3">How do you consume open source?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3 u-no-padding--bottom">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="ubuntu-repositories" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="ubuntu-repositories" class="p-checkbox__input"
                   value="Ubuntu repositories">
                 <span class="p-checkbox__label" id="ubuntu-repositories">Ubuntu repositories</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="github-upstream" class="p-checkbox__input /"
-                  value="Github/Upstream">
-                <span class="p-checkbox__label" id="github-upstream">Github/Upstream</span>
+                <input type="checkbox" aria-labelledby="github-upstream" class="p-checkbox__input"
+                  value="GitHub/Upstream">
+                <span class="p-checkbox__label" id="github-upstream">GitHub/Upstream</span>
               </label>
-            </div>
-            <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="internally-approved-repository" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="internally-approved-repository" class="p-checkbox__input"
                   value="Internally approved repository">
                 <span class="p-checkbox__label" id="internally-approved-repository">Internally approved repository</span>
               </label>
@@ -165,8 +165,7 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="hardening-requirements">
-          <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
-          <h2 class="p-heading--3">Do you have specific compliance or hardening requirements?</h2>
+          <label class="p-heading--3">Do you have specific compliance or hardening requirements?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
@@ -185,8 +184,6 @@
                 <input type="checkbox" aria-labelledby="fips-140" class="p-checkbox__input" value="FIPS 140" />
                 <span class="p-checkbox__label" id="fips-140">FIPS 140</span>
               </label>
-            </div>
-            <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="ncsc" class="p-checkbox__input" value="NCSC" />
                 <span class="p-checkbox__label" id="ncsc">NCSC</span>
@@ -207,22 +204,19 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="responsible-for-tracking">
-          <legend class="u-off-screen">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</legend>
-          <h2 class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h2>
+          <label class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</label>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="pindividual-developers" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="pindividual-developers" class="p-checkbox__input"
                   value="Individual developers">
                 <span class="p-checkbox__label" id="pindividual-developers">Individual developers</span>
               </label>
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="project-team" class="p-checkbox__input /"
+                <input type="checkbox" aria-labelledby="project-team" class="p-checkbox__input"
                   value="The project team">
                 <span class="p-checkbox__label" id="project-team">The project team</span>
               </label>
-            </div>
-            <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="3rd-party" class="p-checkbox__input" value="Third-party vendor" />
                 <span class="p-checkbox__label" id="3rd-party">Third-party vendor</span>
@@ -235,14 +229,12 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <legend class="u-off-screen">What advice are you looking for?</legend>
-          <h2 class="p-heading--3">What advice are you looking for?</h2>
+          <label class="p-heading--3">What advice are you looking for?</label>
           <textarea id="advice" aria-label="Tell us about your challenge and your goals"
             placeholder="Tell us about your challenge and your goals" rows="3"></textarea>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <legend class="u-off-screen">About you</legend>
-          <h2 class="p-heading--3">About you</h2>
+          <label class="p-heading--3">About you</label>
           <ul class="p-list">
             <li class="p-list__item">
               <label class="is-required" for="firstName">First name:</label>
@@ -333,6 +325,7 @@
       </form>
     </div>
 </section>
+<script src="{{ versioned_static('js/dist/contact-forms.js') }}"></script>
 <script>
   let fiveMachinesHelpText = document.getElementById("5-machines-help");
   document.getElementsByName("how-many-machines-do-you-have").forEach(
@@ -346,54 +339,4 @@
       }
     }
   )
-
-  function getCustomFields(event) {
-    // If you use Ubuntu, which version(s) are you using?
-    const ubuntuVersionsFieldset = document.getElementById("ubuntu-versions");
-    // What kind of device are you using?
-    const deviceUsedFieldset = document.getElementById("kind-of-device");
-    // How many machines?
-    const howManyMachinesFieldset = document.getElementById("how-many-machines");
-    // How do you consume open source?
-    const consumeOpenSourceFieldset = document.getElementById("how-do-you-consume-open-source");
-    // Do you have specific compliance or hardening requirements?
-    const hardeningRequirementsFieldset = document.getElementById("hardening-requirements");
-    // Who is responsible for tracking, testing and applying CVE patches in a timely manner?
-    const responsibleForTracking = document.getElementById("responsible-for-tracking");
-
-    const data = `Tell us about your project: ${document.getElementById("about-your-project").value}.\n
-      If you use Ubuntu, which version(s) are you using?: ${getCheckboxItemsAsCSV(ubuntuVersionsFieldset)}.\n
-      What kind of device are you using?: ${getCheckboxItemsAsCSV(deviceUsedFieldset)}.\n
-      How many devices?: ${getRadioItemValue(howManyMachinesFieldset)}.\n
-      How do you consume open source?: ${getCheckboxItemsAsCSV(consumeOpenSourceFieldset)}.\n
-      Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
-      Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
-      What advice are you looking for: ${document.getElementById("advice").value}.\n
-    `
-
-    const inputs = howManyMachinesFieldset.querySelectorAll("input[name='how-many-machines-do-you-have']")
-    inputs.forEach(function (input) {
-      input.removeAttribute("name");
-    })
-
-    const textarea = document.getElementById("Comments_from_lead__c");
-    textarea.value = data;
-  }
-
-  function getRadioItemValue(fieldset) {
-    const selectedRadio = fieldset.querySelector("input[name='how-many-machines-do-you-have']:checked")
-    return selectedRadio ? selectedRadio.value : ''
-  }
-
-  function getCheckboxItemsAsCSV(fieldset) {
-    const checkboxes = Array.from(fieldset.querySelectorAll("input[class='p-checkbox__input']"));
-    return checkboxes.filter(item => item.checked).map(item => item.value).join(", ");
-  }
-
-  function validateCheckbox(event, fieldsetId) {
-    const checkboxes = Array.from(document.getElementById(fieldsetId).querySelectorAll("input[class='p-checkbox__input']"));
-    if (event.currentTarget.checked) {
-      checkboxes[0].removeAttribute("required");
-    }
-  }
 </script>
