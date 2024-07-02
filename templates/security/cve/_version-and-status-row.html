@@ -8,7 +8,7 @@
       <label for="version">Ubuntu version</label>
     {% endif %}
     <select name="version" class="js-ubuntu-version-input" {% if show_labels %}id="version"{% endif %}>
-      <option value="">Any</option>
+      <option value="" selected disabled>Any</option>
       {% with versions=versions, releases=releases, index=index %}
       {% include "security/cve/_version-fields.html" %}
       {% endwith %}
