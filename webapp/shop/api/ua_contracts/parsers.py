@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from webapp.shop.api.ua_contracts.primitives import (
     Contract,
@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.primitives import (
     User,
 )
 from webapp.shop.api.ua_contracts.models import (
+    Metadata,
     ExternalID,
     Listing,
     ChannelListing,
@@ -282,6 +283,10 @@ def parse_users(raw_users: List) -> List[User]:
     return [parse_user(raw_user) for raw_user in raw_users]
 
 
+def parse_metadata(metadata: List[Dict[str, str]]) -> List[Metadata]:
+    return [Metadata(item["key"], item["value"]) for item in metadata]
+
+
 def parse_external_ids(raw_external_ids: List[Dict]) -> List[ExternalID]:
     external_ids: List[ExternalID] = []
     for raw_external_id in raw_external_ids:
@@ -322,7 +327,7 @@ def parse_offer_items(
     return offer_items
 
 
-def parse_offer(raw_offer: Offer) -> Offer:
+def parse_offer(raw_offer: Dict) -> Offer:
     items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
     external_ids = (
         parse_external_ids(raw_offer["externalIDs"])
@@ -330,6 +335,29 @@ def parse_offer(raw_offer: Offer) -> Offer:
         and raw_offer["externalIDs"] is not None
         else None
     )
+
+    metadata = (
+        parse_metadata(raw_offer.get("metadata", []))
+        if raw_offer.get("activationAccountID")
+        else None
+    )
+
+    channel_deal_creator_name = get_metadata_value(
+        metadata, "channelDealCreatorName"
+    )
+    distributor_account_name = get_metadata_value(
+        metadata, "distributorAccountName"
+    )
+    end_user_account_name = get_metadata_value(metadata, "endUserAccountName")
+    reseller_account_name = get_metadata_value(metadata, "resellerAccountName")
+    technical_contact_email = get_metadata_value(
+        metadata, "technicalContactEmail"
+    )
+    technical_contact_name = get_metadata_value(
+        metadata, "technicalContactName"
+    )
+    opportunity_number = get_metadata_value(metadata, "opportunityNumber")
+
     purchase = "purchase" in raw_offer
 
     return Offer(
@@ -345,13 +373,26 @@ def parse_offer(raw_offer: Offer) -> Offer:
         activation_account_id=raw_offer.get("activationAccountID"),
         can_change_items=raw_offer.get("canChangeItems"),
         external_ids=external_ids,
-        distributor_account_name=raw_offer.get("distributorAccountName"),
-        reseller_account_name=raw_offer.get("resellerAccountName"),
-        end_user_account_name=raw_offer.get("endUserAccountName"),
-        technical_contact_email=raw_offer.get("technicalContactEmail"),
-        technical_contact_name=raw_offer.get("technicalContactName"),
+        channel_deal_creator_name=channel_deal_creator_name,
+        distributor_account_name=distributor_account_name,
+        reseller_account_name=reseller_account_name,
+        end_user_account_name=end_user_account_name,
+        technical_contact_email=technical_contact_email,
+        technical_contact_name=technical_contact_name,
+        opportunity_number=opportunity_number,
     )
 
 
 def parse_offers(raw_offers: List) -> List[Offer]:
     return [parse_offer(raw_offer) for raw_offer in raw_offers]
+
+
+def get_metadata_value(
+    metadata: Optional[List[Metadata]], key: str
+) -> Optional[str]:
+    if metadata is None:
+        return None
+    for metadata in metadata:
+        if metadata.key == key:
+            return metadata.value
+    return None

@@ -678,11 +678,13 @@ class TestParsers(unittest.TestCase):
                 ExternalID(origin="Zift", ids=["zift-id-test"]),
             ],
             activation_account_id="activation-account-id-aAbBcCdDeEfFgG",
+            channel_deal_creator_name="John Smith",
             distributor_account_name="Distributor, Ltd.",
             reseller_account_name="Resellers, Inc.",
             end_user_account_name="End Users, Ltd.",
             technical_contact_email="contact@example.com",
-            technical_contact_name="Technical Contact User Test",
+            technical_contact_name="Jane Doe",
+            opportunity_number="OP-0000",
             items=[
                 OfferItem(
                     id="product-id-AaBbCcDdEeFfGg",
@@ -692,7 +694,7 @@ class TestParsers(unittest.TestCase):
                 ),
             ],
         )
-
+        self.maxDiff = None
         self.assertTrue(expectation.check_is_channel_offer())
         self.assertIsInstance(parsed_offer, Offer)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
@@ -717,11 +719,13 @@ class TestParsers(unittest.TestCase):
                     ExternalID(origin="Zift", ids=["zift-id-test"]),
                 ],
                 activation_account_id="activation-account-id-aAbBcCdDeEfFgG",
+                channel_deal_creator_name="John Smith",
                 distributor_account_name="Distributor, Ltd.",
                 reseller_account_name="Resellers, Inc.",
                 end_user_account_name="End Users, Ltd.",
                 technical_contact_email="contact@example.com",
-                technical_contact_name="Technical Contact User Test",
+                technical_contact_name="Jane Doe",
+                opportunity_number="OP-0000",
                 items=[
                     OfferItem(
                         id="product-id-AaBbCcDdEeFfGg",
@@ -732,7 +736,7 @@ class TestParsers(unittest.TestCase):
                 ],
             )
         ]
-
+        self.maxDiff = None
         self.assertTrue(expectation[0].check_is_channel_offer())
         self.assertIsInstance(parsed_offers, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_offers))

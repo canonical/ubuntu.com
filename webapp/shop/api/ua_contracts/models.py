@@ -3,6 +3,12 @@ from typing import List, Optional
 from dateutil.parser import parse
 
 
+class Metadata:
+    def __init__(self, key: str, value: str):
+        self.key = key
+        self.value = value
+
+
 class ExternalID:
     def __init__(self, origin: str, ids: List[str]):
         self.origin = origin
@@ -156,11 +162,13 @@ class Offer:
         purchase: Optional[bool] = False,
         external_ids: Optional[List[ExternalID]] = None,
         activation_account_id: Optional[str] = None,
+        channel_deal_creator_name: Optional[str] = None,
         distributor_account_name: Optional[str] = None,
         reseller_account_name: Optional[str] = None,
         end_user_account_name: Optional[str] = None,
         technical_contact_email: Optional[str] = None,
         technical_contact_name: Optional[str] = None,
+        opportunity_number: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -180,11 +188,13 @@ class Offer:
             self.purchase = purchase
             self.external_ids = external_ids
             self.activation_account_id = activation_account_id
+            self.channel_deal_creator_name = channel_deal_creator_name
             self.distributor_account_name = distributor_account_name
             self.reseller_account_name = reseller_account_name
             self.end_user_account_name = end_user_account_name
             self.technical_contact_email = technical_contact_email
             self.technical_contact_name = technical_contact_name
+            self.opportunity_number = opportunity_number
 
     def check_is_channel_offer(self) -> bool:
         return self.is_channel_offer
