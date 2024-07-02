@@ -22,10 +22,7 @@ markdown_parser = Markdown(
 )
 session = talisker.requests.get_session()
 
-security_api = SecurityAPI(
-    session=session,
-    base_url="https://ubuntu.com/security/",
-)
+security_api = SecurityAPI(session=session)
 
 
 def get_processed_details(notice):

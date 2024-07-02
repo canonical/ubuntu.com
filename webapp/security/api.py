@@ -1,6 +1,11 @@
+import os
 from requests import Session
 from requests.exceptions import HTTPError
 from urllib.parse import urlencode
+
+SECURITY_API_URL = os.getenv(
+    "SECURITY_API_URL", "https://ubuntu.com/security/"
+)
 
 
 class SecurityAPIError(HTTPError):
@@ -12,7 +17,7 @@ class SecurityAPI:
     def __init__(
         self,
         session: Session,
-        base_url: str,
+        base_url=SECURITY_API_URL,
     ):
         self.session = session
         self.base_url = base_url
