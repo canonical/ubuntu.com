@@ -25,17 +25,32 @@
 
   {% block content %}
 
-      <!-- Test takeover template -->
-    <div id="test-takeover">
-      {% block test_takeover_content %}
-        {% with title_1="A CTO's guide", title_2="to real-time Linux", subtitle='Understanding real-time systems, their use
-          cases and inner workings.', button_url="/", button_text="Download now",
-          img_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png", img_width="508", img_height="364" %}
-          {% include "takeovers/_test_template.html" %}
-        {% endwith %}
-      {% endblock test_takeover_content %}
-    </div>
-    
+    <section id="test-takeover" class="p-section--hero">
+      <div class="row--50-50 p-section--shallow">
+        <div class="col">
+          <h1 class="u-no-margin--bottom" id="test-takeover-title">A CTO's guide to real-time Linux</h1>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow u-no-padding--top">
+            <h2 id="test-takeover-subtitle">Understanding real-time systems, their use cases and inner workings.</h2>
+          </div>
+          <hr class="is-muted" />
+          <p>
+            <a id="test-takeover-primary-url"
+               href="/download"
+               class="p-button--positive">Download now</a>
+          </p>
+        </div>
+      </div>
+      <div class="u-align--center">
+        <img id="test-takeover-image"
+             src="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png"
+             width="508"
+             height="364"
+             alt="" />
+      </div>
+    </section>
+
     <!-- Default Takeover: Download the latest Ubuntu -->
     <section data-lang="all" id="takeover" class="p-section--hero">
       <div class="row p-takeover-animation" id="takeover-animaition">
@@ -1122,11 +1137,11 @@
       // check if user doesn't already have a group
       if (!getCookie()) {
         // randomly assign to 'control' or 'variant' group
-        const group = takeoverSwitch
-          ? Math.random() > 0.5
-            ? "control"
-            : "variant"
-          : "control";
+        const group = takeoverSwitch ?
+          Math.random() > 0.5 ?
+          "control" :
+          "variant" :
+          "control";
 
         // store group as cookie for 365 days
         document.cookie = 'control_or_variant=' + group + ';max-age=31536000;';
@@ -1140,7 +1155,6 @@
       }
 
       if (getCookie()[2] === 'variant') {
-        console.log('set variant styling');
         testTakeover.hidden = false;
         mainTakeover.hidden = true;
       } else {
@@ -1248,13 +1262,22 @@
         // Default parameter
         index = typeof index !== 'undefined' ? index : 0;
 
-        // Get HTML elements
-        var takeover = document.getElementById("takeover");
-        var title = document.getElementById("takeover-title");
-        var subtitle = document.getElementById("takeover-subtitle");
-        var image = document.getElementById("takeover-image");
-        var primaryUrl = document.getElementById("takeover-primary-url");
-        var secondaryUrl = document.getElementById("takeover-secondary-url");
+        // Get HTML elements for the correct takeover
+        let takeover, title, subtitle, image, primaryUrl, secondaryUrl;
+        if (getCookie()[2] === 'variant') {
+          takeover = document.getElementById("test-takeover");
+          title = document.getElementById("test-takeover-title");
+          subtitle = document.getElementById("test-takeover-subtitle");
+          image = document.getElementById("test-takeover-image");
+          primaryUrl = document.getElementById("test-takeover-primary-url");
+        } else {
+          takeover = document.getElementById("takeover");
+          title = document.getElementById("takeover-title");
+          subtitle = document.getElementById("takeover-subtitle");
+          image = document.getElementById("takeover-image");
+          primaryUrl = document.getElementById("takeover-primary-url");
+          secondaryUrl = document.getElementById("takeover-secondary-url");
+        }
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];
@@ -1308,11 +1331,11 @@
           primaryUrl.remove();
         }
 
-        if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+        if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
           secondaryUrl.href = selectedTakeover.secondary_url;
           secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
         } else {
-          secondaryUrl.remove();
+          secondaryUrl?.remove();
         }
 
         dataLayer.push({
