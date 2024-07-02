@@ -145,7 +145,7 @@ function sendContributionFormAnalytics() {
 
   let dataLayerObject = {
     event: "contribution",
-    total: total
+    total: total,
   };
 
   // add the individual items
@@ -154,7 +154,7 @@ function sendContributionFormAnalytics() {
     let value = amountElement.value || 0;
 
     if (value > 0) {
-      dataLayerObject[name] =  value;
+      dataLayerObject[name] = value;
     }
   });
 
