@@ -27,6 +27,7 @@ from webapp.security.views import (
     cve,
     cve_index,
     cves_sitemap,
+    cves_about,
     notice,
     notices,
     notices_feed,
@@ -489,6 +490,7 @@ app.add_url_rule("/security/cves", view_func=cve_index)
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
 )
+app.add_url_rule("/security/cves/about", view_func=cves_about)
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
