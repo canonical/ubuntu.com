@@ -26,7 +26,7 @@
   {% block content %}
 
     <section id="test-takeover" class="p-section--hero">
-      <div class="row p-takeover-animation" id="takeover-animaition">
+      <div class="row p-takeover-animation" id="test-takeover-animaition">
         <div class="row--50-50 p-section--shallow">
           <div class="col">
             <h1 class="u-no-margin--bottom" id="test-takeover-title">A CTO's guide to real-time Linux</h1>
@@ -1174,7 +1174,12 @@
       }
 
       var baseTakeover = document.getElementById('takeover');
-      var takeoverAnimation = document.getElementById("takeover-animaition");
+      let takeoverAnimation; 
+      if(getCookie[2] === 'variant') {
+        takeoverAnimation = document.getElementById("test-takeover-animaition");
+      } else {
+        takeoverAnimation = document.getElementById("takeover-animaition");
+      }
 
       if (window.localStorage && baseTakeover) {
         /**
