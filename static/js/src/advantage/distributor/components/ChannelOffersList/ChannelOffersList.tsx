@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import * as Sentry from "@sentry/react";
-import {
-  Offer as OfferType,
-  ExternalId as ExternalIdType,
-} from "../../../offers/types";
+import { Offer as OfferType } from "../../../offers/types";
 import { MainTable, Select, Row, Col } from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
 import InitiateButton from "../InitiateButton/InitiateButton";
@@ -41,7 +38,7 @@ const ChannelOffersList = () => {
 
   const filteredOfferList =
     selectValue === "default"
-      ? offersList?.filter((offer: OfferType) => offer.purchase === false)
+      ? offersList?.filter((offer: OfferType) => !offer?.purchase)
       : offersList;
   const paraseDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -116,26 +113,23 @@ const ChannelOffersList = () => {
           },
         ]}
         rows={filteredOfferList?.map((offer: OfferType) => {
-          const deal_registration_id = offer?.external_ids?.filter(
-            (external_id: ExternalIdType) => (external_id.origin = "Zift")
-          )[0]["ids"];
           const status = offer?.actionable ? "Valid" : "Invalid";
           return {
             columns: [
               {
-                content: deal_registration_id,
+                content: offer?.opportunity_number ?? "-",
               },
               {
-                content: offer.distributor_account_name,
+                content: offer?.channel_deal_creator_name ?? "-",
               },
               {
-                content: offer.end_user_account_name,
+                content: offer?.end_user_account_name ?? "-",
               },
               {
-                content: offer.reseller_account_name,
+                content: offer?.reseller_account_name ?? "-",
               },
               {
-                content: paraseDate(offer.created_at),
+                content: offer?.created_at ? paraseDate(offer.created_at) : "-",
               },
               {
                 content: status,
