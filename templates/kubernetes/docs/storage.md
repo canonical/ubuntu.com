@@ -13,6 +13,13 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For Ceph integration with Charmed Kubernetes 1.29 and above, please see the current <a href="/kubernetes/docs/ceph">Ceph integration guide</a>.</p>
+  </div>
+</div>
+
 On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.
 
 **Charmed Kubernetes** makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
@@ -106,15 +113,18 @@ initContainers:
 
 ### Relate to Charmed Kubernetes
 
-Making **Charmed Kubernetes** aware of your **Ceph** cluster requires a **Juju** relation.
+Making **Charmed Kubernetes** aware of your **Ceph** cluster requires some **Juju** configuration and the `ceph-csi` charm.
 
 ```bash
-juju integrate ceph-mon:client kubernetes-control-plane
+juju config kubernetes-control-plane allow-privileged=true
+juju deploy ceph-csi
+juju integrate ceph-csi:kubernetes kubernetes-control-plane:juju-info
+juju integrate ceph-csi:ceph-client ceph-mon:client
 ```
 
 ### Create storage pools
 
-By default, the `kubernetes-control-plane` charm will create the required pools defined
+By default, the `ceph-csi` charm will create the required pools defined
 in the storage class.  To view the default options, run:
 
 ```bash

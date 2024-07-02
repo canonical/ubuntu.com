@@ -13,6 +13,13 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This guide uses the ceph-csi and cephfs operator charms available with Charmed Kubernetes 1.29 and above. For previous versions, see the <a href="/kubernetes/docs/storage">generic storage guide</a> to integrate Ceph without these charms.</p>
+  </div>
+</div>
+
 Many workloads that you may want to run on your Kubernetes cluster will require some
 form of available storage. This guide will help you deploy **Charmed Kubernetes** with
 **Ceph** container storage support. Available storage backends include `ceph-xfs`,
