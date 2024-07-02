@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Sentry from "@sentry/react";
-import {
-  Offer as OfferType,
-  ExternalId as ExternalIdType,
-} from "../../../offers/types";
-import { MainTable } from "@canonical/react-components";
+import { Offer as OfferType } from "../../../offers/types";
+import { MainTable, Select, Row, Col } from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
 import InitiateButton from "../InitiateButton/InitiateButton";
 
 const ChannelOffersList = () => {
+  const [selectValue, setSelectValue] = useState("default");
   const {
     isLoading,
     isError,
@@ -38,8 +36,56 @@ const ChannelOffersList = () => {
     return <p>You have no offers available.</p>;
   }
 
+  const filteredOfferList =
+    selectValue === "default"
+      ? offersList?.filter((offer: OfferType) => !offer?.purchase)
+      : offersList;
+  const paraseDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const formattedDate = `${day} ${monthNames[monthIndex]} ${year}`;
+    return formattedDate;
+  };
   return (
     <>
+      <Row style={{ display: "flex", justifyContent: "end" }}>
+        <Col size={3}>
+          <Select
+            defaultValue="default"
+            id="offerSelect"
+            name="offerSelect"
+            options={[
+              {
+                label: "Default",
+                value: "default",
+              },
+              {
+                label: "Show used offers",
+                value: "all",
+              },
+            ]}
+            onChange={(e) => setSelectValue(e.target.value)}
+          />
+        </Col>
+      </Row>
       <MainTable
         className="u-no-margin--bottom"
         headers={[
@@ -47,42 +93,46 @@ const ChannelOffersList = () => {
             content: "Deal registration id",
           },
           {
-            content: "Customer",
+            content: "Creator",
           },
           {
             content: "Technical user",
           },
           {
-            content: "Creator",
+            content: "Customer",
           },
           {
             content: "Created",
+          },
+          {
+            content: "Status",
           },
           {
             content: "Actions",
             className: "u-align--right",
           },
         ]}
-        rows={offersList?.map((offer: OfferType) => {
-          const deal_registration_id = offer?.external_ids?.filter(
-            (external_id: ExternalIdType) => (external_id.origin = "Zift")
-          )[0]["ids"];
+        rows={filteredOfferList?.map((offer: OfferType) => {
+          const status = offer?.actionable ? "Valid" : "Invalid";
           return {
             columns: [
               {
-                content: deal_registration_id,
+                content: offer?.opportunity_number ?? "-",
               },
               {
-                content: offer.reseller_account_name,
+                content: offer?.channel_deal_creator_name ?? "-",
               },
               {
-                content: offer.technical_contact,
+                content: offer?.end_user_account_name ?? "-",
               },
               {
-                content: offer.end_user_account_name,
+                content: offer?.reseller_account_name ?? "-",
               },
               {
-                content: offer.distributor_account_name,
+                content: offer?.created_at ? paraseDate(offer.created_at) : "-",
+              },
+              {
+                content: status,
               },
               {
                 content: <InitiateButton offer={offer} />,

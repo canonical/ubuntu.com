@@ -2,14 +2,19 @@ import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import { CheckboxInput, Col, Input, Row } from "@canonical/react-components";
-import { Action, FormValues, Product } from "../../utils/types";
+import {
+  Action,
+  CheckoutProducts,
+  FormValues,
+  Product,
+} from "../../utils/types";
 
 type Props = {
-  product: Product;
+  products: CheckoutProducts[];
   action: Action;
 };
 
-const ConfirmAndBuy = ({ product, action }: Props) => {
+const ConfirmAndBuy = ({ products, action }: Props) => {
   const {
     values,
     touched,
@@ -20,6 +25,7 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
     window.captcha = value;
     setFieldValue("captchaValue", window.captcha);
   };
+  const product = products[0].product;
 
   const { termsLabel, descriptionLabel, marketingLabel } = getLabels(
     product,

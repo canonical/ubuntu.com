@@ -9,21 +9,27 @@ type Prop = {
 
 export default function InitiateButton({ offer }: Prop) {
   const { setOffer } = useContext(FormContext);
-
-  return (
-    <>
-      <Button
-        className="u-no-margin--bottom"
-        disabled={!offer.actionable}
-        onClick={(e) => {
-          e.preventDefault();
-          setOffer(offer);
-          localStorage.setItem("channel-offer-data", JSON.stringify(offer));
-          location.href = "/pro/distributor/shop";
-        }}
-      >
-        Initiate order
-      </Button>
-    </>
+  const actionButton = offer.purchase ? (
+    <Button
+      className="u-no-margin--bottom"
+      style={{ backgroundColor: "#262626", color: "#fff", cursor: "none" }}
+    >
+      Already used
+    </Button>
+  ) : (
+    <Button
+      className="u-no-margin--bottom"
+      onClick={(e) => {
+        e.preventDefault();
+        setOffer(offer);
+        localStorage.setItem("channel-offer-data", JSON.stringify(offer));
+        location.href = "/pro/distributor/shop";
+      }}
+      disabled={!offer.actionable}
+    >
+      Initiate order
+    </Button>
   );
+
+  return <div className="distributor-initiate-button">{actionButton}</div>;
 }

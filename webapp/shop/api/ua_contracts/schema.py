@@ -77,7 +77,14 @@ class PurchaseSchema(BaseSchema):
         Nested(PurchaseItemSchema), required=True, attribute="items"
     )
     marketplace = String(
-        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        validate=validate.OneOf(
+            [
+                "canonical-ua",
+                "canonical-cube",
+                "blender",
+                "canonical-pro-channel",
+            ]
+        ),
         required=True,
     )
 
@@ -91,6 +98,7 @@ class AccountSchema(BaseSchema):
     name = String(required=True)
     type = String(required=True)
     userRoleOnAccount = String(required=True, attribute="role")
+    hasChannelStoreAccess = Boolean(required=True)
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Account:

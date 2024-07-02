@@ -46,12 +46,14 @@ class TestGetAccounts(unittest.TestCase):
                 name="Free",
                 type="personal",
                 role="admin",
+                hasChannelStoreAccess=False,
             ),
             Account(
                 id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 name="Account Name",
                 type="paid",
                 role="admin",
+                hasChannelStoreAccess=False,
             ),
         ]
 
@@ -339,6 +341,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
             name="Account Name",
             type="paid",
             role="admin",
+            hasChannelStoreAccess=False,
         )
 
         self.assertEqual(to_dict(expectation), to_dict(response))

@@ -1,35 +1,29 @@
 import React, { useContext } from "react";
 import { Card, Col, Row } from "@canonical/react-components";
-import { ExternalId as ExternalIdType } from "../../../../offers/types";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 
 const DealRegistration = () => {
   const { offer } = useContext(FormContext);
 
-  const deal_registration_id = offer?.external_ids?.filter(
-    (external_id: ExternalIdType) => (external_id.origin = "Zift")
-  )[0]["ids"];
-  const distributor_account_name = offer?.distributor_account_name;
+  const opportunity_number = offer?.opportunity_number;
+  const end_user_account_name = offer?.end_user_account_name;
+  const reseller_account_name = offer?.reseller_account_name;
 
   return (
     <>
       <Card
         className="deal-registration-card"
-        title={`Deal registration ID ${deal_registration_id}`}
+        title={`Deal registration ID ${opportunity_number}`}
       >
         <hr />
         <Row>
           <Col size={3}>
-            <h5>Company</h5>
-            <div>Company Name</div>
-            <div>Street</div>
-            <div>City</div>
-            <div>Country</div>
+            <h5>Reseller Company</h5>
+            <div>{reseller_account_name}</div>
           </Col>
           <Col size={3}>
-            <h5>Contact</h5>
-            <div>{distributor_account_name}</div>
-            <div>Contact email</div>
+            <h5>Technical user company</h5>
+            <div>{end_user_account_name}</div>
           </Col>
         </Row>
       </Card>

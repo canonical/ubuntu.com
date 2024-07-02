@@ -55,14 +55,14 @@ const SubscriptionCard = ({ subscription }: Prop) => {
 
   const product = products?.filter(
     (prod) =>
-      prod.product.id ===
+      prod.productID ===
       getProductId(subscription.type, subscription.support, subscription.sla)
   )[0];
 
   const durationsNumber: number =
     duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
-  const priceCurrency = product?.currency as Currencies;
-  const priceValue = (product?.price as number) / durationsNumber;
+  const priceCurrency = product?.price?.currency as Currencies;
+  const priceValue = (product?.price?.value as number) / durationsNumber;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;

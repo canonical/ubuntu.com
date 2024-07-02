@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
-import PaymentButton from "../PaymentButton";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {
   ChannelProduct,
@@ -8,6 +7,7 @@ import {
   currencyFormatter,
   getProductId,
 } from "advantage/distributor/utils/utils";
+import DistributorBuyButton from "../../DistributorBuyButton/DistributorBuyButton";
 
 const DistributorShopSummary = () => {
   const { products, currency, subscriptionList, offer } = useContext(
@@ -28,10 +28,11 @@ const DistributorShopSummary = () => {
           );
 
           if (
-            productId === product?.product.id &&
-            product?.price !== undefined
+            productId === product?.productID &&
+            product?.price?.value !== undefined
           ) {
-            const productTotalPrice = subscription.quantity * product.price;
+            const productTotalPrice =
+              subscription.quantity * product.price.value;
             return total + productTotalPrice;
           }
         }
@@ -42,7 +43,7 @@ const DistributorShopSummary = () => {
   return (
     <>
       <section
-        className="p-strip--light is-shallow p-shop-cart"
+        className="p-strip--light is-shallow p-shop-cart p-shop-cart--distributor"
         id="summary-section"
         data-testid="summary-section"
       >
@@ -66,17 +67,20 @@ const DistributorShopSummary = () => {
           </Col>
           <Col size={5}>
             <Chip
-              value={`${discount}% discount applied`}
+              value={`${discount ?? 0}% discount applied`}
               appearance="information"
               style={{ marginTop: "0.5rem" }}
             />
           </Col>
           <Col size={3} className="u-align--right">
             <p className="p-heading--2">
-              {discount &&
-                currencyFormatter(currency).format(
-                  (totalPrice - totalPrice * (discount / 100)) / 100
-                )}
+              {discount
+                ? currencyFormatter(currency).format(
+                    (totalPrice - totalPrice * (discount / 100)) / 100
+                  )
+                : currency
+                ? currencyFormatter(currency).format((totalPrice ?? 0) / 100)
+                : 0}
             </p>{" "}
             <p className="p-text--small">
               Any applicable taxes are <br /> calculated at checkout
@@ -84,11 +88,11 @@ const DistributorShopSummary = () => {
           </Col>
           <Col
             className="u-align--right"
-            size={4}
-            emptyLarge={9}
+            size={3}
+            emptyLarge={10}
             style={{ display: "flex", alignItems: "center" }}
           >
-            <PaymentButton />
+            <DistributorBuyButton />
           </Col>
         </Row>
       </section>

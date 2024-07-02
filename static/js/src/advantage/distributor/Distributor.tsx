@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Button, Icon, ICONS } from "@canonical/react-components";
 import ChannelOffersList from "./components/ChannelOffersList/ChannelOffersList";
 
 const Distributor = () => {
+  const distributorSelectorStates = [
+    "distributor-selector-subscriptionList",
+    "distributor-selector-currency",
+    "channel-offer-data",
+    "distributor-selector-duration",
+    "distributor-selector-techincalUserContact",
+    "distributor-selector-productType",
+  ];
+
+  useEffect(() => {
+    distributorSelectorStates.forEach((state) =>
+      localStorage.removeItem(state)
+    );
+  }, []);
+
   return (
     <div className="p-strip">
       <Row>
@@ -11,10 +26,10 @@ const Distributor = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginBottom: "1rem",
+              marginBottom: "1.5rem",
             }}
           >
-            <h2>Available deal registreations</h2>
+            <h2>Available deal registrations</h2>
             <Button
               appearance="positive"
               hasIcon={true}

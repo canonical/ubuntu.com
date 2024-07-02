@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from webapp.shop.api.ua_contracts.primitives import (
     Contract,
@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.primitives import (
     User,
 )
 from webapp.shop.api.ua_contracts.models import (
+    Metadata,
     ExternalID,
     Listing,
     ChannelListing,
@@ -66,6 +67,7 @@ def parse_channel_product_listing(
         product=product,
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
+        status=raw_product_listing.get("status"),
     )
 
 
@@ -90,7 +92,7 @@ def parse_channel_product_listings(
     raw_product_listings = raw_product_listings or {}
 
     return {
-        product_listing.get("id"): parse_product_listing(
+        product_listing.get("id"): parse_channel_product_listing(
             product_listing, raw_products
         )
         for product_listing in raw_product_listings
@@ -274,6 +276,10 @@ def parse_users(raw_users: List) -> List[User]:
     return [parse_user(raw_user) for raw_user in raw_users]
 
 
+def parse_metadata(metadata: List[Dict[str, str]]) -> List[Metadata]:
+    return [Metadata(item["key"], item["value"]) for item in metadata]
+
+
 def parse_external_ids(raw_external_ids: List[Dict]) -> List[ExternalID]:
     external_ids: List[ExternalID] = []
     for raw_external_id in raw_external_ids:
@@ -314,7 +320,7 @@ def parse_offer_items(
     return offer_items
 
 
-def parse_offer(raw_offer: Offer) -> Offer:
+def parse_offer(raw_offer: Dict) -> Offer:
     items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
     external_ids = (
         parse_external_ids(raw_offer["externalIDs"])
@@ -323,24 +329,63 @@ def parse_offer(raw_offer: Offer) -> Offer:
         else None
     )
 
+    metadata = (
+        parse_metadata(raw_offer.get("metadata", []))
+        if raw_offer.get("activationAccountID")
+        else None
+    )
+
+    channel_deal_creator_name = get_metadata_value(
+        metadata, "channelDealCreatorName"
+    )
+    distributor_account_name = get_metadata_value(
+        metadata, "distributorAccountName"
+    )
+    end_user_account_name = get_metadata_value(metadata, "endUserAccountName")
+    reseller_account_name = get_metadata_value(metadata, "resellerAccountName")
+    technical_contact_email = get_metadata_value(
+        metadata, "technicalContactEmail"
+    )
+    technical_contact_name = get_metadata_value(
+        metadata, "technicalContactName"
+    )
+    opportunity_number = get_metadata_value(metadata, "opportunityNumber")
+
+    purchase = "purchase" in raw_offer
+
     return Offer(
         id=raw_offer["id"],
         account_id=raw_offer["accountID"],
         marketplace=raw_offer["marketplace"],
         created_at=raw_offer["createdAt"],
         actionable=raw_offer["actionable"],
+        purchase=purchase,
         total=sum(item.price for item in items),
         items=items,
         discount=raw_offer.get("discount"),
         activation_account_id=raw_offer.get("activationAccountID"),
         can_change_items=raw_offer.get("canChangeItems"),
         external_ids=external_ids,
-        distributor_account_name=raw_offer.get("distributorAccountName"),
-        reseller_account_name=raw_offer.get("resellerAccountName"),
-        end_user_account_name=raw_offer.get("endUserAccountName"),
-        technical_contact=raw_offer.get("technicalContact"),
+        channel_deal_creator_name=channel_deal_creator_name,
+        distributor_account_name=distributor_account_name,
+        reseller_account_name=reseller_account_name,
+        end_user_account_name=end_user_account_name,
+        technical_contact_email=technical_contact_email,
+        technical_contact_name=technical_contact_name,
+        opportunity_number=opportunity_number,
     )
 
 
 def parse_offers(raw_offers: List) -> List[Offer]:
     return [parse_offer(raw_offer) for raw_offer in raw_offers]
+
+
+def get_metadata_value(
+    metadata: Optional[List[Metadata]], key: str
+) -> Optional[str]:
+    if metadata is None:
+        return None
+    for metadata in metadata:
+        if metadata.key == key:
+            return metadata.value
+    return None
