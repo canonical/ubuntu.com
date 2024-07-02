@@ -140,7 +140,6 @@ from webapp.views import (
     releasenotes_redirect,
     show_template,
     sitemap_index,
-    sixteen_zero_four,
     spanish_why_openstack,
     subscription_centre,
     thank_you,
@@ -601,7 +600,6 @@ def takeovers_index():
     )
 
 
-app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 
