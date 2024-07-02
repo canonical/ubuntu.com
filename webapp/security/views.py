@@ -572,3 +572,7 @@ def cves_sitemap():
     response.headers["Cache-Control"] = "public, max-age=43200"
 
     return response
+
+
+def cves_about():
+    return flask.render_template("security/cve/about.html")
