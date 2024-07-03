@@ -86,44 +86,6 @@ def _build_mirror_list(local=False, country_code=None):
     return mirror_list
 
 
-def sixteen_zero_four():
-    total_notices_issued = "0"
-    latest_notices = []
-
-    try:
-        response = session.request(
-            method="GET",
-            url=(
-                "https://ubuntu.com/security/"
-                "notices.json?release=xenial&limit=5"
-            ),
-        )
-
-        total_notices_issued = response.json().get("total_results")
-        latest_notices = [
-            {
-                "id": notice.get("id"),
-                "title": notice.get("title"),
-                "date": dateutil.parser.parse(
-                    notice.get("published")
-                ).strftime("%d %B %Y"),
-                "summary": notice.get("summary"),
-            }
-            for notice in response.json().get("notices")
-        ]
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    # Can only assume there were 1477 notices before ESM
-    notices_since_esm = total_notices_issued - 1477
-    context = {
-        "latest_notices": latest_notices,
-        "notices_since_esm": notices_since_esm,
-    }
-
-    return flask.render_template("16-04/index.html", **context)
-
-
 def show_template(filename):
     try:
         template_content = flask.render_template(f"templates/{filename}.html")
