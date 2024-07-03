@@ -1134,27 +1134,28 @@
       const getCookie = () => document.cookie.match(new RegExp('(^| )' + "control_or_variant" + '=([^;]+)'));
       // Switch for turning takeover switching on and off on demand
       const takeoverSwitch = true;
-      // check if user doesn't already have a group
-      if (!getCookie()) {
-        // randomly assign to 'control' or 'variant' group
-        const group = takeoverSwitch ?
-          Math.random() > 0.5 ?
-          "control" :
-          "variant" :
-          "control";
+      if (!takeoverSwitch) document.cookie = 'control_or_variant=;';
+      else {
+        // check if user doesn't already have a group
+        if (!getCookie()) {
+          // randomly assign to 'control' or 'variant' group
+          const group = Math.random() > 0.5 ?
+            "control" :
+            "variant";
 
-        // store group as cookie for 365 days
-        document.cookie = 'control_or_variant=' + group + ';max-age=31536000;';
+          // store group as cookie for 365 days
+          document.cookie = 'control_or_variant=' + group + ';max-age=31536000;';
 
-        // send group info in GA event
-        dataLayer.push({
-          event: "test",
-          test_type: "element visibility",
-          control_or_variant: group,
-        });
+          // send group info in GA event
+          dataLayer.push({
+            event: "test",
+            test_type: "element visibility",
+            control_or_variant: group,
+          });
+        }
       }
 
-      if (getCookie()[2] === 'variant') {
+      if (getCookie()?.[2] === 'variant') {
         testTakeover.hidden = false;
         mainTakeover.hidden = true;
       } else {
@@ -1175,7 +1176,7 @@
 
       var baseTakeover = document.getElementById('takeover');
       let takeoverAnimation; 
-      if(getCookie()[2] === 'variant') {
+      if(getCookie()?.[2] === 'variant') {
         takeoverAnimation = document.getElementById("test-takeover-animaition");
       } else {
         takeoverAnimation = document.getElementById("takeover-animaition");
@@ -1269,7 +1270,7 @@
 
         // Get HTML elements for the correct takeover
         let takeover, title, subtitle, image, primaryUrl, secondaryUrl;
-        if (getCookie()[2] === 'variant') {
+        if (getCookie()?.[2] === 'variant') {
           takeover = document.getElementById("test-takeover");
           title = document.getElementById("test-takeover-title");
           subtitle = document.getElementById("test-takeover-subtitle");
