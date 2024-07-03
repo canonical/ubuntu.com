@@ -107,7 +107,7 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
     }
 
     // Update customer information
-    if (!values.defaultPaymentMethod && product?.price?.value!=0) {
+    if (!values.defaultPaymentMethod && product?.price?.value != 0) {
       await postCustomerInfoMutation.mutateAsync(
         { formData: values },
         {

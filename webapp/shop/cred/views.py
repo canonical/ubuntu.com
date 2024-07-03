@@ -854,8 +854,8 @@ def cred_shop(ua_contracts_api, **kwargs):
                 exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-    
-    # purchase account required for purchasing from marketplace 
+
+    # purchase account required for purchasing from marketplace
     ua_contracts_api.ensure_purchase_account("canonical-cube")
 
     return flask.render_template(
