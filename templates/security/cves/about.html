@@ -25,7 +25,7 @@
           <div class="p-side-navigation__overlay js-drawer-toggle"
                aria-controls="drawer"></div>
 
-          <nav class="p-side-navigation__drawer" aria-label="Core case studies nav">
+          <nav class="p-side-navigation__drawer" aria-label="CVEs about nav">
             <div class="p-side-navigation__drawer-header">
               <a href="#"
                  class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
@@ -382,13 +382,16 @@
           navigationDrawer.querySelectorAll("a")
         );
 
-        navigationDrawerToggles.forEach(function(toggle) {
-          toggle.addEventListener("click", function() {
-            navigationDrawer.classList.toggle("is-expanded");
-          });
+        navToggle = navigationDrawerToggles[0];
+        navToggle.addEventListener("click", function() {
+          navigationDrawer.classList.add("is-expanded");
         });
 
-        navigationLinks.forEach(function(link) {
+        navigationInDrawer = document.querySelector(".p-side-navigation__drawer");
+        navigationInDrawerLinks = Array.prototype.slice.call(
+          navigationInDrawer.querySelectorAll("a")
+        );
+        navigationInDrawerLinks.forEach(function(link) {
           link.addEventListener("click", function() {
             navigationDrawer.classList.remove("is-expanded");
           });
