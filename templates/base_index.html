@@ -1133,7 +1133,7 @@
 
       const getCookie = () => document.cookie.match(new RegExp('(^| )' + "control_or_variant" + '=([^;]+)'));
       // Switch for turning takeover switching on and off on demand
-      const takeoverSwitch = true;
+      const takeoverSwitch = false;
       if (!takeoverSwitch) document.cookie = 'control_or_variant=;';
       else {
         // check if user doesn't already have a group
