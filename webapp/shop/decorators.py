@@ -175,11 +175,14 @@ def credentials_group():
         @wraps(func)
         def decorated_function(*args, **kwargs):
             sso_user = user_info(flask.session)
-            if (
-                sso_user
-                and sso_user.get("is_credentials_admin", False) is True
-            ):
+            print(sso_user)
+            if sso_user:
                 return func(*args, **kwargs)
+            # if (
+            #     sso_user
+            #     and sso_user.get("is_credentials_admin", False) is True
+            # ):
+            #     return func(*args, **kwargs)
 
             message = {"error": "unauthorized"}
             return flask.jsonify(message), 403

@@ -12,7 +12,7 @@ const topLevelNavDropdowns = Array.from(
     ".p-navigation__item--dropdown-toggle:not(.global-nav__dropdown-toggle):not(.js-back)"
   )
 );
-const nav = navigation.querySelector(".js-show-nav");
+const nav = navigation?.querySelector(".js-show-nav");
 const menuButtons = document.querySelectorAll(".js-menu-button");
 let dropdowns = [];
 const mainList = document.querySelector(
@@ -20,10 +20,10 @@ const mainList = document.querySelector(
 );
 // Get the navigations initial height for use in 'updateWindowHeight'
 const navEle = document.querySelector(".p-navigation__nav");
-const originalMaxHeight = navEle.style.maxHeight;
+const originalMaxHeight = navEle?.style?.maxHeight;
 
-navigation.classList.add("js-enabled");
-nav.classList.remove("u-hide");
+navigation?.classList?.add("js-enabled");
+nav?.classList?.remove("u-hide");
 document.addEventListener("DOMContentLoaded", () => {
   setUpGlobalNav();
 });
@@ -58,7 +58,7 @@ function getAllElements(queryString) {
 }
 
 // Attach initial event listeners
-mainList.addEventListener("click", function (e) {
+mainList?.addEventListener("click", function (e) {
   e.preventDefault();
   let target = e.target;
   if (target.classList.contains("p-navigation__link")) {
@@ -685,7 +685,7 @@ function initNavigationSearch() {
     searchButton.addEventListener("click", toggleSearch)
   );
 
-  searchOverlay.addEventListener("click", toggleSearch);
+  searchOverlay?.addEventListener("click", toggleSearch);
 
   if (menuButtons) {
     menuButtons.forEach((menuButton) =>
@@ -740,19 +740,19 @@ initNavigationSearch();
 // Setup global-nav
 function setUpGlobalNav() {
   const globalNavTab = document.querySelector(".global-nav-mobile");
-  const globalNavMainTab = globalNavTab.querySelector("ul.p-navigation__items");
+  const globalNavMainTab = globalNavTab?.querySelector("ul.p-navigation__items");
 
-  globalNavMainTab.classList.replace("u-hide", "dropdown-content-mobile");
-  globalNavMainTab.classList.replace(
+  globalNavMainTab?.classList?.replace("u-hide", "dropdown-content-mobile");
+  globalNavMainTab?.classList?.replace(
     "p-navigation__items",
     "p-navigation__dropdown"
   );
 
-  globalNavMainTab.setAttribute("id", "all-canonical-content-mobile");
+  globalNavMainTab?.setAttribute("id", "all-canonical-content-mobile");
 
   globalNavTab
-    .querySelectorAll(".p-navigation__dropdown")
-    .forEach((dropdown) => {
+    ?.querySelectorAll(".p-navigation__dropdown")
+    ?.forEach((dropdown) => {
       dropdown.setAttribute("aria-hidden", "true");
       const dropdownToggle = dropdown.closest(
         ".p-navigation__item--dropdown-toggle"

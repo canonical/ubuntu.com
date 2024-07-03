@@ -5,10 +5,11 @@ import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { Tabs, Strip } from "@canonical/react-components";
+import { Tabs, Strip, Row } from "@canonical/react-components";
 import UpcomingExams from "./components/UpcomingExams/UpcomingExams";
 import ExamResults from "./components/ExamResults/ExamResults";
 import Keys from "./components/Keys/Keys";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -59,13 +60,25 @@ function App() {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Strip>
+        {/* <Strip>
           <p className="p-heading--1">Dashboard</p>
           <Tabs links={tabs} />
           <UpcomingExams hidden={activeTab !== 0} />
           <ExamResults hidden={activeTab !== 1} />
           <Keys hidden={activeTab !== 2} />
-        </Strip>
+        </Strip> */}
+        <div className="l-application">
+          <Sidebar />
+          <main className="l-main"></main>
+          <p className="p-heading--1">Dashboard</p>
+        </div>
+
+        
+        {/* <p className="p-heading--1">Dashboard</p>
+        <Tabs links={tabs} />
+        <UpcomingExams hidden={activeTab !== 0} />
+        <ExamResults hidden={activeTab !== 1} />
+        <Keys hidden={activeTab !== 2} /> */}
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   );
