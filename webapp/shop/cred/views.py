@@ -842,7 +842,7 @@ def cred_submit_form(**_):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-def cred_shop(**kwargs):
+def cred_shop(ua_contracts_api, **kwargs):
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
     cue_products = get_cue_products(type="exam").json
