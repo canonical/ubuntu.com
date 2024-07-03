@@ -110,10 +110,14 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                         />
                       ),
                     },
-                    {
-                      title: "Your information",
-                      content: <UserInfoForm setError={setError} />,
-                    },
+                    ...(product?.price?.value == 0
+                      ? []
+                      : [
+                          {
+                            title: "Your information",
+                            content: <UserInfoForm setError={setError} />,
+                          },
+                        ]),
                     ...(canTrial
                       ? [
                           {

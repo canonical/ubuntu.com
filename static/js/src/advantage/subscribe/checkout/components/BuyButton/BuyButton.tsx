@@ -68,7 +68,6 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
   const onPayClick = async () => {
     validateForm().then((errors) => {
       const possibleErrors = Object.keys(errors);
-
       possibleErrors.forEach((error) => {
         setFieldTouched(error, true);
       });
@@ -108,7 +107,7 @@ const BuyButton = ({ setError, quantity, product, action, coupon }: Props) => {
     }
 
     // Update customer information
-    if (!values.defaultPaymentMethod) {
+    if (!values.defaultPaymentMethod && product?.price?.value !== 0) {
       await postCustomerInfoMutation.mutateAsync(
         { formData: values },
         {
