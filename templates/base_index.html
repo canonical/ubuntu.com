@@ -22,16 +22,35 @@
 {% endblock body_class %}
 
 {% block outer_content %}
+
   {% block content %}
 
-    <!-- Test takeover template -->
-    <!-- {% block test_takeover_content %}
-    {% with title_1="A CTO's guide", title_2="to real-time Linux", subtitle='Understanding real-time systems, their use
-    cases and inner workings.', button_url="/", button_text="Download now",
-    img_url="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png", img_width="508", img_height="364" %}
-    {% include "takeovers/_test_template.html" %}
-    {% endwith %}
-    {% endblock test_takeover_content %} -->
+    <section id="test-takeover" class="p-section--hero">
+      <div class="row p-takeover-animation" id="test-takeover-animaition">
+        <div class="row--50-50 p-section--shallow">
+          <div class="col">
+            <h1 class="u-no-margin--bottom" id="test-takeover-title">A CTO's guide to real-time Linux</h1>
+          </div>
+          <div class="col">
+            <div class="p-section--shallow u-no-padding--top">
+              <h2 id="test-takeover-subtitle">Understanding real-time systems, their use cases and inner workings.</h2>
+            </div>
+            <hr class="is-muted" />
+            <p>
+              <a id="test-takeover-primary-url" href="/download" class="p-button--positive">Download now</a>
+            </p>
+          </div>
+        </div>
+        <div class="u-align--center">
+          <img id="test-takeover-image" 
+               src="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png" 
+               width="508"
+               height="364" 
+               alt="" />
+        </div>
+      </div>
+    </section>
+
     <!-- Default Takeover: Download the latest Ubuntu -->
     <section data-lang="all" id="takeover" class="p-section--hero">
       <div class="row p-takeover-animation" id="takeover-animaition">
@@ -52,9 +71,9 @@
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
           <img id="takeover-image"
-                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                width="200"
-                alt="" />
+               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+               width="200"
+               alt="" />
         </div>
       </div>
     </section>
@@ -64,7 +83,7 @@
         <div style="background: rgba(0, 0, 0, 0.15);
                     overflow-y: auto;
                     padding-left: 1rem;
-                    padding-right: 1rem;">
+                    padding-right: 1rem">
           <h2>
             <a href="/18-04">End of standard support for 18.04 LTS &ndash; 31 May 2023</a>
           </h2>
@@ -84,10 +103,10 @@
           <div class="p-section--shallow">
             <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
             <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
-            </div>
-              <p>
-                <a class="p-button is-dark" href="/pro">Get Ubuntu Pro</a>
-              </p>
+          </div>
+          <p>
+            <a class="p-button is-dark" href="/pro">Get Ubuntu Pro</a>
+          </p>
         </div>
         <div class="col-3 col-medium-2">
           <ul class="p-list--divided u-no-margin--bottom">
@@ -550,33 +569,33 @@
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png"
-                      alt="Best Buy"
-                      class="p-logo-section__logo" />
+                     alt="Best Buy"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png"
-                      alt="BT"
-                      class="p-logo-section__logo" />
+                     alt="BT"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png"
-                      alt="Deutsche Telekom"
-                      class="p-logo-section__logo" />
+                     alt="Deutsche Telekom"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png"
-                      alt="Rabobank"
-                      class="p-logo-section__logo" />
+                     alt="Rabobank"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png"
-                      alt="Bloomberg"
-                      class="p-logo-section__logo" />
+                     alt="Bloomberg"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png"
-                      alt="AT&T"
-                      class="p-logo-section__logo" />
+                     alt="AT&T"
+                     class="p-logo-section__logo" />
               </div>
             </div>
           </div>
@@ -740,38 +759,38 @@
             <br />
             The professional developer's preference.
           </p>
-  
+
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png"
-                      alt="NVIDIA"
-                      class="p-logo-section__logo" />
+                     alt="NVIDIA"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
-                      alt="Intel"
-                      class="p-logo-section__logo" />
+                     alt="Intel"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/cc247653-amd-logo.png"
-                      alt="AMD"
-                      class="p-logo-section__logo" />
+                     alt="AMD"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png"
-                      alt="HP"
-                      class="p-logo-section__logo" />
+                     alt="HP"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/19e92ecf-dell-logo.png"
-                      alt="Dell"
-                      class="p-logo-section__logo" />
+                     alt="Dell"
+                     class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
-                      alt="Lenovo"
-                      class="p-logo-section__logo" />
+                     alt="Lenovo"
+                     class="p-logo-section__logo" />
               </div>
             </div>
           </div>
@@ -920,7 +939,9 @@
         </li>
       </ul>
       <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">API-driven DHCP, DNS, PXE, IPAM, provisioning</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">
+          API-driven DHCP, DNS, PXE, IPAM, provisioning
+        </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">LDAP authentication and RBAC</li>
       </ul>
       <div class="row">
@@ -1005,7 +1026,9 @@
         </li>
       </ul>
       <ul class="row p-list--divided">
-        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Trim time-to-market with SMART START consulting</li>
+        <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">
+          Trim time-to-market with SMART START consulting
+        </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Leading Robot-as-a-Platform ecosystem</li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">Curated app stores</li>
       </ul>
@@ -1039,27 +1062,27 @@
             <a href="https://juju.is/">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes">Kubernetes estate</a>.
           </p>
           <div class="p-logo-section--dense">
-              <div class="p-logo-section__items landing-logos u-no-padding">
-                <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
-                      alt="Panasonic"
-                      class="p-logo-section__logo" />
-                </div>
-                <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
-                      alt="Scania"
-                      class="p-logo-section__logo" />
-                </div>
-                <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
-                      alt="SBI BTS"
-                      class="p-logo-section__logo" />
-                </div>
-                <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
-                      alt="Swissquote"
-                      class="p-logo-section__logo" />
-                </div>
+            <div class="p-logo-section__items landing-logos u-no-padding">
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
+                     alt="Panasonic"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
+                     alt="Scania"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
+                     alt="SBI BTS"
+                     class="p-logo-section__logo" />
+              </div>
+              <div class="p-logo-section__item">
+                <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
+                     alt="Swissquote"
+                     class="p-logo-section__logo" />
+              </div>
             </div>
           </div>
         </div>
@@ -1104,7 +1127,42 @@
       {# include "ubuntu/takeovers/_footer_homepage.html" #}
     {% endblock footer_content %}
 
-    <script>
+    <script type="module">
+      const testTakeover = document.getElementById('test-takeover');
+      const mainTakeover = document.getElementById('takeover');
+
+      const getCookie = () => document.cookie.match(new RegExp('(^| )' + "control_or_variant" + '=([^;]+)'));
+      // Switch for turning takeover switching on and off on demand
+      const takeoverSwitch = false;
+      if (!takeoverSwitch) document.cookie = 'control_or_variant=;';
+      else {
+        // check if user doesn't already have a group
+        if (!getCookie()) {
+          // randomly assign to 'control' or 'variant' group
+          const group = Math.random() > 0.5 ?
+            "control" :
+            "variant";
+
+          // store group as cookie for 365 days
+          document.cookie = 'control_or_variant=' + group + ';max-age=31536000;';
+
+          // send group info in GA event
+          dataLayer.push({
+            event: "test",
+            test_type: "element visibility",
+            control_or_variant: group,
+          });
+        }
+      }
+
+      if (getCookie()?.[2] === 'variant') {
+        testTakeover.hidden = false;
+        mainTakeover.hidden = true;
+      } else {
+        testTakeover.hidden = true;
+        mainTakeover.hidden = false;
+      }
+
       // get the users language and remove any extra detail suffix (e.g. -gb)
       var primaryParentLanguage = getPrimaryParentLanguage();
 
@@ -1117,7 +1175,12 @@
       }
 
       var baseTakeover = document.getElementById('takeover');
-      var takeoverAnimation = document.getElementById("takeover-animaition");
+      let takeoverAnimation; 
+      if(getCookie()?.[2] === 'variant') {
+        takeoverAnimation = document.getElementById("test-takeover-animaition");
+      } else {
+        takeoverAnimation = document.getElementById("takeover-animaition");
+      }
 
       if (window.localStorage && baseTakeover) {
         /**
@@ -1205,13 +1268,22 @@
         // Default parameter
         index = typeof index !== 'undefined' ? index : 0;
 
-        // Get HTML elements
-        var takeover = document.getElementById("takeover");
-        var title = document.getElementById("takeover-title");
-        var subtitle = document.getElementById("takeover-subtitle");
-        var image = document.getElementById("takeover-image");
-        var primaryUrl = document.getElementById("takeover-primary-url");
-        var secondaryUrl = document.getElementById("takeover-secondary-url");
+        // Get HTML elements for the correct takeover
+        let takeover, title, subtitle, image, primaryUrl, secondaryUrl;
+        if (getCookie()?.[2] === 'variant') {
+          takeover = document.getElementById("test-takeover");
+          title = document.getElementById("test-takeover-title");
+          subtitle = document.getElementById("test-takeover-subtitle");
+          image = document.getElementById("test-takeover-image");
+          primaryUrl = document.getElementById("test-takeover-primary-url");
+        } else {
+          takeover = document.getElementById("takeover");
+          title = document.getElementById("takeover-title");
+          subtitle = document.getElementById("takeover-subtitle");
+          image = document.getElementById("takeover-image");
+          primaryUrl = document.getElementById("takeover-primary-url");
+          secondaryUrl = document.getElementById("takeover-secondary-url");
+        }
 
         // Set values to homepage takeover
         var selectedTakeover = takeovers[index];
@@ -1265,11 +1337,11 @@
           primaryUrl.remove();
         }
 
-        if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+        if (secondaryUrl && selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
           secondaryUrl.href = selectedTakeover.secondary_url;
           secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
         } else {
-          secondaryUrl.remove();
+          secondaryUrl?.remove();
         }
 
         dataLayer.push({
