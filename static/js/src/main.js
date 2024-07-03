@@ -11,4 +11,3 @@ import "./mobile-footer-navigation.js";
 import "./smart-quotes.js";
 import "./prepare-form-inputs.js";
 import "./tabbed-content.js";
-import "./takeover-tracking.js";
