@@ -37,15 +37,17 @@
             </div>
             <hr class="is-muted" />
             <p>
-              <a id="test-takeover-primary-url" href="/download" class="p-button--positive">Download now</a>
+              <a id="test-takeover-primary-url"
+                 href="/download"
+                 class="p-button--positive">Download now</a>
             </p>
           </div>
         </div>
         <div class="u-align--center">
-          <img id="test-takeover-image" 
-               src="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png" 
+          <img id="test-takeover-image"
+               src="https://assets.ubuntu.com/v1/fb1ea84e-Kernelt%20industries@2x.png"
                width="508"
-               height="364" 
+               height="364"
                alt="" />
         </div>
       </div>
@@ -102,7 +104,11 @@
         <div class="col-9 col-medium-4">
           <div class="p-section--shallow">
             <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
-            <p class="p-heading--2">Security, support, and managed services from<br class="u-hide--small u-hide--medium"/> the publisher&nbsp;of&nbsp;Ubuntu.</p>
+            <p class="p-heading--2">
+              Security, support, and managed services from
+              <br class="u-hide--small u-hide--medium" />
+              the publisher&nbsp;of&nbsp;Ubuntu.
+            </p>
           </div>
           <p>
             <a class="p-button is-dark" href="/pro">Get Ubuntu Pro</a>
@@ -532,12 +538,12 @@
         <div class="col">
           <div class="p-image-wrapper u-hide--medium p-image-container--2-3 u-vertically-center"
                style="background: rgba(0, 0, 0, 0.15)">
-            {{ image(url="https://assets.ubuntu.com/v1/a4028022-Multi-cloud%20Kubernetes%20%20and%20containers.png",
+            {{ image(url="https://assets.ubuntu.com/v1/1cbb17af-Multi-cloud%20Kubernetes%20%20and%20containers.png",
                         alt="",
-                        width="1200",
-                        height="770",
+                        width="1132",
+                        height="726",
                         hi_def=True,
-                        loading="lazy",) | safe
+                        loading="lazy") | safe
             }}
           </div>
         </div>
@@ -667,15 +673,13 @@
           <div class="p-image-wrapper u-vertically-center p-image-container--2-3 u-hide--medium"
                style="background: rgba(0, 0, 0, 0.15)">
 
-               {{ image (
-                url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
-                alt="",
-                width="1200",
-                height="983",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-              }}
+            {{ image(url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
+                        alt="",
+                        width="1200",
+                        height="983",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
           </div>
         </div>
         <div class="col">
@@ -1178,8 +1182,8 @@
       }
 
       var baseTakeover = document.getElementById('takeover');
-      let takeoverAnimation; 
-      if(getCookie()?.[2] === 'variant') {
+      let takeoverAnimation;
+      if (getCookie()?.[2] === 'variant') {
         takeoverAnimation = document.getElementById("test-takeover-animaition");
       } else {
         takeoverAnimation = document.getElementById("takeover-animaition");
