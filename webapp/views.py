@@ -28,6 +28,7 @@ from canonicalwebteam.discourse import (
     Docs,
     DocParser,
 )
+from canonicalwebteam.discourse.exceptions import MaxLimitError
 
 
 # Local
@@ -338,57 +339,20 @@ def build_engage_index(engage_docs):
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
-        posts_per_page = 15
-        metadata = engage_docs.get_index()
-
-        resource_types = []
-        tags_list = set()
-        for item in metadata:
-            if "type" in item and item["type"] not in resource_types:
-                resource_types.append(item["type"])
-            if "tags" in item and item["tags"] != "":
-                # Join 2 lists of tags without duplicates
-                tags_list = tags_list | set(
-                    item["tags"].replace(" ", "").split(",")
-                )
-
-        tags_list = sorted(list(tags_list))
-
-        if preview is None:
-            metadata = [
-                item
-                for item in metadata
-                if "active" in item and item["active"] == "true"
-            ]
-
-        if language:
-            new_metadata = []
-            for item in metadata:
-                if "language" in item:
-                    if item["language"] == language:
-                        new_metadata.append(item)
-                    elif language == "en" and item["language"] == "":
-                        new_metadata.append(item)
-                else:
-                    break
-            metadata = new_metadata
-
+        limit = 20 # adjust as needed
+        offset = page - 1
         if resource:
-            metadata = [
-                item
-                for item in metadata
-                if "type" in item and item["type"] == resource
-            ]
+            metadata, total_pages = engage_docs.get_index(limit, offset, key="type", value=resource)
+        elif tag:
+            metadata, total_pages = engage_docs.get_index(limit, offset, key="tags", value=tag)
+        elif language:
+            metadata, total_pages = engage_docs.get_index(limit, offset, key="language", value=language)
+        else:
+            metadata, total_pages = engage_docs.get_index(limit, offset)
 
-        if tag:
-            metadata = [
-                element
-                for element in metadata
-                if "tags" in element
-                and tag in element["tags"].replace(" ", "").split(",")
-            ]
-
-        total_pages = math.ceil(len(metadata) / posts_per_page)
+        # Fixed so that engage page authors don't create random resource types
+        resource_types = ["Blog", "Case Study", "Webinar", "Whitepaper", "Form"]
+        tags_list = engage_docs.get_engage_pages_tags()
 
         return flask.render_template(
             "engage/index.html",
@@ -400,8 +364,9 @@ def build_engage_index(engage_docs):
             resource=resource,
             resource_types=sorted(resource_types),
             tags=tags_list,
-            posts_per_page=posts_per_page,
+            posts_per_page=limit,
             total_pages=total_pages,
+            current_page=page,
         )
 
     return engage_index
@@ -535,7 +500,6 @@ def build_engage_pages_sitemap(engage_pages):
         return response
 
     return ep_sitemap
-
 
 def openstack_install():
     """

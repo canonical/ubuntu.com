@@ -3,7 +3,7 @@ A Flask application for ubuntu.com
 """
 
 import os
-
+import math
 import flask
 import requests
 import talisker.requests
@@ -581,10 +581,8 @@ def takeovers_json():
 
 
 def takeovers_index():
-    all_takeovers = discourse_takeovers.get_index()
-    all_takeovers.sort(
-        key=lambda takeover: takeover["active"] == "true", reverse=True
-    )
+    page = flask.request.args.get("page", default=1, type=int)
+    all_takeovers = discourse_takeovers.get_index(order_by_key="active", order_by_value="true")
     active_count = len(
         [
             takeover
@@ -593,10 +591,14 @@ def takeovers_index():
         ]
     )
 
+    total_pages = math.ceil(len(all_takeovers) / 15)
+
     return flask.render_template(
         "takeovers/index.html",
         takeovers=all_takeovers,
         active_count=active_count,
+        total_pages=total_pages,
+        current_page=page
     )
 
 

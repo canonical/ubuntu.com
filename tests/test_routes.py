@@ -170,23 +170,8 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/engage")
         self.assertEqual(response.status_code, 200)
 
-    def test_engage_index_without_preview_flag_cannot_see_inactive_page(self):
-        response = self.client.get("/engage")
-        self.assertEqual(response.status_code, 200)
-
-    def test_engage_index_with_preview_flag_sees_inactive_pages(self):
-        response = self.client.get("/engage?preview")
-        self.assertEqual(response.status_code, 200)
-
     def test_active_page_returns_200(self):
         response = self.client.get("/engage/micro-clouds")
-        self.assertEqual(response.status_code, 200)
-
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNone(soup.find("meta", {"name": "robots"}))
-
-    def test_active_page_returns_adds_no_meta_with_preview_flag(self):
-        response = self.client.get("/engage/micro-clouds?preview")
         self.assertEqual(response.status_code, 200)
 
         soup = BeautifulSoup(response.data, "html.parser")
