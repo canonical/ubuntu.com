@@ -873,7 +873,6 @@ def cred_manage_shop(**kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-@canonical_staff()
 def cred_shop_thank_you(**kwargs):
     quantity = flask.request.args.get("quantity", "")
     product = flask.request.args.get("productName", "")
@@ -1088,6 +1087,7 @@ def get_webhook_response(trueability_api, **kwargs):
 @canonical_staff()
 def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges()
+    print(badges)
     return flask.jsonify(badges["data"])
 
 
