@@ -569,12 +569,7 @@ app.add_url_rule(
 
 def takeovers_json():
     active_takeovers = discourse_takeovers.parse_active_takeovers()
-    takeovers = sorted(
-        active_takeovers,
-        key=lambda takeover: takeover["publish_date"],
-        reverse=True,
-    )
-    response = flask.jsonify(takeovers)
+    response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = "300"
 
     return response
@@ -582,23 +577,20 @@ def takeovers_json():
 
 def takeovers_index():
     page = flask.request.args.get("page", default=1, type=int)
-    all_takeovers = discourse_takeovers.get_index(order_by_key="active", order_by_value="true")
-    active_count = len(
-        [
-            takeover
-            for takeover in all_takeovers
-            if takeover["active"] == "true"
-        ]
+    limit = 50
+    offset = (page - 1) * limit
+    all_takeovers, count, active_count, total_current = (
+        discourse_takeovers.get_index(limit=limit, offset=offset)
     )
-
-    total_pages = math.ceil(len(all_takeovers) / 15)
+    total_pages = math.ceil(count / limit)
 
     return flask.render_template(
         "takeovers/index.html",
         takeovers=all_takeovers,
         active_count=active_count,
+        total_count=total_current,
         total_pages=total_pages,
-        current_page=page
+        current_page=page,
     )
 
 

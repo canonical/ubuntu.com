@@ -28,8 +28,6 @@ from canonicalwebteam.discourse import (
     Docs,
     DocParser,
 )
-from canonicalwebteam.discourse.exceptions import MaxLimitError
-
 
 # Local
 from webapp.login import user_info
@@ -339,20 +337,39 @@ def build_engage_index(engage_docs):
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
-        limit = 20 # adjust as needed
-        offset = page - 1
+        limit = 20  # adjust as needed
+        offset = (page - 1) * limit
         if resource:
-            metadata, total_pages = engage_docs.get_index(limit, offset, key="type", value=resource)
+            metadata, count, active_count, current_total = (
+                engage_docs.get_index(
+                    limit, offset, key="type", value=resource
+                )
+            )
         elif tag:
-            metadata, total_pages = engage_docs.get_index(limit, offset, key="tags", value=tag)
+            metadata, count, active_count, current_total = (
+                engage_docs.get_index(limit, offset, key="tag", value=tag)
+            )
         elif language:
-            metadata, total_pages = engage_docs.get_index(limit, offset, key="language", value=language)
+            metadata, count, active_count, current_total = (
+                engage_docs.get_index(
+                    limit, offset, key="language", value=language
+                )
+            )
         else:
-            metadata, total_pages = engage_docs.get_index(limit, offset)
+            metadata, count, active_count, current_total = (
+                engage_docs.get_index(limit, offset)
+            )
 
         # Fixed so that engage page authors don't create random resource types
-        resource_types = ["Blog", "Case Study", "Webinar", "Whitepaper", "Form"]
+        resource_types = [
+            "Blog",
+            "Case Study",
+            "Webinar",
+            "Whitepaper",
+            "Form",
+        ]
         tags_list = engage_docs.get_engage_pages_tags()
+        total_pages = math.ceil(current_total / limit)
 
         return flask.render_template(
             "engage/index.html",
@@ -500,6 +517,7 @@ def build_engage_pages_sitemap(engage_pages):
         return response
 
     return ep_sitemap
+
 
 def openstack_install():
     """
