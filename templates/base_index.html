@@ -78,20 +78,20 @@
       </div>
     </section>
 
-    <section class="p-section notice">
+    <div class="p-section">
       <div class="u-fixed-width">
-        <div style="background: rgba(0, 0, 0, 0.15);
-                    overflow-y: auto;
-                    padding-left: 1rem;
-                    padding-right: 1rem">
-          <h2>
-            <a href="/18-04">End of standard support for 18.04 LTS &ndash; 31 May 2023</a>
-          </h2>
-          <hr class="p-rule is-muted" />
-          <p>Upgrade to the latest Ubuntu LTS or get extended coverage until 2028 with Ubuntu Pro</p>
+        <div class="p-notification--information u-no-margin--bottom is-dark">
+          <div class="p-notification__content">
+            <p class="p-notification__title p-heading--5">
+              <a href="https://canonical.com/blog/canonical-offers-12-year-lts-for-any-open-source-docker-image">Canonical announces 12 year LTS for open source Docker images</a>
+            </p>
+            <p class="p-notification__message">
+              <span>Get a custom built container and let us handle the maintenance</span>
+            </p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
     {% block notices_content %}
     {% endblock notices_content %}
@@ -102,7 +102,7 @@
         <div class="col-9 col-medium-4">
           <div class="p-section--shallow">
             <h2 class="p-heading--1 u-no-margin--bottom">Modern enterprise open&nbsp;source</h2>
-            <p class="p-heading--2">Security, support, and managed services from the&nbsp;publisher&nbsp;of&nbsp;Ubuntu.</p>
+            <p class="p-heading--2">Security, support, and managed services from<br class="u-hide--small u-hide--medium"/> the publisher&nbsp;of&nbsp;Ubuntu.</p>
           </div>
           <p>
             <a class="p-button is-dark" href="/pro">Get Ubuntu Pro</a>
@@ -110,7 +110,7 @@
         </div>
         <div class="col-3 col-medium-2">
           <ul class="p-list--divided u-no-margin--bottom">
-            <li class="p-list__item">
+            <li class="p-list__item u-no-padding">
               {{ image(url="https://assets.ubuntu.com/v1/66d21279-aws.png",
                             alt="AWS",
                             width="51",
@@ -312,7 +312,7 @@
         <hr class="is-muted" />
         <div class="col-start-large-7 col-6">
           <p>
-            <a class="p-button is-dark" href="/security">Secure all your open source&nbsp;&rsaquo;</a>
+            <a class="p-button is-dark" href="/security">Secure all your open source</a>
           </p>
         </div>
       </div>
@@ -367,7 +367,7 @@
           </ul>
           <hr class="is-muted" />
           <p class="u-no-margin--bottom">
-            <a href="/contact-us" class="js-invoke-modal p-button is-dark">Let's talk open source&nbsp;&rsaquo;</a>
+            <a href="/contact-us" class="js-invoke-modal p-button is-dark">Let's talk open source</a>
           </p>
         </div>
       </div>
@@ -449,7 +449,7 @@
           <p>
             <a href="/cloud/public-cloud"
                aria-label="Learn more about public cloud optimisation"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/cloud/public-cloud/contact-us"
                aria-label="Contact us about public cloud optimisation"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -548,7 +548,7 @@
           <p>
             <a href="/kubernetes"
                aria-label="Learn more about multi-cloud Kubernetes and containers"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/kubernetes/contact-us"
                aria-label="Contact us about multi-cloud Kubernetes and containers"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -651,7 +651,7 @@
           <p>
             <a href="/openstack"
                aria-label="Learn more about carrier-grade private cloud"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/openstack/contact-us"
                aria-label="Contact us about carrier-grade private cloud"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -666,13 +666,16 @@
         <div class="col">
           <div class="p-image-wrapper u-vertically-center p-image-container--2-3 u-hide--medium"
                style="background: rgba(0, 0, 0, 0.15)">
-            {{ image(url="https://assets.ubuntu.com/v1/b3e4879c-Ultra%20secure%20things.png",
-                        alt="",
-                        width="1200",
-                        height="983",
-                        hi_def=True,
-                        loading="lazy") | safe
-            }}
+
+               {{ image (
+                url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
+                alt="",
+                width="1200",
+                height="983",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
           </div>
         </div>
         <div class="col">
@@ -737,7 +740,7 @@
           <p>
             <a href="/core"
                aria-label="Learn more about Ubuntu Core"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/core/contact-us"
                aria-label="Contact us about Ubuntu Core"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -842,7 +845,7 @@
           <p>
             <a href="/desktop"
                aria-label="Learn more about workstations and desktops"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/desktop/contact-us"
                aria-label="Contact us about workstations and desktops"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -950,7 +953,7 @@
           <p>
             <a href="https://maas.io"
                aria-label="Learn more about data centre automation"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="https://maas.io/contact-us"
                aria-label="Contact us about data centre automation">Contact us&nbsp;&rsaquo;</a>
           </p>
@@ -1039,7 +1042,7 @@
           <p>
             <a href="/robotics"
                aria-label="Learn more about robotics"
-               class="p-button is-dark">Learn more&nbsp;&rsaquo;</a>
+               class="p-button is-dark">Learn more</a>
             <a href="/contact-us"
                aria-label="Contact us about robotics"
                class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
@@ -1052,7 +1055,7 @@
       <div class="u-fixed-width">
         <div class="u-vertically-center u-align--center p-image-container--cinematic"
              style="background: rgba(0, 0, 0, 0.15)">
-          <img src="https://assets.ubuntu.com/v1/b62f723f-Multi-cloud%20applicationsbeyond%20PAAS.png"
+          <img src="https://assets.ubuntu.com/v1/6d657910-Multi-cloud%20Applications%C2%A0%C2%A0Beyond%20PAAS.png"
                alt="" />
         </div>
         <hr class="p-rule" />
@@ -1117,7 +1120,7 @@
         <hr class="is-muted" />
         <div class="col-6 col-start-large-7">
           <p>
-            <a href="https://juju.is" class="p-button is-dark">Learn more about universal operators&nbsp;&rsaquo;</a>
+            <a href="https://juju.is" class="p-button is-dark">Learn more about universal operators</a>
           </p>
         </div>
       </div>
