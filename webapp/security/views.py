@@ -453,7 +453,7 @@ def cve_index():
                     "icon": friendly_status["icon"],
                 }
     return flask.render_template(
-        "security/cve/index.html",
+        "security/cves/index.html",
         all_releases=all_releases,
         cves=cves,
         total_results=total_results,
@@ -607,7 +607,7 @@ def cve(cve_id):
                 formatted_tags.append({"name": package_name, "text": tag})
 
     return flask.render_template(
-        "security/cve/cve.html",
+        "security/cves/cve.html",
         cve=cve,
         patches=formatted_patches,
         tags=formatted_tags,
