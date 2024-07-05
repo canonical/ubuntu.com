@@ -124,7 +124,7 @@ def notices():
     # call endpopint to get all releases and notices
     all_releases = security_api.get_releases()
 
-    notices_response = security_api.get_notices(
+    notices_response = security_api.get_page_notices(
         limit=limit,
         offset=offset,
         details=details,
