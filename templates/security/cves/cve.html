@@ -251,7 +251,7 @@
                           {% if status.release_codename and status.release_codename != "upstream" %}
                             {% if loop.index == 1 %}<td rowspan="{{ package.statuses | length }}">{{ package["name"] }}</td>{% endif %}
                             <td>{{ status.release_codename }}</td>
-
+                            {# djlint: off #}
                             {% if status.status == "DNE" %}
                               <td class="u-text--muted">
                                 Not in release
@@ -289,6 +289,7 @@
                                                 <span class="p-chip__value"><small>Ubuntu pro</small></span>
                                               </a>
                                             {% endif %}
+                                            {# djlint: on #}
                                           </td>
                                         {% endif %}
                                       </tr>
