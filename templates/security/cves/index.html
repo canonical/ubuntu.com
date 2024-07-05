@@ -1,4 +1,4 @@
-{% extends "security/cve/base_cve.html" %}
+{% extends "security/cves/base_cve.html" %}
 
 {% block body_class %}is-paper{% endblock body_class %}
 {% block title %}
@@ -18,7 +18,7 @@
         <div class="p-section--shallow">
           <h1>Search CVE reports</h1>
         </div>
-        {% include "security/cve/_cve-search.html" %}
+        {% include "security/cves/_cve-search.html" %}
       {% else %}
         <h1>CVE reports</h1>
         <p>The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities. Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.</p>
@@ -33,9 +33,9 @@
 </section>
 
 {% if request.args %}
-  {% include "security/cve/_cve-search-results.html"%}
+  {% include "security/cves/_cve-search-results.html"%}
 {% else %}
-  {% include "security/cve/_cve-landing.html" %}
+  {% include "security/cves/_cve-landing.html" %}
 {% endif %}
 
 <script type="text/javascript">
