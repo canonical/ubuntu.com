@@ -1,5 +1,8 @@
-{% extends "security/cve/base_cve.html" %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1fsKWdmAEv4QEoVPsZEwff3fYG3a6RkD5-BCkk13LxPQ/edit{% endblock %}
+{% extends "security/cves/base_cve.html" %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1fsKWdmAEv4QEoVPsZEwff3fYG3a6RkD5-BCkk13LxPQ/edit
+{% endblock %}
 
 {% block title %}About CVEs{% endblock %}
 
@@ -33,7 +36,8 @@
             </div>
             <ul class="p-side-navigation__list">
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link highlight-link is-active" href="#security">Getting security updates</a>
+                <a class="p-side-navigation__link highlight-link is-active"
+                   href="#security">Getting security updates</a>
               </li>
               <li class="p-side-navigation__item">
                 <a class="p-side-navigation__link highlight-link" href="#repos">Repositories</a>
@@ -65,7 +69,9 @@
           </p>
         </div>
 
-        <h2 class="question-heading" id="security" style="scroll-margin-top: 5rem;">Getting security updates</h2>
+        <h2 class="question-heading"
+            id="security"
+            style="scroll-margin-top: 5rem">Getting security updates</h2>
         <div class="p-section">
           <p>
             Ubuntu Long Term Support (LTS) releases get up to 12 years of security maintenance and support. The initial <a href="/about/release-cycle">5 years</a>
@@ -73,8 +79,8 @@
             of the box together with fixes for packages in the Ubuntu Universe repository coming from the Ubuntu community and Debian.
           </p>
           <p>
-            Additional security coverage from Canonical for all packages in Main and Universe is provided through an Ubuntu Pro subscription for 10 years. 
-            <a href="/pro">Ubuntu Pro</a> is free for personal use on up to 5 machines, or 50 machines for active Ubuntu community members. A further 2 years 
+            Additional security coverage from Canonical for all packages in Main and Universe is provided through an Ubuntu Pro subscription for 10 years.
+            <a href="/pro">Ubuntu Pro</a> is free for personal use on up to 5 machines, or 50 machines for active Ubuntu community members. A further 2 years
             of security maintenance and support is provided with the paid Legacy Support add-on.
           </p>
 
@@ -164,7 +170,7 @@
           </table>
           <p>
             We also maintain these repositories for more specific use cases, available
-            <br class="u-hide--small"/>
+            <br class="u-hide--small" />
             with Ubuntu Pro:
           </p>
           <table>
@@ -190,15 +196,15 @@
               </tr>
               <tr>
                 <td>ros-updates</td>
-                <td colspan="2">
-                  This ROS ESM repository provides ten years of non-security updates for ROS core packages.
-                </td>
+                <td colspan="2">This ROS ESM repository provides ten years of non-security updates for ROS core packages.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h2 class="question-heading" id="priority" style="scroll-margin-top: 5rem;">Priority levels</h2>
+        <h2 class="question-heading"
+            id="priority"
+            style="scroll-margin-top: 5rem">Priority levels</h2>
         <div class="p-section">
           <p>
             The Ubuntu Security team reviews new vulnerabilities when they are identified. If they affect packages distributed with supported Ubuntu releases, the team assesses the impact and assigns a priority level.
@@ -266,7 +272,9 @@
           </p>
         </div>
 
-        <h2 class="question-heading" id="statuses" style="scroll-margin-top: 5rem;">Statuses</h2>
+        <h2 class="question-heading"
+            id="statuses"
+            style="scroll-margin-top: 5rem">Statuses</h2>
         <div class="p-section">
           <p>
             When a new vulnerability is disclosed, we provide statuses for every package in every supported version. The status reflects if the vulnerability affects the package, and Ubuntu Security team’s work to address it.
@@ -338,7 +346,9 @@
           </table>
         </div>
 
-        <h2 class="question-heading" id="export-data" style="scroll-margin-top: 5rem;">Exporting CVE data</h2>
+        <h2 class="question-heading"
+            id="export-data"
+            style="scroll-margin-top: 5rem">Exporting CVE data</h2>
         <div class="p-section">
           <p>You can export our CVE data in two structured formats:</p>
 
