@@ -9,6 +9,6 @@
   {% if product == 'server-maas' %}
     {% with thanks_context="enquiring about MAAS" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% else %}
-    {% with thanks_context="your interest in Ubuntu Server" %}{% include "shared/_thank_you.html" %}{% endwith %}
+    {% with thanks_context="Thank you for contacting our team." thanks_message="We will be in touch shortly.". %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% endif %}
 {% endblock content %}
