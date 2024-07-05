@@ -7,7 +7,7 @@
       <button class="p-modal__close js-close"
               aria-label="Close active modal"
               style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Get in touch with the devices team</h2>
+      <h2 class="p-modal__title u-sv2" id="modal-title">Get in touch with the devices team</h2>
     </header>
 
     <div class="js-pagination js-pagination--1">
@@ -82,6 +82,10 @@
                 {% endif %}
               </li>
               <li class="p-list__item">
+                <label for="title">Job title:</label>
+                <input required id="title" name="title" maxlength="255" type="text" />
+              </li>
+              <li class="p-list__item u-sv3">
                 <label for="phone">Mobile/cell phone number:</label>
                 <input required
                        id="phone"
@@ -89,10 +93,6 @@
                        maxlength="255"
                        type="tel"
                        required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="title">Job title:</label>
-                <input required id="title" name="title" maxlength="255" type="text" />
               </li>
             </ul>
             <ul class="p-list">
@@ -131,15 +131,6 @@
                        tabindex="-1" />
               </li>
               {# End of honey pots #}
-              <div class="u-off-screen">
-                <label for="Comments_from_lead__c">
-                  <h3 class="p-heading--4">Your comments</h3>
-                  <textarea id="Comments_from_lead__c"
-                            name="Comments_from_lead__c"
-                            rows="5"
-                            maxlength="2000"></textarea>
-                </label>
-              </div>
             </ul>
 
             <div class="u-hide">
@@ -223,15 +214,6 @@
                      name="productContext"
                      id="product-context"
                      value="{{ product }}" />
-              {% if user_info %}
-                <input type="hidden"
-                       id="email"
-                       name="email"
-                       maxlength="255"
-                       type="email"
-                       pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
-                       value="{{ user_info.email }}" />
-              {% endif %}
             </div>
 
             <div class="pagination">
