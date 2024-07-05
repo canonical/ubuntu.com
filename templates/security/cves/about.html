@@ -1,12 +1,12 @@
 {% extends "security/cves/base_cve.html" %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1fsKWdmAEv4QEoVPsZEwff3fYG3a6RkD5-BCkk13LxPQ/edit{% endblock %}
 
 {% block title %}About CVEs{% endblock %}
 
 {% block content %}
   <section class="p-section--hero">
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-9">
+      <div class="col-9 col-start-large-4">
         <h1>About CVEs</h1>
       </div>
     </div>
@@ -33,10 +33,7 @@
             </div>
             <ul class="p-side-navigation__list">
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link highlight-link is-active" href="#cves">What are CVEs?</a>
-              </li>
-              <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link highlight-link" href="#security">Getting security updates</a>
+                <a class="p-side-navigation__link highlight-link is-active" href="#security">Getting security updates</a>
               </li>
               <li class="p-side-navigation__item">
                 <a class="p-side-navigation__link highlight-link" href="#repos">Repositories</a>
@@ -56,11 +53,10 @@
       </div>
 
       <div class="col-9">
-        <h2 class="question-heading" id="cves">What are CVEs?</h2>
         <div class="p-section">
           <p>
             The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalogue publicly disclosed cybersecurity vulnerabilities.
-            Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notice">security notice</a> when an issue is fixed.
+            Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.
           </p>
           <p>
             In our <a href="/security/cves">CVE database</a>, you can check which packages are affected by a given vulnerability for every supported Ubuntu version,
@@ -69,12 +65,17 @@
           </p>
         </div>
 
-        <h2 class="question-heading" id="security">Getting security updates</h2>
+        <h2 class="question-heading" id="security" style="scroll-margin-top: 5rem;">Getting security updates</h2>
         <div class="p-section">
           <p>
             Ubuntu Long Term Support (LTS) releases get up to 12 years of security maintenance and support. The initial <a href="/about/release-cycle">5 years</a>
             of standard security updates for packages in the <a href="https://help.ubuntu.com/community/Repositories/Ubuntu">Ubuntu Main</a> repository comes out
             of the box together with fixes for packages in the Ubuntu Universe repository coming from the Ubuntu community and Debian.
+          </p>
+          <p>
+            Additional security coverage from Canonical for all packages in Main and Universe is provided through an Ubuntu Pro subscription for 10 years. 
+            <a href="/pro">Ubuntu Pro</a> is free for personal use on up to 5 machines, or 50 machines for active Ubuntu community members. A further 2 years 
+            of security maintenance and support is provided with the paid Legacy Support add-on.
           </p>
 
           <h3>Automatic updates</h3>
@@ -116,19 +117,17 @@
           <p>
             <pre><code>sudo pro fix CVE-YYYY-XXXX</code></pre>
           </p>
-          <p>
-            We recommend not to cherry-pick updates from individual packages. If no fix is available yet for a specific CVE, you can check if there is any mitigation
-            or further information in the notes of the CVE page.
-          </p>
         </div>
 
-        <h2 class="question-heading" id="repos">Repositories</h2>
+        <h2 class="question-heading" id="repos" style="scroll-margin-top: 5rem;">Repositories</h2>
         <div class="p-section">
           <p>
             Security updates get distributed through several repositories. Some of them are
             <a href="https://help.ubuntu.com/community/Repositories/Ubuntu">public and freely available</a>, while some others require an
-            <a href="/pro">Ubuntu Pro subscription</a>.
+            <a href="/pro">Ubuntu Pro</a> subscription.
           </p>
+
+          <h3>Freely available</h3>
           <table>
             <tbody>
               <tr>
@@ -138,30 +137,35 @@
                 </td>
               </tr>
               <tr>
-                <td>esm-infra</td>
-                <td colspan="2">
-                  This repository provides ten years of security updates for packages in the main and restricted repositories. Requires <a href="/pro">Ubuntu Pro</a>.
-                </td>
-              </tr>
-              <tr>
                 <td>universe, multiverse</td>
                 <td colspan="2">
                   These public repositories provide five years of best-effort security updates for community packages. Best-effort fixes include fixes provided by the Ubuntu community and Debian.
                 </td>
               </tr>
+            </tbody>
+          </table>
+
+          <h3>Require Ubuntu Pro</h3>
+          <table>
+            <tbody>
               <tr>
-                <td>esm-apps multiverse</td>
+                <td>esm-infra</td>
+                <td colspan="2">
+                  This repository provides ten years of security updates for packages in the main and restricted repositories.
+                </td>
+              </tr>
+              <tr>
+                <td>esm-apps</td>
                 <td colspan="2">
                   This repository provides ten years of security updates by the Ubuntu Security team for packages in the universe and multiverse repositories, on top of best-effort fixes.
-                  Requires <a href="/pro">Ubuntu Pro</a>.
                 </td>
               </tr>
             </tbody>
           </table>
           <p>
             We also maintain these repositories for more specific use cases, available
-            <br />
-            with <a href="/pro">Ubuntu Pro</a>:
+            <br class="u-hide--small"/>
+            with Ubuntu Pro:
           </p>
           <table>
             <tbody>
@@ -174,7 +178,7 @@
               <tr>
                 <td>fips-updates</td>
                 <td colspan="2">
-                  This repository provides <a href="/security/fips">FIPS</a>-compliant packages, based on FIPS
+                  This repository provides FIPS-compliant packages, based on FIPS
                   certified packages but with security updates by the Ubuntu Security team. These packages may be certified in the future.
                 </td>
               </tr>
@@ -187,14 +191,14 @@
               <tr>
                 <td>ros-updates</td>
                 <td colspan="2">
-                  This <a href="/robotics/ros-esm">ROS ESM</a> repository provides ten years of non-security updates for ROS core packages.
+                  This ROS ESM repository provides ten years of non-security updates for ROS core packages.
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h2 class="question-heading" id="priority">Priority levels</h2>
+        <h2 class="question-heading" id="priority" style="scroll-margin-top: 5rem;">Priority levels</h2>
         <div class="p-section">
           <p>
             The Ubuntu Security team reviews new vulnerabilities when they are identified. If they affect packages distributed with supported Ubuntu releases, the team assesses the impact and assigns a priority level.
@@ -237,7 +241,7 @@
               </tr>
               <tr>
                 <td class="p-table__cell--icon-placeholder">
-                  <i class="p-icon--low-priority"></i>Low priority
+                  <i class="p-icon--low-priority"></i>Low
                 </td>
                 <td colspan="2">
                   A security problem, but hard to exploit due to the environment, requires a user-assisted attack, has a small install base, or does very little damage.
@@ -262,7 +266,7 @@
           </p>
         </div>
 
-        <h2 class="question-heading" id="statuses">Statuses</h2>
+        <h2 class="question-heading" id="statuses" style="scroll-margin-top: 5rem;">Statuses</h2>
         <div class="p-section">
           <p>
             When a new vulnerability is disclosed, we provide statuses for every package in every supported version. The status reflects if the vulnerability affects the package, and Ubuntu Security team’s work to address it.
@@ -334,7 +338,7 @@
           </table>
         </div>
 
-        <h2 class="question-heading" id="export-data">Exporting CVE data</h2>
+        <h2 class="question-heading" id="export-data" style="scroll-margin-top: 5rem;">Exporting CVE data</h2>
         <div class="p-section">
           <p>You can export our CVE data in two structured formats:</p>
 
