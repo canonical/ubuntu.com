@@ -1,0 +1,442 @@
+{% extends "security/cve/base_cve.html" %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1fsKWdmAEv4QEoVPsZEwff3fYG3a6RkD5-BCkk13LxPQ/edit{% endblock %}
+
+{% block title %}About CVEs{% endblock %}
+
+{% block content %}
+  <section class="p-section--hero">
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <h1>About CVEs</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row">
+      <div class="col-3">
+        <div class="p-side-navigation--raw-html is-sticky"
+             id="drawer"
+             style="top: 4rem">
+          <a href="#drawer"
+             class="p-side-navigation__toggle js-drawer-toggle"
+             aria-controls="drawer">Toggle table of contents</a>
+
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+
+          <nav class="p-side-navigation__drawer" aria-label="CVEs about nav">
+            <div class="p-side-navigation__drawer-header">
+              <a href="#"
+                 class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                 aria-controls="drawer">Toggle table of contents</a>
+            </div>
+            <ul class="p-side-navigation__list">
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link highlight-link is-active" href="#security">Getting security updates</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link highlight-link" href="#repos">Repositories</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link highlight-link" href="#priority">Priority levels</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link highlight-link" href="#statuses">Statuses</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link highlight-link" href="#export-data">Exporting CVE data</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="col-9">
+        <div class="p-section">
+          <p>
+            The Common Vulnerabilities and Exposures (CVE) system is used to identify, define, and catalogue publicly disclosed cybersecurity vulnerabilities.
+            Canonical keeps track of all CVEs affecting Ubuntu, and releases a <a href="/security/notices">security notice</a> when an issue is fixed.
+          </p>
+          <p>
+            In our <a href="/security/cves">CVE database</a>, you can check which packages are affected by a given vulnerability for every supported Ubuntu version,
+            and their statuses. We may also provide notes that can help you to better understand the impact of these vulnerabilities in an Ubuntu environment,
+            and how we have fixed the issue.
+          </p>
+        </div>
+
+        <h2 class="question-heading" id="security" style="scroll-margin-top: 5rem;">Getting security updates</h2>
+        <div class="p-section">
+          <p>
+            Ubuntu Long Term Support (LTS) releases get up to 12 years of security maintenance and support. The initial <a href="/about/release-cycle">5 years</a>
+            of standard security updates for packages in the <a href="https://help.ubuntu.com/community/Repositories/Ubuntu">Ubuntu Main</a> repository comes out
+            of the box together with fixes for packages in the Ubuntu Universe repository coming from the Ubuntu community and Debian.
+          </p>
+          <p>
+            Additional security coverage from Canonical for all packages in Main and Universe is provided through an Ubuntu Pro subscription for 10 years. 
+            <a href="/pro">Ubuntu Pro</a> is free for personal use on up to 5 machines, or 50 machines for active Ubuntu community members. A further 2 years 
+            of security maintenance and support is provided with the paid Legacy Support add-on.
+          </p>
+
+          <h3>Automatic updates</h3>
+          <p>
+            Since 16.04 LTS, Ubuntu releases automatically apply most security updates daily by default. If you are using a release older than 16.04 LTS, you can
+            <a href="https://help.ubuntu.com/community/AutomaticSecurityUpdates">enable unattended upgrades.</a>
+          </p>
+
+          <h3>Update manually</h3>
+          <p>
+            You can also get patches as soon as they become available by upgrading all your installed packages to the latest version. You can do this by running
+            the following command in your terminal:
+          </p>
+          <p>
+            <pre><code>sudo apt update && sudo apt upgrade</code></pre>
+          </p>
+          <p>
+            We recommend not to cherry-pick updates from individual packages. If no fix is available yet for a specific CVE, you can check if there is any mitigation
+            or further information in the notes of the CVE page.
+          </p>
+
+          <h3>Get advanced security coverage with Ubuntu Pro</h3>
+          <p>
+            On top of the five years of free standard support for LTS releases, you can get <a href="/security/esm">Expanded Security Maintenance (ESM)</a> with an
+            <a href="/pro">Ubuntu Pro</a> subscription. ESM provides 10 years of security updates for Ubuntu Main packages and 23,000+ Ubuntu Universe packages,
+            including additional security updates from  Canonical for critical and high priority CVEs. Ubuntu Pro is free for personal use on up to 5 machines, or 50 machines for active Ubuntu community members.
+          </p>
+          <p>
+            Ubuntu Pro also includes <a href="/security/livepatch">live kernel patching with Livepatch</a>, <a href="/security/fips">FIPS compliant security updates</a>,
+            <a href="/robotics/ros-esm">extended support for ROS</a>, and more.
+          </p>
+
+          <h3>Fix a specific CVE with the Ubuntu Pro Client</h3>
+          <p>
+            If you want to get the fixes for a specific CVE, make sure you have the
+            <a href="https://canonical-ubuntu-pro-client.readthedocs-hosted.com/en/latest/tutorials/fix_intro/">Ubuntu Pro Client installed, updated and set up</a>.
+            Then run this command on your terminal, replacing CVE-YYYY-XXXX with a valid CVE ID:
+          </p>
+          <p>
+            <pre><code>sudo pro fix CVE-YYYY-XXXX</code></pre>
+          </p>
+        </div>
+
+        <h2 class="question-heading" id="repos" style="scroll-margin-top: 5rem;">Repositories</h2>
+        <div class="p-section">
+          <p>
+            Security updates get distributed through several repositories. Some of them are
+            <a href="https://help.ubuntu.com/community/Repositories/Ubuntu">public and freely available</a>, while some others require an
+            <a href="/pro">Ubuntu Pro</a> subscription.
+          </p>
+
+          <h3>Freely available</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>main, restricted</td>
+                <td colspan="2">
+                  These public repositories provide five years of security updates for Ubuntu base packages, which form the basis of the Ubuntu distribution.
+                </td>
+              </tr>
+              <tr>
+                <td>universe, multiverse</td>
+                <td colspan="2">
+                  These public repositories provide five years of best-effort security updates for community packages. Best-effort fixes include fixes provided by the Ubuntu community and Debian.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Require Ubuntu Pro</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>esm-infra</td>
+                <td colspan="2">
+                  This repository provides ten years of security updates for packages in the main and restricted repositories.
+                </td>
+              </tr>
+              <tr>
+                <td>esm-apps</td>
+                <td colspan="2">
+                  This repository provides ten years of security updates by the Ubuntu Security team for packages in the universe and multiverse repositories, on top of best-effort fixes.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            We also maintain these repositories for more specific use cases, available
+            <br class="u-hide--small"/>
+            with Ubuntu Pro:
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>fips</td>
+                <td colspan="2">
+                  This repository provides <a href="/security/fips">FIPS</a>-certified packages.
+                </td>
+              </tr>
+              <tr>
+                <td>fips-updates</td>
+                <td colspan="2">
+                  This repository provides FIPS-compliant packages, based on FIPS
+                  certified packages but with security updates by the Ubuntu Security team. These packages may be certified in the future.
+                </td>
+              </tr>
+              <tr>
+                <td>ros</td>
+                <td colspan="2">
+                  This <a href="/robotics/ros-esm">ROS ESM</a> repository provides ten years of security updates for ROS core packages.
+                </td>
+              </tr>
+              <tr>
+                <td>ros-updates</td>
+                <td colspan="2">
+                  This ROS ESM repository provides ten years of non-security updates for ROS core packages.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="question-heading" id="priority" style="scroll-margin-top: 5rem;">Priority levels</h2>
+        <div class="p-section">
+          <p>
+            The Ubuntu Security team reviews new vulnerabilities when they are identified. If they affect packages distributed with supported Ubuntu releases, the team assesses the impact and assigns a priority level.
+            Vulnerabilities are then addressed in order of priority level.
+          </p>
+          <p>
+            The Ubuntu priority is based on many factors including severity, importance, risk, estimated number of affected users, software configuration, active exploitation, and other factors which may adjust the impact
+            of certain vulnerabilities such as Ubuntu's <a href="https://wiki.ubuntu.com/Security/Features#Matrix">proactive security features</a>.
+          </p>
+          <p>
+            Here are the guidelines that we generally use to assess the Ubuntu priority of a CVE. There may be cases in which we assign a priority level based on factors not accounted for in these guidelines.
+            These priority levels are distinct from other published severity levels such as <a href="#cvss-scores">CVSS base scores</a>, either ours or from other sources such as those used in the
+            <a href="https://nvd.nist.gov/">National Vulnerability Database</a>.
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--critical-priority"></i>Critical
+                </td>
+                <td colspan="2">
+                  A very damaging problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes remote root privilege escalations and massive data loss.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--high-priority"></i>High
+                </td>
+                <td colspan="2">
+                  A significant problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes serious remote denial of services, local root privilege escalations, or data loss.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--medium-priority"></i>Medium
+                </td>
+                <td colspan="2">
+                  A significant problem, typically exploitable for many users. Includes network daemon denial of service attacks, cross-site scripting, and gaining user privileges.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--low-priority"></i>Low
+                </td>
+                <td colspan="2">
+                  A security problem, but hard to exploit due to the environment, requires a user-assisted attack, has a small install base, or does very little damage.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--negligible-priority"></i>Negligible
+                </td>
+                <td colspan="2">
+                  Technically a security problem, but only theoretical in nature, requires a very special situation, has almost no install base, or does no real damage.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="cvss-scores">CVSS security scores</h3>
+          <p>
+            Besides assigning a priority level to each CVE, we may provide a <a href="https://nvd.nist.gov/vuln-metrics/cvss">CVSS security score</a>.
+            The Common Vulnerability Scoring System (CVSS) is an <a href="https://www.first.org/cvss/specification-document">open framework</a>
+            for communicating the characteristics and severity of software vulnerabilities. CVSS is not a measure of risk.
+          </p>
+        </div>
+
+        <h2 class="question-heading" id="statuses" style="scroll-margin-top: 5rem;">Statuses</h2>
+        <div class="p-section">
+          <p>
+            When a new vulnerability is disclosed, we provide statuses for every package in every supported version. The status reflects if the vulnerability affects the package, and Ubuntu Security team’s work to address it.
+          </p>
+          <p>
+            In the CVE search, you will see a summarised status that aggregates the information for every package and Ubuntu release. We do our best to make this summary representative of the status of the whole CVE. However,
+            we recommend that you double check the status in the individual CVE page for the specific packages and Ubuntu releases you are interested in.
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--help"></i>Needs evaluation
+                </td>
+                <td colspan="2">The vulnerability of this package is not known for the given release. It needs to be evaluated.</td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--success"></i>Not affected
+                </td>
+                <td colspan="2">
+                  The package, while related to the CVE in some way, is not affected by the issue for the given release. We usually provide an explanation, either next to the status or in the notes.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--warning"></i>Vulnera&shy;ble
+                </td>
+                <td colspan="2">The package is affected by the issue for the given release.</td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--warning"></i>Vulnera&shy;ble, work in progress
+                </td>
+                <td colspan="2">
+                  The package is affected by the issue for the given release, and the Ubuntu security team is currently working on a fix.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--warning"></i>Vulnera&shy;ble, fix deferred
+                </td>
+                <td colspan="2">
+                  The package is affected by the issue for the given release, but fixing has been deferred. We usually provide an explanation, either next to the status or in the notes.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--success"></i>Fixed
+                </td>
+                <td colspan="2">
+                  The package was affected by the issue for the given release, but a version fixed by the Ubuntu Security team is now available. We usually indicate the package version that contains the patch.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">
+                  <i class="p-icon--error-grey"></i>Ignored
+                </td>
+                <td colspan="2">
+                  The package, while related to the CVE in some way for the given release, won’t be fixed. This could be because the package is no longer supported, the CVE has been withdrawn,
+                  or fixing the issue would break other functionality. We usually provide an explanation, either next to the status or in the notes.
+                </td>
+              </tr>
+              <tr>
+                <td class="p-table__cell--icon-placeholder">Not in release</td>
+                <td colspan="2">The package is not part of the given release.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="question-heading" id="export-data" style="scroll-margin-top: 5rem;">Exporting CVE data</h2>
+        <div class="p-section">
+          <p>You can export our CVE data in two structured formats:</p>
+
+          <h3>Ubuntu OVAL (recommended)</h3>
+          <div>
+            <p>
+              Structured, machine-readable XML dataset for all supported Ubuntu releases, based on the Open Vulnerability and Assessment Language (OVAL).
+              It can be used to evaluate and manage security risks related to any existing Ubuntu components.
+            </p>
+          </div>
+          <p>
+            <a href="/security/oval">Documentation for Ubuntu OVAL&nbsp;&rsaquo;</a>
+          </p>
+
+          <h3>Ubuntu Security API</h3>
+          <div class="p-notification--caution is-inline">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                The Ubuntu Security API is still a work in progress and subject to change. Please don’t use it in production environments or automations.
+              </p>
+            </div>
+          </div>
+          <div>
+            <p>
+              Open JSON API that provides endpoints for our CVE database and the <a href="/security/notices">Ubuntu Security Notices (USN)</a>.
+              You can find links to the JSON endpoints in the search pages and the individual CVE pages.
+            </p>
+          </div>
+          <p>
+            <a href="/security/api/docs">Documentation for the Ubuntu Security API&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript">
+    function setUpTogglableSideNav() {
+      var navigationDrawer = document.querySelector("#drawer");
+      var navigationDrawerToggles = Array.prototype.slice.call(
+        document.querySelectorAll(".js-drawer-toggle")
+      );
+
+      if (navigationDrawer) {
+        var navigationLinks = Array.prototype.slice.call(
+          navigationDrawer.querySelectorAll("a")
+        );
+
+        navToggle = navigationDrawerToggles[0];
+        navToggle.addEventListener("click", function() {
+          navigationDrawer.classList.add("is-expanded");
+        });
+
+        navigationInDrawer = document.querySelector(".p-side-navigation__drawer");
+        navigationInDrawerLinks = Array.prototype.slice.call(
+          navigationInDrawer.querySelectorAll("a")
+        );
+        navigationInDrawerLinks.forEach(function(link) {
+          link.addEventListener("click", function() {
+            navigationDrawer.classList.remove("is-expanded");
+          });
+        });
+      }
+    };
+
+    function setUpDynamicSideNav(viewPortHeight) {
+      const questions = Array.prototype.slice.call(
+        document.querySelectorAll(".question-heading")
+      );
+
+      const navigationLinks = Array.prototype.slice.call(
+        document.querySelectorAll(".highlight-link")
+      );
+
+      questions.forEach(function(question) {
+        const observer = new IntersectionObserver(function(entry) {
+          if (entry[0].isIntersecting) {
+            const questionId = entry[0].target.id;
+            navigationLinks.forEach(function(link) {
+              if (link.getAttribute("href") === `#${questionId}`) {
+                link.classList.add("is-active");
+              } else {
+                link.classList.remove("is-active");
+              }
+            });
+          }
+        }, {
+          rootMargin: `0px 0px -80%`,
+          threshold: 0.5,
+        });
+
+        observer.observe(question);
+      });
+    };
+
+    (function() {
+      setUpTogglableSideNav();
+      setUpDynamicSideNav();
+    })();
+    // start observing a DOM node
+  </script>
+{% endblock %}
