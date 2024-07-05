@@ -1,6 +1,8 @@
-<option value="current" {% if versions[index] == "current" %}selected{% endif %}>Any current release</option>
+<option value="current"
+        {% if versions[index] == "current" %}selected{% endif %}>Any current release</option>
 {% for release in all_releases %}
-  <option value="{{ release.codename }}" {% if versions[index] == release.codename %}selected{% endif %}>
+  <option value="{{ release.codename }}"
+          {% if versions[index] == release.codename %}selected{% endif %}>
     {{ release.name }} {{ release.version }} {{ release.support_tag }}
   </option>
 {% endfor %}
