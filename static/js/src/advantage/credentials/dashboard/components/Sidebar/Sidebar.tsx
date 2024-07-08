@@ -97,7 +97,7 @@ const Sidebar = () => {
                 <nav aria-label="Main">
                   <ul className="p-side-navigation__list">
                     {links.map((link) => (
-                      <li className="p-side-navigation__item">
+                      <li key={link.to} className="p-side-navigation__item">
                         <Link
                           aria-current={link.isActive ? "page" : undefined}
                           to={link.to}
