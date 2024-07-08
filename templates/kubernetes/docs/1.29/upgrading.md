@@ -106,8 +106,6 @@ This includes:
 Note that this may include other applications which you may have installed, such as
 Ceph, Docker Registry, MetalLB, Volcano, etc.
 
-<a id='upgrading-containerd'> </a>
-
 ### Upgrading Containerd
 
 Containerd is the default container runtime. This subordinate charm can be upgraded with:
@@ -360,8 +358,6 @@ juju run kubernetes-worker/0 upgrade
 juju run kubernetes-worker/1 upgrade
 ...
 ```
-
-<a id='verify-upgrade'> </a>
 
 ## Verify an Upgrade
 
