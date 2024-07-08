@@ -955,7 +955,10 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
 )
 app.add_url_rule(
     "/credentials/dashboard/upcoming-exams",

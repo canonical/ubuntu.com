@@ -10,12 +10,7 @@ import { useQuery } from "react-query";
 import { listAllKeys } from "advantage/credentials/api/keys";
 import { sortFunction } from "../../utils";
 
-interface IProps {
-  hidden: boolean;
-}
-
-const Keys = (props: IProps) => {
-  const { hidden } = props;
+const Keys = () => {
   // const [page, setPage] = useState(1);
   const { isLoading, isError, data } = useQuery(
     ["listAllKeys"],
@@ -60,10 +55,6 @@ const Keys = (props: IProps) => {
   //   }
   //   setPage(pageNumber);
   // };
-
-  if (hidden) {
-    return null;
-  }
 
   if (isLoading) {
     return <Spinner text="Loading..." />;
