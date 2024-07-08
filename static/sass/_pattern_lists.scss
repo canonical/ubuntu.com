@@ -312,7 +312,8 @@
 }
 
 @mixin ubuntu-p-list-ticked {
-  .p-list--ticked {
+  .p-list--ticked,
+  .p-list--ticked--small {
     @extend %vf-clearfix;
     @extend %vf-list;
 
@@ -330,13 +331,20 @@
         content: "";
         left: 0;
         position: absolute;
-        top: 0.9rem;
       }
 
       &:last-child {
         border-bottom: 0;
       }
     }
+  }
+
+  .p-list--ticked .p-list__item::before {
+    top: 0.9rem;
+  }
+
+  .p-list--ticked--small .p-list__item::before {
+    top: 0.5rem;
   }
 }
 
