@@ -17,11 +17,6 @@ const Exams = () => {
         label: "Exam Results",
         onClick: () => setActiveTab(1),
       },
-      {
-        active: activeTab === 2,
-        label: "Keys",
-        onClick: () => setActiveTab(2),
-      },
     ];
   }, [activeTab]);
   return (
