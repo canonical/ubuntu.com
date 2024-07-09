@@ -20,26 +20,54 @@
             type="module"
             defer></script>
     <script>
-      // Remove commented out code when product_listings is available.
-      // var channelProductList = {
-      //   {% for listing_id, listing in product_listings.items() %}
-      //     "{{ listing.name }}": {
-      //       id: "{{ listing.name }}",
-      //       longId: "{{ listing.id }}",
-      //       name: "{{ listing.product.name }}",
-      //       price: {
-      //         value: {{ listing.price }},
-      //         currency: "{{ listing.currency }}"
-      //       },
-      //       productID: "{{ listing.product.id }}",
-      //       marketplace: "canonical-pro-channel",
-      //     },
-      //   {% endfor %}
-      // };
+      let updatedChannelProductList = {};
+      const rawChannelProductListings = {{ product_listings | tojson }};
+      if (rawChannelProductListings) {
+        Object.keys(rawChannelProductListings).forEach(key => {
+          const listing = rawChannelProductListings[key];
+          const listing_name_with_version = listing.name;
+          const listing_name_without_version = listing_name_with_version.split('-v')[0];
+          const version = listing.metadata.find((data) => data.key === 'version')?.value || 1;
 
-      // var accountId = "{% if account %}{{ account.id }}{% endif %}";
-      // var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
-      // var accountName = "{% if account %}{{ account.name }}{% endif %}";
+          if (listing_name_without_version in updatedChannelProductList) {
+            if (version > updatedChannelProductList[listing_name_without_version].version) {
+              updatedChannelProductList[listing_name_without_version] = {
+                id: listing_name_with_version,
+                longId: listing.id,
+                name: listing.name,
+                price: {
+                  value: listing.price,
+                  currency: listing.currency
+                },
+                productID: listing.product.id,
+                productName: listing.product.name,
+                marketplace: listing.marketplace,
+                version: version
+              };
+            }
+          } else {
+            updatedChannelProductList[listing_name_without_version] = {
+              id: listing_name_with_version,
+              longId: listing.id,
+              name: listing.name,
+              price: {
+                value: listing.price,
+                currency: listing.currency
+              },
+              productID: listing.product.id,
+              productName: listing.product.name,
+              marketplace: listing.marketplace,
+              version: version
+            };
+          }
+        });
+      };
+
+      window.channelProductList = updatedChannelProductList;
+
+      var accountId = "{% if account %}{{ account.id }}{% endif %}";
+      var isLoggedIn = {% if user_info %} true {% else %} false {% endif %};
+      var accountName = "{% if account %}{{ account.name }}{% endif %}";
 
       window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
     </script>

@@ -81,6 +81,7 @@ class ChannelListing:
         currency: str,
         status: str,
         product: Product = None,
+        metadata: List[Metadata] = None,
     ):
         self.id = id
         self.name = name
@@ -89,6 +90,7 @@ class ChannelListing:
         self.price = price
         self.currency = currency
         self.status = status
+        self.metadata = metadata
 
 
 class UserSubscription:

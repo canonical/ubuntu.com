@@ -10,10 +10,10 @@ const Duration = () => {
   const handleDurationChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setDuration(event.target.value as Durations);
+    setDuration(Number(event.target.value) as Durations);
     localStorage.setItem(
       "distributor-selector-duration",
-      JSON.stringify(event.target.value as Durations)
+      JSON.stringify(Number(event.target.value) as Durations)
     );
   };
 

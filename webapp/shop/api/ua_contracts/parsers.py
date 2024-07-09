@@ -68,6 +68,7 @@ def parse_channel_product_listing(
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
+        metadata=raw_product_listing.get("metadata"),
     )
 
 
@@ -328,7 +329,9 @@ def parse_offer_items(
 
 
 def parse_offer(raw_offer: Dict) -> Offer:
-    items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
+    items = parse_offer_items(
+        raw_offer.get("items", []), raw_offer.get("productListings", [])
+    )
     external_ids = (
         parse_external_ids(raw_offer["externalIDs"])
         if raw_offer.get("activationAccountID") is not None
