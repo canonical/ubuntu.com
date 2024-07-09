@@ -6,8 +6,8 @@ function validateCheckbox(event, fieldsetId) {
 }
 
 function getRadioItemValue(fieldset) {
-    const selectedRadio = fieldset.querySelector("input[name='how-many-machines-do-you-have']:checked")
-    return selectedRadio ? selectedRadio.value : ''
+    const selectedRadio = fieldset.querySelector("input[name='how-many-machines-do-you-have']:checked");
+    return selectedRadio ? selectedRadio.value : '';
 }
 
 function getCheckboxItemsAsCSV(fieldset) {
@@ -37,12 +37,12 @@ function getCustomFields(event) {
       Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
       Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
       What advice are you looking for: ${document.getElementById("advice")?.value}.\n
-    `
+    `;
 
-    const inputs = howManyMachinesFieldset?.querySelectorAll("input[name='how-many-machines-do-you-have']")
+    const inputs = howManyMachinesFieldset?.querySelectorAll("input[name='how-many-machines-do-you-have']");
     inputs.forEach(function (input) {
         input.removeAttribute("name");
-    })
+    });
 
     const textarea = document.getElementById("Comments_from_lead__c");
     textarea.value = data;
