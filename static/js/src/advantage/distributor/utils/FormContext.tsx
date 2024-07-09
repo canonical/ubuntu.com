@@ -123,7 +123,7 @@ export const FormProvider = ({
     );
     const validproducts: string[] = productIds.map(
       (productId: ValidProductID) => {
-        return `${productId}-channel-${duration}-${currency}`;
+        return `${productId}-${duration}y-channel-${currency}`;
       }
     );
     setProducts(
@@ -152,7 +152,7 @@ export const FormProvider = ({
       );
 
       const preSetDration = getPreDuration(items);
-      preSetDration?.length > 0 && setDuration(preSetDration as Durations);
+      preSetDration && setDuration(preSetDration as Durations);
       localStorage.setItem(
         "distributor-selector-duration",
         JSON.stringify(preSetDration as Durations)

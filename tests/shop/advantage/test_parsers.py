@@ -688,7 +688,7 @@ class TestParsers(unittest.TestCase):
             items=[
                 OfferItem(
                     id="product-id-AaBbCcDdEeFfGg",
-                    name="uai-advanced-desktop-channel-two-year-usd",
+                    name="uai-advanced-desktop-1y-channel-eur-v1",
                     price=60000,
                     allowance=2,
                 ),
@@ -729,7 +729,7 @@ class TestParsers(unittest.TestCase):
                 items=[
                     OfferItem(
                         id="product-id-AaBbCcDdEeFfGg",
-                        name="uai-advanced-desktop-channel-two-year-usd",
+                        name="uai-advanced-desktop-1y-channel-eur-v1",
                         price=60000,
                         allowance=2,
                     ),

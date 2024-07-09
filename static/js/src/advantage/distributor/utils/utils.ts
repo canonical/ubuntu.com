@@ -14,123 +14,7 @@ export type SubscriptionItem = {
 };
 
 export type ValidProducts =
-  | "uaia-essential-physical-channel-one-year-usd"
-  | "uaia-essential-physical-channel-one-year-gbp"
-  | "uaia-essential-physical-channel-one-year-eur"
-  | "uaia-essential-physical-channel-two-year-usd"
-  | "uaia-essential-physical-channel-two-year-gbp"
-  | "uaia-essential-physical-channel-two-year-eur"
-  | "uaia-essential-physical-channel-three-year-usd"
-  | "uaia-essential-physical-channel-three-year-gbp"
-  | "uaia-essential-physical-channel-three-year-eur"
-  | "uaia-standard-physical-channel-one-year-usd"
-  | "uaia-standard-physical-channel-one-year-gbp"
-  | "uaia-standard-physical-channel-one-year-eur"
-  | "uaia-standard-physical-channel-two-year-usd"
-  | "uaia-standard-physical-channel-two-year-gbp"
-  | "uaia-standard-physical-channel-two-year-eur"
-  | "uaia-standard-physical-channel-three-year-usd"
-  | "uaia-standard-physical-channel-three-year-gbp"
-  | "uaia-standard-physical-channel-three-year-eur"
-  | "uaia-advanced-physical-channel-one-year-usd"
-  | "uaia-advanced-physical-channel-one-year-gbp"
-  | "uaia-advanced-physical-channel-one-year-eur"
-  | "uaia-advanced-physical-channel-two-year-usd"
-  | "uaia-advanced-physical-channel-two-year-gbp"
-  | "uaia-advanced-physical-channel-two-year-eur"
-  | "uaia-advanced-physical-channel-three-year-usd"
-  | "uaia-advanced-physical-channel-three-year-gbp"
-  | "uaia-advanced-physical-channel-three-year-eur"
-  | "uio-standard-physical-channel-one-year-usd"
-  | "uio-standard-physical-channel-one-year-gbp"
-  | "uio-standard-physical-channel-one-year-eur"
-  | "uio-standard-physical-channel-two-year-usd"
-  | "uio-standard-physical-channel-two-year-gbp"
-  | "uio-standard-physical-channel-two-year-eur"
-  | "uio-standard-physical-channel-three-year-usd"
-  | "uio-standard-physical-channel-three-year-gbp"
-  | "uio-standard-physical-channel-three-year-eur"
-  | "uio-advanced-physical-channel-one-year-usd"
-  | "uio-advanced-physical-channel-one-year-gbp"
-  | "uio-advanced-physical-channel-one-year-eur"
-  | "uio-advanced-physical-channel-two-year-usd"
-  | "uio-advanced-physical-channel-two-year-gbp"
-  | "uio-advanced-physical-channel-two-year-eur"
-  | "uio-advanced-physical-channel-three-year-usd"
-  | "uio-advanced-physical-channel-three-year-gbp"
-  | "uio-advanced-physical-channel-three-year-eur"
-  | "uaia-essential-virtual-channel-one-year-usd"
-  | "uaia-essential-virtual-channel-one-year-gbp"
-  | "uaia-essential-virtual-channel-one-year-eur"
-  | "uaia-essential-virtual-channel-two-year-usd"
-  | "uaia-essential-virtual-channel-two-year-gbp"
-  | "uaia-essential-virtual-channel-two-year-eur"
-  | "uaia-essential-virtual-channel-three-year-usd"
-  | "uaia-essential-virtual-channel-three-year-gbp"
-  | "uaia-essential-virtual-channel-three-year-eur"
-  | "uaia-standard-virtual-channel-one-year-usd"
-  | "uaia-standard-virtual-channel-one-year-gbp"
-  | "uaia-standard-virtual-channel-one-year-eur"
-  | "uaia-standard-virtual-channel-two-year-usd"
-  | "uaia-standard-virtual-channel-two-year-eur"
-  | "uaia-standard-virtual-channel-two-year-gbp"
-  | "uaia-standard-virtual-channel-three-year-usd"
-  | "uaia-standard-virtual-channel-three-year-gbp"
-  | "uaia-standard-virtual-channel-three-year-eur"
-  | "uaia-advanced-virtual-channel-one-year-usd"
-  | "uaia-advanced-virtual-channel-one-year-gbp"
-  | "uaia-advanced-virtual-channel-one-year-eur"
-  | "uaia-advanced-virtual-channel-two-year-usd"
-  | "uaia-advanced-virtual-channel-two-year-gbp"
-  | "uaia-advanced-virtual-channel-two-year-eur"
-  | "uaia-advanced-virtual-channel-three-year-usd"
-  | "uaia-advanced-virtual-channel-three-year-gbp"
-  | "uaia-advanced-virtual-channel-three-year-eur"
-  | "uio-standard-virtual-channel-one-year-usd"
-  | "uio-standard-virtual-channel-one-year-gbp"
-  | "uio-standard-virtual-channel-one-year-eur"
-  | "uio-standard-virtual-channel-two-year-usd"
-  | "uio-standard-virtual-channel-two-year-gbp"
-  | "uio-standard-virtual-channel-two-year-eur"
-  | "uio-standard-virtual-channel-three-year-usd"
-  | "uio-standard-virtual-channel-three-year-gbp"
-  | "uio-standard-virtual-channel-three-year-eur"
-  | "uio-advanced-virtual-channel-one-year-usd"
-  | "uio-advanced-virtual-channel-one-year-gbp"
-  | "uio-advanced-virtual-channel-one-year-eur"
-  | "uio-advanced-virtual-channel-two-year-usd"
-  | "uio-advanced-virtual-channel-two-year-gbp"
-  | "uio-advanced-virtual-channel-two-year-eur"
-  | "uio-advanced-virtual-channel-three-year-usd"
-  | "uio-advanced-virtual-channel-three-year-gbp"
-  | "uio-advanced-virtual-channel-three-year-eur"
-  | "uai-essential-desktop-channel-one-year-usd"
-  | "uai-essential-desktop-channel-one-year-gbp"
-  | "uai-essential-desktop-channel-one-year-eur"
-  | "uai-essential-desktop-channel-two-year-usd"
-  | "uai-essential-desktop-channel-two-year-gbp"
-  | "uai-essential-desktop-channel-two-year-eur"
-  | "uai-essential-desktop-channel-three-year-usd"
-  | "uai-essential-desktop-channel-three-year-gbp"
-  | "uai-essential-desktop-channel-three-year-eur"
-  | "uai-standard-desktop-channel-one-year-usd"
-  | "uai-standard-desktop-channel-one-year-gbp"
-  | "uai-standard-desktop-channel-one-year-eur"
-  | "uai-standard-desktop-channel-two-year-usd"
-  | "uai-standard-desktop-channel-two-year-gbp"
-  | "uai-standard-desktop-channel-two-year-eur"
-  | "uai-standard-desktop-channel-three-year-usd"
-  | "uai-standard-desktop-channel-three-year-gbp"
-  | "uai-standard-desktop-channel-three-year-eur"
-  | "uai-advanced-desktop-channel-one-year-usd"
-  | "uai-advanced-desktop-channel-one-year-gbp"
-  | "uai-advanced-desktop-channel-one-year-eur"
-  | "uai-advanced-desktop-channel-two-year-usd"
-  | "uai-advanced-desktop-channel-two-year-gbp"
-  | "uai-advanced-desktop-channel-two-year-eur"
-  | "uai-advanced-desktop-channel-three-year-usd"
-  | "uai-advanced-desktop-channel-three-year-gbp"
-  | "uai-advanced-desktop-channel-three-year-eur"
+  | `${ValidProductID}-${Durations}y-channel-${Currencies}`
   | "no-product";
 
 export enum DistributorProductTypes {
@@ -152,9 +36,9 @@ export enum Support {
 }
 
 export enum Durations {
-  one = "one-year",
-  two = "two-year",
-  three = "three-year",
+  one = 1 as number,
+  two = 2 as number,
+  three = 3 as number,
 }
 
 export enum Currencies {
@@ -168,19 +52,20 @@ export type TechincalUserContact = {
   email: string;
 };
 
-export type ProductListings = Record<string, ChannelProduct>;
+export type ProductListings = { [key: string]: ChannelProduct };
 
 export type ChannelProduct = {
+  id: string;
   longId: string;
   name: string;
   price: {
     value: number;
     currency: string;
   };
-  private: boolean;
-  id: string;
   productID: ValidProductID;
+  productName: string;
   marketplace: UserSubscriptionMarketplace;
+  version: number;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
@@ -330,42 +215,41 @@ const mockDurations: Durations[] = [
   Durations.three,
 ];
 
+const mockVersions = [1];
+
 const generateMockProductList = (
   productNames: ValidProductName[],
   currencies: Currencies[],
-  durations: Durations[]
+  durations: Durations[],
+  versions: number[]
 ) => {
-  const allList: ProductListings = {};
-
+  const allList: { [key: string]: ChannelProduct } = {};
   for (const productName of productNames) {
     if (productName !== "no-product") {
       for (const currency of currencies) {
         for (const duration of durations) {
-          const durationsNumber =
-            duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
-          const productID = getMockProductId(productName);
-          const name = `${getMockProductId(
-            productName
-          )}-channel-${duration}-${currency}` as ValidProducts;
-          const value = Number(
-            converMockCurrency(
-              currency,
-              getMockPrice(getMockProductId(productName))
-            ) * durationsNumber
-          );
+          for (const version of versions) {
+            const productID = getMockProductId(productName);
+            const name = `${productID}-${duration}y-channel-${currency}`;
+            const value = Number(
+              converMockCurrency(currency, getMockPrice(productID)) * duration
+            );
 
-          allList[name] = {
-            id: name, // valid product e.g. uai-standard-desktop-channel-one-year-usd
-            longId: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE", // listing.id
-            name: productName, // listing.product.name e.g. Ubuntu Pro + Infra Support (weekday)
-            price: {
-              value: value, // listing.price
-              currency: currency.toUpperCase(), // listing.currency
-            },
-            productID: productID, // listing.product.id e.g. uai-standard-desktop
-            private: false,
-            marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
-          };
+            const channelProduct: ChannelProduct = {
+              id: `${name}-v${version}`, // valid product e.g. uai-essential-desktop-1y-channel-gbp-v1
+              longId: "lACpi3WWwkw6XP09Zh5MciTF9_aRgK9cPF1RYERLaVlM", // listing.id
+              name: `${name}-v${version}`, // e.g. uai-essential-desktop-1y-channel-gbp-v1
+              price: {
+                value: value, // listing.price
+                currency: currency.toUpperCase(), // listing.currency
+              },
+              productID: productID, // listing.product.id e.g. uai-standard-desktop
+              productName: productName, // listing.product.name e.g. Ubuntu Pro + Support (weekday)
+              marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
+              version: version,
+            };
+            allList[name] = channelProduct as ChannelProduct;
+          }
         }
       }
     }
@@ -388,16 +272,17 @@ function converMockCurrency(currency: Currencies, price: number): number {
 export const mockProducList = generateMockProductList(
   mockProductNames,
   mockCurrencies,
-  mockDurations
+  mockDurations,
+  mockVersions
 );
 
 export const getPreSelectedItem = (items: Item[]) => {
   const preSelectedItem = items.map((item: Item) => {
-    const { id } = item;
-    const names = item?.name.split("-channel-");
-    const name = names[0];
-    const quantity = item?.allowance;
-    switch (name) {
+    const { id, name, allowance } = item;
+    const quantity = allowance;
+    const match = name.match(/(.*)-[123]y/);
+    const baseName = match ? match[1] : null;
+    switch (baseName) {
       case "uio-standard-physical":
         return {
           id,
@@ -509,23 +394,29 @@ export const getPreSelectedItem = (items: Item[]) => {
   return preSelectedItem;
 };
 
-export const getPreCurrency = (items: Item[]) => {
-  const preSelectedCurrency = items.map((item: Item) => {
-    const names = item?.name.split("-channel-");
-    const name = names[1];
-    const year = name.split("-year-");
-    const currency = year[1];
-    return currency as keyof typeof Currencies;
-  });
-  return preSelectedCurrency[0];
+export const getPreCurrency = (items: Item[]): keyof typeof Currencies => {
+  for (const item of items) {
+    const name = item?.name;
+    const pattern = /\b(eur|gbp|usd)\b/i;
+    const match = name.match(pattern);
+
+    if (match) {
+      const currency = match[0].toLowerCase() as keyof typeof Currencies;
+      return currency;
+    }
+  }
+  return Currencies.usd;
 };
 
-export const getPreDuration = (items: Item[]) => {
-  const preSelectedDuration = items.map((item: Item) => {
-    const names = item?.name.split("-channel-");
-    const name = names[1];
-    const year = name.split("-year-")[0] as keyof typeof Durations;
-    return Durations[year];
-  });
-  return preSelectedDuration[0];
+export const getPreDuration = (items: Item[]): Durations => {
+  for (const item of items) {
+    const names = item?.name;
+    const regex = /(\d)y/;
+    const match = names.match(regex);
+    if (match) {
+      const duration = parseInt(match[1]);
+      return duration;
+    }
+  }
+  return Durations.one;
 };

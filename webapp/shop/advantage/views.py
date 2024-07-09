@@ -70,7 +70,7 @@ def pro_page_view(advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
-    is_technical = True
+    is_technical = False
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
         if (account.hasChannelStoreAccess) is True:

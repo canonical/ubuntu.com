@@ -55,7 +55,7 @@ const DistributorShopSummary = () => {
             <h5>Discounts</h5>
           </Col>
           <Col size={2} className="u-align--right">
-            <h5>Total per year</h5>
+            <h5>Total</h5>
           </Col>
           <hr />
           <Col size={4}>

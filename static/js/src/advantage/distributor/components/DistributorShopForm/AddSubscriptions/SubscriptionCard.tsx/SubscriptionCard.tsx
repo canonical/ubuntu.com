@@ -17,7 +17,6 @@ import {
   currencyFormatter,
   Currencies,
   getProductId,
-  Durations,
 } from "../../../../utils/utils";
 
 type Prop = {
@@ -59,10 +58,8 @@ const SubscriptionCard = ({ subscription }: Prop) => {
       getProductId(subscription.type, subscription.support, subscription.sla)
   )[0];
 
-  const durationsNumber: number =
-    duration === Durations.one ? 1 : duration === Durations.two ? 2 : 3;
   const priceCurrency = product?.price?.currency as Currencies;
-  const priceValue = (product?.price?.value as number) / durationsNumber;
+  const priceValue = (product?.price?.value as number) / duration;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     const { name, value } = e.target;

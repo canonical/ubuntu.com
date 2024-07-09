@@ -8,15 +8,26 @@ const TechnicalUserContact = () => {
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    const captializeNameValue =
+      name === "name"
+        ? value
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")
+        : value;
+
     setTechnicalUserContact({
       ...techincalUserContact,
-      [event.target.name]: event.target.value,
+      [name]: captializeNameValue,
     });
+
     localStorage.setItem(
       `distributor-selector-techincalUserContact`,
       JSON.stringify({
         ...techincalUserContact,
-        [event.target.name]: event.target.value,
+        [name]: captializeNameValue,
       })
     );
   };
