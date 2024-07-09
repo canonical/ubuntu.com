@@ -16,9 +16,14 @@ toc: False
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Caution:</span>
-    <p class="p-notification__message">This release includes topology changes and new best practices for integrating <strong>Charmed Kubernetes</strong> with other Juju ecosystem solutions. Be sure to read and understand the *What's new* section of the <a href="/kubernetes/docs/1.29/release-notes">1.29 release notes</a> prior to upgrading your cluster.<br/>
+    <p class="p-notification__message">This release includes topology changes and new best practices for integrating <strong>Charmed Kubernetes</strong> with other Juju ecosystem solutions. Be sure to read and understand the <strong>What's new</strong> section of the <a href="/kubernetes/docs/1.29/release-notes">1.29 release notes</a> prior to upgrading your cluster.<br/>
     <br/>
-    Additionally, some features from previous <strong>Charmed Kubernetes</strong> releases are not yet available in this release. If you rely on a component identified as an *Integration gap* in the <a href="/kubernetes/docs/1.29/release-notes#notes-issues">Notes and Known Issues</a> section of the release notes, remain on release 1.28 (or earlier) and do not upgrade to 1.29 at this time.</p>
+    Additionally, some features from previous <strong>Charmed Kubernetes</strong> releases are not yet available in this release. If you rely on a component identified as an <strong>Integration gap</strong> in the <a href="/kubernetes/docs/1.29/release-notes#notes-issues">Notes and Known Issues</a> section of the release notes, remain on release 1.28 (or earlier) and do not upgrade to 1.29 at this time.<br/>
+    <br/>
+    Some specific scenarios for those using particular configurations are also covered in the 
+    <a href="/kubernetes/docs/upgrade-notes"> Upgrade notes document</a>, particularly concerning those using 
+    observability, LDAP/Keystone integration and Ceph.<br/>
+    </p>
   </div>
 </div>
 
@@ -45,7 +50,7 @@ The 'App' section of the output lists each application and its version number. N
 
 ## Before you begin
 
-<div class="p-notification--warning is-inline">
+<div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning!:</span>
     <p class="p-notification__message"><strong>Juju compatibility</strong>: Juju version 3.1 or better is required to deploy Charmed Kubernetes 1.29. See the <a href="https://juju.is/docs/juju/upgrade-your-juju-deployment-from-2-9-to-3-x">Juju documentation</a> for information on upgrading controllers and models to Juju 3.x.</p>
@@ -100,8 +105,6 @@ This includes:
 
 Note that this may include other applications which you may have installed, such as
 Ceph, Docker Registry, MetalLB, Volcano, etc.
-
-<a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
@@ -355,8 +358,6 @@ juju run kubernetes-worker/0 upgrade
 juju run kubernetes-worker/1 upgrade
 ...
 ```
-
-<a id='verify-upgrade'> </a>
 
 ## Verify an Upgrade
 
