@@ -29,7 +29,7 @@
         <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
-            <label class="p-heading--2">Tell us about your project</label>
+            <label for="about-your-project" class="p-heading--2">Tell us about your project</label>
           </div>
           <div class="col">
             <textarea id="about-your-project" rows="5"></textarea>
@@ -103,7 +103,6 @@
             <h2>Which architecture are you using?</h2>
           </div>
           <div class="col">
-
             <label class="p-radio">
               <input class="p-radio__input"
                       type="radio"
@@ -201,7 +200,6 @@
           </div>
         </div>
       </div>
-
       <div class="p-section" id="ubuntu-versions">
         <hr class="is-fixed-width" />
         <div class="row--50-50">
@@ -313,7 +311,8 @@
               <span class="p-checkbox__label" id="desktop-workstation">Desktop/workstation</span>
             </label>
             <label class="p-checkbox">
-              <input type="checkbox"
+              <input required
+                      type="checkbox"
                       aria-labelledby="physical server"
                       class="p-checkbox__input"
                       value="physical server"
@@ -321,7 +320,8 @@
               <span class="p-checkbox__label" id="physical-server">Physical server</span>
             </label>
             <label class="p-checkbox">
-              <input type="checkbox"
+              <input required
+                      type="checkbox"
                       aria-labelledby="public-cloud"
                       class="p-checkbox__input"
                       value="public cloud"
@@ -329,7 +329,8 @@
               <span class="p-checkbox__label" id="public-cloud">Public cloud</span>
             </label>
             <label class="p-checkbox">
-              <input type="checkbox"
+              <input required
+                      type="checkbox"
                       aria-labelledby="virtual-machine"
                       class="p-checkbox__input"
                       value="virtual machine"
@@ -337,7 +338,8 @@
               <span class="p-checkbox__label" id="virtual-machine">Virtual machine</span>
             </label>
             <label class="p-checkbox">
-              <input type="checkbox"
+              <input required
+                      type="checkbox"
                       aria-labelledby="iot-edge-device"
                       class="p-checkbox__input"
                       value="iot/edge device"
@@ -348,7 +350,7 @@
         </div>
       </div>
 
-      <div class="p-section" id="how-many-machines">
+      <div class="p-section" id="how-many-machines" aria-required="true">
         <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
@@ -366,7 +368,8 @@
             
             </label>
             <label class="p-radio">
-              <input type="radio"
+              <input required
+                      type="radio"
                       aria-labelledby="15-to-15-machines"
                       class="p-radio__input"
                       name="how-many-machines-do-you-have"
@@ -374,7 +377,8 @@
               <span class="p-radio__label" id="15-to-15-machines">5&nbsp;&ndash;&nbsp;15 machines</span>
             </label>
             <label class="p-radio">
-              <input type="radio"
+              <input required
+                      type="radio"
                       aria-labelledby="15-to-50-machines"
                       class="p-radio__input"
                       name="how-many-machines-do-you-have"
@@ -382,7 +386,8 @@
               <span class="p-radio__label" id="15-to-50-machines">15&nbsp;&ndash;&nbsp;50 machines</span>
             </label>
             <label class="p-radio">
-              <input type="radio"
+              <input required
+                      type="radio"
                       aria-labelledby="50-to-100-machines"
                       class="p-radio__input"
                       name="how-many-machines-do-you-have"
@@ -390,7 +395,8 @@
               <span class="p-radio__label" id="50-to-100-machines">50&nbsp;&ndash;&nbsp;100 machines</span>
             </label>
             <label class="p-radio">
-              <input type="radio"
+              <input required
+                      type="radio"
                       aria-labelledby="greater-than-100"
                       class="p-radio__input"
                       name="how-many-machines-do-you-have"
@@ -511,7 +517,7 @@
         <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
-            <label class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</label>
+            <label class="p-heading--2">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</label>
           </div>
           <div class="col">
             <label class="p-checkbox">
@@ -550,7 +556,7 @@
         <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
-            <label class="p-heading--2">What advice are you looking for?</label>
+            <label for="advice" class="p-heading--2">What advice are you looking for?</label>
           </div>
           <div class="col">
             <textarea id="advice"
