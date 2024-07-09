@@ -34,7 +34,6 @@ let entries = {
   activate: "./static/js/src/activate.js",
   "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
-  contactForms: "./static/js/src/contact-forms.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
