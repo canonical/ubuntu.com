@@ -24,13 +24,13 @@ function DistributorSummary({
   isSummaryLoading,
   error,
 }: Props) {
-  const currency = products[0].product.price.currency as Currencies;
-  const duration = products[0].product.id.includes("-one-")
-    ? 1
-    : products[0].product.id.includes("-two-")
-    ? 2
-    : 3;
+  const extractDuration = (productId: string): number => {
+    const match = productId.match(/(\d+)y/);
+    return match ? parseInt(match[1], 10) : 1;
+  };
 
+  const currency = products[0].product.price.currency as Currencies;
+  const duration = extractDuration(products[0].product.id);
   const { totalDiscount, totalDefaultTotal } = products.reduce(
     (acc, product) => {
       const priceValue = product?.product?.price?.value / 100 ?? 0;
