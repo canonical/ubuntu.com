@@ -27,6 +27,7 @@ function getCheckboxItemsAsCSV(fieldset) {
 }
 
 function getCustomFields(event) {
+  event.preventDefault();
   // If you use Ubuntu, which version(s) are you using?
   const ubuntuVersionsFieldset = document.getElementById("ubuntu-versions");
   // What kind of device are you using?
@@ -79,4 +80,5 @@ function getCustomFields(event) {
 
   const textarea = document.getElementById("Comments_from_lead__c");
   textarea.value = data;
+  event.target.submit();
 }
