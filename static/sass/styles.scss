@@ -1709,3 +1709,10 @@ ol.ordered-counter {
 .js-invoke-modal.p-button.is-dark {
   color: white !important;
 }
+
+.legend {
+  &.is-required::before {
+    content: '* ' !important;
+    position: relative !important;
+  }
+}
