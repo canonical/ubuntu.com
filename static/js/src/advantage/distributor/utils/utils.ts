@@ -172,7 +172,7 @@ export const getMockPrice = (productId: ValidProductID) => {
   const responseMap: Record<ValidProductID, number> = {
     "uai-essential-desktop": 2500,
     "uai-standard-desktop": 15000,
-    "uai-advanced-desktop": 30000,
+    "uai-advanced-desktop": 25500,
     "uaia-essential-physical": 50000,
     "uio-advanced-physical": 177500,
     "uio-standard-physical": 88500,
