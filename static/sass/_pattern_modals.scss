@@ -1,4 +1,5 @@
 .is-wide-modal {
+  // stylelint-disable function-calc-no-unspaced-operator -- allow spaces around operators
   max-width: calc(
     $grid-max-width + 2 * $spv--large - 2 * map-get($grid-margin-widths, small)
   ) !important;
