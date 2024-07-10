@@ -25,7 +25,7 @@ type TaxesProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-const Taxes = ({ setError }: TaxesProps) => {
+const Taxes = ({ product, setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -190,7 +190,8 @@ const Taxes = ({ setError }: TaxesProps) => {
           </Row>
         </>
       ) : null}
-      {vatCountries.includes(values.country ?? "") ? (
+      {vatCountries.includes(values.country ?? "") &&
+      product?.price?.value !== 0 ? (
         <>
           <hr />
           <Row>
@@ -252,19 +253,20 @@ const Taxes = ({ setError }: TaxesProps) => {
           error={touched?.caProvince && errors?.caProvince}
         />
       )}
-      {vatCountries.includes(values.country ?? "") && (
-        <Field
-          data-testid="field-vat-number"
-          as={Input}
-          type="text"
-          id="VATNumber"
-          name="VATNumber"
-          label="VAT number:"
-          stacked
-          help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-          error={touched?.VATNumber && errors?.VATNumber}
-        />
-      )}
+      {vatCountries.includes(values.country ?? "") &&
+        product?.price?.value !== 0 && (
+          <Field
+            data-testid="field-vat-number"
+            as={Input}
+            type="text"
+            id="VATNumber"
+            name="VATNumber"
+            label="VAT number:"
+            stacked
+            help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
+            error={touched?.VATNumber && errors?.VATNumber}
+          />
+        )}
     </>
   );
 
