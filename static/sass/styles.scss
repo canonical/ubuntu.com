@@ -1664,3 +1664,10 @@ ol.ordered-counter {
     margin-right: 0.25rem;
   }
 }
+
+.legend {
+  &.is-required::before {
+    content: '* ' !important;
+    position: relative !important;
+  }
+}
