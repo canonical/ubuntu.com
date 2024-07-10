@@ -210,7 +210,7 @@ def notices_feed(feed_type):
 
         return entry
 
-    notices = security_api.get_notices(
+    notices = security_api.get_page_notices(
         limit=10, offset="", details="", release="", order=""
     ).get("notices")
 
@@ -225,7 +225,7 @@ def notices_feed(feed_type):
 # ===
 def single_notices_sitemap(offset):
     # max limit is 100
-    notices = security_api.get_notices(
+    notices = security_api.get_page_notices(
         limit="100",
         offset=offset,
         details="",
@@ -261,7 +261,7 @@ def single_notices_sitemap(offset):
 
 
 def notices_sitemap():
-    notices_response = security_api.get_notices(
+    notices_response = security_api.get_page_notices(
         limit="", offset="", details="", release="", order=""
     )
 
