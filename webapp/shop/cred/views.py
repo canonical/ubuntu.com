@@ -851,7 +851,7 @@ def cred_shop(ua_contracts_api, **kwargs):
         for exam in exams:
             if product["id"] == exam["id"]:
                 exam["longId"] = product["longId"]
-                exam["period"] = product["period"]
+                exam["period"] = "monthly"
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
                 exam["periodQuantity"] = 30
