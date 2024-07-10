@@ -28,7 +28,7 @@
           id="mktoForm_4914"
           onsubmit="getCustomFields(event)">
 
-      <div class="p-section">
+      <div class="p-section js-formfield">
         <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
@@ -41,7 +41,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section">
+        <fieldset class="p-fieldset-section js-formfield">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">In which industry do you operate?</legend>
@@ -51,7 +51,6 @@
                 <input class="p-radio__input"
                        type="radio"
                        aria-labelledby="your-industry-is-industrial"
-                       name="your-industry-is"
                        value="Industrial" />
                 <span class="p-radio__label" id="your-industry-is-industrial">Industrial</span>
               </label>
@@ -59,7 +58,6 @@
                 <input class="p-radio__input"
                        type="radio"
                        aria-labelledby="your-industry-is-automotive"
-                       name="your-industry-is"
                        value="Automotive" />
                 <span class="p-radio__label" id="your-industry-is-automotive">Automotive</span>
               </label>
@@ -67,7 +65,6 @@
                 <input class="p-radio__input"
                        type="radio"
                        aria-labelledby="your-industry-is-telco"
-                       name="your-industry-is"
                        value="Telco" />
                 <span class="p-radio__label" id="your-industry-is-telco">Telco</span>
               </label>
@@ -75,7 +72,6 @@
                 <input class="p-radio__input"
                        type="radio"
                        aria-labelledby="your-industry-is-public-sector"
-                       name="your-industry-is"
                        value="Public sector" />
                 <span class="p-radio__label" id="your-industry-is-public-sector">Public sector</span>
               </label>
@@ -84,14 +80,12 @@
                   <input class="p-radio__input js-other-container__other-toggle"
                          type="radio"
                          aria-labelledby="your-industry-is-other"
-                         name="your-industry-is"
                          value="other" />
                   <span class="p-radio__label" id="your-industry-is-other">Other</span>
                 </label>
                 <input type="text"
                        id="your-industry-is-other-specified"
                        class="js-other-container__input u-hide"
-                       name="your-industry-is"
                        placeholder="Please specify"
                        style="margin-top: .25rem"
                        aria-label="Other industry specified" />
@@ -102,7 +96,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="architecture">
+        <fieldset class="p-fieldset-section js-formfield" id="architecture">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">Which architecture are you using?</legend>
@@ -147,7 +141,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section">
+        <fieldset class="p-fieldset-section js-formfield">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">How are you currently meeting your latency requirements?</legend>
@@ -210,10 +204,10 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="ubuntu-versions">
+        <fieldset class="p-fieldset-section js-formfield" id="ubuntu-versions">
           <div class="row--50-50">
             <div class="col">
-              <label class="p-heading--2">If you use Ubuntu, which version(s) are you using?</label>
+              <legend class="p-heading--2">If you use Ubuntu, which version(s) are you using?</legend>
             </div>
             <div class="col">
               <div class="u-sv3">
@@ -306,14 +300,14 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="kind-of-device" aria-required="true">
+        <fieldset class="p-fieldset-section js-formfield" id="kind-of-device" aria-required="true">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2 is-required">What kind of device are you using?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
-                <input required
+                <input
                        class="p-checkbox__input"
                        type="checkbox"
                        aria-labelledby="desktop/workstation"
@@ -360,7 +354,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section"
+        <fieldset class="p-fieldset-section js-formfield"
                   id="how-many-machines"
                   aria-required="true">
           <div class="row--50-50">
@@ -417,7 +411,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="how-do-you-consume-open-source">
+        <fieldset class="p-fieldset-section js-formfield" id="how-do-you-consume-open-source">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">How do you consume open source?</legend>
@@ -458,7 +452,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="hardening-requirements">
+        <fieldset class="p-fieldset-section js-formfield" id="hardening-requirements">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">Do you have specific compliance or hardening requirements?</legend>
@@ -527,7 +521,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="responsible-for-tracking">
+        <fieldset class="p-fieldset-section js-formfield" id="responsible-for-tracking">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2">
@@ -742,5 +736,4 @@
     </form>
   </section>
 
-  <script src="/static/js/src/contact-forms.js"></script>
 {% endblock %}

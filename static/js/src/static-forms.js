@@ -82,7 +82,6 @@ function setUpStaticForms(form, formId) {
    */
   function buildCommentsForLead(formId) {
     var message = "";
-
     form?.addEventListener("submit", (e) => {
       var message = "";
       var commentsFromLead = document.querySelector("#Comments_from_lead__c");
@@ -90,7 +89,7 @@ function setUpStaticForms(form, formId) {
       formFields.forEach(function (formField) {
         var comma = ",";
         var colon = ": ";
-        var fieldTitle = formField.querySelector(".p-heading--3");
+        var fieldTitle = formField.querySelector("legend");
         var inputs = formField.querySelectorAll("input, textarea");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
@@ -101,32 +100,33 @@ function setUpStaticForms(form, formId) {
           switch (input.type) {
             case "radio":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "checkbox":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "text":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "number":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "textarea":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
           }
           input.removeAttribute("name");
         });
+        message += "\r\n\r\n";
       });
 
       if (formFields.length) {
