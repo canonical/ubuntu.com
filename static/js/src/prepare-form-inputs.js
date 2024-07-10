@@ -81,6 +81,7 @@ function createErrorMessage() {
   const errorElement = document.createElement("div");
   errorElement.id = "invalid-number-message";
   errorElement.className = "p-form-validation__message";
+  errorElement.style.marginTop = "1rem";
   errorElement.textContent = "Please enter a valid number.";
   errorElement.setAttribute("role", "alert");
   return errorElement;
