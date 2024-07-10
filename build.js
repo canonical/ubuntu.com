@@ -3,7 +3,6 @@ const path = require("path");
 
 let entries = {
   contributions: "./static/js/src/contributions.js",
-  "desktop-statistics": "./static/js/src/desktop-statistics.js",
   tutorials: "./static/js/src/tutorials.js",
   "side-navigation": "./static/js/src/side-navigation.js",
   "image-download": "./static/js/src/image-download.js",
