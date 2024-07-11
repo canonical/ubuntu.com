@@ -185,3 +185,54 @@ const forms = document.querySelectorAll("form[action='/marketo/submit']");
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));
 }
+
+/**
+ *
+ * @param {*} fieldset 
+ * @param {*} checklistItem 
+ * 
+ * Disable & enable Ubuntu versions checklist based on user selection
+ */
+function ubuntuVersionsChecklist(fieldset, checklistItem) {
+  const usingUbuntuCheckboxes = fieldset.querySelectorAll(".using-ubuntu");
+  const otherUbuntuCheckboxes = fieldset.querySelectorAll(".other-ubuntu");
+  const isUsingUbuntu = checklistItem.classList.contains("using-ubuntu");
+
+  if (checklistItem.checked) {
+    if (isUsingUbuntu) {
+      otherUbuntuCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+    } else {
+      usingUbuntuCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+    }
+  } else {
+    var uncheck = true;
+    if (isUsingUbuntu) {
+      usingUbuntuCheckboxes.forEach((checkbox) => {
+        checkbox.checked ? uncheck = false : null;
+      });
+      if (uncheck) {
+        otherUbuntuCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = false;
+        });      
+      }
+    } else {
+      otherUbuntuCheckboxes.forEach((checkbox) => {
+        checkbox.checked ? uncheck = false : null;
+      });
+      if (uncheck) {
+        usingUbuntuCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = false;
+        });
+      }
+    }
+  }
+}
+
+const ubuntuVersionsFieldset = document.querySelector("fieldset#ubuntu-versions");
+ubuntuVersionsFieldset.addEventListener("change", function (event) {
+  ubuntuVersionsChecklist(ubuntuVersionsFieldset, event.target);
+});
