@@ -90,7 +90,7 @@ function setUpStaticForms(form, formId) {
       formFields.forEach(function (formField) {
         var comma = ",";
         var colon = ": ";
-        var fieldTitle = formField.querySelector(".p-heading--3");
+        var fieldTitle = formField.querySelector("legend");
         var inputs = formField.querySelectorAll("input, textarea");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
@@ -188,15 +188,19 @@ if (forms.length) {
 
 /**
  *
- * @param {*} fieldset 
- * @param {*} checklistItem 
- * 
+ * @param {*} fieldset
+ * @param {*} checklistItem
+ *
  * Disable & enable Ubuntu versions checklist based on user selection
  */
 function ubuntuVersionsChecklist(fieldset, checklistItem) {
-  const usingUbuntuCheckboxes = fieldset.querySelectorAll(".using-ubuntu");
-  const otherUbuntuCheckboxes = fieldset.querySelectorAll(".other-ubuntu");
-  const isUsingUbuntu = checklistItem.classList.contains("using-ubuntu");
+  const usingUbuntuCheckboxes = fieldset.querySelectorAll(
+    ".js-ubuntu-checkbox"
+  );
+  const otherUbuntuCheckboxes = fieldset.querySelectorAll(
+    ".js-ubuntu-checkbox__other"
+  );
+  const isUsingUbuntu = checklistItem.classList.contains("js-ubuntu-checkbox");
 
   if (checklistItem.checked) {
     if (isUsingUbuntu) {
@@ -212,16 +216,16 @@ function ubuntuVersionsChecklist(fieldset, checklistItem) {
     var uncheck = true;
     if (isUsingUbuntu) {
       usingUbuntuCheckboxes.forEach((checkbox) => {
-        checkbox.checked ? uncheck = false : null;
+        checkbox.checked ? (uncheck = false) : null;
       });
       if (uncheck) {
         otherUbuntuCheckboxes.forEach((checkbox) => {
           checkbox.disabled = false;
-        });      
+        });
       }
     } else {
       otherUbuntuCheckboxes.forEach((checkbox) => {
-        checkbox.checked ? uncheck = false : null;
+        checkbox.checked ? (uncheck = false) : null;
       });
       if (uncheck) {
         usingUbuntuCheckboxes.forEach((checkbox) => {
@@ -232,7 +236,9 @@ function ubuntuVersionsChecklist(fieldset, checklistItem) {
   }
 }
 
-const ubuntuVersionsFieldset = document.querySelector("fieldset#ubuntu-versions");
+const ubuntuVersionsFieldset = document.querySelector(
+  "fieldset#ubuntu-versions"
+);
 ubuntuVersionsFieldset.addEventListener("change", function (event) {
   ubuntuVersionsChecklist(ubuntuVersionsFieldset, event.target);
 });
