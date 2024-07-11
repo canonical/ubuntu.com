@@ -41,7 +41,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" aria-labelledby="your-industry-is-label">
+        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="your-industry-is-label">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="your-industry-is-label">In which industry do you operate?</legend>
@@ -102,7 +102,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="architecture" aria-labelledby="architecture-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="architecture" aria-labelledby="architecture-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="architecture-legend">Which architecture are you using?</legend>
@@ -147,7 +147,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" aria-labelledby="meeting-latency-requirements-legend">
+        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="meeting-latency-requirements-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="meeting-latency-requirements-legend">How are you currently meeting your latency requirements?</legend>
@@ -210,7 +210,7 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="ubuntu-versions" aria-labelledby="ubuntu-versions-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="ubuntu-versions" aria-labelledby="ubuntu-versions-legend">
           <div class="row--50-50">
             <div class="col">
               <label class="p-heading--2" id="ubuntu-versions-legend">If you use Ubuntu, which version(s) are you using?</label>
@@ -221,21 +221,21 @@
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="24-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="24.04 LTS" />
                   <span class="p-checkbox__label" id="22-04">24.04 LTS</span>
                 </label>
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="22-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="22.04 LTS" />
                   <span class="p-checkbox__label" id="22-04">22.04 LTS</span>
                 </label>
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="20-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="20.04 LTS" />
                   <span class="p-checkbox__label" id="20-04">20.04 LTS</span>
                 </label>
@@ -245,21 +245,21 @@
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="18-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="18.04 LTS" />
                   <span class="p-checkbox__label" id="18-04">18.04 LTS</span>
                 </label>
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="16-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="16.04 LTS" />
                   <span class="p-checkbox__label" id="16-04">16.04 LTS</span>
                 </label>
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="14-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="14.04 LTS" />
                   <span class="p-checkbox__label" id="14-04">14.04 LTS</span>
                 </label>
@@ -269,14 +269,14 @@
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="22-10"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="22.10 (interim release)" />
                   <span class="p-checkbox__label" id="22-10">non-LTS release</span>
                 </label>
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="12-04"
-                         class="p-checkbox__input using-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox"
                          value="12.04 LTS" />
                   <span class="p-checkbox__label" id="12-04">12.04 LTS</span>
                 </label>
@@ -286,7 +286,7 @@
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="dont-use-ubuntu-today"
-                         class="p-checkbox__input other-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox__other"
                          value="I don't use Ubuntu today" />
                   <span class="p-checkbox__label" id="dont-use-ubuntu-today">I don't use
                   Ubuntu today</span>
@@ -294,7 +294,7 @@
                 <label class="p-checkbox">
                   <input type="checkbox"
                          aria-labelledby="i-dont-know"
-                         class="p-checkbox__input other-ubuntu"
+                         class="p-checkbox__input js-ubuntu-checkbox__other"
                          value="I don't know" />
                   <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
                 </label>
@@ -306,7 +306,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="kind-of-device" aria-required="true" aria-labelledby="kind-of-device-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="kind-of-device" aria-required="true" aria-labelledby="kind-of-device-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2 is-required" id="kind-of-device-legend">What kind of device are you using?</legend>
@@ -360,7 +360,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section"
+        <fieldset class="p-fieldset-section js-formfield"
                   id="how-many-machines"
                   aria-labelledby="how-many-machines-legend"
                   aria-required="true">
@@ -418,7 +418,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="how-do-you-consume-open-source" aria-labelledby="how-do-you-consume-open-source-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="how-do-you-consume-open-source" aria-labelledby="how-do-you-consume-open-source-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="how-do-you-consume-open-source-legend">How do you consume open source?</legend>
@@ -459,7 +459,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="hardening-requirements" aria-labelledby="hardening-requirements-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="hardening-requirements" aria-labelledby="hardening-requirements-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="hardening-requirements-legend">Do you have specific compliance or hardening requirements?</legend>
@@ -528,7 +528,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="responsible-for-tracking" aria-labelledby="responsible-for-tracking-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="responsible-for-tracking" aria-labelledby="responsible-for-tracking-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="responsible-for-tracking-legend">
@@ -586,7 +586,7 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="about-you" aria-labelledby="about-you-legend">
+        <fieldset class="p-fieldset-section js-formfield" id="about-you" aria-labelledby="about-you-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="about-you-legend">How should we get in touch?</legend>
