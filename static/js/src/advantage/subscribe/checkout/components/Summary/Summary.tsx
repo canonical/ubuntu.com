@@ -81,12 +81,10 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
     } = {};
     const period = product?.period;
     const quantity = product?.periodQuantity ?? 1;
-    if (period === "monthly") {
+    if (period === "monthly" && quantity === 1) {
       addObj.months = quantity;
-    } else if (period === "days") {
+    } else if (period === 'monthly' && quantity > 1) {
       addObj.days = quantity;
-    } else if (period === "weeks") {
-      addObj.weeks = quantity;
     } else {
       addObj.years = quantity;
     }
