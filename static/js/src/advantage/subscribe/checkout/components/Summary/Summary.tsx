@@ -83,7 +83,7 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
     const quantity = product?.periodQuantity ?? 1;
     if (period === "monthly" && quantity === 1) {
       addObj.months = quantity;
-    } else if (period === 'monthly' && quantity > 1) {
+    } else if (period === "monthly" && quantity > 1) {
       addObj.days = quantity;
     } else {
       addObj.years = quantity;
