@@ -854,7 +854,8 @@ def cred_shop(ua_contracts_api, **kwargs):
                 exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-                exam["period"] = "monthly"
+                exam["period"] = "days"
+                exam["periodQuantity"] = 30
 
     # purchase account required for purchasing from marketplace
     ua_contracts_api.ensure_purchase_account("canonical-cube")

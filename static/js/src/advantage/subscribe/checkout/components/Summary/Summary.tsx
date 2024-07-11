@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { add, format } from "date-fns";
 import { useFormikContext } from "formik";
 import { Col, Row, Spinner } from "@canonical/react-components";
@@ -71,6 +71,29 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
+
+  const calculateProductEndDate = () => {
+    const addObj: {
+      days?: number;
+      weeks?: number;
+      months?: number;
+      years?: number;
+    } = {};
+    const period = product?.period;
+    const quantity = product?.periodQuantity ?? 1;
+    if (period === "monthly") {
+      addObj.months = quantity;
+    } else if (period === "days") {
+      addObj.days = quantity;
+    } else if (period === "weeks") {
+      addObj.weeks = quantity;
+    } else {
+      addObj.years = quantity;
+    }
+    return format(add(new Date(), addObj), DATE_FORMAT);
+  };
+
+  const endDate = useMemo(() => calculateProductEndDate(), [product]);
 
   useEffect(() => {
     if (error instanceof Error) {
@@ -300,14 +323,7 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
         ) : (
           <Col size={8}>
             <p data-testid="end-date">
-              <strong>
-                {format(
-                  add(new Date(), {
-                    months: product?.period === "monthly" ? 1 : 12,
-                  }),
-                  DATE_FORMAT
-                )}
-              </strong>
+              <strong>{endDate}</strong>
             </p>
           </Col>
         )}

@@ -68,6 +68,7 @@ export const marketplaceDisplayName = {
 export interface Product {
   longId: string;
   period: UserSubscriptionPeriod;
+  periodQuantity?: number;
   marketplace: UserSubscriptionMarketplace;
   id: string;
   name: string;

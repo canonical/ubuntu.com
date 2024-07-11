@@ -43,4 +43,6 @@ export enum UserSubscriptionMachineType {
 export enum UserSubscriptionPeriod {
   Yearly = "yearly",
   Monthly = "monthly",
+  Days = "days",
+  Weeks = "weeks"
 }
