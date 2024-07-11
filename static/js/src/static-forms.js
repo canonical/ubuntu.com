@@ -90,7 +90,7 @@ function setUpStaticForms(form, formId) {
       formFields.forEach(function (formField) {
         var comma = ",";
         var colon = ": ";
-        var fieldTitle = formField.querySelector("legend");
+        var fieldTitle = formField.querySelector(".js-formfield-title");
         var inputs = formField.querySelectorAll("input, textarea");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
@@ -101,32 +101,33 @@ function setUpStaticForms(form, formId) {
           switch (input.type) {
             case "radio":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "checkbox":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "text":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "number":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "textarea":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
           }
           input.removeAttribute("name");
         });
+        message += "\r\n\r\n";
       });
 
       if (formFields.length) {
@@ -237,7 +238,7 @@ function ubuntuVersionsChecklist(fieldset, checklistItem) {
 }
 
 const ubuntuVersionsFieldset = document.querySelector(
-  "fieldset#ubuntu-versions"
+  "fieldset.js-ubuntu-version-checkboxes"
 );
 ubuntuVersionsFieldset.addEventListener("change", function (event) {
   ubuntuVersionsChecklist(ubuntuVersionsFieldset, event.target);
