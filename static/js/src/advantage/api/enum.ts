@@ -44,5 +44,5 @@ export enum UserSubscriptionPeriod {
   Yearly = "yearly",
   Monthly = "monthly",
   Days = "days",
-  Weeks = "weeks"
+  Weeks = "weeks",
 }
