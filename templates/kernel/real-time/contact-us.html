@@ -9,7 +9,7 @@
 {% block body_class %}is-paper{% endblock %}
 
 {% block content %}
-  <section class="p-strip u-no-padding--bottom">
+  <section class="p-section--hero u-no-padding--bottom">
     <div class="row--50-50">
       <div class="col">
         <h1>Run real-time Ubuntu in production</h1>
@@ -41,10 +41,10 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section">
+        <fieldset class="p-fieldset-section" aria-labelledby="your-industry-is-label">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">In which industry do you operate?</legend>
+              <legend class="p-heading--2" id="your-industry-is-label">In which industry do you operate?</legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -102,10 +102,10 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="architecture">
+        <fieldset class="p-fieldset-section" id="architecture" aria-labelledby="architecture-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">Which architecture are you using?</legend>
+              <legend class="p-heading--2" id="architecture-legend">Which architecture are you using?</legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -147,10 +147,10 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section">
+        <fieldset class="p-fieldset-section" aria-labelledby="meeting-latency-requirements-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">How are you currently meeting your latency requirements?</legend>
+              <legend class="p-heading--2" id="meeting-latency-requirements-legend">How are you currently meeting your latency requirements?</legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -210,10 +210,10 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="ubuntu-versions">
+        <fieldset class="p-fieldset-section" id="ubuntu-versions" aria-labelledby="ubuntu-versions-legend">
           <div class="row--50-50">
             <div class="col">
-              <label class="p-heading--2">If you use Ubuntu, which version(s) are you using?</label>
+              <label class="p-heading--2" id="ubuntu-versions-legend">If you use Ubuntu, which version(s) are you using?</label>
             </div>
             <div class="col">
               <div class="u-sv3">
@@ -306,10 +306,10 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="kind-of-device" aria-required="true">
+        <fieldset class="p-fieldset-section" id="kind-of-device" aria-required="true" aria-labelledby="kind-of-device-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 is-required">What kind of device are you using?</legend>
+              <legend class="p-heading--2 is-required" id="kind-of-device-legend">What kind of device are you using?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -362,10 +362,11 @@
         <hr class="is-fixed-width" />
         <fieldset class="p-fieldset-section"
                   id="how-many-machines"
+                  aria-labelledby="how-many-machines-legend"
                   aria-required="true">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 is-required">How many devices?</legend>
+              <legend class="p-heading--2 is-required" id="how-many-machines-legend">How many devices?</legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -417,10 +418,10 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="how-do-you-consume-open-source">
+        <fieldset class="p-fieldset-section" id="how-do-you-consume-open-source" aria-labelledby="how-do-you-consume-open-source-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">How do you consume open source?</legend>
+              <legend class="p-heading--2" id="how-do-you-consume-open-source-legend">How do you consume open source?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -458,10 +459,10 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="hardening-requirements">
+        <fieldset class="p-fieldset-section" id="hardening-requirements" aria-labelledby="hardening-requirements-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">Do you have specific compliance or hardening requirements?</legend>
+              <legend class="p-heading--2" id="hardening-requirements-legend">Do you have specific compliance or hardening requirements?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -527,10 +528,10 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="responsible-for-tracking">
+        <fieldset class="p-fieldset-section" id="responsible-for-tracking" aria-labelledby="responsible-for-tracking-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">
+              <legend class="p-heading--2" id="responsible-for-tracking-legend">
                 Who is responsible for tracking, testing and applying CVE patches in a timely manner?
               </legend>
             </div>
@@ -585,10 +586,10 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="about-you">
+        <fieldset class="p-fieldset-section" id="about-you" aria-labelledby="about-you-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2">How should we get in touch?</legend>
+              <legend class="p-heading--2" id="about-you-legend">How should we get in touch?</legend>
             </div>
             <div class="col">
               <ul class="p-list">
