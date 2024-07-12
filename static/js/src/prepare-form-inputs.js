@@ -44,8 +44,10 @@ export function setupIntlTelInput(countryCode, phoneInput) {
   intlTelInput(phoneInput, {
     utilsScript: "/static/js/dist/utils.js",
     separateDialCode: true,
-    hiddenInput: phoneInput.name,
-    initialCountry: countryCode,
+    hiddenInput: (phoneInputName) => ({
+      phone: phoneInputName,
+    }),
+    initialCountry: countryCode.toLowerCase(),
   });
 
   phoneInput.removeAttribute("name"); // Ensure only the hidden input is submitted.
@@ -117,7 +119,7 @@ function isValidNumber(number) {
  * @param {HTMLElement} errorElement - The error message element to remove.
  */
 function resetErrorState(errorElement, phoneInput) {
-  phoneInput.parentNode.parentNode.classList.remove("is-error");
+  phoneInput?.parentNode?.parentNode.classList.remove("is-error");
   if (errorElement.parentNode) {
     errorElement.remove();
   }
