@@ -192,44 +192,44 @@ if (forms.length) {
  * @param {*} fieldset
  * @param {*} checklistItem
  *
- * Disable & enable Ubuntu versions checklist based on user selection
+ * Disable & enable checklist visibility based on user selection
  */
-function ubuntuVersionsChecklist(fieldset, checklistItem) {
-  const usingUbuntuCheckboxes = fieldset.querySelectorAll(
-    ".js-ubuntu-checkbox"
+function toggleCheckboxVisibility(fieldset, checklistItem) {
+  const checkboxes = fieldset.querySelectorAll(
+    ".js-checkbox-visibility"
   );
-  const otherUbuntuCheckboxes = fieldset.querySelectorAll(
-    ".js-ubuntu-checkbox__other"
+  const otherCheckboxes = fieldset.querySelectorAll(
+    ".js-checkbox-visibility__other"
   );
-  const isUsingUbuntu = checklistItem.classList.contains("js-ubuntu-checkbox");
+  const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
 
   if (checklistItem.checked) {
-    if (isUsingUbuntu) {
-      otherUbuntuCheckboxes.forEach((checkbox) => {
+    if (isVisible) {
+      otherCheckboxes.forEach((checkbox) => {
         checkbox.disabled = true;
       });
     } else {
-      usingUbuntuCheckboxes.forEach((checkbox) => {
+      checkboxes.forEach((checkbox) => {
         checkbox.disabled = true;
       });
     }
   } else {
     var uncheck = true;
-    if (isUsingUbuntu) {
-      usingUbuntuCheckboxes.forEach((checkbox) => {
+    if (isVisible) {
+      checkboxes.forEach((checkbox) => {
         checkbox.checked ? (uncheck = false) : null;
       });
       if (uncheck) {
-        otherUbuntuCheckboxes.forEach((checkbox) => {
+        otherCheckboxes.forEach((checkbox) => {
           checkbox.disabled = false;
         });
       }
     } else {
-      otherUbuntuCheckboxes.forEach((checkbox) => {
+      otherCheckboxes.forEach((checkbox) => {
         checkbox.checked ? (uncheck = false) : null;
       });
       if (uncheck) {
-        usingUbuntuCheckboxes.forEach((checkbox) => {
+        checkboxes.forEach((checkbox) => {
           checkbox.disabled = false;
         });
       }
@@ -238,8 +238,8 @@ function ubuntuVersionsChecklist(fieldset, checklistItem) {
 }
 
 const ubuntuVersionsFieldset = document.querySelector(
-  "fieldset.js-ubuntu-version-checkboxes"
+  "fieldset.js-toggle-checkbox-visibility"
 );
 ubuntuVersionsFieldset.addEventListener("change", function (event) {
-  ubuntuVersionsChecklist(ubuntuVersionsFieldset, event.target);
+  toggleCheckboxVisibility(ubuntuVersionsFieldset, event.target);
 });
