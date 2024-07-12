@@ -305,51 +305,45 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-required="true" aria-labelledby="kind-of-device-legend">
+        <fieldset class="p-fieldset-section js-formfield js-required-checkbox" aria-required="true" aria-labelledby="kind-of-device-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2 js-formfield-title is-required" id="kind-of-device-legend">What kind of device are you using?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
-                <input required
-                       class="p-checkbox__input"
+                <input class="p-checkbox__input"
                        type="checkbox"
                        aria-labelledby="desktop/workstation"
-                       value="desktop/workstation"
-                       onclick="validateCheckbox(event, 'kind-of-device')" />
+                       value="desktop/workstation" />
                 <span class="p-checkbox__label" id="desktop-workstation">Desktop/workstation</span>
               </label>
               <label class="p-checkbox">
                 <input type="checkbox"
                        aria-labelledby="physical server"
                        class="p-checkbox__input"
-                       value="physical server"
-                       onclick="validateCheckbox(event, 'kind-of-device')" />
+                       value="physical server" />
                 <span class="p-checkbox__label" id="physical-server">Physical server</span>
               </label>
               <label class="p-checkbox">
                 <input type="checkbox"
                        aria-labelledby="public-cloud"
                        class="p-checkbox__input"
-                       value="public cloud"
-                       onclick="validateCheckbox(event, 'kind-of-device')" />
+                       value="public cloud" />
                 <span class="p-checkbox__label" id="public-cloud">Public cloud</span>
               </label>
               <label class="p-checkbox">
                 <input type="checkbox"
                        aria-labelledby="virtual-machine"
                        class="p-checkbox__input"
-                       value="virtual machine"
-                       onclick="validateCheckbox(event, 'kind-of-device')" />
+                       value="virtual machine" />
                 <span class="p-checkbox__label" id="virtual-machine">Virtual machine</span>
               </label>
               <label class="p-checkbox">
                 <input type="checkbox"
                        aria-labelledby="iot-edge-device"
                        class="p-checkbox__input"
-                       value="iot/edge device"
-                       onclick="validateCheckbox(event, 'kind-of-device')" />
+                       value="iot/edge device" />
                 <span class="p-checkbox__label" id="iot-edge-device">IoT/Edge device</span>
               </label>
             </div>
@@ -658,7 +652,7 @@
                 </li>
                 {# End of honey pots #}
                 <li class="p-list__item">
-                  <button type="submit" class="p-button--positive">Submit</button>
+                  <button type="submit" class="p-button--positive js-submit-button" disabled>Submit</button>
                 </li>
               </ul>
               <div class="u-off-screen">
@@ -741,5 +735,4 @@
     </form>
   </section>
 
-  <script src="/static/js/src/contact-forms.js"></script>
 {% endblock %}
