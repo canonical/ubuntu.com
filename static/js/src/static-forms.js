@@ -193,6 +193,9 @@ if (forms.length) {
  * @param {*} checklistItem
  *
  * Disable & enable checklist visibility based on user selection
+ * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+ * - Can only check one __other item at a time
+ * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
  */
 function toggleCheckboxVisibility(fieldset, checklistItem) {
   const checkboxes = fieldset.querySelectorAll(
@@ -212,10 +215,13 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
       checkboxes.forEach((checkbox) => {
         checkbox.disabled = true;
       });
+      otherCheckboxes.forEach((checkbox) => {
+        checklistItem == checkbox ? null : checkbox.disabled = true ;        
+      });
     }
   } else {
-    var uncheck = true;
     if (isVisible) {
+      var uncheck = true;
       checkboxes.forEach((checkbox) => {
         checkbox.checked ? (uncheck = false) : null;
       });
@@ -225,14 +231,12 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
         });
       }
     } else {
-      otherCheckboxes.forEach((checkbox) => {
-        checkbox.checked ? (uncheck = false) : null;
+      checkboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
       });
-      if (uncheck) {
-        checkboxes.forEach((checkbox) => {
-          checkbox.disabled = false;
-        });
-      }
+      otherCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
     }
   }
 }
