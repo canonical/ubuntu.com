@@ -24,7 +24,7 @@ const ExamResults = (props: IProps) => {
   );
 
   const currentRows = useMemo(() => {
-    if (data) {
+    if (data && !data?.error) {
       return data.results.map((exam: any) => ({
         key: exam.id,
         columns: [
@@ -39,7 +39,7 @@ const ExamResults = (props: IProps) => {
   }, [data]);
 
   const paginationMeta = useMemo(() => {
-    if (data) {
+    if (data && !data?.error) {
       const { meta } = data;
       const totalPages = meta.total_pages;
       const currentPage = totalPages - meta.current_page + 1;

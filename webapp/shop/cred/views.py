@@ -1179,7 +1179,7 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@credentials_group()
+# @credentials_group()
 def cred_dashboard(trueability_api, **_):
     first_reservations = trueability_api.get_assessment_reservations(
         per_page=10
@@ -1195,7 +1195,7 @@ def cred_dashboard(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@credentials_group()
+# @credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 10
     page = int(flask.request.args.get("page", 1)) - 1
@@ -1210,7 +1210,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@credentials_group()
+# @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     per_page = 10
     page = int(flask.request.args.get("page", 1)) - 1
