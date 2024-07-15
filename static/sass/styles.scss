@@ -248,6 +248,11 @@ fieldset:last-child {
   border-bottom-width: 1px !important;
 }
 
+.p-fieldset-section {
+  border: none !important;
+  padding: 0 !important;
+}
+
 // XXX Steve: Overriding default Vanilla style :(
 .p-heading--6 {
   font-style: normal;
@@ -1657,5 +1662,12 @@ ol.ordered-counter {
     content: counters(item, "") ". ";
     counter-increment: item;
     margin-right: 0.25rem;
+  }
+}
+
+legend {
+  &.is-required::before {
+    content: "* " !important;
+    position: relative !important;
   }
 }
