@@ -16,7 +16,7 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import (
-    # credentials_group,
+    credentials_group,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1095,10 +1095,14 @@ def get_webhook_response(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response=json)
-@canonical_staff()
+# @credentials_group()
 def get_issued_badges(credly_api, **kwargs):
-    badges = credly_api.get_issued_badges()
-    return flask.jsonify(badges["data"])
+    filter = flask.request.args.get("filter", None)
+    filter = json.loads(filter) if filter else None
+    sort = flask.request.args.get("sort", None)
+    page = flask.request.args.get("page", None)
+    badges = credly_api.get_issued_badges(filter, sort, page)
+    return flask.jsonify(badges)
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -1194,7 +1198,7 @@ def cred_dashboard(trueability_api, **_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response=json)
 # @credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 10
@@ -1209,8 +1213,8 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
     return flask.jsonify(latest_reservations)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
-# @credentials_group()
+@shop_decorator(area="cred", permission="user", response=json)
+@credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     per_page = 10
     page = int(flask.request.args.get("page", 1)) - 1
@@ -1223,3 +1227,11 @@ def cred_dashboard_exam_results(trueability_api, **_):
         page=last_page - page, per_page=per_page, state=exam_state
     )
     return flask.jsonify(latest_results)
+
+
+@shop_decorator(area="cred", permission="user", response=json)
+# @credentials_group()
+def cred_dashboard_system_statuses(trueability_api, **_):
+    ta_status = trueability_api.get_system_status()
+    statuses = {"ta_status": ta_status}
+    return flask.jsonify(statuses)

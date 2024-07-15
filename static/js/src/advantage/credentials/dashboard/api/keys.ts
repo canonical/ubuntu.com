@@ -28,3 +28,52 @@ export async function getExamResults(page = 1, state: string | null = "") {
   const data = await response.json();
   return data;
 }
+
+export async function getSystemStatuses() {
+  const URL = `/credentials/dashboard/system-statuses`;
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getIssuedBadgesCredly(
+  filter: { [x: string]: string } | null = null,
+  sort: string | null = null,
+  page: number | null = null
+) {
+  console.log(filter, sort, page);
+  let URL = `/credentials/dashboard/issued-badges`;
+  const queryParams = new URLSearchParams();
+
+  if (filter) {
+    queryParams.append("filter", new URLSearchParams(filter).toString());
+  }
+  if (sort) {
+    queryParams.append("sort", sort);
+  }
+  if (page) {
+    queryParams.append("page", `${page}`);
+  }
+
+  if (!!queryParams.toString()) {
+    URL += `?${queryParams.toString()}`;
+  }
+
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}

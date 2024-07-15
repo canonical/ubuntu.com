@@ -74,6 +74,7 @@ from webapp.shop.cred.views import (
     cred_dashboard,
     cred_dashboard_upcoming_exams,
     cred_dashboard_exam_results,
+    cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
     cred_redeem_code,
@@ -970,9 +971,13 @@ app.add_url_rule(
     view_func=cred_dashboard_exam_results,
     methods=["GET"],
 )
-
 app.add_url_rule(
-    "/credentials/get_issued_badges",
+    "/credentials/dashboard/system-statuses",
+    view_func=cred_dashboard_system_statuses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/dashboard/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
 )

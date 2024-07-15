@@ -6,6 +6,7 @@ import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Exams from "./routes/Exams";
 import Keys from "./components/Keys/Keys";
+import Credly from "./components/Credly/Credly";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -51,6 +52,7 @@ function App() {
                   <Route path="/" element={<Navigate to="/exams" />} />
                   <Route path="/exams" element={<Exams />} />
                   <Route path="/keys" element={<Keys />} />
+                  <Route path="/credly" element={<Credly />} />
                 </Routes>
               </section>
             </main>

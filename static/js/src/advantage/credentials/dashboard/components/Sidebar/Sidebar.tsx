@@ -1,9 +1,18 @@
 import React, { useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { setupAppLayoutExamples } from "./utils";
+import { useQuery } from "react-query";
+import { getSystemStatuses } from "../../api/keys";
 
 const Sidebar = () => {
   const location = useLocation();
+  const { data: statuses, isError, isLoading } = useQuery(
+    "systemStatuses",
+    getSystemStatuses,
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
 
   useEffect(() => {
     setupAppLayoutExamples();
@@ -23,8 +32,29 @@ const Sidebar = () => {
         icon: "p-icon--units",
         isActive: location.pathname === "/keys",
       },
+      {
+        to: "/credly",
+        label: "Credly",
+        icon: "p-icon--plans",
+        isActive: location.pathname === "/credly",
+      },
     ];
   }, [location.pathname]);
+
+  const systemStatus = useMemo(() => {
+    const status: {
+      [key in "Trueability" | "Contracts"]: boolean;
+    } = {
+      Trueability: false,
+      Contracts: false,
+    };
+
+    if (statuses && !isError) {
+      const { ta_status } = statuses;
+      status["Trueability"] = !ta_status.error;
+    }
+    return status;
+  }, [statuses]);
 
   const handleClickDashboard = () => {
     window.open("/credentials", "_blank");
@@ -114,6 +144,36 @@ const Sidebar = () => {
                         </Link>
                       </li>
                     ))}
+                    <li className="p-side-navigation__item has-active-child">
+                      <a className="p-side-navigation__link" href="#">
+                        <i className="p-icon--information is-light p-side-navigation__icon"></i>
+                        <span className="p-side-navigation__label">
+                          System Status
+                        </span>
+                      </a>
+                      <ul className="p-side-navigation__list">
+                        <li className="p-side-navigation__item">
+                          <div className="p-side-navigation__link">
+                            <span className="p-side-navigation__label">
+                              Trueability
+                            </span>
+                            <div className="p-side-navigation__status">
+                              {isLoading ? (
+                                <i className="p-icon--spinner u-animation--spin is-light"></i>
+                              ) : (
+                                <i
+                                  className={`p-icon--${
+                                    systemStatus["Trueability"]
+                                      ? "success"
+                                      : "error"
+                                  } is-light`}
+                                ></i>
+                              )}
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
                   </ul>
                 </nav>
               </div>
