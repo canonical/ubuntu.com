@@ -16,7 +16,7 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import (
-    credentials_group,
+    # credentials_group,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
