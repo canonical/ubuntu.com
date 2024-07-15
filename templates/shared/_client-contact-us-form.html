@@ -1,4 +1,4 @@
-<section class="p-section--hero u-no-padding--bottom">
+<section class="p-section--hero">
   <div class="row--50-50">
     <div class="col">
       <h1>{{ h1 }}</h1>
@@ -9,7 +9,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-section">
   <form action="/marketo/submit" method="post" id="mktoForm_{{ formid }}">
     <div class="p-section">
       <hr class="is-fixed-width" />
@@ -264,12 +264,11 @@
 
 <div class="p-section">
   <div class="row">
-    <hr />
     {% if side1 %}
-      <div class="col-6">{% include side1 %}</div>
+      <div class="col">{% include side1 %}</div>
     {% endif %}
     {% if side2 %}
-      <div class="col-6">{% include side2 %}</div>
+      <div class="col">{% include side2 %}</div>
     {% endif %}
   </div>
 </div>
