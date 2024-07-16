@@ -42,7 +42,7 @@ describe("setupIntlTelInput", () => {
     const expectedOptions = {
       utilsScript: expect.any(String),
       separateDialCode: expect.any(Boolean),
-      hiddenInput: expect.any(String),
+      hiddenInput: expect.any(Function),
       initialCountry: expect.any(String),
     };
 

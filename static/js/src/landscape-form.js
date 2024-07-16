@@ -14,7 +14,7 @@ function contactPreference() {
     textarea.value = "My preferred contact method is" + ": " + text + " \r\n";
   }
 
-  if (contentSummary.value) {
+  if (contentSummary?.value) {
     textarea.value = textarea.value + "Comments" + ": " + contentSummary.value;
   }
 }
