@@ -55,7 +55,7 @@ const DistributorBuyButton = () => {
     <p>
       <Button
         appearance="positive"
-        className="u-no-margin--bottom order-checkout-button"
+        className="u-no-margin--bottom distributor-checkout-button"
         onClick={(e) => {
           e.preventDefault();
           localStorage.setItem(

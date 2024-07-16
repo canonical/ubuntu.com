@@ -44,6 +44,7 @@ const Duration = () => {
               },
             ]}
             onChange={handleDurationChange}
+            className="distributor-select"
           />
         </Col>
       </Row>

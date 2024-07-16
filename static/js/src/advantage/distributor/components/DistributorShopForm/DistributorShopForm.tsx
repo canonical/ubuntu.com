@@ -9,7 +9,7 @@ import AddSubscriptions from "./AddSubscriptions/AddSubscriptions";
 const DistributorShopForm = () => {
   return (
     <form className="distributor-shop-selector">
-      <Strip includeCol={false}>
+      <Strip includeCol={false} className="u-no-padding--top">
         <Row>
           <Col size={6}>
             <h2>Verify deal registration information</h2>
@@ -20,9 +20,9 @@ const DistributorShopForm = () => {
         </Row>
       </Strip>
       <Row>
-        <hr />
+        <hr className="p-rule is-muted" />
       </Row>
-      <Strip includeCol={false}>
+      <Strip includeCol={false} className="u-no-padding--top">
         <Row>
           <Col size={6}>
             <h2>Fill in technical user&lsquo;s contact</h2>
@@ -33,9 +33,9 @@ const DistributorShopForm = () => {
         </Row>
       </Strip>
       <Row>
-        <hr />
+        <hr className="p-rule is-muted" />
       </Row>
-      <Strip includeCol={false}>
+      <Strip includeCol={false} className="u-no-padding--top">
         <Row>
           <Col size={6}>
             <h2>Select your currency</h2>
@@ -46,9 +46,9 @@ const DistributorShopForm = () => {
         </Row>
       </Strip>
       <Row>
-        <hr />
+        <hr className="p-rule is-muted" />
       </Row>
-      <Strip includeCol={false}>
+      <Strip includeCol={false} className="u-no-padding--top">
         <Row>
           <Col size={6}>
             <h2>Add subscriptions</h2>
@@ -59,9 +59,9 @@ const DistributorShopForm = () => {
         </Row>
       </Strip>
       <Row>
-        <hr />
+        <hr className="p-rule is-muted" />
       </Row>
-      <Strip includeCol={false}>
+      <Strip includeCol={false} className="u-no-padding--top">
         <Row>
           <Col size={6}>
             <h2>Select the subscription duration</h2>

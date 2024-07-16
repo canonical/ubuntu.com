@@ -44,6 +44,7 @@ const Currency = () => {
               },
             ]}
             onChange={handleCurrencyChange}
+            className="distributor-select"
           />
         </Col>
       </Row>
