@@ -846,7 +846,13 @@ def cred_submit_form(**_):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-def cred_shop(ua_contracts_api, **kwargs):
+def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    if (account.hasChannelStoreAccess) is True:
+        return flask.render_template(
+            "account/forbidden.html", reason="channel_account"
+        )
+
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
     cue_products = get_cue_products(type="exam").json
