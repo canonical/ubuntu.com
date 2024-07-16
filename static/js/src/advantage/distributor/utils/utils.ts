@@ -65,7 +65,7 @@ export type ChannelProduct = {
   productID: ValidProductID;
   productName: string;
   marketplace: UserSubscriptionMarketplace;
-  version: number;
+  version: string;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
@@ -144,137 +144,6 @@ export const getProductId = (
       return "no-product";
   }
 };
-
-export const getMockProductId = (
-  productName: ValidProductName
-): ValidProductID => {
-  const responseMap: Record<ValidProductName, ValidProductID> = {
-    "Ubuntu Pro": "uaia-essential-physical",
-    "Ubuntu Pro + Infra Support (weekday)": "uio-standard-physical",
-    "Ubuntu Pro + Infra Support (24/7)": "uio-advanced-physical",
-    "Ubuntu Pro + Support (weekday)": "uaia-standard-physical",
-    "Ubuntu Pro + Support (24/7)": "uaia-advanced-physical",
-    "Ubuntu Pro - Virtual": "uaia-essential-virtual",
-    "Ubuntu Pro + Support (weekday) - Virtual": "uaia-standard-virtual",
-    "Ubuntu Pro + Support (24/7) - Virtual": "uaia-advanced-virtual",
-    "Ubuntu Pro + Infra Support (weekday) - Virtual": "uio-standard-virtual",
-    "Ubuntu Pro + Infra Support (24/7) - Virtual": "uio-advanced-virtual",
-    "Ubuntu Pro Desktop": "uai-essential-desktop",
-    "Ubuntu Pro Desktop + Support (weekday)": "uai-standard-desktop",
-    "Ubuntu Pro Desktop + Support (24/7)": "uai-advanced-desktop",
-    "no-product": "no-product",
-  };
-
-  return responseMap[productName] || "no-product";
-};
-
-export const getMockPrice = (productId: ValidProductID) => {
-  const responseMap: Record<ValidProductID, number> = {
-    "uai-essential-desktop": 2500,
-    "uai-standard-desktop": 15000,
-    "uai-advanced-desktop": 25500,
-    "uaia-essential-physical": 50000,
-    "uio-advanced-physical": 177500,
-    "uio-standard-physical": 88500,
-    "uaia-advanced-physical": 340000,
-    "uaia-standard-physical": 170000,
-    "uaia-essential-virtual": 16700,
-    "uio-advanced-virtual": 59200,
-    "uio-standard-virtual": 29500,
-    "uaia-advanced-virtual": 113300,
-    "uaia-standard-virtual": 56700,
-    "no-product": 0,
-  };
-  return responseMap[productId] || 0;
-};
-
-export const mockProductNames: ValidProductName[] = [
-  "Ubuntu Pro",
-  "Ubuntu Pro + Infra Support (weekday)",
-  "Ubuntu Pro + Infra Support (24/7)",
-  "Ubuntu Pro + Support (weekday)",
-  "Ubuntu Pro + Support (24/7)",
-  "Ubuntu Pro - Virtual",
-  "Ubuntu Pro + Support (weekday) - Virtual",
-  "Ubuntu Pro + Support (24/7) - Virtual",
-  "Ubuntu Pro + Infra Support (weekday) - Virtual",
-  "Ubuntu Pro + Infra Support (24/7) - Virtual",
-  "Ubuntu Pro Desktop",
-  "Ubuntu Pro Desktop + Support (weekday)",
-  "Ubuntu Pro Desktop + Support (24/7)",
-];
-
-const mockCurrencies: Currencies[] = [
-  Currencies.eur,
-  Currencies.gbp,
-  Currencies.usd,
-];
-const mockDurations: Durations[] = [
-  Durations.one,
-  Durations.two,
-  Durations.three,
-];
-
-const mockVersions = [1];
-
-const generateMockProductList = (
-  productNames: ValidProductName[],
-  currencies: Currencies[],
-  durations: Durations[],
-  versions: number[]
-) => {
-  const allList: { [key: string]: ChannelProduct } = {};
-  for (const productName of productNames) {
-    if (productName !== "no-product") {
-      for (const currency of currencies) {
-        for (const duration of durations) {
-          for (const version of versions) {
-            const productID = getMockProductId(productName);
-            const name = `${productID}-${duration}y-channel-${currency}`;
-            const value = Number(
-              converMockCurrency(currency, getMockPrice(productID)) * duration
-            );
-
-            const channelProduct: ChannelProduct = {
-              id: `${name}-v${version}`, // valid product e.g. uai-essential-desktop-1y-channel-gbp-v1
-              longId: "lACpi3WWwkw6XP09Zh5MciTF9_aRgK9cPF1RYERLaVlM", // listing.id
-              name: `${name}-v${version}`, // e.g. uai-essential-desktop-1y-channel-gbp-v1
-              price: {
-                value: value, // listing.price
-                currency: currency.toUpperCase(), // listing.currency
-              },
-              productID: productID, // listing.product.id e.g. uai-standard-desktop
-              productName: productName, // listing.product.name e.g. Ubuntu Pro + Support (weekday)
-              marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
-              version: version,
-            };
-            allList[name] = channelProduct as ChannelProduct;
-          }
-        }
-      }
-    }
-  }
-  return allList;
-};
-
-function converMockCurrency(currency: Currencies, price: number): number {
-  const usdToGbp = 0.72;
-  const usdToEur = 0.85;
-  if (currency === Currencies.gbp) {
-    return price * usdToGbp;
-  } else if (currency === Currencies.eur) {
-    return price * usdToEur;
-  } else {
-    return price;
-  }
-}
-
-export const mockProducList = generateMockProductList(
-  mockProductNames,
-  mockCurrencies,
-  mockDurations,
-  mockVersions
-);
 
 export const getPreSelectedItem = (items: Item[]) => {
   const preSelectedItem = items.map((item: Item) => {

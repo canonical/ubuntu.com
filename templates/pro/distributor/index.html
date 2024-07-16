@@ -16,21 +16,20 @@
         </section>
       </div>
     </div>
-    <script src="{{ versioned_static('js/dist/distributor.js') }}"
-            type="module"
-            defer></script>
+    <script src="{{ versioned_static('js/dist/distributor.js') }}" type="module" defer></script>
     <script>
       let updatedChannelProductList = {};
       const rawChannelProductListings = {{ product_listings | tojson }};
+
       if (rawChannelProductListings) {
         Object.keys(rawChannelProductListings).forEach(key => {
           const listing = rawChannelProductListings[key];
           const listing_name_with_version = listing.name;
-          const listing_name_without_version = listing_name_with_version.split('-v')[0];
-          const version = listing.metadata.find((data) => data.key === 'version')?.value || 1;
-
+          const listing_name_without_version = listing_name_with_version.lastIndexOf('-') === -1 ? "" : listing_name_with_version.substring(0, listing_name_with_version.lastIndexOf('-'));
+          const version = listing.metadata.find((data) => data.key === 'version')?.value || "1"
           if (listing_name_without_version in updatedChannelProductList) {
-            if (version > updatedChannelProductList[listing_name_without_version].version) {
+            const exisitngVersion = updatedChannelProductList[listing_name_without_version].version || "1";
+            if (Number(version) > Number(exisitngVersion)) {
               updatedChannelProductList[listing_name_without_version] = {
                 id: listing_name_with_version,
                 longId: listing.id,
