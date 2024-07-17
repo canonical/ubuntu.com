@@ -2,130 +2,136 @@
 
 {% block title %}What is multi-cloud?{% endblock %}
 
-{% block meta_description %}Multi-cloud is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise their infrastructure costs.{% endblock meta_description %}
+{% block meta_description %}
+  Multi-cloud is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise their infrastructure costs.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1nWsDaRiUzaupjKDzu1ZqjlmxHGv2HCgW8oBBEacYFLs/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1nWsDaRiUzaupjKDzu1ZqjlmxHGv2HCgW8oBBEacYFLs/edit#
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-shallow u-no-padding--bottom">
-  <div class="row--50-50">
-    <div class="col">
-      <h1>What is multi-cloud?</h1>
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>What is multi-cloud?</h1>
+      </div>
+      <div class="col">
+        <p>
+          Multi-cloud (also referred to as multi cloud or multicloud) is a concept that refers to <a href="/cloud/cloud-computing">using multiple clouds</a> from more than one cloud service provider at the same time. The term is also used to refer to the simultaneous running of bare metal, virtualised and containerised workloads.
+        </p>
+        <p>
+          In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise their infrastructure costs. Multi-cloud reflects the reality of most organisations today and is expected to become the standard for cloud infrastructure in the coming years.
+        </p>
+        <hr class="is-muted" />
+        <p>
+          <a class="p-button--positive" href="/engage/cloud-pricing-report">Read full report</a>
+        </p>
+      </div>
     </div>
-    <div class="col">
-      <p>Multi-cloud (also referred to as multi cloud or multicloud) is a concept that refers to <a
-          href="/cloud/cloud-computing">using multiple clouds</a> from more than one cloud service provider at the same
-        time. The term is also used to refer to the simultaneous running of bare metal, virtualised and containerised
-        workloads.</p>
-      <p>In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise
-        their infrastructure costs. Multi-cloud reflects the reality of most organisations today and is expected to
-        become the standard for cloud infrastructure in the coming years.</p>
-      <hr class="is-muted" />
-      <p>
-        <a class="p-button--positive" href="/engage/cloud-pricing-report">Read full report</a>
-      </p>
+    <div class="row">
+      <div class="u-hide--small u-vertically-center u-align--center">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/2313b800-Canonical-MicroCloud.png",
+        alt="Multi-Cloud",
+        width="1232",
+        height="514",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+        }}
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="u-hide--small u-vertically-center u-align--center">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/2313b800-Canonical-MicroCloud.png",
-      alt="Multi-Cloud",
-      width="1232",
-      height="514",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>How does a multi-cloud work?</h2>
-    </div>
-    <div class="col">
-      <p class="p-heading--5">Since multi-cloud is just a concept that refers to using multiple cloud platforms from more than one cloud service provider at the same time, the way it works is not significantly different from how public and private clouds work on their own.</p>
-      <p>Multi-cloud leverages virtualisation, containerisation, software-defined networking (SDN) and software-defined storage (SDS) technologies to divide physical resources, aggregated into pools, and allocate them to virtual machines (VMs) or containers. Dedicated <a href="/openstack/what-is-openstack">management software</a> is used to aggregate compute, network and storage resources, distributed across the data centre, and enable on-demand provisioning of virtualised resources through a self-service portal.</p>
-      <p>What differentiates multi-cloud from a single vendor model is an additional layer of abstraction provided by the <a href="https://juju.is">application management software</a> that runs on top of the existing clouds. This software treats each individual cloud platform as a resource provider and allows for deploying, integrating and managing Kubernetes, container and VM-native applications seamlessly across various clouds. This enables a substrate-agnostic approach to applications orchestration and results in time and cost savings usually spent on integration efforts.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="p-section--shallow">
+  <section class="p-strip">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Multi-cloud vs hybrid cloud</h2>
+        <h2>How does a multi-cloud work?</h2>
       </div>
       <div class="col">
-        <p>Multi-cloud and <a href="/cloud/hybrid-cloud">hybrid cloud</a> are two mutually exclusive terms that are
-          often
-          confused.</p>
+        <p class="p-heading--5">
+          Since multi-cloud is just a concept that refers to using multiple cloud platforms from more than one cloud service provider at the same time, the way it works is not significantly different from how public and private clouds work on their own.
+        </p>
+        <p>
+          Multi-cloud leverages virtualisation, containerisation, software-defined networking (SDN) and software-defined storage (SDS) technologies to divide physical resources, aggregated into pools, and allocate them to virtual machines (VMs) or containers. Dedicated <a href="/openstack/what-is-openstack">management software</a> is used to aggregate compute, network and storage resources, distributed across the data centre, and enable on-demand provisioning of virtualised resources through a self-service portal.
+        </p>
+        <p>
+          What differentiates multi-cloud from a single vendor model is an additional layer of abstraction provided by the <a href="https://juju.is">application management software</a> that runs on top of the existing clouds. This software treats each individual cloud platform as a resource provider and allows for deploying, integrating and managing Kubernetes, container and VM-native applications seamlessly across various clouds. This enables a substrate-agnostic approach to applications orchestration and results in time and cost savings usually spent on integration efforts.
+        </p>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Is every hybrid cloud a multi-cloud?</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>No, imagine a <a href="/cloud">cloud architecture</a> that consists of <a
-              href="https://aws.amazon.com/marketplace/pp/prodview-rhaqbfd6lepbw">AWS</a> and <a
-              href="/aws/outposts">AWS Outposts</a> at the same time. It uses a public cloud and a private cloud
-            infrastructure, but both are delivered by a single cloud provider.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Is every multi-cloud a hybrid cloud?</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>No, it is not. Multi-cloud also refers to using multiple public clouds (e.g. <a
-              href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic">Azure</a>
-            and <a href="https://cloud.google.com/blog/products/compute/ubuntu-pro-available-on-google-cloud">GCP</a>)
-            or multiple private clouds (e.g. <a href="https://www.vmware.com/">VMware</a> and <a
-              href="/openstack">OpenStack</a>) at the same time and this is not a hybrid cloud architecture.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="p-section--shallow">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Multi-cloud benefits</h2>
-      </div>
-      <div class="col">
-        <p>The main benefit of the multi-cloud approach is <a href="/engage/multi-cloud-business-guide">better
-            economics</a> compared to using only one cloud platform at a time. Multi-cloud effectively combines the
-          advantages brought by different cloud service providers, resulting in a number of benefits. Those include:</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Multi-cloud vs hybrid cloud</h2>
+        </div>
+        <div class="col">
+          <p>
+            Multi-cloud and <a href="/cloud/hybrid-cloud">hybrid cloud</a> are two mutually exclusive terms that are often confused.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row--25-75-on-large">
-    <div class="col">
-      <hr class="is-muted u-hide--small u-hide--medium" />
-      <div class="p-equal-height-row">
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Is every hybrid cloud a multi-cloud?</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              No, imagine a <a href="/cloud">cloud architecture</a> that consists of <a href="https://aws.amazon.com/marketplace/pp/prodview-rhaqbfd6lepbw">AWS</a> and <a href="/aws/outposts">AWS Outposts</a> at the same time. It uses a public cloud and a private cloud infrastructure, but both are delivered by a single cloud provider.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Is every multi-cloud a hybrid cloud?</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              No, it is not. Multi-cloud also refers to using multiple public clouds (e.g. <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic">Azure</a> and <a href="https://cloud.google.com/blog/products/compute/ubuntu-pro-available-on-google-cloud">GCP</a>) or multiple private clouds (e.g. <a href="https://www.vmware.com/">VMware</a> and <a href="/openstack">OpenStack</a>) at the same time and this is not a hybrid cloud architecture.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Multi-cloud benefits</h2>
+        </div>
+        <div class="col">
+          <p>
+            The main benefit of the multi-cloud approach is <a href="/engage/multi-cloud-business-guide">better economics</a> compared to using only one cloud platform at a time. Multi-cloud effectively combines the advantages brought by different cloud service providers, resulting in a number of benefits. Those include:
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <hr class="is-muted u-hide--small u-hide--medium" />
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
                 alt="Long-term cost savings",
                 width="64",
@@ -134,17 +140,17 @@
                 loading="lazy"
                 ) | safe
                 }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Long-term cost savings</h4>
+            <p class="p-equal-height-row__item">
+              In multi-cloud, workloads always run where it makes the most sense from an economical standpoint. This means organisations always pay as little as possible for the same amount of resources which results in long-term cost savings.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Long-term cost savings</h4>
-          <p class="p-equal-height-row__item">In multi-cloud, workloads always run where it makes the most sense from an
-            economical standpoint. This means organisations always pay as little as possible for the same amount of
-            resources which results in long-term cost savings.</p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
                 alt="Multi Cloud",
                 width="113",
@@ -153,17 +159,17 @@
                 loading="lazy"
                 ) | safe
                 }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Increased flexibility</h4>
+            <p class="p-equal-height-row__item">
+              Using more than one cloud platform at a time provides greater flexibility as businesses can choose the right place to run their workloads based on specific use cases and detailed requirements.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Increased flexibility</h4>
-          <p class="p-equal-height-row__item">Using more than one cloud platform at a time provides greater flexibility
-            as businesses can choose the right place to run their workloads based on specific use cases and detailed
-            requirements.</p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/86f2a978-vendor-lock-in.svg",
                 alt="Vendor lock-in",
                 width="92",
@@ -172,19 +178,20 @@
                 loading="lazy"
                 ) | safe
                 }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Reduced vendor lock-in</h4>
+            <p class="p-equal-height-row__item">
+              Being attached to a single service provider results in vendor lock-in. Being attached to more than one increases independence.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Reduced vendor lock-in</h4>
-          <p class="p-equal-height-row__item">Being attached to a single service provider results in vendor lock-in.
-            Being attached to more than one increases independence.</p>
         </div>
-      </div>
-      <hr class="is-muted u-hide--small u-hide--medium" />
-      <div class="p-equal-height-row">
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+        <hr class="is-muted u-hide--small u-hide--medium" />
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/0e6c0ffc-Reliability.svg",
                 alt="Reliability",
                 width="53",
@@ -192,16 +199,18 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Improved reliability</h4>
+            <p class="p-equal-height-row__item">
+              Deploying applications across multiple availability zones, regions and clouds results in an increased redundancy, improved reliability and helps to meet service level agreement (SLA) goals.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Improved reliability</h4>
-          <p class="p-equal-height-row__item">Deploying applications across multiple availability zones, regions and clouds results in an increased redundancy, improved reliability and helps to meet service level agreement (SLA) goals.</p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/c0a3f3e0-Continuity.svg",
                 alt="Continuity",
                 width="70",
@@ -209,38 +218,41 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Business continuity</h4>
+            <p class="p-equal-height-row__item">
+              Being able to deploy business applications across multiple cloud platforms and store copies of data in multiple locations facilitates implementing business continuity plans.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Business continuity</h4>
-          <p class="p-equal-height-row__item">Being able to deploy business applications across multiple cloud platforms and store copies of data in multiple locations facilitates implementing business continuity plans.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="p-section--shallow">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Multi-cloud challenges</h2>
-      </div>
-      <div class="col">
-        <p>While the multi-cloud approach brings a number of benefits to organisations, implementing a multi-cloud also
-          entails a number of challenges. These include:</p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Multi-cloud challenges</h2>
+        </div>
+        <div class="col">
+          <p>
+            While the multi-cloud approach brings a number of benefits to organisations, implementing a multi-cloud also entails a number of challenges. These include:
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row--25-75-on-large">
-    <div class="col">
-      <hr class="is-muted u-hide--small u-hide--medium" />
-      <div class="p-equal-height-row">
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <hr class="is-muted u-hide--small u-hide--medium" />
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
                 alt="Compatibility",
                 width="64",
@@ -248,16 +260,18 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Compatibility</h4>
+            <p class="p-equal-height-row__item">
+              Since various cloud platforms may use different application programming interfaces (APIs) and architectures, managing workloads in a multi-cloud model is challenging. Using <a href="https://juju.is">applications management software that is substrate-agnostic</a> helps to bypass those challenges, ensuring compatibility across various cloud providers.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Compatibility</h4>
-          <p class="p-equal-height-row__item">Since various cloud platforms may use different application programming interfaces (APIs) and architectures, managing workloads in a multi-cloud model is challenging. Using <a href="https://juju.is">applications management software that is substrate-agnostic</a> helps to bypass those challenges, ensuring compatibility across various cloud providers.</p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
                 alt="Servers",
                 width="143",
@@ -265,16 +279,18 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Increased complexity</h4>
+            <p class="p-equal-height-row__item">
+              With multi-cloud there is no longer a single cloud environment. There are at least two. This increases the complexity of the infrastructure and creates additional overhead for the cloud operations team. One way to deal with this is to leverage <a href="/openstack/managed">managed cloud services</a>.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Increased complexity</h4>
-              <p class="p-equal-height-row__item">With multi-cloud there is no longer a single cloud environment. There are at least two. This increases the complexity of the infrastructure and creates additional overhead for the cloud operations team. One way to deal with this is to leverage <a href="/openstack/managed">managed cloud services</a>.</p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
                 alt="Shields security",
                 width="112",
@@ -282,198 +298,223 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <h4 class="p-heading--5 p-equal-height-row__item">Greater attack surface</h4>
+            <p class="p-equal-height-row__item">
+              When using multiple cloud platforms at the same time, organisations are much more exposed to potential network attacks and security breaches. Using an <a href="/security">operating system that provides the highest possible level of security</a> as a basis for applications implementation helps to mitigate this threat.
+            </p>
           </div>
-          <h4 class="p-heading--5 p-equal-height-row__item">Greater attack surface</h4>
-          <p class="p-equal-height-row__item">When using multiple cloud platforms at the same time, organisations are much more exposed to potential network attacks and security breaches. Using an <a href="/security">operating system that provides the highest possible level of security</a> as a basis for applications implementation helps to mitigate this threat.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-section">
-  <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Is multi-cloud right for you?</h2>
-    </div>
-    <div class="col">
-      <h4 class="p-heading--5">The main reason behind multi-cloud existence is better economics compared to a single vendor model.</h4>
-      <p>Consuming services from more than one service provider at the same time allows organisations to negotiate better prices and always place their workloads where it makes the most sense from an economical standpoint. In addition, integrating with hybrid cloud architecture enables them to host the majority of their workloads in a private cloud and only using highly-scalable public cloud resources during heavy load periods. Since <a href="/engage/cloud-pricing-report-2021">private clouds prove to be more cost-effective</a> when running workloads in the long term and at scale, this approach allows for maximum infrastructure cost optimisation and results in long-term cost savings.</p>
-      <hr class="is-muted" />
-      <p><a href="/openstack/tco-calculator">Get cost estimates for an enterprise private cloud on Ubuntu&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="p-section--shallow">
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Multi-cloud use cases</h2>
+        <h2>Is multi-cloud right for you?</h2>
       </div>
       <div class="col">
-        <p>Among hundreds of possibilities, typical multi-cloud use cases include:</p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Optimising infrastructure costs</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Always run your workloads where it makes the most sense from an economical standpoint. This may involve negotiating prices with leading public cloud providers or implementing a private cloud on-premises.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Running various types of workloads</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Always use a cloud platform that is most suitable for your workloads. Workloads may be heterogeneous, including bare metal ones, VMs, containers, etc.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Implementing geo redundancy</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Using various public clouds or a mix of public and private clouds helps to ensure application geo redundancy and meet bandwidth, and latency goals in all parts of the world.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Architecting disaster recovery</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Using multiple cloud platforms is just another layer in designing your disaster recovery plan. Use more than one to ensure your business continues to function after an unexpected event.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Moving to the cloud incrementally</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Migrating from one cloud platform to the other does not have to happen in a day. Move incrementally, while using both at the same time for a while.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Ensuring data sovereignty</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Due to internal organisation’s regulations, confidential data might always have to be stored on-premises. Using the multi-cloud model enables you to ensure the sovereignty of your data while running other workloads in the public cloud.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="p-section--shallow">
-    <div class="row--50-50">
-    <hr class="p-rule" />
-    <div class="col">
-      <h2>Multi-cloud architecture</h2>
-    </div>
-    <div class="col">
-      <p>Multicloud leverages existing infrastructure components with an additional layer of applications management software that provides workload orchestration capabilities. In principle, multi-cloud consists of the following components:</p>
-    </div>
-  </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">At least two different cloud platforms</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>These can be leading public clouds, local ones built to bypass the <a href="/engage/public-cloud-openstack-implementation">challenges of hyperscalers</a> that organisations face in some parts of the world, private clouds, <a href="https://maas.io">bare metal clouds</a> or <a href="/kubernetes">Kubernetes clusters</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <h5 class="u-no-margin--bottom u-no-padding--top">Application management software</h5>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Enables <a href="https://juju.is">deploying, integrating and managing</a> Kubernetes, container and VM-native applications seamlessly across various cloud platforms.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-        </div>
-        <div class="col-6 col-medium-3">    
-          <p>
-          When combined with the <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a>, multi-cloud can be also integrated with the HCM software to enable dynamic placement of the workloads depending on capacity and cost conditions.
+        <h4 class="p-heading--5">
+          The main reason behind multi-cloud existence is better economics compared to a single vendor model.
+        </h4>
+        <p>
+          Consuming services from more than one service provider at the same time allows organisations to negotiate better prices and always place their workloads where it makes the most sense from an economical standpoint. In addition, integrating with hybrid cloud architecture enables them to host the majority of their workloads in a private cloud and only using highly-scalable public cloud resources during heavy load periods. Since <a href="/engage/cloud-pricing-report-2021">private clouds prove to be more cost-effective</a> when running workloads in the long term and at scale, this approach allows for maximum infrastructure cost optimisation and results in long-term cost savings.
         </p>
+        <hr class="is-muted" />
+        <p>
+          <a href="/openstack/tco-calculator">Get cost estimates for an enterprise private cloud on Ubuntu&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Multi-cloud use cases</h2>
+        </div>
+        <div class="col">
+          <p>Among hundreds of possibilities, typical multi-cloud use cases include:</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="p-section">
-  <div class="p-section--shallow">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>How to build a multi-cloud</h2>
-      </div>
-      <div class="col">
-        <p>Building a multi-cloud usually entails a number of challenges:</p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Optimising infrastructure costs</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Always run your workloads where it makes the most sense from an economical standpoint. This may involve negotiating prices with leading public cloud providers or implementing a private cloud on-premises.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row--25-75-on-large">
-    <div class="col">
-      <hr class="is-muted u-hide--small u-hide--medium" />
-      <div class="p-equal-height-row">
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Running various types of workloads</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Always use a cloud platform that is most suitable for your workloads. Workloads may be heterogeneous, including bare metal ones, VMs, containers, etc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Implementing geo redundancy</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Using various public clouds or a mix of public and private clouds helps to ensure application geo redundancy and meet bandwidth, and latency goals in all parts of the world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Architecting disaster recovery</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Using multiple cloud platforms is just another layer in designing your disaster recovery plan. Use more than one to ensure your business continues to function after an unexpected event.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Moving to the cloud incrementally</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Migrating from one cloud platform to the other does not have to happen in a day. Move incrementally, while using both at the same time for a while.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Ensuring data sovereignty</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Due to internal organisation’s regulations, confidential data might always have to be stored on-premises. Using the multi-cloud model enables you to ensure the sovereignty of your data while running other workloads in the public cloud.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Multi-cloud architecture</h2>
+        </div>
+        <div class="col">
+          <p>
+            Multicloud leverages existing infrastructure components with an additional layer of applications management software that provides workload orchestration capabilities. In principle, multi-cloud consists of the following components:
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">At least two different cloud platforms</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              These can be leading public clouds, local ones built to bypass the <a href="/engage/public-cloud-openstack-implementation">challenges of hyperscalers</a> that organisations face in some parts of the world, private clouds, <a href="https://maas.io">bare metal clouds</a> or <a href="/kubernetes">Kubernetes clusters</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <h5 class="u-no-margin--bottom u-no-padding--top">Application management software</h5>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Enables <a href="https://juju.is">deploying, integrating and managing</a> Kubernetes, container and VM-native applications seamlessly across various cloud platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2"></div>
+          <div class="col-6 col-medium-3">
+            <p>
+              When combined with the <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a>, multi-cloud can be also integrated with the HCM software to enable dynamic placement of the workloads depending on capacity and cost conditions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>How to build a multi-cloud</h2>
+        </div>
+        <div class="col">
+          <p>Building a multi-cloud usually entails a number of challenges:</p>
+        </div>
+      </div>
+    </div>
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <hr class="is-muted u-hide--small u-hide--medium" />
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
                 alt="Cloud",
                 width="61",
@@ -481,15 +522,17 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <p class="p-equal-height-row__item">
+              <a href="/openstack/compare">What cloud platform to standardise on?</a>
+            </p>
           </div>
-          <p class="p-equal-height-row__item"><a href="/openstack/compare">What cloud platform to standardise on?</a></p>
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
                 alt="Architecture",
                 width="70",
@@ -497,15 +540,17 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <p class="p-equal-height-row__item">
+              <a href="/engage/dell-openstack-reference-architecture">Which architecture to follow for private cloud implementation?</a>
+            </p>
           </div>
-          <p class="p-equal-height-row__item"><a href="/engage/dell-openstack-reference-architecture">Which architecture to follow for private cloud implementation?</a></p> 
-        </div>
-        <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item">
-            <div class="p-media-container">
-              {{ image (
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container">
+                {{ image (
                 url="https://assets.ubuntu.com/v1/cf4fdaba-Frame.svg",
                 alt="Frame",
                 width="57",
@@ -513,42 +558,47 @@
                 hi_def=True,
                 loading="lazy"
                 ) | safe
-              }}
+                }}
+              </div>
             </div>
+            <p class="p-equal-height-row__item">
+              <a href="https://juju.is">How to manage workloads in a multi-cloud environment?</a>
+            </p>
           </div>
-          <p class="p-equal-height-row__item"><a href="https://juju.is">How to manage workloads in a multi-cloud environment?</a></p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>These are just a few examples of questions organisations have to ask themselves at the beginning of their multi-cloud journey. Fortunately, there are <a href="https://microstack.run">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, platform integrators like Canonical offer <a href="/openstack/consulting">consulting services for private cloud implementation</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, private cloud deployment, workloads migration and multi-cloud integration.</p>
-          <hr class="is-muted" />
-          <p><a href="/openstack/consulting#get-in-touch">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a></p>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2"></div>
+          <div class="col-6 col-medium-3">
+            <p>
+              These are just a few examples of questions organisations have to ask themselves at the beginning of their multi-cloud journey. Fortunately, there are <a href="https://microstack.run">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, platform integrators like Canonical offer <a href="/openstack/consulting">consulting services for private cloud implementation</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, private cloud deployment, workloads migration and multi-cloud integration.
+            </p>
+            <hr class="is-muted" />
+            <p>
+              <a href="/openstack/consulting#get-in-touch">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-deep u-no-padding--top">
-  <div class="p-section--shallow u-fixed-width">
-    <hr class="p-rule" />
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="p-section--shallow u-fixed-width">
+      <hr class="p-rule" />
       <h2>All you need for your multi-cloud</h2>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <div>
-            {{
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <div>
+              {{
               image (
               url="https://assets.ubuntu.com/v1/8c223290-Canonical-OpenStack-2022-LRG.png",
               alt="",
@@ -557,24 +607,28 @@
               hi_def=True,
               loading="lazy"
               ) | safe
-            }}
+              }}
+            </div>
           </div>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Canonical OpenStack is an enterprise cloud platform engineered for price-performance that serves as a cost-effective extension to hyperscale infrastructure.</p>
-          <hr class="is-muted" />
-          <p><a href="/openstack/">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a></p>
+          <div class="col-6 col-medium-3">
+            <p>
+              Canonical OpenStack is an enterprise cloud platform engineered for price-performance that serves as a cost-effective extension to hyperscale infrastructure.
+            </p>
+            <hr class="is-muted" />
+            <p>
+              <a href="/openstack/">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
-      <hr class="is-muted" />
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          <div>
-            {{
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-5 col-start-medium-2">
+        <hr class="is-muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <div>
+              {{
               image (
               url="https://assets.ubuntu.com/v1/3c4a2ba6-Canonical-Charmhub-2022.svg",
               alt="",
@@ -583,16 +637,20 @@
               hi_def=True,
               loading="lazy"
               ) | safe
-            }}
+              }}
+            </div>
           </div>
-        </div>
-        <div class="col-6 col-medium-3">
-          <p>Charmed Operators are small artefacts which package common maintenance functions, to turn Day 0 to Day 2 operations into repeatable and reliable code.</p>
-          <hr class="is-muted" />
-          <p><a href="https://charmhub.io/">Learn more about Charmed Operators&nbsp;&rsaquo;</a></p>
+          <div class="col-6 col-medium-3">
+            <p>
+              Charmed Operators are small artefacts which package common maintenance functions, to turn Day 0 to Day 2 operations into repeatable and reliable code.
+            </p>
+            <hr class="is-muted" />
+            <p>
+              <a href="https://charmhub.io/">Learn more about Charmed Operators&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section> 
+  </section>
 {% endblock content %}
