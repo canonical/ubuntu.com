@@ -97,7 +97,6 @@ function setUpStaticForms(form, formId) {
         }
 
         inputs.forEach(function (input) {
-          var question = input.name.split("-").join(" ");
           switch (input.type) {
             case "radio":
               if (input.checked) {

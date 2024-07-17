@@ -9,7 +9,7 @@
 {% block body_class %}is-paper{% endblock %}
 
 {% block content %}
-  <section class="p-section--hero u-no-padding--bottom">
+  <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
         <h1>Run real-time Ubuntu in production</h1>
@@ -23,9 +23,7 @@
   </section>
 
   <section class="p-strip">
-    <form action="/marketo/submit"
-          method="post"
-          id="mktoForm_4914">
+    <form action="/marketo/submit" method="post" id="mktoForm_4914">
 
       <div class="p-section">
         <hr class="is-fixed-width" />
@@ -40,7 +38,8 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="your-industry-is-label">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="your-industry-is-label">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2 js-formfield-title" id="your-industry-is-label">In which industry do you operate?</legend>
@@ -101,7 +100,8 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="architecture-legend">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="architecture-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2 js-formfield-title" id="architecture-legend">Which architecture are you using?</legend>
@@ -146,10 +146,14 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="meeting-latency-requirements-legend">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="meeting-latency-requirements-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title" id="meeting-latency-requirements-legend">How are you currently meeting your latency requirements?</legend>
+              <legend class="p-heading--2 js-formfield-title"
+                      id="meeting-latency-requirements-legend">
+                How are you currently meeting your latency requirements?
+              </legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -209,10 +213,13 @@
       </div>
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield js-toggle-checkbox-visibility" aria-labelledby="ubuntu-versions-legend">
+        <fieldset class="p-fieldset-section js-formfield js-toggle-checkbox-visibility"
+                  aria-labelledby="ubuntu-versions-legend">
           <div class="row--50-50">
             <div class="col">
-              <label class="p-heading--2 js-formfield-title" id="ubuntu-versions-legend">If you use Ubuntu, which version(s) are you using?</label>
+              <label class="p-heading--2 js-formfield-title" id="ubuntu-versions-legend">
+                If you use Ubuntu, which version(s) are you using?
+              </label>
             </div>
             <div class="col">
               <div class="u-sv3">
@@ -305,10 +312,13 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield js-required-checkbox" aria-required="true" aria-labelledby="kind-of-device-legend">
+        <fieldset class="p-fieldset-section js-formfield js-required-checkbox"
+                  aria-required="true"
+                  aria-labelledby="kind-of-device-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title is-required" id="kind-of-device-legend">What kind of device are you using?</legend>
+              <legend class="p-heading--2 js-formfield-title is-required"
+                      id="kind-of-device-legend">What kind of device are you using?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -358,7 +368,8 @@
                   aria-required="true">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title is-required" id="how-many-machines-legend">How many devices?</legend>
+              <legend class="p-heading--2 js-formfield-title is-required"
+                      id="how-many-machines-legend">How many devices?</legend>
             </div>
             <div class="col">
               <label class="p-radio">
@@ -410,10 +421,12 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="how-do-you-consume-open-source-legend">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="how-do-you-consume-open-source-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title" id="how-do-you-consume-open-source-legend">How do you consume open source?</legend>
+              <legend class="p-heading--2 js-formfield-title"
+                      id="how-do-you-consume-open-source-legend">How do you consume open source?</legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -451,10 +464,14 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="hardening-requirements-legend">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="hardening-requirements-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title" id="hardening-requirements-legend">Do you have specific compliance or hardening requirements?</legend>
+              <legend class="p-heading--2 js-formfield-title"
+                      id="hardening-requirements-legend">
+                Do you have specific compliance or hardening requirements?
+              </legend>
             </div>
             <div class="col">
               <label class="p-checkbox">
@@ -520,10 +537,12 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section js-formfield" aria-labelledby="responsible-for-tracking-legend">
+        <fieldset class="p-fieldset-section js-formfield"
+                  aria-labelledby="responsible-for-tracking-legend">
           <div class="row--50-50">
             <div class="col">
-              <legend class="p-heading--2 js-formfield-title" id="responsible-for-tracking-legend">
+              <legend class="p-heading--2 js-formfield-title"
+                      id="responsible-for-tracking-legend">
                 Who is responsible for tracking, testing and applying CVE patches in a timely manner?
               </legend>
             </div>
@@ -578,7 +597,9 @@
 
       <div class="p-section">
         <hr class="is-fixed-width" />
-        <fieldset class="p-fieldset-section" id="about-you" aria-labelledby="about-you-legend">
+        <fieldset class="p-fieldset-section"
+                  id="about-you"
+                  aria-labelledby="about-you-legend">
           <div class="row--50-50">
             <div class="col">
               <legend class="p-heading--2" id="about-you-legend">How should we get in touch?</legend>
