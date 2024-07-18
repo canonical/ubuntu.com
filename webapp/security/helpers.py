@@ -1,105 +1,89 @@
-from collections import Counter
-
-
-def get_summarized_status(cve, ignored_low_indicators, vulnerable_indicators):
+def get_summarized_status(
+    cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+):
     """
     Return the summarized status for a CVE
     """
 
-    more_packages = False
-    if len(cve["packages"]) > 1:
-        more_packages = True
+    status_count = {
+        "ignored": 0,
+        "ignored-high": 0,
+        "ignored-low": 0,
+        "needs-triage": 0,
+        "not-affected": 0,
+        "vulnerable": 0,
+        "released": 0,
+        "DNE": 0,
+    }
+
+    package_count = 0
 
     for package in cve["packages"]:
-        """
-        Check if all statuses for all packages are the same,
-        excluding DNE and empty data
-        """
-        # TODO: Fix this logic, causing false flags in summarized status
-        # if (
-        #     len(
-        #         {
-        #             d["status"]
-        #             for d in package["statuses"]
-        #             if d["status"] not in {"DNE", ""}
-        #         }
-        #     )
-        #     == 1
-        # ):
-        #     cve["summarized_status"] = {
-        #         "name": cve["packages"][0]["statuses"][0]["status"]
-        #     }
-        # else:
-        """
-        Considered ignored_low if status is ignored and
-        status description contains any of the indicators
-        """
+        package_count += len(package["statuses"])
         for status in package["statuses"]:
-            if "ignored" in status["status"]:
-                if any(
-                    indicator in status["description"].lower()
-                    for indicator in ignored_low_indicators
-                ):
-                    status["status"] = "ignored-low"
-        if len(
-            {
-                d["status"]
-                for d in package["statuses"]
-                if d["status"] not in {"DNE", "ignored-low"}
-            }
-        ) == len("not-affected"):
-            cve["summarized_status"] = {"name": "Not affected"}
-        # Ignoring "DNE", "not-affected", and "ignored-low" statuses
-        # check if all other statuses are "released"
-        elif len(
-            {
-                d["status"] == "released"
-                for d in package["statuses"]
-                if d["status"] not in {"DNE", "not-affected", "ignored-low"}
-            }
-        ) == len("released"):
-            cve["summarized_status"] = {"name": "Fixed"}
-
-        # If any package status is released,
-        # count how many packages have that status
-        elif any(d["status"] == "released" for d in package["statuses"]):
-            if more_packages:
-                total_fixed = 0
-                total_fixable = 0
-                for package in cve["packages"]:
-                    for status in package["statuses"]:
-                        if status["status"] == "released":
-                            total_fixed += 1
-                        elif status["status"] not in {
-                            "DNE",
-                            "not-affected",
-                        }:
-                            total_fixable += 1
+            if status["release_codename"] != "upstream":
+                description = status["description"].lower()
+                if status["status"] == "ignored":
+                    if any(
+                        indicator in description
+                        for indicator in ignored_low_indicators
+                    ):
+                        status_count["ignored-low"] += 1
+                    else:
+                        status_count["ignored-high"] += 1
+                elif status["status"] == "released":
+                    status_count["released"] += 1
+                elif status["status"] in vulnerable_indicators:
+                    status_count["vulnerable"] += 1
+                elif status["status"] == "needs-triage":
+                    status_count["needs-triage"] += 1
+                elif status["status"] == "not-affected":
+                    status_count["not-affected"] += 1
+                elif status["status"] == "DNE":
+                    status_count["DNE"] += 1
             else:
-                fixed_count = Counter(
-                    d["status"]
-                    for d in package["statuses"]
-                    if d["status"] == "released"
-                )
-                total_fixed = fixed_count["released"]
-                total_fixable = len(package["statuses"])
+                # Exclude upstream release from package count
+                package_count -= 1
 
+    # Check if all statuses are the same
+    count = 0
+    for key, value in status_count.items():
+        if key != "DNE" and value > 0:
+            count += 1
+            key_with_non_zero_value = key
+
+    if count == 1:
+        cve["summarized_status"] = friendly_names[key_with_non_zero_value]
+    else:
+        """
+        Calculate the number of cases that are “Fixable”, which is the total
+        number of cases minus “Not in release”, “Not affected”
+        and “Ignored (Low)”.
+        """
+        total_fixable = (
+            package_count
+            - status_count["DNE"]
+            - status_count["not-affected"]
+            - status_count["ignored-low"]
+        )
+
+        if total_fixable and status_count["released"] == total_fixable:
+            cve["summarized_status"] = friendly_names["released"]
+        elif total_fixable and status_count["vulnerable"] == total_fixable:
+            cve["summarized_status"] = friendly_names["vulnerable"]
+        elif total_fixable and status_count["not-affected"] == total_fixable:
+            cve["summarized_status"] = friendly_names["not-affected"]
+        elif status_count["released"] > 0:
             cve["summarized_status"] = {
                 "name": "Some fixed",
-                "fixed_count": total_fixed,
-                "total_count": total_fixable,
+                "fixed_count": status_count["released"],
+                "fixable_count": total_fixable,
             }
-
-        elif any(
-            d["status"] in vulnerable_indicators for d in package["statuses"]
-        ):
-            cve["summarized_status"] = {
-                "name": "Vulnerable",
-            }
-
-        elif any(d["status"] == "needs-triage" for d in package["statuses"]):
-            cve["summarized_status"] = {
-                "name": "Needs evaluation",
-            }
+        elif status_count["vulnerable"] > 0:
+            cve["summarized_status"] = friendly_names["vulnerable"]
+        elif status_count["needs-triage"] > 0:
+            cve["summarized_status"] = friendly_names["needs-triage"]
+        elif status_count["DNE"] > 0:
+            cve["summarized_status"] = friendly_names["DNE"]
 
     return cve["summarized_status"]
