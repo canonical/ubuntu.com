@@ -40,31 +40,24 @@
       {% with section=nav_sections.security %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
-      {% with section=nav_sections.desktop %}
+      {% with section=nav_sections.landscape %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
-      {% with section=nav_sections.server %}
-        {% include 'templates/_footer_item.html' %}
-      {% endwith %}
-      {% with section=nav_sections.security %}
+      {% with section=nav_sections.containers %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
       {% with section=nav_sections.download %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
-      {% with section=nav_sections.observability %}
-        {% include 'templates/_footer_item.html' %}
-      {% endwith %}
-      {% with section=nav_sections.appliance %}
-        {% include 'templates/_footer_item.html' %}
-      {% endwith %}
       {% with section=nav_sections.support %}
+        {% include 'templates/_footer_item.html' %}
+      {% endwith %}
+      {% with section=nav_sections.observability %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
       {% with section=nav_sections.pricing %}
         {% include 'templates/_footer_item.html' %}
       {% endwith %}
-
     <!-- The following 3 sections are custom and cannot be pulled from nav.yaml -->
     <div class="row">
       <hr class="p-rule is-muted" />
@@ -119,42 +112,6 @@
       </div>
     </div>
 
-    <div class="row">
-      <hr class="p-rule is-muted" />
-      <div class="col-3 col-medium-2">
-        <h2 class="p-heading--5">
-          More
-        </h2>
-      </div>
-      <div class="col-9 col-medium-4">
-        <ul class="p-inline-list p-footer-list u-responsive-realign">
-          <li class="p-inline-list__item">
-            <a href="/containers">Containers</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/tutorial">Tutorials</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/18-04">18.04</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/16-04">16.04</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/model-driven-operations">Model-driven operations</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/landscape">Landscape</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/embedding">Embedding Programme</a>
-          </li>
-          <li class="p-inline-list__item">
-            <a href="/user-research">User research</a>
-          </li>
-        </ul>
-      </div>
-    </div>
     </nav>
 
     <nav aria-label="Resources navigation">
