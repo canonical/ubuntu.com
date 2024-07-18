@@ -10,7 +10,9 @@
   https://docs.google.com/document/d/1nWsDaRiUzaupjKDzu1ZqjlmxHGv2HCgW8oBBEacYFLs/edit#
 {% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
   <section class="p-section--hero">
@@ -126,16 +128,10 @@
         <div class="p-equal-height-row">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
-                alt="Long-term cost savings",
-                width="64",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/d399db60-save-money.svg"
+                     alt="Long-term cost savings" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Long-term cost savings</h4>
@@ -145,16 +141,12 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
-                alt="Multi Cloud",
-                width="113",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-equal-height-row__item">
+                <div class="p-image-container--2-3 is-highlighted">
+                  <img class="p-image-container__image"
+                       src="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg"
+                       alt="Multi Cloud" />
+                </div>
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Increased flexibility</h4>
@@ -164,16 +156,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/86f2a978-vendor-lock-in.svg",
-                alt="Vendor lock-in",
-                width="92",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/86f2a978-vendor-lock-in.svg"
+                     alt="Vendor lock-in" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Reduced vendor lock-in</h4>
@@ -186,16 +172,10 @@
         <div class="p-equal-height-row">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/0e6c0ffc-Reliability.svg",
-                alt="Reliability",
-                width="53",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/0e6c0ffc-Reliability.svg"
+                     alt="Reliability" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Improved reliability</h4>
@@ -205,16 +185,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/c0a3f3e0-Continuity.svg",
-                alt="Continuity",
-                width="70",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/c0a3f3e0-Continuity.svg"
+                     alt="Continuity" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Business continuity</h4>
@@ -247,16 +221,10 @@
         <div class="p-equal-height-row">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
-                alt="Compatibility",
-                width="64",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/69aaa876-compliance.svg"
+                     alt="Compatibility" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Compatibility</h4>
@@ -266,16 +234,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
-                alt="Servers",
-                width="143",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/5eebb138-Servers.svg"
+                     alt="Servers" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Increased complexity</h4>
@@ -285,16 +247,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-                alt="Shields security",
-                width="112",
-                height="64",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/338124d1-shields-security.svg"
+                     alt="Shields security" />
               </div>
             </div>
             <h4 class="p-heading--5 p-equal-height-row__item">Greater attack surface</h4>
@@ -509,16 +465,10 @@
         <div class="p-equal-height-row">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-                alt="Cloud",
-                width="61",
-                height="40",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg"
+                     alt="Cloud" />
               </div>
             </div>
             <p class="p-equal-height-row__item">
@@ -527,16 +477,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
-                alt="Architecture",
-                width="70",
-                height="40",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/23cbb344-Design.png"
+                     alt="Architecture" />
               </div>
             </div>
             <p class="p-equal-height-row__item">
@@ -545,16 +489,10 @@
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container">
-                {{ image (
-                url="https://assets.ubuntu.com/v1/cf4fdaba-Frame.svg",
-                alt="Frame",
-                width="57",
-                height="40",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-                }}
+              <div class="p-image-container--2-3 is-highlighted">
+                <img class="p-image-container__image"
+                     src="https://assets.ubuntu.com/v1/cf4fdaba-Frame.svg"
+                     alt="Frame" />
               </div>
             </div>
             <p class="p-equal-height-row__item">
@@ -598,8 +536,7 @@
               image (
               url="https://assets.ubuntu.com/v1/8c223290-Canonical-OpenStack-2022-LRG.png",
               alt="",
-              width="284",
-              height="87",
+              width="124",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -628,8 +565,7 @@
               image (
               url="https://assets.ubuntu.com/v1/3c4a2ba6-Canonical-Charmhub-2022.svg",
               alt="",
-              width="260",
-              height="80",
+              width="124",
               hi_def=True,
               loading="lazy"
               ) | safe
