@@ -1214,7 +1214,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response=json)
-@credentials_group()
+# @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     per_page = 10
     page = int(flask.request.args.get("page", 1)) - 1
