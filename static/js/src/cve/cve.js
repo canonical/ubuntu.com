@@ -28,7 +28,7 @@ const showPackagesLinks = document.querySelectorAll(".js-show-packages");
 const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
 const detailedSwitch = document.querySelector(".js-detailed-switch");
 const detailedTables = document.querySelectorAll(".detailed-table");
-const cveDescs = document.querySelectorAll(".cve-desc");
+const cveDescs = document.querySelectorAll(".cve-summary");
 // eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
   (release) => release.codename
