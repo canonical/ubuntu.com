@@ -350,12 +350,6 @@ def cve_index():
     ]
     vulnerable_indicators = ["needed", "pending", "deferred"]
 
-    for cve in high_priority_cves:
-        cve["summarized_status"] = {}
-        get_summarized_status(
-            cve, ignored_low_indicators, vulnerable_indicators
-        )
-
     # Check if cve id is valid
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
@@ -389,7 +383,7 @@ def cve_index():
             release["release_date"], "%Y-%m-%dT%H:%M:%S"
         )
 
-        # ilter releases
+        # filter releases
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
@@ -419,13 +413,6 @@ def cve_index():
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
-    """
-    TODO: Lines 407-417 and 422-430 are commented out because they will
-    be needed for the detailed view of the cve card
-    BUT currently cause errors as that has not been implemented in
-    this branch yet.
-    """
-
     # Format summarized statuses
     friendly_names = {
         "DNE": {"name": "Not in release", "icon": None},
@@ -436,13 +423,21 @@ def cve_index():
         "pending": {"name": "Vulnerable", "icon": "warning"},
         "ignored": {"name": "Ignored", "icon": "error-grey"},
         "released": {"name": "Fixed", "icon": "success"},
+        "vulnerable": {"name": "Vulnerable", "icon": "warning"},
     }
 
+    for cve in high_priority_cves:
+        cve["summarized_status"] = {}
+        get_summarized_status(
+            cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+        )
+
     for cve in cves:
-        # cve["summarized_status"] = {}
-        # get_summarized_status(
-        #     cve, ignored_low_indicators, vulnerable_indicators
-        # )
+        cve["summarized_status"] = {}
+        get_summarized_status(
+            cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+        )
+
         for cve_package in cve["packages"]:
             cve_package["release_statuses"] = {}
             for status in cve_package["statuses"]:
