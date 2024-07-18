@@ -10,8 +10,10 @@
   https://docs.google.com/document/d/1nWsDaRiUzaupjKDzu1ZqjlmxHGv2HCgW8oBBEacYFLs/edit#
 {% endblock meta_copydoc %}
 
+{% block body_class %}is-paper{% endblock body_class %}
+
 {% block content %}
-  <section class="p-strip is-shallow u-no-padding--bottom">
+  <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
         <h1>What is multi-cloud?</h1>
@@ -30,21 +32,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="u-hide--small u-vertically-center u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/2313b800-Canonical-MicroCloud.png",
-        alt="Multi-Cloud",
-        width="1232",
-        height="514",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-        }}
+      <div class="p-image-container--cinematic u-hide--small u-vertically-center u-align--center">
+        <img class="p-image-container__image"
+             src="https://assets.ubuntu.com/v1/2313b800-Canonical-MicroCloud.png"
+             alt="" />
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
@@ -83,7 +79,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Is every hybrid cloud a multi-cloud?</h5>
+            <h5>Is every hybrid cloud a multi-cloud?</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -98,7 +94,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Is every multi-cloud a hybrid cloud?</h5>
+            <h5>Is every multi-cloud a hybrid cloud?</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -349,7 +345,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Optimising infrastructure costs</h5>
+            <h5>Optimising infrastructure costs</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -364,7 +360,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Running various types of workloads</h5>
+            <h5>Running various types of workloads</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -379,7 +375,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Implementing geo redundancy</h5>
+            <h5>Implementing geo redundancy</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -394,7 +390,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Architecting disaster recovery</h5>
+            <h5>Architecting disaster recovery</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -409,7 +405,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Moving to the cloud incrementally</h5>
+            <h5>Moving to the cloud incrementally</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -424,7 +420,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Ensuring data sovereignty</h5>
+            <h5>Ensuring data sovereignty</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -455,7 +451,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">At least two different cloud platforms</h5>
+            <h5>At least two different cloud platforms</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
@@ -470,7 +466,7 @@
         <hr class="is-muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <h5 class="u-no-margin--bottom u-no-padding--top">Application management software</h5>
+            <h5>Application management software</h5>
           </div>
           <div class="col-6 col-medium-3">
             <p>
