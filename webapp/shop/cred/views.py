@@ -1216,16 +1216,19 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response=json)
 # @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
-    per_page = 10
-    page = int(flask.request.args.get("page", 1)) - 1
-    exam_state = flask.request.args.get("state", None)
-    first_results = trueability_api.get_results(
-        per_page=per_page, state=exam_state
-    )
-    last_page = first_results["meta"]["total_pages"]
-    latest_results = trueability_api.get_results(
-        page=last_page - page, per_page=per_page, state=exam_state
-    )
+    try:    
+        per_page = 10
+        page = int(flask.request.args.get("page", 1)) - 1
+        exam_state = flask.request.args.get("state", None)
+        first_results = trueability_api.get_results(
+            per_page=per_page, state=exam_state
+        )
+        last_page = first_results["meta"]["total_pages"]
+        latest_results = trueability_api.get_results(
+            page=last_page - page, per_page=per_page, state=exam_state
+        )
+    except Exception as error:
+        latest_results = {"error": error}
     return flask.jsonify(latest_results)
 
 
