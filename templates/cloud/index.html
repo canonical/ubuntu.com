@@ -14,6 +14,10 @@
   https://docs.google.com/document/d/1DJZFADvRr_hrHzRWJrUTJxAM2ocZJ_ZWEnQVdKi6JBE/edit#
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row--50-50">
@@ -36,14 +40,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="u-hide--small u-vertically-center u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/ab87e245-Private-v-Public-Mulit-Cloud.svg",
-                alt="Private vs public cloud",
-                width="350",
-                height="300",
-                hi_def=True,
-                loading="auto",) | safe
-        }}
+      <div class=".p-image-container--cinematic u-hide--small u-vertically-center u-align--center">
+        <img class="p-image-container__image"
+             src="https://assets.ubuntu.com/v1/7e91f563-image.png"
+             alt="" />
       </div>
     </div>
   </section>
