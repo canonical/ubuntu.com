@@ -1231,7 +1231,13 @@ def cred_dashboard_exam_results(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response=json)
 # @credentials_group()
-def cred_dashboard_system_statuses(trueability_api, **_):
+def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
     ta_status = trueability_api.get_system_status()
-    statuses = {"ta_status": ta_status}
+    contracts_status = {}
+    try:
+        ua_contracts_api.get_product_listings("canonical-cube")
+        contracts_status = {"error": False}
+    except Exception:
+        contracts_status = {"error": True}
+    statuses = {"ta_status": ta_status, "contracts_status": contracts_status}
     return flask.jsonify(statuses)

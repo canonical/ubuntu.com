@@ -50,8 +50,9 @@ const Sidebar = () => {
     };
 
     if (statuses && !isError) {
-      const { ta_status } = statuses;
+      const { ta_status, contracts_status } = statuses;
       status["Trueability"] = !ta_status.error;
+      status["Contracts"] = !contracts_status.error;
     }
     return status;
   }, [statuses]);
@@ -164,6 +165,26 @@ const Sidebar = () => {
                                 <i
                                   className={`p-icon--${
                                     systemStatus["Trueability"]
+                                      ? "success"
+                                      : "error"
+                                  } is-light`}
+                                ></i>
+                              )}
+                            </div>
+                          </div>
+                        </li>
+                        <li className="p-side-navigation__item">
+                          <div className="p-side-navigation__link">
+                            <span className="p-side-navigation__label">
+                              Contracts API
+                            </span>
+                            <div className="p-side-navigation__status">
+                              {isLoading ? (
+                                <i className="p-icon--spinner u-animation--spin is-light"></i>
+                              ) : (
+                                <i
+                                  className={`p-icon--${
+                                    systemStatus["Contracts"]
                                       ? "success"
                                       : "error"
                                   } is-light`}
