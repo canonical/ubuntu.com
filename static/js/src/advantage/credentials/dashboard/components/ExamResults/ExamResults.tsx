@@ -72,7 +72,7 @@ const ExamResults = (props: IProps) => {
   if (isError) {
     return (
       <Notification severity="negative" title="Error">
-        Something went wrong. Please try again later.
+        {data?.error || "An error occurred while fetching exam results."}
       </Notification>
     );
   }
