@@ -38,6 +38,12 @@ const Sidebar = () => {
         icon: "p-icon--plans",
         isActive: location.pathname === "/credly",
       },
+      {
+        to: "/test-taker-stats",
+        label: "Test Taker Stats",
+        icon: "p-icon--user",
+        isActive: location.pathname === "/test-taker-stats",
+      },
     ];
   }, [location.pathname]);
 

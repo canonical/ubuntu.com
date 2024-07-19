@@ -16,3 +16,10 @@ export type CredlyBadge = {
   issued_to: string;
   recipient_email: string;
 };
+
+export type Assessment = {
+  id: number;
+  address: {
+    country_code: string;
+  }
+};

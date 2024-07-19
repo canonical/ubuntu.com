@@ -1103,6 +1103,21 @@ def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges(filter, sort, page)
     return flask.jsonify(badges)
 
+@shop_decorator(area="cred", permission="user", response=json)
+# @credentials_group()
+def get_test_taker_stats(trueability_api, **kwargs):
+    addresses = []
+    assessments = trueability_api.get_assessments()
+    meta = assessments["meta"]
+    next_page = meta.get("next_page", None)
+    addresses.extend(assessments["assessments"])
+    while next_page:
+        assessments = trueability_api.get_assessments(page=next_page)
+        next_page = assessments["meta"].get("next_page", None)
+        addresses.extend(assessments["assessments"])
+
+    return flask.jsonify(addresses)
+
 
 @shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):

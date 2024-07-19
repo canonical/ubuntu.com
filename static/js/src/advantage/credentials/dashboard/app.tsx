@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import Exams from "./routes/Exams";
 import Keys from "./components/Keys/Keys";
 import Credly from "./components/Credly/Credly";
+import TestTakers from "./components/TestTakers/TestTakers";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -53,6 +54,7 @@ function App() {
                   <Route path="/exams" element={<Exams />} />
                   <Route path="/keys" element={<Keys />} />
                   <Route path="/credly" element={<Credly />} />
+                  <Route path="/test-taker-stats" element={<TestTakers />} />
                 </Routes>
               </section>
             </main>
