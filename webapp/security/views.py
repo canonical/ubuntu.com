@@ -245,9 +245,9 @@ def single_notices_sitemap(offset):
         links.append(
             {
                 "url": f"https://ubuntu.com/security/notices/{notice_id}",
-                "last_updated": notice["published"]
-                if notice["published"]
-                else "",
+                "last_updated": (
+                    notice["published"] if notice["published"] else ""
+                ),
             }
         )
 
