@@ -1228,7 +1228,6 @@ def cred_dashboard_exam_results(trueability_api, **_):
         )
     except Exception:
         flask.current_app.extensions["sentry"].captureException()
-
     return flask.jsonify(latest_results)
 
 
