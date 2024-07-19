@@ -2,8 +2,28 @@
   <hr class="p-rule is-muted" />
   <div class="col-3 col-medium-2">
     <h2 class="p-heading--5">
-      <a class="u-hide--small" href="{{ section.path }}">{{ section.title }}</a>
-      <a class="u-hide--medium u-hide--large js-footer-accordion-cta" href="#" aria-controls="{{ section.path }}-footer-nav">{{ section.title }}</a>
+      <a class="u-hide--small" href="{{ section.path }}">
+        {% if section.title == "Canonical OpenStack" %}
+          OpenStack
+        {% elif section.title == "Canonical Ceph" %}
+          Ceph
+        {% elif section.title == "Canonical Kubernetes" %}
+          Kubernetes
+        {% else %}
+          {{ section.title }}
+        {% endif %}
+      </a>
+      <a class="u-hide--medium u-hide--large js-footer-accordion-cta" href="#" aria-controls="{{ section.path }}-footer-nav">        
+        {% if section.title == "Canonical OpenStack" %}
+          OpenStack
+        {% elif section.title == "Canonical Ceph" %}
+          Ceph
+        {% elif section.title == "Canonical Kubernetes" %}
+          Kubernetes
+        {% else %}
+          {{ section.title }}
+        {% endif %}
+      </a>
     </h2>
   </div>
   <div class="col-9 col-medium-4 u-hide--small">
