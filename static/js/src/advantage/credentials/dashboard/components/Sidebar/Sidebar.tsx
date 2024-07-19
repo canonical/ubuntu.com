@@ -146,12 +146,12 @@ const Sidebar = () => {
                       </li>
                     ))}
                     <li className="p-side-navigation__item has-active-child">
-                      <a className="p-side-navigation__link" href="#">
+                      <div className="p-side-navigation__link">
                         <i className="p-icon--information is-light p-side-navigation__icon"></i>
                         <span className="p-side-navigation__label">
                           System Status
                         </span>
-                      </a>
+                      </div>
                       <ul className="p-side-navigation__list">
                         <li className="p-side-navigation__item">
                           <div className="p-side-navigation__link">

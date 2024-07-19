@@ -1,3 +1,4 @@
+
 export async function getUpcomingExams(page = 1) {
   const URL = `/credentials/dashboard/upcoming-exams?page=${page}`;
   const response = await fetch(URL, {
@@ -44,16 +45,15 @@ export async function getSystemStatuses() {
 }
 
 export async function getIssuedBadgesCredly(
-  filter: { [x: string]: string } | null = null,
+  filter: string | null = null,
   sort: string | null = null,
   page: number | null = null
 ) {
-  console.log(filter, sort, page);
   let URL = `/credentials/dashboard/issued-badges`;
   const queryParams = new URLSearchParams();
 
   if (filter) {
-    queryParams.append("filter", new URLSearchParams(filter).toString());
+    queryParams.append("filter", filter);
   }
   if (sort) {
     queryParams.append("sort", sort);

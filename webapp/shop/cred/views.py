@@ -1098,7 +1098,6 @@ def get_webhook_response(trueability_api, **kwargs):
 # @credentials_group()
 def get_issued_badges(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
-    filter = json.loads(filter) if filter else None
     sort = flask.request.args.get("sort", None)
     page = flask.request.args.get("page", None)
     badges = credly_api.get_issued_badges(filter, sort, page)
@@ -1216,7 +1215,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response=json)
 # @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
-    try:    
+    try:
         per_page = 10
         page = int(flask.request.args.get("page", 1)) - 1
         exam_state = flask.request.args.get("state", None)
@@ -1227,8 +1226,9 @@ def cred_dashboard_exam_results(trueability_api, **_):
         latest_results = trueability_api.get_results(
             page=last_page - page, per_page=per_page, state=exam_state
         )
-    except Exception as error:
-        latest_results = {"error": error}
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException()
+        
     return flask.jsonify(latest_results)
 
 

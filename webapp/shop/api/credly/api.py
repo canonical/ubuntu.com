@@ -63,10 +63,7 @@ class CredlyAPI:
         if filter or sort or page:
             uri += "?"
             if filter:
-                filter_params = ""
-                for k, v in filter.items():
-                    filter_params += f"{k}::{quote_plus(v)}"
-                uri += f"filter={filter_params}"
+                uri += f"filter={filter}"
             if sort:
                 uri += f"sort={sort}"
             if page:

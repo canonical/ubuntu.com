@@ -956,12 +956,6 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/<path:path>",
-    view_func=cred_dashboard,
-    methods=["GET"],
-    defaults={"path": ""},
-)
-app.add_url_rule(
     "/credentials/dashboard/upcoming-exams",
     view_func=cred_dashboard_upcoming_exams,
     methods=["GET"],
@@ -980,6 +974,12 @@ app.add_url_rule(
     "/credentials/dashboard/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
 )
 
 app.add_url_rule(
