@@ -9,11 +9,13 @@ import {
 import { useQuery } from "react-query";
 import { getIssuedBadgesCredly } from "../../api/keys";
 import { CredlyMetadata } from "../../utils/types";
+import { CredlyBadge } from "../../utils/types";
 
 const CertificationIssued = () => {
   const [page, setPage] = useState<number | null>(null);
   const filter = "state::accepted";
-  const [sort, setSort] = useState(null);
+  // const [sort, setSort] = useState(null);
+  const sort = null;
 
   const { isLoading, isError, data, isFetching } = useQuery(
     ["issuedBadges", filter, sort, page],
@@ -27,17 +29,23 @@ const CertificationIssued = () => {
       name: row.issued_to,
       email: row.recipient_email,
     };
-  }
+  };
 
   const currentRows = useMemo(() => {
-    if (data && !!data?.data) {
+    if (data && data?.data) {
       const { data: badges } = data;
-      return badges.map((badge: any) => ({
+      return badges.map((badge: CredlyBadge) => ({
         key: badge.id,
         columns: [
-          { content: badge.badge_template.name, sortData: getSortDataForRow(badge) },
+          {
+            content: badge.badge_template.name,
+            sortData: getSortDataForRow(badge),
+          },
           { content: badge.issued_to, sortData: getSortDataForRow(badge) },
-          { content: badge.recipient_email, sortData: getSortDataForRow(badge) },
+          {
+            content: badge.recipient_email,
+            sortData: getSortDataForRow(badge),
+          },
         ],
       }));
     }
@@ -85,9 +93,9 @@ const CertificationIssued = () => {
         sortable
         onUpdateSort={(sortKey) => console.log(sortKey)}
         headers={[
-          { content: "Badge Name", sortKey: 'badgeName' },
-          { content: "Name", sortKey: 'name' },
-          { content: "Email", sortKey: 'email' },
+          { content: "Badge Name", sortKey: "badgeName" },
+          { content: "Name", sortKey: "name" },
+          { content: "Email", sortKey: "email" },
         ]}
         paginate={10}
         rows={currentRows}

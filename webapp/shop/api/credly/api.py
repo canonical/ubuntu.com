@@ -1,7 +1,6 @@
 from requests.auth import HTTPBasicAuth
 from requests import Session
 from datetime import datetime, timezone
-from urllib.parse import quote_plus
 
 
 class CredlyAPI:

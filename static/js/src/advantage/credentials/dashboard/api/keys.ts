@@ -1,4 +1,3 @@
-
 export async function getUpcomingExams(page = 1) {
   const URL = `/credentials/dashboard/upcoming-exams?page=${page}`;
   const response = await fetch(URL, {
@@ -62,7 +61,7 @@ export async function getIssuedBadgesCredly(
     queryParams.append("page", `${page}`);
   }
 
-  if (!!queryParams.toString()) {
+  if (queryParams.toString()) {
     URL += `?${queryParams.toString()}`;
   }
 
