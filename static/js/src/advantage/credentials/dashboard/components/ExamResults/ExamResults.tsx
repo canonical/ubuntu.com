@@ -69,7 +69,7 @@ const ExamResults = (props: IProps) => {
     return <Spinner text="Loading..." />;
   }
 
-  if (isError) {
+  if (isError || data?.error) {
     return (
       <Notification severity="negative" title="Error">
         {data?.error || "An error occurred while fetching exam results."}
@@ -77,7 +77,7 @@ const ExamResults = (props: IProps) => {
     );
   }
 
-  if (data) {
+  if (data && !data?.error) {
     return (
       <>
         <MainTable
