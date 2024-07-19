@@ -40,6 +40,7 @@ const ChannelOffersList = () => {
     selectValue === "default"
       ? offersList?.filter((offer: OfferType) => !offer?.purchase)
       : offersList;
+
   const paraseDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -64,6 +65,15 @@ const ChannelOffersList = () => {
     const formattedDate = `${day} ${monthNames[monthIndex]} ${year}`;
     return formattedDate;
   };
+
+  const sortedOffersList = filteredOfferList?.sort(
+    (a: OfferType, b: OfferType) => {
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
+      return dateB - dateA;
+    }
+  );
+
   return (
     <>
       <Row style={{ display: "flex", justifyContent: "end" }}>
@@ -112,7 +122,7 @@ const ChannelOffersList = () => {
             className: "u-align--right",
           },
         ]}
-        rows={filteredOfferList?.map((offer: OfferType) => {
+        rows={sortedOffersList?.map((offer: OfferType) => {
           const status = offer?.actionable ? "Valid" : "Invalid";
           return {
             columns: [

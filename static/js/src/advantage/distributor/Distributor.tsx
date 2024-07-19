@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col, Button, Icon, ICONS } from "@canonical/react-components";
+import { Row, Col, Icon, ICONS } from "@canonical/react-components";
 import ChannelOffersList from "./components/ChannelOffersList/ChannelOffersList";
 
 const Distributor = () => {
@@ -30,17 +30,13 @@ const Distributor = () => {
             }}
           >
             <h2>Available deal registrations</h2>
-            <Button
-              appearance="positive"
-              hasIcon={true}
-              onClick={() =>
-                (window.location.href =
-                  "https://www.partner.canonical.com/#/deals/new")
-              }
+            <a
+              className="p-button--positive"
+              href="https://www.partner.canonical.com/#/deals/new"
             >
               <Icon name={ICONS.externalLink} light={true} />
-              <span>Register new deal</span>
-            </Button>
+              Register new deal
+            </a>
           </div>
           <ChannelOffersList />
         </Col>
