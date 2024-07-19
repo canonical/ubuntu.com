@@ -1229,7 +1229,7 @@ def cred_dashboard_exam_results(trueability_api, **_):
         return flask.jsonify(latest_results)
     except Exception:
         flask.current_app.extensions["sentry"].captureException()
-        return flask.jsonify({"error": "Error fetching exam results"})
+        return flask.jsonify({"error": "Error fetching exam results"}), 404
 
 
 @shop_decorator(area="cred", permission="user", response=json)
