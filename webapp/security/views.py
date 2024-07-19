@@ -429,13 +429,21 @@ def cve_index():
     for cve in high_priority_cves:
         cve["summarized_status"] = {}
         get_summarized_status(
-            cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+            cve,
+            ignored_low_indicators,
+            vulnerable_indicators,
+            friendly_names,
+            versions,
         )
 
     for cve in cves:
         cve["summarized_status"] = {}
         get_summarized_status(
-            cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+            cve,
+            ignored_low_indicators,
+            vulnerable_indicators,
+            friendly_names,
+            versions,
         )
 
         for cve_package in cve["packages"]:
