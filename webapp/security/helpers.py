@@ -1,13 +1,15 @@
 def get_summarized_status(
-    cve, ignored_low_indicators, vulnerable_indicators, friendly_names
+    cve,
+    ignored_low_indicators,
+    vulnerable_indicators,
+    friendly_names,
+    versions,
 ):
     """
     Return the summarized status for a CVE
     """
-
     status_count = {
         "ignored": 0,
-        "ignored-high": 0,
         "ignored-low": 0,
         "needs-triage": 0,
         "not-affected": 0,
@@ -21,8 +23,15 @@ def get_summarized_status(
     for package in cve["packages"]:
         package_count += len(package["statuses"])
         for status in package["statuses"]:
+            description = status["description"].lower()
+
+            # If CVE list is filtered by versions,
+            # skip statuses that are not for those versions
+            if versions:
+                if status["release_codename"] not in versions:
+                    continue
+
             if status["release_codename"] != "upstream":
-                description = status["description"].lower()
                 if status["status"] == "ignored":
                     if any(
                         indicator in description
@@ -30,7 +39,7 @@ def get_summarized_status(
                     ):
                         status_count["ignored-low"] += 1
                     else:
-                        status_count["ignored-high"] += 1
+                        status_count["ignored"] += 1
                 elif status["status"] == "released":
                     status_count["released"] += 1
                 elif status["status"] in vulnerable_indicators:
