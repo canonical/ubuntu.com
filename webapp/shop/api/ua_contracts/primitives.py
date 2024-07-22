@@ -130,12 +130,14 @@ class Account:
         type: str = None,
         role: str = None,
         token: str = None,
+        hasChannelStoreAccess: bool = False,
     ):
         self.id = id
         self.name = name
         self.type = type
         self.role = role
         self.token = token
+        self.hasChannelStoreAccess = hasChannelStoreAccess
 
 
 class User:

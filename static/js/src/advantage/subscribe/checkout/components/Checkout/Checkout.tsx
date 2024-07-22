@@ -13,8 +13,8 @@ import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
 import {
   Action,
   Coupon,
+  CheckoutProducts,
   marketplaceDisplayName,
-  Product,
 } from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
@@ -22,26 +22,37 @@ import FreeTrial from "../FreeTrial";
 import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
   coupon: Coupon;
 };
 
-const Checkout = ({ product, quantity, action, coupon }: Props) => {
+const Checkout = ({ products, action, coupon }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
-  const productCanBeTrialled = product?.canBeTrialled;
-  const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
-  const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const marketplace = products[0].product.marketplace;
+  let canTrial = false;
+  if (
+    marketplace !== UserSubscriptionMarketplace.CanonicalProChannel &&
+    products?.length === 1
+  ) {
+    const product = products[0].product;
+    const productCanBeTrialled = product?.canBeTrialled;
+    canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
+  }
+
+  const product = products[0].product;
+  const initialValues = getInitialFormValues(marketplace, canTrial, userInfo);
 
   if (!localStorage.getItem("gaEventTriggered")) {
     localStorage.setItem("gaEventTriggered", "true");
     checkoutEvent(window.GAFriendlyProduct, "2");
   }
+
   return (
     <>
       <div className="p-strip">
@@ -91,19 +102,14 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                     {
                       title: "Region and taxes",
                       content: (
-                        <Taxes
-                          product={product}
-                          quantity={quantity}
-                          setError={setError}
-                        />
+                        <Taxes products={products} setError={setError} />
                       ),
                     },
                     {
                       title: "Your purchase",
                       content: (
                         <Summary
-                          quantity={quantity}
-                          product={product}
+                          products={products}
                           action={action}
                           coupon={coupon}
                           setError={setError}
@@ -123,11 +129,7 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                           {
                             title: "Free trial",
                             content: (
-                              <FreeTrial
-                                quantity={quantity}
-                                product={product}
-                                action={action}
-                              />
+                              <FreeTrial products={products} action={action} />
                             ),
                           },
                         ]
@@ -136,12 +138,11 @@ const Checkout = ({ product, quantity, action, coupon }: Props) => {
                       title: "Confirm and buy",
                       content: (
                         <>
-                          <ConfirmAndBuy product={product} action={action} />
+                          <ConfirmAndBuy products={products} action={action} />
                           <Row>
                             <Col emptyLarge={7} size={6}>
                               <BuyButton
-                                product={product}
-                                quantity={quantity}
+                                products={products}
                                 action={action}
                                 setError={setError}
                                 coupon={coupon}

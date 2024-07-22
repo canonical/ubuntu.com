@@ -1,0 +1,34 @@
+{% extends "advantage/base_advantage.html" %}
+{% block title %}Thank you for your purchase{% endblock %}
+
+{% block content %}
+  <div class="p-strip is-bordered is-deep">
+    <div class="row">
+      <div class="col-7">
+        <h1>Thanks for your order!</h1>
+        {% if email %}
+        <p class="p-heading--4">
+          We've sent your invoice to <strong>{{ email }}</strong>.
+        </p>
+        {% endif %}
+        <p class="p-heading--4">
+          You can also view and download your invoice anytime by visiting <a href="/account/invoices">here</a>.
+        </p>
+      </div>
+      <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+            alt="",
+            width="200",
+            height="200",
+            hi_def=True,
+            loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+  {% include "shared/_thank_you_footer.html" %}
+{% endblock %}

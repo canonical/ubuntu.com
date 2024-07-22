@@ -72,7 +72,11 @@ def pro_page_view(advantage_mapper, **kwargs):
 def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
-        advantage_mapper.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            return flask.render_template(
+                "account/forbidden.html", reason="channel_account"
+            )
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
@@ -197,6 +201,10 @@ def advantage_shop_view(advantage_mapper, **kwargs):
     if user_info(flask.session):
         try:
             account = advantage_mapper.get_purchase_account("canonical-ua")
+            if (account.hasChannelStoreAccess) is True:
+                return flask.render_template(
+                    "account/forbidden.html", reason="channel_account"
+                )
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -262,7 +270,7 @@ def advantage_account_users_view(advantage_mapper, **kwargs):
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     account_id = kwargs.get("account_id")
-    marketplace = kwargs.get("marketplace", "canonical-ua")
+    marketplace = kwargs.get("marketplace")
     action = kwargs.get("action", "purchase")
     coupon = kwargs.get("coupon")
 
@@ -330,6 +338,12 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         for metadata_key in metadata_keys
         if flask.session.get(metadata_key)
     ]
+
+    if marketplace == "canonical-pro-channel":
+        channel_metadata = kwargs.get("metadata")
+        if channel_metadata:
+            for data in channel_metadata:
+                metadata.append(data)
 
     if metadata:
         purchase_request["metadata"] = metadata
@@ -559,9 +573,78 @@ def accept_renewal(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def get_account_offers(advantage_mapper, ua_contracts_api, **kwargs):
+def get_channel_offers(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is False:
+            return (
+                flask.jsonify(
+                    {"error": "User has no permission to channel store"}
+                ),
+                403,
+            )
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({"error": "User has no purchase account"}), 400
+    except AccessForbiddenError:
+        return (
+            flask.jsonify({"error": "User has no permission to purchase"}),
+            403,
+        )
+    offers = [
+        offer for offer in advantage_mapper.get_account_offers(account.id)
+    ]
+    return flask.jsonify(to_dict(offers))
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def get_distributor_view(advantage_mapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            listings = advantage_mapper.get_product_listings(
+                "canonical-pro-channel"
+            )
+        else:
+            return flask.render_template("account/forbidden.html")
+
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
+
+    return flask.render_template(
+        "/pro/distributor/index.html",
+        product_listings=to_dict(listings),
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+@use_kwargs({"email": String()}, location="query")
+def get_distributor_thank_you_view(advantage_mapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            email = kwargs.get("email")
+        else:
+            return flask.render_template("account/forbidden.html")
+
+    except UAContractsUserHasNoAccount:
+        return flask.render_template("account/forbidden.html")
+    return flask.render_template(
+        "/pro/distributor/thank-you.html",
+        email=email,
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
+def get_account_offers(advantage_mapper, **kwargs):
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if (account.hasChannelStoreAccess) is True:
+            return (
+                flask.jsonify(
+                    {"error": "User has no permission to pro store"}
+                ),
+                403,
+            )
     except UAContractsUserHasNoAccount:
         return flask.jsonify({"error": "User has no purchase account"}), 400
     except AccessForbiddenError:
@@ -584,7 +667,12 @@ def get_account_offers(advantage_mapper, ua_contracts_api, **kwargs):
     permission="user",
     response="html",
 )
-def get_advantage_offers(**kwargs):
+def get_advantage_offers(advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account("canonical-ua")
+    if (account.hasChannelStoreAccess) is True:
+        return flask.render_template(
+            "account/forbidden.html", reason="channel_account"
+        )
     return flask.render_template("advantage/offers/index.html")
 
 

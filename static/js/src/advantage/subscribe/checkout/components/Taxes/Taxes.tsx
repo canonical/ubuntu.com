@@ -17,15 +17,14 @@ import {
 } from "advantage/countries-and-states";
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
-import { FormValues, Product } from "../../utils/types";
+import { CheckoutProducts, FormValues } from "../../utils/types";
 
 type TaxesProps = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-const Taxes = ({ product, setError }: TaxesProps) => {
+const Taxes = ({ products, setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -55,7 +54,9 @@ const Taxes = ({ product, setError }: TaxesProps) => {
   }, [initialValues]);
 
   const postCustomerTaxInfoMutation = postCustomerTaxInfo();
-
+  const hasZeroPriceValue = products.some(
+    (item) => item.product.price.value === 0
+  );
   const onSaveClick = () => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
@@ -190,8 +191,7 @@ const Taxes = ({ product, setError }: TaxesProps) => {
           </Row>
         </>
       ) : null}
-      {vatCountries.includes(values.country ?? "") &&
-      product?.price?.value !== 0 ? (
+      {vatCountries.includes(values.country ?? "") && !hasZeroPriceValue ? (
         <>
           <hr />
           <Row>
@@ -253,20 +253,19 @@ const Taxes = ({ product, setError }: TaxesProps) => {
           error={touched?.caProvince && errors?.caProvince}
         />
       )}
-      {vatCountries.includes(values.country ?? "") &&
-        product?.price?.value !== 0 && (
-          <Field
-            data-testid="field-vat-number"
-            as={Input}
-            type="text"
-            id="VATNumber"
-            name="VATNumber"
-            label="VAT number:"
-            stacked
-            help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-            error={touched?.VATNumber && errors?.VATNumber}
-          />
-        )}
+      {vatCountries.includes(values.country ?? "") && !hasZeroPriceValue && (
+        <Field
+          data-testid="field-vat-number"
+          as={Input}
+          type="text"
+          id="VATNumber"
+          name="VATNumber"
+          label="VAT number:"
+          stacked
+          help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
+          error={touched?.VATNumber && errors?.VATNumber}
+        />
+      )}
     </>
   );
 

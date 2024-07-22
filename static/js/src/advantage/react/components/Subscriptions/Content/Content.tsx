@@ -104,8 +104,12 @@ const Content = () => {
     };
 
     const shopCheckoutData = {
-      product: product,
-      quantity: parseInt(units),
+      products: [
+        {
+          product: product,
+          quantity: parseInt(units),
+        },
+      ],
       action: "purchase",
     };
 

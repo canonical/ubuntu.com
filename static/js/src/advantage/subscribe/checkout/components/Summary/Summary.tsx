@@ -9,27 +9,27 @@ import usePreview from "../../hooks/usePreview";
 import {
   Action,
   Coupon,
+  CheckoutProducts,
   FormValues,
-  Product,
   TaxInfo,
 } from "../../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import DistributorSummary from "../DistributorSummary.tsx/DistributorSummary";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 type Props = {
-  product: Product;
-  quantity: number;
+  products: CheckoutProducts[];
   action: Action;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   coupon: Coupon;
 };
 
-function Summary({ quantity, product, action, setError, coupon }: Props) {
+function Summary({ products, action, coupon, setError }: Props) {
   const { values } = useFormikContext<FormValues>();
+
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
-    quantity: quantity,
-    marketplace: product.marketplace,
-    productListingId: product.longId,
+    products,
     country: values.country,
     VATNumber: values.VATNumber,
     isTaxSaved: values.isTaxSaved,
@@ -40,8 +40,7 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
     isFetching: isPreviewFetching,
     error: error,
   } = usePreview({
-    quantity,
-    product,
+    products,
     action,
     coupon,
   });
@@ -50,24 +49,31 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
   const priceData: TaxInfo | undefined = preview || calculate;
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
+  const marketplace = products[0]?.product.marketplace;
+  const product = products[0]?.product;
+  const quantity = products[0]?.quantity;
+
   const units =
-    product?.marketplace === "canonical-ua"
+    marketplace === UserSubscriptionMarketplace.CanonicalUA
       ? "Machines"
-      : product?.marketplace === "canonical-cube"
+      : marketplace === "canonical-cube"
       ? "Exams"
       : "Users";
+
   const planType =
-    product?.marketplace === "canonical-cube"
+    marketplace === "canonical-cube"
       ? "Product"
       : action !== "offer"
       ? "Plan type"
       : "Products";
+
   const productName =
     action !== "offer"
       ? product?.name === "cue-linux-essentials-free"
         ? "CUE.01 Linux"
         : product?.name
       : product?.name.replace(", ", "<br>");
+
   const discount =
     (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
   const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
@@ -276,7 +282,15 @@ function Summary({ quantity, product, action, setError, coupon }: Props) {
       </>
     );
   }
-  return (
+  return marketplace === UserSubscriptionMarketplace.CanonicalProChannel ? (
+    <DistributorSummary
+      products={products}
+      priceData={priceData}
+      taxAmount={taxAmount}
+      isSummaryLoading={isSummaryLoading}
+      error={error}
+    />
+  ) : (
     <section
       id="summary-section"
       className="p-strip is-shallow u-no-padding--top"

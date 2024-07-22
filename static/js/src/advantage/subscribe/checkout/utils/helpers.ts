@@ -1,8 +1,9 @@
-import { FormValues, Product, UserInfo } from "./types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { FormValues, UserInfo } from "./types";
 
 export function getInitialFormValues(
-  product: Product,
-  canTrial: boolean,
+  marketplace: UserSubscriptionMarketplace,
+  canTrial?: boolean,
   userInfo?: UserInfo
 ): FormValues {
   const accountName = userInfo?.accountInfo?.name;
@@ -27,13 +28,15 @@ export function getInitialFormValues(
     TermsAndConditions: false,
     MarketingOptIn: false,
     Description: false,
-    FreeTrial: canTrial && !window.currentPaymentId ? "useFreeTrial" : "payNow",
-    marketplace: product.marketplace,
+    marketplace: marketplace,
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
     isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,
     TermsOfService: false,
     DataPrivacy: false,
+    ...(canTrial && {
+      FreeTrial: !window.currentPaymentId ? "useFreeTrial" : "payNow",
+    }),
   };
 }
 
