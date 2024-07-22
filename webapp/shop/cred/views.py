@@ -1094,7 +1094,7 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def get_issued_badges(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
@@ -1103,7 +1103,7 @@ def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges(filter, sort, page)
     return flask.jsonify(badges)
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def get_test_taker_stats(trueability_api, **kwargs):
     addresses = []
