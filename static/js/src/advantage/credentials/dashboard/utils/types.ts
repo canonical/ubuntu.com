@@ -9,8 +9,9 @@ export type CredlyMetadata = {
 };
 
 export type CredlyBadge = {
-  id: number;
+  id: string;
   badge_template: {
+    id: string;
     name: string;
   };
   issued_to: string;
