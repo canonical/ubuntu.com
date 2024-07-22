@@ -963,27 +963,27 @@ app.add_url_rule(
     defaults={"path": ""},
 )
 app.add_url_rule(
-    "/credentials/dashboard/api/upcoming-exams",
+    "/credentials/api/upcoming-exams",
     view_func=cred_dashboard_upcoming_exams,
     methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/api/exam-results",
+    "/credentials/api/exam-results",
     view_func=cred_dashboard_exam_results,
     methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/api/system-statuses",
+    "/credentials/api/system-statuses",
     view_func=cred_dashboard_system_statuses,
     methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/api/issued-badges",
+    "/credentials/api/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
 )
 app.add_url_rule(
-    "/credentials/dashboard/api/test-taker-stats",
+    "/credentials/api/test-taker-stats",
     view_func=get_test_taker_stats,
     methods=["GET"],
 )
