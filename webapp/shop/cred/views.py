@@ -1212,7 +1212,7 @@ def cred_dashboard(trueability_api, **_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 10
@@ -1227,7 +1227,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
     return flask.jsonify(latest_reservations)
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
@@ -1247,7 +1247,7 @@ def cred_dashboard_exam_results(trueability_api, **_):
         return flask.jsonify({"error": "Error fetching exam results"}), 404
 
 
-@shop_decorator(area="cred", permission="user", response=json)
+@shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
     ta_status = trueability_api.get_system_status()
