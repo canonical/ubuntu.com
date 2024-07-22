@@ -526,10 +526,12 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         actions.extend(
                             [
                                 {
-                                    "text": "Continue exam"
-                                    if state
-                                    == RESERVATION_STATES["in_progress"]
-                                    else "Take exam",
+                                    "text": (
+                                        "Continue exam"
+                                        if state
+                                        == RESERVATION_STATES["in_progress"]
+                                        else "Take exam"
+                                    ),
                                     "href": "/credentials/exam?"
                                     f"id={assessment_id}",
                                     "button_class": "p-button--positive",
@@ -542,9 +544,11 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
                         "date": starts_at.strftime("%d %b %Y"),
                         "time": starts_at.strftime("%I:%M %p %Z"),
                         "timezone": timezone,
-                        "state": "Ready to be taken"
-                        if provisioned_but_not_taken
-                        else state,
+                        "state": (
+                            "Ready to be taken"
+                            if provisioned_but_not_taken
+                            else state
+                        ),
                         "uuid": r["uuid"],
                         "actions": actions,
                     }
@@ -667,12 +671,12 @@ def cred_assessments(trueability_api, **_):
         exams.append(
             {
                 "name": name,
-                "date": started_at.strftime("%d %b %Y")
-                if started_at
-                else "N/A",
-                "time": started_at.strftime("%I:%M %p %Z")
-                if started_at
-                else "N/A",
+                "date": (
+                    started_at.strftime("%d %b %Y") if started_at else "N/A"
+                ),
+                "time": (
+                    started_at.strftime("%I:%M %p %Z") if started_at else "N/A"
+                ),
                 "timezone": timezone,
                 "state": r["state"],
                 "id": r["id"],

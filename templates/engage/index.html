@@ -49,13 +49,9 @@
         <label for="resource-selector">Select resource type:</label>
         <select name="resource-selector" id="resource-selector" class="u-no-margin--bottom">
           <option value="all">All resource types</option>
-          <option value="blog">Blog</option>
-          <option value="case study">Case study</option>
-          <option value="ebook">Ebook</option>
-          <option value="event">Event</option>
-          <option value="form">Form</option>
-          <option value="webinar">Webinar</option>
-          <option value="whitepaper">Whitepaper</option>
+          {% for type in resource_types %}
+            <option value="{{ type | lower }}">{{ type }}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -100,6 +96,13 @@
       {% endwith %}
     {% endfor %}
   </div>
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
   {% else %}
   <div class="u-fixed-width">
     <h3>No results &mdash; why not try widening your search?</h3>
@@ -136,13 +139,13 @@ function clearFilters() {
       const value = e.target.value;
       const selectFields = document.querySelectorAll("select:checked")
 
-      if (url.searchParams.has(key)) {
-        url.searchParams.delete(key);
-      }
+      // Reset filters, data explorer query can't search multiple fields
+      // at the same time
+      url.search = "";
+
       if (value !== "all") {
         url.searchParams.append(key, value);
       }
-
       window.location = url;
     });
   }
