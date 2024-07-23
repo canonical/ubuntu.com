@@ -22,5 +22,5 @@ export type Assessment = {
   id: number;
   address: {
     country_code: string;
-  }
+  };
 };

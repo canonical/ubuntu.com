@@ -71,7 +71,9 @@ const CertificationIssued = () => {
         const subRows = getBadgeTemplateSubrows(templateId);
         return {
           issued_to: badge.badge_template.name,
-          recipient_email: `${subRows.length} recipient${subRows.length > 1 ? "s" : ""}`,
+          recipient_email: `${subRows.length} recipient${
+            subRows.length > 1 ? "s" : ""
+          }`,
           subRows,
         };
       });
