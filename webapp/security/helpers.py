@@ -29,6 +29,7 @@ def get_summarized_status(
             # skip statuses that are not for those versions
             if versions:
                 if status["release_codename"] not in versions:
+                    package_count -= 1
                     continue
 
             if status["release_codename"] != "upstream":
