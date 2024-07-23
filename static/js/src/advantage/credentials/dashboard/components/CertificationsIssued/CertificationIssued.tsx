@@ -19,11 +19,23 @@ const CertificationIssued = () => {
         Header: "Name",
         accessor: "issued_to",
         sortType: "basic",
+        Cell: (props: any) =>
+          props.row.depth === 0 ? (
+            <strong>{props.value}</strong>
+          ) : (
+            <small style={{ paddingLeft: "8px" }}>{props.value}</small>
+          ),
       },
       {
         Header: "Email",
         accessor: "recipient_email",
         sortType: "basic",
+        Cell: (props: any) =>
+          props.row.depth === 0 ? (
+            <strong>{props.value}</strong>
+          ) : (
+            <small>{props.value}</small>
+          ),
       },
     ],
     []
