@@ -80,9 +80,9 @@ documentation for the version you are upgrading to.
 
 ### Supported versions
 
+- [Upgrading from 1.29.x to 1.30.x](/kubernetes/docs/1.30/upgrading)
 - [Upgrading from 1.28.x to 1.29.x](/kubernetes/docs/1.29/upgrading)
 - [Upgrading from 1.27.x to 1.28.x](/kubernetes/docs/1.28/upgrading)
-- [Upgrading from 1.26.x to 1.27.x](/kubernetes/docs/1.27/upgrading)
 
 ### Older versions
 
