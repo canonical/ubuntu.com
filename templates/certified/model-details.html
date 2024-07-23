@@ -119,7 +119,9 @@
                     {% endif %}
                     {% if release.notes %}
                       <h4 class="u-no-margin--bottom">Notes</h4>
-                      {% for note in release.notes %}<p>{{ note.comment }}</p>{% endfor %}
+                      {% for note in release.notes %}
+                        <p>{{ note.comment | replace('\n', '<br />') | safe }}</p>
+                      {% endfor %}
                     {% endif %}
                     <h4>Hardware</h4>
                     <table aria-label="Hardware" class="u-no-margin--bottom">
