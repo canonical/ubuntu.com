@@ -188,7 +188,7 @@ default Calico CNI.
 All bug fixes and other feature updates in this release can be found at 
 [the launchpad milestone page for 1.29](https://launchpad.net/charmed-kubernetes/+milestone/1.29).
 
-<a id='notes-issues'> </a>
+<a id="notes-issues"> </a>
 
 ## Notes and Known Issues
 
