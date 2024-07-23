@@ -847,6 +847,7 @@ def cred_submit_form(**_):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
+    ua_contracts_api.ensure_purchase_account("canonical-cube")
     account = advantage_mapper.get_purchase_account("canonical-cube")
     if (account.hasChannelStoreAccess) is True:
         return flask.render_template(
@@ -866,7 +867,6 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
                 exam["periodQuantity"] = 30
 
     # purchase account required for purchasing from marketplace
-    ua_contracts_api.ensure_purchase_account("canonical-cube")
 
     return flask.render_template(
         "credentials/shop/index.html",
