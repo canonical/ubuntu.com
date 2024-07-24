@@ -12,7 +12,7 @@ import { EntitlementType } from "advantage/api/enum";
 import { getQueryClientWrapper } from "advantage/tests/utils";
 
 const mount = (Component: React.ReactElement) =>
-  enzymeMount(Component, {
+  enzymeMount(Component as JSX.Element, {
     wrappingComponent: getQueryClientWrapper(),
   });
 
