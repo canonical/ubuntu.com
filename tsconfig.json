@@ -21,7 +21,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es6",
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
   },
-  "include": ["static/js/src", "tests/setupTests.ts"]
+  "include": ["static/js/src", "tests/setupTests.ts"],
+  "paths": [
+    {
+      "*": ["types/*.d.ts"]
+    }
+  ]
 }

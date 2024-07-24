@@ -42,7 +42,7 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -53,7 +53,7 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -106,7 +106,7 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -147,7 +147,7 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -190,7 +190,7 @@ describe("Summary", () => {
         },
         isError: true,
         isSuccess: true,
-        error: { message: "error" },
+        error: { name: "", message: "error" },
         isFetching: false,
       };
     });

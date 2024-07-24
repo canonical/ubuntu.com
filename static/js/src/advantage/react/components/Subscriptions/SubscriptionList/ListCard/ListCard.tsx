@@ -169,14 +169,14 @@ const ListCard = ({
           <Col medium={3} size={4} small={1}>
             <p className="u-text--muted u-no-margin--bottom">Created</p>
             <span data-test="card-start-date">
-              {formatDate(subscription.start_date)}
+              {formatDate(subscription.start_date).toString()}
             </span>
           </Col>
           <Col medium={3} size={4} small={1}>
             <p className="u-text--muted u-no-margin--bottom">Expires</p>
             <span data-test="card-end-date">
               {subscription.end_date
-                ? formatDate(subscription.end_date)
+                ? formatDate(subscription.end_date).toString()
                 : "Never"}
             </span>
           </Col>
