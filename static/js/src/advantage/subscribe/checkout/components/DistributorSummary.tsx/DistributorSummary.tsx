@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { format } from "date-fns";
 import { Col, Row, Spinner } from "@canonical/react-components";
 import { CheckoutProducts, TaxInfo } from "../../utils/types";

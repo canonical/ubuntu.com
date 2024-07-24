@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   Action,
   Coupon,
@@ -17,9 +17,9 @@ type Props = {
 
 const usePreview = ({ products, action, coupon }: Props) => {
   const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
-  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
-    ["preview", products],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery({
+    queryKey: ["preview", products],
+    queryFn: async () => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
@@ -141,16 +141,14 @@ const usePreview = ({ products, action, coupon }: Props) => {
 
       return data;
     },
-    {
-      retry: false,
-      enabled:
-        !!window.accountId &&
-        !window.currentPaymentId &&
-        !!products &&
-        !!userInfo?.accountInfo?.name &&
-        !isUserInfoError,
-    }
-  );
+    retry: false,
+    enabled:
+      !!window.accountId &&
+      !window.currentPaymentId &&
+      !!products &&
+      !!userInfo?.accountInfo?.name &&
+      !isUserInfoError,
+  });
 
   return {
     isLoading: isLoading,

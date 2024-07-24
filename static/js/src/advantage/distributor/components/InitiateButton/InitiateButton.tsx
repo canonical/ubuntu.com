@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Button } from "@canonical/react-components";
 import { Offer as OfferType } from "../../../offers/types";
 import { FormContext } from "advantage/distributor/utils/FormContext";

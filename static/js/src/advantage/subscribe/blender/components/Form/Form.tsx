@@ -1,5 +1,4 @@
 import { List } from "@canonical/react-components";
-import React from "react";
 import Quantity from "./Quantity";
 import Support from "./Support";
 

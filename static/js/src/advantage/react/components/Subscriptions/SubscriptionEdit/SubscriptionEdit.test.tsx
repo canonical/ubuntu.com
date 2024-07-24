@@ -1,6 +1,5 @@
-import React from "react";
-import { act } from "react-dom/test-utils";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { act } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -42,7 +41,7 @@ describe("SubscriptionEdit", () => {
       }),
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -72,7 +71,7 @@ describe("SubscriptionEdit", () => {
         is_cancellable: false,
       }),
     });
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
@@ -205,7 +204,9 @@ describe("SubscriptionEdit", () => {
         />
       </QueryClientProvider>
     );
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    let userSubscriptionsState = queryClient.getQueryState([
+      "userSubscriptions",
+    ]);
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -219,7 +220,7 @@ describe("SubscriptionEdit", () => {
       wrapper.find("Formik form").simulate("submit");
     });
     wrapper.update();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    userSubscriptionsState = queryClient.getQueryState(["userSubscriptions"]);
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,

@@ -1,9 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { useState } from "react";
+import { createRoot } from "react-dom/client";
 import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Integrations } from "@sentry/tracing";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AccountUsers from "./AccountUsers";
 import { FetchError } from "./api";
@@ -35,16 +34,12 @@ const queryClient = new QueryClient({
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [
-    new Integrations.BrowserTracing({
-      tracingOrigins: ["ubuntu.com"],
-    }),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
 });
 
 const AccountUsersWithQuery = () => {
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     isLoading: isLoadingAccountUsers,
     isError: isAccountUsersError,
@@ -111,6 +106,13 @@ const AccountUsersWithQuery = () => {
   );
 };
 
+const container = document.getElementById("advantage-account-users-app");
+
+if (!container) {
+  throw new Error("Failed to find the root element");
+}
+const root = createRoot(container);
+
 function App() {
   return (
     <Sentry.ErrorBoundary>
@@ -122,7 +124,4 @@ function App() {
   );
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById("advantage-account-users-app")
-);
+root.render(<App />);

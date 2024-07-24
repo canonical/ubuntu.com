@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { Notification } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";

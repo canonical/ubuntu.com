@@ -1,4 +1,3 @@
-import React from "react";
 import { Textarea } from "@canonical/react-components";
 import { mount } from "enzyme";
 import { Formik } from "formik";

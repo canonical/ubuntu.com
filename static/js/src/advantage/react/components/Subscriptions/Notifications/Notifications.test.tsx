@@ -1,6 +1,5 @@
-import React from "react";
 import { mount } from "enzyme";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Notifications from "./Notifications";
 import {
@@ -17,13 +16,16 @@ describe("Notifications", () => {
   });
 
   it("displays a pending purchase notification", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          has_pending_purchases: true,
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          statuses: userSubscriptionStatusesFactory.build({
+            has_pending_purchases: true,
+          }),
         }),
-      }),
-    ]);
+      ]
+    );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
@@ -33,13 +35,16 @@ describe("Notifications", () => {
   });
 
   it("does not display a pending purchase notification when nothing is pending", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build({
-        statuses: userSubscriptionStatusesFactory.build({
-          has_pending_purchases: false,
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          statuses: userSubscriptionStatusesFactory.build({
+            has_pending_purchases: false,
+          }),
         }),
-      }),
-    ]);
+      ]
+    );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
@@ -57,7 +62,7 @@ describe("Offers Notifications", () => {
   });
 
   it("displays an offer notification if there are offers available", () => {
-    queryClient.setQueryData("Offers", [OfferFactory.build()]);
+    queryClient.setQueryData(["Offers"], [OfferFactory.build()]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
@@ -67,7 +72,7 @@ describe("Offers Notifications", () => {
   });
 
   it("does not display an offer notification if there are no offers available", () => {
-    queryClient.setQueryData("Offers", []);
+    queryClient.setQueryData(["Offers"], []);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
@@ -88,7 +93,7 @@ describe("Account users Notification", () => {
   window.localStorage.__proto__.setItem = jest.fn();
 
   it("displays an onboarding notification if there is only one account user", () => {
-    queryClient.setQueryData("accountUsers", {
+    queryClient.setQueryData(["accountUsers"], {
       users: [{ name: "blip" }],
     });
     const wrapper = mount(
@@ -99,7 +104,7 @@ describe("Account users Notification", () => {
     expect(wrapper.find("[data-test='onboarding']").exists()).toBe(true);
   });
   it("does not display an onboarding notification if there are multiple account users", () => {
-    queryClient.setQueryData("accountUsers", {
+    queryClient.setQueryData(["accountUsers"], {
       users: [{ name: "blip" }, { name: "blop" }],
     });
     const wrapper = mount(
@@ -111,7 +116,7 @@ describe("Account users Notification", () => {
   });
 
   it("dismisses the notification when clicking the close button", () => {
-    queryClient.setQueryData("accountUsers", {
+    queryClient.setQueryData(["accountUsers"], {
       users: [{ name: "blip" }],
     });
     const wrapper = mount(

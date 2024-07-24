@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import {
   UserSubscriptionMarketplace,
@@ -22,7 +21,7 @@ describe("DetailsContent", () => {
 
   it("displays free token specific details", () => {
     const contract = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -41,7 +40,7 @@ describe("DetailsContent", () => {
       period: UserSubscriptionPeriod.Yearly,
       price: 150000,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -55,7 +54,7 @@ describe("DetailsContent", () => {
 
   it("displays a spinner while loading the contract token", () => {
     const contract = userSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -76,7 +75,7 @@ describe("DetailsContent", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
@@ -93,7 +92,7 @@ describe("DetailsContent", () => {
   it("can display the contract token", () => {
     const contract = userSubscriptionFactory.build();
     const contractToken = contractTokenFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     queryClient.setQueryData(
       ["contractToken", contract.contract_id],
       contractToken
@@ -116,7 +115,7 @@ describe("DetailsContent", () => {
     const contract = userSubscriptionFactory.build({
       marketplace: UserSubscriptionMarketplace.Blender,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent

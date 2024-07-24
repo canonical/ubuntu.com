@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
-import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCancelContract } from "./useCancelContract";
 
 import * as contracts from "advantage/api/contracts";
@@ -15,10 +14,17 @@ import {
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
 
+const createWrapper = (queryClient: QueryClient) => {
+  return ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
+  );
+};
+
 describe("useCancelContract", () => {
   let cancelContractSpy: jest.SpyInstance;
   let queryClient: QueryClient;
-  let wrapper: WrapperComponent<ReactNode>;
   let subscription: UserSubscription;
   let lastPurchaseIds: LastPurchaseIds;
 
@@ -30,18 +36,15 @@ describe("useCancelContract", () => {
       period: UserSubscriptionPeriod.Monthly,
     });
     queryClient = new QueryClient();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
     );
-    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-    wrapper = Wrapper;
   });
 
   it("can make the cancel request", async () => {
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
       { wrapper }
@@ -65,6 +68,7 @@ describe("useCancelContract", () => {
       })
     );
     const onError = jest.fn();
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
       { wrapper }
@@ -77,11 +81,14 @@ describe("useCancelContract", () => {
   });
 
   it("invalidates queries when successful", async () => {
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
       { wrapper }
     );
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    let userSubscriptionsState = queryClient.getQueryState([
+      "userSubscriptions",
+    ]);
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -90,7 +97,7 @@ describe("useCancelContract", () => {
     expect(lastPurchaseIdsState?.isInvalidated).toBe(false);
     result.current.mutate(null);
     await waitForNextUpdate();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    userSubscriptionsState = queryClient.getQueryState(["userSubscriptions"]);
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
