@@ -1,4 +1,3 @@
-import React from "react";
 import { add, format } from "date-fns";
 import { Field, useFormikContext } from "formik";
 import { Col, RadioInput, Row } from "@canonical/react-components";

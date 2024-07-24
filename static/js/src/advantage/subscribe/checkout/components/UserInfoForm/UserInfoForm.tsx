@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Field, useFormikContext } from "formik";
 import {
   ActionButton,
@@ -86,8 +86,8 @@ const UserInfoForm = ({ setError }: Props) => {
       { formData: values },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries("customerInfo");
-          queryClient.invalidateQueries("preview");
+          queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
+          queryClient.invalidateQueries({ queryKey: ["preview"] });
           setIsButtonDisabled(false);
           setIsEditing(false);
         },

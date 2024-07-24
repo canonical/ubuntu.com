@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import { Notification } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
@@ -32,7 +31,7 @@ describe("SubscriptionDetails", () => {
         is_upsizeable: true,
       }),
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
   });
 
   it("initially shows the content", () => {
@@ -86,7 +85,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -110,7 +109,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -154,7 +153,7 @@ describe("SubscriptionDetails", () => {
       }),
     ];
 
-    queryClient.setQueryData("userSubscriptions", contracts);
+    queryClient.setQueryData(["userSubscriptions"], contracts);
 
     contracts.forEach((contract) => {
       const wrapper = mount(
@@ -226,7 +225,7 @@ describe("SubscriptionDetails", () => {
 
   it("does not display the buttons for a free contract", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [account]);
+    queryClient.setQueryData(["userSubscriptions"], [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -245,7 +244,7 @@ describe("SubscriptionDetails", () => {
 
   it("can close the modal", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [account]);
+    queryClient.setQueryData(["userSubscriptions"], [account]);
     const onCloseModal = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -309,7 +308,7 @@ describe("SubscriptionDetails", () => {
       number_of_machines: 20,
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -335,7 +334,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -359,7 +358,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -383,7 +382,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -407,7 +406,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -429,7 +428,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -452,7 +451,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -476,7 +475,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -499,7 +498,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -522,7 +521,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -545,7 +544,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -569,7 +568,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
@@ -593,7 +592,7 @@ describe("SubscriptionDetails", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails

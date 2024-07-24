@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Sentry from "@sentry/react";
 import { Offer as OfferType } from "../../../offers/types";
 import { MainTable, Select, Row, Col } from "@canonical/react-components";

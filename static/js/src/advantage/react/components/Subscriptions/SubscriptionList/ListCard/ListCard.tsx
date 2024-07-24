@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "@canonical/react-components";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import classNames from "classnames";
 import {
   formatDate,

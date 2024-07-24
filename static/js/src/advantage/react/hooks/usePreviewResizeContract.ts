@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { previewResizeContract } from "advantage/api/contracts";
 import { UserSubscription } from "advantage/api/types";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useLastPurchaseIds } from ".";
 import { selectPurchaseIdsByMarketplaceAndPeriod } from "./useLastPurchaseIds";
 
@@ -26,16 +26,21 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
     isSuccess,
     data,
     error,
-  } = useQuery<PreviewResizeContractResponse>(
-    ["preview", quantity, subscription?.id],
-    async () => {
+  } = useQuery<PreviewResizeContractResponse>({
+    queryKey: ["preview", quantity, subscription?.id],
+    queryFn: async () => {
+      if (!subscription?.account_id || !lastPurchaseId) {
+        // Early return if required parameters are not available
+        throw new Error("Missing required parameters");
+      }
+
       const res = await previewResizeContract(
-        subscription?.account_id,
+        subscription.account_id, // Ensure the correct type is passed
         lastPurchaseId,
-        subscription?.listing_id,
+        subscription.listing_id,
         quantity,
-        subscription?.period,
-        subscription?.marketplace
+        subscription.period,
+        subscription.marketplace
       );
 
       if (res.errors) {
@@ -43,16 +48,14 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
           res.errors.includes("no invoice would be issued for this purchase") ||
           res.errors.includes("purchase does not affect subscription")
         ) {
-          return;
+          return; // Adjust based on what you want to return in this case
         }
-        throw new Error(res.errors);
+        throw new Error(res.errors.join(", ")); // Join errors to make them more readable
       }
       return res;
     },
-    {
-      enabled: quantity > 0,
-    }
-  );
+    enabled: quantity > 0 && !!subscription?.account_id && !!lastPurchaseId,
+  });
 
   return {
     isLoading: isLoading,

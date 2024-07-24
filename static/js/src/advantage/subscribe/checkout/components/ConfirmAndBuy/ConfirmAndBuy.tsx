@@ -1,4 +1,3 @@
-import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import { CheckboxInput, Col, Input, Row } from "@canonical/react-components";
@@ -31,6 +30,8 @@ const ConfirmAndBuy = ({ products, action }: Props) => {
     product,
     action
   );
+
+  const ReCAPTCHAComponent = (ReCAPTCHA as unknown) as React.ComponentType<any>;
 
   return (
     <Row>
@@ -100,7 +101,7 @@ const ConfirmAndBuy = ({ products, action }: Props) => {
         />
       </Col>
       <div className="p-strip is-shallow u-no-padding--top">
-        <ReCAPTCHA
+        <ReCAPTCHAComponent
           sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
           onChange={onCaptchaChange}
         />

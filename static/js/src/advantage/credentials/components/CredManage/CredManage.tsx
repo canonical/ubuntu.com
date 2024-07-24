@@ -11,7 +11,7 @@ import {
 } from "@canonical/react-components";
 import { listAllKeys, rotateKey } from "advantage/credentials/api/keys";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 type ActivationKey = {
   contractItemID: string;
@@ -34,8 +34,11 @@ const CredManage = () => {
   const [actionLinks, updateActionLinks] = useState<
     { children: string; onClick: () => void }[]
   >([]);
-  const { isLoading, data } = useQuery(["ActivationKeys"], async () => {
-    return listAllKeys();
+  const { isLoading, data } = useQuery({
+    queryKey: ["ActivationKeys"],
+    queryFn: async () => {
+      return listAllKeys();
+    },
   });
 
   const [filterData, changeFilterData] = useState<ActivationKey[]>(data);

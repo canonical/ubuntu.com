@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 import { debounce } from "lodash";
@@ -174,7 +174,7 @@ const ResizeSummary = ({
           <>
             <br />
             This will be reflected in the next billing cycle on{" "}
-            <b>{formatDate(nextCycle)}</b>
+            <b>{formatDate(nextCycle).toString()}</b>
           </>
         ) : null}
       </p>
@@ -233,7 +233,7 @@ const SubscriptionEdit = ({
     isLoading: isPendingPurchaseLoading,
     isSuccess: isPendingPurchaseSuccess,
   } = usePollPurchaseStatus();
-  const isResizing = resizeContract.isLoading || isPendingPurchaseLoading;
+  const isResizing = resizeContract.isPending || isPendingPurchaseLoading;
   const isResized = resizeContract.isSuccess && isPendingPurchaseSuccess;
   const error =
     resizeContract.error ||
@@ -270,17 +270,16 @@ const SubscriptionEdit = ({
   useEffect(() => {
     if (isResized) {
       // Invalidate the data as it all may have changed.
-      queryClient.invalidateQueries("userSubscriptions");
-      queryClient.invalidateQueries("userInfo");
+      queryClient.invalidateQueries({ queryKey: ["userSubscriptions"] });
+      queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       // After resizing the purchase id will be updated, but there is a delay
       // before the API responds with the latest value so this invalidation may
       // cause the outdated id to be fetched.
-      queryClient.invalidateQueries([
-        "lastPurchaseIds",
-        subscription?.account_id,
-      ]);
+      queryClient.invalidateQueries({
+        queryKey: ["lastPurchaseIds", subscription?.account_id],
+      });
       onClose();
-      queryClient.removeQueries("preview");
+      queryClient.removeQueries({ queryKey: ["preview"] });
       const newNumberOfMachines =
         resizeNumber + (subscription?.current_number_of_machines ?? 0);
       if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
@@ -307,7 +306,7 @@ const SubscriptionEdit = ({
     if (pendingPurchaseError) {
       // Invalidate the user subscriptions to get any status updates e.g.
       // has_pending_purchases.
-      queryClient.invalidateQueries("userSubscriptions");
+      queryClient.invalidateQueries({ queryKey: ["userSubscriptions"] });
     }
   }, [pendingPurchaseError]);
 

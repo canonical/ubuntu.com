@@ -1,9 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import BlenderPurchase from "./BlenderPurchase";
@@ -24,11 +22,7 @@ declare global {
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [
-    new Integrations.BrowserTracing({
-      tracingOrigins: ["ubuntu.com"],
-    }),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
   tracesSampleRate: 1.0,
 });
@@ -47,6 +41,13 @@ const queryClient = new QueryClient({
   },
 });
 
+const container = document.getElementById("react-root");
+
+if (!container) {
+  throw new Error("Failed to find the root element");
+}
+const root = createRoot(container);
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -60,4 +61,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("react-root"));
+root.render(<App />);

@@ -1,6 +1,5 @@
-import React from "react";
-import { act } from "react-dom/test-utils";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { act } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import * as contracts from "advantage/api/contracts";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
@@ -24,7 +23,7 @@ describe("Content", () => {
       },
     });
     contract = userSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
   });
   afterAll(() => {
     jest.restoreAllMocks();
@@ -32,7 +31,7 @@ describe("Content", () => {
 
   it("displays a spinner when loading", () => {
     // Remove the queries so that the query starts loading.
-    queryClient.removeQueries("userSubscriptions");
+    queryClient.removeQueries({ queryKey: ["userSubscriptions"] });
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
@@ -60,7 +59,7 @@ describe("Content", () => {
     // Mock the hook to simulate a failed request.
     getUserSubscriptionsSpy.mockImplementation(() => Promise.reject("Uh oh"));
     // Remove the current queries so that the hook attempts to refetch the subs.
-    queryClient.removeQueries("userSubscriptions");
+    queryClient.removeQueries({ queryKey: ["userSubscriptions"] });
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
@@ -95,7 +94,7 @@ describe("Content", () => {
         start_date: new Date("1999-08-11T02:56:54Z"),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
@@ -121,7 +120,7 @@ describe("Content", () => {
         start_date: new Date("2021-08-11T02:56:54Z"),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />

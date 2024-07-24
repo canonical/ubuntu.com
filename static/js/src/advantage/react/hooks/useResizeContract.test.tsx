@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
-import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useResizeContract } from "./useResizeContract";
 
 import * as contracts from "advantage/api/contracts";
@@ -15,10 +14,17 @@ import {
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
 
+const createWrapper = (queryClient: QueryClient) => {
+  return ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
+  );
+};
+
 describe("useResizeContract", () => {
   let resizeContractSpy: jest.SpyInstance;
   let queryClient: QueryClient;
-  let wrapper: WrapperComponent<ReactNode>;
   let subscription: UserSubscription;
   let lastPurchaseIds: LastPurchaseIds;
 
@@ -30,21 +36,18 @@ describe("useResizeContract", () => {
       period: UserSubscriptionPeriod.Yearly,
     });
     queryClient = new QueryClient();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
     );
-    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-    wrapper = Wrapper;
   });
 
   it("can make the cancel request", async () => {
+
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
-      () => useResizeContract(subscription),
-      { wrapper }
+      () => useResizeContract(subscription), { wrapper }
     );
     result.current.mutate(2);
     await waitForNextUpdate();
@@ -67,6 +70,7 @@ describe("useResizeContract", () => {
       })
     );
     const onError = jest.fn();
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useResizeContract(subscription),
       { wrapper }
@@ -84,6 +88,7 @@ describe("useResizeContract", () => {
         errors: "Uh oh",
       })
     );
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useResizeContract(subscription),
       { wrapper }

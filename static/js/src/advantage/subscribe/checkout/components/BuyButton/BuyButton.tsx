@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
@@ -136,7 +136,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         onSuccess: (purchaseId: string) => {
           //start polling
           if (window.currentPaymentId) {
-            queryClient.invalidateQueries("pendingPurchase");
+            queryClient.invalidateQueries({ queryKey: ["pendingPurchase"] });
           } else {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
@@ -244,7 +244,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
       if (window.accountId) {
-        queryClient.invalidateQueries("customerInfo");
+        queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
       }
       setIsLoading(false);
       setFieldValue("Description", false);

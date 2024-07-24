@@ -1,9 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Integrations } from "@sentry/tracing";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import CredManage from "./components/CredManage";
 
 const oneHour = 1000 * 60 * 60;
@@ -21,17 +19,20 @@ const queryClient = new QueryClient({
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [
-    new Integrations.BrowserTracing({
-      tracingOrigins: ["ubuntu.com"],
-    }),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   allowUrls: ["ubuntu.com"],
 });
 
-function App() {
+const container = document.getElementById("react-root");
+
+if (!container) {
+  throw new Error("Failed to find the root element");
+}
+const root = createRoot(container);
+
+function App(): JSX.Element {
   return (
-    <Sentry.ErrorBoundary>
+    <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <QueryClientProvider client={queryClient}>
         <CredManage />
         <ReactQueryDevtools initialIsOpen={false} />
@@ -40,4 +41,4 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("react-root"));
+root.render(<App />);

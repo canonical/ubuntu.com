@@ -1,7 +1,6 @@
-import React from "react";
 import { screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { User } from "./types";
 import AccountUsers from "./AccountUsers";

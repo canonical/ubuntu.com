@@ -1,6 +1,5 @@
-import React from "react";
 import { mount } from "enzyme";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import SubscriptionList from "./SubscriptionList";
 import {
@@ -22,7 +21,7 @@ describe("SubscriptionList", () => {
   beforeEach(async () => {
     queryClient = new QueryClient();
     freeSubscription = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [freeSubscription]);
+    queryClient.setQueryData(["userSubscriptions"], [freeSubscription]);
   });
 
   it("can display UA subscriptions", () => {
@@ -34,7 +33,7 @@ describe("SubscriptionList", () => {
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -55,7 +54,7 @@ describe("SubscriptionList", () => {
         marketplace: UserSubscriptionMarketplace.Free,
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -81,7 +80,7 @@ describe("SubscriptionList", () => {
         start_date: new Date("1999-08-11T02:56:54Z"),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -135,7 +134,7 @@ describe("SubscriptionList", () => {
       }),
       freeSubscription,
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -146,13 +145,16 @@ describe("SubscriptionList", () => {
   });
 
   it("display free subscription if there is no valid paid subscription", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build({
-        start_date: new Date("2020-08-11T02:56:54Z"),
-        end_date: new Date("2021-08-11T02:56:54Z"),
-      }),
-      freeSubscription,
-    ]);
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          start_date: new Date("2020-08-11T02:56:54Z"),
+          end_date: new Date("2021-08-11T02:56:54Z"),
+        }),
+        freeSubscription,
+      ]
+    );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -164,26 +166,29 @@ describe("SubscriptionList", () => {
   });
 
   it("shows the renewal settings if there subscriptions for which we should present the auto-renewal option", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build({
-        period: UserSubscriptionPeriod.Yearly,
-        subscription_id: "abc",
-        statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: false,
-          is_subscription_auto_renewing: true,
-          should_present_auto_renewal: false,
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Yearly,
+          subscription_id: "abc",
+          statuses: userSubscriptionStatusesFactory.build({
+            is_subscription_active: false,
+            is_subscription_auto_renewing: true,
+            should_present_auto_renewal: false,
+          }),
         }),
-      }),
-      userSubscriptionFactory.build({
-        period: UserSubscriptionPeriod.Monthly,
-        subscription_id: "ghi",
-        statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: true,
-          is_subscription_auto_renewing: true,
-          should_present_auto_renewal: true,
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Monthly,
+          subscription_id: "ghi",
+          statuses: userSubscriptionStatusesFactory.build({
+            is_subscription_active: true,
+            is_subscription_auto_renewing: true,
+            should_present_auto_renewal: true,
+          }),
         }),
-      }),
-    ]);
+      ]
+    );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList
@@ -196,26 +201,29 @@ describe("SubscriptionList", () => {
   });
 
   it("does not show the renewal settings if there are no subscriptions for which we should present the auto-renewal option", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build({
-        period: UserSubscriptionPeriod.Monthly,
-        subscription_id: "abc",
-        statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: false,
-          is_subscription_auto_renewing: true,
-          should_present_auto_renewal: false,
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Monthly,
+          subscription_id: "abc",
+          statuses: userSubscriptionStatusesFactory.build({
+            is_subscription_active: false,
+            is_subscription_auto_renewing: true,
+            should_present_auto_renewal: false,
+          }),
         }),
-      }),
-      userSubscriptionFactory.build({
-        period: UserSubscriptionPeriod.Yearly,
-        subscription_id: "ghi",
-        statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: true,
-          is_subscription_auto_renewing: false,
-          should_present_auto_renewal: false,
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Yearly,
+          subscription_id: "ghi",
+          statuses: userSubscriptionStatusesFactory.build({
+            is_subscription_active: true,
+            is_subscription_auto_renewing: false,
+            should_present_auto_renewal: false,
+          }),
         }),
-      }),
-    ]);
+      ]
+    );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList

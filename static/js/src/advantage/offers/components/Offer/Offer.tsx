@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Col, Row } from "@canonical/react-components";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { currencyFormatter } from "advantage/react/utils";
