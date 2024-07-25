@@ -16,9 +16,7 @@ import {
 
 const createWrapper = (queryClient: QueryClient) => {
   return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
 
@@ -44,10 +42,10 @@ describe("useResizeContract", () => {
   });
 
   it("can make the cancel request", async () => {
-
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
-      () => useResizeContract(subscription), { wrapper }
+      () => useResizeContract(subscription),
+      { wrapper }
     );
     result.current.mutate(2);
     await waitForNextUpdate();
