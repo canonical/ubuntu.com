@@ -138,7 +138,7 @@ function DistributorSummary({
               <strong>
                 {currency
                   ? currencyFormatter(currency).format(
-                      Number(defaultTotal) + Number(taxAmount) ?? 0
+                      Number(defaultTotal) + Number(taxAmount) || 0 
                     )
                   : 0}
               </strong>
