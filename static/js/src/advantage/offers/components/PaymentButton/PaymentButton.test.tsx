@@ -6,7 +6,15 @@ import PaymentButton from "./PaymentButton";
 describe("PaymentButton", () => {
   it("sets session and redirects", async () => {
     const originalLocation = window.location;
-    delete window.location;
+    const mockLocation = {
+      href: "/old/url",
+      assign: jest.fn(),
+      replace: jest.fn(),
+    };
+    Object.defineProperty(window, "location", {
+      value: mockLocation,
+      writable: true,
+    });
 
     window.location = ({
       href: "/old/url",
