@@ -295,22 +295,30 @@ const UserInfoForm = ({ setError }: Props) => {
       />
       <FormRow label="I’m buying for:">
         <div className="u-sv3 p-form p-form--inline" role="group">
-          <Field
-            as={RadioInput}
-            name="buyingFor"
-            value="myself"
-            label="Myself"
-            defaultChecked={values.buyingFor === "myself"}
-            disabled={window.accountId && initialValues.organisationName}
-          />
-          <Field
-            as={RadioInput}
-            name="buyingFor"
-            value="organisation"
-            label="An organisation"
-            defaultChecked={values.buyingFor === "organisation"}
-            disabled={window.accountId && initialValues.organisationName}
-          />
+          <Field name="buyingFor">
+            {({ field }: any) => (
+              <>
+                <RadioInput
+                  {...field}
+                  id="myself"
+                  value="myself"
+                  checked={field.value === "myself"}
+                  onChange={() => setFieldValue("buyingFor", "myself")}
+                  label="Myself"
+                  disabled={window.accountId && initialValues.organisationName}
+                />
+                <RadioInput
+                  {...field}
+                  id="organisation"
+                  value="organisation"
+                  checked={field.value === "organisation"}
+                  onChange={() => setFieldValue("buyingFor", "organisation")}
+                  label="An organisation"
+                  disabled={window.accountId && initialValues.organisationName}
+                />
+              </>
+            )}
+          </Field>
         </div>
       </FormRow>
       {initialValues.buyingFor === "myself" &&

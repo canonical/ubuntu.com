@@ -39,24 +39,41 @@ const FreeTrial = ({ products, action, coupon }: Props) => {
   return (
     <Row>
       <Col size={12}>
-        <Field
-          as={RadioInput}
-          type="radio"
-          id="useFreeTrial"
-          name="FreeTrial"
-          label="Use free trial month"
-          value="useFreeTrial"
-          disabled={!!window.currentPaymentId}
-        />
-        <Field
-          as={RadioInput}
-          type="radio"
-          id="payNow"
-          name="FreeTrial"
-          label="Pay now"
-          value="payNow"
-          disabled={!!window.currentPaymentId}
-        />
+        <Field name="FreeTrial">
+          {({ field }: any) => (
+            <>
+              <RadioInput
+                id="useFreeTrial"
+                {...field}
+                type="radio"
+                value="useFreeTrial"
+                checked={field.value === "useFreeTrial"}
+                onChange={() =>
+                  field.onChange({
+                    target: { name: field.name, value: "useFreeTrial" },
+                  })
+                }
+                disabled={!!window.currentPaymentId}
+                label="Use free trial month"
+              />
+              <RadioInput
+                id="payNow"
+                {...field}
+                type="radio"
+                value="payNow"
+                checked={field.value === "payNow"}
+                onChange={() =>
+                  field.onChange({
+                    target: { name: field.name, value: "payNow" },
+                  })
+                }
+                disabled={!!window.currentPaymentId}
+                label="Pay now"
+              />
+            </>
+          )}
+        </Field>
+
         {values?.FreeTrial === "useFreeTrial" ? (
           <>
             <p>
