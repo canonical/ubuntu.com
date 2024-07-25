@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import AddNewUserForm from "./AddNewUserForm";
@@ -34,23 +34,25 @@ it("calls handleClose modal handler after successful submission", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
-    screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
-  );
-  userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  act(async () => {
+    userEvent.type(screen.getByLabelText("Name"), "Angela");
+    userEvent.type(
+      screen.getByLabelText("Users’ email address"),
+      "angela@ecorp.com"
+    );
+    userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+    userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
-  await waitFor(() =>
-    expect(mockHandleSubmit).toHaveBeenCalledWith({
-      name: "Angela",
-      email: "angela@ecorp.com",
-      role: "technical",
-    })
-  );
-  expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
-  expect(mockHandleClose).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockHandleSubmit).toHaveBeenCalledWith({
+        name: "Angela",
+        email: "angela@ecorp.com",
+        role: "technical",
+      })
+    );
+    expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
+    expect(mockHandleClose).toHaveBeenCalled();
+  });
 });
 
 it("submits the form on pressing the Enter key", async () => {
@@ -63,13 +65,16 @@ it("submits the form on pressing the Enter key", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
-    screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
-  );
-  userEvent.keyboard("{enter}");
-  await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
+  act(async () => {
+    userEvent.type(screen.getByLabelText("Name"), "Angela");
+    userEvent.type(
+      screen.getByLabelText("Users’ email address"),
+      "angela@ecorp.com"
+    );
+    (await screen.findByLabelText("Name")).focus(); // Focus on the name field
+    userEvent.keyboard("{enter}"); // Press the Enter key
+    await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
+  });
 });
 
 it("displays an alert message on submission failure", async () => {
@@ -84,18 +89,20 @@ it("displays an alert message on submission failure", async () => {
     />
   );
 
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
-    screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
-  );
-  userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  act(async () => {
+    userEvent.type(screen.getByLabelText("Name"), "Angela");
+    userEvent.type(
+      screen.getByLabelText("Users’ email address"),
+      "angela@ecorp.com"
+    );
+    userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+    userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
-  await waitFor(() => screen.getByRole("alert"));
+    await waitFor(() => screen.getByRole("alert"));
 
-  expect(screen.getByRole("alert")).toHaveTextContent(
-    /An unknown error has occurred./
-  );
-  expect(mockHandleClose).not.toHaveBeenCalled();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      /An unknown error has occurred./
+    );
+    expect(mockHandleClose).not.toHaveBeenCalled();
+  });
 });
