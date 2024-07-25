@@ -19,11 +19,12 @@ describe("useStripePublishableKey", () => {
   it("can return the stripe publishable key from the store", async () => {
     const wrapper = createWrapper(queryClient);
     queryClient.setQueryData(["stripePublishableKey"], "abc123");
-    const { result, waitForNextUpdate } = renderHook(
-      () => useStripePublishableKey(),
-      { wrapper }
-    );
-    await waitForNextUpdate();
+    const { result, waitFor } = renderHook(() => useStripePublishableKey(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.stripePublishableKey !== undefined);
+
     expect(result.current.stripePublishableKey).toBe("abc123");
   });
 });
