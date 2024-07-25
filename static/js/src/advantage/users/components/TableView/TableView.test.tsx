@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { getRandomUser } from "../../../tests/utils";
@@ -46,7 +46,7 @@ it("doesn't display pagination when there is less than 11 users", () => {
   expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
 });
 
-it("paginates the results when there is 11 users or more", () => {
+it("paginates the results when there is 11 users or more", async () => {
   const usersPage1 = [...new Array(10)].map(getRandomUser);
   const usersPage2 = [...new Array(2)].map(getRandomUser);
 
@@ -61,16 +61,22 @@ it("paginates the results when there is 11 users or more", () => {
     />
   );
 
-  expect(screen.getAllByLabelText("email")).toHaveLength(10);
-  screen.getAllByLabelText("email").forEach((item, index) => {
-    expect(item).toHaveTextContent(`${usersPage1[index].email}`);
+  const emailsPage1 = screen.getAllByLabelText("email");
+  expect(emailsPage1).toHaveLength(10);
+  emailsPage1.forEach((item, index) => {
+    expect(item).toHaveTextContent(usersPage1[index].email);
   });
+
   userEvent.click(
     within(screen.getByRole("navigation")).getByRole("button", { name: "2" })
   );
-  expect(screen.getAllByLabelText("email")).toHaveLength(2);
-  screen.getAllByLabelText("email").forEach((item, index) => {
-    expect(item).toHaveTextContent(`${usersPage2[index].email}`);
+
+  await waitFor(() => {
+    const emailsPage2 = screen.getAllByLabelText("email");
+    expect(emailsPage2).toHaveLength(2);
+    emailsPage2.forEach((item, index) => {
+      expect(item).toHaveTextContent(usersPage2[index].email);
+    });
   });
 });
 
