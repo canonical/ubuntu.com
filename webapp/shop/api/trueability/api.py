@@ -34,8 +34,6 @@ class TrueAbilityAPI:
             json=json,
             allow_redirects=allow_redirects,
         )
-        print(response._content)
-
         if retry and response.status_code == 401:
             response = self.make_request(
                 method,

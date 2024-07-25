@@ -24,3 +24,30 @@ export type Assessment = {
     country_code: string;
   };
 };
+
+export type AssessmentReservationTA = {
+  id: number;
+  uuid: string;
+  ability_screen: {
+    id: number;
+    name: string;
+  };
+  assessment: {
+    id: number;
+    state: string;
+  };
+  starts_at: string;
+  user: {
+    email: string;
+    first_name: string;
+    last_name: string;
+    full_name: string;    
+  };
+  state: string;
+};
+
+export type AssessmentReservationMeta = {
+  total_pages: number;
+  current_page: number;
+  total_count: number;
+};

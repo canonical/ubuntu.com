@@ -1,5 +1,5 @@
-export async function getUpcomingExams(page = 1) {
-  const URL = `/credentials/api/upcoming-exams?page=${page}`;
+export async function getUpcomingExams({pageParam = 1}) {
+  const URL = `/credentials/api/upcoming-exams?page=${pageParam}`;
   const response = await fetch(URL, {
     method: "GET",
     headers: {

@@ -22,8 +22,8 @@ const Exams = () => {
   return (
     <>
       <Tabs links={tabs} />
-      {activeTab === 0 && <UpcomingExams hidden={activeTab !== 0} />}
-      {activeTab === 1 && <ExamResults hidden={activeTab !== 1} />}
+      <UpcomingExams hidden={activeTab !== 0} />
+      <ExamResults hidden={activeTab !== 1} />
     </>
   );
 };
