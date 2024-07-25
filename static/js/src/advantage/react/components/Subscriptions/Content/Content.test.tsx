@@ -58,16 +58,23 @@ describe("Content", () => {
   it("displays a message if the contracts can't be loaded", async () => {
     // Mock the hook to simulate a failed request.
     getUserSubscriptionsSpy.mockImplementation(() => Promise.reject("Uh oh"));
+
     // Remove the current queries so that the hook attempts to refetch the subs.
     queryClient.removeQueries({ queryKey: ["userSubscriptions"] });
+
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
       </QueryClientProvider>
     );
+
     // Use act and wrapper.update to force waiting  for the component to finish rendering.
-    await act(async () => {});
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
     wrapper.update();
+
     expect(
       wrapper.find("Notification[data-test='loading-error']").exists()
     ).toBe(true);
