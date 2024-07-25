@@ -143,29 +143,22 @@ function sendContributionFormAnalytics() {
   const inputs = document.querySelectorAll(".p-slider__input");
   const total = document.querySelector(".js-total-amount").innerText;
 
+  let dataLayerObject = {
+    event: "contribution",
+    total: total,
+  };
+
   // add the individual items
   inputs.forEach((amountElement) => {
     const name = amountElement.parentNode.parentNode.id;
     let value = amountElement.value || 0;
 
     if (value > 0) {
-      dataLayer.push({
-        event: "GAEvent",
-        eventCategory: "Contributions",
-        eventAction: "Item",
-        eventLabel: name,
-        eventValue: value,
-      });
+      dataLayerObject[name] = value;
     }
   });
 
-  dataLayer.push({
-    event: "GAEvent",
-    eventCategory: "Contributions",
-    eventAction: "Paid",
-    eventLabel: "Total",
-    eventValue: total,
-  });
+  dataLayer.push(dataLayerObject);
 }
 
 function detectBrowser() {
