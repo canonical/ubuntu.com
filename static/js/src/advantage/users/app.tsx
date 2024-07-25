@@ -106,13 +106,6 @@ const AccountUsersWithQuery = () => {
   );
 };
 
-const container = document.getElementById("advantage-account-users-app");
-
-if (!container) {
-  throw new Error("Failed to find the root element");
-}
-const root = createRoot(container);
-
 function App() {
   return (
     <Sentry.ErrorBoundary>
@@ -124,4 +117,6 @@ function App() {
   );
 }
 
-root.render(<App />);
+createRoot(document.getElementById("advantage-account-users-app")!).render(
+  <App />
+);

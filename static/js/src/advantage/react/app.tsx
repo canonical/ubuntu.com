@@ -39,8 +39,6 @@ const queryClient = new QueryClient({
   },
 });
 
-const container = document.getElementById("react-root");
-
 export const App = () => {
   useLoadWindowData(queryClient);
   return (
@@ -52,8 +50,7 @@ export const App = () => {
     </QueryClientProvider>
   );
 };
-
-if (container) {
-  const root = createRoot(container);
-  root.render(<App />);
+const root = document.getElementById("react-root");
+if (root) {
+  createRoot(root).render(<App />);
 }

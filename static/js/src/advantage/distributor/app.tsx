@@ -41,13 +41,6 @@ Sentry.init({
   allowUrls: ["ubuntu.com"],
 });
 
-const container = document.getElementById("react-root");
-
-if (!container) {
-  throw new Error("Failed to find the root element");
-}
-const root = createRoot(container);
-
 function App() {
   return (
     <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
@@ -68,4 +61,4 @@ function App() {
   );
 }
 
-root.render(<App />);
+createRoot(document.getElementById("react-root")!).render(<App />);
