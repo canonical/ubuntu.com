@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import FeatureSwitch from "./FeatureSwitch";
@@ -52,7 +52,7 @@ it("renders disabled variant correctly", () => {
   expect(checkbox.disabled).toEqual(true);
 });
 
-it("calls handleOnChange on click", () => {
+it("calls handleOnChange on click", async () => {
   const mockFn = jest.fn();
   render(
     <FeatureSwitch isChecked={false} handleOnChange={mockFn}>
@@ -60,6 +60,15 @@ it("calls handleOnChange on click", () => {
     </FeatureSwitch>
   );
 
-  userEvent.click(screen.getByRole("checkbox", { name: "ESM Infra" }));
-  expect(mockFn).toHaveBeenCalled();
+  const checkbox = screen.getByRole("checkbox", {
+    name: "ESM Infra",
+  }) as HTMLInputElement;
+
+  expect(checkbox).toBeInTheDocument();
+
+  userEvent.click(checkbox);
+
+  await waitFor(() => {
+    expect(mockFn).toHaveBeenCalled();
+  });
 });

@@ -175,14 +175,21 @@ describe("SubscriptionEdit", () => {
       </QueryClientProvider>
     );
     userEvent.type(screen.getByLabelText("Number of machines"), "6");
+    await waitFor(() => {
+      expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
+      expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
+    });
 
-    expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
-    expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
     userEvent.click(screen.getByRole("button", { name: "Resize" }));
-    await waitFor(() =>
-      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled()
-    );
-    expect(screen.queryByRole("button", { name: "Cancel" })).toBeDisabled();
+    await waitFor(() => {
+      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled();
+    });
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: "Cancel" })).toHaveAttribute(
+        "aria-disabled",
+        "true"
+      );
+    });
   });
 
   it("invalidates queries when the resize is successful", async () => {
