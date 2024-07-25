@@ -6,9 +6,7 @@ import AddNewUser from "./AddNewUser";
 it("opens 'Add new user' modal on click", () => {
   render(<AddNewUser handleSubmit={jest.fn()} />);
   userEvent.click(screen.getByText("Add new user"));
-
   const modal = screen.getByLabelText("Add a new user to this organisation");
-
   expect(within(modal).getByLabelText("Name")).toBeVisible();
   expect(within(modal).getByLabelText("Users’ email address")).toBeVisible();
   expect(within(modal).getByLabelText("Role")).toBeVisible();
