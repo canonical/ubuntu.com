@@ -53,7 +53,7 @@ export const App = () => {
   );
 };
 
-if (container){
+if (container) {
   const root = createRoot(container);
   root.render(<App />);
 }
