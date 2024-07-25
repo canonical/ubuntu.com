@@ -41,11 +41,6 @@ const queryClient = new QueryClient({
 
 const container = document.getElementById("react-root");
 
-if (!container) {
-  throw new Error("Failed to find the root element");
-}
-const root = createRoot(container);
-
 export const App = () => {
   useLoadWindowData(queryClient);
   return (
@@ -58,4 +53,7 @@ export const App = () => {
   );
 };
 
-root.render(<App />);
+if (container){
+  const root = createRoot(container);
+  root.render(<App />);
+}
