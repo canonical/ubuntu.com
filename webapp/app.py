@@ -592,9 +592,12 @@ def takeovers_index():
     page = flask.request.args.get("page", default=1, type=int)
     limit = 50
     offset = (page - 1) * limit
-    all_takeovers, count, active_count, total_current = (
-        discourse_takeovers.get_index(limit=limit, offset=offset)
-    )
+    (
+        all_takeovers,
+        count,
+        active_count,
+        total_current,
+    ) = discourse_takeovers.get_index(limit=limit, offset=offset)
     total_pages = math.ceil(count / limit)
 
     return flask.render_template(
