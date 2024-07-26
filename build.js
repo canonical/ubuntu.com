@@ -49,9 +49,9 @@ for (const [key, value] of Object.entries(entries)) {
     plugins: [sassPlugin()],
     entryPoints: [value],
     bundle: true,
-    minify: isDev ? false : true,
+    minify: !isDev,
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
-    sourcemap: isDev ? false : true,
+    sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
