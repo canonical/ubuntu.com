@@ -53,7 +53,7 @@ for (const [key, value] of Object.entries(entries)) {
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
     sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
-    target: ["chrome90", "firefox88", "safari14", "edge90"],
+    target: ["es2020", "chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":
         // Explicitly check for 'development' so that this defaults to
