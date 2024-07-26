@@ -34,25 +34,23 @@ it("calls handleClose modal handler after successful submission", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  act(async () => {
-    userEvent.type(screen.getByLabelText("Name"), "Angela");
-    userEvent.type(
-      screen.getByLabelText("Users’ email address"),
-      "angela@ecorp.com"
-    );
-    userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-    userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
+    screen.getByLabelText("Users’ email address"),
+    "angela@ecorp.com"
+  );
+  await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+  await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
-    await waitFor(() =>
-      expect(mockHandleSubmit).toHaveBeenCalledWith({
-        name: "Angela",
-        email: "angela@ecorp.com",
-        role: "technical",
-      })
-    );
-    expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
-    expect(mockHandleClose).toHaveBeenCalled();
-  });
+  await waitFor(() =>
+    expect(mockHandleSubmit).toHaveBeenCalledWith({
+      name: "Angela",
+      email: "angela@ecorp.com",
+      role: "technical",
+    })
+  );
+  expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
+  waitFor(() => expect(mockHandleClose).toHaveBeenCalled());
 });
 
 it("submits the form on pressing the Enter key", async () => {
@@ -65,16 +63,14 @@ it("submits the form on pressing the Enter key", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  act(async () => {
-    userEvent.type(screen.getByLabelText("Name"), "Angela");
-    userEvent.type(
-      screen.getByLabelText("Users’ email address"),
-      "angela@ecorp.com"
-    );
-    (await screen.findByLabelText("Name")).focus(); // Focus on the name field
-    userEvent.keyboard("{enter}"); // Press the Enter key
-    await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
-  });
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
+    screen.getByLabelText("Users’ email address"),
+    "angela@ecorp.com"
+  );
+  (await screen.findByLabelText("Name")).focus(); // Focus on the name field
+  await userEvent.keyboard("{enter}"); // Press the Enter key
+  await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
 });
 
 it("displays an alert message on submission failure", async () => {
@@ -89,20 +85,18 @@ it("displays an alert message on submission failure", async () => {
     />
   );
 
-  act(async () => {
-    userEvent.type(screen.getByLabelText("Name"), "Angela");
-    userEvent.type(
-      screen.getByLabelText("Users’ email address"),
-      "angela@ecorp.com"
-    );
-    userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-    userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
+    screen.getByLabelText("Users’ email address"),
+    "angela@ecorp.com"
+  );
+  await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+  await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
-    await waitFor(() => screen.getByRole("alert"));
+  await waitFor(() => screen.getByRole("alert"));
 
-    expect(screen.getByRole("alert")).toHaveTextContent(
-      /An unknown error has occurred./
-    );
-    expect(mockHandleClose).not.toHaveBeenCalled();
-  });
+  expect(screen.getByRole("alert")).toHaveTextContent(
+    /An unknown error has occurred./
+  );
+  expect(mockHandleClose).not.toHaveBeenCalled();
 });
