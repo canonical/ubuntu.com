@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
-import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getUpcomingExams } from "../../api/keys";
 import {
   AssessmentReservationTA,
@@ -9,32 +9,47 @@ import {
 } from "../../utils/types";
 import { ModularTable, Select } from "@canonical/react-components";
 
-interface IProps {
-  hidden: boolean;
-}
-
 type APIResponse = {
   assessment_reservations: AssessmentReservationTA[];
   meta: AssessmentReservationMeta;
   error?: string;
 };
 
-const UpcomingExams = (props: IProps) => {
-  const { hidden } = props;
+const UpcomingExams = () => {
   const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
-  const fetchedPages = useRef(new Set([1]));
+  const [fetchedPages] = useState(new Set([1]));
+  const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
   const [groupKey, setGroupKey] = useState("1");
-  const {
-    isLoading,
-    isError,
-    data,
-    isFetching,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery<APIResponse>("upcomingExams", getUpcomingExams, {
-    keepPreviousData: true,
-  });
+  const { isLoading, isError, data, isFetching } = useQuery<APIResponse>(
+    ["upcomingExams", currentPage],
+    () => getUpcomingExams(currentPage),
+    {
+      keepPreviousData: true,
+      onSuccess: (newData) => {
+        if (newData && newData.assessment_reservations) {
+          setCachedData((prev) => ({
+            ...prev,
+            [currentPage]: newData,
+          }));
+        }
+      },
+    }
+  );
+
+  useEffect(() => {
+    const queryData = queryClient.getQueryData<APIResponse>([
+      "upcomingExams",
+      currentPage,
+    ]);
+
+    if (queryData) {
+      setCachedData((prev) => ({
+        ...prev,
+        [currentPage]: queryData,
+      }));
+    }
+  }, [currentPage]);
 
   const columns = useMemo(
     () => [
@@ -89,21 +104,15 @@ const UpcomingExams = (props: IProps) => {
   );
 
   const flatData = useMemo(() => {
-    const sortedPages = data?.pages.sort(
-      (a, b) => b.meta.current_page - a.meta.current_page
-    );
-    return (
-      sortedPages?.reduce(
-        (acc: AssessmentReservationTA[], page: APIResponse) => {
-          return [...acc, ...page.assessment_reservations];
-        },
-        []
-      ) ?? []
-    );
-  }, [data]);
+    const data = cachedData ? Object.values(cachedData).flat() : [];
+    return data
+      .sort((a, b) => b.meta.current_page - a.meta.current_page)
+      .map((page) => page.assessment_reservations)
+      .flat();
+  }, [cachedData]);
 
   const uniqueGroupKeys = useMemo(() => {
-    if (data && data.pages) {
+    if (data && data?.assessment_reservations) {
       if (groupKey === "1") {
         return [
           ...new Set(
@@ -172,13 +181,13 @@ const UpcomingExams = (props: IProps) => {
   };
 
   const currentRows = useMemo(() => {
-    if (data && data?.pages) {
+    if (data && data?.assessment_reservations) {
       if (groupKey === "1") {
         return (uniqueGroupKeys as number[]).map((screenId) => {
-          const badge = getAbilityScreen(screenId);
+          const screen = getAbilityScreen(screenId);
           const subRows = getSubRows(screenId);
           return {
-            id: badge?.ability_screen?.name,
+            id: screen?.ability_screen?.name,
             subRows,
           };
         });
@@ -197,9 +206,8 @@ const UpcomingExams = (props: IProps) => {
   }, [uniqueGroupKeys, getSubRows, groupKey]);
 
   const paginationMeta = useMemo(() => {
-    if (data && data?.pages && data.pages.length) {
-      const { pages } = data;
-      const meta = pages[0].meta;
+    if (data && data?.meta) {
+      const { meta } = data;
       const totalPages = meta.total_pages;
       const currentPage = totalPages - meta.current_page + 1;
       return {
@@ -214,23 +222,18 @@ const UpcomingExams = (props: IProps) => {
   }, [data]);
 
   const handleLoadPage = (pageNumber: number) => {
-    if (isFetching || isFetchingNextPage) {
-      return;
-    }
-    setCurrentPage(pageNumber);
-    if (fetchedPages.current.has(pageNumber)) {
-      return;
-    }
-    fetchedPages.current.add(pageNumber);
     if (isFetching) {
       return;
     }
-    fetchNextPage({ pageParam: pageNumber });
+    setCurrentPage(pageNumber);
+    if (fetchedPages.has(pageNumber)) {
+      return;
+    }
+    fetchedPages.add(pageNumber);
+    if (isFetching) {
+      return;
+    }
   };
-
-  if (hidden) {
-    return null;
-  }
 
   if (isLoading) {
     return <Spinner text="Loading..." />;
@@ -247,14 +250,14 @@ const UpcomingExams = (props: IProps) => {
   if (data) {
     return (
       <>
-        {(isFetching || isFetchingNextPage) && <Spinner text="Loading..." />}
+        {isFetching && <Spinner text="Loading..." />}
         {paginationMeta && (
           <Pagination
             currentPage={currentPage}
             itemsPerPage={50}
             paginate={handleLoadPage}
             totalItems={paginationMeta.totalItems}
-            disabled={isFetchingNextPage}
+            disabled={isFetching}
           />
         )}
         {/* <Select 
@@ -276,18 +279,6 @@ const UpcomingExams = (props: IProps) => {
           // value={groupKey}
         /> */}
         <ModularTable data={currentRows} columns={columns} sortable />
-        {/* <MainTable
-          sortFunction={sortFunction}
-          // sortable
-          headers={[
-            { content: "ID", sortKey: "id" },
-            { content: "User", sortKey: "user" },
-            { content: "Exam State", sortKey: "state" },
-            { content: "Starting Time", sortKey: "startsAt" },
-          ]}
-          paginate={50}
-          rows={currentRows}
-        /> */}
       </>
     );
   }

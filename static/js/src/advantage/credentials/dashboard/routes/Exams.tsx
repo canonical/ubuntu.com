@@ -1,29 +1,32 @@
 import React, { useState, useMemo } from "react";
 import { Tabs } from "@canonical/react-components";
-import UpcomingExams from "../components/UpcomingExams/UpcomingExams";
-import ExamResults from "../components/ExamResults/ExamResults";
+import { Outlet, redirect, useLocation, useNavigate } from "react-router-dom";
 
 const Exams = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
   const tabs = useMemo(() => {
     return [
       {
-        active: activeTab === 0,
+        active: location.pathname === "/exams/upcoming",
         label: "Upcoming Exams",
-        onClick: () => setActiveTab(0),
+        onClick: () => {
+          navigate("/exams/upcoming");
+        },
       },
       {
-        active: activeTab === 1,
+        active: location.pathname === "/exams/results",
         label: "Exam Results",
-        onClick: () => setActiveTab(1),
+        onClick: () => {
+          navigate("/exams/results");
+        },
       },
     ];
-  }, [activeTab]);
+  }, [location.pathname]);
   return (
     <>
       <Tabs links={tabs} />
-      <UpcomingExams hidden={activeTab !== 0} />
-      <ExamResults hidden={activeTab !== 1} />
+      <Outlet />
     </>
   );
 };

@@ -21,7 +21,7 @@ const Sidebar = () => {
   const links = useMemo(() => {
     return [
       {
-        to: "/exams",
+        to: "/exams/upcoming",
         label: "Exams",
         icon: "p-icon--machines",
         isActive: location.pathname === "/exams",

@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Exams from "./routes/Exams";
+import UpcomingExams from "./components/UpcomingExams/UpcomingExams";
+import ExamResults from "./components/ExamResults/ExamResults";
 import Keys from "./components/Keys/Keys";
 import Credly from "./components/Credly/Credly";
 import TestTakers from "./components/TestTakers/TestTakers";
@@ -51,7 +53,10 @@ function App() {
               <section style={{ padding: "2rem" }}>
                 <Routes>
                   <Route path="/" element={<Navigate to="/exams" />} />
-                  <Route path="/exams" element={<Exams />} />
+                  <Route path="/exams" element={<Exams />}>
+                    <Route path="/exams/upcoming" element={<UpcomingExams />} />
+                    <Route path="/exams/results" element={<ExamResults />} />
+                  </Route>
                   <Route path="/keys" element={<Keys />} />
                   <Route path="/credly" element={<Credly />} />
                   <Route path="/test-taker-stats" element={<TestTakers />} />

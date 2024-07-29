@@ -41,7 +41,7 @@ export type AssessmentReservationTA = {
     email: string;
     first_name: string;
     last_name: string;
-    full_name: string;    
+    full_name: string;
   };
   state: string;
 };
@@ -50,4 +50,26 @@ export type AssessmentReservationMeta = {
   total_pages: number;
   current_page: number;
   total_count: number;
+};
+
+export type ExamResultsTA = {
+  id: number;
+  user_email: string;
+  score: number;
+  duration_in_minutes: number;
+  uuid: string;
+  ability_screen: {
+    id: number;
+    cutoff_score: number;
+    display_name: string;
+  };
+  result_url: string;
+};
+
+export type ExamResultsMeta = {
+  current_page: number;
+  next_page: number;
+  prev_page: number;
+  total_count: number;
+  total_pages: number;
 };

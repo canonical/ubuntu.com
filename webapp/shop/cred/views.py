@@ -1232,7 +1232,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 # @credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
-        per_page = 10
+        per_page = 50
         page = int(flask.request.args.get("page", 1)) - 1
         exam_state = flask.request.args.get("state", None)
         first_results = trueability_api.get_results(
