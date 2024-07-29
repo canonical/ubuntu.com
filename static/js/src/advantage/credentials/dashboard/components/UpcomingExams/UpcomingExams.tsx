@@ -8,6 +8,7 @@ import {
   AssessmentReservationMeta,
 } from "../../utils/types";
 import { ModularTable, Select } from "@canonical/react-components";
+import { upperCaseFirstChar } from "../../utils/common";
 
 type APIResponse = {
   assessment_reservations: AssessmentReservationTA[];
@@ -136,13 +137,9 @@ const UpcomingExams = () => {
     return [];
   }, [data, groupKey, flatData]);
 
-  const uppercaseFirstCharacter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
   const getState = (res: AssessmentReservationTA) => {
     const state = res?.assessment?.state || res.state;
-    return uppercaseFirstCharacter(state || "N/A");
+    return upperCaseFirstChar(state || "N/A");
   };
 
   const getSubRows = (key: number | string) => {

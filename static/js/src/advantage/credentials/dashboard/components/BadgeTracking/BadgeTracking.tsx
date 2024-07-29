@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { getIssuedBadgesCredly } from "../../api/keys";
 import { CredlyMetadata, CredlyBadge } from "../../utils/types";
 import { ModularTable } from "@canonical/react-components";
+import { upperCaseFirstChar } from "../../utils/common";
 
 type APIResponse = {
   data: CredlyBadge[];
@@ -70,7 +71,7 @@ const BadgeTracking = () => {
         accessor: "state",
         sortType: "basic",
         Cell: (props: any) =>
-          props.row.depth === 0 ? <></> : <small>{props.value}</small>,
+          props.row.depth === 0 ? <></> : <small>{upperCaseFirstChar(props.value)}</small>,
       },
       {
         Header: "Email",
