@@ -77,6 +77,29 @@ export async function getIssuedBadgesCredly(
   return data;
 }
 
+export async function getIssuedBadgesBulkCredly(filter: string | null = null) {
+  let URL = `/credentials/api/issued-badges-bulk`;
+  const queryParams = new URLSearchParams();
+
+  if (filter) {
+    queryParams.append("filter", filter);
+  }
+  if (queryParams.toString()) {
+    URL += `?${queryParams.toString()}`;
+  }
+
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
+
 export async function getTestTakerStats() {
   const URL = `/credentials/api/test-taker-stats`;
   const response = await fetch(URL, {

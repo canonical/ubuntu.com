@@ -17,6 +17,7 @@ export type CredlyBadge = {
   issued_to: string;
   recipient_email: string;
   state: string;
+  issuer_earner_id: string | null;
 };
 
 export type Assessment = {
@@ -63,6 +64,7 @@ export type ExamResultsTA = {
     id: number;
     cutoff_score: number;
     display_name: string;
+    name: string;
   };
   result_url: string;
 };

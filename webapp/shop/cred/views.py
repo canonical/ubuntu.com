@@ -1103,6 +1103,13 @@ def get_issued_badges(credly_api, **kwargs):
     badges = credly_api.get_issued_badges(filter, sort, page)
     return flask.jsonify(badges)
 
+@shop_decorator(area="cred", permission="user", response="json")
+# @credentials_group()
+def get_issued_badges_bulk(credly_api, **kwargs):
+    filter = flask.request.args.get("filter", None)
+    badges = credly_api.get_issued_badges_bulk(filter)
+    return flask.jsonify(badges)
+
 
 @shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()

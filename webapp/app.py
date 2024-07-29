@@ -93,6 +93,7 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
+    get_issued_badges_bulk,
     get_test_taker_stats,
     get_my_issued_badges,
     get_webhook_response,
@@ -980,6 +981,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/credentials/api/issued-badges",
     view_func=get_issued_badges,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges-bulk",
+    view_func=get_issued_badges_bulk,
     methods=["GET"],
 )
 app.add_url_rule(

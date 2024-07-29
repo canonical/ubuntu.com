@@ -71,7 +71,11 @@ const BadgeTracking = () => {
         accessor: "state",
         sortType: "basic",
         Cell: (props: any) =>
-          props.row.depth === 0 ? <></> : <small>{upperCaseFirstChar(props.value)}</small>,
+          props.row.depth === 0 ? (
+            <></>
+          ) : (
+            <small>{upperCaseFirstChar(props.value)}</small>
+          ),
       },
       {
         Header: "Email",

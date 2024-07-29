@@ -8,8 +8,8 @@ import {
   Button,
 } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "react-query";
-import { getExamResults } from "../../api/keys";
-import { ExamResultsMeta, ExamResultsTA } from "../../utils/types";
+import { getExamResults, getIssuedBadgesBulkCredly } from "../../api/keys";
+import { ExamResultsMeta, ExamResultsTA, CredlyBadge } from "../../utils/types";
 
 type APIResponse = {
   results: ExamResultsTA[];
@@ -37,6 +37,17 @@ const ExamResults = () => {
       },
     }
   );
+
+  const {
+    isLoading: isLoadingBadges,
+    isError: isErrorBadges,
+    data: dataBadges,
+  } = useQuery<{
+    data: CredlyBadge[];
+  }>(["credlyIssuedBadgesBulk"], () => getIssuedBadgesBulkCredly(), {
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
 
   useEffect(() => {
     const queryData = queryClient.getQueryData<APIResponse>([
@@ -100,14 +111,19 @@ const ExamResults = () => {
       },
       {
         Header: "",
-        accessor: "action",
+        accessor: "badge",
         Cell: (props: any) => {
           return props.row.depth === 0 ? (
             <></>
           ) : (
-            <Button disabled dense>
-              Issue Badge
-            </Button>
+            <>
+              {props.value && (
+                <Button appearance="positive" dense>
+                  Badge Issued
+                </Button>
+              )}
+              {!props.value && <Button dense>Issue a Badge</Button>}
+            </>
           );
         },
       },
@@ -117,11 +133,26 @@ const ExamResults = () => {
 
   const flatData = useMemo(() => {
     const data = cachedData ? Object.values(cachedData).flat() : [];
-    return data
+    const mappedData = data
       .sort((a, b) => b.meta.current_page - a.meta.current_page)
       .map((page) => page.results)
       .flat();
-  }, [cachedData]);
+    if (dataBadges?.data) {
+      const mappedDataWithBadgeInfo = mappedData.map((result) => {
+        const badge = dataBadges.data.find(
+          (badge) =>
+            badge.recipient_email === result.user_email ||
+            badge.issuer_earner_id === result.uuid
+        );
+        return {
+          ...result,
+          badge,
+        };
+      });
+      return mappedDataWithBadgeInfo;
+    }
+    return mappedData;
+  }, [cachedData, dataBadges]);
 
   const uniqueGroupKeys = useMemo(() => {
     if (data && data?.results) {
@@ -153,7 +184,7 @@ const ExamResults = () => {
         const exam = getExam(screenId);
         const subRows = getSubRows(screenId);
         return {
-          id: exam?.ability_screen?.display_name || "N/A",
+          id: exam?.ability_screen?.name || "N/A",
           score: exam?.ability_screen.cutoff_score || 0,
           subRows,
         };
@@ -192,11 +223,11 @@ const ExamResults = () => {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || isLoadingBadges) {
     return <Spinner text="Loading..." />;
   }
 
-  if (isError || data?.error) {
+  if (isError || data?.error || isErrorBadges) {
     return (
       <Notification severity="negative" title="Error">
         {data?.error || "An error occurred while fetching exam results."}
@@ -204,7 +235,7 @@ const ExamResults = () => {
     );
   }
 
-  if (data && !data?.error) {
+  if (data && dataBadges && !data?.error) {
     return (
       <>
         {isFetching && <Spinner text="Loading..." />}
