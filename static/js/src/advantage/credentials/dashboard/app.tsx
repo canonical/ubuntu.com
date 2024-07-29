@@ -5,11 +5,15 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Exams from "./routes/Exams";
+import Credly from "./routes/Credly";
+import Keys from "./routes/Keys";
+
 import UpcomingExams from "./components/UpcomingExams/UpcomingExams";
 import ExamResults from "./components/ExamResults/ExamResults";
-import Keys from "./components/Keys/Keys";
-import Credly from "./components/Credly/Credly";
+import KeysList from "./components/KeysList/KeysList";
 import TestTakers from "./components/TestTakers/TestTakers";
+import CertificationIssued from "./components/CertificationsIssued/CertificationIssued";
+import BadgeTracking from "./components/BadgeTracking/BadgeTracking";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {
   BrowserRouter as Router,
@@ -57,8 +61,19 @@ function App() {
                     <Route path="/exams/upcoming" element={<UpcomingExams />} />
                     <Route path="/exams/results" element={<ExamResults />} />
                   </Route>
-                  <Route path="/keys" element={<Keys />} />
-                  <Route path="/credly" element={<Credly />} />
+                  <Route path="/keys" element={<Keys />}>
+                    <Route path="/keys/list" element={<KeysList />} />
+                  </Route>
+                  <Route path="/credly" element={<Credly />}>
+                    <Route
+                      path="/credly/issued"
+                      element={<CertificationIssued />}
+                    />
+                    <Route
+                      path="/credly/badge-tracking"
+                      element={<BadgeTracking />}
+                    />
+                  </Route>
                   <Route path="/test-taker-stats" element={<TestTakers />} />
                 </Routes>
               </section>

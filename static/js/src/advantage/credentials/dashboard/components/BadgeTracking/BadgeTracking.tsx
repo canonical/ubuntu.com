@@ -12,12 +12,12 @@ type APIResponse = {
   message?: string;
 };
 
-const CertificationIssued = () => {
+const BadgeTracking = () => {
   const queryClient = useQueryClient();
   const [page, setPage] = useState<number>(0);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
-  const filter = "state::accepted";
+  const filter = "state::pending,rejected,revoked";
   // const [sort, setSort] = useState(null);
   const sort = null;
   const { isLoading, isError, data, isFetching } = useQuery<APIResponse>(
@@ -66,6 +66,13 @@ const CertificationIssued = () => {
           ),
       },
       {
+        Header: "State",
+        accessor: "state",
+        sortType: "basic",
+        Cell: (props: any) =>
+          props.row.depth === 0 ? <></> : <small>{props.value}</small>,
+      },
+      {
         Header: "Email",
         accessor: "recipient_email",
         sortType: "basic",
@@ -107,6 +114,7 @@ const CertificationIssued = () => {
     return matches.map((badge: CredlyBadge) => ({
       issued_to: badge.issued_to,
       recipient_email: badge.recipient_email,
+      state: badge.state,
     }));
   };
 
@@ -128,6 +136,7 @@ const CertificationIssued = () => {
           recipient_email: `${subRows.length} recipient${
             subRows.length > 1 ? "s" : ""
           }`,
+          state: "",
           subRows,
         };
       });
@@ -205,4 +214,4 @@ const CertificationIssued = () => {
   );
 };
 
-export default CertificationIssued;
+export default BadgeTracking;

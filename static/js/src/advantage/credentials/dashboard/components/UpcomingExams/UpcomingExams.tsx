@@ -17,20 +17,20 @@ type APIResponse = {
 
 const UpcomingExams = () => {
   const queryClient = useQueryClient();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
   const [groupKey, setGroupKey] = useState("1");
   const { isLoading, isError, data, isFetching } = useQuery<APIResponse>(
-    ["upcomingExams", currentPage],
-    () => getUpcomingExams(currentPage),
+    ["upcomingExams", page],
+    () => getUpcomingExams(page),
     {
       keepPreviousData: true,
       onSuccess: (newData) => {
         if (newData && newData.assessment_reservations) {
           setCachedData((prev) => ({
             ...prev,
-            [currentPage]: newData,
+            [page]: newData,
           }));
         }
       },
@@ -40,16 +40,16 @@ const UpcomingExams = () => {
   useEffect(() => {
     const queryData = queryClient.getQueryData<APIResponse>([
       "upcomingExams",
-      currentPage,
+      page,
     ]);
 
     if (queryData) {
       setCachedData((prev) => ({
         ...prev,
-        [currentPage]: queryData,
+        [page]: queryData,
       }));
     }
-  }, [currentPage]);
+  }, [page]);
 
   const columns = useMemo(
     () => [
@@ -209,12 +209,12 @@ const UpcomingExams = () => {
     if (data && data?.meta) {
       const { meta } = data;
       const totalPages = meta.total_pages;
-      const currentPage = totalPages - meta.current_page + 1;
+      const page = totalPages - meta.current_page + 1;
       return {
         totalPages,
-        currentPage,
-        nextPage: currentPage < totalPages ? currentPage + 1 : null,
-        previousPage: currentPage > 1 ? currentPage - 1 : null,
+        page,
+        nextPage: page < totalPages ? page + 1 : null,
+        previousPage: page > 1 ? page - 1 : null,
         totalItems: meta.total_count,
       };
     }
@@ -225,7 +225,7 @@ const UpcomingExams = () => {
     if (isFetching) {
       return;
     }
-    setCurrentPage(pageNumber);
+    setPage(pageNumber);
     if (fetchedPages.has(pageNumber)) {
       return;
     }
@@ -253,7 +253,7 @@ const UpcomingExams = () => {
         {isFetching && <Spinner text="Loading..." />}
         {paginationMeta && (
           <Pagination
-            currentPage={currentPage}
+            page={page}
             itemsPerPage={50}
             paginate={handleLoadPage}
             totalItems={paginationMeta.totalItems}

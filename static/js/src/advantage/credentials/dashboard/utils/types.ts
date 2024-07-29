@@ -16,6 +16,7 @@ export type CredlyBadge = {
   };
   issued_to: string;
   recipient_email: string;
+  state: string;
 };
 
 export type Assessment = {
