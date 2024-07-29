@@ -47,7 +47,7 @@ export enum Currencies {
   eur = "eur",
 }
 
-export type TechincalUserContact = {
+export type TechnicalUserContact = {
   name: string;
   email: string;
 };

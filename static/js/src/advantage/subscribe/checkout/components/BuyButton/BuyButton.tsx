@@ -291,7 +291,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         "distributor-selector-currency",
         "channel-offer-data",
         "distributor-selector-duration",
-        "distributor-selector-techincalUserContact",
+        "distributor-selector-technicalUserContact",
         "distributor-selector-productType",
       ];
 

@@ -12,7 +12,7 @@ import {
   getPreSelectedItem,
   getPreCurrency,
   getPreDuration,
-  TechincalUserContact,
+  TechnicalUserContact,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
 
@@ -25,9 +25,9 @@ interface FormContext {
   setDuration: React.Dispatch<React.SetStateAction<Durations>>;
   currency: Currencies;
   setCurrency: React.Dispatch<React.SetStateAction<Currencies>>;
-  techincalUserContact: TechincalUserContact;
+  technicalUserContact: TechnicalUserContact;
   setTechnicalUserContact: React.Dispatch<
-    React.SetStateAction<TechincalUserContact>
+    React.SetStateAction<TechnicalUserContact>
   >;
   products: ChannelProduct[] | null;
   offer: Offer | null;
@@ -45,7 +45,7 @@ export const defaultValues: FormContext = {
   setCurrency: () => {},
   products: null,
   offer: null,
-  techincalUserContact: {
+  technicalUserContact: {
     name: "",
     email: "",
   },
@@ -61,7 +61,7 @@ interface FormProviderProps {
   initialDuration?: Durations;
   initialCurrency?: Currencies;
   initialOffer?: Offer;
-  initialTechnicalUserContact?: TechincalUserContact;
+  initialTechnicalUserContact?: TechnicalUserContact;
   children: React.ReactNode;
 }
 
@@ -70,7 +70,7 @@ export const FormProvider = ({
   initialType = defaultValues.productType,
   initialDuration = defaultValues.duration,
   initialCurrency = defaultValues.currency,
-  initialTechnicalUserContact = defaultValues.techincalUserContact,
+  initialTechnicalUserContact = defaultValues.technicalUserContact,
   children,
 }: FormProviderProps) => {
   const localSubscriptionList = localStorage.getItem(
@@ -82,7 +82,7 @@ export const FormProvider = ({
   const localDuration = localStorage.getItem("distributor-selector-duration");
   const localCurrency = localStorage.getItem("distributor-selector-currency");
   const localTechnicalUserContact = localStorage.getItem(
-    "distributor-selector-techincalUserContact"
+    "distributor-selector-technicalUserContact"
   );
   const localOffer = localStorage.getItem("channel-offer-data");
 
@@ -98,9 +98,9 @@ export const FormProvider = ({
     localDuration ? JSON.parse(localDuration) : initialDuration
   );
   const [
-    techincalUserContact,
+    technicalUserContact,
     setTechnicalUserContact,
-  ] = useState<TechincalUserContact>(
+  ] = useState<TechnicalUserContact>(
     localTechnicalUserContact
       ? JSON.parse(localTechnicalUserContact)
       : initialTechnicalUserContact
@@ -165,7 +165,7 @@ export const FormProvider = ({
       setTechnicalUserContact({
         name: offer?.technical_contact_name,
         email: offer?.technical_contact_email,
-      } as TechincalUserContact);
+      } as TechnicalUserContact);
     }
   }, [offer]);
 
@@ -183,7 +183,7 @@ export const FormProvider = ({
         products,
         offer,
         setOffer,
-        techincalUserContact,
+        technicalUserContact,
         setTechnicalUserContact,
       }}
     >

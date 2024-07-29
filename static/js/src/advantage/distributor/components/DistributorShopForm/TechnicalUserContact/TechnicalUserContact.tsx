@@ -3,7 +3,7 @@ import { Input, Notification } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 
 const TechnicalUserContact = () => {
-  const { techincalUserContact, setTechnicalUserContact } = useContext(
+  const { technicalUserContact, setTechnicalUserContact } = useContext(
     FormContext
   );
 
@@ -19,14 +19,14 @@ const TechnicalUserContact = () => {
         : value;
 
     setTechnicalUserContact({
-      ...techincalUserContact,
+      ...technicalUserContact,
       [name]: captializeNameValue,
     });
 
     localStorage.setItem(
-      `distributor-selector-techincalUserContact`,
+      `distributor-selector-technicalUserContact`,
       JSON.stringify({
-        ...techincalUserContact,
+        ...technicalUserContact,
         [name]: captializeNameValue,
       })
     );
@@ -44,7 +44,7 @@ const TechnicalUserContact = () => {
           placeholder="Ex: John Doe"
           required
           onChange={handleChange}
-          value={techincalUserContact.name}
+          value={technicalUserContact.name}
         />
       </div>
       <div>
@@ -57,7 +57,7 @@ const TechnicalUserContact = () => {
           placeholder="Ex: person@enduser.com"
           required
           onChange={handleChange}
-          value={techincalUserContact.email}
+          value={technicalUserContact.email}
         ></Input>
       </div>
       <Notification severity="caution" title="Warning">

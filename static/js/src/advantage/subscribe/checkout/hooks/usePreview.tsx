@@ -23,7 +23,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        "distributor-selector-techincalUserContact"
+        "distributor-selector-technicalUserContact"
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)
