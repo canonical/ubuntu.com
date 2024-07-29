@@ -18,52 +18,8 @@
     </div>
     <script src="{{ versioned_static('js/dist/distributor.js') }}" type="module" defer></script>
     <script>
-      let updatedChannelProductList = {};
-      const rawChannelProductListings = {{ product_listings | tojson }};
-
-      if (rawChannelProductListings) {
-        Object.keys(rawChannelProductListings).forEach(key => {
-          const listing = rawChannelProductListings[key];
-          const listing_name_with_version = listing.name;
-          const listing_name_without_version = listing_name_with_version.lastIndexOf('-') === -1 ? "" : listing_name_with_version.substring(0, listing_name_with_version.lastIndexOf('-'));
-          const version = listing.metadata.find((data) => data.key === 'version')?.value || "1"
-          if (listing_name_without_version in updatedChannelProductList) {
-            const exisitngVersion = updatedChannelProductList[listing_name_without_version].version || "1";
-            if (Number(version) > Number(exisitngVersion)) {
-              updatedChannelProductList[listing_name_without_version] = {
-                id: listing_name_with_version,
-                longId: listing.id,
-                name: listing.name,
-                price: {
-                  value: listing.price,
-                  currency: listing.currency
-                },
-                productID: listing.product.id,
-                productName: listing.product.name,
-                marketplace: listing.marketplace,
-                version: version
-              };
-            }
-          } else {
-            updatedChannelProductList[listing_name_without_version] = {
-              id: listing_name_with_version,
-              longId: listing.id,
-              name: listing.name,
-              price: {
-                value: listing.price,
-                currency: listing.currency
-              },
-              productID: listing.product.id,
-              productName: listing.product.name,
-              marketplace: listing.marketplace,
-              version: version
-            };
-          }
-        });
-      };
-
-      window.channelProductList = updatedChannelProductList;
-
+      window.channelProductList = {{ product_listings | tojson }};
+      
       var accountId = "{% if account %}{{ account.id }}{% endif %}";
       var isLoggedIn = {% if user_info %} true {% else %} false {% endif %};
       var accountName = "{% if account %}{{ account.name }}{% endif %}";

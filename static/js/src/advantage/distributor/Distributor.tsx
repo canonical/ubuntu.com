@@ -10,6 +10,7 @@ const Distributor = () => {
     "distributor-selector-duration",
     "distributor-selector-technicalUserContact",
     "distributor-selector-productType",
+    "distributor-product-listing",
   ];
 
   useEffect(() => {

@@ -293,6 +293,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         "distributor-selector-duration",
         "distributor-selector-technicalUserContact",
         "distributor-selector-productType",
+        "distributor-product-listing",
       ];
 
       proSelectorStates.forEach((state) => localStorage.removeItem(state));

@@ -5,6 +5,11 @@ export function generateUniqueId() {
   return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
+export type Metadata = {
+  key: string;
+  value: string;
+};
+
 export type SubscriptionItem = {
   id: string;
   type: DistributorProductTypes;

@@ -54,7 +54,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
 
   const product = products?.filter(
     (prod) =>
-      prod.productID ===
+      prod?.productID ===
       getProductId(subscription.type, subscription.support, subscription.sla)
   )[0];
 

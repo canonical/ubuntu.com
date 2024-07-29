@@ -13,8 +13,11 @@ import {
   getPreCurrency,
   getPreDuration,
   TechnicalUserContact,
+  ProductListings,
+  Metadata,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 interface FormContext {
   productType: ProductTypes;
@@ -32,6 +35,8 @@ interface FormContext {
   products: ChannelProduct[] | null;
   offer: Offer | null;
   setOffer: React.Dispatch<React.SetStateAction<Offer | null>>;
+  channelProductList: ProductListings;
+  setChannelProductList: React.Dispatch<React.SetStateAction<ProductListings>>;
 }
 
 export const defaultValues: FormContext = {
@@ -51,6 +56,8 @@ export const defaultValues: FormContext = {
   setTechnicalUserContact: () => {},
   offer: null,
   setOffer: () => {},
+  channelProductList: {},
+  setChannelProductList: () => {},
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -62,6 +69,7 @@ interface FormProviderProps {
   initialCurrency?: Currencies;
   initialOffer?: Offer;
   initialTechnicalUserContact?: TechnicalUserContact;
+  initialChannelProductList?: ProductListings;
   children: React.ReactNode;
 }
 
@@ -71,6 +79,7 @@ export const FormProvider = ({
   initialDuration = defaultValues.duration,
   initialCurrency = defaultValues.currency,
   initialTechnicalUserContact = defaultValues.technicalUserContact,
+  initialChannelProductList = defaultValues.channelProductList,
   children,
 }: FormProviderProps) => {
   const localSubscriptionList = localStorage.getItem(
@@ -112,6 +121,111 @@ export const FormProvider = ({
   const [offer, setOffer] = useState<Offer | null>(
     localOffer ? JSON.parse(localOffer) : null
   );
+  const [channelProductList, setChannelProductList] = useState<ProductListings>(
+    initialChannelProductList
+  );
+
+  useEffect(() => {
+    const rawChannelProductListings = window.channelProductList;
+    const offerItems = offer?.items || [];
+    const updatedChannelProductList: ProductListings = {};
+
+    const extractNameAndVersion = (listing: any) => {
+      const nameWithVersion = listing?.name || ""; // ex: "uai-essential-desktop-1y-channel-eur-v2"
+      const nameWithoutVersion =
+        listing?.name?.lastIndexOf("-") === -1
+          ? nameWithVersion
+          : nameWithVersion.substring(0, listing?.name?.lastIndexOf("-")); // ex: "uai-essential-desktop-1y-channel-eur"
+      const version =
+        listing?.metadata?.find((data: Metadata) => data.key === "version")
+          ?.value || "1"; // "2"
+      return { nameWithoutVersion, version }; // ex: { nameWithoutVersion: "uai-essential-desktop-1y-channel-eur", version: "2" }
+    };
+
+    const updateProductListing = (
+      listing: any,
+      nameWithVersion: string,
+      nameWithoutVersion: string,
+      version: string
+    ) => {
+      if (updatedChannelProductList) {
+        updatedChannelProductList[nameWithoutVersion] = {
+          id: nameWithVersion, // ex: "uai-essential-desktop-1y-channel-eur-v2"
+          longId: listing.id, // ex: "labcdefgskdfalskdjflakwedafdafsdfadsfdaf"
+          name: listing?.name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
+          price: {
+            value: listing?.price, // ex: 23703
+            currency: listing?.currency, // ex:"EUR"
+          },
+          productID: listing?.product?.id as ValidProductID, // ex: "uai-advanced-desktop"
+          productName: listing?.product?.name, // ex: "Ubuntu Pro Desktop + Support (24/7)"
+          marketplace: listing?.marketplace as UserSubscriptionMarketplace, // ex: "canonical-pro-channel"
+          version: version, // ex: "2"
+        };
+      }
+    };
+
+    const offerKeys = offerItems.map((item) => item.id);
+    const offerItemsNamesWithoutVersion = offerItems.map((item) => {
+      const { nameWithoutVersion } = extractNameAndVersion(item);
+      return nameWithoutVersion;
+    });
+
+    if (rawChannelProductListings) {
+      Object.keys(rawChannelProductListings).forEach((key) => {
+        const listing = rawChannelProductListings[key];
+        const { nameWithoutVersion, version } = extractNameAndVersion(listing);
+
+        // Add product listings for offers first to updatedChannelProductList
+        if (offerKeys.includes(key)) {
+          const offerListing = rawChannelProductListings[key];
+          if (offerListing) {
+            const offerListingNameWithVersion = offerListing.name;
+            updateProductListing(
+              offerListing,
+              offerListingNameWithVersion,
+              nameWithoutVersion,
+              version
+            );
+          }
+        }
+
+        // Add all product listings to updatedChannelProductList
+        if (
+          updatedChannelProductList &&
+          nameWithoutVersion in updatedChannelProductList
+        ) {
+          // excluding product listings for the offers
+          if (!offerItemsNamesWithoutVersion.includes(nameWithoutVersion)) {
+            const existingVersion =
+              updatedChannelProductList[nameWithoutVersion].version || "1";
+            // Add the highest version of the product listings
+            if (Number(version) > Number(existingVersion)) {
+              updateProductListing(
+                listing,
+                listing.name,
+                nameWithoutVersion,
+                version
+              );
+            }
+          }
+        } else {
+          updateProductListing(
+            listing,
+            listing.name,
+            nameWithoutVersion,
+            version
+          );
+        }
+      });
+    }
+
+    setChannelProductList(updatedChannelProductList);
+    localStorage.setItem(
+      "distributor-product-listings",
+      JSON.stringify(updatedChannelProductList)
+    );
+  }, [offer, window.channelProductList]);
 
   useEffect(() => {
     const productIds: ValidProductID[] = subscriptionList.map((subscription) =>
@@ -128,10 +242,10 @@ export const FormProvider = ({
     );
     setProducts(
       validproducts?.map((validproduct) => {
-        return window.channelProductList[validproduct];
+        return channelProductList[validproduct];
       })
     );
-  }, [duration, currency, subscriptionList]);
+  }, [duration, currency, subscriptionList, channelProductList]);
 
   useEffect(() => {
     const items = offer?.items ?? [];
@@ -191,6 +305,8 @@ export const FormProvider = ({
         setOffer,
         technicalUserContact,
         setTechnicalUserContact,
+        channelProductList,
+        setChannelProductList,
       }}
     >
       {children}
