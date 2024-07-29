@@ -26,17 +26,23 @@ const Distributor = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginBottom: "1.5rem",
+              alignItems: "baseline",
             }}
           >
             <h2>Available deal registrations</h2>
-            <a
-              className="p-button--positive"
-              href="https://www.partner.canonical.com/#/deals/new"
-            >
-              <Icon name={ICONS.externalLink} light={true} />
-              Register new deal
-            </a>
+            <div>
+              <a
+                className="p-button--positive"
+                href="https://www.partner.canonical.com/#/deals/new"
+              >
+                <Icon
+                  name={ICONS.externalLink}
+                  light={true}
+                  style={{ marginRight: "0.3rem" }}
+                />
+                Register new deal
+              </a>
+            </div>
           </div>
           <ChannelOffersList />
         </Col>

@@ -43,13 +43,13 @@ export const defaultValues: FormContext = {
   setDuration: () => {},
   currency: Currencies.usd,
   setCurrency: () => {},
-  products: null,
-  offer: null,
   technicalUserContact: {
     name: "",
     email: "",
   },
+  products: null,
   setTechnicalUserContact: () => {},
+  offer: null,
   setOffer: () => {},
 };
 
@@ -137,26 +137,32 @@ export const FormProvider = ({
     const items = offer?.items ?? [];
     if (subscriptionList?.length === 0 && items.length > 0) {
       const preSetItem = getPreSelectedItem(items);
-      preSetItem?.length > 0 &&
+
+      if (preSetItem && preSetItem?.length > 0) {
         setSubscriptionList(preSetItem as SubscriptionItem[]);
-      localStorage.setItem(
-        "distributor-selector-subscriptionList",
-        JSON.stringify(preSetItem as SubscriptionItem[])
-      );
+        localStorage.setItem(
+          "distributor-selector-subscriptionList",
+          JSON.stringify(preSetItem as SubscriptionItem[])
+        );
+      }
 
-      const preSetCurrency = getPreCurrency(items);
-      preSetCurrency?.length > 0 && setCurrency(preSetCurrency as Currencies);
-      localStorage.setItem(
-        "distributor-selector-currency",
-        JSON.stringify(preSetCurrency as Currencies)
-      );
+      const preSetCurrency: Currencies = getPreCurrency(items);
+      if (preSetCurrency) {
+        setCurrency(preSetCurrency as Currencies);
+        localStorage.setItem(
+          "distributor-selector-currency",
+          JSON.stringify(preSetCurrency as Currencies)
+        );
+      }
 
-      const preSetDration = getPreDuration(items);
-      preSetDration && setDuration(preSetDration as Durations);
-      localStorage.setItem(
-        "distributor-selector-duration",
-        JSON.stringify(preSetDration as Durations)
-      );
+      const preSetDration: Durations = getPreDuration(items);
+      if (preSetDration) {
+        preSetDration && setDuration(preSetDration as Durations);
+        localStorage.setItem(
+          "distributor-selector-duration",
+          JSON.stringify(preSetDration as Durations)
+        );
+      }
     }
   }, [offer]);
 

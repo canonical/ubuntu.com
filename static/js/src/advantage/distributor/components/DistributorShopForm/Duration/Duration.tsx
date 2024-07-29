@@ -28,7 +28,7 @@ const Duration = () => {
         <Col size={1}>
           <Select
             name="distributor-duration"
-            defaultValue={duration}
+            value={duration}
             options={[
               {
                 label: "1 year",

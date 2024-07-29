@@ -263,29 +263,32 @@ export const getPreSelectedItem = (items: Item[]) => {
   return preSelectedItem;
 };
 
-export const getPreCurrency = (items: Item[]): keyof typeof Currencies => {
-  for (const item of items) {
-    const name = item?.name;
-    const pattern = /\b(eur|gbp|usd)\b/i;
-    const match = name.match(pattern);
+export const getPreCurrency = (items: Item[]): Currencies => {
+  const name = items?.[0]?.name;
+  const pattern = /\b(eur|gbp|usd)\b/i;
+  const match = name.match(pattern);
 
-    if (match) {
-      const currency = match[0].toLowerCase() as keyof typeof Currencies;
-      return currency;
+  if (match) {
+    const currency = match[0].toLowerCase();
+    if (Object.values(Currencies).includes(currency as Currencies)) {
+      return currency as Currencies;
     }
   }
+
   return Currencies.usd;
 };
 
 export const getPreDuration = (items: Item[]): Durations => {
-  for (const item of items) {
-    const names = item?.name;
-    const regex = /(\d)y/;
-    const match = names.match(regex);
-    if (match) {
-      const duration = parseInt(match[1]);
-      return duration;
+  const name = items?.[0]?.name;
+  const regex = /(\d)y/;
+  const match = name.match(regex);
+
+  if (match) {
+    const duration = parseInt(match[1], 10);
+    if (Object.values(Durations).includes(duration as Durations)) {
+      return duration as Durations;
     }
   }
+
   return Durations.one;
 };

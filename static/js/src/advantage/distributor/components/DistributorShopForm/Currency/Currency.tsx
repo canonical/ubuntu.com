@@ -27,7 +27,7 @@ const Currency = () => {
       <Row>
         <Col size={1}>
           <Select
-            defaultValue={currency}
+            value={currency}
             name="distributor-currency"
             options={[
               {
