@@ -297,3 +297,26 @@ export const getPreDuration = (items: Item[]): Durations => {
 
   return Durations.one;
 };
+
+export const PRO_SELECTOR_KEYS = {
+  PRODUCT_TYPE: "pro-selector-productType",
+  VERSION: "pro-selector-version",
+  QUANTITY: "pro-selector-quantity",
+  FEATURE: "pro-selector-feature",
+  SUPPORT: "pro-selector-support",
+  SLA: "pro-selector-sla",
+  PERIOD: "pro-selector-period",
+  PUBLIC_CLOUD: "pro-selector-publicCloud",
+  PRODUCT_USER: "pro-selector-productUser",
+  IOT_DEVICE: "pro-selector-iotDevice",
+} as const;
+
+export const DISTRIBUTOR_SELECTOR_KEYS = {
+  SUBSCRIPTION_LIST: "distributor-selector-subscriptionList",
+  CURRENCY: "distributor-selector-currency",
+  OFFER_DATA: "channel-offer-data",
+  DURATION: "distributor-selector-duration",
+  TECHNICAL_USER_CONTACT: "distributor-selector-technicalUserContact",
+  PRODUCT_TYPE: "distributor-selector-productType",
+  PRODUCT_LISTING: "distributor-product-listing",
+} as const;

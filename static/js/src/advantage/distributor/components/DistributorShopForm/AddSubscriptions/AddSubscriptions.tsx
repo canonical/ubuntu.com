@@ -7,6 +7,7 @@ import {
   generateUniqueId,
   Support as SupportEnum,
   SLA as SLAEnum,
+  DISTRIBUTOR_SELECTOR_KEYS,
 } from "advantage/distributor/utils/utils";
 import SubscriptionCard from "./SubscriptionCard.tsx/SubscriptionCard";
 
@@ -23,7 +24,7 @@ const AddSubscriptions = () => {
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
-      "distributor-selector-productType",
+      DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_TYPE,
       JSON.stringify(event.target.value as ProductTypes)
     );
   };
@@ -40,7 +41,7 @@ const AddSubscriptions = () => {
     };
     setSubscriptionList([...subscriptionList, subscriptionItem]);
     localStorage.setItem(
-      "distributor-selector-subscriptionList",
+      DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
       JSON.stringify([...subscriptionList, subscriptionItem])
     );
   };

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Input, Notification } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const TechnicalUserContact = () => {
   const { technicalUserContact, setTechnicalUserContact } = useContext(
@@ -24,7 +25,7 @@ const TechnicalUserContact = () => {
     });
 
     localStorage.setItem(
-      `distributor-selector-technicalUserContact`,
+      DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       JSON.stringify({
         ...technicalUserContact,
         [name]: captializeNameValue,

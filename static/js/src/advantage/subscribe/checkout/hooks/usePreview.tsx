@@ -8,6 +8,7 @@ import {
 } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 type Props = {
   products: CheckoutProducts[];
@@ -23,7 +24,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        "distributor-selector-technicalUserContact"
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)

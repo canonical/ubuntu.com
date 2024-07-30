@@ -1,22 +1,15 @@
 import React, { useEffect } from "react";
 import { Row, Col, Icon, ICONS } from "@canonical/react-components";
 import ChannelOffersList from "./components/ChannelOffersList/ChannelOffersList";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "./utils/utils";
 
 const Distributor = () => {
-  const distributorSelectorStates = [
-    "distributor-selector-subscriptionList",
-    "distributor-selector-currency",
-    "channel-offer-data",
-    "distributor-selector-duration",
-    "distributor-selector-technicalUserContact",
-    "distributor-selector-productType",
-    "distributor-product-listing",
-  ];
+  const distributorSelectorKeysArray = Object.values(DISTRIBUTOR_SELECTOR_KEYS);
 
   useEffect(() => {
-    distributorSelectorStates.forEach((state) =>
-      localStorage.removeItem(state)
-    );
+    distributorSelectorKeysArray.forEach((key) => {
+      localStorage.removeItem(key);
+    });
   }, []);
 
   return (

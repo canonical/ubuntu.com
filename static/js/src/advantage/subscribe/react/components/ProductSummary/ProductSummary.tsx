@@ -10,6 +10,7 @@ import {
 } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 import PaymentButton from "../PaymentButton";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const ProductSummary = () => {
   const {
@@ -23,7 +24,7 @@ const ProductSummary = () => {
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
-      "pro-selector-period",
+      PRO_SELECTOR_KEYS.PERIOD,
       JSON.stringify(event.target.value as Periods)
     );
   };

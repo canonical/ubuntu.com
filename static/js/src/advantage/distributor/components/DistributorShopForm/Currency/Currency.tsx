@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import classNames from "classnames";
 import { Row, Col, Select } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
-import { Currencies } from "advantage/distributor/utils/utils";
+import {
+  Currencies,
+  DISTRIBUTOR_SELECTOR_KEYS,
+} from "advantage/distributor/utils/utils";
 
 const Currency = () => {
   const { currency, setCurrency } = useContext(FormContext);
@@ -12,7 +15,7 @@ const Currency = () => {
   ) => {
     setCurrency(event.target.value as Currencies);
     localStorage.setItem(
-      "distributor-selector-currency",
+      DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
       JSON.stringify(event.target.value as Currencies)
     );
   };

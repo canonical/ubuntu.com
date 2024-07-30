@@ -18,6 +18,10 @@ import {
   CheckoutProducts,
   FormValues,
 } from "../../utils/types";
+import {
+  DISTRIBUTOR_SELECTOR_KEYS,
+  PRO_SELECTOR_KEYS,
+} from "advantage/distributor/utils/utils";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -275,31 +279,18 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       // the default values pre-selected instead of what they just bought.
       localStorage.removeItem("ua-subscribe-state");
 
-      const proSelectorStates = [
-        "pro-selector-productType",
-        "pro-selector-version",
-        "pro-selector-quantity",
-        "pro-selector-feature",
-        "pro-selector-support",
-        "pro-selector-sla",
-        "pro-selector-period",
-        "pro-selector-publicCloud",
-      ];
-
-      const distributorSelectorStates = [
-        "distributor-selector-subscriptionList",
-        "distributor-selector-currency",
-        "channel-offer-data",
-        "distributor-selector-duration",
-        "distributor-selector-technicalUserContact",
-        "distributor-selector-productType",
-        "distributor-product-listing",
-      ];
-
-      proSelectorStates.forEach((state) => localStorage.removeItem(state));
-      distributorSelectorStates.forEach((state) =>
-        localStorage.removeItem(state)
+      const proSelectorKeysArray = Object.values(PRO_SELECTOR_KEYS);
+      const distributorSelectorKeysArray = Object.values(
+        DISTRIBUTOR_SELECTOR_KEYS
       );
+
+      proSelectorKeysArray.forEach((key) => {
+        localStorage.removeItem(key);
+      });
+
+      distributorSelectorKeysArray.forEach((key) => {
+        localStorage.removeItem(key);
+      });
 
       const address = userInfo
         ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`

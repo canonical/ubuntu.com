@@ -15,6 +15,7 @@ import {
   TechnicalUserContact,
   ProductListings,
   Metadata,
+  DISTRIBUTOR_SELECTOR_KEYS,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
@@ -83,17 +84,21 @@ export const FormProvider = ({
   children,
 }: FormProviderProps) => {
   const localSubscriptionList = localStorage.getItem(
-    "distributor-selector-subscriptionList"
+    DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST
   );
   const localProductType = localStorage.getItem(
-    "distributor-selector-productType"
+    DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_TYPE
   );
-  const localDuration = localStorage.getItem("distributor-selector-duration");
-  const localCurrency = localStorage.getItem("distributor-selector-currency");
+  const localDuration = localStorage.getItem(
+    DISTRIBUTOR_SELECTOR_KEYS.DURATION
+  );
+  const localCurrency = localStorage.getItem(
+    DISTRIBUTOR_SELECTOR_KEYS.CURRENCY
+  );
   const localTechnicalUserContact = localStorage.getItem(
-    "distributor-selector-technicalUserContact"
+    DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
   );
-  const localOffer = localStorage.getItem("channel-offer-data");
+  const localOffer = localStorage.getItem(DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA);
 
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
     localSubscriptionList
@@ -223,7 +228,7 @@ export const FormProvider = ({
   useEffect(() => {
     setChannelProductList(updatedChannelProductList);
     localStorage.setItem(
-      "distributor-product-listings",
+      DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_LISTING,
       JSON.stringify(updatedChannelProductList)
     );
   }, [updatedChannelProductList]);
@@ -257,7 +262,7 @@ export const FormProvider = ({
       if (preSetItem && preSetItem?.length > 0) {
         setSubscriptionList(preSetItem as SubscriptionItem[]);
         localStorage.setItem(
-          "distributor-selector-subscriptionList",
+          DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
           JSON.stringify(preSetItem as SubscriptionItem[])
         );
       }
@@ -266,7 +271,7 @@ export const FormProvider = ({
       if (preSetCurrency) {
         setCurrency(preSetCurrency as Currencies);
         localStorage.setItem(
-          "distributor-selector-currency",
+          DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
           JSON.stringify(preSetCurrency as Currencies)
         );
       }
@@ -275,7 +280,7 @@ export const FormProvider = ({
       if (preSetDration) {
         preSetDration && setDuration(preSetDration as Durations);
         localStorage.setItem(
-          "distributor-selector-duration",
+          DISTRIBUTOR_SELECTOR_KEYS.DURATION,
           JSON.stringify(preSetDration as Durations)
         );
       }

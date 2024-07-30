@@ -8,6 +8,7 @@ import {
   ProductTypes,
   PublicClouds,
 } from "advantage/subscribe/react/utils/utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
@@ -150,7 +151,7 @@ const PublicCloudInfo = {
   },
 };
 const ProductType = () => {
-  const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
+  const localPublicCloud = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
   const { productType, setProductType, iotDevice, setIoTDevice } = useContext(
     FormContext
   );
@@ -165,7 +166,7 @@ const ProductType = () => {
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
-      "pro-selector-productType",
+      PRO_SELECTOR_KEYS.PRODUCT_TYPE,
       JSON.stringify(event.target.value as ProductTypes)
     );
   };
@@ -188,7 +189,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.aws);
               localStorage.setItem(
-                "pro-selector-publicCloud",
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
                 JSON.stringify(PublicClouds.aws)
               );
             }}
@@ -205,7 +206,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.azure);
               localStorage.setItem(
-                "pro-selector-publicCloud",
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
                 JSON.stringify(PublicClouds.azure)
               );
             }}
@@ -222,7 +223,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.gcp);
               localStorage.setItem(
-                "pro-selector-publicCloud",
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
                 JSON.stringify(PublicClouds.gcp)
               );
             }}
@@ -239,7 +240,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.oracle);
               localStorage.setItem(
-                "pro-selector-publicCloud",
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
                 JSON.stringify(PublicClouds.oracle)
               );
             }}
@@ -256,7 +257,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.ibm);
               localStorage.setItem(
-                "pro-selector-publicCloud",
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
                 JSON.stringify(PublicClouds.ibm)
               );
             }}
@@ -301,7 +302,7 @@ const ProductType = () => {
               e.preventDefault();
               setIoTDevice(IoTDevices.classic);
               localStorage.setItem(
-                "pro-selector-iotDevice",
+                PRO_SELECTOR_KEYS.IOT_DEVICE,
                 JSON.stringify(IoTDevices.classic)
               );
             }}
@@ -319,7 +320,7 @@ const ProductType = () => {
               e.preventDefault();
               setIoTDevice(IoTDevices.core);
               localStorage.setItem(
-                "pro-selector-iotDevice",
+                PRO_SELECTOR_KEYS.IOT_DEVICE,
                 JSON.stringify(IoTDevices.core)
               );
             }}
