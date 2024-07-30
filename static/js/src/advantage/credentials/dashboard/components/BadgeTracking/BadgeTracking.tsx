@@ -1,7 +1,6 @@
-import React from "react";
 import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getIssuedBadgesCredly } from "../../api/keys";
 import { CredlyMetadata, CredlyBadge } from "../../utils/types";
 import { ModularTable } from "@canonical/react-components";
@@ -21,21 +20,20 @@ const BadgeTracking = () => {
   const filter = "state::pending,rejected,revoked";
   // const [sort, setSort] = useState(null);
   const sort = null;
-  const { isLoading, isError, data, isFetching } = useQuery<APIResponse>(
-    ["issuedBadges", filter, sort, page],
-    () => getIssuedBadgesCredly(filter, sort, page),
-    {
-      keepPreviousData: true,
-      onSuccess: (newData) => {
-        if (newData && newData.data) {
-          setCachedData((prev) => ({
-            ...prev,
-            [page]: newData,
-          }));
-        }
-      },
+
+  const onSuccess = (newData: APIResponse) => {
+    if (newData && newData.data) {
+      setCachedData((prev) => ({
+        ...prev,
+        [page]: newData,
+      }));
     }
-  );
+  };
+
+  const { isLoading, isError, data, isFetching } = useQuery<APIResponse>({
+    queryKey: ["issuedBadges", filter, sort, page],
+    queryFn: () => getIssuedBadgesCredly(filter, sort, page, onSuccess),
+  });
 
   useEffect(() => {
     const queryData = queryClient.getQueryData<APIResponse>([
@@ -53,7 +51,7 @@ const BadgeTracking = () => {
     }
   }, [filter, sort, page]);
 
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "Name",

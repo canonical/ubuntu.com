@@ -69,7 +69,7 @@ class CredlyAPI:
                 uri += f"page={page}"
 
         return self.make_request("GET", uri).json()
-    
+
     def get_issued_badges_bulk(self, filter: dict = None):
         uri = f"/organizations/{self.org_id}/high_volume_issued_badge_search"
         if filter:

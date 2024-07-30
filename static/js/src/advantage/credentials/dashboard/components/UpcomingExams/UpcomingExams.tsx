@@ -1,7 +1,6 @@
-import React from "react";
 import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUpcomingExams } from "../../api/keys";
 import {
   AssessmentReservationTA,
@@ -22,21 +21,20 @@ const UpcomingExams = () => {
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
   const [groupKey, setGroupKey] = useState("1");
-  const { isLoading, isError, data, isFetching } = useQuery<APIResponse>(
-    ["upcomingExams", page],
-    () => getUpcomingExams(page),
-    {
-      keepPreviousData: true,
-      onSuccess: (newData) => {
-        if (newData && newData.assessment_reservations) {
-          setCachedData((prev) => ({
-            ...prev,
-            [page]: newData,
-          }));
-        }
-      },
+
+  const onSuccess = (newData: APIResponse) => {
+    if (newData && newData.assessment_reservations) {
+      setCachedData((prev) => ({
+        ...prev,
+        [page]: newData,
+      }));
     }
-  );
+  };
+
+  const { isLoading, isError, data, isFetching } = useQuery<APIResponse>({
+    queryKey: ["upcomingExams", page],
+    queryFn: () => getUpcomingExams(page, onSuccess),
+  });
 
   useEffect(() => {
     const queryData = queryClient.getQueryData<APIResponse>([
@@ -52,7 +50,7 @@ const UpcomingExams = () => {
     }
   }, [page]);
 
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "ID",
@@ -192,7 +190,7 @@ const UpcomingExams = () => {
         return (uniqueGroupKeys as string[]).map((state) => {
           const subRows = getSubRows(state);
           return {
-            id: uppercaseFirstCharacter(state),
+            id: upperCaseFirstChar(state),
             subRows,
           };
         });
@@ -250,31 +248,31 @@ const UpcomingExams = () => {
         {isFetching && <Spinner text="Loading..." />}
         {paginationMeta && (
           <Pagination
-            page={page}
+            currentPage={page}
             itemsPerPage={50}
             paginate={handleLoadPage}
-            totalItems={paginationMeta.totalItems}
+            totalItems={paginationMeta.totalItems || 0}
             disabled={isFetching}
           />
         )}
-        {/* <Select 
+        <Select
           defaultValue="1"
           id="groupBy"
           label="Group By"
           name="groupBy"
           options={[
             {
-              label: 'Exam',
-              value: '1'
+              label: "Exam",
+              value: "1",
             },
             {
-              label: 'State',
-              value: '2'
+              label: "State",
+              value: "2",
             },
           ]}
-          // onChange={(e) => setGroupKey(e.target.value)}
-          // value={groupKey}
-        /> */}
+          onChange={(e) => setGroupKey(e.target.value)}
+          value={groupKey}
+        />
         <ModularTable data={currentRows} columns={columns} sortable />
       </>
     );

@@ -1,4 +1,3 @@
-import React from "react";
 import { useMemo } from "react";
 import { Tabs } from "@canonical/react-components";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";

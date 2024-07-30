@@ -1,18 +1,16 @@
-import React, { useMemo, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { setupAppLayoutExamples } from "./utils";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getSystemStatuses } from "../../api/keys";
 
 const Sidebar = () => {
   const location = useLocation();
-  const { data: statuses, isError, isLoading } = useQuery(
-    "systemStatuses",
-    getSystemStatuses,
-    {
-      staleTime: 1000 * 60 * 5,
-    }
-  );
+  const { data: statuses, isError, isLoading } = useQuery({
+    queryKey: ["systemStatuses"],
+    queryFn: getSystemStatuses,
+    staleTime: 1000 * 60 * 5,
+  });
 
   useEffect(() => {
     setupAppLayoutExamples();

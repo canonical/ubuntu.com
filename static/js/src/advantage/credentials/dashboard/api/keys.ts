@@ -1,4 +1,4 @@
-export async function getUpcomingExams(page = 1) {
+export async function getUpcomingExams(page = 1, onSuccess: any) {
   const URL = `/credentials/api/upcoming-exams?page=${page}`;
   const response = await fetch(URL, {
     method: "GET",
@@ -9,10 +9,17 @@ export async function getUpcomingExams(page = 1) {
   });
 
   const data = await response.json();
+  if (response.ok) {
+    onSuccess(data);
+  }
   return data;
 }
 
-export async function getExamResults(page = 1, state: string | null = "") {
+export async function getExamResults(
+  page = 1,
+  state: string | null = "",
+  onSuccess: any
+) {
   let URL = `/credentials/api/exam-results?page=${page}`;
   if (state) {
     URL += `&state=${state}`;
@@ -26,6 +33,9 @@ export async function getExamResults(page = 1, state: string | null = "") {
   });
 
   const data = await response.json();
+  if (response.ok) {
+    onSuccess(data);
+  }
   return data;
 }
 
@@ -46,7 +56,8 @@ export async function getSystemStatuses() {
 export async function getIssuedBadgesCredly(
   filter: string | null = null,
   sort: string | null = null,
-  page: number | null = null
+  page: number | null = null,
+  onSuccess: any
 ) {
   let URL = `/credentials/api/issued-badges`;
   const queryParams = new URLSearchParams();
@@ -74,6 +85,9 @@ export async function getIssuedBadgesCredly(
   });
 
   const data = await response.json();
+  if (response.ok) {
+    onSuccess(data);
+  }
   return data;
 }
 

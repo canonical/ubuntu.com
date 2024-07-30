@@ -1,5 +1,4 @@
-import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getTestTakerStats } from "../../api/keys";
 import { useMemo } from "react";
 import { MainTable, Spinner, Notification } from "@canonical/react-components";
@@ -8,10 +7,10 @@ import { countries } from "advantage/countries-and-states";
 import { sortFunction } from "../../utils";
 
 const TestTakers = () => {
-  const { data, isLoading, isError } = useQuery<Assessment[]>(
-    "testTakerStats",
-    getTestTakerStats
-  );
+  const { data, isLoading, isError } = useQuery<Assessment[]>({
+    queryKey: ["testTakerStats"],
+    queryFn: getTestTakerStats,
+  });
 
   const getSortData = (data: { countryName: string; count: number }) => {
     return {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useMemo, useEffect } from "react";
 import {
   Pagination,
@@ -7,7 +6,7 @@ import {
   ModularTable,
   Button,
 } from "@canonical/react-components";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getExamResults, getIssuedBadgesBulkCredly } from "../../api/keys";
 import { ExamResultsMeta, ExamResultsTA, CredlyBadge } from "../../utils/types";
 
@@ -22,21 +21,20 @@ const ExamResults = () => {
   const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
-  const { isLoading, isError, data, isFetching } = useQuery(
-    ["examResults", page, "finalized"],
-    () => getExamResults(page, "finalized"),
-    {
-      keepPreviousData: true,
-      onSuccess: (newData) => {
-        if (newData && newData.results) {
-          setCachedData((prev) => ({
-            ...prev,
-            [page]: newData,
-          }));
-        }
-      },
+
+  const onSuccess = (newData: APIResponse) => {
+    if (newData && newData.results) {
+      setCachedData((prev) => ({
+        ...prev,
+        [page]: newData,
+      }));
     }
-  );
+  };
+
+  const { isLoading, isError, data, isFetching } = useQuery({
+    queryKey: ["examResults", page, "finalized"],
+    queryFn: () => getExamResults(page, "finalized", onSuccess),
+  });
 
   const {
     isLoading: isLoadingBadges,
@@ -44,9 +42,11 @@ const ExamResults = () => {
     data: dataBadges,
   } = useQuery<{
     data: CredlyBadge[];
-  }>(["credlyIssuedBadgesBulk"], () => getIssuedBadgesBulkCredly(), {
+  }>({
+    queryKey: ["credlyIssuedBadgesBulk"],
+    queryFn: () => getIssuedBadgesBulkCredly(),
     staleTime: Infinity,
-    cacheTime: Infinity,
+    gcTime: Infinity,
   });
 
   useEffect(() => {
@@ -64,9 +64,9 @@ const ExamResults = () => {
     }
   }, [page]);
 
-  const handleIssueBadge = async (examId: number) => {};
+  // const handleIssueBadge = async (examId: number) => {};
 
-  const columns = useMemo(
+  const columns: any = useMemo(
     () => [
       {
         Header: "ID",

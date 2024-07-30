@@ -1,4 +1,3 @@
-import React from "react";
 import { useMemo } from "react";
 import {
   MainTable,
@@ -6,17 +5,16 @@ import {
   Spinner,
   Notification,
 } from "@canonical/react-components";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { listAllKeys } from "advantage/credentials/api/keys";
 import { sortFunction } from "../../utils";
 
 const Keys = () => {
   // const [page, setPage] = useState(1);
-  const { isLoading, isError, data } = useQuery(
-    ["listAllKeys"],
-    () => listAllKeys(),
-    { keepPreviousData: true }
-  );
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["listAllKeys"],
+    queryFn: () => listAllKeys(),
+  });
   const currentRows = useMemo(() => {
     if (data) {
       return data.map((key: any) => ({
