@@ -553,6 +553,24 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       comment.value = createMessage();
 
+      // Add event listeners to toggle checkbox visibility
+      const ubuntuVersionCheckboxes = document.querySelector(
+        "fieldset.js-toggle-checkbox-visibility"
+      );
+      ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
+        toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+      });
+
+      // Add event listeners to required fieldset
+      const requiredFieldset = document.querySelectorAll(
+        "fieldset.js-required-checkbox"
+      );
+      requiredFieldset?.forEach((fieldset) => {
+        fieldset.addEventListener("change", function (event) {
+          requiredCheckbox(fieldset, event.target);
+        });
+      });
+
       // Prefill user names and email address if they are logged in
       if (window.accountJSONRes) {
         const names = window.accountJSONRes.fullname.split(" ");
@@ -626,5 +644,78 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
     window.onhashchange = locationHashChanged;
+
+    /**
+    *
+    * @param {*} fieldset
+    * @param {*} checklistItem
+    *
+    * Disable & enable checklist visibility based on user selection
+    * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+    * - Can only check one __other item at a time
+    * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
+    */
+    function toggleCheckboxVisibility(fieldset, checklistItem) {
+      const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
+      const otherCheckboxes = fieldset.querySelectorAll(
+        ".js-checkbox-visibility__other"
+      );
+      const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
+
+      if (checklistItem.checked) {
+        if (isVisible) {
+          otherCheckboxes.forEach((checkbox) => {
+            checkbox.disabled = true;
+          });
+        } else {
+          checkboxes.forEach((checkbox) => {
+            checkbox.disabled = true;
+          });
+          otherCheckboxes.forEach((checkbox) => {
+            checklistItem == checkbox ? null : (checkbox.disabled = true);
+          });
+        }
+      } else {
+        if (isVisible) {
+          var uncheck = true;
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked ? (uncheck = false) : null;
+          });
+          if (uncheck) {
+            otherCheckboxes.forEach((checkbox) => {
+              checkbox.disabled = false;
+            });
+          }
+        } else {
+          checkboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+          });
+          otherCheckboxes.forEach((checkbox) => {
+            checkbox.disabled = false;
+          });
+        }
+      }
+    }
+
+    /**
+     *
+     * @param {*} fieldset
+     * @param {*} target
+     * Disables submit button for required checkboxes field
+     */
+    function requiredCheckbox(fieldset, target) {
+      const submitButton = document.querySelector(".js-submit-button");
+      const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+      if (target.checked) {
+        submitButton.disabled = false;
+      } else {
+        var disableSubmit = true;
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked ? (disableSubmit = false) : null;
+        });
+        submitButton.disabled = disableSubmit;
+      }
+    }
+
   });
 })();
