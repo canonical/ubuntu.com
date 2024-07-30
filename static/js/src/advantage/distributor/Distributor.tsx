@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Row, Col, Icon, ICONS } from "@canonical/react-components";
 import ChannelOffersList from "./components/ChannelOffersList/ChannelOffersList";
 

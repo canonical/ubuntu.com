@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { ensurePurchaseAccount } from "advantage/api/contracts";
 import { FormValues } from "../utils/types";
 
@@ -11,8 +11,8 @@ type Props = {
 };
 
 const postPurchaseAccount = () => {
-  const mutation = useMutation<AccountData, Error, Props>(
-    async ({ formData }: Props): Promise<AccountData> => {
+  const mutation = useMutation<AccountData, Error, Props>({
+    mutationFn: async ({ formData }: Props) => {
       const {
         name,
         email,
@@ -36,8 +36,8 @@ const postPurchaseAccount = () => {
       }
 
       return { accountId: accountRes.id };
-    }
-  );
+    },
+  });
 
   return mutation;
 };

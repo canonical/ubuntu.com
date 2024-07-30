@@ -8,7 +8,6 @@ import {
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import React from "react";
 import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";

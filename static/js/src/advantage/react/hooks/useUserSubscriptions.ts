@@ -8,7 +8,7 @@ import {
   UserSubscription,
   UserSubscriptionStatuses,
 } from "advantage/api/types";
-import { useQuery, UseQueryOptions } from "react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 /**
  * Get a subscription by token.
@@ -91,12 +91,15 @@ export const selectSubscriptionsForPeriod = (
   subscriptions.filter((subscription) => subscription.period === period);
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
-  options?: UseQueryOptions<UserSubscription[], unknown, D, "userSubscriptions">
+  options?: Omit<
+    UseQueryOptions<UserSubscription[], unknown, D, ["userSubscriptions"]>,
+    "queryKey"
+  >
 ) => {
-  const query = useQuery(
-    "userSubscriptions",
-    async () => await getUserSubscriptions(),
-    options
-  );
+  const query = useQuery({
+    queryKey: ["userSubscriptions"],
+    queryFn: async () => await getUserSubscriptions(),
+    ...options,
+  });
   return query;
 };

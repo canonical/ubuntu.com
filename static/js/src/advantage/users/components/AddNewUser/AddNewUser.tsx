@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Modal } from "@canonical/react-components";
 
 import AddNewUserForm from "./AddNewUserForm";

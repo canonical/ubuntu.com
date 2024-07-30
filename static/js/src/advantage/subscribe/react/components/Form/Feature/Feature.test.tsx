@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FormProvider } from "advantage/subscribe/react/utils/FormContext";

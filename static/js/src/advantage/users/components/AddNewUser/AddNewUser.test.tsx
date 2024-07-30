@@ -1,14 +1,15 @@
-import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import AddNewUser from "./AddNewUser";
 
-it("opens 'Add new user' modal on click", () => {
+it("opens 'Add new user' modal on click", async () => {
   render(<AddNewUser handleSubmit={jest.fn()} />);
   userEvent.click(screen.getByText("Add new user"));
 
-  const modal = screen.getByLabelText("Add a new user to this organisation");
+  const modal = await screen.findByLabelText(
+    "Add a new user to this organisation"
+  );
 
   expect(within(modal).getByLabelText("Name")).toBeVisible();
   expect(within(modal).getByLabelText("Users’ email address")).toBeVisible();

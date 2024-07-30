@@ -1,6 +1,5 @@
-import React from "react";
-import { act } from "react-dom/test-utils";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { act } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -42,7 +41,7 @@ describe("SubscriptionEdit", () => {
       }),
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -72,7 +71,7 @@ describe("SubscriptionEdit", () => {
         is_cancellable: false,
       }),
     });
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
@@ -176,14 +175,21 @@ describe("SubscriptionEdit", () => {
       </QueryClientProvider>
     );
     userEvent.type(screen.getByLabelText("Number of machines"), "6");
+    await waitFor(() => {
+      expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
+      expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
+    });
 
-    expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
-    expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
     userEvent.click(screen.getByRole("button", { name: "Resize" }));
-    await waitFor(() =>
-      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled()
-    );
-    expect(screen.queryByRole("button", { name: "Cancel" })).toBeDisabled();
+    await waitFor(() => {
+      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled();
+    });
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: "Cancel" })).toHaveAttribute(
+        "aria-disabled",
+        "true"
+      );
+    });
   });
 
   it("invalidates queries when the resize is successful", async () => {
@@ -205,7 +211,9 @@ describe("SubscriptionEdit", () => {
         />
       </QueryClientProvider>
     );
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    let userSubscriptionsState = queryClient.getQueryState([
+      "userSubscriptions",
+    ]);
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -219,7 +227,7 @@ describe("SubscriptionEdit", () => {
       wrapper.find("Formik form").simulate("submit");
     });
     wrapper.update();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    userSubscriptionsState = queryClient.getQueryState(["userSubscriptions"]);
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,

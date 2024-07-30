@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Col, Row } from "@canonical/react-components";
 
 const Landscape = () => {

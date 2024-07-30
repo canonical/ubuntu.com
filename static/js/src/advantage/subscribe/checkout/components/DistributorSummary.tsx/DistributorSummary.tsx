@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { format } from "date-fns";
 import { Col, Row, Spinner } from "@canonical/react-components";
 import { CheckoutProducts, TaxInfo } from "../../utils/types";
@@ -138,7 +138,7 @@ function DistributorSummary({
               <strong>
                 {currency
                   ? currencyFormatter(currency).format(
-                      Number(defaultTotal) + Number(taxAmount) ?? 0
+                      Number(defaultTotal) + Number(taxAmount) || 0
                     )
                   : 0}
               </strong>

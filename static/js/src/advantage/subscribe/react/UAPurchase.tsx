@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Form from "./components/Form";
 import ProductSummary from "./components/ProductSummary";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";

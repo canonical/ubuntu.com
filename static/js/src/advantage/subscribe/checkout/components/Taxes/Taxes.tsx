@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Field, useFormikContext } from "formik";
 import {
   ActionButton,
@@ -61,7 +61,7 @@ const Taxes = ({ products, setError }: TaxesProps) => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
     if (!window.accountId) {
-      queryClient.invalidateQueries("calculate");
+      queryClient.invalidateQueries({ queryKey: ["calculate"] });
       setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
@@ -70,8 +70,8 @@ const Taxes = ({ products, setError }: TaxesProps) => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries("preview");
-            queryClient.invalidateQueries("customerInfo");
+            queryClient.invalidateQueries({ queryKey: ["preview"] });
+            queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
           },
           onError: (error) => {
             setFieldValue("Description", false);

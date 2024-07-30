@@ -39,7 +39,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
 
   const {
     mutateAsync,
-    isLoading,
+    isPending,
     isError,
   } = useUpdateContractEntitlementsMutation();
 
@@ -280,8 +280,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
             <ActionButton
               type="submit"
               appearance="positive"
-              loading={isLoading}
-              disabled={isLoading}
+              loading={isPending}
+              disabled={isPending}
             >
               Save
             </ActionButton>

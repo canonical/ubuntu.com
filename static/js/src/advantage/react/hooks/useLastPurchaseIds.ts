@@ -1,6 +1,6 @@
 import { getLastPurchaseIds } from "advantage/api/contracts";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
-import { useQuery, UseQueryOptions } from "react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 /**
@@ -26,14 +26,30 @@ export const useLastPurchaseIds = <
   D = LastPurchaseIds
 >(
   accountId: ID,
-  options: UseQueryOptions<LastPurchaseIds, unknown, D, [string, ID]> = {}
+  options: Omit<
+    UseQueryOptions<LastPurchaseIds, unknown, D, [string, ID]>,
+    "queryKey" | "queryFn"
+  > = {}
 ) => {
   // Don't fetch the data until the account id is provided.
-  options.enabled = !!accountId;
-  const query = useQuery(
-    ["lastPurchaseIds", accountId],
-    async () => await getLastPurchaseIds(accountId),
-    options
-  );
+  const queryOptions: UseQueryOptions<
+    LastPurchaseIds,
+    unknown,
+    D,
+    [string, ID]
+  > = {
+    ...options,
+    queryKey: ["lastPurchaseIds", accountId],
+    queryFn: async () => {
+      if (!accountId) {
+        throw new Error("Account ID is required");
+      }
+      return getLastPurchaseIds(accountId);
+    },
+    enabled: !!accountId,
+  };
+
+  const query = useQuery(queryOptions);
+
   return query;
 };

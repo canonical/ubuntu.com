@@ -1,4 +1,3 @@
-import React from "react";
 import * as Sentry from "@sentry/react";
 import useGetOffersList from "../../hooks/useGetOffersList";
 import Offer from "../Offer";

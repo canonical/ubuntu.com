@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { retryPurchase } from "advantage/api/contracts";
 import {
   Action,
@@ -15,8 +15,8 @@ type Props = {
 };
 
 const postPurchase = () => {
-  const mutation = useMutation<any, Error, Props>(
-    async ({ products, action, coupon }: Props) => {
+  const mutation = useMutation<any, Error, Props>({
+    mutationFn: async ({ products, action, coupon }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -150,8 +150,8 @@ const postPurchase = () => {
       }
 
       return pruchaseRes.id;
-    }
-  );
+    },
+  });
 
   return mutation;
 };

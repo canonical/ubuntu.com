@@ -519,7 +519,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
-        // eslint-disable-next-line
         const preferredLanguage = getPrimaryParentLanguage();
         const preferredLanguageInput = contactModal.querySelector(
           "#preferredLanguage"

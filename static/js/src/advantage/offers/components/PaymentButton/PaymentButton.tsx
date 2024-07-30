@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@canonical/react-components";
 import { Product } from "advantage/subscribe/checkout/utils/types";
 

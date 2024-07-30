@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "@canonical/react-components";
-import { useQueryClient, useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import * as Sentry from "@sentry/react";
 
 import { requestDeleteUser } from "../../api";
@@ -18,7 +18,7 @@ type DeleteConfirmationModalProps = {
   handleClose: () => void;
 };
 
-const DeleteConfirmationModal = ({
+const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
   accountId,
   user,
   onAfterDeleteSuccess,
@@ -26,10 +26,12 @@ const DeleteConfirmationModal = ({
 }: DeleteConfirmationModalProps) => {
   const queryClient = useQueryClient();
 
-  const userDeleteMutation = useMutation(
-    (email: string) => requestDeleteUser({ accountId, email }),
-    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
-  );
+  const userDeleteMutation = useMutation({
+    mutationFn: (email: string) => requestDeleteUser({ accountId, email }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["accountUsers"] });
+    },
+  });
 
   const handleDeleteUser = (userEmail: string) =>
     userDeleteMutation.mutateAsync(userEmail).then(() => {

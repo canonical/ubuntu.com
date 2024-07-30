@@ -89,7 +89,8 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               <>
                 The {unitName} entitlement below will update to{" "}
                 <b>{subscription?.current_number_of_machines}</b> at the next
-                billing cycle on <b>{formatDate(nextCycleStart ?? "")}</b>.
+                billing cycle on{" "}
+                <b>{formatDate(nextCycleStart ?? "").toString()}</b>.
               </>
             ),
           });

@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@canonical/react-components";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
