@@ -15,7 +15,7 @@
 {% block content %}
 <section class="p-section--hero">
   <div class="row--50-50">
-    <div class="col">
+    <div class="col p-section--shallow">
       <h1>Optimised Ubuntu<br /> on public clouds</h1>
     </div>
     <div class="col">
@@ -27,10 +27,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-start-large-4 col-9">
+    <div class="col-start-large-4 col-9 ">
       <hr class="is-muted" />
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-medium-3">
           <a href="/pro">
             {{
               image(
@@ -44,7 +44,7 @@
               }}
           </a>
         </div>
-        <div class="col-6">
+        <div class="col-6 col-medium-3">
           <p><a href="/pro">Ubuntu Pro</a> expands Ubuntu Server to provide enterprise-grade support, security and compliance on top of Ubuntu LTS.</p>
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">10 years of maintenance and security updates for over 25,000 packages</li>
@@ -58,25 +58,34 @@
 </section>
 
 <section class="p-section">
-  <div class="row--50-50">
+  <div class="row">
     <hr />
-    <div class="col">
-      <h2>Select your platform</h2>
+    <div class="col-6 p-section--shallow">
+      <h2>Select your<br class="u-hide--large u-hide--medium" /> platform</h2>
     </div>
-    <div class="col">
-      <div class="p-segmented-control p-section--shallow js-tabbed-content">
+    <div class="col-6">
+      <div class="p-segmented-control p-section--shallow js-tabbed-content u-hide--small">
         <div class="p-segmented-control__list" role="tablist" aria-label="Ubuntu Cloud platform">
           <button class="p-segmented-control__button" role="tab" aria-selected="true" aria-controls="aws-tab" id="aws">AWS</button>
           <button class="p-segmented-control__button" role="tab" aria-selected="false" aria-controls="azure-tab" id="azure" tabindex="-1">Azure</button>
           <button class="p-segmented-control__button" role="tab" aria-selected="false" aria-controls="google-cloud-tab" id="google-cloud" tabindex="-1">Google Cloud</button>
           <button class="p-segmented-control__button" role="tab" aria-selected="false" aria-controls="ibm-cloud-tab" id="ibm-cloud" tabindex="-1">IBM Cloud</button>
           <button class="p-segmented-control__button" role="tab" aria-selected="false" aria-controls="oracle-cloud-tab" id="oracle-cloud" tabindex="-1">Oracle Cloud</button>
+        </div>
       </div>
-      </div>
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="aws-tab" selected="">AWS</option>
+          <option value="azure-tab">Azure</option>
+          <option value="google-cloud-tab">Google Cloud</option>
+          <option value="ibm-cloud-tab">IBM</option>
+          <option value="oracle-cloud-tab">Oracle</option>
+        </select>
+      </form>
     </div>
   </div>
   <div class="row">
-    <div class="col-start-large-4 col-9">
+    <div class="col-start-large-4 col-9 col-medium-6">
       <hr class="is-muted" />
       {% include "download/cloud/tabs/_aws.html" %}
       {% include "download/cloud/tabs/_azure.html" %}
@@ -88,24 +97,24 @@
 </section>
 
 <section class="p-section">
-  <div class="row--25-25-25-25">
+  <div class="row">
     <hr />
-    <div class="col">
+    <div class="col-3 col-medium-3 p-section--shallow">
       <h2 class="p-text--small-caps">Resources</h2>
     </div>
-    <div class="col">
+    <div class="col-3 col-medium-3">
       <h3 class="p-heading--5">
         <a href="/server/docs">Ubuntu Server documentation</a>
       </h3>
       <p>The Ubuntu Server documentation, curated by community and Ubuntu developers.</p>
     </div>
-    <div class="col">
+    <div class="col-3 col-start-medium-4 col-medium-3">
       <h3 class="p-heading--5">
         <a href="https://askubuntu.com/">Ask Ubuntu</a>
       </h3>
       <p>Stuck somewhere? Get your Ubuntu questions answered by power users.</p>
     </div>
-    <div class="col">
+    <div class="col-3 col-start-medium-4 col-medium-3">
       <h3 class="p-heading--5">
         <a href="https://discourse.ubuntu.com/c/public-cloud/176">Community Discourse</a>
       </h3>
