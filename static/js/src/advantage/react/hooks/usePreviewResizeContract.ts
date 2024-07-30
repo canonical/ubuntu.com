@@ -29,18 +29,17 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
   } = useQuery<PreviewResizeContractResponse>({
     queryKey: ["preview", quantity, subscription?.id],
     queryFn: async () => {
-      if (!subscription?.account_id || !lastPurchaseId) {
-        // Early return if required parameters are not available
-        throw new Error("Missing required parameters");
+      if (!subscription || !lastPurchaseId) {
+        return;
       }
 
       const res = await previewResizeContract(
-        subscription.account_id, // Ensure the correct type is passed
+        subscription?.account_id,
         lastPurchaseId,
-        subscription.listing_id,
+        subscription?.listing_id,
         quantity,
-        subscription.period,
-        subscription.marketplace
+        subscription?.period,
+        subscription?.marketplace
       );
 
       if (res.errors) {
@@ -48,13 +47,13 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
           res.errors.includes("no invoice would be issued for this purchase") ||
           res.errors.includes("purchase does not affect subscription")
         ) {
-          return; // Adjust based on what you want to return in this case
+          return;
         }
-        throw new Error(res.errors.join(", ")); // Join errors to make them more readable
+        throw new Error(res.errors);
       }
       return res;
     },
-    enabled: quantity > 0 && !!subscription?.account_id && !!lastPurchaseId,
+    enabled: quantity > 0,
   });
 
   return {
