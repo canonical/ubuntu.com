@@ -1227,6 +1227,7 @@ def render_supermicro_blogs():
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
+
 def render_form(form):
     @wraps(render_form)
     def wrapper_func():
@@ -1234,11 +1235,13 @@ def render_form(form):
             return flask.render_template(form["templatePath"], fieldsets=form["fieldsets"], formData=form["formData"], isModal=form.get("isModal"), modalId=form.get("modalId"))
     return wrapper_func
 
-def set_form_rules(): 
+
+def set_form_rules():
     filename = os.path.join(app.static_folder, 'files', 'forms-data.json')
     with open(filename) as forms:
         data = json.load(forms)
         for path, form in data["forms"].items():
-            app.add_url_rule(path, view_func=render_form(form), endpoint=path) 
+            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
+
 
 set_form_rules()
