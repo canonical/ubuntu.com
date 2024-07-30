@@ -240,7 +240,7 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
 const ubuntuVersionCheckboxes = document.querySelector(
   "fieldset.js-toggle-checkbox-visibility"
 );
-ubuntuVersionCheckboxes.addEventListener("change", function (event) {
+ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
 
