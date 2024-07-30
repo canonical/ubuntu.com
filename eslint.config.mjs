@@ -50,7 +50,6 @@ const config = [
       "@typescript-eslint/no-var-requires": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "no-prototype-builtins": "off",
-      "react/react-in-jsx-scope": "off" 
     },
     files: ["**/*.jsx", "**/*.tsx", "**/*.js", "**/*.ts"],
     settings: {

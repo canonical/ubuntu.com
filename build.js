@@ -46,13 +46,22 @@ const captchaKey =
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
-    plugins: [sassPlugin()],
+    plugins: [
+      sassPlugin(),
+    ],
     entryPoints: [value],
     bundle: true,
-    minify: isDev ? false : true,
+    minify: !isDev,
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
-    sourcemap: isDev ? false : true,
+    sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
+    loader: {
+      '.js': 'jsx',
+      '.ts': 'ts',
+      '.tsx': 'tsx',
+      '.jsx': 'jsx',
+    },
+    jsx: 'automatic', 
     target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":
