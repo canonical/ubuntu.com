@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
