@@ -12,6 +12,8 @@ export const useSetAutoRenewal = () => {
       return response;
     },
     onSuccess: () => {
+      // Invalidate the user subscriptions query to force a fetch of the
+      // updated data.
       queryClient.invalidateQueries({ queryKey: ["userSubscriptions"] });
     },
   });

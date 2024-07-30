@@ -7,12 +7,12 @@ const useRenewal = (renewalID: string | null) => {
       if (!renewalID) {
         throw new Error("Renewal ID is required");
       }
-      const response = await postRenewalIDToProcessPayment(renewalID);
+      const res = await postRenewalIDToProcessPayment(renewalID);
 
-      if (response.errors) {
-        throw new Error(response.errors);
+      if (res.errors) {
+        throw new Error(res.errors);
       }
-      return response;
+      return res.id;
     },
   });
 
