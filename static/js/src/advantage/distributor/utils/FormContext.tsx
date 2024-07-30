@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import {
   ChannelProduct,
   DistributorProductTypes as ProductTypes,
@@ -125,7 +125,7 @@ export const FormProvider = ({
     initialChannelProductList
   );
 
-  useEffect(() => {
+  const updatedChannelProductList = useMemo(() => {
     const rawChannelProductListings = window.channelProductList;
     const offerItems = offer?.items || [];
     const updatedChannelProductList: ProductListings = {};
@@ -191,10 +191,7 @@ export const FormProvider = ({
         }
 
         // Add all product listings to updatedChannelProductList
-        if (
-          updatedChannelProductList &&
-          nameWithoutVersion in updatedChannelProductList
-        ) {
+        if (nameWithoutVersion in updatedChannelProductList) {
           // excluding product listings for the offers
           if (!offerItemsNamesWithoutVersion.includes(nameWithoutVersion)) {
             const existingVersion =
@@ -220,14 +217,18 @@ export const FormProvider = ({
       });
     }
 
+    return updatedChannelProductList;
+  }, [offer, window.channelProductList]);
+
+  useEffect(() => {
     setChannelProductList(updatedChannelProductList);
     localStorage.setItem(
       "distributor-product-listings",
       JSON.stringify(updatedChannelProductList)
     );
-  }, [offer, window.channelProductList]);
+  }, [updatedChannelProductList]);
 
-  useEffect(() => {
+  const filteredProducts = useMemo(() => {
     const productIds: ValidProductID[] = subscriptionList.map((subscription) =>
       getProductId(
         subscription.type as ProductTypes,
@@ -236,16 +237,17 @@ export const FormProvider = ({
       )
     );
     const validproducts: string[] = productIds.map(
-      (productId: ValidProductID) => {
-        return `${productId}-${duration}y-channel-${currency}`;
-      }
+      (productId: ValidProductID) =>
+        `${productId}-${duration}y-channel-${currency}`
     );
-    setProducts(
-      validproducts?.map((validproduct) => {
-        return channelProductList[validproduct];
-      })
+    return validproducts.map(
+      (validproduct) => channelProductList[validproduct]
     );
   }, [duration, currency, subscriptionList, channelProductList]);
+
+  useEffect(() => {
+    setProducts(filteredProducts);
+  }, [filteredProducts]);
 
   useEffect(() => {
     const items = offer?.items ?? [];
