@@ -80,7 +80,7 @@ function setUpStaticForms(form, formId) {
    * Builds a message from the form fields and populates the
    * Comments from Lead field
    */
-  function buildCommentsForLead(formId) {
+  function buildCommentsForLead() {
     var message = "";
 
     form?.addEventListener("submit", (e) => {
@@ -89,7 +89,6 @@ function setUpStaticForms(form, formId) {
       var formFields = document.querySelectorAll(".js-formfield");
       formFields.forEach(function (formField) {
         var comma = ",";
-        var colon = ": ";
         var fieldTitle = formField.querySelector(".js-formfield-title");
         var inputs = formField.querySelectorAll("input, textarea");
         if (fieldTitle) {
@@ -137,7 +136,7 @@ function setUpStaticForms(form, formId) {
   }
   const commentsFromLead = document.querySelector("#Comments_from_lead__c");
   if (commentsFromLead) {
-    buildCommentsForLead(formId);
+    buildCommentsForLead();
   }
 
   /**
@@ -240,7 +239,7 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
 const ubuntuVersionCheckboxes = document.querySelector(
   "fieldset.js-toggle-checkbox-visibility"
 );
-ubuntuVersionCheckboxes.addEventListener("change", function (event) {
+ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
 
