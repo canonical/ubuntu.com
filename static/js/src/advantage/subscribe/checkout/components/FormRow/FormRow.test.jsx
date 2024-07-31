@@ -7,7 +7,7 @@ describe("FormRow", () => {
     const wrapper = shallow(
       <FormRow label="test-label">
         <input type="text">test-input</input>
-      </FormRow>
+      </FormRow>,
     );
 
     expect(wrapper.find("label").text()).toBe("test-label");
@@ -20,7 +20,7 @@ describe("FormRow", () => {
         <input type="text" id="test-input">
           Test
         </input>
-      </FormRow>
+      </FormRow>,
     );
 
     expect(wrapper.find("label").text()).toBe("test-label");

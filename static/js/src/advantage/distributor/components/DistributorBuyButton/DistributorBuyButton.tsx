@@ -17,7 +17,7 @@ const DistributorBuyButton = () => {
         const productId = getProductId(
           subscription.type,
           subscription.support,
-          subscription.sla
+          subscription.sla,
         );
         if (productId === product?.productID && product?.price !== undefined) {
           quantity = subscription.quantity;
@@ -60,7 +60,7 @@ const DistributorBuyButton = () => {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

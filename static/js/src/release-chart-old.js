@@ -162,7 +162,7 @@ function addXAxis(svg, height, xAxis) {
     .attr("class", "x axis")
     .attr(
       "transform",
-      "translate(0, " + (height - margin.top - margin.bottom) + ")"
+      "translate(0, " + (height - margin.top - margin.bottom) + ")",
     )
     .transition()
     .call(xAxis);
@@ -400,7 +400,7 @@ function formatKeyLabel(key) {
     keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
   formattedKey = formattedKey.replace(
     "Main universe",
-    "Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)"
+    "Expanded Security Maintenance (ESM) for Ubuntu Universe (10 years)",
   );
   formattedKey = formattedKey.replace("Hwe", "HWE: Hardware Enablement");
   return formattedKey;
@@ -436,7 +436,7 @@ export function createReleaseChartOld(
   tasks,
   taskVersions,
   removePadding,
-  highlightVersion
+  highlightVersion,
 ) {
   var longestLabelWidth = calculateLongestLabelWidth(taskTypes);
   if (taskVersions) {
@@ -507,7 +507,7 @@ export function createReleaseChartOld(
     .attr("height", height + margin.top + margin.bottom)
     .attr(
       "transform",
-      "translate(" + chartTranslateX + ", " + margin.top + ")"
+      "translate(" + chartTranslateX + ", " + margin.top + ")",
     );
 
   addXAxis(svg, height, xAxis);
@@ -551,7 +551,7 @@ export function createChartWithTitles(
   taskStatus,
   tasks,
   taskVersions,
-  taskVersionsTitle
+  taskVersionsTitle,
 ) {
   if (!taskTypesTitle || !taskVersionsTitle) return;
 
@@ -561,7 +561,7 @@ export function createChartWithTitles(
     taskTypes,
     taskStatus,
     tasks,
-    taskVersions
+    taskVersions,
   );
 
   // adjust chart height to fit titles

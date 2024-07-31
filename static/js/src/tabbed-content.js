@@ -107,7 +107,7 @@
   const setActiveTab = (tab, tabs) => {
     tabs.forEach((tabElement) => {
       var tabContent = document.querySelectorAll(
-        "#" + tabElement.getAttribute("aria-controls")
+        "#" + tabElement.getAttribute("aria-controls"),
       );
       tabContent.forEach((content) => {
         if (tabElement === tab) {
@@ -143,13 +143,13 @@
       var currentHash = window.location.hash;
 
       var tabs = [].slice.call(
-        tabContainer.querySelectorAll("[aria-controls]")
+        tabContainer.querySelectorAll("[aria-controls]"),
       );
       attachEvents(tabs, persistURLHash);
 
       if (persistURLHash && currentHash) {
         var activeTab = document.querySelector(
-          ".p-tabs__link[href='" + currentHash + "']"
+          ".p-tabs__link[href='" + currentHash + "']",
         );
 
         if (activeTab) {
@@ -197,7 +197,7 @@
     if (e.target.classList.contains("js-tab")) {
       const tabContainer = e.target.closest(".js-tabs");
       const tabs = [].slice.call(
-        tabContainer.querySelectorAll("[aria-controls]")
+        tabContainer.querySelectorAll("[aria-controls]"),
       );
 
       if (tabs) {

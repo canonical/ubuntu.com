@@ -57,7 +57,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
-    isTokenVisible
+    isTokenVisible,
   );
 
   const SubscriptionToken = () => {
@@ -122,7 +122,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
                 {
                   title: "Cost",
                   value: currencyFormatter.format(
-                    (subscription.price ?? 0) / 100
+                    (subscription.price ?? 0) / 100,
                   ),
                 },
               ]),

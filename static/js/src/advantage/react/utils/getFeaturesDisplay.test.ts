@@ -90,7 +90,7 @@ describe("getFeaturesDisplay", () => {
       }),
     ];
     expect(
-      getFeaturesDisplay(entitlements).excluded.includes("24/5 Support")
+      getFeaturesDisplay(entitlements).excluded.includes("24/5 Support"),
     ).toBe(true);
   });
 });

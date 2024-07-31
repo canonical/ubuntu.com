@@ -5,7 +5,7 @@ import { RefObject, useCallback, useRef } from "react";
  * @param buffer Additional space to leave above the target.
  */
 export const useScrollIntoView = <T extends HTMLElement>(
-  buffer = 0
+  buffer = 0,
 ): [RefObject<T>, () => void] => {
   const htmlRef = useRef<HTMLElement>(document.querySelector("html"));
   const targetRef = useRef<T | null>(null);

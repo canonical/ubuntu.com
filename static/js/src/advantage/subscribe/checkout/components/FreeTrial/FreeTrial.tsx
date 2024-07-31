@@ -82,7 +82,7 @@ const FreeTrial = ({ products, action, coupon }: Props) => {
                 add(new Date(), {
                   months: 1,
                 }),
-                DATE_FORMAT
+                DATE_FORMAT,
               )}{" "}
               after which time you will be charged
               {taxData?.total

@@ -28,7 +28,7 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("None");
   });
@@ -47,7 +47,7 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
   });
@@ -61,10 +61,10 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -82,10 +82,10 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -95,7 +95,7 @@ describe("DetailsContent", () => {
     queryClient.setQueryData(["userSubscriptions"], [contract]);
     queryClient.setQueryData(
       ["contractToken", contract.contract_id],
-      contractToken
+      contractToken,
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -103,11 +103,11 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
     expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
-      contractToken.contract_token
+      contractToken.contract_token,
     );
   });
 
@@ -122,7 +122,7 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='machine-type-col']").exists()).toBe(false);
     expect(wrapper.find("CodeSnippet").exists()).toBe(false);

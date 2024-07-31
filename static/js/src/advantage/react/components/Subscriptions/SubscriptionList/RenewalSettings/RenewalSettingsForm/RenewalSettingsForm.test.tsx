@@ -11,7 +11,7 @@ describe("RenewalSettingsFields", () => {
     const wrapper = mount(
       <Formik initialValues={{}} onSubmit={jest.fn()}>
         <RenewalSettingsForm onCloseMenu={onCloseMenu} />
-      </Formik>
+      </Formik>,
     );
     wrapper.find("Button[data-test='cancel-button']").simulate("click");
     wrapper.update();
@@ -22,7 +22,7 @@ describe("RenewalSettingsFields", () => {
     const wrapper = mount(
       <Formik initialValues={{ shouldAutoRenew: true }} onSubmit={jest.fn()}>
         <RenewalSettingsForm onCloseMenu={jest.fn()} />
-      </Formik>
+      </Formik>,
     );
     expect(wrapper.find(ActionButton).prop("disabled")).toBe(true);
   });
@@ -33,7 +33,7 @@ describe("RenewalSettingsFields", () => {
         <RenewalSettingsForm onCloseMenu={jest.fn()}>
           <FormikField name="mysub" type="checkbox" />
         </RenewalSettingsForm>
-      </Formik>
+      </Formik>,
     );
     await act(async () => {
       wrapper.find("input").simulate("change", {

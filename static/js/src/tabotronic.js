@@ -4,7 +4,7 @@
 
   tabContent.forEach((tab) => {
     const link = document.querySelector(
-      `#${tab.getAttribute("aria-labelledby")}`
+      `#${tab.getAttribute("aria-labelledby")}`,
     );
     if (link && link.getAttribute("aria-selected") !== "true") {
       tab.classList.add("u-hide");

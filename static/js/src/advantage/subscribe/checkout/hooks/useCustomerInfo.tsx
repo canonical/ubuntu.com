@@ -21,7 +21,7 @@ const useCustomerInfo = () => {
 
         window.loginSession = response;
         const accountStatusReq = await getPurchaseAccountStatus(
-          window.marketplace
+          window.marketplace,
         );
 
         if (!accountStatusReq.account) {

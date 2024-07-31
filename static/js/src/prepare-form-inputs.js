@@ -67,7 +67,7 @@ function addInputValidation(phoneInput) {
 
   const errorElement = createErrorMessage();
   phoneInput.addEventListener("blur", () =>
-    validateInput(phoneInput, errorElement)
+    validateInput(phoneInput, errorElement),
   );
   phoneInput.addEventListener("change", () => resetErrorState(errorElement));
   phoneInput.addEventListener("keyup", () => resetErrorState(errorElement));

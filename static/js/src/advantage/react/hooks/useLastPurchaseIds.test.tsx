@@ -29,12 +29,12 @@ describe("useLastPurchaseIds", () => {
     const lastPurchaseIds = lastPurchaseIdsFactory.build();
     queryClient.setQueryData(
       ["lastPurchaseIds", "account123"],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useLastPurchaseIds("account123"),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(lastPurchaseIds);
@@ -48,7 +48,7 @@ describe("useLastPurchaseIds", () => {
     });
     queryClient.setQueryData(
       ["lastPurchaseIds", "account123"],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
@@ -56,10 +56,10 @@ describe("useLastPurchaseIds", () => {
         useLastPurchaseIds("account123", {
           select: selectPurchaseIdsByMarketplaceAndPeriod(
             UserSubscriptionMarketplace.CanonicalUA,
-            UserSubscriptionPeriod.Monthly
+            UserSubscriptionPeriod.Monthly,
           ),
         }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual("monthly123");

@@ -181,7 +181,7 @@ const Version = () => {
                 setVersion(key as LTSVersions);
                 localStorage.setItem(
                   PRO_SELECTOR_KEYS.VERSION,
-                  JSON.stringify(key as LTSVersions)
+                  JSON.stringify(key as LTSVersions),
                 );
               }}
             >

@@ -11,12 +11,12 @@ const Currency = () => {
   const { currency, setCurrency } = useContext(FormContext);
 
   const handleCurrencyChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setCurrency(event.target.value as Currencies);
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
-      JSON.stringify(event.target.value as Currencies)
+      JSON.stringify(event.target.value as Currencies),
     );
   };
 

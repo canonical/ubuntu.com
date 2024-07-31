@@ -96,32 +96,32 @@ export const FormProvider = ({
   const localIoTDevice = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
 
   const [productUser, setProductUser] = useState<ProductUsers>(
-    localProductUser ? JSON.parse(localProductUser) : initialUser
+    localProductUser ? JSON.parse(localProductUser) : initialUser,
   );
   const [productType, setProductType] = useState<ProductTypes>(
-    localProductType ? JSON.parse(localProductType) : initialType
+    localProductType ? JSON.parse(localProductType) : initialType,
   );
   const [version, setVersion] = useState<LTSVersions>(
-    localVersion ? JSON.parse(localVersion) : initialVersion
+    localVersion ? JSON.parse(localVersion) : initialVersion,
   );
   const [feature, setFeature] = useState<Features>(
-    localFeature ? JSON.parse(localFeature) : initialFeature
+    localFeature ? JSON.parse(localFeature) : initialFeature,
   );
   const [sla, setSLA] = useState<SLA>(
-    localSLA ? JSON.parse(localSLA) : initialSLA
+    localSLA ? JSON.parse(localSLA) : initialSLA,
   );
   const [support, setSupport] = useState<Support>(
-    localSupport ? JSON.parse(localSupport) : initialSupport
+    localSupport ? JSON.parse(localSupport) : initialSupport,
   );
   const [quantity, setQuantity] = useState(
-    localQuantity ? JSON.parse(localQuantity) : initialQuantity
+    localQuantity ? JSON.parse(localQuantity) : initialQuantity,
   );
   const [period, setPeriod] = useState<Periods>(
-    localPeriod ? JSON.parse(localPeriod) : initialPeriod
+    localPeriod ? JSON.parse(localPeriod) : initialPeriod,
   );
   const [product, setProduct] = useState<Product | null>(null);
   const [iotDevice, setIoTDevice] = useState<IoTDevices>(
-    localIoTDevice ? JSON.parse(localIoTDevice) : initialIoTDevice
+    localIoTDevice ? JSON.parse(localIoTDevice) : initialIoTDevice,
   );
 
   useEffect(() => {

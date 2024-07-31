@@ -40,7 +40,7 @@ describe("useCancelTrial", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null);
     await waitForNextUpdate();
@@ -51,13 +51,13 @@ describe("useCancelTrial", () => {
     cancelTrialSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const onError = jest.fn();
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null, {
       onError: (error) => onError(error.message),
@@ -70,12 +70,12 @@ describe("useCancelTrial", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
 
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIdsFactory.build()
+      lastPurchaseIdsFactory.build(),
     );
 
     let userSubscriptionsState = queryClient.getQueryState([

@@ -16,10 +16,10 @@ describe("PaymentButton", () => {
       writable: true,
     });
 
-    window.location = ({
+    window.location = {
       href: "/old/url",
       assign: jest.fn(),
-    } as unknown) as Location;
+    } as unknown as Location;
 
     const localStorageMock = (function () {
       let store: Record<string, string> = {};
@@ -52,7 +52,7 @@ describe("PaymentButton", () => {
     await waitFor(() => {
       expect(window.location.href).toBe("/account/checkout");
       expect(localStorage.getItem("shop-checkout-data")).toBe(
-        '{"products":[{"product":{"longId":"oAaBbCcDdEe","period":"yearly","marketplace":"canonical-ua","id":"oAaBbCcDdEe","name":"1x Ubuntu Pro, 2x Ubuntu Pro (Infra)","price":{"value":50000},"canBeTrialled":false},"quantity":1}],"action":"offer"}'
+        '{"products":[{"product":{"longId":"oAaBbCcDdEe","period":"yearly","marketplace":"canonical-ua","id":"oAaBbCcDdEe","name":"1x Ubuntu Pro, 2x Ubuntu Pro (Infra)","price":{"value":50000},"canBeTrialled":false},"quantity":1}],"action":"offer"}',
       );
     });
 

@@ -44,7 +44,7 @@ function DistributorSummary({
 
       return acc;
     },
-    { totalDiscount: 0, totalDefaultTotal: 0 }
+    { totalDiscount: 0, totalDefaultTotal: 0 },
   );
 
   const discount = totalDiscount;
@@ -104,7 +104,7 @@ function DistributorSummary({
                     &minus;{" "}
                     {currency
                       ? currencyFormatter(currency).format(
-                          Number(discount) ?? 0
+                          Number(discount) ?? 0,
                         )
                       : 0}
                   </strong>
@@ -138,7 +138,7 @@ function DistributorSummary({
               <strong>
                 {currency
                   ? currencyFormatter(currency).format(
-                      Number(defaultTotal) + Number(taxAmount) || 0
+                      Number(defaultTotal) + Number(taxAmount) || 0,
                     )
                   : 0}
               </strong>
@@ -177,14 +177,14 @@ function DistributorSummary({
             const productName = validProduct.includes("-virtual-")
               ? "Ubuntu Pro virtual"
               : validProduct.includes("-desktop-")
-              ? "Ubuntu Pro Desktop"
-              : "Ubuntu Pro";
+                ? "Ubuntu Pro Desktop"
+                : "Ubuntu Pro";
             const quantity = product.quantity;
             const support = validProduct.includes("advanced")
               ? "24/7 Support, "
               : validProduct.includes("standard")
-              ? "Weekday Support, "
-              : "";
+                ? "Weekday Support, "
+                : "";
             const infra = validProduct.includes("uio") ? "Infra, " : "";
 
             return (
@@ -225,7 +225,7 @@ function DistributorSummary({
               <strong>
                 {format(
                   new Date().setFullYear(new Date().getFullYear() + duration),
-                  DATE_FORMAT
+                  DATE_FORMAT,
                 )}
               </strong>
             </p>
@@ -247,7 +247,7 @@ function DistributorSummary({
                   {quantity} x{" "}
                   {currency
                     ? currencyFormatter(currency).format(
-                        (Number(price) ?? 0) / 100 / duration
+                        (Number(price) ?? 0) / 100 / duration,
                       )
                     : 0}{" "}
                   x {duration} {duration === 1 ? "year" : "years"}

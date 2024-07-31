@@ -25,7 +25,7 @@ export default function PaymentButton({ product }: Prop) {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

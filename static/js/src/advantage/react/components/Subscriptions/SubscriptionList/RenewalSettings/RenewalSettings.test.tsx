@@ -60,7 +60,7 @@ describe("RenewalSettings", () => {
             should_present_auto_renewal: true,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -68,7 +68,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -76,7 +76,7 @@ describe("RenewalSettings", () => {
       wrapper
         .find("[data-test='renewal-toggles']")
         .text()
-        .includes("my monthly subscription")
+        .includes("my monthly subscription"),
     ).toBe(true);
   });
 
@@ -108,7 +108,7 @@ describe("RenewalSettings", () => {
             should_present_auto_renewal: false,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -116,7 +116,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -124,19 +124,19 @@ describe("RenewalSettings", () => {
       wrapper
         .find("[data-test='renewal-toggles']")
         .text()
-        .includes("my monthly subscription")
+        .includes("my monthly subscription"),
     ).toBe(false);
     expect(
       wrapper
         .find("[data-test='renewal-toggles']")
         .text()
-        .includes("my yearly subscription")
+        .includes("my yearly subscription"),
     ).toBe(false);
     expect(
       wrapper
         .find("[data-test='renewal-toggles']")
         .text()
-        .includes("my 2 yearly subscriptions")
+        .includes("my 2 yearly subscriptions"),
     ).toBe(false);
   });
 
@@ -188,7 +188,7 @@ describe("RenewalSettings", () => {
             is_subscription_auto_renewing: true,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -196,7 +196,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -207,16 +207,16 @@ describe("RenewalSettings", () => {
         `Renew my 2 yearly subscriptions for the next year for ` +
           `$1,900.00*. The renewal will happen on 9 July 2022: ` +
           `3x UA Applications - Standard (Physical)` +
-          `1x UA Applications - Standard (Physical)`
-      )
+          `1x UA Applications - Standard (Physical)`,
+      ),
     ).toBe(true);
     expect(
       settings.includes(
         `Automatically renew my 2 monthly subscriptions every month` +
           ` for $27.50*. The next renewal will be on 9 July 2022: ` +
           `2x UA Applications - Standard (Physical)` +
-          `100x UA Applications - Standard (Physical)`
-      )
+          `100x UA Applications - Standard (Physical)`,
+      ),
     ).toBe(true);
   });
 
@@ -230,7 +230,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Use act to force waiting  for the component to finish rendering.
     await act(async () => {});
@@ -239,7 +239,7 @@ describe("RenewalSettings", () => {
     expect(
       wrapper
         .find("Notification[data-test='subscriptions-loading-error']")
-        .exists()
+        .exists(),
     ).toBe(true);
   });
 
@@ -255,7 +255,7 @@ describe("RenewalSettings", () => {
             is_subscription_auto_renewing: true,
           }),
         }),
-      ]
+      ],
     );
 
     const wrapper = mount(
@@ -264,7 +264,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -291,10 +291,10 @@ describe("RenewalSettings", () => {
             is_subscription_auto_renewing: true,
           }),
         }),
-      ]
+      ],
     );
     setAutoRenewalSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "Uh oh" })
+      Promise.resolve({ errors: "Uh oh" }),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -302,7 +302,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -331,10 +331,10 @@ describe("RenewalSettings", () => {
             is_subscription_auto_renewing: true,
           }),
         }),
-      ]
+      ],
     );
     setAutoRenewalSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "Uh oh" })
+      Promise.resolve({ errors: "Uh oh" }),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -342,7 +342,7 @@ describe("RenewalSettings", () => {
           positionNodeRef={{ current: null }}
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
@@ -354,7 +354,7 @@ describe("RenewalSettings", () => {
     });
     wrapper.update();
     expect(
-      wrapper.find("Notification[data-test='update-error']").exists()
+      wrapper.find("Notification[data-test='update-error']").exists(),
     ).toBe(true);
     // Close the menu.
     wrapper.find("Button[data-test='cancel-button']").simulate("click");
@@ -362,7 +362,7 @@ describe("RenewalSettings", () => {
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
     wrapper.update();
     expect(
-      wrapper.find("Notification[data-test='update-error']").exists()
+      wrapper.find("Notification[data-test='update-error']").exists(),
     ).toBe(false);
   });
 });

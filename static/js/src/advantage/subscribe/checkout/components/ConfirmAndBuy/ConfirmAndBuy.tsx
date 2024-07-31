@@ -23,10 +23,10 @@ const ConfirmAndBuy = ({ products, action }: Props) => {
 
   const { termsLabel, descriptionLabel, marketingLabel } = getLabels(
     product,
-    action
+    action,
   );
 
-  const ReCAPTCHAComponent = (ReCAPTCHA as unknown) as React.ComponentType<any>;
+  const ReCAPTCHAComponent = ReCAPTCHA as unknown as React.ComponentType<any>;
 
   const validateCheckbox = (value: boolean) => {
     if (!value) {

@@ -68,7 +68,7 @@ const loadLightboxImage = (lightboxEl, url, images) => {
       contentEl.style.opacity = "1";
 
       const originalEl = document.body.querySelector(
-        `[data-original="${url}"]`
+        `[data-original="${url}"]`,
       );
 
       if (media.canPlayType("video/webm")) {

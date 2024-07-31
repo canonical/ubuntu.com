@@ -38,10 +38,8 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
       onAfterDeleteSuccess();
     });
 
-  const [
-    errorMessage,
-    setErrorMessage,
-  ] = useState<SubmissionErrorMessage | null>(null);
+  const [errorMessage, setErrorMessage] =
+    useState<SubmissionErrorMessage | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async () => {

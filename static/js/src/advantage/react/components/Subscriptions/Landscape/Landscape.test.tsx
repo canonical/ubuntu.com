@@ -13,15 +13,15 @@ describe("Landscape", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Landscape />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='landscape']").exists()).toBe(true);
     expect(wrapper.find(Button).length).toBe(2);
     expect(wrapper.find(Button).at(0).text()).toBe(
-      "Install self-hosted Landscape"
+      "Install self-hosted Landscape",
     );
     expect(wrapper.find(Button).at(1).text()).toBe(
-      "Request a Landscape SaaS account"
+      "Request a Landscape SaaS account",
     );
   });
 });
