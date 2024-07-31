@@ -8,6 +8,7 @@ import {
   LTSVersions,
   ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const livepatch =
   "Kernel Livepatch to apply kernel patches at run time without the need for an immediate reboot";
@@ -179,7 +180,7 @@ const Version = () => {
                 e.preventDefault();
                 setVersion(key as LTSVersions);
                 localStorage.setItem(
-                  "pro-selector-version",
+                  PRO_SELECTOR_KEYS.VERSION,
                   JSON.stringify(key as LTSVersions)
                 );
               }}

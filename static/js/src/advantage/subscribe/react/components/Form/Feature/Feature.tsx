@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
 import { Features, ProductTypes } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const Feature = () => {
   const { productType, feature, setFeature } = useContext(FormContext);
@@ -10,7 +11,7 @@ const Feature = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
     localStorage.setItem(
-      "pro-selector-feature",
+      PRO_SELECTOR_KEYS.FEATURE,
       JSON.stringify(event.target.value as Features)
     );
   };

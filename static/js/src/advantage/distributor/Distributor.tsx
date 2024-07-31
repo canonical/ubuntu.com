@@ -1,21 +1,15 @@
 import { useEffect } from "react";
 import { Row, Col, Icon, ICONS } from "@canonical/react-components";
 import ChannelOffersList from "./components/ChannelOffersList/ChannelOffersList";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "./utils/utils";
 
 const Distributor = () => {
-  const distributorSelectorStates = [
-    "distributor-selector-subscriptionList",
-    "distributor-selector-currency",
-    "channel-offer-data",
-    "distributor-selector-duration",
-    "distributor-selector-techincalUserContact",
-    "distributor-selector-productType",
-  ];
+  const distributorSelectorKeysArray = Object.values(DISTRIBUTOR_SELECTOR_KEYS);
 
   useEffect(() => {
-    distributorSelectorStates.forEach((state) =>
-      localStorage.removeItem(state)
-    );
+    distributorSelectorKeysArray.forEach((key) => {
+      localStorage.removeItem(key);
+    });
   }, []);
 
   return (
@@ -26,17 +20,23 @@ const Distributor = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginBottom: "1.5rem",
+              alignItems: "baseline",
             }}
           >
             <h2>Available deal registrations</h2>
-            <a
-              className="p-button--positive"
-              href="https://www.partner.canonical.com/#/deals/new"
-            >
-              <Icon name={ICONS.externalLink} light={true} />
-              Register new deal
-            </a>
+            <div>
+              <a
+                className="p-button--positive"
+                href="https://www.partner.canonical.com/#/deals/new"
+              >
+                <Icon
+                  name={ICONS.externalLink}
+                  light={true}
+                  style={{ marginRight: "0.3rem" }}
+                />
+                Register new deal
+              </a>
+            </div>
           </div>
           <ChannelOffersList />
         </Col>

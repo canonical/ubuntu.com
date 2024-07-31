@@ -7,6 +7,7 @@ import {
   PaymentPayload,
 } from "../utils/types";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 type Props = {
   products: CheckoutProducts[];
@@ -27,7 +28,7 @@ const postPurchase = () => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        "distributor-selector-techincalUserContact"
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)
