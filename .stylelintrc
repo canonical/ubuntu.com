@@ -1,10 +1,15 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
-  "plugins": ["stylelint-order", "stylelint-scss"],
-  "ignoreFiles": ["static/sass/prism.scss"],
+  "extends": ["stylelint-config-recommended-scss"],
+  "plugins": ["stylelint-order"],
   "rules": {
-    "order/properties-alphabetical-order": true,
+    "comment-no-empty": null,
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/no-global-function-names": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "no-invalid-position-at-import-rule": null,
+    "order/properties-alphabetical-order": null,
+    "scss/operator-no-unspaced": null,
+    "scss/operator-no-newline-after": null,
+    "scss/comment-no-empty": null
   }
 }
