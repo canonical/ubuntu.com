@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_class %}
-  is-dark
+  {% if not(no_dark == True) %}is-dark{% endif %}
 {% endblock body_class %}
 
 {% block outer_content %}
@@ -671,13 +671,13 @@
         <div class="col">
           <div class="p-image-wrapper u-vertically-center p-image-container--2-3 u-hide--medium"
                style="background: rgba(0, 0, 0, 0.15)">
-              {{ image(url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
-                          alt="",
-                          width="1200",
-                          height="983",
-                          hi_def=True,
-                          loading="lazy") | safe
-              }}
+            {{ image(url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
+                        alt="",
+                        width="1200",
+                        height="983",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
           </div>
         </div>
         <div class="col">

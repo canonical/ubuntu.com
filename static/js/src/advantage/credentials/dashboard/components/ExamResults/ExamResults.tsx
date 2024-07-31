@@ -233,7 +233,9 @@ const ExamResults = () => {
 
   return (
     <>
-      {(isLoading || isFetching || isLoadingBadges) && <Spinner text="Loading..." />}
+      {(isLoading || isFetching || isLoadingBadges) && (
+        <Spinner text="Loading..." />
+      )}
       {paginationMeta && (
         <Pagination
           currentPage={paginationMeta?.currentPage ?? 1}

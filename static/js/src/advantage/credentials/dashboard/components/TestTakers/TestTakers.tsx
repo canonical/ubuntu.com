@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTestTakerStats } from "../../api/keys";
 import { useMemo } from "react";
-import { MainTable, Spinner, Notification } from "@canonical/react-components";
+import {
+  Spinner,
+  Notification,
+  ModularTable,
+} from "@canonical/react-components";
 import { Assessment } from "../../utils/types";
 import { countries } from "advantage/countries-and-states";
-import { sortFunction } from "../../utils";
 
 const TestTakers = () => {
   const { data, isLoading, isError } = useQuery<Assessment[]>({
@@ -12,12 +15,21 @@ const TestTakers = () => {
     queryFn: getTestTakerStats,
   });
 
-  const getSortData = (data: { countryName: string; count: number }) => {
-    return {
-      countryName: data.countryName,
-      count: data.count,
-    };
-  };
+  const columns: any = useMemo(
+    () => [
+      {
+        Header: "Country Name",
+        accessor: "countryName",
+        sortType: "basic",
+      },
+      {
+        Header: "Count",
+        accessor: "count",
+        sortType: "basic",
+      },
+    ],
+    []
+  );
 
   const currentRows = useMemo(() => {
     if (data) {
@@ -41,15 +53,7 @@ const TestTakers = () => {
         count,
       }));
 
-      return counts
-        .sort((a, b) => b.count - a.count)
-        .map((row) => ({
-          key: row.countryName,
-          columns: [
-            { content: row.countryName, sortData: getSortData(row) },
-            { content: row.count, sortData: getSortData(row) },
-          ],
-        }));
+      return counts.sort((a, b) => b.count - a.count);
     }
     return [];
   }, [data]);
@@ -69,15 +73,7 @@ const TestTakers = () => {
   return (
     <>
       <h1>Test Takers Geolocation</h1>
-      <MainTable
-        sortable
-        sortFunction={sortFunction}
-        headers={[
-          { content: "Country Code", sortKey: "countryCode" },
-          { content: "Count", sortKey: "count" },
-        ]}
-        rows={currentRows}
-      />
+      <ModularTable sortable columns={columns} data={currentRows} />
     </>
   );
 };

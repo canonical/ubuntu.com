@@ -87,7 +87,7 @@ const CertificationIssued = () => {
   }, [cachedData]);
 
   const uniqueBadgeTemplates = useMemo(() => {
-    if (data && data?.data) {
+    if (flatData && flatData?.length) {
       return [
         ...new Set(
           flatData.map((badge: CredlyBadge) => badge.badge_template.id)
@@ -95,7 +95,7 @@ const CertificationIssued = () => {
       ];
     }
     return [];
-  }, [data, flatData]);
+  }, [flatData]);
 
   const getBadgeTemplateSubrows = (templateId: string) => {
     const matches =
@@ -117,7 +117,7 @@ const CertificationIssued = () => {
   };
 
   const currentRows = useMemo(() => {
-    if (data && data?.data) {
+    if (flatData && flatData?.length) {
       return (uniqueBadgeTemplates as string[]).map((templateId: string) => {
         const badge = getBadgeTemplate(templateId);
         const subRows = getBadgeTemplateSubrows(templateId);
@@ -131,9 +131,9 @@ const CertificationIssued = () => {
       });
     }
     return [];
-  }, [uniqueBadgeTemplates, getBadgeTemplateSubrows]);
+  }, [uniqueBadgeTemplates, getBadgeTemplateSubrows, flatData]);
 
-  const paginationMeta: CredlyMetadata | null = useMemo(() => {
+  const paginationMeta: CredlyMetadata | undefined = useMemo(() => {
     if (data && !data?.message) {
       const { metadata } = data;
       return {
@@ -146,7 +146,7 @@ const CertificationIssued = () => {
         next_page_url: metadata.next_page_url,
       };
     }
-    return null;
+    return undefined;
   }, [data, page]);
 
   const handleLoadPage = (pageNumber: number) => {
@@ -163,10 +163,6 @@ const CertificationIssued = () => {
     }
   };
 
-  if (isLoading) {
-    return <Spinner text="Loading..." />;
-  }
-
   if (isError) {
     return (
       <Notification severity="negative" title="Error">
@@ -177,7 +173,7 @@ const CertificationIssued = () => {
 
   return (
     <>
-      {isFetching && <Spinner text="Loading..." />}
+      {(isFetching || isLoading) && <Spinner text="Loading..." />}
       {paginationMeta && (
         <Pagination
           currentPage={paginationMeta.current_page}
@@ -187,7 +183,9 @@ const CertificationIssued = () => {
           disabled={isFetching}
         />
       )}
-      <ModularTable columns={columns} data={currentRows} sortable />
+      {flatData && flatData?.length > 0 && (
+        <ModularTable columns={columns} data={currentRows} sortable />
+      )}
       {/* <MainTable
         sortable
         onUpdateSort={(sortKey) => console.log(sortKey)}
