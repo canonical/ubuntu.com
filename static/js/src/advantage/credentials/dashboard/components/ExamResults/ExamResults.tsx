@@ -155,7 +155,7 @@ const ExamResults = () => {
   }, [cachedData, dataBadges]);
 
   const uniqueGroupKeys = useMemo(() => {
-    if (data && data?.results) {
+    if (flatData && flatData?.length) {
       return [
         ...new Set(flatData.map((res: ExamResultsTA) => res.ability_screen.id)),
       ];
@@ -179,7 +179,7 @@ const ExamResults = () => {
   };
 
   const currentRows = useMemo(() => {
-    if (data && data?.results) {
+    if (flatData && flatData?.length) {
       return (uniqueGroupKeys as number[]).map((screenId) => {
         const exam = getExam(screenId);
         const subRows = getSubRows(screenId);
@@ -206,7 +206,7 @@ const ExamResults = () => {
         totalItems: meta.total_count,
       };
     }
-    return {};
+    return undefined;
   }, [data, page]);
 
   const handleLoadPage = (pageNumber: number) => {
@@ -223,10 +223,6 @@ const ExamResults = () => {
     }
   };
 
-  if (isLoading || isLoadingBadges) {
-    return <Spinner text="Loading..." />;
-  }
-
   if (isError || data?.error || isErrorBadges) {
     return (
       <Notification severity="negative" title="Error">
@@ -235,23 +231,25 @@ const ExamResults = () => {
     );
   }
 
-  if (data && dataBadges && !data?.error) {
-    return (
-      <>
-        {isFetching && <Spinner text="Loading..." />}
-        {paginationMeta && (
-          <Pagination
-            currentPage={paginationMeta?.currentPage ?? 1}
-            itemsPerPage={50}
-            paginate={handleLoadPage}
-            totalItems={paginationMeta.totalItems}
-            disabled={isFetching}
-          />
-        )}
-        <ModularTable data={currentRows} columns={columns} sortable />
-      </>
-    );
-  }
+  return (
+    <>
+      {(isLoading || isFetching || isLoadingBadges) && <Spinner text="Loading..." />}
+      {paginationMeta && (
+        <Pagination
+          currentPage={paginationMeta?.currentPage ?? 1}
+          itemsPerPage={50}
+          paginate={handleLoadPage}
+          totalItems={paginationMeta.totalItems}
+          disabled={isFetching}
+        />
+      )}
+      {flatData && flatData?.length > 0 && (
+        <>
+          <ModularTable data={currentRows} columns={columns} sortable />
+        </>
+      )}
+    </>
+  );
 
   return <></>;
 };

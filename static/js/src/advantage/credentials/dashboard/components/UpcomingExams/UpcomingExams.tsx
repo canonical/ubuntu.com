@@ -111,7 +111,7 @@ const UpcomingExams = () => {
   }, [cachedData]);
 
   const uniqueGroupKeys = useMemo(() => {
-    if (data && data?.assessment_reservations) {
+    if (flatData && flatData?.length) {
       if (groupKey === "1") {
         return [
           ...new Set(
@@ -133,7 +133,7 @@ const UpcomingExams = () => {
       return [];
     }
     return [];
-  }, [data, groupKey, flatData]);
+  }, [groupKey, flatData]);
 
   const getState = (res: AssessmentReservationTA) => {
     const state = res?.assessment?.state || res.state;
@@ -176,7 +176,7 @@ const UpcomingExams = () => {
   };
 
   const currentRows = useMemo(() => {
-    if (data && data?.assessment_reservations) {
+    if (flatData && flatData?.length) {
       if (groupKey === "1") {
         return (uniqueGroupKeys as number[]).map((screenId) => {
           const screen = getAbilityScreen(screenId);
@@ -198,7 +198,7 @@ const UpcomingExams = () => {
       return [];
     }
     return [];
-  }, [uniqueGroupKeys, getSubRows, groupKey]);
+  }, [uniqueGroupKeys, getSubRows, groupKey, flatData]);
 
   const paginationMeta = useMemo(() => {
     if (data && data?.meta) {
@@ -213,7 +213,7 @@ const UpcomingExams = () => {
         totalItems: meta.total_count,
       };
     }
-    return {};
+    return undefined;
   }, [data]);
 
   const handleLoadPage = (pageNumber: number) => {
@@ -230,10 +230,6 @@ const UpcomingExams = () => {
     }
   };
 
-  if (isLoading) {
-    return <Spinner text="Loading..." />;
-  }
-
   if (isError) {
     return (
       <Notification severity="negative" title="Error">
@@ -242,41 +238,43 @@ const UpcomingExams = () => {
     );
   }
 
-  if (data) {
-    return (
-      <>
-        {isFetching && <Spinner text="Loading..." />}
-        {paginationMeta && (
-          <Pagination
-            currentPage={page}
-            itemsPerPage={50}
-            paginate={handleLoadPage}
-            totalItems={paginationMeta.totalItems || 0}
-            disabled={isFetching}
-          />
-        )}
-        <Select
-          defaultValue="1"
-          id="groupBy"
-          label="Group By"
-          name="groupBy"
-          options={[
-            {
-              label: "Exam",
-              value: "1",
-            },
-            {
-              label: "State",
-              value: "2",
-            },
-          ]}
-          onChange={(e) => setGroupKey(e.target.value)}
-          value={groupKey}
+  return (
+    <>
+      {(isLoading || isFetching) && <Spinner text="Loading..." />}
+      {paginationMeta && (
+        <Pagination
+          currentPage={page}
+          itemsPerPage={50}
+          paginate={handleLoadPage}
+          totalItems={paginationMeta.totalItems || 0}
+          disabled={isFetching}
         />
-        <ModularTable data={currentRows} columns={columns} sortable />
-      </>
-    );
-  }
+      )}
+      {flatData && flatData?.length > 0 && (
+        <>
+          <Select
+            defaultValue="1"
+            id="groupBy"
+            label="Group By"
+            name="groupBy"
+            options={[
+              {
+                label: "Exam",
+                value: "1",
+              },
+              {
+                label: "State",
+                value: "2",
+              },
+            ]}
+            onChange={(e) => setGroupKey(e.target.value)}
+            value={groupKey}
+          />
+          <ModularTable data={currentRows} columns={columns} sortable />
+        </>
+      )}
+    </>
+  );
 
   return <></>;
 };

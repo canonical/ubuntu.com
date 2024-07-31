@@ -50,7 +50,7 @@ function App() {
             <main className="l-main">
               <section style={{ padding: "2rem" }}>
                 <Routes>
-                  <Route path="/" element={<Navigate to="/exams" />} />
+                  <Route path="/" element={<Navigate to="/exams/upcoming" />} />
                   <Route path="/exams" element={<Exams />}>
                     <Route path="/exams/upcoming" element={<UpcomingExams />} />
                     <Route path="/exams/results" element={<ExamResults />} />
