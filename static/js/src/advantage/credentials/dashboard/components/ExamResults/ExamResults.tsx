@@ -252,8 +252,6 @@ const ExamResults = () => {
       )}
     </>
   );
-
-  return <></>;
 };
 
 export default ExamResults;

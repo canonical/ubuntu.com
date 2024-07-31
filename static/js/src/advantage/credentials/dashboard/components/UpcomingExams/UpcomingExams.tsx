@@ -275,8 +275,6 @@ const UpcomingExams = () => {
       )}
     </>
   );
-
-  return <></>;
 };
 
 export default UpcomingExams;
