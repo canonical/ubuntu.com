@@ -368,15 +368,20 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
           var comma = ",";
-          var fieldTitle =
-            formField.querySelector(".js-formfield-title") ??
-            formField.querySelector(".p-modal__question-heading");
+          var fieldsetForm = formField.querySelector(".js-formfield-title");
+          var fieldTitle = "";
+          if (fieldsetForm) {
+            fieldTitle = fieldsetForm;
+          } else {
+            fieldTitle = formField.querySelector(".p-heading--5") ?? formField.querySelector(".p-modal__question-heading");
+          }
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {
             message += fieldTitle.innerText + "\r\n";
           }
 
           inputs.forEach(function (input) {
+            var removeInputName = true;
             switch (input.type) {
               case "radio":
                 if (input.checked) {
@@ -385,30 +390,35 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 break;
               case "checkbox":
                 if (input.checked) {
-                  // Forms that have column separation
-                  // var subSectionText = "";
-                  // if (
-                  //   input.closest('[class*="col-"]') &&
-                  //   input
-                  //     .closest('[class*="col-"]')
-                  //     .querySelector(".js-sub-section")
-                  // ) {
-                  //   var subSection = input
-                  //     .closest('[class*="col-"]')
-                  //     .querySelector(".js-sub-section");
-                  //   subSectionText = subSection.innerText + ": ";
-                  // }
+                  if (fieldsetForm) {
+                    message += input.value + comma + " ";
+                  } else {
+                    // Forms that have column separation
+                    removeInputName = false;
+                    var subSectionText = "";
+                    if (
+                      input.closest('[class*="col-"]') &&
+                      input
+                        .closest('[class*="col-"]')
+                        .querySelector(".js-sub-section")
+                    ) {
+                      var subSection = input
+                        .closest('[class*="col-"]')
+                        .querySelector(".js-sub-section");
+                      subSectionText = subSection.innerText + ": ";
+                    }
 
-                  // var label = formField.querySelector(
-                  //   "span#" + input.getAttribute("aria-labelledby")
-                  // );
+                    var label = formField.querySelector(
+                      "span#" + input.getAttribute("aria-labelledby")
+                    );
 
-                  // if (label) {
-                  //   label = subSectionText + label.innerText;
-                  // } else {
-                  //   label = input.value;
-                  // }
-                  message += input.value + comma + " ";
+                    if (label) {
+                      label = subSectionText + label.innerText;
+                    } else {
+                      label = input.getAttribute("aria-labelledby");
+                    }
+                    message += label + comma + "\r\n\r\n";
+                  }
                 }
                 break;
               case "text":
@@ -419,7 +429,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 }
                 break;
             }
-            input.removeAttribute("name");
+            removeInputName ? input.removeAttribute("name") : null;
           });
           message += "\r\n\r\n";
         });
