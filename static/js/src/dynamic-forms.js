@@ -373,7 +373,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           if (fieldsetForm) {
             fieldTitle = fieldsetForm;
           } else {
-            fieldTitle = formField.querySelector(".p-heading--5") ?? formField.querySelector(".p-modal__question-heading");
+            fieldTitle =
+              formField.querySelector(".p-heading--5") ??
+              formField.querySelector(".p-modal__question-heading");
           }
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {

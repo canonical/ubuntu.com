@@ -7,20 +7,20 @@
             style="display: block;
                    border-bottom: 0;
                    overflow: auto;
-                   padding-left: 1.5rem;">
+                   padding-left: 1.5rem">
       <button class="p-modal__close js-close"
               aria-label="Close active modal"
-              style="margin-left: -1rem">Close</button>      
+              style="margin-left: -1rem">Close</button>
       <h3 id="modal-title">Ubuntu and open infrastructure experts</h3>
     </header>
 
     <div class="js-pagination js-pagination--1">
       <div class="p-section u-sv-3">
-        <hr class="is-fixed-width"/>
+        <hr class="is-fixed-width" />
         <div class="row--50-50">
           <div class="col">
             Canonical certifies, secures and supports open infrastructure.
-            <br class="u-hide--medium u-hide--small"/>
+            <br class="u-hide--medium u-hide--small" />
             Tell us about your project so we bring the right team to the conversation.
           </div>
         </div>
@@ -28,7 +28,7 @@
       </div>
       <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%">
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <div class="row--50-50 js-formfield">
             <div class="col">
               <label for="about-your-project" class="p-heading--4 js-formfield-title">Tell us about your project</label>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield js-toggle-checkbox-visibility"
                     aria-labelledby="ubuntu-versions-legend">
             <div class="row--50-50">
@@ -137,7 +137,7 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield js-required-checkbox"
                     aria-required="true"
                     aria-labelledby="kind-of-device-legend">
@@ -187,16 +187,14 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield"
                     aria-labelledby="how-many-machines-legend"
                     aria-required="true">
             <div class="row--50-50">
               <div class="col">
                 <legend class="p-heading--4 js-formfield-title is-required"
-                        id="how-many-machines-legend">
-                  How many devices?
-                </legend>
+                        id="how-many-machines-legend">How many devices?</legend>
               </div>
               <div class="col">
                 <label class="p-radio">
@@ -207,7 +205,7 @@
                          name="how-many-machines-do-you-have"
                          value="less than 5" />
                   <span class="p-radio__label" id="less-5-machines">&lt;&nbsp;5 machines</span>
-    
+
                 </label>
                 <label class="p-radio">
                   <input type="radio"
@@ -246,7 +244,7 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield"
                     aria-labelledby="how-do-you-consume-open-source-legend">
             <div class="row--50-50">
@@ -288,7 +286,7 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield"
                     aria-labelledby="hardening-requirements-legend">
             <div class="row--50-50">
@@ -360,7 +358,7 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section js-formfield"
                     aria-labelledby="responsible-for-tracking-legend">
             <div class="row--50-50">
@@ -404,7 +402,7 @@
           </fieldset>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <div class="row--50-50 js-formfield">
             <div class="col">
               <label for="advice" class="p-heading--4 js-formfield-title">What advice are you looking for?</label>
@@ -418,7 +416,7 @@
           </div>
         </div>
         <div class="p-section">
-          <hr class="is-fixed-width"/>
+          <hr class="is-fixed-width" />
           <fieldset class="p-fieldset-section"
                     id="about-you"
                     aria-labelledby="about-you-legend">
@@ -586,15 +584,12 @@
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
-              alt="smile",
-              width="200",
-              height="200",
-              hi_def=True,
-              loading="auto",
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+                        alt="smile",
+                        width="200",
+                        height="200",
+                        hi_def=True,
+                        loading="auto") | safe
             }}
           </div>
         </div>
