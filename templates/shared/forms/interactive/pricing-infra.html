@@ -15,12 +15,12 @@
     </header>
 
     <div class="js-pagination js-pagination--1">
-      <div class="p-section">
+      <div class="p-section u-sv-3">
         <hr class="is-fixed-width"/>
         <div class="row--50-50">
           <div class="col">
             Canonical certifies, secures and supports open infrastructure.
-            <br />
+            <br class="u-hide--medium u-hide--small"/>
             Tell us about your project so we bring the right team to the conversation.
           </div>
         </div>
@@ -195,13 +195,7 @@
               <div class="col">
                 <legend class="p-heading--4 js-formfield-title is-required"
                         id="how-many-machines-legend">
-                  How many
-                  {% if howManyVM %}
-                    VMs
-                  {% else %}
-                    devices
-                  {% endif %}
-                  ?
+                  How many devices?
                 </legend>
               </div>
               <div class="col">
