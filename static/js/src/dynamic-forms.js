@@ -362,13 +362,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Concatinate the options selected into a string
       function createMessage() {
+        const contactModal = document.getElementById("contact-modal");
         var message = "";
-
+        var commentsFromLead = document.querySelector("#Comments_from_lead__c");
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
-          var comma = "";
+          var comma = ",";
           var fieldTitle =
-            formField.querySelector(".p-heading--5") ??
+            formField.querySelector(".js-formfield-title") ??
             formField.querySelector(".p-modal__question-heading");
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {
@@ -379,60 +380,48 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             switch (input.type) {
               case "radio":
                 if (input.checked) {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
+                  message += input.value + comma + " ";
                 }
                 break;
               case "checkbox":
                 if (input.checked) {
-                  var subSectionText = "";
-
                   // Forms that have column separation
-                  if (
-                    input.closest('[class*="col-"]') &&
-                    input
-                      .closest('[class*="col-"]')
-                      .querySelector(".js-sub-section")
-                  ) {
-                    var subSection = input
-                      .closest('[class*="col-"]')
-                      .querySelector(".js-sub-section");
-                    subSectionText = subSection.innerText + ": ";
-                  }
+                  // var subSectionText = "";
+                  // if (
+                  //   input.closest('[class*="col-"]') &&
+                  //   input
+                  //     .closest('[class*="col-"]')
+                  //     .querySelector(".js-sub-section")
+                  // ) {
+                  //   var subSection = input
+                  //     .closest('[class*="col-"]')
+                  //     .querySelector(".js-sub-section");
+                  //   subSectionText = subSection.innerText + ": ";
+                  // }
 
-                  var label = formField.querySelector(
-                    "span#" + input.getAttribute("aria-labelledby")
-                  );
+                  // var label = formField.querySelector(
+                  //   "span#" + input.getAttribute("aria-labelledby")
+                  // );
 
-                  if (label) {
-                    label = subSectionText + label.innerText;
-                  } else {
-                    label = input.getAttribute("aria-labelledby");
-                  }
-                  message += comma + label + "\r\n\r\n";
-                  comma = ", ";
+                  // if (label) {
+                  //   label = subSectionText + label.innerText;
+                  // } else {
+                  //   label = input.value;
+                  // }
+                  message += input.value + comma + " ";
                 }
                 break;
               case "text":
-                if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
               case "number":
-                if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
               case "textarea":
                 if (input.value !== "") {
-                  message += comma + input.value + "\r\n\r\n";
-                  comma = ", ";
+                  message += input.value + comma + " ";
                 }
                 break;
             }
+            input.removeAttribute("name");
           });
+          message += "\r\n\r\n";
         });
         return message;
       }
@@ -646,21 +635,23 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     window.onhashchange = locationHashChanged;
 
     /**
-    *
-    * @param {*} fieldset
-    * @param {*} checklistItem
-    *
-    * Disable & enable checklist visibility based on user selection
-    * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
-    * - Can only check one __other item at a time
-    * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
-    */
+     *
+     * @param {*} fieldset
+     * @param {*} checklistItem
+     *
+     * Disable & enable checklist visibility based on user selection
+     * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+     * - Can only check one __other item at a time
+     * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
+     */
     function toggleCheckboxVisibility(fieldset, checklistItem) {
       const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
       const otherCheckboxes = fieldset.querySelectorAll(
         ".js-checkbox-visibility__other"
       );
-      const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
+      const isVisible = checklistItem.classList.contains(
+        "js-checkbox-visibility"
+      );
 
       if (checklistItem.checked) {
         if (isVisible) {
@@ -716,6 +707,5 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         submitButton.disabled = disableSubmit;
       }
     }
-
   });
 })();
