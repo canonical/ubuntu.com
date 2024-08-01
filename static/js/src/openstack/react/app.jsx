@@ -1,10 +1,8 @@
-import ReactDOM from "react-dom";
-import React from "react";
-
+import { createRoot } from "react-dom/client";
 import CostCalculatorForm from "./components/CostCalculatorForm";
 
 function App() {
   return <CostCalculatorForm />;
 }
 
-ReactDOM.render(<App />, document.getElementById("cost-calculator-section"));
+createRoot(document.getElementById("cost-calculator-section")).render(<App />);

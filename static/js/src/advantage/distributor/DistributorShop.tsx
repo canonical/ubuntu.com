@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import DistributorShopForm from "./components/DistributorShopForm/DistributorShopForm";
 import DistributorShopSummary from "./components/DistributorShopForm/DistributorShopSummary/DistributorShopSummary";
 import { Strip } from "@canonical/react-components";

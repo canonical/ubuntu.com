@@ -1,8 +1,6 @@
-import React from "react";
 import { mount } from "enzyme";
-
 import RenewalSettingsForm from "./RenewalSettingsForm";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 import { ActionButton } from "@canonical/react-components";
 import { Formik } from "formik";
 import FormikField from "advantage/react/components/FormikField";

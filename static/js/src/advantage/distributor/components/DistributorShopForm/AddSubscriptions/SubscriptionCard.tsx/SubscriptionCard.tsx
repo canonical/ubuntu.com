@@ -17,6 +17,7 @@ import {
   currencyFormatter,
   Currencies,
   getProductId,
+  DISTRIBUTOR_SELECTOR_KEYS,
 } from "../../../../utils/utils";
 
 type Prop = {
@@ -36,7 +37,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
     );
     setSubscriptionList(updatedList);
     localStorage.setItem(
-      "distributor-selector-subscriptionList",
+      DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
       JSON.stringify(updatedList)
     );
   };
@@ -54,7 +55,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
 
   const product = products?.filter(
     (prod) =>
-      prod.productID ===
+      prod?.productID ===
       getProductId(subscription.type, subscription.support, subscription.sla)
   )[0];
 
@@ -99,7 +100,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
     setSubscriptionList(updatedList);
 
     localStorage.setItem(
-      "distributor-selector-subscriptionList",
+      DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
       JSON.stringify(updatedList)
     );
   };

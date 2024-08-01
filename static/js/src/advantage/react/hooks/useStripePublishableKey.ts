@@ -1,9 +1,9 @@
 import type { StripePublishableKey } from "advantage/api/types";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useStripePublishableKey = () => {
-  const { data: stripePublishableKey } = useQuery<StripePublishableKey>(
-    "stripePublishableKey"
-  );
+  const { data: stripePublishableKey } = useQuery<StripePublishableKey>({
+    queryKey: ["stripePublishableKey"],
+  });
   return { stripePublishableKey };
 };

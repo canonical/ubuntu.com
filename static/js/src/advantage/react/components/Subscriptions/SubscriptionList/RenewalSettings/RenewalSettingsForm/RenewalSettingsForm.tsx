@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { ActionButton, Button } from "@canonical/react-components";
 import { useFormikContext } from "formik";

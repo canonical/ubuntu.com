@@ -7,11 +7,13 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "sourceMap": true,
+    "ignoreDeprecations": "5.0",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -20,8 +22,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es6",
-    "types": ["node", "jest"]
+    "target": "ES2020",
+    "types": ["node", "jest"],
+    "paths": {
+        "react": [ "./node_modules/@types/react" ]
+    }
   },
-  "include": ["static/js/src", "tests/setupTests.ts"]
+  "include": ["static/js/src", "tests/setupTests.ts"],
 }

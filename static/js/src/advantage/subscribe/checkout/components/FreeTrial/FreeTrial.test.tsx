@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { add, format } from "date-fns";
 import { Formik } from "formik";
 import { render, screen } from "@testing-library/react";
@@ -16,7 +15,7 @@ describe("FreeTrial", () => {
   });
 
   it("displays a message explaining the trial if free trial is selected", () => {
-    queryClient.setQueryData("calculate", taxes);
+    queryClient.setQueryData(["calculate"], taxes);
     const products = [
       {
         product: UAProduct,

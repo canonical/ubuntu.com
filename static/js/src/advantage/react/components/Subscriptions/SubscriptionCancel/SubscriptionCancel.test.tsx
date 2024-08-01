@@ -1,16 +1,15 @@
 import { ActionButton, Modal, Notification } from "@canonical/react-components";
-import React from "react";
 import { mount } from "enzyme";
 
 import * as contracts from "advantage/api/contracts";
 import SubscriptionCancel from "./SubscriptionCancel";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   lastPurchaseIdsFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 
 describe("SubscriptionCancel", () => {
@@ -30,7 +29,7 @@ describe("SubscriptionCancel", () => {
       period: UserSubscriptionPeriod.Monthly,
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -60,8 +59,8 @@ describe("SubscriptionCancel", () => {
   });
 
   it("displays a spinner when loading the data", async () => {
-    queryClient.removeQueries("userSubscriptions");
-    queryClient.removeQueries("lastPurchaseIds");
+    queryClient.removeQueries({ queryKey: ["userSubscriptions"] });
+    queryClient.removeQueries({ queryKey: ["lastPurchaseIds"] });
     const onClose = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>

@@ -6,7 +6,7 @@ import {
   Spinner,
 } from "@canonical/react-components";
 import type { ModalProps } from "@canonical/react-components";
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import {
   useCancelContract,
@@ -118,7 +118,7 @@ const SubscriptionCancel = ({
                 appearance={ButtonAppearance.NEGATIVE}
                 className="u-no-margin--bottom"
                 disabled={!isValid}
-                loading={cancelContract.isLoading}
+                loading={cancelContract.isPending}
                 success={cancelContract.isSuccess}
                 onClick={() => handleSubmit()}
                 type="button"

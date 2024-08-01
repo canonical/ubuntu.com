@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useCallback, useState } from "react";
+import { ReactNode, RefObject, useCallback, useState } from "react";
 import { Formik } from "formik";
 import {
   ContextualMenu,
@@ -39,7 +39,7 @@ const AutoRenewalLabel = ({
     forHowLong = <strong>for the next year</strong>;
     next = (
       <>
-        The renewal will happen on <strong>{date}</strong>
+        The renewal will happen on <strong>{date.toString()}</strong>
       </>
     );
   } else if (period === "monthly") {
@@ -47,7 +47,7 @@ const AutoRenewalLabel = ({
     forHowLong = <strong>every month</strong>;
     next = (
       <>
-        The next renewal will be on <strong>{date}</strong>
+        The next renewal will be on <strong>{date.toString()}</strong>
       </>
     );
   }
@@ -213,7 +213,7 @@ export const RenewalSettings = ({
             </Notification>
           ) : null}
           <RenewalSettingsForm
-            loading={setAutoRenew.isLoading}
+            loading={setAutoRenew.isPending}
             success={setAutoRenew.isSuccess}
             onCloseMenu={onCloseMenu}
           >

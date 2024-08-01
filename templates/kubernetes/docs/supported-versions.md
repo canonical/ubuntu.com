@@ -23,19 +23,19 @@ Charmed Kubernetes officially supports the three most recent minor releases
 of Kubernetes. The support window for Charmed Kubernetes is explained more
 fully on the [Ubuntu release cycle page](/about/release-cycle#canonical-kubernetes-release-cycle).
 
-Current release: **1.29**
+Current release: **1.30**
 
 Supported releases (click buttons for more information): 
 
 <div class="row">
  <div class="col-2">
+  <span class="u-vertically-center"><a href="/kubernetes/docs/1.30/components" class="p-button--positive">1.30.x</a></span>
+ </div>
+ <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/docs/1.29/components" class="p-button--positive">1.29.x</a></span>
  </div>
  <div class="col-2">
   <span class="u-vertically-center"><a href="/kubernetes/docs/1.28/components" class="p-button--positive">1.28.x</a></span>
- </div>
- <div class="col-2">
-  <span class="u-vertically-center"><a href="/kubernetes/docs/1.27/components" class="p-button--positive">1.27.x</a></span>
  </div>
 </div>
 

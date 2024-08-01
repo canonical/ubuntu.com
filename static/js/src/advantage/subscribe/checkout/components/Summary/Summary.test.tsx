@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { add, format } from "date-fns";
 import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
@@ -43,7 +42,7 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -54,7 +53,7 @@ describe("Summary", () => {
         data: undefined,
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -107,7 +106,7 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -148,7 +147,7 @@ describe("Summary", () => {
         },
         isError: false,
         isSuccess: true,
-        error: undefined,
+        error: null,
         isFetching: false,
       };
     });
@@ -191,7 +190,7 @@ describe("Summary", () => {
         },
         isError: true,
         isSuccess: true,
-        error: { message: "error" },
+        error: { name: "", message: "error" },
         isFetching: false,
       };
     });
