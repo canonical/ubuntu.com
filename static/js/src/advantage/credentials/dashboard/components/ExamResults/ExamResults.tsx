@@ -4,11 +4,11 @@ import {
   Spinner,
   Notification,
   ModularTable,
-  Button,
 } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getExamResults, getIssuedBadgesBulkCredly } from "../../api/keys";
 import { ExamResultsMeta, ExamResultsTA, CredlyBadge } from "../../utils/types";
+import BadgeIssueMenu from "./components/BadgeIssueMenu";
 
 type APIResponse = {
   results: ExamResultsTA[];
@@ -110,20 +110,13 @@ const ExamResults = () => {
         },
       },
       {
-        Header: "",
-        accessor: "badge",
+        Header: "Issue Badge",
+        accessor: "issue_badge",
         Cell: (props: any) => {
           return props.row.depth === 0 ? (
             <></>
           ) : (
-            <>
-              {props.value && (
-                <Button appearance="positive" dense>
-                  Badge Issued
-                </Button>
-              )}
-              {!props.value && <Button dense>Issue a Badge</Button>}
-            </>
+            <>{props.value && <BadgeIssueMenu exam={props.row.original} />}</>
           );
         },
       },
@@ -137,21 +130,24 @@ const ExamResults = () => {
       .sort((a, b) => b.meta.current_page - a.meta.current_page)
       .map((page) => page.results)
       .flat();
-    if (dataBadges?.data) {
-      const mappedDataWithBadgeInfo = mappedData.map((result) => {
-        const badge = dataBadges.data.find(
-          (badge) =>
-            badge.recipient_email === result.user_email ||
-            badge.issuer_earner_id === result.uuid
-        );
-        return {
-          ...result,
-          badge,
-        };
-      });
-      return mappedDataWithBadgeInfo;
-    }
-    return mappedData;
+    // if (dataBadges?.data) {
+    //   const mappedDataWithBadgeInfo = mappedData.map((result) => {
+    //     const badge = dataBadges.data.find(
+    //       (badge) =>
+    //         badge.recipient_email === result.user_email ||
+    //         badge.issuer_earner_id === result.uuid
+    //     );
+    //     return {
+    //       ...result,
+    //       badge,
+    //     };
+    //   });
+    //   return mappedDataWithBadgeInfo;
+    // }
+    return mappedData.map((result) => ({
+      ...result,
+      issue_badge: true,
+    }));
   }, [cachedData, dataBadges]);
 
   const uniqueGroupKeys = useMemo(() => {
