@@ -1,0 +1,221 @@
+{% extends "templates/base.html" %}
+
+{% block title %} {{ platform.vendor }} {{ platform.name }} certified with Ubuntu.{% endblock %}
+
+{% block meta_description %}Platform that is certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block outer_content %}
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<div class="row--25-75" style="margin-bottom: 50px;">
+  <div class="col" style="margin-top: 50px;">    
+    {% with category=platform.category %}
+      {% include "certified/shared/category-image.html" %}
+    {% endwith %}
+  </div>
+  <div class="col">
+    <div>
+      <!-- TODO: put link on Desktops to ubuntu.com/desktops -->
+      <h1 class="p-muted-heading">{{platform.category}} > Platform</h1>
+    </div>
+    <div>
+      <!-- TODO: figure out which exact heading levels should go here -->
+      <h1 class="u-no-margin--bottom">{{platform.vendor}} {{platform.name}}</h1>
+      {% if platform.certificates|length == 1 %}
+      <h3 class="p-heading--4">1 certified configuration</h3>
+      {% else %}
+      <h3 class="p-heading--4">{{platform.certificates|length}} certified configurations</h3>
+      {% endif %}
+    </div>
+    <nav class="p-tabs" aria-label="Example tabs" style="margin-top: 75px;">
+      <div class="row">
+        <ul class="p-tabs__list" role="tablist">
+          <li id="all-releases" class="p-tabs__item" role="presentation">
+            <a href="/certified/platforms/{{platform.id}}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu Releases</a>
+          </li>
+          {% for release in releases %}
+          <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
+            <a href="/certified/platforms/{{platform.id}}/{{release}}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{release}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="row">
+    <table id="configTable" aria-label="Table with automatic layout; uses u-table-layout--auto utility class">
+      <thead>
+        <tr>
+          <th></th>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td><a href="/certified/{{canonical_id}}"><strong>{{certificate.name}}</strong></a></td>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="u-text--muted">Certified Ubuntu Release</td>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>{% for release in certificate.releases%} <p class="u-no-margin u-no-padding">{{release}}</p> {% endfor %}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="u-text--muted">Processor</th>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>
+          {% for device in certificate.processor %}
+            <li class="p-list__item u-no-padding--top">
+              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+            </li>
+          {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="u-text--muted">Graphics</td>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>
+          {% for device in certificate.video %}
+            <li class="p-list__item u-no-padding--top">
+              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+            </li>
+          {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="u-text--muted">Network</td>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>
+          {% for device in certificate.network %}
+            <li class="p-list__item u-no-padding--top">
+              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+            </li>
+          {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="u-text--muted">Wireless</td>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>
+          {% for device in certificate.wireless %}
+            <li class="p-list__item u-no-padding--top">
+              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+            </li>
+          {% endfor %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <!-- TODO: format time correctly -->
+          <td class="u-text--muted">Certificate date</td>
+          {% for canonical_id, certificate in platform.certificates.items() %}
+          <td>
+          {{certificate.date}}
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:flex; align-items: center; justify-content: right;">
+      <i id="downButton" class="p-icon--chevron-left"></i>
+      <div id="pageNumbers"></div>
+      <i id="upButton" class="p-icon--chevron-right"></i>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const table = document.getElementById('configTable');
+    const upButton = document.getElementById('upButton');
+    const downButton = document.getElementById('downButton');
+    const pageNumbers = document.getElementById('pageNumbers');
+    let pageSize = getPageSize(); // Determine initial page size
+    let currentIndex = 1; // Start with the first configuration column
+
+    function getPageSize() {
+        if (window.innerWidth <= 600) {
+            return 1; // Mobile screens
+        } else if (window.innerWidth <= 900) {
+            return 2; // Tablet screens
+        } else {
+            return 3; // Large screens
+        }
+    }
+
+    function updateTable() {
+        const rows = table.rows;
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].cells;
+            for (let j = 1; j < cells.length; j++) {
+                if (j >= currentIndex && j < currentIndex + pageSize) {
+                    cells[j].classList.remove('hidden');
+                } else {
+                    cells[j].classList.add('hidden');
+                }
+            }
+        }
+        updatePageNumbers();
+    }
+
+    function updatePageNumbers() {
+        const start = currentIndex;
+        const end = Math.min(currentIndex + pageSize - 1, table.rows[0].cells.length - 1);
+        const total = table.rows[0].cells.length - 1; // Total number of columns excluding the first one
+        pageNumbers.textContent = `${start}-${end} of ${total}`;
+    }
+
+    upButton.addEventListener('click', () => {
+        if (currentIndex + pageSize < table.rows[0].cells.length) {
+            currentIndex += pageSize;
+            updateTable();
+        }
+    });
+
+    downButton.addEventListener('click', () => {
+        if (currentIndex > 1) {
+            currentIndex -= pageSize;
+            if (currentIndex < 1) currentIndex = 1;
+            updateTable();
+        }
+    });
+
+    // Update page size on window resize
+    window.addEventListener('resize', () => {
+        pageSize = getPageSize();
+        updateTable();
+    });
+
+    // Initial table update
+    updateTable();
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  let selectedRelease = "{{ selected_release | replace(' ', '-') }}";
+
+  console.log(selectedRelease);
+  if(selectedRelease === "None") {
+    selectedRelease = "all-releases";
+  }
+
+  console.log(selectedRelease);
+
+  const defaultTab = document.getElementById(selectedRelease);
+  const defaultLink = defaultTab.querySelector('a');
+  defaultLink.setAttribute('aria-selected', 'true');
+
+});
+
+</script>
+
+{% endblock %}

@@ -17,9 +17,7 @@ class CertificationAPI:
 
     def _get(self, path: str, params: dict = {}):
         # Remove "None" values from params
-        params = {
-            key: value for key, value in params.items() if value is not None
-        }
+        params = {key: value for key, value in params.items() if value is not None}
         params["pagination"] = "limitoffset"
 
         # Get the JSON data
@@ -32,6 +30,21 @@ class CertificationAPI:
         response.raise_for_status()
 
         return response
+
+    def certified_platform_details(
+        self,
+        platform_id,
+        limit=None,
+        offset=None,
+    ):
+        # TODO: update URL once stable
+        return self._get(
+            f"certified-platforms/{platform_id}",
+            params={
+                "limit": limit,
+                "offset": offset,
+            },
+        ).json()
 
     def certified_vendors(
         self,
@@ -204,9 +217,7 @@ class CertificationAPI:
         ).json()
 
     def releases(self, limit=None, offset=None):
-        return self._get(
-            "releases", params={"limit": limit, "offset": offset}
-        ).json()
+        return self._get("releases", params={"limit": limit, "offset": offset}).json()
 
     def vendor_summaries_server(self, limit=None, offset=None):
         return self._get(
