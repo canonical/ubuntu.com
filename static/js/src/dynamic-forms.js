@@ -202,7 +202,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
         if (!isMultipage) {
-          comment.value = createMessage();
+          comment.value = createMessage(true);
         }
       });
 
@@ -349,7 +349,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Update the content of the modal based on the current index
       function render() {
-        comment.value = createMessage();
+        comment.value = createMessage(false);
 
         var currentContent = contactModal.querySelector(
           ".js-pagination--" + contactIndex
@@ -361,7 +361,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       // Concatinate the options selected into a string
-      function createMessage() {
+      function createMessage(submit) {
         const contactModal = document.getElementById("contact-modal");
         var message = "";
         var commentsFromLead = document.querySelector("#Comments_from_lead__c");
@@ -431,7 +431,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 }
                 break;
             }
-            removeInputName ? input.removeAttribute("name") : null;
+            // Remove name attribute to submit to Marketo
+            if (submit && removeInputName) {
+              input.removeAttribute("name");
+            }
           });
           message += "\r\n\r\n";
         });
@@ -552,7 +555,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       fireLoadedEvent();
 
-      comment.value = createMessage();
+      comment.value = createMessage(false);
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
