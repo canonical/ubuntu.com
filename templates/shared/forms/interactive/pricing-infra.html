@@ -17,7 +17,7 @@
     <div class="js-pagination js-pagination--1">
       <div class="p-section u-sv-3">
         <hr class="is-fixed-width" />
-        <div class="row--50-50">
+        <div class="row">
           <div class="col">
             Canonical certifies, secures and supports open infrastructure.
             <br class="u-hide--medium u-hide--small" />
@@ -452,9 +452,11 @@
                            pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
                   </li>
                   <li class="p-list__item">
-                    <label for="phone">Mobile/cell phone number:</label>
-                    <input id="phone" name="phone" maxlength="255" type="tel" />
+                    <label class="is-required" for="phone">Mobile/cell phone number:</label>
+                    <input required id="phone" name="phone" maxlength="255" type="tel" />
                   </li>
+                  <!-- country -->
+                  {% include "shared/forms/_country.html" %}
                 </ul>
                 <ul class="p-list">
                   <li class="p-list__item">
@@ -598,15 +600,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  document.querySelector('form').addEventListener('submit', function(event) {
-    dataLayer.push({
-      'event': 'GAEvent',
-      'eventCategory': 'Form',
-      'eventAction': 'iot contact-us',
-      'eventLabel': 'pro',
-      'eventValue': undefined
-    });
-  });
-</script>
