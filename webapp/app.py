@@ -220,6 +220,9 @@ app.add_url_rule(
     "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
+app.add_url_rule(
+    "/pro/distributor/users", view_func=advantage_account_users_view
+)
 app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/pro/accounts/<account_id>/user",
