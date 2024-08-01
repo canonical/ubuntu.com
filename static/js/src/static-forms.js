@@ -80,7 +80,7 @@ function setUpStaticForms(form, formId) {
    * Builds a message from the form fields and populates the
    * Comments from Lead field
    */
-  function buildCommentsForLead(formId) {
+  function buildCommentsForLead() {
     var message = "";
 
     form?.addEventListener("submit", (e) => {
@@ -89,44 +89,43 @@ function setUpStaticForms(form, formId) {
       var formFields = document.querySelectorAll(".js-formfield");
       formFields.forEach(function (formField) {
         var comma = ",";
-        var colon = ": ";
-        var fieldTitle = formField.querySelector(".p-heading--3");
+        var fieldTitle = formField.querySelector(".js-formfield-title");
         var inputs = formField.querySelectorAll("input, textarea");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
         }
 
         inputs.forEach(function (input) {
-          var question = input.name.split("-").join(" ");
           switch (input.type) {
             case "radio":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "checkbox":
               if (input.checked) {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "text":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "number":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
             case "textarea":
               if (input.value !== "") {
-                message += question + colon + input.value + comma + "\r\n\r\n";
+                message += input.value + comma + " ";
               }
               break;
           }
           input.removeAttribute("name");
         });
+        message += "\r\n\r\n";
       });
 
       if (formFields.length) {
@@ -137,7 +136,7 @@ function setUpStaticForms(form, formId) {
   }
   const commentsFromLead = document.querySelector("#Comments_from_lead__c");
   if (commentsFromLead) {
-    buildCommentsForLead(formId);
+    buildCommentsForLead();
   }
 
   /**
@@ -185,3 +184,90 @@ const forms = document.querySelectorAll("form[action='/marketo/submit']");
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));
 }
+
+/**
+ *
+ * @param {*} fieldset
+ * @param {*} checklistItem
+ *
+ * Disable & enable checklist visibility based on user selection
+ * - When any visible checkbox is checked, it will disable the .js-checkbox-visibility__other checkboxes
+ * - Can only check one __other item at a time
+ * - When all visible checkboxes or any __other checkbox is unchecked, all checkboxes will be enabled
+ */
+function toggleCheckboxVisibility(fieldset, checklistItem) {
+  const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
+  const otherCheckboxes = fieldset.querySelectorAll(
+    ".js-checkbox-visibility__other"
+  );
+  const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
+
+  if (checklistItem.checked) {
+    if (isVisible) {
+      otherCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+    } else {
+      checkboxes.forEach((checkbox) => {
+        checkbox.disabled = true;
+      });
+      otherCheckboxes.forEach((checkbox) => {
+        checklistItem == checkbox ? null : (checkbox.disabled = true);
+      });
+    }
+  } else {
+    if (isVisible) {
+      var uncheck = true;
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked ? (uncheck = false) : null;
+      });
+      if (uncheck) {
+        otherCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = false;
+        });
+      }
+    } else {
+      checkboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
+      otherCheckboxes.forEach((checkbox) => {
+        checkbox.disabled = false;
+      });
+    }
+  }
+}
+const ubuntuVersionCheckboxes = document.querySelector(
+  "fieldset.js-toggle-checkbox-visibility"
+);
+ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
+  toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
+});
+
+/**
+ *
+ * @param {*} fieldset
+ * @param {*} target
+ * Disables submit button for required checkboxes field
+ */
+function requiredCheckbox(fieldset, target) {
+  const submitButton = document.querySelector(".js-submit-button");
+  const checkboxes = fieldset.querySelectorAll("input[type='checkbox']");
+  if (target.checked) {
+    submitButton.disabled = false;
+  } else {
+    var disableSubmit = true;
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked ? (disableSubmit = false) : null;
+    });
+    submitButton.disabled = disableSubmit;
+  }
+}
+
+const requiredFieldset = document.querySelectorAll(
+  "fieldset.js-required-checkbox"
+);
+requiredFieldset?.forEach((fieldset) => {
+  fieldset.addEventListener("change", function (event) {
+    requiredCheckbox(fieldset, event.target);
+  });
+});
