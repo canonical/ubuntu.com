@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTestTakerStats } from "../../api/keys";
+import { getTestTakerStats } from "../../api/queryFns";
 import { useMemo } from "react";
 import {
   Spinner,

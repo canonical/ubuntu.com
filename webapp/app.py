@@ -95,6 +95,7 @@ from webapp.shop.cred.views import (
     get_issued_badges,
     get_issued_badges_bulk,
     get_test_taker_stats,
+    issue_credly_badge,
     get_my_issued_badges,
     get_webhook_response,
     issue_badges,
@@ -992,6 +993,11 @@ app.add_url_rule(
     "/credentials/api/test-taker-stats",
     view_func=get_test_taker_stats,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issue-credly-badge",
+    view_func=issue_credly_badge,
+    methods=["POST"],
 )
 
 app.add_url_rule(

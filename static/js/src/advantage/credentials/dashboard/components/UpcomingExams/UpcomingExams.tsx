@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUpcomingExams } from "../../api/keys";
+import { getUpcomingExams } from "../../api/queryFns";
 import {
   AssessmentReservationTA,
   AssessmentReservationMeta,

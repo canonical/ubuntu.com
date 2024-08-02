@@ -20,7 +20,7 @@ export async function getExamResults(
   state: string | null = "",
   onSuccess: any
 ) {
-  let URL = `/credentials/api/exam-results?page=${page}`;
+  let URL = `/credentials/api/exam-results?page=${page}&ability_screen_id=4229`;
   if (state) {
     URL += `&state=${state}`;
   }
@@ -125,5 +125,23 @@ export async function getTestTakerStats() {
   });
 
   const data = await response.json();
+  return data;
+}
+
+export async function issueCredlyBadge(badgeData: any) {
+  const URL = `/credentials/api/issue-credly-badge`;
+  const response = await fetch(URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(badgeData),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error);
+  }
   return data;
 }

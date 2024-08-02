@@ -2,7 +2,7 @@ import { useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { setupAppLayoutExamples } from "./utils";
 import { useQuery } from "@tanstack/react-query";
-import { getSystemStatuses } from "../../api/keys";
+import { getSystemStatuses } from "../../api/queryFns";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -55,8 +55,8 @@ const Sidebar = () => {
 
     if (statuses && !isError) {
       const { ta_status, contracts_status } = statuses;
-      status["Trueability"] = !ta_status.error;
-      status["Contracts"] = !contracts_status.error;
+      status["Trueability"] = !ta_status?.error;
+      status["Contracts"] = !contracts_status?.error;
     }
     return status;
   }, [statuses]);

@@ -13,6 +13,7 @@ export type CredlyBadge = {
   badge_template: {
     id: string;
     name: string;
+    image_url: string;
   };
   issued_to: string;
   recipient_email: string;
@@ -67,6 +68,11 @@ export type ExamResultsTA = {
     name: string;
   };
   result_url: string;
+  user: {
+    first_name: string;
+    last_name: string;
+    full_name: string;
+  };
 };
 
 export type ExamResultsMeta = {
@@ -75,4 +81,11 @@ export type ExamResultsMeta = {
   prev_page: number;
   total_count: number;
   total_pages: number;
+};
+
+export type CredlyBadgeIssueBody = {
+  recipient_email: string;
+  issued_to_first_name: string;
+  issued_to_last_name: string;
+  badge_template_id: string;
 };

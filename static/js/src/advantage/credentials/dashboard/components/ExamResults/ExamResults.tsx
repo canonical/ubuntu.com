@@ -6,9 +6,10 @@ import {
   ModularTable,
 } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getExamResults, getIssuedBadgesBulkCredly } from "../../api/keys";
+import { getExamResults, getIssuedBadgesBulkCredly } from "../../api/queryFns";
 import { ExamResultsMeta, ExamResultsTA, CredlyBadge } from "../../utils/types";
 import BadgeIssueMenu from "./components/BadgeIssueMenu";
+import { getBulkBadgesCredly } from "../../api/queryKeys";
 
 type APIResponse = {
   results: ExamResultsTA[];
@@ -21,6 +22,22 @@ const ExamResults = () => {
   const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
+  const [badgeIssuingNotification, setBadgeIssuingNotification] = useState<
+    undefined | "negative" | "positive"
+  >(undefined);
+
+  useEffect(() => {
+    let timeout = null;
+    if (badgeIssuingNotification) {
+      timeout = setTimeout(() => {
+        setBadgeIssuingNotification(undefined);
+      }, 5000);
+    }
+
+    return () => {
+      timeout && clearTimeout(timeout);
+    };
+  }, [badgeIssuingNotification]);
 
   const onSuccess = (newData: APIResponse) => {
     if (newData && newData.results) {
@@ -43,7 +60,7 @@ const ExamResults = () => {
   } = useQuery<{
     data: CredlyBadge[];
   }>({
-    queryKey: ["credlyIssuedBadgesBulk"],
+    queryKey: getBulkBadgesCredly(),
     queryFn: () => getIssuedBadgesBulkCredly(),
     staleTime: Infinity,
     gcTime: Infinity,
@@ -116,7 +133,14 @@ const ExamResults = () => {
           return props.row.depth === 0 ? (
             <></>
           ) : (
-            <>{props.value && <BadgeIssueMenu exam={props.row.original} />}</>
+            <>
+              {props.value && (
+                <BadgeIssueMenu
+                  exam={props.row.original}
+                  setNotificationState={setBadgeIssuingNotification}
+                />
+              )}
+            </>
           );
         },
       },
@@ -231,6 +255,16 @@ const ExamResults = () => {
     <>
       {(isLoading || isFetching || isLoadingBadges) && (
         <Spinner text="Loading..." />
+      )}
+      {badgeIssuingNotification && (
+        <Notification
+          severity={badgeIssuingNotification}
+          title={
+            badgeIssuingNotification === "positive"
+              ? "Badge Issued"
+              : "Failed to issue badge"
+          }
+        />
       )}
       {paginationMeta && (
         <Pagination

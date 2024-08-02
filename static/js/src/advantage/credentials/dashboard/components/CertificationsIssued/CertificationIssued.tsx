@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getIssuedBadgesCredly } from "../../api/keys";
+import { getIssuedBadgesCredly } from "../../api/queryFns";
 import { CredlyMetadata, CredlyBadge } from "../../utils/types";
 import { ModularTable } from "@canonical/react-components";
 

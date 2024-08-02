@@ -81,19 +81,30 @@ class CredlyAPI:
 
     def issue_new_badge(
         self,
-        email: str,
-        first_name: str,
-        last_name: str,
-        ability_screen_id: int,
+        badge_data: dict,
     ):
         uri = f"/organizations/{self.org_id}/badges"
+        required_fields = [
+            "recipient_email",
+            "issued_to_first_name",
+            "issued_to_last_name",
+            "badge_template_id",
+        ]
+        for field in required_fields:
+            if field not in badge_data:
+                raise ValueError(f"Missing required field: {field}")
+        clean_badge_data = {
+            "recipient_email": badge_data["recipient_email"],
+            "issued_to_first_name": badge_data["issued_to_first_name"],
+            "issued_to_last_name": badge_data["issued_to_last_name"],
+            "badge_template_id": self.badge_template_dict[
+                badge_data["badge_template_id"]
+            ],
+        }
         body = {
-            "recipient_email": email,
+            **clean_badge_data,
             "issued_at": datetime.now(timezone.utc).strftime(
                 "%Y-%m-%d %H:%M:%S %z"
             ),
-            "badge_template_id": self.badge_template_dict[ability_screen_id],
-            "issued_to_first_name": first_name,
-            "issued_to_last_name": last_name,
         }
         return self.make_request("POST", uri, json=body).json()
