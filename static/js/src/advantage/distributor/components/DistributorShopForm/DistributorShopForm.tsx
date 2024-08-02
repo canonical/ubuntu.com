@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Col, Strip } from "@canonical/react-components";
 import DealRegistration from "./DealRegistration/DealRegistration";
 import Currency from "./Currency/Currency";

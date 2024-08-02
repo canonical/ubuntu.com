@@ -192,7 +192,7 @@ relations:
   - [easyrsa:client,                                     cinder-csi:certificates]
   - [kubernetes-control-plane:kube-control,              cinder-csi:kube-control]
   - [openstack-integrator:clients,                       cinder-csi:openstack]
-  - [kubernetes-control-plane:loadbalancer-external,     openstack-integrator:lb-consumer]
+  - [kubernetes-control-plane:loadbalancer-external,     openstack-integrator:lb-consumers]
 ```
 
 You will also need to set the `lb-subnet` config to the appropriate tenant subnet where your nodes
@@ -293,7 +293,7 @@ juju refresh openstack-integrator --switch --channel=1.29/stable
 **2. Integrate the kubernetes-control-plane application:**
 
 ```bash
-juju integrate openstack-integrator:lb-consumer kubernetes-control-plane:loadbalancer-external
+juju integrate openstack-integrator:lb-consumers kubernetes-control-plane:loadbalancer-external
 ```
 
 **3. Deploy and migrate to the `openstack-cloud-controller` charm** (See its [charm docs][openstack-cloud-controller-readme] for details).

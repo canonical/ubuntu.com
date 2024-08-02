@@ -12,6 +12,7 @@ import {
   SLA,
   Support,
 } from "./utils";
+import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 interface FormContext {
   productUser: ProductUsers;
@@ -84,15 +85,15 @@ export const FormProvider = ({
   initialIoTDevice = defaultValues.iotDevice,
   children,
 }: FormProviderProps) => {
-  const localProductUser = localStorage.getItem("pro-selector-productUser");
-  const localProductType = localStorage.getItem("pro-selector-productType");
-  const localVersion = localStorage.getItem("pro-selector-version");
-  const localQuantity = localStorage.getItem("pro-selector-quantity");
-  const localFeature = localStorage.getItem("pro-selector-feature");
-  const localSupport = localStorage.getItem("pro-selector-support");
-  const localSLA = localStorage.getItem("pro-selector-sla");
-  const localPeriod = localStorage.getItem("pro-selector-period");
-  const localIoTDevice = localStorage.getItem("pro-selector-iotDevice");
+  const localProductUser = localStorage.getItem(PRO_SELECTOR_KEYS.PRODUCT_USER);
+  const localProductType = localStorage.getItem(PRO_SELECTOR_KEYS.PRODUCT_TYPE);
+  const localVersion = localStorage.getItem(PRO_SELECTOR_KEYS.VERSION);
+  const localQuantity = localStorage.getItem(PRO_SELECTOR_KEYS.QUANTITY);
+  const localFeature = localStorage.getItem(PRO_SELECTOR_KEYS.FEATURE);
+  const localSupport = localStorage.getItem(PRO_SELECTOR_KEYS.SUPPORT);
+  const localSLA = localStorage.getItem(PRO_SELECTOR_KEYS.SLA);
+  const localPeriod = localStorage.getItem(PRO_SELECTOR_KEYS.PERIOD);
+  const localIoTDevice = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
 
   const [productUser, setProductUser] = useState<ProductUsers>(
     localProductUser ? JSON.parse(localProductUser) : initialUser

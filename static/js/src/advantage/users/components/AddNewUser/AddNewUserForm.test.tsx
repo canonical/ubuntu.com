@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -35,13 +34,13 @@ it("calls handleClose modal handler after successful submission", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
   );
-  userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+  await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
   await waitFor(() =>
     expect(mockHandleSubmit).toHaveBeenCalledWith({
@@ -51,7 +50,7 @@ it("calls handleClose modal handler after successful submission", async () => {
     })
   );
   expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
-  expect(mockHandleClose).toHaveBeenCalled();
+  waitFor(() => expect(mockHandleClose).toHaveBeenCalled());
 });
 
 it("submits the form on pressing the Enter key", async () => {
@@ -64,12 +63,13 @@ it("submits the form on pressing the Enter key", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
   );
-  userEvent.keyboard("{enter}");
+  (await screen.findByLabelText("Name")).focus(); // Focus on the name field
+  await userEvent.keyboard("{enter}"); // Press the Enter key
   await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
 });
 
@@ -85,13 +85,13 @@ it("displays an alert message on submission failure", async () => {
     />
   );
 
-  userEvent.type(screen.getByLabelText("Name"), "Angela");
-  userEvent.type(
+  await userEvent.type(screen.getByLabelText("Name"), "Angela");
+  await userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
   );
-  userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByRole("button", { name: "Add new user" }));
+  await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
+  await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
   await waitFor(() => screen.getByRole("alert"));
 

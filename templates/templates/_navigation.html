@@ -33,7 +33,7 @@
         </ul>
       </div>
       <nav class="p-navigation__nav js-show-nav" aria-label="Categories">
-        <ul class="p-navigation__items">
+        <ul class="p-navigation__items" role="menu">
           <li class="p-navigation__item--dropdown-toggle"
               role="menuitem"
               id="products"
@@ -148,7 +148,7 @@
             {% endif %}
           {% endif %}
         </div>
-
+        
         <nav class="p-navigation__nav"
              aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
           {% if breadcrumbs.children %}
@@ -179,12 +179,21 @@
                   {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
                     {% set has_access = not child.login_required or child.login_required and user_info %}
                     {% if has_access %}
+                      {% if breadcrumbs.section.title == "Ubuntu Pro Distributor" and child.title == "Docs" or child.title == "Discourse" %}
+                        <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
+                          <a class="p-navigation__link"
+                            href="{{ child.path }}" target="_blank"
+                            {% if child.active %}aria-current="page"{% endif %}>{{
+                          child.title }}</a>
+                        </li>
+                      {% else %}
                       <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
                         <a class="p-navigation__link"
                            href="{{ child.path }}"
                            {% if child.active %}aria-current="page"{% endif %}>{{
                         child.title }}</a>
                       </li>
+                      {% endif %}
                     {% endif %}
                   {% endif %}
                 {% endif %}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { previewResizeContract } from "advantage/api/contracts";
 import { UserSubscription } from "advantage/api/types";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useLastPurchaseIds } from ".";
 import { selectPurchaseIdsByMarketplaceAndPeriod } from "./useLastPurchaseIds";
 
@@ -26,9 +26,13 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
     isSuccess,
     data,
     error,
-  } = useQuery<PreviewResizeContractResponse>(
-    ["preview", quantity, subscription?.id],
-    async () => {
+  } = useQuery<PreviewResizeContractResponse>({
+    queryKey: ["preview", quantity, subscription?.id],
+    queryFn: async () => {
+      if (!subscription || !lastPurchaseId) {
+        return;
+      }
+
       const res = await previewResizeContract(
         subscription?.account_id,
         lastPurchaseId,
@@ -49,10 +53,8 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
       }
       return res;
     },
-    {
-      enabled: quantity > 0,
-    }
-  );
+    enabled: quantity > 0,
+  });
 
   return {
     isLoading: isLoading,

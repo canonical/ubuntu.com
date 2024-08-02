@@ -15,6 +15,61 @@ toc: False
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
 
+# 1.30
+
+### Jul 11, 2024 - `charmed-kubernetes --channel 1.30/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.30/bundle.yaml).
+
+## What's new
+
+### Integration gaps
+- Cloud Integrations
+  - Direct integration between `[aws|azure|gcp]-integrator` charms and
+    `kubernetes-control-plane` are back in this release for tagging machines
+    and requesting cloud permissions for those machines.
+
+    The recommended method for enabling native cloud features is
+    to use the respective out-of-tree cloud provider charms.
+    See the cloud-specific documentation for details.
+
+- Charm actions for some administrative tasks have been restored.
+  - `apply-manifest`
+  - `namespace-create`
+  - `namespace-delete`
+  - `namespace-list`
+  - `restart`
+  - `user-create`
+  - `user-delete`
+  - `user-list`
+
+- Cilium Charm
+  - The charm now provide manifest deployment versions `1.13` and `1.14` which
+    helps address sig-network tests failing in CIS compliance.
+
+## Fixes
+
+All bug fixes and other feature updates in this release can be found at
+[the launchpad milestone page for 1.30](https://launchpad.net/charmed-kubernetes/+milestone/1.30).
+
+<a id='notes-issues'> </a>
+
+## Notes and Known Issues
+
+### Bugs
+
+A list of known bugs scheduled to be fixed in the first maintenance release can be found
+on the [1.30+ck1 milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.30+ck1).
+
+## Deprecations and API changes
+
+- Upstream
+
+For details of other deprecation notices and API changes for Kubernetes 1.30, please see the
+relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.30.md).
+
+
+
 # 1.29+ck3
 
 ### Jun 14, 2024 - `charmed-kubernetes --channel 1.29/stable`
@@ -31,12 +86,12 @@ The release bundle can also be
 * [LP#2070053](https://bugs.launchpad.net/bugs/2070053)
   Upgrade `ceph-client` relation with a warning and docs change to [ceph][]
 
+
 # 1.29+ck2
 
 ### May 30, 2024 - `charmed-kubernetes --channel 1.29/stable`
 
-The release bundle can also be 
-[downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.29/bundle.yaml).
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.29/bundle.yaml).
 
 ## What's new
 

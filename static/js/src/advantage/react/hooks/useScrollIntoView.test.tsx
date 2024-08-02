@@ -1,6 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { mount } from "enzyme";
-import React from "react";
 
 import { useScrollIntoView } from "./useScrollIntoView";
 

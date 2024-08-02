@@ -196,6 +196,25 @@
             </div>
             <div class="col-9 col-medium-5">
               <div class="p-strip is-shallow u-no-padding--top">
+                <h3 class="p-heading--2">Attach Pro Token</h3>
+              </div>
+              <div class="p-strip u-no-padding--top">
+                <ol class="p-list--divided">
+                  <li class="p-list__item">
+                    <p class="u-no-padding--top">Get token from <a href="/pro/dashboard">ubuntu.com/pro/dashboard</a></p>
+                    <div class="p-code-snippet">
+                      <pre class="p-code-snippet__block is-wrapped"><code>sudo pro attach</code></pre>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <hr class="u-no-margin--bottom" />
+            <div class="col-3 col-medium-1 u-hide--small">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <div class="p-strip is-shallow u-no-padding--top">
                 <h3 class="p-heading--2">Install</h3>
               </div>
               <div class="p-strip u-no-padding--top">
@@ -501,7 +520,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                   <li class="p-list__item">
                     <p class="u-no-padding--top">Configure</p>
                     <div class="p-code-snippet">
-                      <pre class="p-code-snippet__block is-wrapped"><code>sudo landscape-config --silent --account-name="${LANDSCAPE_ACCOUNT_NAME}" --computer-title="${LANDSCAPE_COMPUTER_TITLE}" --tags="" --script-users='nobody,landscape,root'</code></pre>
+                      <pre class="p-code-snippet__block is-wrapped"><code>sudo landscape-config --silent --account-name="${LANDSCAPE_ACCOUNT_NAME}" --computer-title="${LANDSCAPE_COMPUTER_TITLE}" --tags="" --script-users='nobody,landscape,root' --url "https://${LANDSCAPE_FQDN}/message-system" --ping-url "http://${LANDSCAPE_FQDN}/ping"</code></pre>
                     </div>
                   </li>
                 </ol>

@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { postCustomerInfoToStripeAccount } from "advantage/api/contracts";
 import { FormValues } from "../utils/types";
@@ -11,8 +11,8 @@ const postCustomerInfo = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const mutation = useMutation<any, Error, Props>(
-    async ({ formData }: Props) => {
+  const mutation = useMutation<any, Error, Props>({
+    mutationFn: async ({ formData }: Props) => {
       const {
         name,
         email,
@@ -74,9 +74,8 @@ const postCustomerInfo = () => {
         paymentMethod: paymentMethod?.card,
         paymentMethodId: paymentMethod?.id,
       };
-    }
-  );
-
+    },
+  });
   return mutation;
 };
 

@@ -9,7 +9,12 @@ module.exports = {
         },
       },
     ],
-    "@babel/preset-react",
+    [
+      "@babel/preset-react",
+      {
+        runtime: "automatic"
+      }
+    ],
     "@babel/preset-typescript",
   ],
   plugins: [
@@ -18,7 +23,12 @@ module.exports = {
       {
         regenerator: true,
       },
-      "@babel/plugin-syntax-jsx",
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      { 
+        runtime: "automatic" 
+      }
     ],
     "@babel/plugin-proposal-class-properties",
   ],
