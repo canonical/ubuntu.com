@@ -1131,11 +1131,10 @@ def get_test_taker_stats(trueability_api, **kwargs):
 @shop_decorator(area="cred", permission="user", response="json")
 # @credentials_group()
 def issue_credly_badge(credly_api, **kwargs):
-    # badge_data = flask.request.json
+    badge_data = flask.request.json
     try:
-        return flask.jsonify({})
-        # response = credly_api.issue_new_badge(badge_data.email)
-        # return flask.jsonify(response)
+        response = credly_api.issue_new_badge(badge_data)
+        return flask.jsonify(response)
     except Exception as error:
         return flask.jsonify({"error": error}), 400
 

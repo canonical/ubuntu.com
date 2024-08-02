@@ -79,10 +79,12 @@ const BadgeIssueMenu = (props: Props) => {
   const links = useMemo(
     () =>
       CREDLY_BADGE_TEMPLATES.map((badge) => {
-        const hasBadge = userBadges.some((b) => b.id === badge.templateId);
+        const hasBadge = userBadges.some(
+          (b) => b.badge_template.id === badge.templateId
+        );
         return {
           children: (
-            <Fragment key=".0">
+            <Fragment>
               {hasBadge && <i className="p-icon--success" />}
               <span>{badge.shortTitle}</span>
             </Fragment>
@@ -92,7 +94,7 @@ const BadgeIssueMenu = (props: Props) => {
           disabled: hasBadge || isMutating,
         };
       }),
-    [handleIssueBadge, userBadges, isMutating]
+    [handleIssueBadge, userBadges, isMutating, data]
   );
 
   if (loading) return <Spinner />;

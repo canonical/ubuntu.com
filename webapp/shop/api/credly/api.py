@@ -97,9 +97,7 @@ class CredlyAPI:
             "recipient_email": badge_data["recipient_email"],
             "issued_to_first_name": badge_data["issued_to_first_name"],
             "issued_to_last_name": badge_data["issued_to_last_name"],
-            "badge_template_id": self.badge_template_dict[
-                badge_data["badge_template_id"]
-            ],
+            "badge_template_id": badge_data["badge_template_id"],
         }
         body = {
             **clean_badge_data,
