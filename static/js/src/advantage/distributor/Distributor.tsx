@@ -28,6 +28,8 @@ const Distributor = () => {
               <a
                 className="p-button--positive"
                 href="https://www.partner.canonical.com/#/deals/new"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon
                   name={ICONS.externalLink}
