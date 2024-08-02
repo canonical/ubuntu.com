@@ -16,7 +16,7 @@ from webapp.shop.api.datastore import (
     has_filed_confidentiality_agreement,
 )
 from webapp.shop.decorators import (
-    # credentials_group,
+    credentials_group,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1095,7 +1095,7 @@ def get_webhook_response(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def get_issued_badges(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
     sort = flask.request.args.get("sort", None)
@@ -1105,7 +1105,7 @@ def get_issued_badges(credly_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def get_issued_badges_bulk(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
     badges = credly_api.get_issued_badges_bulk(filter)
@@ -1113,7 +1113,7 @@ def get_issued_badges_bulk(credly_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def get_test_taker_stats(trueability_api, **kwargs):
     addresses = []
     assessments = trueability_api.get_assessments()
@@ -1129,7 +1129,7 @@ def get_test_taker_stats(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def issue_credly_badge(credly_api, **kwargs):
     badge_data = flask.request.json
     try:
@@ -1217,7 +1217,7 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-# @credentials_group()
+@credentials_group()
 def cred_dashboard(trueability_api, **_):
     first_reservations = trueability_api.get_assessment_reservations(
         per_page=10
@@ -1233,7 +1233,7 @@ def cred_dashboard(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 50
     page = int(flask.request.args.get("page", 1)) - 1
@@ -1248,7 +1248,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
         per_page = 50
@@ -1268,7 +1268,7 @@ def cred_dashboard_exam_results(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-# @credentials_group()
+@credentials_group()
 def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
     ta_status = trueability_api.get_system_status()
     contracts_status = {}

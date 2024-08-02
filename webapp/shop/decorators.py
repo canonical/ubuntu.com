@@ -175,6 +175,7 @@ def credentials_group():
         @wraps(func)
         def decorated_function(*args, **kwargs):
             sso_user = user_info(flask.session)
+            print(sso_user)
             if (
                 sso_user
                 and sso_user.get("is_credentials_admin", False) is True
