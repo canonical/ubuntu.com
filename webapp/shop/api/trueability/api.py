@@ -164,12 +164,17 @@ class TrueAbilityAPI:
         return None
 
     def get_results(
-        self, page: int = 1, per_page: int = 50, state: str = None
+        self,
+        page: int = 1,
+        per_page: int = 50,
+        state: str = None,
+        ability_screen_id: list = None,
     ):
         params = {
             "state": state,
             "page": page,
             "per_page": per_page,
+            "ability_screen_id[]": ability_screen_id,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
         uri = "/api/v1/results?" + urlencode(filtered_params)

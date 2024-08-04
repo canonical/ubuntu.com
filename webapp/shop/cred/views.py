@@ -1254,12 +1254,18 @@ def cred_dashboard_exam_results(trueability_api, **_):
         per_page = 50
         page = int(flask.request.args.get("page", 1)) - 1
         exam_state = flask.request.args.get("state", None)
+        ability_screen_id = flask.request.args.get("ability_screen_id[]", None)
         first_results = trueability_api.get_results(
-            per_page=per_page, state=exam_state
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
         )
         last_page = first_results["meta"]["total_pages"]
         latest_results = trueability_api.get_results(
-            page=last_page - page, per_page=per_page, state=exam_state
+            page=last_page - page,
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
         )
         return flask.jsonify(latest_results)
     except Exception:

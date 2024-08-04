@@ -20,7 +20,7 @@ export async function getExamResults(
   state: string | null = "",
   onSuccess: any
 ) {
-  let URL = `/credentials/api/exam-results?page=${page}&ability_screen_id=4229`;
+  let URL = `/credentials/api/exam-results?page=${page}&ability_screen_id[]=4229`;
   if (state) {
     URL += `&state=${state}`;
   }
