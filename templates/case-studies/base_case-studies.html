@@ -1,0 +1,28 @@
+{% extends "templates/base.html" %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block outer_content %}
+  {% block content %}{% endblock %}
+  <section class="p-strip is-deep">
+    <div class="row">
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="row">
+      <a href="/case-studies#get-in-touch" class="js-invoke-modal">
+        <h2>Contact us&nbsp;&rsaquo;</h2>
+      </a>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/case-studies"
+       data-form-id="5919"
+       data-return-url="/case-studies#success"></div>
+{% endblock %}
