@@ -1,0 +1,22 @@
+# Params
+# title: Title of text section (required)
+# description: Description of text section (required)
+
+{%- macro text(
+  title,
+  description
+) -%}
+
+  <section class="p-strip is-deep">
+    <div class="row--25-75">
+      <div class="col">
+      </div>
+      <div class="col">
+        <hr class="p-rule"/>
+        <h2 class="u-sv3">{{ title }}</h2>
+        <p>{{ description }}</p>
+      </div>
+    </div>
+  </section>
+
+{%- endmacro -%}
