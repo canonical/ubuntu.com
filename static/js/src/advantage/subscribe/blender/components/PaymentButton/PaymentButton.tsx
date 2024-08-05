@@ -23,7 +23,7 @@ export default function PaymentButton() {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

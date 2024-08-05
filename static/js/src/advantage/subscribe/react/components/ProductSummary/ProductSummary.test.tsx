@@ -21,16 +21,16 @@ test("Should show Buy now button and full service description link when 'organis
       initialUser={ProductUsers.organisation}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
-    "Ubuntu Pro"
+    "Ubuntu Pro",
   );
   expect(screen.getByTestId("summary-product-name")?.textContent).not.toContain(
-    "Desktop"
+    "Desktop",
   );
   expect(
-    screen.getAllByText("See full service description")[0]
+    screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
   expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
 });
@@ -43,13 +43,13 @@ test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => 
       initialVersion={LTSVersions.jammy}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")?.textContent).toContain(
-    "Desktop"
+    "Desktop",
   );
   expect(
-    screen.getAllByText("See full service description")[0]
+    screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
   expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
 });
@@ -57,14 +57,14 @@ test("Should show register button and person subscription terms of service when 
   render(
     <FormProvider initialUser={ProductUsers.myself}>
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-product-name")).toHaveTextContent(
-    /^Ubuntu Pro$/
+    /^Ubuntu Pro$/,
   );
   expect(screen.getByTestId("personal-subscription")).toHaveAttribute(
     "href",
-    "/legal/ubuntu-pro/personal"
+    "/legal/ubuntu-pro/personal",
   );
   expect(screen.getAllByText("Register")[0]).toBeInTheDocument();
 });
@@ -76,9 +76,9 @@ test("Type selector displays the public cloud section if a public cloud is selec
       initialType={ProductTypes.publicCloud}
     >
       <ProductSummary />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(screen.getByTestId("summary-section")).toHaveClass(
-    "p-shop-cart--hidden"
+    "p-shop-cart--hidden",
   );
 });

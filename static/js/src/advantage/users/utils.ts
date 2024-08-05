@@ -27,7 +27,7 @@ export const _getErrorMessage = (error: Error): SubmissionErrorMessage => {
   return (
     errorMessages[
       Object.keys(errorMessages).find((message) =>
-        error.message.includes?.(message)
+        error.message.includes?.(message),
       ) as SubmissionErrorMessageKey
     ] || errorMessages.unknown
   );

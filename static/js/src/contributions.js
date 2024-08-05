@@ -167,12 +167,12 @@ function detectBrowser() {
   /Edge/i.test(navigator.userAgent)
     ? (browser = "Edge")
     : /Chrome/i.test(navigator.userAgent)
-    ? (browser = "Chrome")
-    : /Safari/i.test(navigator.userAgent)
-    ? (browser = "Safari")
-    : /NET/i.test(navigator.userAgent)
-    ? (browser = "IE")
-    : (browser = "Other");
+      ? (browser = "Chrome")
+      : /Safari/i.test(navigator.userAgent)
+        ? (browser = "Safari")
+        : /NET/i.test(navigator.userAgent)
+          ? (browser = "IE")
+          : (browser = "Other");
 
   return browser;
 }

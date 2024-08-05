@@ -24,12 +24,12 @@ describe("Notifications", () => {
             has_pending_purchases: true,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(true);
   });
@@ -43,12 +43,12 @@ describe("Notifications", () => {
             has_pending_purchases: false,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(false);
   });
@@ -66,7 +66,7 @@ describe("Offers Notifications", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='offers']").exists()).toBe(true);
   });
@@ -76,7 +76,7 @@ describe("Offers Notifications", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='offers']").exists()).toBe(false);
   });
@@ -99,7 +99,7 @@ describe("Account users Notification", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='onboarding']").exists()).toBe(true);
   });
@@ -110,7 +110,7 @@ describe("Account users Notification", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='onboarding']").exists()).toBe(false);
   });
@@ -122,7 +122,7 @@ describe("Account users Notification", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     wrapper
       .find("[data-test='onboarding']")
@@ -130,7 +130,7 @@ describe("Account users Notification", () => {
       .simulate("click");
     expect(localStorage.setItem).toHaveBeenCalledWith(
       "dismissedOnboardingNotification",
-      "true"
+      "true",
     );
   });
 });

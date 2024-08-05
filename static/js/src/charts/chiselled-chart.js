@@ -86,7 +86,7 @@ window.addEventListener(
     buildChiselledChart("#chiselled-dotnet-chart", [219, 116, 5], true);
     buildChiselledChart("#chiselled-java-chart", [215, 113]);
     buildChiselledChart("#chiselled-other-chart", [20, 12]);
-  }, 250)
+  }, 250),
 );
 
 buildChiselledChart("#chiselled-dotnet-chart", [219, 116, 5], true);

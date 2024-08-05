@@ -16,7 +16,7 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <PaymentMethodSummary />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     screen.getByText("ending in 4444");
     expect(screen.getByText("mastercard")).toBeInTheDocument();

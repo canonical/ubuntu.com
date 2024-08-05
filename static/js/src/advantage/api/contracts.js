@@ -55,7 +55,7 @@ export async function getCustomerInfo(accountId) {
     `/account/customer-info/${accountId}${queryString}`,
     {
       cache: "no-store",
-    }
+    },
   );
 
   let data = await response.json();
@@ -84,7 +84,7 @@ export async function getContractToken(contractId) {
     `/pro/contracts/${contractId}/token${queryString}`,
     {
       cache: "no-store",
-    }
+    },
   );
   return await response.json();
 }
@@ -95,7 +95,7 @@ export async function getPurchaseAccountStatus(marketplace) {
     `/account/${marketplace}/purchase-account-status${queryString}`,
     {
       cache: "no-store",
-    }
+    },
   );
   return await response.json();
 }
@@ -115,7 +115,7 @@ export async function putContractEntitlements(contractId, entitlements) {
       body: JSON.stringify({
         entitlements,
       }),
-    }
+    },
   );
 
   return await response.json();
@@ -127,7 +127,7 @@ export async function getLastPurchaseIds(accountId) {
     `/account/last-purchase-ids/${accountId}${queryString}`,
     {
       cache: "no-store",
-    }
+    },
   );
   return await response.json();
 }
@@ -141,7 +141,7 @@ export async function retryPurchase(purchasesID) {
       cache: "no-store",
       credentials: "include",
       method: "POST",
-    }
+    },
   );
 
   let data = await response.json();
@@ -157,7 +157,7 @@ export async function postRenewalIDToProcessPayment(renewalID) {
       cache: "no-store",
       credentials: "include",
       method: "POST",
-    }
+    },
   );
 
   let data = await response.json();
@@ -168,7 +168,7 @@ export async function cancelContract(
   accountId,
   previousPurchaseId,
   productId,
-  marketplace
+  marketplace,
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
@@ -198,7 +198,7 @@ export async function resizeContract(
   productId,
   quantity,
   period,
-  marketplace
+  marketplace,
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
   let response = await fetch(`/pro/purchase${queryString}`, {
@@ -232,7 +232,7 @@ export async function previewResizeContract(
   productId,
   quantity,
   period,
-  marketplace
+  marketplace,
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
   let response = await fetch(`/pro/purchase/preview${queryString}`, {
@@ -295,7 +295,7 @@ export async function postCustomerInfoForPurchasePreview(
   accountID,
   name,
   address,
-  taxID
+  taxID,
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
@@ -345,7 +345,7 @@ export async function setAutoRenewal(value) {
 
   let subscriptions = [];
   Object.entries(value).forEach(([subscription_id, should_auto_renew]) =>
-    subscriptions.push({ subscription_id, should_auto_renew })
+    subscriptions.push({ subscription_id, should_auto_renew }),
   );
   let response = await fetch(`/pro/set-auto-renewal${queryString}`, {
     method: "POST",

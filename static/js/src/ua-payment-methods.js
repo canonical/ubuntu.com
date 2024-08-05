@@ -62,7 +62,7 @@ if (cardElement) {
   const cancelButton = document.getElementById("cancel-payment-details");
   const updateButton = document.getElementById("update-payment-details");
   const previewSection = document.getElementById(
-    "default-payment-method-section"
+    "default-payment-method-section",
   );
   const editSection = document.getElementById("edit-payment-method-section");
   const cardErrorElement = document.getElementById("card-errors");
@@ -133,9 +133,8 @@ if (cardElement) {
     paymentErrorElement.classList.add("u-hide");
     paymentWarningElement.classList.add("u-hide");
     paymentSuccessElement.classList.remove("u-hide");
-    paymentSuccessElement.querySelector(
-      ".p-notification__message"
-    ).innerHTML = `${message}. Reloading page...`;
+    paymentSuccessElement.querySelector(".p-notification__message").innerHTML =
+      `${message}. Reloading page...`;
   };
 
   const handleError = () => {
@@ -146,9 +145,8 @@ if (cardElement) {
   };
 
   const handlePaymentMethodErrors = (message) => {
-    paymentErrorElement.querySelector(
-      ".p-notification__message"
-    ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+      `<strong>${message}</strong> Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
     paymentErrorElement.classList.remove("u-hide");
   };
 

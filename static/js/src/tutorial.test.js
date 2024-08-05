@@ -13,17 +13,17 @@ describe("toggleTutorialNavigation", () => {
     expect(
       document
         .querySelector(".l-tutorial__nav-toggle")
-        .classList.contains("p-icon--menu")
+        .classList.contains("p-icon--menu"),
     ).toBe(false);
     expect(
       document
         .querySelector(".l-tutorial__nav-toggle")
-        .classList.contains("p-icon--close")
+        .classList.contains("p-icon--close"),
     ).toBe(true);
     expect(
       document
         .querySelector(".l-tutorial__nav")
-        .classList.contains("u-hide--small")
+        .classList.contains("u-hide--small"),
     ).toBe(false);
 
     toggleTutorialNavigation();
@@ -31,17 +31,17 @@ describe("toggleTutorialNavigation", () => {
     expect(
       document
         .querySelector(".l-tutorial__nav-toggle")
-        .classList.contains("p-icon--menu")
+        .classList.contains("p-icon--menu"),
     ).toBe(true);
     expect(
       document
         .querySelector(".l-tutorial__nav-toggle")
-        .classList.contains("p-icon--close")
+        .classList.contains("p-icon--close"),
     ).toBe(false);
     expect(
       document
         .querySelector(".l-tutorial__nav")
-        .classList.contains("u-hide--small")
+        .classList.contains("u-hide--small"),
     ).toBe(true);
   });
 });

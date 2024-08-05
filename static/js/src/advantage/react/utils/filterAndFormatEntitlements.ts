@@ -44,14 +44,14 @@ export type Feature = {
 };
 
 export const getEntitlementLabel = (
-  entitlement: UserSubscriptionEntitlement
+  entitlement: UserSubscriptionEntitlement,
 ): EntitlementLabel | undefined | null =>
   entitlement.support_level
     ? supportLabels[entitlement.support_level]
     : labels[entitlement.type as EntitlementType];
 
 export const formatEntitlementToFeature = (
-  entitlement: UserSubscriptionEntitlement
+  entitlement: UserSubscriptionEntitlement,
 ): Feature => ({
   type: entitlement.type as EntitlementType,
   label: entitlement.support_level
@@ -85,7 +85,7 @@ type EntitlementGroups = {
 };
 
 export const groupEntitlements = (
-  entitlements: UserSubscriptionEntitlement[]
+  entitlements: UserSubscriptionEntitlement[],
 ): EntitlementGroups => {
   const included: EntitlementLabel[] = [];
   const excluded: EntitlementLabel[] = [];
@@ -116,16 +116,16 @@ const filterEntitlements = ({
 }: EntitlementGroups): EntitlementGroups => ({
   ...entitlements,
   excluded: excluded.filter(
-    (label) => !Object.values(supportLabels).includes(label)
+    (label) => !Object.values(supportLabels).includes(label),
   ),
 });
 
 export const filterAndFormatEntitlements = (
-  entitlements: UserSubscriptionEntitlement[]
+  entitlements: UserSubscriptionEntitlement[],
 ): EntitlementsStore => {
   const allLabels: EntitlementLabel[] = [];
   const { included, excluded, alwaysAvailable } = filterEntitlements(
-    groupEntitlements(entitlements)
+    groupEntitlements(entitlements),
   );
 
   const byLabel = entitlements.reduce((acc, entitlement) => {

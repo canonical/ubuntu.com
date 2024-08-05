@@ -26,7 +26,7 @@ describe("useContractToken", () => {
     const contractToken = contractTokenFactory.build();
     queryClient.setQueryData(
       ["contractToken", contract.contract_id],
-      contractToken
+      contractToken,
     );
 
     const wrapper = createWrapper(queryClient);
@@ -34,7 +34,7 @@ describe("useContractToken", () => {
       () => useContractToken(contract.contract_id),
       {
         wrapper,
-      }
+      },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(contractToken);

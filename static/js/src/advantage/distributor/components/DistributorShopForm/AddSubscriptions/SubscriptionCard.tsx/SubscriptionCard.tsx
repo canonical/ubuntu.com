@@ -24,21 +24,17 @@ type Prop = {
   subscription: SubscriptionItem;
 };
 const SubscriptionCard = ({ subscription }: Prop) => {
-  const {
-    subscriptionList,
-    setSubscriptionList,
-    products,
-    duration,
-  } = useContext(FormContext);
+  const { subscriptionList, setSubscriptionList, products, duration } =
+    useContext(FormContext);
 
   const handleRemoveSubscription = (subscriptionId: string) => {
     const updatedList = subscriptionList.filter(
-      (item) => item.id !== subscriptionId
+      (item) => item.id !== subscriptionId,
     );
     setSubscriptionList(updatedList);
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
-      JSON.stringify(updatedList)
+      JSON.stringify(updatedList),
     );
   };
 
@@ -56,7 +52,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
   const product = products?.filter(
     (prod) =>
       prod?.productID ===
-      getProductId(subscription.type, subscription.support, subscription.sla)
+      getProductId(subscription.type, subscription.support, subscription.sla),
   )[0];
 
   const priceCurrency = product?.price?.currency as Currencies;
@@ -71,7 +67,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
         const isQuantity = fieldName === "quantity" && Number(value) > 0;
         const updatedItem: SubscriptionItem = {
           ...item,
-          [fieldName]: isQuantity ? Number(value) ?? 0 : value,
+          [fieldName]: isQuantity ? (Number(value) ?? 0) : value,
         };
 
         if (updatedItem.type === ProductTypes.desktop) {
@@ -101,7 +97,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
 
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
-      JSON.stringify(updatedList)
+      JSON.stringify(updatedList),
     );
   };
 
@@ -197,7 +193,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
               {" "}
               {priceCurrency
                 ? currencyFormatter(priceCurrency).format(
-                    (priceValue ?? 0) / 100
+                    (priceValue ?? 0) / 100,
                   )
                 : 0}{" "}
               / year per machine

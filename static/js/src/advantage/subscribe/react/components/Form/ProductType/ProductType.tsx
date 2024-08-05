@@ -17,8 +17,7 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
+        link: "/blog/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws",
         appearance: "positive",
       },
       {
@@ -50,8 +49,7 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
+        link: "/blog/announcing-in-place-upgrade-from-ubuntu-server-to-ubuntu-pro-on-azure",
         appearance: "positive",
       },
       {
@@ -79,8 +77,7 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "In-place upgrade to Ubuntu Pro",
-        link:
-          "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
+        link: "https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu",
         appearance: "positive",
       },
       {
@@ -101,8 +98,7 @@ const PublicCloudInfo = {
         <a href="/gcp#get-in-touch">contact us</a>.{" "}
       </>
     ),
-    link:
-      "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
+    link: "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
   },
   [PublicClouds.oracle]: {
     title: "Oracle",
@@ -152,22 +148,21 @@ const PublicCloudInfo = {
 };
 const ProductType = () => {
   const localPublicCloud = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
-  const { productType, setProductType, iotDevice, setIoTDevice } = useContext(
-    FormContext
-  );
+  const { productType, setProductType, iotDevice, setIoTDevice } =
+    useContext(FormContext);
   const [publicCloud, setPublicCloud] = useState(
     localPublicCloud
       ? (JSON.parse(localPublicCloud) as PublicClouds)
-      : PublicClouds.aws
+      : PublicClouds.aws,
   );
 
   const handleProductTypeChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
       PRO_SELECTOR_KEYS.PRODUCT_TYPE,
-      JSON.stringify(event.target.value as ProductTypes)
+      JSON.stringify(event.target.value as ProductTypes),
     );
   };
 
@@ -190,7 +185,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.aws);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
-                JSON.stringify(PublicClouds.aws)
+                JSON.stringify(PublicClouds.aws),
               );
             }}
           >
@@ -207,7 +202,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.azure);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
-                JSON.stringify(PublicClouds.azure)
+                JSON.stringify(PublicClouds.azure),
               );
             }}
           >
@@ -224,7 +219,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.gcp);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
-                JSON.stringify(PublicClouds.gcp)
+                JSON.stringify(PublicClouds.gcp),
               );
             }}
           >
@@ -241,7 +236,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.oracle);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
-                JSON.stringify(PublicClouds.oracle)
+                JSON.stringify(PublicClouds.oracle),
               );
             }}
           >
@@ -258,7 +253,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.ibm);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
-                JSON.stringify(PublicClouds.ibm)
+                JSON.stringify(PublicClouds.ibm),
               );
             }}
           >
@@ -303,7 +298,7 @@ const ProductType = () => {
               setIoTDevice(IoTDevices.classic);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.IOT_DEVICE,
-                JSON.stringify(IoTDevices.classic)
+                JSON.stringify(IoTDevices.classic),
               );
             }}
           >
@@ -321,7 +316,7 @@ const ProductType = () => {
               setIoTDevice(IoTDevices.core);
               localStorage.setItem(
                 PRO_SELECTOR_KEYS.IOT_DEVICE,
-                JSON.stringify(IoTDevices.core)
+                JSON.stringify(IoTDevices.core),
               );
             }}
           >

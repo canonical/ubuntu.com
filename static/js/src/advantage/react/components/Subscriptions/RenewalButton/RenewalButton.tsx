@@ -67,7 +67,7 @@ export default function RenewalButton({
           }
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

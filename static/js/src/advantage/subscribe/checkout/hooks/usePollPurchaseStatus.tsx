@@ -59,7 +59,7 @@ const usePollPurchaseStatus = () => {
     enabled: !!pendingPurchaseID,
     retry: (
       _failureCount,
-      error: { message: string; code: string; dontRetry: boolean }
+      error: { message: string; code: string; dontRetry: boolean },
     ) => {
       return !error.dontRetry;
     },

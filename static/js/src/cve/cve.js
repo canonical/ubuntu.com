@@ -16,13 +16,13 @@ function handleCveIdInput(value) {
   const componentInput = document.querySelector("#component");
   const statusInputs = document.querySelectorAll(".js-status-input");
   const ubuntuVersionInputs = document.querySelectorAll(
-    ".js-ubuntu-version-input"
+    ".js-ubuntu-version-input",
   );
   const addRowButtons = document.querySelectorAll(".js-add-row");
   const removeRowButtons = document.querySelectorAll(".js-remove-row");
   const searchButtonText = document.querySelector(".cve-search-text");
   const searchButtonValidCveText = document.querySelector(
-    ".cve-search-valid-cve-text"
+    ".cve-search-valid-cve-text",
   );
 
   if (isValidCveId(value)) {
@@ -35,11 +35,11 @@ function handleCveIdInput(value) {
 
     statusInputs.forEach((statusInput) => disableField(statusInput));
     ubuntuVersionInputs.forEach((ubuntuVersionInput) =>
-      disableField(ubuntuVersionInput)
+      disableField(ubuntuVersionInput),
     );
     addRowButtons.forEach((addRowButton) => disableField(addRowButton));
     removeRowButtons.forEach((removeRowButton) =>
-      disableField(removeRowButton)
+      disableField(removeRowButton),
     );
   } else {
     enableField(packageInput);
@@ -48,7 +48,7 @@ function handleCveIdInput(value) {
 
     statusInputs.forEach((statusInput) => enableField(statusInput));
     ubuntuVersionInputs.forEach((ubuntuVersionInput) =>
-      enableField(ubuntuVersionInput)
+      enableField(ubuntuVersionInput),
     );
     removeRowButtons.forEach((removeRowButton, index) => {
       if (index > 0) {
@@ -80,12 +80,10 @@ disableSelectedVersions();
 const priorities = {
   critical:
     "<strong>Critical:</strong> A world-burning problem that is exploitable for most Ubuntu users. Examples include remote root privilege escalations or remote data theft.",
-  high:
-    "<strong>High:</strong> Exploitable for many users in the default configuration of the affected software. Examples include serious remote denial of service of the system, local root privilege escalations or local data theft.",
+  high: "<strong>High:</strong> Exploitable for many users in the default configuration of the affected software. Examples include serious remote denial of service of the system, local root privilege escalations or local data theft.",
   medium:
     "<strong>Medium:</strong> Exploitable for many users of the affected software. Examples include network daemon denial of service, cross-site scripting and gaining user privileges.",
-  low:
-    "<strong>Low:</strong> Does very little damage or is otherwise hard to exploit, due to small user base or other factors such as requiring specific environment, uncommon configuration, or user assistance. These tend to be included in security updates only when higher priority issues require an update or if many low-priority issues have built up.",
+  low: "<strong>Low:</strong> Does very little damage or is otherwise hard to exploit, due to small user base or other factors such as requiring specific environment, uncommon configuration, or user assistance. These tend to be included in security updates only when higher priority issues require an update or if many low-priority issues have built up.",
   negligible:
     "<strong>Negligible:</strong> May be a problem, but does not impose a security risk due to various factors. Examples include when the vulnerability is only theoretical in nature, requires a very special situation, has almost no install base or does no real damage. These typically will not receive security updates unless there is an easy fix and some other issue causes an update.",
   unknown:
@@ -134,7 +132,7 @@ tooltipIconList.forEach(function (tooltipIcon) {
         tooltipIcon.parentElement.append(tooltip);
       }
     },
-    false
+    false,
   );
   tooltipIcon.addEventListener(
     "mouseout",
@@ -145,6 +143,6 @@ tooltipIconList.forEach(function (tooltipIcon) {
         tooltipIcon.parentElement.removeChild(tooltip);
       }
     },
-    false
+    false,
   );
 });

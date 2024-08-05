@@ -37,7 +37,7 @@ const CancelSchema = Yup.object().shape({
     .test(
       "confirmationText",
       "You must enter the correct confirmation text",
-      (item) => item?.toLowerCase() === "cancel"
+      (item) => item?.toLowerCase() === "cancel",
     )
     .required("The confirmation text is required"),
 });
@@ -84,7 +84,7 @@ const SubscriptionCancel = ({
                 setError(
                   error.message.includes("no monthly subscription")
                     ? CancelError.SubscriptionMissing
-                    : CancelError.Failed
+                    : CancelError.Failed,
                 ),
               onSuccess: () => {
                 onCancelSuccess();

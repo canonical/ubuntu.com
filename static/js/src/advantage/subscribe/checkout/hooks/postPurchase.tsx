@@ -28,7 +28,7 @@ const postPurchase = () => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)
@@ -118,7 +118,7 @@ const postPurchase = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
       const previewRes = await previewReq.json();
 
@@ -142,7 +142,7 @@ const postPurchase = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
       const pruchaseRes = await pruchaseReq.json();
 

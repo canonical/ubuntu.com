@@ -16,26 +16,24 @@ import {
   SupportLevel,
 } from "advantage/api/enum";
 
-export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
-  () => ({
+export const userSubscriptionEntitlementFactory =
+  Factory.define<UserSubscriptionEntitlement>(() => ({
     enabled_by_default: true,
     is_in_beta: false,
     is_available: true,
     is_editable: true,
     support_level: null,
     type: EntitlementType.EsmApps,
-  })
-);
+  }));
 
-export const userSubscriptionEntitlementUpdateFactory = Factory.define<UserSubscriptionEntitlementUpdate>(
-  () => ({
+export const userSubscriptionEntitlementUpdateFactory =
+  Factory.define<UserSubscriptionEntitlementUpdate>(() => ({
     is_enabled: true,
     type: EntitlementType.EsmApps,
-  })
-);
+  }));
 
-export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionStatuses>(
-  () => ({
+export const userSubscriptionStatusesFactory =
+  Factory.define<UserSubscriptionStatuses>(() => ({
     has_pending_purchases: false,
     is_cancellable: false,
     is_cancelled: false,
@@ -53,8 +51,7 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
     has_access_to_support: true,
     has_access_to_token: true,
     is_renewed: true,
-  })
-);
+  }));
 
 export const userSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
@@ -79,7 +76,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     subscription_id: `VO7AyCYZzvjY3JaBWF0xmUu8vv5S684ZTeXMnJ${sequence}`,
     type: UserSubscriptionType.Yearly,
     max_tracking_reached: false,
-  })
+  }),
 );
 
 export const freeSubscriptionFactory = Factory.define<UserSubscription>(
@@ -114,13 +111,13 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     subscription_id: null,
     type: UserSubscriptionType.Free,
     max_tracking_reached: false,
-  })
+  }),
 );
 
 export const contractTokenFactory = Factory.define<ContractToken>(
   ({ sequence }) => ({
     contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
-  })
+  }),
 );
 
 export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
@@ -133,5 +130,5 @@ export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
       monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
       yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
     },
-  })
+  }),
 );

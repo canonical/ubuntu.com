@@ -18,15 +18,15 @@ test("Version section displays the matching features to the selected version", a
   render(
     <FormProvider initialVersion={LTSVersions.jammy}>
       <Version />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(
-    screen.getByText(/^All subscriptions for Ubuntu Pro 22.04 LTS include:/)
+    screen.getByText(/^All subscriptions for Ubuntu Pro 22.04 LTS include:/),
   );
 
   await userEvent.click(screen.getByText("16.04 LTS"));
   expect(
-    screen.getByText(/^All subscriptions for Ubuntu Pro 16.04 LTS include:/)
+    screen.getByText(/^All subscriptions for Ubuntu Pro 16.04 LTS include:/),
   );
 });
 
@@ -34,7 +34,7 @@ test("The section is disabled if a public cloud is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.publicCloud}>
       <Version />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(null).toBeDefined();

@@ -11,9 +11,9 @@ export const useCancelContract = (subscription?: UserSubscription) => {
     {
       select: selectPurchaseIdsByMarketplaceAndPeriod(
         subscription?.marketplace,
-        subscription?.period
+        subscription?.period,
       ),
-    }
+    },
   );
 
   const mutation = useMutation<unknown, Error, undefined | null>({
@@ -25,7 +25,7 @@ export const useCancelContract = (subscription?: UserSubscription) => {
         subscription.account_id,
         lastPurchaseId,
         subscription.listing_id,
-        subscription.marketplace
+        subscription.marketplace,
       );
 
       if (response.errors) {

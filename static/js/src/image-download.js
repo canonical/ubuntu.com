@@ -15,8 +15,8 @@ function initImageDownload(imagePath, GAlabel) {
       fetch(
         `/mirrors.json?local=${!!userData?.country_code}&country_code=${
           userData?.country_code || ""
-        }`
-      )
+        }`,
+      ),
     )
     .then((response) => response.json())
     .then((mirrors) => startDownload(mirrors, imagePath))

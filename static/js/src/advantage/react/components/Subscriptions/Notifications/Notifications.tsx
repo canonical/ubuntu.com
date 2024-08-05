@@ -16,17 +16,13 @@ const Notifications = () => {
   });
   const { data: offers } = useGetOffersList();
 
-  const {
-    data: accountUsers,
-    isSuccess: isAccountUsersSuccess,
-  } = useRequestAccountUsers();
+  const { data: accountUsers, isSuccess: isAccountUsersSuccess } =
+    useRequestAccountUsers();
 
-  const [
-    isShowingOnboardingNotification,
-    setIsShowingOnboardingNotification,
-  ] = React.useState(
-    localStorage.getItem("dismissedOnboardingNotification") !== "true"
-  );
+  const [isShowingOnboardingNotification, setIsShowingOnboardingNotification] =
+    React.useState(
+      localStorage.getItem("dismissedOnboardingNotification") !== "true",
+    );
 
   const dismissOnboardingNotification = () => {
     localStorage.setItem("dismissedOnboardingNotification", "true");

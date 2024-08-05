@@ -24,7 +24,7 @@
     // recaptcha submitCallback
     window.CaptchaCallback = function () {
       let recaptchas = [].slice.call(
-        document.querySelectorAll("div[class^=g-recaptcha]")
+        document.querySelectorAll("div[class^=g-recaptcha]"),
       );
       recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
@@ -93,7 +93,7 @@
           history.pushState(
             "",
             document.title,
-            location.pathname + location.search + hash
+            location.pathname + location.search + hash,
           );
         } else {
           location.hash = hash;
@@ -176,9 +176,8 @@
       var contactModal = document.getElementById("contact-modal");
       var closeModal = document.querySelector(".p-modal__close");
       var closeModalButton = document.querySelector(".js-close");
-      var modalPaginationButtons = contactModal.querySelectorAll(
-        ".pagination a"
-      );
+      var modalPaginationButtons =
+        contactModal.querySelectorAll(".pagination a");
       var paginationContent = contactModal.querySelectorAll(".js-pagination");
       var submitButton = contactModal.querySelector(".mktoButton");
       var comment = contactModal.querySelector("#Comments_from_lead__c");
@@ -261,7 +260,7 @@
 
       otherContainers.forEach(function (otherContainer) {
         var checkbox = otherContainer.querySelector(
-          ".js-other-container__checkbox"
+          ".js-other-container__checkbox",
         );
         var input = otherContainer.querySelector(".js-other-container__input");
         checkbox.addEventListener("change", function (e) {
@@ -293,7 +292,7 @@
         fields.forEach((field) => {
           var inputs = form.querySelectorAll(`[name="${field}"]`);
           var validationMessage = document.querySelector(
-            `.js-validation-${field}`
+            `.js-validation-${field}`,
           );
           var inputValid = false;
 
@@ -341,7 +340,7 @@
         comment.value = createMessage();
 
         var currentContent = contactModal.querySelector(
-          ".js-pagination--" + contactIndex
+          ".js-pagination--" + contactIndex,
         );
         paginationContent.forEach(function (content) {
           content.classList.add("u-hide");
@@ -381,7 +380,7 @@
                   }
 
                   var label = formField.querySelector(
-                    "span#" + input.getAttribute("aria-labelledby")
+                    "span#" + input.getAttribute("aria-labelledby"),
                   );
                   if (label) {
                     label = subSectionText + label.innerText;
@@ -425,11 +424,11 @@
           const radioButtons = radioGroup.querySelectorAll("[type='radio']");
 
           const descriptionToggle = radioGroup.querySelector(
-            ".js-toggle-description-field"
+            ".js-toggle-description-field",
           );
 
           const descriptionField = document.getElementById(
-            descriptionToggle.dataset.descriptionFieldId
+            descriptionToggle.dataset.descriptionFieldId,
           );
 
           radioButtons.forEach((radioButton) => {
@@ -451,9 +450,8 @@
 
       // Sets a limit of checkboxes and disables remaining fields
       function setCheckboxLimit() {
-        const choiceLimitContainers = document.querySelectorAll(
-          ".js-choice-limit"
-        );
+        const choiceLimitContainers =
+          document.querySelectorAll(".js-choice-limit");
 
         const checkedChoices = (choices) => {
           return Array.from(choices).filter((choice) => {
@@ -469,9 +467,8 @@
 
         const handleChoiceLimitContainer = (choiceLimitContainer) => {
           const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
-          const choices = choiceLimitContainer.querySelectorAll(
-            "[type='checkbox']"
-          );
+          const choices =
+            choiceLimitContainer.querySelectorAll("[type='checkbox']");
 
           choices.forEach((choice) => {
             choice.addEventListener("change", () => {

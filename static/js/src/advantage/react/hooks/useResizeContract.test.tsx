@@ -37,7 +37,7 @@ describe("useResizeContract", () => {
     queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
   });
 
@@ -45,7 +45,7 @@ describe("useResizeContract", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useResizeContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(2);
     await waitForNextUpdate();
@@ -57,7 +57,7 @@ describe("useResizeContract", () => {
       subscription.listing_id,
       2,
       UserSubscriptionPeriod.Yearly,
-      UserSubscriptionMarketplace.CanonicalUA
+      UserSubscriptionMarketplace.CanonicalUA,
     );
   });
 
@@ -65,13 +65,13 @@ describe("useResizeContract", () => {
     resizeContractSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const onError = jest.fn();
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useResizeContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(2, {
       onError: (error) => onError(error.message),
@@ -84,12 +84,12 @@ describe("useResizeContract", () => {
     resizeContractSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useResizeContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",

@@ -37,7 +37,7 @@ describe("useCancelContract", () => {
     queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
   });
 
@@ -45,7 +45,7 @@ describe("useCancelContract", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null);
     await waitForNextUpdate();
@@ -55,7 +55,7 @@ describe("useCancelContract", () => {
         UserSubscriptionPeriod.Monthly
       ],
       subscription.listing_id,
-      subscription.marketplace
+      subscription.marketplace,
     );
   });
 
@@ -63,13 +63,13 @@ describe("useCancelContract", () => {
     cancelContractSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const onError = jest.fn();
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null, {
       onError: (error) => onError(error.message),
@@ -82,7 +82,7 @@ describe("useCancelContract", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelContract(subscription),
-      { wrapper }
+      { wrapper },
     );
     let userSubscriptionsState = queryClient.getQueryState([
       "userSubscriptions",
