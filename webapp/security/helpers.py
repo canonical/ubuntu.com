@@ -9,7 +9,7 @@ def get_summarized_status(
     Return the summarized status for a CVE
     """
     status_count = {
-        "ignored": 0,
+        "ignored-high": 0,
         "ignored-low": 0,
         "needs-triage": 0,
         "not-affected": 0,
@@ -40,7 +40,7 @@ def get_summarized_status(
                     ):
                         status_count["ignored-low"] += 1
                     else:
-                        status_count["ignored"] += 1
+                        status_count["ignored-high"] += 1
                 elif status["status"] == "released":
                     status_count["released"] += 1
                 elif status["status"] in vulnerable_indicators:
@@ -81,8 +81,6 @@ def get_summarized_status(
             cve["summarized_status"] = friendly_names["released"]
         elif total_fixable and status_count["vulnerable"] == total_fixable:
             cve["summarized_status"] = friendly_names["vulnerable"]
-        elif total_fixable and status_count["not-affected"] == total_fixable:
-            cve["summarized_status"] = friendly_names["not-affected"]
         elif status_count["released"] > 0:
             cve["summarized_status"] = {
                 "name": "Some fixed",
@@ -93,6 +91,10 @@ def get_summarized_status(
             cve["summarized_status"] = friendly_names["vulnerable"]
         elif status_count["needs-triage"] > 0:
             cve["summarized_status"] = friendly_names["needs-triage"]
+        elif status_count["ignored-high"] > 0:
+            cve["summarized_status"] = friendly_names["ignored"]
+        elif status_count["not-affected"] > 0:
+            cve["summarized_status"] = friendly_names["not-affected"]
         elif status_count["DNE"] > 0:
             cve["summarized_status"] = friendly_names["DNE"]
 
