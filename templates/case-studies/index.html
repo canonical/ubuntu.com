@@ -43,4 +43,13 @@
   }}
 
   
+<!--This index page will be using macros to build an example case study -->
+  <!-- Hero section-->
+  {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
+  {{ hero_template.hero(title="Hero title",
+                        subtitle="Hero description",
+                        logo="https://assets.ubuntu.com/v1/8b33ba49-dell-technologies-logo-resize.png",
+                        logo_alt="Dell logo") 
+  }}
+
 {% endblock %}

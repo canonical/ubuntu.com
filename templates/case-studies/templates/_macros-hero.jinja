@@ -1,0 +1,29 @@
+# Params
+# title: Hero title text (required)
+# subtitle: Hero subtitle text
+# logo: Path to logo image
+# logo_alt: Alt text for logo image
+# logo_width: Width of logo image (128 by default)
+# logo_height: Width of logo image (128 by default)
+
+{%- macro hero(
+  title,
+  subtitle,
+  logo,
+  logo_alt="",
+  logo_width="128",
+  logo_height="128"
+  ) -%}
+  <section class="p-strip">
+    <div class="row--25-75">
+      <div class="col">
+        <img src={{ logo }} alt={{ logo_alt }} width={{ logo_width }} height={{ logo_height }} />
+      </div>
+      <div class="col">
+        <h1>{{ title }}</h1>
+        <p>{{ subtitle }}</p>
+      </div>
+    </div>
+  </section>
+
+{%- endmacro -%}
