@@ -170,20 +170,6 @@ const ExamResults = () => {
       .sort((a, b) => b.meta.current_page - a.meta.current_page)
       .map((page) => page.results)
       .flat();
-    // if (dataBadges?.data) {
-    //   const mappedDataWithBadgeInfo = mappedData.map((result) => {
-    //     const badge = dataBadges.data.find(
-    //       (badge) =>
-    //         badge.recipient_email === result.user_email ||
-    //         badge.issuer_earner_id === result.uuid
-    //     );
-    //     return {
-    //       ...result,
-    //       badge,
-    //     };
-    //   });
-    //   return mappedDataWithBadgeInfo;
-    // }
     return mappedData.map((result) => ({
       ...result,
       issue_badge: true,
