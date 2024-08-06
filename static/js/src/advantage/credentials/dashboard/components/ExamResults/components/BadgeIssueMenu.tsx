@@ -15,7 +15,6 @@ import {
 import { CredlyBadge } from "advantage/credentials/dashboard/utils/types";
 import { issueCredlyBadge } from "advantage/credentials/dashboard/api/queryFns";
 import { CredlyBadgeIssueBody } from "advantage/credentials/dashboard/utils/types";
-// import { Notification } from "@canonical/react-components";
 
 type Props = {
   exam: ExamResultsTA;
@@ -65,6 +64,14 @@ const BadgeIssueMenu = (props: Props) => {
     return badges.filter((badge) => badge.recipient_email === exam.user_email);
   }, [data, exam]);
 
+  const hasSomeBadge = useMemo(
+    () =>
+      userBadges.some((b) =>
+        CREDLY_BADGE_TEMPLATES.some((c) => c.templateId === b.badge_template.id)
+      ),
+    [userBadges]
+  );
+
   const handleIssueBadge = (templateId: string, issued: boolean) => {
     if (issued || isMutating) return;
     const badgeData: CredlyBadgeIssueBody = {
@@ -104,6 +111,9 @@ const BadgeIssueMenu = (props: Props) => {
       toggleProps={{
         className: "u-no-margin--bottom",
         dense: true,
+        style: {
+          opacity: hasSomeBadge ? 0.5 : 1,
+        },
       }}
       hasToggleIcon
       links={links}

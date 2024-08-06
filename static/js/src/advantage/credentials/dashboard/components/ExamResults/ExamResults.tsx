@@ -113,9 +113,9 @@ const ExamResults = () => {
         sortType: "basic",
         Cell: (props: any) =>
           props.row.depth === 0 ? (
-            <strong>{props.value.toFixed(2)}</strong>
+            <strong>{(props.value * 100).toFixed(2)}</strong>
           ) : (
-            <small>{props.value.toFixed(2)}</small>
+            <small>{(props.value * 100).toFixed(2)}</small>
           ),
       },
       {
@@ -124,6 +124,22 @@ const ExamResults = () => {
         sortType: "basic",
         Cell: (props: any) => {
           return props.row.depth === 0 ? <></> : <small>{props.value}</small>;
+        },
+      },
+      {
+        Header: "Completed At",
+        accessor: "completed_at",
+        sortType: "basic",
+        Cell: (props: any) => {
+          const completedAt = new Date(props.value).toLocaleString("en-US", {
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          });
+          return props.row.depth === 0 ? <></> : <small>{completedAt}</small>;
         },
       },
       {
@@ -183,11 +199,11 @@ const ExamResults = () => {
     return [];
   }, [data, flatData]);
 
-  const getSubRows = (key: number | string) => {
+  const getSubRows = (key: number | string, cutOff: number) => {
     const matches: ExamResultsTA[] =
       flatData.filter((res: ExamResultsTA) => res.ability_screen.id === key) ||
       [];
-    return matches;
+    return matches.map((m) => ({ ...m, cutOff }));
   };
 
   const getExam = (screenId: number): ExamResultsTA | null => {
@@ -202,7 +218,10 @@ const ExamResults = () => {
     if (flatData && flatData?.length) {
       return (uniqueGroupKeys as number[]).map((screenId) => {
         const exam = getExam(screenId);
-        const subRows = getSubRows(screenId);
+        const subRows = getSubRows(
+          screenId,
+          exam?.ability_screen.cutoff_score || 0
+        );
         return {
           id: exam?.ability_screen?.name || "N/A",
           score: exam?.ability_screen.cutoff_score || 0,
@@ -277,7 +296,29 @@ const ExamResults = () => {
       )}
       {flatData && flatData?.length > 0 && (
         <>
-          <ModularTable data={currentRows} columns={columns} sortable />
+          <ModularTable
+            data={currentRows}
+            columns={columns}
+            sortable
+            getRowProps={(row: any) => {
+              const passed =
+                row.depth !== 0 && row.original.score > row.original.cutOff;
+              return {
+                style: {
+                  background: passed ? "rgba(14, 132, 32)" : "",
+                  color: passed ? "#fff" : "",
+                },
+              };
+              // return {
+              //   style: {
+              //     backgroundColor:
+              //       row.original.score < row.original.subRows[0].score
+              //         ? "rgba(255, 0, 0, 0.1)"
+              //         : "rgba(0, 255, 0, 0.1)",
+              //   },
+              // };
+            }}
+          />
         </>
       )}
     </>
