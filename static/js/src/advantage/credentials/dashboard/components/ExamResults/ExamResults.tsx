@@ -113,9 +113,9 @@ const ExamResults = () => {
         sortType: "basic",
         Cell: (props: any) =>
           props.row.depth === 0 ? (
-            <strong>{(props.value * 100).toFixed(2)}%</strong>
+            <strong>{(props.value * 100).toFixed(1)}</strong>
           ) : (
-            <small>{(props.value * 100).toFixed(2)}%</small>
+            <small>{(props.value * 100).toFixed(1)}</small>
           ),
       },
       {
