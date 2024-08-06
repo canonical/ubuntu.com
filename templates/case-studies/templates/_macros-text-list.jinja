@@ -2,15 +2,10 @@
 # title: Title of text section (required)
 # list_items: Description of text section (required)
 
-{%- macro text_list(
-  title,
-  list_items
-  ) -%}
-
+{%- macro text_list(title, list_items) -%}
   <section class="p-strip">
-    <div class="row--25-75">
-      <div class="col"></div>
-      <div class="col">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
         <hr class="p-rule" />
         <h2 class="u-sv3">{{ title }}</h2>
         <ul class="p-list--divided">
@@ -19,5 +14,4 @@
       </div>
     </div>
   </section>
-
 {%- endmacro -%}
