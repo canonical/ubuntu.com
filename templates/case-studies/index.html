@@ -44,4 +44,13 @@
                                      The systems Canonical deployed and now manage for ESA mean that ESOC engineering teams can quickly and centrally manage and deploy mission-critical infrastructure and software, with more security, reliability, and control, and with less downtime and reduced risk of system failures."
                       )
   }}
+
+<!-- Quote section-->
+  {% import "case-studies/templates/_macros-quote.jinja" as quote_template %}
+  {{ quote_template.quote(
+        quote="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
+        name="Justin Boitano", 
+        job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+      )
+  }}
 {% endblock %}

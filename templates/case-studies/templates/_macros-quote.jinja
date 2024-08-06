@@ -1,0 +1,35 @@
+# Params
+# quote: Quote text (required)
+# name: Name of quoter (required)
+# job_title: Job title of quoter (required)
+
+{%- macro quote(
+  quote,
+  name,
+  job_title
+  ) -%}
+
+  <section class="p-strip">
+    <div class="row--25-75">      
+      <div class="col"></div>
+      <div class="col">
+        <hr />
+        <div class="row">
+          <div class="col-6">
+            <blockquote class="p-pull-quote" style="margin: 0;">
+              <p class="p-pull-quote__quote"><i>{{ quote }}</i></p>
+            </blockquote>
+          </div>
+          <div class="col-3">
+            <p>
+              <br class="u-hide--large" />
+              <strong>{{ name }}</strong><br />
+              <span class="u-text--muted">{{ job_title }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{%- endmacro -%}
