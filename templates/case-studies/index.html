@@ -13,4 +13,14 @@
                                      of Europe and the world.")
   }}
 
+  <!-- Text + list section -->
+  {% import "case-studies/templates/_macros-text-list.jinja" as text_list_template %}
+  {{ text_list_template.text_list(
+      title="About the European Space Agency (ESA)",
+      list_items=[
+        "Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.",
+        "The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.",
+        "ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established."
+    ]) 
+  }}
 {% endblock %}

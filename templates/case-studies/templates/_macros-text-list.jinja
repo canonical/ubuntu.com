@@ -5,19 +5,16 @@
 {%- macro text_list(
   title,
   list_items
-) -%}
+  ) -%}
 
   <section class="p-strip is-deep">
     <div class="row--25-75">
+      <div class="col"></div>
       <div class="col">
-      </div>
-      <div class="col">
-        <hr class="p-rule"/>
-        <h2 class="">{{ title }}</h2>
-        <ul>
-          {% for item in list_items %}
-            <li>{{ item }}</li>
-          {% endfor %}
+        <hr class="p-rule" />
+        <h2 class="u-sv3">{{ title }}</h2>
+        <ul class="p-list--divided">
+          {% for item in list_items %}<li class="p-list__item has-bullet">{{ item }}</li>{% endfor %}
         </ul>
       </div>
     </div>
