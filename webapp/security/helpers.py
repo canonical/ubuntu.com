@@ -63,7 +63,10 @@ def get_summarized_status(
             key_with_non_zero_value = key
 
     if count == 1:
-        cve["summarized_status"] = friendly_names[key_with_non_zero_value]
+        if key_with_non_zero_value == "ignored-high":
+            cve["summarized_status"] = friendly_names["ignored"]
+        else:
+            cve["summarized_status"] = friendly_names[key_with_non_zero_value]
     else:
         """
         Calculate the number of cases that are “Fixable”, which is the total
