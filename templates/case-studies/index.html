@@ -53,4 +53,12 @@
         job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
       )
   }}
+
+<!-- Image section-->
+{% import "case-studies/templates/_macros-image.jinja" as image_template %}
+  {{ image_template.image(
+    image_url="https://assets.ubuntu.com/v1/bb296524-Dell%20pcs.jpg",
+    caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO")
+  }}
+
 {% endblock %}
