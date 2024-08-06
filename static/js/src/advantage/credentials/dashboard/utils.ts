@@ -5,7 +5,7 @@ export const sortFunction = (
   a: MainTableRow,
   b: MainTableRow,
   currentSortDirection: SortDirection,
-  currentSortKey: string | null | undefined
+  currentSortKey: string | null | undefined,
 ): 0 | 1 | -1 => {
   if (!currentSortKey) {
     return 0;

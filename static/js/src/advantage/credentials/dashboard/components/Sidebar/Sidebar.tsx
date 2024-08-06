@@ -6,7 +6,11 @@ import { getSystemStatuses } from "../../api/queryFns";
 
 const Sidebar = () => {
   const location = useLocation();
-  const { data: statuses, isError, isLoading } = useQuery({
+  const {
+    data: statuses,
+    isError,
+    isLoading,
+  } = useQuery({
     queryKey: ["systemStatuses"],
     queryFn: getSystemStatuses,
     staleTime: 1000 * 60 * 5,

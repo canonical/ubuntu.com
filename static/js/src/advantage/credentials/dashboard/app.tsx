@@ -80,5 +80,5 @@ function App() {
 }
 
 createRoot(document.getElementById("credentials-dashboard-app")!).render(
-  <App />
+  <App />,
 );

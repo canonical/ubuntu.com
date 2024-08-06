@@ -161,7 +161,7 @@ const ExamResults = () => {
         },
       },
     ],
-    []
+    [],
   );
 
   const flatData = useMemo(() => {
@@ -195,7 +195,7 @@ const ExamResults = () => {
   const getExam = (screenId: number): ExamResultsTA | null => {
     return (
       flatData.find(
-        (res: ExamResultsTA) => res.ability_screen.id === screenId
+        (res: ExamResultsTA) => res.ability_screen.id === screenId,
       ) || null
     );
   };
@@ -206,7 +206,7 @@ const ExamResults = () => {
         const exam = getExam(screenId);
         const subRows = getSubRows(
           screenId,
-          exam?.ability_screen.cutoff_score || 0
+          exam?.ability_screen.cutoff_score || 0,
         );
         return {
           id: exam?.ability_screen?.name || "N/A",

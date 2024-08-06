@@ -87,7 +87,7 @@ const BadgeTracking = () => {
           ),
       },
     ],
-    []
+    [],
   );
 
   const flatData = useMemo(() => {
@@ -102,7 +102,7 @@ const BadgeTracking = () => {
     if (data && data?.data) {
       return [
         ...new Set(
-          flatData.map((badge: CredlyBadge) => badge.badge_template.id)
+          flatData.map((badge: CredlyBadge) => badge.badge_template.id),
         ),
       ];
     }
@@ -112,7 +112,7 @@ const BadgeTracking = () => {
   const getBadgeTemplateSubrows = (templateId: string) => {
     const matches =
       flatData.filter(
-        (badge: CredlyBadge) => badge.badge_template.id === templateId
+        (badge: CredlyBadge) => badge.badge_template.id === templateId,
       ) || [];
     return matches.map((badge: CredlyBadge) => ({
       issued_to: badge.issued_to,
@@ -124,7 +124,7 @@ const BadgeTracking = () => {
   const getBadgeTemplate = (templateId: string): CredlyBadge | undefined => {
     return (
       flatData.find(
-        (badge: CredlyBadge) => badge.badge_template.id === templateId
+        (badge: CredlyBadge) => badge.badge_template.id === templateId,
       ) || undefined
     );
   };

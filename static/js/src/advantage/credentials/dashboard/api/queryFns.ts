@@ -18,7 +18,7 @@ export async function getUpcomingExams(page = 1, onSuccess: any) {
 export async function getExamResults(
   page = 1,
   state: string | null = "",
-  onSuccess: any
+  onSuccess: any,
 ) {
   let URL = `/credentials/api/exam-results?page=${page}&ability_screen_id[]=4229`;
   if (state) {
@@ -57,7 +57,7 @@ export async function getIssuedBadgesCredly(
   filter: string | null = null,
   sort: string | null = null,
   page: number | null = null,
-  onSuccess: any
+  onSuccess: any,
 ) {
   let URL = `/credentials/api/issued-badges`;
   const queryParams = new URLSearchParams();

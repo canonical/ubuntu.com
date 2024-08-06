@@ -27,7 +27,7 @@ const BadgeIssueMenu = (props: Props) => {
   const isMutating = Boolean(
     useIsMutating({
       mutationKey: postIssueCredlyBadge(),
-    })
+    }),
   );
   const [loading, setLoading] = useState(false);
   // const [notificationState, setNotificationState] = useState<undefined | 'loading' | 'success' | 'failure'>(undefined);
@@ -67,9 +67,11 @@ const BadgeIssueMenu = (props: Props) => {
   const hasSomeBadge = useMemo(
     () =>
       userBadges.some((b) =>
-        CREDLY_BADGE_TEMPLATES.some((c) => c.templateId === b.badge_template.id)
+        CREDLY_BADGE_TEMPLATES.some(
+          (c) => c.templateId === b.badge_template.id,
+        ),
       ),
-    [userBadges]
+    [userBadges],
   );
 
   const handleIssueBadge = (templateId: string, issued: boolean) => {
@@ -87,7 +89,7 @@ const BadgeIssueMenu = (props: Props) => {
     () =>
       CREDLY_BADGE_TEMPLATES.map((badge) => {
         const hasBadge = userBadges.some(
-          (b) => b.badge_template.id === badge.templateId
+          (b) => b.badge_template.id === badge.templateId,
         );
         return {
           children: (
@@ -101,7 +103,7 @@ const BadgeIssueMenu = (props: Props) => {
           disabled: hasBadge || isMutating,
         };
       }),
-    [handleIssueBadge, userBadges, isMutating, data]
+    [handleIssueBadge, userBadges, isMutating, data],
   );
 
   if (loading) return <Spinner />;

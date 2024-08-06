@@ -99,7 +99,7 @@ const UpcomingExams = () => {
         },
       },
     ],
-    []
+    [],
   );
 
   const flatData = useMemo(() => {
@@ -116,8 +116,8 @@ const UpcomingExams = () => {
         return [
           ...new Set(
             flatData.map(
-              (res: AssessmentReservationTA) => res.ability_screen.id
-            )
+              (res: AssessmentReservationTA) => res.ability_screen.id,
+            ),
           ),
         ];
       } else if (groupKey === "2") {
@@ -125,8 +125,8 @@ const UpcomingExams = () => {
           ...new Set(
             flatData.map(
               (res: AssessmentReservationTA) =>
-                res.assessment?.state || res.state
-            )
+                res.assessment?.state || res.state,
+            ),
           ),
         ];
       }
@@ -145,7 +145,7 @@ const UpcomingExams = () => {
     if (groupKey === "1") {
       matches =
         flatData.filter(
-          (res: AssessmentReservationTA) => res.ability_screen.id === key
+          (res: AssessmentReservationTA) => res.ability_screen.id === key,
         ) || [];
       matches = matches.map((m) => ({
         ...m,
@@ -155,7 +155,7 @@ const UpcomingExams = () => {
       matches =
         flatData.filter(
           (res: AssessmentReservationTA) =>
-            res?.assessment?.state === key || res.state === key
+            res?.assessment?.state === key || res.state === key,
         ) || [];
       matches = matches.map((m) => ({
         ...m,
@@ -166,11 +166,11 @@ const UpcomingExams = () => {
   };
 
   const getAbilityScreen = (
-    screenId: number
+    screenId: number,
   ): AssessmentReservationTA | null => {
     return (
       flatData.find(
-        (res: AssessmentReservationTA) => res.ability_screen.id === screenId
+        (res: AssessmentReservationTA) => res.ability_screen.id === screenId,
       ) || null
     );
   };

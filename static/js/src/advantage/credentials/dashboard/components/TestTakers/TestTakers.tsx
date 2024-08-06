@@ -28,7 +28,7 @@ const TestTakers = () => {
         sortType: "basic",
       },
     ],
-    []
+    [],
   );
 
   const currentRows = useMemo(() => {
@@ -45,7 +45,7 @@ const TestTakers = () => {
           }
           return acc;
         },
-        {}
+        {},
       );
 
       const counts = Object.entries(grouped).map(([countryName, count]) => ({
