@@ -1,16 +1,12 @@
 # Params
 # list_items: List of highlight items (requires 3-4 items)
 
-{%- macro highlights(
-  list_items
-  ) -%}
-
-  <section class="p-strip is-deep">
+{%- macro highlights(list_items) -%}
+  <section class="p-strip">
     <div class="row">
       <p class="p-text--small-caps">Highlights</p>
       <hr />
     </div>
-
     {% if list_items | length == 3 %}
       {% set col_size = "col-4" %}
     {% elif list_items | length == 4 %}
@@ -24,5 +20,4 @@
       {% endfor %}
     </div>
   </section>
-
 {%- endmacro -%}
