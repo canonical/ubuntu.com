@@ -1,0 +1,17 @@
+# Params
+# title: Title of text section (required)
+# list_items: Description of text section (required)
+
+{%- macro text_list(title, list_items) -%}
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <hr class="p-rule" />
+        <h2 class="p-strip is-shallow">{{ title }}</h2>
+        <ul class="p-list--divided">
+          {% for item in list_items %}<li class="p-list__item has-bullet">{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+{%- endmacro -%}
