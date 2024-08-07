@@ -35,7 +35,7 @@ const TestTakers = () => {
     if (data) {
       const grouped = data.reduce(
         (acc: { [x: string]: number }, row: Assessment) => {
-          const countryCode = row.address?.country_code ?? "NA";
+          const countryCode = row.address?.country_code ?? "N/A";
           const country = countries.find((c) => c.value === countryCode);
           const countryName = country ? country.label : "Unknown";
           if (acc[countryName]) {
