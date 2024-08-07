@@ -108,7 +108,7 @@ const ExamResults = () => {
           ),
       },
       {
-        Header: "Score",
+        Header: "Score (%)",
         accessor: "score",
         sortType: "basic",
         Cell: (props: any) =>
