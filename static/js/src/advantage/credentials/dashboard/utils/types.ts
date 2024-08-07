@@ -21,11 +21,8 @@ export type CredlyBadge = {
   issuer_earner_id: string | null;
 };
 
-export type Assessment = {
-  id: number;
-  address: {
-    country_code: string;
-  };
+export type Address = {
+  country_code: string;
 };
 
 export type AssessmentReservationTA = {

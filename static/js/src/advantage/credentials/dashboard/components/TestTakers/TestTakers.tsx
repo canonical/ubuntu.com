@@ -6,11 +6,11 @@ import {
   Notification,
   ModularTable,
 } from "@canonical/react-components";
-import { Assessment } from "../../utils/types";
+import { Address } from "../../utils/types";
 import { countries } from "advantage/countries-and-states";
 
 const TestTakers = () => {
-  const { data, isLoading, isError } = useQuery<Assessment[]>({
+  const { data, isLoading, isError } = useQuery<Address[]>({
     queryKey: ["testTakerStats"],
     queryFn: getTestTakerStats,
   });
@@ -34,8 +34,8 @@ const TestTakers = () => {
   const currentRows = useMemo(() => {
     if (data) {
       const grouped = data.reduce(
-        (acc: { [x: string]: number }, row: Assessment) => {
-          const countryCode = row.address?.country_code ?? "N/A";
+        (acc: { [x: string]: number }, row: Address) => {
+          const countryCode = row?.country_code ?? "N/A";
           const country = countries.find((c) => c.value === countryCode);
           const countryName = country ? country.label : "Unknown";
           if (acc[countryName]) {

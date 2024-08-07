@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
+from concurrent.futures import ThreadPoolExecutor
 
 from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
@@ -1115,15 +1116,29 @@ def get_issued_badges_bulk(credly_api, **kwargs):
 @shop_decorator(area="cred", permission="user", response="json")
 @credentials_group()
 def get_test_taker_stats(trueability_api, **kwargs):
+    def get_addresses(assessments: list):
+        addresses = []
+        for assessment in assessments:
+            addresses.append(assessment.get("address", None))
+        return addresses
+
+    def fetch_assessments(page: int):
+        print(page)
+        result = trueability_api.get_assessments(page=page)
+        return get_addresses(result["assessments"])
+
     addresses = []
     assessments = trueability_api.get_assessments()
     meta = assessments["meta"]
-    next_page = meta.get("next_page", None)
-    addresses.extend(assessments["assessments"])
-    while next_page:
-        assessments = trueability_api.get_assessments(page=next_page)
-        next_page = assessments["meta"].get("next_page", None)
-        addresses.extend(assessments["assessments"])
+    total_pages = meta.get("total_pages", 0)
+    pages = range(2, total_pages + 1)
+    addresses.extend(get_addresses(assessments["assessments"]))
+    with ThreadPoolExecutor(max_workers=5) as thread_pool:
+        for data in thread_pool.map(
+            fetch_assessments,
+            [page for page in pages],
+        ):
+            addresses.extend(data)
 
     return flask.jsonify(addresses)
 
