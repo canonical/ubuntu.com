@@ -6,13 +6,18 @@
   <!--This index page will be using macros to build an example case study -->
   <!-- Hero section-->
   {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
-  {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
+  {{ hero_template.hero(title="Hero title",
                         subtitle="Hero description",
                         logo="https://assets.ubuntu.com/v1/8b33ba49-dell-technologies-logo-resize.png",
                         logo_alt="Dell logo") 
   }}
 
-
+  {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
+                        subtitle="Hero description",
+                        logo="https://assets.ubuntu.com/v1/5b46609e-layer1.png",
+                        logo_alt="ESM logo") 
+  }}
+  
   <!-- Text + list section -->
   {% import "case-studies/templates/_macros-text-list.jinja" as text_list_template %}
   {{ text_list_template.text_list(title="About the European Space Agency (ESA)",
