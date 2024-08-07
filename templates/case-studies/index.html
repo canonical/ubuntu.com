@@ -1,4 +1,16 @@
 {% extends "case-studies/base_case-studies.html" %}
 
 {% block title %}Case Studies{% endblock %}
-{% block content %}{% endblock %}
+
+{% block content %}
+  <!-- Text section -->
+  {% import "case-studies/templates/_macros-text.jinja" as text_template %}
+  {{ text_template.text(title="About the European Space Agency (ESA)",
+                        description="Founded in 1987, the European Space Agency (ESA) is an intergovernmental organization 
+                                     dedicated to the exploration of space. With 22 member states, ESA is one of the largest 
+                                     space organizations in the world. The agency’s mission is to shape the development of Europe’s 
+                                     space capability and ensure that investment in space continues to deliver benefits to the citizens 
+                                     of Europe and the world.")
+  }}
+
+{% endblock %}
