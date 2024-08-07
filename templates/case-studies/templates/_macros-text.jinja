@@ -3,11 +3,11 @@
 # description: Description of text section (required)
 
 {%- macro text(title, description) -%}
-  <section class="p-strip is-deep">
+  <section class="p-strip">
     <div class="row">
       <div class="col-start-large-4 col-9">
         <hr class="p-rule"/>
-        <h2 class="u-sv3">{{ title }}</h2>
+        <h2 class="p-strip is-shallow">{{ title }}</h2>
         <p>{{ description }}</p>
       </div>
     </div>
