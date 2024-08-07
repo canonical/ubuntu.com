@@ -8,14 +8,14 @@ it("opens 'Add new user' modal on click", async () => {
   userEvent.click(screen.getByText("Add new user"));
 
   const modal = await screen.findByLabelText(
-    "Add a new user to this organisation"
+    "Add a new user to this organisation",
   );
 
   expect(within(modal).getByLabelText("Name")).toBeVisible();
   expect(within(modal).getByLabelText("Users’ email address")).toBeVisible();
   expect(within(modal).getByLabelText("Role")).toBeVisible();
   expect(
-    within(modal).getByRole("button", { name: "Add new user" })
+    within(modal).getByRole("button", { name: "Add new user" }),
   ).toBeVisible();
   expect(within(modal).getByRole("button", { name: "Cancel" })).toBeVisible();
 });

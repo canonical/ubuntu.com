@@ -30,7 +30,7 @@ const entitlements = [
 
 it("returns correctly formatted features form state", () => {
   const featuresForm = initialiseFeaturesForm(
-    filterAndFormatEntitlements(entitlements)
+    filterAndFormatEntitlements(entitlements),
   );
 
   expect(featuresForm).toStrictEqual({
@@ -57,12 +57,12 @@ it("returns correctly formatted features form state", () => {
 
 it("returns new features form state", () => {
   const featuresForm = initialiseFeaturesForm(
-    filterAndFormatEntitlements(entitlements)
+    filterAndFormatEntitlements(entitlements),
   );
 
   expect(featuresForm[EntitlementLabel.Livepatch]).toHaveProperty(
     "isChecked",
-    true
+    true,
   );
 
   const newFeatureState = {
@@ -72,14 +72,14 @@ it("returns new features form state", () => {
 
   const newFeaturesFormState = getNewFeaturesFormState(
     featuresForm,
-    newFeatureState
+    newFeatureState,
   );
   expect(newFeaturesFormState[EntitlementLabel.Livepatch]).toHaveProperty(
     "isChecked",
-    false
+    false,
   );
   expect(newFeaturesFormState[EntitlementLabel.Livepatch]).toHaveProperty(
     "isDisabled",
-    false
+    false,
   );
 });

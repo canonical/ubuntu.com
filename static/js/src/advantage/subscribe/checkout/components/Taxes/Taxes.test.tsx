@@ -28,7 +28,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     screen.getByText("Country/Region:");
     expect(screen.getByTestId("select-country")).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("select-country")).toBeInTheDocument();
@@ -72,7 +72,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("select-country")).toBeInTheDocument();
@@ -97,7 +97,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     fireEvent.change(getByTestId("select-country"), {
       target: { value: "US" },
@@ -128,7 +128,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
@@ -148,7 +148,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
@@ -176,7 +176,7 @@ describe("TaxesTests", () => {
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Edit" }));

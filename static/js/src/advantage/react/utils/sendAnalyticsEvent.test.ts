@@ -39,7 +39,7 @@ describe("sendAnalyticsEvent", () => {
       sendAnalyticsEvent({
         eventAction: "clicked",
         eventCategory: "button",
-      })
+      }),
     ).not.toThrow();
   });
 });

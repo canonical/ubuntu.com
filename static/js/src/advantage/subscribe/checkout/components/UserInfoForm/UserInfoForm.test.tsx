@@ -41,7 +41,7 @@ describe("UserInfoFormTests", () => {
             <UserInfoForm setError={jest.fn()} />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Edit" }));
@@ -65,14 +65,14 @@ describe("UserInfoFormTests", () => {
 
     expect(screen.getByTestId("customer-name")).toHaveTextContent("Joe");
     expect(screen.getByTestId("organisation-name")).toHaveTextContent(
-      "Canonical"
+      "Canonical",
     );
     expect(screen.getByTestId("customer-address")).toHaveTextContent(
-      "Adrs Street"
+      "Adrs Street",
     );
     expect(screen.getByTestId("customer-city")).toHaveTextContent("Citty");
     expect(screen.getByTestId("customer-postal-code")).toHaveTextContent(
-      "AB12 3CD"
+      "AB12 3CD",
     );
   });
 });

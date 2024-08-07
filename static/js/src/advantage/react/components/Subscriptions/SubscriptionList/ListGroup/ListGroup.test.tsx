@@ -33,7 +33,7 @@ describe("ListGroup", () => {
         >
           Group content
         </ListGroup>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(false);
   });
@@ -56,7 +56,7 @@ describe("ListGroup", () => {
         >
           Group content
         </ListGroup>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(true);
   });

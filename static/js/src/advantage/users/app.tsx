@@ -118,5 +118,5 @@ function App() {
 }
 
 createRoot(document.getElementById("advantage-account-users-app")!).render(
-  <App />
+  <App />,
 );

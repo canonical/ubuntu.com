@@ -110,13 +110,13 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           onError: (error) => {
             handleError(error);
           },
-        }
+        },
       );
     }
 
     // Update customer information
     const hasZeroPriceValue = products.some(
-      (item) => item.product.price.value === 0
+      (item) => item.product.price.value === 0,
     );
     if (!values.defaultPaymentMethod && !hasZeroPriceValue) {
       await postCustomerInfoMutation.mutateAsync(
@@ -125,7 +125,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           onError: (error) => {
             handleError(error);
           },
-        }
+        },
       );
     }
 
@@ -149,7 +149,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         onError: (error) => {
           handleError(error);
         },
-      }
+      },
     );
   };
 
@@ -164,7 +164,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         <>
           You already have a pending purchase. Please go to{" "}
           <a href="/account/payment-methods">payment methods</a> to retry.
-        </>
+        </>,
       );
     } else if (
       error.message.includes("purchase while subscription is in trial")
@@ -173,20 +173,20 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         <>
           You cannot make a purchase during the trial period. To make a new
           purchase, cancel your current trial subscription.
-        </>
+        </>,
       );
     } else if (error.message.includes("tax_id_invalid")) {
       setFieldError(
         "VATNumber",
-        "That VAT number is invalid. Check the number and try again."
+        "That VAT number is invalid. Check the number and try again.",
       );
       setError(
-        <>That VAT number is invalid. Check the number and try again.</>
+        <>That VAT number is invalid. Check the number and try again.</>,
       );
     } else if (error.message.includes("tax_id_cannot_be_validated")) {
       setFieldError(
         "VATNumber",
-        "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+        "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
       );
       setError(
         <>
@@ -194,11 +194,11 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           or contact
           <a href="mailto:customersuccess@canonical.com">customer success</a> if
           the problem persists.
-        </>
+        </>,
       );
     } else if (
       error.message.includes(
-        "We are unable to authenticate your payment method"
+        "We are unable to authenticate your payment method",
       )
     ) {
       setError(
@@ -207,11 +207,11 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           again. Contact{" "}
           <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
           problem persists.
-        </>
+        </>,
       );
     } else if (
       error.message.includes(
-        "missing one-off product listing for renewal product"
+        "missing one-off product listing for renewal product",
       )
     ) {
       setError(
@@ -219,7 +219,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           The chosen product cannot be renewed as it has been deprecated.
           Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
           to choose a substitute offering.
-        </>
+        </>,
       );
     } else {
       const knownErrorMessage = getErrorMessage({
@@ -238,7 +238,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
             details and try again. Contact{" "}
             <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
             problem persists.
-          </>
+          </>,
         );
       }
     }
@@ -281,7 +281,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
 
       const proSelectorKeysArray = Object.values(PRO_SELECTOR_KEYS);
       const distributorSelectorKeysArray = Object.values(
-        DISTRIBUTOR_SELECTOR_KEYS
+        DISTRIBUTOR_SELECTOR_KEYS,
       );
 
       proSelectorKeysArray.forEach((key) => {
@@ -313,11 +313,11 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       getName();
       formData.append(
         "email",
-        (userInfo?.customerInfo?.email || values.email) ?? ""
+        (userInfo?.customerInfo?.email || values.email) ?? "",
       );
       formData.append(
         "company",
-        (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
+        (userInfo?.accountInfo?.name || values?.organisationName) ?? "",
       );
       formData.append("street", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
@@ -328,7 +328,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       formData.append("store_name__c", "ua");
       formData.append(
         "canonicalUpdatesOptIn",
-        values.MarketingOptIn ? "yes" : "no"
+        values.MarketingOptIn ? "yes" : "no",
       );
 
       request.open("POST", "/marketo/submit");
@@ -342,11 +342,11 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
           if (product.marketplace == "canonical-cube") {
             if (product.name === "cue-linux-essentials-free") {
               location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
-                "CUE.01 Linux"
+                "CUE.01 Linux",
               )}&quantity=${quantity}`;
             } else {
               location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
-                product.name
+                product.name,
               )}&quantity=${quantity}`;
             }
           } else if (!window.loginSession) {
@@ -356,13 +356,13 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
               urlBase = "/pro/subscribe/blender";
             }
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
-              email
+              email,
             )}`;
           } else if (product.marketplace === "canonical-pro-channel") {
             const email = userInfo?.customerInfo?.email || values.email || "";
             const urlBase = "/pro/distributor";
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
-              email
+              email,
             )}`;
           } else {
             location.href = "/pro/dashboard";

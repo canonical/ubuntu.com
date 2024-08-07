@@ -25,7 +25,7 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
@@ -59,7 +59,7 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
@@ -100,7 +100,7 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;
@@ -143,7 +143,7 @@ describe("RenewalButton", () => {
         subscription={subscription}
         action={action}
         editing={editing}
-      ></RenewalButton>
+      ></RenewalButton>,
     );
 
     const renewButton = screen.getByRole("button") as HTMLInputElement;

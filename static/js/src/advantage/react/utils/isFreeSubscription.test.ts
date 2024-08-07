@@ -6,16 +6,16 @@ describe("isFreeSubscription", () => {
   it("can identify free subscriptions", () => {
     expect(
       isFreeSubscription(
-        userSubscriptionFactory.build({ type: UserSubscriptionType.Free })
-      )
+        userSubscriptionFactory.build({ type: UserSubscriptionType.Free }),
+      ),
     ).toBe(true);
   });
 
   it("can identify non-free subscriptions", () => {
     expect(
       isFreeSubscription(
-        userSubscriptionFactory.build({ type: UserSubscriptionType.Trial })
-      )
+        userSubscriptionFactory.build({ type: UserSubscriptionType.Trial }),
+      ),
     ).toBe(false);
   });
 });

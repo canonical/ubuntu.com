@@ -103,6 +103,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
+@import "pattern_modals";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -269,6 +270,11 @@ fieldset:last-child {
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
   border-bottom-width: 1px !important;
+}
+
+.p-fieldset-section {
+  border: none !important;
+  padding: 0 !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
@@ -845,6 +851,16 @@ td.p-accordion {
 }
 
 #newsletter-signup:target {
+  display: block;
+  z-index: 10;
+}
+
+#contact-success {
+  display: none;
+  position: absolute;
+}
+
+#contact-success:target {
   display: block;
   z-index: 10;
 }
@@ -1692,4 +1708,11 @@ ol.ordered-counter {
 
 .js-invoke-modal.p-button.is-dark {
   color: white !important;
+}
+
+legend {
+  &.is-required::before {
+    content: "* " !important;
+    position: relative !important;
+  }
 }

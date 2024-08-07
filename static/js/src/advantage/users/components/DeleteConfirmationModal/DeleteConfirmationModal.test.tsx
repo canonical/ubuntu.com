@@ -19,13 +19,13 @@ it("displays confirmation message correctly", () => {
       user={mockUser}
       onAfterDeleteSuccess={onAfterDeleteSuccess}
       handleClose={mockHandleClose}
-    />
+    />,
   );
 
   expect(
     getByTextContent(
-      "Are you sure you want to remove philip.p@ecorp.com from your organisation?"
-    )
+      "Are you sure you want to remove philip.p@ecorp.com from your organisation?",
+    ),
   ).toBeVisible();
 });
 
@@ -39,7 +39,7 @@ it("makes a correct call to requestDeleteUser", async () => {
       user={mockUser}
       onAfterDeleteSuccess={onAfterDeleteSuccess}
       handleClose={mockHandleClose}
-    />
+    />,
   );
 
   userEvent.click(screen.getByText("Yes, remove user"));
@@ -48,6 +48,6 @@ it("makes a correct call to requestDeleteUser", async () => {
     expect(requestDeleteUser).toHaveBeenCalledWith({
       accountId: mockAccountId,
       email: mockUser.email,
-    })
+    }),
   );
 });

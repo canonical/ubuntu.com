@@ -7,7 +7,7 @@ it("renders unchecked state correctly", () => {
   render(
     <FeatureSwitch isChecked={false} handleOnChange={jest.fn()}>
       ESM Infra
-    </FeatureSwitch>
+    </FeatureSwitch>,
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -22,7 +22,7 @@ it("renders checked state correctly", () => {
   render(
     <FeatureSwitch isChecked={true} handleOnChange={jest.fn()}>
       ESM Infra
-    </FeatureSwitch>
+    </FeatureSwitch>,
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -41,7 +41,7 @@ it("renders disabled variant correctly", () => {
       handleOnChange={jest.fn()}
     >
       ESM Infra
-    </FeatureSwitch>
+    </FeatureSwitch>,
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -57,7 +57,7 @@ it("calls handleOnChange on click", async () => {
   render(
     <FeatureSwitch isChecked={false} handleOnChange={mockFn}>
       ESM Infra
-    </FeatureSwitch>
+    </FeatureSwitch>,
   );
 
   const checkbox = screen.getByRole("checkbox", {

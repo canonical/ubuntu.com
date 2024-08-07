@@ -40,12 +40,12 @@ const AccountUsersContainer = ({
       typeof userInEditModeByEmail === "string"
         ? filteredUsers.find((user) => user.email === userInEditModeByEmail)
         : undefined,
-    [userInEditModeByEmail, filteredUsers]
+    [userInEditModeByEmail, filteredUsers],
   );
 
   useEffect(() => {
     const filteredUsers = users.filter((user) =>
-      user.email.includes(searchQuery)
+      user.email.includes(searchQuery),
     );
 
     setFilteredUsers(filteredUsers);
@@ -139,10 +139,8 @@ const AccountUsers = ({
       });
     });
 
-  const [
-    isDeleteConfirmationModalOpen,
-    setIsDeleteConfirmationModalOpen,
-  ] = useState(false);
+  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
+    useState(false);
 
   const handleOnAfterDeleteSuccess = () => {
     dismissEditMode();

@@ -20,7 +20,7 @@ export default function InitiateButton({ offer }: Prop) {
           setOffer(offer);
           localStorage.setItem(
             DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA,
-            JSON.stringify(offer)
+            JSON.stringify(offer),
           );
           location.href = "/pro/distributor/shop";
         }}

@@ -15,10 +15,10 @@ describe("OffersList", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      screen.getByText("You have no offers available.")
+      screen.getByText("You have no offers available."),
     ).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe("OffersList", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getAllByTestId("offer-card").length).toBe(1);
   });
@@ -35,12 +35,12 @@ describe("OffersList", () => {
   it("can display multiple offers", () => {
     queryClient.setQueryData(
       ["Offers"],
-      [OfferFactory.build({ id: "1" }), OfferFactory.build({ id: "2" })]
+      [OfferFactory.build({ id: "1" }), OfferFactory.build({ id: "2" })],
     );
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getAllByTestId("offer-card").length).toBe(2);
   });

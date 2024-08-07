@@ -42,7 +42,7 @@ describe("useUserSubscriptions", () => {
     queryClient.setQueryData(["userSubscriptions"], contracts);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions(),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(contracts);
@@ -55,7 +55,7 @@ describe("useUserSubscriptions", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectFreeSubscription }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(freeContract);
@@ -83,7 +83,7 @@ describe("useUserSubscriptions", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectStatusesSummary }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual({
@@ -117,7 +117,7 @@ describe("useUserSubscriptions", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectSubscriptionById("abc123") }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(subscriptions[1]);
@@ -139,7 +139,7 @@ describe("useUserSubscriptions", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectUASubscriptions }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual([
@@ -171,10 +171,10 @@ describe("useUserSubscriptions", () => {
       () =>
         useUserSubscriptions({
           select: selectAutoRenewableSubscriptionsByMarketplace(
-            UserSubscriptionMarketplace.CanonicalUA
+            UserSubscriptionMarketplace.CanonicalUA,
           ),
         }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual([subscriptions[0]]);

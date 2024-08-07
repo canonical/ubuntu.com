@@ -12,20 +12,16 @@ import {
 import SubscriptionCard from "./SubscriptionCard.tsx/SubscriptionCard";
 
 const AddSubscriptions = () => {
-  const {
-    productType,
-    setProductType,
-    subscriptionList,
-    setSubscriptionList,
-  } = useContext(FormContext);
+  const { productType, setProductType, subscriptionList, setSubscriptionList } =
+    useContext(FormContext);
 
   const handleProductTypeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_TYPE,
-      JSON.stringify(event.target.value as ProductTypes)
+      JSON.stringify(event.target.value as ProductTypes),
     );
   };
 
@@ -42,7 +38,7 @@ const AddSubscriptions = () => {
     setSubscriptionList([...subscriptionList, subscriptionItem]);
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
-      JSON.stringify([...subscriptionList, subscriptionItem])
+      JSON.stringify([...subscriptionList, subscriptionItem]),
     );
   };
   const subscriptionTypes = [

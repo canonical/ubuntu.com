@@ -55,19 +55,19 @@ const CredManage = () => {
     }
     changeFilterData(
       filterData.map((row: ActivationKey) =>
-        row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row }
-      )
+        row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row },
+      ),
     );
     changeTableData(
       tableData.map((row) =>
-        row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row }
-      )
+        row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row },
+      ),
     );
   };
 
   const switchTabOnArrowPress = (
     event: React.KeyboardEvent<HTMLButtonElement>,
-    currentIndex: number
+    currentIndex: number,
   ) => {
     currentIndex = activeTab;
     event.preventDefault();
@@ -92,13 +92,13 @@ const CredManage = () => {
 
   const handleCheckbox = (
     event: React.ChangeEvent<HTMLInputElement>,
-    keyValue: string
+    keyValue: string,
   ) => {
     if (event.target.checked == true) {
       setSelectedKeyIds(selectedKeyIds.concat(keyValue));
     } else {
       setSelectedKeyIds((selectedKeyIds) =>
-        selectedKeyIds.filter((id) => id != keyValue)
+        selectedKeyIds.filter((id) => id != keyValue),
       );
     }
   };
@@ -165,14 +165,14 @@ const CredManage = () => {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
           return keyIsUnused(keyItem["key"]);
-        })
+        }),
       );
     }
     if (activeTab == ActiveTab.ActiveKeys) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
           return !keyIsUnused(keyItem["key"]);
-        })
+        }),
       );
     }
   }, [activeTab]);
@@ -299,7 +299,7 @@ const CredManage = () => {
                         content: (
                           <CheckboxInput
                             onChange={(
-                              event: React.ChangeEvent<HTMLInputElement>
+                              event: React.ChangeEvent<HTMLInputElement>,
                             ) => {
                               handleCheckbox(event, keyitem["key"]);
                             }}

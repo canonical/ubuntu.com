@@ -30,7 +30,7 @@ describe("FreeTrial", () => {
         >
           <FreeTrial products={products} action={"purchase"} />
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     screen.getByText("Your free trial ends:");
     screen.getByText(
@@ -38,10 +38,10 @@ describe("FreeTrial", () => {
         add(new Date(), {
           months: 1,
         }),
-        "dd MMMM yyyy"
+        "dd MMMM yyyy",
       )} after which time you will be charged ${formatter.format(
-        taxes.total / 100
-      )}.`
+        taxes.total / 100,
+      )}.`,
     );
   });
 
@@ -57,7 +57,7 @@ describe("FreeTrial", () => {
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <FreeTrial products={products} action={"purchase"} />
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.queryByText("Your free trial ends:")).not.toBeInTheDocument();
   });

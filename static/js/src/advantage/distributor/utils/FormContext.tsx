@@ -84,50 +84,48 @@ export const FormProvider = ({
   children,
 }: FormProviderProps) => {
   const localSubscriptionList = localStorage.getItem(
-    DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST
+    DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
   );
   const localProductType = localStorage.getItem(
-    DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_TYPE
+    DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_TYPE,
   );
   const localDuration = localStorage.getItem(
-    DISTRIBUTOR_SELECTOR_KEYS.DURATION
+    DISTRIBUTOR_SELECTOR_KEYS.DURATION,
   );
   const localCurrency = localStorage.getItem(
-    DISTRIBUTOR_SELECTOR_KEYS.CURRENCY
+    DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
   );
   const localTechnicalUserContact = localStorage.getItem(
-    DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
+    DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
   );
   const localOffer = localStorage.getItem(DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA);
 
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
     localSubscriptionList
       ? JSON.parse(localSubscriptionList)
-      : initialSubscriptionList
+      : initialSubscriptionList,
   );
   const [productType, setProductType] = useState<ProductTypes>(
-    localProductType ? JSON.parse(localProductType) : initialType
+    localProductType ? JSON.parse(localProductType) : initialType,
   );
   const [duration, setDuration] = useState<Durations>(
-    localDuration ? JSON.parse(localDuration) : initialDuration
+    localDuration ? JSON.parse(localDuration) : initialDuration,
   );
-  const [
-    technicalUserContact,
-    setTechnicalUserContact,
-  ] = useState<TechnicalUserContact>(
-    localTechnicalUserContact
-      ? JSON.parse(localTechnicalUserContact)
-      : initialTechnicalUserContact
-  );
+  const [technicalUserContact, setTechnicalUserContact] =
+    useState<TechnicalUserContact>(
+      localTechnicalUserContact
+        ? JSON.parse(localTechnicalUserContact)
+        : initialTechnicalUserContact,
+    );
   const [currency, setCurrency] = useState<Currencies>(
-    localCurrency ? JSON.parse(localCurrency) : initialCurrency
+    localCurrency ? JSON.parse(localCurrency) : initialCurrency,
   );
   const [products, setProducts] = useState<ChannelProduct[] | null>(null);
   const [offer, setOffer] = useState<Offer | null>(
-    localOffer ? JSON.parse(localOffer) : null
+    localOffer ? JSON.parse(localOffer) : null,
   );
   const [channelProductList, setChannelProductList] = useState<ProductListings>(
-    initialChannelProductList
+    initialChannelProductList,
   );
 
   const updatedChannelProductList = useMemo(() => {
@@ -151,7 +149,7 @@ export const FormProvider = ({
       listing: any,
       nameWithVersion: string,
       nameWithoutVersion: string,
-      version: string
+      version: string,
     ) => {
       if (updatedChannelProductList) {
         updatedChannelProductList[nameWithoutVersion] = {
@@ -190,7 +188,7 @@ export const FormProvider = ({
               offerListing,
               offerListingNameWithVersion,
               nameWithoutVersion,
-              version
+              version,
             );
           }
         }
@@ -207,7 +205,7 @@ export const FormProvider = ({
                 listing,
                 listing.name,
                 nameWithoutVersion,
-                version
+                version,
               );
             }
           }
@@ -216,7 +214,7 @@ export const FormProvider = ({
             listing,
             listing.name,
             nameWithoutVersion,
-            version
+            version,
           );
         }
       });
@@ -229,7 +227,7 @@ export const FormProvider = ({
     setChannelProductList(updatedChannelProductList);
     localStorage.setItem(
       DISTRIBUTOR_SELECTOR_KEYS.PRODUCT_LISTING,
-      JSON.stringify(updatedChannelProductList)
+      JSON.stringify(updatedChannelProductList),
     );
   }, [updatedChannelProductList]);
 
@@ -238,15 +236,15 @@ export const FormProvider = ({
       getProductId(
         subscription.type as ProductTypes,
         subscription.support as Support,
-        subscription.sla as SLA
-      )
+        subscription.sla as SLA,
+      ),
     );
     const validproducts: string[] = productIds.map(
       (productId: ValidProductID) =>
-        `${productId}-${duration}y-channel-${currency}`
+        `${productId}-${duration}y-channel-${currency}`,
     );
     return validproducts.map(
-      (validproduct) => channelProductList[validproduct]
+      (validproduct) => channelProductList[validproduct],
     );
   }, [duration, currency, subscriptionList, channelProductList]);
 
@@ -263,7 +261,7 @@ export const FormProvider = ({
         setSubscriptionList(preSetItem as SubscriptionItem[]);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
-          JSON.stringify(preSetItem as SubscriptionItem[])
+          JSON.stringify(preSetItem as SubscriptionItem[]),
         );
       }
 
@@ -272,7 +270,7 @@ export const FormProvider = ({
         setCurrency(preSetCurrency as Currencies);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
-          JSON.stringify(preSetCurrency as Currencies)
+          JSON.stringify(preSetCurrency as Currencies),
         );
       }
 
@@ -281,7 +279,7 @@ export const FormProvider = ({
         preSetDration && setDuration(preSetDration as Durations);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.DURATION,
-          JSON.stringify(preSetDration as Durations)
+          JSON.stringify(preSetDration as Durations),
         );
       }
     }

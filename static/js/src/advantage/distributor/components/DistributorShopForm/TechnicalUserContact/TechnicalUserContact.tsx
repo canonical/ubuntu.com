@@ -4,9 +4,8 @@ import { FormContext } from "advantage/distributor/utils/FormContext";
 import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const TechnicalUserContact = () => {
-  const { technicalUserContact, setTechnicalUserContact } = useContext(
-    FormContext
-  );
+  const { technicalUserContact, setTechnicalUserContact } =
+    useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -29,7 +28,7 @@ const TechnicalUserContact = () => {
       JSON.stringify({
         ...technicalUserContact,
         [name]: captializeNameValue,
-      })
+      }),
     );
   };
 

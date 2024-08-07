@@ -38,7 +38,7 @@ const useCalculate = ({
             }),
             has_tax: !!VATNumber,
           }),
-        }
+        },
       );
 
       const res = await response.json();

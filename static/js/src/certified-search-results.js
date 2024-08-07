@@ -84,14 +84,14 @@ async function renderFilters(
   vendorLimit,
   releaseLimit,
   renderVendorFilters = true,
-  renderReleaseFilters = true
+  renderReleaseFilters = true,
 ) {
   const filters = await fetchFilters(
     categories,
     vendors,
     releases,
     vendorLimit,
-    releaseLimit
+    releaseLimit,
   );
   if (categories && categories.length > 0) {
     if (renderVendorFilters && filters.vendor_filters) {
@@ -104,7 +104,7 @@ async function renderFilters(
         filters.vendor_filters.data,
         filters.vendor_filters.total,
         showAllVendors,
-        showLessVendors
+        showLessVendors,
       );
     }
 
@@ -118,7 +118,7 @@ async function renderFilters(
         filters.release_filters.data,
         filters.release_filters.total,
         showAllReleases,
-        showLessReleases
+        showLessReleases,
       );
     }
   } else {
@@ -132,7 +132,7 @@ async function renderFilters(
         filters.vendor_filters.data,
         filters.vendor_filters.total,
         showAllVendors,
-        showLessVendors
+        showLessVendors,
       );
     }
 
@@ -146,7 +146,7 @@ async function renderFilters(
         filters.release_filters.data,
         filters.release_filters.total,
         showAllReleases,
-        showLessReleases
+        showLessReleases,
       );
     }
   }
@@ -196,7 +196,7 @@ async function fetchFilters(
   selectedVendors = [],
   selectedReleases = [],
   vendorLimit = filterLimit,
-  releaseLimit = filterLimit
+  releaseLimit = filterLimit,
 ) {
   let url = new URL(`${window.location.origin}/certified/filters.json`);
   if (categoriesList.length > 0) {
@@ -338,7 +338,7 @@ function toggleExpandFilters(e, element) {
         filterLimit,
         filterLimit,
         true,
-        false
+        false,
       );
     }
   } else if (name === "release") {
@@ -354,7 +354,7 @@ function toggleExpandFilters(e, element) {
         filterLimit,
         filterLimit,
         false,
-        true
+        true,
       );
     }
   }

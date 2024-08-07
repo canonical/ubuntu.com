@@ -21,7 +21,7 @@ it("displays user details in a correct format", () => {
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
-    />
+    />,
   );
 
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
@@ -40,7 +40,7 @@ it("doesn't display pagination when there is less than 11 users", () => {
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
-    />
+    />,
   );
 
   expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
@@ -58,7 +58,7 @@ it("paginates the results when there is 11 users or more", async () => {
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
-    />
+    />,
   );
 
   const emailsPage1 = screen.getAllByLabelText("email");
@@ -68,7 +68,7 @@ it("paginates the results when there is 11 users or more", async () => {
   });
 
   userEvent.click(
-    within(screen.getByRole("navigation")).getByRole("button", { name: "2" })
+    within(screen.getByRole("navigation")).getByRole("button", { name: "2" }),
   );
 
   await waitFor(() => {
@@ -92,11 +92,11 @@ it("goes to the last available page if there are no longer any results for curre
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
-    />
+    />,
   );
 
   userEvent.click(
-    within(screen.getByRole("navigation")).getByRole("button", { name: "2" })
+    within(screen.getByRole("navigation")).getByRole("button", { name: "2" }),
   );
 
   rerender(
@@ -107,7 +107,7 @@ it("goes to the last available page if there are no longer any results for curre
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
-    />
+    />,
   );
 
   expect(screen.queryByRole("navigation")).not.toBeInTheDocument();

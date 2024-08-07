@@ -39,7 +39,7 @@ const UserInfoForm = ({ setError }: Props) => {
   const queryClient = useQueryClient();
   const paymentMethodMutation = registerPaymentMethod();
   const [isEditing, setIsEditing] = useState(
-    !window.accountId || !initialValues.defaultPaymentMethod
+    !window.accountId || !initialValues.defaultPaymentMethod,
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
@@ -114,12 +114,12 @@ const UserInfoForm = ({ setError }: Props) => {
                   the details and try again. Contact{" "}
                   <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
                   the problem persists.
-                </>
+                </>,
               );
             }
           }
         },
-      }
+      },
     );
   };
 
@@ -413,7 +413,7 @@ const UserInfoForm = ({ setError }: Props) => {
                   setFieldValue("buyingFor", initialValues.buyingFor);
                   setFieldValue(
                     "organisationName",
-                    initialValues.organisationName
+                    initialValues.organisationName,
                   );
                   setFieldValue("name", initialValues.name);
                   setFieldValue("address", initialValues.address);

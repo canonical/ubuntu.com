@@ -17,6 +17,11 @@
       .p-modal__header {
         border-bottom: 1px solid $color-mid-light;
         margin-bottom: $spv--medium;
+
+        &::after {
+          // Remove the bottom border from the title.
+          display: none;
+        }
       }
 
       .p-modal__title {
@@ -30,6 +35,11 @@
 
         .p-modal__header {
           border-bottom: 0;
+
+          &::after {
+            // Remove the bottom border from the title.
+            display: none;
+          }
         }
       }
 

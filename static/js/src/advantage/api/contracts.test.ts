@@ -49,7 +49,7 @@ describe("contracts", () => {
     await putContractEntitlements(contract_id, [entitlement]).then(
       (response) => {
         expect(response).toStrictEqual({});
-      }
+      },
     );
   });
 });

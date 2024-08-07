@@ -75,21 +75,21 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
     expect(screen.getByText("3 x $500.00")).toBeInTheDocument();
     expect(screen.getByTestId("start-date")).toHaveTextContent(
-      format(new Date(), DATE_FORMAT)
+      format(new Date(), DATE_FORMAT),
     );
     expect(screen.getByTestId("end-date")).toHaveTextContent(
       format(
         add(new Date(), {
           years: 1,
         }),
-        DATE_FORMAT
-      )
+        DATE_FORMAT,
+      ),
     );
 
     expect(screen.getByTestId("subtotal")).toHaveTextContent("$1,500.00");
@@ -128,7 +128,7 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("tax")).toHaveTextContent("$9.99");
@@ -169,12 +169,12 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(screen.getByTestId("for-this-period")).toHaveTextContent("$200.00");
     expect(screen.getByTestId("end-date")).toHaveTextContent(
-      "03 February 2042"
+      "03 February 2042",
     );
   });
 
@@ -212,7 +212,7 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     screen.getByText("Purchase error");
@@ -231,7 +231,7 @@ describe("Summary", () => {
         isError: true,
         isSuccess: false,
         error: new Error(
-          "cannot make a purchase while subscription is in trial"
+          "cannot make a purchase while subscription is in trial",
         ),
         isFetching: false,
       };
@@ -255,7 +255,7 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const message = (
@@ -303,7 +303,7 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const message = (
@@ -351,7 +351,7 @@ describe("Summary", () => {
             />
           </Elements>
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const message = <>Sorry, there was an unknown error with your purchase.</>;
