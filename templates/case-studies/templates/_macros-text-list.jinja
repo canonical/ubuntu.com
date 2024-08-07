@@ -7,7 +7,9 @@
     <div class="row">
       <div class="col-start-large-4 col-9">
         <hr class="p-rule" />
-        <h2 class="p-strip is-shallow">{{ title }}</h2>
+        <div class="p-section--shallow">
+          <h2>{{ title }}</h2>
+        </div>
         <ul class="p-list--divided">
           {% for item in list_items %}<li class="p-list__item has-bullet">{{ item }}</li>{% endfor %}
         </ul>
