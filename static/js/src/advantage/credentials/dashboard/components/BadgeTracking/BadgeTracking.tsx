@@ -1,9 +1,13 @@
 import { useState, useMemo, useEffect } from "react";
-import { Pagination, Spinner, Notification } from "@canonical/react-components";
+import {
+  Pagination,
+  Spinner,
+  Notification,
+  ModularTable,
+} from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getIssuedBadgesCredly } from "../../api/queryFns";
 import { CredlyMetadata, CredlyBadge } from "../../utils/types";
-import { ModularTable } from "@canonical/react-components";
 import { upperCaseFirstChar } from "../../utils/common";
 
 type APIResponse = {
@@ -202,17 +206,6 @@ const BadgeTracking = () => {
         />
       )}
       <ModularTable columns={columns} data={currentRows} sortable />
-      {/* <MainTable
-        sortable
-        onUpdateSort={(sortKey) => console.log(sortKey)}
-        headers={[
-          { content: "Badge Name", sortKey: "badgeName" },
-          { content: "Name", sortKey: "name" },
-          { content: "Email", sortKey: "email" },
-        ]}
-        paginate={10}
-        rows={currentRows}
-      /> */}
     </>
   );
 };

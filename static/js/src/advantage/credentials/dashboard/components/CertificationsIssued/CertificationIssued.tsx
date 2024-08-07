@@ -17,8 +17,6 @@ const CertificationIssued = () => {
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
   const filter = "state::accepted";
-  // const [sort, setSort] = useState(null);
-  const sort = null;
 
   const onSuccess = (newData: APIResponse) => {
     if (newData && newData.data) {
@@ -30,15 +28,15 @@ const CertificationIssued = () => {
   };
 
   const { isLoading, isError, data, isFetching } = useQuery<APIResponse>({
-    queryKey: ["issuedBadges", filter, sort, page],
-    queryFn: () => getIssuedBadgesCredly(filter, sort, page, onSuccess),
+    queryKey: ["issuedBadges", filter, null, page],
+    queryFn: () => getIssuedBadgesCredly(filter, null, page, onSuccess),
   });
 
   useEffect(() => {
     const queryData = queryClient.getQueryData<APIResponse>([
       "issuedBadges",
       filter,
-      sort,
+      null,
       page,
     ]);
 
@@ -48,7 +46,7 @@ const CertificationIssued = () => {
         [page]: queryData,
       }));
     }
-  }, [filter, sort, page]);
+  }, [filter, page]);
 
   const columns: any = useMemo(
     () => [
@@ -186,17 +184,6 @@ const CertificationIssued = () => {
       {flatData && flatData?.length > 0 && (
         <ModularTable columns={columns} data={currentRows} sortable />
       )}
-      {/* <MainTable
-        sortable
-        onUpdateSort={(sortKey) => console.log(sortKey)}
-        headers={[
-          { content: "Badge Name", sortKey: "badgeName" },
-          { content: "Name", sortKey: "name" },
-          { content: "Email", sortKey: "email" },
-        ]}
-        paginate={10}
-        rows={currentRows}
-      /> */}
     </>
   );
 };
