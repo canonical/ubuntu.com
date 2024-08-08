@@ -181,8 +181,9 @@ def credentials_group():
             ):
                 return func(*args, **kwargs)
 
-            message = {"error": "unauthorized"}
-            return flask.jsonify(message), 403
+            return flask.render_template(
+                "account/forbidden.html", reason="is_not_admin"
+            )
 
         return decorated_function
 

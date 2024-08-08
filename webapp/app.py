@@ -72,6 +72,9 @@ from webapp.shop.cred.views import (
     cred_beta_activation,
     cred_cancel_exam,
     cred_dashboard,
+    cred_dashboard_upcoming_exams,
+    cred_dashboard_exam_results,
+    cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
     cred_redeem_code,
@@ -90,6 +93,9 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
+    get_issued_badges_bulk,
+    get_test_taker_stats,
+    issue_credly_badge,
     get_my_issued_badges,
     get_webhook_response,
     issue_badges,
@@ -953,13 +959,51 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
+    "/credentials/dashboard",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
 )
-
 app.add_url_rule(
-    "/credentials/get_issued_badges",
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
+)
+app.add_url_rule(
+    "/credentials/api/upcoming-exams",
+    view_func=cred_dashboard_upcoming_exams,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/exam-results",
+    view_func=cred_dashboard_exam_results,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/system-statuses",
+    view_func=cred_dashboard_system_statuses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges-bulk",
+    view_func=get_issued_badges_bulk,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/test-taker-stats",
+    view_func=get_test_taker_stats,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issue-credly-badge",
+    view_func=issue_credly_badge,
+    methods=["POST"],
 )
 
 app.add_url_rule(

@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
+from concurrent.futures import ThreadPoolExecutor
 
 from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
@@ -1094,11 +1095,63 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@shop_decorator(area="cred", permission="user", response=json)
-@canonical_staff()
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
 def get_issued_badges(credly_api, **kwargs):
-    badges = credly_api.get_issued_badges()
-    return flask.jsonify(badges["data"])
+    filter = flask.request.args.get("filter", None)
+    sort = flask.request.args.get("sort", None)
+    page = flask.request.args.get("page", None)
+    badges = credly_api.get_issued_badges(filter, sort, page)
+    return flask.jsonify(badges)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def get_issued_badges_bulk(credly_api, **kwargs):
+    filter = flask.request.args.get("filter", None)
+    badges = credly_api.get_issued_badges_bulk(filter)
+    return flask.jsonify(badges)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def get_test_taker_stats(trueability_api, **kwargs):
+    def get_addresses(assessments: list):
+        addresses = []
+        for assessment in assessments:
+            addresses.append(assessment.get("address", None))
+        return addresses
+
+    def fetch_assessments(page: int):
+        print(page)
+        result = trueability_api.get_assessments(page=page)
+        return get_addresses(result["assessments"])
+
+    addresses = []
+    assessments = trueability_api.get_assessments()
+    meta = assessments["meta"]
+    total_pages = meta.get("total_pages", 0)
+    pages = range(2, total_pages + 1)
+    addresses.extend(get_addresses(assessments["assessments"]))
+    with ThreadPoolExecutor(max_workers=5) as thread_pool:
+        for data in thread_pool.map(
+            fetch_assessments,
+            [page for page in pages],
+        ):
+            addresses.extend(data)
+
+    return flask.jsonify(addresses)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def issue_credly_badge(credly_api, **kwargs):
+    badge_data = flask.request.json
+    try:
+        response = credly_api.issue_new_badge(badge_data)
+        return flask.jsonify(response)
+    except Exception as error:
+        return flask.jsonify({"error": error}), 400
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -1192,3 +1245,58 @@ def cred_dashboard(trueability_api, **_):
         "credentials/dashboard.html",
         latest_reservations=latest_reservations["assessment_reservations"],
     )
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def cred_dashboard_upcoming_exams(trueability_api, **_):
+    per_page = 50
+    page = int(flask.request.args.get("page", 1)) - 1
+    first_reservations = trueability_api.get_assessment_reservations(
+        per_page=per_page
+    )
+    last_page = first_reservations["meta"]["total_pages"]
+    latest_reservations = trueability_api.get_assessment_reservations(
+        page=last_page - page, per_page=per_page
+    )
+    return flask.jsonify(latest_reservations)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def cred_dashboard_exam_results(trueability_api, **_):
+    try:
+        per_page = 50
+        page = int(flask.request.args.get("page", 1)) - 1
+        exam_state = flask.request.args.get("state", None)
+        ability_screen_id = flask.request.args.get("ability_screen_id[]", None)
+        first_results = trueability_api.get_results(
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
+        )
+        last_page = first_results["meta"]["total_pages"]
+        latest_results = trueability_api.get_results(
+            page=last_page - page,
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
+        )
+        return flask.jsonify(latest_results)
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException()
+        return flask.jsonify({"error": "Error fetching exam results"}), 500
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
+    ta_status = trueability_api.get_system_status()
+    contracts_status = {}
+    try:
+        ua_contracts_api.get_product_listings("canonical-cube")
+        contracts_status = {"error": False}
+    except Exception:
+        contracts_status = {"error": True}
+    statuses = {"ta_status": ta_status, "contracts_status": contracts_status}
+    return flask.jsonify(statuses)
