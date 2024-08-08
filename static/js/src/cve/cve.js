@@ -14,15 +14,14 @@ const vulnerableStatuses = ["pending", "needed", "deferred"];
 const releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
 const applyFiltersButton = document.querySelector("#apply-filters");
 const packageInput = document.querySelector("#affectedPackages");
-const priorityCheckboxes = priorityFilter.querySelectorAll(
-  ".p-checkbox__input"
-);
+const priorityCheckboxes =
+  priorityFilter.querySelectorAll(".p-checkbox__input");
 const statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
 const unmaintainedReleasesLink = document.querySelector(
-  ".js-show-unmaintained-releases"
+  ".js-show-unmaintained-releases",
 );
 const unmaintainedReleasesContainer = document.querySelector(
-  ".js-unmaintained-releases"
+  ".js-unmaintained-releases",
 );
 const showPackagesLinks = document.querySelectorAll(".js-show-packages");
 const hidePackagesLinks = document.querySelectorAll(".js-hide-packages");
@@ -31,15 +30,15 @@ const detailedTables = document.querySelectorAll(".detailed-table");
 const cveDescs = document.querySelectorAll(".cve-summary");
 // eslint-disable-next-line no-undef
 const maintainedReleases = Object.values(maintainedReleasesObj).map(
-  (release) => release.codename
+  (release) => release.codename,
 );
 // eslint-disable-next-line no-undef
 const ltsReleases = Object.values(ltsReleasesObj).map(
-  (release) => release.codename
+  (release) => release.codename,
 );
 // eslint-disable-next-line no-undef
 const unmaintainedReleases = Object.values(unmaintainedReleasesObj).map(
-  (release) => release.codename
+  (release) => release.codename,
 );
 
 function handleSearchInput() {
@@ -70,7 +69,7 @@ handlePackageInput();
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
   releaseCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {      
+    checkbox.addEventListener("change", function (event) {
       if (event.target.checked) {
         addParam(releaseFilter.name, event.target.value);
       } else {
@@ -116,7 +115,7 @@ function removeParam(param, value) {
   } else {
     if (maintainedReleases.includes(value)) {
       const maintainedCheckbox = document.querySelector(
-        "input[type='checkbox'][value='maintained']"
+        "input[type='checkbox'][value='maintained']",
       );
       maintainedCheckbox.checked = false;
     }
@@ -151,7 +150,7 @@ function handleFilterPersist() {
 
     if (includesFilterSubset(params, maintainedReleases)) {
       let maintainedCheckbox = releaseFilter.querySelector(
-        "input[value='maintained']"
+        "input[value='maintained']",
       );
       maintainedCheckbox.checked = true;
     }
@@ -233,7 +232,7 @@ function addParam(param, value) {
 function getCheckboxFromRelease(release) {
   const releaseCheckboxesArray = Array.from(releaseCheckboxes);
   const checkbox = releaseCheckboxesArray.find(
-    (checkbox) => checkbox.value === release
+    (checkbox) => checkbox.value === release,
   );
 
   return checkbox;
