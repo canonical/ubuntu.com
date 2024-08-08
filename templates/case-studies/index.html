@@ -3,7 +3,17 @@
 {% block title %}Case Studies{% endblock %}
 
 {% block content %}
-
+  <!--This index page will be using macros to build an example case study -->
+  <!-- Hero section-->
+  {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
+  {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
+                        subtitle="Hero description",
+                        logo="https://assets.ubuntu.com/v1/5b46609e-layer1.png",
+                        logo_alt="ESM logo",
+                        logo_width="107",
+                        logo_height="39")
+  }}
+  
   <!-- Text + list section -->
   {% import "case-studies/templates/_macros-text-list.jinja" as text_list_template %}
   {{ text_list_template.text_list(title="About the European Space Agency (ESA)",
@@ -16,13 +26,6 @@
 
   <!-- Highlights section -->
   {% import "case-studies/templates/_macros-highlights.jinja" as highlights_template %}
-  {{ highlights_template.highlights(list_items=[
-    "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
-    "Timely updates and 24/7 monitoring of missioncritical equipment.",
-    "ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.",
-    ]) 
-  }}
-
   {{ highlights_template.highlights(list_items=[
     "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
     "Timely updates and 24/7 monitoring of missioncritical equipment.",
@@ -41,6 +44,4 @@
                                      The systems Canonical deployed and now manage for ESA mean that ESOC engineering teams can quickly and centrally manage and deploy mission-critical infrastructure and software, with more security, reliability, and control, and with less downtime and reduced risk of system failures."
                       )
   }}
-
-  
 {% endblock %}
