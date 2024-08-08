@@ -276,6 +276,19 @@ production:
           secretKeyRef:
             key: api_secret
             name: marketo
+        
+        - name: CREDLY_URL
+          value: https://api.credly.com/v1
+
+        - name: CREDLY_TOKEN
+          secretKeyRef:
+            key: token
+            name: credly
+
+        - name: CREDLY_ORGANIZATION_ID
+          secretKeyRef:
+            key: organization
+            name: credly
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
