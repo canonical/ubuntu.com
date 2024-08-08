@@ -30,7 +30,6 @@ const BadgeIssueMenu = (props: Props) => {
     }),
   );
   const [loading, setLoading] = useState(false);
-  // const [notificationState, setNotificationState] = useState<undefined | 'loading' | 'success' | 'failure'>(undefined);
 
   const { data } = useQuery<{
     data: CredlyBadge[];

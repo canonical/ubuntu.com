@@ -81,8 +81,6 @@ const ExamResults = () => {
     }
   }, [page]);
 
-  // const handleIssueBadge = async (examId: number) => {};
-
   const columns: any = useMemo(
     () => [
       {
@@ -295,14 +293,6 @@ const ExamResults = () => {
                   color: passed ? "#fff" : "",
                 },
               };
-              // return {
-              //   style: {
-              //     backgroundColor:
-              //       row.original.score < row.original.subRows[0].score
-              //         ? "rgba(255, 0, 0, 0.1)"
-              //         : "rgba(0, 255, 0, 0.1)",
-              //   },
-              // };
             }}
           />
         </>
