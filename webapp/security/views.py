@@ -2,7 +2,6 @@
 import re
 from datetime import datetime
 from math import ceil, floor
-from collections import Counter
 
 # Packages
 import flask
@@ -326,7 +325,7 @@ def cve_index():
         statuses=statuses,
         order=order,
     )
-    
+
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
 
@@ -429,8 +428,7 @@ def cve_index():
     }
 
     for cve in high_priority_cves:
-        cve["summarized_status"] = {}
-        get_summarized_status(
+        cve["summarized_status"] = get_summarized_status(
             cve,
             ignored_low_indicators,
             vulnerable_indicators,
@@ -439,8 +437,7 @@ def cve_index():
         )
 
     for cve in cves:
-        cve["summarized_status"] = {}
-        get_summarized_status(
+        cve["summarized_status"] = get_summarized_status(
             cve,
             ignored_low_indicators,
             vulnerable_indicators,
