@@ -64,9 +64,9 @@ def get_summarized_status(
 
     if count == 1:
         if key_with_non_zero_value == "ignored-high":
-            cve["summarized_status"] = friendly_names["ignored"]
+            return friendly_names["ignored"]
         else:
-            cve["summarized_status"] = friendly_names[key_with_non_zero_value]
+            return friendly_names[key_with_non_zero_value]
     else:
         """
         Calculate the number of cases that are “Fixable”, which is the total
@@ -81,24 +81,22 @@ def get_summarized_status(
         )
 
         if total_fixable and status_count["released"] == total_fixable:
-            cve["summarized_status"] = friendly_names["released"]
+            return friendly_names["released"]
         elif total_fixable and status_count["vulnerable"] == total_fixable:
-            cve["summarized_status"] = friendly_names["vulnerable"]
+            return friendly_names["vulnerable"]
         elif status_count["released"] > 0:
-            cve["summarized_status"] = {
+            return {
                 "name": "Some fixed",
                 "fixed_count": status_count["released"],
                 "fixable_count": total_fixable,
             }
         elif status_count["vulnerable"] > 0:
-            cve["summarized_status"] = friendly_names["vulnerable"]
+            return friendly_names["vulnerable"]
         elif status_count["needs-triage"] > 0:
-            cve["summarized_status"] = friendly_names["needs-triage"]
+            return friendly_names["needs-triage"]
         elif status_count["ignored-high"] > 0:
-            cve["summarized_status"] = friendly_names["ignored"]
+            return friendly_names["ignored"]
         elif status_count["not-affected"] > 0:
-            cve["summarized_status"] = friendly_names["not-affected"]
+            return friendly_names["not-affected"]
         elif status_count["DNE"] > 0:
-            cve["summarized_status"] = friendly_names["DNE"]
-
-    return cve["summarized_status"]
+            return friendly_names["DNE"]
