@@ -20,9 +20,7 @@ from webapp.certified.helpers import get_download_url
 
 session = Session()
 talisker.requests.configure(session)
-api = CertificationAPI(
-    base_url="https://certification.canonical.com/api/v2", session=session
-)
+api = CertificationAPI(base_url="http://localhost:8081/api/v2", session=session)
 partners_api = PartnersAPI(session=session)
 
 
@@ -36,6 +34,13 @@ def certified_routes(app):
     """
 
     app.add_url_rule("/certified", view_func=certified_home)
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>", view_func=certified_platform_details
+    )
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>/<release>",
+        view_func=certified_platform_details_by_release,
+    )
     app.add_url_rule(
         "/certified/<canonical_id>",
         view_func=certified_model_details,
@@ -76,9 +81,7 @@ def certified_routes(app):
         "/certified/why-certify",
         view_func=certified_why,
     )
-    app.add_url_rule(
-        "/certified/filters.json", view_func=get_vendors_releases_filters
-    )
+    app.add_url_rule("/certified/filters.json", view_func=get_vendors_releases_filters)
 
 
 def _parse_query_params(all_releases, all_vendors):
@@ -108,9 +111,7 @@ def _parse_query_params(all_releases, all_vendors):
                 if item in category_params:
                     continue
                 if item == category:
-                    new_query_params["category"] = category_params.append(
-                        category
-                    )
+                    new_query_params["category"] = category_params.append(category)
         new_query_params["category"] = category_params
 
     if request.args.getlist("vendor"):
@@ -139,15 +140,58 @@ def _parse_query_params(all_releases, all_vendors):
         new_query_params["vendors_limit"] = [request.args.get("vendors_limit")]
 
     if request.args.get("releases_limit"):
-        new_query_params["releases_limit"] = [
-            request.args.get("releases_limit")
-        ]
+        new_query_params["releases_limit"] = [request.args.get("releases_limit")]
 
     if new_query_params == request.args.to_dict(flat=False):
         # No parsing was done
         return None
     else:
         return new_query_params
+
+
+def certified_platform_details(platform_id):
+    platform = api.certified_platform_details(platform_id)
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+    print(releases)
+    return render_template(
+        "certified/platforms/platform-details.html",
+        platform=platform,
+        releases=releases,
+        selected_release=None,
+    )
+
+
+def certified_platform_details_by_release(platform_id, release):
+    platform = api.certified_platform_details(platform_id)
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+
+    if release not in releases:
+        return render_template(
+            "certified/platforms/platform-details.html",
+            platform=platform,
+            releases=releases,
+            selected_release=None,
+        )
+
+    platform["certificates"] = {
+        canonical_id: certificate
+        for canonical_id, certificate in platform["certificates"].items()
+        if release in certificate["releases"]
+    }
+    return render_template(
+        "certified/platforms/platform-details.html",
+        platform=platform,
+        releases=releases,
+        selected_release=release,
+    )
 
 
 def get_vendors_releases_filters():
@@ -302,31 +346,19 @@ def get_filters(request_args=None, json: bool = False):
                 if version not in release_filters and version != "18.04":
                     release_filters.append(version)
 
-        if (
-            int(release["laptops"]) > 0
-            and release["release"] not in laptop_releases
-        ):
+        if int(release["laptops"]) > 0 and release["release"] not in laptop_releases:
             laptop_releases.append(release["release"])
 
-        if (
-            int(release["desktops"]) > 0
-            and release["release"] not in desktop_releases
-        ):
+        if int(release["desktops"]) > 0 and release["release"] not in desktop_releases:
             desktop_releases.append(release["release"])
 
-        if (
-            int(release["smart_core"]) > 0
-            and release["release"] not in iot_releases
-        ):
+        if int(release["smart_core"]) > 0 and release["release"] not in iot_releases:
             iot_releases.append(release["release"])
 
         if int(release["soc"]) > 0 and release["release"] not in soc_releases:
             soc_releases.append(release["release"])
 
-        if (
-            int(release["servers"]) > 0
-            and release["release"] not in server_releases
-        ):
+        if int(release["servers"]) > 0 and release["release"] not in server_releases:
             server_releases.append(release["release"])
 
     for vendor in certified_makes:
@@ -446,11 +478,7 @@ def certified_hardware_details(canonical_id, release):
 
     # Release section
     release_details = next(
-        (
-            detail
-            for detail in model_releases
-            if detail["certified_release"] == release
-        ),
+        (detail for detail in model_releases if detail["certified_release"] == release),
         None,
     )
     if not release_details:
@@ -494,16 +522,14 @@ def certified_hardware_details(canonical_id, release):
 
 
 def certified_model_details(canonical_id):
-    model_releases = api.certified_configuration_details(
-        canonical_id=canonical_id
-    )["results"]
+    model_releases = api.certified_configuration_details(canonical_id=canonical_id)[
+        "results"
+    ]
 
     if not model_releases:
         abort(404)
 
-    component_summaries = api.component_summaries(canonical_id=canonical_id)[
-        "results"
-    ]
+    component_summaries = api.component_summaries(canonical_id=canonical_id)["results"]
 
     release_details = {"components": {}, "releases": []}
     has_enabled_releases = False
@@ -531,8 +557,7 @@ def certified_model_details(canonical_id):
 
         for device_category, devices in model_release.items():
             if (
-                device_category
-                in ["video", "processor", "network", "wireless"]
+                device_category in ["video", "processor", "network", "wireless"]
                 and devices
             ):
                 device_category = device_category.capitalize()
@@ -597,10 +622,7 @@ def certified_home():
     if new_certified_params:
         return redirect(url_for(request.endpoint, **new_certified_params))
 
-    if (
-        "category" in request.args
-        and len(request.args.getlist("category")) == 1
-    ):
+    if "category" in request.args and len(request.args.getlist("category")) == 1:
         parameters = request.args.to_dict(flat=False)
         parameters.pop("category")
         new_params = ""
@@ -635,9 +657,7 @@ def certified_home():
             # Put back Ubuntu Core, as required by API endpoint
             selected_categories.append("Ubuntu Core")
 
-        categories = (
-            ",".join(selected_categories) if selected_categories else None
-        )
+        categories = ",".join(selected_categories) if selected_categories else None
         if categories and "All" in categories:
             categories = None
         releases = (
@@ -646,9 +666,7 @@ def certified_home():
             else None
         )
         vendors = (
-            request.args.getlist("vendor")
-            if request.args.getlist("vendor")
-            else None
+            request.args.getlist("vendor") if request.args.getlist("vendor") else None
         )
 
         models_response = api.certified_configurations(
@@ -718,40 +736,28 @@ def create_category_views(category, template_path):
         return redirect(url)
 
     if category == "Desktop":
-        certified_releases = api.certified_releases(
-            limit="0", desktops__gte=1
-        )["results"]
-        certified_makes = api.certified_vendors(limit="0", desktops__gte=1)[
+        certified_releases = api.certified_releases(limit="0", desktops__gte=1)[
             "results"
         ]
+        certified_makes = api.certified_vendors(limit="0", desktops__gte=1)["results"]
     elif category == "Laptop":
         certified_releases = api.certified_releases(limit="0", laptops__gte=1)[
             "results"
         ]
-        certified_makes = api.certified_vendors(limit="0", laptops__gte=1)[
-            "results"
-        ]
+        certified_makes = api.certified_vendors(limit="0", laptops__gte=1)["results"]
     elif category == "Server SoC":
-        certified_releases = api.certified_releases(limit="0", soc__gte=1)[
-            "results"
-        ]
-        certified_makes = api.certified_vendors(limit="0", soc__gte=1)[
-            "results"
-        ]
+        certified_releases = api.certified_releases(limit="0", soc__gte=1)["results"]
+        certified_makes = api.certified_vendors(limit="0", soc__gte=1)["results"]
     elif category == "Ubuntu Core":
-        certified_releases = api.certified_releases(
-            limit="0", smart_core__gte=1
-        )["results"]
-        certified_makes = api.certified_vendors(limit="0", smart_core__gte=1)[
+        certified_releases = api.certified_releases(limit="0", smart_core__gte=1)[
             "results"
         ]
+        certified_makes = api.certified_vendors(limit="0", smart_core__gte=1)["results"]
     elif category == "Server":
         certified_releases = api.certified_releases(limit="0", servers__gte=1)[
             "results"
         ]
-        certified_makes = api.certified_vendors(limit="0", servers__gte=1)[
-            "results"
-        ]
+        certified_makes = api.certified_vendors(limit="0", servers__gte=1)["results"]
     else:
         certified_releases = api.certified_releases(limit="0")["results"]
         certified_makes = api.certified_vendors(limit="0")["results"]
@@ -798,11 +804,7 @@ def create_category_views(category, template_path):
         if request.args.getlist("release")
         else None
     )
-    vendors = (
-        request.args.getlist("vendor")
-        if request.args.getlist("vendor")
-        else None
-    )
+    vendors = request.args.getlist("vendor") if request.args.getlist("vendor") else None
 
     models_response = api.certified_configurations(
         category__in=category,
