@@ -1,0 +1,17 @@
+# Params
+# image_url: URL of image (required)
+# image_alt: Image alt text
+# caption: Caption for image
+
+{%- macro image(image_url, image_alt, caption) -%}
+  <section class="p-strip">
+    <div class="row">
+      <div class="col u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
+        <img src={{ image_url }} alt="{{ image_alt }}"/>
+      </div>
+      <div class="col-start-large-4 col-9">
+        {{ caption }}
+      </div>
+    </div>
+  </section>
+{%- endmacro -%}
