@@ -11,6 +11,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
 )
 from concurrent.futures import ThreadPoolExecutor
+from dateutil.parser import parse
 
 from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
@@ -83,9 +84,19 @@ def confidentiality_agreement_webhook():
 
 
 @shop_decorator(area="cred", response="html")
-def cred_home(ua_contracts_api, **_):
+def cred_home(
+    show_cred_maintenance_banner,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
     return flask.render_template(
         "credentials/index.html",
+        show_cred_maintenance_banner=show_cred_maintenance_banner,
+        cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
@@ -219,7 +230,14 @@ def cred_sign_up(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_schedule(ua_contracts_api, trueability_api, **_):
+def cred_schedule(
+    ua_contracts_api,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    trueability_api,
+    **_,
+):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
@@ -262,6 +280,33 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 f"Start time should be at least {time_delay}"
                 + " from now or later."
             )
+            return flask.render_template(
+                "/credentials/schedule.html",
+                **template_data,
+                error=error,
+            )
+
+        cred_maintenance_start = (
+            parse(cred_maintenance_start) if cred_maintenance_start else None
+        )
+        cred_maintenance_end = (
+            parse(cred_maintenance_end) if cred_maintenance_end else None
+        )
+        if (
+            cred_maintenance_start
+            and cred_maintenance_end
+            and (cred_maintenance_start <= starts_at < cred_maintenance_end)
+        ):
+            maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
+            maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
+            error = [
+                "Scheduled time should be outside of the",
+                "maintenance window. Please schedule the exam before",
+                f"{maintenance_start_tz.strftime('%m-%d-%Y %I:%M %p')}",
+                "or after",
+                f"{maintenance_end_tz.strftime('%m-%d-%Y %I:%M %p')}",
+            ]
+            error = " ".join(error)
             return flask.render_template(
                 "/credentials/schedule.html",
                 **template_data,
@@ -407,6 +452,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         max_date=max_date,
         error=error,
         time_delay=time_delay,
+        cred_is_in_maintenance=cred_is_in_maintenance,
     )
 
 

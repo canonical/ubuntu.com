@@ -61,6 +61,7 @@ SERVICES = {
 MAINTENANCE_URLS = [
     "/pro/subscribe",
     "/pro/maintenance-check",
+    "/credentials/shop",
 ]
 
 
@@ -86,9 +87,15 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             # shop under maintenance
             maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+            cred_maintenance = strtobool(
+                os.getenv("CRED_MAINTENANCE", "False")
+            )
             is_in_timeframe = False
+            _is_in_timeframe = False
             store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
             store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
+            cred_maintenance_start = os.getenv("CRED_MAINTENANCE_START")
+            cred_maintenance_end = os.getenv("CRED_MAINTENANCE_END")
 
             if store_maintenance_start and store_maintenance_end:
                 maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
@@ -98,10 +105,29 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     maintenance_start <= time_now < maintenance_end
                 )
 
+            if cred_maintenance_start and cred_maintenance_end:
+                _maintenance_start = parse(os.getenv("CRED_MAINTENANCE_START"))
+                _maintenance_end = parse(os.getenv("CRED_MAINTENANCE_END"))
+                _time_now = datetime.now(pytz.utc)
+                _is_in_timeframe = (
+                    _maintenance_start <= _time_now < _maintenance_end
+                )
+
             is_in_maintenance = maintenance and is_in_timeframe
+            cred_is_in_maintenance = cred_maintenance and _is_in_timeframe
 
             if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
+
+            if (
+                flask.request.path in MAINTENANCE_URLS
+                and cred_is_in_maintenance
+            ):
+                return flask.render_template(
+                    "advantage/maintenance.html",
+                    description="We're updating the Credentials store",
+                    title="Credentials Maintenance",
+                )
 
             user_token = flask.session.get("authentication_token")
 
@@ -143,6 +169,10 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 credly_api=get_credly_api_instance(area, credly_session),
                 is_in_maintenance=is_in_maintenance,
                 is_community_member=is_community_member,
+                show_cred_maintenance_banner=bool(cred_maintenance),
+                cred_is_in_maintenance=cred_is_in_maintenance,
+                cred_maintenance_start=cred_maintenance_start,
+                cred_maintenance_end=cred_maintenance_end,
                 *args,
                 **kwargs,
             )
