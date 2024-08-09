@@ -7,15 +7,15 @@ from math import ceil, floor
 import flask
 import dateutil
 import talisker.requests
-import bs4 as bs
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from mistune import Markdown
 from sortedcontainers import SortedDict
 
 # Local
-from webapp.context import api_session
 from webapp.security.api import SecurityAPI
+from webapp.security.helpers import get_summarized_status
+
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -293,23 +293,25 @@ def cve_index():
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
-    - order-by - "oldest" or "newest"
+    - order-by - "descending" (default) or "ascending"
     - query - search query for the description field
     - priority
     - limit - default 20
     - offset - default 0
     """
-    # Query parameters
+
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority", default="", type=str)
     package = flask.request.args.get("package", default="", type=str)
-    limit = flask.request.args.get("limit", default=20, type=int)
+    limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
+    order = flask.request.args.get("order", default="", type=str)
+    detailed = flask.request.args.get("detailed", default="", type=str)
 
-    # get cves and total results
+    # All CVEs
     cves_response = security_api.get_cves(
         query=query,
         priority=priority,
@@ -319,29 +321,54 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        order=order,
     )
 
     cves = cves_response.get("cves")
-    # Pagination
     total_results = cves_response.get("total_results")
 
-    # check if cve id is valid
+    # Most recent, highest priority CVEs
+    high_priority_response = security_api.get_cves(
+        query=query,
+        priority="high",
+        package=package,
+        limit=5,
+        offset=offset,
+        component=component,
+        versions=versions,
+        statuses=statuses,
+        order=order,
+    )
+
+    high_priority_cves = high_priority_response.get("cves")
+
+    ignored_low_indicators = [
+        "end of standard support",
+        "superseded",
+        "replaced",
+    ]
+    vulnerable_indicators = ["needed", "pending", "deferred"]
+
+    # Check if cve id is valid
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
-    # get cve with specific id
+    # Get cve with specific id
     if is_cve_id and cves_response.get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
-    # releases in desc order
+    # Releases in desc order
     releases_json = security_api.get_releases()
 
-    # releases without "upstream"
+    # Releases without "upstream"
     all_releases = []
     for release in releases_json:
         if release["codename"] != "upstream":
             all_releases.append(release)
 
+    maintained_releases = []
     selected_releases = []
+    lts_releases = []
+    unmaintained_releases = []
 
     for release in all_releases:
         # format dates
@@ -351,40 +378,83 @@ def cve_index():
         esm_date = datetime.strptime(
             release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
         )
+        release_date = datetime.strptime(
+            release["release_date"], "%Y-%m-%dT%H:%M:%S"
+        )
 
         # filter releases
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
-                    selected_releases.append(release)
-        elif support_date > datetime.now() or esm_date > datetime.now():
+                    # cap to show maximum of 5 releases
+                    if len(selected_releases) < 5:
+                        selected_releases.append(release)
+                    else:
+                        break
+        elif (
+            # By default, we only want to show the 5 most recent LTS releases
+            # thus excluding xenial and trusty
+            (support_date > datetime.now() or esm_date > datetime.now())
+            and release_date < datetime.now()
+            and release["codename"] != "xenial"
+            and release["codename"] != "trusty"
+        ):
             selected_releases.append(release)
+
+        if support_date < datetime.now():
+            if esm_date > datetime.now():
+                if release["lts"] and release_date < datetime.now():
+                    lts_releases.append(release)
+            else:
+                unmaintained_releases.append(release)
+        elif release_date < datetime.now():
+            maintained_releases.append(release)
 
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
 
+    # Format summarized statuses
     friendly_names = {
-        "DNE": "Does not exist",
-        "needs-triage": "Needs triage",
-        "not-affected": "Not vulnerable",
-        "needed": "Needed",
-        "deferred": "Deferred",
-        "ignored": "Ignored",
-        "pending": "Pending",
-        "released": "Released",
+        "DNE": {"name": "Not in release", "icon": None},
+        "needs-triage": {"name": "Needs evaluation", "icon": "help"},
+        "not-affected": {"name": "Not affected", "icon": "success"},
+        "needed": {"name": "Vulnerable", "icon": "warning"},
+        "deferred": {"name": "Vulnerable", "icon": "warning"},
+        "pending": {"name": "Vulnerable", "icon": "warning"},
+        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "released": {"name": "Fixed", "icon": "success"},
+        "vulnerable": {"name": "Vulnerable", "icon": "warning"},
     }
 
+    for cve in high_priority_cves:
+        cve["summarized_status"] = get_summarized_status(
+            cve,
+            ignored_low_indicators,
+            vulnerable_indicators,
+            friendly_names,
+            versions,
+        )
+
     for cve in cves:
+        cve["summarized_status"] = get_summarized_status(
+            cve,
+            ignored_low_indicators,
+            vulnerable_indicators,
+            friendly_names,
+            versions,
+        )
+
         for cve_package in cve["packages"]:
             cve_package["release_statuses"] = {}
             for status in cve_package["statuses"]:
+                friendly_status = friendly_names[status["status"]]
                 cve_package["release_statuses"][status["release_codename"]] = {
                     "slug": status["status"],
-                    "name": friendly_names[status["status"]],
+                    "name": friendly_status["name"],
                     "pocket": status["pocket"],
+                    "icon": friendly_status["icon"],
                 }
-
     return flask.render_template(
-        "security/cve/index.html",
+        "security/cves/index.html",
         all_releases=all_releases,
         cves=cves,
         total_results=total_results,
@@ -398,7 +468,27 @@ def cve_index():
         versions=versions,
         statuses=statuses,
         selected_releases=selected_releases,
+        lts_releases=lts_releases,
+        maintained_releases=maintained_releases,
+        unmaintained_releases=unmaintained_releases,
+        high_priority_cves=high_priority_cves,
+        order=order,
+        detailed=detailed,
     )
+
+
+def does_not_include_base_url(link):
+    default_reference_urls = [
+        "https://cve.mitre.org/",
+        "https://nvd.nist.gov",
+        "https://launchpad.net/",
+        "https://security-tracker.debian.org",
+        "https://ubuntu.com/security/notices",
+    ]
+    for base_url in default_reference_urls:
+        if base_url in link:
+            return False
+    return True
 
 
 def cve(cve_id):
@@ -415,6 +505,44 @@ def cve(cve_id):
         cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
             "%-d %B %Y"
         )
+
+    if cve.get("updated_at"):
+        cve["updated_at"] = dateutil.parser.parse(cve["updated_at"]).strftime(
+            "%-d %B %Y"
+        )
+
+    if cve.get("notices"):
+        for notice in cve["notices"]:
+            notice["published"] = dateutil.parser.parse(
+                notice["published"]
+            ).strftime("%-d %B %Y")
+
+    if cve.get("notes"):
+        for note in cve["notes"]:
+            if "Priority reason" in note["note"]:
+                text = note["note"]
+                pattern = r"Priority reason:\n(.*)"
+                match = re.search(pattern, text)
+                if match:
+                    cve["priority_reason"] = match.group(1)
+
+    if cve.get("packages"):
+        for package in cve["packages"]:
+            for status in package["statuses"]:
+                if (
+                    status["pocket"] == "esm-infra"
+                    or status["pocket"] == "esm-apps"
+                ):
+                    cve["expanded_coverage"] = True
+                    break
+
+    # Format remaining references
+    other_references = []
+
+    if cve.get("references"):
+        for reference in cve["references"]:
+            if does_not_include_base_url(reference):
+                other_references.append(reference)
 
     # format patches
     formatted_patches = []
@@ -448,10 +576,21 @@ def cve(cve_id):
                     or "http://" in suffix
                     or "https://" in suffix
                 ):
+                    pattern = r"/commit/(.*)"
+                    match = re.search(pattern, suffix)
+                    if match:
+                        suffix_text = match.group(1)
+                    else:
+                        suffix_text = ""
+
                     formatted_patches.append(
                         {
                             "type": "link",
-                            "content": {"prefix": prefix, "suffix": suffix},
+                            "content": {
+                                "prefix": prefix,
+                                "suffix": suffix,
+                                "suffix_text": suffix_text,
+                            },
                             "name": package_name,
                         }
                     )
@@ -468,34 +607,13 @@ def cve(cve_id):
             for tag in tags:
                 formatted_tags.append({"name": package_name, "text": tag})
 
-    base_lp = "https://git.launchpad.net/ubuntu-cve-tracker/tree"
-
-    kenetic_packages = list_package_names(
-        f"{base_lp}/ros-esm-xenial-kinetic-supported.txt"
-    )
-    melodic_packages = list_package_names(
-        f"{base_lp}/ros-esm-bionic-melodic-supported.txt"
-    )
-
     return flask.render_template(
-        "security/cve/cve.html",
+        "security/cves/cve.html",
         cve=cve,
         patches=formatted_patches,
         tags=formatted_tags,
-        kenetic_packages=kenetic_packages,
-        melodic_packages=melodic_packages,
+        other_references=other_references,
     )
-
-
-# This is a temporary fix. To be removed pending redesign
-# Parses given URL to create a list of package names
-def list_package_names(url):
-    source = api_session.get(url).text
-    soup = bs.BeautifulSoup(source, "lxml")
-    raw_string = soup.code(string=True)[0].split()
-    package_list = list(raw_string)
-
-    return package_list
 
 
 # CVE API
