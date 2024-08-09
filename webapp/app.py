@@ -427,6 +427,7 @@ app.add_url_rule(
     "/search",
     "search",
     build_search_view(
+        app,
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
@@ -639,6 +640,7 @@ app.add_url_rule(
     "/core/services/guide/search",
     "core-services-guide-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/services/guide",
         template_path="core/services/guide/search-results.html",
@@ -675,6 +677,7 @@ app.add_url_rule(
     "/server/docs/search",
     "server-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
@@ -702,6 +705,7 @@ app.add_url_rule(
     "/community/search",
     "community-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
@@ -756,6 +760,7 @@ app.add_url_rule(
     "/ceph/docs/search",
     "ceph-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
@@ -778,6 +783,7 @@ app.add_url_rule(
     "/core/docs/search",
     "core-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
@@ -1036,6 +1042,7 @@ app.add_url_rule(
     "/openstack/docs/search",
     "openstack-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
@@ -1063,6 +1070,7 @@ app.add_url_rule(
     "/security/livepatch/docs/search",
     "security-livepatch-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
@@ -1090,6 +1098,7 @@ app.add_url_rule(
     "/security/certifications/docs/search",
     "security-certs-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
@@ -1117,6 +1126,7 @@ app.add_url_rule(
     "/landscape/docs/search",
     "landscape-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
@@ -1144,6 +1154,7 @@ app.add_url_rule(
     "/robotics/docs/search",
     "robotics-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",
