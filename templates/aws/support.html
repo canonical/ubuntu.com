@@ -11,33 +11,33 @@
 {% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip is-shallow u-no-padding--bottom">
-    <div class="row--50-50">
-      <div class="col">
-        <h1>Ubuntu Pro with Support</h1>
-        <p class="p-strip is-shallow">
-          Ubuntu Pro with Support provides a supported, secure foundation for modern applications by adding 24x7 technical support for your Ubuntu Pro workloads on AWS, metered by the hour as a Private Offer.
-        </p>
-        <hr class="is-muted" />
-        <p>
-          <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
-        </p>
-      </div>
-      <div class="col p-image-container is-highlighted u-hide--small">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/7d50bc74-ubuntu_pro-aws.svg",
-        alt="",
-        width="230",
-        height="104",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-        }}
+  <section class="p-strip is-shallow">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <div class="col">
+          <h1>Ubuntu Pro with Support</h1>
+          <p class="p-strip is-shallow">
+            Ubuntu Pro with Support provides a supported, secure foundation for modern applications by adding 24x7 technical support for your Ubuntu Pro workloads on AWS, metered by the hour as a Private Offer.
+          </p>
+          <hr class="is-muted" />
+          <p>
+            <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+          </p>
+        </div>
+        <div class="col p-image-container is-highlighted u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/7d50bc74-ubuntu_pro-aws.svg",
+                    alt="Ubuntu Pro and AWS logo",
+                    width="230",
+                    height="104",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
+  <section class="p-section u-no-padding--top">
     <div class="row--50-50">
       <hr />
       <div class="col">
@@ -54,7 +54,7 @@
     </div>
   </section>
 
-  <section class="p-strip u-no-padding--top">
+  <section class="p-section">
     <div class="row--50-50">
       <hr />
       <div class="col">
@@ -78,7 +78,7 @@
     <div class="row">
       <hr />
       <div class="u-fixed-width">
-        <h2 class="u-sv3">Features</h2>
+        <h2 class="p-section--shallow">Features</h2>
         <table class="p-table">
           <thead>
             <tr>
