@@ -30,15 +30,16 @@
         </div>
       </div>
       <div class="col p-strip is-shallow">
-        <div class="p-image-container--16-9 is-highlighted u-align--center u-vertically-center u-align--center u-hide--medium u-hide--small">
+        <div class="p-image-container is-highlighted u-align--center u-vertically-center u-align--center u-hide--medium u-hide--small">
+          
           {{ image (
-          url="https://assets.ubuntu.com/v1/1624c0a0-55bb92be-aws_workspaces.png.png",
-          alt="",
-          width="800",
-          height="286",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
+            url="https://assets.ubuntu.com/v1/6143478c-correct-bg-aws.png",
+            alt="",
+            width="714",
+            height="498",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
           }}
         </div>
       </div>
@@ -63,14 +64,13 @@
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
-        <div class="row">
-          <hr class="p-rule is-muted" />
+        <hr class="p-rule is-muted" />
+        <div class="row">          
           <div class="col-3">
             <h5>Ubuntu Desktop 22.04 LTS</h5>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <!-- Remove the first hr -->
+            <ul class="p-list--divided remove-first-hr">
               <li class="p-list__item is-ticked">A common OS for development, testing and deployment</li>
               <li class="p-list__item is-ticked">Linux 5.15 kernel alongside the latest toolchains for Python, PGP, Rust and Go</li>
               <li class="p-list__item is-ticked">
@@ -88,14 +88,13 @@
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
+        <hr class="p-rule is-muted" />
         <div class="row">
-          <hr class="p-rule is-muted" />
           <div class="col-3">
             <h5>Remote onboarding for developers</h5>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <!-- Remove the first hr -->
+            <ul class="p-list--divided remove-first-hr">
               <li class="p-list__item is-ticked">
                 Easily onboard remote workers and contractors and get them up and running quickly
               </li>
@@ -114,14 +113,13 @@
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
+        <hr class="p-rule is-muted" />
         <div class="row">
-          <hr class="p-rule is-muted" />
           <div class="col-3">
             <h5>Security and management at scale</h5>
           </div>
           <div class="col-6">
-            <ul class="p-list--divided">
-              <!-- Remove the first hr -->
+            <ul class="p-list--divided remove-first-hr">
               <li class="p-list__item is-ticked">Your organisations' applications and data remain in the AWS cloud at all times</li>
               <li class="p-list__item is-ticked">Configure custom images and scale your WorkSpaces on the fly</li>
               <li class="p-list__item is-ticked">Integrate Ubuntu WorkSpaces with your on-prem Active Directory</li>
