@@ -285,10 +285,20 @@ fieldset:last-child {
 // XXX Steve: Pull quote colour override
 .p-pull-quote,
 .p-pull-quote--large {
+  // Keep default quote colour for case studies
+  .case-studies-quote::before,
+  .case-studies-quote::after {
+    color: $colors--light-theme--text-muted !important;
+  }
+
   .p-pull-quote__quote:first-of-type::before,
   .p-pull-quote__quote:last-of-type::after {
     color: $color-brand;
   }
+}
+
+.p-pull-quote.case-studies-quote {
+  margin: 0;
 }
 
 h1.u-align--center,
