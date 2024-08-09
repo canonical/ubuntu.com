@@ -169,7 +169,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 credly_api=get_credly_api_instance(area, credly_session),
                 is_in_maintenance=is_in_maintenance,
                 is_community_member=is_community_member,
-                show_cred_maintenance_banner=bool(cred_maintenance),
+                show_cred_maintenance_alert=bool(cred_maintenance),
                 cred_is_in_maintenance=cred_is_in_maintenance,
                 cred_maintenance_start=cred_maintenance_start,
                 cred_maintenance_end=cred_maintenance_end,

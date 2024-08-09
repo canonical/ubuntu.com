@@ -85,7 +85,7 @@ def confidentiality_agreement_webhook():
 
 @shop_decorator(area="cred", response="html")
 def cred_home(
-    show_cred_maintenance_banner,
+    show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
     cred_maintenance_end,
@@ -93,7 +93,7 @@ def cred_home(
 ):
     return flask.render_template(
         "credentials/index.html",
-        show_cred_maintenance_banner=show_cred_maintenance_banner,
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
         cred_is_in_maintenance=cred_is_in_maintenance,
         cred_maintenance_start=cred_maintenance_start,
         cred_maintenance_end=cred_maintenance_end,
@@ -232,7 +232,7 @@ def cred_sign_up(**_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_schedule(
     ua_contracts_api,
-    show_cred_maintenance_banner,
+    show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
     cred_maintenance_end,
@@ -294,7 +294,7 @@ def cred_schedule(
             parse(cred_maintenance_end) if cred_maintenance_end else None
         )
         if (
-            show_cred_maintenance_banner
+            show_cred_maintenance_alert
             and cred_maintenance_start
             and cred_maintenance_end
             and (cred_maintenance_start <= starts_at < cred_maintenance_end)
