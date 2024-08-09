@@ -41,7 +41,7 @@ Sentry.init({
   allowUrls: ["ubuntu.com"],
 });
 
-function App() {
+export const App = () => {
   return (
     <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
       <Elements stripe={stripePromise}>
@@ -59,6 +59,6 @@ function App() {
       </Elements>
     </Sentry.ErrorBoundary>
   );
-}
+};
 
 createRoot(document.getElementById("react-root")!).render(<App />);

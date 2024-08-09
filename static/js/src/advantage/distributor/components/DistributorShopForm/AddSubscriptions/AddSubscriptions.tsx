@@ -50,7 +50,7 @@ const AddSubscriptions = () => {
   return (
     <div data-testid="wrapper">
       <p>Ubuntu Pro is avaiable for Ubuntu 14.04 and higher:</p>
-      {subscriptionList?.length > 0 &&
+      {subscriptionList?.length > 0 ? (
         subscriptionList.map((subscription: SubscriptionItem) => {
           return (
             <SubscriptionCard
@@ -58,7 +58,10 @@ const AddSubscriptions = () => {
               subscription={subscription}
             />
           );
-        })}
+        })
+      ) : (
+        <p>No subscription is added. Please add subscriptions.</p>
+      )}
       <Row>
         <Col size={6}>
           <div style={{ display: "flex", alignItems: "end" }}>
