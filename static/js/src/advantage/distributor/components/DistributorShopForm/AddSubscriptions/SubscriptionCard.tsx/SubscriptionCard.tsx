@@ -20,6 +20,17 @@ import {
   DISTRIBUTOR_SELECTOR_KEYS,
 } from "../../../../utils/utils";
 
+export const getProductTitle = (type: ProductTypes) => {
+  switch (type) {
+    case (type = ProductTypes.physical):
+      return "Ubuntu Pro Physical";
+    case (type = ProductTypes.desktop):
+      return "Ubuntu Pro Desktop";
+    case (type = ProductTypes.virtual):
+      return "Ubuntu Pro Virtual";
+  }
+};
+
 type Prop = {
   subscription: SubscriptionItem;
 };
@@ -36,17 +47,6 @@ const SubscriptionCard = ({ subscription }: Prop) => {
       DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
       JSON.stringify(updatedList),
     );
-  };
-
-  const getProductTitle = (type: ProductTypes) => {
-    switch (type) {
-      case (type = ProductTypes.physical):
-        return "Ubuntu Pro Physical";
-      case (type = ProductTypes.desktop):
-        return "Ubuntu Pro Desktop";
-      case (type = ProductTypes.virtual):
-        return "Ubuntu Pro Virtual";
-    }
   };
 
   const product = products?.filter(
@@ -107,6 +107,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
         name={ICONS.close}
         light={false}
         onClick={() => handleRemoveSubscription(subscription.id)}
+        data-testid="remove-subscription"
       />
       <Card
         title={getProductTitle(subscription.type)}
@@ -188,6 +189,7 @@ const SubscriptionCard = ({ subscription }: Prop) => {
               pattern="\d+"
               style={{ minWidth: "unset", width: "4rem" }}
               aria-label="number of machines"
+              data-testid="quantity-input"
             />
             <p className="u-text--muted">
               {" "}

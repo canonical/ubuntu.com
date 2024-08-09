@@ -97,6 +97,7 @@ const ChannelOffersList = () => {
         </Col>
       </Row>
       <MainTable
+        data-testid="channel-offer-table"
         className="u-no-margin--bottom"
         headers={[
           {
