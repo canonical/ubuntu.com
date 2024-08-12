@@ -301,18 +301,12 @@ def cred_schedule(
         ):
             maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
             maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
-            error = [
-                "Scheduled time should be outside of the",
-                "maintenance window. Please schedule the exam before",
-                f"{maintenance_start_tz.strftime('%m-%d-%Y %I:%M %p')}",
-                "or after",
-                f"{maintenance_end_tz.strftime('%m-%d-%Y %I:%M %p')}",
-            ]
-            error = " ".join(error)
             return flask.render_template(
                 "/credentials/schedule.html",
                 **template_data,
-                error=error,
+                maintenance_error=True,
+                maintenance_start=maintenance_start_tz,
+                maintenance_end=maintenance_end_tz,
             )
 
         if assessment_reservation_uuid:
