@@ -110,7 +110,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 _maintenance_end = parse(os.getenv("CRED_MAINTENANCE_END"))
                 _time_now = datetime.now(pytz.utc)
                 _is_in_timeframe = (
-                    _maintenance_start <= _time_now < _maintenance_end
+                    _maintenance_start <= _time_now <= _maintenance_end
                 )
 
             is_in_maintenance = maintenance and is_in_timeframe

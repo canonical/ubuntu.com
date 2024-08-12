@@ -297,7 +297,7 @@ def cred_schedule(
             show_cred_maintenance_alert
             and cred_maintenance_start
             and cred_maintenance_end
-            and (cred_maintenance_start <= starts_at < cred_maintenance_end)
+            and (cred_maintenance_start <= starts_at <= cred_maintenance_end)
         ):
             maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
             maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
