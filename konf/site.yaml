@@ -12,6 +12,15 @@ env:
   - name: STORE_MAINTENANCE_END
     value: 2024-03-27T05:00:00Z
 
+  - name: CRED_MAINTENANCE
+    value: true
+
+  - name: CRED_MAINTENANCE_START
+    value: 2024-08-14T03:00:00Z
+
+  - name: CRED_MAINTENANCE_END
+    value: 2024-08-14T05:00:00Z
+
   - name: SEARCH_API_KEY
     secretKeyRef:
       key: google-custom-search-key
@@ -289,6 +298,15 @@ production:
           secretKeyRef:
             key: organization
             name: credly
+        
+        - name: CRED_MAINTENANCE
+          value: true
+
+        - name: CRED_MAINTENANCE_START
+          value: 2024-08-14T03:00:00Z
+
+        - name: CRED_MAINTENANCE_END
+          value: 2024-08-14T05:00:00Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -521,6 +539,15 @@ staging:
 
     - name: STORE_MAINTENANCE_END
       value: 2024-03-27T05:00:00Z
+    
+    - name: CRED_MAINTENANCE
+      value: true
+
+    - name: CRED_MAINTENANCE_START
+      value: 2024-08-14T03:00:00Z
+
+    - name: CRED_MAINTENANCE_END
+      value: 2024-08-14T05:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -805,6 +832,15 @@ staging:
             key: api_secret
             name: marketo
 
+        - name: CRED_MAINTENANCE
+          value: true
+
+        - name: CRED_MAINTENANCE_START
+          value: 2024-08-14T03:00:00Z
+
+        - name: CRED_MAINTENANCE_END
+          value: 2024-08-14T05:00:00Z
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
@@ -1013,6 +1049,15 @@ demo:
 
     - name: STORE_MAINTENANCE_END
       value: 2024-03-27T05:00:00Z
+    
+    - name: CRED_MAINTENANCE
+      value: true
+
+    - name: CRED_MAINTENANCE_START
+      value: 2024-08-14T03:00:00Z
+
+    - name: CRED_MAINTENANCE_END
+      value: 2024-08-14T05:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
