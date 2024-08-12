@@ -423,8 +423,15 @@
   }
 }
 
+// TODO: Link corresponding Vanilla ticket
+// A list with separators between items
 @mixin vf-list-item-divided {
-  .p-list--divided.is-homepage > .p-list__item:first-child {
+  .p-list--divided > .p-list__item:first-child {
     box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
+  }
+
+  // Remove the first separator if the list is divided
+  .p-list--divided.remove-first-hr > .p-list__item:first-child {
+    box-shadow: none;
   }
 }
