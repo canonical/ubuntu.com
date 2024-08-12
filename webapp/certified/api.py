@@ -8,7 +8,7 @@ class CertificationAPI:
     Method names and properties to describe and map directly
     onto the Certification API
     (at the time of writing, this API is available at
-    https://certification.canonical.com/api/v1)
+    https://certification.canonical.com/api/v2)
     """
 
     def __init__(self, base_url: str, session: Session):

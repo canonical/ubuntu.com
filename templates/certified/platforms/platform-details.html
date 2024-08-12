@@ -21,7 +21,7 @@
   <div class="col">
     <div>
       <!-- TODO: put link on Desktops to ubuntu.com/desktops -->
-      <h1 class="p-muted-heading">{{platform.category}} > Platform</h1>
+      <h1 class="p-muted-heading">{{platform.category}} › Platform</h1>
     </div>
     <div>
       <!-- TODO: figure out which exact heading levels should go here -->
@@ -69,11 +69,13 @@
           <td class="u-text--muted">Processor</th>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
-          {% for device in certificate.processor %}
-            <li class="p-list__item u-no-padding--top">
-              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-            </li>
-          {% endfor %}
+            <ul class="p-list u-no-margin--bottom">
+              {% for device in certificate.processor %}
+              <li class="p-list__item u-no-padding--top">
+                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </td>
           {% endfor %}
         </tr>
@@ -81,11 +83,13 @@
           <td class="u-text--muted">Graphics</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
-          {% for device in certificate.video %}
-            <li class="p-list__item u-no-padding--top">
-              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-            </li>
-          {% endfor %}
+            <ul class="p-list u-no-margin--bottom">
+              {% for device in certificate.video %}
+              <li class="p-list__item u-no-padding--top">
+                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </td>
           {% endfor %}
         </tr>
@@ -93,11 +97,13 @@
           <td class="u-text--muted">Network</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
-          {% for device in certificate.network %}
-            <li class="p-list__item u-no-padding--top">
-              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-            </li>
-          {% endfor %}
+            <ul class="p-list u-no-margin--bottom">
+              {% for device in certificate.network %}
+              <li class="p-list__item u-no-padding--top">
+                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </td>
           {% endfor %}
         </tr>
@@ -105,11 +111,13 @@
           <td class="u-text--muted">Wireless</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
-          {% for device in certificate.wireless %}
-            <li class="p-list__item u-no-padding--top">
-              {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-            </li>
-          {% endfor %}
+            <ul class="p-list u-no-margin--bottom">
+              {% for device in certificate.wireless %}
+              <li class="p-list__item u-no-padding--top">
+                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+              </li>
+              {% endfor %}
+            </ul>
           </td>
           {% endfor %}
         </tr>

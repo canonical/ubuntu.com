@@ -156,7 +156,6 @@ def certified_platform_details(platform_id):
         for _, certificate in platform["certificates"].items()
         for release in certificate["releases"]
     )
-    print(releases)
     return render_template(
         "certified/platforms/platform-details.html",
         platform=platform,
