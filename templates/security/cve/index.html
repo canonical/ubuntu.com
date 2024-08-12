@@ -109,7 +109,7 @@
     </div>
 
     {% if total_results > 0 %}
-      <div class="u-fixed-width">
+      <div class="cve-table-container u-fixed-width">
         {% with cves=cves, releases=releases %}
           {% include "security/cve/_cve-table.html" %}
         {% endwith %}
