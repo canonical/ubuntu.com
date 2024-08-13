@@ -463,6 +463,7 @@ def cred_your_exams(
     cred_is_in_maintenance,
     cred_maintenance_start,
     cred_maintenance_end,
+    **kwargs,
 ):
     email = flask.request.args.get("email", None)
 
