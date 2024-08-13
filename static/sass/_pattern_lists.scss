@@ -11,6 +11,7 @@
   @include ubuntu-p-list-ticked;
   @include ubuntu-p-list-horizontal-divided;
   @include ubuntu-p-faq-stepped-list--detailed;
+  @include vf-list-item-divided;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -419,5 +420,11 @@
       display: inline-block;
       max-width: $text-max-width;
     }
+  }
+}
+
+@mixin vf-list-item-divided {
+  .p-list--divided.is-homepage > .p-list__item:first-child {
+    box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
   }
 }
