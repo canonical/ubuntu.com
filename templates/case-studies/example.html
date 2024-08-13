@@ -64,7 +64,7 @@
   <!-- Image section-->
   {% import "case-studies/templates/_macros-image.jinja" as image_template %}
   {{ image_template.image(
-      image_url="https://assets.ubuntu.com/v1/c3f56868-Global_Mars_in_colour%201.png",
+      image_url="https://assets.ubuntu.com/v1/e1a2566f-image-test.png",
       image_alt="Mars in colour",
       caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO"
     )
@@ -137,12 +137,13 @@
 
   {{ text_template.text(
     description_list=[
-    "The open source nature of Canonical’s offerings, and its managed services, were both driving factors in ESA’s adoption of these tools. As a managed service that uses open source tools, Canonical provided ESA with better cost effectiveness in the medium and long term, and allows ESA to have the flexibility and freedom of its own infrastructure. Managed services also help ESA to focus on its core business of operating missions.",
-    "“We wanted one service provider for the whole on-premise cloud consisting not only of Kubernetes but also the Ceph storage solution, PostgreSQL and Kafka. These were all the services that were needed and with this we could have one joined-up approach”, added Michael.",
-    "The open source nature of Canonical’s solution allowed ESA to retain ownership of their systems.",
-    "“It was important, knowing that we could always ‘get the keys back and manage it ourselves’”, explained Michael."
-    ]
-  )}}
+        "The open source nature of Canonical’s offerings, and its managed services, were both driving factors in ESA’s adoption of these tools. As a managed service that uses open source tools, Canonical provided ESA with better cost effectiveness in the medium and long term, and allows ESA to have the flexibility and freedom of its own infrastructure. Managed services also help ESA to focus on its core business of operating missions.",
+        "“We wanted one service provider for the whole on-premise cloud consisting not only of Kubernetes but also the Ceph storage solution, PostgreSQL and Kafka. These were all the services that were needed and with this we could have one joined-up approach”, added Michael.",
+        "The open source nature of Canonical’s solution allowed ESA to retain ownership of their systems.",
+        "“It was important, knowing that we could always ‘get the keys back and manage it ourselves’”, explained Michael."
+      ]
+    )
+  }}
 
   
 
