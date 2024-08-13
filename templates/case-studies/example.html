@@ -4,10 +4,13 @@
 
 {% block content %}
   <!--This index page will be using macros to build an example case study -->
+  <!-- Breadcrumbs -->
+  {% import "case-studies/templates/_macros-breadcrumbs.jinja" as breadcrumbs %}
+  {{ breadcrumbs.breadcrumbs(title="European Space Agency") }}
+
   <!-- Hero section-->
   {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
   {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
-                        subtitle="Hero description",
                         logo="https://assets.ubuntu.com/v1/5b46609e-layer1.png",
                         logo_alt="ESM logo",
                         logo_width="107",
@@ -32,8 +35,8 @@
       list_items=[
         "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
         "Timely updates and 24/7 monitoring of missioncritical equipment.",
-        "ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.",
-        "ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established."
+        "Significant cost-savings to help ESA focus more on its space missions.",
+        "A new, dynamic platform for efficient, automated, and fast deployment of systems across more missions."
       ]
     ) 
   }}

@@ -6,11 +6,13 @@
 {%- macro image(image_url, image_alt, caption) -%}
   <section class="p-strip">
     <div class="row">
-      <div class="col u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
-        <img src={{ image_url }} alt="{{ image_alt }}"/>
+      <div class="col">
+        <div class="p-image-container--cinematic u-align--center u-vertically-center u-no-padding--bottom">
+          <img class="p-image-container__image" src={{ image_url }} alt="{{ image_alt }}"/>
+        </div>
       </div>
       <div class="col-start-large-4 col-9">
-        {{ caption }}
+        <small>{{ caption }}</small>
       </div>
     </div>
   </section>
