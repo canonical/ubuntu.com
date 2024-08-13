@@ -448,12 +448,22 @@ def cred_schedule(
         max_date=max_date,
         error=error,
         time_delay=time_delay,
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
         cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
+def cred_your_exams(
+    ua_contracts_api,
+    trueability_api,
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+):
     email = flask.request.args.get("email", None)
 
     agreement_notification = False
@@ -671,6 +681,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             "credentials/your-exams.html",
             agreement_notification=agreement_notification,
             exams=exams,
+            show_cred_maintenance_alert=show_cred_maintenance_alert,
+            cred_is_in_maintenance=cred_is_in_maintenance,
+            cred_maintenance_start=cred_maintenance_start,
+            cred_maintenance_end=cred_maintenance_end,
         )
     )
 
