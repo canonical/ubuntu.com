@@ -184,7 +184,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/credentials]
+    - paths: [/credentials, /credentials/your-exams, /credentials/schedule]
       name: ubuntu-com-credentials
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
