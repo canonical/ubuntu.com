@@ -1,13 +1,10 @@
 {% extends "case-studies/base_case-studies.html" %}
 
 {% block title %}Case Studies{% endblock %}
+{% block meta_company_name %}European Space Agency{% endblock %}
 
 {% block content %}
   <!--This index page will be using macros to build an example case study -->
-  <!-- Breadcrumbs -->
-  {% import "case-studies/templates/_macros-breadcrumbs.jinja" as breadcrumbs %}
-  {{ breadcrumbs.breadcrumbs(title="European Space Agency") }}
-
   <!-- Hero section-->
   {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
   {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",

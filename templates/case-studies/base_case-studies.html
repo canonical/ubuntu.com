@@ -4,11 +4,23 @@
 {% block body_class %}is-paper{% endblock body_class %}
 
 {% block outer_content %}
+  <div class="u-fixed-width">
+    <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
+      <ol class="p-breadcrumbs__items">
+        <li class="p-breadcrumbs__item p-text--small-caps"><a href="/case-studies/">Case Studies</a></li>
+        <li class="p-breadcrumbs__item p-text--small-caps">
+          {% block meta_company_name %}Default Company{% endblock %}
+        </li>
+      </ol>
+    </nav>
+    <h1 class="p-text--small-caps u-hide">Case Studies</h1>
+  </div>
   {% block content %}{% endblock %}
+
   <hr class="is-fixed-width" />
   <section class="p-strip is-deep">
     <div class="row">
-      <div class="col-3">
+      <div class="col-start-large-4 col-9">
         <a href="/case-studies#get-in-touch" class="js-invoke-modal">
           <p class="p-heading--2">Contact us&nbsp;&rsaquo;</p>
         </a>
