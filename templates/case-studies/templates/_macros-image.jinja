@@ -1,16 +1,21 @@
 # Params
-# image_url: URL of image (required)
-# image_alt: Image alt text
-# caption: Caption for image
+# caption: Caption for image (required)
+# Slots
+# image_content: Slot for image content.
 
-{%- macro image(image_url, image_alt, caption) -%}
+{%- macro image_span(caption) -%}
+  {%- set image_content = caller('image_content') -%}
+  {%- set has_image = image_content|trim|length>0 -%}
+
   <section class="p-strip">
     <div class="row">
-      <div class="col">
-        <div class="p-image-container--cinematic u-align--center u-vertically-center u-no-padding--bottom">
-          <img class="p-image-container__image" src={{ image_url }} alt="{{ image_alt }}"/>
+      {% if has_image %}
+        <div class="col">
+          <div class="p-image-container u-align--center u-vertically-center u-no-padding--bottom">
+            {{ image_content }}
+          </div>
         </div>
-      </div>
+      {% endif %}
       <div class="col-start-large-4 col-9">
         <small>{{ caption }}</small>
       </div>
