@@ -40,16 +40,23 @@
     ) 
   }}
 
-  <!-- Highlights section -->
-  {{ highlights(
-      list_items=[
-        "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
-        "Timely updates and 24/7 monitoring of missioncritical equipment.",
-        "ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.",
-        "ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established."
-      ]
-    ) 
-  }}
+  {%- call(slot) highlights(num_items=4) -%}
+    {%- if slot == 'list_item_content_1' -%}
+      <p>Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_content_2' -%}
+      <p>Timely updates and 24/7 monitoring of missioncritical equipment.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_content_3' -%}
+      <p>ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_content_4' -%}
+      <p>ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.</p>
+    {%- endif -%}
+  {%- endcall %}
 
   <!-- Text section -->
   {{ text(
