@@ -567,6 +567,7 @@ def cve(cve_id):
             for patch in patches:
                 prefix, suffix = patch.split(":", 1)
                 suffix = suffix.strip()
+                suffix_text = ""
 
                 if prefix == "break-fix" and " " in suffix:
                     introduced, fixed = suffix.split(" ", 1)
@@ -594,9 +595,9 @@ def cve(cve_id):
                     pattern = r"/commit/(.*)"
                     match = re.search(pattern, suffix)
                     if match:
-                        suffix_text = match.group(1)
+                        suffix_text = match.group(1)[:7]
                     else:
-                        suffix_text = ""
+                        suffix_text = suffix
 
                     formatted_patches.append(
                         {
@@ -632,7 +633,6 @@ def cve(cve_id):
             all_releases.append(release)
 
     maintained_releases = []
-    lts_releases = []
     unmaintained_releases = []
 
     for release in all_releases:
@@ -649,10 +649,7 @@ def cve(cve_id):
 
         # filter releases
         if support_date < datetime.now():
-            if esm_date > datetime.now():
-                if release["lts"] and release_date < datetime.now():
-                    lts_releases.append(release)
-            else:
+            if esm_date < datetime.now():
                 unmaintained_releases.append(release)
         elif release_date < datetime.now():
             maintained_releases.append(release)
@@ -668,12 +665,11 @@ def cve(cve_id):
         "ignored": {"name": "Ignored", "icon": "error-grey"},
         "released": {"name": "Fixed", "icon": "success"},
     }
-    
+
     maintained_count = 0
     for package in cve["packages"]:
         for status in package["statuses"]:
-            # import pdb
-            # pdb.set_trace()
+
             # format statuses
             friendly_status = friendly_names[status["status"]]
             status["name"] = friendly_status["name"]
@@ -690,10 +686,6 @@ def cve(cve_id):
                 maintained_count += 1
             else:
                 status["maintained"] = False
-
-    
-
-
 
     return flask.render_template(
         "security/cves/cve.html",
