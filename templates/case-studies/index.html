@@ -44,32 +44,35 @@
     {%- if slot == 'list_item_content_1' -%}
       <p>Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.</p>
     {%- endif -%}
-
     {%- if slot == 'list_item_content_2' -%}
       <p>Timely updates and 24/7 monitoring of missioncritical equipment.</p>
     {%- endif -%}
-
     {%- if slot == 'list_item_content_3' -%}
       <p>ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.</p>
     {%- endif -%}
-
     {%- if slot == 'list_item_content_4' -%}
       <p>ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.</p>
     {%- endif -%}
   {%- endcall %}
 
   <!-- Text section -->
-  {{ text(
-      title="You can’t explore space without infrastructure.",
-      description_list=[
-        "It’s not just expert personnel, satellites and spacecraft: it takes mountains of software, computer systems, data and networks to get these missions off the ground. These missions are often unique – testing the limits of our technological know-how, having never been done before with each mission presenting its own unique challenges. Building and deploying these systems on a mission-bymission basis often involves significant complexity and costs.",
-        "ESA decided to embark on an ambitious challenge: to fly double the number of satellites it does currently by 2030, looking to technology to help it achieve this goal, with more rapid and automated software delivery, shared services, more efficient use of resources and lower costs of deployment.",
-        "To meet this goal, ESA engaged Canonical to deliver the architecture, design and deployment of Kubernetes and Ceph for persistent storage. ESA also chose Canonical’s Ceph distribution to consolidate the various storage technologies in use. Canonical’s Kubernetes distribution allowed ESA’s Missions Operations Infrastructure – IT (MOI-IT) team to easily deploy its workloads, integrated with the existing IT infrastructure services, giving it a greater ability to support ESA missions and those of its partners, with automatic updates and deployment, 24/7 monitoring and reduced system complexity.",
-        "Kubernetes was perfect for ESA’s next generation multi-mission platform at ESOC. This open source system helps organisations orchestrate their workloads more efficiently with automation. However, Kubernetes’ fast-moving and steep learning curve makes it more demanding to manage. To reduce the engineering workload and management requirements of this new system, ESA chose Canonical to manage its Kubernetes deployments, providing updates, monitoring and maintenance.",
-        "The systems Canonical deployed and now manage for ESA mean that ESOC engineering teams can quickly and centrally manage and deploy mission-critical infrastructure and software, with more security, reliability, and control, and with less downtime and reduced risk of system failures."
-      ]
-    )
-  }}
+  {%- call(slot) text(title="You can’t explore space without infrastructure.") -%}
+    {%- if slot == 'paragraph_1' -%}
+      <p>It’s not just expert personnel, satellites and spacecraft: it takes mountains of software, computer systems, data and networks to get these missions off the ground. These missions are often unique – testing the limits of our technological know-how, having never been done before with each mission presenting its own unique challenges. Building and deploying these systems on a mission-bymission basis often involves significant complexity and costs.</p>
+    {%- endif -%}
+    {%- if slot == 'paragraph_2' -%}
+      <p>ESA decided to embark on an ambitious challenge: to fly double the number of satellites it does currently by 2030, looking to technology to help it achieve this goal, with more rapid and automated software delivery, shared services, more efficient use of resources and lower costs of deployment.</p>
+    {%- endif -%}
+    {%- if slot == 'paragraph_3' -%}
+      <p>To meet this goal, ESA engaged Canonical to deliver the architecture, design and deployment of Kubernetes and Ceph for persistent storage. ESA also chose Canonical’s Ceph distribution to consolidate the various storage technologies in use. Canonical’s Kubernetes distribution allowed ESA’s Missions Operations Infrastructure – IT (MOI-IT) team to easily deploy its workloads, integrated with the existing IT infrastructure services, giving it a greater ability to support ESA missions and those of its partners, with automatic updates and deployment, 24/7 monitoring and reduced system complexity.</p>
+    {%- endif -%}
+    {%- if slot == 'paragraph_4' -%}
+      <p>Kubernetes was perfect for ESA’s next generation multi-mission platform at ESOC. This open source system helps organisations orchestrate their workloads more efficiently with automation. However, Kubernetes’ fast-moving and steep learning curve makes it more demanding to manage. To reduce the engineering workload and management requirements of this new system, ESA chose Canonical to manage its Kubernetes deployments, providing updates, monitoring and maintenance.</p>
+    {%- endif -%}
+    {%- if slot == 'paragraph_5' -%}
+      <p>The systems Canonical deployed and now manage for ESA mean that ESOC engineering teams can quickly and centrally manage and deploy mission-critical infrastructure and software, with more security, reliability, and control, and with less downtime and reduced risk of system failures.</p>
+    {%- endif -%}
+  {%- endcall -%}
 
 <!-- Quote section-->
   {{ quote(
