@@ -29,7 +29,8 @@
   }
 
   .cve-table thead tr {
-    border-bottom: 0;
+    border-bottom: 1px solid $color-mid-light;
+
   }
 
   .cve-table td {
@@ -370,5 +371,9 @@
       position: absolute;
       width: 100%;
     }
+  }
+
+  .u-hide--cell {
+    display: none !important;
   }
 }

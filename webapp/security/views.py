@@ -622,11 +622,86 @@ def cve(cve_id):
             for tag in tags:
                 formatted_tags.append({"name": package_name, "text": tag})
 
+    # Releases in desc order
+    releases_json = security_api.get_releases()
+
+    # Releases without "upstream"
+    all_releases = []
+    for release in releases_json:
+        if release["codename"] != "upstream":
+            all_releases.append(release)
+
+    maintained_releases = []
+    lts_releases = []
+    unmaintained_releases = []
+
+    for release in all_releases:
+        # format dates
+        support_date = datetime.strptime(
+            release["support_expires"], "%Y-%m-%dT%H:%M:%S"
+        )
+        esm_date = datetime.strptime(
+            release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
+        )
+        release_date = datetime.strptime(
+            release["release_date"], "%Y-%m-%dT%H:%M:%S"
+        )
+
+        # filter releases
+        if support_date < datetime.now():
+            if esm_date > datetime.now():
+                if release["lts"] and release_date < datetime.now():
+                    lts_releases.append(release)
+            else:
+                unmaintained_releases.append(release)
+        elif release_date < datetime.now():
+            maintained_releases.append(release)
+
+    # format releases
+    friendly_names = {
+        "DNE": {"name": "Not in release", "icon": None},
+        "needs-triage": {"name": "Needs evaluation", "icon": "help"},
+        "not-affected": {"name": "Not affected", "icon": "success"},
+        "needed": {"name": "Vulnerable", "icon": "warning"},
+        "deferred": {"name": "Vulnerable, fix deferred", "icon": "warning"},
+        "pending": {"name": "Vulnerable, work in progress", "icon": "warning"},
+        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "released": {"name": "Fixed", "icon": "success"},
+    }
+    
+    maintained_count = 0
+    for package in cve["packages"]:
+        for status in package["statuses"]:
+            # import pdb
+            # pdb.set_trace()
+            # format statuses
+            friendly_status = friendly_names[status["status"]]
+            status["name"] = friendly_status["name"]
+            status["icon"] = friendly_status["icon"]
+
+            for release in all_releases:
+                if status["release_codename"] == release["codename"]:
+                    status["version"] = release["version"]
+
+            if status["release_codename"] in [
+                release["codename"] for release in maintained_releases
+            ]:
+                status["maintained"] = True
+                maintained_count += 1
+            else:
+                status["maintained"] = False
+
+    
+
+
+
     return flask.render_template(
         "security/cves/cve.html",
         cve=cve,
         patches=formatted_patches,
         tags=formatted_tags,
+        maintained_releases=maintained_releases,
+        maintained_count=maintained_count,
         other_references=other_references,
     )
 
