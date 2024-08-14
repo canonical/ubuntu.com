@@ -21,7 +21,7 @@ from webapp.certified.helpers import get_download_url
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
-    base_url="http://localhost:8081/api/v2", session=session
+    base_url="https://certification.canonical.com/api/v2", session=session
 )
 partners_api = PartnersAPI(session=session)
 
