@@ -30,27 +30,30 @@
   
   
   <!-- Text + list section -->
-  {{ text_list(
-      title="About the European Space Agency (ESA)",
-      list_items=[
-        "Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.",
-        "The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.",
-        "ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established."
-      ]
-    ) 
-  }}
-
-  {%- call(slot) highlights(num_items=4) -%}
+  {%- call(slot) text_list(title="About the European Space Agency (ESA)") -%}
     {%- if slot == 'list_item_content_1' -%}
-      <p>Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.</p>
+      Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.
     {%- endif -%}
     {%- if slot == 'list_item_content_2' -%}
-      <p>Timely updates and 24/7 monitoring of missioncritical equipment.</p>
+    The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.
     {%- endif -%}
     {%- if slot == 'list_item_content_3' -%}
+    ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Highlights section -->
+  {%- call(slot) highlights(num_items=4) -%}
+    {%- if slot == 'highlights_item_content_1' -%}
+      <p>Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.</p>
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_2' -%}
+      <p>Timely updates and 24/7 monitoring of missioncritical equipment.</p>
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_3' -%}
       <p>ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.</p>
     {%- endif -%}
-    {%- if slot == 'list_item_content_4' -%}
+    {%- if slot == 'highlights_item_content_4' -%}
       <p>ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.</p>
     {%- endif -%}
   {%- endcall %}

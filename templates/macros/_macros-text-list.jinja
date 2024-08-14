@@ -1,8 +1,9 @@
 # Params
 # title: Title of text section (required)
-# list_items: Description of text section (required)
+# Slots
+# list_item_content[1-10]: List item content
 
-{%- macro text_list(title, list_items) -%}
+{%- macro text_list(title) -%}
   <section class="p-section">
     <div class="row">
       <div class="col-start-large-4 col-9">
@@ -11,7 +12,15 @@
           <h2>{{ title }}</h2>
         </div>
         <ul class="p-list--divided">
-          {% for item in list_items %}<li class="p-list__item has-bullet">{{ item }}</li>{% endfor %}
+          {% for number in range(1, 11)%}
+            {%- set list_item_content = caller('list_item_content_' + number|string) -%}
+            {%- set has_list_item_content = list_item_content|trim|length > 0 -%}
+
+            {%- if has_list_item_content -%}
+              <li class="p-list__item has-bullet">{{ list_item_content }}</li>
+            {%- endif -%}
+
+          {% endfor %}
         </ul>
       </div>
     </div>
