@@ -1,13 +1,17 @@
 {% extends "case-studies/base_case-studies.html" %}
+{% from "case-studies/templates/_macros-hero.jinja" import hero %}
+{% from "case-studies/templates/_macros-text-list.jinja" import text_list %}
+{% from "case-studies/templates/_macros-highlights.jinja" import highlights %}
+{% from "case-studies/templates/_macros-text.jinja" import text %}
+{% from "case-studies/templates/_macros-quote.jinja" import quote %}
+{% from "case-studies/templates/_macros-image.jinja" import image_span %}
+
 
 {% block title %}Case Studies{% endblock %}
 
 {% block content %}
-  <!--This index page will be using macros to build an example case study -->
-  
-  <!-- Hero section-->  
-  {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
-  {%- call(slot) hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations", layout="25/75") -%}
+  <!-- Hero section -->
+  {%- call(slot) hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations", layout="25/75") -%}
     {% if slot == "description" %}
       <p>https://assets.ubuntu.com/v1/5b46609e-layer1.png</p>
     {% endif %}
@@ -27,8 +31,7 @@
   
   
   <!-- Text + list section -->
-  {% import "case-studies/templates/_macros-text-list.jinja" as text_list_template %}
-  {{ text_list_template.text_list(
+  {{ text_list(
       title="About the European Space Agency (ESA)",
       list_items=[
         "Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.",
@@ -39,8 +42,7 @@
   }}
 
   <!-- Highlights section -->
-  {% import "case-studies/templates/_macros-highlights.jinja" as highlights_template %}
-  {{ highlights_template.highlights(
+  {{ highlights(
       list_items=[
         "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
         "Timely updates and 24/7 monitoring of missioncritical equipment.",
@@ -51,8 +53,7 @@
   }}
 
   <!-- Text section -->
-  {% import "case-studies/templates/_macros-text.jinja" as text_template %}
-  {{ text_template.text(
+  {{ text(
       title="You can’t explore space without infrastructure.",
       description_list=[
         "It’s not just expert personnel, satellites and spacecraft: it takes mountains of software, computer systems, data and networks to get these missions off the ground. These missions are often unique – testing the limits of our technological know-how, having never been done before with each mission presenting its own unique challenges. Building and deploying these systems on a mission-bymission basis often involves significant complexity and costs.",
@@ -65,17 +66,15 @@
   }}
 
 <!-- Quote section-->
-  {% import "case-studies/templates/_macros-quote.jinja" as quote_template %}
-  {{ quote_template.quote(
+  {{ quote(
         quote="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
         name="Justin Boitano", 
         job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
       )
   }}
 
-<!-- Image section-->
-  {% import "case-studies/templates/_macros-image.jinja" as image_template %}
-  {{ image_template.image(
+<!-- Image section-->  
+  {{ image_span(
     image_url="https://assets.ubuntu.com/v1/c3f56868-Global_Mars_in_colour%201.png",
     image_alt="Mars in colour",
     caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO")
