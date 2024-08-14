@@ -27,7 +27,10 @@
     </div>
     <div class="col-7">
       <h1 class="p-muted-heading">
-        {{category}} › <a href="/certified/platforms/{{platform_id}}">{{platform_name}}</a>
+        {{category}} &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
+        {% if platform_name != name %}
+        &rsaquo; {{ name }}
+        {% endif %}
       </h1>
       <h1>{{ vendor }} {{ name }}</h1>
       <p class="p-heading--4">{{ form_factor }} system certified with Ubuntu</p>
@@ -105,7 +108,10 @@
             </tbody>
           </table>
           <p class="u-sv3">
-            <a href="/certified/{{ canonical_id }}/{{ release.version }}">All hardware details&nbsp;&rsaquo;</a>
+            <a href="/certified/{{ canonical_id }}/{{ release.version }}">All hardware details &rsaquo;</a>
+          </p>
+          <p class="u-sv3">
+            <a href="/certified/platforms/{{ platform_id }}">All certified configurations in the {{ platform_name}} platform &rsaquo;</a>
           </p>
         </div>
         {% endfor %}
@@ -157,14 +163,7 @@
           {% if '20.04 LTS' in component.lts_releases %}
           {% if component.lts_releases['20.04 LTS'][0].third_party_driver %}
           <td data-heading="20.04 LTS">
-            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
-            alt="May require third-party driver",
-            width="21",
-            height="14",
-            hi_def=True,
-            attrs={"style":"margin-left: 0.45rem;"},
-            loading="lazy") | safe
-            }}
+            {{ image(url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",alt="May require third-party driver",width="21",height="14",hi_def=True,attrs={"style":"margin-left: 0.45rem;"},loading="lazy") | safe }}
           </td>
           {% elif component.lts_releases['20.04 LTS'][0].status == 'inprogress' %}
           <td data-heading="20.04 ESM">
