@@ -12,12 +12,14 @@
     {% elif list_items | length == 4 %}
       {% set col_size = "col-3" %}
     {% endif %}
-    <div class="row">
-      {% for item in list_items %}
-        <div class="{{ col_size }}">
-          <p class="p-list__item is-ticked">{{ item }}</p>
-        </div>
-      {% endfor %}
-    </div>
+    <ul class="p-list">
+      <div class="row">
+        {% for item in list_items %}
+          <div class="{{ col_size }}">
+            <li class="p-list__item is-ticked">{{ item }}</li>
+          </div>
+        {% endfor %}
+      </div>
+    </ul>
   </section>
 {%- endmacro -%}
