@@ -40,7 +40,7 @@
           <div class="row cve-hero-scores">
             {% if cve.priority %}
               <div>
-                <p class="p-text--small-caps" style="margin-bottom: 1.1rem;">Ubuntu priority</p>
+                <p class="p-text--small-caps" style="margin-bottom: 0.5rem;">Ubuntu priority</p>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
                     {% if cve.priority == 'unknown' %}
@@ -83,7 +83,7 @@
                     </p>
                   </div>
                   <p>
-                    <a>Why this priority?</a>
+                    <a href="/security/cves/about#priority">Why this priority?</a>
                   </p>
                 </div>
               </div>
@@ -91,7 +91,7 @@
 
             {% if cvssV3 %}
               <div>
-                <h2 class="p-text--small-caps"  style="margin-bottom: 1.1rem;">Cvss 3 Severity Score</h2>
+                <h2 class="p-text--small-caps"  style="margin-bottom: 0.5rem;">Cvss 3 Severity Score</h2>
                 <div class="p-heading-icon--small">
                   <div class="p-heading-icon__header">
                     {% set baseScore = cvssV3.baseScore %}
@@ -201,7 +201,9 @@
           {% if cve.ubuntu_description %}
             <h2 class="p-heading--3">From the Ubuntu Security Team</h2>
             <p>{{ cve.ubuntu_description }}</p>
-            <a href="#notes">Read the notes from the security team</a>
+            <p>
+              <a href="#notes">Read the notes from the security team</a>
+            </p>
           {% endif %}
 
           {% if cve.priority_reason %}
@@ -225,14 +227,24 @@
           <div class="u-fixed-width p-section"
                style="display: flex;
                       justify-content: space-between">
-            <h2>Status</h2>
-            <label class="p-switch" style="float: right;">
-              <input type="checkbox" class="p-switch__input" role="switch" />
+            <div class="p-section--shallow">
+              <h2>Status</h2>
+            </div>
+            <label class="p-switch" style="float: right;" >
+              <input type="checkbox" class="p-switch__input js-toggle-maintained" {% if maintained_count < 1 %} aria-describedby="disabled-switch-notification" {% endif %}role="switch" />
               <span class="p-switch__slider"></span>
-              <span class="p-switch__label">Show also unmaintained releases</span>
+              <span class="p-switch__label">Show unmaintained releases</span>
             </label>
           </div>
-
+          {% if maintained_count < 1 %}
+          <div class="p-notification--information is-light" id="disabled-switch-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                No maintained releases are affected by this CVE.
+              </p>
+            </div>
+          </div>
+          {% endif %}
           {% if cve.status == 'active' %}
             <div class="row p-section--shallow">
               <div>
@@ -241,7 +253,7 @@
                     <tr>
                       <th style="width: 12rem;">Package</th>
                       <th style="width: 18rem;">Ubuntu Release</th>
-                      <th style="padding-left: 1.5rem; width:25rem">Status</th>
+                      <th style="padding-left: 1.7rem; width:25rem">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -250,45 +262,30 @@
                         <tr>
                           {% if status.release_codename and status.release_codename != "upstream" %}
                             {% if loop.index == 1 %}<td rowspan="{{ package.statuses | length }}">{{ package["name"] }}</td>{% endif %}
-                            <td>{{ status.release_codename }}</td>
+                            <th {% if status.maintained == False %} class="unmaintained-cell u-hide--cell" {% endif %}>{{ status.version }} <span class="u-text--muted">{{ status.release_codename }}</span></th>
                             {# djlint: off #}
-                            {% if status.status == "DNE" %}
-                              <td class="u-text--muted">
-                                Not in release
-                              {% elif status.status == "not-affected" %}
-                                <td class="u-text--muted">
-                                  Not affected
-                                {% elif status.status == "needs-triage" %}
-                                  <td>
-                                    Needs evaluation
-                                  {% elif status.status == "needed" %}
-                                    <td>
-                                      <i class="p-icon--error"></i> <span>Vulnerable</span>
-                                    {% elif status.status == "deferred" %}
-                                      <td>
-                                        <i class="p-icon--error"></i> <span>Vulnerable, fix deferred</span>
-                                      {% elif status.status == "ignored" %}
-                                        <td>
-                                          Ignored
-                                        {% elif status.status == "pending" %}
-                                          <td>
-                                            <i class="p-icon--error"></i> <span>Vulnerable, work in progress</span>
-                                          {% elif status.status == "released" %}
-                                            <td>
-                                              <i class="p-icon--success"></i> <span>Fixed</span>
-                                              {% if status.description %}<span class="u-text--muted">{{ status.description }}</span>{% endif %}
-                                            {% endif %}
+                            {% if status.icon %}
+                            <td {% if status.maintained == False %} class="unmaintained-cell u-hide--cell" {% endif %} {% if status.pocket == "esm-apps" or status.pocket == "esm-infra" %} style="display: flex; gap:8px;" {% endif %}>
+                              <i class="p-icon--{{ status.icon }}"></i> {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
+                              {% if status.pocket == "esm-infra" %}
+                                <a class="p-chip" href="/pro">
+                                  <span class="p-chip__value">Ubuntu Pro</span>
+                                </a>
+                              {% endif %}
+                              {% if status.pocket == "esm-apps" %}
+                                <a class="p-chip" href="/pro">
+                                  <span class="p-chip__value">Ubuntu Pro</span>
+                                </a>
+                              {% endif %}
+                            </td>     
+                            {% else %}
+                            <td {% if status.maintained == False %} class="unmaintained-cell u-hide--cell"{% endif %}{% if status.status == "DNE" %}class="u-text--muted"{% endif %} style="padding-left: 1.8rem;">
+                              {{ status.name }}
+                            </td>
+                            {% endif %}
 
-                                            {% if status.pocket == "esm-infra" %}
-                                              <a class="p-chip" href="/pro">
-                                                <span class="p-chip__value">Ubuntu pro</span>
-                                              </a>
-                                            {% endif %}
-                                            {% if status.pocket == "esm-apps" %}
-                                              <a class="p-chip" href="/pro">
-                                                <span class="p-chip__value"><small>Ubuntu pro</small></span>
-                                              </a>
-                                            {% endif %}
+                            
+                                            
                                             {# djlint: on #}
                                           </td>
                                         {% endif %}
@@ -302,8 +299,8 @@
                         {% endif %}
                         <hr class="is-muted" />
                         <p>
-                          <a style="margin-right: 1rem;">How can I get the fixes?</a>
-                          <a href="#patch-details">Patch details</a>
+                          <a href="/security/cves/about#security" style="margin-right: 1rem;">How can I get the fixes?</a>
+                          {% if patches %}<a href="#patch-details">Patch details</a>{% endif %}
                         </p>
                       </div>
 
@@ -338,6 +335,7 @@
                         </div>
                       {% endif %}
 
+                      {% if patches %}
                       <div class="p-section"
                            id="patch-details"
                            style="scroll-margin-top: 3.5rem">
@@ -395,7 +393,7 @@
                           </tbody>
                         </table>
                       </div>
-
+                      {% endif %}
                       {% if cvssV3 %}
                         <div class="p-section section-heading"
                              id="impact-score"
@@ -529,6 +527,27 @@
                 </section>
 
                 <script>
+                  function handleHiddenReleasesSwitch() {
+                    const maintainedCount = {{maintained_count | tojson | safe}};
+                    const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
+                    let hiddenCells = document.querySelectorAll(".unmaintained-cell");
+                    
+                    if (maintainedCount === 0) {
+                      maintainedReleasesSwitch.checked = true;
+                      hiddenCells.forEach((cell) => {
+                        cell.classList.toggle("u-hide--cell");
+                        maintainedReleasesSwitch.setAttribute("disabled", true);
+                      });
+                    }
+                    
+                    maintainedReleasesSwitch.addEventListener("click", () => {
+                      hiddenCells.forEach((cell) => {
+                        cell.classList.toggle("u-hide--cell");
+                      });      
+                    });
+                  };
+                  handleHiddenReleasesSwitch()
+
                   function setUpDynamicSideNav() {
                     const sections = Array.prototype.slice.call(
                       document.querySelectorAll(".section-heading")
