@@ -16,31 +16,31 @@
   <div class="col" style="margin-top: 50px;">
     {% with category=platform.category %}
       {% include "certified/shared/category-image.html" %}
-    {% endwith %}
+    {% endwith %}x
   </div>
   <div class="col">
     <div>
       <!-- TODO: put link on Desktops to ubuntu.com/desktops -->
-      <h1 class="p-muted-heading">{{platform.category}} › Platform</h1>
+      <h1 class="p-muted-heading">{{ platform.category }} › Platform</h1>
     </div>
     <div>
       <!-- TODO: figure out which exact heading levels should go here -->
-      <h1 class="u-no-margin--bottom">{{platform.vendor}} {{platform.name}}</h1>
+      <h1 class="u-no-margin--bottom">{{ platform.vendor }} {{ platform.name }}</h1>
       {% if platform.certificates|length == 1 %}
       <h3 class="p-heading--4">1 certified configuration</h3>
       {% else %}
-      <h3 class="p-heading--4">{{platform.certificates|length}} certified configurations</h3>
+      <h3 class="p-heading--4">{{ platform.certificates|length }} certified configurations</h3>
       {% endif %}
     </div>
     <nav class="p-tabs" aria-label="Example tabs" style="margin-top: 75px;">
       <div class="row">
         <ul class="p-tabs__list" role="tablist">
           <li id="all-releases" class="p-tabs__item" role="presentation">
-            <a href="/certified/platforms/{{platform.id}}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu Releases</a>
+            <a href="/certified/platforms/{{ platform.id }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu Releases</a>
           </li>
           {% for release in releases %}
           <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
-            <a href="/certified/platforms/{{platform.id}}/{{release}}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{release}}</a>
+            <a href="/certified/platforms/{{ platform.id }}/{{ release }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{ release }}</a>
           </li>
           {% endfor %}
         </ul>
@@ -54,7 +54,7 @@
         <tr>
           <th></th>
           {% for canonical_id, certificate in platform.certificates.items() %}
-          <td><a href="/certified/{{canonical_id}}"><strong>{{certificate.name}}</strong></a></td>
+          <td><a href="/certified/{{ canonical_id}}"><strong>{{ certificate.name }}</strong></a></td>
           {% endfor %}
         </tr>
       </thead>
