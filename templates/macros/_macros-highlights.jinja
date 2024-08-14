@@ -1,23 +1,31 @@
 # Params
-# list_items: List of highlight items (requires 3-4 items)
+# num_item: Number of items (requires 3-4 items)
+# Slots
+# list_item_content_INDEX: list content, valid INDEX are numbers from 1 to 4.
 
-{%- macro highlights(list_items) -%}
+{%- macro highlights(num_items) -%}
   <section class="p-section">
     <div class="row">
       <h2 class="p-text--small-caps">Highlights</h2>
       <hr />
     </div>
-    {% if list_items | length == 3 %}
+    {% if num_items == 3 %}
       {% set col_size = "col-4" %}
-    {% elif list_items | length == 4 %}
+    {% elif num_items == 4 %}
       {% set col_size = "col-3" %}
     {% endif %}
     <ul class="p-list">
       <div class="row">
-        {% for item in list_items %}
-          <div class="{{ col_size }}">
-            <li class="p-list__item is-ticked">{{ item }}</li>
-          </div>
+        {% for number in range(1, 5) %}
+          {%- set list_item_content = caller('list_item_content_' + number|string) -%}
+          {%- set has_list_item_content = list_item_content|trim|length > 0 -%}
+
+          {%- if has_list_item_content -%}
+            <div class="{{ col_size }}">
+              <li class="p-list__item is-ticked">{{ list_item_content }}</li>
+            </div>
+          {%- endif %}
+
         {% endfor %}
       </div>
     </ul>
