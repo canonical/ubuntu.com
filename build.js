@@ -35,6 +35,8 @@ let entries = {
   activate: "./static/js/src/activate.js",
   "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
+  credentialsDashboard:
+    "./static/js/src/advantage/credentials/dashboard/app.tsx",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

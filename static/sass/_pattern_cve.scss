@@ -16,8 +16,7 @@
     overflow-x: inherit !important;
   }
 
-  .cve-table {
-    @extend %small-text;
+  .cve-table-container {
     @media only screen and (max-width: $breakpoint-small) {
       overflow-x: auto;
     }
