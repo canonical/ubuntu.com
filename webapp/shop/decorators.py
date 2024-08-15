@@ -112,6 +112,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 _is_in_timeframe = (
                     _maintenance_start <= _time_now <= _maintenance_end
                 )
+                if _time_now > _maintenance_end:
+                    cred_maintenance = False
 
             is_in_maintenance = maintenance and is_in_timeframe
             cred_is_in_maintenance = cred_maintenance and _is_in_timeframe
