@@ -6,12 +6,11 @@
 {%- macro image_span(caption) -%}
   {%- set image_content = caller('image_content') -%}
   {%- set has_image = image_content|trim|length>0 -%}
-
-  <section class="p-strip">
+  <section class="p-section">
     <div class="row">
       {% if has_image %}
         <div class="col">
-          <div class="p-image-container u-align--center u-vertically-center u-no-padding--bottom">
+          <div class="p-image-container--cinematic u-align--center u-vertically-center u-no-padding--bottom">
             {{ image_content }}
           </div>
         </div>

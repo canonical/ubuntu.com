@@ -8,7 +8,7 @@
   <!-- Hero section-->
   {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
   {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
-                        logo="https://assets.ubuntu.com/v1/5b46609e-layer1.png",
+                        logo="https://assets.ubuntu.com/v1/58a67d07-esa-logo.png",
                         logo_alt="ESM logo",
                         logo_width="107",
                         logo_height="39")
@@ -70,7 +70,8 @@
                 width="1232",
                 height="514",
                 hi_def=True,
-                loading="lazy") | safe
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
       }}
     {%- endif -%}
   {%- endcall -%}
@@ -94,7 +95,8 @@
               width="1232",
               height="392",
               hi_def=True,
-              loading="lazy") | safe
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}) | safe
     }}
     {%- endif -%}
   {%- endcall -%}
@@ -124,7 +126,8 @@
                 width="2464",
                 height="783",
                 hi_def=True,
-                loading="lazy") | safe
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
       }}
     {%- endif -%}
   {%- endcall -%}
