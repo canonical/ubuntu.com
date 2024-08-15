@@ -16,7 +16,7 @@
           {%- set has_paragraph_content = paragraph_content|trim|length > 0 %}
 
           {%- if has_paragraph_content -%}
-            <div>{{ paragraph_content }}</div>
+            <div><p>{{ paragraph_content }}</p></div>
           {%- endif -%}
 
         {% endfor %}
