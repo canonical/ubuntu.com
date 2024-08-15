@@ -2,9 +2,9 @@
 # list_items: List of highlight items (requires 3-4 items)
 
 {%- macro highlights(list_items) -%}
-  <section class="p-strip">
+  <section class="p-section">
     <div class="row">
-      <p class="p-text--small-caps">Highlights</p>
+      <h2 class="p-text--small-caps">Highlights</h2>
       <hr />
     </div>
     {% if list_items | length == 3 %}

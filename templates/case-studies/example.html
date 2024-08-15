@@ -1,0 +1,167 @@
+{% extends "case-studies/base_case-studies.html" %}
+
+{% block title %}Case Studies{% endblock %}
+{% block meta_company_name %}European Space Agency{% endblock %}
+
+{% block content %}
+  <!--This index page will be using macros to build an example case study -->
+  <!-- Hero section-->
+  {% import "case-studies/templates/_macros-hero.jinja" as hero_template %}
+  {{ hero_template.hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations",
+                        logo="https://assets.ubuntu.com/v1/58a67d07-esa-logo.png",
+                        logo_alt="European Space Agency",
+                        logo_width="107",
+                        logo_height="39")
+  }}
+  
+  <!-- Text + list section -->
+  {% import "case-studies/templates/_macros-text-list.jinja" as text_list_template %}
+  {{ text_list_template.text_list(
+      title="About the European Space Agency (ESA)",
+      list_items=[
+        "Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.",
+        "The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.",
+        "ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established."
+      ]
+    ) 
+  }}
+
+  <!-- Highlights section -->
+  {% import "case-studies/templates/_macros-highlights.jinja" as highlights_template %}
+  {{ highlights_template.highlights(
+      list_items=[
+        "Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.",
+        "Timely updates and 24/7 monitoring of missioncritical equipment.",
+        "Significant cost-savings to help ESA focus more on its space missions.",
+        "A new, dynamic platform for efficient, automated, and fast deployment of systems across more missions."
+      ]
+    ) 
+  }}
+
+  <!-- Text section -->
+  {% import "case-studies/templates/_macros-text.jinja" as text_template %}
+  {{ text_template.text(
+      title="You can’t explore space without infrastructure.",
+      description_list=[
+        "It’s not just expert personnel, satellites and spacecraft: it takes mountains of software, computer systems, data and networks to get these missions off the ground. These missions are often unique – testing the limits of our technological know-how, having never been done before with each mission presenting its own unique challenges. Building and deploying these systems on a mission-bymission basis often involves significant complexity and costs.",
+        "ESA decided to embark on an ambitious challenge: to fly double the number of satellites it does currently by 2030, looking to technology to help it achieve this goal, with more rapid and automated software delivery, shared services, more efficient use of resources and lower costs of deployment.",
+        "To meet this goal, ESA engaged Canonical to deliver the architecture, design and deployment of Kubernetes and Ceph for persistent storage. ESA also chose Canonical’s Ceph distribution to consolidate the various storage technologies in use. Canonical’s Kubernetes distribution allowed ESA’s Missions Operations Infrastructure – IT (MOI-IT) team to easily deploy its workloads, integrated with the existing IT infrastructure services, giving it a greater ability to support ESA missions and those of its partners, with automatic updates and deployment, 24/7 monitoring and reduced system complexity.",
+        "Kubernetes was perfect for ESA’s next generation multi-mission platform at ESOC. This open source system helps organisations orchestrate their workloads more efficiently with automation. However, Kubernetes’ fast-moving and steep learning curve makes it more demanding to manage. To reduce the engineering workload and management requirements of this new system, ESA chose Canonical to manage its Kubernetes deployments, providing updates, monitoring and maintenance.",
+        "The systems Canonical deployed and now manage for ESA mean that ESOC engineering teams can quickly and centrally manage and deploy mission-critical infrastructure and software, with more security, reliability, and control, and with less downtime and reduced risk of system failures."
+      ]
+    )
+  }}
+
+  <!-- Quote section-->
+  {% import "case-studies/templates/_macros-quote.jinja" as quote_template %}
+  {{ quote_template.quote(
+      quote="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
+      name="Justin Boitano", 
+      job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+    )
+  }}
+
+  <!-- Image section-->
+  {% from "case-studies/templates/_macros-image.jinja" import image_span %}
+  {%- call(slot) image_span(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/c3f56868-Global_Mars_in_colour 1.png",
+                alt="Mars in colour",
+                width="1232",
+                height="514",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Continue reusing macros to build the case study -->
+  {{ text_template.text(
+      title="Challenge",
+      description_list=[
+        "From the famous Ulysses space mission in 1990 and the historical Philae comet landing in November 2014, to the Billion Star Survey and Euclid’s exploration of dark matter and energy, the European Space Agency leads some of the most exciting and impactful space missions, pushing into the furthest reaches of our Solar system – and beyond.",
+        "Running these intensive and often years-long space missions requires significant infrastructure and computing power. ESA is currently working towards creating multi mission infrastructure as a way to speed up deployment times and automate roll outs and updates. Finding more efficient ways of working, doing more with less, will help the organisation to more effectively manage operations, especially as ESA is moving to take on more space missions.",
+        "Michael Hawkshaw, ESA Mission Operations Infrastructure IT Service Manager at ESOC, explains: “In the past, every mission would have its own servers, software support team, and its own databases and infrastructure. Each mission would deploy the specific software on those machines that it needed to operate the mission. We wanted to take advantage of new and innovative ways of deploying this infrastructure, so that we could realise cost and efficiency improvements, and open the door to further innovation when operating missions. This approach will also help us realise our goal of supporting twice the number of missions by 2030”.",
+        "To meet its 2030 objective, ESA started work on a solution that would allow it to deploy infrastructure and software automatically for its missions, and simplify the workflow and processes for ESA engineering teams. The solution would need to be kept updated in a controlled and managed way, offer a secure and scalable way to take advantage of public cloud convenience, and support and secure on-premise mission-critical infrastructure. ESA chose to work with Canonical to provide the required private cloud infrastructure as a managed service."
+      ]
+    )
+  }}
+
+  {%- call(slot) image_span(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
+    {%- if slot == 'image_content' %}
+    {{ image(url="https://assets.ubuntu.com/v1/a37f81c3-Global_Mars_in_colour 1.png",
+              alt="",
+              width="1232",
+              height="392",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}) | safe
+    }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ text_template.text(
+      title="Solution",
+      description_list=[
+        "To meet these challenges, Canonical deployed its Kubernetes and Ceph distributions across data centres located at ESA’s European Space Operations Centre in Darmstadt, Germany. Canonical assisted ESA in the architecture, design and deployment of Kubernetes across hundreds of VMs and dozens of clusters, all connected to physical clusters of Ceph storage, as part of its Managed Services offering. Canonical are also working on the deployment of PostgreSQL and Kafka, which will also be a Managed Service, allowing ESA to focus more on supporting mission operations.",
+        "K8s (Kubernetes) is an open source system to deploy, scale, and manage containerised applications anywhere. Ceph is an open source storage solution that gives users scalable block, file, and object storage from a single distributed cluster. When ‘charmed’, using Canonical’s open source orchestration engine (Juju) , these systems become easy to deploy, integrate and operate.",
+        "Canonical Kubernetes was the solution selected for ESA’s needs, as it provides an easy and effective way to automatically deploy software across systems of all sizes. It readily plugs into Ceph and PostgreSQL systems, which are part of ESA’s stack. In the same way, Canonical’s Ceph distribution was selected for ESA’s cloud infrastructure goals. ESA wanted to take advantage of the power and scalability of public cloud, but had mission-critical on-premise cloud infrastructure that needed to be managed at the same time. Ceph provides storage that scales with changing mission requirements, while keeping costs low without the need for specialised storage hardware.",
+        "It also opens up data storage to multiple types, all within a single cluster, cutting the need for building and managing multiple storage solutions. Aside from its high reliability, speed and scalability, Ceph offers a hardware agnostic design that allows it to excel without any reliance on other programs or proprietary systems."
+      ]
+    )  
+  }}
+
+  {{ quote_template.quote(
+      quote="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
+      name="Justin Boitano",
+      job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+    )
+  }}
+
+  {%- call(slot) image_span(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
+    {%- if slot == 'image_content' %}      
+      {{ image(url="https://assets.ubuntu.com/v1/77b53c6e-mercury-first-impressions.png",
+                alt="Mercury first impressions",
+                width="2464",
+                height="783",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {{ text_template.text(
+    title="Results",
+    description_list=[
+      "This large deployment has given ESA cost savings, easier operations, and more confidence in providing infrastructure across multiple space missions. The open source nature of Ceph and Kubernetes has reduced the number of software licences and costs associated with proprietary software deployments.",
+      "The system also enables 24/7 monitoring, with automatic ongoing updates reducing the risk of outdated services at mission launch. The risk of system failure has been similarly reduced: Kubernetes automatic failovers and backups give ESA missions more certainty of continued operations in cases of technical hiccoughs. If one node fails, workloads are automatically distributed onto other nodes.",
+      "The deployment also brings reduced complexity: all ESOC services and subservices can be managed in one location, with the ability to support Kubernetes, Ceph clusters, and managed data solutions. Finally, this setup provides the ability to scale operations and take advantage of public cloud technologies, while keeping critical infrastructure on site.",
+      "Michael Hawkshaw, ESA Mission Operations Infrastructure IT Service Manager, said: “We can develop applications to be more resilient to failure and lessen any impact of unplanned downtime”.",
+      "The impact of Canonical’s open source infrastructure solutions is simple and significant: less time and effort needs to be spent on keeping systems up-to-date resulting in more cost-effective space missions and giving ESA more resources to focus on the space mission.",
+      "ESA has an ambitious roadmap for space exploration, continuing its strong presence in low Earth orbit and leading Europe’s human journey into the Solar system, including creating a sustainable presence of the Moon as a stepping stone for further deep-space exploration. Finding new and innovative ways to help support these missions on the ground is key to ESA’s future success."
+      ]
+    )
+  }}
+
+  {{ quote_template.quote(
+      quote="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
+      name="Justin Boitano",
+      job_title="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+    )
+  }}
+
+  {{ text_template.text(
+    description_list=[
+        "The open source nature of Canonical’s offerings, and its managed services, were both driving factors in ESA’s adoption of these tools. As a managed service that uses open source tools, Canonical provided ESA with better cost effectiveness in the medium and long term, and allows ESA to have the flexibility and freedom of its own infrastructure. Managed services also help ESA to focus on its core business of operating missions.",
+        "“We wanted one service provider for the whole on-premise cloud consisting not only of Kubernetes but also the Ceph storage solution, PostgreSQL and Kafka. These were all the services that were needed and with this we could have one joined-up approach”, added Michael.",
+        "The open source nature of Canonical’s solution allowed ESA to retain ownership of their systems.",
+        "“It was important, knowing that we could always ‘get the keys back and manage it ourselves’”, explained Michael."
+      ]
+    )
+  }}
+
+  
+
+{% endblock %}
