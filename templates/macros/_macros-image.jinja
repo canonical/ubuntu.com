@@ -1,7 +1,7 @@
 # Params
 # caption: Caption for image (required)
 # Slots
-# image_content: Slot for image content.
+# image_content: Slot for image content, the image must have the class 'p-image-container__image'.
 
 {%- macro image_span(caption) -%}
   {%- set image_content = caller('image_content') -%}
