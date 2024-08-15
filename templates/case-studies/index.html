@@ -47,7 +47,7 @@
       <p>Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.</p>
     {%- endif -%}
     {%- if slot == 'highlights_item_content_2' -%}
-      <p>Timely updates and 24/7 monitoring of missioncritical equipment.</p>
+      <p>Timely updates and 24/7 monitoring of mission critical equipment.</p>
     {%- endif -%}
     {%- if slot == 'highlights_item_content_3' -%}
       <p>ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.</p>
@@ -88,11 +88,12 @@
   {%- call(slot) image_span(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
     {%- if slot == 'image_content' %}
       {{ image(url="https://assets.ubuntu.com/v1/c3f56868-Global_Mars_in_colour 1.png",
-                alt="Mars in colour",
+                alt="",
                 width="1232",
                 height="514",
                 hi_def=True,
-                loading="lazy") | safe
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
       }}
     {%- endif -%}
   {%- endcall -%}
