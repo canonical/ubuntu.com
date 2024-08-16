@@ -479,19 +479,6 @@ def cve_index():
         detailed=detailed,
     )
 
-def does_not_include_base_url(link):
-    default_reference_urls = [
-        "https://cve.mitre.org/",
-        "https://nvd.nist.gov",
-        "https://launchpad.net/",
-        "https://security-tracker.debian.org",
-        "https://ubuntu.com/security/notices"
-    ]
-    for base_url in default_reference_urls:
-        if base_url in link:
-            return False
-    return True
-
 
 def does_not_include_base_url(link):
     default_reference_urls = [
@@ -649,7 +636,10 @@ def cve(cve_id):
 
         # filter releases
         if support_date < datetime.now():
-            if esm_date < datetime.now():
+            if esm_date > datetime.now():
+                if release["lts"] and release_date < datetime.now():
+                    maintained_releases.append(release)
+            else:
                 unmaintained_releases.append(release)
         elif release_date < datetime.now():
             maintained_releases.append(release)
@@ -659,10 +649,10 @@ def cve(cve_id):
         "DNE": {"name": "Not in release", "icon": None},
         "needs-triage": {"name": "Needs evaluation", "icon": "help"},
         "not-affected": {"name": "Not affected", "icon": "success"},
-        "needed": {"name": "Vulnerable", "icon": "warning"},
-        "deferred": {"name": "Vulnerable, fix deferred", "icon": "warning"},
-        "pending": {"name": "Vulnerable, work in progress", "icon": "warning"},
-        "ignored": {"name": "Ignored", "icon": "error-grey"},
+        "needed": {"name": "Vulnerable", "icon": "error"},
+        "deferred": {"name": "Vulnerable, fix deferred", "icon": "error"},
+        "pending": {"name": "Vulnerable, work in progress", "icon": "error "},
+        "ignored": {"name": "Ignored", "icon": None},
         "released": {"name": "Fixed", "icon": "success"},
     }
 
@@ -678,6 +668,10 @@ def cve(cve_id):
             for release in all_releases:
                 if status["release_codename"] == release["codename"]:
                     status["version"] = release["version"]
+                    status["release_date"] = release["release_date"]
+
+                    if release["lts"]:
+                        status["support_tag"] = "LTS"
 
             if status["release_codename"] in [
                 release["codename"] for release in maintained_releases
@@ -686,6 +680,13 @@ def cve(cve_id):
                 maintained_count += 1
             else:
                 status["maintained"] = False
+    
+        # Sort package statuses by release version
+        package["statuses"] = sorted(
+            [d for d in package["statuses"] if d["release_codename"] != "upstream"], 
+            key=lambda d: d["release_date"], 
+            reverse=True
+        )
 
     return flask.render_template(
         "security/cves/cve.html",
