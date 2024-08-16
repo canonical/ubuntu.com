@@ -1,23 +1,30 @@
 {% extends "templates/one-column.html" %}
-{% block title %}Ubuntu Pro for Infrastructure: maintenance{% endblock %}
 
+{% block title %}{{ title | default("Ubuntu Pro for Infrastructure: maintenance") }}{% endblock %}
 
 {% block content %}
-<div class="p-strip">
-  <div class="row">
-    <div class="col-6 col-start-large-4">
-      <div class="p-card--outline">
-        <div class="row u-equal-height">
-          <div class="u-vertically-center">
-            <img src="https://assets.ubuntu.com/v1/05dad221-info.svg" alt="" style="width: 70px;">
-          </div>
-          <div class="u-vertically-center">
-            <h1 class="p-heading--3">We'll be back soon</h1>
-            <p class="p-heading--4">We're updating the Ubuntu Pro store</p>
+  <div class="p-strip">
+    <div class="row">
+      <div class="col-6 col-start-large-4">
+        <div class="p-card--outline">
+          <div class="row u-equal-height">
+            <div class="u-vertically-center">
+              {{ image (
+              url="https://assets.ubuntu.com/v1/05dad221-info.svg",
+              alt="",
+              width="70",
+              loading="lazy",
+              hi_def=True,
+              ) | safe
+              }}
+            </div>
+            <div class="u-vertically-center">
+              <h1 class="p-heading--3">We'll be back soon</h1>
+              <p class="p-heading--4">{{ description | default("We're updating the Ubuntu Pro store") }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock content %}
