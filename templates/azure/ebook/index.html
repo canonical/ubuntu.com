@@ -14,16 +14,23 @@
 
 {% block content %}
 <section class="p-section--hero">
-  <div class="u-fixed-width">
-    <h1 class="u-no-margin--bottom">Why do cloud innovators migrate to Ubuntu Pro?</h1>
-    <div class="p-section--shallow">
-    <h2>Get our eBook to find out</h2>
+  <div class="row--50-50">
+    <div class="col">
+      <h1 class="u-no-margin--bottom">Why do cloud innovators migrate to Ubuntu Pro?</h1>
+      <h2>Get our eBook to find out</h2>
+      <hr class="is-muted" />
+      <p>
+        <a href="#ubuntu-pro-ebook" class="p-button--positive">Download<span class="u-off-screen"> the Why do Cloud innovators migrate to Pro? eBook by completing this form</span></a>
+      </p>
     </div>
-    <hr class="is-muted" />
-    <p>
-      <a href="#ubuntu-pro-ebook" class="p-button--positive">Download<span class="u-off-screen"> the Why do Cloud
-          innovators migrate to Pro? eBook by completing this form</span></a>
-    </p>
+    <div class="col">
+      <div class="col">
+        <div class="p-image-container u-hide--small">
+          <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/d5af1f9f-ebook-azure.png"
+            alt="Ubuntu pro and Azure logo" />
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -49,10 +56,7 @@
 </section>
 
 <section class="p-section">
-  <div class="row--50-50">
-    <hr />
     {% include "azure/shared/_how-ubuntu-pro-helps-you.html" %}
-  </div>
 </section>
 
 <section class="p-section--deep">
