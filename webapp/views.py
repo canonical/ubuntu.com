@@ -506,7 +506,13 @@ def build_engage_pages_sitemap(engage_pages):
 
     def ep_sitemap():
         links = []
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
+
         if len(metadata) == 0:
             flask.abort(404)
 
@@ -580,7 +586,12 @@ def openstack_install():
 
 def openstack_engage(engage_pages):
     def openstack_resource_data():
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
 
         resource_tags = [
             "openstack",
