@@ -120,9 +120,11 @@ const ProductSummary = () => {
             style={{ display: "flex", alignItems: "center" }}
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
-              <StatusLabel appearance="positive">
-                Free trial available
-              </StatusLabel>
+              <a href="/engage/Ubuntu-Pro-1-month-trial">
+                <StatusLabel appearance="positive">
+                  Free trial available
+                </StatusLabel>
+              </a>
             ) : null}
             <PaymentButton />
           </Col>
@@ -203,9 +205,11 @@ const ProductSummary = () => {
           </Col>
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
-              <StatusLabel appearance="positive">
-                Free trial available
-              </StatusLabel>
+              <a href="/engage/Ubuntu-Pro-1-month-trial">
+                <StatusLabel appearance="positive">
+                  Free trial available
+                </StatusLabel>
+              </a>
             </Col>
           ) : null}
         </Row>
