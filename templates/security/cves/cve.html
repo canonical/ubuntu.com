@@ -227,9 +227,7 @@
           <div class="u-fixed-width p-section"
                style="display: flex;
                       justify-content: space-between">
-            <div class="p-section--shallow">
-              <h2>Status</h2>
-            </div>
+            <h2>Status</h2>
             <label class="p-switch" style="float: right;" >
               <input type="checkbox" class="p-switch__input js-toggle-maintained" {% if maintained_count < 1 %} aria-describedby="disabled-switch-notification" {% endif %}role="switch" />
               <span class="p-switch__slider"></span>
@@ -262,16 +260,25 @@
                         <tr>
                           {% if status.release_codename and status.release_codename != "upstream" %}
                             {% if loop.index == 1 %}<th rowspan="{{ package.statuses | length }}">{{ package["name"] }}</th>{% endif %}
-                            <td {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %}>{{ status.version }} <span class="u-text--muted">{{ status.release_codename }}</span></td>
+                            <td {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %}>{{ status.version }} {% if status.support_tag %}{{ status.support_tag }}{% endif %}
+                              <span class="u-text--muted">{{ status.release_codename }}</span></td>
                             {# djlint: off #}
                             {% if status.icon %}
                             <td {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %} {% if status.pocket == "esm-apps" or status.pocket == "esm-infra" %} style="display: flex; gap:8px; flex-wrap: wrap;" {% endif %}>
                               <i class="p-icon--{{ status.icon }}"></i> {{ status.name }} {% if status.name == "Fixed" or status.status == "ignored" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
                               {% if status.pocket == "esm-infra" %}
-                                <a class="p-chip" href="/pro">
-                                  <span class="p-chip__value">Ubuntu Pro</span>
+                                <a class="p-chip p-tooltip--top-center" href="/pro"  aria-describedby="infra-tooltip">
+                                  <span class="p-chip__value ">Ubuntu Pro</span>
+                                  <!-- <span class="p-tooltip__message" role="tooltip" id="infra-tooltip" style="width: 12rem; text-wrap: wrap;">Fix available with Ubuntu Pro and Ubuntu Pro (Infra-only) via ESM Infra.</span> -->
+
                                 </a>
-                              {% endif %}
+                                
+                                <div class="p-tooltip--right is-detached" id="infra-tooltip">
+                                  <span class="p-tooltip__message" role="tooltip" style="width: 12rem; text-wrap: wrap;">Fix available with Ubuntu Pro and Ubuntu Pro (Infra-only) via ESM Infra.</span>
+                                </div>
+                                
+                           
+                                {% endif %}
                               {% if status.pocket == "esm-apps" %}
                                 <a class="p-chip" href="/pro">
                                   <span class="p-chip__value">Ubuntu Pro</span>
@@ -523,6 +530,88 @@
 </section>
 
 <script>
+
+function setTooltipPosition(trigger, container) {
+  var triggerRect = trigger.getBoundingClientRect();
+  console.log("here")
+
+  // FOR VANILLA EXAMPLE ONLY:
+  // this example only covers two tooltip positions
+  if (container.classList.contains('p-tooltip--top-center')) {
+    tooltipX = triggerRect.x + triggerRect.width / 2;
+  } else {
+    tooltipX = triggerRect.x + 16;
+  }
+
+  container.style.left = tooltipX + 'px';
+  container.style.top = triggerRect.y + triggerRect.height + 'px';
+}
+
+function handleTooltipEvents(target, tooltipContainers) {
+  var trigger = document.querySelector("[aria-describedby='" + target.getAttribute('id') + "']");
+  var timeout;
+  var showEvents = ['click', 'mouseenter', 'focus'];
+  var hideEvents = ['click', 'mouseout', 'blur'];
+  var tooltipClickedOpen = false;
+
+  showEvents.forEach(function (event) {
+    trigger.addEventListener(event, function () {
+      if (event === 'click') {
+        tooltipClickedOpen = !tooltipClickedOpen;
+      }
+      // wait 200ms before showing the tooltip,
+      // so we know there is intent
+      timeout = setTimeout(function () {
+        // hide any tooltips that may still be visible
+        tooltipContainers.forEach(function (container) {
+          container.classList.add('u-hide');
+        });
+        target.classList.remove('u-hide');
+        setTooltipPosition(trigger, target);
+      }, 200);
+    });
+  });
+
+  hideEvents.forEach(function (event) {
+    trigger.addEventListener(event, function (e) {
+      if (e.target.parentNode !== trigger) {
+        if (tooltipClickedOpen) {
+          return;
+        } else {
+          clearTimeout(timeout);
+          target.classList.add('u-hide');
+        }
+      }
+    });
+  });
+
+  // Hide the tooltip when the user clicks outside the trigger or presses escape
+  ['keyup', 'click'].forEach(function (event) {
+    document.addEventListener(event, function (e) {
+      if (tooltipClickedOpen) {
+        if (e.target !== trigger || e.key === 'Escape') {
+          clearTimeout(timeout);
+          target.classList.add('u-hide');
+          tooltipClickedOpen = false;
+        }
+      }
+    });
+  });
+}
+
+function initDetachedTooltips(selector) {
+  var tooltipContainers = [].slice.call(document.querySelectorAll(selector));
+
+  tooltipContainers.forEach(function (target) {
+    handleTooltipEvents(target, tooltipContainers);
+  });
+}
+
+initDetachedTooltips('[class*="p-tooltip"].is-detached');
+console.log('initDetachedTooltips');
+document.addEventListener('DOMContentLoaded', function () {
+});
+
   function handleHiddenReleasesSwitch() {
     const maintainedCount = {{maintained_count | tojson | safe}};
     const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
