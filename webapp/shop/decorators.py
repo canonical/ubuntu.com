@@ -122,12 +122,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 cred_maintenance and is_cred_maintenance_in_timeframe
             )
 
-            return flask.render_template(
-                    "advantage/maintenance.html",
-                    description="We're updating the Credentials store",
-                    title="Credentials Maintenance",
-                )
-
             if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
 
