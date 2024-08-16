@@ -90,8 +90,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
             cred_maintenance = strtobool(
                 os.getenv("CRED_MAINTENANCE", "False")
             )
-            is_in_timeframe = False
-            _is_in_timeframe = False
+            is_store_maintenance_in_timeframe = False
+            is_cred_maintenance_in_timeframe = False
             store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
             store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
             cred_maintenance_start = os.getenv("CRED_MAINTENANCE_START")
@@ -101,7 +101,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
                 maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
                 time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-                is_in_timeframe = (
+                is_store_maintenance_in_timeframe = (
                     maintenance_start <= time_now < maintenance_end
                 )
 
@@ -109,14 +109,24 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 _maintenance_start = parse(os.getenv("CRED_MAINTENANCE_START"))
                 _maintenance_end = parse(os.getenv("CRED_MAINTENANCE_END"))
                 _time_now = datetime.now(pytz.utc)
-                _is_in_timeframe = (
+                is_cred_maintenance_in_timeframe = (
                     _maintenance_start <= _time_now <= _maintenance_end
                 )
                 if _time_now > _maintenance_end:
                     cred_maintenance = False
 
-            is_in_maintenance = maintenance and is_in_timeframe
-            cred_is_in_maintenance = cred_maintenance and _is_in_timeframe
+            is_in_maintenance = (
+                maintenance and is_store_maintenance_in_timeframe
+            )
+            cred_is_in_maintenance = (
+                cred_maintenance and is_cred_maintenance_in_timeframe
+            )
+
+            return flask.render_template(
+                    "advantage/maintenance.html",
+                    description="We're updating the Credentials store",
+                    title="Credentials Maintenance",
+                )
 
             if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
