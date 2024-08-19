@@ -336,7 +336,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        formContainer.removeChild(contactModal);
+        if (formContainer.contains(contactModal)) {
+          formContainer.removeChild(contactModal);
+        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
@@ -364,79 +366,82 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const contactModal = document.getElementById("contact-modal");
         var message = "";
         var commentsFromLead = document.querySelector("#Comments_from_lead__c");
-        var formFields = contactModal.querySelectorAll(".js-formfield");
-        formFields.forEach(function (formField) {
-          var comma = ",";
-          var fieldsetForm = formField.querySelector(".js-formfield-title");
-          var fieldTitle = "";
-          if (fieldsetForm) {
-            fieldTitle = fieldsetForm;
-          } else {
-            fieldTitle =
-              formField.querySelector(".p-heading--5") ??
-              formField.querySelector(".p-modal__question-heading");
-          }
-          var inputs = formField.querySelectorAll("input, textarea");
-          if (fieldTitle) {
-            message += fieldTitle.innerText + "\r\n";
-          }
+        if (contactModal) {
+          var formFields = contactModal.querySelectorAll(".js-formfield");
 
-          inputs.forEach(function (input) {
-            var removeInputName = true;
-            switch (input.type) {
-              case "radio":
-                if (input.checked) {
-                  message += input.value + comma + " ";
-                }
-                break;
-              case "checkbox":
-                if (input.checked) {
-                  if (fieldsetForm) {
+          formFields.forEach(function (formField) {
+            var comma = ",";
+            var fieldsetForm = formField.querySelector(".js-formfield-title");
+            var fieldTitle = "";
+            if (fieldsetForm) {
+              fieldTitle = fieldsetForm;
+            } else {
+              fieldTitle =
+                formField.querySelector(".p-heading--5") ??
+                formField.querySelector(".p-modal__question-heading");
+            }
+            var inputs = formField.querySelectorAll("input, textarea");
+            if (fieldTitle) {
+              message += fieldTitle.innerText + "\r\n";
+            }
+
+            inputs.forEach(function (input) {
+              var removeInputName = true;
+              switch (input.type) {
+                case "radio":
+                  if (input.checked) {
                     message += input.value + comma + " ";
-                  } else {
-                    // Forms that have column separation
-                    removeInputName = false;
-                    var subSectionText = "";
-                    if (
-                      input.closest('[class*="col-"]') &&
-                      input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section")
-                    ) {
-                      var subSection = input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section");
-                      subSectionText = subSection.innerText + ": ";
-                    }
-
-                    var label = formField.querySelector(
-                      "span#" + input.getAttribute("aria-labelledby"),
-                    );
-
-                    if (label) {
-                      label = subSectionText + label.innerText;
-                    } else {
-                      label = input.getAttribute("aria-labelledby");
-                    }
-                    message += label + comma + "\r\n\r\n";
                   }
-                }
-                break;
-              case "text":
-              case "number":
-              case "textarea":
-                if (input.value !== "") {
-                  message += input.value + comma + " ";
-                }
-                break;
-            }
-            // Remove name attribute to submit to Marketo
-            if (submit && removeInputName) {
-              input.removeAttribute("name");
-            }
+                  break;
+                case "checkbox":
+                  if (input.checked) {
+                    if (fieldsetForm) {
+                      message += input.value + comma + " ";
+                    } else {
+                      // Forms that have column separation
+                      removeInputName = false;
+                      var subSectionText = "";
+                      if (
+                        input.closest('[class*="col-"]') &&
+                        input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section")
+                      ) {
+                        var subSection = input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section");
+                        subSectionText = subSection.innerText + ": ";
+                      }
+
+                      var label = formField.querySelector(
+                        "span#" + input.getAttribute("aria-labelledby"),
+                      );
+
+                      if (label) {
+                        label = subSectionText + label.innerText;
+                      } else {
+                        label = input.getAttribute("aria-labelledby");
+                      }
+                      message += label + comma + "\r\n\r\n";
+                    }
+                  }
+                  break;
+                case "text":
+                case "number":
+                case "textarea":
+                  if (input.value !== "") {
+                    message += input.value + comma + " ";
+                  }
+                  break;
+              }
+              // Remove name attribute to submit to Marketo
+              if (submit && removeInputName) {
+                input.removeAttribute("name");
+              }
+            });
+            message += "\r\n\r\n";
           });
-          message += "\r\n\r\n";
-        });
+        }
         return message;
       }
 
