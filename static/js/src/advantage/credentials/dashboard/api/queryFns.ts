@@ -173,3 +173,24 @@ export async function issueCredlyBadge(badgeData: any) {
     throw new Error(error as string);
   }
 }
+
+export async function getUserPermissions() {
+  try {
+    const URL = `/credentials/api/user-permissions`;
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}

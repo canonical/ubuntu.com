@@ -15,6 +15,7 @@ from webapp.macaroons import (
 
 COMMUNITY_TEAM = "ubuntumembers"
 CREDENTIALS_TEAM = "canonical-credentials"
+CREDENTIALS_SUPPORT = "canonical-credentials-support"
 
 login_url = os.getenv("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
@@ -42,6 +43,9 @@ def user_info(user_session):
             ),
             "is_credentials_admin": (
                 user_session["openid"].get("is_credentials_admin", False)
+            ),
+            "is_credentials_support": (
+                user_session["openid"].get("is_credentials_support", False)
             ),
         }
     else:
@@ -121,6 +125,9 @@ def after_login(resp):
 
     is_community_member = COMMUNITY_TEAM in resp.extensions["lp"].is_member
     is_credentials_admin = CREDENTIALS_TEAM in resp.extensions["lp"].is_member
+    is_credentials_support = (
+        CREDENTIALS_SUPPORT in resp.extensions["lp"].is_member
+    )
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
@@ -130,6 +137,7 @@ def after_login(resp):
         "email": resp.email,
         "is_community_member": is_community_member,
         "is_credentials_admin": is_credentials_admin,
+        "is_credentials_support": is_credentials_support,
     }
 
     return flask.redirect(open_id.get_next_url())
