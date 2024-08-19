@@ -13,6 +13,7 @@ import {
   ExpiryNotificationSize,
   ORDERED_STATUS_KEYS,
 } from "../../ExpiryNotification/ExpiryNotification";
+import SubscriptionStatusChip from "../../SubscriptionStatusChip";
 
 type Props = {
   isSelected?: boolean;
@@ -47,6 +48,7 @@ const ListCard = ({
       </>
     );
   }
+
   return (
     <Card
       className={classNames("p-subscriptions__list-card u-no-padding", {
@@ -69,92 +71,21 @@ const ListCard = ({
             {isFree ? "Free Personal Token" : subscription.product_name}
           </h5>
 
-          {subscription.statuses.is_expired ? (
-            <button className="p-chip--negative">
-              <span className="p-chip__value" data-test="card-type">
-                Expired
-              </span>
-            </button>
-          ) : (
-            <>
-              {subscription.type == "legacy" && subscription.renewal_id ? (
-                <>
-                  {subscription.statuses.is_renewed ? (
-                    <button className="p-chip--positive">
-                      <span className="p-chip__value" data-test="card-type">
-                        Renewed
-                      </span>
-                    </button>
-                  ) : (
-                    <>
-                      {subscription.statuses.is_renewal_actionable &&
-                      subscription.statuses.is_renewable ? (
-                        <button className="p-chip--caution">
-                          <span className="p-chip__value" data-test="card-type">
-                            Not renewed
-                          </span>
-                        </button>
-                      ) : null}
-                    </>
-                  )}
-                </>
-              ) : null}
-              {subscription.type == "monthly" ||
-              subscription.type == "yearly" ? (
-                <>
-                  {subscription.statuses.is_subscription_active &&
-                  !subscription.statuses.is_cancelled ? (
-                    <>
-                      {subscription.statuses.is_renewed ? (
-                        <button className="p-chip--positive">
-                          <span className="p-chip__value" data-test="card-type">
-                            Auto-renewal on
-                          </span>
-                        </button>
-                      ) : null}
-                      {!subscription.statuses.is_renewed ? (
-                        <button className="p-chip--caution">
-                          <span className="p-chip__value">
-                            Auto-renewal off
-                          </span>
-                        </button>
-                      ) : null}
-                    </>
-                  ) : null}
-                  {subscription.statuses.is_cancelled ? (
-                    <button className="p-chip--negative">
-                      <span className="p-chip__value" data-test="card-type">
-                        Cancelled
-                      </span>
-                    </button>
-                  ) : null}
-                </>
-              ) : null}
-              {subscription.type == "trial" ? (
-                <>
-                  {subscription.statuses.is_subscription_active ? (
-                    <>
-                      {subscription.statuses.is_renewed &&
-                      !subscription.statuses.is_cancelled ? (
-                        <button className="p-chip--positive">
-                          <span className="p-chip__value" data-test="card-type">
-                            Auto-renewal on
-                          </span>
-                        </button>
-                      ) : null}
-                    </>
-                  ) : null}
-                  {subscription.statuses.is_cancelled ? (
-                    <button className="p-chip--negative">
-                      <span className="p-chip__value" data-test="card-type">
-                        Cancelled
-                      </span>
-                    </button>
-                  ) : null}
-                </>
-              ) : null}
-            </>
-          )}
+          {
+            <SubscriptionStatusChip subscription={subscription}>
+              {(data) =>
+                data ? (
+                  <button className={`p-chip--${data.type}`}>
+                    <span className="p-chip__value" data-test="card-type">
+                      {data.status}
+                    </span>
+                  </button>
+                ) : (
+                  <></>
+                )
+              }
+            </SubscriptionStatusChip>
+          }
         </div>
 
         <Row>

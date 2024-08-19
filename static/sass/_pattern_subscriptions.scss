@@ -111,6 +111,7 @@
             // Move the actions down to the bottom of the container.
             align-self: end;
             border-top: 1px solid $colors--light-theme--border-default;
+            -moz-column-gap: $sp-medium;
             column-gap: $sp-medium;
             display: grid;
             // Move the actions down to the footer area.
@@ -220,6 +221,11 @@
     display: flex;
     // Space the context menu to the right of the container.
     justify-content: space-between;
+    // Provide space before the first card.
+    margin-bottom: $spv--large;
+  }
+
+  .p-subscriptions__list-group-subtitle {
     // Provide space before the first card.
     margin-bottom: $spv--large;
   }
