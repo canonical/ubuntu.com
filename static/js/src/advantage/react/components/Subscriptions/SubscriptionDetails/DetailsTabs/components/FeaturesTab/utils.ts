@@ -10,7 +10,7 @@ export type EntitlementsFormState = Record<EntitlementLabel, Feature>;
 
 export const getNewFeaturesFormState = (
   entitlementsState: EntitlementsFormState,
-  newEntitlement?: Feature
+  newEntitlement?: Feature,
 ): EntitlementsFormState => {
   const newState = Object.entries(entitlementsState).reduce(
     (acc, [key, value]) => {
@@ -26,7 +26,7 @@ export const getNewFeaturesFormState = (
         },
       };
     },
-    {} as EntitlementsFormState
+    {} as EntitlementsFormState,
   );
 
   if (newState[EntitlementLabel.Fips]?.isChecked) {
@@ -56,14 +56,14 @@ export const getNewFeaturesFormState = (
 };
 
 export const initialiseFeaturesForm = (
-  features: EntitlementsStore
+  features: EntitlementsStore,
 ): EntitlementsFormState =>
   [...features.included, ...features.alwaysAvailable].reduce(
     (acc, entitlementLabel) => ({
       ...acc,
       [entitlementLabel]: formatEntitlementToFeature(
-        features.byLabel[entitlementLabel]
+        features.byLabel[entitlementLabel],
       ),
     }),
-    {} as EntitlementsFormState
+    {} as EntitlementsFormState,
   );

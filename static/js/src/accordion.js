@@ -46,7 +46,7 @@ function setupAccordion(accordionContainer) {
   // Finds any open panels within the container and closes them.
   function closeAllPanels() {
     var openPanels = accordionContainer.querySelectorAll(
-      "[aria-expanded=true]"
+      "[aria-expanded=true]",
     );
 
     for (var i = 0, l = openPanels.length; i < l; i++) {
@@ -59,7 +59,7 @@ function setupAccordion(accordionContainer) {
   accordionContainer.addEventListener("click", function (event) {
     var target = event.target;
     var multipleAccordionsOpen = accordionContainer.getAttribute(
-      "data-multiple-expanded"
+      "data-multiple-expanded",
     );
 
     if (target.closest) {

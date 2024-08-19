@@ -321,7 +321,7 @@
     .p-list__item {
       @extend %vf-list-item;
 
-      border-bottom: 1px solid $colors--light-theme--border-default;
+      border-bottom: 1px solid $colors--theme--border-low-contrast;
       padding-left: 2rem;
       position: relative;
 
@@ -357,13 +357,13 @@
 
     .p-list__item {
       align-items: center;
-      border-bottom: 1px solid $colors--light-theme--border-default;
+      border-bottom: 1px solid $colors--theme--border-low-contrast;
       display: flex;
       padding: 1rem 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         border-bottom: 0;
-        border-right: 1px solid $colors--light-theme--border-default;
+        border-right: 1px solid $colors--theme--border-low-contrast;
         display: inline-flex;
         padding: 0 2rem;
       }
@@ -423,15 +423,7 @@
   }
 }
 
-// TODO: Link corresponding Vanilla ticket
-// A list with separators between items
-@mixin vf-list-item-divided {
-  .p-list--divided > .p-list__item:first-child {
-    box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
-  }
 
-  // Remove the first separator if the list is divided
-  .p-list--divided.remove-first-hr > .p-list__item:first-child {
-    box-shadow: none;
-  }
+.p-list--divided.is-homepage > .p-list__item:first-child {
+  box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
 }

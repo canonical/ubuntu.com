@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Sentry from "@sentry/react";
 import { Offer as OfferType } from "../../../offers/types";
 import { MainTable, Select, Row, Col } from "@canonical/react-components";
@@ -71,7 +71,7 @@ const ChannelOffersList = () => {
       const dateA = new Date(a.created_at).getTime();
       const dateB = new Date(b.created_at).getTime();
       return dateB - dateA;
-    }
+    },
   );
 
   return (
@@ -97,6 +97,7 @@ const ChannelOffersList = () => {
         </Col>
       </Row>
       <MainTable
+        data-testid="channel-offer-table"
         className="u-no-margin--bottom"
         headers={[
           {

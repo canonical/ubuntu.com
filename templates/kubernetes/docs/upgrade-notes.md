@@ -14,24 +14,29 @@ toc: False
 ---
 
 This page is intended to deal with specific, special circumstances you may
-encounter when upgrading between versions of **Charmed Kubernetes**.
-The notes are organised according to the upgrade path below, but also be aware that any
+encounter when upgrading between versions of **Charmed Kubernetes**. The notes
+are organised according to the upgrade path below, but also be aware that any
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
 ## Upgrades to all versions deployed to Juju's `localhost` LXD based cloud
 
-There is a known issue ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
-with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot)
+There is a known issue
+([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
+with container profiles not surviving an upgrade in clouds running on LXD. If
+your container-based applications fail to work properly after an upgrade,
+please see this [topic on the troubleshooting
+page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot)
 
 <a  id="1.29"> </a>
 
 ## Upgrading to 1.29
 
-There are several important changes starting in 1.29 that will effect all users:
+There are several important changes starting in 1.29 that will affect all
+users:
 
-- `kubeapi-load-balancer`, `kubernetes-control-plane`, and `kubernetes-worker` charms 
-    can be observed using the COS rather than LMA.
+- `kubeapi-load-balancer`, `kubernetes-control-plane`, and `kubernetes-worker`
+    charms can be observed using the COS rather than LMA.
 - Dropped specific relations and features which are outsourced to other charms
 
 ### Observability Relations
@@ -73,32 +78,86 @@ juju integrate kubernetes-control-plane:loadbalancer-external kubeapi-loadbalanc
 juju remove-relation kubernetes-control-plane:loadbalancer kubeapi-loadbalancer
 ```
 
+### openstack relation deprecated
+
+The `kubernetes-control-plane:openstack` relation is being deprecated.
+
+Integration with openstack is still important with Charmed Kubernetes, but
+continues that integration through the charms `openstack-cloud-controller` and
+`cinder-csi`. These two charms better manage versions of those deployment
+integrations with Kubernetes. See [openstack-integration][] for more details on
+using these charms.
+
+After upgrading the `kubernetes-control-plane` charm, the unit may enter
+`blocked` status with the message: `openstack relation is no longer managed`. 
+
+If you see this message, you can resolve it by removing the `openstack`
+relation:
+
+```
+juju deploy openstack-cloud-controller --channel=1.29/stable
+juju deploy cinder-csi --channel=1.29/stable
+juju integrate openstack-cloud-controller openstack-integrator
+juju integrate cinder-csi openstack-integrator
+juju integrate openstack-cloud-controller:kube-control             kubernetes-control-plane:kube-control
+juju integrate openstack-cloud-controller:external-cloud-provider  kubernetes-control-plane:external-cloud-provider
+juju integrate openstack-cloud-controller:openstack                openstack-integrator:clients
+juju integrate kubernetes-control-plane:kube-control               cinder-csi:kube-control
+juju integrate openstack-integrator:clients                        cinder-csi:openstack
+#   The following could be vault:certificates instead of easyrsa:client
+#   Check what supplies the certificates for the kubernetes-control-plane
+juju status kubernetes-control-plane --relations | grep ':certificates'
+juju integrate openstack-cloud-controller:certificates             easyrsa:client   
+juju integrate cinder-csi:certificates                             easyrsa:client
+
+# Wait for the units to be active/idle, then
+juju remove-relation kubernetes-control-plane:openstack            openstack:clients
+```
+
+### nvidia gpu operator deprecated
+
+The `kubernetes-control-plane` has allowed the configuration of
+`enable-nvidia-plugin=auto` where it would automatically detect a worker node
+ready for GPU workloads and deploy the nvidia-plugin operator into the cluster.
+
+After upgrading the `kubernetes-control-plane` charm, the unit may enter
+`blocked` status with the message: `nvidia-plugin is no longer managed`.
+
+If you see this message, you can resolve it by following the
+[nvidia-gpu-operator][] docs to deploy a new charm. Once deployed, correcting
+the config `enable-nvidia-plugin`
+
+```
+juju config kubernetes-control-plane enable-nvidia-plugin=false
+```
+
+
 ### ceph-client relation deprecated
 
-The `kubernetes-control-plane:ceph-client` relation is being deprecated.
+The `kubernetes-control-plane:ceph-client` relation is being deprecated
+starting in the 1.29 release of charmed-kubernetes
 
 Ceph integration is still a priority, but continues with the `ceph-csi` charm
 which integrates Ceph with Kubernetes.
 
-After upgrading the `kubernetes-control-plane` charm, the charm
-may enter `blocked` status with the message:
-`ceph-client relation deprecated, use ceph-csi charm instead`.
+After upgrading the `kubernetes-control-plane` charm, the unit may enter
+`blocked` status with the message: `ceph-client relation deprecated, use
+ceph-csi charm instead`.
 
 If you see this message, you can resolve it by removing the `ceph-client`
-relation:
+relation and deploying the ceph-csi charm to mimic the previous behaviour.
 
 ```
-juju deploy ceph-csi
-juju integrate ceph-csi kubernetes-control-plane
-juju integrate ceph-csi ceph-mon
+juju deploy ceph-csi --channel=1.29/stable --config release="v3.8.1"
+juju integrate ceph-csi:ceph-client ceph-mon
 juju remove-relation kubernetes-control-plane:ceph-client ceph-mon
+juju integrate ceph-csi:kubernetes kubernetes-control-plane
 ```
 
 ### Keystone/K8s Authentication management
 
 Charmed Kubernetes was installing and managing an older version of
-keystone-auth which manages authentication and authorisation
-through Keystone.
+keystone-auth which manages authentication and authorisation through Keystone.
 
 This service is better suited to be managed externally from the
 `kubernetes-control-plane` charm. However, the charm provides the following
@@ -122,20 +181,23 @@ keystone:identity-credentials  kubernetes-control-plane:keystone-credentials   k
 
 #### Resources
 
-The [upstream Keystone docs][keystone-auth] cover keystone-auth in detail and should be the main reference for implementation details.
+The [upstream Keystone docs][keystone-auth] cover keystone-auth in detail and
+should be the main reference for implementation details.
 
 Keystone has two "Auth" options:
 
 1. Authentication of users only called [keystone-authentication][]
 2. Authentication and authorisation of users, called [keystone-authorization][]
 
-Both options require the deployment and management of the [k8s-keystone-auth webhook service][keystone-auth-webhook], 
-a deployment which provides a service endpoint for the `kubernetes-api-server` to use
-as an intermediate to interact with an external Keystone service.
+Both options require the deployment and management of the
+[k8s-keystone-auth webhook service][keystone-auth-webhook], a deployment which
+provides a service endpoint for the `kubernetes-api-server` to use as an
+intermediate to interact with an external Keystone service.
 
 #### Preparation
 
-Starting from version 1.29, the `kubernetes-control-plane` charm will drop the following:
+Starting from version 1.29, the `kubernetes-control-plane` charm will drop the
+following:
 
 - `kubernetes-control-plane:keystone-credentials` relation
 - `keystone-policy` config
@@ -175,7 +237,7 @@ Finally, acknowledge the charm no longer manages Keystone by removing the relati
 juju remove-relation kubernetes-control-plane:keystone-credentials keystone
 ```
 
-#### Day 2 Operations
+#### Day 2 Operations Manually
 
 After migration, the deployment, service, secrets, and policies associated with
 `keystone-auth` are no longer handled by the `kubernetes-control-plane` charm.
@@ -188,6 +250,13 @@ should be considered managed by the cluster administrators.
 - `Secret/kube-system/keystone-auth-certs`
 - `ConfigMap/kube-system/k8s-auth-policy`
 - `ClusterRole/k8s-keystone-auth`
+
+#### Day 2 Operations via Charm
+
+The `keystone-k8s-auth` charm also provides management of these above resources.
+The charm can be installed after the 1.29 upgrade, and used to manage these resource.
+
+See [keystone-k8s-auth][] for more details
 
 
 ### Administrative Actions missing
@@ -225,7 +294,7 @@ Parity with this feature has been attained by using the [nvidia-gpu-operator][]
 
 ## Upgrading to 1.24
 
-There are several important changes to 1.24 that will effect all users:
+There are several important changes to 1.24 that will affect all users:
 
  - Charms have migrated to the [Charmhub.io](https://charmhub.io) store.
  - Control-plane units will switch to a new charm named
@@ -581,11 +650,13 @@ You can now proceed with the rest of the upgrade.
 [inclusive-naming]: /kubernetes/docs/inclusive-naming
 [LP#2044219]: https://bugs.launchpad.net/charm-kubernetes-master/+bug/2044219
 [cos]: kubernetes/docs/how-to-cos-lite
-[nvidia-gpu-operator]: https://charmhub.io/nvidia-gpu-operator
+[nvidia-gpu-operator]: kubernetes/docs/gpu-workers
+[openstack-integration]: /kubernetes/docs/openstack-integration
 [keystone-auth]: https://github.com/kubernetes/cloud-provider-openstack/tree/master/docs/keystone-auth
 [keystone-auth-webhook]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-keystone-webhook-authenticator-and-authorizer.md#k8s-keystone-auth
 [keystone-authentication]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-auth-data-synchronization.md#full-example-using-keystone-for-authentication-and-kubernetes-rbac-for-authorization
 [keystone-authorization]: https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/keystone-auth/using-keystone-webhook-authenticator-and-authorizer.md#authorization-policy-definitionversion-2
+[keystone-k8s-auth]: https://charmhub.io/keystone-k8s-auth
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

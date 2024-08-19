@@ -1,5 +1,5 @@
 import { Row, Col, Strip } from "@canonical/react-components";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Feature from "./Feature";
 import Quantity from "./Quantity";
 import Support from "./Support";

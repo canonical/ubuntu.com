@@ -8,7 +8,6 @@ import {
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import React from "react";
 import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";
@@ -21,32 +20,25 @@ type Props = {
 };
 
 const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
-  const {
-    data: freeSubscription,
-    isLoading: isLoadingFree,
-  } = useUserSubscriptions({
-    select: selectFreeSubscription,
-  });
-  const {
-    data: uaSubscriptionsData = [],
-    isLoading: isLoadingUA,
-  } = useUserSubscriptions({
-    select: selectUASubscriptions,
-  });
-  const {
-    data: blenderSubscriptionsData = [],
-    isLoading: isLoadingBlender,
-  } = useUserSubscriptions({
-    select: selectBlenderSubscriptions,
-  });
+  const { data: freeSubscription, isLoading: isLoadingFree } =
+    useUserSubscriptions({
+      select: selectFreeSubscription,
+    });
+  const { data: uaSubscriptionsData = [], isLoading: isLoadingUA } =
+    useUserSubscriptions({
+      select: selectUASubscriptions,
+    });
+  const { data: blenderSubscriptionsData = [], isLoading: isLoadingBlender } =
+    useUserSubscriptions({
+      select: selectBlenderSubscriptions,
+    });
 
   if (isLoadingFree || isLoadingUA || isLoadingBlender) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
-  const sortedUASubscriptions = sortSubscriptionsByStartDate(
-    uaSubscriptionsData
-  );
+  const sortedUASubscriptions =
+    sortSubscriptionsByStartDate(uaSubscriptionsData);
   const uaSubscriptions = sortedUASubscriptions.map((subscription) => (
     <ListCard
       data-test="ua-subscription"
@@ -65,7 +57,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   ));
 
   const sortedBlenderSubscriptions = sortSubscriptionsByStartDate(
-    blenderSubscriptionsData
+    blenderSubscriptionsData,
   );
 
   const blenderSubscriptions = sortedBlenderSubscriptions.map(
@@ -84,7 +76,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
         }}
         subscription={subscription}
       />
-    )
+    ),
   );
 
   const hasActiveSubscription = (subscriptions: UserSubscription[]) => {

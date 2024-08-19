@@ -1,4 +1,3 @@
-import React from "react";
 import { screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -41,7 +40,10 @@ const subscription = userSubscriptionFactory.build({
 
 it("displays feature categories with content", () => {
   renderWithQueryClient(
-    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+    <FeaturesTab
+      subscription={subscription}
+      setHasUnsavedChanges={jest.fn()}
+    />,
   );
   screen.getByRole("heading", { name: "Default settings" });
   screen.getByRole("heading", {
@@ -55,39 +57,43 @@ it("displays feature categories with content", () => {
 
 it("submits correct entitlement updates", async () => {
   renderWithQueryClient(
-    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+    <FeaturesTab
+      subscription={subscription}
+      setHasUnsavedChanges={jest.fn()}
+    />,
   );
 
   expect(
-    screen.queryByRole("button", { name: "Save" })
+    screen.queryByRole("button", { name: "Save" }),
   ).not.toBeInTheDocument();
 
   userEvent.click(
     screen.getByRole("checkbox", {
       name: "Livepatch",
-    })
+    }),
   );
   await waitFor(() => {
     expect(
-      (screen.getByRole("checkbox", {
-        name: "Livepatch",
-      }) as HTMLInputElement).checked
+      (
+        screen.getByRole("checkbox", {
+          name: "Livepatch",
+        }) as HTMLInputElement
+      ).checked,
     ).toBe(false);
   });
 
   await waitFor(() =>
-    expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument(),
   );
   userEvent.click(screen.getByRole("button", { name: "Save" }));
 
   await waitFor(() =>
-    expect(api.putContractEntitlements).toHaveBeenCalledTimes(1)
+    expect(api.putContractEntitlements).toHaveBeenCalledTimes(1),
   );
-  expect(
-    api.putContractEntitlements
-  ).toHaveBeenCalledWith(subscription.contract_id, [
-    { is_enabled: false, type: "livepatch" },
-  ]);
+  expect(api.putContractEntitlements).toHaveBeenCalledWith(
+    subscription.contract_id,
+    [{ is_enabled: false, type: "livepatch" }],
+  );
 });
 
 it("hides feature tab when no features are available", () => {
@@ -100,7 +106,10 @@ it("hides feature tab when no features are available", () => {
     ],
   });
   renderWithQueryClient(
-    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+    <FeaturesTab
+      subscription={subscription}
+      setHasUnsavedChanges={jest.fn()}
+    />,
   );
   expect(screen.queryByText("Features")).not.toBeInTheDocument();
 });

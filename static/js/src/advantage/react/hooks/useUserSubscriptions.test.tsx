@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
-import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   selectAutoRenewableSubscriptionsByMarketplace,
   selectFreeSubscription,
@@ -21,16 +20,17 @@ import {
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
 
+const createWrapper = (queryClient: QueryClient) => {
+  return ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
 describe("useUserSubscriptions", () => {
   let queryClient: QueryClient;
-  let wrapper: WrapperComponent<ReactNode>;
 
   beforeEach(() => {
     queryClient = new QueryClient();
-    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-    wrapper = Wrapper;
   });
 
   it("can return the user subscriptions from the store", async () => {
@@ -38,10 +38,11 @@ describe("useUserSubscriptions", () => {
       userSubscriptionFactory.build(),
       freeSubscriptionFactory.build(),
     ];
-    queryClient.setQueryData("userSubscriptions", contracts);
+    const wrapper = createWrapper(queryClient);
+    queryClient.setQueryData(["userSubscriptions"], contracts);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions(),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(contracts);
@@ -50,10 +51,11 @@ describe("useUserSubscriptions", () => {
   it("can return the free account", async () => {
     const freeContract = freeSubscriptionFactory.build();
     const contracts = [userSubscriptionFactory.build(), freeContract];
-    queryClient.setQueryData("userSubscriptions", contracts);
+    queryClient.setQueryData(["userSubscriptions"], contracts);
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectFreeSubscription }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(freeContract);
@@ -77,10 +79,11 @@ describe("useUserSubscriptions", () => {
         }),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", contracts);
+    queryClient.setQueryData(["userSubscriptions"], contracts);
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectStatusesSummary }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual({
@@ -110,10 +113,11 @@ describe("useUserSubscriptions", () => {
       userSubscriptionFactory.build({ id: "abc123" }),
       userSubscriptionFactory.build(),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectSubscriptionById("abc123") }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(subscriptions[1]);
@@ -131,10 +135,11 @@ describe("useUserSubscriptions", () => {
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useUserSubscriptions({ select: selectUASubscriptions }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual([
@@ -160,15 +165,16 @@ describe("useUserSubscriptions", () => {
         }),
       }),
     ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+    queryClient.setQueryData(["userSubscriptions"], subscriptions);
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () =>
         useUserSubscriptions({
           select: selectAutoRenewableSubscriptionsByMarketplace(
-            UserSubscriptionMarketplace.CanonicalUA
+            UserSubscriptionMarketplace.CanonicalUA,
           ),
         }),
-      { wrapper }
+      { wrapper },
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual([subscriptions[0]]);

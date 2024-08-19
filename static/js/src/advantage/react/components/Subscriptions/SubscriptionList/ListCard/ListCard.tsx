@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "@canonical/react-components";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import classNames from "classnames";
 import {
   formatDate,
@@ -30,7 +30,7 @@ const ListCard = ({
   // If the subscription statuses is true for any of the expiry status keys then
   // a notification will be displayed.
   const hasExpiryNotification = !!ORDERED_STATUS_KEYS.find(
-    (status) => subscription.statuses[status]
+    (status) => subscription.statuses[status],
   );
   let expiryNotification: ReactNode = null;
   if (hasExpiryNotification) {
@@ -169,14 +169,14 @@ const ListCard = ({
           <Col medium={3} size={4} small={1}>
             <p className="u-text--muted u-no-margin--bottom">Created</p>
             <span data-test="card-start-date">
-              {formatDate(subscription.start_date)}
+              {formatDate(subscription.start_date).toString()}
             </span>
           </Col>
           <Col medium={3} size={4} small={1}>
             <p className="u-text--muted u-no-margin--bottom">Expires</p>
             <span data-test="card-end-date">
               {subscription.end_date
-                ? formatDate(subscription.end_date)
+                ? formatDate(subscription.end_date).toString()
                 : "Never"}
             </span>
           </Col>

@@ -1,7 +1,5 @@
 {% extends "base_index.html" %}
 
-{% block meta_image %}https://assets.ubuntu.com/v1/df4cb5d8-Social+media+banner.jpg{% endblock meta_image %}
-
 {% block head_extra %}
 {% endblock %}
 
@@ -21,11 +19,11 @@
 
   ## Examples
 
-    <section class="p-strip js-takeover"></section> <!-- For all languages -->
-    <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
-    <section lang="fr" class="p-strip js-takeover"></section> <!-- For french languages only -->
-    <section lang="es" class="p-strip js-takeover"></section> <!-- For spanish languages only -->
-    <section lang="nl" class="p-strip js-takeover"></section> <!-- For dutch languages only -->
+    <section class="p-section--hero js-takeover"></section> <!-- For all languages -->
+    <section lang="de" class="p-section--hero js-takeover"></section> <!-- For german languages only -->
+    <section lang="fr" class="p-section--hero js-takeover"></section> <!-- For french languages only -->
+    <section lang="es" class="p-section--hero js-takeover"></section> <!-- For spanish languages only -->
+    <section lang="nl" class="p-section--hero js-takeover"></section> <!-- For dutch languages only -->
 #}
 
 {% block takeover_content %}
@@ -33,7 +31,7 @@
     {% with
       title=takeover['title'],
       subtitle=takeover['subtitle'],
-      class="p-takeover--" + takeover['class'],
+      class="p-section--hero",
       header_image=takeover['image'],
       image_width=takeover["image_width"],
       image_height=takeover["image_height"],

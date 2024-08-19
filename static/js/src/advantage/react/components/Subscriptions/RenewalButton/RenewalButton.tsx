@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@canonical/react-components";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
@@ -68,7 +67,7 @@ export default function RenewalButton({
           }
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

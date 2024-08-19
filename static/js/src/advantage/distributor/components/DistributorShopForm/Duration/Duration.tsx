@@ -8,12 +8,12 @@ const Duration = () => {
   const { duration, setDuration } = useContext(FormContext);
 
   const handleDurationChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setDuration(Number(event.target.value) as Durations);
     localStorage.setItem(
       "distributor-selector-duration",
-      JSON.stringify(Number(event.target.value) as Durations)
+      JSON.stringify(Number(event.target.value) as Durations),
     );
   };
 
@@ -28,7 +28,7 @@ const Duration = () => {
         <Col size={1}>
           <Select
             name="distributor-duration"
-            defaultValue={duration}
+            value={duration}
             options={[
               {
                 label: "1 year",

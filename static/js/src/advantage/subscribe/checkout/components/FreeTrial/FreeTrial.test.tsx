@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { add, format } from "date-fns";
 import { Formik } from "formik";
 import { render, screen } from "@testing-library/react";
@@ -16,7 +15,7 @@ describe("FreeTrial", () => {
   });
 
   it("displays a message explaining the trial if free trial is selected", () => {
-    queryClient.setQueryData("calculate", taxes);
+    queryClient.setQueryData(["calculate"], taxes);
     const products = [
       {
         product: UAProduct,
@@ -31,7 +30,7 @@ describe("FreeTrial", () => {
         >
           <FreeTrial products={products} action={"purchase"} />
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     screen.getByText("Your free trial ends:");
     screen.getByText(
@@ -39,10 +38,10 @@ describe("FreeTrial", () => {
         add(new Date(), {
           months: 1,
         }),
-        "dd MMMM yyyy"
+        "dd MMMM yyyy",
       )} after which time you will be charged ${formatter.format(
-        taxes.total / 100
-      )}.`
+        taxes.total / 100,
+      )}.`,
     );
   });
 
@@ -58,7 +57,7 @@ describe("FreeTrial", () => {
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <FreeTrial products={products} action={"purchase"} />
         </Formik>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.queryByText("Your free trial ends:")).not.toBeInTheDocument();
   });

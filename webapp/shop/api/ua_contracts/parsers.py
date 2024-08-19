@@ -360,6 +360,7 @@ def parse_offer(raw_offer: Dict) -> Offer:
         metadata, "technicalContactName"
     )
     opportunity_number = get_metadata_value(metadata, "opportunityNumber")
+    version = get_metadata_value(metadata, "version")
 
     purchase = "purchase" in raw_offer
 
@@ -383,6 +384,7 @@ def parse_offer(raw_offer: Dict) -> Offer:
         technical_contact_email=technical_contact_email,
         technical_contact_name=technical_contact_name,
         opportunity_number=opportunity_number,
+        version=version,
     )
 
 

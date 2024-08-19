@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
-import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCancelTrial } from "./useCancelTrail";
 
 import * as contracts from "advantage/api/contracts";
@@ -12,10 +11,15 @@ import {
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 
+const createWrapper = (queryClient: QueryClient) => {
+  return ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
+
 describe("useCancelTrial", () => {
   let cancelTrialSpy: jest.SpyInstance;
   let queryClient: QueryClient;
-  let wrapper: WrapperComponent<ReactNode>;
   let subscription: UserSubscription;
 
   beforeEach(() => {
@@ -23,24 +27,20 @@ describe("useCancelTrial", () => {
     cancelTrialSpy.mockImplementation(() => Promise.resolve({}));
 
     queryClient = new QueryClient();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
 
     subscription = userSubscriptionFactory.build({
       statuses: userSubscriptionStatusesFactory.build({
         is_trialled: true,
       }),
     });
-
-    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    );
-    wrapper = Wrapper;
   });
 
   it("can make the end trial request", async () => {
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null);
     await waitForNextUpdate();
@@ -51,12 +51,13 @@ describe("useCancelTrial", () => {
     cancelTrialSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const onError = jest.fn();
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(null, {
       onError: (error) => onError(error.message),
@@ -66,17 +67,20 @@ describe("useCancelTrial", () => {
   });
 
   it("invalidates queries when successful", async () => {
+    const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useCancelTrial(subscription?.account_id),
-      { wrapper }
+      { wrapper },
     );
 
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIdsFactory.build()
+      lastPurchaseIdsFactory.build(),
     );
 
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    let userSubscriptionsState = queryClient.getQueryState([
+      "userSubscriptions",
+    ]);
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -85,7 +89,7 @@ describe("useCancelTrial", () => {
     expect(lastPurchaseIdsState?.isInvalidated).toBe(false);
     result.current.mutate(null);
     await waitForNextUpdate();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    userSubscriptionsState = queryClient.getQueryState(["userSubscriptions"]);
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,

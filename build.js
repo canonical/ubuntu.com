@@ -1,5 +1,6 @@
 let esbuild = require("esbuild");
 const path = require("path");
+const { sassPlugin } = require("esbuild-sass-plugin");
 
 let entries = {
   contributions: "./static/js/src/contributions.js",
@@ -28,12 +29,13 @@ let entries = {
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
   blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
   utmInheritance: "./static/js/src/utm-inheritance.js",
-  "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
-  "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx",
+  credEnterprisePurchasing: "./static/js/src/advantage/credentials/app.tsx",
   activate: "./static/js/src/activate.js",
   "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
+  credentialsDashboard:
+    "./static/js/src/advantage/credentials/dashboard/app.tsx",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
@@ -45,12 +47,22 @@ const captchaKey =
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
+    plugins: [
+      sassPlugin(),
+    ],
     entryPoints: [value],
     bundle: true,
-    minify: isDev ? false : true,
+    minify: !isDev,
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
-    sourcemap: isDev ? false : true,
+    sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
+    loader: {
+      '.js': 'jsx',
+      '.ts': 'ts',
+      '.tsx': 'tsx',
+      '.jsx': 'jsx',
+    },
+    jsx: 'automatic', 
     target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":

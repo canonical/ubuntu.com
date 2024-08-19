@@ -66,7 +66,7 @@ aws:
       path: https://documentation.ubuntu.com/aws/en/latest/
 
 managedapps:
-  title: Managed
+  title: Managed Services
   path: /managed
 
   children:
@@ -210,6 +210,8 @@ ai:
       path: /ai/mlflow
     - title: Consulting
       path: /ai/consulting
+    - title: Data Science
+      path: /ai/data-science
 
 kubernetes:
   title: Canonical Kubernetes
@@ -333,6 +335,20 @@ pro:
     - title: Discourse
       path: https://discourse.ubuntu.com/c/ubuntu-pro
 
+Distributor:
+  title: Ubuntu Pro Distributor
+  path: /pro/distributor
+
+  children:
+    - title: Overview
+      path: /pro/distributor
+    - title: Account users
+      path: /pro/distributor/users
+    - title: Docs
+      path: https://documentation.ubuntu.com/pro
+    - title: Discourse
+      path: https://discourse.ubuntu.com/c/ubuntu-pro
+
 account:
   title: Account
   path: /account
@@ -411,7 +427,7 @@ security:
     - title: Livepatch
       path: /security/livepatch
     - title: Certifications & Hardening
-      path: /security/certifications
+      path: /security/compliance-automation
     - title: CVEs
       path: /security/cves
     - title: Notices
@@ -504,10 +520,10 @@ robotics:
   children:
     - title: Overview
       path: /robotics
-    - title: ROS ESM
-      path: /robotics/ros-esm
     - title: What is ROS
       path: /robotics/what-is-ros
+    - title: ROS ESM
+      path: /robotics/ros-esm
     - title: Community
       path: /robotics/community
     - title: Docs

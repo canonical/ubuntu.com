@@ -30,18 +30,13 @@ type Props = {
 
 const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
   const [features, setFeatures] = React.useState<EntitlementsStore>(
-    filterAndFormatEntitlements(subscription.entitlements)
+    filterAndFormatEntitlements(subscription.entitlements),
   );
-  const [
-    featuresFormState,
-    setFeaturesFormState,
-  ] = React.useState<EntitlementsFormState>(initialiseFeaturesForm(features));
+  const [featuresFormState, setFeaturesFormState] =
+    React.useState<EntitlementsFormState>(initialiseFeaturesForm(features));
 
-  const {
-    mutateAsync,
-    isLoading,
-    isError,
-  } = useUpdateContractEntitlementsMutation();
+  const { mutateAsync, isPending, isError } =
+    useUpdateContractEntitlementsMutation();
 
   const [entitlementsToUpdate, setEntitlementsToUpdate] = React.useState<
     EntitlementLabel[]
@@ -49,7 +44,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
 
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const isChecked = !!event?.target?.checked;
     const entitlement = { ...featuresFormState[label], isChecked };
@@ -59,7 +54,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     }
 
     setFeaturesFormState(
-      getNewFeaturesFormState(featuresFormState, entitlement)
+      getNewFeaturesFormState(featuresFormState, entitlement),
     );
 
     if (label)
@@ -168,7 +163,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                       ) : null}
                     </div>
                   ),
-                }))
+                })),
               )
             : null}
         </Col>
@@ -194,7 +189,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                 features.excluded.map((label) => ({
                   icon: "error",
                   label: label,
-                }))
+                })),
               )
             : null}
         </Col>
@@ -247,7 +242,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                       ) : null}
                     </div>
                   ),
-                }))
+                })),
               )
             : null}
         </Col>
@@ -280,8 +275,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
             <ActionButton
               type="submit"
               appearance="positive"
-              loading={isLoading}
-              disabled={isLoading}
+              loading={isPending}
+              disabled={isPending}
             >
               Save
             </ActionButton>

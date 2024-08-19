@@ -5,6 +5,11 @@ export function generateUniqueId() {
   return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
+export type Metadata = {
+  key: string;
+  value: string;
+};
+
 export type SubscriptionItem = {
   id: string;
   type: DistributorProductTypes;
@@ -47,7 +52,7 @@ export enum Currencies {
   eur = "eur",
 }
 
-export type TechincalUserContact = {
+export type TechnicalUserContact = {
   name: string;
   email: string;
 };
@@ -110,7 +115,7 @@ export type ValidProductID =
 export const getProductId = (
   productType: DistributorProductTypes,
   support: Support,
-  sla: SLA
+  sla: SLA,
 ): ValidProductID => {
   const productKey = `${productType}-${support}-${sla}`;
   switch (productKey) {
@@ -263,29 +268,55 @@ export const getPreSelectedItem = (items: Item[]) => {
   return preSelectedItem;
 };
 
-export const getPreCurrency = (items: Item[]): keyof typeof Currencies => {
-  for (const item of items) {
-    const name = item?.name;
-    const pattern = /\b(eur|gbp|usd)\b/i;
-    const match = name.match(pattern);
+export const getPreCurrency = (items: Item[]): Currencies => {
+  const name = items?.[0]?.name;
+  const pattern = /\b(eur|gbp|usd)\b/i;
+  const match = name.match(pattern);
 
-    if (match) {
-      const currency = match[0].toLowerCase() as keyof typeof Currencies;
-      return currency;
+  if (match) {
+    const currency = match[0].toLowerCase();
+    if (Object.values(Currencies).includes(currency as Currencies)) {
+      return currency as Currencies;
     }
   }
+
   return Currencies.usd;
 };
 
 export const getPreDuration = (items: Item[]): Durations => {
-  for (const item of items) {
-    const names = item?.name;
-    const regex = /(\d)y/;
-    const match = names.match(regex);
-    if (match) {
-      const duration = parseInt(match[1]);
-      return duration;
+  const name = items?.[0]?.name;
+  const regex = /(\d)y/;
+  const match = name.match(regex);
+
+  if (match) {
+    const duration = parseInt(match[1], 10);
+    if (Object.values(Durations).includes(duration as Durations)) {
+      return duration as Durations;
     }
   }
+
   return Durations.one;
 };
+
+export const PRO_SELECTOR_KEYS = {
+  PRODUCT_TYPE: "pro-selector-productType",
+  VERSION: "pro-selector-version",
+  QUANTITY: "pro-selector-quantity",
+  FEATURE: "pro-selector-feature",
+  SUPPORT: "pro-selector-support",
+  SLA: "pro-selector-sla",
+  PERIOD: "pro-selector-period",
+  PUBLIC_CLOUD: "pro-selector-publicCloud",
+  PRODUCT_USER: "pro-selector-productUser",
+  IOT_DEVICE: "pro-selector-iotDevice",
+} as const;
+
+export const DISTRIBUTOR_SELECTOR_KEYS = {
+  SUBSCRIPTION_LIST: "distributor-selector-subscriptionList",
+  CURRENCY: "distributor-selector-currency",
+  OFFER_DATA: "channel-offer-data",
+  DURATION: "distributor-selector-duration",
+  TECHNICAL_USER_CONTACT: "distributor-selector-technicalUserContact",
+  PRODUCT_TYPE: "distributor-selector-productType",
+  PRODUCT_LISTING: "distributor-product-listing",
+} as const;

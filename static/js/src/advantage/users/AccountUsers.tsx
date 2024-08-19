@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient, useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import * as Sentry from "@sentry/react";
 import { User, AccountUsersData, NewUserValues, UserRole } from "./types";
 import Organisation from "./components/Organisation";
@@ -40,12 +40,12 @@ const AccountUsersContainer = ({
       typeof userInEditModeByEmail === "string"
         ? filteredUsers.find((user) => user.email === userInEditModeByEmail)
         : undefined,
-    [userInEditModeByEmail, filteredUsers]
+    [userInEditModeByEmail, filteredUsers],
   );
 
   useEffect(() => {
     const filteredUsers = users.filter((user) =>
-      user.email.includes(searchQuery)
+      user.email.includes(searchQuery),
     );
 
     setFilteredUsers(filteredUsers);
@@ -85,22 +85,24 @@ const AccountUsers = ({
 
   const queryClient = useQueryClient();
 
-  const userAddMutation = useMutation(
-    (user: NewUserValues) => requestAddUser({ accountId, ...user }),
-    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
-  );
+  const userAddMutation = useMutation({
+    mutationFn: (user: NewUserValues) => requestAddUser({ accountId, ...user }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["accountUsers"] });
+    },
+  });
 
-  const userUpdateMutation = useMutation(
-    ({ email, role }: { email: string; role: UserRole }) =>
+  const userUpdateMutation = useMutation({
+    mutationFn: ({ email, role }: { email: string; role: UserRole }) =>
       requestUpdateUser({
         accountId,
         email,
         role,
       }),
-    {
-      onSuccess: () => queryClient.invalidateQueries("accountUsers"),
-    }
-  );
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["accountUsers"] });
+    },
+  });
 
   const handleMutationError = (error: unknown) => {
     const errorMessage = getErrorMessage(error);
@@ -137,10 +139,8 @@ const AccountUsers = ({
       });
     });
 
-  const [
-    isDeleteConfirmationModalOpen,
-    setIsDeleteConfirmationModalOpen,
-  ] = useState(false);
+  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
+    useState(false);
 
   const handleOnAfterDeleteSuccess = () => {
     dismissEditMode();

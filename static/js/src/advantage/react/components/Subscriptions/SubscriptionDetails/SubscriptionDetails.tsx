@@ -37,7 +37,7 @@ type Props = {
 export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
   (
     { modalActive, onCloseModal, selectedId, setHasUnsavedChanges }: Props,
-    ref
+    ref,
   ) => {
     const { openPortal, closePortal, isOpen, Portal } = usePortal();
     const showPortal = useCallback((show: boolean) => {
@@ -54,7 +54,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
     const [notification, setNotification] = useState<NotificationProps | null>(
-      null
+      null,
     );
     const { data: subscription, isLoading } = useUserSubscriptions({
       select: selectSubscriptionById(selectedId),
@@ -89,7 +89,8 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               <>
                 The {unitName} entitlement below will update to{" "}
                 <b>{subscription?.current_number_of_machines}</b> at the next
-                billing cycle on <b>{formatDate(nextCycleStart ?? "")}</b>.
+                billing cycle on{" "}
+                <b>{formatDate(nextCycleStart ?? "").toString()}</b>.
               </>
             ),
           });
@@ -347,7 +348,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         </section>
       </div>
     );
-  }
+  },
 );
 
 SubscriptionDetails.displayName = "SubscriptionDetails";

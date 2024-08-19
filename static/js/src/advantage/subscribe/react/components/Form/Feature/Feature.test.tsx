@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FormProvider } from "advantage/subscribe/react/utils/FormContext";
@@ -18,7 +17,7 @@ test("Feature section renders correctly", () => {
   render(
     <FormProvider>
       <Feature />
-    </FormProvider>
+    </FormProvider>,
   );
 
   screen.getAllByText("Pro - all repositories");
@@ -29,7 +28,7 @@ test("Feature sections disables Infra + Apps if destkop is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.desktop}>
       <Feature />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(screen.getByTestId("infra-only")).toBeDisabled();
@@ -39,7 +38,7 @@ test("The section is disabled if a public cloud is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.publicCloud}>
       <Feature />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(null).toBeDefined();
@@ -52,7 +51,7 @@ test("The section is disabled if IoT devices - Ubuntu Core is selected", async (
       initialIoTDevice={IoTDevices.core}
     >
       <Feature />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(null).toBeDefined();
 });

@@ -340,25 +340,37 @@ def build_engage_index(engage_docs):
         limit = 20  # adjust as needed
         offset = (page - 1) * limit
         if resource:
-            metadata, count, active_count, current_total = (
-                engage_docs.get_index(
-                    limit, offset, key="type", value=resource
-                )
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
+                limit, offset, key="type", value=resource
             )
         elif tag:
-            metadata, count, active_count, current_total = (
-                engage_docs.get_index(limit, offset, key="tag", value=tag)
-            )
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(limit, offset, key="tag", value=tag)
         elif language:
-            metadata, count, active_count, current_total = (
-                engage_docs.get_index(
-                    limit, offset, key="language", value=language
-                )
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(
+                limit, offset, key="language", value=language
             )
         else:
-            metadata, count, active_count, current_total = (
-                engage_docs.get_index(limit, offset)
-            )
+            (
+                metadata,
+                count,
+                active_count,
+                current_total,
+            ) = engage_docs.get_index(limit, offset)
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -494,7 +506,13 @@ def build_engage_pages_sitemap(engage_pages):
 
     def ep_sitemap():
         links = []
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
+
         if len(metadata) == 0:
             flask.abort(404)
 
@@ -568,7 +586,12 @@ def openstack_install():
 
 def openstack_engage(engage_pages):
     def openstack_resource_data():
-        metadata = engage_pages.get_index()
+        (
+            metadata,
+            count,
+            active_count,
+            current_total,
+        ) = engage_pages.get_index()
 
         resource_tags = [
             "openstack",

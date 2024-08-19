@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Field, useFormikContext } from "formik";
 import {
   ActionButton,
@@ -39,7 +39,7 @@ const UserInfoForm = ({ setError }: Props) => {
   const queryClient = useQueryClient();
   const paymentMethodMutation = registerPaymentMethod();
   const [isEditing, setIsEditing] = useState(
-    !window.accountId || !initialValues.defaultPaymentMethod
+    !window.accountId || !initialValues.defaultPaymentMethod,
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
@@ -86,8 +86,8 @@ const UserInfoForm = ({ setError }: Props) => {
       { formData: values },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries("customerInfo");
-          queryClient.invalidateQueries("preview");
+          queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
+          queryClient.invalidateQueries({ queryKey: ["preview"] });
           setIsButtonDisabled(false);
           setIsEditing(false);
         },
@@ -114,12 +114,12 @@ const UserInfoForm = ({ setError }: Props) => {
                   the details and try again. Contact{" "}
                   <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
                   the problem persists.
-                </>
+                </>,
               );
             }
           }
         },
-      }
+      },
     );
   };
 
@@ -295,22 +295,30 @@ const UserInfoForm = ({ setError }: Props) => {
       />
       <FormRow label="I’m buying for:">
         <div className="u-sv3 p-form p-form--inline" role="group">
-          <Field
-            as={RadioInput}
-            name="buyingFor"
-            value="myself"
-            label="Myself"
-            defaultChecked={values.buyingFor === "myself"}
-            disabled={window.accountId && initialValues.organisationName}
-          />
-          <Field
-            as={RadioInput}
-            name="buyingFor"
-            value="organisation"
-            label="An organisation"
-            defaultChecked={values.buyingFor === "organisation"}
-            disabled={window.accountId && initialValues.organisationName}
-          />
+          <Field name="buyingFor">
+            {({ field }: any) => (
+              <>
+                <RadioInput
+                  {...field}
+                  id="myself"
+                  value="myself"
+                  checked={field.value === "myself"}
+                  onChange={() => setFieldValue("buyingFor", "myself")}
+                  label="Myself"
+                  disabled={window.accountId && initialValues.organisationName}
+                />
+                <RadioInput
+                  {...field}
+                  id="organisation"
+                  value="organisation"
+                  checked={field.value === "organisation"}
+                  onChange={() => setFieldValue("buyingFor", "organisation")}
+                  label="An organisation"
+                  disabled={window.accountId && initialValues.organisationName}
+                />
+              </>
+            )}
+          </Field>
         </div>
       </FormRow>
       {initialValues.buyingFor === "myself" &&
@@ -405,7 +413,7 @@ const UserInfoForm = ({ setError }: Props) => {
                   setFieldValue("buyingFor", initialValues.buyingFor);
                   setFieldValue(
                     "organisationName",
-                    initialValues.organisationName
+                    initialValues.organisationName,
                   );
                   setFieldValue("name", initialValues.name);
                   setFieldValue("address", initialValues.address);

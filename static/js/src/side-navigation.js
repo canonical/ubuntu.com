@@ -14,10 +14,10 @@
  */
 function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
   const toggleButtonOutsideDrawer = sideNavigation.querySelector(
-    ".p-side-navigation__toggle"
+    ".p-side-navigation__toggle",
   );
   const toggleButtonInsideDrawer = sideNavigation.querySelector(
-    ".p-side-navigation__toggle--in-drawer"
+    ".p-side-navigation__toggle--in-drawer",
   );
 
   if (sideNavigation) {
@@ -77,8 +77,8 @@ const handleToggleMenu = (e) => {
   [button, link, nestedList].forEach((el) =>
     el.setAttribute(
       "aria-expanded",
-      el.getAttribute("aria-expanded") === "true" ? "false" : "true"
-    )
+      el.getAttribute("aria-expanded") === "true" ? "false" : "true",
+    ),
   );
 };
 
@@ -96,7 +96,7 @@ function setupSideNavigation(sideNavigation) {
       event.preventDefault();
       toggleDrawer(
         sideNavigation,
-        !sideNavigation.classList.contains("is-expanded")
+        !sideNavigation.classList.contains("is-expanded"),
       );
     });
   });

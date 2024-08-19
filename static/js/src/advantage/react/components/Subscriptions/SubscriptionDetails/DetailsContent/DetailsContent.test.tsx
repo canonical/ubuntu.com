@@ -1,5 +1,4 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import {
   UserSubscriptionMarketplace,
@@ -22,14 +21,14 @@ describe("DetailsContent", () => {
 
   it("displays free token specific details", () => {
     const contract = freeSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("None");
   });
@@ -41,31 +40,31 @@ describe("DetailsContent", () => {
       period: UserSubscriptionPeriod.Yearly,
       price: 150000,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
   });
 
   it("displays a spinner while loading the contract token", () => {
     const contract = userSubscriptionFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -76,27 +75,27 @@ describe("DetailsContent", () => {
       }),
     });
 
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
-      false
+      false,
     );
   });
 
   it("can display the contract token", () => {
     const contract = userSubscriptionFactory.build();
     const contractToken = contractTokenFactory.build();
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     queryClient.setQueryData(
       ["contractToken", contract.contract_id],
-      contractToken
+      contractToken,
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -104,11 +103,11 @@ describe("DetailsContent", () => {
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
     expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
-      contractToken.contract_token
+      contractToken.contract_token,
     );
   });
 
@@ -116,14 +115,14 @@ describe("DetailsContent", () => {
     const contract = userSubscriptionFactory.build({
       marketplace: UserSubscriptionMarketplace.Blender,
     });
-    queryClient.setQueryData("userSubscriptions", [contract]);
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <DetailsContent
           selectedId={contract.id}
           setHasUnsavedChanges={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='machine-type-col']").exists()).toBe(false);
     expect(wrapper.find("CodeSnippet").exists()).toBe(false);

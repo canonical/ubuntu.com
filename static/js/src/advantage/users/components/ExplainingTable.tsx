@@ -1,4 +1,3 @@
-import React from "react";
 import { MainTable, Icon, ICONS } from "@canonical/react-components";
 
 const ExplainingTable = () => (

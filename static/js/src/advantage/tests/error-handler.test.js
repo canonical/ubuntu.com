@@ -8,7 +8,7 @@ describe("parseForErrorObject", () => {
   describe("given an insufficient funds error", () => {
     it("should return an appropriate error object", () => {
       expect(
-        parseForErrorObject(contractsErrorObjects.insufficientFunds)
+        parseForErrorObject(contractsErrorObjects.insufficientFunds),
       ).toEqual({
         message:
           "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.",
@@ -35,7 +35,7 @@ describe("parseForErrorObject", () => {
       });
 
       expect(
-        parseForErrorObject(contractsErrorObjects.expiredPaymentMethod)
+        parseForErrorObject(contractsErrorObjects.expiredPaymentMethod),
       ).toEqual({
         message: "That card has expired. Try a different card.",
         type: "notification",
@@ -92,7 +92,7 @@ describe("parseForErrorObject", () => {
   describe("given an incomplete card number error", () => {
     it("should return an appropriate error object", () => {
       expect(
-        parseForErrorObject(stripeErrorObjects.cardNumberIncomplete)
+        parseForErrorObject(stripeErrorObjects.cardNumberIncomplete),
       ).toEqual({
         message:
           "That card number is incorrect. Check the number and try again.",
@@ -108,7 +108,7 @@ describe("parseForErrorObject", () => {
           message:
             "That card number is incorrect. Check the number and try again.",
           type: "card",
-        }
+        },
       );
     });
   });

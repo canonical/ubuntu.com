@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@canonical/react-components";
 import { Product } from "advantage/subscribe/checkout/utils/types";
 
@@ -26,7 +25,7 @@ export default function PaymentButton({ product }: Prop) {
           e.preventDefault();
           localStorage.setItem(
             "shop-checkout-data",
-            JSON.stringify(shopCheckoutData)
+            JSON.stringify(shopCheckoutData),
           );
           location.href = "/account/checkout";
         }}

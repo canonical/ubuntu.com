@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Input, Notification } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const TechnicalUserContact = () => {
-  const { techincalUserContact, setTechnicalUserContact } = useContext(
-    FormContext
-  );
+  const { technicalUserContact, setTechnicalUserContact } =
+    useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -19,16 +19,16 @@ const TechnicalUserContact = () => {
         : value;
 
     setTechnicalUserContact({
-      ...techincalUserContact,
+      ...technicalUserContact,
       [name]: captializeNameValue,
     });
 
     localStorage.setItem(
-      `distributor-selector-techincalUserContact`,
+      DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       JSON.stringify({
-        ...techincalUserContact,
+        ...technicalUserContact,
         [name]: captializeNameValue,
-      })
+      }),
     );
   };
 
@@ -44,7 +44,7 @@ const TechnicalUserContact = () => {
           placeholder="Ex: John Doe"
           required
           onChange={handleChange}
-          value={techincalUserContact.name}
+          value={technicalUserContact.name}
         />
       </div>
       <div>
@@ -57,7 +57,7 @@ const TechnicalUserContact = () => {
           placeholder="Ex: person@enduser.com"
           required
           onChange={handleChange}
-          value={techincalUserContact.email}
+          value={technicalUserContact.email}
         ></Input>
       </div>
       <Notification severity="caution" title="Warning">

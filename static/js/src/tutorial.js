@@ -1,7 +1,7 @@
 function toggleTutorialNavigation() {
   const toggleButton = document.querySelector(".l-tutorial__nav-toggle");
   const menu = document.getElementById(
-    toggleButton.getAttribute("aria-controls")
+    toggleButton.getAttribute("aria-controls"),
   );
   const expanded = toggleButton.getAttribute("aria-expanded") === "true";
 
@@ -48,7 +48,7 @@ window.addEventListener("hashchange", (e) => {
 const sectionIds = [];
 
 const tutorialSections = document.querySelectorAll(
-  ".l-tutorial__content section"
+  ".l-tutorial__content section",
 );
 tutorialSections.forEach((section) => {
   sectionIds.push(section.id);
@@ -76,11 +76,11 @@ if (!window.location.hash) {
 }
 
 const tutorialFeedbackOptions = document.querySelector(
-  ".l-tutorial__feedback-options"
+  ".l-tutorial__feedback-options",
 );
 const tutorialFeedbackIcons = document.querySelectorAll(".js-feedback-icon");
 const tutorialFeedbackResult = document.querySelector(
-  ".l-tutorial__feedback-result"
+  ".l-tutorial__feedback-result",
 );
 
 tutorialFeedbackIcons.forEach((icon) => {
@@ -108,7 +108,7 @@ polls.forEach((poll) => {
   answers.forEach((answer) => {
     answer.addEventListener("change", (e) => {
       const answerLabel = document.querySelector(
-        'label[for="' + e.target.id + '"]'
+        'label[for="' + e.target.id + '"]',
       );
       const eventLabel = answerLabel.innerText;
       const eventAction = document.getElementById(pollId).innerText;

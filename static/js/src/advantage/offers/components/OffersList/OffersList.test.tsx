@@ -1,7 +1,5 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { render, screen } from "@testing-library/react"; // (or /dom, /vue, ...)
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { render, screen } from "@testing-library/react";
 import OffersList from "./OffersList";
 import { OfferFactory } from "../../tests/factories/offers";
 
@@ -13,36 +11,36 @@ describe("OffersList", () => {
   });
 
   it("can display no offers", () => {
-    queryClient.setQueryData("Offers", []);
+    queryClient.setQueryData(["Offers"], []);
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      screen.getByText("You have no offers available.")
+      screen.getByText("You have no offers available."),
     ).toBeInTheDocument();
   });
 
   it("can display an offer", () => {
-    queryClient.setQueryData("Offers", [OfferFactory.build({ id: "1" })]);
+    queryClient.setQueryData(["Offers"], [OfferFactory.build({ id: "1" })]);
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getAllByTestId("offer-card").length).toBe(1);
   });
 
   it("can display multiple offers", () => {
-    queryClient.setQueryData("Offers", [
-      OfferFactory.build({ id: "1" }),
-      OfferFactory.build({ id: "2" }),
-    ]);
+    queryClient.setQueryData(
+      ["Offers"],
+      [OfferFactory.build({ id: "1" }), OfferFactory.build({ id: "2" })],
+    );
     render(
       <QueryClientProvider client={queryClient}>
         <OffersList />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getAllByTestId("offer-card").length).toBe(2);
   });

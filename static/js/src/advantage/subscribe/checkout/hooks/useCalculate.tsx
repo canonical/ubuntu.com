@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { CheckoutProducts, TaxInfo } from "../utils/types";
 
 type useCalculateProps = {
@@ -14,9 +14,9 @@ const useCalculate = ({
   VATNumber,
   isTaxSaved,
 }: useCalculateProps) => {
-  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
-    ["calculate"],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery({
+    queryKey: ["calculate"],
+    queryFn: async () => {
       const marketplace = products[0].product.marketplace;
       const response = await fetch(
         `/account/${marketplace}/purchase/calculate${window.location.search}`,
@@ -38,7 +38,7 @@ const useCalculate = ({
             }),
             has_tax: !!VATNumber,
           }),
-        }
+        },
       );
 
       const res = await response.json();
@@ -50,11 +50,9 @@ const useCalculate = ({
       const data: TaxInfo = res;
       return data;
     },
-    {
-      retry: false,
-      enabled: !!isTaxSaved && !!country && !window.accountId,
-    }
-  );
+    retry: false,
+    enabled: !!isTaxSaved && !!country && !window.accountId,
+  });
 
   return {
     isLoading: isLoading,

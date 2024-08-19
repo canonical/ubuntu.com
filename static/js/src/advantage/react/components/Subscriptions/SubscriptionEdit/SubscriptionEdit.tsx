@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 import { debounce } from "lodash";
@@ -47,7 +47,7 @@ type Props = {
 
 export const generateSchema = (
   subscription: UserSubscription,
-  unitName: string
+  unitName: string,
 ) => {
   const sizeMessage = `You must have at least one ${unitName}`;
   let min = 1;
@@ -154,10 +154,10 @@ const ResizeSummary = ({
             <b>
               {isDecreasing
                 ? currencyFormatter.format(
-                    totalCost - absoluteDelta * unitPrice
+                    totalCost - absoluteDelta * unitPrice,
                   )
                 : currencyFormatter.format(
-                    totalCost + absoluteDelta * unitPrice
+                    totalCost + absoluteDelta * unitPrice,
                   )}
             </b>
             * . <br />
@@ -174,7 +174,7 @@ const ResizeSummary = ({
           <>
             <br />
             This will be reflected in the next billing cycle on{" "}
-            <b>{formatDate(nextCycle)}</b>
+            <b>{formatDate(nextCycle).toString()}</b>
           </>
         ) : null}
       </p>
@@ -203,14 +203,12 @@ const SubscriptionEdit = ({
       }
       setShowingCancel(show);
     },
-    [setShowingCancel]
+    [setShowingCancel],
   );
-  const {
-    data: subscription,
-    isLoading: isSubscriptionLoading,
-  } = useUserSubscriptions({
-    select: selectSubscriptionById(selectedId),
-  });
+  const { data: subscription, isLoading: isSubscriptionLoading } =
+    useUserSubscriptions({
+      select: selectSubscriptionById(selectedId),
+    });
   const resizeContract = useResizeContract(subscription);
   const {
     setQuantity: setPreviewQuantity,
@@ -222,7 +220,7 @@ const SubscriptionEdit = ({
 
   const setPreviewQuantityDebounced = useMemo(
     () => debounce(setPreviewQuantity, 250),
-    []
+    [],
   );
 
   const unitName = isBlender ? "user" : "machine";
@@ -233,7 +231,7 @@ const SubscriptionEdit = ({
     isLoading: isPendingPurchaseLoading,
     isSuccess: isPendingPurchaseSuccess,
   } = usePollPurchaseStatus();
-  const isResizing = resizeContract.isLoading || isPendingPurchaseLoading;
+  const isResizing = resizeContract.isPending || isPendingPurchaseLoading;
   const isResized = resizeContract.isSuccess && isPendingPurchaseSuccess;
   const error =
     resizeContract.error ||
@@ -241,12 +239,12 @@ const SubscriptionEdit = ({
     (pendingPurchaseError as Error | null);
 
   const [resizeNumber, setResizeNumber] = useState(
-    subscription?.current_number_of_machines ?? 0
+    subscription?.current_number_of_machines ?? 0,
   );
 
   const { data: renewableSubscriptions } = useUserSubscriptions({
     select: selectAutoRenewableSubscriptionsByMarketplace(
-      subscription?.marketplace ?? UserSubscriptionMarketplace.CanonicalUA
+      subscription?.marketplace ?? UserSubscriptionMarketplace.CanonicalUA,
     ),
   });
 
@@ -264,23 +262,22 @@ const SubscriptionEdit = ({
             (100 * renewableSubscription.number_of_machines)
         );
       },
-      0
+      0,
     ) || 0;
 
   useEffect(() => {
     if (isResized) {
       // Invalidate the data as it all may have changed.
-      queryClient.invalidateQueries("userSubscriptions");
-      queryClient.invalidateQueries("userInfo");
+      queryClient.invalidateQueries({ queryKey: ["userSubscriptions"] });
+      queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       // After resizing the purchase id will be updated, but there is a delay
       // before the API responds with the latest value so this invalidation may
       // cause the outdated id to be fetched.
-      queryClient.invalidateQueries([
-        "lastPurchaseIds",
-        subscription?.account_id,
-      ]);
+      queryClient.invalidateQueries({
+        queryKey: ["lastPurchaseIds", subscription?.account_id],
+      });
       onClose();
-      queryClient.removeQueries("preview");
+      queryClient.removeQueries({ queryKey: ["preview"] });
       const newNumberOfMachines =
         resizeNumber + (subscription?.current_number_of_machines ?? 0);
       if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
@@ -307,7 +304,7 @@ const SubscriptionEdit = ({
     if (pendingPurchaseError) {
       // Invalidate the user subscriptions to get any status updates e.g.
       // has_pending_purchases.
-      queryClient.invalidateQueries("userSubscriptions");
+      queryClient.invalidateQueries({ queryKey: ["userSubscriptions"] });
     }
   }, [pendingPurchaseError]);
 

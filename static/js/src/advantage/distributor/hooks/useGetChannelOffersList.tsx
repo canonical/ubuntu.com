@@ -1,14 +1,14 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetChannelOffersList = () => {
-  const { isLoading, isError, isSuccess, data, error } = useQuery(
-    ["channelOffers"],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error } = useQuery({
+    queryKey: ["channelOffers"],
+    queryFn: async () => {
       const response = await fetch(
         `/pro/channel-offers.json${window.location.search}`,
         {
           cache: "no-store",
-        }
+        },
       );
       const res = await response.json();
       if (res.error) {
@@ -18,8 +18,8 @@ const useGetChannelOffersList = () => {
         throw new Error(res.error);
       }
       return res;
-    }
-  );
+    },
+  });
   return {
     isLoading: isLoading,
     isError: isError,

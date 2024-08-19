@@ -12,7 +12,7 @@ import { EntitlementType } from "advantage/api/enum";
 import { getQueryClientWrapper } from "advantage/tests/utils";
 
 const mount = (Component: React.ReactElement) =>
-  enzymeMount(Component, {
+  enzymeMount(Component as JSX.Element, {
     wrappingComponent: getQueryClientWrapper(),
   });
 
@@ -35,7 +35,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
   });
@@ -46,10 +46,10 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -58,7 +58,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(true);
     wrapper.find("[data-test='features-tab']").simulate("click");
@@ -83,7 +83,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
@@ -109,7 +109,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
@@ -147,7 +147,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
@@ -165,7 +165,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
         setHasUnsavedChanges={jest.fn()}
-      />
+      />,
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");

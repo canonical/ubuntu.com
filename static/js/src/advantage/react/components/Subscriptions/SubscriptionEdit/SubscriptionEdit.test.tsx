@@ -1,6 +1,5 @@
-import React from "react";
-import { act } from "react-dom/test-utils";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { act } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { mount } from "enzyme";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -42,10 +41,10 @@ describe("SubscriptionEdit", () => {
       }),
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
-      lastPurchaseIds
+      lastPurchaseIds,
     );
   });
 
@@ -58,11 +57,11 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {});
     expect(wrapper.find("Button[data-test='cancel-button']").exists()).toBe(
-      true
+      true,
     );
   });
 
@@ -72,7 +71,7 @@ describe("SubscriptionEdit", () => {
         is_cancellable: false,
       }),
     });
-    queryClient.setQueryData("userSubscriptions", [subscription]);
+    queryClient.setQueryData(["userSubscriptions"], [subscription]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
@@ -81,11 +80,11 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {});
     expect(wrapper.find("Button[data-test='cancel-button']").exists()).toBe(
-      false
+      false,
     );
   });
 
@@ -98,7 +97,7 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {});
     expect(wrapper.find("SubscriptionCancel").exists()).toBe(false);
@@ -114,7 +113,7 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={setShowingCancel}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     // The portal currently requires a fake event, this should be able to be
     // removed when this issue is resolved:
@@ -145,7 +144,7 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -173,23 +172,30 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     userEvent.type(screen.getByLabelText("Number of machines"), "6");
+    await waitFor(() => {
+      expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
+      expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
+    });
 
-    expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
-    expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
     userEvent.click(screen.getByRole("button", { name: "Resize" }));
-    await waitFor(() =>
-      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled()
-    );
-    expect(screen.queryByRole("button", { name: "Cancel" })).toBeDisabled();
+    await waitFor(() => {
+      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled();
+    });
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: "Cancel" })).toHaveAttribute(
+        "aria-disabled",
+        "true",
+      );
+    });
   });
 
   it("invalidates queries when the resize is successful", async () => {
     resizeContractSpy.mockImplementation(() => Promise.resolve({ id: 123 }));
     getPurchaseSpy.mockImplementation(() =>
-      Promise.resolve({ stripeInvoices: [{ status: "done" }] })
+      Promise.resolve({ stripeInvoices: [{ status: "done" }] }),
     );
     usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
@@ -203,9 +209,11 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    let userSubscriptionsState = queryClient.getQueryState([
+      "userSubscriptions",
+    ]);
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -219,7 +227,7 @@ describe("SubscriptionEdit", () => {
       wrapper.find("Formik form").simulate("submit");
     });
     wrapper.update();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    userSubscriptionsState = queryClient.getQueryState(["userSubscriptions"]);
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
@@ -233,7 +241,7 @@ describe("SubscriptionEdit", () => {
     const setNotification = jest.fn();
     resizeContractSpy.mockImplementation(() => Promise.resolve({ id: 123 }));
     getPurchaseSpy.mockImplementation(() =>
-      Promise.resolve({ stripeInvoices: [{ status: "done" }] })
+      Promise.resolve({ stripeInvoices: [{ status: "done" }] }),
     );
     usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
@@ -247,7 +255,7 @@ describe("SubscriptionEdit", () => {
           setNotification={setNotification}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -261,7 +269,7 @@ describe("SubscriptionEdit", () => {
 
   it("can display an error when there's a pending purchase", async () => {
     resizeContractSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "can only make one purchase" })
+      Promise.resolve({ errors: "can only make one purchase" }),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -271,7 +279,7 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper
@@ -281,13 +289,13 @@ describe("SubscriptionEdit", () => {
     });
     wrapper.update();
     expect(
-      wrapper.find("[data-test='has-pending-purchase-error']").exists()
+      wrapper.find("[data-test='has-pending-purchase-error']").exists(),
     ).toBe(true);
   });
 
   it("can display an error when there's an unknown payment error", async () => {
     resizeContractSpy.mockImplementation(() =>
-      Promise.resolve({ errors: "unknown error" })
+      Promise.resolve({ errors: "unknown error" }),
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -297,7 +305,7 @@ describe("SubscriptionEdit", () => {
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     await act(async () => {
       wrapper

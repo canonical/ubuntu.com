@@ -5,6 +5,28 @@
 
 // settings
 @import "global-settings";
+
+// XXX: remove once these are updated in vanilla (v 4.12 or later)
+$colors--dark-theme--text-default: hsl(0, 0%, 100%) !default;
+$colors--light-theme--text-default: #000 !default;
+
+$colors--dark-theme--border-default: rgba(
+  $colors--dark-theme--text-default,
+  0.3
+);
+$colors--dark-theme--border-low-contrast: rgba(
+  $colors--dark-theme--text-default,
+  0.1
+);
+$colors--light-theme--border-default: rgba(
+  $colors--light-theme--text-default,
+  0.3
+);
+$colors--light-theme--border-low-contrast: rgba(
+  $colors--light-theme--text-default,
+  0.1
+);
+
 @import "settings_colors";
 
 // custom mixins
@@ -81,6 +103,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
+@import "pattern_modals";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -145,6 +168,9 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include vf-p-icon-machines;
+@include vf-p-icon-units;
+@include vf-p-icon-plans;
 @include openstack-carousel;
 
 // Layouts:
@@ -247,6 +273,11 @@ fieldset:last-child {
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
   border-bottom-width: 1px !important;
+}
+
+.p-fieldset-section {
+  border: none !important;
+  padding: 0 !important;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
@@ -526,6 +557,10 @@ summary {
 
 .u-text-light {
   color: $color-mid-dark;
+}
+
+.p-list--divided .p-list__item {
+  box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
 }
 
 .p-list--no-borders {
@@ -819,6 +854,16 @@ td.p-accordion {
 }
 
 #newsletter-signup:target {
+  display: block;
+  z-index: 10;
+}
+
+#contact-success {
+  display: none;
+  position: absolute;
+}
+
+#contact-success:target {
   display: block;
   z-index: 10;
 }
@@ -1375,6 +1420,12 @@ $color-link-dark: #69c !default;
   height: 6rem;
 }
 
+.landing-logos {
+  .p-logo-section__logo {
+    height: 6.5rem;
+  }
+}
+
 .p-logo-section.has-misaligned-images {
   .p-logo-section__item {
     margin-bottom: $spv--x-large;
@@ -1648,5 +1699,23 @@ ol.ordered-counter {
   .p-equal-height-row__col {
     grid-column: span 6;
     padding-top: 0.5rem;
+  }
+}
+
+.align-center-bottom {
+  left: 0;
+  margin: auto !important;
+  right: 0;
+  text-align: center;
+}
+
+.js-invoke-modal.p-button.is-dark {
+  color: white !important;
+}
+
+legend {
+  &.is-required::before {
+    content: "* " !important;
+    position: relative !important;
   }
 }

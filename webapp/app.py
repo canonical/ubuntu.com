@@ -72,6 +72,9 @@ from webapp.shop.cred.views import (
     cred_beta_activation,
     cred_cancel_exam,
     cred_dashboard,
+    cred_dashboard_upcoming_exams,
+    cred_dashboard_exam_results,
+    cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
     cred_redeem_code,
@@ -90,6 +93,9 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
+    get_issued_badges_bulk,
+    get_test_taker_stats,
+    issue_credly_badge,
     get_my_issued_badges,
     get_webhook_response,
     issue_badges,
@@ -220,6 +226,9 @@ app.add_url_rule(
     "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
+app.add_url_rule(
+    "/pro/distributor/users", view_func=advantage_account_users_view
+)
 app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/pro/accounts/<account_id>/user",
@@ -418,6 +427,7 @@ app.add_url_rule(
     "/search",
     "search",
     build_search_view(
+        app,
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
@@ -592,9 +602,12 @@ def takeovers_index():
     page = flask.request.args.get("page", default=1, type=int)
     limit = 50
     offset = (page - 1) * limit
-    all_takeovers, count, active_count, total_current = (
-        discourse_takeovers.get_index(limit=limit, offset=offset)
-    )
+    (
+        all_takeovers,
+        count,
+        active_count,
+        total_current,
+    ) = discourse_takeovers.get_index(limit=limit, offset=offset)
     total_pages = math.ceil(count / limit)
 
     return flask.render_template(
@@ -627,6 +640,7 @@ app.add_url_rule(
     "/core/services/guide/search",
     "core-services-guide-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/services/guide",
         template_path="core/services/guide/search-results.html",
@@ -663,6 +677,7 @@ app.add_url_rule(
     "/server/docs/search",
     "server-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
@@ -690,6 +705,7 @@ app.add_url_rule(
     "/community/search",
     "community-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
@@ -744,6 +760,7 @@ app.add_url_rule(
     "/ceph/docs/search",
     "ceph-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
@@ -766,6 +783,7 @@ app.add_url_rule(
     "/core/docs/search",
     "core-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
@@ -947,13 +965,51 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
+    "/credentials/dashboard",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
 )
-
 app.add_url_rule(
-    "/credentials/get_issued_badges",
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
+)
+app.add_url_rule(
+    "/credentials/api/upcoming-exams",
+    view_func=cred_dashboard_upcoming_exams,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/exam-results",
+    view_func=cred_dashboard_exam_results,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/system-statuses",
+    view_func=cred_dashboard_system_statuses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges",
     view_func=get_issued_badges,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges-bulk",
+    view_func=get_issued_badges_bulk,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/test-taker-stats",
+    view_func=get_test_taker_stats,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issue-credly-badge",
+    view_func=issue_credly_badge,
+    methods=["POST"],
 )
 
 app.add_url_rule(
@@ -986,6 +1042,7 @@ app.add_url_rule(
     "/openstack/docs/search",
     "openstack-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
@@ -1013,6 +1070,7 @@ app.add_url_rule(
     "/security/livepatch/docs/search",
     "security-livepatch-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
@@ -1040,6 +1098,7 @@ app.add_url_rule(
     "/security/certifications/docs/search",
     "security-certs-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
@@ -1067,6 +1126,7 @@ app.add_url_rule(
     "/landscape/docs/search",
     "landscape-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
@@ -1094,6 +1154,7 @@ app.add_url_rule(
     "/robotics/docs/search",
     "robotics-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",

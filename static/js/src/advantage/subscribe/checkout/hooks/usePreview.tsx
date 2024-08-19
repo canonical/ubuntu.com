@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   Action,
   Coupon,
@@ -8,6 +8,7 @@ import {
 } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import { DISTRIBUTOR_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 type Props = {
   products: CheckoutProducts[];
@@ -17,13 +18,13 @@ type Props = {
 
 const usePreview = ({ products, action, coupon }: Props) => {
   const { data: userInfo, isError: isUserInfoError } = useCustomerInfo();
-  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
-    ["preview", products],
-    async () => {
+  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery({
+    queryKey: ["preview", products],
+    queryFn: async () => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        "distributor-selector-techincalUserContact"
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)
@@ -112,7 +113,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
       const res = await response.json();
 
@@ -141,16 +142,14 @@ const usePreview = ({ products, action, coupon }: Props) => {
 
       return data;
     },
-    {
-      retry: false,
-      enabled:
-        !!window.accountId &&
-        !window.currentPaymentId &&
-        !!products &&
-        !!userInfo?.accountInfo?.name &&
-        !isUserInfoError,
-    }
-  );
+    retry: false,
+    enabled:
+      !!window.accountId &&
+      !window.currentPaymentId &&
+      !!products &&
+      !!userInfo?.accountInfo?.name &&
+      !isUserInfoError,
+  });
 
   return {
     isLoading: isLoading,

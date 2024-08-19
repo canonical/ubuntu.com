@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Chip, Col, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/distributor/utils/FormContext";
 import {
@@ -10,9 +10,8 @@ import {
 import DistributorBuyButton from "../../DistributorBuyButton/DistributorBuyButton";
 
 const DistributorShopSummary = () => {
-  const { products, currency, subscriptionList, offer } = useContext(
-    FormContext
-  );
+  const { products, currency, subscriptionList, offer } =
+    useContext(FormContext);
   const discount = offer?.discount;
 
   let totalPrice = 0;
@@ -24,7 +23,7 @@ const DistributorShopSummary = () => {
           const productId = getProductId(
             subscription.type,
             subscription.support,
-            subscription.sla
+            subscription.sla,
           );
 
           if (
@@ -76,11 +75,11 @@ const DistributorShopSummary = () => {
             <p className="p-heading--2">
               {discount
                 ? currencyFormatter(currency).format(
-                    (totalPrice - totalPrice * (discount / 100)) / 100
+                    (totalPrice - totalPrice * (discount / 100)) / 100,
                   )
                 : currency
-                ? currencyFormatter(currency).format((totalPrice ?? 0) / 100)
-                : 0}
+                  ? currencyFormatter(currency).format((totalPrice ?? 0) / 100)
+                  : 0}
             </p>{" "}
             <p className="p-text--small">
               Any applicable taxes are <br /> calculated at checkout

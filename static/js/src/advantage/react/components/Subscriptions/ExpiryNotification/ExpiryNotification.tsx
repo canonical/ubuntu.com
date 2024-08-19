@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import type { NotificationProps } from "@canonical/react-components";
 import {
   Notification,
@@ -7,6 +6,7 @@ import {
 } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
 import { UserSubscriptionStatuses } from "advantage/api/types";
+import { ReactNode } from "react";
 
 export enum ExpiryNotificationSize {
   Small = "small",

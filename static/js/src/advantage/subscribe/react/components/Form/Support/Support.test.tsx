@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { FormProvider } from "advantage/subscribe/react/utils/FormContext";
@@ -20,7 +19,7 @@ test("Full support is disabled if Infra is selected", () => {
   render(
     <FormProvider initialFeature={Features.infra}>
       <Support />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(screen.getByTestId("infra-support")).not.toBeDisabled();
@@ -31,7 +30,7 @@ test("Infra support is disabled if desktop is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.desktop}>
       <Support />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(screen.getByTestId("infra-support")).toBeDisabled();
@@ -42,7 +41,7 @@ test("Infra and full support are disabled if Xenial is selected", () => {
   render(
     <FormProvider initialVersion={LTSVersions.xenial}>
       <Support />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(screen.getByTestId("infra-support")).toBeDisabled();
@@ -53,7 +52,7 @@ test("The section is disabled if a public cloud is selected", () => {
   render(
     <FormProvider initialType={ProductTypes.publicCloud}>
       <Support />
-    </FormProvider>
+    </FormProvider>,
   );
 
   expect(null).toBeDefined();
@@ -66,7 +65,7 @@ test("The section is disabled if IoT devices - Ubuntu Core is selected", async (
       initialIoTDevice={IoTDevices.core}
     >
       <Support />
-    </FormProvider>
+    </FormProvider>,
   );
   expect(null).toBeDefined();
 });

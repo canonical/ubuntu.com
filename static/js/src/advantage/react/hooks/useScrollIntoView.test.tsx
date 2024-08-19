@@ -1,6 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { mount } from "enzyme";
-import React from "react";
 
 import { useScrollIntoView } from "./useScrollIntoView";
 
@@ -29,7 +28,7 @@ describe("useScrollIntoView", () => {
     const [targetRef, scrollIntoView] = result.current;
     mount(<div ref={targetRef}></div>);
     if (targetRef.current) {
-      targetRef.current.getBoundingClientRect = () => ({ y: 10 } as DOMRect);
+      targetRef.current.getBoundingClientRect = () => ({ y: 10 }) as DOMRect;
     }
     scrollIntoView();
     expect(scrollToSpy).not.toHaveBeenCalled();
@@ -43,7 +42,7 @@ describe("useScrollIntoView", () => {
     const [targetRef, scrollIntoView] = result.current;
     mount(<div ref={targetRef}></div>);
     if (targetRef.current) {
-      targetRef.current.getBoundingClientRect = () => ({ y: -10 } as DOMRect);
+      targetRef.current.getBoundingClientRect = () => ({ y: -10 }) as DOMRect;
     }
     scrollIntoView();
     expect(scrollToSpy).toHaveBeenCalledWith({

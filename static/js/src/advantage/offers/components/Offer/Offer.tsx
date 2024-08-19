@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Col, Row } from "@canonical/react-components";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { currencyFormatter } from "advantage/react/utils";
@@ -115,7 +114,7 @@ const Offer = ({ offer }: Props) => {
             <Col size={3} small={1} medium={2}>
               <p className="col-3">
                 {currencyFormatter.format(
-                  (total - total * (discount / 100)) / 100
+                  (total - total * (discount / 100)) / 100,
                 )}
               </p>
             </Col>

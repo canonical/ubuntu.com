@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Field, useFormikContext } from "formik";
 import {
   ActionButton,
@@ -55,13 +55,13 @@ const Taxes = ({ products, setError }: TaxesProps) => {
 
   const postCustomerTaxInfoMutation = postCustomerTaxInfo();
   const hasZeroPriceValue = products.some(
-    (item) => item.product.price.value === 0
+    (item) => item.product.price.value === 0,
   );
   const onSaveClick = () => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
     if (!window.accountId) {
-      queryClient.invalidateQueries("calculate");
+      queryClient.invalidateQueries({ queryKey: ["calculate"] });
       setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
@@ -70,8 +70,8 @@ const Taxes = ({ products, setError }: TaxesProps) => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries("preview");
-            queryClient.invalidateQueries("customerInfo");
+            queryClient.invalidateQueries({ queryKey: ["preview"] });
+            queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
           },
           onError: (error) => {
             setFieldValue("Description", false);
@@ -87,7 +87,7 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                 setError(
                   <>
                     That VAT number is invalid. Check the number and try again.
-                  </>
+                  </>,
                 );
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
                 setFormikErrors({
@@ -102,13 +102,13 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                       customer success
                     </a>{" "}
                     if the problem persists.
-                  </>
+                  </>,
                 );
               } else {
                 setError(<>VAT could not be applied.</>);
               }
           },
-        }
+        },
       );
       setFieldValue("isTaxSaved", true);
     }

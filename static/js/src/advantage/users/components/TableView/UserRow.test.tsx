@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { User } from "../../types";
@@ -24,7 +23,7 @@ it("regular variant renders correctly", () => {
           handleDeleteConfirmationModalOpen={jest.fn()}
         />
       </tbody>
-    </table>
+    </table>,
   );
 
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
@@ -33,13 +32,13 @@ it("regular variant renders correctly", () => {
 
   // check that 'editing' buttons are not visible
   expect(
-    screen.getByTestId("hidden-select-to-prevent-layout-shifting")
+    screen.getByTestId("hidden-select-to-prevent-layout-shifting"),
   ).not.toBeVisible();
   expect(
-    screen.queryByRole("button", { name: "Cancel" })
+    screen.queryByRole("button", { name: "Cancel" }),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByRole("button", { name: "Save" })
+    screen.queryByRole("button", { name: "Save" }),
   ).not.toBeInTheDocument();
 });
 
@@ -56,7 +55,7 @@ it("editing variant renders correctly", () => {
           handleDeleteConfirmationModalOpen={jest.fn()}
         />
       </tbody>
-    </table>
+    </table>,
   );
 
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
@@ -68,9 +67,9 @@ it("editing variant renders correctly", () => {
   // check that elements from 'regular' variant are not visible
   expect(screen.getByText("Admin", { ignore: "option" })).not.toBeVisible();
   expect(
-    screen.queryByTestId("hidden-select-to-prevent-layout-shifting")
+    screen.queryByTestId("hidden-select-to-prevent-layout-shifting"),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByRole("button", { name: /Edit/ })
+    screen.queryByRole("button", { name: /Edit/ }),
   ).not.toBeInTheDocument();
 });

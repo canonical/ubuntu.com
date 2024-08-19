@@ -13,7 +13,7 @@
     formid="3394",
     lpId="2154",
     returnURL="/blog/ubuntu-kubecon-americas-2019" %}
-    {% include "shared/_cloud-contact-us-form.html" %}
+    {% include "shared/_default-contact-us-form.html" %}
   {% endwith %}
 
 {% elif product == 'blender-support' %}
@@ -23,9 +23,8 @@
       formid="4052",
       lpId="",
       returnURL="/contact-us/form/thank-you?product=blender-support" %}
-      {% include "shared/_cloud-contact-us-form.html" %}
+      {% include "shared/_default-contact-us-form.html" %}
     {% endwith %}
-
 
 {% elif product == 'ossa' %}
 
@@ -34,7 +33,7 @@
     formid="1257",
     lpId="2154",
     returnURL="/contact-us/form/thank-you" %}
-    {% include "shared/_cloud-contact-us-form.html" %}
+    {% include "shared/_default-contact-us-form.html" %}
   {% endwith %}
 
 {% elif product == 'pro' %}
@@ -52,7 +51,7 @@
     formid="4473",
     lpId="",
     returnURL="/landscape/pricing" %}
-    {% include "shared/_cloud-contact-us-form.html" %}
+    {% include "shared/_default-contact-us-form.html" %}
   {% endwith %}
 
 {% else %}
@@ -62,7 +61,7 @@
   formid="1257",
   lpId="2154",
   returnURL="/contact-us/form/thank-you" %}
-  {% include "shared/_cloud-contact-us-form.html" %}
+  {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
 {% endif %}
