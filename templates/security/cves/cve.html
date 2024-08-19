@@ -83,7 +83,7 @@
                     </p>
                   </div>
                   <p>
-                    <a href="/security/cves/about#priority">Why this priority?</a>
+                    <a href="{% if cve.priority_reason %} #priority-reason {% else %} /security/cves/about#priority {% endif %}">Why this priority?</a>
                   </p>
                 </div>
               </div>
@@ -207,8 +207,10 @@
           {% endif %}
 
           {% if cve.priority_reason %}
+          <div id="priority-reason" style="scroll-margin-top: 3.5rem">
             <h3>Why is this CVE {{ cve.priority }} priority?</h3>
             <p>{{ cve.priority_reason }}</p>
+          </div>
           {% endif %}
         </div>
 
@@ -251,7 +253,7 @@
                     <tr>
                       <th style="width: 12rem;">Package</th>
                       <th style="width: 18rem;">Ubuntu Release</th>
-                      <th style="padding-left: 1.7rem; width:25rem">Status</th>
+                      <th style="padding-left: 2rem; width:25rem">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -260,39 +262,38 @@
                         <tr>
                           {% if status.release_codename and status.release_codename != "upstream" %}
                             {% if loop.index == 1 %}<th rowspan="{{ package.statuses | length }}">{{ package["name"] }}</th>{% endif %}
-                            <td {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %}>{{ status.version }} {% if status.support_tag %}{{ status.support_tag }}{% endif %}
-                              <span class="u-text--muted">{{ status.release_codename }}</span></td>
+                            <td {% if status.pocket_desc %} style="overflow: visible;" {% endif %} {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %}>{{ status.version }} {% if status.support_tag %}{{ status.support_tag }}{% endif %}
+                              <span class="u-text--muted">{{ status.release_codename }}</span>
+                              {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro"%}
+                              <a class="p-chip p-tooltip--top-center" href="{{ status.pocket_desc.href }}"  aria-describedby="{{ status.pocket }}-tooltip">
+                                <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
+                                <span class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text }}</span>
+                              </a>
+                            {% endif %}
+                            </td>
                             {# djlint: off #}
                             {% if status.icon %}
-                            <td {% if status.maintained == False %} class="js-unmaintained-cell u-hide--cell" {% endif %} {% if status.pocket == "esm-apps" or status.pocket == "esm-infra" %} style="display: flex; gap:8px; flex-wrap: wrap;" {% endif %}>
-                              <i class="p-icon--{{ status.icon }}"></i> {{ status.name }} {% if status.name == "Fixed" or status.status == "ignored" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
-                              {% if status.pocket == "esm-infra" %}
-                                <a class="p-chip p-tooltip--top-center" href="/pro"  aria-describedby="infra-tooltip">
-                                  <span class="p-chip__value ">Ubuntu Pro</span>
-                                  <!-- <span class="p-tooltip__message" role="tooltip" id="infra-tooltip" style="width: 12rem; text-wrap: wrap;">Fix available with Ubuntu Pro and Ubuntu Pro (Infra-only) via ESM Infra.</span> -->
-
-                                </a>
-                                
-                                <div class="p-tooltip--right is-detached" id="infra-tooltip">
-                                  <span class="p-tooltip__message" role="tooltip" style="width: 12rem; text-wrap: wrap;">Fix available with Ubuntu Pro and Ubuntu Pro (Infra-only) via ESM Infra.</span>
+                              <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status" >
+                                <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
+                                <div style="display: block;">
+                                  {{ status.name }} {% if status.name == "Fixed" or status.status == "ignored" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
+                                  {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
+                                    <div>
+                                      <a class="p-chip p-tooltip--top-center" href="/pro" aria-describedby="{{ status.pocket }}-tooltip" style="margin-bottom: 0;">
+                                        <p class="p-chip__value">{{ status.pocket_desc.label }}</p>
+                                        <p class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text }}</p>
+                                      </a>
+                                    </div>
+                                  {% endif %}
                                 </div>
-                                
-                           
-                                {% endif %}
-                              {% if status.pocket == "esm-apps" %}
-                                <a class="p-chip" href="/pro">
-                                  <span class="p-chip__value">Ubuntu Pro</span>
-                                </a>
-                              {% endif %}
-                            </td>     
+                              </td>     
                             {% else %}
-                            <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} {% if status.status == 'DNE' %}u-text--muted{% endif %}" style="padding-left: 1.8rem;">
-                              {{ status.name }}
-                            </td>
+                              <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} cve-td-status {% if status.status == 'DNE' %}u-text--muted{% endif %}" style="padding-left: 2rem;">
+                                {{ status.name }}
+                              </td>
                             {% endif %}
 
-                            
-                                            
+                              
                             {# djlint: on #}
                         {% endif %}
                       </tr>
@@ -530,90 +531,8 @@
 </section>
 
 <script>
-
-function setTooltipPosition(trigger, container) {
-  var triggerRect = trigger.getBoundingClientRect();
-  console.log("here")
-
-  // FOR VANILLA EXAMPLE ONLY:
-  // this example only covers two tooltip positions
-  if (container.classList.contains('p-tooltip--top-center')) {
-    tooltipX = triggerRect.x + triggerRect.width / 2;
-  } else {
-    tooltipX = triggerRect.x + 16;
-  }
-
-  container.style.left = tooltipX + 'px';
-  container.style.top = triggerRect.y + triggerRect.height + 'px';
-}
-
-function handleTooltipEvents(target, tooltipContainers) {
-  var trigger = document.querySelector("[aria-describedby='" + target.getAttribute('id') + "']");
-  var timeout;
-  var showEvents = ['click', 'mouseenter', 'focus'];
-  var hideEvents = ['click', 'mouseout', 'blur'];
-  var tooltipClickedOpen = false;
-
-  showEvents.forEach(function (event) {
-    trigger.addEventListener(event, function () {
-      if (event === 'click') {
-        tooltipClickedOpen = !tooltipClickedOpen;
-      }
-      // wait 200ms before showing the tooltip,
-      // so we know there is intent
-      timeout = setTimeout(function () {
-        // hide any tooltips that may still be visible
-        tooltipContainers.forEach(function (container) {
-          container.classList.add('u-hide');
-        });
-        target.classList.remove('u-hide');
-        setTooltipPosition(trigger, target);
-      }, 200);
-    });
-  });
-
-  hideEvents.forEach(function (event) {
-    trigger.addEventListener(event, function (e) {
-      if (e.target.parentNode !== trigger) {
-        if (tooltipClickedOpen) {
-          return;
-        } else {
-          clearTimeout(timeout);
-          target.classList.add('u-hide');
-        }
-      }
-    });
-  });
-
-  // Hide the tooltip when the user clicks outside the trigger or presses escape
-  ['keyup', 'click'].forEach(function (event) {
-    document.addEventListener(event, function (e) {
-      if (tooltipClickedOpen) {
-        if (e.target !== trigger || e.key === 'Escape') {
-          clearTimeout(timeout);
-          target.classList.add('u-hide');
-          tooltipClickedOpen = false;
-        }
-      }
-    });
-  });
-}
-
-function initDetachedTooltips(selector) {
-  var tooltipContainers = [].slice.call(document.querySelectorAll(selector));
-
-  tooltipContainers.forEach(function (target) {
-    handleTooltipEvents(target, tooltipContainers);
-  });
-}
-
-initDetachedTooltips('[class*="p-tooltip"].is-detached');
-console.log('initDetachedTooltips');
-document.addEventListener('DOMContentLoaded', function () {
-});
-
   function handleHiddenReleasesSwitch() {
-    const maintainedCount = {{maintained_count | tojson | safe}};
+    const maintainedCount = {{ maintained_count | tojson | safe }};
     const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
     let hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
     
