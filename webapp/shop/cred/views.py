@@ -19,6 +19,7 @@ from webapp.shop.api.datastore import (
 )
 from webapp.shop.decorators import (
     credentials_group,
+    credentials_admin,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1333,7 +1334,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
         per_page = 50

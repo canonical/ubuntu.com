@@ -211,6 +211,26 @@ def credentials_group():
         @wraps(func)
         def decorated_function(*args, **kwargs):
             sso_user = user_info(flask.session)
+            if sso_user and (
+                (sso_user.get("is_credentials_admin", False) is True)
+                or (sso_user.get("is_credentials_support", False) is True)
+            ):
+                return func(*args, **kwargs)
+
+            return flask.render_template(
+                "account/forbidden.html", reason="is_not_admin"
+            )
+
+        return decorated_function
+
+    return decorator
+
+
+def credentials_admin():
+    def decorator(func):
+        @wraps(func)
+        def decorated_function(*args, **kwargs):
+            sso_user = user_info(flask.session)
             if (
                 sso_user
                 and sso_user.get("is_credentials_admin", False) is True
