@@ -654,6 +654,39 @@ def cve(cve_id):
         "released": {"name": "Fixed", "icon": "success"},
     }
 
+    friendly_pockets = {
+        "esm-infra": {
+            "text": "Fix available with Ubuntu Pro and \
+             Ubuntu Pro (Infra-only) via ESM Infra.",
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-apps": {
+            "text": "Fix available with Ubuntu Pro via ESM Apps.\
+             A fix from the community might become publicly available\
+            in the future.",
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "fips": {
+            "text": "FIPS certified package. Available with Ubuntu Pro.",
+            "label": "FIPS",
+            "href": "/security/fips",
+        },
+        "fips-updates": {
+            "text": "FIPS compliant package with security fixes.\
+             Available with Ubuntu Pro.",
+            "label": "FIPS Updates",
+            "href": "/security/fips",
+        },
+        "ros-esm": {
+            "text": "Security updates for ROS packages available\
+             with Ubuntu Pro.",
+            "label": "ROS ESM",
+            "href": "/security/robotics/ros-esm",
+        },
+    }
+
     maintained_count = 0
     for package in cve["packages"]:
         for status in package["statuses"]:
@@ -678,12 +711,20 @@ def cve(cve_id):
                 maintained_count += 1
             else:
                 status["maintained"] = False
-    
+
+            # Set pocket descriptions
+            if status["pocket"] in friendly_pockets:
+                status["pocket_desc"] = friendly_pockets[status["pocket"]]
+
         # Sort package statuses by release version
         package["statuses"] = sorted(
-            [d for d in package["statuses"] if d["release_codename"] != "upstream"], 
-            key=lambda d: d["release_date"], 
-            reverse=True
+            [
+                d
+                for d in package["statuses"]
+                if d["release_codename"] != "upstream"
+            ],
+            key=lambda d: d["release_date"],
+            reverse=True,
         )
 
     return flask.render_template(
