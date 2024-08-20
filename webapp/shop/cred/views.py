@@ -19,6 +19,7 @@ from webapp.shop.api.datastore import (
 )
 from webapp.shop.decorators import (
     credentials_group,
+    credentials_admin,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1211,6 +1212,19 @@ def issue_credly_badge(credly_api, **kwargs):
         return flask.jsonify({"error": error}), 400
 
 
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cred_user_permissions(credly_api, **kwargs):
+    sso_user = user_info(flask.session)
+    is_credentials_admin = sso_user.get("is_credentials_admin", False)
+    is_credentials_support = sso_user.get("is_credentials_support", False)
+    return flask.jsonify(
+        {
+            "is_credentials_admin": is_credentials_admin,
+            "is_credentials_support": is_credentials_support,
+        }
+    )
+
+
 @shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]
@@ -1320,7 +1334,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
         per_page = 50
