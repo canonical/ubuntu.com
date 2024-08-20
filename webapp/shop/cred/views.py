@@ -11,6 +11,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
 )
 from concurrent.futures import ThreadPoolExecutor
+from dateutil.parser import parse
 
 from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
@@ -18,6 +19,7 @@ from webapp.shop.api.datastore import (
 )
 from webapp.shop.decorators import (
     credentials_group,
+    credentials_admin,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -83,9 +85,19 @@ def confidentiality_agreement_webhook():
 
 
 @shop_decorator(area="cred", response="html")
-def cred_home(ua_contracts_api, **_):
+def cred_home(
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
     return flask.render_template(
         "credentials/index.html",
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
@@ -219,7 +231,15 @@ def cred_sign_up(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_schedule(ua_contracts_api, trueability_api, **_):
+def cred_schedule(
+    ua_contracts_api,
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    trueability_api,
+    **_,
+):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
@@ -266,6 +286,28 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "/credentials/schedule.html",
                 **template_data,
                 error=error,
+            )
+
+        cred_maintenance_start = (
+            parse(cred_maintenance_start) if cred_maintenance_start else None
+        )
+        cred_maintenance_end = (
+            parse(cred_maintenance_end) if cred_maintenance_end else None
+        )
+        if (
+            show_cred_maintenance_alert
+            and cred_maintenance_start
+            and cred_maintenance_end
+            and (cred_maintenance_start <= starts_at <= cred_maintenance_end)
+        ):
+            maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
+            maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
+            return flask.render_template(
+                "/credentials/schedule.html",
+                **template_data,
+                maintenance_error=True,
+                maintenance_start=maintenance_start_tz,
+                maintenance_end=maintenance_end_tz,
             )
 
         if assessment_reservation_uuid:
@@ -407,11 +449,23 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         max_date=max_date,
         error=error,
         time_delay=time_delay,
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
+def cred_your_exams(
+    ua_contracts_api,
+    trueability_api,
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **kwargs,
+):
     email = flask.request.args.get("email", None)
 
     agreement_notification = False
@@ -629,6 +683,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             "credentials/your-exams.html",
             agreement_notification=agreement_notification,
             exams=exams,
+            show_cred_maintenance_alert=show_cred_maintenance_alert,
+            cred_is_in_maintenance=cred_is_in_maintenance,
+            cred_maintenance_start=cred_maintenance_start,
+            cred_maintenance_end=cred_maintenance_end,
         )
     )
 
@@ -1154,6 +1212,19 @@ def issue_credly_badge(credly_api, **kwargs):
         return flask.jsonify({"error": error}), 400
 
 
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cred_user_permissions(credly_api, **kwargs):
+    sso_user = user_info(flask.session)
+    is_credentials_admin = sso_user.get("is_credentials_admin", False)
+    is_credentials_support = sso_user.get("is_credentials_support", False)
+    return flask.jsonify(
+        {
+            "is_credentials_admin": is_credentials_admin,
+            "is_credentials_support": is_credentials_support,
+        }
+    )
+
+
 @shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]
@@ -1263,7 +1334,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
         per_page = 50
