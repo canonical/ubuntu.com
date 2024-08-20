@@ -291,7 +291,7 @@
       <script>
         /* Add the page to the report a bug link */
         var bugLink = document.querySelector('#report-a-bug');
-        bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
+        bugLink.href += '&reported_from=' + location.href;
       </script>
       <span class="u-off-screen"><a href="#">Go to the top of the page</a></span>
     </div>
