@@ -1,0 +1,28 @@
+{% set hide_wrapper = True %}
+{% extends "case-study/base_case-study.html" %}
+
+{% block title %}Case Studies{% endblock %}
+{% block meta_description %}Ubuntu Case Studies{% endblock %}
+
+<!-- Set resource_types and tags somewhere -->
+{% block content %}
+<section class="p-strip--suru-blog-header is-dark">
+  <div class="row">
+    <div class="col-6">
+      <h1>Case Studies</h1>
+      <p>Ubuntu case studies.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow" id="posts-list">
+  <div class="row u-equal-height">
+    {% for case_study in case_study_info %}
+      {% with title=case_study.title, description=case_study.meta_description %}
+        {% include "case-study/_case-study-card.html" %}
+      {% endwith %}
+    {% endfor %}
+</div>
+</section>
+{% endblock %}
+
