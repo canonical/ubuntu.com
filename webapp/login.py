@@ -94,7 +94,11 @@ def login_handler():
         extensions=[
             openid_macaroon,
             TeamsRequest(
-                query_membership=[COMMUNITY_TEAM, CREDENTIALS_TEAM, CREDENTIALS_SUPPORT],
+                query_membership=[
+                    COMMUNITY_TEAM,
+                    CREDENTIALS_TEAM,
+                    CREDENTIALS_SUPPORT,
+                ],
                 lp_ns_uri="http://ns.launchpad.net/2007/openid-teams",
             ),
         ],
