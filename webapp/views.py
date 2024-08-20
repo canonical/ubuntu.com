@@ -372,8 +372,8 @@ def build_case_study_index():
                 # Append tags to case study info
                 case_study_info.append(
                     {
-                        "file_name": file,
                         "title": title,
+                        "file_path": "/case-study/" + file,
                         "meta_description": meta_description,
                     }
                 )
