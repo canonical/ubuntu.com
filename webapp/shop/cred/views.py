@@ -1202,7 +1202,7 @@ def get_test_taker_stats(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def issue_credly_badge(credly_api, **kwargs):
     badge_data = flask.request.json
     try:
