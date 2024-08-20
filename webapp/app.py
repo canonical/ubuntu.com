@@ -166,6 +166,17 @@ CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
 # Set up application
 # ===
 
+# Vanilla Macro loader example
+
+from jinja2 import ChoiceLoader, FileSystemLoader
+
+# ChoiceLoader attempts loading templates from each given path in successive
+# order
+loader = ChoiceLoader([
+    FileSystemLoader('templates'),
+    FileSystemLoader('node_modules/vanilla-framework/templates/')
+])
+
 app = FlaskBase(
     __name__,
     "ubuntu.com",
@@ -174,6 +185,10 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# Loader supplied to jinja_loader effectively overwrites template_folder in
+# base config
+app.jinja_loader = loader
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
