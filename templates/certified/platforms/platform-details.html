@@ -12,19 +12,17 @@
   }
 </style>
 
-<div class="row--25-75" style="margin-bottom: 50px;">
+<div class="row--25-75" style="margin-bottom: 50px; margin-top: 25px;">
   <div class="col" style="margin-top: 50px;">
     {% with category=platform.category %}
       {% include "certified/shared/category-image.html" %}
-    {% endwith %}x
+    {% endwith %}
   </div>
   <div class="col">
     <div>
-      <!-- TODO: put link on Desktops to ubuntu.com/desktops -->
-      <h1 class="p-muted-heading">{{ platform.category }} &rsaquo; Platform</h1>
+      <h1 class="p-muted-heading"><a href="/certified/{{category_pathname}}">{{ platform.category }}</a> &rsaquo; Platform</h1>
     </div>
     <div>
-      <!-- TODO: figure out which exact heading levels should go here -->
       <h1 class="u-no-margin--bottom">{{ platform.vendor }} {{ platform.name }}</h1>
       {% if platform.certificates|length == 1 %}
       <h3 class="p-heading--4">1 certified configuration</h3>
@@ -54,7 +52,7 @@
         <tr>
           <th></th>
           {% for canonical_id, certificate in platform.certificates.items() %}
-          <td><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }}</strong></a></td>
+          <td style="padding-bottom: 25px;"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }} &rsaquo;</strong></a></td>
           {% endfor %}
         </tr>
       </thead>
@@ -69,62 +67,29 @@
           <div class="col-2">
             <td class="u-text--muted">Processor</td>
           </div>
-          {% for canonical_id, certificate in platform.certificates.items() %}
-          <td>
-            <ul class="p-list u-no-margin--bottom">
-              {% for device in certificate.processor %}
-              <li class="p-list__item u-no-padding--top">
-                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </td>
-          {% endfor %}
+          {% with device_category = "processor" %}
+            {% include "certified/shared/_device-template.html" %}
+          {% endwith %}
         </tr>
         <tr>
           <td class="u-text--muted">Graphics</td>
-          {% for canonical_id, certificate in platform.certificates.items() %}
-          <td>
-            <ul class="p-list u-no-margin--bottom">
-              {% for device in certificate.video %}
-              <li class="p-list__item u-no-padding--top">
-                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </td>
-          {% endfor %}
+          {% with device_category = "video" %}
+            {% include "certified/shared/_device-template.html" %}
+          {% endwith %}
         </tr>
         <tr>
           <td class="u-text--muted">Network</td>
-          {% for canonical_id, certificate in platform.certificates.items() %}
-          <td>
-            <ul class="p-list u-no-margin--bottom">
-              {% for device in certificate.network %}
-              <li class="p-list__item u-no-padding--top">
-                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </td>
-          {% endfor %}
+          {% with device_category = "network" %}
+            {% include "certified/shared/_device-template.html" %}
+          {% endwith %}
         </tr>
         <tr>
           <td class="u-text--muted">Wireless</td>
-          {% for canonical_id, certificate in platform.certificates.items() %}
-          <td>
-            <ul class="p-list u-no-margin--bottom">
-              {% for device in certificate.wireless %}
-              <li class="p-list__item u-no-padding--top">
-                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </td>
-          {% endfor %}
+          {% with device_category = "wireless" %}
+            {% include "certified/shared/_device-template.html" %}
+          {% endwith %}
         </tr>
         <tr>
-          <!-- TODO: format time correctly -->
           <td class="u-text--muted">Certificate date</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
@@ -134,6 +99,8 @@
         </tr>
       </tbody>
     </table>
+
+    <hr style="margin-top: 25px;"/>
 
     <div style="display:flex; align-items: center; justify-content: right;">
       <i id="downButton" class="p-icon--chevron-left"></i>

@@ -16,7 +16,7 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
-from webapp.certified.helpers import get_download_url
+from webapp.certified.helpers import _get_category_pathname, get_download_url
 
 session = Session()
 talisker.requests.configure(session)
@@ -167,6 +167,7 @@ def certified_platform_details(platform_id):
     )
     return render_template(
         "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
         platform=platform,
         releases=releases,
         selected_release=None,
@@ -184,6 +185,7 @@ def certified_platform_details_by_release(platform_id, release):
     if release not in releases:
         return render_template(
             "certified/platforms/platform-details.html",
+            category_pathname=_get_category_pathname(platform["category"]),
             platform=platform,
             releases=releases,
             selected_release=None,
@@ -196,6 +198,7 @@ def certified_platform_details_by_release(platform_id, release):
     }
     return render_template(
         "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
         platform=platform,
         releases=releases,
         selected_release=release,
@@ -616,6 +619,7 @@ def certified_model_details(canonical_id):
         canonical_id=canonical_id,
         name=model_release["model"],
         category=model_release["category"],
+        category_pathname=_get_category_pathname(model_release["category"]),
         form_factor=form_factor,
         vendor=model_release["make"],
         platform_name=model_release["platform_name"],

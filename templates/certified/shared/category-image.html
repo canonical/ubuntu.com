@@ -1,4 +1,15 @@
-{% if category == "Desktop" or category == "Laptop" %}
+{% if category == "Desktop" %}
+{{ image (
+  url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+  alt="",
+  width="126",
+  height="82",
+  hi_def=True,
+  loading="auto"
+  ) | safe
+}}
+{% endif %}
+{% if category == "Laptop" %}
 {{ image (
   url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
   alt="",
