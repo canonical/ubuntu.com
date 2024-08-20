@@ -3,7 +3,7 @@
 
 {% block outer_content %}
   <!-- Hide breadcrumbs on index page -->
-  {% if hide_wrapper == False %}
+  {% if hide_wrapper != True %}
     <div class="u-fixed-width">
       <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
         <ol class="p-breadcrumbs__items">
@@ -18,10 +18,10 @@
     <hr class="is-fixed-width p-rule" />
   {% endif %}
 
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
   <!-- Hide footer on index page -->
-  {% if hide_wrapper == False %}
+  {% if hide_wrapper != True %}
     <hr class="is-fixed-width" />
     <section class="p-strip is-deep">
       <div class="row">
