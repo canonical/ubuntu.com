@@ -18,7 +18,7 @@
 <section class="p-strip is-shallow" id="posts-list">
   <div class="row u-equal-height">
     {% for case_study in case_study_info %}
-      {% with title=case_study.title, description=case_study.meta_description %}
+      {% with title=case_study.title, description=case_study.meta_description, tags="tag1, tag2" %}
         {% include "case-study/_case-study-card.html" %}
       {% endwith %}
     {% endfor %}
