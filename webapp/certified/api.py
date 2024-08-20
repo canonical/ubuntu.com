@@ -39,7 +39,6 @@ class CertificationAPI:
         limit=None,
         offset=None,
     ):
-        # TODO: update URL once stable
         return self._get(
             f"certified-platforms/{platform_id}",
             params={

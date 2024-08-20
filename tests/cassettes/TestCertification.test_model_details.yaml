@@ -15,8 +15,8 @@ interactions:
   response:
     body:
       string: '{"count":1,"next":null,"previous":null,"results":[{"id":11209,"canonical_id":"201807-26311","architecture":"amd64","bios":null,"hardware_website":"http://e.huawei.com/en/products/cloud-computing-dc/servers","category":"Server","kernel_version":"4.15.0-46-generic","notes":[],"make":"Huawei
-        Technologies Co., Ltd.","model":"2288 V5","processor":[{"name":"Intel(R) Xeon(R)
-        Platinum 8153 CPU @ 2.00GHz","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8153CPU@2.00GHz","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"Ethernet
+        Technologies Co., Ltd.","model":"2288 V5","platform_name":"2288 V5","platform_id":"9472","processor":[{"name":"Intel(R)
+        Xeon(R) Platinum 8153 CPU @ 2.00GHz","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8153CPU@2.00GHz","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"Ethernet
         Connection X722 for 1GbE","make":"Intel Corp.","bus":"pci","identifier":"8086:37d1","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"NETWORK"},{"name":"Ethernet
         Connection X722 for 1GbE","make":"Intel Corp.","bus":"pci","identifier":"8086:37d1","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"NETWORK"}],"video":[{"name":"Hi1710
         [iBMC Intelligent Management system chip w/VGA support] Note: huawei claims
@@ -29,11 +29,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1426'
+      - '1473'
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:23 GMT
+      - Tue, 20 Aug 2024 13:29:14 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -43,9 +43,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '7'
       X-QueryInspect-Total-Request-Time:
-      - 121 ms
+      - 90 ms
       X-QueryInspect-Total-SQL-Time:
-      - 57 ms
+      - 50 ms
     status:
       code: 200
       message: OK
@@ -75,7 +75,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:23 GMT
+      - Tue, 20 Aug 2024 13:29:14 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -85,9 +85,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '1'
       X-QueryInspect-Total-Request-Time:
-      - 17 ms
-      X-QueryInspect-Total-SQL-Time:
       - 12 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 8 ms
     status:
       code: 200
       message: OK

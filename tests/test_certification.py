@@ -43,6 +43,10 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified/component/682")
         self.assertEqual(response.status_code, 200)
 
+    def test_platform_details(self):
+        response = self.client.get("/certified/platforms/14169")
+        self.assertEqual(response.status_code, 200)
+
     def test_vendor_pages(self):
         response = self.client.get("/certified/vendors/HP")
         self.assertEqual(response.status_code, 200)

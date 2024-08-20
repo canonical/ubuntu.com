@@ -160,6 +160,8 @@ def _parse_query_params(all_releases, all_vendors):
 
 def certified_platform_details(platform_id):
     platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
     releases = set(
         release
         for _, certificate in platform["certificates"].items()
@@ -176,12 +178,16 @@ def certified_platform_details(platform_id):
 
 def certified_platform_details_by_release(platform_id, release):
     platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
     releases = set(
         release
         for _, certificate in platform["certificates"].items()
         for release in certificate["releases"]
     )
 
+    # If the release specified in the URL is not available for this platform,
+    # render the page for all releases
     if release not in releases:
         return render_template(
             "certified/platforms/platform-details.html",
@@ -191,6 +197,7 @@ def certified_platform_details_by_release(platform_id, release):
             selected_release=None,
         )
 
+    # Filter only certificates for the release specified in the URL
     platform["certificates"] = {
         canonical_id: certificate
         for canonical_id, certificate in platform["certificates"].items()
