@@ -336,44 +336,54 @@ def build_case_study_index():
     resource = flask.request.args.get("resource", default=None, type=str)
     tag = flask.request.args.get("tag", default=None, type=str)
 
-    html_files = [f for f in os.listdir(case_study_path) if f.endswith('.html')]
+    html_files = [
+        f for f in os.listdir(case_study_path) if f.endswith(".html")
+    ]
     case_study_info = []
 
     title_pattern = re.compile(
-        r'{% block title %}(.*?){% endblock %}',
-        re.DOTALL
+        r"{% block title %}(.*?){% endblock %}", re.DOTALL
     )
     meta_description_pattern = re.compile(
-        r'{% block meta_description %}(.*?){% endblock %}',
-        re.DOTALL
+        r"{% block meta_description %}(.*?){% endblock %}", re.DOTALL
     )
 
     for file in html_files:
         if (
-            file != 'index.html' and
-            file != 'base_case-study.html' and
-            file != '_case-study-card.html'
+            file != "index.html"
+            and file != "base_case-study.html"
+            and file != "_case-study-card.html"
         ):
             file_path = os.path.join(case_study_path, file)
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
                 title_match = title_pattern.search(content)
-                meta_description_match = meta_description_pattern.search(content)
-                title = title_match.group(1).strip() if title_match else 'No title'
-                meta_description = meta_description_match.group(1).strip() if meta_description_match else ''
+                meta_description_match = meta_description_pattern.search(
+                    content
+                )
+                title = (
+                    title_match.group(1).strip() if title_match else "No title"
+                )
+                meta_description = (
+                    meta_description_match.group(1).strip()
+                    if meta_description_match
+                    else ""
+                )
                 # Append tags to case study info
-                case_study_info.append({
-                    'file_name': file,
-                    'title': title,
-                    'meta_description': meta_description
-                })
+                case_study_info.append(
+                    {
+                        "file_name": file,
+                        "title": title,
+                        "meta_description": meta_description,
+                    }
+                )
 
     return flask.render_template(
         "case-study/index.html",
         language=language,
         resource=resource,
         tag=tag,
-        case_study_info=case_study_info
+        case_study_info=case_study_info,
     )
 
 
