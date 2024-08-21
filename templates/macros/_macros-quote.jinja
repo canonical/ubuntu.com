@@ -129,21 +129,23 @@
     {% endif -%}
     {#- Skip to fourth column if the signpost_image (which takes up first three columns) is missing -#}
     <div class="col-9{% if not has_signpost_image %} col-start-large-4{% endif %}">
-      <hr class="u-hide--medium u-hide--small">
-      {% if has_citation -%}
-        <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
-        <div class="row">
-          <div class="col-6">
-            {{ _quote_body() }}
+      <hr class="u-hide--medium u-hide--small is-muted">
+      <div class="p-section--shallow">
+        {% if has_citation -%}
+          <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
+          <div class="row">
+            <div class="col-6">
+              {{ _quote_body() }}
+            </div>
+            <div class="col-3">
+              {{ _citation_block() }}
+            </div>
           </div>
-          <div class="col-3">
-            {{ _citation_block() }}
-          </div>
-        </div>
-      {% else -%}
-        <!-- When no citation is present, display quote body without a nested grid -->
-        {{ _quote_body() }}
-      {% endif -%}
+        {% else -%}
+          <!-- When no citation is present, display quote body without a nested grid -->
+          {{ _quote_body() }}
+        {% endif -%}
+      </div>
 
       {%- if has_cta or has_image -%}
         <!-- Optional CTA and/or image block -->
