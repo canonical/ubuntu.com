@@ -1094,7 +1094,20 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     keys = []
     for contract in contracts:
         contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+        try:
+            contract_keys = ua_contracts_api.list_activation_keys(contract_id)
+            if contract_keys:
+                keys.extend(contract_keys)
+        except Exception as error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": error.request.url,
+                    "request_headers": error.request.headers,
+                    "response_headers": error.response.headers,
+                    "response_body": error.response.json(),
+                }
+            )
+            continue
 
     return flask.jsonify(keys)
 
