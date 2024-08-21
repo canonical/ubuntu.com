@@ -5,56 +5,54 @@
 
 {%- macro highlights(num_items) -%}
   <section class="p-section">
-    {% if num_items == 3 %}
-      {% set col_size = "col-4" %}
-    {% elif num_items == 4 %}
-      {% set col_size = "col-3" %}
-    {% else %}
-      {% set col_size = "col" %}
+    {% if num_items <= 4 %}
       <div class="row">
-        <hr class="is-muted"/>
-        <div class="col-start-large-4 col-3">
-          <h2>Highlights</h2>
-        </div>
-
-        <div class="col-6">
-          <ul class="p-list--divided">
-            <div class="row">
-              {% for number in range (1, num_items+1) %}
-
-                {%- set highlights_item_content = caller('highlights_item_content_' + number|string) -%}
-                {%- set has_highlights_item_content = highlights_item_content|trim|length > 0 -%}
-
-                {%- if has_highlights_item_content -%}<li class="p-list__item is-ticked">{{ highlights_item_content }}</li>{% endif %}
-              {% endfor %}
-
-            </div>
-          </ul>
-        </div>
+        {% if num_items == 4 %}<h2 class="p-text--small-caps">Highlights</h2>{% endif %}
+        <hr class="is-muted" />
       </div>
-    {% endif %}
-
-    {% if num_items == 3 or num_items == 4 %}
-      <div class="row">
-        <h2 class="p-text--small-caps">Highlights</h2>
-        <hr class="is-muted"/>
-      </div>
-
       <ul class="p-list">
         <div class="row">
+          {% if num_items < 4 %}
+            <div class="col-3">
+              <h2 class="p-text--small-caps">Highlights</h2>
+            </div>
+          {% endif %}
+
           {% for number in range(1, num_items+1) %}
             {%- set highlights_item_content = caller('highlights_item_content_' + number|string) -%}
             {%- set has_highlights_item_content = highlights_item_content|trim|length > 0 -%}
 
             {%- if has_highlights_item_content -%}
-              {% if num_items == 3 or num_items == 4 %}<div class="{{ col_size }}">{% endif %}
+              <div class="col-3">
                 <li class="p-list__item is-ticked">{{ highlights_item_content }}</li>
-                {% if num_items == 3 or num_items == 4 %}</div>{% endif %}
+              </div>
             {%- endif %}
-
           {% endfor %}
         </div>
       </ul>
+    {% else %}
+      <div class="row">
+        <div class="col-9">
+          <hr class="is-muted" />
+          <div class="row">
+            <div class="col-3">
+              <h2 class="p-text--small-caps">Highlights</h2>
+            </div>
+            <div class="col-6">
+              <ul class="p-list--divided">
+                <div class="row">
+                  {% for number in range (1, num_items+1) %}
+                    {%- set highlights_item_content = caller('highlights_item_content_' + number|string) -%}
+                    {%- set has_highlights_item_content = highlights_item_content|trim|length > 0 -%}
+
+                    {%- if has_highlights_item_content -%}<li class="p-list__item is-ticked">{{ highlights_item_content }}</li>{% endif %}
+                  {% endfor %}
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endif %}
   </section>
 {%- endmacro -%}
