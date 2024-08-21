@@ -7,10 +7,8 @@
   <section class="p-section">
     <div class="row">
       <div class="col-start-large-4 col-9">
-        <hr class="p-rule" />
-        <div class="p-section--shallow">
-          <h2>{{ title }}</h2>
-        </div>
+        <hr class="p-rule is-muted" />
+        <h2>{{ title }}</h2>
         <ul class="p-list--divided">
           {% for number in range(1, 11)%}
             {%- set list_item_content = caller('list_item_content_' + number|string) -%}
