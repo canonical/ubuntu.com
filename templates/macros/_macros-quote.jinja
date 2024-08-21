@@ -1,0 +1,168 @@
+{#
+  Params
+  - title (string) (optional): The text to be displayed as the heading
+  - quote_heading_level (int) (optional): The heading level used for the quote text. Can be 2 or 4. Defaults to 2.
+  - quote_text (string) (required): The text of the quote. The macro will surround it with quotes, so there is no need to quote it yourself.
+  - citation_source_name (string) (optional): The name of the source being quoted
+  - citation_source_title (string) (optional): The title of the source being quoted
+  Slots
+  - signpost_image (optional): The signpost_image of the source being quoted
+  - heading_link (optional): Link to be displayed beside the heading text
+  - cta (optional): Contents of the call to action block to be displayed below the quote
+  - image (optional): An image to be displayed below the quote
+#}
+{%- macro quote_wrapper(
+  title="",
+  quote_heading_level=2,
+  quote_text="",
+  citation_source_name="",
+  citation_source_title=""
+) -%}
+  {% set heading_link_content = caller('heading_link') %}
+  {% set has_heading_link =  heading_link_content|trim|length > 0 %}
+  {% set has_title = title|length > 0 %}
+  {% set has_heading_row = has_title or has_heading_link %}
+  {% set signpost_image_content = caller('signpost_image') %}
+  {% set has_signpost_image = signpost_image_content|trim|length > 0 %}
+  {% set has_citation_source_name = citation_source_name|trim|length > 0 %}
+  {% set has_citation_source_title = citation_source_title|trim|length > 0 %}
+  {% set has_citation = has_citation_source_name or has_citation_source_title %}
+  {% set cta_content = caller('cta') %}
+  {% set has_cta = cta_content|trim|length > 0 %}
+  {% set image_content = caller('image') %}
+  {% set has_image = image_content|trim|length > 0 %}
+
+  {# Validate heading level selection #}
+  {% if quote_heading_level not in [2, 4] %}
+    {% set quote_heading_level = 2 %}
+  {% endif %}
+
+  {%- macro _quote_body() -%}
+    <div class="p-section--shallow">
+      <blockquote class="p-pull-quote u-no-margin--top u-no-padding--left">
+        <p class="p-heading--{{ quote_heading_level }} u-no-padding--top">
+          <i>
+            &#8220{{ quote_text }}&#8221
+          </i>
+        </p>
+      </blockquote>
+    </div>
+  {%- endmacro %}
+
+  {%- macro _citation_block() -%}
+    {%- if has_citation -%}
+      <!--Optional citation block-->
+      {#- Source name and title must be wrapped in grid if they are both present, for responsive view -#}
+      {%- macro _citation_block_source_name() -%}
+        <!--Optional citation source name-->
+        <h5 class="u-no-margin--bottom u-no-padding--top">{{ citation_source_name }}</h5>
+      {%- endmacro -%}
+      {%- macro _citation_block_source_title() -%}
+        <!--Optional citation source title-->
+        <p class="u-text--muted u-no-padding u-no-margin">{{ citation_source_title }}</p>
+      {%- endmacro -%}
+      <div class="p-section--shallow">
+        <hr class="u-hide--large p-rule--muted">
+        {%- if has_citation_source_name and has_citation_source_title %}
+          <!-- When source name and title are both present, wrap them in a 50/50 row to split them on medium -->
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              {{ _citation_block_source_name() }}
+            </div>
+            <div class="col-3 col-medium-3">
+              {{ _citation_block_source_title() }}
+            </div>
+          </div>
+        {%- else -%}
+          {%- if has_citation_source_name %}
+            <!--Optional citation source name-->
+            {{ _citation_block_source_name() }}
+          {%- endif -%}
+          {%- if has_citation_source_title %}
+            <!--Optional citation source title-->
+            {{ _citation_block_source_title() }}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endmacro %}
+
+  {% if has_heading_row %}
+    <!--Optional heading -->
+    <div class="p-section--shallow">
+      <hr class="p-rule--highlight">
+      <div class="row">
+        {%- if has_title %}
+          <!--Optional heading text-->
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <p class="p-muted-heading">{{ title }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if has_heading_link %}
+          <!--Optional heading link -->
+          <div class="col-3 col-medium-3 col-start-large-10 col-start-medium-5">
+            <div class="p-section--shallow">
+              <p class="p-text--default">
+                {{ heading_link_content }}
+              </p>
+            </div>
+          </div>
+        {% endif -%}
+      </div>
+    </div>
+  {% endif -%}
+  <div class="row">
+    {% if has_signpost_image -%}
+      <!--Optional signpost image-->
+      <div class="col-3">
+        <div class="row">
+          <div class="col-2">
+            <div class="p-section--shallow">
+              {{ signpost_image_content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif -%}
+    {#- Skip to fourth column if the signpost_image (which takes up first three columns) is missing -#}
+    <div class="col-9{% if not has_signpost_image %} col-start-large-4{% endif %}">
+      <hr class="u-hide--medium u-hide--small">
+      {% if has_citation -%}
+        <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
+        <div class="row">
+          <div class="col-6">
+            {{ _quote_body() }}
+          </div>
+          <div class="col-3">
+            {{ _citation_block() }}
+          </div>
+        </div>
+      {% else -%}
+        <!-- When no citation is present, display quote body without a nested grid -->
+        {{ _quote_body() }}
+      {% endif -%}
+
+      {%- if has_cta or has_image -%}
+        <!-- Optional CTA and/or image block -->
+        <div class="p-section--shallow">
+          <div class="row">
+            {%- if has_cta %}
+              <!-- Optional CTA block-->
+              <div class="p-cta-block">
+                {{ cta_content }}
+              </div>
+            {% endif -%}
+
+            {% if has_image -%}
+              <!-- Optional image block -->
+              {{ image_content }}
+            {% endif -%}
+          </div>
+        </div>
+      {% endif -%}
+    </div>
+  </div>
+{% endmacro -%}
