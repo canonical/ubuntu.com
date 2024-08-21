@@ -4,6 +4,7 @@ A Flask application for ubuntu.com
 
 import os
 import json
+from functools import wraps
 import math
 import flask
 import requests
@@ -1226,8 +1227,8 @@ def render_supermicro_blogs():
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
-# Temporary for form render
 def render_form(templatePath, formId):
+    @wraps(render_form)
     def wrapper_func():
         resultForm = {}
         with app.app_context() and app.test_request_context():
@@ -1239,5 +1240,12 @@ def render_form(templatePath, formId):
                         resultForm = form
             return flask.render_template(templatePath, fieldsets=resultForm["fieldsets"], formData=resultForm["formData"])
     return wrapper_func
-    
-app.add_url_rule("/form-template", view_func=render_form("/base_index.html", "1266"))
+
+def set_form_rules(): 
+    filename = os.path.join(app.static_folder, 'files', 'page-form-ids.json')
+    with open(filename) as form_id_file:
+        data = json.load(form_id_file)
+        for form in data["forms"]:
+            app.add_url_rule(form["urlPath"], view_func=render_form(form["templatePath"], form["formId"])) 
+
+set_form_rules()
