@@ -15,6 +15,11 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
+from webapp.canonical_cla.views import (canonical_cla_api_github_login,
+                                        canonical_cla_api_github_logout,
+                                        canonical_cla_api_launchpad_login,
+                                        canonical_cla_api_launchpad_logout,
+                                        canonical_cla_api_proxy)
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
@@ -75,12 +80,7 @@ from webapp.views import (BlogCustomGroup, BlogCustomTopic, BlogRedirects,
                           appliance_install, appliance_portfolio,
                           build_engage_index, build_engage_page,
                           build_engage_pages_sitemap, build_tutorials_index,
-                          build_tutorials_query,
-                          canonical_cla_api_github_login,
-                          canonical_cla_api_github_logout,
-                          canonical_cla_api_launchpad_login,
-                          canonical_cla_api_launchpad_logout,
-                          canonical_cla_api_proxy, download_server_steps,
+                          build_tutorials_query, download_server_steps,
                           download_thank_you, engage_thank_you,
                           french_why_openstack, german_why_openstack,
                           get_user_country_by_tz, json_asset_query,

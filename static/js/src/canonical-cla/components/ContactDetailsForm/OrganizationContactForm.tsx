@@ -12,17 +12,27 @@ import { postOrganizationSignForm } from "canonical-cla/utils/api";
 import { OrganizationSignForm } from "canonical-cla/utils/constants";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import GithubEmailSelector from "../GithubEmailSelector";
+import LaunchpadEmailSelector from "../LaunchpadEmailSelector";
 
 const OrganizationFormSchema = Yup.object<
   Omit<OrganizationSignForm, "agreement_type">
 >({
-  name: Yup.string().max(100).required(),
-  contact_name: Yup.string().max(100).required(),
-  contact_email: Yup.string().max(100).email().required(),
-  phone_number: Yup.string().max(20).required(),
-  address: Yup.string().max(400).required(),
-  country: Yup.string().required(),
-  email_domain: Yup.string().max(100).required(),
+  name: Yup.string().max(100).required().label("Organization name"),
+  contact_name: Yup.string().max(100).required().label("Contact name"),
+  contact_email: Yup.string()
+    .max(100)
+    .email()
+    .required()
+    .label("Contact email"),
+  phone_number: Yup.string().max(20).required().label("Phone number"),
+  address: Yup.string().max(400).required().label("Address"),
+  country: Yup.string().required().label("Country"),
+
+  email_domain: Yup.string().max(100).required().label("Email domain"),
+  // used to choose the email domain and removed before submitting the form
+  github_email: Yup.string().label("GitHub email"),
+  launchpad_email: Yup.string().label("Launchpad email"),
 });
 
 const OrganizationContactForm = () => {
@@ -37,9 +47,29 @@ const OrganizationContactForm = () => {
       window.location.hash = "main-content";
     },
   });
+  const handleSubmit = (
+    values: OrganizationSignForm & {
+      github_email?: string;
+      launchpad_email?: string;
+    },
+  ) => {
+    const submitData = {
+      ...values,
+      github_email: undefined,
+      launchpad_email: undefined,
+    };
+    submitSignForm.mutate(submitData);
+  };
 
-  const handleSubmit = (values: OrganizationSignForm) => {
-    submitSignForm.mutate(values);
+  const getEmailDomain = (email?: string): string => {
+    if (!email) {
+      return "";
+    }
+    const domainPart = email.split("@")[1];
+    if (!domainPart) {
+      return "";
+    }
+    return domainPart.toLowerCase().trim();
   };
 
   return (
@@ -47,49 +77,56 @@ const OrganizationContactForm = () => {
       initialValues={storedValues}
       validationSchema={OrganizationFormSchema}
       onSubmit={handleSubmit}
-      validateOnChange
       validateOnMount
     >
-      {({ isValid, values }) => {
+      {({ isValid, values, setFieldValue }) => {
         setStoredValues(values);
+        const email_domain = getEmailDomain(
+          values.github_email || values.launchpad_email,
+        );
+        if (values.email_domain !== email_domain) {
+          setFieldValue("email_domain", email_domain);
+        }
         return (
           <Form>
             <FormikField
               component={Input}
+              type="text"
               name="name"
               label="Organization name"
-              placeholder="Organization name"
+              required
               maxLength={100}
             />
             <FormikField
               component={Input}
+              type="text"
               name="contact_name"
               label="Contact name"
-              placeholder="Contact name"
+              required
               maxLength={100}
             />
             <FormikField
               component={Input}
+              type="text"
               required
               name="contact_email"
               label="Contact email"
-              placeholder="Contact email"
               maxLength={100}
             />
             <FormikField
               component={Input}
+              type="tel"
               required
               name="phone_number"
               label="Phone number"
-              placeholder="Phone number"
               maxLength={20}
             />
             <FormikField
               component={Textarea}
               name="address"
               label="Address"
-              placeholder="Address"
               maxLength={400}
+              required
             />
             <FormikField
               component={Select}
@@ -105,15 +142,34 @@ const OrganizationContactForm = () => {
                 })),
               ]}
             />
-            <FormikField
-              component={Input}
-              required
-              label="Email domain"
-              name="email_domain"
-              placeholder="Email domain"
-              maxLength={100}
-              help="The domain of the email addresses of the contributors in your organization."
-            />
+            <div>
+              <label className="p-form__label is-required">Email domain</label>
+              <p className="p-form-help-text">
+                Login with GitHub or Launchpad to choose the email domain of the
+                contributors in your organization.
+              </p>
+              <div className="row p-divider">
+                <div className="col-4 p-divider__block">
+                  <GithubEmailSelector />
+                </div>
+
+                <div className="col-4 p-divider__block">
+                  <LaunchpadEmailSelector />
+                </div>
+              </div>
+              <FormikField
+                component={Input}
+                type="text"
+                required
+                readOnly
+                name="email_domain"
+                maxLength={100}
+                value={getEmailDomain(
+                  values.github_email || values.launchpad_email,
+                )}
+                help="The domain of the email addresses of the contributors in your organization. (e.g. canonical.com)"
+              />
+            </div>
 
             {submitSignForm.isError && (
               <div className="p-form__control is-error">

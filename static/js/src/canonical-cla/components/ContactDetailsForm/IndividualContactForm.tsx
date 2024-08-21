@@ -105,14 +105,14 @@ const IndividualFormSchema = Yup.object<
   Omit<IndividualSignForm, "agreement_type">
 >()
   .shape({
-    first_name: Yup.string().max(50).required(),
-    last_name: Yup.string().max(50).required(),
-    phone_number: Yup.string().max(20).required(),
+    first_name: Yup.string().max(50).required().label("First name"),
+    last_name: Yup.string().max(50).required().label("Last name"),
+    phone_number: Yup.string().max(20).required().label("Phone number"),
 
-    address: Yup.string().max(400).required(),
-    country: Yup.string().required(),
-    github_email: Yup.string().max(100).nullable(),
-    launchpad_email: Yup.string().max(100).nullable(),
+    address: Yup.string().max(400).required().label("Address"),
+    country: Yup.string().required().label("Country"),
+    github_email: Yup.string().max(100).nullable().label("GitHub email"),
+    launchpad_email: Yup.string().max(100).nullable().label("Launchpad email"),
   })
   .test(function ({ github_email, launchpad_email }) {
     if (!github_email && !launchpad_email) {
@@ -146,7 +146,6 @@ const IndividualContactForm = () => {
       initialValues={storedValues}
       validationSchema={IndividualFormSchema}
       onSubmit={handleSubmit}
-      validateOnChange
       validateOnMount
     >
       {({ isValid, values }) => {
@@ -174,7 +173,7 @@ const IndividualContactForm = () => {
               name="phone_number"
               label="Phone number"
               required
-              type="text"
+              type="tel"
               maxLength={20}
             />
             <FormikField

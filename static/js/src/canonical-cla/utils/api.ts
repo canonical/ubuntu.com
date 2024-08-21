@@ -114,10 +114,17 @@ const request = async <M extends HttpMethod, E extends EndpointForMethod<M>>(
   try {
     const responseData = JSON.parse(responseContent);
     if (!response.ok) {
-      throw new ApiError(responseData.detail);
+      const message =
+        response.status === 422
+          ? responseData.detail.map((e: { msg: string }) => e.msg).join(", ")
+          : responseData.detail;
+      throw new ApiError(message);
     }
     return responseData;
   } catch (e) {
+    if (e instanceof ApiError) {
+      throw e;
+    }
     throw new ApiError(responseContent);
   }
 };

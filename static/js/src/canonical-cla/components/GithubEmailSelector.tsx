@@ -93,7 +93,6 @@ const GithubEmailSelector = () => {
               {
                 label: "Choose a GitHub email",
                 value: "",
-                disabled: true,
               },
               ...(githubProfile.data?.emails.map((email) => ({
                 label: email,

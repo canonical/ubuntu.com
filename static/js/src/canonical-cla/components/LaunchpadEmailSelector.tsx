@@ -93,7 +93,6 @@ const LaunchpadEmailSelector = () => {
               {
                 label: "Choose a Launchpad email",
                 value: "",
-                disabled: true,
               },
               ...(launchpadProfile.data?.emails.map((email) => ({
                 label: email,

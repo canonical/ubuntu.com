@@ -10,8 +10,8 @@ interface ScrollToHashElementProps {
 }
 
 const ScrollToHashElement = ({
-  behavior = "auto",
-  initialBehavior = "auto",
+  behavior = "instant",
+  initialBehavior = "instant",
   inline = "nearest",
   block = "start",
 }: ScrollToHashElementProps): null => {

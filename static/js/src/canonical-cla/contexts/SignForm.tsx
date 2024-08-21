@@ -50,7 +50,7 @@ export const SignFormProvider = ({ children }: Props) => {
     if (step === "success") {
       reset();
     }
-  }, []);
+  }, [step]);
 
   return (
     <SignFormContext.Provider

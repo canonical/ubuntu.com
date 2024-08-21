@@ -174,7 +174,7 @@ def init_handlers(app, sentry):
             "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
         }
 
-    def get_countries_list() -> List[TypedDict("Country", {"alpha2": str, "name": str})]:
+    def get_countries_list() -> List[dict]:
         """
         Get a list of countries in a standard format
         """

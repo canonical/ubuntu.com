@@ -40,8 +40,8 @@ const AgreementTypeForm = () => {
           onChange={() => changeAgreementType(agreementType)}
         />
       ))}
-      {selectedAgreementType &&
-        AGREEMENT_TYPES[selectedAgreementType].agreement()}
+      {/* {selectedAgreementType &&
+        AGREEMENT_TYPES[selectedAgreementType].agreement()} */}
     </section>
   );
 };
