@@ -19,6 +19,7 @@ from webapp.shop.api.datastore import (
 )
 from webapp.shop.decorators import (
     credentials_group,
+    credentials_admin,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -1093,7 +1094,20 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     keys = []
     for contract in contracts:
         contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+        try:
+            contract_keys = ua_contracts_api.list_activation_keys(contract_id)
+            if contract_keys:
+                keys.extend(contract_keys)
+        except Exception as error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": error.request.url,
+                    "request_headers": error.request.headers,
+                    "response_headers": error.response.headers,
+                    "response_body": error.response.json(),
+                }
+            )
+            continue
 
     return flask.jsonify(keys)
 
@@ -1201,7 +1215,7 @@ def get_test_taker_stats(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def issue_credly_badge(credly_api, **kwargs):
     badge_data = flask.request.json
     try:
@@ -1209,6 +1223,19 @@ def issue_credly_badge(credly_api, **kwargs):
         return flask.jsonify(response)
     except Exception as error:
         return flask.jsonify({"error": error}), 400
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cred_user_permissions(credly_api, **kwargs):
+    sso_user = user_info(flask.session)
+    is_credentials_admin = sso_user.get("is_credentials_admin", False)
+    is_credentials_support = sso_user.get("is_credentials_support", False)
+    return flask.jsonify(
+        {
+            "is_credentials_admin": is_credentials_admin,
+            "is_credentials_support": is_credentials_support,
+        }
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -1320,7 +1347,7 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
         per_page = 50

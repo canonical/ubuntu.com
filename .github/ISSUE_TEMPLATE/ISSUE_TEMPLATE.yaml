@@ -1,0 +1,56 @@
+name: Default issue
+description: Issue from anywhere, perhaps from the footer of the site
+body:
+- type: markdown
+  attributes:
+    value: |
+      *Note - filling in this form will file an issue against the www.ubuntu.com website, not against Ubuntu itself, for Ubuntu OS related bugs please [go here](https://help.ubuntu.com/community/ReportingBugs).*
+- type: markdown
+  attributes:
+    value: |
+      *Please provide as many details as possible in order to provide maintainers more context about the issue. Don't skip/remove any of the sections below. If there is no data to provide in one of the sections, please specify it by typing "N/A" or similar. That will help maintainers reproduce the issue and be able to help quickly. Thanks.*
+- type: textarea
+  id: summary
+  attributes:
+    label: Summary
+    description: Please describe the issue
+  validations:
+    required: true
+- type: textarea
+  id: steps
+  attributes:
+    label: Steps to reproduce the behavior
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+  validations:
+    required: true
+- type: textarea
+  id: behavior
+  attributes:
+    label: Expected behavior
+    description: A clear and concise description of what you expected to happen
+  validations:
+    required: true
+- type: textarea
+  id: browser
+  attributes:
+    label: Browser/device details
+    placeholder: |
+      - Device: [e.g. iPhone6]
+      - OS: [e.g. iOS8.1]
+      - Browser [e.g. stock browser, safari]
+      - Version [e.g. 22]
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: |
+      *Please provide a screenshot in the comments after you have created an issue to help the maintainers debug the issue quicker.*
+- type: input
+  id: reported_from
+  attributes:
+    label: Reported from
+    value: GitHub
