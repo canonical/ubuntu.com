@@ -26,10 +26,12 @@ security_api = SecurityAPI(session=session)
 
 
 def get_processed_details(notice):
-    pattern = re.compile(r"(cve|CVE-)\d{4}-\d{4,7}", re.MULTILINE)
+    pattern = re.compile(
+        r"(?<![a-zA-Z0-9-_/])((cve|CVE-)\d{4}-\d{4,7})(?!\.html)", re.MULTILINE
+    )
 
     return re.sub(
-        pattern, r'<a href="/security/\g<0>">\g<0></a>', notice["description"]
+        pattern, r'<a href="/security/\1">\1</a>', notice["description"]
     )
 
 
