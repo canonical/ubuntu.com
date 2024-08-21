@@ -160,242 +160,240 @@
                         </td>
                       {% endif %}
                       <td>{{ status.release_codename }}</td>
-                      {% if status.status == "DNE" or status.status == "not-affected" %}
-                        <td class="cve-table-cell--muted">
-                        {% else %}
-                          <td class="cve-table-cell">
-                          {% endif %}
-                          {% if status.status == "DNE" %}
-                            Does not exist
-                            <div class="cve-color-strip--dne"></div>
-                          {% elif status.status == "needs-triage" %}
-                            Needs triage
-                            <div class="cve-color-strip--needs-triage"></div>
-                          {% elif status.status == "not-affected" %}
-                            Not vulnerable
-                            <div class="cve-color-strip--not-affected"></div>
-                          {% elif status.status == "needed" %}
-                            Needed
-                            <div class="cve-color-strip--needed"></div>
-                          {% elif status.status == "deferred" %}
-                            Deferred
-                            <div class="cve-color-strip--deferred"></div>
-                          {% elif status.status == "ignored" %}
-                            Ignored
-                            <div class="cve-color-strip--ignored"></div>
-                          {% elif status.status == "pending" %}
-                            Pending
-                            <div class="cve-color-strip--pending"></div>
-                          {% elif status.status == "released" %}
-                            <div class="cve-color-strip--released"></div>
-                            Released
-                          {% endif %}
-                          {% if status.description %}({{ status.description }}){% endif %}
-                          <br />
-                          <small>
-                            {% if status.pocket == "esm-infra" %}
-                              <a href="/pro">Available with Ubuntu Pro or Ubuntu Pro (Infra-only)</a>
-                            {% endif %}
-                            {% if status.pocket == "esm-apps" %}<a href="/pro">Available with Ubuntu Pro</a>{% endif %}
-                          </small>
-                        </td>
-                      {% endif %}
-                    </tr>
-                  {% endfor %}
-                  {% if package["name"] in patches|map(attribute="name") %}
-                    <tr>
-                      <td style="border-top: 0px"></td>
-                      <td colspan="2">
-                        Patches:
+
+                      <td class="cve-table-cell{% if status.status == "DNE" or status.status == "not-affected" %}--muted{% endif %}">
+
+                        {% if status.status == "DNE" %}
+                          Does not exist
+                          <div class="cve-color-strip--dne"></div>
+                        {% elif status.status == "needs-triage" %}
+                          Needs triage
+                          <div class="cve-color-strip--needs-triage"></div>
+                        {% elif status.status == "not-affected" %}
+                          Not vulnerable
+                          <div class="cve-color-strip--not-affected"></div>
+                        {% elif status.status == "needed" %}
+                          Needed
+                          <div class="cve-color-strip--needed"></div>
+                        {% elif status.status == "deferred" %}
+                          Deferred
+                          <div class="cve-color-strip--deferred"></div>
+                        {% elif status.status == "ignored" %}
+                          Ignored
+                          <div class="cve-color-strip--ignored"></div>
+                        {% elif status.status == "pending" %}
+                          Pending
+                          <div class="cve-color-strip--pending"></div>
+                        {% elif status.status == "released" %}
+                          <div class="cve-color-strip--released"></div>
+                          Released
+                        {% endif %}
+                        {% if status.description %}({{ status.description }}){% endif %}
                         <br />
                         <small>
-                          {% for patch in patches %}
-                            {% if patch.name == package["name"] %}
-                              {% if patch.type == "text" %}
-                                {{ patch.content }}
-                              {% elif patch.type == "break-fix" %}
-                                Introduced by
-                                <p>
-                                  <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a>
-                                  <br />
-                                </p>
-                                Fixed by
-                                <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
-                              {% elif patch.type == "link" %}
-                                {{ patch.content.prefix }}:
-                                {% if patch.content.suffix %}
-                                  <a href="{{ patch.content.suffix }}">{{ patch.content.suffix }}</a>
-                                {% else %}
-                                  {{ patch.content.suffix }}
-                                {% endif %}
-                              {% endif %}
-                            {% endif %}
-                            <br />
-                          {% endfor %}
+                          {% if status.pocket == "esm-infra" %}
+                            <a href="/pro">Available with Ubuntu Pro or Ubuntu Pro (Infra-only)</a>
+                          {% endif %}
+                          {% if status.pocket == "esm-apps" %}<a href="/pro">Available with Ubuntu Pro</a>{% endif %}
                         </small>
                       </td>
-                    </tr>
-                  {% endif %}
-                  {% if package["name"] in tags|map(attribute="name") %}
-                    <tr>
-                      <td style="border-top: 0px"></td>
-                      <td colspan="2" style="border-top: 5px double #cdcdcd">
-                        <small>
-                          {% for tag in tags %}
-                            {% if tag.name == package["name"] %}
-                              {% if tag.text == "not-ue" %}
-                                This package is not directly supported by the Ubuntu Security Team
-                              {% elif tag.text == "universe-binary" %}
-                                Binaries built from this source package are in <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
-                              {% elif tag.text == "apparmor" %}
-                                This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
-                              {% elif tag.text == "stack-protector" %}
-                                This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
-                              {% elif tag.text == "fortify-source" %}
-                                This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
-                              {% elif tag.text == "symlink-restriction" %}
-                                This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
-                              {% elif tag.text == "hardlink-restriction" %}
-                                This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
-                              {% elif tag.text == "heap-protector" %}
-                                This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
-                              {% elif tag.text == "pie" %}
-                                This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
-                              {% else %}
-                                {{ tag.text }}
-                              {% endif %}
-                            {% endif %}
-                          {% endfor %}
-                        </small>
-                      </td>
-                    </tr>
-                  {% endif %}
+                    {% endif %}
+                  </tr>
                 {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      {% endif %}
-
-      {% if cvssV3 %}
-        <div class="row" id="impact-score">
-          <div class="col-9">
-            <h2>Severity score breakdown</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th style="width: 17rem;">Parameter</th>
-                  <th class="u-align--left">Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Base score</th>
-                  <td>{{ cvssV3.baseScore }}</td>
-                </tr>
-                <tr>
-                  <th>Attack vector</th>
-                  <td>{{ cvssV3.attackVector | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Attack complexity</th>
-                  <td>{{ cvssV3.attackComplexity | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Privileges required</th>
-                  <td>{{ cvssV3.privilegesRequired | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>User interaction</th>
-                  <td>{{ cvssV3.userInteraction | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Scope</th>
-                  <td>{{ cvssV3.scope | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Confidentiality</th>
-                  <td>{{ cvssV3.confidentialityImpact | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Integrity impact</th>
-                  <td>{{ cvssV3.integrityImpact | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Availability impact</th>
-                  <td>{{ cvssV3.availabilityImpact | capitalize }}</td>
-                </tr>
-                <tr>
-                  <th>Vector</th>
-                  <td>{{ cvssV3.vectorString }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      {% endif %}
-
-      <div class="row">
-        <div class="col-9">
-          <h2>References</h2>
-          <ul>
-            {% if cve.references %}
-              {% for reference in cve.references %}
-
-                <li>
-                  <a href="{{ reference }}">{{ reference }}</a>
-                </li>
-
-              {% endfor %}
-            {% else %}
-              <li>
-                <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">MITRE</a>
-              </li>
-            {% endif %}
-
-            {% if cve.notices_ids %}
-              {% for notice in cve.notices_ids %}
-                {% if 'LSN' in notice %}
-                  <li>
-                    <a href="https://ubuntu.com/security/notices/{{ notice }}">https://ubuntu.com/security/notices/{{ notice }}</a>
-                  </li>
+                {% if package["name"] in patches|map(attribute="name") %}
+                  <tr>
+                    <td style="border-top: 0px"></td>
+                    <td colspan="2">
+                      Patches:
+                      <br />
+                      <small>
+                        {% for patch in patches %}
+                          {% if patch.name == package["name"] %}
+                            {% if patch.type == "text" %}
+                              {{ patch.content }}
+                            {% elif patch.type == "break-fix" %}
+                              Introduced by
+                              <p>
+                                <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a>
+                                <br />
+                              </p>
+                              Fixed by
+                              <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
+                            {% elif patch.type == "link" %}
+                              {{ patch.content.prefix }}:
+                              {% if patch.content.suffix %}
+                                <a href="{{ patch.content.suffix }}">{{ patch.content.suffix }}</a>
+                              {% else %}
+                                {{ patch.content.suffix }}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                          <br />
+                        {% endfor %}
+                      </small>
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if package["name"] in tags|map(attribute="name") %}
+                  <tr>
+                    <td style="border-top: 0px"></td>
+                    <td colspan="2" style="border-top: 5px double #cdcdcd">
+                      <small>
+                        {% for tag in tags %}
+                          {% if tag.name == package["name"] %}
+                            {% if tag.text == "not-ue" %}
+                              This package is not directly supported by the Ubuntu Security Team
+                            {% elif tag.text == "universe-binary" %}
+                              Binaries built from this source package are in <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
+                            {% elif tag.text == "apparmor" %}
+                              This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
+                            {% elif tag.text == "stack-protector" %}
+                              This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
+                            {% elif tag.text == "fortify-source" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
+                            {% elif tag.text == "symlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "hardlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "heap-protector" %}
+                              This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
+                            {% elif tag.text == "pie" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
+                            {% else %}
+                              {{ tag.text }}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </small>
+                    </td>
+                  </tr>
                 {% endif %}
               {% endfor %}
-            {% endif %}
-
-            <li>
-              <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}">NVD</a>
-            </li>
-            <li>
-              <a href="https://launchpad.net/bugs/cve/{{ cve.id }}">Launchpad</a>
-            </li>
-            <li>
-              <a href="https://security-tracker.debian.org/tracker/{{ cve.id }}">Debian</a>
-            </li>
-          </ul>
-
-          {{ cve.notices_ids }}
-
-          {% if cve.bugs and "" not in cve.bugs %}
-            <h2>Bugs</h2>
-            <ul>
-              {% for bug in cve.bugs %}
-                {% if 'http' in bug %}
-                  <li>
-                    <a href="{{ bug }}">{{ bug }}</a>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-          {% endif %}
+            </tbody>
+          </table>
         </div>
       </div>
-    </section>
+    {% endif %}
 
-    {% with first_item="_security_discussion", second_item="_security_esm",
-      third_item="_security_further_reading" %}
-      {% include
-      "shared/contextual_footers/_contextual_footer.html" %}
-    {% endwith %}
+    {% if cvssV3 %}
+      <div class="row" id="impact-score">
+        <div class="col-9">
+          <h2>Severity score breakdown</h2>
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 17rem;">Parameter</th>
+                <th class="u-align--left">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Base score</th>
+                <td>{{ cvssV3.baseScore }}</td>
+              </tr>
+              <tr>
+                <th>Attack vector</th>
+                <td>{{ cvssV3.attackVector | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Attack complexity</th>
+                <td>{{ cvssV3.attackComplexity | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Privileges required</th>
+                <td>{{ cvssV3.privilegesRequired | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>User interaction</th>
+                <td>{{ cvssV3.userInteraction | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Scope</th>
+                <td>{{ cvssV3.scope | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Confidentiality</th>
+                <td>{{ cvssV3.confidentialityImpact | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Integrity impact</th>
+                <td>{{ cvssV3.integrityImpact | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Availability impact</th>
+                <td>{{ cvssV3.availabilityImpact | capitalize }}</td>
+              </tr>
+              <tr>
+                <th>Vector</th>
+                <td>{{ cvssV3.vectorString }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {% endif %}
 
-  {% endblock %}
+    <div class="row">
+      <div class="col-9">
+        <h2>References</h2>
+        <ul>
+          {% if cve.references %}
+            {% for reference in cve.references %}
+
+              <li>
+                <a href="{{ reference }}">{{ reference }}</a>
+              </li>
+
+            {% endfor %}
+          {% else %}
+            <li>
+              <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">MITRE</a>
+            </li>
+          {% endif %}
+
+          {% if cve.notices_ids %}
+            {% for notice in cve.notices_ids %}
+              {% if 'LSN' in notice %}
+                <li>
+                  <a href="https://ubuntu.com/security/notices/{{ notice }}">https://ubuntu.com/security/notices/{{ notice }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <li>
+            <a href="https://nvd.nist.gov/vuln/detail/{{ cve.id }}">NVD</a>
+          </li>
+          <li>
+            <a href="https://launchpad.net/bugs/cve/{{ cve.id }}">Launchpad</a>
+          </li>
+          <li>
+            <a href="https://security-tracker.debian.org/tracker/{{ cve.id }}">Debian</a>
+          </li>
+        </ul>
+
+        {{ cve.notices_ids }}
+
+        {% if cve.bugs and "" not in cve.bugs %}
+          <h2>Bugs</h2>
+          <ul>
+            {% for bug in cve.bugs %}
+              {% if 'http' in bug %}
+                <li>
+                  <a href="{{ bug }}">{{ bug }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% with first_item="_security_discussion", second_item="_security_esm",
+    third_item="_security_further_reading" %}
+    {% include
+    "shared/contextual_footers/_contextual_footer.html" %}
+  {% endwith %}
+
+{% endblock %}
