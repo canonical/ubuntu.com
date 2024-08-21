@@ -34,12 +34,27 @@
                             {% include "shared/forms/_country.html" %}
                         {% elif field.type == "long-text" %}
                             <textarea required id="{{field.id}}" rows="5" maxlength="2000"></textarea>
-                        {% elif field.type == "checkbox" %}
+                        {% elif field.type == "radio" %}
                             <label class="p-radio">
                                 <input {% if field.isRequired %} required {% endif %} class="p-radio__input" type="radio" aria-labelledby="{{field.id}}" name="{{fieldset.inputName}}"
                                     value="{{field.value}}" />
                                 <span class="p-radio__label" id="{{field.id}}">{{field.label}}</span>
                             </label>
+                        {% elif field.type == "checkbox" %}
+                          <label class="p-checkbox">
+                            <input class="p-checkbox__input" type="checkbox" aria-labelledby="{{field.label}}" value="{{field.value}}" />
+                            <span class="p-checkbox__label" id="{{field.id}}">{{field.label}}</span>
+                          </label>
+                        {% elif field.fieldTitle is defined and field.fieldTitle|length > 0%}
+                            <div class="p-section--shallow">
+                              <strong>{{field.fieldTitle}}</strong>
+                                {% for option in field.options %} 
+                                  <label class="p-checkbox">
+                                    <input class="p-checkbox__input" type="checkbox" aria-labelledby="{{option.label}}" value="{{option.value}}" />
+                                    <span class="p-checkbox__label" id="{{option.id}}">{{option.label}}</span>
+                                  </label>
+                                {% endfor %}
+                            </div>
                         {% elif field.type == "select" %}
                         <label {% if field.isRequired %} class="is-required" {% endif %} for="{{field.id}}">{{ field.label }}:</label>
                         <select id="{{field.id}}" {% if field.isRequired %} required {% endif %}>
