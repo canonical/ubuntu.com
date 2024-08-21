@@ -29,9 +29,6 @@ $colors--light-theme--border-low-contrast: rgba(
 
 @import "settings_colors";
 
-// import print settings
-@import "print";
-
 // custom mixins
 @import "mixins/full-width-breakout";
 
@@ -192,6 +189,9 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-whitepapers";
 
 @include layout-whitepapers;
+
+// import print settings
+@import "print";
 
 // Overide the path to flags for dial codes
 .iti__flag {
