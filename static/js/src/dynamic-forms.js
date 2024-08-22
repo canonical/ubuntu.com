@@ -56,14 +56,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         })
         .then(function (text) {
           formContainer.classList.remove("u-hide");
-          formContainer.innerHTML = text
-            .replace(/%% formid %%/g, formData.formId)
-            .replace(/%% returnURL %%/g, formData.returnUrl);
-
-          if (formData.title) {
-            const title = document.getElementById("modal-title");
-            title.innerHTML = formData.title;
-          }
           setProductContext(contactButton);
           setUTMs(formData.formId);
           setGclid();
