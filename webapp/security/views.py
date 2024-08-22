@@ -658,15 +658,19 @@ def cve(cve_id):
 
     friendly_pockets = {
         "esm-infra": {
-            "text": "Fix available with Ubuntu Pro and \
-             Ubuntu Pro (Infra-only) via ESM Infra.",
+            "text": (
+                "Fix available with Ubuntu Pro and "
+                "Ubuntu Pro (Infra-only) via ESM Infra."
+            ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "esm-apps": {
-            "text": "Fix available with Ubuntu Pro via ESM Apps.\
-             A fix from the community might become publicly available\
-            in the future.",
+            "text": (
+                "Fix available with Ubuntu Pro via ESM Apps."
+                "A fix from the community might become publicly available"
+                "in the future."
+            ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
@@ -676,8 +680,10 @@ def cve(cve_id):
             "href": "/security/fips",
         },
         "fips-updates": {
-            "text": "FIPS compliant package with security fixes.\
-             Available with Ubuntu Pro.",
+            "text": (
+                "FIPS compliant package with security fixes. "
+                "Available with Ubuntu Pro."
+            ),
             "label": "FIPS Updates",
             "href": "/security/fips",
         },
@@ -734,7 +740,6 @@ def cve(cve_id):
         cve=cve,
         patches=formatted_patches,
         tags=formatted_tags,
-        maintained_releases=maintained_releases,
         maintained_count=maintained_count,
         other_references=other_references,
     )
