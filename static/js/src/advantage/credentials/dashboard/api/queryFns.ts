@@ -1,6 +1,6 @@
 export async function getUpcomingExams(page = 1, onSuccess: any) {
   try {
-    const URL = `/credentials/api/upcoming-exams?page=${page}`;
+    const URL = `/credentials/api/upcoming-exams?page=${page}&state[]=scheduled&state[]=created&sort=-id`;
     const response = await fetch(URL, {
       method: "GET",
       headers: {
@@ -11,7 +11,7 @@ export async function getUpcomingExams(page = 1, onSuccess: any) {
 
     const data = await response.json();
     if (response.ok) {
-      onSuccess(data);
+      onSuccess(data, page);
     }
     return data;
   } catch (error) {

@@ -91,7 +91,15 @@ const ExamResults = () => {
           props.row.depth === 0 ? (
             <strong>{props.value}</strong>
           ) : (
-            <small style={{ paddingLeft: "8px" }}>{props.value}</small>
+            <small style={{ paddingLeft: "8px" }}>
+              <a
+                href={props.row.original.result_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {props.value}
+              </a>
+            </small>
           ),
       },
       {
@@ -129,14 +137,20 @@ const ExamResults = () => {
         accessor: "completed_at",
         sortType: "basic",
         Cell: (props: any) => {
-          const completedAt = new Date(props.value).toLocaleString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          });
+          if (!props.value && props.row.depth !== 0) {
+            return <small>N/A</small>;
+          }
+          const completedAt = new Date(props.value).toLocaleString(
+            navigator.language,
+            {
+              month: "2-digit",
+              day: "2-digit",
+              year: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            },
+          );
           return props.row.depth === 0 ? <></> : <small>{completedAt}</small>;
         },
       },

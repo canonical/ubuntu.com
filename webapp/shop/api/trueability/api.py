@@ -1,3 +1,4 @@
+from typing import List
 from urllib.parse import urlencode
 from requests import Session
 
@@ -73,15 +74,28 @@ class TrueAbilityAPI:
         return self.make_request("GET", uri).json()
 
     def get_assessment_reservations(
-        self, ability_screen_id: int = None, page: int = 1, per_page: int = 50
+        self,
+        ability_screen_id: int = None,
+        page: int = 1,
+        per_page: int = 50,
+        sort: str = None,
+        group: str = None,
+        state: List[str] = None,
+        assessment_state: str = None,
     ):
         params = {
             "ability_screen_id": ability_screen_id,
             "page": page,
             "per_page": per_page,
+            "sort": sort,
+            "group": group,
+            "state[]": state,
+            "assessment_state[]": assessment_state,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
-        uri = "/api/v1/assessment_reservations?" + urlencode(filtered_params)
+        uri = "/api/v1/assessment_reservations?" + urlencode(
+            filtered_params, True
+        )
         return self.make_request("GET", uri).json()
 
     def post_assessment_reservation(
