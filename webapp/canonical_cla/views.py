@@ -2,11 +2,13 @@
 import base64
 import os
 import urllib.parse as urlparse
+import talisker.requests
 
 # Packages
 import flask
 
 CANONICAL_CLA_API_URL =os.getenv("CANONICAL_CLA_API_URL")
+session = talisker.requests.get_session()
 
 def canonical_cla_api_github_login():
     """

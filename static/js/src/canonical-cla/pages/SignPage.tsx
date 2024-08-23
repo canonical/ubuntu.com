@@ -1,16 +1,8 @@
 import ScrollToHashElement from "canonical-cla/components/ScrollToHashElement";
 import AgreementTypeForm from "../components/AgreementTypeForm";
 import ContactDetailsForm from "../components/ContactDetailsForm";
-import { Button } from "@canonical/react-components";
-import { useMemo } from "react";
-import { Form, Formik } from "formik";
 
 const SignPage = () => {
-  // const { agreementType } = useSignForm();
-  const isFormValid = useMemo(() => {
-    // TODO: implement form validation
-    return false;
-  }, []);
   return (
     <>
       <p>

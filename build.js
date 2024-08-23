@@ -3,6 +3,38 @@ const path = require("path");
 const { sassPlugin } = require("esbuild-sass-plugin");
 
 let entries = {
+  contributions: "./static/js/src/contributions.js",
+  tutorials: "./static/js/src/tutorials.js",
+  "side-navigation": "./static/js/src/side-navigation.js",
+  "image-download": "./static/js/src/image-download.js",
+  main: "./static/js/src/main.js",
+  "release-chart-manager": "./static/js/src/release-chart-manager.js",
+  "developer-chart": "./static/js/src/developer-chart.js",
+  tabotronic: "./static/js/src/tabotronic.js",
+  appliance: "./static/js/src/appliance.js",
+  costCalculator: "./static/js/src/openstack/react/app.jsx",
+  "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
+  "sticky-nav": "./static/js/src/sticky-nav.js",
+  chassisAnimation: "./static/js/src/chassis-animation.js",
+  cve: "./static/js/src/cve/cve.js",
+  advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
+  shopCheckout: "./static/js/src/advantage/subscribe/checkout/app.tsx",
+  advantageOffers: "./static/js/src/advantage/offers/app.jsx",
+  distributor: "./static/js/src/advantage/distributor/app.jsx",
+  openstackChart: "./static/js/src/openstack-chart.js",
+  uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
+  uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
+  "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
+  "certified-search-results": "./static/js/src/certified-search-results.js",
+  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
+  blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
+  utmInheritance: "./static/js/src/utm-inheritance.js",
+  "kernel-form": "./static/js/src/kernel-form.js",
+  "random-partner-logos": "./static/js/src/random-partner-logos.js",
+  credEnterprisePurchasing: "./static/js/src/advantage/credentials/app.tsx",
+  activate: "./static/js/src/activate.js",
+  "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
+  tabbedContent: "./static/js/src/tabbed-content.js",
   "canonical-cla": "./static/js/src/canonical-cla/app.tsx",
 };
 
@@ -15,9 +47,7 @@ const captchaKey =
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
-    plugins: [
-      sassPlugin(),
-    ],
+    plugins: [sassPlugin()],
     entryPoints: [value],
     bundle: true,
     minify: !isDev,
@@ -25,12 +55,12 @@ for (const [key, value] of Object.entries(entries)) {
     sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
     loader: {
-      '.js': 'jsx',
-      '.ts': 'ts',
-      '.tsx': 'tsx',
-      '.jsx': 'jsx',
+      ".js": "jsx",
+      ".ts": "ts",
+      ".tsx": "tsx",
+      ".jsx": "jsx",
     },
-    jsx: 'automatic', 
+    jsx: "automatic",
     target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":
