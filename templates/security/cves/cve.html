@@ -527,13 +527,11 @@
     </div>
   </section>
 
+  <!-- Linting is turned off as additional indentaion on line 533 will break the rest of the script -->
+  {# djlint: off #}
   <script>
     function handleHiddenReleasesSwitch() {
-      const maintainedCount = {
-        {
-          maintained_count | tojson | safe
-        }
-      };
+      const maintainedCount = {{ maintained_count | tojson | safe }};
       const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
       let hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
 
@@ -586,4 +584,6 @@
     };
     setUpDynamicSideNav();
   </script>
+  {# djlint: on #}
+
 {% endblock %}
