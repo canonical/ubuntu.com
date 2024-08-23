@@ -7,7 +7,7 @@
 {% from "macros/_macros-image.jinja" import image_wrapper %}
 
 {% block title %}Canonical deploys infrastructure solutions and managed IT services for critical space mission operations{% endblock %}
-{% block meta_description %}Example meta_description{% endblock %}
+{% block meta_description %}{% endblock %}
 {% block meta_company_name %}European Space Agency{% endblock %}
 {% block meta_copydoc %}{% endblock %}
 
@@ -39,18 +39,6 @@
   {%- endcall -%}
 
   <!-- Highlights section -->
-  {%- call(slot) highlights(num_items=3) -%}
-    {%- if slot == 'highlights_item_content_1' -%}
-      Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_2' -%}
-      Timely updates and 24/7 monitoring of mission critical equipment.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_3' -%}
-      ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.
-    {%- endif -%}
-  {%- endcall %}
-
   {%- call(slot) highlights(num_items=4) -%}
     {%- if slot == 'highlights_item_content_1' -%}
       Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.
@@ -62,34 +50,6 @@
       ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.
     {%- endif -%}
     {%- if slot == 'highlights_item_content_4' -%}
-      ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
-    {%- endif -%}
-  {%- endcall %}
-
-  <!-- Edge cases -->
-  {%- call(slot) highlights(num_items=2) -%}
-    {%- if slot == 'highlights_item_content_1' -%}
-      Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_2' -%}
-      Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.
-    {%- endif -%}
-  {%- endcall %}
-
-  {%- call(slot) highlights(num_items=5) -%}
-    {%- if slot == 'highlights_item_content_1' -%}
-      Architecture, design, and deployment of Canonical’s distributions of Ceph and Kubernetes.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_2' -%}
-      Timely updates and 24/7 monitoring of mission critical equipment.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_3' -%}
-      ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_4' -%}
-      ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
-    {%- endif -%}
-    {%- if slot == 'highlights_item_content_5' -%}
       ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
     {%- endif -%}
   {%- endcall %}
