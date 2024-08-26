@@ -2,12 +2,50 @@
 
 {% block title %}20 years of Canonical Ubuntu{% endblock %}
 
-{% block meta_description %}We're celebrating 2 decades of innovation and charting a course for our future. And we want you to celebrate with us.{% endblock %}
+{% block meta_description %}
+  We're celebrating 2 decades of innovation and charting a course for our future. And we want you to celebrate with us.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1vlENASSxNJdnK5tRuNYEZGVbh_qrVN0lhon8SOYo6A0/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1vlENASSxNJdnK5tRuNYEZGVbh_qrVN0lhon8SOYo6A0/edit
+{% endblock meta_copydoc %}
 
-{% block body_class %}is-paper{% endblock body_class %}
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
+  <section class="p-strip is-shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>
+          20 years of <span class="typer"
+       id="main"
+       data-words="Ubuntu,innovation,community,collaboration"
+       data-delay="50"
+       data-deleteDelay="2000"
+       data-colors="#111111">20 years of Ubuntu</span>
+        </h1>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            The story of Ubuntu is a story written by many hands. This page is a tribute to our community, partners and Canonical staff who have all given a piece of themselves to making this open source project thrive. Thank you to all of you.
+          </p>
+          <p>
+            Above all, it's a celebration of what Ubuntu has achieved so far, and an invitation to collaborate with us in delivering an even faster pace of innovation in future.
+          </p>
+        </div>
+        <hr class="is-muted" />
+        <a href="" class="p-button--positive">Learn more</a>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-section"></div>
+    </div>
+  </section>
+
+  <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
+  
 {% endblock content %}
