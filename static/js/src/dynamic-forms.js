@@ -16,6 +16,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const contactForm = document.getElementById("contact-form-container");
     const returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
+    const modalAlreadyExists = document.querySelector(".js-modal-ready");
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -50,23 +51,32 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
-      fetch(formData.formLocation)
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (text) {
-          formContainer.classList.remove("u-hide");
-          setProductContext(contactButton);
-          setUTMs(formData.formId);
-          setGclid();
-          setFBclid();
-          loadCaptchaScript();
-          initialiseForm();
-          setFocus();
-        })
-        .catch(function (error) {
-          console.log("Request failed", error);
-        });
+      // check if the modal already exists on the page and if so, skip the fetch and initialise it
+      if (modalAlreadyExists) {
+        initialiseFormData(formContainer.dataset, contactButton);
+      } else {
+        fetch(formData.formLocation)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            initialiseFormData(formData, contactButton);
+          })
+          .catch(function (error) {
+            console.log("Request failed", error);
+          });
+      }
+    }
+
+    function initialiseFormData(formData, contactButton) {
+      formContainer.classList.remove("u-hide");
+      setProductContext(contactButton);
+      setUTMs(formData.formId);
+      setGclid();
+      setFBclid();
+      loadCaptchaScript();
+      initialiseForm();
+      setFocus();
     }
 
     // Load the google recaptcha noscript
@@ -188,7 +198,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       var phoneNumberInput = document.querySelector("#phone");
       var countryInput = document.querySelector("#country");
       var modalTrigger = document.activeElement || document.body;
-      var isMultipage = contactModal.querySelector(".js-pagination").length > 1;
+      var isMultipage =
+        contactModal.querySelector(".js-pagination")?.length > 1;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -301,10 +312,12 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         var currentContent = contactModal.querySelector(
           ".js-pagination--" + contactIndex,
         );
-        paginationContent.forEach(function (content) {
-          content.classList.add("u-hide");
-        });
-        currentContent.classList.remove("u-hide");
+        if (paginationContent) {
+          paginationContent.forEach(function (content) {
+            content.classList.add("u-hide");
+          });
+          currentContent.classList.remove("u-hide");
+        }
       }
 
       // Concatinate the options selected into a string
