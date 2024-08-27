@@ -1178,11 +1178,11 @@ def render_form(templatePath, formId, isModal, modalId):
             return flask.render_template(templatePath, fieldsets=resultForm["fieldsets"], formData=resultForm["formData"], isModal=isModal, modalId=modalId)
     return wrapper_func
 
-def set_form_rules(): 
+def set_form_rules():
     filename = os.path.join(app.static_folder, 'files', 'page-form-ids.json')
     with open(filename) as form_id_file:
         data = json.load(form_id_file)
         for form in data["forms"]:
-            app.add_url_rule(form["urlPath"], view_func=render_form(form["templatePath"], form["formId"], form.get("isModal"), form.get("modalId")), endpoint=form["urlPath"]) 
+            app.add_url_rule(form["urlPath"], view_func=render_form(form["templatePath"], form["formId"], form.get("isModal"), form.get("modalId")), endpoint=form["urlPath"])
 
 set_form_rules()
