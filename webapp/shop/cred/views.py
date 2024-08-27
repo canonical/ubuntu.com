@@ -773,10 +773,18 @@ def cred_exam(trueability_api, **_):
     if assessment_user != sso_user:
         return flask.abort(403)
 
-    url = trueability_api.get_assessment_redirect(assessment_id).replace(
+    exam_url = trueability_api.get_assessment_redirect(assessment_id).replace(
         "http://", "https://"
     )
-    return flask.render_template("credentials/exam.html", url=url)
+    user = user_info(flask.session)
+    first_name, last_name = get_user_first_last_name()
+    iframe_url = "https://exam.cloudesign.com/"
+    iframe_url += f"session?first={first_name}&last={last_name}"
+    iframe_url += f"&uid={user['nickname']}"
+    iframe_url += f"&tid={assessment_id}&oid=CAN"
+    iframe_url += f"&exam_url={exam_url}"
+
+    return flask.render_template("credentials/exam.html", url=iframe_url)
 
 
 @shop_decorator(area="cred", response="html")
