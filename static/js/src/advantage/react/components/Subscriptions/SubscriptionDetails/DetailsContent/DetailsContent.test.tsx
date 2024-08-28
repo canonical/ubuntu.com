@@ -35,7 +35,7 @@ describe("DetailsContent", () => {
 
   it("displays ua subscription specific details", () => {
     const contract = userSubscriptionFactory.build({
-      end_date: new Date("2022-07-09T07:21:21Z"),
+      end_date: "2022-07-09T07:21:21Z",
       number_of_machines: 2,
       period: UserSubscriptionPeriod.Yearly,
       price: 150000,
