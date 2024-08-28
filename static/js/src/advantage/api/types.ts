@@ -50,7 +50,7 @@ export type UserSubscription = {
   account_id: string;
   contract_id: string;
   currency: string;
-  end_date: Date | null;
+  end_date: string | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
   machine_type: UserSubscriptionMachineType;
@@ -62,7 +62,7 @@ export type UserSubscription = {
   price: number | null;
   product_name: string | null;
   renewal_id: string | null;
-  start_date: Date;
+  start_date: string;
   statuses: UserSubscriptionStatuses;
   subscription_id: string | null;
   type: UserSubscriptionType;
