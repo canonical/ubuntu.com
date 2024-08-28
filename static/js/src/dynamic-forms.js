@@ -342,64 +342,61 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               message += fieldTitle.innerText + "\r\n";
             }
 
-            // Loop through each input and add to Comments_from_lead__c
-            inputs.forEach(function (input) {
-              switch (input.type) {
-                case "select-one":
-                  message +=
-                    input.options[input.selectedIndex]?.textContent +
-                    comma +
-                    " ";
-                  break;
-                case "radio":
-                  if (input.checked) {
+          inputs.forEach(function (input) {
+            switch (input.type) {
+              case "select-one":
+                message +=
+                  input.options[input.selectedIndex]?.textContent + comma + " ";
+                break;
+              case "radio":
+                if (input.checked) {
+                  message += input.value + comma + " ";
+                }
+                break;
+              case "checkbox":
+                if (input.checked) {
+                  if (fieldsetForm) {
                     message += input.value + comma + " ";
-                  }
-                  break;
-                case "checkbox":
-                  if (input.checked) {
-                    if (fieldsetForm) {
-                      message += input.value + comma + " ";
-                    } else {
-                      // Forms that have column separation
-                      var subSectionText = "";
-                      if (
-                        input.closest('[class*="col-"]') &&
-                        input
-                          .closest('[class*="col-"]')
-                          .querySelector(".js-sub-section")
-                      ) {
-                        var subSection = input
-                          .closest('[class*="col-"]')
-                          .querySelector(".js-sub-section");
-                        subSectionText = subSection.innerText + ": ";
-                      }
-
-                      var label = formField.querySelector(
-                        "span#" + input.getAttribute("aria-labelledby")
-                      );
-
-                      if (label) {
-                        label = subSectionText + label.innerText;
-                      } else {
-                        label = input.getAttribute("aria-labelledby");
-                      }
-                      message += label + comma + "\r\n\r\n";
+                  } else {
+                    // Forms that have column separation
+                    var subSectionText = "";
+                    if (
+                      input.closest('[class*="col-"]') &&
+                      input
+                        .closest('[class*="col-"]')
+                        .querySelector(".js-sub-section")
+                    ) {
+                      var subSection = input
+                        .closest('[class*="col-"]')
+                        .querySelector(".js-sub-section");
+                      subSectionText = subSection.innerText + ": ";
                     }
+
+                    var label = formField.querySelector(
+                      "span#" + input.getAttribute("aria-labelledby")
+                    );
+
+                    if (label) {
+                      label = subSectionText + label.innerText;
+                    } else {
+                      label = input.getAttribute("aria-labelledby");
+                    }
+                    message += label + comma + "\r\n\r\n";
                   }
-                  break;
-                case "text":
-                case "number":
-                case "textarea":
-                  if (input.value !== "") {
-                    message += input.value + comma + " ";
-                  }
-                  break;
-              }
-            });
-            message += "\r\n\r\n";
+                }
+                break;
+              case "text":
+              case "number":
+              case "textarea":
+                if (input.value !== "") {
+                  message += input.value + comma + " ";
+                }
+                break;
+            }
           });
-          return message;
+          message += "\r\n\r\n";
+        });
+        return message;
         }
       }
 
@@ -516,8 +513,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       fireLoadedEvent();
-
-      comment.value = createMessage(false);
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
