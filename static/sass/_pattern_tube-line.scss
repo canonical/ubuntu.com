@@ -4,13 +4,29 @@
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
-  height: 200px;
+  height: 150px;
   background-color: $color-brand;
   z-index: -1;
-  top: -80px;
+  top: -60px;
 }
 
 @mixin ubuntu-p-tube-line {
+  .p-tube-line {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    height: 96px;
+    overflow: visible;
+    z-index: 1;
+    margin-right: -0.5rem;
+  }
+
+  .p-tube-line__heading {
+    @extend .p-heading--2;
+    padding-top: 0;
+    margin-right: 48px;
+  }
+
   .p-tube-line__circle,
   .p-tube-line__circle--start,
   .p-tube-line__circle--end {
@@ -22,17 +38,26 @@
     position: absolute;
     top: 0.5rem;
   }
-  
+
   .p-tube-line__circle::after {
     @include tube-line-circle-after;
+
+    @media (max-width: $breakpoint-medium) {
+      height: 200px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+      height: 240px;
+      top: -70px;
+    }
   }
-  
+
   .p-tube-line__circle--start::after {
     @include tube-line-circle-after;
     top: 0;
     height: 100px;
   }
-  
+
   .p-tube-line__circle--end::after {
     @include tube-line-circle-after;
     top: -70px;
