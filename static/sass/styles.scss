@@ -104,6 +104,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
 @import "pattern_modals";
+@import "pattern_tube-line";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -163,6 +164,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include ubuntu-p-dell;
+@include ubuntu-p-tube-line;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
@@ -1740,24 +1742,4 @@ legend {
   margin-right: 38px;
 }
 
-.p-tube-line__pipe {
-  width: 24px;
-  height: 24px;
-  background-color: transparent;
-  border: 4px solid black;
-  border-radius: 50%;
-  position: absolute;
-  top: 0.5rem;
-}
 
-.p-tube-line__pipe::after {
-  content: "";
-  position: absolute;
-  top: calc(100% + 3.5px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 81px;
-  background-color: #e95420;
-  z-index: -1;
-}

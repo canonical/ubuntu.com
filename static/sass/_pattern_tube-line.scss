@@ -1,0 +1,41 @@
+@mixin tube-line-circle-after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 200px;
+  background-color: $color-brand;
+  z-index: -1;
+  top: -80px;
+}
+
+@mixin ubuntu-p-tube-line {
+  .p-tube-line__circle,
+  .p-tube-line__circle--start,
+  .p-tube-line__circle--end {
+    width: 24px;
+    height: 24px;
+    background-color: $color-x-light;
+    border: 4px solid $color-x-dark;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.5rem;
+  }
+  
+  .p-tube-line__circle::after {
+    @include tube-line-circle-after;
+  }
+  
+  .p-tube-line__circle--start::after {
+    @include tube-line-circle-after;
+    top: 0;
+    height: 100px;
+  }
+  
+  .p-tube-line__circle--end::after {
+    @include tube-line-circle-after;
+    top: -70px;
+    height: 70px;
+  }
+}
