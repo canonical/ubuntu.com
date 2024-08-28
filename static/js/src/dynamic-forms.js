@@ -314,7 +314,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           var currentContent = contactModal.querySelector(
             ".js-pagination--" + contactIndex
           );
-
           paginationContent.forEach(function (content) {
             content.classList.add("u-hide");
           });
