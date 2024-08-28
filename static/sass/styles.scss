@@ -1742,4 +1742,26 @@ legend {
   margin-right: 38px;
 }
 
+// Custom styling for the social media cards found on /20years
+.p-card--social-media {
+  @extend .p-card;
+  background: $color-x-light;
+  border: unset;
 
+  .p-heading-icon {
+    margin-bottom: 0;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: 0.5rem;
+    }
+
+    .p-heading-icon__header .p-heading-icon__img {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .p-heading-icon--small .p-heading-icon__header .p-heading-icon__title {
+    align-self: center;
+    margin: 0;
+  }
+}
