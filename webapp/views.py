@@ -933,7 +933,7 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
-    enrichment_fields = None
+    enrichment_fields = {}
 
     # Enrichment data for global enrichment form (id:4198)
     if "email" in form_fields:
