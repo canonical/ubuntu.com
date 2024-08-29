@@ -36,8 +36,8 @@ def user_info(user_session):
     if "openid" in user_session and "authentication_token" in user_session:
         return {
             "fullname": user_session["openid"]["fullname"],
-            "email": user_session["openid"]["email"],
             "nickname": user_session["openid"]["nickname"],
+            "email": user_session["openid"]["email"],
             "authentication_token": user_session["authentication_token"],
             "is_community_member": (
                 user_session["openid"].get("is_community_member", False)
