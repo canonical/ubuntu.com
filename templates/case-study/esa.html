@@ -31,10 +31,13 @@
       Founded in 1975, ESA is a 22-member intergovernmental space exploration organisation.
     {%- endif -%}
     {%- if slot == 'list_item_content_2' -%}
-    The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.
+      The European Space Operations Centre (ESOC), one of ESA’s premises in Germany, is home to the engineering teams that control spacecraft in orbit, manage the global tracking station network, and design and build the systems on the ground that support missions in space.
     {%- endif -%}
     {%- if slot == 'list_item_content_3' -%}
-    ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
+      ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_4' -%}
+      ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
     {%- endif -%}
   {%- endcall -%}
 
@@ -47,10 +50,10 @@
       Timely updates and 24/7 monitoring of mission critical equipment.
     {%- endif -%}
     {%- if slot == 'highlights_item_content_3' -%}
-      ESA has operated more than 87 missions from ESOC, ranging from understanding our own planet to exploring our solar system and beyond to help advance scientific knowledge.
+    Significant cost-savings to help ESA focus more on its space missions. 
     {%- endif -%}
     {%- if slot == 'highlights_item_content_4' -%}
-      ESOC is responsible for a wide range of IT infrastructure and systems to help fly these unique missions, having been responsible for flying more than 80 custom-built satellites since it was established.
+      A new, dynamic platform for efficient, automated, and fast deployment of systems across more missions.
     {%- endif -%}
   {%- endcall %}
 
@@ -65,23 +68,13 @@
     {%- endif -%}
   {%- endcall -%}
 
-  <!-- Quote section-->
-  {%- call(slot) quote_wrapper(
-    quote_heading_level=4,
-    quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
-    citation_source_name_text="Justin Boitano",
-    citation_source_title_text="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
-    ) 
-  -%}
-  {%- endcall -%}
-
   <!-- Image section-->
   {%- call(slot) image_wrapper(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
     {%- if slot == 'image_content' %}
       {{ image(url="https://assets.ubuntu.com/v1/c3f56868-Global_Mars_in_colour 1.png",
                 alt="Mars in colour",
-                width="1232",
-                height="514",
+                width="2464",
+                height="1027",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-image-container__image"}) | safe
@@ -99,12 +92,12 @@
     {%- endif -%}
   {%- endcall -%}
 
-  {%- call(slot) image_wrapper(caption="Copyright: ESA/DLR/FU Berlin/G. Michael CC BY-SA 3.0 IGO") -%}
+  {%- call(slot) image_wrapper(caption="Copyright : ESA–M.Cowan CC BY-SA 3.0 IGO") -%}
     {%- if slot == 'image_content' %}
     {{ image(url="https://assets.ubuntu.com/v1/a37f81c3-Global_Mars_in_colour 1.png",
               alt="Mars in colour",
-              width="1232",
-              height="392",
+              width="2464",
+              height="785",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-image-container__image"}) | safe
@@ -115,7 +108,7 @@
   {%- call(slot) text(title="Solution") -%}
     {%- if slot == 'content' -%}
       <p>To meet these challenges, Canonical deployed its Kubernetes and Ceph distributions across data centres located at ESA’s European Space Operations Centre in Darmstadt, Germany. Canonical assisted ESA in the architecture, design and deployment of Kubernetes across hundreds of VMs and dozens of clusters, all connected to physical clusters of Ceph storage, as part of its Managed Services offering. Canonical are also working on the deployment of PostgreSQL and Kafka, which will also be a Managed Service, allowing ESA to focus more on supporting mission operations.</p>
-      <p>To meet these challenges, Canonical deployed its Kubernetes and Ceph distributions across data centres located at ESA’s European Space Operations Centre in Darmstadt, Germany. Canonical assisted ESA in the architecture, design and deployment of Kubernetes across hundreds of VMs and dozens of clusters, all connected to physical clusters of Ceph storage, as part of its Managed Services offering. Canonical are also working on the deployment of PostgreSQL and Kafka, which will also be a Managed Service, allowing ESA to focus more on supporting mission operations.</p>
+      <p>K8s (Kubernetes) is an open source system to deploy, scale, and manage containerised applications anywhere. Ceph is an open source storage solution that gives users scalable block, file, and object storage from a single distributed cluster. When ‘charmed’, using Canonical’s open source orchestration engine (Juju) , these systems become easy to deploy, integrate and operate.</p>
       <p>Canonical Kubernetes was the solution selected for ESA’s needs, as it provides an easy and effective way to automatically deploy software across systems of all sizes. It readily plugs into Ceph and PostgreSQL systems, which are part of ESA’s stack. In the same way, Canonical’s Ceph distribution was selected for ESA’s cloud infrastructure goals. ESA wanted to take advantage of the power and scalability of public cloud, but had mission-critical on-premise cloud infrastructure that needed to be managed at the same time. Ceph provides storage that scales with changing mission requirements, while keeping costs low without the need for specialised storage hardware.</p>
       <p>It also opens up data storage to multiple types, all within a single cluster, cutting the need for building and managing multiple storage solutions. Aside from its high reliability, speed and scalability, Ceph offers a hardware agnostic design that allows it to excel without any reliance on other programs or proprietary systems.</p>
     {%- endif -%}
@@ -123,12 +116,12 @@
 
   {%- call(slot) quote_wrapper(
     quote_heading_level=4,
-    quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
-    citation_source_name_text="Justin Boitano",
-    citation_source_title_text="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+    quote_text="For me, personally I saw it as a good stepping stone for moving toward a better future, not just in this particular project, but also for other space programmes and projects that ESA has. Being able to scale and take advantage of the public cloud, while being able to keep critical infrastructure here on site - these are all advantages.",
+    citation_source_name_text="Michael Hawkshaw",
+    citation_source_title_text=" ESA Mission Operations Infrastructure IT Service Manager"
     ) 
   -%}
-  {%- endcall -%}  
+  {%- endcall -%}
 
   {%- call(slot) text() -%}
     {%- if slot == 'content' -%}
@@ -165,9 +158,9 @@
 
   {%- call(slot) quote_wrapper(
     quote_heading_level=4,
-    quote_text="Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.",
-    citation_source_name_text="Justin Boitano",
-    citation_source_title_text="Vice President and General Manager of Customer and Ecosystem Enabling Division, Intel's Network and Edge Solutions Group"
+    quote_text="For ESA it is key to have service providers who can support its ambitious space programme into the 2030s and beyond to help secure Europe’s role in space exploration.",
+    citation_source_name_text="Michael Hawkshaw",
+    citation_source_title_text="ESA Mission Operations Infrastructure IT Service Manager"
     ) 
   -%}
   {%- endcall -%}
