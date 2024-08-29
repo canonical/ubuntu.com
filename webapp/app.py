@@ -1206,6 +1206,25 @@ def render_blogs():
 
 app.add_url_rule("/hpe", view_func=render_blogs)
 
+# Public-cloud blog section
+# tag_ids: 
+# public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191, ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
+def render_public_cloud_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=1000, thumbnail_height=700
+        ),
+        tag_ids=[1205,1350,1748,4191,4478,4540,4387],
+        per_page=3,
+        blog_title="Public-cloud blogs",
+    )
+    public_cloud_articles = blogs.get_index()["articles"]
+    sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
+    )
+
+app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
 
 # Supermicro blog section
 def render_supermicro_blogs():
