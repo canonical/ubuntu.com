@@ -778,7 +778,7 @@ def cred_exam(trueability_api, **_):
     )
     user = user_info(flask.session)
     first_name, last_name = get_user_first_last_name()
-    iframe_url = "https://exam.cloudesign.com/"
+    iframe_url = "https://exam.cloudesign.io/"
     iframe_url += f"session?first={first_name}&last={last_name}"
     iframe_url += f"&uid={user['nickname']}"
     iframe_url += f"&tid={assessment_id}&oid=CAN"

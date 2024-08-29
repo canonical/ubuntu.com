@@ -37,6 +37,7 @@ def user_info(user_session):
         return {
             "fullname": user_session["openid"]["fullname"],
             "email": user_session["openid"]["email"],
+            "nickname": user_session["openid"]["nickname"],
             "authentication_token": user_session["authentication_token"],
             "is_community_member": (
                 user_session["openid"].get("is_community_member", False)
