@@ -294,9 +294,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        if (formContainer.contains(contactModal)) {
-          formContainer.removeChild(contactModal);
-        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({

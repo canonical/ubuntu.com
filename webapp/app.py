@@ -1227,25 +1227,18 @@ def render_supermicro_blogs():
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
-def render_form(templatePath, formId, isModal, modalId):
+def render_form(form):
     @wraps(render_form)
     def wrapper_func():
-        resultForm = {}
         with app.app_context() and app.test_request_context():
-            filename = os.path.join(app.static_folder, 'files', 'forms-data.json')
-            with open(filename) as form_file:
-                data = json.load(form_file)
-                for form in data["forms"]:
-                    if form["formData"]["formId"] == formId:
-                        resultForm = form
-            return flask.render_template(templatePath, fieldsets=resultForm["fieldsets"], formData=resultForm["formData"], isModal=isModal, modalId=modalId)
+            return flask.render_template(form["templatePath"], fieldsets=form["fieldsets"], formData=form["formData"], isModal=form.get("isModal"), modalId=form.get("modalId"))
     return wrapper_func
 
 def set_form_rules(): 
-    filename = os.path.join(app.static_folder, 'files', 'page-form-ids.json')
-    with open(filename) as form_id_file:
-        data = json.load(form_id_file)
-        for form in data["forms"]:
-            app.add_url_rule(form["urlPath"], view_func=render_form(form["templatePath"], form["formId"], form.get("isModal"), form.get("modalId")), endpoint=form["urlPath"]) 
+    filename = os.path.join(app.static_folder, 'files', 'forms-data.json')
+    with open(filename) as forms:
+        data = json.load(forms)
+        for path, form in data["forms"].items():
+            app.add_url_rule(path, view_func=render_form(form), endpoint=path) 
 
 set_form_rules()
