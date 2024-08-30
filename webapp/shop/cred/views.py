@@ -784,7 +784,9 @@ def cred_exam(trueability_api, **_):
     iframe_url += f"&tid={assessment_id}&oid=CAN"
     iframe_url += f"&exam_url={exam_url}"
 
-    return flask.render_template("credentials/exam.html", url=iframe_url)
+    return flask.render_template(
+        "credentials/exam.html", url=iframe_url, exam_url=exam_url
+    )
 
 
 @shop_decorator(area="cred", response="html")
