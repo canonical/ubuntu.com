@@ -896,7 +896,6 @@ def marketo_submit():
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
     honeypots["website"] = flask.request.form.get("website")
-
     # There is logically difference between None and empty string here.
     # 1. The first if check, we are working with a form that contains honeypots
     # or the legacy ones using recaptcha.
@@ -933,7 +932,7 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
-    enrichment_fields = None
+    enrichment_fields = {}
 
     # Enrichment data for global enrichment form (id:4198)
     if "email" in form_fields:

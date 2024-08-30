@@ -246,23 +246,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               path: window.location.pathname,
             });
           } else {
-            var valid = true;
-
-            if (button.classList.contains("js-validate-form")) {
-              var form = button.closest("form");
-
-              valid = validateForm(form);
-            }
-
-            if (valid) {
-              index = index + 1;
-              setState(index);
-              dataLayer.push({
-                event: "interactive-forms",
-                action: "goto:" + index,
-                path: window.location.pathname,
-              });
-            }
+            index = index + 1;
+            setState(index);
+            dataLayer.push({
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
+            });
           }
         });
       });
@@ -282,49 +272,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           }
         });
       });
-
-      // Checks additional required fields to see whether a value has been set
-      function validateForm(form) {
-        var fields = form.querySelectorAll("[required]");
-        var validStates = [];
-
-        fields.forEach((field) => {
-          var fieldName = field.getAttribute("name");
-          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
-          var validationMessage = document.querySelector(
-            `.js-validation-${fieldName}`,
-          );
-          var inputValid = false;
-
-          inputs.forEach((input) => {
-            if (input.type === "checkbox" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "radio" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "text" && input.value) {
-              inputValid = true;
-            }
-
-            if (input.type === "textarea" && input.value) {
-              inputValid = true;
-            }
-          });
-
-          if (!inputValid) {
-            validationMessage.classList.remove("u-hide");
-          } else {
-            validationMessage.classList.add("u-hide");
-          }
-
-          validStates.push(inputValid);
-        });
-
-        return !validStates.includes(false);
-      }
 
       // Updates the index and renders the changes
       function setState(index) {
@@ -385,8 +332,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               message += fieldTitle.innerText + "\r\n";
             }
 
+            // Loop through each input and add to Comments_from_lead__c
             inputs.forEach(function (input) {
-              var removeInputName = true;
               switch (input.type) {
                 case "radio":
                   if (input.checked) {
@@ -398,8 +345,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                     if (fieldsetForm) {
                       message += input.value + comma + " ";
                     } else {
-                      // Forms that have column separation
-                      removeInputName = false;
                       var subSectionText = "";
                       if (
                         input.closest('[class*="col-"]') &&
@@ -433,10 +378,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                     message += input.value + comma + " ";
                   }
                   break;
-              }
-              // Remove name attribute to submit to Marketo
-              if (submit && removeInputName) {
-                input.removeAttribute("name");
               }
             });
             message += "\r\n\r\n";
