@@ -69,11 +69,13 @@
 
   .p-tube-line__circle--end {
     background-color: $color-x-dark;
+  }
 
-    span {
-      position: absolute;
-      top: -6px;
-      left: -1.5px;
-    }
+  .p-tube-line__circle--image {
+    width: 24px;
+    height: 24px;
+    z-index: 2;
+    position: relative;
+    top: 8px;
   }
 }
