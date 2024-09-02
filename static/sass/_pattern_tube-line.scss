@@ -1,4 +1,4 @@
-@mixin tube-line-circle-after {
+@mixin tube-line-circle-before {
   content: "";
   position: absolute;
   left: 50%;
@@ -37,28 +37,43 @@
     top: 0.55rem;
   }
 
-  .p-tube-line__circle::after {
-    @include tube-line-circle-after;
+  .p-tube-line__circle::before {
+    @include tube-line-circle-before;
 
     @media (max-width: $breakpoint-medium) {
-      height: 180px;
+      height: 160px;
     }
 
     @media (max-width: $breakpoint-small) {
-      height: 200px;
+      height: 190px;
       top: -75px;
+    }
+
+    @media (max-width: $breakpoint-x-small) {
+      height: 240px;
+      top: -70px;
     }
   }
 
-  .p-tube-line__circle--start::after {
-    @include tube-line-circle-after;
+  .p-tube-line__circle--start::before {
+    @include tube-line-circle-before;
     top: 0;
     height: 100px;
   }
 
-  .p-tube-line__circle--end::after {
-    @include tube-line-circle-after;
+  .p-tube-line__circle--end::before {
+    @include tube-line-circle-before;
     top: -70px;
     height: 70px;
+  }
+
+  .p-tube-line__circle--end {
+    background-color: $color-x-dark;
+
+    span {
+      position: absolute;
+      top: -6px;
+      left: -1.5px;
+    }
   }
 }
