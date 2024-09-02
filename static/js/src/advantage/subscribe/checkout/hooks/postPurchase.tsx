@@ -13,11 +13,12 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
+  poNumber?: string | null;
 };
 
 const postPurchase = () => {
   const mutation = useMutation<any, Error, Props>({
-    mutationFn: async ({ products, action, coupon }: Props) => {
+    mutationFn: async ({ products, action, coupon, poNumber }: Props) => {
       if (window.currentPaymentId) {
         await retryPurchase(window.currentPaymentId);
 
@@ -87,7 +88,7 @@ const postPurchase = () => {
           }),
         };
 
-        if (technicalUserContact) {
+        if (technicalUserContact || poNumber) {
           const channelMetaData: Array<{ key: string; value: string }> = [];
           if (technicalUserContact.name) {
             channelMetaData.push({
@@ -102,6 +103,14 @@ const postPurchase = () => {
               value: technicalUserContact.name,
             });
           }
+
+          if (poNumber) {
+            channelMetaData.push({
+              key: "poNumber",
+              value: poNumber,
+            });
+          }
+
           payload.metadata = channelMetaData;
         }
       }
