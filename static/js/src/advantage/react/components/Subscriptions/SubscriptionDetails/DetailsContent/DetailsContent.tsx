@@ -1,9 +1,11 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import classNames from "classnames";
 import {
   Button,
   Col,
   ColProps,
+  Notification,
+  type NotificationProps,
   Row,
   Spinner,
   Tooltip,
@@ -21,6 +23,7 @@ import {
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { SelectedId } from "../../Content/types";
 import DetailsTabs from "../DetailsTabs";
+import { copyToClipboardAsync } from "advantage/react/utils/copyToClipboardAsync";
 
 type Props = {
   selectedId?: SelectedId;
@@ -48,6 +51,10 @@ const generateFeatures = (features: Feature[]) =>
   ));
 
 const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
+  const [notification, setNotification] = useState<NotificationProps | null>(
+    null,
+  );
+
   const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
@@ -93,22 +100,39 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const tokenBlock = token?.contract_token ? (
     <div className="u-sv4 u-no-margin--bottom p-code-snippet">
       <pre
-        className="p-code-snippet__block--icon is-url"
+        className="p-code-snippet__block--icon is-url p-code-snippet__block--hover"
         data-test="contract-token"
         onClick={() => {
-          sendAnalyticsEvent({
-            eventCategory: "Advantage",
-            eventAction: "subscription-token-click",
-            eventLabel: "Token copied",
-          });
+          copyToClipboardAsync(token.contract_token)
+            .then(() => {
+              setNotification({
+                severity: "positive",
+                children: "Token copied.",
+                onDismiss: () => setNotification(null),
+                timeout: 7000,
+              });
+              sendAnalyticsEvent({
+                eventCategory: "Advantage",
+                eventAction: "subscription-token-click",
+                eventLabel: "Token copied",
+              });
+            })
+            .catch(() => {
+              sendAnalyticsEvent({
+                eventCategory: "Advantage",
+                eventAction: "subscription-token-click",
+                eventLabel: "Error while copying token",
+              });
+            });
         }}
       >
-        {token?.contract_token}
+        {token.contract_token}
       </pre>
       <p>
         Command to attach a machine: <br />
-        <code>sudo pro attach {token?.contract_token}</code>
+        <code>sudo pro attach {token.contract_token}</code>
       </p>
+      {notification ? <Notification {...notification} /> : null}
     </div>
   ) : null;
   return (
