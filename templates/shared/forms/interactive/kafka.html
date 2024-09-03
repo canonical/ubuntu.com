@@ -24,11 +24,11 @@
               </li>
               <li class="p-list__item">
                 <label for="company">Company name:</label>
-                <input required id="company" name="company" maxlength="255" type="text">
+                <input required id="company" name="company" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
                 <label for="title">Job title:</label>
-                <input required id="title" name="title" maxlength="255" type="text">
+                <input required id="title" name="title" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
                 <label for="email">Work email:</label>
@@ -40,7 +40,7 @@
               </li>
               <li class="p-list__item">
                 <label class="p-checkbox">
-                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
                   <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
                 </label>
               </li>
@@ -88,15 +88,12 @@
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
-              alt="smile",
-              width="200",
-              height="200",
-              hi_def=True,
-              loading="auto",
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+                      alt="smile",
+                      width="200",
+                      height="200",
+                      hi_def=True,
+                      loading="auto") | safe
             }}
           </div>
         </div>
