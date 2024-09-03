@@ -11,6 +11,7 @@ import {
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import DetailsContent from "./DetailsContent";
+import { act } from "react";
 
 describe("DetailsContent", () => {
   let queryClient: QueryClient;
@@ -108,6 +109,33 @@ describe("DetailsContent", () => {
     expect(wrapper.find(".p-code-snippet").exists()).toBe(true);
     expect(wrapper.find("pre.p-code-snippet__block--icon").text()).toBe(
       contractToken.contract_token,
+    );
+  });
+
+  it("can display the token copied notification", async () => {
+    const contract = userSubscriptionFactory.build();
+    const contractToken = contractTokenFactory.build();
+    queryClient.setQueryData(["userSubscriptions"], [contract]);
+    queryClient.setQueryData(
+      ["contractToken", contract.contract_id],
+      contractToken,
+    );
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>,
+    );
+
+    act(() => {
+      wrapper.find("[data-test='contract-token']").simulate("click");
+    });
+    wrapper.update();
+
+    expect(wrapper.find("[data-test='token-copy-notification']").exists()).toBe(
+      !!navigator.clipboard,
     );
   });
 
