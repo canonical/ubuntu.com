@@ -473,8 +473,7 @@ def build_engage_page(engage_pages):
                 if metadata["related_urls"].strip() != "":
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
-                    for i in range(3):
-                        url = related_urls[i]
+                    for url in related_urls[:3]:
                         page_metadata = engage_pages.get_engage_page(
                             url.strip()
                         )
