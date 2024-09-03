@@ -102,7 +102,9 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
     navigator.clipboard.writeText(token.contract_token).then(() => {
       setNotification({
         severity: "positive",
-        children: "Token copied.",
+        children: (
+          <span data-test="token-copy-notification">Token copied.</span>
+        ),
         onDismiss: () => setNotification(null),
         timeout: 7000,
       });
