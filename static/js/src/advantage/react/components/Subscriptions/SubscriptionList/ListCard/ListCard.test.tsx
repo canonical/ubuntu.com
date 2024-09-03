@@ -29,7 +29,7 @@ describe("ListCard", () => {
         }),
       ],
       number_of_machines: 2,
-      start_date: new Date("2021-07-09T07:14:56Z"),
+      start_date: "2021-07-09T07:14:56Z",
     });
     const wrapper = mount(
       <ListCard subscription={freeSubscription} onClick={jest.fn()} />,

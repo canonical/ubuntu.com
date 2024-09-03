@@ -1094,7 +1094,20 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     keys = []
     for contract in contracts:
         contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+        try:
+            contract_keys = ua_contracts_api.list_activation_keys(contract_id)
+            if contract_keys:
+                keys.extend(contract_keys)
+        except Exception as error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": error.request.url,
+                    "request_headers": error.request.headers,
+                    "response_headers": error.response.headers,
+                    "response_body": error.response.json(),
+                }
+            )
+            continue
 
     return flask.jsonify(keys)
 
@@ -1202,7 +1215,7 @@ def get_test_taker_stats(trueability_api, **kwargs):
 
 
 @shop_decorator(area="cred", permission="user", response="json")
-@credentials_group()
+@credentials_admin()
 def issue_credly_badge(credly_api, **kwargs):
     badge_data = flask.request.json
     try:
@@ -1322,15 +1335,20 @@ def cred_dashboard(trueability_api, **_):
 @credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 50
-    page = int(flask.request.args.get("page", 1)) - 1
-    first_reservations = trueability_api.get_assessment_reservations(
-        per_page=per_page
+    page = int(flask.request.args.get("page", 1))
+    state = flask.request.args.getlist("state[]", None)
+    ability_screen_id = flask.request.args.get("ability_screen_id", None)
+    sort = flask.request.args.get("sort", None)
+    group = flask.request.args.get("group", None)
+    upcoming_exams = trueability_api.get_assessment_reservations(
+        page=page,
+        per_page=per_page,
+        state=state,
+        ability_screen_id=ability_screen_id,
+        sort=sort,
+        group=group,
     )
-    last_page = first_reservations["meta"]["total_pages"]
-    latest_reservations = trueability_api.get_assessment_reservations(
-        page=last_page - page, per_page=per_page
-    )
-    return flask.jsonify(latest_reservations)
+    return flask.jsonify(upcoming_exams)
 
 
 @shop_decorator(area="cred", permission="user", response="json")

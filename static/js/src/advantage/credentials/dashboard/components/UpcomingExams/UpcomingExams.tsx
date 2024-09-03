@@ -6,7 +6,7 @@ import {
   AssessmentReservationTA,
   AssessmentReservationMeta,
 } from "../../utils/types";
-import { ModularTable, Select } from "@canonical/react-components";
+import { ModularTable } from "@canonical/react-components";
 import { upperCaseFirstChar } from "../../utils/common";
 
 type APIResponse = {
@@ -20,13 +20,12 @@ const UpcomingExams = () => {
   const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
-  const [groupKey, setGroupKey] = useState("1");
 
-  const onSuccess = (newData: APIResponse) => {
+  const onSuccess = (newData: APIResponse, currPage: number) => {
     if (newData && newData.assessment_reservations) {
       setCachedData((prev) => ({
         ...prev,
-        [page]: newData,
+        [currPage]: newData,
       }));
     }
   };
@@ -64,7 +63,7 @@ const UpcomingExams = () => {
           ),
       },
       {
-        Header: "User Email",
+        Header: "User",
         accessor: "user.email",
         sortType: "basic",
         Cell: (props: any) =>
@@ -75,8 +74,24 @@ const UpcomingExams = () => {
           ),
       },
       {
-        Header: "Exam State",
+        Header: "User Name",
+        accessor: "user.full_name",
+        sortType: "basic",
+        Cell: (props: any) => {
+          return props.row.depth === 0 ? <></> : <small>{props.value}</small>;
+        },
+      },
+      {
+        Header: "State",
         accessor: "state",
+        sortType: "basic",
+        Cell: (props: any) => {
+          return props.row.depth === 0 ? <></> : <small>{props.value}</small>;
+        },
+      },
+      {
+        Header: "Region",
+        accessor: "address.country_code",
         sortType: "basic",
         Cell: (props: any) => {
           return props.row.depth === 0 ? <></> : <small>{props.value}</small>;
@@ -87,14 +102,17 @@ const UpcomingExams = () => {
         accessor: "starts_at",
         sortType: "basic",
         Cell: (props: any) => {
-          const date = new Date(props.value).toLocaleString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          });
+          const date = new Date(props.value).toLocaleString(
+            navigator.language,
+            {
+              month: "2-digit",
+              day: "2-digit",
+              year: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            },
+          );
           return props.row.depth === 0 ? <></> : <small>{date}</small>;
         },
       },
@@ -105,63 +123,37 @@ const UpcomingExams = () => {
   const flatData = useMemo(() => {
     const data = cachedData ? Object.values(cachedData).flat() : [];
     return data
-      .sort((a, b) => b.meta.current_page - a.meta.current_page)
+      .sort((a, b) => a.meta.current_page - b.meta.current_page)
       .map((page) => page.assessment_reservations)
       .flat();
   }, [cachedData]);
 
   const uniqueGroupKeys = useMemo(() => {
     if (flatData && flatData?.length) {
-      if (groupKey === "1") {
-        return [
-          ...new Set(
-            flatData.map(
-              (res: AssessmentReservationTA) => res.ability_screen.id,
-            ),
-          ),
-        ];
-      } else if (groupKey === "2") {
-        return [
-          ...new Set(
-            flatData.map(
-              (res: AssessmentReservationTA) =>
-                res.assessment?.state || res.state,
-            ),
-          ),
-        ];
-      }
-      return [];
+      return [
+        ...new Set(
+          flatData.map((res: AssessmentReservationTA) => res.ability_screen.id),
+        ),
+      ];
     }
     return [];
-  }, [groupKey, flatData]);
+  }, [flatData]);
 
   const getState = (res: AssessmentReservationTA) => {
-    const state = res?.assessment?.state || res.state;
+    const state = res.state;
     return upperCaseFirstChar(state || "N/A");
   };
 
   const getSubRows = (key: number | string) => {
     let matches: AssessmentReservationTA[] = [];
-    if (groupKey === "1") {
-      matches =
-        flatData.filter(
-          (res: AssessmentReservationTA) => res.ability_screen.id === key,
-        ) || [];
-      matches = matches.map((m) => ({
-        ...m,
-        state: getState(m),
-      }));
-    } else if (groupKey === "2") {
-      matches =
-        flatData.filter(
-          (res: AssessmentReservationTA) =>
-            res?.assessment?.state === key || res.state === key,
-        ) || [];
-      matches = matches.map((m) => ({
-        ...m,
-        state: getState(m),
-      }));
-    }
+    matches =
+      flatData.filter(
+        (res: AssessmentReservationTA) => res.ability_screen.id === key,
+      ) || [];
+    matches = matches.map((m) => ({
+      ...m,
+      state: getState(m),
+    }));
     return matches;
   };
 
@@ -177,28 +169,17 @@ const UpcomingExams = () => {
 
   const currentRows = useMemo(() => {
     if (flatData && flatData?.length) {
-      if (groupKey === "1") {
-        return (uniqueGroupKeys as number[]).map((screenId) => {
-          const screen = getAbilityScreen(screenId);
-          const subRows = getSubRows(screenId);
-          return {
-            id: screen?.ability_screen?.name,
-            subRows,
-          };
-        });
-      } else if (groupKey === "2") {
-        return (uniqueGroupKeys as string[]).map((state) => {
-          const subRows = getSubRows(state);
-          return {
-            id: upperCaseFirstChar(state),
-            subRows,
-          };
-        });
-      }
-      return [];
+      return (uniqueGroupKeys as number[]).map((screenId) => {
+        const screen = getAbilityScreen(screenId);
+        const subRows = getSubRows(screenId);
+        return {
+          id: screen?.ability_screen?.name,
+          subRows,
+        };
+      });
     }
     return [];
-  }, [uniqueGroupKeys, getSubRows, groupKey, flatData]);
+  }, [uniqueGroupKeys, getSubRows, flatData]);
 
   const paginationMeta = useMemo(() => {
     if (data && data?.meta) {
@@ -252,24 +233,6 @@ const UpcomingExams = () => {
       )}
       {flatData && flatData?.length > 0 && (
         <>
-          <Select
-            defaultValue="1"
-            id="groupBy"
-            label="Group By"
-            name="groupBy"
-            options={[
-              {
-                label: "Exam",
-                value: "1",
-              },
-              {
-                label: "State",
-                value: "2",
-              },
-            ]}
-            onChange={(e) => setGroupKey(e.target.value)}
-            value={groupKey}
-          />
           <ModularTable data={currentRows} columns={columns} sortable />
         </>
       )}
