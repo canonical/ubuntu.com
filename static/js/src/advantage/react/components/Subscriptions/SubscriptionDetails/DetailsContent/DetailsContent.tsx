@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import classNames from "classnames";
 import {
   Button,
@@ -97,34 +97,38 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
         : getPeriodDisplay(subscription.period),
   };
 
+  const copyContractToken = useCallback(() => {
+    if (!token?.contract_token) return;
+
+    copyToClipboardAsync(token.contract_token)
+      .then(() => {
+        setNotification({
+          severity: "positive",
+          children: "Token copied.",
+          onDismiss: () => setNotification(null),
+          timeout: 7000,
+        });
+        sendAnalyticsEvent({
+          eventCategory: "Advantage",
+          eventAction: "subscription-token-click",
+          eventLabel: "Token copied",
+        });
+      })
+      .catch(() => {
+        sendAnalyticsEvent({
+          eventCategory: "Advantage",
+          eventAction: "subscription-token-click",
+          eventLabel: "Error while copying token",
+        });
+      });
+  }, [token?.contract_token]);
+
   const tokenBlock = token?.contract_token ? (
     <div className="u-sv4 u-no-margin--bottom p-code-snippet">
       <pre
         className="p-code-snippet__block--icon is-url p-code-snippet__block--hover"
         data-test="contract-token"
-        onClick={() => {
-          copyToClipboardAsync(token.contract_token)
-            .then(() => {
-              setNotification({
-                severity: "positive",
-                children: "Token copied.",
-                onDismiss: () => setNotification(null),
-                timeout: 7000,
-              });
-              sendAnalyticsEvent({
-                eventCategory: "Advantage",
-                eventAction: "subscription-token-click",
-                eventLabel: "Token copied",
-              });
-            })
-            .catch(() => {
-              sendAnalyticsEvent({
-                eventCategory: "Advantage",
-                eventAction: "subscription-token-click",
-                eventLabel: "Error while copying token",
-              });
-            });
-        }}
+        onClick={copyContractToken}
       >
         {token.contract_token}
       </pre>
