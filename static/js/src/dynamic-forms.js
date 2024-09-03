@@ -262,7 +262,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           ".js-other-container__checkbox",
         );
         var input = otherContainer.querySelector(".js-other-container__input");
-        checkbox.addEventListener("change", function (e) {
+        checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
             input.style.opacity = 1;
             input.focus();
