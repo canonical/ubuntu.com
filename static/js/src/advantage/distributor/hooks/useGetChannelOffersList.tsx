@@ -8,7 +8,7 @@ const useGetChannelOffersList = () => {
         `/pro/channel-offers.json${window.location.search}`,
         {
           cache: "no-store",
-        }
+        },
       );
       const res = await response.json();
       if (res.error) {

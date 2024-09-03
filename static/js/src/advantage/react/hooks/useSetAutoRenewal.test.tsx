@@ -30,7 +30,7 @@ describe("useSetAutoRenewal", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useSetAutoRenewal(),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate({ sub: true });
     await waitForNextUpdate();
@@ -41,19 +41,19 @@ describe("useSetAutoRenewal", () => {
     setAutoRenewalSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
-      })
+      }),
     );
     const onError = jest.fn();
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useSetAutoRenewal(),
-      { wrapper }
+      { wrapper },
     );
     result.current.mutate(
       { sub: true },
       {
         onError: (error) => onError(error.message),
-      }
+      },
     );
     await waitForNextUpdate();
     expect(onError).toHaveBeenCalledWith("Uh oh");
@@ -63,7 +63,7 @@ describe("useSetAutoRenewal", () => {
     const wrapper = createWrapper(queryClient);
     const { result, waitForNextUpdate } = renderHook(
       () => useSetAutoRenewal(),
-      { wrapper }
+      { wrapper },
     );
     let userSubscriptionsState = queryClient.getQueryState([
       "userSubscriptions",

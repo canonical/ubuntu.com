@@ -17,14 +17,14 @@ describe("AccountUsers", () => {
 
   it("displays organisation name", () => {
     renderWithQueryClient(
-      <AccountUsers {...mockData} organisationName="Canonical" />
+      <AccountUsers {...mockData} organisationName="Canonical" />,
     );
     screen.getByText("Canonical");
   });
 
   it("displays an error message on failure to add a new user", async () => {
     (api.requestAddUser as jest.Mock).mockImplementationOnce(
-      jest.fn(() => Promise.reject(new Error("Failed")))
+      jest.fn(() => Promise.reject(new Error("Failed"))),
     );
 
     renderWithQueryClient(<AccountUsers {...mockData} />);
@@ -34,23 +34,21 @@ describe("AccountUsers", () => {
       role: "technical",
     };
     await userEvent.click(
-      screen.getByRole("button", { name: /Add new user/i })
+      screen.getByRole("button", { name: /Add new user/i }),
     );
     const modal = await screen.findByLabelText(
-      /Add a new user to this organisation/i
+      /Add a new user to this organisation/i,
     );
-    const nameInput: HTMLInputElement = await within(modal).findByTestId(
-      "user-name-input"
-    );
-    const emailInput: HTMLInputElement = await within(modal).findByTestId(
-      "user-email-input"
-    );
+    const nameInput: HTMLInputElement =
+      await within(modal).findByTestId("user-name-input");
+    const emailInput: HTMLInputElement =
+      await within(modal).findByTestId("user-email-input");
     const roleSelect = await within(modal).findByTestId("user-role-select");
     await userEvent.type(nameInput, newUser.name);
     await userEvent.type(emailInput, newUser.email);
     await userEvent.selectOptions(roleSelect, newUser.role);
     await userEvent.click(
-      within(modal).getByRole("button", { name: /Add new user/i })
+      within(modal).getByRole("button", { name: /Add new user/i }),
     );
 
     await waitFor(() => {
@@ -69,23 +67,21 @@ describe("AccountUsers", () => {
       role: "admin",
     };
     await userEvent.click(
-      screen.getByRole("button", { name: /Add new user/i })
+      screen.getByRole("button", { name: /Add new user/i }),
     );
     const modal = await screen.findByLabelText(
-      /Add a new user to this organisation/i
+      /Add a new user to this organisation/i,
     );
-    const nameInput: HTMLInputElement = await within(modal).findByTestId(
-      "user-name-input"
-    );
-    const emailInput: HTMLInputElement = await within(modal).findByTestId(
-      "user-email-input"
-    );
+    const nameInput: HTMLInputElement =
+      await within(modal).findByTestId("user-name-input");
+    const emailInput: HTMLInputElement =
+      await within(modal).findByTestId("user-email-input");
     const roleSelect = await within(modal).findByTestId("user-role-select");
     await userEvent.type(nameInput, newUser.name);
     await userEvent.type(emailInput, newUser.email);
     await userEvent.selectOptions(roleSelect, newUser.role);
     await userEvent.click(
-      within(modal).getByRole("button", { name: /Add new user/i })
+      within(modal).getByRole("button", { name: /Add new user/i }),
     );
 
     await waitFor(() =>
@@ -94,11 +90,11 @@ describe("AccountUsers", () => {
         email: newUser.email,
         name: newUser.name,
         role: newUser.role,
-      })
+      }),
     );
 
     expect(screen.getByRole("alert")).toHaveTextContent(
-      /User added successfully/
+      /User added successfully/,
     );
   });
 
@@ -119,7 +115,7 @@ describe("AccountUsers", () => {
     ];
 
     renderWithQueryClient(
-      <AccountUsers {...mockData} organisationName="ECorp" users={users} />
+      <AccountUsers {...mockData} organisationName="ECorp" users={users} />,
     );
 
     const EDIT_KAREN = "Edit user karen@ecorp.com";
@@ -148,7 +144,7 @@ describe("AccountUsers", () => {
 
   it("displays an error message on failure to update user", async () => {
     (api.requestUpdateUser as jest.Mock).mockImplementationOnce(
-      jest.fn(() => Promise.reject(new Error("Failed")))
+      jest.fn(() => Promise.reject(new Error("Failed"))),
     );
 
     renderWithQueryClient(
@@ -162,7 +158,7 @@ describe("AccountUsers", () => {
             role: "billing",
           },
         ]}
-      />
+      />,
     );
 
     userEvent.click(screen.getByLabelText(`Edit user peter@ecorp.com`));
@@ -170,21 +166,21 @@ describe("AccountUsers", () => {
       expect(
         screen.getByRole("combobox", {
           name: "role",
-        })
-      ).toBeInTheDocument()
+        }),
+      ).toBeInTheDocument(),
     );
 
     userEvent.selectOptions(
       screen.getByRole("combobox", {
         name: "role",
       }),
-      "technical"
+      "technical",
     );
 
     userEvent.click(screen.getByRole("button", { name: "Save" }));
 
     await waitFor(() =>
-      expect(screen.getByRole("alert")).toHaveTextContent(/error/)
+      expect(screen.getByRole("alert")).toHaveTextContent(/error/),
     );
   });
 
@@ -204,15 +200,15 @@ describe("AccountUsers", () => {
       expect(
         screen.getByRole("combobox", {
           name: "role",
-        })
-      ).toBeInTheDocument()
+        }),
+      ).toBeInTheDocument(),
     );
 
     userEvent.selectOptions(
       screen.getByRole("combobox", {
         name: "role",
       }),
-      "technical"
+      "technical",
     );
 
     userEvent.click(screen.getByRole("button", { name: "Save" }));
@@ -222,10 +218,10 @@ describe("AccountUsers", () => {
         accountId: mockData.accountId,
         email: user.email,
         role: "technical",
-      })
+      }),
     );
     await waitFor(() =>
-      expect(screen.getByRole("alert")).toHaveTextContent(/User updated/)
+      expect(screen.getByRole("alert")).toHaveTextContent(/User updated/),
     );
   });
 
@@ -242,13 +238,13 @@ describe("AccountUsers", () => {
         {...mockData}
         organisationName="ECorp"
         users={[...mockData.users, testUser]}
-      />
+      />,
     );
 
     expect(screen.queryByText("No results")).not.toBeInTheDocument();
     userEvent.type(
       screen.getByRole("searchbox", { name: "Search for users" }),
-      "Lorem ipsum"
+      "Lorem ipsum",
     );
     await waitFor(() => {
       expect(screen.getByText("No results")).toBeInTheDocument();
@@ -270,7 +266,7 @@ describe("AccountUsers", () => {
     expect(screen.getAllByLabelText("email")).toHaveLength(mockUsers.length);
     userEvent.type(
       screen.getByRole("searchbox", { name: "Search for users" }),
-      "user@ecorp.com"
+      "user@ecorp.com",
     );
 
     await waitFor(() => {

@@ -12,7 +12,7 @@ const Feature = () => {
     setFeature(event.target.value as Features);
     localStorage.setItem(
       PRO_SELECTOR_KEYS.FEATURE,
-      JSON.stringify(event.target.value as Features)
+      JSON.stringify(event.target.value as Features),
     );
   };
 

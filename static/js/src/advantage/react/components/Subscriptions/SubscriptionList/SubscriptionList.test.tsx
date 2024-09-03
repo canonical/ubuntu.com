@@ -37,14 +37,14 @@ describe("SubscriptionList", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='ua-subscription']").length).toBe(2);
     expect(wrapper.find(ListCard).at(0).prop("subscription")).toStrictEqual(
-      subscriptions[0]
+      subscriptions[0],
     );
     expect(wrapper.find(ListCard).at(1).prop("subscription")).toStrictEqual(
-      subscriptions[1]
+      subscriptions[1],
     );
   });
 
@@ -58,10 +58,10 @@ describe("SubscriptionList", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      wrapper.find("ListGroup[data-test='ua-subscriptions-group']").exists()
+      wrapper.find("ListGroup[data-test='ua-subscriptions-group']").exists(),
     ).toBe(false);
   });
 
@@ -69,31 +69,31 @@ describe("SubscriptionList", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("1999-08-11T02:56:54Z"),
+        start_date: "1999-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(ListCard).at(0).prop("subscription")).toStrictEqual(
-      subscriptions[1]
+      subscriptions[1],
     );
     expect(wrapper.find(ListCard).at(1).prop("subscription")).toStrictEqual(
-      subscriptions[0]
+      subscriptions[0],
     );
     expect(wrapper.find(ListCard).at(2).prop("subscription")).toStrictEqual(
-      subscriptions[2]
+      subscriptions[2],
     );
   });
 
@@ -101,7 +101,7 @@ describe("SubscriptionList", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     const token = wrapper.find("[data-test='free-subscription']");
     expect(token.exists()).toBe(true);
@@ -115,22 +115,22 @@ describe("SubscriptionList", () => {
           selectedId={freeSubscription.id}
           onSetActive={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(
-      wrapper.find("[data-test='free-subscription']").prop("isSelected")
+      wrapper.find("[data-test='free-subscription']").prop("isSelected"),
     ).toBe(true);
   });
 
   it("hide free subscription if a valid paid subscription exists", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
-        start_date: new Date("2023-12-31T02:56:54Z"),
-        end_date: new Date("2024-12-31T02:56:54Z"),
+        start_date: "2023-12-31T02:56:54Z",
+        end_date: "2024-12-31T02:56:54Z",
       }),
       userSubscriptionFactory.build({
-        start_date: new Date("2020-08-11T02:56:54Z"),
-        end_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
+        end_date: "2021-08-11T02:56:54Z",
       }),
       freeSubscription,
     ];
@@ -138,7 +138,7 @@ describe("SubscriptionList", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     const token = wrapper.find("[data-test='free-subscription']");
     expect(token.exists()).toBe(false);
@@ -149,16 +149,16 @@ describe("SubscriptionList", () => {
       ["userSubscriptions"],
       [
         userSubscriptionFactory.build({
-          start_date: new Date("2020-08-11T02:56:54Z"),
-          end_date: new Date("2021-08-11T02:56:54Z"),
+          start_date: "2020-08-11T02:56:54Z",
+          end_date: "2021-08-11T02:56:54Z",
         }),
         freeSubscription,
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     const token = wrapper.find("[data-test='free-subscription']");
     expect(token.exists()).toBe(true);
@@ -187,7 +187,7 @@ describe("SubscriptionList", () => {
             should_present_auto_renewal: true,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -195,7 +195,7 @@ describe("SubscriptionList", () => {
           selectedId={freeSubscription.contract_id}
           onSetActive={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(true);
   });
@@ -222,7 +222,7 @@ describe("SubscriptionList", () => {
             should_present_auto_renewal: false,
           }),
         }),
-      ]
+      ],
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -230,7 +230,7 @@ describe("SubscriptionList", () => {
           selectedId={freeSubscription.contract_id}
           onSetActive={jest.fn()}
         />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("RenewalSettings").exists()).toBe(false);
   });

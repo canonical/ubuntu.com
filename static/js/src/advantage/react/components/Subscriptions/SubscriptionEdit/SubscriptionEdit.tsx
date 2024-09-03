@@ -47,7 +47,7 @@ type Props = {
 
 export const generateSchema = (
   subscription: UserSubscription,
-  unitName: string
+  unitName: string,
 ) => {
   const sizeMessage = `You must have at least one ${unitName}`;
   let min = 1;
@@ -154,10 +154,10 @@ const ResizeSummary = ({
             <b>
               {isDecreasing
                 ? currencyFormatter.format(
-                    totalCost - absoluteDelta * unitPrice
+                    totalCost - absoluteDelta * unitPrice,
                   )
                 : currencyFormatter.format(
-                    totalCost + absoluteDelta * unitPrice
+                    totalCost + absoluteDelta * unitPrice,
                   )}
             </b>
             * . <br />
@@ -203,14 +203,12 @@ const SubscriptionEdit = ({
       }
       setShowingCancel(show);
     },
-    [setShowingCancel]
+    [setShowingCancel],
   );
-  const {
-    data: subscription,
-    isLoading: isSubscriptionLoading,
-  } = useUserSubscriptions({
-    select: selectSubscriptionById(selectedId),
-  });
+  const { data: subscription, isLoading: isSubscriptionLoading } =
+    useUserSubscriptions({
+      select: selectSubscriptionById(selectedId),
+    });
   const resizeContract = useResizeContract(subscription);
   const {
     setQuantity: setPreviewQuantity,
@@ -222,7 +220,7 @@ const SubscriptionEdit = ({
 
   const setPreviewQuantityDebounced = useMemo(
     () => debounce(setPreviewQuantity, 250),
-    []
+    [],
   );
 
   const unitName = isBlender ? "user" : "machine";
@@ -241,12 +239,12 @@ const SubscriptionEdit = ({
     (pendingPurchaseError as Error | null);
 
   const [resizeNumber, setResizeNumber] = useState(
-    subscription?.current_number_of_machines ?? 0
+    subscription?.current_number_of_machines ?? 0,
   );
 
   const { data: renewableSubscriptions } = useUserSubscriptions({
     select: selectAutoRenewableSubscriptionsByMarketplace(
-      subscription?.marketplace ?? UserSubscriptionMarketplace.CanonicalUA
+      subscription?.marketplace ?? UserSubscriptionMarketplace.CanonicalUA,
     ),
   });
 
@@ -264,7 +262,7 @@ const SubscriptionEdit = ({
             (100 * renewableSubscription.number_of_machines)
         );
       },
-      0
+      0,
     ) || 0;
 
   useEffect(() => {

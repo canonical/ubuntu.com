@@ -13,9 +13,9 @@ export const useResizeContract = (subscription?: UserSubscription) => {
     {
       select: selectPurchaseIdsByMarketplaceAndPeriod(
         subscription?.marketplace,
-        subscription?.period
+        subscription?.period,
       ),
-    }
+    },
   );
 
   const mutation = useMutation<ResizeContractResponse, Error, number>({
@@ -29,7 +29,7 @@ export const useResizeContract = (subscription?: UserSubscription) => {
         subscription?.listing_id,
         quantity,
         subscription?.period,
-        subscription?.marketplace
+        subscription?.marketplace,
       );
       if (response.errors) {
         // Sometimes the request fails because the previous purchase id

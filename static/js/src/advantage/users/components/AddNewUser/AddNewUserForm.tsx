@@ -25,10 +25,8 @@ export const AddNewUserForm = ({
   handleClose: () => void;
   handleSubmit: HandleNewUserSubmit;
 }) => {
-  const [
-    formSubmissionError,
-    setFormSubmissionError,
-  ] = useState<SubmissionErrorMessage | null>(null);
+  const [formSubmissionError, setFormSubmissionError] =
+    useState<SubmissionErrorMessage | null>(null);
   const initialValues: NewUserValues = {
     name: "",
     email: "",

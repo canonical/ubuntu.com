@@ -30,7 +30,7 @@ const ListCard = ({
   // If the subscription statuses is true for any of the expiry status keys then
   // a notification will be displayed.
   const hasExpiryNotification = !!ORDERED_STATUS_KEYS.find(
-    (status) => subscription.statuses[status]
+    (status) => subscription.statuses[status],
   );
   let expiryNotification: ReactNode = null;
   if (hasExpiryNotification) {

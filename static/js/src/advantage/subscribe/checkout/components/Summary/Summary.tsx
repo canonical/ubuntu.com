@@ -57,15 +57,15 @@ function Summary({ products, action, coupon, setError }: Props) {
     marketplace === UserSubscriptionMarketplace.CanonicalUA
       ? "Machines"
       : marketplace === "canonical-cube"
-      ? "Exams"
-      : "Users";
+        ? "Exams"
+        : "Users";
 
   const planType =
     marketplace === "canonical-cube"
       ? "Product"
       : action !== "offer"
-      ? "Plan type"
-      : "Products";
+        ? "Plan type"
+        : "Products";
 
   const productName =
     action !== "offer"
@@ -111,7 +111,7 @@ function Summary({ products, action, coupon, setError }: Props) {
         );
       } else if (
         error.message.includes(
-          "cannot make a purchase while subscription is in trial"
+          "cannot make a purchase while subscription is in trial",
         )
       ) {
         message = (
@@ -122,7 +122,7 @@ function Summary({ products, action, coupon, setError }: Props) {
         );
       } else if (
         error.message.includes(
-          "missing one-off product listing for renewal product"
+          "missing one-off product listing for renewal product",
         )
       ) {
         message = (
@@ -257,7 +257,7 @@ function Summary({ products, action, coupon, setError }: Props) {
                     {currencyFormatter.format(
                       (product?.price?.value *
                         (product?.price?.discount / 100)) /
-                        100
+                        100,
                     )}
                   </strong>
                 </p>

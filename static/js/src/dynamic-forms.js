@@ -28,7 +28,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     // recaptcha submitCallback
     window.CaptchaCallback = function () {
       let recaptchas = [].slice.call(
-        document.querySelectorAll("div[class^=g-recaptcha]")
+        document.querySelectorAll("div[class^=g-recaptcha]"),
       );
       recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
@@ -98,7 +98,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           history.pushState(
             "",
             document.title,
-            location.pathname + location.search + hash
+            location.pathname + location.search + hash,
           );
         } else {
           location.hash = hash;
@@ -180,9 +180,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       const contactModal = document.getElementById(contactModalSelector);
       var closeModal = document.querySelector(".p-modal__close");
       var closeModalButton = document.querySelector(".js-close");
-      var modalPaginationButtons = contactModal.querySelectorAll(
-        ".pagination a"
-      );
+      var modalPaginationButtons =
+        contactModal.querySelectorAll(".pagination a");
       var paginationContent = contactModal.querySelectorAll(".js-pagination");
       var submitButton = contactModal.querySelector('button[type="submit"]');
       var comment = contactModal.querySelector("#Comments_from_lead__c");
@@ -247,30 +246,20 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               path: window.location.pathname,
             });
           } else {
-            var valid = true;
-
-            if (button.classList.contains("js-validate-form")) {
-              var form = button.closest("form");
-
-              valid = validateForm(form);
-            }
-
-            if (valid) {
-              index = index + 1;
-              setState(index);
-              dataLayer.push({
-                event: "interactive-forms",
-                action: "goto:" + index,
-                path: window.location.pathname,
-              });
-            }
+            index = index + 1;
+            setState(index);
+            dataLayer.push({
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
+            });
           }
         });
       });
 
       otherContainers.forEach(function (otherContainer) {
         var checkbox = otherContainer.querySelector(
-          ".js-other-container__checkbox"
+          ".js-other-container__checkbox",
         );
         var input = otherContainer.querySelector(".js-other-container__input");
         checkbox.addEventListener("change", function (e) {
@@ -284,49 +273,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         });
       });
 
-      // Checks additional required fields to see whether a value has been set
-      function validateForm(form) {
-        var fields = form.querySelectorAll("[required]");
-        var validStates = [];
-
-        fields.forEach((field) => {
-          var fieldName = field.getAttribute("name");
-          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
-          var validationMessage = document.querySelector(
-            `.js-validation-${fieldName}`
-          );
-          var inputValid = false;
-
-          inputs.forEach((input) => {
-            if (input.type === "checkbox" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "radio" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "text" && input.value) {
-              inputValid = true;
-            }
-
-            if (input.type === "textarea" && input.value) {
-              inputValid = true;
-            }
-          });
-
-          if (!inputValid) {
-            validationMessage.classList.remove("u-hide");
-          } else {
-            validationMessage.classList.add("u-hide");
-          }
-
-          validStates.push(inputValid);
-        });
-
-        return !validStates.includes(false);
-      }
-
       // Updates the index and renders the changes
       function setState(index) {
         contactIndex = index;
@@ -337,7 +283,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        formContainer.removeChild(contactModal);
+        if (formContainer.contains(contactModal)) {
+          formContainer.removeChild(contactModal);
+        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
@@ -352,7 +300,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         comment.value = createMessage(false);
 
         var currentContent = contactModal.querySelector(
-          ".js-pagination--" + contactIndex
+          ".js-pagination--" + contactIndex,
         );
         paginationContent.forEach(function (content) {
           content.classList.add("u-hide");
@@ -365,79 +313,76 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const contactModal = document.getElementById("contact-modal");
         var message = "";
         var commentsFromLead = document.querySelector("#Comments_from_lead__c");
-        var formFields = contactModal.querySelectorAll(".js-formfield");
-        formFields.forEach(function (formField) {
-          var comma = ",";
-          var fieldsetForm = formField.querySelector(".js-formfield-title");
-          var fieldTitle = "";
-          if (fieldsetForm) {
-            fieldTitle = fieldsetForm;
-          } else {
-            fieldTitle =
-              formField.querySelector(".p-heading--5") ??
-              formField.querySelector(".p-modal__question-heading");
-          }
-          var inputs = formField.querySelectorAll("input, textarea");
-          if (fieldTitle) {
-            message += fieldTitle.innerText + "\r\n";
-          }
+        if (contactModal) {
+          var formFields = contactModal.querySelectorAll(".js-formfield");
 
-          inputs.forEach(function (input) {
-            var removeInputName = true;
-            switch (input.type) {
-              case "radio":
-                if (input.checked) {
-                  message += input.value + comma + " ";
-                }
-                break;
-              case "checkbox":
-                if (input.checked) {
-                  if (fieldsetForm) {
+          formFields.forEach(function (formField) {
+            var comma = ",";
+            var fieldsetForm = formField.querySelector(".js-formfield-title");
+            var fieldTitle = "";
+            if (fieldsetForm) {
+              fieldTitle = fieldsetForm;
+            } else {
+              fieldTitle =
+                formField.querySelector(".p-heading--5") ??
+                formField.querySelector(".p-modal__question-heading");
+            }
+            var inputs = formField.querySelectorAll("input, textarea");
+            if (fieldTitle) {
+              message += fieldTitle.innerText + "\r\n";
+            }
+
+            // Loop through each input and add to Comments_from_lead__c
+            inputs.forEach(function (input) {
+              switch (input.type) {
+                case "radio":
+                  if (input.checked) {
                     message += input.value + comma + " ";
-                  } else {
-                    // Forms that have column separation
-                    removeInputName = false;
-                    var subSectionText = "";
-                    if (
-                      input.closest('[class*="col-"]') &&
-                      input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section")
-                    ) {
-                      var subSection = input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section");
-                      subSectionText = subSection.innerText + ": ";
-                    }
-
-                    var label = formField.querySelector(
-                      "span#" + input.getAttribute("aria-labelledby")
-                    );
-
-                    if (label) {
-                      label = subSectionText + label.innerText;
-                    } else {
-                      label = input.getAttribute("aria-labelledby");
-                    }
-                    message += label + comma + "\r\n\r\n";
                   }
-                }
-                break;
-              case "text":
-              case "number":
-              case "textarea":
-                if (input.value !== "") {
-                  message += input.value + comma + " ";
-                }
-                break;
-            }
-            // Remove name attribute to submit to Marketo
-            if (submit && removeInputName) {
-              input.removeAttribute("name");
-            }
+                  break;
+                case "checkbox":
+                  if (input.checked) {
+                    if (fieldsetForm) {
+                      message += input.value + comma + " ";
+                    } else {
+                      var subSectionText = "";
+                      if (
+                        input.closest('[class*="col-"]') &&
+                        input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section")
+                      ) {
+                        var subSection = input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section");
+                        subSectionText = subSection.innerText + ": ";
+                      }
+
+                      var label = formField.querySelector(
+                        "span#" + input.getAttribute("aria-labelledby"),
+                      );
+
+                      if (label) {
+                        label = subSectionText + label.innerText;
+                      } else {
+                        label = input.getAttribute("aria-labelledby");
+                      }
+                      message += label + comma + "\r\n\r\n";
+                    }
+                  }
+                  break;
+                case "text":
+                case "number":
+                case "textarea":
+                  if (input.value !== "") {
+                    message += input.value + comma + " ";
+                  }
+                  break;
+              }
+            });
+            message += "\r\n\r\n";
           });
-          message += "\r\n\r\n";
-        });
+        }
         return message;
       }
 
@@ -449,11 +394,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           const radioButtons = radioGroup.querySelectorAll("[type='radio']");
 
           const descriptionToggle = radioGroup.querySelector(
-            ".js-toggle-description-field"
+            ".js-toggle-description-field",
           );
 
           const descriptionField = document.getElementById(
-            descriptionToggle.dataset.descriptionFieldId
+            descriptionToggle.dataset.descriptionFieldId,
           );
 
           radioButtons.forEach((radioButton) => {
@@ -475,9 +420,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Sets a limit of checkboxes and disables remaining fields
       function setCheckboxLimit() {
-        const choiceLimitContainers = document.querySelectorAll(
-          ".js-choice-limit"
-        );
+        const choiceLimitContainers =
+          document.querySelectorAll(".js-choice-limit");
 
         const checkedChoices = (choices) => {
           return Array.from(choices).filter((choice) => {
@@ -493,9 +437,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
         const handleChoiceLimitContainer = (choiceLimitContainer) => {
           const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
-          const choices = choiceLimitContainer.querySelectorAll(
-            "[type='checkbox']"
-          );
+          const choices =
+            choiceLimitContainer.querySelectorAll("[type='checkbox']");
 
           choices.forEach((choice) => {
             choice.addEventListener("change", () => {
@@ -524,9 +467,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
-        const preferredLanguageInput = contactModal.querySelector(
-          "#preferredLanguage"
-        );
+        const preferredLanguageInput =
+          contactModal.querySelector("#preferredLanguage");
 
         if (preferredLanguageInput) {
           preferredLanguageInput.value = preferredLanguage || "";
@@ -559,7 +501,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
-        "fieldset.js-toggle-checkbox-visibility"
+        "fieldset.js-toggle-checkbox-visibility",
       );
       ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
@@ -567,7 +509,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Add event listeners to required fieldset
       const requiredFieldset = document.querySelectorAll(
-        "fieldset.js-required-checkbox"
+        "fieldset.js-required-checkbox",
       );
       requiredFieldset?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
@@ -603,7 +545,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       var modalTrigger = document.activeElement || document.body;
       var modal = document.querySelector(".p-modal");
       var firstFocusableEle = modal.querySelector(
-        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
       );
 
       // set initial focus inside the modal
@@ -662,10 +604,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     function toggleCheckboxVisibility(fieldset, checklistItem) {
       const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
       const otherCheckboxes = fieldset.querySelectorAll(
-        ".js-checkbox-visibility__other"
+        ".js-checkbox-visibility__other",
       );
       const isVisible = checklistItem.classList.contains(
-        "js-checkbox-visibility"
+        "js-checkbox-visibility",
       );
 
       if (checklistItem.checked) {

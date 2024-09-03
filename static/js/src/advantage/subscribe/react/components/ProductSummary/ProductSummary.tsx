@@ -13,19 +13,13 @@ import PaymentButton from "../PaymentButton";
 import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const ProductSummary = () => {
-  const {
-    productUser,
-    quantity,
-    period,
-    setPeriod,
-    product,
-    productType,
-  } = useContext(FormContext);
+  const { productUser, quantity, period, setPeriod, product, productType } =
+    useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
       PRO_SELECTOR_KEYS.PERIOD,
-      JSON.stringify(event.target.value as Periods)
+      JSON.stringify(event.target.value as Periods),
     );
   };
   const isHidden =
@@ -109,7 +103,7 @@ const ProductSummary = () => {
                 ? `Free`
                 : currencyFormatter.format(
                     ((product?.price.value ?? 0) / 100) *
-                      (Number(quantity) ?? 0)
+                      (Number(quantity) ?? 0),
                   )}
             </p>{" "}
             <p className="p-text--small">
@@ -127,7 +121,9 @@ const ProductSummary = () => {
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
               <StatusLabel appearance="positive">
-                Free trial available
+                <a href="/engage/Ubuntu-Pro-1-month-trial">
+                  Free trial available
+                </a>
               </StatusLabel>
             ) : null}
             <PaymentButton />
@@ -182,7 +178,7 @@ const ProductSummary = () => {
           <Col size={1} small={2}>
             <p className="p-heading--2">
               {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
+                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0),
               )}
             </p>
             {productUser === ProductUsers.myself ? (
@@ -210,7 +206,9 @@ const ProductSummary = () => {
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
               <StatusLabel appearance="positive">
-                Free trial available
+                <a href="/engage/Ubuntu-Pro-1-month-trial">
+                  Free trial available
+                </a>
               </StatusLabel>
             </Col>
           ) : null}

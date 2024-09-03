@@ -41,7 +41,7 @@ const postCustomerTaxInfo = () => {
         {
           type: country === "ZA" ? "za_vat" : "eu_vat",
           value: VATNumber,
-        }
+        },
       );
 
       if (customerInfoRes.errors) {

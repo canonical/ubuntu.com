@@ -20,25 +20,25 @@ function setUpStaticForms(form, formId) {
 
     Array.prototype.forEach.call(otherContainers, function (otherContainer) {
       const otherInput = otherContainer.querySelector(
-        ".js-other-container__other-toggle"
+        ".js-other-container__other-toggle",
       );
       const textInput = otherContainer.querySelector(
-        ".js-other-container__input"
+        ".js-other-container__input",
       );
 
       if (otherInput.type === "radio") {
         const radioGroupName = otherInput.name;
         const radioGroup = Array.from(
-          document.querySelectorAll(`input[name="${radioGroupName}"]`)
+          document.querySelectorAll(`input[name="${radioGroupName}"]`),
         );
         radioGroup.forEach((radio) => {
           radio.addEventListener("change", () =>
-            updateOtherInputVisibility(otherInput, textInput)
+            updateOtherInputVisibility(otherInput, textInput),
           );
         });
       } else if (otherInput.type === "checkbox") {
         otherInput.addEventListener("change", () =>
-          updateOtherInputVisibility(otherInput, textInput)
+          updateOtherInputVisibility(otherInput, textInput),
         );
       }
     });
@@ -108,15 +108,7 @@ function setUpStaticForms(form, formId) {
               }
               break;
             case "text":
-              if (input.value !== "") {
-                message += input.value + comma + " ";
-              }
-              break;
             case "number":
-              if (input.value !== "") {
-                message += input.value + comma + " ";
-              }
-              break;
             case "textarea":
               if (input.value !== "") {
                 message += input.value + comma + " ";
@@ -198,7 +190,7 @@ if (forms.length) {
 function toggleCheckboxVisibility(fieldset, checklistItem) {
   const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
   const otherCheckboxes = fieldset.querySelectorAll(
-    ".js-checkbox-visibility__other"
+    ".js-checkbox-visibility__other",
   );
   const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
 
@@ -237,7 +229,7 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
   }
 }
 const ubuntuVersionCheckboxes = document.querySelector(
-  "fieldset.js-toggle-checkbox-visibility"
+  "fieldset.js-toggle-checkbox-visibility",
 );
 ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
@@ -264,7 +256,7 @@ function requiredCheckbox(fieldset, target) {
 }
 
 const requiredFieldset = document.querySelectorAll(
-  "fieldset.js-required-checkbox"
+  "fieldset.js-required-checkbox",
 );
 requiredFieldset?.forEach((fieldset) => {
   fieldset.addEventListener("change", function (event) {

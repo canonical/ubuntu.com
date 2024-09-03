@@ -10,6 +10,8 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
+from concurrent.futures import ThreadPoolExecutor
+from dateutil.parser import parse
 
 from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
@@ -17,6 +19,7 @@ from webapp.shop.api.datastore import (
 )
 from webapp.shop.decorators import (
     credentials_group,
+    credentials_admin,
     shop_decorator,
     canonical_staff,
     get_trueability_api_instance,
@@ -82,9 +85,19 @@ def confidentiality_agreement_webhook():
 
 
 @shop_decorator(area="cred", response="html")
-def cred_home(ua_contracts_api, **_):
+def cred_home(
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **_,
+):
     return flask.render_template(
         "credentials/index.html",
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
@@ -218,7 +231,15 @@ def cred_sign_up(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_schedule(ua_contracts_api, trueability_api, **_):
+def cred_schedule(
+    ua_contracts_api,
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    trueability_api,
+    **_,
+):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
@@ -265,6 +286,28 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "/credentials/schedule.html",
                 **template_data,
                 error=error,
+            )
+
+        cred_maintenance_start = (
+            parse(cred_maintenance_start) if cred_maintenance_start else None
+        )
+        cred_maintenance_end = (
+            parse(cred_maintenance_end) if cred_maintenance_end else None
+        )
+        if (
+            show_cred_maintenance_alert
+            and cred_maintenance_start
+            and cred_maintenance_end
+            and (cred_maintenance_start <= starts_at <= cred_maintenance_end)
+        ):
+            maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
+            maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
+            return flask.render_template(
+                "/credentials/schedule.html",
+                **template_data,
+                maintenance_error=True,
+                maintenance_start=maintenance_start_tz,
+                maintenance_end=maintenance_end_tz,
             )
 
         if assessment_reservation_uuid:
@@ -406,11 +449,23 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         max_date=max_date,
         error=error,
         time_delay=time_delay,
+        show_cred_maintenance_alert=show_cred_maintenance_alert,
+        cred_is_in_maintenance=cred_is_in_maintenance,
+        cred_maintenance_start=cred_maintenance_start,
+        cred_maintenance_end=cred_maintenance_end,
     )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
+def cred_your_exams(
+    ua_contracts_api,
+    trueability_api,
+    show_cred_maintenance_alert,
+    cred_is_in_maintenance,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    **kwargs,
+):
     email = flask.request.args.get("email", None)
 
     agreement_notification = False
@@ -628,6 +683,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
             "credentials/your-exams.html",
             agreement_notification=agreement_notification,
             exams=exams,
+            show_cred_maintenance_alert=show_cred_maintenance_alert,
+            cred_is_in_maintenance=cred_is_in_maintenance,
+            cred_maintenance_start=cred_maintenance_start,
+            cred_maintenance_end=cred_maintenance_end,
         )
     )
 
@@ -1035,7 +1094,20 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     keys = []
     for contract in contracts:
         contract_id = contract.id
-        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
+        try:
+            contract_keys = ua_contracts_api.list_activation_keys(contract_id)
+            if contract_keys:
+                keys.extend(contract_keys)
+        except Exception as error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": error.request.url,
+                    "request_headers": error.request.headers,
+                    "response_headers": error.response.headers,
+                    "response_body": error.response.json(),
+                }
+            )
+            continue
 
     return flask.jsonify(keys)
 
@@ -1094,11 +1166,76 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@shop_decorator(area="cred", permission="user", response=json)
-@canonical_staff()
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
 def get_issued_badges(credly_api, **kwargs):
-    badges = credly_api.get_issued_badges()
-    return flask.jsonify(badges["data"])
+    filter = flask.request.args.get("filter", None)
+    sort = flask.request.args.get("sort", None)
+    page = flask.request.args.get("page", None)
+    badges = credly_api.get_issued_badges(filter, sort, page)
+    return flask.jsonify(badges)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def get_issued_badges_bulk(credly_api, **kwargs):
+    filter = flask.request.args.get("filter", None)
+    badges = credly_api.get_issued_badges_bulk(filter)
+    return flask.jsonify(badges)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def get_test_taker_stats(trueability_api, **kwargs):
+    def get_addresses(assessments: list):
+        addresses = []
+        for assessment in assessments:
+            addresses.append(assessment.get("address", None))
+        return addresses
+
+    def fetch_assessments(page: int):
+        print(page)
+        result = trueability_api.get_assessments(page=page)
+        return get_addresses(result["assessments"])
+
+    addresses = []
+    assessments = trueability_api.get_assessments()
+    meta = assessments["meta"]
+    total_pages = meta.get("total_pages", 0)
+    pages = range(2, total_pages + 1)
+    addresses.extend(get_addresses(assessments["assessments"]))
+    with ThreadPoolExecutor(max_workers=5) as thread_pool:
+        for data in thread_pool.map(
+            fetch_assessments,
+            [page for page in pages],
+        ):
+            addresses.extend(data)
+
+    return flask.jsonify(addresses)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def issue_credly_badge(credly_api, **kwargs):
+    badge_data = flask.request.json
+    try:
+        response = credly_api.issue_new_badge(badge_data)
+        return flask.jsonify(response)
+    except Exception as error:
+        return flask.jsonify({"error": error}), 400
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+def get_cred_user_permissions(credly_api, **kwargs):
+    sso_user = user_info(flask.session)
+    is_credentials_admin = sso_user.get("is_credentials_admin", False)
+    is_credentials_support = sso_user.get("is_credentials_support", False)
+    return flask.jsonify(
+        {
+            "is_credentials_admin": is_credentials_admin,
+            "is_credentials_support": is_credentials_support,
+        }
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -1192,3 +1329,63 @@ def cred_dashboard(trueability_api, **_):
         "credentials/dashboard.html",
         latest_reservations=latest_reservations["assessment_reservations"],
     )
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def cred_dashboard_upcoming_exams(trueability_api, **_):
+    per_page = 50
+    page = int(flask.request.args.get("page", 1))
+    state = flask.request.args.getlist("state[]", None)
+    ability_screen_id = flask.request.args.get("ability_screen_id", None)
+    sort = flask.request.args.get("sort", None)
+    group = flask.request.args.get("group", None)
+    upcoming_exams = trueability_api.get_assessment_reservations(
+        page=page,
+        per_page=per_page,
+        state=state,
+        ability_screen_id=ability_screen_id,
+        sort=sort,
+        group=group,
+    )
+    return flask.jsonify(upcoming_exams)
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def cred_dashboard_exam_results(trueability_api, **_):
+    try:
+        per_page = 50
+        page = int(flask.request.args.get("page", 1)) - 1
+        exam_state = flask.request.args.get("state", None)
+        ability_screen_id = flask.request.args.get("ability_screen_id[]", None)
+        first_results = trueability_api.get_results(
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
+        )
+        last_page = first_results["meta"]["total_pages"]
+        latest_results = trueability_api.get_results(
+            page=last_page - page,
+            per_page=per_page,
+            state=exam_state,
+            ability_screen_id=ability_screen_id,
+        )
+        return flask.jsonify(latest_results)
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException()
+        return flask.jsonify({"error": "Error fetching exam results"}), 500
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_group()
+def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
+    ta_status = trueability_api.get_system_status()
+    contracts_status = {}
+    try:
+        ua_contracts_api.get_product_listings("canonical-cube")
+        contracts_status = {"error": False}
+    except Exception:
+        contracts_status = {"error": True}
+    statuses = {"ta_status": ta_status, "contracts_status": contracts_status}
+    return flask.jsonify(statuses)

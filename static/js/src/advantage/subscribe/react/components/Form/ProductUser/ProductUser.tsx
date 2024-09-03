@@ -8,12 +8,12 @@ const ProductUser = () => {
   const { productUser, setProductUser } = useContext(FormContext);
 
   const handleProductUserChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setProductUser(event.target.value as ProductUsers);
     localStorage.setItem(
       PRO_SELECTOR_KEYS.PRODUCT_USER,
-      JSON.stringify(event.target.value as ProductUsers)
+      JSON.stringify(event.target.value as ProductUsers),
     );
   };
 

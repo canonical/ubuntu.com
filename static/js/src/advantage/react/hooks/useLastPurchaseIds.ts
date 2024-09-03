@@ -6,30 +6,32 @@ import { UserSubscriptionMarketplace } from "advantage/api/enum";
 /**
  * Get a the last purchase id by account id and period.
  */
-export const selectPurchaseIdsByMarketplaceAndPeriod = (
-  marketplace?: UserSubscription["marketplace"],
-  period?: UserSubscription["period"]
-) => (lastPurchaseIds: LastPurchaseIds) => {
-  if (
-    !marketplace ||
-    !period ||
-    marketplace === UserSubscriptionMarketplace.Free ||
-    marketplace === UserSubscriptionMarketplace.CanonicalCUBE
-  ) {
-    return null;
-  }
-  return lastPurchaseIds?.[marketplace]?.[period] ?? null;
-};
+export const selectPurchaseIdsByMarketplaceAndPeriod =
+  (
+    marketplace?: UserSubscription["marketplace"],
+    period?: UserSubscription["period"],
+  ) =>
+  (lastPurchaseIds: LastPurchaseIds) => {
+    if (
+      !marketplace ||
+      !period ||
+      marketplace === UserSubscriptionMarketplace.Free ||
+      marketplace === UserSubscriptionMarketplace.CanonicalCUBE
+    ) {
+      return null;
+    }
+    return lastPurchaseIds?.[marketplace]?.[period] ?? null;
+  };
 
 export const useLastPurchaseIds = <
   ID extends UserSubscription["account_id"] | null | undefined,
-  D = LastPurchaseIds
+  D = LastPurchaseIds,
 >(
   accountId: ID,
   options: Omit<
     UseQueryOptions<LastPurchaseIds, unknown, D, [string, ID]>,
     "queryKey" | "queryFn"
-  > = {}
+  > = {},
 ) => {
   // Don't fetch the data until the account id is provided.
   const queryOptions: UseQueryOptions<

@@ -168,6 +168,9 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include vf-p-icon-machines;
+@include vf-p-icon-units;
+@include vf-p-icon-plans;
 @include openstack-carousel;
 
 // Layouts:
@@ -189,12 +192,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // Overide the path to flags for dial codes
 .iti__flag {
-  background-image: url("#{$assets-path}b451b4db-flags.png");
+  background-image: url("#{$assets-path}685bc1a3-flags.png");
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url("#{$assets-path}5bb5145d-flags@2x.png");
+    background-image: url("#{$assets-path}01807c27-flags@2x.png");
   }
 }
 
@@ -1715,4 +1718,9 @@ legend {
     content: "* " !important;
     position: relative !important;
   }
+}
+
+.p-breadcrumbs {
+  margin-bottom: $spv--small;
+  margin-top: $spv--small;
 }

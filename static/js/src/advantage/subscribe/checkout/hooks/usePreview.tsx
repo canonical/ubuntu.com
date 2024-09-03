@@ -24,7 +24,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
       const marketplace = products[0].product.marketplace;
       let payload: PaymentPayload;
       const localTechnicalUserContact = localStorage.getItem(
-        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT
+        DISTRIBUTOR_SELECTOR_KEYS.TECHNICAL_USER_CONTACT,
       );
       const technicalUserContact = localTechnicalUserContact
         ? JSON.parse(localTechnicalUserContact)
@@ -113,7 +113,7 @@ const usePreview = ({ products, action, coupon }: Props) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
-        }
+        },
       );
       const res = await response.json();
 

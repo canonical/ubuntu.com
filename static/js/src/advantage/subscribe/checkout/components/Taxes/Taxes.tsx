@@ -55,7 +55,7 @@ const Taxes = ({ products, setError }: TaxesProps) => {
 
   const postCustomerTaxInfoMutation = postCustomerTaxInfo();
   const hasZeroPriceValue = products.some(
-    (item) => item.product.price.value === 0
+    (item) => item.product.price.value === 0,
   );
   const onSaveClick = () => {
     setIsEditing(false);
@@ -87,7 +87,7 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                 setError(
                   <>
                     That VAT number is invalid. Check the number and try again.
-                  </>
+                  </>,
                 );
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
                 setFormikErrors({
@@ -102,13 +102,13 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                       customer success
                     </a>{" "}
                     if the problem persists.
-                  </>
+                  </>,
                 );
               } else {
                 setError(<>VAT could not be applied.</>);
               }
           },
-        }
+        },
       );
       setFieldValue("isTaxSaved", true);
     }

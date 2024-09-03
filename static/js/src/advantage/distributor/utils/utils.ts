@@ -115,7 +115,7 @@ export type ValidProductID =
 export const getProductId = (
   productType: DistributorProductTypes,
   support: Support,
-  sla: SLA
+  sla: SLA,
 ): ValidProductID => {
   const productKey = `${productType}-${support}-${sla}`;
   switch (productKey) {

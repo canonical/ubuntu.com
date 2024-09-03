@@ -17,7 +17,7 @@ function attachClickEvent(toggle) {
 
 function attachHoverEvent(toggle) {
   const dropdown = document.getElementById(
-    toggle.getAttribute("aria-controls")
+    toggle.getAttribute("aria-controls"),
   );
   let timer = null;
 

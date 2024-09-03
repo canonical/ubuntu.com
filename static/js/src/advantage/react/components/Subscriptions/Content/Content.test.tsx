@@ -35,10 +35,10 @@ describe("Content", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='initial-load'] Spinner").exists()).toBe(
-      true
+      true,
     );
     expect(wrapper.find("SubscriptionList").exists()).toBe(false);
     expect(wrapper.find("SubscriptionDetails").exists()).toBe(false);
@@ -48,7 +48,7 @@ describe("Content", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find("[data-test='initial-load']").exists()).toBe(false);
     expect(wrapper.find("SubscriptionList").exists()).toBe(true);
@@ -65,7 +65,7 @@ describe("Content", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     // Use act and wrapper.update to force waiting  for the component to finish rendering.
@@ -76,7 +76,7 @@ describe("Content", () => {
     wrapper.update();
 
     expect(
-      wrapper.find("Notification[data-test='loading-error']").exists()
+      wrapper.find("Notification[data-test='loading-error']").exists(),
     ).toBe(true);
     expect(wrapper.find("SubscriptionList").exists()).toBe(false);
     expect(wrapper.find("SubscriptionDetails").exists()).toBe(false);
@@ -86,29 +86,29 @@ describe("Content", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-09-11T02:56:54Z"),
+        start_date: "2021-09-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("1999-08-11T02:56:54Z"),
+        start_date: "1999-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(SubscriptionList).prop("selectedId")).toBe(
-      subscriptions[2].id
+      subscriptions[2].id,
     );
   });
 
@@ -116,25 +116,25 @@ describe("Content", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-09-11T02:56:54Z"),
+        start_date: "2021-09-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(wrapper.find(SubscriptionList).prop("selectedId")).toBe(
-      subscriptions[1].id
+      subscriptions[1].id,
     );
   });
 
@@ -153,12 +153,12 @@ describe("Content", () => {
     mount(
       <QueryClientProvider client={queryClient}>
         <Content />
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     expect(window.accountId).toBe("aAaBbCcDd");
     expect(localStorage.getItem("shop-checkout-data")).toBe(
-      '{"products":[{"product":{"canBeTrialled":false,"longId":"lAaBbCcDdEe","name":"Ubuntu Pro","period":"yearly","price":{"value":7500},"id":"physical-uai-essential-weekday-yearly","marketplace":"canonical-ua"},"quantity":12}],"action":"purchase"}'
+      '{"products":[{"product":{"canBeTrialled":false,"longId":"lAaBbCcDdEe","name":"Ubuntu Pro","period":"yearly","price":{"value":7500},"id":"physical-uai-essential-weekday-yearly","marketplace":"canonical-ua"},"quantity":12}],"action":"purchase"}',
     );
     expect(window.location.href).toBe("/account/checkout");
   });

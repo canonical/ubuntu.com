@@ -11,7 +11,7 @@ const Quantity = () => {
       setQuantity(Number(event.target.value));
       localStorage.setItem(
         PRO_SELECTOR_KEYS.QUANTITY,
-        JSON.stringify(Number(event.target.value))
+        JSON.stringify(Number(event.target.value)),
       );
     } else {
       setQuantity("");

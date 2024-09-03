@@ -9,18 +9,18 @@ it("displays validation for e-mail", async () => {
   userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
   await waitFor(() =>
-    expect(screen.getByText(/This field is required./)).toBeVisible()
+    expect(screen.getByText(/This field is required./)).toBeVisible(),
   );
 
   userEvent.type(
     screen.getByLabelText("Users’ email address"),
-    "invalid-email"
+    "invalid-email",
   );
   await waitFor(() =>
-    userEvent.click(screen.getByRole("button", { name: "Add new user" }))
+    userEvent.click(screen.getByRole("button", { name: "Add new user" })),
   );
   await waitFor(() =>
-    expect(screen.getByText(/Must be a valid email./)).toBeVisible()
+    expect(screen.getByText(/Must be a valid email./)).toBeVisible(),
   );
 });
 
@@ -32,12 +32,12 @@ it("calls handleClose modal handler after successful submission", async () => {
     <AddNewUserForm
       handleClose={mockHandleClose}
       handleSubmit={mockHandleSubmit}
-    />
+    />,
   );
   await userEvent.type(screen.getByLabelText("Name"), "Angela");
   await userEvent.type(
     screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
+    "angela@ecorp.com",
   );
   await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
   await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
@@ -47,7 +47,7 @@ it("calls handleClose modal handler after successful submission", async () => {
       name: "Angela",
       email: "angela@ecorp.com",
       role: "technical",
-    })
+    }),
   );
   expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
   waitFor(() => expect(mockHandleClose).toHaveBeenCalled());
@@ -61,12 +61,12 @@ it("submits the form on pressing the Enter key", async () => {
     <AddNewUserForm
       handleClose={mockHandleClose}
       handleSubmit={mockHandleSubmit}
-    />
+    />,
   );
   await userEvent.type(screen.getByLabelText("Name"), "Angela");
   await userEvent.type(
     screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
+    "angela@ecorp.com",
   );
   (await screen.findByLabelText("Name")).focus(); // Focus on the name field
   await userEvent.keyboard("{enter}"); // Press the Enter key
@@ -82,13 +82,13 @@ it("displays an alert message on submission failure", async () => {
     <AddNewUserForm
       handleClose={mockHandleClose}
       handleSubmit={mockHandleSubmit}
-    />
+    />,
   );
 
   await userEvent.type(screen.getByLabelText("Name"), "Angela");
   await userEvent.type(
     screen.getByLabelText("Users’ email address"),
-    "angela@ecorp.com"
+    "angela@ecorp.com",
   );
   await userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
   await userEvent.click(screen.getByRole("button", { name: "Add new user" }));
@@ -96,7 +96,7 @@ it("displays an alert message on submission failure", async () => {
   await waitFor(() => screen.getByRole("alert"));
 
   expect(screen.getByRole("alert")).toHaveTextContent(
-    /An unknown error has occurred./
+    /An unknown error has occurred./,
   );
   expect(mockHandleClose).not.toHaveBeenCalled();
 });

@@ -12,21 +12,14 @@ import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
 
 const Support = () => {
-  const {
-    feature,
-    sla,
-    setSLA,
-    support,
-    setSupport,
-    productType,
-    version,
-  } = useContext(FormContext);
+  const { feature, sla, setSLA, support, setSupport, productType, version } =
+    useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
     localStorage.setItem(
       PRO_SELECTOR_KEYS.SUPPORT,
-      JSON.stringify(event.target.value as SupportEnum)
+      JSON.stringify(event.target.value as SupportEnum),
     );
   };
 
@@ -210,7 +203,7 @@ const Support = () => {
             setSupport(SupportEnum.none);
             localStorage.setItem(
               PRO_SELECTOR_KEYS.SUPPORT,
-              JSON.stringify(SupportEnum.none)
+              JSON.stringify(SupportEnum.none),
             );
           }}
         >
@@ -251,7 +244,7 @@ const Support = () => {
             setSupport(SupportEnum.infra);
             localStorage.setItem(
               PRO_SELECTOR_KEYS.SUPPORT,
-              JSON.stringify(SupportEnum.infra)
+              JSON.stringify(SupportEnum.infra),
             );
           }}
         >
@@ -289,7 +282,7 @@ const Support = () => {
             setSupport(SupportEnum.full);
             localStorage.setItem(
               PRO_SELECTOR_KEYS.SUPPORT,
-              JSON.stringify(SupportEnum.full)
+              JSON.stringify(SupportEnum.full),
             );
           }}
         >
@@ -343,7 +336,7 @@ const Support = () => {
                     setSLA(SLA.weekday);
                     localStorage.setItem(
                       PRO_SELECTOR_KEYS.SLA,
-                      JSON.stringify(SLA.weekday)
+                      JSON.stringify(SLA.weekday),
                     );
                   }}
                   style={{ textAlign: "justify" }}
@@ -364,7 +357,7 @@ const Support = () => {
                     setSLA(SLA.everyday);
                     localStorage.setItem(
                       PRO_SELECTOR_KEYS.SLA,
-                      JSON.stringify(SLA.everyday)
+                      JSON.stringify(SLA.everyday),
                     );
                   }}
                   style={{ textAlign: "justify" }}

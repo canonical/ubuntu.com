@@ -4,7 +4,7 @@ import { FormValues, UserInfo } from "./types";
 export function getInitialFormValues(
   marketplace: UserSubscriptionMarketplace,
   canTrial?: boolean,
-  userInfo?: UserInfo
+  userInfo?: UserInfo,
 ): FormValues {
   const accountName = userInfo?.accountInfo?.name;
   const customerName = userInfo?.customerInfo.name;
@@ -42,7 +42,7 @@ export function getInitialFormValues(
 
 export const canBeTrialled = (
   productCanBeTrialled?: boolean,
-  userCanTrial?: boolean
+  userCanTrial?: boolean,
 ) => {
   if (productCanBeTrialled == undefined) {
     return false;

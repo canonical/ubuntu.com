@@ -72,6 +72,9 @@ from webapp.shop.cred.views import (
     cred_beta_activation,
     cred_cancel_exam,
     cred_dashboard,
+    cred_dashboard_upcoming_exams,
+    cred_dashboard_exam_results,
+    cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
     cred_redeem_code,
@@ -90,6 +93,10 @@ from webapp.shop.cred.views import (
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
+    get_issued_badges_bulk,
+    get_test_taker_stats,
+    issue_credly_badge,
+    get_cred_user_permissions,
     get_my_issued_badges,
     get_webhook_response,
     issue_badges,
@@ -124,6 +131,7 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
+    build_case_study_index,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -421,6 +429,7 @@ app.add_url_rule(
     "/search",
     "search",
     build_search_view(
+        app,
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
@@ -562,6 +571,7 @@ app.add_url_rule(
     defaults={"language": None},
     view_func=build_engage_page(engage_pages),
 )
+app.add_url_rule("/case-study", view_func=build_case_study_index)
 app.add_url_rule(
     "/engage/<language>/<page>",
     endpoint="language-engage-page",
@@ -633,6 +643,7 @@ app.add_url_rule(
     "/core/services/guide/search",
     "core-services-guide-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/services/guide",
         template_path="core/services/guide/search-results.html",
@@ -669,6 +680,7 @@ app.add_url_rule(
     "/server/docs/search",
     "server-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
@@ -696,6 +708,7 @@ app.add_url_rule(
     "/community/search",
     "community-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
@@ -750,6 +763,7 @@ app.add_url_rule(
     "/ceph/docs/search",
     "ceph-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
@@ -772,6 +786,7 @@ app.add_url_rule(
     "/core/docs/search",
     "core-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
@@ -953,12 +968,54 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/dashboard", view_func=cred_dashboard, methods=["GET"]
+    "/credentials/dashboard",
+    view_func=cred_dashboard,
+    methods=["GET"],
 )
-
 app.add_url_rule(
-    "/credentials/get_issued_badges",
+    "/credentials/dashboard/<path:path>",
+    view_func=cred_dashboard,
+    methods=["GET"],
+    defaults={"path": ""},
+)
+app.add_url_rule(
+    "/credentials/api/upcoming-exams",
+    view_func=cred_dashboard_upcoming_exams,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/exam-results",
+    view_func=cred_dashboard_exam_results,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/system-statuses",
+    view_func=cred_dashboard_system_statuses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges",
     view_func=get_issued_badges,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issued-badges-bulk",
+    view_func=get_issued_badges_bulk,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/test-taker-stats",
+    view_func=get_test_taker_stats,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/issue-credly-badge",
+    view_func=issue_credly_badge,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/credentials/api/user-permissions",
+    view_func=get_cred_user_permissions,
     methods=["GET"],
 )
 
@@ -992,6 +1049,7 @@ app.add_url_rule(
     "/openstack/docs/search",
     "openstack-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
@@ -1019,6 +1077,7 @@ app.add_url_rule(
     "/security/livepatch/docs/search",
     "security-livepatch-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
@@ -1046,6 +1105,7 @@ app.add_url_rule(
     "/security/certifications/docs/search",
     "security-certs-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
@@ -1073,6 +1133,7 @@ app.add_url_rule(
     "/landscape/docs/search",
     "landscape-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
@@ -1100,6 +1161,7 @@ app.add_url_rule(
     "/robotics/docs/search",
     "robotics-docs-search",
     build_search_view(
+        app,
         session=session,
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",
@@ -1161,3 +1223,47 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+# Temporary for form render
+
+
+def render_form():
+    formData = {"title": "Test form", "introText": "Intro text", "formid": "1266", "returnUrl": "/appliance/thank-you", "product": ""}
+    fieldsets = [{"title": "About your company", 
+                  "id": "about-company", 
+                  "fields": [
+                    {"type": "text","id": "company", "label": "Company name", "isRequired": True}, 
+                    {"type": "text", "id": "job-title", "label": "Job title", "isRequired": True},
+                  ]
+                },
+                {"title": "What would you like to talk to us about?", 
+                 "id": "comments",
+                 "isRequired": True,
+                 "fields": [
+                    {"type": "long-text", "id": "comments"}
+                 ]
+                },
+                {"title": "How many devices?", "id": "how-many-machines", "inputName": "how-many-machines-do-you-have", "isRequired": True,
+                "fields": [
+                    {"type": "checkbox", "id": "less-5-machines", "value": "less than 5", "label": "&lt;&nbsp;5 machines"},
+                    {"type": "checkbox", "id": "5-to-15-machines", "value": "5 to 15 machines", "label": "5&nbsp;&ndash;&nbsp;15 machines"},
+                    {"type": "checkbox", "id": "15-to-50-machines", "value": "15 to 50 machines", "label": "15&nbsp;&ndash;&nbsp;50 machines"},
+                    {"type": "checkbox", "id": "50-to-100-machines", "value": "50 to 100 machines", "label": "50&nbsp;&ndash;&nbsp;100 machines"},
+                    {"type": "checkbox", "id": "greater-than-100", "value": "greater than 100", "label": "&gt;&nbsp;100 machines"},
+                ]},
+                {"title": "How should we get in touch?", "id": "about-you",
+                "fields": [
+                    {"type": "text", "id": "firstName", "label": "First name", "isRequired": True}, 
+                    {"type": "text", "id": "lastName", "label": "Last name", "isRequired": True}, 
+                    {"type": "email", "id": "email", "label": "Email address", "isRequired": True},
+                    {"type": "country", "id": "", "label": "", "isRequired": True},
+                    {"type": "tel", "id": "phone", "label": "Mobile/cell phone number"},
+                ]},
+                {"title": "Which platform do you use?", "id": "platform-select",
+                "fields": [
+                    {"type": "select", "id": "platform", "label": "Select your platform", "isRequired": True, "options": [{"value": "raspberry-pi", "label": "Raspberry Pi"},{"value": "pc", "label": "PC"}, {"value": "intel-nuc", "label": "Intel NUC"}]}
+                ]},
+                ]
+    return flask.render_template("/base_index.html", fieldsets=fieldsets, formData=formData)
+
+app.add_url_rule("/form-template", view_func=render_form)
