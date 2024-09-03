@@ -1,23 +1,12 @@
-@mixin tube-line-circle-before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 150px;
-  background-color: $color-brand;
-  z-index: -1;
-  top: -60px;
-}
-
 @mixin ubuntu-p-tube-line {
-  .p-tube-line {
+  .p-tube-line,
+  .p-tube-line--image {
     display: flex;
     justify-content: flex-end;
     position: relative;
-    height: 96px;
     overflow: visible;
     z-index: 1;
+    height: 100%;
   }
 
   .p-tube-line__heading {
@@ -25,9 +14,7 @@
     margin-right: 56px;
   }
 
-  .p-tube-line__circle,
-  .p-tube-line__circle--start,
-  .p-tube-line__circle--end {
+  .p-tube-line__circle {
     width: 24px;
     height: 24px;
     background-color: $color-x-light;
@@ -37,45 +24,29 @@
     top: 0.55rem;
   }
 
-  .p-tube-line__circle::before {
-    @include tube-line-circle-before;
+  .p-tube-line__line {
+    content: "";
+    position: absolute;
+    right: 8px;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: $color-brand;
+    z-index: -1;
+    top: 0.65rem;
+  }
 
-    @media (max-width: $breakpoint-medium) {
-      height: 160px;
+  .p-tube-line--image {
+    .p-tube-line__circle {
+      background-color: $color-x-dark;
     }
 
-    @media (max-width: $breakpoint-small) {
-      height: 190px;
-      top: -75px;
+    .p-tube-line__image {
+      width: 24px;
+      height: 24px;
+      z-index: 2;
+      position: relative;
+      top: 8px;
     }
-
-    @media (max-width: $breakpoint-x-small) {
-      height: 240px;
-      top: -70px;
-    }
-  }
-
-  .p-tube-line__circle--start::before {
-    @include tube-line-circle-before;
-    top: 0;
-    height: 100px;
-  }
-
-  .p-tube-line__circle--end::before {
-    @include tube-line-circle-before;
-    top: -70px;
-    height: 70px;
-  }
-
-  .p-tube-line__circle--end {
-    background-color: $color-x-dark;
-  }
-
-  .p-tube-line__circle--image {
-    width: 24px;
-    height: 24px;
-    z-index: 2;
-    position: relative;
-    top: 8px;
   }
 }
