@@ -23,7 +23,6 @@ import {
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { SelectedId } from "../../Content/types";
 import DetailsTabs from "../DetailsTabs";
-import { copyToClipboardAsync } from "advantage/react/utils/copyToClipboardAsync";
 
 type Props = {
   selectedId?: SelectedId;
@@ -98,29 +97,22 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   };
 
   const copyContractToken = useCallback(() => {
-    if (!token?.contract_token) return;
+    if (!token?.contract_token || !navigator.clipboard) return;
 
-    copyToClipboardAsync(token.contract_token)
-      .then(() => {
-        setNotification({
-          severity: "positive",
-          children: "Token copied.",
-          onDismiss: () => setNotification(null),
-          timeout: 7000,
-        });
-        sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-token-click",
-          eventLabel: "Token copied",
-        });
-      })
-      .catch(() => {
-        sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-token-click",
-          eventLabel: "Error while copying token",
-        });
+    navigator.clipboard.writeText(token.contract_token).then(() => {
+      setNotification({
+        severity: "positive",
+        children: "Token copied.",
+        onDismiss: () => setNotification(null),
+        timeout: 7000,
       });
+    });
+
+    sendAnalyticsEvent({
+      eventCategory: "Advantage",
+      eventAction: "subscription-token-click",
+      eventLabel: "Token copied",
+    });
   }, [token?.contract_token]);
 
   const tokenBlock = token?.contract_token ? (
