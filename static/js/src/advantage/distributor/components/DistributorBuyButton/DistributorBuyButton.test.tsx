@@ -31,17 +31,11 @@ const mockContextValue = {
   offer: ChannelOfferFactory.build({ id: "offer-id-1" }),
 };
 
-const MockFormContext = ({ children }: { children: React.ReactNode }) => (
-  <FormContext.Provider value={mockContextValue}>
-    {children}
-  </FormContext.Provider>
-);
-
 test("Should display correct price per machine", () => {
   render(
-    <MockFormContext>
+    <FormContext.Provider value={mockContextValue}>
       <DistributorBuyButton />
-    </MockFormContext>,
+    </FormContext.Provider>,
   );
 
   const localStorageMock = {
@@ -90,4 +84,18 @@ test("Should display correct price per machine", () => {
 
   expect(window.location.href).toBe("/account/checkout");
   window.location = originalLocation;
+});
+
+test("Should disable button when no products are selected", async () => {
+  render(
+    <FormContext.Provider value={{ ...mockContextValue, products: [] }}>
+      <DistributorBuyButton />
+    </FormContext.Provider>,
+  );
+
+  const button = screen.getByText(/Proceed to checkout/i);
+
+  expect(button).toBeInTheDocument();
+  expect(button).toHaveAttribute("aria-disabled", "true");
+  expect(button).toHaveClass("is-disabled");
 });
