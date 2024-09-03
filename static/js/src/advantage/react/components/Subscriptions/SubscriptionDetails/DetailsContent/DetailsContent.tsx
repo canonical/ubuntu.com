@@ -97,9 +97,9 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   };
 
   const copyContractToken = useCallback(() => {
-    if (!token?.contract_token || !navigator.clipboard) return;
+    if (!token?.contract_token) return;
 
-    navigator.clipboard.writeText(token.contract_token).then(() => {
+    navigator.clipboard?.writeText(token.contract_token)?.then(() => {
       setNotification({
         severity: "positive",
         children: (
