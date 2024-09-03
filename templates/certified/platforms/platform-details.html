@@ -12,47 +12,58 @@
   }
 </style>
 
-<div class="row--25-75" style="margin-bottom: 50px; margin-top: 25px;">
-  <div class="col" style="margin-top: 50px;">
-    {% with category=platform.category %}
-      {% include "certified/shared/category-image.html" %}
-    {% endwith %}
-  </div>
-  <div class="col">
-    <div>
-      <h1 class="p-muted-heading"><a href="/certified/{{ category_pathname }}">{{ platform.category }}</a> &rsaquo; Platform</h1>
-    </div>
-    <div>
-      <h1 class="u-no-margin--bottom">{{ platform.vendor }} {{ platform.name }}</h1>
-      {% if platform.certificates|length == 1 %}
-      <h3 class="p-heading--4">1 certified configuration</h3>
-      {% else %}
-      <h3 class="p-heading--4">{{ platform.certificates|length }} certified configurations</h3>
-      {% endif %}
-    </div>
-    <nav class="p-tabs" aria-label="Example tabs" style="margin-top: 75px;">
-      <div class="row">
-        <ul class="p-tabs__list" role="tablist">
-          <li id="all-releases" class="p-tabs__item" role="presentation">
-            <a href="/certified/platforms/{{ platform.id }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu Releases</a>
-          </li>
-          {% for release in releases %}
-          <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
-            <a href="/certified/platforms/{{ platform.id }}/{{ release }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{ release }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
-  </div>
+<main class="is-paper">
 
-  <div class="row">
+<div>
+  <section class="p-section--hero">
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+          <h1 class="p-muted-heading"><a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; Platform</h1>
+      </div>
+    </div>
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <div class="p-section--shallow u-hide--medium u-hide--small">
+          {% with category=platform.category %}
+            {% include "certified/shared/category-image.html" %}
+          {% endwith %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow u-no-padding--bottom">
+          <h1 class="u-no-margin--bottom u-no-padding--top">{{ platform.vendor }} {{ platform.name }}</h1>
+          {% if platform.certificates|length == 1 %}
+          <h2>1 certified configuration</h2>
+          {% else %}
+          <h2>{{ platform.certificates|length }} certified configurations</h2>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <nav class="row p-tabs" aria-label="Example tabs">
+    <div class="col-9 col-start-large-4">
+      <ul class="p-tabs__list" role="tablist">
+        <li id="all-releases" class="p-tabs__item" role="presentation">
+          <a href="/certified/platforms/{{ platform.id }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu releases</a>
+        </li>
+        {% for release in releases|sort %}
+        <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
+          <a href="/certified/platforms/{{ platform.id }}/{{ release }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{ release }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row p-section--deep">
     <table id="configTable" aria-label="Table with automatic layout; uses u-table-layout--auto utility class">
       <thead>
         <tr>
           <th></th>
           {% for canonical_id, certificate in platform.certificates.items() %}
-          <td style="padding-bottom: 25px;"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }} &rsaquo;</strong></a></td>
+          <td style="padding-bottom: 25px;"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }}&nbsp;&rsaquo;</strong></a></td>
           {% endfor %}
         </tr>
       </thead>
@@ -60,42 +71,60 @@
         <tr>
           <td class="u-text--muted">Certified Ubuntu Release</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
-          <td>{% for release in certificate.releases %} <p class="u-no-margin u-no-padding">{{ release }}</p> {% endfor %}</td>
+          <td>
+            <ul class="p-list u-no-margin--bottom">
+            {% for release in certificate.releases|sort %} 
+              <li class="p-list__item u-no-padding--top">
+              {{ release }} 
+              </li>
+            {% endfor %}
+            </ul>
+          </td>
           {% endfor %}
+          <td></td>
+          <td></td>
         </tr>
         <tr>
-          <div class="col-2">
-            <td class="u-text--muted">Processor</td>
-          </div>
+          <td class="u-text--muted">Processor</td>
           {% with device_category = "processor" %}
             {% include "certified/shared/_device-template.html" %}
           {% endwith %}
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td class="u-text--muted">Graphics</td>
           {% with device_category = "video" %}
             {% include "certified/shared/_device-template.html" %}
           {% endwith %}
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td class="u-text--muted">Network</td>
           {% with device_category = "network" %}
             {% include "certified/shared/_device-template.html" %}
           {% endwith %}
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td class="u-text--muted">Wireless</td>
           {% with device_category = "wireless" %}
             {% include "certified/shared/_device-template.html" %}
           {% endwith %}
+          <td></td>
+          <td></td>
         </tr>
         <tr>
-          <td class="u-text--muted">Certificate date</td>
+          <td class="u-text--muted">Certification date</td>
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
           {{ certificate.date }}
           </td>
           {% endfor %}
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -109,6 +138,8 @@
     </div>
   </div>
 </div>
+
+</main>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

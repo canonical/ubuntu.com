@@ -631,6 +631,9 @@ def certified_model_details(canonical_id):
         vendor=model_release["make"],
         platform_name=model_release["platform_name"],
         platform_id=model_release["platform_id"],
+        platform_certified_configuration_count=model_release[
+            "platform_certified_configuration_count"
+        ],
         major_release=model_release["certified_release"],
         release_details=release_details,
         has_enabled_releases=has_enabled_releases,

@@ -24,38 +24,50 @@
 
 </style>
 
+<main class="is-paper">
+
 {# djlint: off #}
 <section class="u-no-margin--bottom row">
-  <div style="margin-top: 25px;">
+  <section class="p-section--hero">
     <div class="row">
       <div class="col-9 col-start-large-4">
         <h1 class="p-muted-heading">
-          <a href="/certified/{{category_pathname}}">{{ category }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
+          <a href="/certified/{{category_pathname}}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ platform_id }}">{{ platform_name }}</a>
           {% if platform_name != name %}
           &rsaquo; {{ name }}
           {% endif %}
         </h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col-3 u-hide--medium u-hide--small">
-        {% with category=category %}
-          {% include "certified/shared/category-image.html" %}
-        {% endwith %}
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <div class="p-section--shallow u-hide--medium u-hide--small">
+          {% with category=category %}
+            {% include "certified/shared/category-image.html" %}
+          {% endwith %}
+        </div>
       </div>
-      <div class="col-9">
-        <h1 class="">{{ vendor }} {{ name }}</h1>
-        <p class="p-heading--4">{{ form_factor }} system certified with Ubuntu</p>
-        {% if hardware_website %}<a href="{{ hardware_website }}" target="blank">Visit the website</a>{% endif %}
+      <div class="col">
+        <div class="p-section--shallow u-no-padding--bottom">
+          <h1 class="u-no-padding--top u-no-margin--bottom">
+            {{ vendor }} {{ name }}
+          </h1>
+          <h2>
+            {{ form_factor }} system certified with Ubuntu
+          </h2>
+          {% if hardware_website %}
+          <a class="p-button" href="{{ hardware_website }}" target="blank">Visit the website</a>
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
+  </section>
   <div class="row">
     <div class="row">
       <div class="col-9 col-start-large-4">
         <nav class="p-tabs" aria-label="Tabs example">
           <ul class="p-tabs__list">
-            {% for release in release_details["releases"] %}
+            {% for release in release_details["releases"]|sort(attribute='version') %}
             <li class="p-tabs__item">
               <button class="p-tabs__link" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-controls="tab{{ loop.index }}" id="tab{{ loop.index }}-button" tabindex="{{ '0' if loop.first else '-1' }}">{{ release.version }}</button>
             </li>
@@ -67,12 +79,12 @@
     
     <div class="row" style="margin-top: 25px;">
       <div class="col-3 u-hide--small u-hide--medium">
-        {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png", alt="", width="112", height="157", hi_def=True, loading="auto") | safe }}
+        {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png", alt="Logo of the Ubuntu Certified project", width="112", height="157", hi_def=True, loading="auto") | safe }}
       </div>
       <div class="col-9">
       {% for release in release_details["releases"] %}
       <div tabindex="0" role="tabpanel" id="tab{{ loop.index }}" aria-labelledby="tab{{ loop.index }}-button" {% if not loop.first %}hidden="hidden"{% endif %}>
-        <p class="p-heading--4 u-no-padding--top">Ubuntu {{ release.version }}</p>
+        <p class="p-heading--2 u-no-padding--top">Ubuntu {{ release.version }}</p>
         {% if release.level == "Certified Pre-Install" %}
         <p class="u-no-margin--bottom">
           Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system's hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.
@@ -89,6 +101,15 @@
         <p class="u-no-margin--bottom">
           <a href="{{ release.download_url }}" class="p-button">Download</a>
         </p>
+        {% endif %}
+
+        {% if release.notes %}
+        <h3 class="p-muted-heading u-no-margin--bottom">Notes</h3>
+        {% for note in release.notes %}
+        <p>
+          {{ note.comment | replace('\n', '<br />') | safe }}
+        </p>
+        {% endfor %}
         {% endif %}
 
         <table aria-label="Software" style="margin-top:1.4rem">
@@ -111,33 +132,27 @@
             {% endif %}
           </tbody>
         </table>
-        {% if release.notes %}
-        <h4 class="u-no-margin--bottom">Notes</h4>
-        {% for note in release.notes %}
-        <p>
-          {{ note.comment | replace('\n', '<br />') | safe }}
-        </p>
-        {% endfor %}
-        {% endif %}
         <div style="margin-top: 50px;">
           <hr/>
-          <h4 class="p-muted-heading">Hardware</h4>
+          <h3 class="p-muted-heading">Hardware</h3>
           <table aria-label="Hardware" class="u-no-margin--bottom">
             <tbody>
               {% for hardware_subtitle, values in release["components"].items() %}
               <tr>
                 <th colspan="3" class="u-text--muted">{{ hardware_subtitle }}</th>
                 <td colspan="7">
+                  <ul class="p-list u-no-margin--bottom">
                   {% for value in values %}
-                  <p style="margin-bottom: 0.5rem;">
+                    <li class="p-list__item u-no-padding--top">
                     {{ value.name }}
                     {% if value.bus in ["usb", "pci"] %}
                     {{ value.bus }} ({{ value.identifier }}
                     {% if value.subsystem != '' %}{{ value.subsystem }}{% endif %}
                     )
                     {% endif %}
-                  </p>
+                    </li>
                   {% endfor %}
+                  </ul>
                 </td>
               </tr>
               {% endfor %}
@@ -147,28 +162,28 @@
           <p class="u-sv3">
             <a href="/certified/{{ canonical_id }}/{{ release.version }}">All hardware details &rsaquo;</a>
           </p>
+          {% if platform_certified_configuration_count > 1 %}
           <p class="u-sv3">
-            <a href="/certified/platforms/{{ platform_id }}">All certified configurations in the {{ platform_name}} platform &rsaquo;</a>
+            <a href="/certified/platforms/{{ platform_id }}">{{ platform_certified_configuration_count - 1 }} more certified {% if platform_certified_configuration_count == 2 %} configuration {% else %} configurations {% endif %} in the {{ platform_name }} platform &rsaquo;</a>
           </p>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
-      <section class="p-strip is-shallow">
+      <section class="p-section--deep">
         <hr/>
-        <table aria-label="Issue Report">
-          <tbody>
-            <tr>
-              <th colspan="3"><h4 class="p-muted-heading">Issues? Let us know</h5></th>
-              <td colspan="7">
-                <p>
-                  If there is an issue with the information for this system,
-                  <a target="_blank"
-                    href="https://answers.launchpad.net/ubuntu-certification/+addquestion?field.title=Feedback on the {{ vendor }} {{ name }} ({{ canonical_id }})">please let us know</a>.
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-muted-heading">Issues? Let us know</h3>
+          </div>
+          <div class="col-6">
+            <p>
+              If there is an issue with the information for this system,
+              <a target="_blank"
+                href="https://answers.launchpad.net/ubuntu-certification/+addquestion?field.title=Feedback on the {{ vendor }} {{ name }} ({{ canonical_id }})">please let us know</a>.
+            </p>
+          </div>
+        </div>
       </section>
       </div>
     </div>
@@ -177,7 +192,8 @@
 {# djlint: on #}
 
 {% if components %}
-<section class="p-strip--light">
+<section class="row p-section--deep">
+  <hr>
   <div class="u-fixed-width">
     <h2 class="u-sv2">Components certified with this system</h2>
     <table class="p-table--mobile-card p-table-component-devices"
@@ -290,6 +306,8 @@
   </div>
 </section>
 {% endif %}
+
+</main>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
