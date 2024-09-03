@@ -106,31 +106,6 @@ const postPurchase = () => {
         }
       }
 
-      // preview
-      const previewReq = await fetch(
-        `/pro/purchase/preview${window.location.search}`,
-        {
-          method: "POST",
-          cache: "no-store",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        },
-      );
-      const previewRes = await previewReq.json();
-
-      if (previewRes.errors) {
-        if (
-          previewRes.errors != "no invoice would be issued for this purchase"
-        ) {
-          throw new Error(previewRes.errors);
-        }
-      }
-
-      // purhcase
       const pruchaseReq = await fetch(
         `/pro/purchase${window.location.search}`,
         {
