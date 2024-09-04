@@ -82,7 +82,7 @@
         {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png", alt="Logo of the Ubuntu Certified project", width="112", height="157", hi_def=True, loading="auto") | safe }}
       </div>
       <div class="col-9">
-      {% for release in release_details["releases"] %}
+      {% for release in release_details["releases"]|sort(attribute='version') %}
       <div tabindex="0" role="tabpanel" id="tab{{ loop.index }}" aria-labelledby="tab{{ loop.index }}-button" {% if not loop.first %}hidden="hidden"{% endif %}>
         <p class="p-heading--2 u-no-padding--top">Ubuntu {{ release.version }}</p>
         {% if release.level == "Certified Pre-Install" %}
