@@ -1,3 +1,10 @@
+/**
+ * This script is used to load dynamic contact forms on the website.
+ * Important notes about using dynamic forms:
+ * - Form fields that should be in the payload must have "name" attribute for the input fields.
+ * - "js-formfield" class should be used to encapsulate fields that do not have "name" attributes. These fields will be consolidated and added to the "Comments_from_lead__c" payload.
+ * - "Comments_from_lead__c" must be a hidden field.
+ */
 import "infer-preferred-language.js";
 import { prepareInputFields } from "./prepare-form-inputs.js";
 
@@ -312,7 +319,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function createMessage(submit) {
         const contactModal = document.getElementById("contact-modal");
         var message = "";
-        var commentsFromLead = document.querySelector("#Comments_from_lead__c");
         if (contactModal) {
           var formFields = contactModal.querySelectorAll(".js-formfield");
 
