@@ -176,7 +176,7 @@ function extractMarketoID(str) {
 }
 
 const forms = document.querySelectorAll(
-  "form[action='/marketo/submit']:not(.js-modal-form)"
+  "form[action='/marketo/submit']:not(.js-modal-form)",
 );
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));

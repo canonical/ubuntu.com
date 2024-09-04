@@ -36,7 +36,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     // recaptcha submitCallback
     window.CaptchaCallback = function () {
       let recaptchas = [].slice.call(
-        document.querySelectorAll("div[class^=g-recaptcha]")
+        document.querySelectorAll("div[class^=g-recaptcha]"),
       );
       recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
@@ -107,7 +107,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           history.pushState(
             "",
             document.title,
-            location.pathname + location.search + hash
+            location.pathname + location.search + hash,
           );
         } else {
           location.hash = hash;
@@ -189,9 +189,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       const contactModal = document.getElementById(contactModalSelector);
       var closeModal = document.querySelector(".p-modal__close");
       var closeModalButton = document.querySelector(".js-close");
-      var modalPaginationButtons = contactModal.querySelectorAll(
-        ".pagination a"
-      );
+      var modalPaginationButtons =
+        contactModal.querySelectorAll(".pagination a");
       var paginationContent = contactModal.querySelectorAll(".js-pagination");
       var submitButton = contactModal.querySelector('button[type="submit"]');
       var comment = contactModal.querySelector("#Comments_from_lead__c");
@@ -270,7 +269,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       otherContainers.forEach(function (otherContainer) {
         var checkbox = otherContainer.querySelector(
-          ".js-other-container__checkbox"
+          ".js-other-container__checkbox",
         );
         var input = otherContainer.querySelector(".js-other-container__input");
         checkbox?.addEventListener("change", function (e) {
@@ -309,7 +308,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
         if (paginationContent.length) {
           var currentContent = contactModal.querySelector(
-            ".js-pagination--" + contactIndex
+            ".js-pagination--" + contactIndex,
           );
           paginationContent.forEach(function (content) {
             content.classList.add("u-hide");
@@ -370,7 +369,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                     }
 
                     var label = formField.querySelector(
-                      "span#" + input.getAttribute("aria-labelledby")
+                      "span#" + input.getAttribute("aria-labelledby"),
                     );
 
                     if (label) {
@@ -405,11 +404,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           const radioButtons = radioGroup.querySelectorAll("[type='radio']");
 
           const descriptionToggle = radioGroup.querySelector(
-            ".js-toggle-description-field"
+            ".js-toggle-description-field",
           );
 
           const descriptionField = document.getElementById(
-            descriptionToggle.dataset.descriptionFieldId
+            descriptionToggle.dataset.descriptionFieldId,
           );
 
           radioButtons.forEach((radioButton) => {
@@ -431,9 +430,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Sets a limit of checkboxes and disables remaining fields
       function setCheckboxLimit() {
-        const choiceLimitContainers = document.querySelectorAll(
-          ".js-choice-limit"
-        );
+        const choiceLimitContainers =
+          document.querySelectorAll(".js-choice-limit");
 
         const checkedChoices = (choices) => {
           return Array.from(choices).filter((choice) => {
@@ -449,9 +447,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
         const handleChoiceLimitContainer = (choiceLimitContainer) => {
           const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
-          const choices = choiceLimitContainer.querySelectorAll(
-            "[type='checkbox']"
-          );
+          const choices =
+            choiceLimitContainer.querySelectorAll("[type='checkbox']");
 
           choices.forEach((choice) => {
             choice.addEventListener("change", () => {
@@ -480,9 +477,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
-        const preferredLanguageInput = contactModal.querySelector(
-          "#preferredLanguage"
-        );
+        const preferredLanguageInput =
+          contactModal.querySelector("#preferredLanguage");
 
         if (preferredLanguageInput) {
           preferredLanguageInput.value = preferredLanguage || "";
@@ -513,7 +509,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
-        "fieldset.js-toggle-checkbox-visibility"
+        "fieldset.js-toggle-checkbox-visibility",
       );
       ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
         toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
@@ -521,7 +517,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Add event listeners to required fieldset
       const requiredFieldset = document.querySelectorAll(
-        "fieldset.js-required-checkbox"
+        "fieldset.js-required-checkbox",
       );
       requiredFieldset?.forEach((fieldset) => {
         fieldset.addEventListener("change", function (event) {
@@ -557,7 +553,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       var modalTrigger = document.activeElement || document.body;
       var modal = document.querySelector(".p-modal");
       var firstFocusableEle = modal.querySelector(
-        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
       );
 
       // set initial focus inside the modal
@@ -616,10 +612,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     function toggleCheckboxVisibility(fieldset, checklistItem) {
       const checkboxes = fieldset.querySelectorAll(".js-checkbox-visibility");
       const otherCheckboxes = fieldset.querySelectorAll(
-        ".js-checkbox-visibility__other"
+        ".js-checkbox-visibility__other",
       );
       const isVisible = checklistItem.classList.contains(
-        "js-checkbox-visibility"
+        "js-checkbox-visibility",
       );
 
       if (checklistItem.checked) {
