@@ -53,7 +53,7 @@
             {{ vendor }} {{ name }}
           </h1>
           <h2>
-            {{ form_factor }} system certified with Ubuntu
+            {{ form_factor|capitalize }} system certified with Ubuntu
           </h2>
           {% if hardware_website %}
           <a class="p-button" href="{{ hardware_website }}" target="blank">Visit the website</a>
@@ -63,6 +63,7 @@
     </div>
   </section>
   <div class="row">
+    {% if release_details["releases"]|length > 1 %}
     <div class="row">
       <div class="col-9 col-start-large-4">
         <nav class="p-tabs" aria-label="Tabs example">
@@ -76,7 +77,8 @@
         </nav>      
       </div>
     </div>
-    
+    {% endif %}
+
     <div class="row" style="margin-top: 25px;">
       <div class="col-3 u-hide--small u-hide--medium">
         {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png", alt="Logo of the Ubuntu Certified project", width="112", height="157", hi_def=True, loading="auto") | safe }}
@@ -86,11 +88,11 @@
       <div tabindex="0" role="tabpanel" id="tab{{ loop.index }}" aria-labelledby="tab{{ loop.index }}-button" {% if not loop.first %}hidden="hidden"{% endif %}>
         <p class="p-heading--2 u-no-padding--top">Ubuntu {{ release.version }}</p>
         {% if release.level == "Certified Pre-Install" %}
-        <p class="u-no-margin--bottom">
+        <p>
           Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system's hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.
         </p>
         {% if vendor == "Xilinx" %}
-        <p class="u-no-margin--bottom" style="padding-top:1.4rem;">
+        <p style="padding-top:1.4rem;">
           <a href="/download/amd" class="p-button">Download</a>
         </p>
         {% endif %}
@@ -98,26 +100,23 @@
         <p>
           The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.
         </p>
-        <p class="u-no-margin--bottom">
+        <p>
           <a href="{{ release.download_url }}" class="p-button">Download</a>
         </p>
         {% endif %}
 
-        {% if release.notes %}
-        <h3 class="p-muted-heading u-no-margin--bottom">Notes</h3>
         {% for note in release.notes %}
         <p>
           {{ note.comment | replace('\n', '<br />') | safe }}
         </p>
         {% endfor %}
-        {% endif %}
 
         <table aria-label="Software" style="margin-top:1.4rem">
           <tbody>
             {% if release.kernel %}
             <tr>
               <th colspan="3" class="u-text--muted">Kernel</th>
-              <td colspan="7">
+              <td colspan="6">
                 {{ release.kernel }}
               </td>
             </tr>
@@ -125,7 +124,7 @@
             {% if release.bios %}
             <tr>
               <th colspan="3" class="u-text--muted">BIOS</th>
-              <td colspan="7">
+              <td colspan="6">
                 {{ release.bios }}
               </td>
             </tr>
@@ -140,7 +139,7 @@
               {% for hardware_subtitle, values in release["components"].items() %}
               <tr>
                 <th colspan="3" class="u-text--muted">{{ hardware_subtitle }}</th>
-                <td colspan="7">
+                <td colspan="6">
                   <ul class="p-list u-no-margin--bottom">
                   {% for value in values %}
                     <li class="p-list__item u-no-padding--top">
