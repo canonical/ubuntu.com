@@ -55,10 +55,12 @@
           <h2>
             {{ form_factor|capitalize }} system certified with Ubuntu
           </h2>
-          {% if hardware_website %}
-          <a class="p-button" href="{{ hardware_website }}" target="blank">Visit the website</a>
-          {% endif %}
         </div>
+        {% if hardware_website %}
+        <div class="p-cta-block">
+          <a href="{{ hardware_website }}" class="p-button">Visit vendor website</a>
+        </div>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -77,6 +79,8 @@
         </nav>      
       </div>
     </div>
+    {% else %}
+    <hr/>
     {% endif %}
 
     <div class="row" style="margin-top: 25px;">
