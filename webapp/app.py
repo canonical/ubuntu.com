@@ -1233,7 +1233,8 @@ def render_form(form):
     def wrapper_func():
         with app.app_context() and app.test_request_context():
             return flask.render_template(form["templatePath"],
-                                         fieldsets=form["fieldsets"], formData=form["formData"], isModal=form.get("isModal"), modalId=form.get("modalId"))
+                                         fieldsets=form["fieldsets"], formData=form["formData"], 
+                                         isModal=form.get("isModal"), modalId=form.get("modalId"))
     return wrapper_func
 
 
