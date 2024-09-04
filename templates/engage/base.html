@@ -56,7 +56,7 @@
         {{ metadata['subtitle'] }}
       </p>
       {% if ("primary_cta" in metadata) and (metadata["primary_cta"] != "") %}
-      <p class="{% if ('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" ) %}u-show--large{% else %}u-hide--large{% endif %}">
+      <p class="{% if ('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" ) %}u-show--large{% else %}u-hide--large{% endif %} u-hide--medium u-hide--small">
           <a href="{{ metadata['primary_link'] }}" class="p-button--positive">
             {{ metadata["primary_cta"] }}
           </a>
