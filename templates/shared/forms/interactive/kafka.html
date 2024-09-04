@@ -6,9 +6,11 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form p-form p-form--stacked">
-        <div class="u-sv2">
-          <h3 class="p-heading--5">Tell us more about your Kafka use case</h3>
-          <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="Anything you'd like to communicate about your needs or interests?" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
+        <div class="js-formfield">
+          <div class="u-sv2">
+            <h3 class="p-heading--5">Tell us more about your Kafka use case</h3>
+            <textarea aria-label="Anything you'd like to communicate about your needs or interests?" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
+          </div>
         </div>
         <div class="row u-no-padding">
           <div class="col-6">
@@ -58,6 +60,13 @@
             </ul>
 
             <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                </li>
+              </ul>
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />

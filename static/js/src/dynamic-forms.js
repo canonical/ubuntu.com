@@ -312,10 +312,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function createMessage(submit) {
         const contactModal = document.getElementById("contact-modal");
         var message = "";
-        var commentsFromLead = document.querySelector("#Comments_from_lead__c");
-        if (commentsFromLead.value != "") {
-          message += commentsFromLead.value;
-        }
         if (contactModal) {
           var formFields = contactModal.querySelectorAll(".js-formfield");
 
