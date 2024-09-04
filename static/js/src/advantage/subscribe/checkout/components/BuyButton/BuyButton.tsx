@@ -47,6 +47,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   const postPurchaseMutation = postPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
+  const poNumber = values.poNumber || null;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -135,6 +136,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         products,
         action: buyAction,
         coupon,
+        poNumber,
       },
       {
         onSuccess: (purchaseId: string) => {
