@@ -7,7 +7,7 @@
       <div class="p-section">
         <hr class="is-fixed-width" />
         <fieldset class="p-fieldset-section {% if fieldset.id=='ubuntu-versions' %} js-toggle-checkbox-visibility {% elif fieldset.isRequired and fieldset.fields[0].type=='checkbox' %} js-required-checkbox {% endif %}" id="{{ fieldset.id }}" aria-labelledby="{{ fieldset.id }}">
-        <div class="row--50-50 js-formfield">
+        <div class="row--50-50 {% if not fieldset.noCommentsFromLead %}js-formfield{% endif%}">
           <div class="col">
             <legend class="p-heading--2 js-formfield-title {% if fieldset.isRequired %}is-required{% endif %}"
                     id="{{ fieldset.id }}-legend">{{ fieldset.title }}</legend>
