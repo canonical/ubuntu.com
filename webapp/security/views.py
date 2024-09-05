@@ -303,7 +303,7 @@ def cve_index():
     """
 
     query = flask.request.args.get("q", "").strip()
-    priority = flask.request.args.get("priority", default="", type=str)
+    priority = flask.request.args.getlist("priority")
     package = flask.request.args.get("package", default="", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
@@ -328,7 +328,10 @@ def cve_index():
 
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
-
+    
+    # print(flask.request.args)
+    # import pdb
+    # pdb.set_trace()
     # Most recent, highest priority CVEs
     high_priority_response = security_api.get_cves(
         query=query,
@@ -419,12 +422,12 @@ def cve_index():
         "DNE": {"name": "Not in release", "icon": None},
         "needs-triage": {"name": "Needs evaluation", "icon": "help"},
         "not-affected": {"name": "Not affected", "icon": "success"},
-        "needed": {"name": "Vulnerable", "icon": "warning"},
-        "deferred": {"name": "Vulnerable", "icon": "warning"},
-        "pending": {"name": "Vulnerable", "icon": "warning"},
+        "needed": {"name": "Vulnerable", "icon": "error"},
+        "deferred": {"name": "Vulnerable", "icon": "error"},
+        "pending": {"name": "Vulnerable", "icon": "error"},
         "ignored": {"name": "Ignored", "icon": "error-grey"},
         "released": {"name": "Fixed", "icon": "success"},
-        "vulnerable": {"name": "Vulnerable", "icon": "warning"},
+        "vulnerable": {"name": "Vulnerable", "icon": "error"},
     }
 
     for cve in high_priority_cves:
