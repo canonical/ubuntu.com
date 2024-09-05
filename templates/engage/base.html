@@ -56,7 +56,7 @@
         {{ metadata['subtitle'] }}
       </p>
       {% if ("primary_cta" in metadata) and (metadata["primary_cta"] != "") %}
-      <p class="{% if 'secondary_cta' not in metadata %}u-hide--large{% endif %}">
+      <p class="{% if ('show_cta_on_banner' in metadata) and (metadata["show_cta_on_banner"] == "true" ) %}u-show{% else %}u-hide{% endif %}">
           <a href="{{ metadata['primary_link'] }}" class="p-button--positive">
             {{ metadata["primary_cta"] }}
           </a>
@@ -149,7 +149,7 @@
   <section class="p-strip--light is-shallow">
     <div class="row">
       <div class="col-8">
-        <h2 class="p-heading--3">Related engage pages</h2>
+        <h2 class="p-heading--3">Additional Resources</h2>
       </div>
     </div>
 

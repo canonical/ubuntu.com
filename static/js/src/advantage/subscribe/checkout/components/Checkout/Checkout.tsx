@@ -6,6 +6,7 @@ import {
   Notification,
   Row,
   Spinner,
+  Strip,
 } from "@canonical/react-components";
 import { checkoutEvent } from "advantage/ecom-events";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
@@ -23,6 +24,7 @@ import Summary from "../Summary";
 import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import AdditionalNotes from "../AdditionalNotes";
 
 type Props = {
   products: CheckoutProducts[];
@@ -130,6 +132,19 @@ const Checkout = ({ products, action, coupon }: Props) => {
                             title: "Free trial",
                             content: (
                               <FreeTrial products={products} action={action} />
+                            ),
+                          },
+                        ]
+                      : []),
+                    ...(marketplace ===
+                    UserSubscriptionMarketplace.CanonicalProChannel
+                      ? [
+                          {
+                            title: "Additional notes",
+                            content: (
+                              <Strip className="u-no-padding--top">
+                                <AdditionalNotes />
+                              </Strip>
                             ),
                           },
                         ]

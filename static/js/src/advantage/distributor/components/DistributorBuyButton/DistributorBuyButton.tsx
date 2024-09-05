@@ -64,6 +64,7 @@ const DistributorBuyButton = () => {
           );
           location.href = "/account/checkout";
         }}
+        disabled={products?.length === 0}
       >
         Proceed to checkout
       </Button>

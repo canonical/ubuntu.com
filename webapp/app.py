@@ -321,6 +321,7 @@ app.add_url_rule(
     "/account/invoices",
     view_func=invoices_view,
 )
+app.add_url_rule("/pro/distributor/invoice", view_func=invoices_view)
 app.add_url_rule(
     "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,
