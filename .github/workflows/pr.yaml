@@ -84,7 +84,7 @@ jobs:
         run: dotrun build
 
       - name: Lint python
-        run: dotrun lint-python
+        run: dotrun format-python
 
   lint-jinja:
     runs-on: ubuntu-22.04
