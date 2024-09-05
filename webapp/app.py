@@ -221,10 +221,16 @@ app.add_url_rule(
 app.add_url_rule("/navigation", view_func=navigation_nojs)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
-app.add_url_rule("/pro/subscriptions.json", view_func=get_annotated_subscriptions)
-app.add_url_rule("/pro/contracts/<contract_id>/token", view_func=get_contract_token)
+app.add_url_rule(
+    "/pro/subscriptions.json", view_func=get_annotated_subscriptions
+)
+app.add_url_rule(
+    "/pro/contracts/<contract_id>/token", view_func=get_contract_token
+)
 app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
-app.add_url_rule("/pro/distributor/users", view_func=advantage_account_users_view)
+app.add_url_rule(
+    "/pro/distributor/users", view_func=advantage_account_users_view
+)
 app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/pro/accounts/<account_id>/user",
@@ -254,7 +260,9 @@ app.add_url_rule(
     view_func=post_auto_renewal_settings,
     methods=["POST"],
 )
-app.add_url_rule("/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"])
+app.add_url_rule(
+    "/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
+)
 app.add_url_rule(
     "/pro/trial/<account_id>",
     view_func=cancel_trial,
@@ -287,13 +295,17 @@ app.add_url_rule(
 
 app.add_url_rule("/pro/distributor", view_func=get_distributor_view)
 app.add_url_rule("/pro/distributor/shop", view_func=get_distributor_view)
-app.add_url_rule("/pro/distributor/thank-you", view_func=get_distributor_thank_you_view)
+app.add_url_rule(
+    "/pro/distributor/thank-you", view_func=get_distributor_thank_you_view
+)
 app.add_url_rule(
     "/pro/channel-offers.json",
     view_func=get_channel_offers,
     methods=["GET"],
 )
-app.add_url_rule("/pro/attach", view_func=activate_magic_attach, methods=["POST"])
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
 app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
@@ -399,7 +411,11 @@ app.add_url_rule(
 # end of shop
 
 app.add_url_rule(
-    ("/download" "/<regex('server|desktop|cloud|raspberry-pi'):category>" "/thank-you"),
+    (
+        "/download"
+        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/thank-you"
+    ),
     view_func=download_thank_you,
 )
 
@@ -496,7 +512,9 @@ app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 # cve section
 app.add_url_rule("/security/cves", view_func=cve_index)
 
-app.add_url_rule(r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve)
+app.add_url_rule(
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
@@ -532,7 +550,9 @@ app.add_url_rule(
     view_func=build_engage_pages_sitemap(engage_pages),
 )
 
-app.add_url_rule("/openstack/resources", view_func=openstack_engage(engage_pages))
+app.add_url_rule(
+    "/openstack/resources", view_func=openstack_engage(engage_pages)
+)
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",
@@ -722,11 +742,15 @@ app.add_url_rule(
 )
 tutorials_docs.init_app(app)
 
-app.add_url_rule("/tutorials.json", view_func=build_tutorials_query(tutorials_docs))
+app.add_url_rule(
+    "/tutorials.json", view_func=build_tutorials_query(tutorials_docs)
+)
 
 # Ceph docs
 ceph_docs = Docs(
-    parser=DocParser(api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"),
+    parser=DocParser(
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
+    ),
     document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
     blueprint_name="ceph",
@@ -749,7 +773,9 @@ app.add_url_rule(
 
 # Core docs
 core_docs = Docs(
-    parser=DocParser(api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"),
+    parser=DocParser(
+        api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
+    ),
     document_template="/core/docs/document.html",
     url_prefix="/core/docs",
     blueprint_name="core",
@@ -890,7 +916,9 @@ app.add_url_rule(
 )
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/keys", view_func=cred_shop_keys)
-app.add_url_rule("/credentials/shop/order-thank-you", view_func=cred_shop_thank_you)
+app.add_url_rule(
+    "/credentials/shop/order-thank-you", view_func=cred_shop_thank_you
+)
 app.add_url_rule(
     "/credentials/shop/webhook_responses",
     view_func=cred_shop_webhook_responses,
@@ -1160,13 +1188,17 @@ app.add_url_rule(
 # HPE blog section
 def render_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
     )
     hpe_articles = blogs.get_tag("hpe")
-    return flask.render_template("/hpe/index.html", blogs=hpe_articles["articles"])
+    return flask.render_template(
+        "/hpe/index.html", blogs=hpe_articles["articles"]
+    )
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
@@ -1174,17 +1206,22 @@ app.add_url_rule("/hpe", view_func=render_blogs)
 
 # Public-cloud blog section
 # tag_ids:
-# public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191, ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
+# public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191,
+# ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
 def render_public_cloud_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=1000, thumbnail_height=700),
+        api=BlogAPI(
+            session=session, thumbnail_width=1000, thumbnail_height=700
+        ),
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
     )
     public_cloud_articles = blogs.get_index()["articles"]
     sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
-    return flask.render_template("/cloud/public-cloud.html", blogs=sorted_articles)
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
+    )
 
 
 app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
@@ -1193,7 +1230,9 @@ app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
-        api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
+        api=BlogAPI(
+            session=session, thumbnail_width=555, thumbnail_height=311
+        ),
         tag_ids=[2247],
         per_page=3,
         blog_title="Supermicro blogs",
