@@ -83,8 +83,11 @@ jobs:
       - name: Build assets
         run: dotrun build
 
-      - name: Lint python
+      - name: Format python
         run: dotrun format-python
+
+      - name: Lint python
+        run: dotrun lint-python
 
   lint-jinja:
     runs-on: ubuntu-22.04
