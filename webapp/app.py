@@ -1232,16 +1232,19 @@ def render_form(form):
     @wraps(render_form)
     def wrapper_func():
         with app.app_context() and app.test_request_context():
-            return flask.render_template(form["templatePath"],
-                                         fieldsets=form["fieldsets"],
-                                         formData=form["formData"],
-                                         isModal=form.get("isModal"),
-                                         modalId=form.get("modalId"))
+            return flask.render_template(
+                form["templatePath"],
+                fieldsets=form["fieldsets"],
+                formData=form["formData"],
+                isModal=form.get("isModal"),
+                modalId=form.get("modalId"),
+            )
+
     return wrapper_func
 
 
 def set_form_rules():
-    filename = os.path.join(app.static_folder, 'files', 'forms-data.json')
+    filename = os.path.join(app.static_folder, "files", "forms-data.json")
     with open(filename) as forms:
         data = json.load(forms)
         for path, form in data["forms"].items():
