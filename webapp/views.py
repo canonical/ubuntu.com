@@ -869,8 +869,6 @@ def shorten_acquisition_url(acquisition_url):
     """
     Shorten the acquisition URL sent when submitting forms
     """
-    if acquisition_url is None:
-        return None
 
     if len(acquisition_url) > 255:
         url_without_params = acquisition_url.split("?")[0]
@@ -939,7 +937,11 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = flask.request.referrer
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
