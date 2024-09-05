@@ -3,6 +3,8 @@ A Flask application for ubuntu.com
 """
 
 import os
+import json
+from functools import wraps
 import math
 import flask
 import requests
@@ -1225,46 +1227,28 @@ def render_supermicro_blogs():
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
-# Temporary for form render
+
+def render_form(form):
+    @wraps(render_form)
+    def wrapper_func():
+        with app.app_context() and app.test_request_context():
+            return flask.render_template(
+                form["templatePath"],
+                fieldsets=form["fieldsets"],
+                formData=form["formData"],
+                isModal=form.get("isModal"),
+                modalId=form.get("modalId"),
+            )
+
+    return wrapper_func
 
 
-def render_form():
-    formData = {"title": "Test form", "introText": "Intro text", "formid": "1266", "returnUrl": "/appliance/thank-you", "product": ""}
-    fieldsets = [{"title": "About your company", 
-                  "id": "about-company", 
-                  "fields": [
-                    {"type": "text","id": "company", "label": "Company name", "isRequired": True}, 
-                    {"type": "text", "id": "job-title", "label": "Job title", "isRequired": True},
-                  ]
-                },
-                {"title": "What would you like to talk to us about?", 
-                 "id": "comments",
-                 "isRequired": True,
-                 "fields": [
-                    {"type": "long-text", "id": "comments"}
-                 ]
-                },
-                {"title": "How many devices?", "id": "how-many-machines", "inputName": "how-many-machines-do-you-have", "isRequired": True,
-                "fields": [
-                    {"type": "checkbox", "id": "less-5-machines", "value": "less than 5", "label": "&lt;&nbsp;5 machines"},
-                    {"type": "checkbox", "id": "5-to-15-machines", "value": "5 to 15 machines", "label": "5&nbsp;&ndash;&nbsp;15 machines"},
-                    {"type": "checkbox", "id": "15-to-50-machines", "value": "15 to 50 machines", "label": "15&nbsp;&ndash;&nbsp;50 machines"},
-                    {"type": "checkbox", "id": "50-to-100-machines", "value": "50 to 100 machines", "label": "50&nbsp;&ndash;&nbsp;100 machines"},
-                    {"type": "checkbox", "id": "greater-than-100", "value": "greater than 100", "label": "&gt;&nbsp;100 machines"},
-                ]},
-                {"title": "How should we get in touch?", "id": "about-you",
-                "fields": [
-                    {"type": "text", "id": "firstName", "label": "First name", "isRequired": True}, 
-                    {"type": "text", "id": "lastName", "label": "Last name", "isRequired": True}, 
-                    {"type": "email", "id": "email", "label": "Email address", "isRequired": True},
-                    {"type": "country", "id": "", "label": "", "isRequired": True},
-                    {"type": "tel", "id": "phone", "label": "Mobile/cell phone number"},
-                ]},
-                {"title": "Which platform do you use?", "id": "platform-select",
-                "fields": [
-                    {"type": "select", "id": "platform", "label": "Select your platform", "isRequired": True, "options": [{"value": "raspberry-pi", "label": "Raspberry Pi"},{"value": "pc", "label": "PC"}, {"value": "intel-nuc", "label": "Intel NUC"}]}
-                ]},
-                ]
-    return flask.render_template("/base_index.html", fieldsets=fieldsets, formData=formData)
+def set_form_rules():
+    filename = os.path.join(app.static_folder, "files", "forms-data.json")
+    with open(filename) as forms:
+        data = json.load(forms)
+        for path, form in data["forms"].items():
+            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
 
-app.add_url_rule("/form-template", view_func=render_form)
+
+set_form_rules()
