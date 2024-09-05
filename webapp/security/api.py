@@ -124,7 +124,7 @@ class SecurityAPI:
     def get_cves(
         self,
         query: str,
-        priority: str,
+        priority: list,
         package: str,
         limit: int,
         offset: int,

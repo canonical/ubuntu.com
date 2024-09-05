@@ -205,10 +205,11 @@
           {% endif %}
 
           {% if cve.priority_reason %}
-            <div id="priority-reason" style="scroll-margin-top: 3.5rem">
-              <h3>Why is this CVE {{ cve.priority }} priority?</h3>
-              <p>{{ cve.priority_reason }}</p>
-            </div>
+            <h3 id="priority-reason" style="scroll-margin-top: 3.5rem">Why is this CVE {{ cve.priority }} priority?</h3>
+            <p>{{ cve.priority_reason }}</p>
+            <p>
+              <a href="/security/cves/about#priority">Learn more about Ubuntu priority&nbsp;&rsaquo;</a>
+            </p>
           {% endif %}
         </div>
 
@@ -324,7 +325,7 @@
           </div>
         {% endif %}
 
-        {% if cve.notes and not cve.priority_reason %}
+        {% if cve.notes %}
           <div class="p-section section-heading" id="notes">
             <h2>Notes</h2>
             <div class="row">
