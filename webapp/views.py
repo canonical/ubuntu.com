@@ -869,6 +869,8 @@ def shorten_acquisition_url(acquisition_url):
     """
     Shorten the acquisition URL sent when submitting forms
     """
+    if acquisition_url is None:
+        return None
 
     if len(acquisition_url) > 255:
         url_without_params = acquisition_url.split("?")[0]
