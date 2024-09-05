@@ -172,7 +172,7 @@
                   <a class="highlight-link" href="#status">Status</a>
                 </li>
               {% endif %}
-              {% if cve.notes and not cve.priority_reason %}
+              {% if cve.notes %}
                 <li class="p-side-navigation__item">
                   <a class="highlight-link" href="#notes">Notes</a>
                 </li>
@@ -208,7 +208,7 @@
             <h3 id="priority-reason" style="scroll-margin-top: 3.5rem">Why is this CVE {{ cve.priority }} priority?</h3>
             <p>{{ cve.priority_reason }}</p>
             <p>
-              <a href="/security/cves/about#priority">Learn more about Ubuntu priority&nbsp;&rsaquo;</a>
+              <a href="/security/cves/about#priority">Learn more about Ubuntu priority</a>
             </p>
           {% endif %}
         </div>
@@ -234,7 +234,7 @@
               <span class="p-switch__label">Show unmaintained releases</span>
             </label>
           </div>
-          {% if maintained_count < 1 %}
+          {% if maintained_count < 1 and only_upstream == False %}
             <div class="p-notification--information is-light"
                  id="disabled-switch-notification">
               <div class="p-notification__content">
@@ -242,7 +242,14 @@
               </div>
             </div>
           {% endif %}
-          {% if cve.status == 'active' %}
+          {% if only_upstream %}
+          <div class="p-notification--information is-light" id="disabled-switch-notification">
+            <div class="p-notification__content">
+              <p class="p-notification__message">No releases are affected by this CVE.</p>
+            </div>
+          </div>
+          {% endif %}
+          {% if cve.status == 'active' and only_upstream == False %}
             <div class="row p-section--shallow u-table-horizontal-scroll">
               <table class="cve-table u-table-horizontal-scroll__table">
                 <thead>
@@ -307,12 +314,19 @@
             </div>
           {% endif %}
           <hr class="is-muted" />
-          <p>
-            <a href="/security/cves/about#security" style="margin-right: 1rem;">How can I get the fixes?</a>
+          <ul class="p-inline-list u-responsive-realign">
+            <li class="p-inline-list__item">
+              <a href="/security/cves/about#security">How can I get the fixes?</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="/security/cves/about#statuses">What do statuses mean?</a>
+            </li>
             {% if patches %}
-              <a href="#patch-details">Patch details</a>
+            <li class="p-inline-list__item">
+                <a href="#patch-details">Patch details</a>
+              </li>
             {% endif %}
-          </p>
+          </ul>
         </div>
 
         {% if cve.expanded_coverage %}
@@ -352,7 +366,7 @@
             <div class="p-notification--information">
               <div class="p-notification__content">
                 <p class="p-notification__message">
-                  For informational purposes only. We recommend not to cherry-pick updates. <a href="">How can I get the fixes?</a>
+                  For informational purposes only. We recommend not to cherry-pick updates. <a href="/security/cves/about#security">How can I get the fixes?</a>
                 </p>
               </div>
             </div>

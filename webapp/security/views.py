@@ -328,7 +328,7 @@ def cve_index():
 
     cves = cves_response.get("cves")
     total_results = cves_response.get("total_results")
-    
+
     # print(flask.request.args)
     # import pdb
     # pdb.set_trace()
@@ -699,44 +699,48 @@ def cve(cve_id):
     }
 
     maintained_count = 0
-    for package in cve["packages"]:
-        for status in package["statuses"]:
+    only_upstream = False
+    # Account for cves which only include upstream status
+    if is_only_upstream(cve):
+        only_upstream = True
+    else:
+        for package in cve["packages"]:
+            for status in package["statuses"]:
+                # format statuses
+                friendly_status = friendly_names[status["status"]]
+                status["name"] = friendly_status["name"]
+                status["icon"] = friendly_status["icon"]
 
-            # format statuses
-            friendly_status = friendly_names[status["status"]]
-            status["name"] = friendly_status["name"]
-            status["icon"] = friendly_status["icon"]
+                for release in all_releases:
+                    if status["release_codename"] == release["codename"]:
+                        status["version"] = release["version"]
+                        status["release_date"] = release["release_date"]
 
-            for release in all_releases:
-                if status["release_codename"] == release["codename"]:
-                    status["version"] = release["version"]
-                    status["release_date"] = release["release_date"]
+                        if release["lts"]:
+                            status["support_tag"] = "LTS"
 
-                    if release["lts"]:
-                        status["support_tag"] = "LTS"
+                if status["release_codename"] in [
+                    release["codename"] for release in maintained_releases
+                ]:
+                    status["maintained"] = True
+                    maintained_count += 1
+                else:
+                    status["maintained"] = False
 
-            if status["release_codename"] in [
-                release["codename"] for release in maintained_releases
-            ]:
-                status["maintained"] = True
-                maintained_count += 1
-            else:
-                status["maintained"] = False
+                # Set pocket descriptions
+                if status["pocket"] in friendly_pockets:
+                    status["pocket_desc"] = friendly_pockets[status["pocket"]]
 
-            # Set pocket descriptions
-            if status["pocket"] in friendly_pockets:
-                status["pocket_desc"] = friendly_pockets[status["pocket"]]
-
-        # Sort package statuses by release version
-        package["statuses"] = sorted(
-            [
-                d
-                for d in package["statuses"]
-                if d["release_codename"] != "upstream"
-            ],
-            key=lambda d: d["release_date"],
-            reverse=True,
-        )
+            # Sort package statuses by release version
+            package["statuses"] = sorted(
+                [
+                    d
+                    for d in package["statuses"]
+                    if d["release_codename"] != "upstream"
+                ],
+                key=lambda d: d["release_date"],
+                reverse=True,
+            )
 
     return flask.render_template(
         "security/cves/cve.html",
@@ -745,7 +749,15 @@ def cve(cve_id):
         tags=formatted_tags,
         maintained_count=maintained_count,
         other_references=other_references,
+        only_upstream=only_upstream,
     )
+
+
+def is_only_upstream(cve):
+    if len(cve["packages"]) == 1 and len(cve["packages"][0]["statuses"]) == 1:
+        if cve["packages"][0]["statuses"][0]["release_codename"] == "upstream":
+            return True
+    return False
 
 
 # CVE API
