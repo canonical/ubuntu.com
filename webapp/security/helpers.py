@@ -1,3 +1,12 @@
+# Standard library
+from datetime import datetime
+
+
+"""
+Return the summarized status for a CVE
+"""
+
+
 def get_summarized_status(
     cve,
     ignored_low_indicators,
@@ -5,9 +14,6 @@ def get_summarized_status(
     friendly_names,
     versions,
 ):
-    """
-    Return the summarized status for a CVE
-    """
     status_count = {
         "ignored-high": 0,
         "ignored-low": 0,
@@ -100,3 +106,108 @@ def get_summarized_status(
             return friendly_names["not-affected"]
         elif status_count["DNE"] > 0:
             return friendly_names["DNE"]
+
+
+"""
+Checks if there is only an upstream status for a CVEs with only 1 package
+"""
+
+
+def is_only_upstream(cve):
+    if len(cve["packages"]) == 1 and len(cve["packages"][0]["statuses"]) == 1:
+        if cve["packages"][0]["statuses"][0]["release_codename"] == "upstream":
+            return True
+    return False
+
+
+"""
+Calls releases endpoint and filters releases based on version support
+"""
+
+
+def get_formatted_releases(security_api, versions):
+    # Releases in desc order
+    releases_json = security_api.get_releases()
+
+    # Releases without "upstream"
+    all_releases = []
+    for release in releases_json:
+        if release["codename"] != "upstream":
+            all_releases.append(release)
+
+    maintained_releases = []
+    selected_releases = []
+    lts_releases = []
+    unmaintained_releases = []
+
+    for release in all_releases:
+        # format dates
+        support_date = datetime.strptime(
+            release["support_expires"], "%Y-%m-%dT%H:%M:%S"
+        )
+        esm_date = datetime.strptime(
+            release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
+        )
+        release_date = datetime.strptime(
+            release["release_date"], "%Y-%m-%dT%H:%M:%S"
+        )
+
+        # filter releases
+        if versions and versions != [""]:
+            for version in versions:
+                if version == release["codename"]:
+                    # cap to show maximum of 5 releases
+                    if len(selected_releases) < 5:
+                        selected_releases.append(release)
+                    else:
+                        break
+        elif (
+            # By default, we only want to show the 5 most recent LTS releases
+            # thus excluding xenial and trusty
+            (support_date > datetime.now() or esm_date > datetime.now())
+            and release_date < datetime.now()
+            and release["codename"] != "xenial"
+            and release["codename"] != "trusty"
+        ):
+            selected_releases.append(release)
+
+        if support_date < datetime.now():
+            if esm_date > datetime.now():
+                if release["lts"] and release_date < datetime.now():
+                    lts_releases.append(release)
+            else:
+                unmaintained_releases.append(release)
+        elif release_date < datetime.now():
+            maintained_releases.append(release)
+
+    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
+
+    formatted_releases = {
+        "all_releases": all_releases,
+        "maintained_releases": maintained_releases,
+        "selected_releases": selected_releases,
+        "lts_releases": lts_releases,
+        "unmaintained_releases": unmaintained_releases,
+    }
+
+    return formatted_releases
+
+
+"""
+Format statuses based on friendly names
+"""
+
+
+def get_formatted_release_statuses(cve_package, friendly_names):
+    cve_package["release_statuses"] = {}
+
+    for status in cve_package["statuses"]:
+        friendly_status = friendly_names[status["status"]]
+        cve_package["release_statuses"][status["release_codename"]] = {
+            "slug": status["status"],
+            "name": friendly_status["name"],
+            "pocket": status["pocket"],
+            "icon": friendly_status["icon"],
+        }
+
+    return cve_package["release_statuses"]
