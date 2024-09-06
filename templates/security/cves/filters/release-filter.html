@@ -27,7 +27,9 @@
           <span class="u-text--muted">{{ release.codename }}</span></span>
         </label>
       {% endfor %}
-      <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
+      <p>
+        <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
+      </p>
       <div class="js-unmaintained-releases u-hide">
         <p class="p-text--small-caps">Unmaintained</p>
         {% for release in unmaintained_releases %}

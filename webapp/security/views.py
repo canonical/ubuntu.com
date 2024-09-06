@@ -496,7 +496,6 @@ def cve(cve_id):
                 match = re.search(pattern, text)
                 if match:
                     cve["priority_reason"] = match.group(1)
-                    print(len(cve["notes"]))
                     if len(cve["notes"]) == 1:
                         only_priority_note = True
 

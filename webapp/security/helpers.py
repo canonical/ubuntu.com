@@ -109,7 +109,7 @@ def get_summarized_status(
 
 
 """
-Checks if there is only an upstream status for a CVEs with only 1 package
+Checks if there is only an upstream status for a CVE with only 1 package
 """
 
 
@@ -152,25 +152,6 @@ def get_formatted_releases(security_api, versions):
             release["release_date"], "%Y-%m-%dT%H:%M:%S"
         )
 
-        # filter releases
-        if versions and versions != [""]:
-            for version in versions:
-                if version == release["codename"]:
-                    # cap to show maximum of 5 releases
-                    if len(selected_releases) < 5:
-                        selected_releases.append(release)
-                    else:
-                        break
-        elif (
-            # By default, we only want to show the 5 most recent LTS releases
-            # thus excluding xenial and trusty
-            (support_date > datetime.now() or esm_date > datetime.now())
-            and release_date < datetime.now()
-            and release["codename"] != "xenial"
-            and release["codename"] != "trusty"
-        ):
-            selected_releases.append(release)
-
         if support_date < datetime.now():
             if esm_date > datetime.now():
                 if release["lts"] and release_date < datetime.now():
@@ -180,7 +161,23 @@ def get_formatted_releases(security_api, versions):
         elif release_date < datetime.now():
             maintained_releases.append(release)
 
-    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
+        # filter releases
+        if versions and versions != [""]:
+            for version in versions:
+                if version == release["codename"]:
+                    # cap to show maximum of 5 releases
+                    if len(selected_releases) < 5:
+                        selected_releases.append(release)
+                    else:
+                        break
+        else:
+            selected_releases = maintained_releases + lts_releases[:2]
+
+    selected_releases = sorted(
+        selected_releases,
+        key=lambda d: d["version"],
+        reverse=True,
+    )
 
     formatted_releases = {
         "all_releases": all_releases,

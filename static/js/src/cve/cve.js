@@ -172,7 +172,7 @@ function handleFilterPersist() {
     if (params.includes("pending")) {
       const checkbox = statusFilter.querySelector("input[value='vulnerable']");
       checkbox.checked = true;
-    } 
+    }
 
     statusCheckboxes.forEach(function (checkbox) {
       if (params.includes(checkbox.value)) {
