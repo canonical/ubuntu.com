@@ -172,7 +172,7 @@
                   <a class="highlight-link" href="#status">Status</a>
                 </li>
               {% endif %}
-              {% if cve.notes %}
+              {% if cve.notes and only_priority_note == False %}
                 <li class="p-side-navigation__item">
                   <a class="highlight-link" href="#notes">Notes</a>
                 </li>
@@ -199,6 +199,9 @@
           {% if cve.ubuntu_description %}
             <h2 class="p-heading--3">From the Ubuntu Security Team</h2>
             <p>{{ cve.ubuntu_description }}</p>
+          {% endif %}
+
+          {% if cve.notes and only_priority_note == False %}
             <p>
               <a href="#notes">Read the notes from the security team</a>
             </p>
@@ -221,34 +224,24 @@
         {% endif %}
 
         <div class="p-section section-heading" id="status">
-          <div class="u-fixed-width p-section"
+          <div class="u-fixed-width p-section--shallow"
                style="display: flex;
                       justify-content: space-between">
             <h2>Status</h2>
             <label class="p-switch" style="float: right;">
               <input type="checkbox"
                      class="p-switch__input js-toggle-maintained"
-                     {% if maintained_count < 1 %}aria-describedby="disabled-switch-notification"{% endif %}
                      role="switch" />
               <span class="p-switch__slider"></span>
               <span class="p-switch__label">Show unmaintained releases</span>
             </label>
           </div>
-          {% if maintained_count < 1 and only_upstream == False %}
-            <div class="p-notification--information is-light"
-                 id="disabled-switch-notification">
-              <div class="p-notification__content">
-                <p class="p-notification__message">No maintained releases are affected by this CVE.</p>
-              </div>
-            </div>
-          {% endif %}
-          {% if only_upstream %}
-          <div class="p-notification--information is-light" id="disabled-switch-notification">
+          <!-- Notification text and aria label changes depending on the statuses, see script -->
+          <div class="p-notification--information is-light js-conditional-notification u-hide">
             <div class="p-notification__content">
-              <p class="p-notification__message">No releases are affected by this CVE.</p>
+              <p class="p-notification__message"></p>
             </div>
           </div>
-          {% endif %}
           {% if cve.status == 'active' and only_upstream == False %}
             <div class="row p-section--shallow u-table-horizontal-scroll">
               <table class="cve-table u-table-horizontal-scroll__table">
@@ -322,7 +315,7 @@
               <a href="/security/cves/about#statuses">What do statuses mean?</a>
             </li>
             {% if patches %}
-            <li class="p-inline-list__item">
+              <li class="p-inline-list__item">
                 <a href="#patch-details">Patch details</a>
               </li>
             {% endif %}
@@ -339,12 +332,12 @@
           </div>
         {% endif %}
 
-        {% if cve.notes %}
+        {% if cve.notes and only_priority_note == False %}
           <div class="p-section section-heading" id="notes">
             <h2>Notes</h2>
             <div class="row">
               <div class="col-6">
-                {% for note in cve.notes %}
+                {% for note in cve.notes if "Priority reason" not in note.note %}
                   <hr />
                   {% if note.author %}
                     <h3 class="p-heading--5">
@@ -542,31 +535,71 @@
     </div>
   </section>
 
-  <!-- Linting is turned off as additional indentaion on line 533 will break the rest of the script -->
+  <!-- Linting is turned off as additional indentaion on view variables (maintainedCount, isOnlyUpstream) will break the rest of the script -->
   {# djlint: off #}
   <script>
     function handleHiddenReleasesSwitch() {
       const maintainedCount = {{ maintained_count | tojson | safe }};
+      const isOnlyUpstream = {{ only_upstream | tojson | safe }};
       const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
-      let hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
+      const hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
 
       // When the CVE does not include statuses for maintained releases, the switch is disabled and checked
-      if (maintainedCount === 0) {
+      if (maintainedCount === 0 || isOnlyUpstream) {
+
         maintainedReleasesSwitch.checked = true;
-        hiddenCells.forEach((cell) => {
-          cell.classList.toggle("u-hide--cell");
-          maintainedReleasesSwitch.setAttribute("disabled", true);
-        });
+        maintainedReleasesSwitch.setAttribute("disabled", true);
+      
+        toggleCells(hiddenCells);
       }
 
-      // Toggle hidden releases
+      // When the CVE includes only maintained releases, the switch is disabled
+      if (hiddenCells.length === 0) {
+        maintainedReleasesSwitch.setAttribute("disabled", true);
+      }
+      
+      // Toggle hidden releases on switch click
       maintainedReleasesSwitch.addEventListener("click", () => {
-        hiddenCells.forEach((cell) => {
-          cell.classList.toggle("u-hide--cell");
-        });
+        toggleCells(hiddenCells);
       });
+
+      handleNotificationText(maintainedCount, isOnlyUpstream, hiddenCells, maintainedReleasesSwitch);
     };
     handleHiddenReleasesSwitch()
+
+    function toggleCells(hiddenCells) {
+      hiddenCells.forEach((cell) => {
+          cell.classList.toggle("u-hide--cell");
+      });
+    }
+
+    // Updates notification text and aria-describedby attribute for the switch
+    // depending on if the releases are all maintained, unmaintained or only upstream
+    function handleNotificationText(maintainedCount, isOnlyUpstream, hiddenCells, maintainedReleasesSwitch) {
+      let notification = document.querySelector(".js-conditional-notification");
+
+      if (maintainedCount < 1 && !isOnlyUpstream) {
+        notification.classList.remove("u-hide");
+        notification.querySelector(".p-notification__message").textContent = "No maintained releases are affected by this CVE.";
+        notification.id = "disabled-switch-notification";
+      }
+            
+      if (hiddenCells.length === 0 && !isOnlyUpstream) {
+        notification.classList.remove("u-hide");
+        notification.querySelector(".p-notification__message").textContent = "No unmaintained releases are affected by this CVE.";
+        notification.id = "disabled-switch-notification-only-maintained";
+      }
+      
+      if (isOnlyUpstream) {
+        notification.classList.remove("u-hide");
+        notification.querySelector(".p-notification__message").textContent = "No information for any release.";
+        notification.id = "disabled-switch-notification-only-upstream";
+      }
+      
+      if (notification.id) {
+        maintainedReleasesSwitch.setAttribute("aria-describedby", notification.id);
+      }
+    };
 
     function setUpDynamicSideNav() {
       const sections = Array.prototype.slice.call(
@@ -598,7 +631,7 @@
       });
     };
     setUpDynamicSideNav();
-  </script>
+</script>
   {# djlint: on #}
 
 {% endblock %}

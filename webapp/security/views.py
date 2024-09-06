@@ -14,7 +14,12 @@ from sortedcontainers import SortedDict
 
 # Local
 from webapp.security.api import SecurityAPI
-from webapp.security.helpers import get_summarized_status
+from webapp.security.helpers import (
+    get_summarized_status,
+    is_only_upstream,
+    get_formatted_releases,
+    get_formatted_release_statuses,
+)
 
 
 markdown_parser = Markdown(
@@ -313,40 +318,6 @@ def cve_index():
     order = flask.request.args.get("order", default="", type=str)
     detailed = flask.request.args.get("detailed", default="", type=str)
 
-    # All CVEs
-    cves_response = security_api.get_cves(
-        query=query,
-        priority=priority,
-        package=package,
-        limit=limit,
-        offset=offset,
-        component=component,
-        versions=versions,
-        statuses=statuses,
-        order=order,
-    )
-
-    cves = cves_response.get("cves")
-    total_results = cves_response.get("total_results")
-
-    # print(flask.request.args)
-    # import pdb
-    # pdb.set_trace()
-    # Most recent, highest priority CVEs
-    high_priority_response = security_api.get_cves(
-        query=query,
-        priority="high",
-        package=package,
-        limit=5,
-        offset=offset,
-        component=component,
-        versions=versions,
-        statuses=statuses,
-        order=order,
-    )
-
-    high_priority_cves = high_priority_response.get("cves")
-
     ignored_low_indicators = [
         "end of standard support",
         "superseded",
@@ -354,70 +325,16 @@ def cve_index():
     ]
     vulnerable_indicators = ["needed", "pending", "deferred"]
 
-    # Check if cve id is valid
-    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+    # Get and define formatted releases
+    formatted_releases = get_formatted_releases(security_api, versions)
 
-    # Get cve with specific id
-    if is_cve_id and cves_response.get(query.upper()):
-        return flask.redirect(f"/security/{query.lower()}")
+    all_releases = formatted_releases["all_releases"]
+    selected_releases = formatted_releases["selected_releases"]
+    lts_releases = formatted_releases["lts_releases"]
+    maintained_releases = formatted_releases["maintained_releases"]
+    unmaintained_releases = formatted_releases["unmaintained_releases"]
 
-    # Releases in desc order
-    releases_json = security_api.get_releases()
-
-    # Releases without "upstream"
-    all_releases = []
-    for release in releases_json:
-        if release["codename"] != "upstream":
-            all_releases.append(release)
-
-    maintained_releases = []
-    selected_releases = []
-    lts_releases = []
-    unmaintained_releases = []
-
-    for release in all_releases:
-        # format dates
-        support_date = datetime.strptime(
-            release["support_expires"], "%Y-%m-%dT%H:%M:%S"
-        )
-        esm_date = datetime.strptime(
-            release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
-        )
-        release_date = datetime.strptime(
-            release["release_date"], "%Y-%m-%dT%H:%M:%S"
-        )
-
-        # filter releases
-        if versions and versions != [""]:
-            for version in versions:
-                if version == release["codename"]:
-                    # cap to show maximum of 5 releases
-                    if len(selected_releases) < 5:
-                        selected_releases.append(release)
-                    else:
-                        break
-        elif (
-            # By default, we only want to show the 5 most recent LTS releases
-            # thus excluding xenial and trusty
-            (support_date > datetime.now() or esm_date > datetime.now())
-            and release_date < datetime.now()
-            and release["codename"] != "xenial"
-            and release["codename"] != "trusty"
-        ):
-            selected_releases.append(release)
-
-        if support_date < datetime.now():
-            if esm_date > datetime.now():
-                if release["lts"] and release_date < datetime.now():
-                    lts_releases.append(release)
-            else:
-                unmaintained_releases.append(release)
-        elif release_date < datetime.now():
-            maintained_releases.append(release)
-
-    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
-
-    # Format summarized statuses
+    # Define friendly names and icons for statuses
     friendly_names = {
         "DNE": {"name": "Not in release", "icon": None},
         "needs-triage": {"name": "Needs evaluation", "icon": "help"},
@@ -430,34 +347,78 @@ def cve_index():
         "vulnerable": {"name": "Vulnerable", "icon": "error"},
     }
 
-    for cve in high_priority_cves:
-        cve["summarized_status"] = get_summarized_status(
-            cve,
-            ignored_low_indicators,
-            vulnerable_indicators,
-            friendly_names,
-            versions,
+    cves = []
+    high_priority_cves = []
+    total_results = 0
+
+    # Request all cves if query parameters are present
+    if flask.request.args:
+        cves_response = security_api.get_cves(
+            query=query,
+            priority=priority,
+            package=package,
+            limit=limit,
+            offset=offset,
+            component=component,
+            versions=versions,
+            statuses=statuses,
+            order=order,
         )
 
-    for cve in cves:
-        cve["summarized_status"] = get_summarized_status(
-            cve,
-            ignored_low_indicators,
-            vulnerable_indicators,
-            friendly_names,
-            versions,
+        cves = cves_response.get("cves")
+        total_results = cves_response.get("total_results")
+
+        for cve in cves:
+            cve["summarized_status"] = get_summarized_status(
+                cve,
+                ignored_low_indicators,
+                vulnerable_indicators,
+                friendly_names,
+                versions,
+            )
+
+            for cve_package in cve["packages"]:
+                cve_package["release_statuses"] = (
+                    get_formatted_release_statuses(cve_package, friendly_names)
+                )
+
+    else:
+        # Request latest 5 high priority cves
+
+        high_priority_response = security_api.get_cves(
+            query=query,
+            priority="high",
+            package=package,
+            limit=5,
+            offset=offset,
+            component=component,
+            versions=versions,
+            statuses=statuses,
+            order=order,
         )
 
-        for cve_package in cve["packages"]:
-            cve_package["release_statuses"] = {}
-            for status in cve_package["statuses"]:
-                friendly_status = friendly_names[status["status"]]
-                cve_package["release_statuses"][status["release_codename"]] = {
-                    "slug": status["status"],
-                    "name": friendly_status["name"],
-                    "pocket": status["pocket"],
-                    "icon": friendly_status["icon"],
-                }
+        high_priority_cves = high_priority_response.get("cves")
+
+        for cve in high_priority_cves:
+            cve["summarized_status"] = get_summarized_status(
+                cve,
+                ignored_low_indicators,
+                vulnerable_indicators,
+                friendly_names,
+                versions,
+            )
+
+            for cve_package in cve["packages"]:
+                cve_package["release_statuses"] = (
+                    get_formatted_release_statuses(cve_package, friendly_names)
+                )
+
+    # Check if cve id is valid
+    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+
+    # Get cve with specific id
+    if is_cve_id and cves_response.get(query.upper()):
+        return flask.redirect(f"/security/{query.lower()}")
 
     return flask.render_template(
         "security/cves/index.html",
@@ -523,6 +484,10 @@ def cve(cve_id):
                 notice["published"]
             ).strftime("%-d %B %Y")
 
+    # Extract the priority reason from the notes
+    # and set a flag if there is only one note
+    # which is the priority reason
+    only_priority_note = False
     if cve.get("notes"):
         for note in cve["notes"]:
             if "Priority reason" in note["note"]:
@@ -531,6 +496,9 @@ def cve(cve_id):
                 match = re.search(pattern, text)
                 if match:
                     cve["priority_reason"] = match.group(1)
+                    print(len(cve["notes"]))
+                    if len(cve["notes"]) == 1:
+                        only_priority_note = True
 
     if cve.get("packages"):
         for package in cve["packages"]:
@@ -750,14 +718,8 @@ def cve(cve_id):
         maintained_count=maintained_count,
         other_references=other_references,
         only_upstream=only_upstream,
+        only_priority_note=only_priority_note,
     )
-
-
-def is_only_upstream(cve):
-    if len(cve["packages"]) == 1 and len(cve["packages"][0]["statuses"]) == 1:
-        if cve["packages"][0]["statuses"][0]["release_codename"] == "upstream":
-            return True
-    return False
 
 
 # CVE API
