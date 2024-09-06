@@ -544,7 +544,8 @@
       const maintainedReleasesSwitch = document.querySelector(".js-toggle-maintained");
       const hiddenCells = document.querySelectorAll(".js-unmaintained-cell");
 
-      // When the CVE does not include statuses for maintained releases, the switch is disabled and checked
+      // When the CVE does not include statuses for maintained releases or if it only has upstream statuses, 
+      // the switch is disabled and checked
       if (maintainedCount === 0 || isOnlyUpstream) {
 
         maintainedReleasesSwitch.checked = true;
