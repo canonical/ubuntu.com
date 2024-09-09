@@ -336,6 +336,7 @@ def cve_index():
     interim_releases = formatted_releases["interim_releases"]
     maintained_releases = formatted_releases["maintained_releases"]
     unmaintained_releases = formatted_releases["unmaintained_releases"]
+    lts_and_esm_releases = formatted_releases["lts_and_esm_releases"]
 
     # Define friendly names and icons for statuses
     friendly_names = {
@@ -446,6 +447,7 @@ def cve_index():
         interim_releases=interim_releases,
         order=order,
         detailed=detailed,
+        lts_and_esm_releases=lts_and_esm_releases,
     )
 
 
