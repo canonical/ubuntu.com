@@ -178,6 +178,7 @@ def get_formatted_releases(security_api, versions):
             selected_releases = lts_releases + esm_releases[:2]
 
     maintained_releases = lts_releases + esm_releases + interim_releases
+    lts_and_esm_releases = lts_releases + esm_releases
 
     selected_releases = sorted(
         selected_releases,
@@ -193,6 +194,7 @@ def get_formatted_releases(security_api, versions):
         "unmaintained_releases": unmaintained_releases,
         "interim_releases": interim_releases,
         "esm_releases": esm_releases,
+        "lts_and_esm_releases": lts_and_esm_releases,
     }
 
     return formatted_releases
