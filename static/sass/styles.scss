@@ -104,6 +104,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
 @import "pattern_modals";
+@import "pattern_tube-line";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -163,6 +164,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include ubuntu-p-dell;
+@include ubuntu-p-tube-line;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
@@ -1723,4 +1725,28 @@ legend {
 .p-breadcrumbs {
   margin-bottom: $spv--small;
   margin-top: $spv--small;
+}
+
+// Custom styling for the social media cards found on /20years
+.p-card--social-media {
+  @extend .p-card;
+  background: $color-x-light;
+  border: unset;
+
+  .p-heading-icon {
+    margin-bottom: 0;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: 0.5rem;
+    }
+
+    .p-heading-icon__header .p-heading-icon__img {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .p-heading-icon--small .p-heading-icon__header .p-heading-icon__title {
+    align-self: center;
+    margin: 0;
+  }
 }
