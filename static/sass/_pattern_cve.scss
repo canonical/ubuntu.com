@@ -145,10 +145,6 @@
       }
 
       .p-accordion__tab {
-        z-index: -1;
-      }
-
-      .is-affected-packages {
         background-color: #f3f3f3;
         z-index: 1;
       }
@@ -186,6 +182,7 @@
     background: #f3f3f3;
     bottom: 0;
     position: sticky;
+    z-index: 2;
   }
 
   .u-cve-gap {

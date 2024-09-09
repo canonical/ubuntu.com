@@ -19,6 +19,7 @@ from webapp.security.helpers import (
     is_only_upstream,
     get_formatted_releases,
     get_formatted_release_statuses,
+    does_not_include_base_url,
 )
 
 
@@ -331,6 +332,8 @@ def cve_index():
     all_releases = formatted_releases["all_releases"]
     selected_releases = formatted_releases["selected_releases"]
     lts_releases = formatted_releases["lts_releases"]
+    esm_releases = formatted_releases["esm_releases"]
+    interim_releases = formatted_releases["interim_releases"]
     maintained_releases = formatted_releases["maintained_releases"]
     unmaintained_releases = formatted_releases["unmaintained_releases"]
 
@@ -383,7 +386,7 @@ def cve_index():
                 )
 
     else:
-        # Request latest 5 high priority cves
+        # If not, request latest 5 high priority cves
 
         high_priority_response = security_api.get_cves(
             query=query,
@@ -439,23 +442,11 @@ def cve_index():
         maintained_releases=maintained_releases,
         unmaintained_releases=unmaintained_releases,
         high_priority_cves=high_priority_cves,
+        esm_releases=esm_releases,
+        interim_releases=interim_releases,
         order=order,
         detailed=detailed,
     )
-
-
-def does_not_include_base_url(link):
-    default_reference_urls = [
-        "https://cve.mitre.org/",
-        "https://nvd.nist.gov",
-        "https://launchpad.net/",
-        "https://security-tracker.debian.org",
-        "https://ubuntu.com/security/notices",
-    ]
-    for base_url in default_reference_urls:
-        if base_url in link:
-            return False
-    return True
 
 
 def cve(cve_id):

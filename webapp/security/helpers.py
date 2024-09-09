@@ -109,19 +109,14 @@ def get_summarized_status(
 
 
 """
-Checks if there is only an upstream status for a CVE with only 1 package
-"""
-
-
-def is_only_upstream(cve):
-    if len(cve["packages"]) == 1 and len(cve["packages"][0]["statuses"]) == 1:
-        if cve["packages"][0]["statuses"][0]["release_codename"] == "upstream":
-            return True
-    return False
-
-
-"""
-Calls releases endpoint and filters releases based on version support
+Calls releases endpoint and formats releases based on version support.
+They are divided into four categories:
+LTS releases - in standard support and flagged as LTS.
+ESM releases - out of standard support but within extended support(ESM)
+and flagged as ESM.
+Interim releases - in standard support but not LTS or ESM.
+Maintained releases - all LTS, ESM, and interim releases.
+Unmaintained - out of standard, LTS, and ESM support.
 """
 
 
@@ -129,39 +124,48 @@ def get_formatted_releases(security_api, versions):
     # Releases in desc order
     releases_json = security_api.get_releases()
 
-    # Releases without "upstream"
+    # Filter out "upstream" releases and those still in development
     all_releases = []
     for release in releases_json:
-        if release["codename"] != "upstream":
+        if (
+            release["codename"] != "upstream"
+            and release["development"] is not True
+        ):
             all_releases.append(release)
 
     maintained_releases = []
-    selected_releases = []
     lts_releases = []
     unmaintained_releases = []
+    interim_releases = []
+    esm_releases = []
+
+    # Releases show in the CVE table and search results
+    selected_releases = []
 
     for release in all_releases:
-        # format dates
+        # Format dates
         support_date = datetime.strptime(
             release["support_expires"], "%Y-%m-%dT%H:%M:%S"
         )
         esm_date = datetime.strptime(
             release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
         )
-        release_date = datetime.strptime(
-            release["release_date"], "%Y-%m-%dT%H:%M:%S"
-        )
 
-        if support_date < datetime.now():
+        if support_date > datetime.now():
+            if release["support_tag"] == "LTS":
+                lts_releases.append(release)
+            else:
+                interim_releases.append(release)
+        else:
             if esm_date > datetime.now():
-                if release["lts"] and release_date < datetime.now():
-                    lts_releases.append(release)
+                if release["support_tag"] == "ESM":
+                    esm_releases.append(release)
             else:
                 unmaintained_releases.append(release)
-        elif release_date < datetime.now():
-            maintained_releases.append(release)
 
-        # filter releases
+        # Filter selected releases based on version filters
+        # Defaults to the 5 most recent maintained releases
+        # if no version filters are present
         if versions and versions != [""]:
             for version in versions:
                 if version == release["codename"]:
@@ -171,7 +175,9 @@ def get_formatted_releases(security_api, versions):
                     else:
                         break
         else:
-            selected_releases = maintained_releases + lts_releases[:2]
+            selected_releases = lts_releases + esm_releases[:2]
+
+    maintained_releases = lts_releases + esm_releases + interim_releases
 
     selected_releases = sorted(
         selected_releases,
@@ -185,6 +191,8 @@ def get_formatted_releases(security_api, versions):
         "selected_releases": selected_releases,
         "lts_releases": lts_releases,
         "unmaintained_releases": unmaintained_releases,
+        "interim_releases": interim_releases,
+        "esm_releases": esm_releases,
     }
 
     return formatted_releases
@@ -208,3 +216,34 @@ def get_formatted_release_statuses(cve_package, friendly_names):
         }
 
     return cve_package["release_statuses"]
+
+
+"""
+Checks if there is only an upstream status for a CVE with only 1 package
+"""
+
+
+def is_only_upstream(cve):
+    if len(cve["packages"]) == 1 and len(cve["packages"][0]["statuses"]) == 1:
+        if cve["packages"][0]["statuses"][0]["release_codename"] == "upstream":
+            return True
+    return False
+
+
+"""
+Checks if references link is from a default reference URL
+"""
+
+
+def does_not_include_base_url(link):
+    default_reference_urls = [
+        "https://cve.mitre.org/",
+        "https://nvd.nist.gov",
+        "https://launchpad.net/",
+        "https://security-tracker.debian.org",
+        "https://ubuntu.com/security/notices",
+    ]
+    for base_url in default_reference_urls:
+        if base_url in link:
+            return False
+    return True

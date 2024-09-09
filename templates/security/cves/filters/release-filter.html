@@ -6,7 +6,7 @@
            value="maintained" />
     <span class="p-checkbox__label" id="allMaintainedReleases">All maintained releases</span>
   </label>
-  {% for release in maintained_releases %}
+  {% for release in lts_releases %}
     <label class="p-checkbox">
       <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />
       <span class="p-checkbox__label" id={{ release.version }}>{{ release.version }}
@@ -19,7 +19,7 @@
       <br />
       Ubuntu Pro
     </p>
-    {% for release in lts_releases %}
+    {% for release in esm_releases %}
       <label class="p-checkbox">
         <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />
         <span class="p-checkbox__label" id={{ release.version }}>{{ release.version }}
@@ -27,7 +27,7 @@
           <span class="u-text--muted">{{ release.codename }}</span></span>
         </label>
       {% endfor %}
-      <p>
+      <p class="u-no-margin--bottom">
         <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
       </p>
       <div class="js-unmaintained-releases u-hide">
