@@ -711,11 +711,7 @@ function openSearch(e) {
   Array.from(searchButtons).forEach((searchButton) => {
     searchButton.setAttribute("aria-pressed", true);
   });
-
   addClassesToElements([navigation], ["has-search-open"]);
-  if (secondaryNav) {
-    addClassesToElements([secondaryNav], ["u-hide"]);
-  }
   searchInput.focus();
   document.addEventListener("keyup", escKeyPressHandler);
 }
@@ -724,13 +720,7 @@ function closeSearch() {
   searchButtons.forEach((searchButton) => {
     searchButton.removeAttribute("aria-pressed");
   });
-
   navigation.classList.remove("has-search-open");
-
-  if (secondaryNav) {
-    secondaryNav.classList.remove("u-hide");
-  }
-
   document.removeEventListener("keyup", escKeyPressHandler);
 }
 
