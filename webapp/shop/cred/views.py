@@ -589,6 +589,7 @@ def cred_schedule(
 def cred_your_exams(
     ua_contracts_api,
     trueability_api,
+    proctor_api,
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
