@@ -142,6 +142,7 @@ class ProctorAPI:
             "exam_date_time",
             "client_exam_id",
             "ext_exam_id",
+            "exam_link",
         ]
         optional_keys = ["last_name", "timezone", "ai_enabled"]
         self.__check_keys_exist(required_keys, student_session)
