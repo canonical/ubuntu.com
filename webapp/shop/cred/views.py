@@ -390,6 +390,9 @@ def cred_schedule(
                             "client_exam_id": 1,
                             "timezone": timezone,
                             "ai_enabled": "1",
+                            "exam_link": "https://ubuntu.com/"
+                            + "credentials/exam?uuid="
+                            + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.update_student_session(
                             student_session_id,
@@ -408,7 +411,7 @@ def cred_schedule(
                             "timezone": timezone,
                             "ai_enabled": "1",
                             "exam_link": "https://ubuntu.com/"
-                            + "credentials/exam?id="
+                            + "credentials/exam?uuid="
                             + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.create_student_session(
@@ -486,7 +489,7 @@ def cred_schedule(
                         "timezone": timezone,
                         "ai_enabled": "1",
                         "exam_link": "https://ubuntu.com/credentials/"
-                        + f"exam?id={uuid}",
+                        + f"exam?uuid={uuid}",
                     }
                     proctor_api.create_student_session(student_session_data)
                 except Exception as error:
