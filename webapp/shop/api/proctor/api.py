@@ -1,6 +1,7 @@
 from requests import Session
 import os
 import datetime
+from urllib.parse import urlencode
 
 
 class ProctorAPI:
@@ -115,9 +116,23 @@ class ProctorAPI:
 
     def get_or_create_student(self, student: dict):
         response = self.get_student(student["email"])
-        if response["student"]["id"]:
-            return response
-        return self.create_student(student)
+        if response.get("status") == 422:
+            return self.create_student(student)
+        elif response.get("data", None):
+            return response["data"]
+
+    def get_student_sessions(self, qps: dict):
+        uri = "/api/v2/student-sessions"
+        accepted_params = [
+            "exam_id",
+            "student_id",
+            "ext_tenant_id",
+            "ext_student_id",
+            "ext_exam_id",
+        ]
+        qps = self.filter_dict_by_keys(accepted_params, qps)
+        uri = f"{uri}?{urlencode(qps)}"
+        return self.make_request("GET", uri).json()
 
     def create_student_session(self, student_session: dict):
         uri = "/api/v2/student-sessions"
@@ -126,6 +141,7 @@ class ProctorAPI:
             "student_email",
             "exam_date_time",
             "client_exam_id",
+            "ext_exam_id",
         ]
         optional_keys = ["last_name", "timezone", "ai_enabled"]
         self.__check_keys_exist(required_keys, student_session)
