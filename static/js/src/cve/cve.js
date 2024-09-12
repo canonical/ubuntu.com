@@ -11,12 +11,17 @@ const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
-const releaseCheckboxes = releaseFilter ? releaseFilter.querySelectorAll(".p-checkbox__input") : null;
+const releaseCheckboxes = releaseFilter
+  ? releaseFilter.querySelectorAll(".p-checkbox__input")
+  : null;
 const applyFiltersButton = document.querySelector("#apply-filters");
 const packageInput = document.querySelector("#affectedPackages");
-const priorityCheckboxes =
-  priorityFilter ? priorityFilter.querySelectorAll(".p-checkbox__input") : null;
-const statusCheckboxes = statusFilter ? statusFilter.querySelectorAll(".p-checkbox__input") : null;
+const priorityCheckboxes = priorityFilter
+  ? priorityFilter.querySelectorAll(".p-checkbox__input")
+  : null;
+const statusCheckboxes = statusFilter
+  ? statusFilter.querySelectorAll(".p-checkbox__input")
+  : null;
 const unmaintainedReleasesLink = document.querySelector(
   ".js-show-unmaintained-releases",
 );
