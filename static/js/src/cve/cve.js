@@ -52,32 +52,9 @@ function handleSearchInput() {
   window.location.href = url.href;
 }
 
-function removeSpinner() {
-  const submitButton = document.querySelector("#cve-search-button");
-  if (submitButton) {
-    const spinner = document.querySelector(".p-icon--spinner");
-    if (spinner) {
-      submitButton.classList.remove("is-processing");
-      submitButton.disabled = false;
-      submitButton.innerText = "Search";
-      submitButton.removeChild(spinner);
-    }
-  }
-}
-
-function attachLoadingSpinner() {
-  const spinnerIcon = document.createElement("i");
-  spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
-  searchSubmitButton.classList.add("is-processing");
-  searchSubmitButton.disabled = true;
-  searchSubmitButton.innerText = "";
-  searchSubmitButton.appendChild(spinnerIcon);
-}
-
 searchForm.addEventListener("submit", function (event) {
-  attachLoadingSpinner();
+  event.preventDefault();
   handleSearchInput();
-  removeSpinner();
 });
 
 // Adds listener to package filter text field and adds value
