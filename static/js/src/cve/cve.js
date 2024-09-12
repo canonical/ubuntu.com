@@ -11,12 +11,12 @@ const priorityFilter = document.querySelector("#priority-filter");
 const statusFilter = document.querySelector("#status-filter");
 const clearFiltersButton = document.querySelector("#clear-filters");
 const vulnerableStatuses = ["pending", "needed", "deferred"];
-const releaseCheckboxes = releaseFilter.querySelectorAll(".p-checkbox__input");
+const releaseCheckboxes = releaseFilter ? releaseFilter.querySelectorAll(".p-checkbox__input") : null;
 const applyFiltersButton = document.querySelector("#apply-filters");
 const packageInput = document.querySelector("#affectedPackages");
 const priorityCheckboxes =
-  priorityFilter.querySelectorAll(".p-checkbox__input");
-const statusCheckboxes = statusFilter.querySelectorAll(".p-checkbox__input");
+  priorityFilter ? priorityFilter.querySelectorAll(".p-checkbox__input") : null;
+const statusCheckboxes = statusFilter ? statusFilter.querySelectorAll(".p-checkbox__input") : null;
 const unmaintainedReleasesLink = document.querySelector(
   ".js-show-unmaintained-releases",
 );
@@ -52,51 +52,82 @@ function handleSearchInput() {
   window.location.href = url.href;
 }
 
-searchSubmitButton.addEventListener("click", function (event) {
-  event.preventDefault();
+function removeSpinner() {
+  const submitButton = document.querySelector("#cve-search-button");
+  if (submitButton) {
+    const spinner = document.querySelector(".p-icon--spinner");
+    if (spinner) {
+      submitButton.classList.remove("is-processing");
+      submitButton.disabled = false;
+      submitButton.innerText = "Search";
+      submitButton.removeChild(spinner);
+    }
+  }
+}
+
+function attachLoadingSpinner() {
+  const spinnerIcon = document.createElement("i");
+  spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+  searchSubmitButton.classList.add("is-processing");
+  searchSubmitButton.disabled = true;
+  searchSubmitButton.innerText = "";
+  searchSubmitButton.appendChild(spinnerIcon);
+}
+
+searchForm.addEventListener("submit", function (event) {
+  attachLoadingSpinner();
   handleSearchInput();
+  removeSpinner();
 });
 
 // Adds listener to package filter text field and adds value
 // to URLSearchParams object
 function handlePackageInput() {
-  packageInput.addEventListener("input", function (event) {
-    urlParams.set("package", packageInput.value);
-  });
+  if (packageInput) {
+    packageInput.addEventListener("input", function (event) {
+      urlParams.set("package", packageInput.value);
+    });
+  }
 }
 handlePackageInput();
 
 // Adds event listeners to all filter checkboxes
 function handleFilters() {
-  releaseCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {
-      if (event.target.checked) {
-        addParam(releaseFilter.name, event.target.value);
-      } else {
-        removeParam(releaseFilter.name, event.target.value);
-      }
+  if (releaseCheckboxes) {
+    releaseCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(releaseFilter.name, event.target.value);
+        } else {
+          removeParam(releaseFilter.name, event.target.value);
+        }
+      });
     });
-  });
+  }
 
-  priorityCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {
-      if (event.target.checked) {
-        addParam(priorityFilter.name, event.target.value);
-      } else {
-        removeParam(priorityFilter.name, event.target.value);
-      }
+  if (priorityCheckboxes) {
+    priorityCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(priorityFilter?.name, event.target.value);
+        } else {
+          removeParam(priorityFilter?.name, event.target.value);
+        }
+      });
     });
-  });
+  }
 
-  statusCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function (event) {
-      if (event.target.checked) {
-        addParam(statusFilter.name, event.target.value);
-      } else {
-        removeParam(statusFilter.name, event.target.value);
-      }
+  if (statusCheckboxes) {
+    statusCheckboxes.forEach(function (checkbox) {
+      checkbox.addEventListener("change", function (event) {
+        if (event.target.checked) {
+          addParam(statusFilter?.name, event.target.value);
+        } else {
+          removeParam(statusFilter?.name, event.target.value);
+        }
+      });
     });
-  });
+  }
 }
 handleFilters();
 
@@ -124,10 +155,12 @@ function removeParam(param, value) {
 }
 
 function applyFilters() {
-  applyFiltersButton.addEventListener("click", function (event) {
-    url.search = urlParams.toString();
-    window.location.href = url.href;
-  });
+  if (applyFiltersButton) {
+    applyFiltersButton.addEventListener("click", function (event) {
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    });
+  }
 }
 applyFilters();
 
@@ -142,11 +175,13 @@ function handleFilterPersist() {
   if (urlParams.has("version")) {
     const params = urlParams.getAll("version");
 
-    releaseCheckboxes.forEach(function (checkbox) {
-      if (params.includes(checkbox.value)) {
-        checkbox.checked = true;
-      }
-    });
+    if (releaseCheckboxes) {
+      releaseCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
 
     if (includesFilterSubset(params, maintainedReleases)) {
       let maintainedCheckbox = releaseFilter.querySelector(
@@ -159,29 +194,33 @@ function handleFilterPersist() {
   if (urlParams.has("priority")) {
     const params = urlParams.getAll("priority");
 
-    priorityCheckboxes.forEach(function (checkbox) {
-      if (params.includes(checkbox.value)) {
-        checkbox.checked = true;
-      }
-    });
+    if (priorityCheckboxes) {
+      priorityCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
   }
 
   if (urlParams.has("status")) {
     const params = urlParams.getAll("status");
 
-    if (params.includes("pending")) {
+    if (params.includes("pending") && statusFilter) {
       const checkbox = statusFilter.querySelector("input[value='vulnerable']");
       checkbox.checked = true;
     }
 
-    statusCheckboxes.forEach(function (checkbox) {
-      if (params.includes(checkbox.value)) {
-        checkbox.checked = true;
-      }
-    });
+    if (statusCheckboxes) {
+      statusCheckboxes.forEach(function (checkbox) {
+        if (params.includes(checkbox.value)) {
+          checkbox.checked = true;
+        }
+      });
+    }
   }
 
-  if (urlParams.has("detailed")) {
+  if (urlParams.has("detailed") && detailedSwitch) {
     detailedSwitch.checked = true;
     handleDetailedViewSwitch({ target: detailedSwitch });
   }
@@ -189,19 +228,21 @@ function handleFilterPersist() {
 handleFilterPersist();
 
 function handleClearFilters() {
-  clearFiltersButton.addEventListener("click", function (event) {
-    for (const [param] of urlParams.entries()) {
-      if (urlParams.has("q")) {
-        if (param != "q") {
-          urlParams.delete(param);
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener("click", function (event) {
+      for (const [param] of urlParams.entries()) {
+        if (urlParams.has("q")) {
+          if (param != "q") {
+            urlParams.delete(param);
+          }
+        } else {
+          urlParams.append("q", "");
         }
-      } else {
-        urlParams.append("q", "");
       }
-    }
-    url.search = urlParams.toString();
-    window.location.href = url.href;
-  });
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    });
+  }
 }
 handleClearFilters();
 
@@ -239,11 +280,13 @@ function getCheckboxFromRelease(release) {
 }
 
 function showUnmaintainedReleases() {
-  unmaintainedReleasesLink.onclick = function (event) {
-    event.preventDefault();
-    unmaintainedReleasesLink.classList.add("u-hide");
-    unmaintainedReleasesContainer.classList.remove("u-hide");
-  };
+  if (unmaintainedReleasesLink) {
+    unmaintainedReleasesLink.onclick = function (event) {
+      event.preventDefault();
+      unmaintainedReleasesLink.classList.add("u-hide");
+      unmaintainedReleasesContainer.classList.remove("u-hide");
+    };
+  }
 }
 showUnmaintainedReleases();
 
@@ -303,7 +346,9 @@ function handleDetailedViewSwitch(event) {
     urlParams.delete("detailed");
   }
 }
-detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+if (detailedSwitch) {
+  detailedSwitch.addEventListener("click", handleDetailedViewSwitch);
+}
 
 // Show detailed view of packages
 function handleShowDetailedView() {
@@ -356,7 +401,7 @@ handleHideDetailedView();
 
 // On page load, check if the detailed view switch is checked
 function handleDetailedView() {
-  if (detailedSwitch.checked) {
+  if (detailedSwitch?.checked) {
     handleShowDetailedView();
   } else {
     handleHideDetailedView();
