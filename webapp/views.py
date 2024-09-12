@@ -937,7 +937,11 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = flask.request.referrer
+    referrer = (
+        flask.request.referrer
+        if flask.request.referrer
+        else "https://ubuntu.com"
+    )
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
