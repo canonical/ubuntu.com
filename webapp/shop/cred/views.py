@@ -534,7 +534,9 @@ def cred_schedule(
                             ],
                             "timezone": timezone,
                             "ai_enabled": "1",
-                            "exam_link": f"https://ubuntu.com/credentials/exam?id={response['assessment_reservation']['uuid']}",
+                            "exam_link": "https://ubuntu.com/"
+                            + "credentials/exam?id="
+                            + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.create_student_session(
                             student_session_data
@@ -610,7 +612,8 @@ def cred_schedule(
                         "ext_exam_id": uuid,
                         "timezone": timezone,
                         "ai_enabled": "1",
-                        "exam_link": f"https://ubuntu.com/credentials/exam?id={uuid}",
+                        "exam_link": "https://ubuntu.com/credentials/"
+                        + f"exam?id={uuid}",
                     }
                     proctor_api.create_student_session(student_session_data)
                 except Exception as error:
@@ -1004,6 +1007,17 @@ def cred_exam(trueability_api, **_):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
 
     assessment_id = flask.request.args.get("id")
+    reservation_id = flask.request.args.get("uuid")
+    if reservation_id:
+        reservation = trueability_api.get_assessment_reservation(
+            reservation_id
+        )
+        assessment_id = (
+            reservation.get("assessment_reservation", {})
+            .get("assessment", {})
+            .get("id")
+        )
+
     assessment = trueability_api.get_assessment(assessment_id)
 
     if assessment.get("error"):
