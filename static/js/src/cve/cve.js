@@ -212,15 +212,14 @@ handleFilterPersist();
 function handleClearFilters() {
   if (clearFiltersButton) {
     clearFiltersButton.addEventListener("click", function (event) {
-      for (const [param] of urlParams.entries()) {
-        if (urlParams.has("q")) {
-          if (param != "q") {
-            urlParams.delete(param);
-          }
-        } else {
-          urlParams.append("q", "");
-        }
-      }
+      let keys = [...urlParams.keys()];
+      keys.forEach((key) => {
+        urlParams.delete(key);
+      });
+      // Always leave this empty param on clear
+      // so the user is not redirected to the landing page
+      urlParams.set("q", "");
+
       url.search = urlParams.toString();
       window.location.href = url.href;
     });
