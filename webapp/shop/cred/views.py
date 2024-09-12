@@ -360,8 +360,10 @@ def cred_schedule(
     cred_maintenance_end,
     is_cred_admin,
     trueability_api,
+    proctor_api,
     **_,
 ):
+    user = user_info(flask.session)
     error = None
 
     contract_long_id = flask.request.args.get("contractLongID")
@@ -382,7 +384,6 @@ def cred_schedule(
 
     if flask.request.method == "POST":
         data = flask.request.form
-
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = datetime.strptime(
@@ -440,6 +441,7 @@ def cred_schedule(
                 maintenance_end=maintenance_end_tz,
             )
 
+        # if the exam is rescheduled
         if assessment_reservation_uuid:
             """check if the rescheduled datetime falls
             between the contract effectiveness window"""
@@ -483,7 +485,69 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
+            # exam rescheduled successfully
             else:
+                # update the student session with proctor
+                try:
+                    student = proctor_api.get_student(user["email"])
+                    student_sessions = proctor_api.get_student_sessions(
+                        {
+                            "ext_exam_id": assessment_reservation_uuid,
+                            "student_id": student.get("data", {}).get(
+                                "student_id"
+                            ),
+                        }
+                    )
+                    student_session_array = student_sessions.get("data", [{}])
+                    student_session = None
+                    if len(student_session_array) > 0:
+                        student_session = student_session_array[0]
+                    if student_session:
+                        student_session_id = student_session.get(
+                            "session_link", ""
+                        )
+                        updated_student_session_data = {
+                            "first_name": first_name,
+                            "last_name": last_name,
+                            "student_email": user["email"],
+                            "exam_date_time": starts_at.isoformat(),
+                            "ext_exam_id": response["assessment_reservation"][
+                                "uuid"
+                            ],
+                            "client_exam_id": 1,
+                            "timezone": timezone,
+                            "ai_enabled": "1",
+                        }
+                        proctor_api.update_student_session(
+                            student_session_id,
+                            updated_student_session_data,
+                        )
+                    else:
+                        student_session_data = {
+                            "first_name": first_name,
+                            "last_name": last_name,
+                            "student_email": user["email"],
+                            "exam_date_time": starts_at.isoformat(),
+                            "client_exam_id": 1,
+                            "ext_exam_id": response["assessment_reservation"][
+                                "uuid"
+                            ],
+                            "timezone": timezone,
+                            "ai_enabled": "1",
+                        }
+                        proctor_api.create_student_session(
+                            student_session_data
+                        )
+                except Exception as error:
+                    flask.current_app.extensions["sentry"].captureException(
+                        extra={
+                            "user_info": user_info(flask.session),
+                            "request_url": error.request.url,
+                            "request_headers": error.request.headers,
+                            "response_headers": error.response.headers,
+                            "response_body": error.response.json(),
+                        }
+                    )
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
@@ -496,6 +560,7 @@ def cred_schedule(
                     exam=exam,
                     contract_long_id=contract_long_id,
                 )
+        # if the exam is scheduled for the first time
         else:
             try:
                 response = ua_contracts_api.post_assessment_reservation(
@@ -530,8 +595,32 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
+            # exam scheduled successfully
             else:
                 uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                # get or create a student session with proctor
+                try:
+                    student_session_data = {
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "student_email": user["email"],
+                        "exam_date_time": starts_at.isoformat(),
+                        "client_exam_id": 1,
+                        "ext_exam_id": uuid,
+                        "timezone": timezone,
+                        "ai_enabled": "1",
+                    }
+                    proctor_api.create_student_session(student_session_data)
+                except Exception as error:
+                    flask.current_app.extensions["sentry"].captureException(
+                        extra={
+                            "user_info": user_info(flask.session),
+                            "request_url": error.request.url,
+                            "request_headers": error.request.headers,
+                            "response_headers": error.response.headers,
+                            "response_body": error.response.json(),
+                        }
+                    )
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
