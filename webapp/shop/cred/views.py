@@ -363,8 +363,8 @@ def cred_schedule(
     proctor_api,
     **_,
 ):
-    base_url = flask.request.url_root
     user = user_info(flask.session)
+    base_url = flask.request.url_root
     error = None
 
     contract_long_id = flask.request.args.get("contractLongID")
