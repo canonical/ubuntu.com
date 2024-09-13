@@ -363,6 +363,7 @@ def cred_schedule(
     proctor_api,
     **_,
 ):
+    base_url = flask.request.url_root
     user = user_info(flask.session)
     error = None
 
@@ -517,8 +518,8 @@ def cred_schedule(
                             "client_exam_id": 1,
                             "timezone": timezone,
                             "ai_enabled": "1",
-                            "exam_link": "https://ubuntu.com/"
-                            + "credentials/exam?uuid="
+                            "exam_link": base_url
+                            + +"credentials/exam?uuid="
                             + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.update_student_session(
@@ -537,8 +538,8 @@ def cred_schedule(
                             ],
                             "timezone": timezone,
                             "ai_enabled": "1",
-                            "exam_link": "https://ubuntu.com/"
-                            + "credentials/exam?uuid="
+                            "exam_link": base_url
+                            + +"credentials/exam?uuid="
                             + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.create_student_session(
@@ -615,7 +616,8 @@ def cred_schedule(
                         "ext_exam_id": uuid,
                         "timezone": timezone,
                         "ai_enabled": "1",
-                        "exam_link": "https://ubuntu.com/credentials/"
+                        "exam_link": base_url
+                        + "credentials/"
                         + f"exam?uuid={uuid}",
                     }
                     proctor_api.create_student_session(student_session_data)
@@ -735,6 +737,8 @@ def cred_your_exams(
     exams_complete = []
     exams_cancelled = []
     exams_expired = []
+    user = user_info(flask.session)
+    student = proctor_api.get_student(user["email"])
 
     if exam_contracts:
         # Fetch all reservations in one API call
@@ -826,21 +830,41 @@ def cred_your_exams(
                         state == RESERVATION_STATES["in_progress"]
                         or provisioned_but_not_taken
                     ):
-                        actions.extend(
-                            [
-                                {
-                                    "text": (
-                                        "Continue exam"
-                                        if state
-                                        == RESERVATION_STATES["in_progress"]
-                                        else "Take exam"
-                                    ),
-                                    "href": "/credentials/exam?"
-                                    f"id={assessment_id}",
-                                    "button_class": "p-button--positive",
-                                }
-                            ]
+                        student_session = proctor_api.get_student_sessions(
+                            {
+                                "ext_exam_id": r["uuid"],
+                                "student_id": student.get("data", {}).get(
+                                    "student_id"
+                                ),
+                            }
                         )
+                        student_session_array = student_session.get(
+                            "data", [{}]
+                        )
+                        student_session = None
+                        proctor_link = None
+                        if len(student_session_array) > 0:
+                            student_session = student_session_array[0]
+                            proctor_link = student_session.get(
+                                "display_session_link", None
+                            )
+                        if proctor_link:
+                            actions.extend(
+                                [
+                                    {
+                                        "text": (
+                                            "Continue exam"
+                                            if state
+                                            == RESERVATION_STATES[
+                                                "in_progress"
+                                            ]
+                                            else "Take exam"
+                                        ),
+                                        "href": proctor_link,
+                                        "button_class": "p-button--positive",
+                                    }
+                                ]
+                            )
 
                     exam_data = {
                         "name": name,
