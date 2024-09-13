@@ -737,8 +737,6 @@ def cred_your_exams(
     exams_complete = []
     exams_cancelled = []
     exams_expired = []
-    user = user_info(flask.session)
-    student = proctor_api.get_student(user["email"])
 
     if exam_contracts:
         # Fetch all reservations in one API call
@@ -833,21 +831,19 @@ def cred_your_exams(
                         student_session = proctor_api.get_student_sessions(
                             {
                                 "ext_exam_id": r["uuid"],
-                                "student_id": student.get("data", {}).get(
-                                    "student_id"
-                                ),
                             }
                         )
-                        student_session_array = student_session.get(
-                            "data", [{}]
-                        )
-                        student_session = None
                         proctor_link = None
-                        if len(student_session_array) > 0:
-                            student_session = student_session_array[0]
-                            proctor_link = student_session.get(
-                                "display_session_link", None
+                        if student_session is not None:
+                            student_session_array = student_session.get(
+                                "data", [{}]
                             )
+                            student_session = None
+                            if len(student_session_array) > 0:
+                                student_session = student_session_array[0]
+                                proctor_link = student_session.get(
+                                    "display_session_link", None
+                                )
                         if proctor_link:
                             actions.extend(
                                 [
