@@ -69,7 +69,10 @@ def get_summarized_status(
             key_with_non_zero_value = key
 
     if count == 1:
-        if key_with_non_zero_value == "ignored-high" or key_with_non_zero_value == "ignored-low":
+        if (
+            key_with_non_zero_value == "ignored-high"
+            or key_with_non_zero_value == "ignored-low"
+        ):
             return friendly_names["ignored"]
         else:
             return friendly_names[key_with_non_zero_value]
