@@ -35,7 +35,7 @@ def canonical_cla_api_github_login():
         response.cache_control.no_store = True
         return response
     else:
-        return flask.redirect("/legal/contributors/agreement2")
+        return flask.redirect("/legal/contributors/agreement")
 
 
 def canonical_cla_api_github_logout():
@@ -79,7 +79,7 @@ def canonical_cla_api_launchpad_login():
         response.cache_control.no_store = True
         return response
     else:
-        return flask.redirect("/legal/contributors/agreement2")
+        return flask.redirect("/legal/contributors/agreement")
 
 
 def canonical_cla_api_launchpad_logout():

@@ -590,8 +590,6 @@ app.add_url_rule(
     view_func=unlisted_engage_page,
 )
 
-# app.add_url_rule("/legal/contributors/agreement2",
-#  view_func=canonical_cla_form_page)
 app.add_url_rule(
     "/legal/contributors/agreement/api",
     methods=["POST", "GET"],
