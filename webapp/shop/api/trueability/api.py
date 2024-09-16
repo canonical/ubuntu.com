@@ -38,7 +38,7 @@ class TrueAbilityAPI:
         if retry and response.status_code == 401:
             response = self.make_request(
                 method,
-                uri,
+                path,
                 headers=headers,
                 data=data,
                 json=json,
