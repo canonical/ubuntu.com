@@ -5,17 +5,31 @@ import flask
 from canonicalwebteam import image_template
 from typing_extensions import TypedDict
 
-from webapp.context import (current_year, date_has_passed, descending_years,
-                            format_date, format_to_id, get_json_feed,
-                            get_meganav, get_navigation, modify_query,
-                            month_name, months_list, releases, schedule_banner,
-                            sort_by_key_and_ordered_list, split_list)
+from webapp.context import (
+    current_year,
+    date_has_passed,
+    descending_years,
+    format_date,
+    format_to_id,
+    get_json_feed,
+    get_meganav,
+    get_navigation,
+    modify_query,
+    month_name,
+    months_list,
+    releases,
+    schedule_banner,
+    sort_by_key_and_ordered_list,
+    split_list,
+)
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
-from webapp.shop.api.ua_contracts.api import (UAContractsAPIError,
-                                              UAContractsAPIErrorView,
-                                              UnauthorizedError,
-                                              UnauthorizedErrorView)
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPIError,
+    UAContractsAPIErrorView,
+    UnauthorizedError,
+    UnauthorizedErrorView,
+)
 from webapp.shop.flaskparser import UAContractsValidationError
 
 
@@ -181,12 +195,17 @@ def init_handlers(app, sentry):
         from pycountry import countries
 
         countries = [
-            {"alpha2": country.alpha_2, "name": country.name} for country in list(countries)]
+            {"alpha2": country.alpha_2, "name": country.name}
+            for country in list(countries)
+        ]
         return sorted(countries, key=lambda x: x["name"])
 
     @app.context_processor
     def utility_processor():
-        return {"image": image_template, "get_countries_list": get_countries_list}
+        return {
+            "image": image_template,
+            "get_countries_list": get_countries_list,
+        }
 
     app.add_template_filter(date_has_passed)
 
