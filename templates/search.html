@@ -2,7 +2,10 @@
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
-{% block title %}Search results{% if query %} for '{{ query }}'{% endif %}{% endblock %}
+{% block title %}
+  Search results
+  {% if query %}for '{{ query }}'{% endif %}
+{% endblock %}
 
 {% block content %}
 
@@ -11,10 +14,18 @@
       {% if query %}
         {% if estimatedTotal == 0 %}
           <h1 class="p-heading--2">Sorry we couldn't find "{{ query }}"</h1>
-          {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
+          {% if siteSearch %}
+            <h3>
+              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
+            </h3>
+          {% endif %}
         {% else %}
           <h1 class="p-heading--2">Search results for "{{ query }}"</h1>
-          {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
+          {% if siteSearch %}
+            <h3>
+              on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a>
+            </h3>
+          {% endif %}
         {% endif %}
       {% else %}
         <h1>Search Ubuntu and Canonical sites</h1>
@@ -26,11 +37,25 @@
   <div class="u-fixed-width">
     <form class="p-search-box" action="/search">
       <label for="search-input" class="u-off-screen">Search</label>
-      <input class="p-search-box__input" name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" />
-      {% if siteSearch %}
-        <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
-      {% endif %}
-      <button type="submit" alt="search" class="p-search-box__button" alt="search"><i class="p-icon--search">Submit</i></button>
+      <!-- honeypot search input -->
+      <input type="search"
+             id="search"
+             class="p-search-box__input u-hide "
+             name="search"
+             placeholder="Search our sites"
+             aria-label="Search our sites"
+             value="" />
+      <!-- end of honeypot search input -->
+      <input class="p-search-box__input"
+             name="q"
+             id="search-input"
+             type="search"
+             {% if query %}value="{{ query }}"{% endif %}
+             placeholder="e.g. juju" />
+      {% if siteSearch %}<input name="siteSearch" type="hidden" value="{{ siteSearch }}" />{% endif %}
+      <button type="submit" alt="search" class="p-search-box__button" alt="search">
+        <i class="p-icon--search">Submit</i>
+      </button>
     </form>
   </div>
 
@@ -40,10 +65,10 @@
         <div class="p-strip is-shallow">
           <div class="row">
             <div class="col-12">
-              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
-              <p>
-                {{ item.htmlSnippet | safe }}
-              </p>
+              <h5>
+                <a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe }}</a>
+              </h5>
+              <p>{{ item.htmlSnippet | safe }}</p>
               <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
             </div>
           </div>
@@ -57,7 +82,7 @@
               <a href="/search?q={{ query }}&amp;start={{ results.queries.previousPage[0].startIndex }}{% if siteSearch %}&amp;siteSearch={{ siteSearch }}{% endif %}">&#8249;&nbsp;Previous</a>
             {% endif %}
           </div>
-    
+
           <div class="col-6 u-align--right">
             {% if results.queries and results.queries.nextPage %}
               <a href="/search?q={{ query }}&amp;start={{ results.queries.nextPage[0].startIndex }}{% if siteSearch %}&amp;siteSearch={{ siteSearch }}{% endif %}">Next&nbsp;&#8250;</a>
@@ -80,8 +105,12 @@
           <div class="col-6">
             <h3>Still no luck?</h3>
             <ul class="p-list">
-              <li class="p-list__item is-ticked"><a href="/">Visit the Ubuntu homepage</a></li>
-              <li class="p-list__item is-ticked"><a href="/desktop/contact-us?product=search-page">Contact us</a></li>
+              <li class="p-list__item is-ticked">
+                <a href="/">Visit the Ubuntu homepage</a>
+              </li>
+              <li class="p-list__item is-ticked">
+                <a href="/desktop/contact-us?product=search-page">Contact us</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -89,4 +118,3 @@
     {% endif %}
   {% endif %}
 {% endblock content %}
-
