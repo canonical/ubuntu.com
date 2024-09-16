@@ -16,8 +16,8 @@ class ProctorAPI:
         self.app_id = os.getenv("PROCTOR360_APP_ID", "")
         self.app_secret = os.getenv("PROCTOR360_APP_SECRET", "")
         self.session = session
-        self.token = None
         self.expires_at = None
+        self.token = None
 
     def make_request(
         self,
