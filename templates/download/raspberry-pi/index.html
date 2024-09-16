@@ -149,7 +149,7 @@
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
-        <h2>Ubuntu Core 24</h2>
+        <h2>Ubuntu Core {{ releases.latest.core_version }}</h2>
       </div>
       <div class="col">
         <p>
@@ -201,10 +201,15 @@
             <tr>
               <th style="width: 15%;"></th>
               <th style="width: 10%;"></th>
-              <th style="width: 26%">
+              <th style="width: 18%">
                 Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
               </th>
-              <th style="width: 20%">Ubuntu Core {{ releases.latest.core_version }}</th>
+              <th style="width: 15%">
+                Ubuntu {{ releases.latest.full_version }}
+              </th>
+              <th style="width: 15%">
+                Ubuntu Core {{ releases.latest.core_version }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -223,7 +228,8 @@
                 }}
               </td>
               <td>Yes, certified</td>
-              <td>-</td>
+              <td>Yes</td>
+              <td>Yes, certified</td>
             </tr>
             <tr>
               <th>
@@ -239,6 +245,7 @@
                                 attrs={"class": "u-hide--small"},) | safe
                 }}
               </td>
+              <td>Yes</td>
               <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
@@ -257,6 +264,7 @@
                 }}
               </td>
               <td>Yes, certified</td>
+              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
             <tr>
@@ -274,6 +282,7 @@
                 }}
               </td>
               <td>Yes, certified</td>
+              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
             <tr>
@@ -291,23 +300,7 @@
                 }}
               </td>
               <td>Yes, certified</td>
-              <td>Yes, certified</td>
-            </tr>
-            <tr>
-              <th>
-                <p>Raspberry Pi 3</p>
-              </th>
-              <td>
-                {{ image(url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
-                                alt="Rapsberry Pi 3",
-                                height="48",
-                                width="75",
-                                hi_def=True,
-                                loading="lazy",
-                                attrs={"class": "u-hide--small"},) | safe
-                }}
-              </td>
-              <td>-</td>
+              <td>Yes</td>
               <td>Yes, certified</td>
             </tr>
           </tbody>
