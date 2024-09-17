@@ -107,7 +107,7 @@ function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
       }
 
       let total = 0;
-      let date: Date | null = null;
+      let date: string | null = null;
       const products: string[] = [];
 
       filteredBillingSubscriptions.forEach((subscription) => {

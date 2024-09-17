@@ -1,4 +1,4 @@
-import addDays from "date-fns/addDays";
+import { addDays } from "date-fns";
 import { UserSubscription } from "../../api/types";
 
 export const getNextCycleStart = (
@@ -6,5 +6,5 @@ export const getNextCycleStart = (
 ): Date | null => {
   if (!subscription?.end_date) return null;
 
-  return addDays(new Date(subscription.end_date), 1);
+  return addDays(subscription.end_date, 1);
 };

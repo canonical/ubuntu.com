@@ -29,12 +29,13 @@ let entries = {
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
   blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
   utmInheritance: "./static/js/src/utm-inheritance.js",
-  "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
   credEnterprisePurchasing: "./static/js/src/advantage/credentials/app.tsx",
   activate: "./static/js/src/activate.js",
   "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
+  credentialsDashboard:
+    "./static/js/src/advantage/credentials/dashboard/app.tsx",
   "canonical-cla": "./static/js/src/canonical-cla/app.tsx",
 };
 

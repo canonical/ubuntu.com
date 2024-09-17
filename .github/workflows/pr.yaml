@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-
     steps:
       - uses: actions/checkout@v4
 
@@ -74,7 +73,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dotrun
-        run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256
+        run: sudo pip3 install dotrun
 
       - name: Install dependencies
         run: |

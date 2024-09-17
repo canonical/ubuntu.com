@@ -86,19 +86,19 @@ describe("Content", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-09-11T02:56:54Z"),
+        start_date: "2021-09-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("1999-08-11T02:56:54Z"),
+        start_date: "1999-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);
@@ -116,15 +116,15 @@ describe("Content", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-09-11T02:56:54Z"),
+        start_date: "2021-09-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.Free,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);

@@ -54,6 +54,7 @@ export interface FormValues {
   isTaxSaved: boolean;
   isCardValid: boolean;
   isInfoSaved: boolean;
+  poNumber?: string | null;
 }
 
 export type marketplace =

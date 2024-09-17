@@ -22,6 +22,7 @@ import {
   DISTRIBUTOR_SELECTOR_KEYS,
   PRO_SELECTOR_KEYS,
 } from "advantage/distributor/utils/utils";
+import { confirmNavigateListener } from "../../utils/helpers";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -47,6 +48,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   const postPurchaseMutation = postPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
+  const poNumber = values.poNumber || null;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -74,6 +76,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   }, [values.country]);
 
   const onPayClick = async () => {
+    confirmNavigateListener.set();
     validateForm().then((errors) => {
       const possibleErrors = Object.keys(errors);
       possibleErrors.forEach((error) => {
@@ -135,6 +138,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         products,
         action: buyAction,
         coupon,
+        poNumber,
       },
       {
         onSuccess: (purchaseId: string) => {
@@ -154,6 +158,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   };
 
   const handleError = (error: Error) => {
+    confirmNavigateListener.clear();
     setIsLoading(false);
     setFieldValue("Description", false);
     setFieldValue("TermsAndConditions", false);
@@ -336,6 +341,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
+          confirmNavigateListener.clear();
           localStorage.removeItem("shop-checkout-data");
           const product = products[0].product;
           const quantity = products[0].quantity;

@@ -108,15 +108,7 @@ function setUpStaticForms(form, formId) {
               }
               break;
             case "text":
-              if (input.value !== "") {
-                message += input.value + comma + " ";
-              }
-              break;
             case "number":
-              if (input.value !== "") {
-                message += input.value + comma + " ";
-              }
-              break;
             case "textarea":
               if (input.value !== "") {
                 message += input.value + comma + " ";

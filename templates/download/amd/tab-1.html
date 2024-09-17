@@ -1,23 +1,31 @@
-<div tabindex="0" role="tabpanel" id="kira-k24-vision-tab" aria-labelledby="kira-k24-vision" aria-hidden="false">
+<div tabindex="0"
+     role="tabpanel"
+     id="kira-k24-vision-tab"
+     aria-labelledby="kira-k24-vision"
+     aria-hidden="false">
   <div class="row p-strip is-shallow u-no-padding--top">
     <div class="col-3 col-medium-2">
-      <h2 class="u-hide--small">Kria&trade; K24 SOMs <br class="u-hide--medium" />(KD240)</h2>
+      <h2 class="u-hide--small">
+        Kria&trade; K24 SOMs
+        <br class="u-hide--medium" />
+        (KD240)
+      </h2>
     </div>
     <div class="col-6 amd-container u-align--center col-medium-4">
       {{
-        image (
-        url="https://assets.ubuntu.com/v1/08a98740-AMD%20KD240.png",
-        alt="AMD Kria KR260 circuit board",
-        width="312",
-        height="250",
-        hi_def=True,
-        loading="lazy"
+        image(
+          url="https://assets.ubuntu.com/v1/08a98740-AMD%20KD240.png",
+          alt="AMD Kria KR260 circuit board",
+          width="312",
+          height="250",
+          hi_def=True,
+          loading="lazy",
         ) | safe
       }}
     </div>
   </div>
+  <hr />
   <div class="row p-strip u-no-padding--top">
-    <hr class="col-9" />
     <div class="col-3 col-medium-2">
       <h3>Ubuntu Server 22.04 LTS</h3>
     </div>
@@ -30,37 +38,34 @@
       <hr class="p-rule" />
       <div class="p-notification--information is-borderless u-no-margin--bottom">
         <div class="p-notification__content">
-          <p class="p-notification__message">Please check the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513">AMD Kria&trade; Wiki</a> for the platform's latest boot firmware, technical documentation, and the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1413611532/Canonical+Ubuntu">Ubuntu for AMD-Xilinx Devices Wiki</a> for known issues and limitations.</p>
+          <p class="p-notification__message">
+            Please check the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1641152513">AMD Kria&trade; Wiki</a> for the platform's latest boot firmware, technical documentation, and the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1413611532/Canonical+Ubuntu">Ubuntu for AMD-Xilinx Devices Wiki</a> for known issues and limitations.
+          </p>
         </div>
       </div>
       <p>
-        <a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/kria24-ubuntu-22.04/iot-limerick-kria-classic-server-2204-classic-22.04-kd05-20240223-170.img.xz">Download 22.04 LTS</a>
+        <a class="p-button--positive"
+           href="https://people.canonical.com/~platform/images/xilinx/kria24-ubuntu-22.04/iot-limerick-kria-classic-server-2204-classic-22.04-kd05-20240223-170.img.xz">Download 22.04 LTS</a>
       </p>
     </div>
   </div>
 
   {% include "download/amd/_working_commercial_section.html" %}
 
-  <div class="row p-strip u-no-padding--top">
-    <hr class="col-9" />
-    <div class="col-3">
-      <h3 class="p-heading--5 u-no-padding--top"><strong>Looking for more open source packages and efficient tools to manage your devices? Getting started with Ubuntu Pro </strong></h3>
-    </div>
-    <div class="col-6">
-      <p>Ubuntu Pro for Devices provides a comprehensive subscription-based offering layering on Ubuntu that simplifies security for device deployments and ensures compliance with the Cyber Resilience Act (CRA). Ubuntu Pro for Devices provides up to 12 years of security maintenance for the entire Ubuntu operating system and over 20,000 popular open source packages, ranging from Python,  OpenJDK, OpenCV, MQTT, OpenSSL, Go, to Docker and Robot Operating System (ROS). Additionally, the subscription also provides device management capabilities through <a href="/landscape">Landscape</a>, Canonical's systems management tool, and access to <a href="/real-time">Real-time Ubuntu</a> for latency-critical use cases.</p>
-      <p>For more information, download the <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Ubuntu%20Pro%20for%20Devices%20DS%203.5.2024.pdf?version=0&_gl=1*1qkskcg*_gcl_au*OTM2OTYyNzYzLjE3MTI3NjA1NDE.&_ga=2.116749827.441616180.1716921234-595833515.1716921234">Ubuntu Pro for devices datasheet</a>, reach out to your distributor or contact Canonical directly.</p>
-    </div>
-  </div>
+  {% include "download/amd/_ubuntu_pro_section.html" %}
 
+  <hr />
   <div class="row p-strip u-no-padding--top">
-    <hr class="col-9" />
     <div class="col-3">
-      <h3 class="p-heading--5 u-no-padding--top"><strong>AMD Ubuntu Software Development Kit</strong></h3>
+      <h3 class="p-heading--5 u-no-padding--top">
+        <strong>AMD Ubuntu Software Development Kit</strong>
+      </h3>
     </div>
     <div class="col-6">
       <p>Ubuntu developers targeting Kria&trade; KD240 platform may also want to download the following files:</p>
 
-      <table class="amd-table" aria-label="AMD Ubuntu Software Development Kit table">
+      <table class="amd-table"
+             aria-label="AMD Ubuntu Software Development Kit table">
         <thead>
           <tr>
             <th>Image name</th>
@@ -97,9 +102,11 @@
     </div>
   </div>
 
+  <hr />
   <div class="u-fixed-width">
-    <hr class="col-9" />
-    <p>If you have any questions about the platform or would like information about our certification program, <a href="/download/contact-us" class="js-invoke-modal">contact us</a>.</p>
+    <p>
+      If you have any questions about the platform or would like information about our certification program, <a href="/download/contact-us" class="js-invoke-modal">contact us</a>.
+    </p>
   </div>
-  
+
 </div>

@@ -1,0 +1,21 @@
+# Params
+# caption: Caption for image (required)
+# Slots
+# image_content: Slot for image content, the image must have the class 'p-image-container__image'.
+
+{%- macro image_wrapper(caption) -%}
+  {%- set image_content = caller('image_content') -%}
+  {%- set has_image = image_content|trim|length>0 -%}
+  <section class="p-section">
+    <div class="row">
+      {% if has_image %}
+        <div class="p-image-container u-align--center u-vertically-center u-no-padding--bottom">
+          {{ image_content }}
+        </div>
+      {% endif %}
+      <div class="col-start-large-4 col-9">
+        <small class="u-text--muted">{{ caption }}</small>
+      </div>
+    </div>
+  </section>
+{%- endmacro -%}

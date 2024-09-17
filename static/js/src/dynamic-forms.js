@@ -1,3 +1,10 @@
+/**
+ * This script is used to load dynamic contact forms on the website.
+ * Important notes about using dynamic forms:
+ * - Form fields that should be in the payload must have "name" attribute for the input fields.
+ * - "js-formfield" class should be used to encapsulate fields that do not have "name" attributes. These fields will be consolidated and added to the "Comments_from_lead__c" payload.
+ * - "Comments_from_lead__c" must be a hidden field.
+ */
 import "infer-preferred-language.js";
 import { prepareInputFields } from "./prepare-form-inputs.js";
 
@@ -246,23 +253,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               path: window.location.pathname,
             });
           } else {
-            var valid = true;
-
-            if (button.classList.contains("js-validate-form")) {
-              var form = button.closest("form");
-
-              valid = validateForm(form);
-            }
-
-            if (valid) {
-              index = index + 1;
-              setState(index);
-              dataLayer.push({
-                event: "interactive-forms",
-                action: "goto:" + index,
-                path: window.location.pathname,
-              });
-            }
+            index = index + 1;
+            setState(index);
+            dataLayer.push({
+              event: "interactive-forms",
+              action: "goto:" + index,
+              path: window.location.pathname,
+            });
           }
         });
       });
@@ -272,7 +269,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           ".js-other-container__checkbox",
         );
         var input = otherContainer.querySelector(".js-other-container__input");
-        checkbox.addEventListener("change", function (e) {
+        checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
             input.style.opacity = 1;
             input.focus();
@@ -282,49 +279,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           }
         });
       });
-
-      // Checks additional required fields to see whether a value has been set
-      function validateForm(form) {
-        var fields = form.querySelectorAll("[required]");
-        var validStates = [];
-
-        fields.forEach((field) => {
-          var fieldName = field.getAttribute("name");
-          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
-          var validationMessage = document.querySelector(
-            `.js-validation-${fieldName}`,
-          );
-          var inputValid = false;
-
-          inputs.forEach((input) => {
-            if (input.type === "checkbox" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "radio" && input.checked) {
-              inputValid = true;
-            }
-
-            if (input.type === "text" && input.value) {
-              inputValid = true;
-            }
-
-            if (input.type === "textarea" && input.value) {
-              inputValid = true;
-            }
-          });
-
-          if (!inputValid) {
-            validationMessage.classList.remove("u-hide");
-          } else {
-            validationMessage.classList.add("u-hide");
-          }
-
-          validStates.push(inputValid);
-        });
-
-        return !validStates.includes(false);
-      }
 
       // Updates the index and renders the changes
       function setState(index) {
@@ -336,7 +290,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        formContainer.removeChild(contactModal);
+        if (formContainer.contains(contactModal)) {
+          formContainer.removeChild(contactModal);
+        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
@@ -363,80 +319,76 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function createMessage(submit) {
         const contactModal = document.getElementById("contact-modal");
         var message = "";
-        var commentsFromLead = document.querySelector("#Comments_from_lead__c");
-        var formFields = contactModal.querySelectorAll(".js-formfield");
-        formFields.forEach(function (formField) {
-          var comma = ",";
-          var fieldsetForm = formField.querySelector(".js-formfield-title");
-          var fieldTitle = "";
-          if (fieldsetForm) {
-            fieldTitle = fieldsetForm;
-          } else {
-            fieldTitle =
-              formField.querySelector(".p-heading--5") ??
-              formField.querySelector(".p-modal__question-heading");
-          }
-          var inputs = formField.querySelectorAll("input, textarea");
-          if (fieldTitle) {
-            message += fieldTitle.innerText + "\r\n";
-          }
+        if (contactModal) {
+          var formFields = contactModal.querySelectorAll(".js-formfield");
 
-          inputs.forEach(function (input) {
-            var removeInputName = true;
-            switch (input.type) {
-              case "radio":
-                if (input.checked) {
-                  message += input.value + comma + " ";
-                }
-                break;
-              case "checkbox":
-                if (input.checked) {
-                  if (fieldsetForm) {
+          formFields.forEach(function (formField) {
+            var comma = ",";
+            var fieldsetForm = formField.querySelector(".js-formfield-title");
+            var fieldTitle = "";
+            if (fieldsetForm) {
+              fieldTitle = fieldsetForm;
+            } else {
+              fieldTitle =
+                formField.querySelector(".p-heading--5") ??
+                formField.querySelector(".p-modal__question-heading");
+            }
+            var inputs = formField.querySelectorAll("input, textarea");
+            if (fieldTitle) {
+              message += fieldTitle.innerText + "\r\n";
+            }
+
+            // Loop through each input and add to Comments_from_lead__c
+            inputs.forEach(function (input) {
+              switch (input.type) {
+                case "radio":
+                  if (input.checked) {
                     message += input.value + comma + " ";
-                  } else {
-                    // Forms that have column separation
-                    removeInputName = false;
-                    var subSectionText = "";
-                    if (
-                      input.closest('[class*="col-"]') &&
-                      input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section")
-                    ) {
-                      var subSection = input
-                        .closest('[class*="col-"]')
-                        .querySelector(".js-sub-section");
-                      subSectionText = subSection.innerText + ": ";
-                    }
-
-                    var label = formField.querySelector(
-                      "span#" + input.getAttribute("aria-labelledby"),
-                    );
-
-                    if (label) {
-                      label = subSectionText + label.innerText;
-                    } else {
-                      label = input.getAttribute("aria-labelledby");
-                    }
-                    message += label + comma + "\r\n\r\n";
                   }
-                }
-                break;
-              case "text":
-              case "number":
-              case "textarea":
-                if (input.value !== "") {
-                  message += input.value + comma + " ";
-                }
-                break;
-            }
-            // Remove name attribute to submit to Marketo
-            if (submit && removeInputName) {
-              input.removeAttribute("name");
-            }
+                  break;
+                case "checkbox":
+                  if (input.checked) {
+                    if (fieldsetForm) {
+                      message += input.value + comma + " ";
+                    } else {
+                      var subSectionText = "";
+                      if (
+                        input.closest('[class*="col-"]') &&
+                        input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section")
+                      ) {
+                        var subSection = input
+                          .closest('[class*="col-"]')
+                          .querySelector(".js-sub-section");
+                        subSectionText = subSection.innerText + ": ";
+                      }
+
+                      var label = formField.querySelector(
+                        "span#" + input.getAttribute("aria-labelledby"),
+                      );
+
+                      if (label) {
+                        label = subSectionText + label.innerText;
+                      } else {
+                        label = input.getAttribute("aria-labelledby");
+                      }
+                      message += label + comma + "\r\n\r\n";
+                    }
+                  }
+                  break;
+                case "text":
+                case "number":
+                case "textarea":
+                  if (input.value !== "") {
+                    message += input.value + comma + " ";
+                  }
+                  break;
+              }
+            });
+            message += "\r\n\r\n";
           });
-          message += "\r\n\r\n";
-        });
+        }
         return message;
       }
 

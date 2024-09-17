@@ -1,0 +1,40 @@
+<form id="status-filter" name="status">
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="fixed"
+           class="p-checkbox__input"
+           value="released" />
+    <span class="p-checkbox__label" id="fixed">Fixed</span>
+  </label>
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="vulnerable"
+           class="p-checkbox__input"
+           value="vulnerable" />
+    <span class="p-checkbox__label" id="vulnerable">Vulnerable</span>
+  </label>
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="ignored"
+           class="p-checkbox__input"
+           value="ignored" />
+    <span class="p-checkbox__label" id="ignored">Ignored</span>
+  </label>
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="notAffected"
+           class="p-checkbox__input"
+           value="not-affected" />
+    <span class="p-checkbox__label" id="notAffected">Not affected</span>
+  </label>
+  <label class="p-checkbox">
+    <input type="checkbox"
+           aria-labelledby="packageNotPresent"
+           class="p-checkbox__input"
+           value="DNE" />
+    <span class="p-checkbox__label" id="packageNotPresent">Package not present</span>
+  </label>
+</form>
+<p class="u-no-margin--bottom">
+  <a href="/security/cves/about#statuses">What do statuses mean?</a>
+</p>

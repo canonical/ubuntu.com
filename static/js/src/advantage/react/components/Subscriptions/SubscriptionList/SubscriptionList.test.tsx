@@ -69,15 +69,15 @@ describe("SubscriptionList", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2020-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2021-08-11T02:56:54Z",
       }),
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        start_date: new Date("1999-08-11T02:56:54Z"),
+        start_date: "1999-08-11T02:56:54Z",
       }),
     ];
     queryClient.setQueryData(["userSubscriptions"], subscriptions);
@@ -125,12 +125,12 @@ describe("SubscriptionList", () => {
   it("hide free subscription if a valid paid subscription exists", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
-        start_date: new Date("2023-12-31T02:56:54Z"),
-        end_date: new Date("2024-12-31T02:56:54Z"),
+        start_date: "2023-12-31T02:56:54Z",
+        end_date: "2024-12-31T02:56:54Z",
       }),
       userSubscriptionFactory.build({
-        start_date: new Date("2020-08-11T02:56:54Z"),
-        end_date: new Date("2021-08-11T02:56:54Z"),
+        start_date: "2020-08-11T02:56:54Z",
+        end_date: "2021-08-11T02:56:54Z",
       }),
       freeSubscription,
     ];
@@ -149,8 +149,8 @@ describe("SubscriptionList", () => {
       ["userSubscriptions"],
       [
         userSubscriptionFactory.build({
-          start_date: new Date("2020-08-11T02:56:54Z"),
-          end_date: new Date("2021-08-11T02:56:54Z"),
+          start_date: "2020-08-11T02:56:54Z",
+          end_date: "2021-08-11T02:56:54Z",
         }),
         freeSubscription,
       ],

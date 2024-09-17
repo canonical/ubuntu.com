@@ -104,6 +104,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
 @import "pattern_modals";
+@import "pattern_tube-line";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -163,11 +164,15 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include ubuntu-p-dell;
+@include ubuntu-p-tube-line;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include vf-p-icon-machines;
+@include vf-p-icon-units;
+@include vf-p-icon-plans;
 @include openstack-carousel;
 
 // Layouts:
@@ -189,12 +194,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // Overide the path to flags for dial codes
 .iti__flag {
-  background-image: url("#{$assets-path}b451b4db-flags.png");
+  background-image: url("#{$assets-path}685bc1a3-flags.png");
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url("#{$assets-path}5bb5145d-flags@2x.png");
+    background-image: url("#{$assets-path}01807c27-flags@2x.png");
   }
 }
 
@@ -1645,7 +1650,7 @@ ol.p-list--divided .p-list__item::before {
   row-gap: 0.5rem;
 }
 
-@media screen and (max-width: $breakpoint-small - 1) {
+@media screen and (max-width: $breakpoint-large - 1) {
   .u-table-horizontal-scroll {
     overflow-x: hidden;
     .u-table-horizontal-scroll__table {
@@ -1714,5 +1719,34 @@ legend {
   &.is-required::before {
     content: "* " !important;
     position: relative !important;
+  }
+}
+
+.p-breadcrumbs {
+  margin-bottom: $spv--small;
+  margin-top: $spv--small;
+}
+
+// Custom styling for the social media cards found on /20years
+.p-card--social-media {
+  @extend .p-card;
+  background: $color-x-light;
+  border: unset;
+
+  .p-heading-icon {
+    margin-bottom: 0;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: 0.5rem;
+    }
+
+    .p-heading-icon__header .p-heading-icon__img {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .p-heading-icon--small .p-heading-icon__header .p-heading-icon__title {
+    align-self: center;
+    margin: 0;
   }
 }

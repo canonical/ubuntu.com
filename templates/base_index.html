@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_class %}
-  is-dark
+  {% if not(no_dark == True) %}is-dark{% endif %}
 {% endblock body_class %}
 
 {% block outer_content %}
@@ -178,7 +178,7 @@
               Loved by developers and trusted by enterprises. Ubuntu is the first pick for organisations to support their software infrastructure and the OS chosen by 66% of experienced developers. <span class="u-text--muted">(HackerEarth, Developer Survey, 2020)</span>
             </p>
           </div>
-          <ul class="p-list--divided">
+          <ul class="p-list--divided is-homepage">
             <li class="p-list__item is-ticked">Authentically open source</li>
             <li class="p-list__item is-ticked">Secure by design</li>
             <li class="p-list__item is-ticked">A release cadence you can depend on</li>
@@ -217,7 +217,7 @@
             <p class="p-heading--2">
               <a href="/pro">Ubuntu Pro</a> is more than Linux.
               <br />
-              <a href="/security/certifications">Security and compliance</a> for the full stack.
+              <a href="/security/compliance-automation">Security and compliance</a> for the full stack.
             </p>
           </div>
           <p>
@@ -275,7 +275,7 @@
         </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>10 year security maintenance and CVE Patching</p>
         </li>
@@ -291,25 +291,25 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
+            <a href="/security/compliance-automation#fips">FIPS 140-2</a> cryptographic modules certified by NIST
           </p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
+            <a href="/security/compliance-automation#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
           </p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr>
+            <a href="/security/compliance-automation#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr>
             compliance
           </p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
+            <a href="/security/compliance-automation#cis">CIS profiles</a> for cyber defence and malware prevention
           </p>
         </li>
       </ul>
@@ -349,7 +349,7 @@
               Rethink what's possible with Linux and open source. Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.
             </p>
           </div>
-          <ul class="p-list--divided">
+          <ul class="p-list--divided is-homepage">
             <li class="p-list__item is-ticked">No mandatory subscriptions for Ubuntu</li>
             <li class="p-list__item is-ticked">
               <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed">apps</a>
@@ -406,13 +406,13 @@
           </div>
         </div>
       </div>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Optimised kernels for AWS, Azure, Google, Oracle, IBM</p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
+            <a href="/security/compliance-automation#fips">FIPS</a>, <a href="/security/compliance-automation#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
           </p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
@@ -424,7 +424,7 @@
           <p>Network & storage performance optimisation</p>
         </li>
       </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>GPU enablement for machines and containers</p>
         </li>
@@ -440,7 +440,7 @@
           <p>Cloud workload migration service</p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Containerisation and cloud-native migration service</p>
         </li>
@@ -507,7 +507,7 @@
             </div>
           </div>
 
-          <ul class="p-list--divided">
+          <ul class="p-list--divided is-homepage">
             <li class="p-list__item is-ticked">Support for all public cloud Kubernetes</li>
             <li class="p-list__item is-ticked">On-prem MicroK8s, Charmed K8s, kubeadm</li>
             <li class="p-list__item is-ticked">
@@ -607,7 +607,7 @@
         </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
@@ -627,7 +627,7 @@
           <p>Wide choice of SDN and storage</p>
         </li>
       </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="/engage/charmed-openstack-adoption-whitepaper">Upgrades and day-2 operations, automated</a>
@@ -643,7 +643,7 @@
           <p>High availability</p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="/telco">Carrier-grade NFVI</a>
@@ -671,13 +671,13 @@
         <div class="col">
           <div class="p-image-wrapper u-vertically-center p-image-container--2-3 u-hide--medium"
                style="background: rgba(0, 0, 0, 0.15)">
-              {{ image(url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
-                          alt="",
-                          width="1200",
-                          height="983",
-                          hi_def=True,
-                          loading="lazy") | safe
-              }}
+            {{ image(url="https://assets.ubuntu.com/v1/21ef9142-Ultra%20Secure%20Things.png",
+                        alt="",
+                        width="1200",
+                        height="983",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
           </div>
         </div>
         <div class="col">
@@ -704,7 +704,7 @@
                        alt="ARM" />
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/43635925-dell-technologies-logo.png"
+                  <img src="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png"
                        class="p-logo-section__logo"
                        alt="Dell" />
                 </div>
@@ -716,7 +716,7 @@
               </div>
             </div>
           </div>
-          <ul class="p-list--divided">
+          <ul class="p-list--divided is-homepage">
             <li class="p-list__item is-ticked">OTA compressed updates for apps, kernel and OS</li>
             <li class="p-list__item is-ticked">Automatic rollback and data snapshots</li>
             <li class="p-list__item is-ticked">
@@ -788,9 +788,9 @@
                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/43635925-dell-technologies-logo.png"
-                     alt="Dell"
-                     class="p-logo-section__logo" />
+                <img src="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png"
+                       class="p-logo-section__logo"
+                       alt="Dell" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
@@ -802,7 +802,7 @@
         </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
@@ -822,7 +822,7 @@
           </p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Configuration lockdown</p>
         </li>
@@ -907,7 +907,7 @@
           </div>
         </div>
       </div>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
@@ -927,7 +927,7 @@
           </p>
         </li>
       </ul>
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             <a href="https://maas.io/install">Super fast install</a> from scratch
@@ -943,7 +943,7 @@
           <a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">
           API-driven DHCP, DNS, PXE, IPAM, provisioning
         </li>
@@ -1012,7 +1012,7 @@
         </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
             Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
@@ -1026,11 +1026,11 @@
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>
-            <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
+            <a href="/security/compliance-automation#cis">CIS certification</a> for ROS and ROS2
           </p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--bottom">
           Trim time-to-market with SMART START consulting
         </li>
@@ -1093,7 +1093,7 @@
         </div>
       </div>
 
-      <ul class="row p-list--divided u-no-margin--bottom">
+      <ul class="row p-list--divided is-homepage u-no-margin--bottom">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Operate smoothly across public and private cloud</p>
         </li>
@@ -1107,7 +1107,7 @@
           <p>Bring the K8s operator pattern to classic workloads</p>
         </li>
       </ul>
-      <ul class="row p-list--divided">
+      <ul class="row p-list--divided is-homepage">
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
           <p>Lifecycle management and Day 2 operations</p>
         </li>
