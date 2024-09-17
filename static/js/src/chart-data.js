@@ -949,18 +949,6 @@ export var openStackReleases = [
 
 export var kubernetesReleases = [
   {
-    startDate: new Date("2022-09-01T00:00:00"),
-    endDate: new Date("2023-08-28T00:00:00"),
-    taskName: "Kubernetes 1.25",
-    status: "CANONICAL_KUBERNETES_SUPPORT",
-  },
-  {
-    startDate: new Date("2023-08-28T00:00:00"),
-    endDate: new Date("2024-04-28T00:00:00"),
-    taskName: "Kubernetes 1.25",
-    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
-  },
-  {
     startDate: new Date("2022-12-15T00:00:00"),
     endDate: new Date("2023-12-28T00:00:00"),
     taskName: "Kubernetes 1.26",
@@ -1018,6 +1006,18 @@ export var kubernetesReleases = [
     startDate: new Date("2025-04-28T00:00:00"),
     endDate: new Date("2025-12-28T00:00:00"),
     taskName: "Kubernetes 1.30",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2024-08-01T00:00:00"),
+    endDate: new Date("2025-08-28T00:00:00"),
+    taskName: "Kubernetes 1.31",
+    status: "CANONICAL_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2025-08-28T00:00:00"),
+    endDate: new Date("2026-04-28T00:00:00"),
+    taskName: "Kubernetes 1.31",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
 ];
@@ -1293,12 +1293,12 @@ export var microStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  "Kubernetes 1.31",
   "Kubernetes 1.30",
   "Kubernetes 1.29",
   "Kubernetes 1.28",
   "Kubernetes 1.27",
   "Kubernetes 1.26",
-  "Kubernetes 1.25",
 ];
 
 export var kernelReleaseScheduleNames = [
