@@ -1,10 +1,7 @@
-# Standard library
 import base64
 import os
 import urllib.parse as urlparse
 import requests
-
-# Packages
 import flask
 
 CANONICAL_CLA_API_URL = os.getenv("CANONICAL_CLA_API_URL")
@@ -101,13 +98,14 @@ def canonical_cla_api_launchpad_logout():
 def canonical_cla_api_proxy():
     """
     Proxy requests to the Canonical CLA API with the same headers and cookies.
-    This is necessary to because of different domains and CORS restrictions.
+    This is necessary because of different domains and CORS restrictions.
     """
     encoded_request_url = flask.request.args.get("request_url")
     if encoded_request_url is None:
         return flask.abort(400)
     request_url = base64.b64decode(encoded_request_url).decode("utf-8")
     api_service_response = requests.request(
+        timeout=10,
         method=flask.request.method,
         url=urlparse.urljoin(CANONICAL_CLA_API_URL, request_url),
         headers={"X-Forwarded-For": flask.request.remote_addr},

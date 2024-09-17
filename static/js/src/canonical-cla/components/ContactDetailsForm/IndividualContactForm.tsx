@@ -15,92 +15,6 @@ import * as Yup from "yup";
 import GithubEmailSelector from "../GithubEmailSelector";
 import LaunchpadEmailSelector from "../LaunchpadEmailSelector";
 
-// countries
-/*
-
-class IndividualCreateForm(BaseModel):
-    model_config = ConfigDict(
-        json_schema_extra={
-            "example": {
-                "first_name": "John",
-                "last_name": "Doe",
-                "phone_number": "+1234567890",
-                "address": "123 Main St, Springfield, IL 62701",
-                "country": "United States",
-                "github_email": "john@example.com",
-            }
-        }
-    )
-    first_name: Annotated[str, StringConstraints(max_length=50)]
-    last_name: Annotated[str, StringConstraints(max_length=50)]
-    phone_number: Annotated[str, StringConstraints(max_length=20)]
-    address: Annotated[str, StringConstraints(max_length=400)]
-    country: CountryShortName = Field(
-        ...,
-        description="Country in the short name format.",
-    )
-    github_email: Annotated[str | None, StringConstraints(max_length=100)] = None
-    launchpad_email: Annotated[str | None, StringConstraints(max_length=100)] = None
-
-    @model_validator(mode="after")
-    def _at_least_one_email(self):
-        if not self.github_email and not self.launchpad_email:
-            raise ValueError("At least one email must be provided")
-
-    @model_validator(mode="after")
-    def _emails_are_valid(self):
-        if self.github_email:
-            self.github_email = clean_email(self.github_email)
-            if not valid_email(self.github_email):
-                raise ValueError("Invalid GitHub email address")
-
-        if self.launchpad_email:
-            self.launchpad_email = clean_email(self.launchpad_email)
-            if not valid_email(self.launchpad_email):
-                raise ValueError("Invalid Launchpad email address")
-
-        return self
-
-
-class IndividualCreationSuccess(BaseModel):
-    message: str = "Individual Contributor License Agreement (CLA) signed successfully"
-
-
-class OrganizationCreateForm(BaseModel):
-    model_config = ConfigDict(
-        json_schema_extra={
-            "example": {
-                "name": "ACME Corp",
-                "email_domain": "acme.com",
-                "contact_name": "John Doe",
-                "contact_email": "john@acme.com",
-                "phone_number": "+1234567890",
-                "address": "123 Main St, Springfield, IL 62701",
-                "country": "United States",
-            }
-        }
-    )
-x    email_domain: Annotated[str, StringConstraints(max_length=100)]
-    contact_name: Annotated[str, StringConstraints(max_length=100)]
-    contact_email: Annotated[str, StringConstraints(max_length=100)]
-    phone_number: Annotated[str | None, StringConstraints(max_length=20)] = None
-    address: Annotated[str | None, StringConstraints(max_length=400)] = None
-    country: CountryShortName = Field(
-        ...,
-        description="Country in the short name format.",
-    )
-
-    @model_validator(mode="after")
-    def _email_domain_is_valid(self):
-        self.email_domain = clean_email_domain(self.email_domain)
-        (is_valid, reason) = valid_email_domain(self.email_domain)
-        if not is_valid:
-            raise ValueError(reason)
-        return self
-
-
-* */
-
 const IndividualFormSchema = Yup.object<
   Omit<IndividualSignForm, "agreement_type">
 >()
@@ -212,8 +126,6 @@ const IndividualContactForm = () => {
                 <LaunchpadEmailSelector />
               </div>
             </div>
-
-            {/* TODO: add recaptcha */}
             {submitSignForm.error && (
               <div className="p-form__control is-error">
                 <p className="p-form-validation__message">
