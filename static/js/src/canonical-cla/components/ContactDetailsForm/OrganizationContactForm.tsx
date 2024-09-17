@@ -149,11 +149,11 @@ const OrganizationContactForm = () => {
                 contributors in your organization.
               </p>
               <div className="row p-divider">
-                <div className="col-4 p-divider__block">
+                <div className="col-4 p-divider__block u-vertically-center">
                   <GithubEmailSelector />
                 </div>
 
-                <div className="col-4 p-divider__block">
+                <div className="col-4 p-divider__block u-vertically-center">
                   <LaunchpadEmailSelector />
                 </div>
               </div>

@@ -58,7 +58,7 @@ const LaunchpadEmailSelector = () => {
   return (
     <>
       {notLoggedIn || launchpadProfile.isLoading ? (
-        <div className="u-align--center u-vertically-center">
+        <div className="u-align--center">
           <Button
             hasIcon
             element="a"

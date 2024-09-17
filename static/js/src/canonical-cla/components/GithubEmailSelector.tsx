@@ -57,7 +57,7 @@ const GithubEmailSelector = () => {
   return (
     <>
       {notLoggedIn || githubProfile.isLoading ? (
-        <div className="u-align--center u-vertically-center">
+        <div className="u-align--center">
           <Button
             hasIcon
             element="a"
