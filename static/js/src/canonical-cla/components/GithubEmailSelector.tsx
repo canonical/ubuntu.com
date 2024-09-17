@@ -6,14 +6,14 @@ import {
   Select,
 } from "@canonical/react-components";
 import { useQuery } from "@tanstack/react-query";
+import usePersistedForm from "canonical-cla/hooks/usePersistedForm";
+import { IndividualSignForm } from "canonical-cla/utils/constants";
 import { MouseEventHandler, useEffect } from "react";
 import {
   getGithubProfile,
   loginWithGithub,
   logoutFromGithub,
 } from "../utils/api";
-import usePersistedForm from "canonical-cla/hooks/usePersistedForm";
-import { IndividualSignForm } from "canonical-cla/utils/constants";
 
 /**
  * Shows a login with GitHub if there is no gitHub session,
@@ -31,6 +31,13 @@ const GithubEmailSelector = () => {
   const onLinkClick: MouseEventHandler<HTMLButtonElement> = (_e) => {
     // add #choose-emails to scroll to the email selection section once the user is redirected back
     window.location.hash = "choose-emails";
+  };
+  const onLogoutClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    validateStoredEmail((formValues) => {
+      formValues.github_email = undefined;
+      return formValues;
+    });
+    onLinkClick(e);
   };
   useEffect(() => {
     if (githubProfile.data) {
@@ -78,7 +85,7 @@ const GithubEmailSelector = () => {
                   hasIcon
                   dense
                   element="a"
-                  onClick={onLinkClick}
+                  onClick={onLogoutClick}
                   href={logoutFromGithub()}
                   className="u-float-right"
                 >

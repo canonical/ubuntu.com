@@ -32,6 +32,14 @@ const LaunchpadEmailSelector = () => {
     // add #choose-emails to scroll to the email selection section once the user is redirected back
     window.location.hash = "choose-emails";
   };
+  const onLogoutClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    validateStoredEmail((formValues) => {
+      formValues.launchpad_email = undefined;
+      return formValues;
+    });
+    onLinkClick(e);
+  };
+
   useEffect(() => {
     if (launchpadProfile.data) {
       validateStoredEmail((formValues) => {
@@ -78,7 +86,7 @@ const LaunchpadEmailSelector = () => {
                   hasIcon
                   dense
                   element="a"
-                  onClick={onLinkClick}
+                  onClick={onLogoutClick}
                   href={logoutFromLaunchpad()}
                   className="u-float-right"
                 >
