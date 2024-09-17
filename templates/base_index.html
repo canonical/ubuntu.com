@@ -66,13 +66,13 @@
           <hr class="p-rule--muted" />
           <div id="takeover-ctas">
             <p>
-              <a id="takeover-primary-url" href="/download" class="p-button--positive"> Download for free </a>
+              <a id="takeover-primary-url" href="/download" class="p-button--positive">Download for free</a>
               <a id="takeover-secondary-url" href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive">Read the deep dive&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
-          <img src="https://assets.ubuntu.com/v1/d9fc87f3-Numbat.svg" width="300" alt="" />
+          <img id="takeover-image" src="https://assets.ubuntu.com/v1/d9fc87f3-Numbat.svg" width="300" alt="" />
         </div>
       </div>
     </section>
@@ -1314,6 +1314,7 @@
         title.textContent = selectedTakeover.title;
         subtitle.textContent = selectedTakeover.subtitle;
 
+        console.log("Seleected takeovrer", selectedTakeover)
         image.src = selectedTakeover.image;
         image.onload = function() {
           // Remove animation delay
