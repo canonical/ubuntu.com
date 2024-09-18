@@ -95,7 +95,7 @@
           {{ resource.group.name }}
         </h4>
       {% endif %}
-        <hr class="u-sv1">
+        <hr class="p-rule--muted">
         {% if "featuredmedia" in resource and resource.featuredmedia.source_url %}
           <a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Resources', 'eventAction' : 'Clicked resource', 'eventLabel' : '{{resource.title.rendered}}', 'eventValue' : undefined });" >
             <img
@@ -116,7 +116,7 @@
           <h3 class="p-heading--4"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
           {{resource.excerpt.rendered | truncate(162) | safe}}
         {% endif %}
-        <hr class="u-sv1" style="margin-top: auto;">
+        <hr class="p-rule--muted" style="margin-top: auto;">
         <p class="u-no-margin--bottom"><small>{{ resource.category.name }}</small></p>
       </article>
 

@@ -57,7 +57,7 @@
         <p class="u-text--muted">{{ citation_source_title_text }}</p>
       {%- endmacro -%}
       <!--Optional citation block-->
-      <hr class="u-hide--large is-muted">
+      <hr class="u-hide--large p-rule--muted">
       {%- if has_citation_source_name_text and has_citation_source_title_text %}
         <!-- When source name and title are both present, wrap them in a 50/50 row to split them on medium -->
         <div class="row">
@@ -86,7 +86,7 @@
     {% if has_heading_row -%}
       <!--Optional heading -->
       <div class="p-section--shallow">
-        <hr class="is-highlighted is-fixed-width">
+        <hr class="p-rule is-highlighted is-fixed-width">
         <div class="row">
           {%- if has_title %}
             <!--Optional heading text-->
@@ -127,7 +127,7 @@
       {% endif -%}
       {#- Skip to fourth column if the signpost_image (which takes up first three columns) is missing -#}
       <div class="col-9{% if not has_signpost_image %} col-start-large-4{% endif %}">
-        <hr class="u-hide--medium u-hide--small is-muted">
+        <hr class="u-hide--medium u-hide--small p-rule--muted">
         {% if has_citation -%}
           <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
           <div class="row">

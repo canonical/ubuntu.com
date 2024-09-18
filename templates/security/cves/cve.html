@@ -306,7 +306,7 @@
               </table>
             </div>
           {% endif %}
-          <hr class="is-muted" />
+          <hr class="p-rule--muted" />
           <ul class="p-inline-list u-responsive-realign">
             <li class="p-inline-list__item">
               <a href="/security/cves/about#security">How can I get the fixes?</a>
@@ -338,7 +338,7 @@
             <div class="row">
               <div class="col-6">
                 {% for note in cve.notes if "Priority reason" not in note.note %}
-                  <hr />
+                  <hr class="p-rule" />
                   {% if note.author %}
                     <h3 class="p-heading--5">
                       <a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a>

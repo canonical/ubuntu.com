@@ -1,6 +1,6 @@
 <div class="col-start-large-2 col-10">
   {% if mobile %}
-    <hr class="p-separator" />
+    <hr class="p-rule" />
   {% endif %}
   <div class="row">
     {% if contract['contractInfo']['status'] == "expired" %}
@@ -18,7 +18,7 @@
       <div class="advantage-table-instruction">
         <span>Started on</span>
         <p>{{ contract['contractInfo']['createdAtFormatted'] }}</p>
-        <hr />
+        <hr class="p-rule" />
         <span>Free trial ends on</span>
         <p>{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
       </div>

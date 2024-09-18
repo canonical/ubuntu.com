@@ -81,7 +81,7 @@
           <p>
             The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu Server. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, extended to 10 years with <a href="/pro">Ubuntu Pro</a>.
           </p>
-          <hr />
+          <hr class="p-rule" />
           <p class="u-responsive-realign">
             <a class="p-button--positive"
                href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
@@ -198,7 +198,7 @@
             </div>
             <div class="col-6 col-medium-3">
               <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
-              <hr />
+              <hr class="p-rule" />
               <a class="p-button"
                  href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
             </div>
@@ -210,7 +210,7 @@
             </div>
             <div class="col-6 col-medium-3">
               <p>Previous long-term support versions of Ubuntu Server, still supported.</p>
-              <hr />
+              <hr class="p-rule" />
               <a class="p-button"
                  href="/download/server/thank-you?version={{ releases.previous_lts.full_version }}&amp;architecture=amd64&amp;lts=true"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">Download {{ releases.previous_lts.full_version }} LTS
