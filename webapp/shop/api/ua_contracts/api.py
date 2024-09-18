@@ -44,9 +44,9 @@ class UAContractsAPI:
         error_rules=None,
         headers={},
     ):
-        headers[
-            "Authorization"
-        ] = f"{self.token_type} {self.authentication_token}"
+        headers["Authorization"] = (
+            f"{self.token_type} {self.authentication_token}"
+        )
 
         if self.remote_addr:
             headers["X-Forwarded-For"] = self.remote_addr
