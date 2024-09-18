@@ -858,9 +858,9 @@ def cred_your_exams(
                         if proctor_link:
                             action["href"] = proctor_link
                         else:
-                            action[
-                                "href"
-                            ] = f"/credentials/exam?id={assessment_id}"
+                            action["href"] = (
+                                f"/credentials/exam?id={assessment_id}"
+                            )
 
                         actions.append(action)
 

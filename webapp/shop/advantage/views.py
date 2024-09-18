@@ -537,10 +537,10 @@ def post_auto_renewal_settings(ua_contracts_api, **kwargs):
 def cancel_trial(advantage_mapper, ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
 
-    subscriptions: List[
-        Subscription
-    ] = advantage_mapper.get_account_subscriptions(
-        account_id=account_id, marketplace="canonical-ua"
+    subscriptions: List[Subscription] = (
+        advantage_mapper.get_account_subscriptions(
+            account_id=account_id, marketplace="canonical-ua"
+        )
     )
 
     subscription_to_cancel = None
