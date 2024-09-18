@@ -39,6 +39,53 @@ juju deploy charmed-kubernetes --overlay cilium-overlay.yaml
 You can apply any additional customisation overlays to this deployment as
 well.
 
+## Upgrading Charmed Kubernetes with Cilium
+
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Upgrades should be executed stepping through major versions.
+    </p>
+  </div>
+</div>
+
+
+Determine which version of cilium is currently installed on the cluster using `juju status cilium`
+
+```sh
+App                       Version Status  Scale  Charm                     Channel        Rev  Exposed  Message
+cilium                    1.12.5  active      5  cilium                    latest/stable   29  no       Ready
+```
+
+Upgrading will require changing the `release` config of the charm with `juju config cilium release=<version>`, but choosing
+which version requires seeing what the charm currently supports.
+
+```sh
+juju run cilium/leader list-versions
+cilium-versions: |
+   1.12.5
+   1.13.16
+   1.14.11
+hubble-versions: |-
+   1.12.5
+   1.13.16
+   1.14.11
+```
+
+If the units are all at `1.12.5`, The next available step would be to `1.13.16`.  Cilium recommends the cni be upgrading through each
+minor release.  To get to the latest current supported charm, follow the following steps.
+
+```sh
+juju config cilium release=1.13.16
+juju-wait
+kubectl get pods -A
+# ensuring that all cilium pods restart on the new image versions
+juju exec cilium/leader -- cilium status
+# ensure that cilium reflects a successful deployment
+```
+
+Then repeat the steps with `1.14.11`.
+
 ## Cilium configuration options
 
 A full list of Cilium configuration options and their descriptions can be found
