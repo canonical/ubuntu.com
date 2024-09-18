@@ -255,10 +255,10 @@ def get_user_subscription_statuses(
 
         statuses["is_trialled"] = True if active_trial else False
 
-        statuses["is_subscription_auto_renewing"] = (
-            is_billing_subscription_auto_renewing(
-                subscriptions, subscription_id
-            )
+        statuses[
+            "is_subscription_auto_renewing"
+        ] = is_billing_subscription_auto_renewing(
+            subscriptions, subscription_id
         )
 
         # If the subscription is set to auto-renew don't expire
