@@ -1050,11 +1050,13 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
+        message = "Your exam has been activated."
+        +"To schedule your exam, click the Your Exams button."
         return flask.render_template(
             "/credentials/redeem.html",
             notification_class="positive",
             notification_title="Success",
-            notification_message="Your exam has been activated.",
+            notification_message=message,
         )
     except UAContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text).get("message")
