@@ -145,16 +145,14 @@ env:
 
   - name: PROCTOR360_BASE_URL
     value: https://prod1ext.proctor360.com
-  
-  - name: PROCTOR360_APP_ID
-    secretKeyRef:
-      key: api-key
-      name: proctorAppId
-  
+
   - name: PROCTOR360_APP_SECRET
-    secretKeyRef:
-      key: api-key
-      name: proctorAppSecret
+    - key: app-secret
+      name: proctor360
+      
+  - name: PROCTOR360_APP_ID
+    - key: app-id
+      name: proctor360
 
 memoryLimit: 512Mi
 
@@ -294,16 +292,14 @@ production:
         
         - name: PROCTOR360_BASE_URL
           value: https://prod1ext.proctor360.com
-  
-        - name: PROCTOR360_APP_ID
-          secretKeyRef:
-            key: api-key
-            name: proctorAppId
-        
+
         - name: PROCTOR360_APP_SECRET
-          secretKeyRef:
-            key: api-key
-            name: proctorAppSecret
+          - key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          - key: app-id
+            name: proctor360
             
         - name: MARKETO_API_CLIENT
           secretKeyRef:
@@ -696,16 +692,14 @@ staging:
 
     - name: PROCTOR360_BASE_URL
       value: https://prod1ext.proctor360.com
-  
-    - name: PROCTOR360_APP_ID
-      secretKeyRef:
-        key: api-key
-        name: proctorAppId
-    
+
     - name: PROCTOR360_APP_SECRET
-      secretKeyRef:
-        key: api-key
-        name: proctorAppSecret
+      - key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      - key: app-id
+        name: proctor360
 
     - name: TA_WEBHOOK_API_KEY
       secretKeyRef:
@@ -845,16 +839,14 @@ staging:
 
         - name: PROCTOR360_BASE_URL
           value: https://prod1ext.proctor360.com
-  
-        - name: PROCTOR360_APP_ID
-          secretKeyRef:
-            key: api-key
-            name: proctorAppId
-        
+
         - name: PROCTOR360_APP_SECRET
-          secretKeyRef:
-            key: api-key
-            name: proctorAppSecret
+          - key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          - key: app-id
+            name: proctor360
 
         - name: TA_WEBHOOK_API_KEY
           secretKeyRef:
@@ -1189,16 +1181,14 @@ demo:
 
     - name: PROCTOR360_BASE_URL
       value: https://prod1ext.proctor360.com
-  
-    - name: PROCTOR360_APP_ID
-      secretKeyRef:
-        key: api-key
-        name: proctorAppId
-    
+
     - name: PROCTOR360_APP_SECRET
-      secretKeyRef:
-        key: api-key
-        name: proctorAppSecret
+      - key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      - key: app-id
+        name: proctor360
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
