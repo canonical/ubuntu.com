@@ -302,7 +302,7 @@ production:
             
         - name: PROCTOR360_APP_ID
           secretKeyRef:
-          key: app-id
+            key: app-id
             name: proctor360
             
         - name: MARKETO_API_CLIENT
