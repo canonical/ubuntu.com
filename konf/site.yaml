@@ -144,11 +144,13 @@ env:
     value: https://prod1ext.proctor360.com
 
   - name: PROCTOR360_APP_SECRET
-    - key: app-secret
+    secretKeyRef:
+      key: app-secret
       name: proctor360
       
   - name: PROCTOR360_APP_ID
-    - key: app-id
+    secretKeyRef:
+      key: app-id
       name: proctor360
 
 memoryLimit: 512Mi
@@ -291,11 +293,13 @@ production:
           value: https://prod1ext.proctor360.com
 
         - name: PROCTOR360_APP_SECRET
-          - key: app-secret
+          secretKeyRef:
+            key: app-secret
             name: proctor360
             
         - name: PROCTOR360_APP_ID
-          - key: app-id
+          secretKeyRef:
+          key: app-id
             name: proctor360
             
         - name: MARKETO_API_CLIENT
@@ -693,11 +697,13 @@ staging:
       value: https://prod1ext.proctor360.com
 
     - name: PROCTOR360_APP_SECRET
-      - key: app-secret
+      secretKeyRef:
+        key: app-secret
         name: proctor360
         
     - name: PROCTOR360_APP_ID
-      - key: app-id
+      secretKeyRef:
+        key: app-id
         name: proctor360
 
     - name: TA_WEBHOOK_API_KEY
@@ -840,11 +846,13 @@ staging:
           value: https://prod1ext.proctor360.com
 
         - name: PROCTOR360_APP_SECRET
-          - key: app-secret
+          secretKeyRef:
+            key: app-secret
             name: proctor360
             
         - name: PROCTOR360_APP_ID
-          - key: app-id
+          secretKeyRef:
+            key: app-id
             name: proctor360
 
         - name: TA_WEBHOOK_API_KEY
@@ -1185,11 +1193,13 @@ demo:
       value: https://prod1ext.proctor360.com
 
     - name: PROCTOR360_APP_SECRET
-      - key: app-secret
+      secretKeyRef:
+        key: app-secret
         name: proctor360
         
     - name: PROCTOR360_APP_ID
-      - key: app-id
+      secretKeyRef:
+        key: app-id
         name: proctor360
 
     - name: CANONICAL_LOGIN_URL
