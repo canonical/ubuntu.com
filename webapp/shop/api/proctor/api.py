@@ -11,7 +11,7 @@ class ProctorAPI:
         session: Session,
     ):
         self.base_url = os.getenv(
-            "PROCTOR360_BASE_URL", "https://api.proctor360.com"
+            "PROCTOR360_BASE_URL", "https://prod1ext.proctor360.com"
         )
         self.app_id = os.getenv("PROCTOR360_APP_ID", "")
         self.app_secret = os.getenv("PROCTOR360_APP_SECRET", "")
