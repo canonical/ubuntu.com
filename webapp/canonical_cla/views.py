@@ -1,5 +1,6 @@
 import base64
 import os
+from typing import Optional
 import urllib.parse as urlparse
 import requests
 import flask
@@ -7,44 +8,61 @@ import flask
 CANONICAL_CLA_API_URL = os.getenv("CANONICAL_CLA_API_URL")
 
 
+def get_query_param(url, key, is_base64=False) -> Optional[str]:
+    url_parts = list(urlparse.urlparse(url))
+    queries = dict(urlparse.parse_qs(url_parts[4]))
+
+    value = queries.get(key)
+    if value:
+        value = value[0] if isinstance(value, list) else value
+        if is_base64:
+            value = base64.b64decode(value).decode("utf-8")
+    return value
+
+
+def update_query_params(url: str, **params) -> str:
+    url_parts = list(urlparse.urlparse(url))
+    query = dict(urlparse.parse_qsl(url_parts[4]))
+    query.update(params)
+    url_parts[4] = urlparse.urlencode(query)
+    return urlparse.urlunparse(url_parts)
+
+
 def canonical_cla_api_github_login():
     """
     The Canonical CLA API will redirect the user to this view once the OAuth2 flow is complete.
     """
-    url_parts = list(urlparse.urlparse(flask.request.url))
-    url_queries = dict(urlparse.parse_qs(url_parts[4]))
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
+    )
+    if not agreement_url:
+        return flask.redirect("/legal/contributors/agreement")
 
-    if url_queries.get("access_token") and url_queries.get("agreement_url"):
-        access_token = url_queries.get("access_token")
-        access_token = (
-            access_token[0] if isinstance(access_token, list) else access_token
+    access_token = get_query_param(flask.request.url, "access_token")
+    github_error = get_query_param(flask.request.url, "github_error")
+    if github_error:
+        agreement_url = update_query_params(
+            agreement_url, github_error=github_error
         )
-        encoded_agreement_url = (
-            url_queries.get("agreement_url")[0]
-            if isinstance(url_queries.get("agreement_url"), list)
-            else url_queries.get("agreement_url")
-        )
-        agreement_url = base64.b64decode(encoded_agreement_url).decode("utf-8")
-        response = flask.redirect(agreement_url)
+    else:
+        agreement_url = update_query_params(agreement_url, github_error="")
+    response = flask.redirect(agreement_url)
+    if access_token:
         response.set_cookie(
             "github_oauth2_session", access_token, httponly=True
         )
-        response.cache_control.no_store = True
-        return response
-    else:
-        return flask.redirect("/legal/contributors/agreement")
+    response.cache_control.no_store = True
+    return response
 
 
 def canonical_cla_api_github_logout():
     """
     The Canonical CLA API will redirect the user to this view once the cookie session is cleared.
     """
-    encoded_agreement_url = (
-        flask.request.args.get("agreement_url")[0]
-        if isinstance(flask.request.args.get("agreement_url"), list)
-        else flask.request.args.get("agreement_url")
+    agreement_url = (
+        get_query_param(flask.request.url, "agreement_url", is_base64=True)
+        or "/legal/contributors/agreement"
     )
-    agreement_url = base64.b64decode(encoded_agreement_url).decode("utf-8")
     response = flask.redirect(agreement_url)
     response.delete_cookie("github_oauth2_session", httponly=True)
     response.cache_control.no_store = True
@@ -55,40 +73,39 @@ def canonical_cla_api_launchpad_login():
     """
     The Canonical CLA API will redirect the user to this view once the OAuth2 flow is complete.
     """
-    url_parts = list(urlparse.urlparse(flask.request.url))
-    url_queries = dict(urlparse.parse_qs(url_parts[4]))
+    agreement_url = get_query_param(
+        flask.request.url, "agreement_url", is_base64=True
+    )
+    if not agreement_url:
+        return flask.redirect("/legal/contributors/agreement")
 
-    if url_queries.get("access_token") and url_queries.get("agreement_url"):
-        access_token = url_queries.get("access_token")
-        access_token = (
-            access_token[0] if isinstance(access_token, list) else access_token
+    response = flask.redirect(agreement_url)
+
+    access_token = get_query_param(flask.request.url, "access_token")
+    launchpad_error = get_query_param(flask.request.url, "launchpad_error")
+    if launchpad_error:
+        agreement_url = update_query_params(
+            agreement_url, launchpad_error=launchpad_error
         )
-        encoded_agreement_url = (
-            url_queries.get("agreement_url")[0]
-            if isinstance(url_queries.get("agreement_url"), list)
-            else url_queries.get("agreement_url")
-        )
-        agreement_url = base64.b64decode(encoded_agreement_url).decode("utf-8")
-        response = flask.redirect(agreement_url)
+    else:
+        agreement_url = update_query_params(agreement_url, launchpad_error="")
+    response = flask.redirect(agreement_url)
+    if access_token:
         response.set_cookie(
             "launchpad_oauth_session", access_token, httponly=True
         )
-        response.cache_control.no_store = True
-        return response
-    else:
-        return flask.redirect("/legal/contributors/agreement")
+    response.cache_control.no_store = True
+    return response
 
 
 def canonical_cla_api_launchpad_logout():
     """
     The Canonical CLA API will redirect the user to this view once the cookie session is cleared.
     """
-    encoded_agreement_url = (
-        flask.request.args.get("agreement_url")[0]
-        if isinstance(flask.request.args.get("agreement_url"), list)
-        else flask.request.args.get("agreement_url")
+    agreement_url = (
+        get_query_param(flask.request.url, "agreement_url", is_base64=True)
+        or "/legal/contributors/agreement"
     )
-    agreement_url = base64.b64decode(encoded_agreement_url).decode("utf-8")
     response = flask.redirect(agreement_url)
     response.delete_cookie("launchpad_oauth_session", httponly=True)
     response.cache_control.no_store = True

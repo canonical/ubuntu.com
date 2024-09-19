@@ -8,6 +8,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import usePersistedForm from "canonical-cla/hooks/usePersistedForm";
 import { IndividualSignForm } from "canonical-cla/utils/constants";
+import classNames from "classnames";
 import { MouseEventHandler, useEffect } from "react";
 import {
   getGithubProfile,
@@ -22,6 +23,9 @@ import {
 const GithubEmailSelector = () => {
   const validateStoredEmail =
     usePersistedForm<IndividualSignForm>("individual-form")[3];
+  const githubLoginError = new URLSearchParams(window.location.search).get(
+    "github_error",
+  );
   const githubProfile = useQuery({
     queryKey: ["githubProfile"],
     queryFn: getGithubProfile,
@@ -57,7 +61,12 @@ const GithubEmailSelector = () => {
   return (
     <>
       {notLoggedIn || githubProfile.isLoading ? (
-        <div className="u-align--center">
+        <div
+          className={classNames("u-align--center u-align-text--center", {
+            "is-error": !!githubLoginError,
+          })}
+        >
+          {" "}
           <Button
             hasIcon
             element="a"
@@ -70,6 +79,9 @@ const GithubEmailSelector = () => {
               <span>{githubProfile.isLoading ? "Loading..." : "Login"}</span>
             </>
           </Button>
+          {githubLoginError && (
+            <p className="p-form-validation__message">{githubLoginError}</p>
+          )}
         </div>
       ) : (
         <div>

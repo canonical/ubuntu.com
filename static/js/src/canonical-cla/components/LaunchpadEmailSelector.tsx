@@ -8,6 +8,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import usePersistedForm from "canonical-cla/hooks/usePersistedForm";
 import { IndividualSignForm } from "canonical-cla/utils/constants";
+import classNames from "classnames";
 import { MouseEventHandler, useEffect } from "react";
 import {
   getLaunchpadProfile,
@@ -22,6 +23,9 @@ import {
 const LaunchpadEmailSelector = () => {
   const validateStoredEmail =
     usePersistedForm<IndividualSignForm>("individual-form")[3];
+  const launchpadLoginError = new URLSearchParams(window.location.search).get(
+    "launchpad_error",
+  );
   const launchpadProfile = useQuery({
     queryKey: ["launchpadProfile"],
     queryFn: getLaunchpadProfile,
@@ -58,7 +62,11 @@ const LaunchpadEmailSelector = () => {
   return (
     <>
       {notLoggedIn || launchpadProfile.isLoading ? (
-        <div className="u-align--center">
+        <div
+          className={classNames("u-align--center u-align-text--center", {
+            "is-error": !!launchpadLoginError,
+          })}
+        >
           <Button
             hasIcon
             element="a"
@@ -71,6 +79,9 @@ const LaunchpadEmailSelector = () => {
               <span>{launchpadProfile.isLoading ? "Loading..." : "Login"}</span>
             </>
           </Button>
+          {launchpadLoginError && (
+            <p className="p-form-validation__message">{launchpadLoginError}</p>
+          )}
         </div>
       ) : (
         <div>
