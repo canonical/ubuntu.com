@@ -1066,9 +1066,13 @@ def cred_exam(trueability_api, proctor_api, **_):
             {"ext_exam_id": assessment_reservation["uuid"]}
         )
         ext_exam_id = assessment_reservation["uuid"]
-        exam_date_time = datetime.strptime(
-            assessment_reservation["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
-        ).replace(tzinfo=pytz.UTC)
+        exam_date_time = (
+            datetime.strptime(
+                assessment_reservation["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+            )
+            .replace(tzinfo=pytz.UTC)
+            .isoformat()
+        )
 
     student_session_array = student_session.get("data", [{}])
     should_redirect = False
