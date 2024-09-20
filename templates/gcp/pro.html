@@ -10,6 +10,10 @@
   https://docs.google.com/document/d/1zR1m6CH1POU5tnzNzgNYanG2_EGQtKVNR3_dPew1pf4/edit
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
   <section class="p-section--hero">
     <div class="row--50-50">
@@ -26,7 +30,7 @@
       </div>
       <div class="col">
         <div class="p-image-container--16-9 is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/614ad9c8-ubuntu-google-cloud.png",
+          {{ image(url="https://assets.ubuntu.com/v1/9f0bca5a-ubuntu-google-cloud.png",
                     alt="",
                     width="1200",
                     height="800",
@@ -50,11 +54,10 @@
           <p>
             Delivers additional layer of security and compliance services and security patches covering a wider range of packages, until 2034.
           </p>
-          <hr class="p-rule--muted"/>
+          <hr class="p-rule--muted" />
           <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=4629240575064276470&imageProjectId=ubuntu-os-cloud"
-            class="p-button--positive">Launch Ubuntu Pro 24.04 LTS
-          </a>
-          <hr class="p-rule--muted"/>
+             class="p-button--positive">Launch Ubuntu Pro 24.04 LTS</a>
+          <hr class="p-rule--muted" />
           <a href="/gcp/contact-us" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
         </div>
       </div>
@@ -123,11 +126,10 @@
         <h2>Upgrade Ubuntu LTS to Ubuntu Pro</h2>
       </div>
       <div class="col">
-        <p>
-          Enjoy all the features of Ubuntu Pro without changing your application.
-        </p>
+        <p>Enjoy all the features of Ubuntu Pro without changing your application.</p>
         <hr class="p-rule--muted" />
-        <a href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu" class="p-button--positive">Learn how to upgrade</a>
+        <a href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu"
+           class="p-button--positive">Learn how to upgrade</a>
       </div>
     </div>
   </section>
@@ -155,7 +157,9 @@
             <ul class="p-list">
               <li class="p-list__item is-ticked">
                 <h3 class="p-heading--5 u-no-padding--top">CIS and DISA STIG</h3>
-                <p>For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading implementation guides available.</p>
+                <p>
+                  For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading implementation guides available.
+                </p>
               </li>
             </ul>
           </div>
@@ -176,7 +180,7 @@
       <div class="col">
         <hr class="p-rule--muted u-hide--small" />
         <div class="row">
-          <div class="col-3 col-medium-2"> 
+          <div class="col-3 col-medium-2">
             <ul class="p-list">
               <li class="p-list__item is-ticked">
                 <h3 class="p-heading--5 u-no-padding--top">Predictable and optimised</h3>
@@ -200,7 +204,9 @@
             <ul class="p-list">
               <li class="p-list__item is-ticked">
                 <h3 class="p-heading--5 u-no-padding--top">Priced for the cloud</h3>
-                <p>Ubuntu Pro pricing tracks the underlying compute cost. Ubuntu Pro price varies between 3-4.5% of an average hourly compute cost, depending on the instance type.</p>
+                <p>
+                  Ubuntu Pro pricing tracks the underlying compute cost. Ubuntu Pro price varies between 3-4.5% of an average hourly compute cost, depending on the instance type.
+                </p>
               </li>
             </ul>
           </div>
@@ -215,9 +221,7 @@
             <ul class="p-list">
               <li class="p-list__item is-ticked">
                 <h3 class="p-heading--5 u-no-padding--top">The right Ubuntu for you</h3>
-                <p>
-                  Canonical brings the three most popular Ubuntu Server distributions to choose from.
-                </p>
+                <p>Canonical brings the three most popular Ubuntu Server distributions to choose from.</p>
               </li>
             </ul>
           </div>
@@ -235,9 +239,7 @@
             <ul class="p-list">
               <li class="p-list__item is-ticked">
                 <h3 class="p-heading--5 u-no-padding--top">Optional 24/7 support</h3>
-                <p>
-                  Additional enterprise-grade support available through private offer for Pro.
-                </p>
+                <p>Additional enterprise-grade support available through private offer for Pro.</p>
               </li>
             </ul>
           </div>
@@ -253,11 +255,11 @@
   </section>
 
   <section class="p-section">
+    <div class="u-fixed-width p-section--shallow">
+      <hr class="p-rule" />
+      <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
+    </div>
     <div class="row--50-50">
-      <hr />
-      <div class="col">
-        <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
-      </div>
       <div class="col">
         <p>
           Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure security for production and mission-critical workloads.
@@ -265,6 +267,15 @@
         <p>
           One key reason why developers prefer Ubuntu is that it includes a huge set — in total, over 30,000 packages — of upstream open source known as ‘universe’. Universe includes workloads like NGINX, MongoDB, Redis, Kafka, but also language ecosystems like Python, Java, Ruby and Javascript/Node.js. With Ubuntu Pro's built-in CVE tracking and patching, CIOs and security officers can be confident they can roll these packages out to production.
         </p>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--16-9 is-highlighted">
+            <img class="p-image-container__image"
+                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
+                 alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -285,30 +296,44 @@
           <tbody>
             <tr>
               <td colspan="2">GCP optimised kernel and userspace</td>
-              <td><i class="p-icon--success"></i></td>
-              <td><i class="p-icon--success"></i></td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
             </tr>
             <tr>
               <td colspan="2">Security patches for Ubuntu infrastructure components</td>
-              <td><i class="p-icon--success"></i></td>
-              <td><i class="p-icon--success"></i></td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
             </tr>
             <tr>
               <td colspan="2">
                 Security patches for hundreds of open source applications, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js
               </td>
               <td>&nbsp;</td>
-              <td><i class="p-icon--success"></i></td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
             </tr>
             <tr>
               <td colspan="2">Common Criteria EAL2 certified components, with optional CIS hardening profile and DISA STIG</td>
               <td>&nbsp;</td>
-              <td><i class="p-icon--success"></i></td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
             </tr>
             <tr>
               <td colspan="2">Kernel Livepatch for instant security and higher uptimes</td>
               <td>&nbsp;</td>
-              <td><i class="p-icon--success"></i></td>
+              <td>
+                <i class="p-icon--success"></i>
+              </td>
             </tr>
             <tr>
               <td colspan="2">Maintenance commitment</td>
@@ -328,7 +353,7 @@
     <div class="row--50-50">
       <hr />
       <div class="col">
-        <h2>Get Ubuntu Pro on GCP now:</h2>
+        <h2>Get Ubuntu Pro on Google Cloud</h2>
       </div>
       <div class="col">
         <div class="row">
@@ -350,6 +375,11 @@
                 <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial">16.04 LTS&nbsp;&rsaquo;</a>
               </li>
             </ul>
+          </div>
+          <div class="col-3">
+            <p class="u-no-margin--bottom">
+              <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+            </p>
           </div>
         </div>
       </div>
