@@ -2,56 +2,46 @@
 
 # Build stage: Install python dependencies
 # ===
-FROM ubuntu:jammy AS python-dependencies
-RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip python3-setuptools python3-wheel build-essential git ca-certificates
+FROM canonical/webteam-base-image AS base-image
 ADD requirements.txt /tmp/requirements.txt
 RUN pip3 config set global.disable-pip-version-check true
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
 
-
 # Build stage: Install yarn dependencies
 # ===
-FROM node:20 AS yarn-dependencies
-WORKDIR /srv
 ADD package.json yarn.lock .
 RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install --production
 
-
 # Build stage: Run "yarn run build-js"
 # ===
-FROM yarn-dependencies AS build-js
 ADD static/js static/js
 ADD build.js build.js
 ADD babel.config.js .
 RUN yarn run build-js
 
-
 # Build stage: Run "yarn run build-css"
 # ===
-FROM yarn-dependencies AS build-css
 ADD static/sass static/sass
 RUN yarn run build-css
-
 
 # Build the production image
 # ===
 FROM ubuntu:jammy
-
-# Install python and import python dependencies
-RUN apt-get update && apt-get install --no-install-recommends --yes python3-setuptools python3-lib2to3 python3-pkg-resources ca-certificates libsodium-dev gpg
-COPY --from=python-dependencies /root/.local/lib/python3.10/site-packages /root/.local/lib/python3.10/site-packages
-COPY --from=python-dependencies /root/.local/bin /root/.local/bin
-ENV PATH="/root/.local/bin:${PATH}"
-
 # Set up environment
 ENV LANG C.UTF-8
 WORKDIR /srv
 
+# Install python and import python dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip
+COPY --from=base-image /root/.local/lib/python3.10/site-packages /root/.local/lib/python3.10/site-packages
+COPY --from=base-image /root/.local/bin /root/.local/bin
+ENV PATH="/root/.local/bin:${PATH}"
+
 # Import code, build assets and mirror list
 ADD . .
 RUN rm -rf package.json yarn.lock babel.config.js webpack.config.js
-COPY --from=build-js /srv/static/js static/js
-COPY --from=build-css /srv/static/css static/css
+COPY --from=base-image /srv/static/js static/js
+COPY --from=base-image /srv/static/css static/css
 ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 
 # Set revision ID
