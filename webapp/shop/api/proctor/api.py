@@ -16,8 +16,7 @@ class ProctorAPI:
         self.app_id = os.getenv("PROCTOR360_APP_ID", "")
         self.app_secret = os.getenv("PROCTOR360_APP_SECRET", "")
         self.session = session
-        self.expires_at = None
-        self.token = None
+        self.organisation_id = 132
 
     def make_request(
         self,
@@ -30,17 +29,30 @@ class ProctorAPI:
         allow_redirects: bool = True,
         is_authenticating: bool = False,
     ):
-        if (
-            (not self.token) or (datetime.datetime.now() > self.expires_at)
-        ) and not is_authenticating:
+        proctor_data = flask.session.get("proctor360", {})
+        token = proctor_data.get("token", None)
+        expires_at = proctor_data.get("expires_at", None)
+
+        if expires_at:
+            expires_at = datetime.datetime.fromtimestamp(expires_at)
+
+        if expires_at is not None and expires_at < datetime.datetime.now():
+            token = None
+            expires_at = None
+
+        if (token is None or expires_at is None) and not is_authenticating:
+            flask.session["proctor360"] = {}
             auth_response = self.authenticate()
-            self.token = auth_response["access_token"]
-            self.expires_at = datetime.datetime.now() + datetime.timedelta(
-                seconds=auth_response["expires_in"]
-            )
+            if auth_response.get("access_token", None) is None:
+                raise Exception("Failed to authenticate with Proctor360")
+            proctor_data = {
+                "token": auth_response["access_token"],
+                "expires_at": auth_response["expires_in"],
+            }
+            flask.session["proctor360"] = proctor_data
 
         uri = f"{self.base_url}{path}"
-        headers["Authorization"] = f"Bearer {self.token}"
+        headers["Authorization"] = f"Bearer {token}"
 
         response = self.session.request(
             method,
@@ -76,7 +88,7 @@ class ProctorAPI:
                 f"The following keys are missing: {', '.join(missing_keys)}"
             )
 
-    def filter_dict_by_keys(self, keys, dictionary):
+    def _filter_dict_by_keys(self, keys, dictionary):
         """
         Return a new dictionary containing only the keys found in
         both the keys list and the dictionary.
@@ -89,33 +101,33 @@ class ProctorAPI:
         return {key: dictionary[key] for key in keys if key in dictionary}
 
     def authenticate(self):
-        uri = "/api/v2/organisations/132/oauth/token"
-        body = {
-            "app_id": self.app_id,
-            "app_secret": self.app_secret,
+        try:
+            uri = f"/api/v2/organisations/{self.organisation_id}/oauth/token"
+            body = {
+                "app_id": self.app_id,
+                "app_secret": self.app_secret,
+            }
+            response = self.make_request(
+                "POST", uri, json=body, retry=False, is_authenticating=True
+            )
+            return response.json()
+        except Exception:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": flask.request.url,
+                    "request_headers": flask.request.headers,
+                }
+            )
+            return None
+
+    def get_system_status(self):
+        uri = "/api/v2/exams"
+        response = self.make_request("GET", uri).json()
+        if response.get("status", 200) == 200:
+            return {"error": False}
+        return {
+            "error": True,
         }
-        response = self.make_request(
-            "POST", uri, json=body, retry=False, is_authenticating=True
-        )
-        return response.json()
-        # try:
-        #     uri = "/api/v2/organisations/132/oauth/token"
-        #     body = {
-        #         "app_id": self.app_id,
-        #         "app_secret": self.app_secret,
-        #     }
-        #     response = self.make_request(
-        #         "POST", uri, json=body, retry=False, is_authenticating=True
-        #     )
-        #     return response.json()
-        # except Exception:
-        #     flask.current_app.extensions["sentry"].captureException(
-        #         extra={
-        #             "request_url": flask.request.url,
-        #             "request_headers": flask.request.headers,
-        #         }
-        #     )
-        #     return None
 
     def list_exams(self):
         uri = "/api/v2/exams"
@@ -126,7 +138,7 @@ class ProctorAPI:
         required_keys = ["first_name", "last_name", "email"]
         optional_keys = ["ext_tenant_id", "ext_student_id"]
         self.__check_keys_exist(required_keys, student)
-        data = self.filter_dict_by_keys(
+        data = self._filter_dict_by_keys(
             required_keys + optional_keys, student
         )
         return self.make_request("POST", uri, json=data).json()
@@ -135,7 +147,7 @@ class ProctorAPI:
         #     required_keys = ["first_name", "last_name", "email"]
         #     optional_keys = ["ext_tenant_id", "ext_student_id"]
         #     self.__check_keys_exist(required_keys, student)
-        #     data = self.filter_dict_by_keys(
+        #     data = self._filter_dict_by_keys(
         #         required_keys + optional_keys, student
         #     )
         #     return self.make_request("POST", uri, json=data).json()
@@ -181,7 +193,7 @@ class ProctorAPI:
             "ext_student_id",
             "ext_exam_id",
         ]
-        qps = self.filter_dict_by_keys(accepted_params, qps)
+        qps = self._filter_dict_by_keys(accepted_params, qps)
         uri = f"{uri}?{urlencode(qps)}"
         return self.make_request("GET", uri).json()
         # try:
@@ -193,7 +205,7 @@ class ProctorAPI:
         #         "ext_student_id",
         #         "ext_exam_id",
         #     ]
-        #     qps = self.filter_dict_by_keys(accepted_params, qps)
+        #     qps = self._filter_dict_by_keys(accepted_params, qps)
         #     uri = f"{uri}?{urlencode(qps)}"
         #     return self.make_request("GET", uri).json()
         # except Exception:
@@ -217,7 +229,7 @@ class ProctorAPI:
         ]
         optional_keys = ["last_name", "timezone", "ai_enabled"]
         self.__check_keys_exist(required_keys, student_session)
-        data = self.filter_dict_by_keys(
+        data = self._filter_dict_by_keys(
             required_keys + optional_keys, student_session
         )
         return self.make_request("POST", uri, json=data).json()
@@ -233,7 +245,7 @@ class ProctorAPI:
         #     ]
         #     optional_keys = ["last_name", "timezone", "ai_enabled"]
         #     self.__check_keys_exist(required_keys, student_session)
-        #     data = self.filter_dict_by_keys(
+        #     data = self._filter_dict_by_keys(
         #         required_keys + optional_keys, student_session
         #     )
         #     return self.make_request("POST", uri, json=data).json()
@@ -261,7 +273,7 @@ class ProctorAPI:
             "secure_browsing_id",
             "can_upload_attachment",
         ]
-        data = self.filter_dict_by_keys(optional_keys, student_session)
+        data = self._filter_dict_by_keys(optional_keys, student_session)
         return self.make_request("PATCH", uri, json=data).json()
         # try:
         #     uri = f"/api/v2/student-session/{session_id}"
@@ -278,7 +290,7 @@ class ProctorAPI:
         #         "secure_browsing_id",
         #         "can_upload_attachment",
         #     ]
-        #     data = self.filter_dict_by_keys(optional_keys, student_session)
+        #     data = self._filter_dict_by_keys(optional_keys, student_session)
         #     return self.make_request("PATCH", uri, json=data).json()
         # except Exception:
         #     flask.current_app.extensions["sentry"].captureException(
