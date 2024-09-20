@@ -501,7 +501,6 @@ def cred_schedule(
                     )
                     student_session_array = student_sessions.get("data", [{}])
                     student_session = None
-                    
                     if len(student_session_array) > 0:
                         student_session = student_session_array[0]
                     if student_session:
