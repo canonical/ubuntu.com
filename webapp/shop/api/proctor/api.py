@@ -121,18 +121,29 @@ class ProctorAPI:
             return None
 
     def get_system_status(self):
-        if not self.app_id or not self.app_secret:
+        try:
+            if not self.app_id or not self.app_secret:
+                return {
+                    "error": True,
+                    "message": "App ID and App Secret not set",
+                }
+            uri = "/api/v2/exams"
+            response = self.make_request("GET", uri).json()
+            if response.get("status", 200) == 200:
+                return {"error": False}
             return {
                 "error": True,
-                "message": "App ID and App Secret not set",
             }
-        uri = "/api/v2/exams"
-        response = self.make_request("GET", uri).json()
-        if response.get("status", 200) == 200:
-            return {"error": False}
-        return {
-            "error": True,
-        }
+        except Exception:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": flask.request.url,
+                    "request_headers": flask.request.headers,
+                }
+            )
+            return {
+                "error": True,
+            }
 
     def list_exams(self):
         uri = "/api/v2/exams"
