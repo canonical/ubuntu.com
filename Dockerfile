@@ -2,7 +2,7 @@
 
 # Build stage: Install python dependencies
 # ===
-FROM canonical/webteam-base-image AS base-image
+FROM canonicalwebteam/base-image AS base-image
 ADD requirements.txt /tmp/requirements.txt
 RUN pip3 config set global.disable-pip-version-check true
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
