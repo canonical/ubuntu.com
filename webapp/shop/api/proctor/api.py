@@ -278,6 +278,7 @@ class ProctorAPI:
         uri = f"/api/v2/student-session/{session_id}"
         optional_keys = [
             "exam_id",
+            "exam_link",
             "exam_date_time",
             "live_proctoring",
             "mobile_camera",
