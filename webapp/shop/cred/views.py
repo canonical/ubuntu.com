@@ -539,7 +539,7 @@ def cred_schedule(
                             "timezone": timezone,
                             "ai_enabled": "1",
                             "exam_link": base_url
-                            + +"credentials/exam?uuid="
+                            + "credentials/exam?uuid="
                             + f"{response['assessment_reservation']['uuid']}",
                         }
                         proctor_api.create_student_session(
