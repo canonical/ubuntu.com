@@ -37,14 +37,9 @@
         "name": "{{ article.author.name }}"
       },
       "datePublished": "{{ article.date_gmt }}",
-      {
-        %
-        if article.image and article.image.source_url %
-      }
+      {% if article.image and article.image.source_url %}
       "image": "{{ article.image.source_url }}",
-      {
-        % endif %
-      }
+      {% endif %}
       "url": "{{ request.url }}",
       "publisher": {
         "@type": "Organization",
