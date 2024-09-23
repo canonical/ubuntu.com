@@ -141,9 +141,7 @@
                     {% if blog_notice.difference_in_years > 1 %}s{% endif %}
                   ago.</strong>
                 {% else %}
-                  This article is more than <strong>{{ blog_notice.difference_in_years }} year
-                  {% if blog_notice.difference_in_years > 1 %}s{% endif %}
-                old.</strong>
+                  This article is more than <strong>{{ blog_notice.difference_in_years }} year {% if blog_notice.difference_in_years > 1 %}s{% endif %}old.</strong>
               {% endif %}
             </p>
           </div>
