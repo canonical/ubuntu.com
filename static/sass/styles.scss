@@ -840,53 +840,14 @@ td.p-accordion {
 }
 
 // Styling to display a success message when forms are successfully submitted.
-#success {
+.p-popup-notification {
   display: none;
   position: absolute;
-}
 
-#success:target {
-  display: block;
-  z-index: 10;
-}
-
-#newsletter-signup {
-  display: none;
-  position: absolute;
-}
-
-#newsletter-signup:target {
-  display: block;
-  z-index: 10;
-}
-
-#contact-success {
-  display: none;
-  position: absolute;
-}
-
-#contact-success:target {
-  display: block;
-  z-index: 10;
-}
-
-#updated {
-  display: none;
-}
-
-#updated:target {
-  display: block;
-  z-index: 10;
-}
-
-#unsubscribed {
-  display: none;
-  position: absolute;
-}
-
-#unsubscribed:target {
-  display: block;
-  z-index: 10;
+  &:target {
+    display: block;
+    z-index: 9;
+  }
 }
 
 html {
