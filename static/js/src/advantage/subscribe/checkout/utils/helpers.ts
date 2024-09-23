@@ -54,3 +54,20 @@ export const canBeTrialled = (
 
   return userCanTrial && productCanBeTrialled;
 };
+
+const beforeUnloadHandler = (event: Event) => {
+  // Recommended
+  event.preventDefault();
+
+  // Included for legacy support, e.g. Chrome/Edge < 119
+  event.returnValue = true;
+};
+
+export const confirmNavigateListener = {
+  set: () => {
+    window.addEventListener("beforeunload", beforeUnloadHandler);
+  },
+  clear: () => {
+    window.removeEventListener("beforeunload", beforeUnloadHandler);
+  },
+};

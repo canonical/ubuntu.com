@@ -25,7 +25,7 @@
 
   {% block content %}
 
-    <section id="test-takeover" class="p-section--hero">
+    <section id="test-takeover" class="p-section--hero" hidden>
       <div class="row p-takeover-animation" id="test-takeover-animaition">
         <div class="row--50-50 p-section--shallow">
           <div class="col">
@@ -58,24 +58,21 @@
       <div class="row p-takeover-animation" id="takeover-animaition">
         <div class="col-6">
           <div class="p-section--shallow">
-            <h1 id="takeover-title" class="u-no-margin--bottom">What's new in Ubuntu {{ releases.latest.short_version }}?</h1>
+            <h1 id="takeover-title" class="u-no-margin--bottom">Ubuntu 24.04 LTS Noble Numbat is available for download</h1>
             <p class="p-heading--2" id="takeover-subtitle">
-              Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.
+              Discover the latest and greatest features in our most recent long term supported release.
             </p>
           </div>
-          <hr class="is-muted" />
+          <hr class="p-rule--muted" />
           <div id="takeover-ctas">
             <p>
-              <a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a>
-              <a id="takeover-secondary-url" href="/raspberry-pi">Learn more about Ubuntu on the Raspberry Pi&nbsp;&rsaquo;</a>
+              <a id="takeover-primary-url" href="/download" class="p-button--positive">Download for free</a>
+              <a id="takeover-secondary-url" href="/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive">Read the deep dive&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
-          <img id="takeover-image"
-               src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               width="200"
-               alt="" />
+          <img id="takeover-image" src="https://assets.ubuntu.com/v1/d9fc87f3-Numbat.svg" width="300" alt="" />
         </div>
       </div>
     </section>
@@ -788,9 +785,9 @@
                      class="p-logo-section__logo" />
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/43635925-dell-technologies-logo.png"
-                     alt="Dell"
-                     class="p-logo-section__logo" />
+                <img src="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png"
+                       class="p-logo-section__logo"
+                       alt="Dell" />
               </div>
               <div class="p-logo-section__item">
                 <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
