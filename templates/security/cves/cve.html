@@ -279,7 +279,7 @@
                             <td style="overflow: visible; display: flex;" class="{% if status.maintained == False %} js-unmaintained-cell u-hide--cell{% endif %} cve-td-status" >
                               <i class="p-icon--{{ status.icon }}" style="margin-top: .2rem; margin-right: 0.5rem;"></i>
                               <div style="display: block;">
-                                {{ status.name }} {% if status.name == "Fixed" or status.status == "ignored" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
+                                {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
                                     <a class="p-chip p-tooltip--top-center u-no-margin--bottom" href="/pro" aria-describedby="{{ status.pocket }}-tooltip">
@@ -292,7 +292,7 @@
                             </td>     
                           {% else %}
                             <td class="{% if status.maintained == False %}js-unmaintained-cell u-hide--cell{% endif %} cve-td-status {% if status.status == 'DNE' %}u-text--muted{% endif %}" style="padding-left: 2rem;">
-                              {{ status.name }}
+                              {{ status.name }} {% if status.status == "ignored" %} <span class="u-text--muted">{{ status.description }} </span> {% endif %}
                             </td>
                           {% endif %}
 
@@ -577,8 +577,9 @@
     // Updates notification text and aria-describedby attribute for the switch
     // depending on if the releases are all maintained, unmaintained or only upstream
     function handleNotificationText(maintainedCount, isOnlyUpstream, hiddenCells, maintainedReleasesSwitch) {
-      let notification = document.querySelector(".js-conditional-notification");
-
+      const notification = document.querySelector(".js-conditional-notification");
+      const maintainedReleasesSwitchLabel = document.querySelector(".p-switch");
+      
       if (maintainedCount < 1 && !isOnlyUpstream) {
         notification.classList.remove("u-hide");
         notification.querySelector(".p-notification__message").textContent = "No maintained releases are affected by this CVE.";
@@ -586,9 +587,7 @@
       }
             
       if (hiddenCells.length === 0 && !isOnlyUpstream) {
-        notification.classList.remove("u-hide");
-        notification.querySelector(".p-notification__message").textContent = "No unmaintained releases are affected by this CVE.";
-        notification.id = "disabled-switch-notification-only-maintained";
+        maintainedReleasesSwitchLabel.classList.add("u-hide");
       }
       
       if (isOnlyUpstream) {
