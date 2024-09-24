@@ -248,8 +248,8 @@ def cred_schedule(
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 6 if is_staging else 1
-    time_delay = f"{time_delta} hour{'s' if time_delta > 1 else ''}"
+    time_delta = 0.5 if is_staging else 1
+    time_delay = "30 minutes" if is_staging else "1 hour"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -276,7 +276,7 @@ def cred_schedule(
             assessment_reservation_uuid = flask.request.args.get("uuid")
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            hours=6 if is_staging else 1
+            hours=time_delta
         ):
             error = (
                 f"Start time should be at least {time_delay}"
