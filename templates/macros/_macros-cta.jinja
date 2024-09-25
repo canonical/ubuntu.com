@@ -1,0 +1,18 @@
+# Params
+# title (required): Text of the CTA
+# link (required): Link of the CTA
+
+{%- macro cta(title, link) -%}
+  {% if hide_wrapper != True %}
+    <hr class="p-rule is-fixed-width" />
+    <section class="p-strip is-deep">
+      <div class="row">
+        <div class="col-start-large-4 col-9">
+          <a href="{{ link }}">
+            <p class="p-heading--2">{{ title }}&nbsp;&rsaquo;</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{%- endmacro -%}
