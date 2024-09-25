@@ -167,7 +167,7 @@ const OrganizationContactForm = () => {
                 value={getEmailDomain(
                   values.github_email || values.launchpad_email,
                 )}
-                help="The domain of the email addresses of the contributors in your organization. (e.g. canonical.com)"
+                help="By filling this field, you are signing a Contributor License Agreement for an entire domain.  Please ensure you have your organization's approval  before submitting this form."
               />
             </div>
 
