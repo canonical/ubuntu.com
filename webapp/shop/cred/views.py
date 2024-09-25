@@ -468,6 +468,24 @@ def cred_your_exams(
     cred_maintenance_end,
     **kwargs,
 ):
+    response = flask.make_response(
+        flask.render_template(
+            "credentials/your-exams.html",
+            agreement_notification=False,
+            exams=[],
+            show_cred_maintenance_alert=show_cred_maintenance_alert,
+            cred_is_in_maintenance=cred_is_in_maintenance,
+            cred_maintenance_start=cred_maintenance_start,
+            cred_maintenance_end=cred_maintenance_end,
+        )
+    )
+
+    # Do not cache this view
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+
+    return response
+
     email = flask.request.args.get("email", None)
 
     agreement_notification = False
