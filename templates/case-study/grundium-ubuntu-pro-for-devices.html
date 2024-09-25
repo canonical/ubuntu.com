@@ -1,0 +1,167 @@
+{% extends "case-study/base_case-study.html" %}
+{% from "macros/_macros-hero.jinja" import hero %}
+{% from "macros/_macros-text-list.jinja" import text_list %}
+{% from "macros/_macros-highlights.jinja" import highlights %}
+{% from "macros/_macros-text.jinja" import text %}
+{% from "macros/_macros-quote.jinja" import quote_wrapper %}
+{% from "macros/_macros-image.jinja" import image_wrapper %}
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block title %}Grundium secures critical systems with Ubuntu Pro for Devices{% endblock %}
+{% block meta_description %}As a medical device manufacturer, Grundium must meet stringent security requirements. Ubuntu Pro for Devices allows them to secure their digital microscopes.{% endblock %}
+{% block meta_company_name %}Grundium{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1wM1vo24SFowPaAnxWV9wfU-w6PVDq7RczM_5ZOb8OZM/edit{% endblock %}
+
+{% block content %}
+  {%- call(slot) hero(title="Canonical deploys infrastructure solutions and managed IT services for critical space mission operations", layout="25/75") -%}
+    {% if slot == "signpost_image" %}  
+      {{ image(url="https://assets.ubuntu.com/v1/547c1ef8-Grundium-logo-black 1.png",
+                alt="",
+                width="792",
+                height="160",
+                hi_def=True,
+                loading="auto") | safe
+      }}
+    {% endif %}
+  {%- endcall -%}
+
+  {%- call(slot) text_list(title="About Grundium") -%}
+    {%- if slot == 'list_item_content_1' -%}
+      Grundium is a medical device manufacturer that specialises in digital microscopy. Their range of microscope scanners are known as Ocus® Scanners.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_2' -%}
+      These high-resolution digital microscopes allow pathologists to collaborate remotely, thus avoiding the need for physical samples to be sent to different locations.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_3' -%}
+      As a company that innovates in the medical field, Grundium must meet stringent security requirements around patient data and confidentiality.
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) highlights(num_items=3) -%}
+    {%- if slot == 'highlights_item_content_1' -%}
+      Grundium’s digital microscopes are used across the medical industry. To comply with strict data and security frameworks, they chose Ubuntu Pro for Devices as a straightforward way to secure their devices.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_2' -%}
+      Canonical maintains the essential open source software components and offers built-in compliance with the major frameworks, allowing the company to innovate with confidence across the medical industry.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_3' -%}
+      Ubuntu Pro for Devices offers regular patching and over-the-air updates, ensuring that Grundium’s scanners remain secure and stable, wherever they are located.
+    {%- endif -%}
+  {%- endcall %}
+
+  {%- call(slot) image_wrapper(caption="An Ocus® Scanner in a laboratory, connected remotely to a laptop.") -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/939fb144-Grundium_laboratorio_MG_9499-Edit_web 1.png",
+                alt="A lab worker uses a laptop to connect remotely to a microscope",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Positive patient outcomes depend on reliable, robust and secure technology") -%}
+    {%- if slot == 'content' -%}
+      <p>Every year, medical innovations save thousands of lives. Every innovation brings faster, more effective treatment options to the table for people around the world. Grundium’s digital microscopes are part of that story. By combining high quality digital imagery and the convenience of remote use, Grundium’s Ocus® Scanners empower pathologists to work at speed, without the delays associated with the physical shipping of samples.</p>
+      <p>However, this innovation relies on the input of patient data into digital systems, data which is subject to stringent regulations and which in the past has been the target of ransomware attacks. It’s critical to keep systems up to date to avoid potential security breaches. In addition, the downtime associated with breaches and software malfunctions is a threat to patient safety, especially where urgent treatment is needed.</p>
+      <p>Grundium required a solution that could guarantee regular patching for stability and security, wherever their Ocus Scanners were being used in the world, ensuring that the promise and impact of the technology was not undermined by security concerns or unstable software.</p>
+      <p>With Ubuntu Pro for Devices, Grundium could meet these requirements with a single subscription. Canonical maintains over 25,000 packages across the open source ecosystem, and with over-the-air updates, could ensure that the devices were always secure and functional.</p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper(caption="An Ocus® Scanner with a medical sample image displayed behind it.") -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/7f15c2fc-Grundium_Tuote_MG_0707-Edit_web 1.png",
+                alt="A conference table with a microscope on top. In the background, a screen displays a medical sample",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Challenge") -%}
+    {%- if slot == 'content' -%}
+      <p>When working with medical samples, pathologists will often request a second opinion. Whether it’s looking for signs of cancer from a biopsy, examining liver cells for cirrhosis or checking a blood sample for parasites, pathologists must be thorough. However, a second opinion can introduce time delays into patient diagnosis, where time may be of the essence. What’s more, slide review is a laborious process, in which pathologists will examine each sample section-by-section, to identify any abnormalities. Grundium’s Ocus® Scanners offer an alternative to the delays associated with physically transferring samples between specialists, by offering remote access to high-quality digital images of the samples.</p>
+      <p>As a medical device manufacturer, Grundium needs to meet stringent security requirements for its products to successfully go-to-market. Grundium, like many organisations, follows SOUP procedures (Software of Unknown Provenance), which requires them to perform risk analysis for every single open source component that they use. All-in-all, that means securing a device that can be accessed remotely (using either Grundium’s application or a customer-installed application) and which is built on a foundation of 150 open source components.</p>
+      <p>In addition, medical devices must remain in serviceable condition for many years. It is neither viable nor standard practice for medical institutions to cycle quickly through their equipment. The in-house maintenance required to keep the microscope’s software up to date would add considerable time to the already laborious task of security.</p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper(caption="A medical professional places a slide under the scanner, ready for photography.") -%}
+    {%- if slot == 'image_content' %}
+    {{ image(url="https://assets.ubuntu.com/v1/39adfd13-Grundium_laboratorio_MG_9526-Edit_web 1.png",
+              alt="A medical professional places a slide under a microscope scanner, ready for photography",
+              width="2464",
+              height="783",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+
+  {%- call(slot) text(title="Solution") -%}
+    {%- if slot == 'content' -%}
+      <p>As digital microscopy requires a high level of processing power, Grundium selected NVIDIA Jetson cards as the hardware for the microscope. Through Canonical’s partnership with NVIDIA, Ubuntu was already optimised and certified for this card, leading Grundium to take on NVIDIA’s recommendation to use Ubuntu as the underlying OS.</p>
+      <p>Using an open source OS with such a well developed ecosystem proved to be an advantage for Grundium, who were able to go-to-market more quickly as a result of the maturity of the packages available to them.</p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) quote_wrapper(
+    quote_text="Nowadays, most complicated systems are built using open source. There’s no point in doing everything on your own: if there’s knowledge out there, we should draw on it.",
+    citation_source_name_text="Kimmo Alanen",
+    citation_source_title_text=" Vice President",
+    citation_source_organisation_text="Grundium"
+    ) 
+  -%}
+  {%- endcall -%}
+
+  {%- call(slot) text() -%}
+    {%- if slot == 'content' -%}
+      <p>Ubuntu’s ecosystem means that all of the packages needed to run the microscope, and to run the ML model, were ready for use. Alternatives would have been more laborious and required more work on the developer side.</p>
+      <p>A reduced build time is only half of the story: the question of maintenance for security and stability remained. Ubuntu Pro for Devices was the logical next step for Grundium, in order to build upon the progress they had already made with Ubuntu. Through a single subscription, Grundium were able to take the burden of maintaining multiple open source packages away from their developers, safe in the knowledge that through over-the-air updates, their microscopes would remain both secure and functional, with minimal disruption.</p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) quote_wrapper(
+    quote_text="We looked at alternatives to an Ubuntu Pro subscription, but they were, without exception, far more laborious. With Ubuntu Pro, we can meet our customers’ expectations around security, because Canonical guarantees patching for all open source components that we are using.",
+    citation_source_name_text="Kimmo Alanen",
+    citation_source_title_text=" Vice President",
+    citation_source_organisation_text="Grundium"
+    ) 
+  -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Results") -%}
+    {%- if slot == 'content' -%}
+      <p>Ubuntu Pro’s compliance with all of the major security frameworks ensured that they could approach customers with confidence and let their microscope’s impressive capabilities shine through, without concerns about compromising the systems that store patient data.</p>
+      <p>Ubuntu’s partnership with NVIDIA ensures that the microscope scanner chip can function at a high level out of the box. Using Pro for Devices on top of this has allowed Grundium’s developers to focus on optimising and continuously improving their microscopes. Thanks to continuous patching and over-the-air updates, using Pro for Devices ensures that the thousands of Ocus® Scanners in use around the world have remained compliant and stable without disrupting normal operations. With up to 10 years of support, Grundium’s customers can be sure that their investment in Grundium’s Ocus® Scanners will reap rewards for years to come.</p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) quote_wrapper(
+    quote_text="Our customers in the medical industry require a security scan of any technical product they are using. If you don’t have an OS that is continuously patched and maintained, you don’t pass. Ubuntu Pro for Devices ensures that we can meet the requirements of our clients.",
+    citation_source_name_text="Kimmo Alanen",
+    citation_source_title_text=" Vice President",
+    citation_source_organisation_text="Grundium"
+    ) 
+  -%}
+  {%- endcall -%}
+
+  {%- call(slot) text() -%}
+    {%- if slot == 'content' -%}
+      <p>Ubuntu’s partnership with NVIDIA ensures that the microscope scanner chip can function at a high level out of the box. Using Pro for Devices on top of this has allowed Grundium’s developers to focus on optimising and continuously improving their microscopes. Thanks to continuous patching and over-the-air updates, using Pro for Devices ensures that the thousands of Ocus® Scanners in use around the world have remained compliant and stable without disrupting normal operations. With up to 10 years of support, Grundium’s customers can be sure that their investment in Grundium’s Ocus® Scanners will reap rewards for years to come.</p>
+    {%- endif -%}
+  {%- endcall -%}
+  
+{% endblock %}
+
+{% block cta_content %}
+  {{ cta(title="Learn more about Ubuntu Pro for Devices", link="/pro/devices") }}  
+{% endblock %}
