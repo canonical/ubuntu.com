@@ -34,7 +34,7 @@ You will need a Single Sign On Ubuntu One account to access and use the Service.
 
 We reserve the right to reject your request for an account or to immediately cancel or suspend your account and your use of the Services at any time if you do not comply with the following requirements. You must not attempt to create an account or use the Service if doing so would violate these Terms of Service. You must not:
 
-- use the software made available through the Service for more than the entitled number Ubuntu systems except as otherwise agreed, nor resell or attempt to resell the Services.
+- use the software made available through the Service for more than the entitled number of Ubuntu systems except as otherwise agreed, nor resell or attempt to resell the Services.
 
 - use the Service for a company or legal entity without identifying the company or legal entity when registering for the Service and using your company or legal entity contact information in order to register.
 
