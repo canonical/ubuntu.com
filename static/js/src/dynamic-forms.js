@@ -14,7 +14,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
-    const returnData = window.location.pathname + "#success";
+    var returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
 
@@ -24,6 +24,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         if (window.location.pathname) {
           contactForm.setAttribute("data-return-url", returnData);
         }
+
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
@@ -53,6 +54,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     function fetchForm(formData, contactButton) {
       // check if the modal already exists on the page and if so, skip the fetch and initialise it
       if (modalAlreadyExists) {
+        returnData = formContainer.dataset.returnUrl;
         initialiseFormData(formContainer.dataset, contactButton);
       } else {
         fetch(formData.formLocation)
@@ -60,6 +62,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             return response.text();
           })
           .then(function (text) {
+            formContainer.innerHTML = text
+              .replace(/%% formid %%/g, formData.formId)
+              .replace(/%% returnURL %%/g, formData.returnUrl);
+
+            if (formData.title) {
+              const title = document.getElementById("modal-title");
+              title.innerHTML = formData.title;
+            }
             initialiseFormData(formData, contactButton);
           })
           .catch(function (error) {
@@ -322,6 +332,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const contactModal = document.getElementById("contact-modal");
         var message = "";
         if (contactModal) {
+          var formFields = contactModal.querySelectorAll(".js-formfield");
           formFields.forEach(function (formField) {
             var comma = ",";
             var fieldsetForm = formField.querySelector(".js-formfield-title");
