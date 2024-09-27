@@ -237,6 +237,7 @@ def cred_schedule(
     cred_is_in_maintenance,
     cred_maintenance_start,
     cred_maintenance_end,
+    is_cred_admin,
     trueability_api,
     **_,
 ):
@@ -295,7 +296,8 @@ def cred_schedule(
             parse(cred_maintenance_end) if cred_maintenance_end else None
         )
         if (
-            show_cred_maintenance_alert
+            not is_cred_admin
+            and show_cred_maintenance_alert
             and cred_maintenance_start
             and cred_maintenance_end
             and (cred_maintenance_start <= starts_at <= cred_maintenance_end)

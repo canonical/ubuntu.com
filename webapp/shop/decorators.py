@@ -154,9 +154,13 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
             is_community_member = False
+            is_cred_admin = False
             if user_info(flask.session):
                 is_community_member = user_info(flask.session).get(
                     "is_community_member", False
+                )
+                is_cred_admin = user_info(flask.session).get(
+                    "is_credentials_admin", False
                 )
 
             return func(
@@ -177,6 +181,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 is_community_member=is_community_member,
                 show_cred_maintenance_alert=bool(cred_maintenance),
                 cred_is_in_maintenance=cred_is_in_maintenance,
+                is_cred_admin=is_cred_admin,
                 cred_maintenance_start=cred_maintenance_start,
                 cred_maintenance_end=cred_maintenance_end,
                 *args,
