@@ -98,7 +98,7 @@
         </div>
 
         <div class="js-tab-container">
-          <nav class="p-tabs">
+          <nav class="p-tabs" id="first-child-tab">
             <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
                 role="tablist"
                 data-maintain-hash="true">
@@ -106,26 +106,26 @@
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="true"
-                   id="release-notes-tab"
-                   href="#release-notes"
-                   aria-controls="release-notes">What's new</a>
+                   id="release-notes-tab-lts"
+                   href="#release-notes-lts"
+                   aria-controls="release-notes-lts">What's new</a>
               </li>
               <li class="p-tabs__item">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
-                   id="system-requirements-tab"
-                   href="#system-requirements"
-                   aria-controls="system-requirements"
+                   id="system-requirements-tab-lts"
+                   href="#system-requirements-lts"
+                   aria-controls="system-requirements-lts"
                    tabindex="-1">System requirements</a>
               </li>
               <li class="p-tabs__item">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
-                   id="how-to-install-tab"
-                   href="#how-to-install"
-                   aria-controls="how-to-install"
+                   id="how-to-install-tab-lts"
+                   href="#how-to-install-lts"
+                   aria-controls="how-to-install-lts"
                    tabindex="-1">How to install</a>
               </li>
             </ul>
@@ -133,9 +133,9 @@
         </div>
 
         <div class="p-tabs__content p-section"
-             id="release-notes"
+             id="release-notes-lts"
              role="tabpanel"
-             aria-labelledby="release-notes-tab">
+             aria-labelledby="release-notes-tab-lts">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">Linux 6.8 kernel with low latency kernel features enabled by default</li>
             <li class="p-list__item is-ticked">
@@ -154,9 +154,9 @@
         </div>
 
         <div class="p-tabs__content p-section"
-             id="system-requirements"
+             id="system-requirements-lts"
              role="tabpanel"
-             aria-labelledby="system-requirements-tab">
+             aria-labelledby="system-requirements-tab-lts">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">1 GHz processor or better</li>
             <li class="p-list__item is-ticked">1 GB system memory</li>
@@ -166,9 +166,9 @@
         </div>
 
         <div class="p-tabs__content p-section"
-             id="how-to-install"
+             id="how-to-install-lts"
              role="tabpanel"
-             aria-labelledby="how-to-install-tab">
+             aria-labelledby="how-to-install-tab-lts">
           <p>To install Ubuntu Server:</p>
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>
@@ -220,7 +220,7 @@
         </div>
 
         <div class="js-tab-container">
-          <nav class="p-tabs">
+          <nav class="p-tabs" id="second-child-tab">
             <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
                 role="tablist"
                 data-maintain-hash="true">
@@ -228,26 +228,26 @@
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="true"
-                   id="release-notes-tab"
-                   href="#release-notes"
-                   aria-controls="release-notes">What's new</a>
+                   id="release-notes-tab-latest"
+                   href="#release-notes-latest"
+                   aria-controls="release-notes-latest">What's new</a>
               </li>
               <li class="p-tabs__item">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
-                   id="system-requirements-tab"
-                   href="#system-requirements"
-                   aria-controls="system-requirements"
+                   id="system-requirements-tab-latest"
+                   href="#system-requirements-latest"
+                   aria-controls="system-requirements-latest"
                    tabindex="-1">System requirements</a>
               </li>
               <li class="p-tabs__item">
                 <a class="p-tabs__link"
                    role="tab"
                    aria-selected="false"
-                   id="how-to-install-tab"
-                   href="#how-to-install"
-                   aria-controls="how-to-install"
+                   id="how-to-install-tab-latest"
+                   href="#how-to-install-latest"
+                   aria-controls="how-to-install-latest"
                    tabindex="-1">How to install</a>
               </li>
             </ul>
@@ -255,18 +255,18 @@
         </div>
 
         <div class="p-tabs__content p-section"
-             id="release-notes"
+             id="release-notes-latest"
              role="tabpanel"
-             aria-labelledby="release-notes-tab">
+             aria-labelledby="release-notes-tab-latest">
           <p>
             <a href="{{ releases.latest.release_notes_url }}">{{ releases.latest.short_version }} release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
 
         <div class="p-tabs__content p-section"
-             id="system-requirements"
+             id="system-requirements-latest"
              role="tabpanel"
-             aria-labelledby="system-requirements-tab">
+             aria-labelledby="system-requirements-tab-latest">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">1 GHz processor or better</li>
             <li class="p-list__item is-ticked">1 GB system memory</li>
@@ -276,9 +276,9 @@
         </div>
 
         <div class="p-tabs__content p-section"
-             id="how-to-install"
+             id="how-to-install-latest"
              role="tabpanel"
-             aria-labelledby="how-to-install-tab">
+             aria-labelledby="how-to-install-tab-latest">
           <p>To install Ubuntu Server:</p>
           <ol class="p-list--divided">
             <li class="p-list__item">Download the ISO image</li>
@@ -600,15 +600,63 @@
       const activeTab = document.querySelector(
         ".p-tabs__link[href='" + currentHash + "']"
       );
-      const targetIds = ["release-notes", "system-requirements", "how-to-install"];
+      const targetIds = ["release-notes-lts", "system-requirements-lts", "how-to-install-lts", "release-notes-latest", "system-requirements-latest", "how-to-install-latest"];
 
       if (activeTab) {
-        const targetControl = activeTab.getAttribute("aria-controls")
+        const targetControl = activeTab.getAttribute("aria-controls");
 
         if (targetIds.includes(targetControl)) {
-          indexTab = document.getElementById("manual-install")
-          indexTab.classList.remove("u-hide")
+          const indexTabContent = document.getElementById("manual-install");
+          indexTabContent.classList.remove("u-hide");
+          const indexTab = document.getElementById("manual-install-tab");
+          indexTab.setAttribute("aria-selected", "true");
         }
+      }
+
+      const lts = ["#release-notes-lts", "#system-requirements-lts", "#how-to-install-lts"];
+      const latest = ["#release-notes-latest", "#system-requirements-latest", "#how-to-install-latest"];
+
+      if (lts.includes(currentHash)) {
+        const secondTab = document.getElementById("second-child-tab");
+        const activeSecondTabExist = Array.from(secondTab.querySelectorAll(".p-tabs__link")).some(tab => {
+          tab.getAttribute("aria-selected") === "true";
+        });
+        if (!activeSecondTabExist) {
+          document.getElementById("release-notes-tab-latest").setAttribute("aria-selected", "true");
+          document.getElementById("release-notes-latest").classList.remove("u-hide");
+        }
+      };
+
+      if (latest.includes(currentHash)) {
+        const firstTab = document.getElementById("first-child-tab");
+        const activeFirstTabExist = Array.from(firstTab.querySelectorAll(".p-tabs__link")).some(tab => {
+          tab.getAttribute("aria-selected") === "true"
+        });
+        if (!activeFirstTabExist) {
+          document.getElementById("release-notes-tab-lts").setAttribute("aria-selected", "true");
+          document.getElementById("release-notes-lts").classList.remove("u-hide");
+        };
+      }
+
+      if (currentHash === "#manual-install") {
+        const firstTab = document.getElementById("first-child-tab");
+        const secondTab = document.getElementById("second-child-tab");
+        Array.from(firstTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
+          if (tab.getAttribute("id") === "release-notes-tab-lts") {
+            tab.setAttribute("aria-selected", "true");
+            document.getElementById("release-notes-lts").classList.remove("u-hide");
+          } else {
+            tab.setAttribute("aria-selected", "false");
+          }
+        })
+        Array.from(secondTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
+          if (tab.getAttribute("id") === "release-notes-tab-latest") {
+            tab.setAttribute("aria-selected", "true");
+            document.getElementById("release-notes-latest").classList.remove("u-hide");
+          } else {
+            tab.setAttribute("aria-selected", "false");
+          }
+        })
       }
     }
 
@@ -616,9 +664,9 @@
     function handleNonTabHashClick() {
       const currentHash = window.location.hash;
       const activeTab = document.querySelector(
-        ".p-tabs__link[href='#release-notes']"
+        ".p-tabs__link[href='#release-note-lts']"
       );
-      const targetControl = activeTab.getAttribute("aria-controls")
+      const targetControl = activeTab?.getAttribute("aria-controls");
       const tabContentContainers = document.querySelectorAll(".p-tabs__content");
 
       if (currentHash && currentHash == "#architectures") {
@@ -633,17 +681,34 @@
     // Show release notes tab when the manual install tab is clicked
     function showBaseNestedTab() {
       const targetTab = document.querySelector(".p-tabs__link[href='#manual-install']");
+      const firstTab = document.getElementById("first-child-tab");
+      const secondTab = document.getElementById("second-child-tab");
 
       targetTab.addEventListener("click", () => {
-        const releaseNotesTabContainer = document.getElementById("release-notes");
-        releaseNotesTabContainer.classList.remove("u-hide")
+        Array.from(firstTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
+          if (tab.getAttribute("id") === "release-notes-tab-lts") {
+            tab.setAttribute("aria-selected", "true");
+            document.getElementById("release-notes-lts").classList.remove("u-hide");
+          } else {
+            tab.setAttribute("aria-selected", "false");
+          }
+        })
+        Array.from(secondTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
+          if (tab.getAttribute("id") === "release-notes-tab-latest") {
+            tab.setAttribute("aria-selected", "true");
+            document.getElementById("release-notes-latest").classList.remove("u-hide");
+          } else {
+            tab.setAttribute("aria-selected", "false");
+          }
+        })
       })
     }
-    showBaseNestedTab()
+
+    showBaseNestedTab();
 
     addEventListener("DOMContentLoaded", () => {
-      handleNonTabHashClick()
-      showParentTab()
+      handleNonTabHashClick();
+      showParentTab();
     });
   </script>
 
