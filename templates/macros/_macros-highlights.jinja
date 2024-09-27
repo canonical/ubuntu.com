@@ -23,8 +23,10 @@
             {%- set has_highlights_item_content = highlights_item_content|trim|length > 0 -%}
 
             {%- if has_highlights_item_content -%}
-              <div class="col-3">
-                <li class="p-list__item is-ticked">{{ highlights_item_content }}</li>
+              <div class="col-3 u-text-max-width">
+                <li class="p-list__item is-ticked">
+                  <p class="u-text-max-width u-no-padding--top">{{ highlights_item_content }}</p>
+                </li>
               </div>
             {%- endif %}
           {% endfor %}
@@ -39,7 +41,7 @@
               <h2 class="p-text--small-caps">Highlights</h2>
             </div>
             <div class="col-6">
-              <ul class="p-list--divided">
+              <ul class="p-list--divided u-text-max-width">
                 <div class="row">
                   {% for number in range (1, num_items+1) %}
                     {%- set highlights_item_content = caller('highlights_item_content_' + number|string) -%}

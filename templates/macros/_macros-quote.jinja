@@ -90,7 +90,7 @@
     {% if has_heading_row -%}
       <!--Optional heading -->
       <div class="p-section--shallow">
-        <hr class="is-highlighted is-fixed-width">
+        <hr class="p-rule is-highlighted is-fixed-width">
         <div class="row">
           {%- if has_title %}
             <!--Optional heading text-->
@@ -131,7 +131,7 @@
       {% endif -%}
       {#- Skip to fourth column if the signpost_image (which takes up first three columns) is missing -#}
       <div class="col">
-        <hr class="u-hide--medium u-hide--small is-muted">
+        <hr class="p-rule--muted u-hide--medium u-hide--small">
         {% if has_citation -%}
           <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
           <div class="row">
@@ -139,7 +139,7 @@
               {{ _quote_body() }}
             </div>
             <div class="col-3">
-              <hr class="u-hide--large is-muted">
+              <hr class="p-rule--muted u-hide--large">
               {{ _citation_block() }}
             </div>
           </div>
