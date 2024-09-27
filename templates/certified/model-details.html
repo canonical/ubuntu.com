@@ -8,7 +8,7 @@
 
 {% block outer_content %}
 
-{# djlint: off #}
+  {# djlint: off #}
   <section class="p-strip--suru-topped u-no-margin--bottom">
     <div class="row u-sv3">
       <div class="col-7">
@@ -58,8 +58,7 @@
     <div class="row">
       <div class="col-12">
         <h2>
-          Release
-          {% if release_details["releases"]|length > 1 %}s{% endif %}
+          Release{% if release_details["releases"]|length > 1 %}s{% endif %}
         </h2>
         <aside class="p-accordion">
           <ul class="p-accordion__list">
@@ -151,7 +150,7 @@
       </div>
     </div>
   </section>
-{# djlint: on #}
+  {# djlint: on #}
 
   {% if components %}
     <section class="p-strip--light">
