@@ -49,7 +49,7 @@
         <li id="all-releases" class="p-tabs__item" role="presentation">
           <a href="/certified/platforms/{{ platform.id }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu releases</a>
         </li>
-        {% for release in releases|sort %}
+        {% for release in releases|sort|reverse %}
         <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
           <a href="/certified/platforms/{{ platform.id }}/{{ release }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{ release }}</a>
         </li>
@@ -74,7 +74,7 @@
           {% for canonical_id, certificate in platform.certificates.items() %}
           <td>
             <ul class="p-list u-no-margin--bottom">
-            {% for release in certificate.releases|sort %} 
+            {% for release in certificate.releases|sort|reverse %} 
               <li class="p-list__item u-no-padding--top">
               {{ release }} 
               </li>
