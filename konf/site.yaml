@@ -16,10 +16,10 @@ env:
     value: true
 
   - name: CRED_MAINTENANCE_START
-    value: 2024-09-11T01:00:00Z
+    value: 2024-09-28T11:00:00Z
 
   - name: CRED_MAINTENANCE_END
-    value: 2024-09-12T08:00:00Z
+    value: 2024-09-28T15:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -303,10 +303,10 @@ production:
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-11T01:00:00Z
+          value: 2024-09-28T11:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-12T08:00:00Z
+          value: 2024-09-28T15:00:00Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -544,10 +544,10 @@ staging:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-11T01:00:00Z
+      value: 2024-09-28T11:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-12T08:00:00Z
+      value: 2024-09-28T15:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -836,10 +836,10 @@ staging:
           value: true
 
         - name: CRED_MAINTENANCE_START
-          value: 2024-09-11T01:00:00Z
+          value: 2024-09-28T11:00:00Z
 
         - name: CRED_MAINTENANCE_END
-          value: 2024-09-12T08:00:00Z
+          value: 2024-09-28T15:00:00Z
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -1054,10 +1054,10 @@ demo:
       value: true
 
     - name: CRED_MAINTENANCE_START
-      value: 2024-09-11T01:00:00Z
+      value: 2024-09-28T11:00:00Z
 
     - name: CRED_MAINTENANCE_END
-      value: 2024-09-12T08:00:00Z
+      value: 2024-09-28T15:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
