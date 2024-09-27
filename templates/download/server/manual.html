@@ -185,6 +185,116 @@
       </div>
     </div>
 
+    <div class="row u-sv3">
+      <hr class="p-rule" />
+    </div>
+
+    <div class="row--50-50">
+      <div class="col">
+        <div class="p-section">
+          <h2>Ubuntu {{ releases.latest.full_version }} LTS</h2>
+        </div>
+        <div class="p-image-wrapper u-hide--small u-hide--medium">
+          {{ image(url="https://assets.ubuntu.com/v1/0749ce0e-Orange%20O_no%20background-resized.png",
+                    alt="Oracular Oriole",
+                    width="125",
+                    height="132",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates until July 2025.</p>
+          <hr />
+          <p class="u-responsive-realign">
+            <a class="p-button--positive"
+               href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64&amp;lts=true"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : '{{ releases.latest.full_version }}', 'eventValue' : undefined });">Download {{ releases.latest.full_version }} LTS
+            </a>
+            {% if releases.latest.server_iso_size %}
+              <span class="u-text--muted">{{ releases.latest.server_iso_size }}</span>
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="js-tab-container">
+          <nav class="p-tabs">
+            <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
+                role="tablist"
+                data-maintain-hash="true">
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="true"
+                   id="release-notes-tab"
+                   href="#release-notes"
+                   aria-controls="release-notes">What's new</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="system-requirements-tab"
+                   href="#system-requirements"
+                   aria-controls="system-requirements"
+                   tabindex="-1">System requirements</a>
+              </li>
+              <li class="p-tabs__item">
+                <a class="p-tabs__link"
+                   role="tab"
+                   aria-selected="false"
+                   id="how-to-install-tab"
+                   href="#how-to-install"
+                   aria-controls="how-to-install"
+                   tabindex="-1">How to install</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="release-notes"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab">
+          <p>
+            <a href="{{ releases.latest.release_notes_url }}">{{ releases.latest.short_version }} release notes&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="system-requirements"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">1 GHz processor or better</li>
+            <li class="p-list__item is-ticked">1 GB system memory</li>
+            <li class="p-list__item is-ticked">5 GB of free hard drive space</li>
+            <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
+          </ul>
+        </div>
+
+        <div class="p-tabs__content p-section"
+             id="how-to-install"
+             role="tabpanel"
+             aria-labelledby="how-to-install-tab">
+          <p>To install Ubuntu Server:</p>
+          <ol class="p-list--divided">
+            <li class="p-list__item">Download the ISO image</li>
+            <li class="p-list__item">
+              Create a bootable USB flash drive with <a href="https://etcher.balena.io/">balenaEtcher</a> or similar
+            </li>
+            <li class="p-list__item">Boot from the USB flash drive</li>
+          </ol>
+          <hr class="p-rule" />
+          <p>
+            <a href="/tutorials/install-ubuntu-server">Follow the step-by-step tutorial&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <section class="p-section">
       <div class="row">
         <hr class="p-rule" />
@@ -201,6 +311,8 @@
               <hr />
               <a class="p-button"
                  href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.lts.full_version }} LTS</a>
+              <a class="p-button"
+                 href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Torrent for {{ releases.latest.full_version }} LTS</a>
             </div>
           </div>
           <hr class="p-rule" />
