@@ -114,12 +114,6 @@ export var serverAndDesktopReleases = [
     status: "PRO_LEGACY_SUPPORT",
   },
   {
-    startDate: new Date("2023-10-20T00:00:00"),
-    endDate: new Date("2024-07-20T00:00:00"),
-    taskName: "23.10 (Mantic Minotaur)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2024-04-25T00:00:00"),
     endDate: new Date("2034-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
@@ -142,6 +136,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2036-04-25T00:00:00"),
     taskName: "24.04 LTS (Noble Numbat)",
     status: "PRO_LEGACY_SUPPORT",
+  },
+  {
+    startDate: new Date("2024-10-01T00:00:00"),
+    endDate: new Date("2025-07-01T00:00:00"),
+    taskName: "24.10 (Oracular Oriole)",
+    status: "INTERIM_RELEASE",
   },
 ];
 
@@ -1165,8 +1165,8 @@ export var microStackStatus = {
 };
 
 export var desktopServerReleaseNames = [
+  "24.10 (Oracular Oriole)",
   "24.04 LTS (Noble Numbat)",
-  "23.10 (Mantic Minotaur)",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
