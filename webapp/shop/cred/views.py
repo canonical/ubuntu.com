@@ -1057,10 +1057,6 @@ def cred_exam(trueability_api, proctor_api, **_):
     exam_date_time = None
     if not assessment_reservation:
         return flask.abort(403)
-        # student_session = proctor_api.get_student_sessions(
-        #     {"ext_exam_id": assessment["id"]}
-        # )
-        # ext_exam_id = assessment["id"]
     else:
         student_session = proctor_api.get_student_sessions(
             {"ext_exam_id": assessment_reservation["uuid"]}
@@ -1077,7 +1073,7 @@ def cred_exam(trueability_api, proctor_api, **_):
     student_session_array = student_session.get("data", [{}])
     should_redirect = False
 
-    # session exists
+    # if session exists
     if len(student_session_array) > 0:
         student_session = student_session_array[0]
     # create a new session if it does not exist
@@ -1087,7 +1083,7 @@ def cred_exam(trueability_api, proctor_api, **_):
             + "credentials/exam?uuid="
             + f"{assessment_reservation.get('uuid', '')}"
         )
-        student_session = proctor_api.create_student_session(
+        student_session_response = proctor_api.create_student_session(
             {
                 "first_name": first_name,
                 "last_name": last_name,
@@ -1098,6 +1094,7 @@ def cred_exam(trueability_api, proctor_api, **_):
                 "exam_link": exam_link,
             }
         )
+        student_session = student_session_response.get("data", None)
         should_redirect = True
 
     if student_session is None or student_session.get("id", None) is None:
@@ -1107,7 +1104,10 @@ def cred_exam(trueability_api, proctor_api, **_):
         should_redirect
         or student_session.get("status", "not started") == "not started"
     ):
-        return flask.redirect(student_session["display_session_link"])
+        if student_session.get("display_session_link"):
+            return flask.redirect(student_session["display_session_link"])
+        if exam_link:
+            return flask.redirect(exam_link)
 
     assessment_user = assessment["user"]["email"]
     sso_user = user_info(flask.session)["email"]
