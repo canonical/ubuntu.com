@@ -593,6 +593,25 @@
       limit: 3
     })
 
+    function showTab(tabId, contentId, isSelected) {
+      const tab = document.getElementById(tabId);
+      const content = document.getElementById(contentId);
+
+      tab.setAttribute("aria-selected", isSelected);
+      content.classList.toggle("u-hide", !isSelected);
+    }
+
+    function handleTab(tabContainerId, targetTabId, targetContentId) {
+      const tabContainer = document.getElementById(tabContainerId);
+      Array.from(tabContainer.querySelectorAll(".p-tabs__link")).forEach(tab => {
+        const tabId = tab.getAttribute("id");
+        const isSelected = tabId === targetTabId;
+        tab.setAttribute("aria-selected", isSelected);
+        const contentId = tabId.replace("-tab", "");
+        document.getElementById(contentId)?.classList.toggle("u-hide", !isSelected);
+      });
+    }
+
     // This page has a nested tab section, this script will show 
     // the default parent tab when the page is loaded if the hash is a child tab
     function showParentTab() {
@@ -602,61 +621,28 @@
       );
       const targetIds = ["release-notes-lts", "system-requirements-lts", "how-to-install-lts", "release-notes-latest", "system-requirements-latest", "how-to-install-latest"];
 
-      if (activeTab) {
-        const targetControl = activeTab.getAttribute("aria-controls");
-
-        if (targetIds.includes(targetControl)) {
-          const indexTabContent = document.getElementById("manual-install");
-          indexTabContent.classList.remove("u-hide");
-          const indexTab = document.getElementById("manual-install-tab");
-          indexTab.setAttribute("aria-selected", "true");
-        }
+      if (activeTab && targetIds.includes(activeTab.getAttribute("aria-controls"))) {
+        showTab("manual-install-tab", "manual-install", true);
       }
 
-      const lts = ["#release-notes-lts", "#system-requirements-lts", "#how-to-install-lts"];
-      const latest = ["#release-notes-latest", "#system-requirements-latest", "#how-to-install-latest"];
+      const ltsTabs = ["#release-notes-lts", "#system-requirements-lts", "#how-to-install-lts"];
+      const latestTabs = ["#release-notes-latest", "#system-requirements-latest", "#how-to-install-latest"];
 
-      if (lts.includes(currentHash)) {
-        const secondTab = document.getElementById("second-child-tab");
-        const activeSecondTabExist = Array.from(secondTab.querySelectorAll(".p-tabs__link")).some(tab => {
-          tab.getAttribute("aria-selected") === "true";
-        });
-        if (!activeSecondTabExist) {
-          document.getElementById("release-notes-tab-latest").setAttribute("aria-selected", "true");
-          document.getElementById("release-notes-latest").classList.remove("u-hide");
-        }
-      };
+      if (ltsTabs.includes(currentHash)) {
+        const isSelected = Array.from(document.getElementById("second-child-tab").querySelectorAll(".p-tabs__link"))
+          .some(tab => tab.getAttribute("aria-selected") === "true");
+        if (!isSelected) showTab("release-notes-tab-latest", "release-notes-latest", true);
+      }
 
-      if (latest.includes(currentHash)) {
-        const firstTab = document.getElementById("first-child-tab");
-        const activeFirstTabExist = Array.from(firstTab.querySelectorAll(".p-tabs__link")).some(tab => {
-          tab.getAttribute("aria-selected") === "true"
-        });
-        if (!activeFirstTabExist) {
-          document.getElementById("release-notes-tab-lts").setAttribute("aria-selected", "true");
-          document.getElementById("release-notes-lts").classList.remove("u-hide");
-        };
+      if (latestTabs.includes(currentHash)) {
+        const isSelected = Array.from(document.getElementById("first-child-tab").querySelectorAll(".p-tabs__link"))
+          .some(tab => tab.getAttribute("aria-selected") === "true");
+        if (!isSelected) showTab("release-notes-tab-lts", "release-notes-lts", true);
       }
 
       if (currentHash === "#manual-install") {
-        const firstTab = document.getElementById("first-child-tab");
-        const secondTab = document.getElementById("second-child-tab");
-        Array.from(firstTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
-          if (tab.getAttribute("id") === "release-notes-tab-lts") {
-            tab.setAttribute("aria-selected", "true");
-            document.getElementById("release-notes-lts").classList.remove("u-hide");
-          } else {
-            tab.setAttribute("aria-selected", "false");
-          }
-        })
-        Array.from(secondTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
-          if (tab.getAttribute("id") === "release-notes-tab-latest") {
-            tab.setAttribute("aria-selected", "true");
-            document.getElementById("release-notes-latest").classList.remove("u-hide");
-          } else {
-            tab.setAttribute("aria-selected", "false");
-          }
-        })
+        handleTab("first-child-tab", "release-notes-tab-lts", "release-notes-lts");
+        handleTab("second-child-tab", "release-notes-tab-latest", "release-notes-latest");
       }
     }
 
@@ -681,34 +667,18 @@
     // Show release notes tab when the manual install tab is clicked
     function showBaseNestedTab() {
       const targetTab = document.querySelector(".p-tabs__link[href='#manual-install']");
-      const firstTab = document.getElementById("first-child-tab");
-      const secondTab = document.getElementById("second-child-tab");
 
       targetTab.addEventListener("click", () => {
-        Array.from(firstTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
-          if (tab.getAttribute("id") === "release-notes-tab-lts") {
-            tab.setAttribute("aria-selected", "true");
-            document.getElementById("release-notes-lts").classList.remove("u-hide");
-          } else {
-            tab.setAttribute("aria-selected", "false");
-          }
-        })
-        Array.from(secondTab.querySelectorAll(".p-tabs__link")).forEach(tab => {
-          if (tab.getAttribute("id") === "release-notes-tab-latest") {
-            tab.setAttribute("aria-selected", "true");
-            document.getElementById("release-notes-latest").classList.remove("u-hide");
-          } else {
-            tab.setAttribute("aria-selected", "false");
-          }
-        })
-      })
+        handleTab("first-child-tab", "release-notes-tab-lts", "release-notes-lts");
+        handleTab("second-child-tab", "release-notes-tab-latest", "release-notes-latest");
+      });
     }
 
-    showBaseNestedTab();
 
     addEventListener("DOMContentLoaded", () => {
       handleNonTabHashClick();
       showParentTab();
+      showBaseNestedTab();
     });
   </script>
 
