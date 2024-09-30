@@ -9,7 +9,8 @@
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-8">
-      <h1>Open Infrastructure consulting services</h1>
+      <h1>Enterprise open source consulting services</h1>
+      <p>Bring the best of open source to your organisation in a secure, reliable and compliant way. Get experts to support or lead the implementation of your private cloud, Kubernetes, MLOps and data solutions.</p>
     </div>
   </div>
 </section>
@@ -40,9 +41,34 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
+    <h2 id="maas">MAAS Deployment Service</h2>
+  </div>
+  {% include "shared/pricing/_maas-deployment.html" %}
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
     <h2 id="kubeflow">Kubeflow Deployment Service</h2>
   </div>
   {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 id="kubeflow">Data solutions advisory</h2>
+    <p>
+      Unlock the potential of your data. Canonical’s advisory services help you design, deploy and 
+      <a href="https://canonical.com/data">manage your data solutions.</a>
+      Get your data projects to production quickly, at a lower cost and in an optimised way. 
+    </p>
+    <p>
+      We offer advisory services for data applications like: <a href="https://canonical.com/data/kafka">Kafka</a>, 
+      <a href="https://canonical.com/data/spark">Spark</a>, <a href="https://canonical.com/data/opensearch">OpenSearch</a>, 
+      <a href="https://canonical.com/data/mongodb">MongoDB</a>, <a href="https://canonical.com/data/mysql">MySQL</a> and 
+      <a href="https://canonical.com/data/postgresql">PostgreSQL</a>.
+    </p>
+  </div>
+  {% include "shared/pricing/_data-solutions.html" %}
 </section>
 
 {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
@@ -50,7 +76,5 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
-
 
 {% endblock content %}
