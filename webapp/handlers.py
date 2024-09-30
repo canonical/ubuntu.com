@@ -54,6 +54,12 @@ def init_handlers(app, sentry):
         if flask.request.path.startswith("/certified"):
             response.headers["X-Frame-Options"] = "DENY"
 
+        # Add CSP headers for credentials/exam
+        if flask.request.path.startswith("/credentials/exam"):
+            response.headers[
+                "Content-Security-Policy"
+            ] = "frame-ancestors cloudesign.io *.cloudesign.io"
+
         return response
 
     # Error pages
