@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-9 col-start-large-4">
+    <hr/>
+    <table aria-label="Hardware details for {{ release_details.make }} {{ release_details.model }}">
+      <tbody>
+        {% for category, devices in hardware_details.items() %}
+          {% if category != "Other" %}
+          <tr>
+            <th colspan="3" class="u-text--muted">
+              {{ category }}
+            </th>
+            <td colspan="6">
+              <ul class="p-list u-no-margin--bottom">
+              {% for device in devices %}
+              <li class="p-list__item u-no-padding--top">
+                {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem %} {{ device.subsystem }}{% endif %}){% endif %}
+              </li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %}
+        {% else %}
+          There are no hardware details available for this machine.
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{% extends "templates/base.html" %}
+
+{% block title %} {{ vendor }} {{ model }} certified with Ubuntu {{ release }}{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block outer_content %}
+
+<main class="is-paper">
+  <section class="p-section--deep row">
+    {% with release_details=release_details %}
+      {% include "certified/hardware-details/_hero-section.html" %}
+    {% endwith %}
+
+    {% with hardware_details=hardware_details %}
+      {% include "certified/hardware-details/_hardware-table.html" %}
+    {% endwith %}
+  </section>
+</main>
+
+{% endblock %}
