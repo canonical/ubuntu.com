@@ -81,6 +81,15 @@
         <p>
           To ensure full compatibility with Ubuntu Desktop, we ask customers to ensure that they use certified hardware. Find out more about the wide range of Ubuntu certified desktops here: <a href="https://certification.ubuntu.com/desktop">certification.ubuntu.com/desktop</a>.
         </p>
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6a61890d-service-requirements.png",
+          alt="",
+          width="1200",
+          height="676",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
@@ -363,7 +372,20 @@
       </div>
     </div>
     <div class="row--50-50">
-      <div class="col"></div>
+      <div class="col">
+        <div class="p-image-container is-highlighted">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4edd3729-get-ubuntu-pro-desktop.png",
+            alt="",
+            width="1200",
+            height="801",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}
+            ) | safe
+          }}
+        </div>
+      </div>
       <div class="col">
         <p>
           Ubuntu Pro Desktop is a comprehensive subscription for secure enterprise Linux adoption. It provides security, management tooling and support for your Ubuntu Desktop fleet.
