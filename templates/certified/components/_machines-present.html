@@ -1,0 +1,21 @@
+<section class="p-section--deep">
+  <div class="row--25-75">
+    <div class="col">
+    <h2 class="p-muted-heading">Present in {{ machines|length }} certified system{% if machines|length > 1 %}s{% endif %}</h2>
+    </div>
+    <div class="col">
+      <ul class="p-list">
+        {% for machine in machines %}
+        <li class="p-list__item">
+          <a href="/certified/{{ machine.canonical_id }}">{{ machine.canonical_id }} {{ machine.make }} {{ machine.model }}</a>
+        </li>
+
+        {% if not loop.last %}
+        <hr class="is-muted"/>
+        {% endif %}
+        
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

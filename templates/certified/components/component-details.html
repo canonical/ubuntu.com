@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Ubuntu certified component: {{ component.vendor_name }} {{ component.model }}{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block outer_content %}
+
+<main class="is-paper">
+  <div class="row">
+    {% with 
+      vendor_name=component.vendor_name,
+      component_name=component.model
+    %}
+      {% include "/certified/components/_hero-section.html" %}
+    {% endwith %}
+
+    {% with
+      lts_releases=component.lts_releases
+    %}
+      {% include "/certified/components/_certified-releases.html" %}
+    {% endwith %}
+    <hr/>
+    {% with component=component %}
+      {% include "/certified/components/_hardware-details.html" %}
+    {% endwith %}
+    <hr/>
+    {% with machines=machines %}
+      {% include "/certified/components/_machines-present.html" %}
+    {% endwith %}
+  </div>
+</main>
+{% endblock %}
