@@ -27,7 +27,7 @@
     </h2>
   </div>
   <div class="col-9 col-medium-4 u-hide--small">
-    <ul class="p-inline-list p-footer-list" id="{{ section.path }}-footer-nav">
+    <ul class="p-inline-list p-footer-list u-no-margin--bottom" id="{{ section.path }}-footer-nav">
       {% for child in section.children %}
       {% if child.title != 'Overview' %}
       {% if not child.hidden %}
