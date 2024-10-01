@@ -1,13 +1,18 @@
 import { useState, useMemo, useEffect } from "react";
 import { Pagination, Spinner, Notification } from "@canonical/react-components";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUpcomingExams } from "../../api/queryFns";
+import { getUpcomingExams, getUserPermissions } from "../../api/queryFns";
 import {
   AssessmentReservationTA,
   AssessmentReservationMeta,
 } from "../../utils/types";
+import {
+  getUserPermissionsKey,
+  getUpcomingExamsKey,
+} from "../../api/queryKeys";
 import { ModularTable } from "@canonical/react-components";
 import { upperCaseFirstChar } from "../../utils/common";
+import ActionsMenu from "./components/ActionsMenu";
 
 type APIResponse = {
   assessment_reservations: AssessmentReservationTA[];
@@ -20,6 +25,16 @@ const UpcomingExams = () => {
   const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
+  const [setNotification, setsetNotification] = useState<
+    undefined | "negative" | "positive"
+  >(undefined);
+  const [notificationError, setNotificationError] = useState<string | null>(
+    null,
+  );
+  const { data: permissions } = useQuery({
+    queryKey: getUserPermissionsKey(),
+    queryFn: getUserPermissions,
+  });
 
   const onSuccess = (newData: APIResponse, currPage: number) => {
     if (newData && newData.assessment_reservations) {
@@ -31,7 +46,7 @@ const UpcomingExams = () => {
   };
 
   const { isLoading, isError, data, isFetching } = useQuery<APIResponse>({
-    queryKey: ["upcomingExams", page],
+    queryKey: getUpcomingExamsKey(page),
     queryFn: () => getUpcomingExams(page, onSuccess),
   });
 
@@ -49,8 +64,8 @@ const UpcomingExams = () => {
     }
   }, [page]);
 
-  const columns: any = useMemo(
-    () => [
+  const columns: any = useMemo(() => {
+    const COLS: any[] = [
       {
         Header: "ID",
         accessor: "id",
@@ -116,9 +131,30 @@ const UpcomingExams = () => {
           return props.row.depth === 0 ? <></> : <small>{date}</small>;
         },
       },
-    ],
-    [],
-  );
+    ];
+    if (permissions?.is_credentials_admin) {
+      COLS.push({
+        Header: "Actions",
+        accessor: "actions",
+        Cell: (props: any) => {
+          return props.row.depth === 0 ? (
+            <></>
+          ) : (
+            <>
+              {props.value && (
+                <ActionsMenu
+                  exam={props.row.original}
+                  setNotificationState={setsetNotification}
+                  setNotificationError={setNotificationError}
+                />
+              )}
+            </>
+          );
+        },
+      });
+    }
+    return COLS;
+  }, [permissions]);
 
   const flatData = useMemo(() => {
     const data = cachedData ? Object.values(cachedData).flat() : [];
@@ -152,6 +188,7 @@ const UpcomingExams = () => {
       ) || [];
     matches = matches.map((m) => ({
       ...m,
+      actions: true,
       state: getState(m),
     }));
     return matches;
@@ -221,6 +258,18 @@ const UpcomingExams = () => {
 
   return (
     <>
+      {setNotification && (
+        <Notification
+          severity={setNotification}
+          title={
+            notificationError
+              ? notificationError
+              : setNotification === "positive"
+                ? "Exam cancelled"
+                : "Failed to cancel exam"
+          }
+        />
+      )}
       {(isLoading || isFetching) && <Spinner text="Loading..." />}
       {paginationMeta && (
         <Pagination

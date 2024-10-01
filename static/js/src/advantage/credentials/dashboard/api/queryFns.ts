@@ -194,3 +194,24 @@ export async function getUserPermissions() {
     throw new Error(error as string);
   }
 }
+
+export async function cancelScheduledExam(reservationId: string) {
+  try {
+    const URL = `/credentials/api/cancel-scheduled-exam/${reservationId}`;
+    const response = await fetch(URL, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
