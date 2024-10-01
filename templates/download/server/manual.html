@@ -258,12 +258,21 @@
              id="release-notes-latest"
              role="tabpanel"
              aria-labelledby="release-notes-tab-latest">
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">Linux 6.11 kernel</li>
+            <li class="p-list__item is-ticked">Addition of kdump-tools for automatic kernel crash dumps</li>
+            <li class="p-list__item is-ticked">Inclusion of Valkey, a high performance key/value data store.</li>
+            <li class="p-list__item is-ticked">
+              Toolchain updates now include versioned Rust packages and TCK certified OpenJDK 21 and 17
+            </li>
+          </ul>
+          <hr class="p-rule" />
           <p>
             <a href="{{ releases.latest.release_notes_url }}">{{ releases.latest.short_version }} release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
 
-        <div class="p-tabs__content p-section--shallow u-no-padding--bottom"
+        <div class="p-tabs__content p-section"
              id="system-requirements-latest"
              role="tabpanel"
              aria-labelledby="system-requirements-tab-latest">
@@ -275,7 +284,7 @@
           </ul>
         </div>
 
-        <div class="p-tabs__content p-section--shallow"
+        <div class="p-tabs__content p-section"
              id="how-to-install-latest"
              role="tabpanel"
              aria-labelledby="how-to-install-tab-latest">
