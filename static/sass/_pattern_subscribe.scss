@@ -1,6 +1,14 @@
 @mixin ubuntu-p-ua-subscribe {
   .product-selector {
     counter-reset: headings;
+    .p-stepped-list__title {
+      margin-bottom: 2rem;
+
+      &::before {
+        content: counter(p-stepped-list-counter);
+        width: 2rem;
+      }
+    }
   }
 
   @media screen and (min-width: $breakpoint-large) {
@@ -9,11 +17,6 @@
 
       .p-stepped-list__title {
         padding-left: 3.7rem;
-
-        &::before {
-          content: counter(p-stepped-list-counter);
-          width: 2rem;
-        }
       }
 
       > .p-stepped-list > .p-stepped-list__item {

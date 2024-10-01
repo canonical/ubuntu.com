@@ -1,6 +1,18 @@
 @mixin ubuntu-p-distributor {
   .distributor-shop-selector {
     counter-reset: headings;
+    .p-stepped-list__title {
+      margin-bottom: 2rem;
+
+      &::before {
+        align-items: center;
+        border: 1px solid #000;
+        border-radius: 50%;
+        content: counter(p-stepped-list-counter);
+        text-align: center;
+        font-size: 1rem;
+      }
+    }
   }
 
   @media screen and (min-width: $breakpoint-large) {
@@ -11,14 +23,9 @@
         width: $breakpoint-x-small + 100px;
 
         &::before {
-          align-items: center;
-          border: 1px solid #000;
-          border-radius: 50%;
-          content: counter(p-stepped-list-counter);
           font-size: 1.5rem;
           height: 2.5rem;
           line-height: 2.5rem;
-          text-align: center;
           width: 2.5rem;
         }
       }
