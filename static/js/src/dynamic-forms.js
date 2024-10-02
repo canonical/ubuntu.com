@@ -483,10 +483,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       setCheckboxLimit();
 
-      // Sets up dial code dropdown options aka. intlTelInput.js
-      // and pre fills the country field
-      prepareInputFields(phoneNumberInput, countryInput);
-
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
