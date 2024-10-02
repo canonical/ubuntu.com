@@ -36,17 +36,21 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Get your team up and running with Ubuntu</h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Get your team up and running with Ubuntu</h2>
+        </div>
+        <div class="col">
           <p>
             Ubuntu Desktop Enterprise Services are designed to help your developers get up and running on Ubuntu as quickly as possible. Canonical engineers partner with you to deliver a solution tailored to your needs, from custom images and Snap Store proxies to Active Directory integration and fleet management through Landscape.
           </p>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
         <hr class="p-rule--muted" />
         <h3 class="p-heading--5">Deployment Steps:</h3>
         <ol class="p-list--divided">
@@ -82,13 +86,13 @@
           To ensure full compatibility with Ubuntu Desktop, we ask customers to ensure that they use certified hardware. Find out more about the wide range of Ubuntu certified desktops here: <a href="https://certification.ubuntu.com/desktop">certification.ubuntu.com/desktop</a>.
         </p>
         {{ image (
-          url="https://assets.ubuntu.com/v1/6a61890d-service-requirements.png",
-          alt="",
-          width="1200",
-          height="676",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
+        url="https://assets.ubuntu.com/v1/6a61890d-service-requirements.png",
+        alt="",
+        width="1200",
+        height="676",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
         }}
       </div>
     </div>
@@ -97,7 +101,7 @@
   <section class="p-section">
     <div class="u-fixed-width">
       <hr class="p-rule" />
-      <h2>Find the service for your enterprise</h2>
+      <h2>Find the service for your requirements</h2>
     </div>
     <div class="row--25-75">
       <div class="col">
@@ -105,8 +109,16 @@
           <thead>
             <tr>
               <th role="presentation">&nbsp;</th>
-              <th scope="col">Ubuntu Desktop Enterprise Services</th>
-              <th scope="col">Ubuntu Desktop Enterprise Services Plus</th>
+              <th scope="col">
+                Ubuntu Desktop
+                <br />
+                Enterprise Services
+              </th>
+              <th scope="col">
+                Ubuntu Desktop
+                <br />
+                Enterprise Services Plus
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -315,8 +327,7 @@
               </td>
             </tr>
             <tr>
-              <td>
-                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Security policy enforcement</p>
+              <td role="presentation">
               </td>
               <td>
                 <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Custom firewall enablement</p>
@@ -324,16 +335,18 @@
             </tr>
             <tr>
               <td>
-                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Anti-virus/anti-malware solution support</p>
+                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Security policy enforcement</p>
               </td>
               <td>
                 <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Security policy enforcement</p>
               </td>
             </tr>
             <tr>
-              <td role="presentation"></td>
               <td>
-                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Security policy enforcement</p>
+                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Anti-virus/anti-malware solution support</p>
+              </td>
+              <td>
+                <p class="u-text--muted u-no-margin--bottom u-no-padding--top">Anti-virus/anti-malware solution support</p>
               </td>
             </tr>
             <tr>
@@ -375,14 +388,14 @@
       <div class="col">
         <div class="p-image-container is-highlighted">
           {{ image (
-            url="https://assets.ubuntu.com/v1/4edd3729-get-ubuntu-pro-desktop.png",
-            alt="",
-            width="1200",
-            height="801",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}
-            ) | safe
+          url="https://assets.ubuntu.com/v1/4edd3729-get-ubuntu-pro-desktop.png",
+          alt="",
+          width="1200",
+          height="801",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-image-container__image"}
+          ) | safe
           }}
         </div>
       </div>
@@ -425,7 +438,9 @@
     </div>
     <div class="p-section--deep">
       <p class="p-heading--2">
-        Call us +1 737 204 0291 (Americas), +44 203 656 5291 (RoW) or <a href="/pricing/devices#get-in-touch">contact us online</a>
+        Call us <span class="u-no-wrap">+1 737 204 0291 (Americas),</span> <span class="u-no-wrap">+44 203 656 5291 (RoW)</span>
+        <br />
+        or <a href="/pricing/contact-us" class="js-invoke-modal">contact us online</a>
       </p>
     </div>
   </section>
