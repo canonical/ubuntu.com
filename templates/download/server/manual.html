@@ -267,10 +267,14 @@
             </li>
           </ul>
           <hr class="p-rule" />
-          <p>
-            <a href="/blog/canonical-releases-ubuntu-24-10-oracular-oriole">[{{ releases.latest.short_version }}] Press release</a>
-            <a href="{{ releases.latest.release_notes_url }}">[{{ releases.latest.short_version }}] Release notes&nbsp;&rsaquo;</a>
-          </p>
+          <ul class="u-responsive-realign p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="/blog/canonical-releases-ubuntu-24-10-oracular-oriole">[{{ releases.latest.short_version }}] Press release&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="{{ releases.latest.release_notes_url }}">[{{ releases.latest.short_version }}] Release notes&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
         </div>
 
         <div class="p-tabs__content p-section"
