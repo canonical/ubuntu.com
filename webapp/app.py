@@ -101,6 +101,7 @@ from webapp.shop.cred.views import (
     get_webhook_response,
     issue_badges,
     rotate_activation_key,
+    cancel_scheduled_exam,
 )
 from webapp.shop.views import (
     account_view,
@@ -1012,6 +1013,11 @@ app.add_url_rule(
     "/credentials/api/user-permissions",
     view_func=get_cred_user_permissions,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/cancel-scheduled-exam/<reservation_id>",
+    view_func=cancel_scheduled_exam,
+    methods=["DELETE"],
 )
 
 app.add_url_rule(

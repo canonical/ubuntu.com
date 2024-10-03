@@ -350,7 +350,7 @@ def cred_schedule(
                 uuid=assessment_reservation_uuid,
             )
             if response and "assessment_reservation" not in response:
-                error = response["error"]
+                error = response.get("message", "Could not reschedule exam")
                 return flask.render_template(
                     "/credentials/schedule.html",
                     error=error,
@@ -1240,6 +1240,34 @@ def get_cred_user_permissions(credly_api, **kwargs):
             "is_credentials_support": is_credentials_support,
         }
     )
+
+
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def cancel_scheduled_exam(trueability_api, **kwargs):
+    reservation_id = kwargs.get("reservation_id")
+    try:
+        response = trueability_api.delete_assessment_reservation(
+            reservation_id
+        )
+        if response.get("error", False):
+            return (
+                flask.jsonify(
+                    {"status": "error", "error": response.get("message")}
+                ),
+                400,
+            )
+        return flask.jsonify({"status": "success"})
+    except Exception as error:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "request_url": error.request.url,
+                "request_headers": error.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
+        return flask.jsonify({"status": "error"}), 500
 
 
 @shop_decorator(area="cred", permission="user", response="html")
