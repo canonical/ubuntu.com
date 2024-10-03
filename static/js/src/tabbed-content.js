@@ -56,6 +56,7 @@
       Attaches a number of events that each trigger
       the reveal of the chosen tab content
       @param {Array} tabs an array of tabs within a container
+      @param {Boolean} persistURLHash whether to add the tab ID to the URL
     */
   const attachEvents = (tabs, persistURLHash) => {
     tabs.forEach(function (tab, index) {
@@ -106,7 +107,7 @@
     */
   const setActiveTab = (tab, tabs) => {
     tabs.forEach((tabElement) => {
-      var tabContent = document.querySelectorAll(
+      const tabContent = document.querySelectorAll(
         "#" + tabElement.getAttribute("aria-controls"),
       );
       tabContent.forEach((content) => {
@@ -134,30 +135,38 @@
     containing the tabs we want to attach events to
   */
   const initTabs = (selector) => {
-    var tabContainers = [].slice.call(document.querySelectorAll(selector));
+    const tabContainers = [].slice.call(document.querySelectorAll(selector));
 
     tabContainers.forEach((tabContainer) => {
       // if the tab container has this data attribute, the id of the tab
       // is added to the URL, and a particular tab can be directly linked
-      var persistURLHash = tabContainer.getAttribute("data-maintain-hash");
-      var currentHash = window.location.hash;
+      const persistURLHash =
+        "true" === tabContainer.getAttribute("data-maintain-hash");
+      const currentHash = window.location.hash;
 
-      var tabs = [].slice.call(
+      const tabs = [].slice.call(
         tabContainer.querySelectorAll("[aria-controls]"),
       );
+
       attachEvents(tabs, persistURLHash);
 
-      if (persistURLHash && currentHash) {
-        var activeTab = document.querySelector(
+      const isInsideCurrentContainer =
+        null !==
+        tabContainer.querySelector(".p-tabs__link[href='" + currentHash + "']");
+
+      if (persistURLHash && currentHash && isInsideCurrentContainer) {
+        const activeTab = document.querySelector(
           ".p-tabs__link[href='" + currentHash + "']",
         );
 
         if (activeTab) {
           setActiveTab(activeTab, tabs);
         }
-      } else {
-        setActiveTab(tabs[0], tabs);
+
+        return;
       }
+
+      setActiveTab(tabs[0], tabs);
     });
   };
 
@@ -176,9 +185,9 @@
     on the page
   */
   const isScriptIncluded = (scriptName) => {
-    var scripts = document.scripts;
+    const scripts = document.scripts;
 
-    for (var i = 0; i < scripts.length; i++) {
+    for (let i = 0; i < scripts.length; i++) {
       if (scripts[i].src.includes(scriptName)) {
         return true;
       }
@@ -213,7 +222,7 @@
   const boards = document.querySelectorAll(`[role=tabpanel]`);
   const dropdownSelect = document.getElementById("boardSelect");
 
-  dropdownSelect?.addEventListener("change", (event) => {
+  dropdownSelect?.addEventListener("change", () => {
     selectBoard();
   });
 
