@@ -426,7 +426,7 @@
 // XXX: MPT: Can be removed once this is upstreamed in Vanilla
 // https://github.com/canonical/vanilla-framework/issues/5293
 @mixin vf-list-item-divided {
-  .p-list--divided > .p-list__item:first-child {
+  .p-list--divided.is-homepage > .p-list__item:first-child {
     box-shadow: inset 0 1px 0 0 $colors--theme--border-low-contrast;
   }
 }
