@@ -244,7 +244,7 @@ def cred_schedule(
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
+    max_date = (now + timedelta(days=365)).strftime("%Y-%m-%d")
     contract_long_id = flask.request.args.get("contractLongID")
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
