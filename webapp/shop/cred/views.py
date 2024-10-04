@@ -928,10 +928,13 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
         for exam in exams:
             if product["id"] == exam["id"]:
                 exam["longId"] = product["longId"]
-                exam["period"] = "monthly"
+                if product["period"] == "none":
+                    exam["period"] = "monthly"
+                else:
+                    exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-                exam["periodQuantity"] = 30
+                exam["periodQuantity"] = product["effectiveDays"]
 
     # purchase account required for purchasing from marketplace
 
@@ -1313,9 +1316,10 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
         {
             "id": listing.get("productID", ""),
             "longId": listing.get("id", ""),
-            "period": listing.get("period", ""),
+            "period": listing.get("period", "yearly"),
             "marketplace": listing.get("marketplace", ""),
             "name": listing.get("name", ""),
+            "effectiveDays": listing.get("effectiveDays", 365),
             "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings
