@@ -242,10 +242,17 @@ def cred_schedule(
     **_,
 ):
     error = None
+    
+    contract_long_id = flask.request.args.get("contractLongID")
+    contract_detail = ua_contracts_api.get_contract(contract_long_id)
+
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=365)).strftime("%Y-%m-%d")
-    contract_long_id = flask.request.args.get("contractLongID")
+    max_date = datetime.strptime(
+                    f"{contract_detail['contractInfo']['effectiveTo']}",
+                    "%Y-%m-%dT%H:%M:%SZ",
+                ).strftime("%Y-%m-%d")
+
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
@@ -317,7 +324,6 @@ def cred_schedule(
             between the contract effectiveness window"""
             if not contract_long_id:
                 return flask.redirect("/credentials/your-exams")
-            contract_detail = ua_contracts_api.get_contract(contract_long_id)
             effective_from = now.astimezone(tz_info) + timedelta(
                 hours=time_delta
             )
