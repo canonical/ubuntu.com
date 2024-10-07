@@ -10,6 +10,10 @@
   https://docs.google.com/document/d/1qC22TM6KZTlxK3CScf-RQ4RUiMUhIBcjSWGur-dbYVA/edit
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
   <section class="p-section--hero">
     <div class="row--50-50">
@@ -27,13 +31,14 @@
       </div>
       <div class="col p-strip is-shallow">
         <div class="p-image-container--16-9 is-highlighted u-hide--medium u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/1977ac14-aws-f7f7f7.png",
+          {{ image(url="https://assets.ubuntu.com/v1/6143478c-correct-bg-aws.png",
                     alt="AWS Workspaces",
                     width="300",
                     height="200",
                     hi_def=True,
-                    loading="lazy") | safe
-          }}
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}     
         </div>
       </div>
     </div>
@@ -41,7 +46,7 @@
       <hr class="is-muted" />
       <div class="col">
         <a href="https://aws.amazon.com/workspaces/pricing/?nc=sn&loc=3"
-           class="p-button--positive">Launch Today</a>
+           class="p-button--positive">Launch today</a>
       </div>
     </div>
   </section>
@@ -73,7 +78,7 @@
             </ul>
             <hr class="p-rule is-muted" />
             <p class="u-sv3">
-              Read more about <a href="/desktop/developers">Ubuntu Desktop for developers</a>
+              <a href="/desktop/developers">Read more about Ubuntu Desktop for developers&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -98,7 +103,7 @@
             </ul>
             <hr class="p-rule is-muted" />
             <p class="u-sv3">
-              Read more about <a href="https://aws.amazon.com/workspaces/">Amazon WorkSpaces</a>
+              <a href="https://aws.amazon.com/workspaces/">Read more about Amazon WorkSpaces&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -120,7 +125,7 @@
             </ul>
             <hr class="p-rule is-muted" />
             <p class="u-sv3">
-              Read more about <a href="/desktop/organisations">Ubuntu Desktop for organisations</a>
+              <a href="/desktop/organisations">Read more about Ubuntu Desktop for organisations&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
