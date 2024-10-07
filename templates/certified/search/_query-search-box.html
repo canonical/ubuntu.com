@@ -1,0 +1,12 @@
+<div class="p-search-box">
+  <label for="certified-search" class="u-off-screen">{{ placeholder or "Search Ubuntu certified hardware" }}</label>
+  <input class="p-search-box__input"
+         id="certified-search"
+         type="text"
+         name="q"
+         value="{{ query or '' }}"
+         placeholder="{{ placeholder or 'Search' }}" />
+  <button type="submit" class="p-search-box__button">
+    <i class="p-icon--search">Submit</i>
+  </button>
+</div>
