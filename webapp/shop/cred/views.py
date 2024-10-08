@@ -242,10 +242,17 @@ def cred_schedule(
     **_,
 ):
     error = None
+
+    contract_long_id = flask.request.args.get("contractLongID")
+    contract_detail = ua_contracts_api.get_contract(contract_long_id)
+
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
-    contract_long_id = flask.request.args.get("contractLongID")
+    max_date = datetime.strptime(
+        f"{contract_detail['contractInfo']['effectiveTo']}",
+        "%Y-%m-%dT%H:%M:%SZ",
+    ).strftime("%Y-%m-%d")
+
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
@@ -317,7 +324,6 @@ def cred_schedule(
             between the contract effectiveness window"""
             if not contract_long_id:
                 return flask.redirect("/credentials/your-exams")
-            contract_detail = ua_contracts_api.get_contract(contract_long_id)
             effective_from = now.astimezone(tz_info) + timedelta(
                 hours=time_delta
             )
@@ -922,10 +928,13 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
         for exam in exams:
             if product["id"] == exam["id"]:
                 exam["longId"] = product["longId"]
-                exam["period"] = "monthly"
+                if product["period"] == "none":
+                    exam["period"] = "monthly"
+                else:
+                    exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-                exam["periodQuantity"] = 30
+                exam["periodQuantity"] = product["effectiveDays"]
 
     # purchase account required for purchasing from marketplace
 
@@ -1335,9 +1344,10 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
         {
             "id": listing.get("productID", ""),
             "longId": listing.get("id", ""),
-            "period": listing.get("period", ""),
+            "period": listing.get("period", "yearly"),
             "marketplace": listing.get("marketplace", ""),
             "name": listing.get("name", ""),
+            "effectiveDays": listing.get("effectiveDays", 365),
             "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings
