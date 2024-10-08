@@ -3,11 +3,11 @@
 {% block title %}Ubuntu IoT and device services{% endblock %}
 
 {% block meta_description %}
-Ubuntu Core and Ubuntu for IoT Pricing, including Smart Start, Snap store set-up, device enablement and long term support packages.
+  Ubuntu Core and Ubuntu for IoT Pricing, including Smart Start, Snap store set-up, device enablement and long term support packages.
 {% endblock %}
 
 {% block meta_copydoc %}
-https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/edit
+  https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/edit
 {% endblock meta_copydoc %}
 
 {% block body_class %}
@@ -33,17 +33,15 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
     </div>
     <div class="u-fixed-width">
       <div class="p-image-container u-hide--small is-highlighted">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/a8f1dc17-hero-img.png",
-        alt="",
-        width="2464",
-        height="1027",
-        hi_def=True,
-        loading="auto",
-        attrs={"class": "p-image-container__image"}
-        ) | safe
-      }}
-    </div>
+        {{ image(url="https://assets.ubuntu.com/v1/a8f1dc17-hero-img.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
     </div>
   </section>
 
@@ -130,7 +128,9 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
     <div class="row">
       <hr class="p-rule--muted" />
       <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
-        <a href="/pricing/contact-us" class="p-button js-invoke-modal" aria-label="Get in touch">Start your embedded project</a>
+        <a href="/pricing/contact-us"
+           class="p-button js-invoke-modal"
+           aria-label="Get in touch">Start your embedded project</a>
       </div>
     </div>
   </section>
@@ -155,7 +155,9 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
           Your private, white-label Snap Store includes role-based access controls, complete control of application versions, over-the-air (OTA) updates, and controlled rollouts. We enable integrators and resellers to operate app stores on behalf of their clients.
         </p>
         <div class="p-cta-block">
-          <a href="/internet-of-things/appstore" class="p-button">Learn more</a>
+          <a href="/internet-of-things/appstore"
+             class="p-button"
+             aria-label="Learn more about our IoT App Store">Learn more</a>
         </div>
       </div>
     </div>
@@ -184,7 +186,11 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h2>System on a chip, board and device enablement</h2>
+          <h2>
+            System on a chip,
+            <br />
+            board and device enablement
+          </h2>
         </div>
         <div class="col">
           <p>
@@ -233,7 +239,7 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
       <hr class="p-rule--muted" />
       <div class="col">
         <h3 class="p-heading--2">
-          Add-ons to 
+          Add-ons to
           <br class="u-hide--small" />
           board enablement services
         </h3>
@@ -242,17 +248,15 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
         <div class="row">
           <div class="col-3">
             <div class="p-image-container--2-3 u-hide--small is-highlighted">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/758529e8-full-disk-encryption.png",
-                alt="",
-                width="568",
-                height="853",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"}
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/758529e8-full-disk-encryption.png",
+                            alt="",
+                            width="568",
+                            height="853",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
               }}
-              </div>
+            </div>
             <h4 class="p-heading--5">Full disk encryption</h4>
             <p>
               Enable full disk encryption with hardware key management and optional key escrow. Choice of cyphers and hardware acceleration for minimal performance impact. Essential for devices with personal information in regulated industries.
@@ -260,17 +264,15 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
           </div>
           <div class="col-3">
             <div class="p-image-container--2-3 u-hide--small is-highlighted">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/85bc6d73-secure-boot-new.png",
-              alt="",
-              width="568",
-              height="853",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
-            }}
-        </div>
+              {{ image(url="https://assets.ubuntu.com/v1/85bc6d73-secure-boot-new.png",
+                            alt="",
+                            width="568",
+                            height="853",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
             <h4 class="p-heading--5">Secure boot</h4>
             <p>
               Enable secure boot, ensuring that the device will only run its certified workload. Hardware key management devices such as the TPM are used to validate each stage of the boot process, for enhanced assurance of the integrity of the running OS.
@@ -309,7 +311,7 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
       <hr class="p-rule" />
       <div class="col">
         <h2>
-          Ubuntu device support 
+          Ubuntu device support
           <br class="u-hide--small" />
           for manufacturers
         </h2>
@@ -322,7 +324,8 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
           Support for device manufacturers enables access to Canonical engineering and techops teams to help troubleshoot and resolve issues in Ubuntu and Ubuntu Core. It covers kernel, device integration, base OS, snap security and update mechanisms, networking, communications, and graphics.
         </p>
         <p>
-          During the duration of the contract, Canonical will provide technical support for any Ubuntu image provided to the Customer or any standard release of Ubuntu when installed using official sources and within its life cycle. The life cycle for each version of the Ubuntu image(s) is specified <a href="/about/release-cycle">here</a>.
+          During the duration of the contract, Canonical will provide technical support for any Ubuntu image provided to the Customer or any standard release of Ubuntu when installed using official sources and within its life cycle. The life cycle for each version of the Ubuntu image(s) is specified <a href="/about/release-cycle"
+    aria-label="About the Ubuntu release cycle">here</a>.
         </p>
         <div class="p-cta-block">
           <a href="/pricing/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
@@ -358,7 +361,9 @@ https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/
           <li class="p-list__item is-ticked">
             24/7, open source <a href="/support">software support</a> for the full stack
           </li>
-          <li class="p-list__item is-ticked"><a href="/legal/trademarks">Trademark use</a></li>
+          <li class="p-list__item is-ticked">
+            <a href="/legal/trademarks">Trademark use</a>
+          </li>
         </ul>
         <div class="p-cta-block">
           <a href="/embedding">Learn more about the Embedding programme</a>
