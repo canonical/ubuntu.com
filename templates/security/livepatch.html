@@ -43,23 +43,52 @@ meta_copydoc %}
       </div>
     </div>
   </section>
-
-  <section class="p-strip--light is-shallow u-equal-height">
-    <div class="row">
-      <div class="col-2 u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/7076ef2d-ubuntu-documents.svg",
-                alt="",
-                width="100",
-                height="120",
-                hi_def=True,
-                loading="auto") | safe
-        }}
+  
+  <section class="p-strip">
+    <div class="row p-divider">
+      <div class="col-4 p-divider__block">
+        <h2 class="p-heading--4">Learn more about Livepatch</h2>
       </div>
-      <div class="col-10 u-vertically-center">
-        <div>
-          <h2 class="p-heading--3">Read the Livepatch documentation</h2>
-          <a href="/security/livepatch/docs">Read the docs</a>
+      <div class="col-4 p-divider__block">
+        <div class="p-heading-icon--muted">
+          <div class="p-heading-icon__header">
+            {{ image(url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+                        alt="",
+                        width="32",
+                        height="28",
+                        hi_def=True,
+                        attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+                        loading="lazy",) | safe
+            }}
+            <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
+          </div>
         </div>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a href="/engage/patching-automations-best-practices">Best practices for security patching automations</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-4 p-divider__block">
+        <div class="p-heading-icon--muted">
+          <div class="p-heading-icon__header">
+            {{ image(url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+                        alt="",
+                        width="46",
+                        height="30",
+                        hi_def=True,
+                        attrs={"class": "p-heading-icon", "style": "margin-top: 0.3rem;"},
+                        loading="lazy") | safe
+            }}
+            &nbsp;&nbsp;
+            <h3 class="p-heading-icon__title p-heading--4">Documentation</h3>
+          </div>
+        </div>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a href="/security/livepatch/docs">Read the Livepatch documentation</a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
