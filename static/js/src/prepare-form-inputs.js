@@ -63,7 +63,6 @@ function addInputValidation(phoneInput) {
   const mobileInput = document.querySelector(".iti");
   mobileInput.parentNode.classList.add("p-form-validation");
   phoneInput.classList.add("p-form-validation__input");
-  phoneInput.setAttribute("aria-describedby", "invalid-number-message");
 
   const errorElement = createErrorMessage();
   phoneInput.addEventListener("blur", () =>
@@ -99,6 +98,7 @@ function validateInput(phoneInput, errorElement) {
   if (!isValid) {
     phoneInput.parentNode.parentNode.classList.add("is-error");
     phoneInput.parentNode.after(errorElement);
+    phoneInput.setAttribute("aria-describedby", "invalid-number-message");
   }
 }
 
@@ -120,6 +120,7 @@ function isValidNumber(number) {
  */
 function resetErrorState(errorElement, phoneInput) {
   phoneInput?.parentNode?.parentNode.classList.remove("is-error");
+  phoneInput.removeAttribute("aria-describedby", "invalid-number-message");
   if (errorElement.parentNode) {
     errorElement.remove();
   }
