@@ -109,9 +109,12 @@ def cred_self_study(**_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
     if flask.request.method == "GET":
+        search_type = flask.request.args.get("type")
         sign_up_open = True
         return flask.render_template(
-            "credentials/sign-up.html", sign_up_open=sign_up_open
+            "credentials/sign-up.html",
+            sign_up_open=sign_up_open,
+            search_type=search_type,
         )
 
     form_fields = {}
