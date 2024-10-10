@@ -67,7 +67,7 @@
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.lts.full_version }} LTS (64k page size)
           </a>
-          <a href="https://cdimage.ubuntu.com/ubuntu-server/oracular/daily-live/current"
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64+largemem.iso"
              class="p-button"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.latest.full_version }} (64k page size)
