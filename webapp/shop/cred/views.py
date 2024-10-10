@@ -184,40 +184,40 @@ def cred_sign_up(**_):
             400,
         )
 
-    # service_account_info = {
-    #     "token_uri": "https://oauth2.googleapis.com/token",
-    #     "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
-    #     "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
-    #         "\\n", "\n"
-    #     ),
-    #     "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
-    # }
+    service_account_info = {
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
+            "\\n", "\n"
+        ),
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    }
 
-    # credentials = service_account.Credentials.from_service_account_info(
-    #     service_account_info,
-    # )
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+    )
 
-    # service = build("sheets", "v4", credentials=credentials)
+    service = build("sheets", "v4", credentials=credentials)
 
-    # sheet = service.spreadsheets()
-    # sheet.values().append(
-    #     spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-    #     range="Sheet1",
-    #     valueInputOption="RAW",
-    #     body={
-    #         "values": [
-    #             [
-    #                 form_fields.get("firstName"),
-    #                 form_fields.get("lastName"),
-    #                 form_fields.get("email"),
-    #                 form_fields.get("Job_Role__c"),
-    #                 form_fields.get("title"),
-    #                 form_fields.get("Comments_from_lead__c"),
-    #                 form_fields.get("canonicalUpdatesOptIn"),
-    #             ]
-    #         ]
-    #     },
-    # ).execute()
+    sheet = service.spreadsheets()
+    sheet.values().append(
+        spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
+        range="Sheet1",
+        valueInputOption="RAW",
+        body={
+            "values": [
+                [
+                    form_fields.get("firstName"),
+                    form_fields.get("lastName"),
+                    form_fields.get("email"),
+                    form_fields.get("Job_Role__c"),
+                    form_fields.get("title"),
+                    form_fields.get("Comments_from_lead__c"),
+                    form_fields.get("canonicalUpdatesOptIn"),
+                ]
+            ]
+        },
+    ).execute()
 
     if return_url:
         # Personalize thank-you page
