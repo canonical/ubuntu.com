@@ -114,6 +114,7 @@ CSP = {
     ],
 }
 
+
 def init_handlers(app, sentry):
     @app.after_request
     def cache_headers(response):
@@ -272,7 +273,6 @@ def init_handlers(app, sentry):
     def utility_processor():
         return {"image": image_template}
 
-    
     @app.after_request
     def add_headers(response):
         """
@@ -297,10 +297,8 @@ def init_handlers(app, sentry):
                 csp_value = " ".join(values)
                 csp_str += f"{key} {csp_value}; "
             return csp_str.strip()
-        
-        response.headers["Content-Security-Policy"] = get_csp_as_str(
-            CSP
-        )
+
+        response.headers["Content-Security-Policy"] = get_csp_as_str(CSP)
 
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Cross-Origin-Embedder-Policy"] = "unsafe-none"
