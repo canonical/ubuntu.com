@@ -291,7 +291,7 @@ def init_handlers(app, sentry):
         - Cross-Origin-Resource-Policy: allowing cross-origin requests to
         access the resource
         - X-Permitted-Cross-Domain-Policies: disallows cross-domain access to
-        resources
+        resources.
         """
 
         def get_csp_as_str(csp={}):
