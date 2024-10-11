@@ -64,6 +64,8 @@ CSP = {
         "d3js.org",
         "www.brighttalk.com",
         "cdnjs.cloudflare.com",
+        "static.ads-twitter.com",
+        "*.cdn.digitaloceanspaces.com",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
