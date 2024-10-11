@@ -95,6 +95,7 @@ CSP = {
         "js.zi-scripts.com",
         "*.mktoresp.com",
         "prompts.maze.co",
+        "*.google-analytics.com",
     ],
     "frame-src": [
         "'self'",
