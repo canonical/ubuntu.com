@@ -108,8 +108,8 @@ def cred_self_study(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
+    search_type = flask.request.args.get("type")
     if flask.request.method == "GET":
-        search_type = flask.request.args.get("type")
         sign_up_open = True
         return flask.render_template(
             "credentials/sign-up.html",
@@ -179,7 +179,9 @@ def cred_sign_up(**_):
 
         return (
             flask.render_template(
-                "credentials/sign-up.html", error="Something went wrong"
+                "credentials/sign-up.html",
+                error="Something went wrong",
+                search_type=search_type,
             ),
             400,
         )
