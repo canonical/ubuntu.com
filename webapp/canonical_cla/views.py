@@ -121,13 +121,15 @@ def canonical_cla_api_proxy():
     if encoded_request_url is None:
         return flask.abort(400)
     request_url = base64.b64decode(encoded_request_url).decode("utf-8")
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
     api_service_response = requests.request(
         timeout=10,
         method=flask.request.method,
         url=urlparse.urljoin(CANONICAL_CLA_API_URL, request_url),
         headers={
-            "X-Forwarded-For": flask.request.remote_addr,
-            "X-Original-Forwarded-For": flask.request.remote_addr,
+            "X-Custom-Forwarded-For": client_ip,
         },
         cookies=flask.request.cookies,
         data=flask.request.data,
