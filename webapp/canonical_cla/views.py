@@ -125,7 +125,10 @@ def canonical_cla_api_proxy():
         timeout=10,
         method=flask.request.method,
         url=urlparse.urljoin(CANONICAL_CLA_API_URL, request_url),
-        headers={"X-Forwarded-For": flask.request.remote_addr},
+        headers={
+            "X-Forwarded-For": flask.request.remote_addr,
+            "X-Original-Forwarded-For": flask.request.remote_addr,
+        },
         cookies=flask.request.cookies,
         data=flask.request.data,
     )
