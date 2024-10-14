@@ -221,7 +221,7 @@
           <p>
             Here are the guidelines that we generally use to assess the Ubuntu priority of a CVE. There may be cases in which we assign a priority level based on factors not accounted for in these guidelines.
             These priority levels are distinct from other published severity levels such as <a href="#cvss-scores">CVSS base scores</a>, either ours or from other sources such as those used in the
-            <a href="https://nvd.nist.gov/">National Vulnerability Database</a>.
+            <a href="https://nvd.nist.gov/">National Vulnerability Database</a> (NVD). <a href="/blog/securing-open-source-through-cve-prioritisation">Learn more about how we prioritise CVEs</a>.
           </p>
           <table>
             <tbody>
@@ -230,7 +230,7 @@
                   <i class="p-icon--critical-priority"></i>Critical
                 </td>
                 <td colspan="2">
-                  A very damaging problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes remote root privilege escalations and massive data loss.
+                  A very damaging problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes remote root privilege escalations, remote data theft, and massive data loss.
                 </td>
               </tr>
               <tr>
@@ -238,7 +238,7 @@
                   <i class="p-icon--high-priority"></i>High
                 </td>
                 <td colspan="2">
-                  A significant problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes serious remote denial of services, local root privilege escalations, or data loss.
+                  A significant problem, typically exploitable for nearly all users in a default installation of Ubuntu. Includes serious remote denial of service, local root privilege escalations, local data theft, and data loss.
                 </td>
               </tr>
               <tr>
@@ -246,7 +246,7 @@
                   <i class="p-icon--medium-priority"></i>Medium
                 </td>
                 <td colspan="2">
-                  A significant problem, typically exploitable for many users. Includes network daemon denial of service attacks, cross-site scripting, and gaining user privileges.
+                  A significant problem, typically exploitable for many users. Includes network daemon denial of service, cross-site scripting, and gaining user privileges.
                 </td>
               </tr>
               <tr>
@@ -255,6 +255,7 @@
                 </td>
                 <td colspan="2">
                   A security problem, but hard to exploit due to the environment, requires a user-assisted attack, has a small install base, or does very little damage.
+                  These tend to be included in security updates only when higher priority issues require an update or if many low priority issues have built up.
                 </td>
               </tr>
               <tr>
@@ -263,6 +264,7 @@
                 </td>
                 <td colspan="2">
                   Technically a security problem, but only theoretical in nature, requires a very special situation, has almost no install base, or does no real damage.
+                  These typically will not receive security updates unless there is an easy fix and some other issue causes an update.
                 </td>
               </tr>
             </tbody>
