@@ -1061,7 +1061,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             )
         message = """Your exam has been activated.
         To schedule your exam, click the Your Exams button."""
-        
+
         return flask.render_template(
             "/credentials/redeem.html",
             notification_class="positive",
