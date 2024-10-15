@@ -66,6 +66,9 @@ CSP = {
         "cdnjs.cloudflare.com",
         "static.ads-twitter.com",
         "*.cdn.digitaloceanspaces.com",
+        "www.redditstatic.com",
+        "snap.licdn.com",
+        "connect.facebook.net",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -105,6 +108,7 @@ CSP = {
         "player.vimeo.com",
         "js.stripe.com",
         "www.googletagmanager.com",
+        "www.google.com",
         "www.brighttalk.com",
     ],
     "style-src": [
