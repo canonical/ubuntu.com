@@ -1,0 +1,220 @@
+{% extends "case-study/base_case-study.html" %}
+
+{% from "macros/_macros-hero.jinja" import hero %}
+{% from "macros/_macros-text-list.jinja" import text_list %}
+{% from "macros/_macros-highlights.jinja" import highlights %}
+{% from "macros/_macros-text.jinja" import text %}
+{% from "macros/_macros-quote.jinja" import quote_wrapper %}
+{% from "macros/_macros-image.jinja" import image_wrapper %}
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block title %}SBI BITS puts business continuity at the heart of its OpenStack migration{% endblock %}
+
+{% block meta_description %}
+  SBI BITS migrates to a new OpenStack environment while maintaining business continuity with the help of Canonical’s support services
+{% endblock %}
+
+{% block meta_company_name %}SBI BITS{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1tzLuweh3wM6P38O7U3HFEjb7jnXd1_IWSvM-uUkeiQo/edit?tab=t.0
+{% endblock %}
+
+{% block content %}
+  {%- call(slot) hero(title="SBI BITS puts business continuity at the heart of its OpenStack migration with hands-on support from Canonical",
+    layout="25/75",
+    is_split_on_medium="true") -%}
+    {% if slot == "signpost_image" %}
+      {{ image(url="https://assets.ubuntu.com/v1/78e56e1e-sbi bits logo.png",
+                alt="SBI BITS logo",
+                width="142",
+                height="63",
+                hi_def=True,
+                loading="lazy") | safe
+      }}
+    {% endif %}
+  {%- endcall -%}
+
+  {%- call(slot) text_list(title="About SBI BITS") -%}
+    {%- if slot == 'list_item_content_1' -%}
+      Established in 2015 to deliver IT services and infrastructure to SBI Group
+    {%- endif -%}
+    {%- if slot == 'list_item_content_2' -%}
+      SBI Group is one of Japan’s leading financial services providers
+    {%- endif -%}
+    {%- if slot == 'list_item_content_3' -%}
+      The group includes the country’s largest online securities company, largest venture capital firm, and one of its foremost long-term credit banks
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) highlights(num_items=4) -%}
+    {%- if slot == 'highlights_item_content_1' -%}
+      SBI Bits, in partnership with Canonical, significantly expanded its operations over six years, directly contributing to increased customer satisfaction
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_2' -%}
+      With Canonical’s support and consulting services, SBI BITS rapidly deployed multiple Openstack environments and designed a phased migration strategy that ensured business continuity
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_3' -%}
+      Canonical helped accelerate time-to-deployment by more than 50%
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_4' -%}
+      Legacy support ensures ongoing security for workloads that could not be migrated
+    {%- endif -%}
+  {%- endcall %}
+
+  {%- call(slot) text(title="SBI Group relies on SBI BITS for critical IT infrastructure, and SBI BITS relies on Canonical OpenStack") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        To move its mission critical workloads onto the newest version of OpenStack, SBI BITS needed an expertly designed and carefully executed 
+        migration strategy that would not disrupt ongoing operations. With the help of Canonical’s support and consulting services, the organization 
+        successfully implemented three new OpenStack environments and began a phased migration that is ensuring business continuity. 
+        SBI BITS can now serve its customers more effectively than ever with the latest OpenStack features; and for workloads that can’t be moved, 
+        Canonical is providing legacy support to keep the environment secure.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/60fa6d5d-IT Infrastructure _ Server (1).jpeg",
+                alt="A row of servers in a datacenter",
+                width="1232",
+                height="520",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Challenge") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        In 2018, SBI BITS decided to transition from traditional virtualization to OpenStack. As the organization responsible for delivering IT infrastructure 
+        to the rest of SBI Group, SBI BITS needed to be able to allocate compute resources quickly and effectively. OpenStack was the ideal solution to enable 
+        SBI BITS to meet growing customer demand and ensure users got the resources they needed without bottlenecks. More specifically, Canonical OpenStack 
+        was the ideal solution – SBI BITS chose Canonical’s OpenStack distribution to benefit from its unrivaled price-performance and flexibility, and 
+        Canonical’s extensive OpenStack expertise.
+      </p>
+      <p>
+        SBI BITS uses Canonical OpenStack to deliver corporate infrastructure and support numerous mission-critical workloads across SBI entities. For example, 
+        the OpenStack cloud hosts the log-in authentication service for SBI Securities, Japan’s largest online securities company.
+      </p>
+      <p>
+        These workloads demand the highest levels of performance and stability. So, as the version of OpenStack that SBI BITS was running approached end of support, 
+        the organization knew that it needed to migrate to a newer release to access the latest features and ensure continued security. However, SBI BITS’ unique 
+        circumstances made upgrading its OpenStack environment a challenge.
+      </p>
+      <p>
+        A spokesperson at SBI BITS explains: “With so many companies relying on this cloud for key financial services workloads, we couldn’t afford any disruption 
+        to ongoing operations”.
+      </p>
+      <p>
+        To maintain business continuity, SBI BITS needed to carefully design and execute an incremental migration strategy, moving workloads to the new OpenStack 
+        version in a controlled way. No easy task – but fortunately, Canonical was on hand to help.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/e880d3d7-IT Infrastructure _ Server.jpeg",
+                alt="Engineer working on a server rack",
+                width="1232",
+                height="693",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Challenge") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        SBI BITS retains the services of a Canonical Dedicated Support Engineer (DSE). This is a Canonical engineer whose entire role is committed to supporting SBI BITS. 
+        The DSE gives SBI BITS access to the highest level of Canonical OpenStack expertise, and thanks to the engineer’s dedicated focus on a single customer, 
+        this expertise is coupled with close to 100% knowledge of the entire SBI BITS environment.
+      </p>
+      <p>
+        The spokesperson continues: “We initially chose the DSE package when we were getting to grips with OpenStack and we needed to supplement our engineering 
+        resources while the cloud business was growing rapidly. Now, he’s like another member of my team – and I’m picky about my team members. He knows how the 
+        finserv industry works; he understands that we have to go through a process and can’t just fix things like a cowboy”.
+      </p>
+      <p>
+        The DSE was perfectly positioned to plan the OpenStack migration, and they were on the ground to ensure that the project ran smoothly. The strategy that the 
+        DSE designed with SBI BITS was to implement three new OpenStack environments and gradually migrate workloads away from the existing deployment.
+      </p>
+      <p>
+        The caveat: some key workloads were not ready to be migrated and still depended on the previous version of OpenStack. To address this, Canonical is providing 
+        legacy support for the 2018 environment spanning 224 nodes. This enabled SBI BITS to avoid the risk of migrating these workloads, and ensure they would 
+        continue to be protected against security vulnerabilities.
+      </p>
+      <p>
+        “Canonical understands that there is business in this legacy cloud,” comments SBI BITS. “Their support gives us time to carefully plan how to migrate these 
+        workloads that can’t be moved immediately. That flexibility is invaluable”.
+      </p>
+      <p>
+        To accelerate deployment of the new environments, SBI BITS also opted for Canonical’s Onboarding Service. Canonical Field Engineers worked on-site to support 
+        the cloud validation and migration, and provide knowledge transfer. The service reduced time-to-deployment by more than 50%, with the project completed in 
+        just seven months rather than an estimated two years.
+      </p>
+      <p>
+        Last but not least, SBI BITS also implemented MicroK8s for its Gitlab runners and CI/CD pipeline. The company had previously experimented with vanilla Kubernetes, 
+        but found it to be excessively complex for their use case. 
+      </p>
+      <p>
+        “I saw a presentation from Mark Shuttleworth that showed me how easy it was to set up MicroK8s, and how we could get just the features and components that we needed 
+        for our specific application. It was a perfect fit. MicroK8s makes it easy to scale up, easy to scale down, and it’s a large improvement over creating VMs for different runners”.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) quote_wrapper(
+    quote_text="[Our Dedicated Support Engineer] is like another member of my team – and I’m picky about my team members. He knows how the finserv industry works; he understands that we have to go through a process and can’t just fix things like a cowboy",
+    citation_source_name_text="Spokesperson",
+    citation_source_organisation_text="SBI BITS"
+    )
+    -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Results") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        With the help of Canonical’s support services, SBI BITS is successfully migrating to the new Canonical OpenStack environments. And crucially, the company is able 
+        to complete the move at its own pace, without disrupting any of the ongoing operations across SBI Group.
+      </p>
+      <p>
+        And Canonical’s support doesn’t stop with the DSE and Onboarding Service. SBI BITS also has its own Customer Success Manager (CSM) providing holistic post-sales support.
+      </p>
+      <p>
+        “Our CSM brings a lot of value in making sure our voice is heard”, adds the spokesperson. “She really understands our culture, she helps with issues on the support portal, 
+        and she follows up with engineers. It really makes a difference”.
+      </p>
+      <p>
+        The final piece of the puzzle is 24x7 support. If SBI BITS ever encounters a problem, no matter the time or day, Canonical is always available to help immediately. 
+        This breadth of coverage has proven highly valuable, with approximately 20% of cases occurring outside of APAC business hours.
+      </p>
+      <p>
+        “I always envy Canonical’s follow-the-sun support model. It’s great knowing that you can get support at any time, and from somebody who’s fresh and not tired”.
+      </p>
+      <p>
+        The combination of Canonical OpenStack, DSE, Field Engineering, CSM, and 24x7 support takes all the complexity away from maintaining and operating the private cloud, 
+        and enables SBI BITS to seamlessly deliver resources precisely when and where they are needed by the wider SBI Group.
+      </p>
+      <p>
+        “We’ve never considered switching providers”, concludes SBI BITS. “No other vendor could give us a perfect solution. We’ve built a great relationship with 
+        Canonical and the economics are good”.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) quote_wrapper(
+    quote_text="We’ve never considered switching providers. No other vendor could give us a perfect solution. We’ve built a great relationship with Canonical and the economics are good",
+    citation_source_name_text="Spokesperson",
+    citation_source_organisation_text="SBI BITS"
+    )
+    -%}
+  {%- endcall -%}
+
+{% endblock %}
