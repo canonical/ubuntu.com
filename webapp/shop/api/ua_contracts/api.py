@@ -372,7 +372,7 @@ class UAContractsAPI:
         country_code,
     ) -> dict:
         req = self._request(
-            method="get",
+            method="post",
             path="v1/cue/schedule",
             json={
                 "contractItemID": int(contract_item_id),

@@ -1,5 +1,10 @@
 {% extends "templates/base.html" %}
-{% block body_class %}is-paper{% endblock body_class %}
+
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block outer_content %}
   <!-- Hide breadcrumbs on index page -->
@@ -7,37 +12,33 @@
     <div class="u-fixed-width">
       <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
         <ol class="p-breadcrumbs__items">
-          <li class="p-breadcrumbs__item p-text--small-caps"><a href="/case-study/">Case Study</a></li>
           <li class="p-breadcrumbs__item p-text--small-caps">
+            <a href="/case-study/">Case Study</a>
+          </li>
+          <li class="p-breadcrumbs__item p-text--small-caps">
+
             {% block meta_company_name %}Default Company{% endblock %}
           </li>
         </ol>
       </nav>
       <h1 class="p-text--small-caps u-hide">Case Studies</h1>
     </div>
-    <hr class="is-fixed-width p-rule" />
+    <hr class="is-fixed-width p-rule u-no-margin--bottom" />
   {% endif %}
 
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 
-  <!-- Hide footer on index page -->
-  {% if hide_wrapper != True %}
-    <hr class="is-fixed-width" />
-    <section class="p-strip is-deep">
-      <div class="row">
-        <div class="col-start-large-4 col-9">
-          <a href="/case-study#get-in-touch" class="js-invoke-modal">
-            <p class="p-heading--2">Contact us&nbsp;&rsaquo;</p>
-          </a>
-        </div>
-      </div>
-    </section>
+  {% block cta_content %}
+    <!-- Hide footer on index page -->
+    {% if hide_wrapper != True %}
+      {{ cta(title="Contact us", link="/contact-us", has_modal="true") }}
 
-    <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide"
-        id="contact-form-container"
-        data-form-location="/shared/forms/interactive/case-study"
-        data-form-id="5919"
-        data-return-url="/case-study#contact-success"></div>
-  {% endif %}
+      <!-- Set default Marketo information for contact form below-->
+      <div class="u-hide"
+           id="contact-form-container"
+           data-form-location="/shared/forms/interactive/case-study"
+           data-form-id="5919"
+           data-return-url="/case-study#contact-success"></div>
+    {% endif %}
+  {% endblock %}
 {% endblock %}

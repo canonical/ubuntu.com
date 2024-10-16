@@ -22,6 +22,7 @@ import {
   DISTRIBUTOR_SELECTOR_KEYS,
   PRO_SELECTOR_KEYS,
 } from "advantage/distributor/utils/utils";
+import { confirmNavigateListener } from "../../utils/helpers";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -75,6 +76,8 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   }, [values.country]);
 
   const onPayClick = async () => {
+    setIsLoading(true);
+    confirmNavigateListener.set();
     validateForm().then((errors) => {
       const possibleErrors = Object.keys(errors);
       possibleErrors.forEach((error) => {
@@ -84,11 +87,13 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       if (!(possibleErrors.length === 0)) {
         setError(<>Please make sure all fields are filled in correctly.</>);
         document.querySelector("h1")?.scrollIntoView();
+        setIsLoading(false);
         return;
       }
     });
 
     if (!(Object.keys(errors).length === 0)) {
+      setIsLoading(false);
       return;
     }
 
@@ -156,6 +161,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   };
 
   const handleError = (error: Error) => {
+    confirmNavigateListener.clear();
     setIsLoading(false);
     setFieldValue("Description", false);
     setFieldValue("TermsAndConditions", false);
@@ -338,6 +344,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
+          confirmNavigateListener.clear();
           localStorage.removeItem("shop-checkout-data");
           const product = products[0].product;
           const quantity = products[0].quantity;
@@ -382,6 +389,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
       onClick={onPayClick}
       loading={isLoading}
+      disabled={isLoading}
     >
       Buy now
     </ActionButton>

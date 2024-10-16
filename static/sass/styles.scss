@@ -104,6 +104,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_ubuntu_intro";
 @import "pattern_dell";
 @import "pattern_modals";
+@import "pattern_tube-line";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -163,6 +164,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include ubuntu-p-dell;
+@include ubuntu-p-tube-line;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
@@ -1168,13 +1170,6 @@ hr.p-separator.is-shallow {
   margin-bottom: 0;
   overflow: auto;
 
-  @media screen and (min-width: 601px) {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 850px;
-    width: 100%;
-  }
-
   @media screen and (max-width: 600px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1648,7 +1643,7 @@ ol.p-list--divided .p-list__item::before {
   row-gap: 0.5rem;
 }
 
-@media screen and (max-width: $breakpoint-small - 1) {
+@media screen and (max-width: $breakpoint-large - 1) {
   .u-table-horizontal-scroll {
     overflow-x: hidden;
     .u-table-horizontal-scroll__table {
@@ -1723,4 +1718,63 @@ legend {
 .p-breadcrumbs {
   margin-bottom: $spv--small;
   margin-top: $spv--small;
+}
+
+.p-equal-height-row-50-50 {
+  .p-equal-height-row__col {
+    grid-column: span 6;
+    padding-top: 0.5rem;
+  }
+}
+// XXX: MPT: Can be removed once this is upstreamed in Vanilla
+// https://github.com/canonical/vanilla-framework/issues/5293
+.list-matrix {
+  @extend .p-list__item;
+
+  .list-matrix-container::before {
+    background-image: var(
+      --vf-theme-light,
+      url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0a8 8 0 110 16A8 8 0 018 0zm0 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zm2.814 2.45l1.203.897-5.537 7.43-3.485-3.694 1.09-1.03 2.259 2.394 4.47-5.997z' fill='%23000'  fill-rule='nonzero'/%3E%3C/svg%3E")
+    );
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    top: 0.85rem;
+    left: 0;
+    position: absolute;
+    width: 1rem;
+  }
+
+  padding-left: 2rem;
+  position: relative;
+}
+
+// Custom styling for the social media cards found on /20years
+.p-card--social-media {
+  @extend .p-card;
+  background: $color-x-light;
+  border: unset;
+
+  .p-heading-icon {
+    margin-bottom: 0;
+
+    @media (min-width: $breakpoint-large) {
+      margin-bottom: 0.5rem;
+    }
+
+    .p-heading-icon__header .p-heading-icon__img {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .p-heading-icon--small .p-heading-icon__header .p-heading-icon__title {
+    align-self: center;
+    margin: 0;
+  }
+}
+
+.u-no-wrap {
+  white-space: nowrap;
 }

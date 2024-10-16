@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html prefix="og: http://ogp.me/ns#" class=" 
-  {% block extra_html_class %}{% endblock %}" lang=" 
-  {% block meta_lang %}en{% endblock %}" dir="ltr">
+  {% block extra_html_class %}{% endblock %}" 
+  lang="{% block meta_lang %}en{% endblock %}" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="index, follow" />
@@ -34,8 +34,7 @@
       performance.mark("Stylesheets finished");
     </script>
 
-    <link rel="canonical" href=" 
-      {% block canonical_url %}{{ request.url }}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
 
       <link rel="apple-touch-icon"
             sizes="180x180"
