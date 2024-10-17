@@ -14,8 +14,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
-    const returnData = window.location.pathname + "#success";
+    var returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
+    const modalAlreadyExists = document.querySelector(".js-modal-ready");
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -23,6 +24,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         if (window.location.pathname) {
           contactForm.setAttribute("data-return-url", returnData);
         }
+
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
@@ -50,31 +52,41 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
-      fetch(formData.formLocation)
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (text) {
-          formContainer.classList.remove("u-hide");
-          formContainer.innerHTML = text
-            .replace(/%% formid %%/g, formData.formId)
-            .replace(/%% returnURL %%/g, formData.returnUrl);
+      // check if the modal already exists on the page and if so, skip the fetch and initialise it
+      if (modalAlreadyExists) {
+        returnData = formContainer.dataset.returnUrl;
+        initialiseFormData(formContainer.dataset, contactButton);
+      } else {
+        fetch(formData.formLocation)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            formContainer.innerHTML = text
+              .replace(/%% formid %%/g, formData.formId)
+              .replace(/%% returnURL %%/g, formData.returnUrl);
 
-          if (formData.title) {
-            const title = document.getElementById("modal-title");
-            title.innerHTML = formData.title;
-          }
-          setProductContext(contactButton);
-          setUTMs(formData.formId);
-          setGclid();
-          setFBclid();
-          loadCaptchaScript();
-          initialiseForm();
-          setFocus();
-        })
-        .catch(function (error) {
-          console.log("Request failed", error);
-        });
+            if (formData.title) {
+              const title = document.getElementById("modal-title");
+              title.innerHTML = formData.title;
+            }
+            initialiseFormData(formData, contactButton);
+          })
+          .catch(function (error) {
+            console.log("Request failed", error);
+          });
+      }
+    }
+
+    function initialiseFormData(formData, contactButton) {
+      formContainer.classList.remove("u-hide");
+      setProductContext(contactButton);
+      setUTMs(formData.formId);
+      setGclid();
+      setFBclid();
+      loadCaptchaScript();
+      initialiseForm();
+      setFocus();
     }
 
     // Load the google recaptcha noscript
@@ -196,7 +208,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       var phoneNumberInput = document.querySelector("#phone");
       var countryInput = document.querySelector("#country");
       var modalTrigger = document.activeElement || document.body;
-      var isMultipage = contactModal.querySelector(".js-pagination").length > 1;
+      var isMultipage =
+        contactModal.querySelector(".js-pagination")?.length > 1;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -290,9 +303,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        if (formContainer.contains(contactModal)) {
-          formContainer.removeChild(contactModal);
-        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
@@ -306,13 +316,15 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function render() {
         comment.value = createMessage(false);
 
-        var currentContent = contactModal.querySelector(
-          ".js-pagination--" + contactIndex,
-        );
-        paginationContent.forEach(function (content) {
-          content.classList.add("u-hide");
-        });
-        currentContent.classList.remove("u-hide");
+        if (paginationContent.length) {
+          var currentContent = contactModal.querySelector(
+            ".js-pagination--" + contactIndex,
+          );
+          paginationContent.forEach(function (content) {
+            content.classList.add("u-hide");
+          });
+          currentContent.classList.remove("u-hide");
+        }
       }
 
       // Concatinate the options selected into a string
@@ -321,7 +333,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         var message = "";
         if (contactModal) {
           var formFields = contactModal.querySelectorAll(".js-formfield");
-
           formFields.forEach(function (formField) {
             var comma = ",";
             var fieldsetForm = formField.querySelector(".js-formfield-title");
@@ -338,9 +349,14 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               message += fieldTitle.innerText + "\r\n";
             }
 
-            // Loop through each input and add to Comments_from_lead__c
             inputs.forEach(function (input) {
               switch (input.type) {
+                case "select-one":
+                  message +=
+                    input.options[input.selectedIndex]?.textContent +
+                    comma +
+                    " ";
+                  break;
                 case "radio":
                   if (input.checked) {
                     message += input.value + comma + " ";
@@ -351,6 +367,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                     if (fieldsetForm) {
                       message += input.value + comma + " ";
                     } else {
+                      // Forms that have column separation
                       var subSectionText = "";
                       if (
                         input.closest('[class*="col-"]') &&
@@ -388,8 +405,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             });
             message += "\r\n\r\n";
           });
+          return message;
         }
-        return message;
       }
 
       // Toggles the description textarea field for radio buttons
@@ -466,10 +483,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       setCheckboxLimit();
 
-      // Sets up dial code dropdown options aka. intlTelInput.js
-      // and pre fills the country field
-      prepareInputFields(phoneNumberInput, countryInput);
-
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
@@ -502,8 +515,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       fireLoadedEvent();
-
-      comment.value = createMessage(false);
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
