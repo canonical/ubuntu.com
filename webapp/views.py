@@ -376,7 +376,7 @@ def build_case_study_index():
                         "title": title,
                         "file_path": "/case-study/" + file,
                         "meta_description": meta_description,
-                        "created_at": created_at
+                        "created_at": created_at,
                     }
                 )
     case_study_info.sort(key=lambda x: x["created_at"], reverse=True)

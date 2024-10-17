@@ -25,7 +25,7 @@
     layout="25/75",
     is_split_on_medium="true") -%}
     {% if slot == "signpost_image" %}
-      {{ image(url="https://assets.ubuntu.com/v1/78e56e1e-sbi bits logo.png",
+      {{ image(url="https://assets.ubuntu.com/v1/2003f53d-sbi bits logo.png",
                 alt="SBI BITS logo",
                 width="142",
                 height="63",
@@ -62,7 +62,7 @@
     {%- endif -%}
   {%- endcall %}
 
-  {%- call(slot) text(title="SBI Group relies on SBI BITS for critical IT infrastructure, and SBI BITS relies on Canonical OpenStack") -%}
+  {%- call(slot) text(title="SBI Group relies on SBI BITS for critical IT infrastructure, and SBI BITS relies on <br class=\"u-hide--medium u-hide--small\"/>Canonical OpenStack") -%}
     {%- if slot == 'content' -%}
       <p>
         To move its mission critical workloads onto the newest version of OpenStack, SBI BITS needed an expertly designed and carefully executed 
@@ -129,7 +129,7 @@
     {%- endif -%}
   {%- endcall -%}
 
-  {%- call(slot) text(title="Challenge") -%}
+  {%- call(slot) text(title="Solution") -%}
     {%- if slot == 'content' -%}
       <p>
         SBI BITS retains the services of a Canonical Dedicated Support Engineer (DSE). This is a Canonical engineer whose entire role is committed to supporting SBI BITS. 
