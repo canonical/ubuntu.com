@@ -5,14 +5,23 @@ import { useUserSubscriptions } from "advantage/react/hooks";
 
 import RenewalSettings from "../RenewalSettings";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import classNames from "classnames";
 
 type Props = {
   children: ReactNode;
   title: string;
+  subtitle?: string;
   marketplace: UserSubscriptionMarketplace;
+  selfServiceable?: boolean;
 };
 
-const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
+const ListGroup = ({
+  children,
+  title,
+  subtitle,
+  marketplace,
+  selfServiceable = true,
+}: Props): JSX.Element => {
   const { data: renewableSubscriptions } = useUserSubscriptions({
     select: selectAutoRenewableSubscriptionsByMarketplace(marketplace),
   });
@@ -22,7 +31,9 @@ const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
   return (
     <div className="p-subscriptions__list-group">
       <div
-        className="p-subscriptions__list-group-title"
+        className={classNames("p-subscriptions__list-group-title", {
+          "u-no-margin--bottom": subtitle,
+        })}
         ref={(element) => {
           positionNode.current = element;
           // Fire state change so that the menu rerenders now that the ref
@@ -33,13 +44,18 @@ const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
         <span className="p-text--small-caps u-align-text--small-to-default u-no-margin--bottom">
           {title}
         </span>
-        {(renewableSubscriptions?.length ?? 0 > 0) ? (
+        {(renewableSubscriptions?.length ?? 0 > 0) && selfServiceable ? (
           <RenewalSettings
             positionNodeRef={positionNode}
             marketplace={marketplace}
           />
         ) : null}
       </div>
+      {subtitle ? (
+        <div className="p-subscriptions__list-group-subtitle">
+          <span className="p-text--small u-text--muted">{subtitle}</span>
+        </div>
+      ) : null}
       {children}
     </div>
   );
