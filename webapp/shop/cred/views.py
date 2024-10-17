@@ -256,8 +256,8 @@ def cred_schedule(
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 0.5 if is_staging else 1
-    time_delay = "30 minutes" if is_staging else "1 hour"
+    time_delta = 0.5 if is_staging else 3
+    time_delay = "30 minutes" if is_staging else "3 hours"
 
     if flask.request.method == "POST":
         data = flask.request.form
