@@ -171,7 +171,21 @@ def cred_sign_up(**_):
     }
 
     try:
-        marketo_api.submit_form(payload).json()
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if (
+                result.get("status") == "skipped"
+                or response.get("success") == False
+            ):
+                return (
+                    flask.render_template(
+                        "credentials/sign-up.html",
+                        error="Something went wrong",
+                        search_type=search_type,
+                    ),
+                    400,
+                )
     except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
