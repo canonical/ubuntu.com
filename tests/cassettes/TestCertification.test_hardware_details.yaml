@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:21 GMT
+      - Tue, 03 Sep 2024 15:26:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -35,11 +35,11 @@ interactions:
       X-QueryInspect-Duplicate-SQL-Queries:
       - '0'
       X-QueryInspect-Num-SQL-Queries:
-      - '6'
+      - '8'
       X-QueryInspect-Total-Request-Time:
-      - 60 ms
+      - 66 ms
       X-QueryInspect-Total-SQL-Time:
-      - 41 ms
+      - 50 ms
     status:
       code: 200
       message: OK
@@ -59,23 +59,23 @@ interactions:
   response:
     body:
       string: '{"count":1,"next":null,"previous":null,"results":[{"id":11539,"canonical_id":"201906-27091","architecture":"amd64","bios":null,"hardware_website":"","category":"Desktop","kernel_version":"4.15.0-1037-oem","notes":[],"make":"Dell","model":"OptiPlex
-        7071","processor":[{"name":"Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz","make":"Intel
-        Corp.","bus":"dmi","identifier":"dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"AQC108
+        7071","platform_name":"OptiPlex 7071","platform_id":"9953","processor":[{"name":"Intel(R)
+        Core(TM) i9-9900K CPU @ 3.60GHz","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"AQC108
         NBase-T/IEEE 802.3bz Ethernet Controller [AQtion]","make":"Aquantia Corp.","bus":"pci","identifier":"1d6a:d108","subsystem":"1d6a:0001","subproduct_name":"","vendor_id":5483,"subvendor_id":"","category":"NETWORK"},{"name":"Intel(R)
         Ethernet Connection (7) I219-LM","make":"Intel Corp.","bus":"pci","identifier":"8086:15bb","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"NETWORK"}],"video":[{"name":"UHD
         Graphics 630 (Desktop 9 Series)","make":"Intel Corp.","bus":"pci","identifier":"8086:3e98","subsystem":"1028:094b","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"VIDEO"}],"wireless":[],"certified_release":"18.04
-        LTS","level":"Certified Pre-Install","name":"1909-11539","form_factor":"Desktop"}]}'
+        LTS","level":"Certified Pre-Install","name":"1909-11539","form_factor":"Desktop","platform_certified_configuration_count":1}]}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '1284'
+      - '1380'
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:21 GMT
+      - Tue, 03 Sep 2024 15:26:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -83,11 +83,11 @@ interactions:
       X-QueryInspect-Duplicate-SQL-Queries:
       - '0'
       X-QueryInspect-Num-SQL-Queries:
-      - '7'
+      - '8'
       X-QueryInspect-Total-Request-Time:
-      - 88 ms
+      - 93 ms
       X-QueryInspect-Total-SQL-Time:
-      - 54 ms
+      - 57 ms
     status:
       code: 200
       message: OK
@@ -106,7 +106,7 @@ interactions:
     uri: https://certification.canonical.com/api/v2/certified-configuration-devices/?format=json&limit=0&canonical_id=201906-27091&pagination=limitoffset
   response:
     body:
-      string: '{"count":33,"next":null,"previous":null,"results":[{"canonical_id":"201906-27091","bus":"pci","identifier":"8086:a348","subsystem":"1028:094b","vendor_id":4103,"subvendor_id":null,"make":"Intel
+      string: '{"count":32,"next":null,"previous":null,"results":[{"canonical_id":"201906-27091","bus":"pci","identifier":"8086:a348","subsystem":"1028:094b","vendor_id":4103,"subvendor_id":null,"make":"Intel
         Corp.","name":"Cannon Lake PCH cAVS","subproduct_name":null,"category":"AUDIO","raw_name":"Cannon
         Lake PCH cAVS","raw_make":"Intel Corp."},{"canonical_id":"201906-27091","bus":"sound","identifier":"sound:Unknown","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
         Corp.","name":"Unknown","subproduct_name":null,"category":"AUDIO","raw_name":"Unknown","raw_make":"Intel
@@ -156,9 +156,7 @@ interactions:
         Corp.","name":"Sky Lake PCIe Controller (x16)","subproduct_name":null,"category":"OTHER","raw_name":"Sky
         Lake PCIe Controller (x16)","raw_make":"Intel Corp."},{"canonical_id":"201906-27091","bus":"pci","identifier":"8086:1911","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
         Corp.","name":"Sky Lake Gaussian Mixture Model","subproduct_name":null,"category":"OTHER","raw_name":"Sky
-        Lake Gaussian Mixture Model","raw_make":"Intel Corp."},{"canonical_id":"201906-27091","bus":"pci","identifier":"8086:a36f","subsystem":"8086:7270","vendor_id":4103,"subvendor_id":null,"make":"Intel
-        Corp.","name":"Cannon Lake PCH Shared SRAM","subproduct_name":null,"category":"OTHER","raw_name":"Cannon
-        Lake PCH Shared SRAM","raw_make":"Intel Corp."},{"canonical_id":"201906-27091","bus":"tty","identifier":"tty:Multiportserialcontroller","subsystem":null,"vendor_id":1787,"subvendor_id":null,"make":"SUNIX
+        Lake Gaussian Mixture Model","raw_make":"Intel Corp."},{"canonical_id":"201906-27091","bus":"tty","identifier":"tty:Multiportserialcontroller","subsystem":null,"vendor_id":1787,"subvendor_id":null,"make":"SUNIX
         Co., Ltd.","name":"Multiport serial controller","subproduct_name":null,"category":"OTHER","raw_name":"Multiport
         serial controller","raw_make":"SUNIX Co., Ltd."},{"canonical_id":"201906-27091","bus":"tty","identifier":"tty:Unknown","subsystem":null,"vendor_id":4103,"subvendor_id":null,"make":"Intel
         Corp.","name":"Unknown","subproduct_name":null,"category":"OTHER","raw_name":"Unknown","raw_make":"Intel
@@ -179,11 +177,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '10253'
+      - '9957'
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:21 GMT
+      - Tue, 03 Sep 2024 15:26:42 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -193,9 +191,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '2'
       X-QueryInspect-Total-Request-Time:
-      - 302 ms
+      - 68 ms
       X-QueryInspect-Total-SQL-Time:
-      - 38 ms
+      - 50 ms
     status:
       code: 200
       message: OK
