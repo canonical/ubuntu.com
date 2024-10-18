@@ -176,7 +176,7 @@ def cred_sign_up(**_):
             result = response["result"][0]
             if (
                 result.get("status") == "skipped"
-                or response.get("success") == False
+                or response.get("success") is False
             ):
                 return (
                     flask.render_template(
