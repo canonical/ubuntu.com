@@ -87,7 +87,7 @@ jobs:
         run: dotrun lint-python
 
   lint-jinja:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
 
       - name: Get changed HTML files in the templates folder
         id: changed-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@v45
         with:
           files: templates/**/*.html
 
@@ -137,7 +137,7 @@ jobs:
           konf production deploy/site.yaml | kubeval -f -
 
   test-python:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
