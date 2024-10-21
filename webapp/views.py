@@ -951,6 +951,10 @@ def marketo_submit():
 
     enrichment_fields = {}
 
+    user_id = flask.request.cookies.get("user_id")
+    if user_id:
+        enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+
     # Enrichment data for global enrichment form (id:4198)
     if "email" in form_fields:
         enrichment_fields = {
