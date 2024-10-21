@@ -18,7 +18,7 @@ class TestCLARoutes(unittest.TestCase):
         # https://example.com/api -> aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk=
         response = self.client.get(
             """/legal/contributors/agreement/api
-            ?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
+?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
         )
 
         self.assertEqual(response.status_code, 200)
