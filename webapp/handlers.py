@@ -3,7 +3,6 @@ from typing import List
 
 import flask
 from canonicalwebteam import image_template
-from typing_extensions import TypedDict
 
 from webapp.context import (
     current_year,
