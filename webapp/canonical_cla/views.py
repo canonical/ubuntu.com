@@ -30,7 +30,8 @@ def update_query_params(url: str, **params) -> str:
 
 def canonical_cla_api_github_login():
     """
-    The Canonical CLA API will redirect the user to this view once the OAuth2 flow is complete.
+    The Canonical CLA API will redirect the user to
+    this view once the OAuth2 flow is complete.
     """
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
@@ -57,7 +58,8 @@ def canonical_cla_api_github_login():
 
 def canonical_cla_api_github_logout():
     """
-    The Canonical CLA API will redirect the user to this view once the cookie session is cleared.
+    The Canonical CLA API will redirect the user
+    to this view once the cookie session is cleared.
     """
     agreement_url = (
         get_query_param(flask.request.url, "agreement_url", is_base64=True)
@@ -71,7 +73,8 @@ def canonical_cla_api_github_logout():
 
 def canonical_cla_api_launchpad_login():
     """
-    The Canonical CLA API will redirect the user to this view once the OAuth2 flow is complete.
+    The Canonical CLA API will redirect the user
+    to this view once the OAuth2 flow is complete.
     """
     agreement_url = get_query_param(
         flask.request.url, "agreement_url", is_base64=True
@@ -100,7 +103,8 @@ def canonical_cla_api_launchpad_login():
 
 def canonical_cla_api_launchpad_logout():
     """
-    The Canonical CLA API will redirect the user to this view once the cookie session is cleared.
+    The Canonical CLA API will redirect the user
+    to this view once the cookie session is cleared.
     """
     agreement_url = (
         get_query_param(flask.request.url, "agreement_url", is_base64=True)

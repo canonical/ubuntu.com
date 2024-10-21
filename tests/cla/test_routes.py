@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from webapp.app import app
-import flask
 
 
 class TestCLARoutes(unittest.TestCase):
@@ -18,7 +17,8 @@ class TestCLARoutes(unittest.TestCase):
         mock_request.return_value = mock_response
         # https://example.com/api -> aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk=
         response = self.client.get(
-            "/legal/contributors/agreement/api?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="
+            """/legal/contributors/agreement/api
+            ?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
         )
 
         self.assertEqual(response.status_code, 200)
