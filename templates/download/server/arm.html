@@ -34,7 +34,7 @@
           </div>
           <div class="col-6 col-medium-3">
             <p>This is the default ISO image of the Ubuntu Server installer.</p>
-            <hr />
+            <hr class="p-rule" />
             <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso"
                class="p-button--positive"
                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
@@ -61,11 +61,16 @@
         </div>
         <div class="col-6 col-medium-3 p-section">
           <p>This ISO image is suited for servers with ample memory running memory-intensive applications.</p>
-          <hr />
+          <hr class="p-rule" />
           <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64+largemem.iso"
              class="p-button"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download {{ releases.lts.full_version }} LTS (64k page size)
+          </a>
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64+largemem.iso"
+             class="p-button"
+             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+            Download {{ releases.latest.full_version }} (64k page size)
           </a>
           <p>
             <a href="/server/docs/choosing-between-the-arm64-and-arm64-largemem-installer-options">Find out if 64k page size is for you&nbsp;&rsaquo;</a>
@@ -171,15 +176,15 @@
         </div>
         <div class="col-6 col-medium-3">
           <p>If you get stuck, help is always at hand.</p>
-          <hr class="p-rule is-muted" />
+          <hr class="p-rule--muted" />
           <p>
             <a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a>
           </p>
-          <hr class="p-rule is-muted" />
+          <hr class="p-rule--muted" />
           <p>
             <a href="https://askubuntu.com/">Ask Ubuntu</a>
           </p>
-          <hr class="p-rule is-muted" />
+          <hr class="p-rule--muted" />
           <p>
             <a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a>
           </p>

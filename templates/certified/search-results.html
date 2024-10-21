@@ -48,8 +48,7 @@
                 {% endif %}
                 of
               {% endif %}
-              {{ total_results }} result
-              {% if total_results != 1 %}s{% endif %}
+              {{ total_results }} result{% if total_results != 1 %}s{% endif %}
             {% endif %}
           </h2>
         </div>
@@ -106,7 +105,7 @@
                         </div>
                       </button>
                     </div>
-                    <hr class="u-no-margin--bottom" />
+                    <hr class="p-rule--muted" />
                     {% include "/certified/shared/_category-filters.html" %}
                   </li>
                   <li class="p-accordion__group--certified" id="vendor-section">
@@ -122,7 +121,7 @@
                         </div>
                       </button>
                     </div>
-                    <hr class="u-no-margin--bottom" />
+                    <hr class="p-rule--muted" />
                     <section class="p-accordion__panel is-dense"
                              id="tab2-section"
                              aria-hidden="false"
@@ -157,7 +156,7 @@
                       release
                     </button>
                   </div>
-                  <hr class="u-no-margin--bottom" />
+                  <hr class="p-rule--muted" />
                   <section class="p-accordion__panel is-dense"
                            id="tab3-section"
                            aria-hidden="false"
@@ -217,7 +216,14 @@
           <div class="row">
             <div class="col-5">
               {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left" %}
-                {% include "security/cves/_pagination.html" %}
+                {% if offset >= total_results %}
+                    {% set current_page = 1 %}
+                  {% else %}
+                    {% set current_page = ((offset / limit) + 1) | int %}
+                  {% endif %}
+                {% if total_results > limit %}
+                  {% include "shared/_pagination.html" %}
+                {% endif %}
               {% endwith %}
             </div>
             <div class="col-4 u-align--right">

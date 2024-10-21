@@ -22,7 +22,9 @@ const Feature = () => {
     <>
       <Row>
         <Col size={6}>
-          <h2>What security coverage do you need?</h2>
+          <h2 className="p-stepped-list__title">
+            What security coverage do you need?
+          </h2>
         </Col>
         <Col size={6}>
           <div

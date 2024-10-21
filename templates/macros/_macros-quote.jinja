@@ -1,10 +1,11 @@
 {#
   Params
   - title_text (string) (optional): The text to be displayed as the heading
-  - quote_heading_level (int) (optional): The heading level used for the quote text. Can be [2,4,6]. Defaults to 2.
+  - quote_size (string) (required): The size of the quote. Possible values are 'small', 'medium', 'large'. Default is 'medium'.
   - quote_text (string) (required): The text of the quote. The macro will surround it with quotes, so there is no need to quote it yourself.
   - citation_source_name_text (string) (optional): The name of the source being quoted
   - citation_source_title_text (string) (optional): The title of the source being quoted
+  - citation_source_organisation_text (string) (optional): The organisation associated with the source being quoted.
   Slots
   - signpost_image (optional): The signpost_image of the source being quoted
   - heading_link (optional): Link to be displayed beside the heading text
@@ -13,10 +14,11 @@
 #}
 {%- macro quote_wrapper(
   title_text="",
-  quote_heading_level=2,
+  quote_size="medium",
   quote_text="",
   citation_source_name_text="",
-  citation_source_title_text=""
+  citation_source_title_text="",
+  citation_source_organisation_text=""
 ) -%}
   {% set heading_link_content = caller('heading_link') %}
   {% set has_heading_link =  heading_link_content|trim|length > 0 %}
@@ -24,17 +26,23 @@
   {% set has_heading_row = has_title or has_heading_link %}
   {% set signpost_image_content = caller('signpost_image') %}
   {% set has_signpost_image = signpost_image_content|trim|length > 0 %}
-  {% set has_citation_source_name_text = citation_source_name_text|trim|length > 0 %}
-  {% set has_citation_source_title_text = citation_source_title_text|trim|length > 0 %}
-  {% set has_citation = has_citation_source_name_text or has_citation_source_title_text %}
+  {% set has_citation_source_name = citation_source_name_text|trim|length > 0 %}
+  {% set has_citation_source_title = citation_source_title_text|trim|length > 0 %}
+  {% set has_citation_source_organisation = citation_source_organisation_text|trim|length > 0 %}
+  {% set has_citation = has_citation_source_name or has_citation_source_title or has_citation_source_organisation %}
   {% set cta_content = caller('cta') %}
   {% set has_cta = cta_content|trim|length > 0 %}
   {% set image_content = caller('image') %}
   {% set has_image = image_content|trim|length > 0 %}
+  {% set quote_size = quote_size|trim|lower %}
 
-  {# Validate heading level selection #}
-  {% if quote_heading_level not in [2, 4, 6] %}
+  {# Translate quote size param to quote heading level #}
+  {% if quote_size == 'large' %}
     {% set quote_heading_level = 2 %}
+  {% elif quote_size == 'small' %}
+    {% set quote_heading_level = 6 %}
+  {% else %}
+    {% set quote_heading_level = 4 %}
   {% endif %}
 
   {%- macro _quote_body() -%}
@@ -47,46 +55,42 @@
 
   {%- macro _citation_block() -%}
     {%- if has_citation -%}
-      {#- Source name and title must be wrapped in grid if they are both present, for responsive view -#}
-      {%- macro _citation_block_source_name() -%}
-        <!--Optional citation source name-->
-        <h5>{{ citation_source_name_text }}</h5>
-      {%- endmacro -%}
-      {%- macro _citation_block_source_title() -%}
-        <!--Optional citation source title-->
-        <p class="u-text--muted">{{ citation_source_title_text }}</p>
-      {%- endmacro -%}
       <!--Optional citation block-->
-      <hr class="u-hide--large is-muted">
-      {%- if has_citation_source_name_text and has_citation_source_title_text %}
-        <!-- When source name and title are both present, wrap them in a 50/50 row to split them on medium -->
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            {{ _citation_block_source_name() }}
-          </div>
-          <div class="col-3 col-medium-3">
-            {{ _citation_block_source_title() }}
-          </div>
-        </div>
-      {%- else -%}
-        {%- if has_citation_source_name_text %}
+      <p>
+        {% if has_citation_source_name -%}
           <!--Optional citation source name-->
-          {{ _citation_block_source_name() }}
-        {%- endif -%}
-        {%- if has_citation_source_title_text %}
-          <!--Optional citation source title-->
-          {{ _citation_block_source_title() }}
-        {%- endif -%}
-      {%- endif -%}
-
-    {%- endif -%}
-  {%- endmacro %}
+          <strong>{{ citation_source_name_text }}</strong>
+          {% if has_citation_source_title or has_citation_source_organisation -%}
+            <!--If the citation name is followed by title and/or organisation, add a line break-->
+            <br>
+          {% endif -%}
+        {% endif -%}
+        {% if has_citation_source_title or has_citation_source_organisation -%}
+          <!--Optional citation source title and/or organisation-->
+          <span class="u-text--muted">
+            {% if has_citation_source_title -%}
+              <!--Optional citation source title-->
+              {{ citation_source_title_text }}
+              {%- if has_citation_source_organisation %}
+                <!--Add a line break between the title and org if both are present-->
+                <br>
+              {%- endif %}
+            {% endif %}
+            {%- if has_citation_source_organisation -%}
+              <!--Optional citation source organisation-->
+              {{ citation_source_organisation_text }}
+            {%- endif %}
+          </span>
+        {%- endif %}
+      </p>
+    {% endif %}
+  {%- endmacro -%}
 
   {%- macro _heading_block() %}
     {% if has_heading_row -%}
       <!--Optional heading -->
       <div class="p-section--shallow">
-        <hr class="is-highlighted is-fixed-width">
+        <hr class="p-rule is-highlighted is-fixed-width">
         <div class="row">
           {%- if has_title %}
             <!--Optional heading text-->
@@ -114,10 +118,10 @@
 
   <div class="p-section">
     {{- _heading_block() -}}
-    <div class="row">
+    <div class="row--25-75-on-large">
       {% if has_signpost_image -%}
         <!--Optional signpost image-->
-        <div class="col-3">
+        <div class="col">
           <div class="row">
             <div class="col-2 col-medium-2 col-small-2">
               {{ signpost_image_content }}
@@ -126,8 +130,8 @@
         </div>
       {% endif -%}
       {#- Skip to fourth column if the signpost_image (which takes up first three columns) is missing -#}
-      <div class="col-9{% if not has_signpost_image %} col-start-large-4{% endif %}">
-        <hr class="u-hide--medium u-hide--small is-muted">
+      <div class="col">
+        <hr class="p-rule--muted u-hide--medium u-hide--small">
         {% if has_citation -%}
           <!-- When a citation is present, wrap the quote and citation in a nested grid to space them properly -->
           <div class="row">
@@ -135,6 +139,7 @@
               {{ _quote_body() }}
             </div>
             <div class="col-3">
+              <hr class="p-rule--muted u-hide--large">
               {{ _citation_block() }}
             </div>
           </div>

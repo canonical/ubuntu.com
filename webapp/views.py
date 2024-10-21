@@ -363,14 +363,17 @@ def build_case_study_index():
                     if meta_description_match
                     else ""
                 )
+                created_at = os.path.getctime(file_path)
                 # Append tags to case study info
                 case_study_info.append(
                     {
                         "title": title,
                         "file_path": "/case-study/" + file,
                         "meta_description": meta_description,
+                        "created_at": created_at,
                     }
                 )
+    case_study_info.sort(key=lambda x: x["created_at"], reverse=True)
 
     return flask.render_template(
         "case-study/index.html",

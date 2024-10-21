@@ -96,7 +96,16 @@
           </li>
         </ul>
         <div class="p-navigation__search">
-          <form action="/search" class="p-search-box is-light">
+          <form action="/search" class="p-search-box is-light js-search-form">
+            <!-- honeypot search input -->
+            <input type="search"
+                    id="search"
+                    class="p-search-box__input u-hide "
+                    name="search"
+                    placeholder="Search our sites"
+                    aria-label="Search our sites" 
+                    value=""/>
+            <!-- end of honeypot search input -->
             <input type="search"
                    class="p-search-box__input"
                    name="q"

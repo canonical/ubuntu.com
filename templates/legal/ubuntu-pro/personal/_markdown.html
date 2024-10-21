@@ -1,17 +1,22 @@
 {% extends "templates/base.html" %}
-{% block title %}{{ title }}{% endblock title %}
-{% block meta_description %}{{ description }}{% endblock meta_description %}
 
-{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block title %}
+  {{ title }}
+{% endblock title %}
+
+{% block meta_description %}
+  {{ description }}
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+{% endblock meta_copydoc %}
 
 {% block outer_content %}
 
-    {% block content %}
+  {% block content %}
     <div class="p-strip is-deep">
       <div class="row" id="service-description">
-        <div class="col-8 l-legal-pages">
-{{ content | safe }}
-        </div>
+        <div class="col-8 l-legal-pages">{{ content | safe }}</div>
         <div class="col-4">
           <address>
             <div class="p-card">
@@ -28,10 +33,10 @@
               </p>
             </div>
           </address>
-        </nav>
+        </div>
       </div>
     </div>
 
-    {% endblock %}
+  {% endblock %}
 
 {% endblock %}

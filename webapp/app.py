@@ -109,6 +109,7 @@ from webapp.shop.cred.views import (
     get_webhook_response,
     issue_badges,
     rotate_activation_key,
+    cancel_scheduled_exam,
 )
 from webapp.shop.views import (
     account_view,
@@ -442,7 +443,6 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -657,7 +657,6 @@ def takeovers_index():
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 
-
 core_services_guide_url = "/core/services/guide"
 core_services_guide = Docs(
     parser=DocParser(
@@ -683,7 +682,6 @@ app.add_url_rule(
 )
 
 core_services_guide.init_app(app)
-
 
 app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 
@@ -744,7 +742,6 @@ app.add_url_rule(
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -799,7 +796,6 @@ app.add_url_rule(
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -822,7 +818,6 @@ app.add_url_rule(
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 core_docs.init_app(app)
@@ -919,7 +914,7 @@ core_als_autils_docs.init_app(app)
 # Credentials
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
-app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
@@ -1049,6 +1044,11 @@ app.add_url_rule(
     view_func=get_cred_user_permissions,
     methods=["GET"],
 )
+app.add_url_rule(
+    "/credentials/api/cancel-scheduled-exam/<reservation_id>",
+    view_func=cancel_scheduled_exam,
+    methods=["DELETE"],
+)
 
 app.add_url_rule(
     "/credentials/your-badges",
@@ -1061,7 +1061,6 @@ app.add_url_rule(
     view_func=confidentiality_agreement_webhook,
     methods=["POST"],
 )
-
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
@@ -1085,7 +1084,6 @@ app.add_url_rule(
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1113,7 +1111,6 @@ app.add_url_rule(
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1141,7 +1138,6 @@ app.add_url_rule(
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1169,7 +1165,6 @@ app.add_url_rule(
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
         search_engine_id=search_engine_id,
-        request_limit="2000/day",
     ),
 )
 
@@ -1235,6 +1230,29 @@ def render_blogs():
 
 
 app.add_url_rule("/hpe", view_func=render_blogs)
+
+
+# Public-cloud blog section
+# tag_ids:
+# public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191,
+# ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
+def render_public_cloud_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=1000, thumbnail_height=700
+        ),
+        tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
+        per_page=3,
+        blog_title="Public-cloud blogs",
+    )
+    public_cloud_articles = blogs.get_index()["articles"]
+    sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
 
 
 # Supermicro blog section

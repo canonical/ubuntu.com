@@ -76,6 +76,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   }, [values.country]);
 
   const onPayClick = async () => {
+    setIsLoading(true);
     confirmNavigateListener.set();
     validateForm().then((errors) => {
       const possibleErrors = Object.keys(errors);
@@ -86,11 +87,13 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       if (!(possibleErrors.length === 0)) {
         setError(<>Please make sure all fields are filled in correctly.</>);
         document.querySelector("h1")?.scrollIntoView();
+        setIsLoading(false);
         return;
       }
     });
 
     if (!(Object.keys(errors).length === 0)) {
+      setIsLoading(false);
       return;
     }
 
@@ -386,6 +389,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
       onClick={onPayClick}
       loading={isLoading}
+      disabled={isLoading}
     >
       Buy now
     </ActionButton>
