@@ -14,7 +14,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
-    const returnData = window.location.pathname + "#success";
+    let returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
 
@@ -129,7 +129,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       // Capture current path and stringify
       // eg. /kubernetes/install -> kubernetes-install
       // fallbacks to "global"
-      const product =
+      let product =
         window.location.pathname.split("/").slice(1).join("-") || "global";
       // If present, override with product parameter from button URL
       if (contactButton) {
@@ -195,7 +195,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     function initialiseForm() {
-      const contactIndex = 1;
+      let contactIndex = 1;
       const contactModal = document.getElementById(contactModalSelector);
       const closeModal = document.querySelector(".p-modal__close");
       const closeModalButton = document.querySelector(".js-close");
@@ -256,7 +256,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         modalPaginationButton.addEventListener("click", function (e) {
           e.preventDefault();
           const button = e.target.closest("a");
-          const index = contactIndex;
+          let index = contactIndex;
           if (button.classList.contains("pagination__link--previous")) {
             index = index - 1;
             setState(index);
