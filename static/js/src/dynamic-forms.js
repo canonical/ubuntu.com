@@ -281,7 +281,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         const checkbox = otherContainer.querySelector(
           ".js-other-container__checkbox",
         );
-        const input = otherContainer.querySelector(".js-other-container__input");
+        const input = otherContainer.querySelector(
+          ".js-other-container__input",
+        );
         checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
             input.style.opacity = 1;
@@ -406,9 +408,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             message += "\r\n\r\n";
           });
 
-          const howManyMachinesFieldset = document.getElementById("how-many-machines");
+          const howManyMachinesFieldset =
+            document.getElementById("how-many-machines");
           const machinesInputs = howManyMachinesFieldset?.querySelectorAll(
-            "input[name='how-many-machines-do-you-have']"
+            "input[name='how-many-machines-do-you-have']",
           );
           machinesInputs.forEach((input) => {
             input.removeAttribute("name");
