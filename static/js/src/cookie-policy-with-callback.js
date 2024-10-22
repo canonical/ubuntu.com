@@ -1,10 +1,21 @@
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-// Set user_id after cookie acceptance
-function setUserId() {
-  const getCookie = (targetCookie) =>
-    document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));
-  const cookieAcceptanceValue = getCookie("_cookies_accepted");
+/*
+  Set a unique user_id if the user has accepted cookies.
+  If the user has not set their cookie preference, wait for the cookie policy to run first. 
+*/
 
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+
+const getCookie = (targetCookie) =>
+  document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));
+const cookieAcceptanceValue = getCookie("_cookies_accepted");
+
+if (cookieAcceptanceValue === null) {
+  cpNs.cookiePolicy(setUserId);
+} else {
+  setUserId();
+}
+
+function setUserId() {
   if (
     cookieAcceptanceValue?.[2] === "all" ||
     cookieAcceptanceValue?.[2] === "performance"
@@ -14,7 +25,10 @@ function setUserId() {
       // Generate a universally unique identifier
       const user_id = uuidv4();
       document.cookie = "user_id=" + user_id + ";max-age=31536000;";
+
+      dataLayer.push({
+        user_id: user_id,
+      });
     }
   }
 }
-cpNs.cookiePolicy(setUserId);
