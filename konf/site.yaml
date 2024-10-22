@@ -699,6 +699,9 @@ staging:
         key: charmhub-api-username
         name: discourse-api
 
+    - name: CANONICAL_CLA_API_URL
+      value: https://cla.canonical.com
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -1155,3 +1158,6 @@ demo:
       secretKeyRef:
         key: charmhub-api-username
         name: discourse-api
+
+    - name: CANONICAL_CLA_API_URL
+      value: https://cla.staging.canonical.com
