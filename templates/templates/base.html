@@ -18,9 +18,7 @@
     {% block content_experiment %}{% endblock %}
     <!-- Cookie policy -->
     <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-    <script>
-      cpNs.cookiePolicy();
-    </script>
+    <script type="module" src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}"></script>
     <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
             defer></script>
 
@@ -32,23 +30,6 @@
     <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}" />
     <script>
       performance.mark("Stylesheets finished");
-    </script>
-
-    <!-- Set unique user_id -->
-    <script type="module">     
-      import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
-      
-      const getCookie = (targetCookie) => document.cookie.match(new RegExp('(^| )' + _cookies_accepted + '=([^;]+)'));
-      const cookieAcceptanceValue = getCookie("_cookies_accepted"); 
-
-      if (cookieAcceptanceValue?.[2] === 'all' || cookieAcceptanceValue?.[2] === 'performance') {
-        // check if user doesn't already have a user_id
-        if (!getCookie("user_id")) {
-          // generate a universally unique identifier
-          const user_id = uuidv4();
-          document.cookie = 'user_id=' + user_id + ';max-age=31536000;';
-        } 
-      }
     </script>
 
     <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
