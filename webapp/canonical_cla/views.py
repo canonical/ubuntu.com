@@ -138,10 +138,22 @@ def canonical_cla_api_proxy():
         cookies=flask.request.cookies,
         data=flask.request.data,
     )
-    response = flask.make_response(api_service_response.content)
-    response.headers["Content-Type"] = api_service_response.headers[
-        "Content-Type"
-    ]
-    response.status_code = api_service_response.status_code
-    response.cache_control.no_store = True
-    return response
+    if (
+        api_service_response.headers["Content-Type"] != "application/json"
+        and api_service_response.status_code != 200
+    ):
+        error_response = flask.make_response(
+            {"detail": "Internal server error"}
+        )
+        error_response.headers["Content-Type"] = "application/json"
+        error_response.status_code = 500
+        error_response.cache_control.no_store = True
+        return error_response
+    else:
+        response = flask.make_response(api_service_response.content)
+        response.headers["Content-Type"] = api_service_response.headers[
+            "Content-Type"
+        ]
+        response.status_code = api_service_response.status_code
+        response.cache_control.no_store = True
+        return response

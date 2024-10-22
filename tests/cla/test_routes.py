@@ -26,6 +26,36 @@ class TestCLARoutes(unittest.TestCase):
         self.assertEqual(response.headers["Content-Type"], "application/json")
         self.assertEqual(response.headers["Cache-Control"], "no-store")
 
+    @patch("requests.request")
+    def test_canonical_cla_api_proxy_non_json_response(self, mock_request):
+        mock_response = MagicMock()
+        mock_response.content = b"""
+        <html>
+            <head><title>502 Bad Gateway</title></head>
+            <body>
+                <center><h1>502 Bad Gateway</h1></center>
+                <hr><center>nginx/1.10.3 (Ubuntu)</center>
+            </body>
+        </html>
+        """
+        mock_response.headers = {"Content-Type": "text/html"}
+        mock_response.status_code = 502
+        mock_request.return_value = mock_response
+        response = self.client.get(
+            """/legal/contributors/agreement/api
+?request_url=aHR0cHM6Ly9leGFtcGxlLmNvbS9hcGk="""
+        )
+
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.headers["Content-Type"], "application/json")
+        self.assertEqual(response.headers["Cache-Control"], "no-store")
+        self.assertEqual(
+            response.get_json(),
+            {
+                "detail": "Internal server error",
+            },
+        )
+
     def test_canonical_cla_api_github_logout(self):
         response = self.client.get(
             "/legal/contributors/agreement/api/github/logout"
