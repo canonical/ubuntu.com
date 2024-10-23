@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 const getCookie = (targetCookie) =>
   document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));
-const cookieAcceptanceValue = getCookie("_cookies_accepted");
+let cookieAcceptanceValue = getCookie("_cookies_accepted");
 
 if (cookieAcceptanceValue === null) {
   cpNs.cookiePolicy(setUserId);
@@ -16,6 +16,7 @@ if (cookieAcceptanceValue === null) {
 }
 
 function setUserId() {
+  cookieAcceptanceValue = getCookie("_cookies_accepted");
   if (
     cookieAcceptanceValue?.[2] === "all" ||
     cookieAcceptanceValue?.[2] === "performance"
