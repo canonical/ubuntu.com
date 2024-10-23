@@ -8,9 +8,7 @@ const SignPage = () => {
       <p>
         Before you contribute to one of our open source projects, you must
         complete all the fields in this form, sign it and return it to
-        Canonical. Please make sure you have your GitHub username at the ready.
-        If you don’t have one, you can create one now at{" "}
-        <a href="https://github.com">GitHub</a>.
+        Canonical.
       </p>
       <p>All fields are required.</p>
       <AgreementTypeForm />
