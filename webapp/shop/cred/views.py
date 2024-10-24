@@ -268,7 +268,7 @@ def cred_schedule(
             f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
         starts_at = tz_info.localize(scheduled_time)
-        contract_item_id = data["contract_item_id"]
+        contract_item_id = flask.request.args.get("contractItemID")
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
         assessment_reservation_uuid = None
@@ -279,6 +279,14 @@ def cred_schedule(
         template_data["min_date"] = min_date
         template_data["max_date"] = max_date
         template_data["time_delay"] = time_delay
+
+        if not contract_item_id or not str(contract_item_id).isdigit():
+            error = "Invalid contract item ID"
+            return flask.render_template(
+                "/credentials/schedule.html",
+                error=error,
+                **template_data,
+            )
 
         if flask.request.args.get("uuid", default=None, type=str):
             assessment_reservation_uuid = flask.request.args.get("uuid")
