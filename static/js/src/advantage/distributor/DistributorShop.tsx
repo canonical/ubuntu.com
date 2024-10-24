@@ -10,7 +10,7 @@ const DistributorShop = () => {
   if (!offer) {
     return (
       <Strip className="p-section">
-        <h1>Somethinig is wrong.</h1>
+        <h1>Something is wrong.</h1>
         <p>
           Initiate order again at <a href="/pro/distributor">this page</a>.
         </p>
