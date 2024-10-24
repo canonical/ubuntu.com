@@ -8,7 +8,7 @@ class CertificationAPI:
     Method names and properties to describe and map directly
     onto the Certification API
     (at the time of writing, this API is available at
-    https://certification.canonical.com/api/v1)
+    https://certification.canonical.com/api/v2)
     """
 
     def __init__(self, base_url: str, session: Session):
@@ -32,6 +32,20 @@ class CertificationAPI:
         response.raise_for_status()
 
         return response
+
+    def certified_platform_details(
+        self,
+        platform_id,
+        limit=None,
+        offset=None,
+    ):
+        return self._get(
+            f"certified-platforms/{platform_id}",
+            params={
+                "limit": limit,
+                "offset": offset,
+            },
+        ).json()
 
     def certified_vendors(
         self,
