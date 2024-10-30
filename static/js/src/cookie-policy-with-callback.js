@@ -9,7 +9,7 @@ const getCookie = (targetCookie) =>
   document.cookie.match(new RegExp("(^| )" + targetCookie + "=([^;]+)"));
 let cookieAcceptanceValue = getCookie("_cookies_accepted");
 
-if (cookieAcceptanceValue === null) {
+if (!cookieAcceptanceValue) {
   cpNs.cookiePolicy(setUserId);
 } else {
   setUserId();
