@@ -68,7 +68,13 @@
 
     <div class="row--25-75">
       <div class="col u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png", alt="Ubuntu Hardware Certification", width="112", height="157", hi_def=True, loading="auto") | safe }}
+        {{ image(url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+                  alt="Ubuntu Hardware Certification",
+                  width="112",
+                  height="157",
+                  hi_def=True,
+                  loading="auto") | safe
+        }}
       </div>
       <div class="col">
         {% for release in release_details["releases"]|sort(attribute='version')|reverse %}
