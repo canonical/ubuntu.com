@@ -978,6 +978,10 @@ def marketo_submit():
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
 
+    user_id = flask.request.cookies.get("user_id")
+    if user_id:
+        enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
