@@ -90,13 +90,17 @@ function setUpStaticForms(form, formId) {
       formFields.forEach(function (formField) {
         var comma = ",";
         var fieldTitle = formField.querySelector(".js-formfield-title");
-        var inputs = formField.querySelectorAll("input, textarea");
+        var inputs = formField.querySelectorAll("input, textarea, select");
         if (fieldTitle) {
           message += fieldTitle.innerText + "\r\n";
         }
 
         inputs.forEach(function (input) {
           switch (input.type) {
+            case "select-one":
+              message +=
+                input.options[input.selectedIndex]?.textContent + comma + " ";
+              break;
             case "radio":
               if (input.checked) {
                 message += input.value + comma + " ";
@@ -115,7 +119,6 @@ function setUpStaticForms(form, formId) {
               }
               break;
           }
-          input.removeAttribute("name");
         });
         message += "\r\n\r\n";
       });
@@ -172,7 +175,9 @@ function extractMarketoID(str) {
   return null;
 }
 
-const forms = document.querySelectorAll("form[action='/marketo/submit']");
+const forms = document.querySelectorAll(
+  "form[action='/marketo/submit']:not(.js-modal-form)",
+);
 if (forms.length) {
   forms.forEach((form) => setUpStaticForms(form, extractMarketoID(form.id)));
 }
@@ -193,7 +198,6 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
     ".js-checkbox-visibility__other",
   );
   const isVisible = checklistItem.classList.contains("js-checkbox-visibility");
-
   if (checklistItem.checked) {
     if (isVisible) {
       otherCheckboxes.forEach((checkbox) => {
@@ -231,6 +235,7 @@ function toggleCheckboxVisibility(fieldset, checklistItem) {
 const ubuntuVersionCheckboxes = document.querySelector(
   "fieldset.js-toggle-checkbox-visibility",
 );
+
 ubuntuVersionCheckboxes?.addEventListener("change", function (event) {
   toggleCheckboxVisibility(ubuntuVersionCheckboxes, event.target);
 });
@@ -259,6 +264,7 @@ const requiredFieldset = document.querySelectorAll(
   "fieldset.js-required-checkbox",
 );
 requiredFieldset?.forEach((fieldset) => {
+  document.querySelector(".js-submit-button").disabled = true;
   fieldset.addEventListener("change", function (event) {
     requiredCheckbox(fieldset, event.target);
   });

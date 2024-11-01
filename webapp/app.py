@@ -3,6 +3,8 @@ A Flask application for ubuntu.com
 """
 
 import os
+import json
+from functools import wraps
 import math
 import flask
 import requests
@@ -101,6 +103,7 @@ from webapp.shop.cred.views import (
     get_webhook_response,
     issue_badges,
     rotate_activation_key,
+    cancel_scheduled_exam,
 )
 from webapp.shop.views import (
     account_view,
@@ -883,7 +886,7 @@ core_als_autils_docs.init_app(app)
 # Credentials
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
-app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
@@ -1012,6 +1015,11 @@ app.add_url_rule(
     "/credentials/api/user-permissions",
     view_func=get_cred_user_permissions,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/api/cancel-scheduled-exam/<reservation_id>",
+    view_func=cancel_scheduled_exam,
+    methods=["DELETE"],
 )
 
 app.add_url_rule(
@@ -1236,3 +1244,29 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+
+def render_form(form):
+    @wraps(render_form)
+    def wrapper_func():
+        with app.app_context() and app.test_request_context():
+            return flask.render_template(
+                form["templatePath"],
+                fieldsets=form["fieldsets"],
+                formData=form["formData"],
+                isModal=form.get("isModal"),
+                modalId=form.get("modalId"),
+            )
+
+    return wrapper_func
+
+
+def set_form_rules():
+    filename = os.path.join(app.static_folder, "files", "forms-data.json")
+    with open(filename) as forms:
+        data = json.load(forms)
+        for path, form in data["forms"].items():
+            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
+
+
+set_form_rules()

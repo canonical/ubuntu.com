@@ -14,8 +14,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
-    const returnData = window.location.pathname + "#success";
+    let returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
+    const modalAlreadyExists = document.querySelector(".js-modal-ready");
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -23,6 +24,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         if (window.location.pathname) {
           contactForm.setAttribute("data-return-url", returnData);
         }
+
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
@@ -50,37 +52,47 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
-      fetch(formData.formLocation)
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (text) {
-          formContainer.classList.remove("u-hide");
-          formContainer.innerHTML = text
-            .replace(/%% formid %%/g, formData.formId)
-            .replace(/%% returnURL %%/g, formData.returnUrl);
+      // check if the modal already exists on the page and if so, skip the fetch and initialise it
+      if (modalAlreadyExists) {
+        returnData = formContainer.dataset.returnUrl;
+        initialiseFormData(formContainer.dataset, contactButton);
+      } else {
+        fetch(formData.formLocation)
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (text) {
+            formContainer.innerHTML = text
+              .replace(/%% formid %%/g, formData.formId)
+              .replace(/%% returnURL %%/g, formData.returnUrl);
 
-          if (formData.title) {
-            const title = document.getElementById("modal-title");
-            title.innerHTML = formData.title;
-          }
-          setProductContext(contactButton);
-          setUTMs(formData.formId);
-          setGclid();
-          setFBclid();
-          loadCaptchaScript();
-          initialiseForm();
-          setFocus();
-        })
-        .catch(function (error) {
-          console.log("Request failed", error);
-        });
+            if (formData.title) {
+              const title = document.getElementById("modal-title");
+              title.innerHTML = formData.title;
+            }
+            initialiseFormData(formData, contactButton);
+          })
+          .catch(function (error) {
+            console.log("Request failed", error);
+          });
+      }
+    }
+
+    function initialiseFormData(formData, contactButton) {
+      formContainer.classList.remove("u-hide");
+      setProductContext(contactButton);
+      setUTMs(formData.formId);
+      setGclid();
+      setFBclid();
+      loadCaptchaScript();
+      initialiseForm();
+      setFocus();
     }
 
     // Load the google recaptcha noscript
     function loadCaptchaScript() {
-      var head = document.head;
-      var script = document.createElement("script");
+      const head = document.head;
+      const script = document.createElement("script");
       script.type = "text/javascript";
       script.src =
         "https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit";
@@ -99,7 +111,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Removes the triggering hash
     function updateHash(hash) {
-      var location = window.location;
+      const location = window.location;
       if (location.hash !== hash || hash === "") {
         if ("pushState" in history) {
           history.pushState(
@@ -117,7 +129,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       // Capture current path and stringify
       // eg. /kubernetes/install -> kubernetes-install
       // fallbacks to "global"
-      var product =
+      let product =
         window.location.pathname.split("/").slice(1).join("-") || "global";
       // If present, override with product parameter from button URL
       if (contactButton) {
@@ -129,32 +141,32 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       // Set product in form field
-      var productContext = document.getElementById("product-context");
+      const productContext = document.getElementById("product-context");
       if (productContext) {
         productContext.value = product;
       }
     }
 
     function setUTMs(formId) {
-      var params = new URLSearchParams(window.location.search);
-      var targetForm = document.getElementById(`mktoForm_${formId}`);
-      var utm_campaign = targetForm.querySelector("#utm_campaign");
+      const params = new URLSearchParams(window.location.search);
+      const targetForm = document.getElementById(`mktoForm_${formId}`);
+      const utm_campaign = targetForm.querySelector("#utm_campaign");
       if (utm_campaign) {
         utm_campaign.value = params.get("utm_campaign");
       }
-      var utm_source = targetForm.querySelector("#utm_source");
+      const utm_source = targetForm.querySelector("#utm_source");
       if (utm_source) {
         utm_source.value = params.get("utm_source");
       }
-      var utm_medium = targetForm.querySelector("#utm_medium");
+      const utm_medium = targetForm.querySelector("#utm_medium");
       if (utm_medium) {
         utm_medium.value = params.get("utm_medium");
       }
-      var utm_content = targetForm.querySelector("#utm_content");
+      const utm_content = targetForm.querySelector("#utm_content");
       if (utm_content) {
         utm_content.value = params.get("utm_content");
       }
-      var utm_term = targetForm.querySelector("#utm_term");
+      const utm_term = targetForm.querySelector("#utm_term");
       if (utm_term) {
         utm_term.value = params.get("utm_term");
       }
@@ -162,9 +174,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function setGclid() {
       if (localStorage.getItem("gclid")) {
-        var gclidField = document.getElementById("GCLID__c");
-        var gclid = JSON.parse(localStorage.getItem("gclid"));
-        var isGclidValid = new Date().getTime() < gclid.expiryDate;
+        const gclidField = document.getElementById("GCLID__c");
+        const gclid = JSON.parse(localStorage.getItem("gclid"));
+        const isGclidValid = new Date().getTime() < gclid.expiryDate;
         if (gclid && isGclidValid && gclidField) {
           gclidField.value = gclid.value;
         }
@@ -173,9 +185,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     function setFBclid() {
       if (localStorage.getItem("fbclid")) {
-        var fbclidField = document.getElementById("Facebook_Click_ID__c");
-        var fbclid = JSON.parse(localStorage.getItem("fbclid"));
-        var fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
+        const fbclidField = document.getElementById("Facebook_Click_ID__c");
+        const fbclid = JSON.parse(localStorage.getItem("fbclid"));
+        const fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
         if (fbclid && fbclidIsValid && fbclidField) {
           fbclidField.value = fbclid.value;
         }
@@ -183,20 +195,21 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     }
 
     function initialiseForm() {
-      var contactIndex = 1;
+      let contactIndex = 1;
       const contactModal = document.getElementById(contactModalSelector);
-      var closeModal = document.querySelector(".p-modal__close");
-      var closeModalButton = document.querySelector(".js-close");
-      var modalPaginationButtons =
+      const closeModal = document.querySelector(".p-modal__close");
+      const closeModalButton = document.querySelector(".js-close");
+      const modalPaginationButtons =
         contactModal.querySelectorAll(".pagination a");
-      var paginationContent = contactModal.querySelectorAll(".js-pagination");
-      var submitButton = contactModal.querySelector('button[type="submit"]');
-      var comment = contactModal.querySelector("#Comments_from_lead__c");
-      var otherContainers = document.querySelectorAll(".js-other-container");
-      var phoneNumberInput = document.querySelector("#phone");
-      var countryInput = document.querySelector("#country");
-      var modalTrigger = document.activeElement || document.body;
-      var isMultipage = contactModal.querySelector(".js-pagination").length > 1;
+      const paginationContent = contactModal.querySelectorAll(".js-pagination");
+      const submitButton = contactModal.querySelector('button[type="submit"]');
+      const comment = contactModal.querySelector("#Comments_from_lead__c");
+      const otherContainers = document.querySelectorAll(".js-other-container");
+      const phoneNumberInput = document.querySelector("#phone");
+      const countryInput = document.querySelector("#country");
+      const modalTrigger = document.activeElement || document.body;
+      const isMultipage =
+        contactModal.querySelector(".js-pagination")?.length > 1;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -242,8 +255,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       modalPaginationButtons.forEach(function (modalPaginationButton) {
         modalPaginationButton.addEventListener("click", function (e) {
           e.preventDefault();
-          var button = e.target.closest("a");
-          var index = contactIndex;
+          const button = e.target.closest("a");
+          let index = contactIndex;
           if (button.classList.contains("pagination__link--previous")) {
             index = index - 1;
             setState(index);
@@ -265,10 +278,12 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       });
 
       otherContainers.forEach(function (otherContainer) {
-        var checkbox = otherContainer.querySelector(
+        const checkbox = otherContainer.querySelector(
           ".js-other-container__checkbox",
         );
-        var input = otherContainer.querySelector(".js-other-container__input");
+        const input = otherContainer.querySelector(
+          ".js-other-container__input",
+        );
         checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
             input.style.opacity = 1;
@@ -290,9 +305,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        if (formContainer.contains(contactModal)) {
-          formContainer.removeChild(contactModal);
-        }
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
@@ -306,26 +318,27 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function render() {
         comment.value = createMessage(false);
 
-        var currentContent = contactModal.querySelector(
-          ".js-pagination--" + contactIndex,
-        );
-        paginationContent.forEach(function (content) {
-          content.classList.add("u-hide");
-        });
-        currentContent.classList.remove("u-hide");
+        if (paginationContent.length) {
+          const currentContent = contactModal.querySelector(
+            ".js-pagination--" + contactIndex,
+          );
+          paginationContent.forEach(function (content) {
+            content.classList.add("u-hide");
+          });
+          currentContent.classList.remove("u-hide");
+        }
       }
 
       // Concatinate the options selected into a string
       function createMessage(submit) {
         const contactModal = document.getElementById("contact-modal");
-        var message = "";
+        let message = "";
         if (contactModal) {
-          var formFields = contactModal.querySelectorAll(".js-formfield");
-
+          const formFields = contactModal.querySelectorAll(".js-formfield");
           formFields.forEach(function (formField) {
-            var comma = ",";
-            var fieldsetForm = formField.querySelector(".js-formfield-title");
-            var fieldTitle = "";
+            const comma = ",";
+            const fieldsetForm = formField.querySelector(".js-formfield-title");
+            let fieldTitle = "";
             if (fieldsetForm) {
               fieldTitle = fieldsetForm;
             } else {
@@ -333,14 +346,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 formField.querySelector(".p-heading--5") ??
                 formField.querySelector(".p-modal__question-heading");
             }
-            var inputs = formField.querySelectorAll("input, textarea");
+            const inputs = formField.querySelectorAll("input, textarea");
             if (fieldTitle) {
               message += fieldTitle.innerText + "\r\n";
             }
 
-            // Loop through each input and add to Comments_from_lead__c
             inputs.forEach(function (input) {
               switch (input.type) {
+                case "select-one":
+                  message +=
+                    input.options[input.selectedIndex]?.textContent +
+                    comma +
+                    " ";
+                  break;
                 case "radio":
                   if (input.checked) {
                     message += input.value + comma + " ";
@@ -351,20 +369,21 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                     if (fieldsetForm) {
                       message += input.value + comma + " ";
                     } else {
-                      var subSectionText = "";
+                      // Forms that have column separation
+                      let subSectionText = "";
                       if (
                         input.closest('[class*="col-"]') &&
                         input
                           .closest('[class*="col-"]')
                           .querySelector(".js-sub-section")
                       ) {
-                        var subSection = input
+                        let subSection = input
                           .closest('[class*="col-"]')
                           .querySelector(".js-sub-section");
                         subSectionText = subSection.innerText + ": ";
                       }
 
-                      var label = formField.querySelector(
+                      let label = formField.querySelector(
                         "span#" + input.getAttribute("aria-labelledby"),
                       );
 
@@ -388,8 +407,18 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             });
             message += "\r\n\r\n";
           });
+
+          const howManyMachinesFieldset =
+            document.getElementById("how-many-machines");
+          const machinesInputs = howManyMachinesFieldset?.querySelectorAll(
+            "input[name='how-many-machines-do-you-have']",
+          );
+          machinesInputs.forEach((input) => {
+            input.removeAttribute("name");
+          });
+
+          return message;
         }
-        return message;
       }
 
       // Toggles the description textarea field for radio buttons
@@ -466,10 +495,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       setCheckboxLimit();
 
-      // Sets up dial code dropdown options aka. intlTelInput.js
-      // and pre fills the country field
-      prepareInputFields(phoneNumberInput, countryInput);
-
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
         const preferredLanguage = getPrimaryParentLanguage();
@@ -497,13 +522,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       function fireLoadedEvent() {
-        var event = new CustomEvent("contactModalLoaded");
+        const event = new CustomEvent("contactModalLoaded");
         document.dispatchEvent(event);
       }
 
       fireLoadedEvent();
-
-      comment.value = createMessage(false);
 
       // Add event listeners to toggle checkbox visibility
       const ubuntuVersionCheckboxes = document.querySelector(
@@ -548,9 +571,9 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Sets the focus inside the modal and trap it
     function setFocus() {
-      var modalTrigger = document.activeElement || document.body;
-      var modal = document.querySelector(".p-modal");
-      var firstFocusableEle = modal.querySelector(
+      const modalTrigger = document.activeElement || document.body;
+      const modal = document.querySelector(".p-modal");
+      const firstFocusableEle = modal.querySelector(
         "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
       );
 
@@ -561,16 +584,16 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       firstFocusableEle.addEventListener("keydown", function (e) {
         if (e.shiftKey && e.key === "Tab") {
           e.preventDefault();
-          var targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
-          var targetEle = targetPage.querySelector(".pagination__link--next");
+          const targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
+          const targetEle = targetPage.querySelector(".pagination__link--next");
           targetEle.focus();
         }
       });
 
-      var modalPages = modal.querySelectorAll(".js-pagination");
+      const modalPages = modal.querySelectorAll(".js-pagination");
 
       modalPages.forEach(function (page, index) {
-        var lastFocusEle = page.querySelector(".pagination__link--next");
+        const lastFocusEle = page.querySelector(".pagination__link--next");
         if (lastFocusEle) {
           lastFocusEle.addEventListener("keydown", function (e) {
             if (!e.shiftKey && e.key === "Tab") {
@@ -631,7 +654,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         }
       } else {
         if (isVisible) {
-          var uncheck = true;
+          let uncheck = true;
           checkboxes.forEach((checkbox) => {
             checkbox.checked ? (uncheck = false) : null;
           });
@@ -663,7 +686,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       if (target.checked) {
         submitButton.disabled = false;
       } else {
-        var disableSubmit = true;
+        let disableSubmit = true;
         checkboxes.forEach((checkbox) => {
           checkbox.checked ? (disableSubmit = false) : null;
         });
