@@ -8,27 +8,27 @@
 
 {% block outer_content %}
 
-<div class="row">
-  {% with 
-    vendor_name=component.vendor_name,
-    component_name=component.model
-  %}
-    {% include "/certified/components/_hero-section.html" %}
-  {% endwith %}
+{% with 
+  vendor_name=component.vendor_name,
+  component_name=component.model
+%}
+  {% include "/certified/components/_hero-section.html" %}
+{% endwith %}
 
-  {% with
-    lts_releases=component.lts_releases
-  %}
-    {% include "/certified/components/_certified-releases.html" %}
-  {% endwith %}
-  <hr/>
-  {% with component=component %}
-    {% include "/certified/components/_hardware-details.html" %}
-  {% endwith %}
-  <hr/>
-  {% with machines=machines %}
-    {% include "/certified/components/_machines-present.html" %}
-  {% endwith %}
-</div>
+{% with
+  lts_releases=component.lts_releases
+%}
+  {% include "/certified/components/_certified-releases.html" %}
+{% endwith %}
+
+<hr class="p-rule is-fixed-width"/>
+{% with component=component %}
+  {% include "/certified/components/_hardware-details.html" %}
+{% endwith %}
+
+<hr class="p-rule is-fixed-width"/>
+{% with machines=machines %}
+  {% include "/certified/components/_machines-present.html" %}
+{% endwith %}
 
 {% endblock %}
