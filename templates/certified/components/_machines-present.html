@@ -3,7 +3,7 @@
     <div class="col">
       <h2 class="p-muted-heading">
         Present in {{ machines|length }} certified system
-        {% if machines|length > 1 %}s{% endif %}
+        {%- if machines|length > 1 -%}s{% endif %}
       </h2>
     </div>
     <div class="col">
