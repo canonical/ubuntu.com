@@ -486,7 +486,7 @@ def certified_component_details(component_id):
     machines = machines_by_id.values()
 
     return render_template(
-        "certified/component-details.html",
+        "certified/components/component-details.html",
         component=component,
         machines=sorted(
             machines, key=lambda machine: machine["canonical_id"], reverse=True
