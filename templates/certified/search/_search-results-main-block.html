@@ -4,57 +4,20 @@
   </div>
   <div class="col-9">
     {% if total_results > 0 %}
-      <div class="row">
-        <div class="col-4 col-medium-3">
-          <p>
-            <strong>
-            {% if total_results %}
-              {% if total_results and total_results > 1 %}
-                {{ offset + 1 }}
-                &ndash;
-                {% if offset + limit > total_results %}
-                  {{ total_results }}
-                {% else %}
-                  {{ offset + limit }}
-                {% endif %}
-                of
-              {% endif %}
-              {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-            {% endif %}
-            </strong>
-          </p>
-        </div>
-        <div class="col-5 col-medium-3 u-align--right">
-          {% with total_results=total_results, limit=limit, page_position="top" %}
-            {% include "certified/search/_result-count-selector.html" %}
-          {% endwith %}
-        </div>
-      </div>
+      {% with total_results=total_results, limit=limit %}
+        {% include "certified/search/_search-results-top-block.html" %}
+      {% endwith %}
+
       {% with
         results=results,
         vendor_page=vendor_page
         %}
         {% include "/certified/search/_search-results-table.html" %}
       {% endwith %}
-      <div class="row">
-        <div class="col-5">
-          {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left" %}
-            {% if offset >= total_results %}
-              {% set current_page = 1 %}
-            {% else %}
-              {% set current_page = ((offset / limit) + 1) | int %}
-            {% endif %}
-            {% if total_results > limit %}
-              {% include "shared/_pagination.html" %}
-            {% endif %}
-          {% endwith %}
-        </div>
-        <div class="col-4 u-align--right">
-          {% with total_results=total_results, limit=limit, page_position="bottom" %}
-            {% include "certified/search/_result-count-selector.html" %}
-          {% endwith %}
-        </div>
-      </div>
+
+      {% with total_results=total_results, limit=limit %}
+        {% include "certified/search/_search-results-bottom-block.html" %}
+      {% endwith %}
     {% else %}
       {% include "/certified/search/_no-results.html" %}
     {% endif %}
