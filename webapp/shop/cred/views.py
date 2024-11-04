@@ -256,8 +256,8 @@ def cred_schedule(
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 0.5 if is_staging else 1
-    time_delay = "30 minutes" if is_staging else "1 hour"
+    time_delta = 0.5 if is_staging else 3
+    time_delay = "30 minutes" if is_staging else "3 hours"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -1059,8 +1059,9 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
-        message = "Your exam has been activated."
-        +"To schedule your exam, click the Your Exams button."
+        message = """Your exam has been activated.
+        To schedule your exam, click the Your Exams button."""
+
         return flask.render_template(
             "/credentials/redeem.html",
             notification_class="positive",

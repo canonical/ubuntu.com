@@ -1,0 +1,50 @@
+{% if isModal %}
+  <div class="p-modal js-modal-ready" id="{{ modalId }}">
+    <div class="p-modal__dialog is-wide-modal"
+         role="dialog"
+         aria-labelledby="modal-title"
+         aria-describedby="modal-description">
+      <header class="p-modal__header"
+              style="display: block;
+                     border-bottom: 0;
+                     overflow: auto">
+        <button class="p-modal__close js-close"
+                aria-label="Close active modal"
+                style="margin-left: -1rem">Close</button>
+        <div class="u-fixed-width">
+          <h3>{{ formData.title }}</h3>
+        </div>
+      </header>
+      <div class="p-section u-fixed-width">
+        <hr />
+        {{ formData.introText }}
+      </div>
+      {% include "/shared/forms/form-fields.html" %}
+    </div>
+  </div>
+
+{% else %}
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>{{ formData.title }}</h1>
+      </div>
+      <div class="col">
+        <p>{{ formData.introText }}</p>
+      </div>
+    </div>
+  </section>
+  {% include "/shared/forms/form-fields.html" %}
+{% endif %}
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    dataLayer.push({
+      'event': 'GAEvent',
+      'eventCategory': 'Form',
+      'eventAction': 'iot contact-us',
+      'eventLabel': '{{ formData.product }}',
+      'eventValue': undefined
+    });
+  });
+</script>

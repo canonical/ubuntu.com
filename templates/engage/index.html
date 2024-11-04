@@ -126,6 +126,21 @@ function clearFilters() {
     clearFiltersButton.removeAttribute("disabled");
   }
 
+  // Disable other fields if a filter is already applied
+  const searchParams = new URLSearchParams(urlObj.search);
+  for (const [key, value] of searchParams) {
+    if (key === "language") {
+      resourceSelector.setAttribute("disabled", true);
+      tagSelector.setAttribute("disabled", true);
+    } else if (key === "resource") {
+      languageSelector.setAttribute("disabled", true);
+      tagSelector.setAttribute("disabled", true);
+    } else if (key === "tag") {
+      languageSelector.setAttribute("disabled", true);
+      resourceSelector.setAttribute("disabled", true);
+    }
+  } 
+
   function handleFilter(key, el, url) {
     if (!el) {
       return;
