@@ -6,39 +6,38 @@
   Hardware that have been certified for use with Ubuntu.
 {% endblock meta_description %}
 
-{% block body_class %}is-paper{% endblock body_class %}
-{% block outer_content %}
-<form class="js-search-results p-section--deep">
-  <section class="p-section--hero">
-    <div class="row--25-75">
-      <div class="col">
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <h1>
-            Search Ubuntu Certified Hardware
-          </h1>
-        </div>
-        <div class="p-section--shallow">
-          {% with query=query, placeholder=placeholder %}
-            {% include "/certified/search/_query-search-box.html" %}
-          {% endwith %}
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr/>
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
-  {% with
-    total_results=total_results,
-    total_pages=total_pages,
-    offset=offset,
-    limit=limit,
-    vendor_filters=vendor_filters,
-    release_filters=release_filters,
-    results=results
-  %}
-    {% include "certified/search/_search-results-main-block.html" %}
-  {% endwith %}
-</form>
+{% block outer_content %}
+  <form class="js-search-results p-section--deep">
+    <section class="p-section--hero">
+      <div class="row">
+        <div class="col-9 col-start-large-4 col-start-medium-3">
+          <div class="p-section--shallow">
+            <h1>Search Ubuntu Certified Hardware</h1>
+          </div>
+          <div class="p-section--shallow">
+            {% with query=query, placeholder=placeholder %}
+              {% include "/certified/search/_query-search-box.html" %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="p-rule is-fixed-width" />
+
+    {% with
+      total_results=total_results,
+      total_pages=total_pages,
+      offset=offset,
+      limit=limit,
+      vendor_filters=vendor_filters,
+      release_filters=release_filters,
+      results=results
+      %}
+      {% include "certified/search/_search-results-main-block.html" %}
+    {% endwith %}
+  </form>
 {% endblock %}
