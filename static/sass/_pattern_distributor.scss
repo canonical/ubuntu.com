@@ -1,51 +1,48 @@
 @mixin ubuntu-p-distributor {
   .distributor-shop-selector {
     counter-reset: headings;
+    .p-stepped-list__title {
+      margin-bottom: 2rem;
+
+      &::before {
+        align-items: center;
+        border: 1px solid #000;
+        border-radius: 50%;
+        content: counter(p-stepped-list-counter);
+        text-align: center;
+        font-size: 1rem;
+      }
+    }
   }
 
   @media screen and (min-width: $breakpoint-large) {
     .distributor-shop-selector {
       padding-top: 2rem;
-
-      h2 {
+      .p-stepped-list__title {
+        padding-left: 3.7rem;
         width: $breakpoint-x-small + 100px;
-      }
-      > .p-strip {
-        padding-bottom: 3rem;
-        padding-top: 3rem;
 
-        > .row {
-          > .col-6:nth-child(2) {
-            padding-top: 1rem;
+        &::before {
+          font-size: 1.5rem;
+          height: 2.5rem;
+          line-height: 2.5rem;
+          width: 2.5rem;
+        }
+      }
+
+      .p-stepped-list > .p-stepped-list__item {
+        padding-bottom: 0;
+        > .p-strip {
+          padding-bottom: 3rem;
+          padding-top: 3rem;
+
+          > .row {
+            > .col-6:nth-child(2) {
+              padding-top: 1rem;
+            }
           }
         }
       }
-    }
-  }
-
-  .distributor-shop-selector h2 {
-    counter-increment: headings;
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-
-    &::before {
-      @extend .p-heading--2;
-
-      align-items: center;
-      border: 1px solid #000;
-      border-radius: 50%;
-      content: counter(headings);
-      display: inline-flex;
-      flex-shrink: 0;
-      font-size: 1.5rem;
-      height: 2.5rem;
-      justify-content: center;
-      margin-top: 2px;
-      padding-top: 0;
-      text-align: center;
-      width: 2.5rem;
     }
   }
 

@@ -1,0 +1,13 @@
+{% extends "pricing/base_pricing.html" %}
+
+{% block title %}Contact us | Pricing{% endblock %}
+
+{% block content %}
+  {% with h1="Contact us about pricing",
+    intro_text="Fill in your details below and a member of our sales team will be in touch.",
+    formid="1240",
+    lpId="2065",
+    returnURL="/pricing/thank-you" %}
+    {% include "shared/_default-contact-us-form.html" %}
+  {% endwith %}
+{% endblock content %}
