@@ -55,6 +55,7 @@ export type AssessmentReservationMeta = {
 export type ExamResultsTA = {
   id: number;
   user_email: string;
+  state: string;
   completed_at: string;
   score: number;
   duration_in_minutes: number;

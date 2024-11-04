@@ -242,15 +242,22 @@ def cred_schedule(
     **_,
 ):
     error = None
+
+    contract_long_id = flask.request.args.get("contractLongID")
+    contract_detail = ua_contracts_api.get_contract(contract_long_id)
+
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=30)).strftime("%Y-%m-%d")
-    contract_long_id = flask.request.args.get("contractLongID")
+    max_date = datetime.strptime(
+        f"{contract_detail['contractInfo']['effectiveTo']}",
+        "%Y-%m-%dT%H:%M:%SZ",
+    ).strftime("%Y-%m-%d")
+
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 0.5 if is_staging else 1
-    time_delay = "30 minutes" if is_staging else "1 hour"
+    time_delta = 0.5 if is_staging else 3
+    time_delay = "30 minutes" if is_staging else "3 hours"
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -317,7 +324,6 @@ def cred_schedule(
             between the contract effectiveness window"""
             if not contract_long_id:
                 return flask.redirect("/credentials/your-exams")
-            contract_detail = ua_contracts_api.get_contract(contract_long_id)
             effective_from = now.astimezone(tz_info) + timedelta(
                 hours=time_delta
             )
@@ -350,7 +356,7 @@ def cred_schedule(
                 uuid=assessment_reservation_uuid,
             )
             if response and "assessment_reservation" not in response:
-                error = response["error"]
+                error = response.get("message", "Could not reschedule exam")
                 return flask.render_template(
                     "/credentials/schedule.html",
                     error=error,
@@ -922,10 +928,13 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
         for exam in exams:
             if product["id"] == exam["id"]:
                 exam["longId"] = product["longId"]
-                exam["period"] = "monthly"
+                if product["period"] == "none":
+                    exam["period"] = "monthly"
+                else:
+                    exam["period"] = product["period"]
                 exam["marketplace"] = product["marketplace"]
                 exam["name"] = product["name"]
-                exam["periodQuantity"] = 30
+                exam["periodQuantity"] = product["effectiveDays"]
 
     # purchase account required for purchasing from marketplace
 
@@ -1050,11 +1059,14 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
+        message = """Your exam has been activated.
+        To schedule your exam, click the Your Exams button."""
+
         return flask.render_template(
             "/credentials/redeem.html",
             notification_class="positive",
             notification_title="Success",
-            notification_message="Your exam has been activated.",
+            notification_message=message,
         )
     except UAContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text).get("message")
@@ -1240,6 +1252,34 @@ def get_cred_user_permissions(credly_api, **kwargs):
     )
 
 
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def cancel_scheduled_exam(trueability_api, **kwargs):
+    reservation_id = kwargs.get("reservation_id")
+    try:
+        response = trueability_api.delete_assessment_reservation(
+            reservation_id
+        )
+        if response.get("error", False):
+            return (
+                flask.jsonify(
+                    {"status": "error", "error": response.get("message")}
+                ),
+                400,
+            )
+        return flask.jsonify({"status": "success"})
+    except Exception as error:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "request_url": error.request.url,
+                "request_headers": error.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
+        return flask.jsonify({"status": "error"}), 500
+
+
 @shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]
@@ -1305,9 +1345,10 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
         {
             "id": listing.get("productID", ""),
             "longId": listing.get("id", ""),
-            "period": listing.get("period", ""),
+            "period": listing.get("period", "yearly"),
             "marketplace": listing.get("marketplace", ""),
             "name": listing.get("name", ""),
+            "effectiveDays": listing.get("effectiveDays", 365),
             "price": listing.get("price", {"currency": "USD", "value": "0"}),
         }
         for listing in listings

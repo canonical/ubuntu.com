@@ -18,9 +18,7 @@
     {% block content_experiment %}{% endblock %}
     <!-- Cookie policy -->
     <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-    <script>
-      cpNs.cookiePolicy();
-    </script>
+    <script type="module" src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}"></script>
     <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js"
             defer></script>
 
@@ -34,8 +32,7 @@
       performance.mark("Stylesheets finished");
     </script>
 
-    <link rel="canonical" href=" 
-      {% block canonical_url %}{{ request.url }}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
 
       <link rel="apple-touch-icon"
             sizes="180x180"
@@ -174,6 +171,18 @@
                     <div class="p-notification__content">
                       <p class="p-notification__message">
                         Your submission was sent successfully!
+                        <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="contact-form-success" class="p-strip u-no-padding--top">
+                <div class="u-fixed-width">
+                  <div class="p-notification--positive u-no-margin--bottom">
+                    <div class="p-notification__content">
+                      <p class="p-notification__message">
+                        Thank you for contacting us. A member of our team will be in touch shortly.
                         <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a>
                       </p>
                     </div>
