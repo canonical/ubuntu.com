@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { fireEvent, render, screen } from "@testing-library/react";
 import UserInfoForm from "./UserInfoForm";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 describe("UserInfoFormTests", () => {
   let queryClient: QueryClient;
@@ -17,7 +18,7 @@ describe("UserInfoFormTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const intialValues = {
+    const initialValues = {
       name: "Joe",
       organisationName: "Canonical",
       buyingFor: "organisation",
@@ -36,7 +37,7 @@ describe("UserInfoFormTests", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <UserInfoForm setError={jest.fn()} />
           </Elements>
@@ -71,6 +72,56 @@ describe("UserInfoFormTests", () => {
       "Adrs Street",
     );
     expect(screen.getByTestId("customer-city")).toHaveTextContent("Citty");
+    expect(screen.getByTestId("customer-postal-code")).toHaveTextContent(
+      "AB12 3CD",
+    );
+  });
+
+  it("Channel user should be able to edit only card number", () => {
+    global.window = Object.create(window);
+    Object.defineProperty(window, "accountId", { value: "ABCDEF" });
+
+    const initialValues = {
+      name: "Min",
+      marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
+      buyingFor: "organisation",
+      organisationName: "Canonical",
+      address: "ABC Street",
+      city: "DEF City",
+      postalCode: "AB12 3CD",
+      defaultPaymentMethod: {
+        brand: "visa",
+        country: "US",
+        expMonth: 4,
+        expYear: 2024,
+        id: "pm_ABCDEF",
+        last4: "4242",
+      },
+    };
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <UserInfoForm setError={jest.fn()} />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+    fireEvent.change(screen.getByTestId("field-card-number"), {
+      target: { value: "1234 5678 1234 5678" },
+    });
+
+    expect(screen.getByTestId("customer-name")).toHaveTextContent("Min");
+    expect(screen.getByTestId("organisation-name")).toHaveTextContent(
+      "Canonical",
+    );
+    expect(screen.getByTestId("customer-address")).toHaveTextContent(
+      "ABC Street",
+    );
+    expect(screen.getByTestId("customer-city")).toHaveTextContent("DEF City");
     expect(screen.getByTestId("customer-postal-code")).toHaveTextContent(
       "AB12 3CD",
     );
