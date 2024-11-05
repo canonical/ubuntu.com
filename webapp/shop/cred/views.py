@@ -116,7 +116,6 @@ def cred_sign_up(**_):
             sign_up_open=sign_up_open,
             search_type=search_type,
         )
-    
     form_fields = {}
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
