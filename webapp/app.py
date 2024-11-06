@@ -7,6 +7,7 @@ import json
 from functools import wraps
 import math
 import flask
+import jinja2
 import requests
 import talisker.requests
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -1249,22 +1250,33 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 def render_form(form):
     @wraps(render_form)
     def wrapper_func():
-        return flask.render_template(
-            form["templatePath"],
-            fieldsets=form["fieldsets"],
-            formData=form["formData"],
-            isModal=form.get("isModal"),
-            modalId=form.get("modalId"),
-        )
+        try:
+            return flask.render_template(
+                form["templatePath"],
+                fieldsets=form["fieldsets"],
+                formData=form["formData"],
+                isModal=form.get("isModal"),
+                modalId=form.get("modalId"),
+            )
+        except jinja2.exceptions.TemplateNotFound:
+            flask.abort(
+                404, description=f"Template {form['templatePath']} not found."
+            )
+
     return wrapper_func
 
 
 def set_form_rules():
-    filename = os.path.join(app.static_folder, "files", "forms-data.json")
-    with open(filename) as forms:
-        data = json.load(forms)
+    file_path = os.path.join(app.static_folder, "files", "forms-data.json")
+    with open(file_path) as forms_json:
+        data = json.load(forms_json)
         for path, form in data["forms"].items():
-            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
+            try:
+                app.add_url_rule(
+                    path, view_func=render_form(form), endpoint=path
+                )
+            except AssertionError:
+                app.logger.error(f"Error setting form rules for {path} \n", AssertionError)
 
 
 set_form_rules()
