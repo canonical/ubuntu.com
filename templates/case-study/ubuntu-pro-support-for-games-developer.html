@@ -1,0 +1,176 @@
+{% extends "case-study/base_case-study.html" %}
+
+{% from "macros/_macros-hero.jinja" import hero %}
+{% from "macros/_macros-highlights.jinja" import highlights %}
+{% from "macros/_macros-text.jinja" import text %}
+{% from "macros/_macros-quote.jinja" import quote_wrapper %}
+{% from "macros/_macros-image.jinja" import image_wrapper %}
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block title %}
+    Ubuntu Pro helps large games publisher secure code dependencies and avoid costly migration
+{% endblock %}
+
+{% block meta_description %}
+    Securing open source dependencies with Ubuntu Pro &mdash; legacy PHP support saves a game developer time and effort, while they plan a migration path.
+{% endblock %}
+
+{% block meta_company_name %}Ubuntu pro for games developer{% endblock %}
+
+{% block meta_copydoc %}
+    https://docs.google.com/document/d/1qQeL08ZQ2agpNKQunfbYkemqSAF9waQ9J5fqCpH3gtA/edit?tab=t.0
+{% endblock %}
+
+{% block content %}
+    {%- call(slot) hero(title="Ubuntu Pro helps large games publisher secure code dependencies and avoid costly migration",
+        layout="",
+        is_split_on_medium="true") -%}
+    {%- endcall -%}
+
+    {%- call(slot) highlights(num_items=4) -%}
+        {%- if slot == 'highlights_item_content_1' -%}
+            A leading game developer chose Ubuntu Pro to secure its mission-critical code for its gaming titles.
+        {%- endif -%}
+        {%- if slot == 'highlights_item_content_2' -%}
+            To maintain business continuity, the publisher was looking for legacy PHP support.
+        {%- endif -%}
+        {%- if slot == 'highlights_item_content_3' -%}
+            Ubuntu Pro helped the company to avoid a costly, effort-intensive migration to upgrade to more recent versions. This effort would have taken their teams 6 to 8 months to complete on their own.
+        {%- endif -%}
+        {%- if slot == 'highlights_item_content_4' -%}
+            Following an in-depth cost-benefit analysis, Ubuntu Pro was the best choice, saving them time, money, and months of work, and buying them 2 years of time to plan a formal migration.
+        {%- endif -%}
+    {%- endcall %}
+
+    {%- call(slot) text(title="Securing open source dependencies") -%}
+        {%- if slot == 'content' -%}
+            <p>
+                The company is a developer with a long history of publishing online, mobile and browser-based games. However, the constant release of new operating systems and programming language versions demands that older code be updated to remain secure, stable and running as expected. Some of the company’s gaming titles relied on code written in older versions of PHP among other open source dependencies.
+            </p>
+            <p>
+                Migrating this code and their gaming systems was possible, but would have taken up to 8 months and required almost their entire development team. The company manages a large number of current releases, all requiring weekly patches and extremely large feature updates; a large-scale migration was unthinkable, because a lapse in new gaming content could risk a pause in new revenues as well as a loss in players.
+            </p>
+            <p>
+                At the same time, maintaining legacy versions of PHP and other packages is a costly business, and finding skilled developers in some package versions is a difficult task.
+            </p>
+            <p>
+                The company chose Ubuntu Pro to address these challenges and ensure their games would run without any problems on newer OSes and programming languages. Ubuntu Pro allowed them to maintain API stability across their stack and ensure a consistent gaming experience for all players.
+            </p>
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) quote_wrapper(
+        quote_text="After the implementation it was pretty flawless. We did some measurements and there was no change in performance, so we were happy. The product is simply running and doing its job.",
+        citation_source_name_text="Company spokesperson",
+        )
+        -%}
+    {%- endcall -%}
+
+    {%- call(slot) image_wrapper() -%}
+        {%- if slot == 'image_content' %}
+            {{ image(url="https://assets.ubuntu.com/v1/3fa2d79b-gaming-1.png",
+                        alt="gamer playing a game",
+                        width="3696",
+                        height="1541",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) text(title="Challenge") -%}
+        {%- if slot == 'content' -%}
+            <p>
+                The games developer has a large collection of online and browser-based games, some of which were first created in the mid-2000s.  However, some of their older games presented constant challenges in compatibility, updates and ensuring that they remain consistent and playable for all gamers, no matter what their machine or browser is.
+            </p>
+            <p>
+                The company had some code that performed excellently, but required support for legacy versions of PHP. Older versions of PHP carried a risk of security vulnerabilities that would need special support and maintenance. Additionally, maintaining these legacy PHP software versions is very skills-intensive, expensive and needs dedicated, specialized development efforts.
+            </p>
+            <p>
+                Other equally pressing challenges were cost efficiency and no disruptions to their publishing schedule. A wholesale migration to new platforms wouldn't just require considerable developer efforts, it would also take developers away from the company's core business activity of creating new games and gaming content for their player base.
+            </p>
+            <p>
+                On average, the company's games required weekly maintenance patches, large feature updates every 3 to 6 months, and at least one or two significant content updates. A full migration would have required full integration checks for every single function in the games' codebases, a factor that would have made a full migration take at least 6 to 8 months.
+            </p>
+            <p>
+                The extremely onerous demands of a full migration would have halted business continuity:  diverting developers away from new gaming content would have risked a drop in player numbers.
+            </p>
+        {%- endif -%}
+    {%- endcall -%}
+    {%- call(slot) quote_wrapper(
+        quote_text="Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult.",
+        citation_source_name_text="Company spokesperson",
+        )
+        -%}
+    {%- endcall -%}
+    {%- call(slot) quote_wrapper(
+        quote_text="If we had focused all the developers into migrating to a newer OS version, we would in that time also have no developers left to bring out new game content for 6 to 8 months. That would have been devastating.",
+        citation_source_name_text="Company spokesperson",
+        )
+        -%}
+    {%- endcall -%}
+    {%- call(slot) image_wrapper() -%}
+        {%- if slot == 'image_content' %}
+            {{ image(url="https://assets.ubuntu.com/v1/c97b3454-gaming-2.png",
+                        alt="developer working on a game",
+                        width="3696",
+                        height="1541",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) text(title="Solution") -%}
+        {%- if slot == 'content' -%}
+            <p>
+                The company chose Ubuntu Pro to secure and stabilize their games, and ensure that their code still ran as expected. With access to supported versions of PHP older programming languages, and continued support for these frameworks into the future, their code would be covered, even if new versions of PHP were released.
+            </p>
+            <p>
+                Ubuntu Pro was adopted for a proxy cluster to extend support for older code written in old versions of PHP, giving the company's developers more time before having to perform a full migration. Ubuntu's extensive compatibility support allowed the company to extend support for older systems running critical games, avoiding disruptive upgrades that would break functionality.
+            </p>
+            <p>
+                The company was already using Ubuntu for their development work. Ubuntu is already well known for its wide adoption and well-developed ecosystem; Ubuntu Pro is very simple to add onto an Ubuntu machine, and it provides legacy support for thousands of packages and applications.
+            </p>
+            <p>
+                Ubuntu Pro quickly emerged as the most cost-efficient solution, especially as its per-server cost included hypervisors with an unlimited number of VMs.
+            </p>
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) quote_wrapper(
+        quote_text="We had considered Ubuntu Pro before. Once it became clear that Ubuntu Pro's per-server cost included hypervisors with unlimited VMs, we did our cost analysis and it ended up being the go-to solution.",
+        citation_source_name_text="Company spokesperson",
+        )
+        -%}
+    {%- endcall -%}
+
+    {%- call(slot) text(title="Results") -%}
+        {%- if slot == 'content' -%}
+            <p>
+                The rollout of Ubuntu Pro onto the company's systems was quick and easy, and allowed their machines and systems to run as expected, with no performance loss. After just a few calls with Canonical, the company was able to subscribe their hosts, mirror their repository and use Ubuntu Pro fully on their systems in just 2 days. Everything  performed flawlessly with no noticeable difference in desired performance.
+            </p>
+            <p>
+                With an Ubuntu Pro subscription enabled, the company's systems were stable and ran with their expected performance, with very little to no manual input or further monitoring.
+            </p>
+            <p>
+                Ubuntu Pro brought the company better cost-efficiency in its business:  its low subscription cost saved the company considerable resources, especially in comparison to costly, time-consuming migrations, expensive ongoing maintenance of open source dependencies or difficult, expensive hires of specialized engineers who could work with older versions of programming languages like PHP.
+            </p>
+            <p>
+                In light of Ubuntu's reliability and low-touch maintenance, and Pro's cost-effectiveness, the company took the decision to expand Ubuntu Pro across the company to further save on costs and allow more titles to enjoy longer support lifecycles. This will lead to further reduced migration efforts and free up developers to focus on new and exciting game content and spend less and less time  maintaining dependencies.
+            </p>
+        {%- endif -%}
+    {%- endcall -%}
+
+    {%- call(slot) quote_wrapper(
+        quote_text="The biggest surprise was that there was no surprise. The systems just work as before, and the developers got an extra two years added to their time frame for migration. It was amazing.",
+        citation_source_name_text="Company spokesperson",
+        )
+        -%}
+    {%- endcall -%}
+
+{% endblock %}
+
+{% block cta_content %}{{ cta(title="Learn more about Ubuntu Pro", link="/pro/") }}{% endblock %}
