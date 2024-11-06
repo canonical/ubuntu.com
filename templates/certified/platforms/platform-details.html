@@ -1,0 +1,228 @@
+{% extends "templates/base.html" %}
+
+{% block title %} {{ platform.vendor }} {{ platform.name }} certified with Ubuntu.{% endblock %}
+
+{% block meta_description %}Platform that is certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block body_class %}is-paper{% endblock body_class %}
+
+{% block outer_content %}
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<section class="p-section--hero">
+  <div class="row">
+    <div class="col-9 col-medium-4 col-start-large-4 col-start-medium-3">
+        <h1 class="p-muted-heading"><a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; Platform</h1>
+    </div>
+  </div>
+  <div class="row--25-75">
+    <div class="col u-hide--small">
+      <div class="p-section--shallow">
+        {% with category=platform.category %}
+          {% include "certified/shared/category-image.html" %}
+        {% endwith %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow u-no-padding--bottom">
+        <h1 class="u-no-margin--bottom u-no-padding--top">{{ platform.vendor }} {{ platform.name }}</h1>
+        {% if platform.certificates|length == 1 %}
+        <h2>1 certified configuration</h2>
+        {% else %}
+        <h2>{{ platform.certificates|length }} certified configurations</h2>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="row p-tabs" aria-label="Certified Releases Tabs">
+  <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
+    <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+      <li id="all-releases" class="p-tabs__item" role="presentation">
+        <a href="/certified/platforms/{{ platform.id }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">All Ubuntu releases</a>
+      </li>
+      {% for release in releases|sort|reverse %}
+      <li id="{{ release | replace(' ', '-') }}" class="p-tabs__item" role="presentation">
+        <a href="/certified/platforms/{{ platform.id }}/{{ release }}" class="p-tabs__link" tabindex="0" aria-controls="release-picker">{{ release }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+<div class="u-fixed-width p-section--deep">
+  <table id="configTable" aria-label="Table to represent all Ubuntu certified configurations under the same platform">
+    <thead>
+      <tr>
+        <th></th>
+        {% for canonical_id, certificate in platform.certificates.items() %}
+        <td style="padding-bottom: 25px;"><a href="/certified/{{ canonical_id }}"><strong>{{ certificate.name }}&nbsp;&rsaquo;</strong></a></td>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="u-text--muted">Certified Ubuntu Release</td>
+        {% for canonical_id, certificate in platform.certificates.items() %}
+        <td>
+          <ul class="p-list u-no-margin--bottom">
+          {% for release in certificate.releases|sort|reverse %} 
+            <li class="p-list__item u-no-padding--top">
+            {{ release }} 
+            </li>
+          {% endfor %}
+          </ul>
+        </td>
+        {% endfor %}
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="u-text--muted">Processor</td>
+        {% with device_category = "processor" %}
+          {% include "certified/shared/_device-template.html" %}
+        {% endwith %}
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="u-text--muted">Graphics</td>
+        {% with device_category = "video" %}
+          {% include "certified/shared/_device-template.html" %}
+        {% endwith %}
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="u-text--muted">Network</td>
+        {% with device_category = "network" %}
+          {% include "certified/shared/_device-template.html" %}
+        {% endwith %}
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="u-text--muted">Wireless</td>
+        {% with device_category = "wireless" %}
+          {% include "certified/shared/_device-template.html" %}
+        {% endwith %}
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="u-text--muted">Certification date</td>
+        {% for canonical_id, certificate in platform.certificates.items() %}
+        <td>
+        {{ certificate.date }}
+        </td>
+        {% endfor %}
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr style="margin-top: 25px;" class="p-rule"/>
+
+  <div style="display:flex; align-items: center; justify-content: right;">
+    <i id="downButton" class="p-icon--chevron-left"></i>
+    <div id="pageNumbers"></div>
+    <i id="upButton" class="p-icon--chevron-right"></i>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const table = document.getElementById('configTable');
+    const upButton = document.getElementById('upButton');
+    const downButton = document.getElementById('downButton');
+    const pageNumbers = document.getElementById('pageNumbers');
+    let pageSize = getPageSize(); // Determine initial page size
+    let currentIndex = 1; // Start with the first configuration column
+
+    function getPageSize() {
+        if (window.innerWidth <= 620) {
+            return 1; // Mobile screens
+        } else if (window.innerWidth <= 1036) {
+            return 2; // Tablet screens
+        } else {
+            return 3; // Large screens
+        }
+    }
+
+    function updateTable() {
+        const rows = table.rows;
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].cells;
+            for (let j = 1; j < cells.length; j++) {
+                if (j >= currentIndex && j < currentIndex + pageSize) {
+                    cells[j].classList.remove('hidden');
+                } else {
+                    cells[j].classList.add('hidden');
+                }
+            }
+        }
+        updatePageNumbers();
+    }
+
+    function updatePageNumbers() {
+        const start = currentIndex;
+        const end = Math.min(currentIndex + pageSize - 1, table.rows[0].cells.length - 1);
+        const total = table.rows[0].cells.length - 1; // Total number of columns excluding the first one
+
+        if (start === end) {
+          pageNumbers.textContent = `${start} of ${total}`;
+        }
+        else {
+          pageNumbers.textContent = `${start}-${end} of ${total}`;
+        }
+    }
+
+    upButton.addEventListener('click', () => {
+        if (currentIndex + pageSize < table.rows[0].cells.length) {
+            currentIndex += pageSize;
+            updateTable();
+        }
+    });
+
+    downButton.addEventListener('click', () => {
+        if (currentIndex > 1) {
+            currentIndex -= pageSize;
+            if (currentIndex < 1) currentIndex = 1;
+            updateTable();
+        }
+    });
+
+    // Update page size on window resize
+    window.addEventListener('resize', () => {
+        pageSize = getPageSize();
+        updateTable();
+    });
+
+    // Initial table update
+    updateTable();
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  let selectedRelease = "{{ selected_release | replace(' ', '-') }}";
+
+  if(selectedRelease === "None") {
+    selectedRelease = "all-releases";
+  }
+
+  const defaultTab = document.getElementById(selectedRelease);
+  const defaultLink = defaultTab.querySelector('a');
+  defaultLink.setAttribute('aria-selected', 'true');
+
+});
+
+</script>
+
+{% endblock %}

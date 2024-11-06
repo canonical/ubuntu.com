@@ -1,0 +1,45 @@
+{% if category == "Desktop" %}
+  {{ image(url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+                alt="",
+                width="126",
+                height="82",
+                hi_def=True,
+                loading="auto") | safe
+  }}
+{% endif %}
+{% if category == "Laptop" %}
+  {{ image(url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+                alt="",
+                width="132",
+                height="77",
+                hi_def=True,
+                loading="auto") | safe
+  }}
+{% endif %}
+{% if category == "Server" %}
+  {{ image(url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+                alt="Server",
+                width="80",
+                height="96",
+                hi_def=True,
+                loading="auto") | safe
+  }}
+{% endif %}
+{% if category == "Ubuntu Core" %}
+  {{ image(url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+                alt="Gateway",
+                width="96",
+                height="100",
+                hi_def=True,
+                loading="auto") | safe
+  }}
+{% endif %}
+{% if category == "Server SoC" %}
+  {{ image(url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+                alt="Chip",
+                width="84",
+                height="100",
+                hi_def=True,
+                loading="auto") | safe
+  }}
+{% endif %}
