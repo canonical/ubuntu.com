@@ -1,9 +1,11 @@
 {% extends "templates/base.html" %}
 
-{% block title %}{{ vendor }} {{ release_details.model }} certified with Ubuntu {{ release_details.certified_release }}{% endblock %}
+{% block title %}
+  {{ vendor }} {{ release_details.model }} certified with Ubuntu {{ release_details.certified_release }}
+{% endblock %}
 
 {% block meta_description %}
-  Hardware that have been certified for use with Ubuntu.
+  Hardware details of {{ vendor }} {{ release_details.model }} certified with Ubuntu {{ release_details.certified_release }}.
 {% endblock meta_description %}
 
 {% block body_class %}
