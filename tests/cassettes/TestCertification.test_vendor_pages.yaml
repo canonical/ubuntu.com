@@ -37,7 +37,7 @@ interactions:
       cross-origin-opener-policy:
       - same-origin
       date:
-      - Tue, 30 Apr 2024 09:47:24 GMT
+      - Tue, 03 Sep 2024 15:26:46 GMT
       referrer-policy:
       - same-origin
       server:
@@ -45,13 +45,13 @@ interactions:
       strict-transport-security:
       - max-age=15724800
       x-cache-status:
-      - HIT from content-cache-il3/0
+      - HIT from content-cache-il3/1
       x-content-type-options:
       - nosniff
       x-frame-options:
       - DENY
       x-request-id:
-      - 95917deca2f681084e395d38289983cd
+      - 7f2f5927dc964fc5e7106ab758e78f4a
       x-vcs-revision:
       - 1697765408-2f1353b
     status:
@@ -72,25 +72,26 @@ interactions:
     uri: https://certification.canonical.com/api/v2/certified-releases/?format=json&limit=0&pagination=limitoffset
   response:
     body:
-      string: '{"count":8,"next":null,"previous":null,"results":[{"release":"Core
+      string: '{"count":9,"next":null,"previous":null,"results":[{"release":"Core
         22","desktops":5,"laptops":0,"servers":0,"soc":0,"smart_core":13,"total":18},{"release":"24.04
-        LTS","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":8,"total":10},{"release":"20.04
-        LTS","desktops":204,"laptops":431,"servers":460,"soc":5,"smart_core":45,"total":1165},{"release":"Core
+        LTS","desktops":0,"laptops":0,"servers":140,"soc":1,"smart_core":8,"total":149},{"release":"20.04
+        LTS","desktops":208,"laptops":431,"servers":455,"soc":5,"smart_core":45,"total":1159},{"release":"Core
         20","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":26,"total":26},{"release":"Core
         18","desktops":2,"laptops":0,"servers":0,"soc":0,"smart_core":5,"total":7},{"release":"18.04
         LTS","desktops":115,"laptops":254,"servers":397,"soc":10,"smart_core":6,"total":792},{"release":"18.04","desktops":0,"laptops":0,"servers":2,"soc":0,"smart_core":0,"total":2},{"release":"22.04
-        LTS","desktops":145,"laptops":269,"servers":496,"soc":0,"smart_core":48,"total":1015}]}'
+        LTS","desktops":229,"laptops":366,"servers":509,"soc":0,"smart_core":52,"total":1158},{"release":"Core
+        24","desktops":0,"laptops":0,"servers":0,"soc":0,"smart_core":8,"total":8}]}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '827'
+      - '922'
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:25 GMT
+      - Tue, 03 Sep 2024 15:26:46 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -100,9 +101,9 @@ interactions:
       X-QueryInspect-Num-SQL-Queries:
       - '2'
       X-QueryInspect-Total-Request-Time:
-      - 92 ms
+      - 108 ms
       X-QueryInspect-Total-SQL-Time:
-      - 81 ms
+      - 97 ms
     status:
       code: 200
       message: OK
@@ -121,7 +122,7 @@ interactions:
     uri: https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=0&vendor=HP&pagination=limitoffset
   response:
     body:
-      string: '{"count":326,"next":"https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=20&pagination=limitoffset&vendor=HP","previous":null,"results":[{"canonical_id":"201810-26595","make":"HP","model":"240
+      string: '{"count":394,"next":"https://certification.canonical.com/api/v2/certified-configurations/?format=json&limit=20&offset=20&pagination=limitoffset&vendor=HP","previous":null,"results":[{"canonical_id":"201810-26595","make":"HP","model":"240
         G7 Notebook PC","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
         LTS","completed":"2019-01-09T22:13:41.124824Z","resource_uri":"/api/v2/certified-configurations/201810-26595"},{"canonical_id":"201810-26602","make":"HP","model":"245
         G7 Notebook PC","level":"Certified Pre-Install","release":"18.04 LTS","category":"Laptop","major_release":"18.04
@@ -139,7 +140,11 @@ interactions:
         22-c042la/c043la","level":"Certified Pre-Install","release":"18.04 LTS","category":"Desktop","major_release":"18.04
         LTS","completed":"2019-07-27T01:19:43.005881+01:00","resource_uri":"/api/v2/certified-configurations/201904-26983"},{"canonical_id":"202105-29123","make":"HP","model":"Elite
         Dragonfly G2 Notebook PC","level":"Certified Pre-Install","release":"20.04
-        LTS","category":"Laptop","major_release":"20.04 LTS","completed":"2021-07-27T12:20:14.983595+01:00","resource_uri":"/api/v2/certified-configurations/202105-29123"},{"canonical_id":"202111-29603","make":"HP","model":"Elite
+        LTS","category":"Laptop","major_release":"20.04 LTS","completed":"2021-07-27T12:20:14.983595+01:00","resource_uri":"/api/v2/certified-configurations/202105-29123"},{"canonical_id":"202404-33934","make":"HP","model":"Elite
+        Mini 800 G9 Desktop PC (Core i3-14100T)","level":"Certified Pre-Install","release":"22.04
+        LTS","category":"Desktop","major_release":"22.04 LTS","completed":"2024-06-11T09:29:47.903946+01:00","resource_uri":"/api/v2/certified-configurations/202404-33934"},{"canonical_id":"202404-33935","make":"HP","model":"Elite
+        Mini 800 G9 Desktop PC (Core i5-14600T)","level":"Certified Pre-Install","release":"22.04
+        LTS","category":"Desktop","major_release":"22.04 LTS","completed":"2024-06-11T10:49:27.757279+01:00","resource_uri":"/api/v2/certified-configurations/202404-33935"},{"canonical_id":"202111-29603","make":"HP","model":"Elite
         Mini 800 G9 Desktop PC (Core i9-12900 + Intel Graphics)","level":"Certified
         Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
         LTS","completed":"2022-07-20T14:10:11.306834+01:00","resource_uri":"/api/v2/certified-configurations/202111-29603"},{"canonical_id":"202111-29604","make":"HP","model":"Elite
@@ -147,7 +152,9 @@ interactions:
         Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
         LTS","completed":"2022-07-20T14:10:49.936215+01:00","resource_uri":"/api/v2/certified-configurations/202111-29604"},{"canonical_id":"202201-29881","make":"HP","model":"Elite
         Mini 800 G9 Desktop PC (Core i9-12900T + RTX 3050Ti)","level":"Certified Pre-Install","release":"20.04
-        LTS","category":"Desktop","major_release":"20.04 LTS","completed":"2022-07-20T14:11:30.106045+01:00","resource_uri":"/api/v2/certified-configurations/202201-29881"},{"canonical_id":"202304-31492","make":"HP","model":"Elite
+        LTS","category":"Desktop","major_release":"20.04 LTS","completed":"2022-07-20T14:11:30.106045+01:00","resource_uri":"/api/v2/certified-configurations/202201-29881"},{"canonical_id":"202404-33933","make":"HP","model":"Elite
+        Mini 800 G9 Desktop PC (Core i9-14900T, RTX 3050Ti)","level":"Certified Pre-Install","release":"22.04
+        LTS","category":"Desktop","major_release":"22.04 LTS","completed":"2024-06-11T09:42:03.905170+01:00","resource_uri":"/api/v2/certified-configurations/202404-33933"},{"canonical_id":"202304-31492","make":"HP","model":"Elite
         Mini 800 G9 Desktop PC (i3, 3050 Ti)","level":"Certified Pre-Install","release":"22.04
         LTS","category":"Desktop","major_release":"22.04 LTS","completed":"2023-06-06T14:01:08.423831+01:00","resource_uri":"/api/v2/certified-configurations/202304-31492"},{"canonical_id":"202304-31497","make":"HP","model":"Elite
         Mini 800 G9 Desktop PC (i7)","level":"Certified Pre-Install","release":"22.04
@@ -158,24 +165,18 @@ interactions:
         LTS","completed":"2022-12-09T15:46:38.333326Z","resource_uri":"/api/v2/certified-configurations/202211-30885"},{"canonical_id":"202111-29620","make":"HP","model":"Elite
         SFF 600 G9 Desktop PC ( Intel Graphics - Realtek Wireless)","level":"Certified
         Pre-Install","release":"20.04 LTS","category":"Desktop","major_release":"20.04
-        LTS","completed":"2022-04-08T16:07:11.029845+01:00","resource_uri":"/api/v2/certified-configurations/202111-29620"},{"canonical_id":"202111-29619","make":"HP","model":"Elite
-        SFF 600 G9 Desktop PC ( Intel Graphics / Wireless)","level":"Certified Pre-Install","release":"20.04
-        LTS","category":"Desktop","major_release":"20.04 LTS","completed":"2022-04-08T16:06:24.366781+01:00","resource_uri":"/api/v2/certified-configurations/202111-29619"},{"canonical_id":"202111-29618","make":"HP","model":"Elite
-        SFF 600 G9 Desktop PC (T400 - Intel Wireless)","level":"Certified Pre-Install","release":"20.04
-        LTS","category":"Desktop","major_release":"20.04 LTS","completed":"2022-04-08T16:05:34.571361+01:00","resource_uri":"/api/v2/certified-configurations/202111-29618"},{"canonical_id":"202111-29691","make":"HP","model":"Elite
-        SFF 800 G9 Desktop PC (Intel Graphics)","level":"Certified Pre-Install","release":"20.04
-        LTS","category":"Desktop","major_release":"20.04 LTS","completed":"2022-04-01T16:41:57.383501+01:00","resource_uri":"/api/v2/certified-configurations/202111-29691"}]}'
+        LTS","completed":"2022-04-08T16:07:11.029845+01:00","resource_uri":"/api/v2/certified-configurations/202111-29620"}]}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '6238'
+      - '6234'
       Content-Type:
       - application/json
       Date:
-      - Tue, 30 Apr 2024 09:47:25 GMT
+      - Tue, 03 Sep 2024 15:26:46 GMT
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Vary:
@@ -183,11 +184,11 @@ interactions:
       X-QueryInspect-Duplicate-SQL-Queries:
       - '0'
       X-QueryInspect-Num-SQL-Queries:
-      - '6'
+      - '8'
       X-QueryInspect-Total-Request-Time:
-      - 130 ms
+      - 181 ms
       X-QueryInspect-Total-SQL-Time:
-      - 110 ms
+      - 164 ms
     status:
       code: 200
       message: OK
