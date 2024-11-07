@@ -1,22 +1,23 @@
 <section class="p-section--hero">
-  <div class="row--25-75">
-    <div class="col u-hide--small">
-      {% with category=release_details.category %}
-        {% include "certified/shared/category-image.html" %}
-      {% endwith %}
+  <div class="row">
+    <div class="col-9 col-medium-4 col-start-medium-3 col-start-large-4">
+      <h1 class="p-muted-heading">
+        <a href="/certified/{{ category_pathname }}">{{ category_pathname }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
+        &rsaquo; <a href="/certified/{{ release_details.canonical_id }}"> {{ release_details.model }}</a>
+      </h1>
     </div>
-    <div class="col">
+  </div>
+  <div class="row">
+    <div class="col-3 col-medium-2 u-hide--small">
       <div class="p-section--shallow">
-        <!-- TODO: Once new design for configuration and platform is merged, reuse breadcrumbs -->
-        <h1 class="p-muted-heading">
-          <a href="/certified/{{ category_pathname }}">{{ release_details.category }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
-          {% if release_details.platform_name != release_details.model %}
-            &rsaquo; <a href="/certified/{{ release_details.canonical_id }}">{{ release_details.model }}</a>
-          {% endif %}
-        </h1>
-        <h1 class="u-no-margin--bottom">
-          {{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}
-        </h1>
+        {% with category=release_details.category %}
+          {% include "certified/shared/category-image.html" %}
+        {% endwith %}
+      </div>
+    </div>
+    <div class="col-9 col-medium-4">
+      <div class="p-section--shallow u-no-padding--bottom">
+        <h1 class="u-no-margin--bottom">{{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}</h1>
         <h2>Hardware details</h2>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="p-section--deep row">
   <div class="col-9 col-start-large-4">
-    <hr />
+    <hr class="p-rule" />
     <table aria-label="Hardware details for {{ release_details.make }} {{ release_details.model }}">
       <tbody>
         {% for category, devices in hardware_details.items() %}
@@ -13,9 +13,10 @@
                     <li class="p-list__item u-no-padding--top">
                       {{ device.name }}
                       {% if device.bus in ["usb", "pci"] %}
-                        ({{ device.identifier }}
-                        {% if device.subsystem %}{{ device.subsystem }}{% endif %}
-                        )
+                        ({{ device.identifier -}}
+                        {% if device.subsystem %}
+                          {{ device.subsystem -}}
+                        {% endif %})
                       {% endif %}
                     </li>
                   {% endfor %}
