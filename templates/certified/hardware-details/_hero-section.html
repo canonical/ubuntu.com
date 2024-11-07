@@ -1,6 +1,6 @@
 <section class="p-section--hero">
-  <div class="row--25-75-on-large">
-    <div class="col">
+  <div class="row--25-75">
+    <div class="col u-hide--small">
       {% with category=release_details.category %}
         {% include "certified/shared/category-image.html" %}
       {% endwith %}
@@ -9,15 +9,15 @@
       <div class="p-section--shallow">
         <!-- TODO: Once new design for configuration and platform is merged, reuse breadcrumbs -->
         <h1 class="p-muted-heading">
-          <a href="/certified/{{category_pathname}}">{{ release_details.category }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
+          <a href="/certified/{{ category_pathname }}">{{ release_details.category }}</a> &rsaquo; <a href="/certified/platforms/{{ release_details.platform_id }}">{{ release_details.platform_name }}</a>
           {% if release_details.platform_name != release_details.model %}
-          &rsaquo; <a href="/certified/{{ release_details.canonical_id }}">{{ release_details.model }}</a>
+            &rsaquo; <a href="/certified/{{ release_details.canonical_id }}">{{ release_details.model }}</a>
           {% endif %}
         </h1>
-        <h1 class="u-no-margin--bottom">{{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}</h1>
-        <h2>
-          Hardware details
-        </h2>
+        <h1 class="u-no-margin--bottom">
+          {{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}
+        </h1>
+        <h2>Hardware details</h2>
       </div>
     </div>
   </div>

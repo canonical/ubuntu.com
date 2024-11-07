@@ -1,21 +1,23 @@
 {% extends "templates/base.html" %}
 
-{% block title %} {{ vendor }} {{ model }} certified with Ubuntu {{ release }}{% endblock %}
+{% block title %}{{ vendor }} {{ model }} certified with Ubuntu {{ release }}{% endblock %}
 
-{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_description %}
+  Hardware that have been certified for use with Ubuntu.
+{% endblock meta_description %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block outer_content %}
 
-<main class="is-paper">
-  <section class="p-section--deep row">
-    {% with release_details=release_details %}
-      {% include "certified/hardware-details/_hero-section.html" %}
-    {% endwith %}
+  {% with release_details=release_details %}
+    {% include "certified/hardware-details/_hero-section.html" %}
+  {% endwith %}
 
-    {% with hardware_details=hardware_details %}
-      {% include "certified/hardware-details/_hardware-table.html" %}
-    {% endwith %}
-  </section>
-</main>
+  {% with hardware_details=hardware_details %}
+    {% include "certified/hardware-details/_hardware-table.html" %}
+  {% endwith %}
 
-{% endblock %}
+{% endblock outer_content %}
