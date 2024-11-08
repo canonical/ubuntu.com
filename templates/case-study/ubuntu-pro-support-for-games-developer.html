@@ -15,7 +15,7 @@
     Securing open source dependencies with Ubuntu Pro &mdash; legacy PHP support saves a game developer time and effort, while they plan a migration path.
 {% endblock %}
 
-{% block meta_company_name %}Ubuntu pro for games developer{% endblock %}
+{% block meta_company_name %}Ubuntu Pro for Games Developer{% endblock %}
 
 {% block meta_copydoc %}
     https://docs.google.com/document/d/1qQeL08ZQ2agpNKQunfbYkemqSAF9waQ9J5fqCpH3gtA/edit?tab=t.0
@@ -69,7 +69,7 @@
     {%- call(slot) image_wrapper() -%}
         {%- if slot == 'image_content' %}
             {{ image(url="https://assets.ubuntu.com/v1/3fa2d79b-gaming-1.png",
-                        alt="gamer playing a game",
+                        alt="Gamer playing a game",
                         width="3696",
                         height="1541",
                         hi_def=True,
@@ -98,22 +98,25 @@
             </p>
         {%- endif -%}
     {%- endcall -%}
+
     {%- call(slot) quote_wrapper(
         quote_text="Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult.",
         citation_source_name_text="Company spokesperson",
         )
         -%}
     {%- endcall -%}
+
     {%- call(slot) quote_wrapper(
         quote_text="If we had focused all the developers into migrating to a newer OS version, we would in that time also have no developers left to bring out new game content for 6 to 8 months. That would have been devastating.",
         citation_source_name_text="Company spokesperson",
         )
         -%}
     {%- endcall -%}
+
     {%- call(slot) image_wrapper() -%}
         {%- if slot == 'image_content' %}
             {{ image(url="https://assets.ubuntu.com/v1/c97b3454-gaming-2.png",
-                        alt="developer working on a game",
+                        alt="Developer working on a game",
                         width="3696",
                         height="1541",
                         hi_def=True,
