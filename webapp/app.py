@@ -1276,7 +1276,10 @@ def set_form_rules():
                     path, view_func=render_form(form), endpoint=path
                 )
             except AssertionError:
-                app.logger.error(f"Error setting form rules for {path} \n", AssertionError)
+                app.logger.error(
+                    f"Error setting form rules for {path} \n", AssertionError
+                )
 
-# Disabling for now, the forms in form-data.json are for testing purposes 
+
+# Disabling for now, the forms in form-data.json are for testing purposes
 # set_form_rules()
