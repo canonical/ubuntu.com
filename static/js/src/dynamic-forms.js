@@ -408,14 +408,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             message += "\r\n\r\n";
           });
 
-          const howManyMachinesFieldset =
-            document.getElementById("how-many-machines");
-          const machinesInputs = howManyMachinesFieldset?.querySelectorAll(
-            "input[name='how-many-machines-do-you-have']",
+          const radioFieldsets = document.querySelectorAll(
+            ".js-remove-radio-names",
           );
-          machinesInputs.forEach((input) => {
-            input.removeAttribute("name");
-          });
+          if (radioFieldsets) {
+            radioFieldsets.forEach((radioFieldset) => {
+              const radioInputs = radioFieldset.querySelectorAll(
+                "input[type='radio']",
+              );
+              radioInputs.forEach((radioInput) => {
+                radioInput.removeAttribute("name");
+              });
+            });
+          }
 
           return message;
         }

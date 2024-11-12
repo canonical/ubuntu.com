@@ -15,50 +15,9 @@
       <h1 class="p-heading--2">Hardware details</h1>
     </div>
     <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-    {% if release_details.category == "Desktop" or release_details.category == "Laptop" %}
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
-        alt="",
-        width="132",
-        height="77",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      {% endif %}
-      {% if release_details.category == "Server" %}
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
-        alt="Server",
-        width="80",
-        height="96",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      {% endif %}
-      {% if release_details.category == "Ubuntu Core" %}
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
-        alt="Gateway",
-        width="96",
-        height="100",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      {% endif %}
-      {% if release_details.category == "Server SoC" %}
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
-        alt="Chip",
-        width="84",
-        height="100",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      {% endif %}
+    {% with category=release_details.category %}
+      {% include "certified/shared/category-image.html" %}
+    {% endwith %}
     </div>
   </div>
   <div class="row">
