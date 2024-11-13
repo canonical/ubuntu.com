@@ -18,6 +18,7 @@ import {
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
 import { CheckoutProducts, FormValues } from "../../utils/types";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type TaxesProps = {
   products: CheckoutProducts[];
@@ -35,7 +36,14 @@ const Taxes = ({ products, setError }: TaxesProps) => {
     setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
   const [isEditing, setIsEditing] = useState(!initialValues.country);
+  const isChannelUser =
+    products[0]?.product?.marketplace ===
+    UserSubscriptionMarketplace.CanonicalProChannel;
   const queryClient = useQueryClient();
+  const postCustomerTaxInfoMutation = postCustomerTaxInfo();
+  const hasZeroPriceValue = products.some(
+    (item) => item.product.price.value === 0,
+  );
 
   useEffect(() => {
     if (errors.VATNumber) {
@@ -53,10 +61,6 @@ const Taxes = ({ products, setError }: TaxesProps) => {
     }
   }, [initialValues]);
 
-  const postCustomerTaxInfoMutation = postCustomerTaxInfo();
-  const hasZeroPriceValue = products.some(
-    (item) => item.product.price.value === 0,
-  );
   const onSaveClick = () => {
     setIsEditing(false);
     setFieldTouched("isTaxSaved", false);
@@ -70,8 +74,12 @@ const Taxes = ({ products, setError }: TaxesProps) => {
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["preview"] });
-            queryClient.invalidateQueries({ queryKey: ["customerInfo"] });
+            queryClient.invalidateQueries({
+              queryKey: ["preview"],
+            });
+            queryClient.invalidateQueries({
+              queryKey: ["customerInfo"],
+            });
           },
           onError: (error) => {
             setFieldValue("Description", false);
@@ -290,43 +298,52 @@ const Taxes = ({ products, setError }: TaxesProps) => {
             error={touched?.isTaxSaved && errors?.isTaxSaved}
           />
         </Col>
-        <hr />
-        <div
-          className="u-align--right"
-          style={{ marginTop: "calc(.5rem - 1.5px)" }}
-        >
-          {isEditing ? (
-            <>
-              {window.accountId && !!initialValues.country ? (
+        {!isChannelUser && (
+          <>
+            <hr />
+            <div
+              className="u-align--right"
+              style={{ marginTop: "calc(.5rem - 1.5px)" }}
+            >
+              {isEditing ? (
+                <>
+                  {window.accountId && !!initialValues.country && (
+                    <ActionButton
+                      onClick={() => {
+                        setFieldValue("country", initialValues.country);
+                        setFieldValue("usState", initialValues.usState);
+                        setFieldValue("caProvince", initialValues.caProvince);
+                        setFieldValue("VATNumber", initialValues.VATNumber);
+                        setIsEditing(false);
+                        setFieldValue("isTaxSaved", true);
+                        setFieldTouched("isTaxSaved", false);
+                      }}
+                    >
+                      Cancel
+                    </ActionButton>
+                  )}
+                  <ActionButton
+                    onClick={onSaveClick}
+                    disabled={
+                      !values.country ||
+                      (values.country === "US" && !values.usState) ||
+                      (values.country === "CA" && !values.caProvince)
+                    }
+                  >
+                    Save
+                  </ActionButton>
+                </>
+              ) : (
                 <ActionButton
-                  onClick={() => {
-                    setFieldValue("country", initialValues.country);
-                    setFieldValue("usState", initialValues.usState);
-                    setFieldValue("caProvince", initialValues.caProvince);
-                    setFieldValue("VATNumber", initialValues.VATNumber);
-                    setIsEditing(false);
-                    setFieldValue("isTaxSaved", true);
-                    setFieldTouched("isTaxSaved", false);
-                  }}
+                  onClick={onEditClick}
+                  data-testid="tax-edit-button"
                 >
-                  Cancel
+                  Edit
                 </ActionButton>
-              ) : null}
-              <ActionButton
-                onClick={onSaveClick}
-                disabled={
-                  !values.country ||
-                  (values.country === "US" && !values.usState) ||
-                  (values.country === "CA" && !values.caProvince)
-                }
-              >
-                Save
-              </ActionButton>
-            </>
-          ) : (
-            <ActionButton onClick={onEditClick}>Edit</ActionButton>
-          )}
-        </div>
+              )}
+            </div>
+          </>
+        )}
       </Row>
     </>
   );
