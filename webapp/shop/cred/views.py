@@ -124,6 +124,10 @@ def cred_sign_up(**_):
             form_fields[key] = value
             if "utm_content" in form_fields:
                 form_fields["utmcontent"] = form_fields.pop("utm_content")
+
+    # remove country field for marketo
+    if "country" in form_fields:
+        form_fields.pop("country")
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
