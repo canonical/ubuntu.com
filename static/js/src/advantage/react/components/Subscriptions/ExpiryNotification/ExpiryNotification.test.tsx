@@ -196,7 +196,7 @@ describe("ExpiryNotification", () => {
       "Your subscription is about to expire.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity.",
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
   it("is expiring shows not legacy message if not actionable", () => {
@@ -241,7 +241,7 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity.",
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
 
@@ -287,7 +287,7 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired.",
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "Click on Renew subscription to to ensure service continuity.",
+      "Click on Renew subscription to ensure service continuity.",
     );
   });
 
