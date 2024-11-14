@@ -9,6 +9,7 @@ import math
 import flask
 import requests
 import talisker.requests
+from jinja2 import ChoiceLoader, FileSystemLoader
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -178,6 +179,16 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# ChoiceLoader attempts loading templates from each path in successive order
+loader = ChoiceLoader(
+    [
+        FileSystemLoader("templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates"),
+    ]
+)
+
+app.jinja_loader = loader
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
