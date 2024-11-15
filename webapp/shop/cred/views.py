@@ -108,12 +108,14 @@ def cred_self_study(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
+    search_type = flask.request.args.get("type")
     if flask.request.method == "GET":
         sign_up_open = True
         return flask.render_template(
-            "credentials/sign-up.html", sign_up_open=sign_up_open
+            "credentials/sign-up.html",
+            sign_up_open=sign_up_open,
+            search_type=search_type,
         )
-
     form_fields = {}
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
@@ -122,6 +124,10 @@ def cred_sign_up(**_):
             form_fields[key] = value
             if "utm_content" in form_fields:
                 form_fields["utmcontent"] = form_fields.pop("utm_content")
+
+    # remove country field for marketo
+    if "country" in form_fields:
+        form_fields.pop("country")
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
@@ -168,7 +174,21 @@ def cred_sign_up(**_):
     }
 
     try:
-        marketo_api.submit_form(payload).json()
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if (
+                result.get("status") == "skipped"
+                or response.get("success") is False
+            ):
+                return (
+                    flask.render_template(
+                        "credentials/sign-up.html",
+                        error="Something went wrong",
+                        search_type=search_type,
+                    ),
+                    400,
+                )
     except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
@@ -176,7 +196,9 @@ def cred_sign_up(**_):
 
         return (
             flask.render_template(
-                "credentials/sign-up.html", error="Something went wrong"
+                "credentials/sign-up.html",
+                error="Something went wrong",
+                search_type=search_type,
             ),
             400,
         )
