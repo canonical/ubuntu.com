@@ -128,16 +128,26 @@ def canonical_cla_api_proxy():
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
-    api_service_response = requests.request(
-        timeout=10,
-        method=flask.request.method,
-        url=urlparse.urljoin(CANONICAL_CLA_API_URL, request_url),
-        headers={
-            "X-Custom-Forwarded-For": client_ip,
-        },
-        cookies=flask.request.cookies,
-        data=flask.request.data,
-    )
+    try:
+        api_service_response = requests.request(
+            timeout=10,
+            method=flask.request.method,
+            url=urlparse.urljoin(CANONICAL_CLA_API_URL, request_url),
+            headers={
+                "X-Custom-Forwarded-For": client_ip,
+            },
+            cookies=flask.request.cookies,
+            data=flask.request.data,
+        )
+    except requests.exceptions.ConnectionError:
+        error_response = flask.make_response(
+            {"detail": "CLA Service is unavailable, please try again later"}
+        )
+        error_response.headers["Content-Type"] = "application/json"
+        error_response.status_code = 503
+        error_response.cache_control.no_store = True
+        return error_response
+
     if (
         api_service_response.headers["Content-Type"] != "application/json"
         and api_service_response.status_code != 200
