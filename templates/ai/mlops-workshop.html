@@ -11,6 +11,11 @@
 {% endblock body_class %}
 
 {% block content %}
+<style>
+  img{
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+</style>
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="p-section">
       <div class="row--50-50">
@@ -25,97 +30,13 @@
           </div>
           <hr class="p-rule--muted" />
           <a class="p-button--positive js-invoke-modal" href="/ai/mlops-workshop#get-in-touch">Contact the team</a>
+          <br class="u-hide u-show--medium"/>
           <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Datasheet%20for%20MLOps%20workshop.pdf?version=0">Download the datasheet&nbsp;&rsaquo;</a>
         </div>
         <div class="col">
           <p class="u-embedded-media">
             <iframe title="Open Source AI innovation with Canonical" class="u-embedded-media__element" src="https://www.youtube.com/embed/yerW2pOczvA" allowfullscreen="" frameborder="0"></iframe>
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-      <h2 class="p-section--shallow">Why join an MLOps workshop?</h2>
-    </div>
-    <div class="row--25-75 is-split-on-medium">
-      <div class="col"></div>
-      <div class="col">
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Access to Canonical <br/> partner portal</h3>
-          </div>
-          <div class="col-6">
-            <p>Resell the full range of Canonical's portfolio of private and public cloud products: Openstack, Kubernetes, IoT, support, security and compliance for Ubuntu.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Canonical can help train your field <br/> sales and presales teams</h3>
-          </div>
-          <div class="col-6">
-            <p>Canonical can help train your field sales and presales teams and provide you with sales collateral and permission to use the Canonical and Ubuntu trademarks in your own materials.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Access to Canonical <br/> partner portal</h3>
-          </div>
-          <div class="col-6">
-            <p>We host a partner portal with product and solutions collaterals, agreed pricing, incentives and a deal registration system.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Training and certification</h3>
-          </div>
-          <div class="col-6">
-            <p>Gain access to technology that is the foundation for digital transformation and expand your business through marketing support and alignment with a trusted brand.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Technical enablement</h3>
-          </div>
-          <div class="col-6">
-            <p>
-              We provide in depth technical training for your customer engineering teams with access to technical resources for your labs and customer engagements.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row p-section--shallow">
-          <div class="col-3">
-            <h3 class="p-heading--5">Go to market with Canonical</h3>
-          </div>
-          <div class="col-6">
-            <p>
-              Working with our dedicated partner team, get new joint marketing opportunities and lead generation.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-rule--muted" />
-    </div>
-    <div class="row--25-75 is-split-on-medium">
-      <div class="col"></div>
-      <div class="col">
-        <div class="row p-section--shallow">
-          <div class="col-3">
-          </div>
-          <div class="col-6">
-            <a class="p-button" href="">Learn more</a>
-            <a href="/ai/mlops-workshop#get-in-touch">Contact us&nbsp;&rsaquo;</a>
-          </div>
         </div>
       </div>
     </div>
@@ -149,7 +70,6 @@
               We will work with you to build high-level and low-level architecture based on your existing infrastructure for your AI/ML projects, using only open source tooling. 
             </p>
             <p>You can expect:</p>
-            <hr class="p-rule--muted" />
             <ul class="p-list--divided">
               <li class="p-list__item has-bullet">An end-to-end proposal, covering everything from the operating system to the data science and ML platform</li>
               <li class="p-list__item has-bullet">Cloud-agnostic design</li>
@@ -240,7 +160,7 @@
             ) | safe
           }}
         </div>
-        <h4 class="p-heading--5">Open source migrations</h4>
+        <h3 class="p-heading--5">Open source migrations</h3>
         <p>Build a migration plan to move your infrastructure to open source solutions to enable a long term strategy.</p>
       </div>
       <div class="col">
@@ -255,7 +175,7 @@
             ) | safe
           }}
         </div>
-        <h4 class="p-heading--5">MLOps architecture design</h4>
+        <h3 class="p-heading--5">MLOps architecture design</h3>
         <p>Discover infrastructure options, MLOps processes and tools to make informed decisions about your stack.</p>
       </div>
       <div class="col">
@@ -270,7 +190,7 @@
             ) | safe
           }}
         </div>
-        <h4 class="p-heading--5">Resource optimization</h4>
+        <h3 class="p-heading--5">Resource optimization</h3>
         <p>Stop underutilizing your compute power and learn how to optimize your resources across all layers of the stack.</p>
       </div>
       <div class="col">
@@ -285,8 +205,8 @@
             ) | safe
           }}
         </div>
-        <h4 class="p-heading--5">Open source migrations</h4>
-        <p>Build a migration plan to move your infrastructure to open source solutions to enable a long term strategy.</p>
+        <h3 class="p-heading--5">Edge AI</h3>
+        <p>Develop Edge AI architecture to efficiently run and maintain your models on a variety of devices.</p>
       </div>
     </div>
     <div class="row--50-50">
@@ -335,12 +255,14 @@
         <ul class="p-list">
           <li class="p-list__item">
             <p><a href="/engage/European-space-agency-case-study">Case study: Canonical's infrastructure solutions and managed IT services for critical space mission operations at European Space Agency</a></p>
-            <p>Build a migration plan to move your infrastructure to open source solutions to enable a long term strategy.</p>
+            <p>Explore how Canonical delivered significant cost-savings in moving away from licensed providers and proprietary solutions.</p>
           </li>
+          <hr class="p-rule--muted" />
           <li class="p-list__item">
             <a href="/engage/ai-ml-casestudy-tasmania">Case study: Real-time space tracking with AI supercomputing</a>
             <p>Read how the University of Tasmania migrated from a legacy platform to Canonical MLOps and reduced their operational costs.</p>
           </li>
+          <hr class="p-rule--muted" />
           <li class="p-list__item">
             <a href="/engage/guide-to-managed-ai-infrastructure">Managed AI infrastructure</a>
             <p>Learn more about the key considerations, opportunities and common pitfalls of managing AI infrastructure.</p>
@@ -361,5 +283,6 @@
   </div>
 
     <script src="/static/js/src/ai-form.js"></script>
+  
 
   {% endblock content %}
