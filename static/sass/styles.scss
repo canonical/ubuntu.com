@@ -1778,4 +1778,8 @@ legend {
 
 .u-no-wrap {
   white-space: nowrap;
+
+// Fix for spacing in the footer
+.p-footer-list {
+  @extend %paragraph;
 }
