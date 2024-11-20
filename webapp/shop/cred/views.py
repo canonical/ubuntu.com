@@ -222,8 +222,8 @@ def cred_sign_up(**_):
         values = []
         for key, value in obj.items():
             if isinstance(value, dict):
-                true_keys = [k for k, v in value.items() if v is True]
-                values.append(", ".join(true_keys))
+                json_dict = json.dumps(value)
+                values.append(json_dict)
             else:
                 values.append(value)
         return values
