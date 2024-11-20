@@ -218,6 +218,16 @@ def cred_sign_up(**_):
 
     service = build("sheets", "v4", credentials=credentials)
 
+    def extract_json_comment(obj):
+        values = []
+        for key, value in obj.items():
+            if isinstance(value, dict):
+                true_keys = [k for k, v in value.items() if v is True]
+                values.append(", ".join(true_keys))
+            else:
+                values.append(value)
+        return values
+
     sheet = service.spreadsheets()
     sheet.values().append(
         spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
@@ -233,6 +243,10 @@ def cred_sign_up(**_):
                     form_fields.get("title"),
                     form_fields.get("Comments_from_lead__c"),
                     form_fields.get("canonicalUpdatesOptIn"),
+                    form_fields.get("exam_contributor_type"),
+                    *extract_json_comment(
+                        json.loads(form_fields["Comments_from_lead__c"])
+                    ),
                 ]
             ]
         },
