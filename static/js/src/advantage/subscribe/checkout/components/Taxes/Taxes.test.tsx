@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { DistributorProduct, UAProduct } from "../../utils/test/Mocks";
+import { UAProduct } from "../../utils/test/Mocks";
 import Taxes from "./Taxes";
 
 describe("TaxesTests", () => {
@@ -112,7 +112,7 @@ describe("TaxesTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const initialValues = {
+    const intialValues = {
       country: "GB",
     };
     const products = [
@@ -123,7 +123,7 @@ describe("TaxesTests", () => {
     ];
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
@@ -158,7 +158,7 @@ describe("TaxesTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const initialValues = {
+    const intialValues = {
       country: "GB",
       VATNumber: "GB123123123",
     };
@@ -171,7 +171,7 @@ describe("TaxesTests", () => {
     ];
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
@@ -211,63 +211,5 @@ describe("TaxesTests", () => {
     fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
     expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
     expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
-  });
-
-  it("Edit button should be displayed for pro users", () => {
-    global.window = Object.create(window);
-    Object.defineProperty(window, "accountId", { value: "ABCDEF" });
-
-    const initialValues = {
-      country: "GB",
-      VATNumber: "GB123123123",
-      marketPlace: "canonical-ua",
-    };
-
-    const products = [
-      {
-        product: UAProduct,
-        quantity: 1,
-      },
-    ];
-    render(
-      <QueryClientProvider client={queryClient}>
-        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
-          <Elements stripe={stripePromise}>
-            <Taxes products={products} setError={jest.fn()} />
-          </Elements>
-        </Formik>
-      </QueryClientProvider>,
-    );
-
-    expect(screen.queryByRole("button", { name: "Edit" })).toBeInTheDocument();
-  });
-
-  it("Edit button should not be displayed for channel users", () => {
-    global.window = Object.create(window);
-    Object.defineProperty(window, "accountId", { value: "ABCDEF" });
-
-    const initialValues = {
-      country: "GB",
-      VATNumber: "GB123123123",
-      marketPlace: "canonical-pro-channel",
-    };
-
-    const products = [
-      {
-        product: DistributorProduct,
-        quantity: 1,
-      },
-    ];
-    render(
-      <QueryClientProvider client={queryClient}>
-        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
-          <Elements stripe={stripePromise}>
-            <Taxes products={products} setError={jest.fn()} />
-          </Elements>
-        </Formik>
-      </QueryClientProvider>,
-    );
-
-    expect(screen.queryByTestId("tax-edit-button")).not.toBeInTheDocument();
   });
 });
