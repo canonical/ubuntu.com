@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-This section of our documentation contains step-by-step tutorials to guide you through installing and using **Charmed Kubernetes**
+This section of our documentation contains step-by-step tutorials to guide you through installing and using **Charmed Kubernetes**.
 Our tutorials have been written to make as few assumptions as possible, and to be accessible to everyone. They're an ideal place to start learning.
 
 | Tutorial |  |
