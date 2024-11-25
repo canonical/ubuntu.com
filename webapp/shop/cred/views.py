@@ -228,10 +228,18 @@ def cred_sign_up(**_):
                 values.append(value)
         return values
 
+    range = (
+        "Production"
+        if "staging"
+        not in os.getenv(
+            "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+        )
+        else "Staging"
+    )
     sheet = service.spreadsheets()
     sheet.values().append(
         spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-        range="Sheet1",
+        range=range,
         valueInputOption="RAW",
         body={
             "values": [
