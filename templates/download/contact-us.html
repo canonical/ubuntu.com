@@ -14,6 +14,16 @@
   {% include "shared/_default-contact-us-form.html" %}
 {% endwith %}
 
+{% elif product == 'qualcomm-iot' %}
+
+{% with h1="Contact us",
+  intro_text="To speak about a specific project requirement or certification, please fill in this form and send us a message",
+  formid="6035",
+  lpId="",
+  returnURL="/download/thank-you?product=qualcomm-iot" %}
+  {% include "shared/forms/interactive/qualcomm-iot.html" %}
+{% endwith %}
+
 {% else %}
 
 {% with h1="Contact Canonical about downloads",
