@@ -46,8 +46,8 @@
         <div class="p-section--shallow">
           <div>
             <hr class="p-rule--muted" />
-            <a href="/download/contact-us#contact-us" class="p-button--positive
-            js-invoke-modal">Get in touch (TODO)</a>
+            <a href="/download/contact-us#contact-us"
+               class="p-button--positive js-invoke-modal">Get in touch (TODO)</a>
           </div>
         </div>
       </div>
@@ -70,15 +70,14 @@
           <div class="col-3">
             <h3 class="p-heading--5">QCS6490</h3>
           </div>
-          <div class="col-6 u-vertically-center u-align--center p-image-wrapper is-product">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/8f36bd07-QCS6490.png",
-            alt="",
-            width="600",
-            height="338",
-            hi_def=True,
-            loading="auto"
-            ) | safe
+          <div class="col-6 p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/8f36bd07-QCS6490.png",
+                        alt="",
+                        width="600",
+                        height="338",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
@@ -146,9 +145,8 @@
         </p>
         <p>
           If you have any questions about the platform or would like information
-          about our certification program, <a
-          href="/download/contact-us#contact-us" class="p-button--positive
-          js-invoke-modal">contact us (TODO)</a>.
+          about our certification program, <a href="/download/contact-us#contact-us"
+    class="js-invoke-modal">contact us (TODO)</a>.
         </p>
       </div>
     </div>
