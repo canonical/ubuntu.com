@@ -219,24 +219,112 @@ def cred_sign_up(**_):
 
     service = build("sheets", "v4", credentials=credentials)
 
+    def extract_json_comment(obj):
+        fields = [
+            "NativeLanguage",
+            "Country",
+            "areaOfExpertise",
+            "HasFormalTechnicalDegree",
+            "HighestLevelOfFormalEducation",
+            "UbuntuLastProfessionalExperience",
+            "CUEMotivation",
+            "whyNotOtherCertifications",
+            "UbuntuLastAcademicExperience",
+            "whyOtherCertifications",
+            "trainingExperiences",
+            "otherCertifications",
+            "UbuntuOverallExperience",
+            "YearsTechnicalRole",
+        ]
+        row = []
+        for key in fields:
+            cell = obj.get(key, None)
+            if cell is not None:
+                if isinstance(cell, dict):
+                    json_dict = json.dumps(cell)
+                    row.append(json_dict)
+                else:
+                    row.append(cell)
+            else:
+                row.append("")
+
+        return row
+
+    SHEET_ID = "1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU"
+    range = (
+        "Production"
+        if "staging"
+        not in os.getenv(
+            "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+        )
+        else "Staging"
+    )
+
     sheet = service.spreadsheets()
-    sheet.values().append(
-        spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-        range="Sheet1",
-        valueInputOption="RAW",
-        body={
-            "values": [
-                [
-                    form_fields.get("firstName"),
-                    form_fields.get("lastName"),
-                    form_fields.get("email"),
-                    form_fields.get("Job_Role__c"),
-                    form_fields.get("title"),
-                    form_fields.get("Comments_from_lead__c"),
-                    form_fields.get("canonicalUpdatesOptIn"),
-                ]
+    # add the header to the sheet if the sheet is empty initially
+    result = (
+        sheet.values()
+        .get(spreadsheetId=SHEET_ID, range=f"{range}!1:1")
+        .execute()
+    )
+    first_row = result.get("values", [])
+    if len(first_row) == 0:
+        header = [
+            "First Name",
+            "Last Name",
+            "Email",
+            "Job Role",
+            "Timestamp",
+            "Title",
+            "Comments",
+            "Canonical Updates Opt In",
+            "Exam Contributor Type",
+            "NativeLanguage",
+            "Country",
+            "Area Of Expertise",
+            "Has Formal Technical Degree",
+            "Highest Level Of Formal Education",
+            "Ubuntu Last Professional Experience",
+            "CUE Motivation",
+            "Why Not Other Certifications",
+            "Ubuntu Last Academic Experience",
+            "Why Other Certifications",
+            "Training Experiences",
+            "Other Certifications",
+            "Ubuntu Overall Experience",
+            "Years Technical Role",
+        ]
+        body = {"values": [header]}
+        sheet.values().append(
+            spreadsheetId=SHEET_ID,
+            range=f"{range}!A:A",
+            valueInputOption="RAW",
+            body=body,
+        ).execute()
+
+    body = {
+        "values": [
+            [
+                form_fields.get("firstName"),
+                form_fields.get("lastName"),
+                form_fields.get("email"),
+                form_fields.get("Job_Role__c"),
+                datetime.now(pytz.UTC).strftime("%Y-%m-%d %H:%M:%S"),
+                form_fields.get("title"),
+                form_fields.get("Comments_from_lead__c"),
+                form_fields.get("canonicalUpdatesOptIn"),
+                form_fields.get("exam_contributor_type"),
+                *extract_json_comment(
+                    json.loads(form_fields["Comments_from_lead__c"])
+                ),
             ]
-        },
+        ]
+    }
+    sheet.values().append(
+        spreadsheetId=SHEET_ID,
+        range=f"{range}!A:A",
+        valueInputOption="RAW",
+        body=body,
     ).execute()
 
     if return_url:
