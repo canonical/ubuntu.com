@@ -23,40 +23,22 @@
 </section>
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-<script>
-  {
-    # djlint: off #
-  }
-  canonicalLatestNews.fetchLatestNews({
-    articlesContainerSelector: "#ceph-install-latest",
-    articleTemplateSelector: "#ceph-install-template",
-    excerptLength: 200,
+{# djlint:off #}
+<script>  
+  canonicalLatestNews.fetchLatestNews(
     {
-      %
-      if group_id %
+      articlesContainerSelector: "#ceph-install-latest",
+      articleTemplateSelector: "#ceph-install-template",
+      excerptLength: 200,
+      {% if group_id %}
+        groupId: {{ group_id }},
+      {% endif %}
+      {% if tag_id %}
+        tagId: {{ tag_id }},
+      {% endif %}
+      linkImage: true,
+      limit: 4
     }
-    groupId: {
-      {
-        group_id
-      }
-    },
-    {
-      % endif %
-    } {
-      %
-      if tag_id %
-    }
-    tagId: {
-      {
-        tag_id
-      }
-    },
-    {
-      % endif %
-    }
-    linkImage: true,
-    limit: 4
-  }) {
-    # djlint: on #
-  }
+  )
 </script>
+{# djlint:on #}

@@ -27,8 +27,8 @@
 </section>
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+{# djlint:off #}
 <script>  
-  {# djlint:off #}
   canonicalLatestNews.fetchLatestNews(
     {
       articlesContainerSelector: "#ubuntu-desktop-latest",
@@ -44,5 +44,5 @@
       limit: 3
     }
   )
-  {# djlint:on #}
 </script>
+{# djlint:on #}
