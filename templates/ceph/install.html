@@ -58,54 +58,52 @@
         <h2>Choose the Ceph installation option for your deployment:</h2>
       </div>
       <div class="js-tabbed-content">
-        <div class="p-section--shallow">
-          <div class="p-tabs">
-            <div class="p-tabs__list"
-                 role="tablist"
-                 aria-label="Ceph installation instructions">
-              <div class="p-tabs__item">
-                <button class="p-tabs__link"
-                        role="tab"
-                        aria-selected="true"
-                        aria-controls="single-node-tab"
-                        id="single-node"
-                        data-maintain-hash="single-node">Single-node</button>
-              </div>
-              <div class="p-tabs__item">
-                <button class="p-tabs__link"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="multi-node-tab"
-                        id="multi-node"
-                        data-maintain-hash="multi-node"
-                        tabindex="-1">Multi-node</button>
-              </div>
-              <div class="p-tabs__item">
-                <button class="p-tabs__link"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="containerised-tab"
-                        id="containerised"
-                        data-maintain-hash="Containerised"
-                        tabindex="-1">Containerized</button>
-              </div>
-              <div class="p-tabs__item">
-                <button class="p-tabs__link"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="large-scale-tab"
-                        id="large-scale"
-                        data-maintain-hash="large-scale"
-                        tabindex="-1">Large-scale</button>
-              </div>
+        <div class="p-tabs">
+          <div class="p-tabs__list"
+                role="tablist"
+                aria-label="Ceph installation instructions">
+            <div class="p-tabs__item">
+              <button class="p-tabs__link"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="single-node-tab"
+                      id="single-node"
+                      data-maintain-hash="single-node">Single-node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button class="p-tabs__link"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="multi-node-tab"
+                      id="multi-node"
+                      data-maintain-hash="multi-node"
+                      tabindex="-1">Multi-node</button>
+            </div>
+            <div class="p-tabs__item">
+              <button class="p-tabs__link"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="containerised-tab"
+                      id="containerised"
+                      data-maintain-hash="Containerised"
+                      tabindex="-1">Containerized</button>
+            </div>
+            <div class="p-tabs__item">
+              <button class="p-tabs__link"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="large-scale-tab"
+                      id="large-scale"
+                      data-maintain-hash="large-scale"
+                      tabindex="-1">Large-scale</button>
             </div>
           </div>
-          <!-- tab content -->
-          {% include "/ceph/shared/_single-node-deployment.html" %}
-          {% include "/ceph/shared/_multi-node-deployment.html" %}
-          {% include "/ceph/shared/_containerized-deployment.html" %}
-          {% include "/ceph/shared/_large-scale-deployment.html" %}
         </div>
+        <!-- tab content -->
+        {% include "/ceph/shared/_single-node-deployment.html" %}
+        {% include "/ceph/shared/_multi-node-deployment.html" %}
+        {% include "/ceph/shared/_containerized-deployment.html" %}
+        {% include "/ceph/shared/_large-scale-deployment.html" %}
       </div>
     </div>
   </section>
@@ -125,7 +123,7 @@
     </div>
   </section>
 
-  {% with title_link="/blog/ceph", tag_id="1780" %}
+  {% with title_link="/blog/tag/ceph", tag_id="1780" %}
     {% include "ceph/shared/_latest-news-ceph.html" %}
   {% endwith %}
 
