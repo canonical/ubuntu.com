@@ -126,7 +126,7 @@ function setUpStaticForms(form, formId) {
       const radioFieldsets = document.querySelectorAll(
         ".js-remove-radio-names",
       );
-      if (radioFieldsets) {
+      if (radioFieldsets.length > 0) {
         radioFieldsets.forEach((radioFieldset) => {
           const radioInputs = radioFieldset.querySelectorAll(
             "input[type='radio']",
