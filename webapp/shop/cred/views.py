@@ -336,9 +336,19 @@ def cred_sign_up(**_):
         return flask.redirect(return_url)
 
     if referrer:
-        return flask.redirect(f"/thank-you?referrer={referrer}")
+        return flask.redirect(
+            f"/thank-you?referrer={referrer}?type={search_type}"
+        )
     else:
-        return flask.redirect("/thank-you")
+        return flask.redirect(f"/thank-you?type={search_type}")
+
+
+@shop_decorator(area="cred", response="html")
+def cred_thank_you(**_):
+    signup_type = flask.request.args.get("type")
+    return flask.render_template(
+        "credentials/thank-you.html", signup_type=signup_type
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")

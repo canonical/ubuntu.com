@@ -89,6 +89,7 @@ from webapp.shop.cred.views import (
     cred_shop_webhook_responses,
     cred_shop_keys,
     cred_sign_up,
+    cred_thank_you,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
@@ -890,6 +891,9 @@ app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
+)
+app.add_url_rule(
+    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
 )
 app.add_url_rule(
     "/credentials/schedule",
