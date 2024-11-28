@@ -71,23 +71,22 @@
         </div>
         <div class="p-section">
           <hr class="p-rule is-fixed-width" />
-          <fieldset class="p-fieldset-section"
-                    id="your-company"
-                    aria-labelledby="your-company-legend">
-            <div class="row--50-50">
-              <div class="col">
-                <legend class="p-heading--4" id="your-company-legend">About your company</legend>
-              </div>
-              <div class="col">
+          <div class="row--50-50">
+            <div class="col">
+              <legend class="p-heading--4" id="your-company-legend">About your company</legend>
+            </div>
+            <div class="col">
+              <fieldset class="p-fieldset-section js-formfield"
+                        id="your-company"
+                        aria-labelledby="your-company-legend">
                 <p class="no-margin--bottom">
                   Tell us about your project so we can bring the right Canonical team members to the conversation to help you.
                 </p>
-                <h4 class="p-heading--5">Your company is:</h4>
+                <h4 class="p-heading--5 js-formfield-title">Your company is:</h4>
                 <label class="p-radio">
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="your-company-is-ODM-OEM"
-                         name="your-company-is"
                          value="an ODM/OEM" />
                   <span class="p-radio__label" id="your-company-is-ODM-OEM">an ODM/OEM</span>
                 </label>
@@ -95,16 +94,18 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="your-company-is-end-customer"
-                         name="your-company-is"
                          value="an end customer" />
                   <span class="p-radio__label" id="your-company-is-end-customer">an end customer</span>
                 </label>
-                <h4 class="p-heading--5">Do you have a commercial project?</h4>
+              </fieldset>
+              <fieldset class="p-fieldset-section js-formfield"
+                        id="your-company"
+                        aria-labelledby="your-company-legend">
+                <h4 class="p-heading--5 js-formfield-title">Do you have a commercial project?</h4>
                 <label class="p-radio">
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="commercial-project-yes"
-                         name="commercial-project"
                          value="Yes" />
                   <span class="p-radio__label" id="commercial-project-yes">Yes</span>
                 </label>
@@ -112,7 +113,6 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="commercial-project-no"
-                         name="commercial-project"
                          value="No" />
                   <span class="p-radio__label" id="commercial-project-no">No</span>
                 </label>
@@ -120,16 +120,18 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="commercial-project-not-applicable"
-                         name="commercial-project"
                          value="Not applicable" />
                   <span class="p-radio__label" id="commercial-project-not-applicable">Not applicable</span>
                 </label>
-                <h4 class="p-heading--5">When do you need to ship?</h4>
+              </fieldset>
+              <fieldset class="p-fieldset-section js-formfield"
+                        id="your-company"
+                        aria-labelledby="your-company-legend">
+                <h4 class="p-heading--5 js-formfield-title">When do you need to ship?</h4>
                 <label class="p-radio">
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="when-do-you-ship-next-3-months"
-                         name="when-do-you-ship"
                          value="Next 3 months" />
                   <span class="p-radio__label" id="when-do-you-ship-next-3-months">Next 3 months</span>
                 </label>
@@ -137,7 +139,6 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="when-do-you-ship-next-3-6-months"
-                         name="when-do-you-ship"
                          value="Next 3-6 months" />
                   <span class="p-radio__label" id="when-do-you-ship-next-3-6-months">Next 3-6 months</span>
                 </label>
@@ -145,7 +146,6 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="when-do-you-ship-next-6-12-months"
-                         name="when-do-you-ship"
                          value="Next 6-12 months" />
                   <span class="p-radio__label" id="when-do-you-ship-next-6-12-months">Next 6-12 months</span>
                 </label>
@@ -153,30 +153,36 @@
                   <input class="p-radio__input"
                          type="radio"
                          aria-labelledby="when-do-you-ship-no-timeline"
-                         name="when-do-you-ship"
                          value="No timeline - just researching" />
                   <span class="p-radio__label" id="when-do-you-ship-no-timeline">No timeline - just researching</span>
                 </label>
-              </div>
+              </fieldset>
             </div>
-          </fieldset>
+          </div>
         </div>
         <div class="p-section">
           <hr class="p-rule is-fixed-width" />
-          <div class="row--50-50 js-formfield">
-            <div class="col">
-              <label for="about-your-project" class="p-heading--4 js-formfield-title">Tell us more about your project</label>
+          <fieldset class="p-fieldset-section js-formfield">
+            <div class="row--50-50">
+              <div class="col">
+                <label for="about-your-project" class="p-heading--4 js-formfield-title">Tell us more about your project</label>
+              </div>
+              <div class="col">
+                <textarea id="about-your-project" rows="5"></textarea>
+              </div>
             </div>
+          </fieldset>
+          <div class="row--50-50">
+            <div class="col"></div>
             <div class="col">
-              <textarea id="about-your-project" rows="5"></textarea>
               <ul class="p-list">
                 <li class="p-list__item">
                   <label class="p-checkbox">
                     <input class="p-checkbox__input"
-                           value="yes"
-                           aria-labelledby="canonicalUpdatesOptIn"
-                           name="canonicalUpdatesOptIn"
-                           type="checkbox" />
+                          value="yes"
+                          aria-labelledby="canonicalUpdatesOptIn"
+                          name="canonicalUpdatesOptIn"
+                          type="checkbox" />
                     <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
                   </label>
                 </li>
@@ -187,102 +193,102 @@
                 <li class="u-off-screen">
                   <label class="website" for="website">Website:</label>
                   <input name="website"
-                         type="text"
-                         class="website"
-                         autocomplete="off"
-                         value=""
-                         id="website"
-                         tabindex="-1" />
+                        type="text"
+                        class="website"
+                        autocomplete="off"
+                        value=""
+                        id="website"
+                        tabindex="-1" />
                 </li>
                 <li class="u-off-screen">
                   <label class="name" for="name">Name:</label>
                   <input name="name"
-                         type="text"
-                         class="name"
-                         autocomplete="off"
-                         value=""
-                         id="name"
-                         tabindex="-1" />
+                        type="text"
+                        class="name"
+                        autocomplete="off"
+                        value=""
+                        id="name"
+                        tabindex="-1" />
                 </li>
                 {# End of honey pots #}
                 <li class="p-list__item">
                   <button type="submit" class="p-button--positive js-submit-button">Submit</button>
                 </li>
               </ul>
-              <div class="u-off-screen">
-                <label for="Comments_from_lead__c">
-                  <h3 class="p-heading--4">Your comments</h3>
-                  <textarea id="Comments_from_lead__c"
-                            name="Comments_from_lead__c"
-                            rows="5"
-                            maxlength="2000"></textarea>
-                </label>
-              </div>
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="formid"
-                     value="%% formid %%" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="returnURL"
-                     value="%% returnURL %%" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="Consent_to_Processing__c"
-                     value="yes" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="utm_campaign"
-                     id="utm_campaign"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="utm_medium"
-                     id="utm_medium"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="utm_source"
-                     id="utm_source"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="utm_content"
-                     id="utm_content"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="utm_term"
-                     id="utm_term"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="GCLID__c"
-                     id="GCLID__c"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     name="Facebook_Click_ID__c"
-                     id="Facebook_Click_ID__c"
-                     value="" />
-              <input type="hidden"
-                     aria-hidden="true"
-                     aria-label="hidden field"
-                     id="preferredLanguage"
-                     name="preferredLanguage"
-                     maxlength="255"
-                     value="" />
             </div>
+            <div class="u-off-screen">
+              <label for="Comments_from_lead__c">
+                <h3 class="p-heading--4">Your comments</h3>
+                <textarea id="Comments_from_lead__c"
+                          name="Comments_from_lead__c"
+                          rows="5"
+                          maxlength="2000"></textarea>
+              </label>
+            </div>
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="formid"
+                   value="%% formid %%" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="returnURL"
+                   value="%% returnURL %%" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="Consent_to_Processing__c"
+                   value="yes" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="utm_campaign"
+                   id="utm_campaign"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="utm_medium"
+                   id="utm_medium"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="utm_source"
+                   id="utm_source"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="utm_content"
+                   id="utm_content"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="utm_term"
+                   id="utm_term"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="GCLID__c"
+                   id="GCLID__c"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   name="Facebook_Click_ID__c"
+                   id="Facebook_Click_ID__c"
+                   value="" />
+            <input type="hidden"
+                   aria-hidden="true"
+                   aria-label="hidden field"
+                   id="preferredLanguage"
+                   name="preferredLanguage"
+                   maxlength="255"
+                   value="" />
           </div>
         </div>
       </form>
