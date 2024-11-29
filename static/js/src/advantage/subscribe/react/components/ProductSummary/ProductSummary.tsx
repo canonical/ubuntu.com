@@ -121,9 +121,7 @@ const ProductSummary = () => {
           >
             {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
               <StatusLabel appearance="positive">
-                <a href="/engage/Ubuntu-Pro-1-month-trial">
-                  Free trial available
-                </a>
+                Free trial on checkout
               </StatusLabel>
             ) : null}
             <PaymentButton />
@@ -206,9 +204,7 @@ const ProductSummary = () => {
           {product?.canBeTrialled && productUser !== ProductUsers.myself ? (
             <Col size={12}>
               <StatusLabel appearance="positive">
-                <a href="/engage/Ubuntu-Pro-1-month-trial">
-                  Free trial available
-                </a>
+                Free trial on checkout
               </StatusLabel>
             </Col>
           ) : null}
