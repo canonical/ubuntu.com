@@ -14,12 +14,12 @@
   is-paper
 {% endblock body_class %}
 
-{% from "macros/_macros-hero.jinja" import hero %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block content %}
 
-  {%- call(slot) hero(
-    title="Accelerate your AI/ML projects with an MLOps workshop",
+  {%- call(slot) vf_hero(
+    title_text="Accelerate your AI/ML projects with an MLOps workshop",
     layout='50/50',
     is_split_on_medium="true"
     ) -%}

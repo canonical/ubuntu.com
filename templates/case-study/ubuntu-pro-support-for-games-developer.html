@@ -1,9 +1,10 @@
 {% extends "case-study/base_case-study.html" %}
 
-{% from "macros/_macros-hero.jinja" import hero %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
 {% from "macros/_macros-highlights.jinja" import highlights %}
 {% from "macros/_macros-text.jinja" import text %}
-{% from "macros/_macros-quote.jinja" import quote_wrapper %}
 {% from "macros/_macros-image.jinja" import image_wrapper %}
 {% from "macros/_macros-cta.jinja" import cta %}
 
@@ -22,8 +23,8 @@
 {% endblock %}
 
 {% block content %}
-    {%- call(slot) hero(title="Ubuntu Pro helps large games publisher secure code dependencies and avoid costly migration",
-        layout="",
+    {%- call(slot) vf_hero(
+        title_text="Ubuntu Pro helps large games publisher secure code dependencies and avoid costly migration",
         is_split_on_medium="true") -%}
     {%- endcall -%}
 
@@ -59,9 +60,10 @@
         {%- endif -%}
     {%- endcall -%}
 
-    {%- call(slot) quote_wrapper(
+    {%- call(slot) vf_quote_wrapper(
         quote_text="After the implementation it was pretty flawless. We did some measurements and there was no change in performance, so we were happy. The product is simply running and doing its job.",
         citation_source_name_text="Company spokesperson",
+        is_shallow=True
         )
         -%}
     {%- endcall -%}
@@ -99,16 +101,18 @@
         {%- endif -%}
     {%- endcall -%}
 
-    {%- call(slot) quote_wrapper(
+    {%- call(slot) vf_quote_wrapper(
         quote_text="Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult.",
         citation_source_name_text="Company spokesperson",
+        is_shallow=True
         )
         -%}
     {%- endcall -%}
 
-    {%- call(slot) quote_wrapper(
+    {%- call(slot) vf_quote_wrapper(
         quote_text="If we had focused all the developers into migrating to a newer OS version, we would in that time also have no developers left to bring out new game content for 6 to 8 months. That would have been devastating.",
         citation_source_name_text="Company spokesperson",
+        is_shallow=True
         )
         -%}
     {%- endcall -%}
@@ -143,9 +147,10 @@
         {%- endif -%}
     {%- endcall -%}
 
-    {%- call(slot) quote_wrapper(
+    {%- call(slot) vf_quote_wrapper(
         quote_text="We had considered Ubuntu Pro before. Once it became clear that Ubuntu Pro's per-server cost included hypervisors with unlimited VMs, we did our cost analysis and it ended up being the go-to solution.",
         citation_source_name_text="Company spokesperson",
+        is_shallow=True
         )
         -%}
     {%- endcall -%}
@@ -167,9 +172,10 @@
         {%- endif -%}
     {%- endcall -%}
 
-    {%- call(slot) quote_wrapper(
+    {%- call(slot) vf_quote_wrapper(
         quote_text="The biggest surprise was that there was no surprise. The systems just work as before, and the developers got an extra two years added to their time frame for migration. It was amazing.",
         citation_source_name_text="Company spokesperson",
+        is_shallow=True
         )
         -%}
     {%- endcall -%}
