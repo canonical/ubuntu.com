@@ -19,20 +19,20 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='IoT App Store',
-    layout='50/50',
+    title_text="IoT App Store",
+    layout="50/50",
     is_split_on_medium=true
     ) -%}
-    {%- if slot == 'description' -%}
+    {%- if slot == "description" -%}
       <p>Create, publish and distribute software on the global Snap Store and your private enterprise App Store.</p>
     {%- endif -%}
-    {%- if slot == 'cta' -%}
+    {%- if slot == "cta" -%}
       <a href="/internet-of-things/contact-us?product=appstore"
          class="p-button--positive">Contact us</a>
       <a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf"
          class="p-button">Read the datasheet</a>
     {%- endif -%}
-    {%- if slot == 'image' -%}
+    {%- if slot == "image" -%}
 
       <div class="u-embedded-media">
         <iframe title="Introduction to IoT app stores"
@@ -55,11 +55,11 @@
         </h2>
       </div>
       <div class="col">
-        <ul class="p-list">
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Advanced software management for fleets of devices</li>
           <li class="p-list__item is-ticked">Secure, validated OTA update mechanisms to handle distribution at scale</li>
           <li class="p-list__item is-ticked">
-            Infrastructure for secure management and maintenance of specialised applications
+            Infrastructure for secure management and maintenance of specialized applications
           </li>
         </ul>
       </div>
@@ -80,6 +80,7 @@
         </div>
       </div>
     </div>
+    <hr class="p-rule--muted is-fixed-width" />
     <div class="p-equal-height-row">
       <div class="p-equal-height-row__col">
         <h3 class="p-heading--5 p-equal-height-row__item">Onboard new devices</h3>
@@ -90,7 +91,7 @@
       <div class="p-equal-height-row__col">
         <h3 class="p-heading--5 p-equal-height-row__item">Reliable over-the-air (OTA) updates</h3>
         <p class="p-equal-height-row__item">
-          <a href="/core/features/ota-updates">Over-the-air updates</a> are automatic and transactional, so devices rollback to a stable state if a failure occurs. All updates are delivered as deltas to minimise bandwidth consumption and the associated costs.
+          <a href="/core/features/ota-updates">Over-the-air updates</a> are automatic and transactional, so devices rollback to a stable state if a failure occurs. All updates are delivered as deltas to minimize bandwidth consumption and the associated costs.
         </p>
       </div>
       <div class="p-equal-height-row__col">
@@ -130,14 +131,15 @@
                   allowfullscreen></iframe>
         </div>
         <p>The Dedicated Snap Store has a range of features on it's dashboard, including:</p>
-        <ul class="p-list">
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
           <li class="p-list__item has-bullet">Snap inclusion and exclusion</li>
           <li class="p-list__item has-bullet">Account delegation and role management</li>
           <li class="p-list__item has-bullet">Software release management</li>
           <li class="p-list__item has-bullet">Detailed snap metrics</li>
         </ul>
         <div class="p-cta-block">
-          <p>Ready to find out more?</p>
+          <p style="margin-right: 1rem">Ready to find out more?</p>
           <a href="/internet-of-things/contact-us?product=appstore"
              class="p-button--positive">Get in touch</a>
         </div>
@@ -406,7 +408,7 @@
         <p>
           For an on-premise experience, if you are operating devices that are completely isolated from the internet, we also offer air gapped mode.
         </p>
-        <p>Maximise bandwidth and speed by caching downloads and snap traffic.</p>
+        <p>Maximize bandwidth and speed by caching downloads and snap traffic.</p>
         <div class="p-cta-block">
           <a href="https://www.brighttalk.com/webcast/6793/494857">Learn more about the Snap Store Proxy&nbsp;&rsaquo;</a>
         </div>
@@ -433,8 +435,7 @@
           </div>
           <p>Canonical offers commercial support plans for enterprise deployments providing:</p>
           <hr class="p-rule--muted" />
-          <ul class="p-list--divided p-section--shallow"
-              style="margin-bottom: 6.4rem">
+          <ul class="p-list--divided p-section--shallow u-additional-spacing--large">
             <li class="p-list__item is-ticked">24/7 phone and web support</li>
             <li class="p-list__item is-ticked">Access to our world-class technical team</li>
             <li class="p-list__item is-ticked">Private software repositories</li>
@@ -455,7 +456,7 @@
             <h3>IoT Professional Services</h3>
           </div>
           <p>
-            Canonical offers an expert engineering team specialising in field deployments. Explore our range of services for all embedded projects, including:
+            Canonical offers an expert engineering team specializing in field deployments. Explore our range of services for all embedded projects, including:
           </p>
           <hr class="p-rule--muted" />
           <ul class="p-list--divided p-section--shallow">
@@ -492,22 +493,7 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Try Ubuntu Core</h2>
-      </div>
-      <div class="col">
-        <p>
-          Want to learn more about developing with Ubuntu Core? Learn how to build or port apps for the next generation of Ubuntu.
-        </p>
-        <div class="p-cta-block">
-          <a class="p-button" href="/core">Try Ubuntu Core</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% include "internet-of-things/shared/_try-ubuntu-core.html" %}
 
   <section class="p-section">
     <div class="row--50-50">
@@ -531,5 +517,4 @@
        data-lp-id="5811"
        data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=appstore"
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
-
 {% endblock content %}

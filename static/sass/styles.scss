@@ -1784,3 +1784,9 @@ legend {
 .p-footer-list {
   @extend %paragraph;
 }
+
+.u-additional-spacing--large {
+  @media screen and ($breakpoint-large <= width) {
+    margin-bottom: $sp-unit * 12.5;
+  }
+}
