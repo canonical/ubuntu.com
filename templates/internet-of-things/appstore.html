@@ -11,6 +11,7 @@
 {% endblock meta_copydoc %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 
 {% block body_class %}
   is-paper
@@ -296,113 +297,76 @@
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule--highlight" />
-      <div class="p-section--shallow">
-        <h2 class="p-text--small-caps">What our customers say</h2>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          {{ image(
-            url="https://assets.ubuntu.com/v1/3cd4128e-screenly.png",
-            alt="",
-            width="103",
-            height="29",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
+  <section>
+    {% call(slot) vf_quote_wrapper(
+      title_text="What our customers say",
+      quote_size="small",
+      quote_text="The IoT App Store gives us the prebuilt infrastructure to seamlessly deliver OTA updates to our entire fleet.",
+      citation_source_name_text="Viktor Petersson",
+      citation_source_title_text="CEO",
+      citation_source_organisation_text="Screenly",
+      is_shallow=true
+      ) -%}
+
+      {%- if slot == 'signpost_image' -%}
+        <div class="p-image-wrapper--logo">
+          {{ image(url="https://assets.ubuntu.com/v1/3cd4128e-screenly.png",
+                    alt="",
+                    width="103",
+                    height="29",
+                    hi_def=True,
+                    loading="lazy",) | safe
           }}
         </div>
-        <div class="col-9 col-medium-4">
-          <hr class="p-rule--muted" />
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <blockquote class="u-no-margin--bottom u-no-padding" style="border: none;">
-                  <p>
-                    <i>"The IoT App Store gives us the prebuilt infrastructure to seamlessly deliver OTA updates to our entire fleet."</i>
-                    <span class="u-off-screen">Viktor Petersson, CEO, Screenly</span>
-                  </p>
-                </blockquote>
-              </div>
-              <div class="col-3 col-medium-2">
-                <p class="p-heading--5 u-no-margin--bottom" aria-hidden="true">Viktor Petersson</p>
-                <p class="u-text--muted" aria-hidden="true">CEO, Screenly</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-3 col-medium-2">
-          {{ image(
-            url="https://assets.ubuntu.com/v1/e512541f-rigado.png",
-            alt="",
-            width="106",
-            height="14",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
+      {%- endif -%}
+
+    {% endcall -%}
+
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="Large-scale commercial IoT deployments are not one size fits all. They require infrastructure that is open, scalable, and secure, with software that can evolve to meet the changing needs of the customer. Ubuntu Core brings a powerful and open architecture to IoT gateways, ensuring they're an enabler of business success for customers, now and in the future.",
+      citation_source_name_text="Ben Corrado",
+      citation_source_title_text="Co-founder",
+      citation_source_organisation_text="Rigado",
+      is_shallow=true
+      ) -%}
+
+      {%- if slot == 'signpost_image' -%}
+        <div class="p-image-wrapper--logo">
+          {{ image(url="https://assets.ubuntu.com/v1/e512541f-rigado.png",
+                    alt="",
+                    width="106",
+                    height="14",
+                    hi_def=True,
+                    loading="lazy") | safe
           }}
         </div>
-        <div class="col-9 col-medium-4">
-          <hr class="p-rule--muted" />
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-6 col-medium-4">
-                <blockquote class="u-no-margin--bottom u-no-padding" style="border: none;">
-                  <p>
-                    <i>"Large-scale commercial IoT deployments are not one size fits all. They require infrastructure that is open, scalable, and secure, with software that can evolve to meet the changing needs of the customer. Ubuntu Core brings a powerful and open architecture to IoT gateways, ensuring they're an enabler of business success for customers, now and in the future."</i>
-                    <span class="u-off-screen">Ben Corrado, Co-founder, Rigado</span>
-                  </p>
-                </blockquote>
-              </div>
-              <div class="col-3 col-medium-2">
-                <p class="p-heading--5 u-no-margin--bottom" aria-hidden="true">Ben Corrado</p>
-                <p class="u-text--muted" aria-hidden="true">Co-founder, Rigado</p>
-              </div>
-            </div>
-          </div>
+      {%- endif -%}
+
+    {% endcall -%}
+
+    {% call(slot) vf_quote_wrapper(
+      quote_size="small",
+      quote_text="Building our product with snaps lets us guarantee that all updates are automatic and entirely transactional &ndash; not only for our own software, but also for the kernel and OS. What's more, snaps work on virtually all Linux operating systems, so we've been able to release our open source Domotz Pro software as a public snap that users can install on their own hardware.",
+      citation_source_name_text="Giancarlo Fanelli",
+      citation_source_title_text="CTO",
+      citation_source_organisation_text="Domotz",
+      is_shallow=true
+      ) -%}
+
+      {%- if slot == 'signpost_image' -%}
+        <div class="p-image-wrapper--logo">
+          {{ image(url="https://assets.ubuntu.com/v1/3c4beadc-domotz.png",
+                    alt="",
+                    width="84",
+                    height="18",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3 col-medium-2">
-        {{ image(
-          url="https://assets.ubuntu.com/v1/3c4beadc-domotz.png",
-          alt="",
-          width="84",
-          height="18",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-      <div class="col-9 col-medium-4">
-        <hr class="p-rule--muted" />
-        <div class="p-section--shallow">
-          <div class="row">
-            <div class="col-6 col-medium-4">
-              <blockquote class="u-no-margin--bottom u-no-padding" style="border: none;">
-                <p>
-                  <i>"Building our product with snaps lets us guarantee that all updates are automatic and entirely transactional &ndash; not only for our own software, but also for the kernel and OS. What's more, snaps work on virtually all Linux operating systems, so we've been able to release our open source Domotz Pro software as a public snap that users can install on their own hardware."</i>
-                  <span class="u-off-screen">Giancarlo Fanelli, CTO, Domotz</span>
-                </p>
-              </blockquote>
-            </div>
-            <div class="col-3 col-medium-2">
-              <p class="p-heading--5 u-no-margin--bottom" aria-hidden="true">Giancarlo Fanelli</p>
-              <p class="u-text--muted" aria-hidden="true">CTO, Domotz</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      {%- endif -%}
+
+    {% endcall -%}
   </section>
 
   <section class="p-section">
