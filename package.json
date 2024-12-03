@@ -15,7 +15,7 @@
     "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
     "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
     "build-intl-tel-input-utils": "cp node_modules/intl-tel-input/build/js/utils.js static/js/dist",
-    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
+    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed --quiet-deps && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "node build.js && yarn run build-global-nav && yarn run build-cookie-policy && yarn run build-latest-news && yarn run build-intl-tel-input-utils && yarn run build-flickity",
     "build": "yarn run build-css && yarn run build-js && yarn build-global-nav",
     "watch": "concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js'",
