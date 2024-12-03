@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @mixin ubuntu-p-navigation-dropdown {
   $dropdown-border: 1px solid $colors--dark-theme--border-low-contrast;
 
@@ -39,7 +41,7 @@
     @include vf-animation(all, brisk, out);
 
     background-color: #262626;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
+    box-shadow: 0 1px 32px 1px color.adjust($color-dark, $alpha: -0.8);
     flex-direction: column;
     height: auto;
     max-height: calc(100vh - 3rem);
