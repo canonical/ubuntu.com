@@ -187,6 +187,9 @@
     </section>
 
     <section class="p-section">
+      <div class="row u-hide--medium u-hide--large">
+        <hr class="p-rule" />
+      </div>
       {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
         {%- if slot == 'title' -%}
           <h2>
@@ -336,6 +339,9 @@
     </div>
 
     <section class="p-section">
+      <div class="row u-hide--medium u-hide--large">
+        <hr class="p-rule" />
+      </div>
       {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
         {%- if slot == 'title' -%}
           <h2>FAQ’s: Landscape for Device Management</h2>
