@@ -189,7 +189,11 @@
     <section class="p-section">
       {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
         {%- if slot == 'title' -%}
-          <h2>Enterprise-grade solutions for every scenario</h2>
+          <h2>
+            Enterprise-grade solutions
+            <br />
+            for every scenario
+          </h2>
         {%- endif -%}
 
         {%- if slot == 'description' -%}
@@ -199,7 +203,7 @@
               manage
               your devices.
             </p>
-            <hr class="p-rule--muted u-hide--small u-hide--medium" />
+            <hr class="p-rule--muted" />
             <a href="/internet-of-things/contact-us?product=management">Get in touch to discuss the best solution for you&nbsp;&rsaquo;</a>
           </div>
         {%- endif -%}
@@ -208,8 +212,8 @@
           <div>
             {{ image(url="https://assets.ubuntu.com/v1/82c0167f-Canonical%20Landscape.png?h=60",
                         alt="Landscape",
-                        width="230",
-                        height="60",
+                        width="150",
+                        height="39",
                         hi_def=True,
                         loading="lazy") | safe
             }}
@@ -225,7 +229,7 @@
               remote debugging/scripting capabilities, you can rest at`ease knowing everything is secure and up to
               date.
             </p>
-            <hr class="p-rule--muted u-hide--small u-hide--medium" />
+            <hr class="p-rule--muted" />
             <a href="/landscape">Learn more about Landscape&nbsp;&rsaquo;</a>
           </div>
         {%- endif -%}
@@ -234,8 +238,8 @@
           <div class="p-section--shallow">
             {{ image(url="https://assets.ubuntu.com/v1/440c2169-Canonical%20Snapcraft.png",
                         alt="Snap store",
-                        width="230",
-                        height="60",
+                        width="150",
+                        height="39",
                         hi_def=True,
                         loading="lazy") | safe
             }}
@@ -250,7 +254,7 @@
               existing apps or build your own. Having a managed app store gives you role-based access controls,
               application versioning, OTA updates, controlled software rollouts, and much more.
             </p>
-            <hr class="p-rule--muted u-hide--small u-hide--medium" />
+            <hr class="p-rule--muted" />
             <a href="/internet-of-things/appstore">Learn more about the Snap Store&nbsp;&rsaquo;</a>
           </div>
         {%- endif -%}
@@ -259,8 +263,8 @@
           <div>
             {{ image(url="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png",
                         alt="Microsoft Azure",
-                        width="203",
-                        height="55",
+                        width="132",
+                        height="38",
                         hi_def=True,
                         loading="lazy") | safe
             }}
@@ -283,21 +287,53 @@
       {%- endcall -%}
     </section>
 
-    {% call(slot) vf_quote_wrapper(
-      title_text="We are making Device Management simple and flexible",
-      quote_size="small",
-      quote_text="In collaboration with Canonical, we are making it simpler to reliably connect devices to Microsoft Azure IoT services. Snap support in Azure IoT Edge helps ensure consistent performance, enhanced security, and efficient updates across Linux distributions that support Snaps.",
-      citation_source_name_text="Kam VedBrat",
-      citation_source_title_text="GM, Azure IoT",
-      ) -%}
+    <div class="p-section">
+      <div class="p-section--shallow">
+        <hr class="p-rule--highlight is-fixed-width" />
+        <div class="row">
+          <div class="col">
+            <p class="p-muted-heading">
+              We are making Device Management
+              <br />
+              simple and flexible
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <div class="p-section--shallow">
+            <img src="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png"
+                 width="114"
+                 alt="Microsoft Azure Logo" />
+          </div>
+        </div>
+        <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
+          <hr class="p-rule--muted" />
 
-      {%- if slot == 'signpost_image' -%}
-        <img src="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png"
-             width="114"
-             alt="Microsoft Azure Logo" />
-      {%- endif -%}
+          <div class="row">
+            <div class="col-6">
+              <div class="p-section--shallow">
+                <p class="p-heading--6">
+                  <i>
+                    “In collaboration with Canonical, we are making it simpler to reliably connect devices to Microsoft Azure IoT services. Snap support in Azure IoT Edge helps ensure consistent performance, enhanced security, and efficient updates across Linux distributions that support Snaps.”
+                  </i>
+                </p>
+              </div>
+            </div>
+            <div class="col-3">
+              <hr class="p-rule--muted u-hide--large" />
+              <p>
+                <strong>Kam VedBrat</strong>
+                <br />
+                <span class="u-text--muted">GM, Azure IoT</span>
+              </p>
 
-    {% endcall -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="p-section">
       {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
