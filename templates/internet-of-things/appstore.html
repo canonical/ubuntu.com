@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <hr class="p-rule--muted is-fixed-width" />
+    <hr class="p-rule--muted is-fixed-width u-hide--medium u-hide--small" />
     <div class="p-equal-height-row">
       <div class="p-equal-height-row__col">
         <h3 class="p-heading--5 p-equal-height-row__item">Onboard new devices</h3>
@@ -298,8 +298,14 @@
   </section>
 
   <section>
+    <div class="u-fixed-width">
+      <hr class="p-rule--highlight" />
+      <div class="p-section--shallow">
+        <h2 class="p-text--small-caps">What our customers say</h2>
+      </div>
+    </div>
+
     {% call(slot) vf_quote_wrapper(
-      title_text="What our customers say",
       quote_size="small",
       quote_text="The IoT App Store gives us the prebuilt infrastructure to seamlessly deliver OTA updates to our entire fleet.",
       citation_source_name_text="Viktor Petersson",
