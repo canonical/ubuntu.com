@@ -1725,12 +1725,15 @@ legend {
   margin-top: $spv--small;
 }
 
-.p-equal-height-row-50-50 {
+.p-equal-height-row-2 {
+  @extend .p-equal-height-row;
+
   .p-equal-height-row__col {
     grid-column: span 6;
     padding-top: 0.5rem;
   }
 }
+
 // XXX: MPT: Can be removed once this is upstreamed in Vanilla
 // https://github.com/canonical/vanilla-framework/issues/5293
 .list-matrix {
