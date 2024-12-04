@@ -158,6 +158,8 @@
             </style>
           </noscript>
 
+          {% include "templates/_notifications.html" %}
+
           {% if not(hide_nav == True) %}
 
             {% include "templates/_navigation.html" %}
@@ -168,7 +170,6 @@
               
               <main id="main-content" class="inner-wrapper">
                 
-                {% include "templates/notifications.html" %}
                 
                 {% block content_head %}{% endblock %}
                 
