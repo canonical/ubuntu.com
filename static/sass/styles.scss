@@ -1463,6 +1463,10 @@ $color-link-dark: #69c !default;
   &.is-product {
     background-color: #f3f3f3;
   }
+
+  &--logo {
+    margin-top: $spv--large;
+  }
 }
 
 .p-icon-section {
@@ -1783,4 +1787,10 @@ legend {
 // Fix for spacing in the footer
 .p-footer-list {
   @extend %paragraph;
+}
+
+.u-additional-spacing--large {
+  @media screen and ($breakpoint-large <= width) {
+    margin-bottom: $sp-unit * 12.5;
+  }
 }
