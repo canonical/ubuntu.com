@@ -27,19 +27,20 @@
         Whether you are using classic Ubuntu or our optimized version for IoT and edge, we have a trusted operating system that enables you to speed up time to market and scale your business with confidence.
       </p>
     {%- endif -%}
-    {%- if slot == 'cta' -%}
+    {%- if slot == "cta" -%}
       <a href="/core/services" class="p-button--positive">Discover IoT Professional Services</a>
       <a href="/download/iot" class="p-button">Download Ubuntu for IoT</a>
     {%- endif -%}
-    {%- if slot == 'image' -%}
+    {%- if slot == "image" -%}
       <div class="p-image-container is-highlighted is-cover u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/bedecf29-hero-img-iot.png",
-                alt="",
-                width="3696",
-                height="1541",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-image-container__image"},) | safe
+        {{ image(
+          url="https://assets.ubuntu.com/v1/7b0d858b-hero-img-iot-2.png",
+          alt="",
+          width="3696",
+          height="1541",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "p-image-container__image"},) | safe
         }}
       </div>
     {%- endif -%}
@@ -347,7 +348,7 @@
               <h3 class="u-no-margin--bottom">Ubuntu</h3>
             </div>
             <hr class="p-rule--muted" />
-            <div class="p-section--shallow">
+            <div class="p-section--shallow u-responsive-cta">
               <p>
                 <a href="/desktop">Ubuntu</a> is a solid foundation for all software development and the OS of choice for developers. Ubuntu Pro is a comprehensive subscription on top of Ubuntu that gives you confidence in your full open source stack.
               </p>
@@ -370,13 +371,16 @@
               <h3 class="u-no-margin--bottom">Ubuntu Core</h3>
             </div>
             <hr class="p-rule--muted" />
-            <p>
-              Ubuntu Core is our open source operating system designed for IoT and edge, with the strong security model you've come to expect from Ubuntu. Core is used by IoT start-ups and large enterprises, with huge fleets of devices in the field today.
-            </p>
-            <p>
-              Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production, and includes Ubuntu Pro as the standard.
-            </p>
-            <div class="p-cta-block">
+            <div class="p-section--shallow u-responsive-cta">
+              <p>
+                Ubuntu Core is our open source operating system designed for IoT and edge, with the strong security model you've come to expect from Ubuntu. Core is used by IoT start-ups and large enterprises, with huge fleets of devices in the field today.
+              </p>
+              <p>
+                Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production, and includes Ubuntu Pro as the standard.
+              </p>
+
+            </div>
+            <div class="p-cta-block ">
               <a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
             </div>
           </div>
@@ -394,7 +398,7 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <h3 class="p-heading--5 u-no-margin--bottom">Smart start</h3>
-          <p class="u-text--muted u-no-padding--top">Ensure the success of your application packaging on Ubuntu</p>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Ensure the success of your application packaging on Ubuntu</p>
         </div>
         <p class="p-equal-height-row__item">
           Enjoy Snapcraft 101 training, snap store services, device fees and support for one year for up to 1,000 devices and much more as part of our smart start service. Find out more about <a href="/pricing/devices">what's included here</a>.
@@ -403,7 +407,7 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <h3 class="p-heading--5 u-no-margin--bottom">Device Enablement</h3>
-          <p class="u-text--muted u-no-padding--top">Your own production-grade image in our testing infrastructure</p>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Your own production-grade image in our testing infrastructure</p>
         </div>
         <p class="p-equal-height-row__item">
           <a href="/core/services">Our Enablement services</a> allow you to get a production-grade Ubuntu image for your device, while our Maintenance services guarantee that any security update won't break your device.
@@ -411,8 +415,8 @@
       </div>
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
-          <h3 class="p-heading--5 u-no-margin--bottom">Develop your applications privately in an enterprise Store</h3>
-          <p class="u-text--muted u-no-padding--top">Your own production-grade image in our testing infrastructure</p>
+          <h3 class="p-heading--5 u-no-margin--bottom">Dedicated Snap Store</h3>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Develop your applications privately in an enterprise Store</p>
         </div>
         <p class="p-equal-height-row__item">
           Canonical's <a href="/internet-of-things/appstore">IoT App Store</a> enables you to host and manage software updates for your devices. It provides a trusted update infrastructure, including reliable over-the-air updates, secure authentication, CI/CD integration, and more.
@@ -421,7 +425,7 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <h3 class="p-heading--5 u-no-margin--bottom">Certified Hardware</h3>
-          <p class="u-text--muted u-no-padding--top">Certify your hardware for guaranteed support</p>
+          <p class="u-text--muted u-no-padding--top p-heading--5">Certify your hardware for guaranteed support</p>
         </div>
         <p class="p-equal-height-row__item">
           Canonical enables hundreds of devices every year, offering <a href="/certified">certified hardware</a> to users. Bring Ubuntu to your device and ensure every component will be supported by future Ubuntu releases.
@@ -433,7 +437,7 @@
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <h2>Let's discuss your business and help you find the right product for you.</h2>
+      <h2>Let's discuss your business and help you find the right product.</h2>
       <a href="/internet-of-things#get-in-touch"
          class="p-heading--2 js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
     </div>
@@ -462,31 +466,30 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>
-          From prototype to production
-          <br />
-          on all major platforms
-        </h2>
-      </div>
-      <div class="col-6">
-        <p>
-          Ubuntu Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience.
-        </p>
-        <p>
-          We perform regular testing directly on the hardware throughout the lifecycle of the Ubuntu release for which it has been certified. We work directly with a number of silicon partners to ensure the best hardware certification.
-        </p>
-        <div class="p-cta-block">
-          <a href="/certified" class="p-button--positive">Discover all certified hardware</a>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            From prototype to production
+            <br />
+            on all major platforms
+          </h2>
+        </div>
+        <div class="col-6">
+          <p>
+            Ubuntu Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experience.
+          </p>
+          <p>
+            We perform regular testing directly on the hardware throughout the lifecycle of the Ubuntu release for which it has been certified. We work directly with a number of silicon partners to ensure the best hardware certification.
+          </p>
+          <div class="p-cta-block">
+            <a href="/certified" class="p-button--positive">Discover all certified hardware</a>
+          </div>
         </div>
       </div>
     </div>
     <div class="u-fixed-width">
-      <hr class="p-rule--muted" />
-      <h3 class="p-text--small-caps">Trusted by</h3>
-
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
