@@ -80,7 +80,7 @@ mainList.addEventListener("click", function (e) {
   }
 });
 
-// The current set up of the meganav doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla meganav. 
+// The current set up of the meganav doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla meganav.
 function closeNotifications() {
   const notification = document.querySelector(".p-popup-notification:target");
   console.log(notification);
