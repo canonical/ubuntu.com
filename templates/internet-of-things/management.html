@@ -48,7 +48,7 @@
                     width="1800",
                     height="1128",
                     hi_def=True,
-                    loading="auto",
+                    loading="auto|lazy",
                     attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
@@ -79,24 +79,26 @@
     </section>
 
     <section class="p-section">
-      <div class="row--50-50 p-section--shallow">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2>
-            A complete set of tools
-            <br class="u-hide-small" />
-            to scale your fleet
-          </h2>
-        </div>
-        <div class="col">
-          <p>
-            Whatever lifecycle stage your device is at, we have tools to support you as you deploy, manage and scale your
-            fleets of embedded devices.
-          </p>
-          <div class="p-rule--muted"></div>
-          <p>
-            <a href="/internet-of-things/contact-us?product=management">Get in touch to discuss your device management needs&nbsp;&rsaquo;</a>
-          </p>
+      <div class="p-section--shallow">
+        <div class="row--50-50">
+          <hr class="p-rule" />
+          <div class="col">
+            <h2>
+              A complete set of tools
+              <br class="u-hide-small" />
+              to scale your fleet
+            </h2>
+          </div>
+          <div class="col">
+            <p>
+              Whatever lifecycle stage your device is at, we have tools to support you as you deploy, manage and scale your
+              fleets of embedded devices.
+            </p>
+            <div class="p-rule--muted"></div>
+            <p>
+              <a href="/internet-of-things/contact-us?product=management">Get in touch to discuss your device management needs&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -104,10 +106,14 @@
         <div class="p-equal-height-row__col">
           <div class="p-equal-height-row__item">
             <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/c43ec46c-onboard-new-devices.png"
-                   alt=""
-                   width="250" />
+              {{ image(url="https://assets.ubuntu.com/v1/c43ec46c-onboard-new-devices.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="auto|lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
           <div class="p-equal-height-row__item">
@@ -125,10 +131,14 @@
         <div class="p-equal-height-row__col">
           <div class="p-equal-height-row__item">
             <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/166662b7-reliable-ota-updates.png"
-                   alt=""
-                   width="250" />
+              {{ image(url="https://assets.ubuntu.com/v1/166662b7-reliable-ota-updates.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="auto|lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
           <div class="p-equal-height-row__item">
@@ -146,10 +156,14 @@
         <div class="p-equal-height-row__col">
           <div class="p-equal-height-row__item">
             <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/a6fc8f4d-organize-your-fleet.png"
-                   alt=""
-                   width="250" />
+              {{ image(url="https://assets.ubuntu.com/v1/a6fc8f4d-organize-your-fleet.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="auto|lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
           <div class="p-equal-height-row__item">
@@ -166,10 +180,14 @@
         <div class="p-equal-height-row__col">
           <div class="p-equal-height-row__item">
             <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-              <img class="p-image-container__image"
-                   src="https://assets.ubuntu.com/v1/79509554-integrate-with-cloud-solutions.png"
-                   alt=""
-                   width="250" />
+              {{ image(url="https://assets.ubuntu.com/v1/79509554-integrate-with-cloud-solutions.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="auto|lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
             </div>
           </div>
           <div class="p-equal-height-row__item">
@@ -306,9 +324,12 @@
       <div class="row">
         <div class="col-3 col-medium-2">
           <div class="p-section--shallow">
-            <img src="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png"
-                 width="114"
-                 alt="Microsoft Azure Logo" />
+            {{ image(url="https://assets.ubuntu.com/v1/dc17f4fd-microsoft-azure.png",
+                        alt="Microsoft Azure Logo",
+                        width="114",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
           </div>
         </div>
         <div class="col-9 col-start-large-4 col-medium-4 col-start-medium-3">
