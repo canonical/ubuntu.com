@@ -6,23 +6,27 @@
 {% block title %}Ubuntu on Edge and Industrial Gateways{% endblock %}
 
 {% block meta_description %}
-  Leveraging virtualisation on industrial gateways at the edge is easiest with Ubuntu. Orchestrate any type of application containers the most secure way with Ubuntu.
+  Leveraging virtualization on industrial gateways at the edge is easiest with Ubuntu. Orchestrate any type of application containers the most secure way with Ubuntu.
 {% endblock meta_description %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/18ffTcNolrtJS9AvjMfa8KW94uLfC0KzmHtTe-jMYmlo/edit#
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Virtualisation on edge gateways',
+    title_text='Virtualization on edge gateways',
     layout='50/50',
     is_split_on_medium=true
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        Edge gateways provide key infrastructure for the digital transformation industrial operations. Ubuntu delivers long-term security, along with the flexibility to deploy various types of applications, platforms and protocols to the edge though virtualisation.
+        Edge gateways provide key infrastructure for the digital transformation industrial operations. Ubuntu delivers long-term security, along with the flexibility to deploy various types of applications, platforms and protocols to the edge though virtualization.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
@@ -48,14 +52,13 @@
     <div class="p-logo-section--dense">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{ image(
-          url="https://assets.ubuntu.com/v1/c98e92ee-dell-logo .png",
-          alt="Dell",
-          width="145",
-          height="312",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"}) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/c98e92ee-dell-logo .png",
+                    alt="Dell",
+                    width="145",
+                    height="312",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-logo-section__logo"}) | safe
           }}
         </div>
         <div class="p-logo-section__item">
@@ -168,7 +171,8 @@
       quote_text="As companies continue to embrace Internet of Things (IoT) solutions, security and quick, easy system updates are critical.",
       citation_source_name_text="Jason Shepherd",
       citation_source_title_text="Director of Strategy and Partnerships,",
-      citation_source_organisation_text="IoT, Dell"
+      citation_source_organisation_text="IoT, Dell",
+      is_shallow=true
       ) -%}
 
       {%- if slot == 'signpost_image' -%}
@@ -200,7 +204,7 @@
           <div class="col-3 col-medium-3">
             <h3 class="p-text--small-caps">Bespoke for the edge</h3>
           </div>
-          <div class="col-6 col-medium-3 p-section--shallow">
+          <div class="col-6 col-medium-3">
             <ul class="p-list--divided">
               <li class="p-list__item">
                 <b>Minimal Light footprint</b>
@@ -228,7 +232,7 @@
           <div class="col-3 col-medium-3">
             <h3 class="p-text--small-caps">Container-friendly</h3>
           </div>
-          <div class="col-6 col-medium-3 p-section--shallow">
+          <div class="col-6 col-medium-3">
             <ul class="p-list--divided">
               <li class="p-list__item">
                 <b>Snaps</b>
@@ -264,7 +268,9 @@
           <div class="col-6 col-medium-3">
             <div class="row">
               <div class="col-3 col-medium-3">
-                <b>Short range</b>
+                <p>
+                  <b>Short range</b>
+                </p>
                 <ul class="p-list--divided">
                   <li class="p-list__item is-ticked">Bluetooth</li>
                   <li class="p-list__item is-ticked">Wifi</li>
@@ -273,7 +279,9 @@
 
               </div>
               <div class="col-3 col-medium-3">
-                <b>Long range</b>
+                <p>
+                  <b>Long range</b>
+                </p>
                 <ul class="p-list--divided">
                   <li class="p-list__item is-ticked">Cellular (2G, 3G, LTE, 5G)</li>
                   <li class="p-list__item is-ticked">LoRa</li>
@@ -302,10 +310,6 @@
       <div class="col">
         <p>
           80% of Linux developers choose Ubuntu. Therefore finding talents and technical support will be easiest with Ubuntu.
-        </p>
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="https://iot.eclipse.org/community/resources/iot-surveys/assets/iot-developer-survey-2019.pdf">#1 Linux distribution for IoT&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -442,15 +446,13 @@
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item u-hide--small u-hide--medium">
               <div class="p-image-container is-highlighted">
-                {{ image(
-                url="https://assets.ubuntu.com/v1/e7956fe2-kura.png",
-                alt="Kura",
-                width="852",
-                height="1278",
-                hi_def=True,
-                attrs={"class": "p-image-container__image"},
-                loading="auto|lazy"
-                ) | safe
+                {{ image(url="https://assets.ubuntu.com/v1/e7956fe2-kura.png",
+                                alt="Kura",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="auto|lazy") | safe
                 }}
               </div>
             </div>
@@ -500,7 +502,7 @@
       <hr class="p-rule" />
       <div class="col">
         <h2>
-          Get in touch!
+          Get in touch
           <br />
           We are innovators, just like you.
         </h2>
