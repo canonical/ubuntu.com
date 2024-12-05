@@ -1794,3 +1794,9 @@ legend {
     margin-bottom: $sp-unit * 12.5;
   }
 }
+
+.u-responsive-cta {
+  @media screen and ($breakpoint-large <= width) {
+    height: 15rem;
+  }
+}
