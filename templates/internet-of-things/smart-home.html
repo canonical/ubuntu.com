@@ -35,10 +35,15 @@
       <a href="#get-in-touch" class="p-button--positive">Contact us to get started</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
-      <div class="p-image-container--cinematic is-cover is-highlighted">
-        <img class="p-image-container__image"
-             src="https://assets.ubuntu.com/v1/736618a0-hero-img.png"
-             alt="Smart Home Hero Image" />
+      <div class="p-image-container--cinematic is-cover is-highlighted u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/736618a0-hero-img.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
     {% endif -%}
   {% endcall -%}
@@ -46,7 +51,10 @@
   <section class="p-section">
     {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
       {%- if slot == 'title' -%}
-        <h2>Why develop with Ubuntu</h2>
+        <div class="fixed-width">
+          <hr class="p-rule u-hide--medium u-hide--large" />
+          <h2>Why develop with Ubuntu</h2>
+        </div>
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}
@@ -98,13 +106,16 @@
       </div>
       <div class="col">
         <div class="p-image-container is-cover is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/c8af9315-universal-compatibility.png"
-               alt="Universal Compatibility Image" />
+          {{ image(url="https://assets.ubuntu.com/v1/c8af9315-universal-compatibility.png",
+                    alt="",
+                    width="1800",
+                    height="1015",
+                    hi_def=True,
+                    loading="auto|lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
-        <h3 class="p-heading--5">
-          Devices that speak a common language
-        </h3 class="p-heading--5">
+        <h3 class="p-heading--5">Devices that speak a common language</h3>
         Canonical <a href="https://ubuntu.com/blog/canonical-joins-the-connectivity-standards-alliance">recently
         announced</a> its membership in the Connectivity Standards Alliance and its upcoming support for the Matter
         standard. <a href="#get-in-touch" class="js-invoke-modal">Sign up</a> to receive smart home and IoT news.
@@ -113,9 +124,11 @@
   </section>
 
   <section class="p-section">
-    <div class="row p-section--shallow">
-      <hr class="p-rule" />
-      <h2>Secure, resilient, low-touch</h2>
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <hr class="p-rule" />
+        <h2>Secure, resilient, low-touch</h2>
+      </div>
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
@@ -123,10 +136,14 @@
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/166662b7-reliable-ota-updates.png"
-                     alt=""
-                     width="250" />
+                {{ image(url="https://assets.ubuntu.com/v1/166662b7-reliable-ota-updates.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="auto|lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </div>
             <div class="p-equal-height-row__item">
@@ -143,10 +160,14 @@
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/a6fc8f4d-organize-your-fleet.png"
-                     alt=""
-                     width="250" />
+                {{ image(url="https://assets.ubuntu.com/v1/a6fc8f4d-organize-your-fleet.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="auto|lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </div>
             <div class="p-equal-height-row__item">
@@ -164,15 +185,19 @@
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-                <img class="p-image-container__image"
-                     src="https://assets.ubuntu.com/v1/79509554-integrate-with-cloud-solutions.png"
-                     alt=""
-                     width="250" />
+                {{ image(url="https://assets.ubuntu.com/v1/79509554-integrate-with-cloud-solutions.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                loading="auto|lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
               </div>
             </div>
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-              <h3 class="p-heading--5">Fleet management through snap store</h3>
+              <h3 class="p-heading--5">Fleet management through the snap store</h3>
             </div>
             <div class="p-equal-height-row__item">
               <p>
@@ -187,9 +212,11 @@
   </section>
 
   <section class="p-section--deep">
-    <div class="row p-section--shallow">
-      <hr class="p-rule" />
-      <h2>How to develop your open source smart home application</h2>
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <hr class="p-rule" />
+        <h2>How to develop your open source smart home application</h2>
+      </div>
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
@@ -223,15 +250,13 @@
                     comes with the same level of OTA and revision control you have for your own application.
 
                   </p>
-                  {{ image (
-                  url="https://assets.ubuntu.com/v1/2fcfbc3b-snap-store.png",
-                  alt="",
-                  width="636",
-                  height="346",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"class": "u-hide--small is-cover is-highlighted"}
-                  ) | safe
+                  {{ image(url="https://assets.ubuntu.com/v1/2fcfbc3b-snap-store.png",
+                                    alt="",
+                                    width="1800",
+                                    height="1014",
+                                    hi_def=True,
+                                    loading="auto|lazy",
+                                    attrs={"class": "u-hide--small is-cover is-highlighted"}) | safe
                   }}
                 </div>
               </div>
