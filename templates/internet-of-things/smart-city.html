@@ -32,9 +32,14 @@
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover is-highlighted">
-        <img class="p-image-container__image"
-             src="https://assets.ubuntu.com/v1/031dd74a-smart-city-hero.png"
-             alt="" />
+        {{ image(url="https://assets.ubuntu.com/v1/031dd74a-smart-city-hero.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
     {% endif -%}
   {% endcall -%}
@@ -264,9 +269,14 @@
       </div>
       <div class="col">
         <div class="p-image-container is-cover is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/fd081fd3-iot-ota-updates.png"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/fd081fd3-iot-ota-updates.png",
+                    alt="",
+                    width="1800",
+                    height="1015",
+                    hi_def=True,
+                    loading="auto|lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
         <h3 class="p-heading--5">Compressed, transactional, signed and secure</h3>
         <p>
@@ -447,9 +457,14 @@
       </div>
       <div class="col">
         <div class="p-image-container is-cover is-highlighted">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/c65b7605-accelerate-data-science.png"
-               alt="Accelerate Data Science" />
+          {{ image(url="https://assets.ubuntu.com/v1/c65b7605-accelerate-data-science.png",
+                    alt="",
+                    width="1800",
+                    height="1015",
+                    hi_def=True,
+                    loading="auto|lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
         </div>
         <h3 class="p-heading--5">Deep learning</h3>
         <p>
@@ -525,10 +540,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/24457f3e-signage.png"
-                 alt=""
-                 width="250" />
+            {{ image(url="https://assets.ubuntu.com/v1/24457f3e-signage.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
@@ -548,10 +567,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/1882d6fe-gateways.png"
-                 alt=""
-                 width="250" />
+            {{ image(url="https://assets.ubuntu.com/v1/1882d6fe-gateways.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
@@ -571,10 +594,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/a5127766-automotive.png"
-                 alt=""
-                 width="250" />
+            {{ image(url="https://assets.ubuntu.com/v1/a5127766-automotive.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
@@ -592,10 +619,14 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/e00e0645-cloud-solutions.png"
-                 alt=""
-                 width="250" />
+            {{ image(url="https://assets.ubuntu.com/v1/e00e0645-cloud-solutions.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="auto|lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
