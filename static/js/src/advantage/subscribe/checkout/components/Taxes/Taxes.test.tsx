@@ -112,7 +112,7 @@ describe("TaxesTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const intialValues = {
+    const initialValues = {
       country: "GB",
     };
     const products = [
@@ -123,7 +123,7 @@ describe("TaxesTests", () => {
     ];
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
@@ -158,7 +158,7 @@ describe("TaxesTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const intialValues = {
+    const initialValues = {
       country: "GB",
       VATNumber: "GB123123123",
     };
@@ -171,7 +171,7 @@ describe("TaxesTests", () => {
     ];
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Taxes products={products} setError={jest.fn()} />
           </Elements>
