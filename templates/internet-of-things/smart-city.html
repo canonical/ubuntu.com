@@ -24,7 +24,7 @@
 
   {% call(slot) vf_hero(
     title_text='Build the future with smart cities',
-    subtitle_text='Enhance transport, utilities and infrastructure with IoT',
+    subtitle_text='Enhance transport, utilities<br /> and infrastructure with IoT',
     layout='50/50-full-width-image'
     ) -%}
     {%- if slot == 'cta' -%}
@@ -201,6 +201,7 @@
         <div class="col">
           <ul class="p-list--divided u-no-margin--bottom">
             <li class="p-list__item row">
+              <hr class="p-rule--muted u-hide--medium u-hide--large" />
               <div class="col-2 col-medium-3">
                 <h3 class="p-heading--5">Datasheet</h3>
               </div>
@@ -407,6 +408,7 @@
         <div class="col">
           <ul class="p-list--divided u-no-margin--bottom">
             <li class="p-list__item row">
+              <hr class="p-rule--muted u-hide--medium u-hide--large" />
               <div class="col-2 col-medium-3">
                 <h3 class="p-heading--5">Whitepaper</h3>
               </div>
@@ -500,11 +502,13 @@
 
           <div class="row">
             <hr class="p-rule--muted" />
-            <div class="col-4">
+            <div class="col-3 col-medium-4">
               <a href="/engage/ubuntu-cybersecurity-webinar">Learn more about Compliance in Ubuntu&nbsp;&rsaquo;</a>
             </div>
-            <div class="col-8">
-              <a href="/engage/azure-ubuntu-pro-fips-whitepaper#the-form">Staying compliant while delivering innovation in
+            <div class="col-9 col-medium-8">
+              <a href="/engage/azure-ubuntu-pro-fips-whitepaper#the-form">Staying compliant while delivering innovation
+                <br class="u-hide--small" />
+                in
               government services&nbsp;&rsaquo;</a>
             </div>
           </div>
