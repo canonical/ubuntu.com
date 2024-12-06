@@ -19,7 +19,7 @@
 
 {% block content %}
   {% call(slot) vf_hero(
-    title_text='Take control of your infrastructure',
+    title_text='Take control <br />of your infrastructure',
     subtitle_text='',
     layout='50/50-full-width-image'
     ) -%}
@@ -63,10 +63,9 @@
           <li class="p-list__item is-ticked">Create your own software repositories</li>
           <li class="p-list__item is-ticked">Extend and customize Landscape via our API</li>
         </ul>
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/landscape/pricing" class="p-button--positive">Get Landscape&nbsp;&rsaquo;</a>
-        </p>
+        <div class="p-cta-block">
+          <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
+        </div>
       </div>
     </div>
   </section>
@@ -92,10 +91,9 @@
             It also allows you to remotely update and upgrade machines and manage users and permissions
           </li>
         </ul>
-        <hr class="p-rule--muted" />
-        <p>
+        <div class="p-cta-block">
           <a href="/landscape/features">Learn about Landscape's features&nbsp;&rsaquo;</a>
-        </p>
+        </div>
       </div>
     </div>
   </section>
@@ -110,12 +108,14 @@
           with Landscape
         </h2>
       </div>
-      <div class="col p-section--shallow">
-        <p>Landscape could save a thousand-desktop firm over $200,000 in just three years</p>
-        <div class="p-cta-block">
-          <p>
-            <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
-          </p>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Landscape could save a thousand-desktop firm over $200,000 in just three years</p>
+          <div class="p-cta-block">
+            <p>
+              <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -147,6 +147,7 @@
       </div>
     </div>
   </section>
+
   {% call(slot) vf_quote_wrapper(
     title_text="What our customers say",
     quote_size="small",
@@ -172,20 +173,27 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Get Landscape with an Ubuntu Pro subscription</h2>
+        <h2>
+          Get Landscape
+          <br />
+          with an Ubuntu Pro subscription
+        </h2>
       </div>
       <div class="col">
-        <div class="p-image-container is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
-                    alt="",
-                    width="1800",
-                    height="1201",
-                    hi_def=True,
-                    loading="auto",
-                    attrs={"class": "p-image-container__image"}) | safe
-          }}
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
+                        alt="",
+                        width="1800",
+                        height="1201",
+                        hi_def=True,
+                        loading="auto",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
         </div>
         <p>An Ubuntu Pro subscription includes:</p>
+        <hr class="p-rule--muted" />
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">24/7 phone, portal and email support</li>
           <li class="p-list__item is-ticked">Option of a dedicated Canonical support engineer on your premises</li>
@@ -194,14 +202,13 @@
           <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
         </ul>
         <div class="p-cta-block">
-          <p>
-            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-          </p>
+          <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
         </div>
       </div>
+
       <hr class="p-rule--muted" />
 
-      <p class="p-heading--5 p-text--small-caps">Ubuntu Pro customers include</p>
+      <h2 class="p-heading--5 p-text--small-caps">Ubuntu Pro customers include</h2>
       <div class="p-logo-section--dense">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -309,9 +316,7 @@
           With role-based access controls, zero-touch enablement, health monitoring and remote debugging/scripting capabilities &mdash; you can rest easy.
         </p>
         <div class="p-cta-block">
-          <p>
-            <a href="/engage/iot-management-landscape">Access the whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
-          </p>
+          <a href="/engage/iot-management-landscape">Access the whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -341,16 +346,18 @@
 
   <hr class="p-rule is-fixed-width" />
 
-  <section class="p-strip is-deep u-fixed-width">
-    <h2>
-      Outstanding system administration at scale
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        Outstanding system administration at scale
+        <br />
+        for all versions of Ubuntu.
+      </h2>
       <br />
-      for all versions of Ubuntu.
-    </h2>
-    <br />
-    <h2>
-      <a href="/landscape/pricing">Get Landscape&nbsp;&rsaquo;</a>
-    </h2>
+      <h2>
+        <a href="/landscape/pricing">Get Landscape&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
   </section>
 
   <!-- Set default Marketo information for contact form below-->
