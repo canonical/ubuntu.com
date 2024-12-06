@@ -17,7 +17,7 @@ describe("UserInfoFormTests", () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
-    const intialValues = {
+    const initialValues = {
       name: "Joe",
       organisationName: "Canonical",
       buyingFor: "organisation",
@@ -36,7 +36,7 @@ describe("UserInfoFormTests", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
+        <Formik initialValues={initialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <UserInfoForm setError={jest.fn()} />
           </Elements>

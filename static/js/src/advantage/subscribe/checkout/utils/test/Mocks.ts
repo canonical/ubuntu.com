@@ -152,7 +152,7 @@ export const BlenderProduct: Product = {
   canBeTrialled: false,
 };
 
-export const distributorProduct: ChannelProduct = {
+export const DistributorProduct: ChannelProduct = {
   id: "uai-essential-desktop-1y-channel-eur-v2",
   longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
   name: "uai-essential-desktop-1y-channel-eur-v2",
