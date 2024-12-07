@@ -150,17 +150,15 @@
 
       attachEvents(tabs, persistURLHash);
 
-      const isInsideCurrentContainer =
-        null !==
-        tabContainer.querySelector(".p-tabs__link[href='" + currentHash + "']");
-
-      if (persistURLHash && currentHash && isInsideCurrentContainer) {
-        const activeTab = document.querySelector(
+      if (persistURLHash && currentHash) {
+        const activeTabLink = document.querySelector(
           ".p-tabs__link[href='" + currentHash + "']",
         );
-
-        if (activeTab) {
-          setActiveTab(activeTab, tabs);
+        const activeTabButton = document.querySelector(
+          ".p-tabs__item[id='" + currentHash.replace("#", "") + "']",
+        );
+        if (activeTabLink || activeTabButton) {
+          setActiveTab(activeTabLink || activeTabButton, tabs);
         }
 
         return;
