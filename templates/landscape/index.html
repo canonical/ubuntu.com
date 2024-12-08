@@ -25,7 +25,7 @@
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        Landscape is a systems management tool that can be used as a web based service or through an API. Landscape Server is available through Canonical either as a managed solution or Sofware-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
+        Landscape is a systems management tool that can be used as a web based service or through an API. Landscape Server is available through Canonical either as a managed solution or Software-as-a-Service model, or it can be self-hosted. Landscape Client is installed on Ubuntu to enroll with Landscape Server.
       </p>
       <p>
         Landscape automates security patching, auditing, access management and compliance tasks across your Ubuntu estate. Use it in well-connected or airgapped environments: at sea, in space and everywhere in between.
@@ -40,10 +40,14 @@
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
-        <img class="p-image-container__image"
-             src="https://assets.ubuntu.com/v1/8776d218-hero-img-iot.png"
-             alt=""
-             width="3696" />
+        {{ image(url="https://assets.ubuntu.com/v1/8776d218-hero-img-iot.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
     {% endif -%}
   {% endcall -%}
@@ -112,30 +116,30 @@
         <div class="p-section--shallow">
           <p>Landscape could save a thousand-desktop firm over $200,000 in just three years</p>
           <div class="p-cta-block">
-            <p>
-              <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
-            </p>
+            <a href="https://insights.ubuntu.com/2014/06/12/enterprise-class-ubuntu-management-with-canonical-landscape/">Read the case study&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-9 col-medium-6 col-start-large-4 p-section">
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--1 u-no-margin--bottom">1,121%</p>
-            <p>ROI over five years</p>
-          </div>
-          <div class="col-3 col-medium-2">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--1 u-no-margin--bottom">$688k</p>
-            <p>Savings every year</p>
-          </div>
-          <div class="col-3 col-medium-2">
-            <hr class="p-rule--highlight" />
-            <p class="p-heading--1 u-no-margin--bottom">2 months</p>
-            <p>Investment payback period</p>
+      <div class="col-9 col-medium-6 col-start-large-4">
+        <div class="p-section">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">1,121%</p>
+              <p>ROI over five years</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">$688k</p>
+              <p>Savings every year</p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <hr class="p-rule--highlight" />
+              <p class="p-heading--1 u-no-margin--bottom">2 months</p>
+              <p>Investment payback period</p>
+            </div>
           </div>
         </div>
       </div>
@@ -170,44 +174,46 @@
   {% endcall -%}
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>
-          Get Landscape
-          <br />
-          with an Ubuntu Pro subscription
-        </h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <div class="p-image-container is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
-                        alt="",
-                        width="1800",
-                        height="1201",
-                        hi_def=True,
-                        loading="auto",
-                        attrs={"class": "p-image-container__image"}) | safe
-            }}
+    <div class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Get Landscape
+            <br />
+            with an Ubuntu Pro subscription
+          </h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/65c0e352-get landscape.png",
+                            alt="",
+                            width="1800",
+                            height="1201",
+                            hi_def=True,
+                            loading="auto",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+          </div>
+          <p>An Ubuntu Pro subscription includes:</p>
+          <hr class="p-rule--muted" />
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">24/7 phone, portal and email support</li>
+            <li class="p-list__item is-ticked">Option of a dedicated Canonical support engineer on your premises</li>
+            <li class="p-list__item is-ticked">Access to our world class technical team and knowledge base</li>
+            <li class="p-list__item is-ticked">IP legal assurance</li>
+            <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
+          </ul>
+          <div class="p-cta-block">
+            <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
           </div>
         </div>
-        <p>An Ubuntu Pro subscription includes:</p>
-        <hr class="p-rule--muted" />
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">24/7 phone, portal and email support</li>
-          <li class="p-list__item is-ticked">Option of a dedicated Canonical support engineer on your premises</li>
-          <li class="p-list__item is-ticked">Access to our world class technical team and knowledge base</li>
-          <li class="p-list__item is-ticked">IP legal assurance</li>
-          <li class="p-list__item is-ticked">Kernel Livepatching for all your machines</li>
-        </ul>
-        <div class="p-cta-block">
-          <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-        </div>
       </div>
-
+    </div>
+    <div class="u-fixed-width">
       <hr class="p-rule--muted" />
-
       <h2 class="p-heading--5 p-text--small-caps">Ubuntu Pro customers include</h2>
       <div class="p-logo-section--dense">
         <div class="p-logo-section__items">
@@ -293,7 +299,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -316,7 +321,8 @@
           With role-based access controls, zero-touch enablement, health monitoring and remote debugging/scripting capabilities &mdash; you can rest easy.
         </p>
         <div class="p-cta-block">
-          <a href="/engage/iot-management-landscape">Access the whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
+          <a href="/internet-of-things/management" class="p-button--positive">Explore IoT device management</a>
+          <a href="/engage/iot-management-landscape">Access whitepaper on patching IoT devices&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -350,7 +356,7 @@
     <div class="u-fixed-width">
       <h2>
         Outstanding system administration at scale
-        <br />
+        <br class="u-hide--small" />
         for all versions of Ubuntu.
       </h2>
       <br />
