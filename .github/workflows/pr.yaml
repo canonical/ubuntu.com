@@ -87,7 +87,7 @@ jobs:
         run: dotrun lint-python
 
   lint-jinja:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
 
       - name: Get changed HTML files in the templates folder
         id: changed-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@v45
         with:
           files: templates/**/*.html
 
@@ -137,7 +137,7 @@ jobs:
           konf production deploy/site.yaml | kubeval -f -
 
   test-python:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -166,7 +166,7 @@ jobs:
         run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           flags: python
 
@@ -190,7 +190,7 @@ jobs:
           yarn test-js --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           flags: javascript
 
