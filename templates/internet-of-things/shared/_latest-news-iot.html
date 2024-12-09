@@ -8,29 +8,34 @@
     </div>
   </div>
   <div class="p-section--shallow">
-    <div class="row" id="ceph-install-latest"></div>
+    <div class="p-equal-height-row--wrap" id="iot-latest"></div>
   </div>
-
-  <template id="ceph-install-template">
-    <div class="col-3 col-medium-2 u-equal-height-items">
-      <div class="u-crop--16-9">
-        <div class="article-image p-image-wrapper"></div>
+  <template id="iot-latest-template">
+    <div class="p-equal-height-row__col">
+      <div class="p-equal-height-row__item">
+        <div class="u-crop--16-9">
+          <div class="article-image p-image-wrapper"></div>
+        </div>
       </div>
-      <h3 class="p-heading--5">
-        <a class="article-link article-title"></a>
-      </h3>
-      <p class="article-excerpt"></p>
+      <div class="p-equal-height-row__item">
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+      </div>
+      <div class="p-equal-height-row__item">
+        <p class="article-excerpt"></p>
+      </div>
     </div>
   </template>
 </section>
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 {# djlint:off #}
-<script>  
+<script>
   canonicalLatestNews.fetchLatestNews(
     {
-      articlesContainerSelector: "#ceph-install-latest",
-      articleTemplateSelector: "#ceph-install-template",
+      articlesContainerSelector: "#iot-latest",
+      articleTemplateSelector: "#iot-latest-template",
       excerptLength: 200,
       {% if groupId %}
         groupId: {{ groupId }},
