@@ -404,7 +404,7 @@ const UserInfoForm = ({ setError }: Props) => {
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      {window.accountId && initialValues.defaultPaymentMethod ? (
+      {window.accountId && initialValues.defaultPaymentMethod && (
         <>
           <Col size={4}></Col>
           <Col size={8}>
@@ -428,7 +428,7 @@ const UserInfoForm = ({ setError }: Props) => {
             className="u-align--right"
             style={{ marginTop: "calc(.5rem - 1.5px)" }}
           >
-            {isEditing ? (
+            {isEditing && (
               <ActionButton
                 onClick={() => {
                   setFieldValue("buyingFor", initialValues.buyingFor);
@@ -447,17 +447,18 @@ const UserInfoForm = ({ setError }: Props) => {
               >
                 Cancel
               </ActionButton>
-            ) : null}
+            )}
             <ActionButton
               onClick={toggleEditing}
               loading={isSubmitting}
               disabled={isButtonDisabled}
+              data-testid="user-info-save-button"
             >
               {isEditing ? "Save" : "Edit"}
             </ActionButton>
           </div>
         </>
-      ) : null}
+      )}
     </Row>
   );
 };
