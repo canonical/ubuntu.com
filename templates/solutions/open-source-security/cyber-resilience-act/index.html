@@ -1,0 +1,239 @@
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/13VaiP6GGkGB4mE01bIqJ3cg8MfQXulNs9m3cmYb20HQ
+{% endblock meta_copydoc %}
+
+{% block title %}Understand the Cyber Resilience Act (CRA) and its requirements{% endblock %}
+
+{% block meta_description %}
+  Discover what you need to know about the EU Cyber Resilience Act requirements, and get clear recommendations for compliance. Understand how Canonical can help.
+{% endblock %}
+
+{% block outer_content %}
+
+  {% block content %}
+
+    {% call(slot) vf_hero(
+      title_text='Meet your Cyber Resilience Act requirements with Canonical',
+      subtitle_text='Build your products and device software with Ubuntu and Canonical\'s trusted open source portfolio. Fast-track your pathway to CRA compliance.',
+      layout='75/25',
+      is_split_on_medium=true
+      ) -%}
+      {%- if slot == 'cta' -%}
+        <a href="#" class="p-button--positive">Contact our team</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+        <div class="p-image-container--3-2 is-cover">
+          <img class="p-image-container__image"
+               src="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg"
+               alt="" />
+        </div>
+      {%- endif -%}
+    {% endcall -%}
+
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-strip is-shallow u-no-padding--bottom">
+      <section class="p-section--shallow">
+        <div class="row--50-50">
+          <div class="col">
+            <h1>What is the Cyber Resilience Act (CRA)?</h1>
+          </div>
+          <div class="col">
+            <p class="u-embedded-media">
+              <iframe title="Ubuntu on Azure"
+                      class="u-embedded-media__element"
+                      src="https://www.youtube.com/embed/ltBtIDvav6c"
+                      allowfullscreen=""
+                      frameborder="0"></iframe>
+            </p>
+            <p>
+              The CRA is a European Union legislation that aims to make Products with Digital Elements (PDEs) safer by requiring developers, manufacturers, distributors and retailers to follow mandatory cybersecurity, documentation, and vulnerability reporting requirements. The CRA extends this protection throughout the product life cycle.
+            </p>
+            <a href="https://ubuntu.com/blog/a-cisos-comprehensive-breakdown-of-the-cyber-resilience-act">
+              Read our CISO's full breakdown of the CRA
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-strip is-shallow u-no-padding--bottom">
+      <section class="p-section--shallow">
+        <div class="row--50-50">
+          <div class="col">
+            <h1>What products and devices does the CRA regulate?</h1>
+            {{ image(url="https://assets.ubuntu.com/v1/fe901a6a-Japanese%20Ubuntu%20Illustrations%20(Light)%20IoT%20Optimized.svg",
+                        alt="", height="842", width="632", hi_def=True, loading="auto") | safe }}
+          </div>
+          <div class="col">
+            <p>
+              The CRA will cover all products or devices available in the EU market that are connected to any other device or network to exchange data. This includes PDEs that use:
+              <ul>
+                <li>Direct/indirect connection</li>
+                <li>Physical, wireless/radio or virtual</li>
+                <li>Remote data processing</li>
+              </ul>
+
+              The CRA will cover all PDEs made available in the EU market regardless of:
+              <ul>
+                <li>Where you are located</li>
+                <li>Where the product has been developed/produced</li>
+              </ul>
+
+              The exceptions are:
+              <ul>
+                <li>Solutions used for internal purposes are not considered PDEs</li>
+                <li>Pure SaaS solutions will be excluded</li>
+                <li>PDEs that are already regulated by sector-specific regulations will be excluded</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-strip is-shallow u-no-padding--bottom">
+      <section class="p-section--shallow">
+        <div class="row--50-50">
+          <div class="col">
+            <h1>The Cyber Resilience Act requirements in a nutshell</h1>
+          </div>
+          <div class="col">
+            <h3 class="p-heading--5 u-no-padding--top">Vulnerability management</h3>
+            <p>
+              Manufacturers must maintain security throughout the product lifecycle through:
+              <ul>
+                <li>Security patching and maintenance</li>
+                <li>Incident response</li>
+              </ul>
+              <hr />
+            </p>
+            <h3 class="p-heading--5 u-no-padding--top">Risk assessment</h3>
+            <p>
+              Manufacturers must ensure that PDEs:
+              <ul>
+                <li>Have no known exploitable vulnerabilities</li>
+                <li>Are secure by default with minimal attack surface</li>
+                <li>Minimize processing of data</li>
+              </ul>
+              <hr />
+            </p>
+            <h3 class="p-heading--5 u-no-padding--top">Documentation</h3>
+            <p>
+              Manufacturers must deliver documentation to address:
+              <ul>
+                <li>Product design, delivery and vulnerability management</li>
+                <li>Risk assessment and conformity declaration</li>
+                <li>Software Bill of Materials (SBOM)</li>
+                <li>Manuals covering system hardening and operation</li>
+              </ul>
+              <hr />
+            </p>
+            <h3 class="p-heading--5 u-no-padding--top">Conformity assessment</h3>
+            <p>
+              Manufacturers must provide a declaration of conformity, either though:
+              <ul>
+                <li>Self assessment</li>
+                <li>Independent third party auditors</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-strip u-no-padding--bottom">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            <h1>How the CRA classifies products</h1>
+          </div>
+          <div class="col">
+            The CRA is wide-reaching and its effects will vary depending on how your device or software is categorized. Devices and software are placed into four categories, based on their cybersecurity risk factor and their level of access authority or connection to sensitive infrastructure, networks, or systems.
+          </div>
+        </div>
+      </section>
+      <section class="p-section">
+        <div class="row">
+          <table aria-label="cra-table">
+            <thead>
+              <tr>
+                <th>Product classification</th>
+                <th>Product examples</th>
+                <th>Declaration of conformity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Default Products</th>
+                <td>
+                  <ul>
+                    <li>Hard drives</li>
+                    <li>Smart speakers</li>
+                  </ul>
+                </td>
+                <td>
+                  <strong>Self assessment</strong> - Complete a checklist of requirements and issue a statement of compliance yourself.
+                </td>
+              </tr>
+              <tr>
+                <th>Important Products Class I</th>
+                <td>
+                  <ul>
+                    <li>Password managers</li>
+                    <li>Operating systems</li>
+                    <li>Wearable devices</li>
+                  </ul>
+                </td>
+                <td>
+                  <strong>Independent Body Assessment or EU Certification</strong> - Your compliance efforts must be assessed by an accredited 3rd party for formal EU CRA certification.
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Important Products Class II
+                </th>
+                <td>
+                  <ul>
+                    <li>Hypervisors</li>
+                    <li>Firewalls</li>
+                    <li>Intrusion detection systems</li>
+                  </ul>
+                </td>                  
+                <td>
+                  <strong>Independent Body Assessment or EU Certification</strong>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Critical Products
+                </th>
+                <td>
+                  <ul>
+                    <li>Smartcards</li>
+                    <li>Hardware Security Modules</li>
+                    <li>Smart meter gateways</li>
+                  </ul>
+                </td>
+                <td>
+                  Independent Body Assessment or EU Certification
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  {% endblock %}
+{% endblock %}
