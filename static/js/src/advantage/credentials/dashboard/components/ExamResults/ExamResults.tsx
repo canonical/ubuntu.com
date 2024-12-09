@@ -103,6 +103,11 @@ const ExamResults = () => {
           ),
       },
       {
+        Header: "First Name",
+        accessor: "user.first_name",
+        sortType: "basic",
+      },
+      {
         Header: "User Email",
         accessor: "user_email",
         sortType: "basic",
@@ -295,6 +300,8 @@ const ExamResults = () => {
       {flatData && flatData?.length > 0 && (
         <>
           <ModularTable
+            initialSortColumn="completed_at"
+            initialSortDirection="descending"
             data={currentRows}
             columns={columns}
             sortable
