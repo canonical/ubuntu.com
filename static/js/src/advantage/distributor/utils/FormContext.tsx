@@ -14,7 +14,6 @@ import {
   getPreDuration,
   TechnicalUserContact,
   ProductListings,
-  Metadata,
   DISTRIBUTOR_SELECTOR_KEYS,
 } from "./utils";
 import { Offer } from "advantage/offers/types";
