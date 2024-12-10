@@ -32,5 +32,5 @@ export type Offer = {
   technical_contact_email?: string | null;
   technical_contact_name?: string | null;
   opportunity_number?: string | null;
-  version?: string | null;
+  exclusion_group?: string;
 };

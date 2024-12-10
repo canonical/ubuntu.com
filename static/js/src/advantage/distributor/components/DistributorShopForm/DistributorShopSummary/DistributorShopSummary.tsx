@@ -12,6 +12,7 @@ import DistributorBuyButton from "../../DistributorBuyButton/DistributorBuyButto
 const DistributorShopSummary = () => {
   const { products, currency, subscriptionList, offer } =
     useContext(FormContext);
+
   const discount = offer?.discount;
 
   let totalPrice = 0;

@@ -82,6 +82,7 @@ class ChannelListing:
         status: str,
         product: Product = None,
         metadata: List[Metadata] = None,
+        exclusion_group: str = "",
     ):
         self.id = id
         self.name = name
@@ -91,6 +92,7 @@ class ChannelListing:
         self.currency = currency
         self.status = status
         self.metadata = metadata
+        self.exclusion_group = exclusion_group
 
 
 class UserSubscription:
@@ -171,7 +173,7 @@ class Offer:
         technical_contact_email: Optional[str] = None,
         technical_contact_name: Optional[str] = None,
         opportunity_number: Optional[str] = None,
-        version: Optional[str] = None,
+        exclusion_group: Optional[str] = "",
     ):
         self.id = id
         self.account_id = account_id
@@ -198,7 +200,7 @@ class Offer:
             self.technical_contact_email = technical_contact_email
             self.technical_contact_name = technical_contact_name
             self.opportunity_number = opportunity_number
-            self.version = version
+            self.exclusion_group = exclusion_group
 
     def check_is_channel_offer(self) -> bool:
         return self.is_channel_offer
