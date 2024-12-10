@@ -530,15 +530,17 @@
           <h3>DevOps for devices</h3>
         </div>
         <div class="col">
-          <div class="p-image-container is-cover is-highlighted">
-            {{ image(url="https://assets.ubuntu.com/v1/f8f1f33e-devops.png",
-                        alt="",
-                        width="1800",
-                        height="1014",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
-            }}
+          <div class="p-section--shallow">
+            <div class="p-image-container is-cover is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/f8f1f33e-devops.png",
+                            alt="",
+                            width="1800",
+                            height="1014",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
           </div>
           <p>
             Build, test and publish applications automatically. Bring CI/CD to your IoT appliances. Give your developers a pipeline to deliver updates to customers straight from their standard process. Empower customers to test beta and pre-release versions.
