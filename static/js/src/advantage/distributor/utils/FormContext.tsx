@@ -131,95 +131,68 @@ export const FormProvider = ({
   const updatedChannelProductList = useMemo(() => {
     const rawChannelProductListings = window.channelProductList;
     const offerItems = offer?.items || [];
+    const offerQuarter = offer?.exclusion_group || "";
     const updatedChannelProductList: ProductListings = {};
 
-    const extractNameAndVersion = (listing: any) => {
-      const nameWithVersion = listing?.name || ""; // ex: "uai-essential-desktop-1y-channel-eur-v2"
-      const nameWithoutVersion =
-        listing?.name?.lastIndexOf("-") === -1
-          ? nameWithVersion
-          : nameWithVersion.substring(0, listing?.name?.lastIndexOf("-")); // ex: "uai-essential-desktop-1y-channel-eur"
-      const version =
-        listing?.metadata?.find((data: Metadata) => data.key === "version")
-          ?.value || "1"; // "2"
-      return { nameWithoutVersion, version }; // ex: { nameWithoutVersion: "uai-essential-desktop-1y-channel-eur", version: "2" }
+    const extractNameWithoutQuarter = (listing: any) => {
+      return listing?.name?.split("-").slice(0, 6).join("-"); // ex: "uai-essential-desktop-1y-channel-eur"
     };
 
-    const updateProductListing = (
-      listing: any,
-      nameWithVersion: string,
-      nameWithoutVersion: string,
-      version: string,
-    ) => {
+    const updateProductListing = (listing: any) => {
       if (updatedChannelProductList) {
-        updatedChannelProductList[nameWithoutVersion] = {
-          id: nameWithVersion, // ex: "uai-essential-desktop-1y-channel-eur-v2"
-          longId: listing.id, // ex: "labcdefgskdfalskdjflakwedafdafsdfadsfdaf"
-          name: listing?.name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
+        const {
+          name,
+          id,
+          price,
+          currency,
+          product,
+          marketplace,
+          exclusion_group,
+        } = listing;
+
+        const nameWithoutQuarter = extractNameWithoutQuarter(listing); // ex: "uai-essential-desktop-1y-channel-eur"
+
+        updatedChannelProductList[nameWithoutQuarter] = {
+          id: name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
+          longId: id, // ex: "labcdefgskdfalskdjflakwedafdafsdfadsfdaf"
+          name: name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
           price: {
-            value: listing?.price, // ex: 23703
-            currency: listing?.currency, // ex:"EUR"
+            value: price, // ex: 23703
+            currency: currency, // ex:"EUR"
           },
-          productID: listing?.product?.id as ValidProductID, // ex: "uai-advanced-desktop"
-          productName: listing?.product?.name, // ex: "Ubuntu Pro Desktop + Support (24/7)"
-          marketplace: listing?.marketplace as UserSubscriptionMarketplace, // ex: "canonical-pro-channel"
-          version: version, // ex: "2"
+          productID: product?.id as ValidProductID, // ex: "uai-advanced-desktop"
+          productName: product?.name, // ex: "Ubuntu Pro Desktop + Support (24/7)"
+          marketplace: marketplace as UserSubscriptionMarketplace, // ex: "canonical-pro-channel"
+          exclusion_group: exclusion_group || "", // ex: "2024Q4"
         };
       }
     };
 
-    const offerKeys = offerItems.map((item) => item.id);
-    const offerItemsNamesWithoutVersion = offerItems.map((item) => {
-      const { nameWithoutVersion } = extractNameAndVersion(item);
-      return nameWithoutVersion;
-    });
+    const offerKeys = offerItems.map((item) => item.id); // ex: ["lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo"]
 
     if (rawChannelProductListings) {
       Object.keys(rawChannelProductListings).forEach((key) => {
+        // loop through each product listing
         const listing = rawChannelProductListings[key];
-        const { nameWithoutVersion, version } = extractNameAndVersion(listing);
+        const nameWithoutQuarter = extractNameWithoutQuarter(listing); // ex: "uai-essential-desktop-1y-channel-eur"
+        const quarter = listing?.exclusion_group || ""; // ex: "2024Q4"
 
         // Add product listings for offers first to updatedChannelProductList
         if (offerKeys.includes(key)) {
-          const offerListing = rawChannelProductListings[key];
-          if (offerListing) {
-            const offerListingNameWithVersion = offerListing.name;
-            updateProductListing(
-              offerListing,
-              offerListingNameWithVersion,
-              nameWithoutVersion,
-              version,
-            );
+          const offerMatchedListing = rawChannelProductListings[key];
+          if (offerMatchedListing) {
+            updateProductListing(offerMatchedListing);
           }
         }
-
-        // Add all product listings to updatedChannelProductList
-        if (nameWithoutVersion in updatedChannelProductList) {
-          // excluding product listings for the offers
-          if (!offerItemsNamesWithoutVersion.includes(nameWithoutVersion)) {
-            const existingVersion =
-              updatedChannelProductList[nameWithoutVersion].version || "1";
-            // Add the highest version of the product listings
-            if (Number(version) > Number(existingVersion)) {
-              updateProductListing(
-                listing,
-                listing.name,
-                nameWithoutVersion,
-                version,
-              );
-            }
-          }
-        } else {
-          updateProductListing(
-            listing,
-            listing.name,
-            nameWithoutVersion,
-            version,
-          );
+        // Add all product listings with matched quarter to updatedChannelProductList
+        if (
+          !(nameWithoutQuarter in updatedChannelProductList) &&
+          offerQuarter == quarter
+        ) {
+          updateProductListing(listing);
         }
       });
     }
-
     return updatedChannelProductList;
   }, [offer, window.channelProductList]);
 

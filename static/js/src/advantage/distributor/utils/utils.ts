@@ -70,7 +70,7 @@ export type ChannelProduct = {
   productID: ValidProductID;
   productName: string;
   marketplace: UserSubscriptionMarketplace;
-  version: string;
+  exclusion_group: string;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
