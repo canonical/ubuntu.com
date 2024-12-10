@@ -16,27 +16,20 @@
 
   {% block content %}
 
-    {% call(slot) vf_hero(
-      title_text='Meet your Cyber Resilience Act requirements with Canonical',
-      subtitle_text='Build your products and device software with Ubuntu and Canonical\'s trusted open source portfolio. Fast-track your pathway to CRA compliance.',
-      layout='75/25',
-      is_split_on_medium=true
-      ) -%}
-      {%- if slot == 'cta' -%}
-        <a href="#" class="p-button--positive">Contact our team</a>
-      {%- endif -%}
-      {%- if slot == 'image' -%}
-        <div class="p-image-container--3-2 is-cover">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg"
-               alt="" />
+    <div class="p-suru--25-75">
+      <div class="row--25-75">
+        <div class="col">
+          <h1>Meet your Cyber Resilience Act requirements with Canonical</h1>
+          <p>
+            Build your products and device software with Ubuntu and Canonical’s trusted open source portfolio. Fast-track your pathway to CRA compliance.
+          </p>
+          <div class="p-cta-block">
+            <a href="#" class="p-button--positive">Contact our team</a>
+          </div>
         </div>
-      {%- endif -%}
-    {% endcall -%}
-
-    <div class="row">
-      <hr class="p-rule" />
+      </div>
     </div>
+
     <div class="p-strip is-shallow u-no-padding--bottom">
       <section class="p-section--shallow">
         <div class="row--50-50">
@@ -103,49 +96,80 @@
     </div>
     <div class="p-strip is-shallow u-no-padding--bottom">
       <section class="p-section--shallow">
-        <div class="row--50-50">
+        <div class="row">
           <div class="col">
             <h1>The Cyber Resilience Act requirements in a nutshell</h1>
           </div>
+        </div>
+      </section>
+      <section class="p-section--shallow">
+        <div class="row--25-75">
           <div class="col">
-            <h3 class="p-heading--5 u-no-padding--top">Vulnerability management</h3>
-            <p>
-              Manufacturers must maintain security throughout the product lifecycle through:
-              <ul>
-                <li>Security patching and maintenance</li>
-                <li>Incident response</li>
-              </ul>
+            <div class="row">
+              <hr class="p-rule" />
+            </div>
+            <div class="row--25-75">
+              <div class="col">
+                <h3 class="p-heading--5 u-no-padding--top">Vulnerability management</h3>
+              </div>
+              <div class="col">
+                <p>
+                  Manufacturers must maintain security throughout the product lifecycle through:
+                  <ul>
+                    <li>Security patching and maintenance</li>
+                    <li>Incident response</li>
+                  </ul>
+                </p>
+              </div>
               <hr />
-            </p>
-            <h3 class="p-heading--5 u-no-padding--top">Risk assessment</h3>
-            <p>
-              Manufacturers must ensure that PDEs:
-              <ul>
-                <li>Have no known exploitable vulnerabilities</li>
-                <li>Are secure by default with minimal attack surface</li>
-                <li>Minimize processing of data</li>
-              </ul>
+            </div>
+            <div class="row--25-75">
+              <div class="col">
+                <h3 class="p-heading--5 u-no-padding--top">Risk assessment</h3>
+              </div>
+              <div class="col">
+                <p>
+                  Manufacturers must ensure that PDEs:
+                  <ul>
+                    <li>Have no known exploitable vulnerabilities</li>
+                    <li>Are secure by default with minimal attack surface</li>
+                    <li>Minimize processing of data</li>
+                  </ul>
+                </p>
+              </div>
               <hr />
-            </p>
-            <h3 class="p-heading--5 u-no-padding--top">Documentation</h3>
-            <p>
-              Manufacturers must deliver documentation to address:
-              <ul>
-                <li>Product design, delivery and vulnerability management</li>
-                <li>Risk assessment and conformity declaration</li>
-                <li>Software Bill of Materials (SBOM)</li>
-                <li>Manuals covering system hardening and operation</li>
-              </ul>
+            </div>
+            <div class="row--25-75">
+              <div class="col">
+                <h3 class="p-heading--5 u-no-padding--top">Documentation</h3>
+              </div>
+              <div class="col">
+                <p>
+                  Manufacturers must deliver documentation to address:
+                  <ul>
+                    <li>Product design, delivery and vulnerability management</li>
+                    <li>Risk assessment and conformity declaration</li>
+                    <li>Software Bill of Materials (SBOM)</li>
+                    <li>Manuals covering system hardening and operation</li>
+                  </ul>
+                </p>
+              </div>
               <hr />
-            </p>
-            <h3 class="p-heading--5 u-no-padding--top">Conformity assessment</h3>
-            <p>
-              Manufacturers must provide a declaration of conformity, either though:
-              <ul>
-                <li>Self assessment</li>
-                <li>Independent third party auditors</li>
-              </ul>
-            </p>
+            </div>
+            <div class="row--25-75">
+              <div class="col">
+                <h3 class="p-heading--5 u-no-padding--top">Conformity assessment</h3>
+              </div>
+              <div class="col">
+                <p>
+                  Manufacturers must provide a declaration of conformity, either though:
+                  <ul>
+                    <li>Self assessment</li>
+                    <li>Independent third party auditors</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -201,24 +225,20 @@
                 </td>
               </tr>
               <tr>
-                <th>
-                  Important Products Class II
-                </th>
+                <th>Important Products Class II</th>
                 <td>
                   <ul>
                     <li>Hypervisors</li>
                     <li>Firewalls</li>
                     <li>Intrusion detection systems</li>
                   </ul>
-                </td>                  
+                </td>
                 <td>
                   <strong>Independent Body Assessment or EU Certification</strong>
                 </td>
               </tr>
               <tr>
-                <th>
-                  Critical Products
-                </th>
+                <th>Critical Products</th>
                 <td>
                   <ul>
                     <li>Smartcards</li>
@@ -227,11 +247,41 @@
                   </ul>
                 </td>
                 <td>
-                  Independent Body Assessment or EU Certification
+                  <strong>Independent Body Assessment or EU Certification</strong>
                 </td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+    </div>
+    <div class="p-strip is-shallow u-no-padding--bottom">
+      <section class="p-section">
+        <div class="row">
+          <h1>Who does the Cyber Resilience Act apply to?</h1>
+        </div>
+      </section>
+      <section class="p-section--shallow">
+        <div class="row--25-75">
+          <div class="row--25-75">
+            <div class="col">
+              <h3 class="p-heading--5 u-no-padding--top">Manufacturers</h3>
+            </div>
+            <div class="col">
+              <p>
+                Manufacturers are responsible for ensuring that their products comply with the CRA. They must also provide documentation and a declaration of conformity.
+              </p>
+            </div>
+          </div>
+          <div class="row--25-75">
+            <div class="col">
+              <h3 class="p-heading--5 u-no-padding--top">Distributors</h3>
+            </div>
+            <div class="col">
+              <p>
+              </p>
+            </div>
+          </div>          
         </div>
       </section>
     </div>
