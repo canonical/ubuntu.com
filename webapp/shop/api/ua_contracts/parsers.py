@@ -69,6 +69,7 @@ def parse_channel_product_listing(
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
         metadata=raw_product_listing.get("metadata"),
+        exclusion_group=raw_product_listing.get("exclusionGroup", ""),
     )
 
 
@@ -360,7 +361,7 @@ def parse_offer(raw_offer: Dict) -> Offer:
         metadata, "technicalContactName"
     )
     opportunity_number = get_metadata_value(metadata, "opportunityNumber")
-    version = get_metadata_value(metadata, "version")
+    exclusion_group = raw_offer.get("exclusionGroup", "")
 
     purchase = "purchase" in raw_offer
 
@@ -384,7 +385,7 @@ def parse_offer(raw_offer: Dict) -> Offer:
         technical_contact_email=technical_contact_email,
         technical_contact_name=technical_contact_name,
         opportunity_number=opportunity_number,
-        version=version,
+        exclusion_group=exclusion_group,
     )
 
 
