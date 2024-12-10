@@ -60,43 +60,46 @@
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9 col-medium-6">
-        <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
+        <div class="p-equal-height-row--wrap">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/54ae2ac8-secure.png",
                                 alt="",
                                 width="852",
                                 height="1279",
                                 hi_def=True,
-                                loading="lazy") | safe
+                                loading="lazy",
+                                attrs={"class":"p-image-container__image"}) | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight" />
-                <h3 class="p-heading--5">Secure</h3>
-              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h5 class="p-heading--5">Secure</h5>
             </div>
             <p class="p-equal-height-row__item">
               Keep sensitive information secure with an industrial proven OS. Enjoy an OS with built-in security and comprehensive features, such as strict application confinement,
               full disk encryption, secure boot, plus 10 years of security maintenance that matches the lifetime of your device.
             </p>
           </div>
+
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/d0b6c883-reliable.png",
                                 alt="",
                                 width="852",
                                 height="1279",
                                 hi_def=True,
-                                loading="lazy") | safe
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight" />
-                <h3 class="p-heading--5">Reliable</h3>
-              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h5 class="p-heading--5">Reliable</h5>
             </div>
             <p class="p-equal-height-row__item">
               With more than 15 years of industrial experience, Ubuntu is one of the most mature graphical servers available today for embedded devices.
@@ -104,28 +107,29 @@
               It has been used in kiosk, IoT, and digital signage solutions, including smart mirrors, health kiosks, and industrial panels.
             </p>
           </div>
+
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/5c259427-simple.png",
                                 alt="",
                                 width="852",
                                 height="1279",
                                 hi_def=True,
-                                loading="lazy") | safe
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight" />
-                <h3 class="p-heading--5">Simple</h3>
-              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h5 class="p-heading--5">Simple</h5>
             </div>
             <p class="p-equal-height-row__item">
               Preferred by developers, Ubuntu’s flexibility allows you to do more with less. Together with tools for deployment, provisioning,
               and over the air updates, you can get your smart display up and running in a matter of seconds, so you can focus on business value.
             </p>
           </div>
-
         </div>
       </div>
     </div>
@@ -213,11 +217,11 @@
             <hr class="p-rule--muted" />
             <div class="col">
               {{ image(url="https://assets.ubuntu.com/v1/65e92caf-ubuntu-core-updated.png",
-                        alt="",
-                        width="501",
-                        height="165",
-                        hi_def=True,
-                        loading="lazy") | safe
+                            alt="",
+                            width="501",
+                            height="165",
+                            hi_def=True,
+                            loading="lazy") | safe
               }}
             </div>
             <div class="col">
@@ -242,11 +246,11 @@
             <hr class="p-rule--muted" />
             <div class="col">
               {{ image(url="https://assets.ubuntu.com/v1/733f4c53-ubuntu-frame-updated.png",
-                        alt="",
-                        width="570",
-                        height="171",
-                        hi_def=True,
-                        loading="lazy") | safe
+                            alt="",
+                            width="570",
+                            height="171",
+                            hi_def=True,
+                            loading="lazy") | safe
               }}
             </div>
             <div class="col">
@@ -344,12 +348,12 @@
               <div class="p-equal-height-row__item">
                 <div class="p-media-container u-darker-background">
                   {{ image(url="https://assets.ubuntu.com/v1/18c95711-screenly-updated.png",
-                            alt="",
-                            width="852",
-                            height="1278",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
+                                    alt="",
+                                    width="852",
+                                    height="1278",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"}) | safe
                   }}
                 </div>
                 <hr class="p-rule--highlight" />
@@ -375,12 +379,12 @@
               <div class="p-equal-height-row__item">
                 <div class="p-media-container u-darker-background">
                   {{ image(url="https://assets.ubuntu.com/v1/0ed335b9-broadsign-updated.png",
-                            alt="",
-                            width="852",
-                            height="1278",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-image-container__image"}) | safe
+                                    alt="",
+                                    width="852",
+                                    height="1278",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-image-container__image"}) | safe
                   }}
                 </div>
                 <hr class="p-rule--highlight" />
@@ -420,72 +424,76 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-start-large-4 col-9 col-medium-6">
+      <div class="col-start-large-4 col-9">
         <div class="p-section--shallow">
-          <div class="p-equal-height-row u-no-padding--bottom">
+          <div class="p-equal-height-row--wrap">
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
-                <div class="p-media-container u-darker-background">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                   <a href="/download/raspberry-pi-core">
                     {{ image(url="https://assets.ubuntu.com/v1/4f5d5967-raspberry-pi.png",
                                         alt="",
                                         width="852",
                                         height="1278",
                                         hi_def=True,
-                                        loading="lazy") | safe
+                                        loading="lazy",
+                                        attrs={"class":"p-image-container__image"}) | safe
                     }}
                   </a>
                 </div>
-                <div class="p-equal-height-row__item">
-                  <hr class="p-rule--highlight" />
-                  <h3 class="p-heading--5">Raspberry Pi</h3>
-                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h5 class="p-heading--5">Raspberry Pi</h5>
               </div>
             </div>
+
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
-                <div class="p-media-container u-darker-background">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                   <a href="/download/iot/intel-iotg">
                     {{ image(url="https://assets.ubuntu.com/v1/d8721aa0-intel-nuc-no-white-bg.png",
                                         alt="",
                                         width="852",
                                         height="1278",
                                         hi_def=True,
-                                        loading="lazy") | safe
+                                        loading="lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
                     }}
                   </a>
                 </div>
-                <div class="p-equal-height-row__item">
-                  <hr class="p-rule--highlight" />
-                  <h3 class="p-heading--5">Intel NUC</h3>
-                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h5 class="p-heading--5">Intel NUC</h5>
               </div>
             </div>
+
             <div class="p-equal-height-row__col">
               <div class="p-equal-height-row__item">
-                <div class="p-media-container u-darker-background">
+                <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                   <a href="/download/qualcomm-dragonboard-410c">
                     {{ image(url="https://assets.ubuntu.com/v1/88e5fa17-dragonboard.png",
                                         alt="",
                                         width="852",
                                         height="1278",
                                         hi_def=True,
-                                        loading="lazy") | safe
+                                        loading="lazy",
+                                        attrs={"class": "p-image-container__image"}) | safe
                     }}
                   </a>
                 </div>
-                <div class="p-equal-height-row__item">
-                  <hr class="p-rule--highlight" />
-                  <h3 class="p-heading--5">Dragonboard</h3>
-                </div>
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h5 class="p-heading--5">Dragonboard</h5>
               </div>
             </div>
-
           </div>
         </div>
       </div>
       <hr class="p-rule--muted" />
-      <div class="col-start-large-7 col-6 col-medium-3">
+      <div class="col-start-large-7 col-6">
         <p>
           <a href="https://discourse.ubuntu.com/t/where-does-ubuntu-frame-work/23193">More information about Ubuntu Frame graphics support&nbsp;&rsaquo;</a>
         </p>
