@@ -620,6 +620,7 @@ class TestParsers(unittest.TestCase):
                     allowance=5,
                 ),
             ],
+            exclusion_group="",
         )
 
         self.assertFalse(expectation.check_is_channel_offer())
@@ -653,6 +654,7 @@ class TestParsers(unittest.TestCase):
                         allowance=5,
                     ),
                 ],
+                exclusion_group="",
             )
         ]
         self.assertFalse(expectation[0].check_is_channel_offer())
@@ -693,6 +695,7 @@ class TestParsers(unittest.TestCase):
                     allowance=2,
                 ),
             ],
+            exclusion_group="",
         )
         self.maxDiff = None
         self.assertTrue(expectation.check_is_channel_offer())
@@ -734,6 +737,7 @@ class TestParsers(unittest.TestCase):
                         allowance=2,
                     ),
                 ],
+                exclusion_group="",
             )
         ]
         self.maxDiff = None
