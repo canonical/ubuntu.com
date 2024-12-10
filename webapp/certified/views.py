@@ -544,7 +544,8 @@ def certified_hardware_details(canonical_id, release):
         hardware_details[category].append(device_info)
 
     return render_template(
-        "certified/hardware-details.html",
+        "certified/hardware-details/hardware-details.html",
+        category_pathname=_get_category_pathname(models["category"]),
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
