@@ -12,7 +12,7 @@
     {% if request.path == "/" %}
     <h2 class="p-heading--1">
     {% else %}
-    <h2 class="p-heading--3">
+    <h2 class="{% if heading_class %}{{ heading_class }}{% else %}p-heading--3{% endif %}">
     {% endif %}
       {% if request.path == "/observability" %}
         More about {{ heading_topic }} in
@@ -33,17 +33,28 @@
     </div>
     {% endif %}
   </div>
+
   <template style="display:none" id="horizontal-articles-template">
     <hr class="p-rule--muted u-hide--large" />
     <div class="col-3">
       <div class="row">
         <div class="col-medium-2 col-small-4 col-3">
+          {% if article_image %}
+          <div class="u-crop--16-9 u-hide--medium u-hide--small">
+            <div class="article-image p-image-wrapper"></div>
+          </div>
+          {% endif %}
+          {% if article_date %}
           <p class="u-no-margin--bottom p-muted-heading">
             <time datetime="" class="article-time"></time>
           </p>
+          {% endif %}
         </div>
         <div class="col-medium-4 col-small-4 col-3">
           <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
+          {% if article_excerpt %}
+          <p class="article-excerpt"></p>
+          {% endif %}
         </div>
       </div>
     </div>
