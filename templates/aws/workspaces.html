@@ -17,34 +17,33 @@
 {% block content %}
   <section class="p-section--hero">
     <div class="row--50-50">
-      <div class="col p-strip is-shallow">
-        <h1>Ubuntu WorkSpaces</h1>
-        <p class="p-heading--5 u-no-margin--bottom">
+      <div class="col">
+        <h1>Ubuntu on Amazon WorkSpaces</h1>
+        <p class="p-heading--5">
           Virtual desktops, powered by AWS.
           <br />
           Develop remotely, securely and cost-effectively.
         </p>
-        <div class="p-strip is-shallow">
-          OpenSearch is an open source search and analytics suite that developers use to build solutions for search, data observability, data ingestion and more.
-          It is designed for scalability, offering powerful full-text search capabilities and supporting various data types, including structured and unstructured data. OpenSearch has rapidly developed into a standalone platform with unique features and capabilities.
-        </div>
+        <p>Ubuntu Desktop on Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code &ndash; spinning up and tearing down instances as required.</p>
+        <p>IT organisations benefit from rapid deployment, configuration and scalability for their managed Ubuntu Desktops whilst their applications and data remain secured in the AWS cloud, even when their developers are working remotely.</p>
       </div>
-      <div class="col p-strip is-shallow">
-        <div class="p-image-container--16-9 is-highlighted u-hide--medium u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/6143478c-correct-bg-aws.png",
-                    alt="AWS Workspaces",
-                    width="300",
-                    height="200",
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"class": "p-image-container__image"}) | safe
-          }}     
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--16-9 is-highlighted u-hide--medium u-hide--small">
+            {{ image(url="https://assets.ubuntu.com/v1/6143478c-correct-bg-aws.png",
+                      alt="",
+                      width="300",
+                      height="200",
+                      hi_def=True,
+                      loading="lazy",
+                      attrs={"class": "p-image-container__image"}) | safe
+            }}     
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <hr class="is-muted" />
-      <div class="col">
+    <div class="u-fixed-width">
+      <div class="p-cta-block">
         <a href="https://aws.amazon.com/workspaces/pricing/?nc=sn&loc=3"
            class="p-button--positive">Launch today</a>
       </div>
@@ -62,71 +61,72 @@
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
-        <hr class="p-rule is-muted" />
-        <div class="row">
-          <div class="col-3">
-            <h3 class="p-heading--5">Ubuntu Desktop 24.04 LTS</h3>
-          </div>
-          <div class="col-6">
-            <ul class="p-list--divided remove-first-hr">
-              <li class="p-list__item is-ticked">A common OS for development, testing and deployment</li>
-              <li class="p-list__item is-ticked">Linux 6.8 kernel alongside the latest toolchains for Python, PGP, Rust and Go</li>
-              <li class="p-list__item is-ticked">
-                Target platform for cutting edge applications in fields like Data Science, AI/ML, Cloud and IoT
-              </li>
-              <li class="p-list__item is-ticked">Active Directory integration</li>
-            </ul>
-            <hr class="p-rule is-muted" />
-            <p class="u-sv3">
-              <a href="/desktop/developers">Read more about Ubuntu Desktop for developers&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-4 col-9">
-        <hr class="p-rule is-muted" />
-        <div class="row">
-          <div class="col-3">
-            <h3 class="p-heading--5">Remote onboarding for developers</h3>
-          </div>
-          <div class="col-6">
-            <ul class="p-list--divided remove-first-hr">
-              <li class="p-list__item is-ticked">
-                Easily onboard remote workers and contractors and get them up and running quickly
-              </li>
-              <li class="p-list__item is-ticked">
-                Portable desktops for any device accessed via web browser or native client applications
-              </li>
-              <li class="p-list__item is-ticked">Pay as you go without the need to procure high-end hardware</li>
-            </ul>
-            <hr class="p-rule is-muted" />
-            <p class="u-sv3">
-              <a href="https://aws.amazon.com/workspaces/">Read more about Amazon WorkSpaces&nbsp;&rsaquo;</a>
-            </p>
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Ubuntu Desktop 22.04 LTS</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">A common OS for development, testing and deployment</li>
+                <li class="p-list__item is-ticked">Linux 6.8 kernel alongside the latest toolchains for Python, PGP, Rust and Go</li>
+                <li class="p-list__item is-ticked">
+                  Target platform for cutting edge applications in fields like Data Science, AI/ML, Cloud and IoT
+                </li>
+                <li class="p-list__item is-ticked">Active Directory integration</li>
+              </ul>
+              <div class="p-cta-block">
+                <a href="/desktop/developers">Read more about Ubuntu Desktop for developers&nbsp;&rsaquo;</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-start-large-4 col-9">
-        <hr class="p-rule is-muted" />
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Remote onboarding for developers</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">
+                  Easily onboard remote workers and contractors and get them up and running quickly
+                </li>
+                <li class="p-list__item is-ticked">
+                  Portable desktops for any device accessed via web browser or native client applications
+                </li>
+                <li class="p-list__item is-ticked">Pay as you go without the need to procure high-end hardware</li>
+              </ul>
+              <div class="p-cta-block">
+                <a href="https://aws.amazon.com/workspaces/">Read more about Amazon WorkSpaces&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <hr class="p-rule--muted" />
         <div class="row">
-          <div class="col-3">
+          <div class="col-3 col-medium-3">
             <h3 class="p-heading--5">Security and management at scale</h3>
           </div>
-          <div class="col-6">
-            <ul class="p-list--divided remove-first-hr">
+          <div class="col-6 col-medium-3">
+            <ul class="p-list--divided">
               <li class="p-list__item is-ticked">Your organisations' applications and data remain in the AWS cloud at all times</li>
               <li class="p-list__item is-ticked">Configure custom images and scale your WorkSpaces on the fly</li>
               <li class="p-list__item is-ticked">Integrate Ubuntu WorkSpaces with your on-prem Active Directory</li>
               <li class="p-list__item is-ticked">Benefit from expanded security patching with Ubuntu Pro</li>
             </ul>
-            <hr class="p-rule is-muted" />
-            <p class="u-sv3">
+            <div class="p-cta-block">
               <a href="/desktop/organisations">Read more about Ubuntu Desktop for organisations&nbsp;&rsaquo;</a>
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -134,16 +134,16 @@
   </section>
 
   <section class="p-section--deep">
-    <div class="row">
+    <div class="row--50-50">
       <hr />
-      <div class="col-6">
+      <div class="col">
         <h2>
           Getting started
           <br class="u-hide--small u-hide--medium" />
           with Ubuntu WorkSpaces
         </h2>
       </div>
-      <div class="col-6">
+      <div class="col">
         <p>
           Ubuntu WorkSpaces can be quickly provisioned on top of your existing directory services. Simply select your preferred Ubuntu bundle and associate users to each workstation.
         </p>

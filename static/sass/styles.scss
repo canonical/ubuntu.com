@@ -841,53 +841,18 @@ td.p-accordion {
 }
 
 // Styling to display a success message when forms are successfully submitted.
-#success {
+.p-popup-notification {
   display: none;
-  position: absolute;
+  position: relative;
+  padding-bottom: 0;
+  .p-notification__content {
+    margin-bottom: 0.6rem;
+  }
 }
 
-#success:target {
+.p-popup-notification:target {
   display: block;
-  z-index: 10;
-}
-
-#newsletter-signup {
-  display: none;
-  position: absolute;
-}
-
-#newsletter-signup:target {
-  display: block;
-  z-index: 10;
-}
-
-#contact-form-success {
-  display: none;
-  position: absolute;
-}
-
-#contact-form-success:target {
-  display: block;
-  z-index: 10;
-}
-
-#updated {
-  display: none;
-}
-
-#updated:target {
-  display: block;
-  z-index: 10;
-}
-
-#unsubscribed {
-  display: none;
-  position: absolute;
-}
-
-#unsubscribed:target {
-  display: block;
-  z-index: 10;
+  z-index: 9;
 }
 
 html {
@@ -1778,4 +1743,9 @@ legend {
 
 .u-no-wrap {
   white-space: nowrap;
+}
+
+// Fix for spacing in the footer
+.p-footer-list {
+  @extend %paragraph;
 }

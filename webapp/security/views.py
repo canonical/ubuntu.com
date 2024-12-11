@@ -630,8 +630,8 @@ def cve(cve_id):
         },
         "esm-apps": {
             "text": (
-                "Fix available with Ubuntu Pro via ESM Apps."
-                "A fix from the community might become publicly available"
+                "Fix available with Ubuntu Pro via ESM Apps. "
+                "A fix from the community might become publicly available "
                 "in the future."
             ),
             "label": "Ubuntu Pro",

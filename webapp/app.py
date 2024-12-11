@@ -7,8 +7,10 @@ import json
 from functools import wraps
 import math
 import flask
+import jinja2
 import requests
 import talisker.requests
+from jinja2 import ChoiceLoader, FileSystemLoader
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -88,6 +90,7 @@ from webapp.shop.cred.views import (
     cred_shop_webhook_responses,
     cred_shop_keys,
     cred_sign_up,
+    cred_thank_you,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
@@ -178,6 +181,16 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# ChoiceLoader attempts loading templates from each path in successive order
+loader = ChoiceLoader(
+    [
+        FileSystemLoader("templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates"),
+    ]
+)
+
+app.jinja_loader = loader
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
@@ -891,6 +904,9 @@ app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
 )
 app.add_url_rule(
+    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
+)
+app.add_url_rule(
     "/credentials/schedule",
     view_func=cred_schedule,
     methods=["GET", "POST"],
@@ -1249,7 +1265,7 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 def render_form(form):
     @wraps(render_form)
     def wrapper_func():
-        with app.app_context() and app.test_request_context():
+        try:
             return flask.render_template(
                 form["templatePath"],
                 fieldsets=form["fieldsets"],
@@ -1257,16 +1273,28 @@ def render_form(form):
                 isModal=form.get("isModal"),
                 modalId=form.get("modalId"),
             )
+        except jinja2.exceptions.TemplateNotFound:
+            flask.abort(
+                404, description=f"Template {form['templatePath']} not found."
+            )
 
     return wrapper_func
 
 
 def set_form_rules():
-    filename = os.path.join(app.static_folder, "files", "forms-data.json")
-    with open(filename) as forms:
-        data = json.load(forms)
+    file_path = os.path.join(app.static_folder, "files", "forms-data.json")
+    with open(file_path) as forms_json:
+        data = json.load(forms_json)
         for path, form in data["forms"].items():
-            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
+            try:
+                app.add_url_rule(
+                    path, view_func=render_form(form), endpoint=path
+                )
+            except AssertionError:
+                app.logger.error(
+                    f"Error setting form rules for {path} \n", AssertionError
+                )
 
 
-set_form_rules()
+# Disabling for now, the forms in form-data.json are for testing purposes
+# set_form_rules()

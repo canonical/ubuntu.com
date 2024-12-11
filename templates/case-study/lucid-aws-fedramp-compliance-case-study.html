@@ -1,0 +1,248 @@
+{% extends "case-study/base_case-study.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% from "macros/_macros-text-list.jinja" import text_list %}
+{% from "macros/_macros-highlights.jinja" import highlights %}
+{% from "macros/_macros-text.jinja" import text %}
+{% from "macros/_macros-image.jinja" import image_wrapper %}
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block title %}FedRAMP compliance case study: Lucid FIPS 140-2 for AWS{% endblock %}
+
+{% block meta_description %}
+  Learn how Ubuntu Pro allowed Lucid to meet FedRAMP compliance and provide its visualization & work management tools to US Federal agencies.
+{% endblock %}
+
+{% block meta_company_name %}Lucid{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/11NbG_hLg0zZdMAzkOLXaS4ItOUfsRF31VAA1-093m_g{% endblock %}
+
+{% block content %}
+  <!-- Hero section -->
+  {%- call(slot) vf_hero(
+    title_text="Ubuntu Pro helps Lucid meet FedRAMP compliance for government contracts", layout="25/75") -%}
+    {% if slot == "signpost_image" %}
+      {{ image(url="https://assets.ubuntu.com/v1/78188986-lucid-logo.png",
+            alt="",
+            width="299",
+            height="50",
+            hi_def=True,
+            loading="auto") | safe
+      }}
+    {% endif %}
+    {% if slot == "description" %}
+      <p>
+        Lucid are the makers of highly popular end-to-end visual collaboration tools hosted on AWS. They needed to meet FedRAMP compliance requirements to provide their products to US Federal agencies. By deploying Ubuntu Pro, Lucid acquired AWS-compatible and FIPS 140-2 certified packages and became FedRAMP compliant.
+      </p>
+    {% endif %}
+  {%- endcall -%}
+
+  <!-- Text + list section -->
+  {%- call(slot) text_list(title="About Lucid") -%}
+    {%- if slot == 'list_item_content_1' -%}
+      Founded in 2010, Lucid builds and delivers an end-to-end Visual Collaboration Suite that helps teams to ideate, plan, design, build, and manage workflows from a shared infinite canvas.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_2' -%}
+      Lucid produces Lucidchart, Lucidspark, and Lucidscale &ndash; online collaboration tools for diagramming, whiteboarding, and visualizing cloud infrastructure.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_3' -%}
+      Lucid serves over 70 million users across 180 countries, with its products widely utilized by 99% of  Fortune 500 companies.
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Highlights section -->
+  {%- call(slot) highlights(num_items=4) -%}
+    {%- if slot == 'highlights_item_content_1' -%}
+      Lucid chose Ubuntu Pro FIPS on AWS to achieve FedRAMP compliance.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_2' -%}
+      With Ubuntu Pro FIPS, Lucid unlocked an entirely new market.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_3' -%}
+      With Canonical enterprise support, Lucid was able to deploy certified packages in under 2 weeks.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_4' -%}
+      Lucid's team can focus on their core business, rather than manually building and maintaining certified packages.
+    {%- endif -%}
+  {%- endcall %}
+
+  <!-- Text section -->
+  {%- call(slot) text(title="Overview") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        Lucid's suite of visual collaboration tools are used by tens of millions of people in private businesses across the globe. It's no surprise that their high-end productivity tools caught the eye of government and federal agencies looking to use Lucidspark, Lucidchart or Lucidscale in their work. There was just one problem: providing these tools and services to the US government comes with additional compliance requirements and challenges. For Lucid to be able to offer their products to federal and government clients, they would need to become FedRAMP compliant and implement FIPS 140-2 certified cryptographic modules.
+      </p>
+      <p>
+        As a long-time user of Ubuntu hosted on AWS, Lucid turned to Canonical to aid with compliance. By adopting Ubuntu Pro, Lucid was able to access a FIPS-compliant Ubuntu image for AWS. Getting Ubuntu Pro FIPS for AWS was fast and easy through the AWS Marketplace. This image contained all the FIPS 140-2 certified packages and auditing tools they would need to meet FedRAMP standards. Lucid was also able to use the Ubuntu Security Guide (USG) to further harden its systems with best practices.
+      </p>
+      <p>
+        Following a seamless rollout, complete with ongoing enterprise support from Canonical, Lucid achieved FedRAMP certification for their product portfolio, ensuring that their federal and government customers could continue to enjoy their favorite visualization and workflow acceleration suite.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Quote section -->
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="If your goal is to achieve FedRAMP compliance, Ubuntu Pro with FIPS is the way to go.",
+    citation_source_name_text="Rocky Olson",
+    citation_source_title_text="Principal Software Engineer, SRE Operations, Lucid Software",
+    is_shallow=True
+    )
+    -%}
+  {%- endcall -%}
+
+  <!-- Image section-->
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/3f63a18c-data-center.png",
+            alt="",
+            width="2464",
+            height="1028",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Text section -->
+  {%- call(slot) text(title="Challenge") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        To provide its solutions to US government organizations and federal agencies, Lucid's services and systems needed to become FedRAMP compliant.
+      </p>
+      <p>
+        FedRAMP is a federally run program with security and auditing standards that software-as-a-service providers must meet to provide services to the US government and its federal agencies.
+      </p>
+      <p>
+        One of the many requirements to meet compliance standards is that encryption providers or protocols must meet a NIST standard called Federal Information Processing Standards (FIPS) 140-2 for its cryptographic modules.
+      </p>
+      <p>
+        Lucid operates entirely on AWS, using services like EC2 and Lambda. However, most upstream releases are not natively designed for specific regulatory compliance standards like FIPS or FedRAMP.  These packages can be custom-built and certified manually by companies; however, these methods of meeting compliance are extensively time-consuming and labor-intensive.
+      </p>
+      <p>
+        At the same time, Lucid's established developer environment was based in Ubuntu. Switching to a FedRAMP- or FIPS-certified environment outside the Ubuntu ecosystem would involve considerable disruption. Lucid sought a solution that would be seamless to integrate into their existing system to keep downtime and interval disruptions to a minimum. Additionally, the solution would have to be natively compatible with AWS, as this platform was the backbone of their operations.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Quote section -->
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="We use Ubuntu in our internal environments, so for our certified packages, it was a no-brainer to use Ubuntu Pro.",
+    citation_source_name_text="Rocky Olson",
+    citation_source_title_text="Principal Software Engineer, SRE Operations, Lucid Software",
+    is_shallow=True
+    )
+    -%}
+  {%- endcall -%}
+
+  <!-- Image section-->
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/cc608dfe-two-workers.png",
+            alt="",
+            width="2464",
+            height="1028",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Text section -->
+  {%- call(slot) text(title="Solution") -%}
+    {%- if slot == 'content' -%}
+      <p>To meet FIPS and FedRAMP compliance, Lucid chose Ubuntu Pro FIPS with Canonical's enterprise support.</p>
+      <p>
+        “We use Ubuntu in our internal environments, so for our certified packages it was a no-brainer to use Ubuntu Pro,” said Rocky Olson, Principal Software Engineer, SRE Operations, Lucid.
+      </p>
+      <p>
+        Ubuntu Pro FIPS is a purpose-built OS image for AWS that delivers FIPS-certified modules out of the box. The solution enforces known secure algorithms and configurations and ensures that modules work in a FIPS-compatible mode of operation by default.
+      </p>
+      <p>
+        Because Ubuntu Pro is available directly on the AWS Marketplace, implementation was fast and painless. Lucid was able to simply add the service to its existing subscription and immediately benefit from the FIPS-certified packages.
+      </p>
+      <p>
+        Lucid initially explored other distributions or providers, but quickly realized that this would have resulted in internal disruptions, learning curves with unfamiliar frameworks, or costly new enterprise support contracts. Ubuntu Pro being native to Ubuntu meant they could get the certified packages needed with nearly zero disruption to their workflow.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Quote section -->
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="We built our FedRAMP environment at breakneck speeds.  We got everything up and running in six months, and mirroring and understanding the Ubuntu Pro packages took less than two weeks. It was just so fast.",
+    citation_source_name_text="Rocky Olson",
+    citation_source_title_text="Principal Software Engineer, SRE Operations, Lucid Software",
+    is_shallow=True
+    )
+    -%}
+  {%- endcall -%}
+
+  <!-- Text section -->
+  {%- call(slot) text(title="Benefits") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        With Ubuntu Pro FIPS for AWS, Lucid had what it needed for an easy and hands-off certification process. With full access to Ubuntu's FIPS 140-2 certified packages, preparing their products for FedRAMP-compliance was a breeze.
+      </p>
+      <p>
+        Ubuntu Pro and its Ubuntu Security Guide made meeting FedRAMP compliance fast and simple.  “We built our FedRAMP environment at breakneck speeds,” said Rocky Olson. “We got everything up and running in six months, and mirroring and understanding the Ubuntu Pro packages took less than two weeks. It was just so fast.”
+      </p>
+      <p>
+        Ubuntu Pro also helped Lucid with its extended certifications work. The Ubuntu Security Guide (USG) that is included with Ubuntu Pro served as a useful auditing tool to run CIS and STIG benchmarking against Lucid's machines to show compliance with these standards.
+      </p>
+      <p>
+        When challenges and issues arose during the project, Canonical's enterprise support was there to resolve issues quickly and smoothly. As Ubuntu Pro + Support users, Lucid benefits from 24/7 direct support from Canonical's experts.
+      </p>
+      <p>
+        Thanks to Ubuntu's developer experience and Canonical's best-in-class enterprise support, it was fast, easy and cost-effective to deploy Ubuntu Pro and meet FedRAMP compliance standards, allowing Lucid access to the biggest IT contracting market in the United States.
+      </p>
+      <p>
+        Best of all, Lucid's services will be able to ensure FedRAMP certification and continuous access to the US Federal market for years to come, as Canonical supports each Ubuntu Pro FIPS image for up to 10 years, delivering ongoing security updates to address CVEs and ensure their systems remain compliant and secure. And if anything goes wrong with their packages, Lucid benefits from 24/7 support directly from Canonical's experts under the Ubuntu Pro Support service.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Quote section -->
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="Ubuntu Pro didn't just help us with FIPS compliance. We also used the Ubuntu Security Guide tool to generate our CIS benchmarks. It was so easy that even our junior engineers could run with it.",
+    citation_source_name_text="Rocky Olson",
+    citation_source_title_text="Principal Software Engineer, SRE Operations, Lucid Software",
+    is_shallow=True
+    )
+    -%}
+  {%- endcall -%}
+
+  <!-- Image section-->
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/440b1dd2-happy-collaboration.png",
+            alt="",
+            width="2464",
+            height="1027",
+            hi_def=True,
+            loading="auto|lazy") | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  <!-- Quote section -->
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="Ultimately the project was straightforward. We needed FedRAMP compliance. We love using Ubuntu, making Ubuntu Pro a natural choice. It was easy to set up and we had great support, so there was no dragon to slay.",
+    citation_source_name_text="Rocky Olson",
+    citation_source_title_text="Principal Software Engineer, SRE Operations, Lucid Software",
+    is_shallow=True
+    )
+    -%}
+  {%- endcall -%}
+{% endblock %}
+
+{% block cta_content %}
+  {{ cta(title="Contact us to  learn  about Ubuntu Pro FIPS", link="/contact-us", has_modal=true) }}
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/case-study"
+       data-form-id="5919"
+       data-return-url="/case-study#contact-success"></div>
+{% endblock %}

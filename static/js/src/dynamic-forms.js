@@ -411,7 +411,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           const radioFieldsets = document.querySelectorAll(
             ".js-remove-radio-names",
           );
-          if (radioFieldsets) {
+          if (radioFieldsets.length > 0) {
             radioFieldsets.forEach((radioFieldset) => {
               const radioInputs = radioFieldset.querySelectorAll(
                 "input[type='radio']",
@@ -499,6 +499,11 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       setCheckboxLimit();
+
+      // Sets up dial code dropdown options aka. intlTelInput.js
+      // and pre fills the country field
+      // This gets triggered when the modal is opened
+      prepareInputFields(phoneNumberInput, countryInput);
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {

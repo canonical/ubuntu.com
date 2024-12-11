@@ -57,7 +57,7 @@ const MESSAGES: Messages = {
       message: {
         default: "Check the subscription errors below for more information.",
         [UserSubscriptionType.Legacy]:
-          "Click on Renew subscription to to ensure service continuity.",
+          "Click on Renew subscription to ensure service continuity.",
         [UserSubscriptionType.Monthly]:
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Yearly]:
@@ -82,7 +82,7 @@ const MESSAGES: Messages = {
       message: {
         default: "Check the subscription errors below for more information.",
         [UserSubscriptionType.Legacy]:
-          "Click on Renew subscription to to ensure service continuity.",
+          "Click on Renew subscription to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
@@ -116,7 +116,7 @@ const MESSAGES: Messages = {
       message: {
         default: "Check the subscription errors below for more information.",
         [UserSubscriptionType.Legacy]:
-          "Click on Renew subscription to to ensure service continuity.",
+          "Click on Renew subscription to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in

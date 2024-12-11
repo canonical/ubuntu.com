@@ -282,7 +282,7 @@ class AdvantageMapper:
     def activate_magic_attach(
         self, user_code: str, contract_id: str, client_ip: int
     ):
-        headers = {} if client_ip else {"X-Forwarded-For": client_ip}
+        headers = {"X-Forwarded-For": client_ip} if client_ip else {}
         return self.ua_contracts_api.post_magic_attach(
             request_body={"userCode": user_code, "contractID": contract_id},
             headers=headers,

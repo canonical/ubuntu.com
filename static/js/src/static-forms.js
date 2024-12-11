@@ -123,9 +123,24 @@ function setUpStaticForms(form, formId) {
         message += "\r\n\r\n";
       });
 
+      const radioFieldsets = document.querySelectorAll(
+        ".js-remove-radio-names",
+      );
+      if (radioFieldsets.length > 0) {
+        radioFieldsets.forEach((radioFieldset) => {
+          const radioInputs = radioFieldset.querySelectorAll(
+            "input[type='radio']",
+          );
+          radioInputs.forEach((radioInput) => {
+            radioInput.removeAttribute("name");
+          });
+        });
+      }
+
       if (formFields.length) {
         commentsFromLead.value = message;
       }
+
       return message;
     });
   }
