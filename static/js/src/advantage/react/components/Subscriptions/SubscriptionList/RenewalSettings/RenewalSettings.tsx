@@ -242,7 +242,7 @@ export const RenewalSettings = ({
       position="left"
       positionNode={positionNodeRef.current}
       toggleClassName="is-dense u-no-margin--bottom"
-      toggleLabel="Renewal settings"
+      toggleLabel="Auto-renew settings"
       visible={menuOpen}
     >
       {content}
