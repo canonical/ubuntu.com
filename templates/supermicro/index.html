@@ -306,10 +306,9 @@
               <p>
                 <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
               </p>
-              <button class="p-chip--information"
-                      onclick="location.href='/blog/tag/supermicro'">
+              <a class="p-chip--information" href="/blog/tag/supermicro">
                 <span class="p-chip__value">Supermicro</span>
-              </button>
+              </a>
             </div>
             {% if loop.index < 3 %}<hr class="p-rule" />{% endif %}
           {% endif %}

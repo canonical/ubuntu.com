@@ -1,10 +1,11 @@
 {% extends "case-study/base_case-study.html" %}
 
-{% from "macros/_macros-hero.jinja" import hero %}
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
 {% from "macros/_macros-text-list.jinja" import text_list %}
 {% from "macros/_macros-highlights.jinja" import highlights %}
 {% from "macros/_macros-text.jinja" import text %}
-{% from "macros/_macros-quote.jinja" import quote_wrapper %}
 {% from "macros/_macros-image.jinja" import image_wrapper %}
 {% from "macros/_macros-cta.jinja" import cta %}
 
@@ -21,7 +22,8 @@
 {% endblock %}
 
 {% block content %}
-  {%- call(slot) hero(title="SBI BITS puts business continuity at the heart of its OpenStack migration with hands-on support from Canonical",
+  {%- call(slot) vf_hero(
+    title_text="SBI BITS puts business continuity at the heart of its OpenStack migration with hands-on support from Canonical",
     layout="25/75",
     is_split_on_medium="true") -%}
     {% if slot == "signpost_image" %}
@@ -170,10 +172,11 @@
     {%- endif -%}
   {%- endcall -%}
 
-  {%- call(slot) quote_wrapper(
+  {%- call(slot) vf_quote_wrapper(
     quote_text="[Our Dedicated Support Engineer] is like another member of my team – and I’m picky about my team members. He knows how the finserv industry works; he understands that we have to go through a process and can’t just fix things like a cowboy",
     citation_source_name_text="Spokesperson",
-    citation_source_organisation_text="SBI BITS"
+    citation_source_organisation_text="SBI BITS",
+    is_shallow=True
     )
     -%}
   {%- endcall -%}
@@ -209,10 +212,11 @@
     {%- endif -%}
   {%- endcall -%}
 
-  {%- call(slot) quote_wrapper(
+  {%- call(slot) vf_quote_wrapper(
     quote_text="We’ve never considered switching providers. No other vendor could give us a perfect solution. We’ve built a great relationship with Canonical and the economics are good",
     citation_source_name_text="Spokesperson",
-    citation_source_organisation_text="SBI BITS"
+    citation_source_organisation_text="SBI BITS",
+    is_shallow=True
     )
     -%}
   {%- endcall -%}

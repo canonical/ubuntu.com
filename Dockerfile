@@ -51,6 +51,7 @@ WORKDIR /srv
 ADD . .
 RUN rm -rf package.json yarn.lock babel.config.js webpack.config.js
 COPY --from=build-js /srv/static/js static/js
+COPY --from=build-js /srv/node_modules/vanilla-framework/templates node_modules/vanilla-framework/templates
 COPY --from=build-css /srv/static/css static/css
 ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 

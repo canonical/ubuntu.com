@@ -13,6 +13,7 @@ if (!cookieAcceptanceValue) {
   cpNs.cookiePolicy(setUserId);
 } else {
   setUserId();
+  cpNs.cookiePolicy();
 }
 
 function setUserId() {
