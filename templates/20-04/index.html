@@ -142,7 +142,7 @@
     </div>
     <div class="u-fixed-width">
       {{ image (
-      url="https://assets.ubuntu.com/v1/667439d5-esm.png",
+      url="https://assets.ubuntu.com/v1/4fb3a7e7-esm-updated.png",
       alt="",
       width="2464",
       height="1027",
@@ -164,9 +164,6 @@
           Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the Main Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Ubuntu Pro delivers security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of five years beyond the end of standard support.
         </p>
         <p>Additionally, Ubuntu Pro can also cover all packages in the Ubuntu Universe repository, until April 2030.</p>
-        <div class="p-cta-block">
-          <a href="">Link to blog post&nbsp;&rsaquo;</a>
-        </div>
       </div>
     {%- endif -%}
 
@@ -218,6 +215,7 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_title_3' -%}
+
       <h5>Application packages</h5>
     {%- endif -%}
 
@@ -225,6 +223,7 @@
       <p>
         Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe. A few commonly-used packages include:
       </p>
+      <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided">
         <li class="p-list__item is-ticked">Python - 3.8</li>
         <li class="p-list__item is-ticked">PostgreSQL - 12</li>
@@ -241,7 +240,8 @@
     quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
     citation_source_name_text="Zivago Lee",
     citation_source_title_text="Director of DevOps Engineeringr",
-    citation_source_organisation_text="Interana"
+    citation_source_organisation_text="Interana",
+    is_shallow=True
     ) -%}
 
     {%- if slot == 'heading_link' -%}
@@ -280,7 +280,7 @@
   </section>
 
   <hr class="is-fixed-width" />
-  {% with section_classes='p-section', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', article_image='True', article_excerpt='True', tag_id='3733', tag_name='ubuntu-20-04' %}
+  {% with section_classes='p-section--deep', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', article_image='True', article_excerpt='True', tag_id='3733', tag_name='ubuntu-20-04' %}
     {% include "shared/_latest_news_strip.html" %}
   {% endwith %}
 
