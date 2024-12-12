@@ -1266,7 +1266,6 @@
         xhr.send();
         fetchUserCountry.open("GET", "/user-country.json", true);
         fetchUserCountry.send();
-        takeoverAnimation.className += " is-loading";
       }
 
       function showTakeover(takeovers, index) {
@@ -1319,6 +1318,7 @@
 
         image.src = selectedTakeover.image;
         image.onload = function() {
+          console.log("image loaded")
           // Remove animation delay
           if (takeoverAnimation) {
             takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
