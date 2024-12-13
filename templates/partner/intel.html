@@ -1,0 +1,643 @@
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block title %}Intel and Canonical{% endblock %}
+
+{% block meta_description %}
+  Intel and Canonical partner to ensure Intel hardware platforms and features are enabled, performant and monitored over time in Ubuntu and other open source software in the Canonical portfolio.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1GstP9FfZfbXO81YcX-9oCJdP9pamlgpl2kKkSqlrWFE
+{% endblock meta_copydoc %}
+
+{% block outer_content %}
+  {% call(slot) vf_hero(
+    title_text='Choose optimized Linux for Intel
+    ',
+    layout='50/50',
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        From the desktop and datacenter, to the cloud and the edge, Intel and Canonical collaborate to deliver solutions that enable you to innovate and build at any scale. Our partnership brings together the innovation of open source technology with the peace of mind of comprehensive security.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <!--
+
+    need clearification on contact form
+
+     -->
+      <a href="/https://canonical.com/contact-us"
+         class="p-button--positive js-invoke-modal">Get in touch</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-highlighted is-cover u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/9e5bc72e-hero-img.png",
+                alt="",
+                width="1800",
+                height="1013",
+                hi_def=True,
+                attrs={"class": "p-image-container__image"},
+                loading="auto") | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Validated solutions
+            <br class="u-hide--small" />
+            for key verticals
+          </h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <p>
+              Reliable. Secure. Robust. Canonical and Intel deliver enterprise-grade software and hardware solutions. We collaborate to optimize our solutions and deliver out-of-the-box solutions that are performant in the long term.
+            </p>
+            <p>
+              Choose to strengthen your patching and security processes by opting in to 12 years of maintenance updates with Ubuntu Pro.
+            </p>
+            <p>Discover how Canonical works to deliver Linux for Intel across the whole stack:</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <hr class="p-rule--muted u-hide--small u-hide--medium" />
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/bb4a21ff-iot.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Internet of Things</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Choose the Linux OS that is optimized to run on Intel hardware. We work closely with Intel to create Ubuntu Core, Ubuntu Desktop and Ubuntu Server images for Intel IoT platforms, so that you can build the IoT solution that best suits your needs.
+            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--small u-hide--medium" />
+              <p>
+                <a href="/download/iot/intel-iot">Download Ubuntu for Intel IoT&nbsp;&rsaquo;</a>
+              </p>
+              <hr class="p-rule--muted u-hide--small u-hide--medium" />
+              <p>
+                <a href="/internet-of-things">Learn more about use cases in IoT&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/60076138-telco.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Telco</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Benefit from carrier-grade solutions based on open source for core, regional and edge telco clouds, including OpenStack, Kubernetes and Ubuntu for Intel. Reduce infrastructure costs whilst maintaining reliable, secure and feature-rich networks.
+            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--small u-hide--medium" />
+              <p>
+                <a href="/telco">Learn more about Telco use cases&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/d24fcc48-industrial.png",
+                                alt="",
+                                width="852",
+                                height="1279",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Industrial</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Intel and Canonical have partnered to ensure easy access to advanced silicon for embedded solutions, with the immutable Ubuntu Core operating system - our embedded OS that is lightweight and tailored to run on specific Intel hardware.
+            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--small u-hide--medium" />
+              <p>
+                <a href="/industrial">Learn more about Industrial use cases&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/ai/mlops">Learn how to streamline your AI workflow with MLOps&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Benefit from support
+            <br class="u-hide--small" />
+            for the latest hardware
+          </h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <p>
+              Be at the leading edge when developing your solutions, without compromising on security. Canonical works closely with Intel to ensure that hardware platforms and advanced capabilities receive early enablement with a well thought out path for long term stability and support.
+            </p>
+          </div>
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/ffa2a1eb-intel-chips-updated.png",
+                        alt="Intel chips",
+                        width="1800",
+                        height="1013",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-section">
+      <div class="row">
+        <div class="col-9 col-medium-6 col-start-large-4">
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Custom Internet of Things images for Intel</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                Advanced optimizations and capability support are available for Intel network and edge platforms. Canonical offers support through custom IoT images for Ubuntu Desktop, Ubuntu Server and Ubuntu Core.
+              </p>
+              <div class="p-cta-block">
+                <a href="/download/iot/intel-iot">Download Ubuntu for Intel IoT platforms&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Real-time Ubuntu for Intel SoCs</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                Ensure that high-priority processes are executed first with Real-time Ubuntu. Canonical and Intel collaborate to deliver real-time for Ubuntu 22.04 on 12th Gen Intel® Core™ processors with TSN and TCC Support.
+
+              </p>
+              <div class="p-cta-block">
+                <a href="/real-time">Explore how real-time benefits IoT use cases&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Hardware enablement (HWE) stacks</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                The HWE stack includes a rolling kernel for the most recent Ubuntu LTS release, so that users can take advantage of new hardware platform support of newer kernels. The final HWE kernel for an LTS release is the same as the next LTS release, and receives the LTS commitment.
+              </p>
+              <div class="p-cta-block">
+                <a href="/kernel/lifecycle">Learn more about the HWE lifecycle&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Ubuntu Releases</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                The optimization and feature support for Intel platforms intercepts future Ubuntu releases, including images that receive up to 12 years of long term support with the Ubuntu Pro subscription.
+              </p>
+              <div class="p-cta-block">
+                <a href="/download">Download Ubuntu&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container">
+        {{ image(url="https://assets.ubuntu.com/v1/a6d40706-security.png",
+                alt="",
+                width="3696",
+                height="1273",
+                hi_def=True,
+                attrs={"class": "p-image-container__image"},
+                loading="lazy") | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Secure data and AI applications with confidential computing based on Intel TDX</h2>
+        </div>
+        <div class="col">
+          <p>
+            Threats to an enterprise's data continue to evolve and become more sophisticated. Notifications of new data breaches are becoming more frequent, and they arise from both internal threats as well as external actors that have managed to compromise the enterprise's infrastructure.
+          </p>
+          <p>
+            Confidential computing is a technology that protects data when it's in use, even against a zero-day vulnerability in the hypervisor or attackers that have access to the servers - whether that's a rogue administrator, your cloud provider or an external attacker.
+          </p>
+          <p>
+            Canonical has integrated the Intel TDX technology, and made it available for use in Ubuntu on Intel hardware that supports it. Either deploy confidential computing in a private datacenter, or access it in the leading public clouds, including <a href="https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-vm-overview">Azure</a>, <a href="https://cloud.google.com/security/products/confidential-computing">Google Cloud</a>, or directly in the <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">Intel Tiber Developer Cloud</a>.
+          </p>
+          <div class="p-cta-block">
+            <div class="row">
+              <div class="col-3">
+                <a href="https://github.com/canonical/tdx?tab=readme-ov-file#intel-trust-domain-extensions-tdx-on-ubuntu-2404">Set up Intel TDX on Ubuntu 24.04&nbsp;&rsaquo;</a>
+              </div>
+              <div class="col-3">
+                <a href="/confidential-computing">Learn about confidential computing&nbsp;&rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <h2>Explore how to optimize performance for Intel platforms in our blog</h2>
+      <div class="p-equal-height-row">
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item u-hide--small">
+            <div class="p-image-container--square-on-medium p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/16539e8a-maximizing-cpu-efficiency.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/blog/maximizing-cpu-efficiency-and-energy-savings-with-intel%e2%93%87-quickassist-technology-intel%e2%93%87-qat-on-ubuntu-24-04">Maximizing CPU efficiency and energy savings with Intel<sup>&reg;</sup> QuickAssist Technology on Ubuntu 24.04
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item u-hide--small">
+            <div class="p-image-container--square-on-medium p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/7ff40d22-profile-workloads.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"},) | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/blog/profile-workloads-on-x86-64-v3-to-enable-future-performance-gains">Profile workloads on x86-64-v3 to enable future performance gains
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item u-hide--small">
+            <div class="p-image-container--square-on-medium p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/72db74d3-optimized-rt-ubuntu.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"},) | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/blog/optimised-real-time-ubuntu-is-now-generally-available-on-intel-socs">Optimized Real-time Ubuntu is now generally available on Intel SoCs</a>
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item u-hide--small">
+            <div class="p-image-container--square-on-medium p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/cbd961da-performance-engineering.png",
+                            alt="",
+                            width="852",
+                            height="1279",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"},) | safe
+              }}
+            </div>
+          </div>
+          <div class="p-equal-height-row__item">
+            <p>
+              <a href="/blog/ubuntu-performance-engineering-with-frame-pointers-by-default">Performance engineering on Ubuntu leaps forward with frame pointers by default in Ubuntu 24.04 LTS</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Accelerate data and AI applications with Ubuntu for Intel</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical and Intel partner closely to ensure that data and AI applications can draw upon the most advanced hardware capabilities and accelerators in just a few commands. With Canonical's portfolio of data applications, AI tools, and infrastructure software, you'll be getting the most out of the hardware.
+        </p>
+        <div class="p-cta-block">
+          <a href="https:/canonical.com/contact-us" class="p-button--positive">Contact us</a>
+        </div>
+      </div>
+    </div>
+    <div class="p-equal-height-row has-divider-2">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/28c6c507-opensearch.png",
+                        alt="OpenSearch",
+                        width="852",
+                        height="480",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted u-hide--medium" />
+          <p>
+            RAG, Confidential AI and LLM use cases benefit from Intel features and accelerators like Intel TDX, AVX and QAT to enhance performance of vector search, data compression, and machine learning capabilities.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="https://canonical.com/data/opensearch"
+               aria-label="Learn more about OpenSearch">Learn more&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item ">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/543d3e69-ceph.png",
+                        alt="Ceph",
+                        width="852",
+                        height="480",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted u-hide--medium" />
+          <p>
+            Deploy open source storage across all sizes of infrastructure, from edge to data center, and leverage enhanced capabilities like Intel QAT acceleration for compression and encryption.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/ceph" aria-label="Learn more about Ceph">Learn more&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item ">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/f2fae2a2-kubeflow.png",
+                        alt="Kubeflow",
+                        width="852",
+                        height="480",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted u-hide--medium" />
+          <p>
+            Easily develop and deploy your machine learning models using Charmed Kubeflow, on any infrastructure including support for Intel GPUs.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/ai/what-is-kubeflow"
+               aria-label="Learn more about Charmed Kubeflow">Learn more&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/661822e8-canonical.png",
+                        alt="Canonical",
+                        width="852",
+                        height="480",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--muted u-hide--medium" />
+          <p>
+            The Canonical Data Science Stack is an out-of-the-box solution to develop and optimize models, designed to run on any Intel workstation without spending time on tooling setup.
+          </p>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/ai/data-science"
+               aria-label="Learn more about Canonical data-science">Learn more&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Explore Ubuntu-certified Intel Hardware backed by Ubuntu Pro</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            Certified hardware is rigorously tested to provide the best Ubuntu experience. Even after certification, Canonical executes continuous regression testing throughout the Ubuntu release life cycle on the full fleet of certified devices and offers 12 years of support and security updates with <a href="/pro">Ubuntu Pro</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-equal-height-row">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item u-hide--small">
+          <div class="p-image-container--square-on-medium p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/16539e8a-maximizing-cpu-efficiency.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/blog/maximizing-cpu-efficiency-and-energy-savings-with-intel%e2%93%87-quickassist-technology-intel%e2%93%87-qat-on-ubuntu-24-04">Laptops&nbsp;&rsaquo;
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item u-hide--small">
+          <div class="p-image-container--square-on-medium p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/7ff40d22-profile-workloads.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/blog/profile-workloads-on-x86-64-v3-to-enable-future-performance-gains">Desktops&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item u-hide--small">
+          <div class="p-image-container--square-on-medium p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/72db74d3-optimized-rt-ubuntu.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/blog/optimised-real-time-ubuntu-is-now-generally-available-on-intel-socs">Servers&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item u-hide--small">
+          <div class="p-image-container--square-on-medium p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/cbd961da-performance-engineering.png",
+                        alt="",
+                        width="852",
+                        height="1279",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/blog/ubuntu-performance-engineering-with-frame-pointers-by-default">IoT devices&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Want to optimize your silicon for Ubuntu?</h2>
+      </div>
+      <div class="col">
+        <p>
+          Partnering with Canonical empowers developers with the ability to innovate more rapidly on your platforms and extract the unique value of your hardware, all while providing enterprises with the peace of mind that comes with reliable long term support.
+        </p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Accelerated time to market</li>
+          <li class="p-list__item is-ticked">Easy-to-deploy optimized Ubuntu images</li>
+          <li class="p-list__item is-ticked">Custom feature additions and optimizations</li>
+          <li class="p-list__item is-ticked">Security maintenance for 3rd party open source</li>
+          <li class="p-list__item is-ticked">Joint marketing and co-selling</li>
+          <li class="p-list__item is-ticked">Access to the Ubuntu developer ecosystem</li>
+        </ul>
+        <div class="p-cta-block">
+          <a href="https:/canonical.com/partners/silicon" class="p-button">Learn more</a>
+          <a href="/engage/driving-open-source-together-with-canonical-and-intel">Download the whitepaper on how Intel and Canonical collaborate&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock outer_content %}
