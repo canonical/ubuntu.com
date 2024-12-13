@@ -22,7 +22,7 @@
 
   {% call(slot) vf_hero(
     title_text='Ubuntu 20.04 LTS (Focal Fossa)',
-    subtitle_text='Out of standard <br/> support Upgrade to Ubuntu Pro',
+    subtitle_text='Out of standard <br class="u-hide-small u-hide-medium" /> support Upgrade to Ubuntu Pro',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
@@ -112,31 +112,38 @@
       </div>
       <div class="col">
         <p>
-          Where it makes sense, you should transition workloads to later Ubuntu releases. You can either upgrade existing Ubuntu 20.04 LTS instances to Ubuntu 22.04 LTS or redeploy your workload onto a fresh Ubuntu 24.04 LTS instance. There is no direct upgrade path from 20.04 LTS to Ubuntu 24.04 LTS, so you can either move to Ubuntu 22.04 LTS and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.
+          Where it makes sense, you should transition workloads to later Ubuntu releases. You can either upgrade existing Ubuntu 20.04 LTS instances to Ubuntu 22.04 LTS or redeploy your workload onto a fresh Ubuntu 24.04 LTS instance.
+        </p>
+        <p>
+          There is no direct upgrade path from 20.04 LTS to Ubuntu 24.04 LTS, so you can either move to Ubuntu 22.04 LTS and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.
         </p>
         <div class="p-cta-block">
-          <a href="https://ubuntu.com/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a>
-          <a href="https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a>
+          <ul class="p-inline-list">
+            <li class="p-inline-list__item"><a href="https://ubuntu.com/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a></li>
+            <li class="p-inline-list__item"><a href="https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Expanded Security Maintenance (ESM) for 20.04 LTS</h2>
-      </div>
-      <div class="col">
-        <p>
-          <a href="https://ubuntu.com/security/esm">Expanded Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX.
-        </p>
-        <p>
-          ESM is free on up to five machines and for broader enterprise use through an <a href="https://ubuntu.com/pro">Ubuntu Pro subscription</a>. The subscription also includes additional services such as FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
-        </p>
-        <div class="p-cta-block">
-          <a href="https://ubuntu.com/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Expanded Security Maintenance (ESM) for 20.04 LTS</h2>
+        </div>
+        <div class="col">
+          <p>
+            <a href="https://ubuntu.com/security/esm">Expanded Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX.
+          </p>
+          <p>
+            ESM is free on up to five machines and for broader enterprise use through an <a href="https://ubuntu.com/pro">Ubuntu Pro subscription</a>. The subscription also includes additional services such as FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
+          </p>
+          <div class="p-cta-block">
+            <a href="https://ubuntu.com/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
+          </div>
         </div>
       </div>
     </div>
@@ -155,7 +162,7 @@
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <h2>What do you get with Ubuntu Pro for 20.04 LTS?</h2>
+      <h2>What do you get <br class="u-hide-small u-hide-medium" />with Ubuntu Pro for 20.04 LTS?</h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
@@ -168,14 +175,12 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-      <h5>Access to Canonical partner portal</h5>
+    <h3 class="p-heading--5">Supported kernels</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
       <p>
-        Resell the full range of Canonical's portfolio of private and public
-        cloud products: OpenStack, Kubernetes, IoT, support, security and
-        compliance for Ubuntu.
+        For continued Linux kernel security, Ubuntu Pro for Ubuntu 18.04 LTS includes support for the below versions:
       </p>
       <table aria-label="Ubuntu releases and their associated architecture and kernel version">
         <thead>
@@ -205,7 +210,7 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_title_2' -%}
-      <h5>Infrastructure packages</h5>
+      <h3 class="p-heading--5">Infrastructure packages</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_2' -%}
@@ -216,13 +221,14 @@
 
     {%- if slot == 'list_item_title_3' -%}
 
-      <h5>Application packages</h5>
+      <h3 class="p-heading--5">Application packages</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_3' -%}
       <p>
-        Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe. A few commonly-used packages include:
+        Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe. 
       </p>
+      <p>A few commonly-used packages include:</p>
       <hr class="p-rule--muted u-no-margin--bottom" />
       <ul class="p-list--divided">
         <li class="p-list__item is-ticked">Python - 3.8</li>
