@@ -493,6 +493,62 @@
           ]
         }
       ]
+    },
+    "/solutions/open-source-security/cyber-resilience-act": {
+      "templatePath": "/solutions/open-source-security/cyber-resilience-act/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Get in touch with our experts on the Cyber Resilience Act (CRA) compliance",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "6051",
+        "returnUrl": "/solutions/open-source-security/cyber-resilience-act/index.html#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title":"Get in touch with our experts on the Cyber Resilience Act (CRA) compliance",
+          "id": "contact-form",
+          "fields": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "placeholder": "",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "placeholder": "",
+              "isRequired": true
+            },
+            {
+              "type": "email",
+              "id": "email",
+              "placeholder": "",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "placeholder": "",
+              "isRequired": false
+            },
+            {
+              "type": "text",
+              "id": "company",
+              "placeholder": "",
+              "isRequired": false
+            },
+            {
+              "type": "text",
+              "id": "job-title",
+              "placeholder": "",
+              "isRequired": false
+            }
+          ]
+        }
+      ]
     }
   }
 }
