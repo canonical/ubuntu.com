@@ -18,11 +18,11 @@
       <ul class="p-list">
         <li class="p-list__item">
           <label for="InputFirstName">First name</label>
-          <input type="text" id="InputFirstName" name="InputFirstName" />
+          <input type="text" id="InputFirstName" name="InputFirstName" required />
         </li>
         <li class="p-list__item">
           <label for="InputLastName">Last name</label>
-          <input type="text" id="InputLastName" name="InputLastName" />
+          <input type="text" id="InputLastName" name="InputLastName" required />
         </li>
         <li class="p-list__item">
           <label for="InputEmail">Email address</label>
@@ -30,7 +30,8 @@
                  id="InputEmail"
                  name="InputEmail"
                  placeholder="example@canonical.com"
-                 autocomplete="email" />
+                 autocomplete="email"
+                 required />
 
         </li>
         <li class="p-list__item">
@@ -82,8 +83,16 @@
                  tabindex="-1" />
         </li>
         {# End of honey pots #}
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="6051" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/solutions/open-source-security/cyber-resilience-act/thank-you.html" />
+        <input type="hidden"
+               aria-hidden="true"
+               aria-label="hidden field"
+               name="formid"
+               value="6051" />
+        <input type="hidden"
+               aria-hidden="true"
+               aria-label="hidden field"
+               name="returnURL"
+               value="/solutions/open-source-security/cyber-resilience-act/thank-you.html" />
       </ul>
 
       <footer class="p-modal__footer">
