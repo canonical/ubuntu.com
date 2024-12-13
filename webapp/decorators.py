@@ -47,13 +47,18 @@ def rate_limit_with_backoff(func: Callable):
         # timestamp from the most recent successful request
         if initial_request := json.loads(flask.session.get(func.__name__)):
             # Get the current limit
-            current_limit = rate_limit_attempt_map.get(initial_request["attempts"])
+            current_limit = rate_limit_attempt_map.get(
+                initial_request["attempts"]
+            )
 
             time_since_last_request = datetime.now() - datetime.fromtimestamp(
                 initial_request["timestamp"]
             )
             # Abort if the time is too early for this number of attempts
-            if time_since_last_request.total_seconds() < current_limit.total_seconds():
+            if (
+                time_since_last_request.total_seconds()
+                < current_limit.total_seconds()
+            ):
                 # Increment the number of attempts. 3 is a hard upper limit.
                 if initial_request["attempts"] < ATTEMPT_LIMIT:
                     initial_request["attempts"] += 1
