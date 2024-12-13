@@ -28,7 +28,7 @@
             </p>
           </div>
           <div class="p-cta-block">
-            <a href="#" class="p-button--positive">Contact our team</a>
+            <a href="#" aria-controls="modal" class="p-button--positive">Contact our team</a>
           </div>
         </div>
       </div>
@@ -390,9 +390,9 @@
     <div class="p-strip is-deep">
       <section class="p-section">
         <div class="row">
-          <a href="">
-            <h2>Need help with your CRA roadmap? Contact our experts ></h2>
-          </a>
+          <h2>
+            <a aria-controls="modal">Need help with your CRA roadmap? Contact our experts ></a>
+          </h2>
         </div>
       </section>
     </div>
@@ -483,42 +483,50 @@
         <h5>When will the CRA come into force?</h5>
       {%- endif -%}
       {%- if slot == 'list_item_description_2' -%}
-      <p>
-        The European Parliament formally approved the CRA in March 2024, and it was adopted by the Council on October 10, 2024. The Cyber Resilience Act entered into force on December 10, 2024.  Manufacturers will need to follow CRA reporting obligations as of June 11, 2026. 
-      </p>
+        <p>
+          The European Parliament formally approved the CRA in March 2024, and it was adopted by the Council on October 10, 2024. The Cyber Resilience Act entered into force on December 10, 2024.  Manufacturers will need to follow CRA reporting obligations as of June 11, 2026.
+        </p>
       {%- endif -%}
-      
+
       {%- if slot == 'list_item_title_3' -%}
-      <h5>How long until manufacturers and other groups have to follow the CRA?</h5>
+        <h5>How long until manufacturers and other groups have to follow the CRA?</h5>
       {%- endif -%}
       {%- if slot == 'list_item_description_3' -%}
-      <p>
-        Manufacturers, importers and distributors of hardware and software products will have 36 months from the CRA’s official publication to adapt to the new requirements. However, there is only a 21-month grace period for manufacturers to adopt reporting obligations for incidents and vulnerabilities.
-      </p>
+        <p>
+          Manufacturers, importers and distributors of hardware and software products will have 36 months from the CRA’s official publication to adapt to the new requirements. However, there is only a 21-month grace period for manufacturers to adopt reporting obligations for incidents and vulnerabilities.
+        </p>
       {%- endif -%}
 
       {%- if slot == 'list_item_title_4' -%}
-      <h5>What does the CRA require manufacturers to document?</h5>
+        <h5>What does the CRA require manufacturers to document?</h5>
       {%- endif -%}
       {%- if slot == 'list_item_description_4' -%}
-      <p>
-        Under the CRA, manufacturers must provide a record of all their technical documentation, a Software Bill of Materials, an EU Declaration of Conformity, and clear user information and instructions, for a period of 10 years or the support period (whichever is longer) after the product enters the market.
-      </p>
+        <p>
+          Under the CRA, manufacturers must provide a record of all their technical documentation, a Software Bill of Materials, an EU Declaration of Conformity, and clear user information and instructions, for a period of 10 years or the support period (whichever is longer) after the product enters the market.
+        </p>
       {%- endif -%}
-      
+
       {%- if slot == 'list_item_title_5' -%}
-      <h5>What are manufacturer reporting requirements under the CRA?</h5>
+        <h5>What are manufacturer reporting requirements under the CRA?</h5>
       {%- endif -%}
       {%- if slot == 'list_item_description_5' -%}
-      <p>
-        Under the CRA, manufacturers must:
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">Inform CSIRT of product vulnerabilities within 24 hours. Details of the vulnerability and any corrective actions taken should be included.</li>
-          <li class="p-list__item is-ticked">Notify CSIRT of incidents impacting product security within 24 hours. Information on severity, impact, and suspected unlawful acts should be included.</li>
-          <li class="p-list__item is-ticked">Inform users about incidents and provide mitigation measures within a reasonable timeframe.</li>
-          <li class="p-list__item is-ticked">Report vulnerabilities in integrated components to the respective maintainers within a reasonable timeframe.</li>
-        </ul>
-      </p>
+        <p>
+          Under the CRA, manufacturers must:
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked">
+              Inform CSIRT of product vulnerabilities within 24 hours. Details of the vulnerability and any corrective actions taken should be included.
+            </li>
+            <li class="p-list__item is-ticked">
+              Notify CSIRT of incidents impacting product security within 24 hours. Information on severity, impact, and suspected unlawful acts should be included.
+            </li>
+            <li class="p-list__item is-ticked">
+              Inform users about incidents and provide mitigation measures within a reasonable timeframe.
+            </li>
+            <li class="p-list__item is-ticked">
+              Report vulnerabilities in integrated components to the respective maintainers within a reasonable timeframe.
+            </li>
+          </ul>
+        </p>
       {%- endif -%}
 
     {%- endcall -%}
@@ -530,9 +538,7 @@
       <section class="p-section--shallow">
         <div class="row--50-50">
           <div class="col">
-            <h2>
-              Dive deep into the CRA with our free resources
-            </h2>
+            <h2>Dive deep into the CRA with our free resources</h2>
           </div>
           <div class="col">
             <p>
@@ -541,7 +547,7 @@
             <p class="p-section--shallow">
               Explore the critical considerations for device manufacturers, developers, and relevant stakeholders when choosing between custom-built Linux distributions using the Yocto Project and commercially supported solutions like Ubuntu Core.
             </p>
-            <hr/>
+            <hr />
             <p>
               <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">
                 Understand IoT security and IoT compliance across global markets
@@ -550,7 +556,7 @@
             <p class="p-section--shallow">
               Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
             </p>
-            <hr/>
+            <hr />
             <p>
               <a href="/blog/what-the-cyber-resilience-act-cra-means-for-iot-manufacturers">
                 What the CRA means for IoT manufacturers
@@ -559,20 +565,18 @@
             <p class="p-section--shallow">
               Get a blueprint for cybersecurity that will help you to secure your PDEs and processes in order to meet CRA compliance.
             </p>
-            <hr/>
+            <hr />
             <p>
               <a href="https://canonical.com/blog/the-cyber-resilience-act-what-it-means-for-open-source">
                 Explore the impacts of the CRA on open source
               </a>
             </p>
-            <p>
-              Find out about the CRA and its wider implications for the open source community.
-            </p>
+            <p>Find out about the CRA and its wider implications for the open source community.</p>
 
           </div>
         </div>
       </section>
     </div>
-  
+    {% include "/solutions/open-source-security/cyber-resilience-act/_form.html" %}
   {% endblock %}
 {% endblock %}
