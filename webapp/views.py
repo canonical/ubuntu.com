@@ -1,35 +1,35 @@
 # Standard library
 import datetime
 import html
+import json
 import math
 import os
 import re
-import json
+from urllib.parse import quote
 
 # Packages
 import dateutil
 import feedparser
 import flask
+import jinja2
 import talisker.requests
 import yaml
-import jinja2
-from ubuntu_release_info.data import Data
+from bs4 import BeautifulSoup
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    DocParser,
+    Docs,
+)
+from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from urllib.parse import quote, unquote
-
-from canonicalwebteam.search.models import get_search_results
-from canonicalwebteam.search.views import NoAPIKeyError
-from bs4 import BeautifulSoup
+from ubuntu_release_info.data import Data
 from werkzeug.exceptions import BadRequest
-from canonicalwebteam.discourse import (
-    DiscourseAPI,
-    Docs,
-    DocParser,
-)
 
 # Local
+from webapp.decorators import rate_limit_with_backoff
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
 
@@ -898,7 +898,7 @@ def shorten_acquisition_url(acquisition_url):
         return new_acquisition_url
     return acquisition_url
 
-
+@rate_limit_with_backoff
 def marketo_submit():
     form_fields = {}
     for key in flask.request.form:
