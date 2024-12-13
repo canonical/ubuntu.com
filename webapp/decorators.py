@@ -1,4 +1,5 @@
 # Core packages
+import contextlib
 import functools
 import json
 from datetime import datetime, timedelta
@@ -30,14 +31,14 @@ def rate_limit_with_backoff(func: Callable):
     """
     Decorator to rate limit function calls based on the users' session.
     The rate limit restricts users to:
-    - 1 request every 2 seconds
-    - 2 request every 4 seconds
-    - 3 request every 8 seconds
+    - 1 request every 8 seconds
+    - 2 request every 16 seconds
+    - 3 request every 32 seconds
     """
     rate_limit_attempt_map = {
-        1: timedelta(seconds=2),
-        2: timedelta(seconds=4),
-        3: timedelta(seconds=8),
+        1: timedelta(seconds=8),
+        2: timedelta(seconds=16),
+        3: timedelta(seconds=32),
     }
     ATTEMPT_LIMIT = 3
 
@@ -45,7 +46,8 @@ def rate_limit_with_backoff(func: Callable):
     def rate_limited(*args, **kwargs):
         # Get the initial request timestamp, or update the session with the
         # timestamp from the most recent successful request
-        if initial_request := json.loads(flask.session.get(func.__name__)):
+        with contextlib.suppress(TypeError):
+            initial_request = json.loads(flask.session.get(func.__name__))
             # Get the current limit
             current_limit = rate_limit_attempt_map.get(
                 initial_request["attempts"]
