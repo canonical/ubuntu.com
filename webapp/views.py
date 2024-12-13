@@ -898,6 +898,7 @@ def shorten_acquisition_url(acquisition_url):
         return new_acquisition_url
     return acquisition_url
 
+
 @rate_limit_with_backoff
 def marketo_submit():
     form_fields = {}
