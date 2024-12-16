@@ -37,4 +37,5 @@ export type Offer = {
   technical_contact_name?: string | null;
   opportunity_number?: string | null;
   exclusion_group?: string;
+  is_channel_offer?: boolean;
 };
