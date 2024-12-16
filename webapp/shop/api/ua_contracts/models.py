@@ -152,10 +152,10 @@ class OfferItem:
         name: str,
         price: int,
         allowance: int,
-        effectiveDays: int = None,
-        currency: str = None,
-        productID: str = None,
-        productName: str = None,
+        effectiveDays: Optional[int] = None,
+        currency: Optional[str] = None,
+        productID: Optional[str] = None,
+        productName: Optional[str] = None,
     ):
         self.id = id
         self.name = name
