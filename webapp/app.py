@@ -1297,4 +1297,4 @@ def set_form_rules():
 
 
 # Disabling for now, the forms in form-data.json are for testing purposes
-# set_form_rules()
+set_form_rules()
