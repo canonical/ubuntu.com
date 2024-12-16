@@ -16,7 +16,7 @@ import {
   ProductListings,
   DISTRIBUTOR_SELECTOR_KEYS,
 } from "./utils";
-import { Offer } from "advantage/offers/types";
+import { Offer, OfferItem } from "advantage/offers/types";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 interface FormContext {
@@ -151,7 +151,8 @@ export const FormProvider = ({
       } = listing;
 
       const duration = getDuration(effective_days);
-      const newName = `${product?.id}-${duration}y-channel-${currency}`;
+      const newName =
+        `${product?.id}-${duration}y-channel-${currency}`.toLowerCase();
 
       updatedChannelProductList[newName] = {
         id: newName,
@@ -213,37 +214,67 @@ export const FormProvider = ({
   }, [filteredProducts]);
 
   useEffect(() => {
-    const items = offer?.items ?? [];
-    if (subscriptionList?.length === 0 && items.length > 0) {
-      const preSetItem = getPreSelectedItem(items);
+    if (!offer) return;
 
-      if (preSetItem && preSetItem?.length > 0) {
-        setSubscriptionList(preSetItem as SubscriptionItem[]);
+    setSubscriptionItems(
+      offer.items,
+      subscriptionList,
+      setSubscriptionList,
+      setCurrency,
+      setDuration,
+    );
+  }, [offer]);
+
+  const setSubscriptionItems = (
+    items: OfferItem[],
+    subscriptionList: SubscriptionItem[] | null,
+    setSubscriptionList: (list: SubscriptionItem[]) => void,
+    setCurrency: (currency: Currencies) => void,
+    setDuration: (duration: Durations) => void,
+  ) => {
+    const preSetItems: SubscriptionItem[] = [];
+    let preSetCurrency: Currencies | null = null;
+    let preSetDuration: Durations | null = null;
+
+    if (subscriptionList?.length === 0 && items.length > 0) {
+      items.forEach((item) => {
+        const preSetItem = getPreSelectedItem(item);
+        if (preSetItem) {
+          preSetItems.push(preSetItem);
+        }
+
+        preSetCurrency = preSetCurrency || getPreCurrency(item);
+        preSetDuration = preSetDuration || getPreDuration(item);
+      });
+
+      // Update subscription list
+      if (preSetItems.length > 0) {
+        setSubscriptionList(preSetItems);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.SUBSCRIPTION_LIST,
-          JSON.stringify(preSetItem as SubscriptionItem[]),
+          JSON.stringify(preSetItems),
         );
       }
 
-      const preSetCurrency: Currencies = getPreCurrency(items);
+      // Update currency
       if (preSetCurrency) {
-        setCurrency(preSetCurrency as Currencies);
+        setCurrency(preSetCurrency);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.CURRENCY,
-          JSON.stringify(preSetCurrency as Currencies),
+          JSON.stringify(preSetCurrency),
         );
       }
 
-      const preSetDration: Durations = getPreDuration(items);
-      if (preSetDration) {
-        preSetDration && setDuration(preSetDration as Durations);
+      // Update duration
+      if (preSetDuration) {
+        setDuration(preSetDuration);
         localStorage.setItem(
           DISTRIBUTOR_SELECTOR_KEYS.DURATION,
-          JSON.stringify(preSetDration as Durations),
+          JSON.stringify(preSetDuration),
         );
       }
     }
-  }, [offer]);
+  };
 
   useEffect(() => {
     if (!localTechnicalUserContact) {

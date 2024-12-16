@@ -1,10 +1,14 @@
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
-export type Item = {
+export type OfferItem = {
   allowance: number;
   id: string;
   name: string;
   price: number;
+  currency?: string;
+  effectiveDays?: number;
+  productID?: string;
+  productName?: string;
 };
 
 export type ExternalId = {
@@ -17,7 +21,7 @@ export type Offer = {
   actionable: boolean;
   created_at: string;
   id: string;
-  items: Item[];
+  items: OfferItem[];
   marketplace: UserSubscriptionMarketplace;
   total: number;
   discount: number | null;
