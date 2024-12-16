@@ -273,9 +273,10 @@ export const getPreCurrency = (item: OfferItem): Currencies => {
 };
 
 export const getPreDuration = (item: OfferItem): Durations => {
-  return Object.values(Durations).includes(item?.effectiveDays as Durations)
-    ? (item?.effectiveDays as Durations)
-    : Durations.one;
+  if (item.effectiveDays === 365) return Durations.one;
+  else if (item.effectiveDays === 730) return Durations.two;
+  else if (item.effectiveDays === 1095) return Durations.three;
+  return Durations.one;
 };
 
 export const PRO_SELECTOR_KEYS = {
