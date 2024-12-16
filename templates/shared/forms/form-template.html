@@ -15,10 +15,16 @@
           <h3>{{ formData.title }}</h3>
         </div>
       </header>
-      <div class="p-section u-fixed-width">
-        <hr />
-        {{ formData.introText }}
-      </div>
+      {% if formData.introText %}
+        <div class="p-section u-sv-3">
+          <hr class="p-rule is-fixed-width" />
+          <div class="row">
+            <div class="col">
+              {{ formData.introText }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
       {% include "/shared/forms/form-fields.html" %}
     </div>
   </div>
