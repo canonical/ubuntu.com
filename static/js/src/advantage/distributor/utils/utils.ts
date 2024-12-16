@@ -71,6 +71,7 @@ export type ChannelProduct = {
   productName: string;
   marketplace: UserSubscriptionMarketplace;
   exclusion_group: string;
+  effective_days?: number;
 };
 
 export const currencyFormatter = (currency: Currencies) => {
