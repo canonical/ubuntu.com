@@ -2,7 +2,7 @@ import { Card, Col, Row } from "@canonical/react-components";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { currencyFormatter } from "advantage/react/utils";
 import { Product } from "advantage/subscribe/checkout/utils/types";
-import { Item, Offer as OfferType } from "../../types";
+import { OfferItem, Offer as OfferType } from "../../types";
 import PaymentButton from "../PaymentButton";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 const Offer = ({ offer }: Props) => {
   const { id, marketplace, items, total, discount } = offer;
-  const names = items.map((item: Item) => {
+  const names = items.map((item: OfferItem) => {
     return `${item.allowance ?? 0} x ${item.name}`;
   });
 
@@ -42,7 +42,7 @@ const Offer = ({ offer }: Props) => {
         </Col>
       </Row>
       <hr />
-      {items.map((item: Item) => {
+      {items.map((item: OfferItem) => {
         return (
           <Row key={item.id}>
             <Col size={6} small={2} medium={2}>

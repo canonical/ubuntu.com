@@ -1,5 +1,5 @@
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
-import { Item } from "advantage/offers/types";
+import { OfferItem } from "advantage/offers/types";
 
 export function generateUniqueId() {
   return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -151,152 +151,131 @@ export const getProductId = (
   }
 };
 
-export const getPreSelectedItem = (items: Item[]) => {
-  const preSelectedItem = items.map((item: Item) => {
-    const { id, name, allowance } = item;
-    const quantity = allowance;
-    const match = name.match(/(.*)-[123]y/);
-    const baseName = match ? match[1] : null;
-    switch (baseName) {
-      case "uio-standard-physical":
-        return {
-          id,
-          type: DistributorProductTypes.physical,
-          support: Support.infra,
-          sla: SLA.weekday,
-          quantity,
-        };
-      case "uio-advanced-physical":
-        return {
-          id,
-          type: DistributorProductTypes.physical,
-          support: Support.infra,
-          sla: SLA.everyday,
-          quantity,
-        };
-      case "uaia-essential-physical":
-        return {
-          id,
-          type: DistributorProductTypes.physical,
-          support: Support.none,
-          sla: SLA.none,
-          quantity,
-        };
-      case "uaia-standard-physical":
-        return {
-          id,
-          type: DistributorProductTypes.physical,
-          support: Support.full,
-          sla: SLA.weekday,
-          quantity,
-        };
-      case "uaia-advanced-physical":
-        return {
-          id,
-          type: DistributorProductTypes.physical,
-          support: Support.full,
-          sla: SLA.everyday,
-          quantity,
-        };
-      case "uaia-essential-virtual":
-        return {
-          id,
-          type: DistributorProductTypes.virtual,
-          support: Support.none,
-          sla: SLA.none,
-          quantity,
-        };
-      case "uaia-standard-virtual":
-        return {
-          id,
-          type: DistributorProductTypes.virtual,
-          support: Support.full,
-          sla: SLA.weekday,
-          quantity,
-        };
-      case "uaia-advanced-virtual":
-        return {
-          id,
-          type: DistributorProductTypes.virtual,
-          support: Support.full,
-          sla: SLA.everyday,
-          quantity,
-        };
-      case "uio-standard-virtual":
-        return {
-          id,
-          type: DistributorProductTypes.virtual,
-          support: Support.infra,
-          sla: SLA.weekday,
-          quantity,
-        };
-      case "uio-advanced-virtual":
-        return {
-          id,
-          type: DistributorProductTypes.virtual,
-          support: Support.infra,
-          sla: SLA.everyday,
-          quantity,
-        };
-      case "uai-essential-desktop":
-        return {
-          id,
-          type: DistributorProductTypes.desktop,
-          support: Support.none,
-          sla: SLA.none,
-          quantity,
-        };
-      case "uai-standard-desktop":
-        return {
-          id,
-          type: DistributorProductTypes.desktop,
-          support: Support.full,
-          sla: SLA.weekday,
-          quantity,
-        };
-      case "uai-advanced-desktop":
-        return {
-          id,
-          type: DistributorProductTypes.desktop,
-          support: Support.full,
-          sla: SLA.everyday,
-          quantity,
-        };
-      default:
-        return null;
-    }
-  });
-  return preSelectedItem;
+export const getPreSelectedItem = (item: OfferItem) => {
+  const { id, allowance, productID } = item;
+  const quantity = allowance;
+
+  switch (productID) {
+    case "uio-standard-physical":
+      return {
+        id,
+        type: DistributorProductTypes.physical,
+        support: Support.infra,
+        sla: SLA.weekday,
+        quantity,
+      };
+    case "uio-advanced-physical":
+      return {
+        id,
+        type: DistributorProductTypes.physical,
+        support: Support.infra,
+        sla: SLA.everyday,
+        quantity,
+      };
+    case "uaia-essential-physical":
+      return {
+        id,
+        type: DistributorProductTypes.physical,
+        support: Support.none,
+        sla: SLA.none,
+        quantity,
+      };
+    case "uaia-standard-physical":
+      return {
+        id,
+        type: DistributorProductTypes.physical,
+        support: Support.full,
+        sla: SLA.weekday,
+        quantity,
+      };
+    case "uaia-advanced-physical":
+      return {
+        id,
+        type: DistributorProductTypes.physical,
+        support: Support.full,
+        sla: SLA.everyday,
+        quantity,
+      };
+    case "uaia-essential-virtual":
+      return {
+        id,
+        type: DistributorProductTypes.virtual,
+        support: Support.none,
+        sla: SLA.none,
+        quantity,
+      };
+    case "uaia-standard-virtual":
+      return {
+        id,
+        type: DistributorProductTypes.virtual,
+        support: Support.full,
+        sla: SLA.weekday,
+        quantity,
+      };
+    case "uaia-advanced-virtual":
+      return {
+        id,
+        type: DistributorProductTypes.virtual,
+        support: Support.full,
+        sla: SLA.everyday,
+        quantity,
+      };
+    case "uio-standard-virtual":
+      return {
+        id,
+        type: DistributorProductTypes.virtual,
+        support: Support.infra,
+        sla: SLA.weekday,
+        quantity,
+      };
+    case "uio-advanced-virtual":
+      return {
+        id,
+        type: DistributorProductTypes.virtual,
+        support: Support.infra,
+        sla: SLA.everyday,
+        quantity,
+      };
+    case "uai-essential-desktop":
+      return {
+        id,
+        type: DistributorProductTypes.desktop,
+        support: Support.none,
+        sla: SLA.none,
+        quantity,
+      };
+    case "uai-standard-desktop":
+      return {
+        id,
+        type: DistributorProductTypes.desktop,
+        support: Support.full,
+        sla: SLA.weekday,
+        quantity,
+      };
+    case "uai-advanced-desktop":
+      return {
+        id,
+        type: DistributorProductTypes.desktop,
+        support: Support.full,
+        sla: SLA.everyday,
+        quantity,
+      };
+    default:
+      return null;
+  }
 };
 
-export const getPreCurrency = (items: Item[]): Currencies => {
-  const name = items?.[0]?.name;
-  const pattern = /\b(eur|gbp|usd)\b/i;
-  const match = name.match(pattern);
-
-  if (match) {
-    const currency = match[0].toLowerCase();
-    if (Object.values(Currencies).includes(currency as Currencies)) {
-      return currency as Currencies;
-    }
-  }
-
-  return Currencies.usd;
+export const getPreCurrency = (item: OfferItem): Currencies => {
+  const currency = item?.currency?.toLowerCase();
+  return Object.values(Currencies).includes(currency as Currencies)
+    ? (currency as Currencies)
+    : Currencies.usd;
 };
 
-export const getPreDuration = (items: Item[]): Durations => {
-  const name = items?.[0]?.name;
-  const regex = /(\d)y/;
-  const match = name.match(regex);
-
-  if (match) {
-    const duration = parseInt(match[1], 10);
-    if (Object.values(Durations).includes(duration as Durations)) {
-      return duration as Durations;
-    }
-  }
-
-  return Durations.one;
+export const getPreDuration = (item: OfferItem): Durations => {
+  return Object.values(Durations).includes(item?.effectiveDays as Durations)
+    ? (item?.effectiveDays as Durations)
+    : Durations.one;
 };
 
 export const PRO_SELECTOR_KEYS = {

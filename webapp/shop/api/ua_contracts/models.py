@@ -146,11 +146,25 @@ class UserSubscription:
 
 
 class OfferItem:
-    def __init__(self, id: str, name: str, price: int, allowance: int):
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        price: int,
+        allowance: int,
+        effectiveDays: int = None,
+        currency: str = None,
+        productID: str = None,
+        productName: str = None,
+    ):
         self.id = id
         self.name = name
         self.price = price
+        self.currency = currency
         self.allowance = allowance
+        self.effectiveDays = effectiveDays
+        self.productID = productID
+        self.productName = productName
 
 
 class Offer:
@@ -175,7 +189,7 @@ class Offer:
         technical_contact_email: Optional[str] = None,
         technical_contact_name: Optional[str] = None,
         opportunity_number: Optional[str] = None,
-        exclusion_group: Optional[str] = "",
+        exclusion_group: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
