@@ -17,6 +17,45 @@ toc: False
 
 ---
 
+# 1.31+ck1
+
+### Dec 16, 2024 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2091126](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2091126) Return the correct internal lb response
+* [LP#2078951](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2078951) Updates gunicorn to 23.0.0 to remove dependency on pkg_resources
+* [LP#2044219](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2044219) Added CIS-benchmark action
+* [LP#2032533](https://bugs.launchpad.net/charmed-kubernetes-bundles/+bug/2032533) Mark the unit as waiting when kube-system pods aren't ready
+
+### Kubernetes Worker Charm
+* [LP#2074388](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/2074388) Improve reconciler handlers to prevent early reconcilation
+* [LP#2044219](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2044219) Port the CIS-benchmark to the ops worker charm
+
+### Kubernetes API Load Balancer
+* [LP#2091120](https://bugs.launchpad.net/charm-kubeapi-load-balancer/+bug/2091120) Charm events should reconcile lb_addresses to requirers
+
+### Docker Registry Charm 
+* [LP#2080349](https://bugs.launchpad.net/layer-docker-registry/+bug/2080349) Added explicit configuration option `storage-redirect-disable`
+
+### Cilium Charm
+* [LP#2077734](https://bugs.launchpad.net/charm-cilium/+bug/2077734) Create charm actions for listing Cilium resources
+* [LP#2032533](https://bugs.launchpad.net/charmed-kubernetes-bundles/+bug/2032533) Block when Kubelets are unfriendly hosts
+
+### Cinder CSI Charm
+* [LP#2067404](https://bugs.launchpad.net/charm-cinder-csi/+bug/2067404) Check and log all events on failed resources
+
+### Kata Containers Charm
+* [LP#2040498](https://bugs.launchpad.net/charm-kata/+bug/2040498) Fix failed installation on Jammy
+
+### vSphere Cloud Provider Charm
+* [LP#2083999](https://bugs.launchpad.net/charm-vsphere-cloud-provider/+bug/2083999) Update images for CPI and CSI
+
+### Ceph CSI Charm
+* [LP#2078646](https://bugs.launchpad.net/charm-ceph-csi/+bug/2078646) Alter the home of Ceph conf to not interfere with other applications
+* [LP#2035399](https://bugs.launchpad.net/charm-ceph-csi/+bug/2035399) Provides charm config to adjust or disable the default metrics-ports used to expose metrics from the CSI provisioners.
+
 # 1.31
 
 ### September 04, 2024 - `charmed-kubernetes --channel 1.31/stable`
