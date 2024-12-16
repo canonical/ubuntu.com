@@ -129,69 +129,57 @@ export const FormProvider = ({
 
   const updatedChannelProductList = useMemo(() => {
     const rawChannelProductListings = window.channelProductList;
-    const offerItems = offer?.items || [];
-    const offerQuarter = offer?.exclusion_group || "";
+    const offerExclusiveGroup = offer?.exclusion_group || "";
     const updatedChannelProductList: ProductListings = {};
 
-    const extractNameWithoutQuarter = (listing: any) => {
-      return listing?.name?.split("-").slice(0, 6).join("-"); // ex: "uai-essential-desktop-1y-channel-eur"
+    const getDuration = (effectiveDays: number | undefined): number | null => {
+      if (effectiveDays === 365) return 1;
+      if (effectiveDays === 730) return 2;
+      if (effectiveDays === 1095) return 3;
+      return null;
     };
 
     const updateProductListing = (listing: any) => {
-      if (updatedChannelProductList) {
-        const {
-          name,
-          id,
-          price,
-          currency,
-          product,
-          marketplace,
-          exclusion_group,
-        } = listing;
+      const {
+        id,
+        price,
+        currency,
+        product,
+        marketplace,
+        exclusion_group,
+        effective_days,
+      } = listing;
 
-        const nameWithoutQuarter = extractNameWithoutQuarter(listing); // ex: "uai-essential-desktop-1y-channel-eur"
+      const duration = getDuration(effective_days);
+      const newName = `${product?.id}-${duration}y-channel-${currency}`;
 
-        updatedChannelProductList[nameWithoutQuarter] = {
-          id: name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
-          longId: id, // ex: "labcdefgskdfalskdjflakwedafdafsdfadsfdaf"
-          name: name, // ex: "uai-essential-desktop-1y-channel-eur-v2"
-          price: {
-            value: price, // ex: 23703
-            currency: currency, // ex:"EUR"
-          },
-          productID: product?.id as ValidProductID, // ex: "uai-advanced-desktop"
-          productName: product?.name, // ex: "Ubuntu Pro Desktop + Support (24/7)"
-          marketplace: marketplace as UserSubscriptionMarketplace, // ex: "canonical-pro-channel"
-          exclusion_group: exclusion_group || "", // ex: "2024Q4"
-        };
-      }
+      updatedChannelProductList[newName] = {
+        id: newName,
+        longId: id,
+        name: newName,
+        price: {
+          value: price,
+          currency: currency,
+        },
+        productID: product?.id as ValidProductID,
+        productName: product?.name,
+        marketplace: marketplace as UserSubscriptionMarketplace,
+        exclusion_group: exclusion_group || "",
+        effective_days,
+      };
     };
 
-    const offerKeys = offerItems.map((item) => item.id); // ex: ["lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo"]
-
     if (rawChannelProductListings) {
-      Object.keys(rawChannelProductListings).forEach((key) => {
-        // loop through each product listing
-        const listing = rawChannelProductListings[key];
-        const nameWithoutQuarter = extractNameWithoutQuarter(listing); // ex: "uai-essential-desktop-1y-channel-eur"
-        const quarter = listing?.exclusion_group || ""; // ex: "2024Q4"
+      Object.values(rawChannelProductListings).forEach((listing: any) => {
+        const { exclusion_group = "" } = listing;
 
-        // Add product listings for offers first to updatedChannelProductList
-        if (offerKeys.includes(key)) {
-          const offerMatchedListing = rawChannelProductListings[key];
-          if (offerMatchedListing) {
-            updateProductListing(offerMatchedListing);
-          }
-        }
-        // Add all product listings with matched quarter to updatedChannelProductList
-        if (
-          !(nameWithoutQuarter in updatedChannelProductList) &&
-          offerQuarter == quarter
-        ) {
+        // Add listings whose exclusion_group matches offerExclusiveGroup
+        if (offerExclusiveGroup === exclusion_group) {
           updateProductListing(listing);
         }
       });
     }
+
     return updatedChannelProductList;
   }, [offer, window.channelProductList]);
 

@@ -70,6 +70,7 @@ def parse_channel_product_listing(
         status=raw_product_listing.get("status"),
         metadata=raw_product_listing.get("metadata"),
         exclusion_group=raw_product_listing.get("exclusionGroup", ""),
+        effective_days=raw_product_listing.get("effectiveDays"),
     )
 
 

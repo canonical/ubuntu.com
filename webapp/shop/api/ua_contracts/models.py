@@ -83,6 +83,7 @@ class ChannelListing:
         product: Product = None,
         metadata: List[Metadata] = None,
         exclusion_group: str = "",
+        effective_days: int = None,
     ):
         self.id = id
         self.name = name
@@ -93,6 +94,7 @@ class ChannelListing:
         self.status = status
         self.metadata = metadata
         self.exclusion_group = exclusion_group
+        self.effective_days = effective_days
 
 
 class UserSubscription:
