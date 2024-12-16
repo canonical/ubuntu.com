@@ -301,3 +301,8 @@ export const DISTRIBUTOR_SELECTOR_KEYS = {
   PRODUCT_TYPE: "distributor-selector-productType",
   PRODUCT_LISTING: "distributor-product-listing",
 } as const;
+
+export const getLocalStorageItem = <T>(key: string, defaultValue: T): T => {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : defaultValue;
+};
