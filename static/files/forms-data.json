@@ -512,12 +512,14 @@
           "fields": [
             {
               "type": "text",
+              "label": "First name",
               "id": "firstName",
               "placeholder": "",
               "isRequired": true
             },
             {
               "type": "text",
+              "label": "Last name",
               "id": "lastName",
               "placeholder": "",
               "isRequired": true
@@ -525,12 +527,14 @@
             {
               "type": "email",
               "id": "email",
+              "label": "Email address",
               "placeholder": "",
               "isRequired": true
             },
             {
               "type": "tel",
-              "id": "phone",
+              "id": "telephone",
+              "label":"Mobile/cell phone number",
               "placeholder": "",
               "isRequired": false
             },
@@ -538,12 +542,14 @@
               "type": "text",
               "id": "company",
               "placeholder": "",
+              "label": "Company name",
               "isRequired": false
             },
             {
               "type": "text",
               "id": "job-title",
               "placeholder": "",
+              "label": "Job title",
               "isRequired": false
             }
           ]
