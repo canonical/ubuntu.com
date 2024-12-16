@@ -64,9 +64,7 @@ def rate_limit_with_backoff(func: Callable):
                 # Increment the number of attempts. 3 is a hard upper limit.
                 if initial_request["attempts"] < ATTEMPT_LIMIT:
                     initial_request["attempts"] += 1
-                    flask.session[func.__name__] = json.dumps(
-                        initial_request["attempts"]
-                    )
+                    flask.session[func.__name__] = json.dumps(initial_request)
 
                 return flask.abort(429)
 
