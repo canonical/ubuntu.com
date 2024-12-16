@@ -1,81 +1,51 @@
 {
-  "accountID": "account-id-aAbBcCdDeEfFgG",
+  "accountID": "aAIL8S9pbKfjiMl1_COENPU6ihwqQZzOxvyYdgnxHWYI",
   "actionable": true,
-  "activationAccountID": "activation-account-id-aAbBcCdDeEfFgG",
+  "activationAccountID": "aACel74nW_2C8T6Db2wdRACFlUN",
   "canChangeItems": true,
-  "createdAt": "2024-04-22T17:44:36Z",
-  "discount": 10,
-  "externalIDs": [
-    {
-      "IDs": [
-        "zift-id-test"
-      ],
-      "origin": "Zift"
-    }
-  ],
-  "metadata": [
-    {"key": "channelDealCreatorName", "value": "John Smith"},
-    {"key": "distributorAccountName", "value": "Distributor, Ltd."},
-    {"key": "endUserAccountName", "value": "End Users, Ltd."},
-    {"key": "opportunityNumber", "value": "OP-0000"},
-    {"key": "resellerAccountName", "value": "Resellers, Inc."},
-    {"key": "technicalContactEmail", "value": "contact@example.com"},
-    {"key": "technicalContactName", "value": "Jane Doe"}
-  ],
-  "id": "id-aAbBcCdDeEfFgG",
+  "createdAt": "2024-12-08T20:21:31Z",
+  "discount": 15,
+  "externalIDs": [{"IDs": ["salesforce-123"], "origin": "Salesforce"}],
+  "id": "oALglA-u0O25o5lqXcCqwqZ4atIhBIHJEIPrmCJYz51A",
   "items": [
-    {
-      "productListingID": "product-id-AaBbCcDdEeFfGg",
-      "value": 2
-    }
+      {"productListingID": "lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo", "value": 2}
   ],
-  "exclusion_group":"",
   "lastModified": "0001-01-01T00:00:00Z",
   "marketplace": "canonical-pro-channel",
+  "metadata": [
+      {"key": "channelDealCreatorName", "value": "John Smith"},
+      {"key": "distributorAccountName", "value": "Distributor, Ltd."},
+      {"key": "endUserAccountName", "value": "End Users, Ltd."},
+      {"key": "opportunityNumber", "value": "OP-102345"},
+      {"key": "resellerAccountName", "value": "Resellers, Inc."},
+      {"key": "technicalContactEmail", "value": "contact@example.com"},
+      {"key": "technicalContactName", "value": "Jane Doe"}
+  ],
   "productListings": [
-    {
-      "allowanceMetric": "units",
-      "bundleQuantity": 1,
-      "createdAt": "2024-04-22T16:53:17.162Z",
-      "effectiveDays": 365,
-      "externalIDs": [
-        {
-          "IDs": [
-            "abcdef"
+      {
+          "allowanceMetric": "units",
+          "bundleQuantity": 1,
+          "createdAt": "2024-07-16T08:51:11.797Z",
+          "effectiveDays": 1095,
+          "externalIDs": [{"IDs": ["CQC271902"], "origin": "Salesforce"}],
+          "externalMarketplaceIDs": {"IDs": ["CQC271902"], "origin": "Salesforce"},
+          "externalPricingID": {
+              "IDs": ["price_1Pd76JCzjFajHovdpbsWjXvo"],
+              "origin": "Stripe"
+          },
+          "id": "lACtSZzXX04SacirJ7ey4AATwJzG7hxeCbnl9EUqXXFo",
+          "lastModifiedAt": "2024-07-16T08:51:11.797Z",
+          "marketplace": "canonical-pro-channel",
+          "metadata": [
+              {"key": "sfLOB", "value": "Personal Devices"},
+              {"key": "version", "value": "1"}
           ],
-          "origin": "Salesforce"
-        }
-      ],
-      "externalMarketplaceIDs": {
-        "IDs": [
-          "efghij"
-        ],
-        "origin": "Salesforce"
-      },
-      "externalPricingID": {
-        "IDs": [
-          "price_abc"
-        ],
-        "origin": "Stripe"
-      },
-      "id": "product-id-AaBbCcDdEeFfGg",
-      "lastModifiedAt": "2024-04-22T16:53:17.162Z",
-      "marketplace": "canonical-pro-channel",
-      "metadata": [
-        {
-          "key": "sfLOB",
-          "value": "Personal Devices"
-        }
-      ],
-      "name": "uai-advanced-desktop-1y-channel-eur-v1",
-      "period": "none",
-      "price": {
-        "currency": "USD",
-        "value": 30000
-      },
-      "productID": "uai-advanced-desktop",
-      "productName": "Ubuntu Pro Desktop + Support (24/7)",
-      "status": "active"
-    }
+          "name": "uai-advanced-desktop-3y-channel-gbp-v1",
+          "period": "none",
+          "price": {"currency": "GBP", "value": 71109},
+          "productID": "uai-advanced-desktop",
+          "productName": "Ubuntu Pro Desktop + Support (24/7)",
+          "status": "active"
+      }
   ]
 }
