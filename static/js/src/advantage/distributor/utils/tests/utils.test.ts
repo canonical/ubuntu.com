@@ -82,153 +82,168 @@ describe("Test getProductId", () => {
 });
 
 describe("Test getPreSelectedItem", () => {
-  test("should return pre-selected item for uio-standard-physical", () => {
-    const items = [
-      {
-        allowance: 2,
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uai-advanced-desktop-1y-channel-eur-v1",
-        price: 60000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.desktop,
-        support: Support.full,
-        sla: SLA.everyday,
-        quantity: 2,
-      },
-    ]);
+  test("should return pre-selected item for valid productID", () => {
+    const item = {
+      allowance: 2,
+      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
+      name: "uai-advanced-desktop-1y-channel-eur-v1",
+      price: 60000,
+      currency: "eur",
+      effectiveDays: 365,
+      productID: "uai-advanced-desktop",
+      productName: "Ubuntu Pro Desktop + Support (24/7)",
+    };
+
+    const result = getPreSelectedItem(item);
+
+    expect(result).toEqual({
+      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
+      type: DistributorProductTypes.desktop,
+      support: Support.full,
+      sla: SLA.everyday,
+      quantity: 2,
+    });
   });
 
-  test("should return null for unknown item", () => {
-    const items = [
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "unknown-item-1y",
-        allowance: 2,
-        price: 60000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([null]);
+  test("should return null for invalid productID", () => {
+    const item = {
+      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
+      name: "unknown-item",
+      allowance: 2,
+      price: 60000,
+      currency: "eur",
+      effectiveDays: 365,
+      productID: "invalid-id",
+      productName: "Unknown Product",
+    };
+
+    const result = getPreSelectedItem(item);
+
+    expect(result).toBeNull();
   });
 
-  test("should handle multiple items", () => {
-    const items = [
-      {
-        allowance: 2,
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uai-advanced-desktop-1y-channel-eur-v1",
-        price: 60000,
-      },
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-gbp-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.desktop,
-        support: Support.full,
-        sla: SLA.everyday,
-        quantity: 2,
-      },
-      {
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.virtual,
-        support: Support.infra,
-        sla: SLA.everyday,
-        quantity: 3,
-      },
-    ]);
+  test("should handle missing fields", () => {
+    const item = {
+      id: "missing-fields",
+      name: "uai-advanced-desktop-1y-channel-eur-v1",
+      allowance: 2,
+      price: 60000,
+    };
+
+    const result = getPreSelectedItem(item);
+
+    expect(result).toBeNull();
   });
 });
 
 describe("Test getPreCurrency", () => {
-  test("should return eur when name has eur", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-eur-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
-    expect(result).toBe("eur");
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
+  test("should return correct currency from item", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-gbp-v1",
+      price: 80000,
+      currency: "gbp",
+    };
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-gbp-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
+    const result = getPreCurrency(item);
     expect(result).toBe("gbp");
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
+  test("should default to 'usd' when currency is missing", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-v1",
+      price: 80000,
+    };
+
+    const result = getPreCurrency(item);
+    expect(result).toBe("usd");
+  });
+
+  test("should return lowercase currency", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-USD-v1",
+      price: 80000,
+      currency: "USD",
+    };
+
+    const result = getPreCurrency(item);
     expect(result).toBe("usd");
   });
 });
 
 describe("Test getPreDuration", () => {
-  test("should return eur when name has eur", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-1y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  test("should return 1 year for effectiveDays 365", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-1y-channel-v1",
+      price: 80000,
+      effectiveDays: 365,
+    };
+
+    const result = getPreDuration(item);
     expect(result).toBe(1);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  test("should return 2 years for effectiveDays 730", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-v1",
+      price: 80000,
+      effectiveDays: 730,
+    };
+
+    const result = getPreDuration(item);
     expect(result).toBe(2);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-3y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  test("should return 3 years for effectiveDays 1095", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-3y-channel-v1",
+      price: 80000,
+      effectiveDays: 1095,
+    };
+
+    const result = getPreDuration(item);
     expect(result).toBe(3);
+  });
+
+  test("should default to 1 year when effectiveDays is missing", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-v1",
+      price: 80000,
+    };
+
+    const result = getPreDuration(item);
+    expect(result).toBe(1);
+  });
+
+  test("should default to 1 year for invalid effectiveDays", () => {
+    const item = {
+      allowance: 3,
+      id: "test-id",
+      name: "uio-advanced-virtual-2y-channel-v1",
+      price: 80000,
+      effectiveDays: 500,
+    };
+
+    const result = getPreDuration(item);
+    expect(result).toBe(1);
   });
 });
