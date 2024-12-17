@@ -1290,10 +1290,14 @@ def set_form_rules():
                 if "childrenPaths" in form:
                     for child_path in form["childrenPaths"]:
                         app.add_url_rule(
-                            child_path, view_func=render_form(form, child_path + '.html'), endpoint=child_path
+                            child_path,
+                            view_func=render_form(form, child_path + ".html"),
+                            endpoint=child_path,
                         )
                 app.add_url_rule(
-                    path, view_func=render_form(form, form["templatePath"]), endpoint=path
+                    path,
+                    view_func=render_form(form, form["templatePath"]),
+                    endpoint=path,
                 )
             except AssertionError:
                 app.logger.error(
