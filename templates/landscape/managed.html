@@ -174,15 +174,48 @@
         </div>
       </div>
     </div>
-    <div class="u-fixed-width">
+    <div class="u-fixed-width u-hide--small">
       {{ image(url="https://assets.ubuntu.com/v1/9423d6a0-bring-own-identity.png",
             alt="",
             width="2464",
             height="1028",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-image-container--full-width"}) | safe
+            attrs={"class": "p-image-container--full-width is-highlighted"}) | safe
       }}
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Mirror Ubuntu repositories,
+          <br />
+          and distribute software internally
+        </h2>
+      </div>
+      <div class="col">
+        <div class="u-sv3">
+          <p>
+            Landscape simplifies the task of scheduling software updates, and provides a mirroring mechanism to deliver software updates at scale, over your local network (LAN).
+          </p>
+          <p>
+            Organizations developing proprietary software on Ubuntu benefit from Managed Landscape's support for private repositories.
+          </p>
+        </div>
+        <div class="p-image-container is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/f47e7166-mirror-ubuntu repos.png",
+                    alt="",
+                    width="1200",
+                    height="801",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
     </div>
   </section>
 
