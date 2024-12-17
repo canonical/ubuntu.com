@@ -1262,12 +1262,12 @@ def render_supermicro_blogs():
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
-def render_form(form):
+def render_form(form, template_path):
     @wraps(render_form)
     def wrapper_func():
         try:
             return flask.render_template(
-                form["templatePath"],
+                template_path,
                 fieldsets=form["fieldsets"],
                 formData=form["formData"],
                 isModal=form.get("isModal"),
@@ -1287,8 +1287,13 @@ def set_form_rules():
         data = json.load(forms_json)
         for path, form in data["forms"].items():
             try:
+                if "childrenPaths" in form:
+                    for child_path in form["childrenPaths"]:
+                        app.add_url_rule(
+                            child_path, view_func=render_form(form, child_path + '.html'), endpoint=child_path
+                        )
                 app.add_url_rule(
-                    path, view_func=render_form(form), endpoint=path
+                    path, view_func=render_form(form, form["templatePath"]), endpoint=path
                 )
             except AssertionError:
                 app.logger.error(
