@@ -15,6 +15,12 @@
 
 {% block content %}
 
+  <style>
+    .objPosTop {
+      object-position: top;
+    }
+  </style>
+
   <section class="p-section--hero u-no-padding--bottom">
     {% call(slot) vf_hero(
       title_text='Manage thousands of Ubuntu<br /> machines as easily as one',
@@ -97,14 +103,14 @@
     <div class="p-equal-height-row--wrap">
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
-          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted is-cover">
             {{ image(url="https://assets.ubuntu.com/v1/a259a8e1-patch compliance.png",
                         alt="",
                         width="568",
                         height="853",
                         hi_def=True,
                         loading="auto|lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
+                        attrs={"class": "p-image-container__image objPosTop"}) | safe
             }}
           </div>
         </div>
@@ -112,7 +118,7 @@
       </div>
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
-          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted is-cover">
             {{ image(url="https://assets.ubuntu.com/v1/d6b6ae6b-rbac.png",
                         alt="",
                         width="568",
@@ -127,7 +133,7 @@
       </div>
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
-          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted is-cover">
             {{ image(url="https://assets.ubuntu.com/v1/bb8fd9a7-automated.png",
                         alt="",
                         width="568",
@@ -142,14 +148,14 @@
       </div>
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
-          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted is-cover">
             {{ image(url="https://assets.ubuntu.com/v1/99d5b20b-regulatory-compliance.png",
                         alt="",
                         width="568",
                         height="853",
                         hi_def=True,
                         loading="auto|lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
+                        attrs={"class": "p-image-container__image objPosTop"}) | safe
             }}
           </div>
         </div>
