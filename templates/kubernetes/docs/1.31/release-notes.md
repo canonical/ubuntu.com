@@ -54,7 +54,7 @@ toc: False
 
 ### Ceph CSI Charm
 * [LP#2078646](https://bugs.launchpad.net/charm-ceph-csi/+bug/2078646) Alter the home of Ceph conf to not interfere with other applications
-* [LP#2035399](https://bugs.launchpad.net/charm-ceph-csi/+bug/2035399) Provides charm config to adjust or disable the default metrics-ports used to expose metrics from the CSI provisioners.
+* [LP#2035399](https://bugs.launchpad.net/charm-ceph-csi/+bug/2035399) Provides charm config to adjust or disable the default metrics-ports used to expose metrics from the CSI provisioners
 
 # 1.31
 
