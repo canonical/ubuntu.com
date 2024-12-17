@@ -35,14 +35,12 @@
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--3-2 is-cover is-highlighted">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/74c5e0ac-hero-img.png",
-        alt="",
-        width="1200",
-        height="800",
-        hi_def=True,
-        loading="auto"
-        ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/74c5e0ac-hero-img.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto") | safe
         }}
       </div>
     {%- endif -%}
@@ -119,8 +117,12 @@
         </p>
         <div class="p-cta-block">
           <ul class="p-inline-list">
-            <li class="p-inline-list__item"><a href="https://ubuntu.com/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a></li>
-            <li class="p-inline-list__item"><a href="https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a></li>
+            <li class="p-inline-list__item">
+              <a href="https://ubuntu.com/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -162,7 +164,11 @@
 
   {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
-      <h2>What do you get <br class="u-hide-small u-hide-medium" />with Ubuntu Pro for 20.04 LTS?</h2>
+      <h2>
+        What do you get
+        <br class="u-hide-small u-hide-medium" />
+        with Ubuntu Pro for 20.04 LTS?
+      </h2>
     {%- endif -%}
 
     {%- if slot == 'description' -%}
@@ -175,13 +181,11 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_title_1' -%}
-    <h3 class="p-heading--5">Supported kernels</h3>
+      <h3 class="p-heading--5">Supported kernels</h3>
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
-      <p>
-        For continued Linux kernel security, Ubuntu Pro for Ubuntu 18.04 LTS includes support for the below versions:
-      </p>
+      <p>For continued Linux kernel security, Ubuntu Pro for Ubuntu 18.04 LTS includes support for the below versions:</p>
       <table aria-label="Ubuntu releases and their associated architecture and kernel version">
         <thead>
           <tr>
@@ -226,7 +230,7 @@
 
     {%- if slot == 'list_item_description_3' -%}
       <p>
-        Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe. 
+        Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe.
       </p>
       <p>A few commonly-used packages include:</p>
       <hr class="p-rule--muted u-no-margin--bottom" />
@@ -245,16 +249,10 @@
     quote_size="small",
     quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
     citation_source_name_text="Zivago Lee",
-    citation_source_title_text="Director of DevOps Engineeringr",
+    citation_source_title_text="Director of DevOps Engineering",
     citation_source_organisation_text="Interana",
     is_shallow=True
     ) -%}
-
-    {%- if slot == 'heading_link' -%}
-      <div class="p-section--shallow">
-        <a href="https://ubuntu.com/engage">All the success stories&nbsp;&rsaquo;</a>
-      </div>
-    {%- endif -%}
 
     {%- if slot == 'cta' -%}
       <a href="https://ubuntu.com/engage/interana-casestudy">Read the case study&nbsp;&rsaquo;</a>
