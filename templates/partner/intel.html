@@ -25,23 +25,18 @@
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <!--
-
-    need clearification on contact form
-
-     -->
-      <a href="/https://canonical.com/contact-us"
-         class="p-button--positive js-invoke-modal">Get in touch</a>
+      <!-- This needs to be updated after creation of new form -->
+      <a href="/contact-us" class="p-button--positive">Get in touch</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--3-2 is-highlighted is-cover u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/9e5bc72e-hero-img.png",
+        {{ image(url="https://assets.ubuntu.com/v1/b42e8e85-hero-img-updated.png",
                 alt="",
                 width="1800",
                 height="1013",
                 hi_def=True,
                 attrs={"class": "p-image-container__image"},
-                loading="auto") | safe
+                loading="auto|lazy") | safe
         }}
       </div>
     {%- endif -%}
@@ -316,9 +311,10 @@
     <div class="u-fixed-width">
       <h2>Explore how to optimize performance for Intel platforms in our blog</h2>
       <div class="p-equal-height-row">
+        <hr class="p-rule--muted u-hide--small u-hide--medium" />
         <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item u-hide--small">
-            <div class="p-image-container--square-on-medium p-image-container">
+          <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+            <div class="p-image-container">
               {{ image(url="https://assets.ubuntu.com/v1/16539e8a-maximizing-cpu-efficiency.png",
                             alt="",
                             width="852",
@@ -330,15 +326,15 @@
             </div>
           </div>
           <div class="p-equal-height-row__item">
-            <p>
+            <h3 class="p-heading--5">
               <a href="/blog/maximizing-cpu-efficiency-and-energy-savings-with-intel%e2%93%87-quickassist-technology-intel%e2%93%87-qat-on-ubuntu-24-04">Maximizing CPU efficiency and energy savings with Intel<sup>&reg;</sup> QuickAssist Technology on Ubuntu 24.04
               </a>
-            </p>
+            </h3>
           </div>
         </div>
         <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item u-hide--small">
-            <div class="p-image-container--square-on-medium p-image-container">
+          <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+            <div class="p-image-container">
               {{ image(url="https://assets.ubuntu.com/v1/7ff40d22-profile-workloads.png",
                             alt="",
                             width="852",
@@ -350,15 +346,15 @@
             </div>
           </div>
           <div class="p-equal-height-row__item">
-            <p>
+            <h3 class="p-heading--5">
               <a href="/blog/profile-workloads-on-x86-64-v3-to-enable-future-performance-gains">Profile workloads on x86-64-v3 to enable future performance gains
               </a>
-            </p>
+            </h3>
           </div>
         </div>
         <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item u-hide--small">
-            <div class="p-image-container--square-on-medium p-image-container">
+          <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+            <div class="p-image-container">
               {{ image(url="https://assets.ubuntu.com/v1/72db74d3-optimized-rt-ubuntu.png",
                             alt="",
                             width="852",
@@ -370,14 +366,14 @@
             </div>
           </div>
           <div class="p-equal-height-row__item">
-            <p>
+            <h3 class="p-heading--5">
               <a href="/blog/optimised-real-time-ubuntu-is-now-generally-available-on-intel-socs">Optimized Real-time Ubuntu is now generally available on Intel SoCs</a>
-            </p>
+            </h3>
           </div>
         </div>
         <div class="p-equal-height-row__col">
-          <div class="p-equal-height-row__item u-hide--small">
-            <div class="p-image-container--square-on-medium p-image-container">
+          <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+            <div class="p-image-container">
               {{ image(url="https://assets.ubuntu.com/v1/cbd961da-performance-engineering.png",
                             alt="",
                             width="852",
@@ -389,9 +385,9 @@
             </div>
           </div>
           <div class="p-equal-height-row__item">
-            <p>
+            <h3 class="p-heading--5">
               <a href="/blog/ubuntu-performance-engineering-with-frame-pointers-by-default">Performance engineering on Ubuntu leaps forward with frame pointers by default in Ubuntu 24.04 LTS</a>
-            </p>
+            </h3>
           </div>
         </div>
       </div>
@@ -409,6 +405,7 @@
           Canonical and Intel partner closely to ensure that data and AI applications can draw upon the most advanced hardware capabilities and accelerators in just a few commands. With Canonical's portfolio of data applications, AI tools, and infrastructure software, you'll be getting the most out of the hardware.
         </p>
         <div class="p-cta-block">
+          <!-- This needs to be updated after creation of new form -->
           <a href="https:/canonical.com/contact-us" class="p-button--positive">Contact us</a>
         </div>
       </div>
@@ -536,80 +533,82 @@
     </div>
     <div class="p-equal-height-row">
       <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item u-hide--small">
-          <div class="p-image-container--square-on-medium p-image-container">
-            {{ image(url="https://assets.ubuntu.com/v1/16539e8a-maximizing-cpu-efficiency.png",
-                        alt="",
-                        width="852",
-                        height="1279",
-                        hi_def=True,
-                        attrs={"class": "p-image-container__image"},
-                        loading="lazy") | safe
+        <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+          <div class="p-image-container">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/01ffd135-laptops.png",
+            alt="Laptops",
+            width="852",
+            height="1278",
+            hi_def=True,
+            attrs={"class": "p-image-container__image"},
+            loading="auto|lazy"
+            ) | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <p>
+          <h3 class="p-heading--5">
             <a href="/blog/maximizing-cpu-efficiency-and-energy-savings-with-intel%e2%93%87-quickassist-technology-intel%e2%93%87-qat-on-ubuntu-24-04">Laptops&nbsp;&rsaquo;
             </a>
-          </p>
+          </h3>
         </div>
       </div>
       <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item u-hide--small">
-          <div class="p-image-container--square-on-medium p-image-container">
-            {{ image(url="https://assets.ubuntu.com/v1/7ff40d22-profile-workloads.png",
-                        alt="",
+        <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/94440f1b-desktops.png",
+                        alt="Desktops",
                         width="852",
-                        height="1279",
+                        height="1278",
                         hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image"},) | safe
+                        attrs={"class": "p-image-container__image"},
+                        loading="auto|lazy") | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <p>
+          <h3 class="p-heading--5">
             <a href="/blog/profile-workloads-on-x86-64-v3-to-enable-future-performance-gains">Desktops&nbsp;&rsaquo;</a>
-          </p>
+          </h3>
         </div>
       </div>
       <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item u-hide--small">
-          <div class="p-image-container--square-on-medium p-image-container">
-            {{ image(url="https://assets.ubuntu.com/v1/72db74d3-optimized-rt-ubuntu.png",
-                        alt="",
+        <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/a6b2c43b-servers.png",
+                        alt="Servers",
                         width="852",
-                        height="1279",
+                        height="1278",
                         hi_def=True,
-                        loading="lazy",
+                        loading="auto|lazy",
                         attrs={"class": "p-image-container__image"},) | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <p>
+          <h3 class="p-heading--5">
             <a href="/blog/optimised-real-time-ubuntu-is-now-generally-available-on-intel-socs">Servers&nbsp;&rsaquo;</a>
-          </p>
+          </h3>
         </div>
       </div>
       <div class="p-equal-height-row__col">
-        <div class="p-equal-height-row__item u-hide--small">
-          <div class="p-image-container--square-on-medium p-image-container">
-            {{ image(url="https://assets.ubuntu.com/v1/cbd961da-performance-engineering.png",
-                        alt="",
+        <div class="p-equal-height-row__item u-hide--small u-hide--medium">
+          <div class="p-image-container">
+            {{ image(url="https://assets.ubuntu.com/v1/04f42dc3-iot-devices.png",
+                        alt="IoT devices",
                         width="852",
-                        height="1279",
+                        height="1278",
                         hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image"},) | safe
+                        attrs={"class": "p-image-container__image"},
+                        loading="auto|lazy") | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <p>
+          <h3 class="p-heading--5">
             <a href="/blog/ubuntu-performance-engineering-with-frame-pointers-by-default">IoT devices&nbsp;&rsaquo;</a>
-          </p>
+          </h3>
         </div>
       </div>
     </div>
@@ -625,6 +624,7 @@
         <p>
           Partnering with Canonical empowers developers with the ability to innovate more rapidly on your platforms and extract the unique value of your hardware, all while providing enterprises with the peace of mind that comes with reliable long term support.
         </p>
+        <hr class="p-rule--muted" />
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Accelerated time to market</li>
           <li class="p-list__item is-ticked">Easy-to-deploy optimized Ubuntu images</li>
@@ -634,7 +634,9 @@
           <li class="p-list__item is-ticked">Access to the Ubuntu developer ecosystem</li>
         </ul>
         <div class="p-cta-block">
-          <a href="https:/canonical.com/partners/silicon" class="p-button">Learn more</a>
+          <a href="https:/canonical.com/partners/silicon"
+             class="p-button"
+             aria-label="Learn more about how to optimize your silicon for Ubuntu">Learn more</a>
           <a href="/engage/driving-open-source-together-with-canonical-and-intel">Download the whitepaper on how Intel and Canonical collaborate&nbsp;&rsaquo;</a>
         </div>
       </div>
