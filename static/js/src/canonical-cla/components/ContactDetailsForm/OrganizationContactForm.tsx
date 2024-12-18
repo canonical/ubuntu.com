@@ -37,8 +37,12 @@ const OrganizationFormSchema = Yup.object<
 
 const OrganizationContactForm = () => {
   const { changeStep } = useSignForm();
-  const [storedValues, setStoredValues, resetStoredValues] =
-    usePersistedForm<OrganizationSignForm>("organization-form");
+  const [storedValues, setStoredValues, resetStoredValues] = usePersistedForm<
+    OrganizationSignForm & {
+      github_email?: string;
+      launchpad_email?: string;
+    }
+  >("organization-form");
   const submitSignForm = useMutation({
     mutationFn: postOrganizationSignForm,
     onSuccess: () => {
@@ -47,12 +51,7 @@ const OrganizationContactForm = () => {
       window.location.hash = "main-content";
     },
   });
-  const handleSubmit = (
-    values: OrganizationSignForm & {
-      github_email?: string;
-      launchpad_email?: string;
-    },
-  ) => {
+  const handleSubmit = (values: OrganizationSignForm) => {
     const submitData = {
       ...values,
       github_email: undefined,
@@ -179,7 +178,7 @@ const OrganizationContactForm = () => {
               </div>
             )}
             <p>
-              By clicking ‘I agree’ below you are confirming that you accept the
+              By clicking ‘Request contributor agreement’ below you are confirming that you accept the
               terms detailed above.
             </p>
             <Button
@@ -187,7 +186,7 @@ const OrganizationContactForm = () => {
               appearance="positive"
               disabled={!isValid || submitSignForm.isPending}
             >
-              {submitSignForm.isPending ? "Loading..." : "I agree"}
+              {submitSignForm.isPending ? "Loading..." : "Request contributor agreement"}
             </Button>
           </Form>
         );
