@@ -22,7 +22,7 @@
       ) -%}
       {%- if slot == 'description' -%}
         <p class="u-no-padding--top">
-          Landscape is available with an <a href="/pro">Ubuntu Pro subscription</a>. Landscape has a free tier for up to 5 Ubuntu instances for personal use, or evaluation purposes.  Create a <a href="https://landscape.canonical.com/signup">free Landscape SaaS account</a>, or self-host your own Landscape installation.
+          You can choose <a href="https://landscape.canonical.com/signup">Landscape</a> that’s maintained by Canonical, as a Managed App, or self-hosted. It is available for free for up to five Ubuntu instances, with an <a href="/pro">Ubuntu Pro subscription</a>, or as part of your package if you choose the Managed App.
         </p>
       {%- endif -%}
       {%- if slot == 'image' -%}
@@ -46,112 +46,116 @@
       <div class="p-section--shallow">
         <h2>Compare Landscape options</h2>
       </div>
-      <table aria-label="Pricing comparison table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>
-              Landscape SaaS
-              <br />
-              <span class="u-text--muted">Maintained by Canonical</span>
-            </th>
-            <th>
-              Managed Landscape
-              <br />
-              <span class="u-text--muted">Runs anywhere, <a href="/landscape/managed">Learn more</a></span>
-            </th>
-            <th>
-              Self-hosted Landscape
-              <br />
-              <span class="u-text--muted">Bring your own SSO</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Managed by Canonical</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Canonical SLA</td>
-            <td>-</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Works without internet</td>
-            <td>-</td>
-            <td>-</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Repository management</td>
-            <td>-</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Bring your own SSO and IAM</td>
-            <td>-</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Software and hardware inventory</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Compliance and reporting</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-          <tr>
-            <td>Security and hardening</td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-            <td>
-              <i class="p-icon--success">Included</i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="u-table-horizontal-scroll">
+        <table aria-label="Pricing comparison table"
+               style="table-layout: unset"
+               class="u-table-horizontal-scroll__table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>
+                Landscape SaaS
+                <br />
+                <span class="u-text--muted">Maintained by Canonical</span>
+              </th>
+              <th>
+                Managed Landscape
+                <br />
+                <span class="u-text--muted">Runs anywhere, <a href="/landscape/managed">Learn more</a></span>
+              </th>
+              <th>
+                Self-hosted Landscape
+                <br />
+                <span class="u-text--muted">Bring your own SSO</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Managed by Canonical</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Canonical SLA</td>
+              <td>-</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Works without internet</td>
+              <td>-</td>
+              <td>-</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+            <tr>
+              <td>Repository management</td>
+              <td>-</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+            <tr>
+              <td>Bring your own SSO and IAM</td>
+              <td>-</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+            <tr>
+              <td>Software and hardware inventory</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+            <tr>
+              <td>Compliance and reporting</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+            <tr>
+              <td>Security and hardening</td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+              <td>
+                <i class="p-icon--success">Included</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -168,7 +172,7 @@
       </div>
       <div class="p-cta-block">
         <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
-        <a href="/landscape/docs/quickstart-deployment">Install Landscape Server with quickstart mode&nbsp;&rsaquo;</a>
+        <a href="/landscape/install">Install Landscape Server with quickstart mode&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
