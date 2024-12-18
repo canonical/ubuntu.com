@@ -6,7 +6,7 @@
     {% for fieldset in fieldsets %}
       <div class="p-section">
         <hr class="p-rule is-fixed-width" />
-        <fieldset class="p-fieldset-section {% if fieldset.inputType=='checkbox-visibility' %} js-toggle-checkbox-visibility {% elif fieldset.isRequired and fieldset.inputType =='checkbox' %} js-required-checkbox {% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
+        <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% elif fieldset.isRequired and fieldset.inputType == 'checkbox' %} js-required-checkbox{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
                   id="{{ fieldset.id }}"
                   aria-labelledby="{{ fieldset.id }}">
           <div class="row--50-50 {% if not fieldset.noCommentsFromLead %}js-formfield{% endif %}">
@@ -59,7 +59,7 @@
                           <strong>{{ field.fieldTitle }}</strong>
                           {% for option in field.options %}
                             <label class="p-checkbox">
-                              <input class="p-checkbox__input js-checkbox-visibility {% if field.fieldTitle=="Other" %}__other{% endif %}"
+                              <input class="p-checkbox__input js-checkbox-visibility{% if field.fieldTitle=="Other" %}__other{% endif %}"
                                      type="checkbox"
                                      aria-labelledby="{{ option.label }}"
                                      value="{{ option.value }}" />
@@ -139,7 +139,7 @@
                        aria-hidden="true"
                        aria-label="hidden field"
                        name="returnURL"
-                       value="{{ formData.returnURL }}" />
+                       value={% if path %}"{{ path }}/#contact-form-success{% else %}{{ formData.returnUrl }}{% endif %}" />
                 <input type="hidden"
                        aria-hidden="true"
                        aria-label="hidden field"
