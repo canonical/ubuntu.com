@@ -12,6 +12,7 @@ import {
   getPreSelectedItem,
   getProductId,
 } from "../utils";
+import { OfferItem } from "advantage/offers/types";
 
 describe("Test generateUniqueId", () => {
   test("should return a string", () => {
@@ -20,9 +21,9 @@ describe("Test generateUniqueId", () => {
   });
 
   test("should generate unique Ids on multiple calls", () => {
-    const id1 = generateUniqueId();
-    const id2 = generateUniqueId();
-    expect(id1).not.toBe(id2);
+    const id_1 = generateUniqueId();
+    const id_2 = generateUniqueId();
+    expect(id_1).not.toBe(id_2);
   });
 });
 
@@ -71,7 +72,7 @@ describe("Test getProductId", () => {
     expect(productId).toBe("uaia-essential-virtual");
   });
 
-  test("should return no-product", () => {
+  test("should return no-product for invalid combination", () => {
     const productId = getProductId(
       DistributorProductTypes.desktop,
       Support.infra,
@@ -79,171 +80,104 @@ describe("Test getProductId", () => {
     );
     expect(productId).toBe("no-product");
   });
+
+  test("should return no-product for unsupported SLA", () => {
+    const productId = getProductId(
+      DistributorProductTypes.physical,
+      Support.full,
+      "invalid-sla" as SLA,
+    );
+    expect(productId).toBe("no-product");
+  });
 });
+
+const mockItem: OfferItem = {
+  allowance: 2,
+  id: "test-id",
+  productID: "uaia-standard-physical",
+  name: "Product Name",
+  price: 10.99,
+};
 
 describe("Test getPreSelectedItem", () => {
   test("should return pre-selected item for valid productID", () => {
-    const item = {
-      allowance: 2,
-      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-      name: "uai-advanced-desktop-1y-channel-eur-v1",
-      price: 60000,
-      currency: "eur",
-      effectiveDays: 365,
-      productID: "uai-advanced-desktop",
-      productName: "Ubuntu Pro Desktop + Support (24/7)",
-    };
-
-    const result = getPreSelectedItem(item);
+    const result = getPreSelectedItem(mockItem);
 
     expect(result).toEqual({
-      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-      type: DistributorProductTypes.desktop,
+      id: "test-id",
+      type: DistributorProductTypes.physical,
       support: Support.full,
-      sla: SLA.everyday,
+      sla: SLA.weekday,
       quantity: 2,
     });
   });
 
   test("should return null for invalid productID", () => {
     const item = {
-      id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-      name: "unknown-item",
-      allowance: 2,
-      price: 60000,
-      currency: "eur",
-      effectiveDays: 365,
+      ...mockItem,
       productID: "invalid-id",
-      productName: "Unknown Product",
     };
-
     const result = getPreSelectedItem(item);
-
     expect(result).toBeNull();
   });
 
-  test("should handle missing fields", () => {
+  test("should handle missing productID", () => {
     const item = {
-      id: "missing-fields",
-      name: "uai-advanced-desktop-1y-channel-eur-v1",
+      id: "test-id",
+      name: "Product Name",
       allowance: 2,
-      price: 60000,
+      price: 10.99,
     };
-
     const result = getPreSelectedItem(item);
-
     expect(result).toBeNull();
   });
 });
 
 describe("Test getPreCurrency", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-  test("should return correct currency from item", () => {
+  test("should return correct currency for valid input", () => {
     const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-gbp-v1",
-      price: 80000,
-      currency: "gbp",
+      ...mockItem,
+      currency: "eur",
     };
-
     const result = getPreCurrency(item);
-    expect(result).toBe("gbp");
+    expect(result).toBe(Currencies.eur);
   });
 
-  test("should default to 'usd' when currency is missing", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-v1",
-      price: 80000,
-    };
-
+  test("should default to USD for invalid currency", () => {
+    const item = { ...mockItem, currency: "unknown" };
     const result = getPreCurrency(item);
-    expect(result).toBe("usd");
+    expect(result).toBe(Currencies.usd);
   });
 
-  test("should return lowercase currency", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-USD-v1",
-      price: 80000,
-      currency: "USD",
-    };
-
-    const result = getPreCurrency(item);
-    expect(result).toBe("usd");
+  test("should default to USD if currency field is missing", () => {
+    const result = getPreCurrency(mockItem);
+    expect(result).toBe(Currencies.usd);
   });
 });
 
 describe("Test getPreDuration", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-  test("should return 1 year for effectiveDays 365", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-1y-channel-v1",
-      price: 80000,
-      effectiveDays: 365,
-    };
-
-    const result = getPreDuration(item);
+  test("should return 1 for 365 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 365 });
     expect(result).toBe(1);
   });
 
-  test("should return 2 years for effectiveDays 730", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-v1",
-      price: 80000,
-      effectiveDays: 730,
-    };
-
-    const result = getPreDuration(item);
+  test("should return 2 for 730 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 730 });
     expect(result).toBe(2);
   });
 
-  test("should return 3 years for effectiveDays 1095", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-3y-channel-v1",
-      price: 80000,
-      effectiveDays: 1095,
-    };
-
-    const result = getPreDuration(item);
+  test("should return 3 for 1095 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 1095 });
     expect(result).toBe(3);
   });
 
-  test("should default to 1 year when effectiveDays is missing", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-v1",
-      price: 80000,
-    };
-
-    const result = getPreDuration(item);
+  test("should default to 1 for invalid effectiveDays", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 400 });
     expect(result).toBe(1);
   });
 
-  test("should default to 1 year for invalid effectiveDays", () => {
-    const item = {
-      allowance: 3,
-      id: "test-id",
-      name: "uio-advanced-virtual-2y-channel-v1",
-      price: 80000,
-      effectiveDays: 500,
-    };
-
-    const result = getPreDuration(item);
+  test("should default to 1 if effectiveDays is missing", () => {
+    const result = getPreDuration({ ...mockItem });
     expect(result).toBe(1);
   });
 });
