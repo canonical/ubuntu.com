@@ -65,7 +65,7 @@ interface FormProviderProps {
   initialType?: ProductTypes;
   initialDuration?: Durations;
   initialCurrency?: Currencies;
-  initialOffer?: Offer;
+  initialOffer?: Offer | null;
   initialTechnicalUserContact?: TechnicalUserContact;
   initialChannelProductList?: ProductListings;
   children: React.ReactNode;
@@ -75,6 +75,7 @@ export const FormProvider = ({
   initialSubscriptionList = defaultValues.subscriptionList,
   initialType = defaultValues.productType,
   initialDuration = defaultValues.duration,
+  initialOffer = defaultValues.offer,
   initialCurrency = defaultValues.currency,
   initialTechnicalUserContact = defaultValues.technicalUserContact,
   initialChannelProductList = defaultValues.channelProductList,
@@ -104,7 +105,7 @@ export const FormProvider = ({
     );
   const [products, setProducts] = useState<ChannelProduct[] | null>(null);
   const [offer, setOffer] = useState<Offer | null>(
-    getLocalStorageItem(DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA, null),
+    getLocalStorageItem(DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA, initialOffer),
   );
   const [channelProductList, setChannelProductList] = useState<ProductListings>(
     initialChannelProductList,
