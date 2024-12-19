@@ -1262,17 +1262,27 @@ def render_supermicro_blogs():
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
-def render_form(form):
+def render_form(form, template_path, child=False):
     @wraps(render_form)
     def wrapper_func():
         try:
-            return flask.render_template(
-                form["templatePath"],
-                fieldsets=form["fieldsets"],
-                formData=form["formData"],
-                isModal=form.get("isModal"),
-                modalId=form.get("modalId"),
-            )
+            if child:
+                return flask.render_template(
+                    template_path + ".html",
+                    fieldsets=form["fieldsets"],
+                    formData=form["formData"],
+                    isModal=form.get("isModal"),
+                    modalId=form.get("modalId"),
+                    path=template_path,
+                )
+            else:
+                return flask.render_template(
+                    template_path + ".html",
+                    fieldsets=form["fieldsets"],
+                    formData=form["formData"],
+                    isModal=form.get("isModal"),
+                    modalId=form.get("modalId"),
+                )
         except jinja2.exceptions.TemplateNotFound:
             flask.abort(
                 404, description=f"Template {form['templatePath']} not found."
@@ -1287,8 +1297,21 @@ def set_form_rules():
         data = json.load(forms_json)
         for path, form in data["forms"].items():
             try:
+                if "childrenPaths" in form:
+                    for child_path in form["childrenPaths"]:
+                        app.add_url_rule(
+                            child_path,
+                            view_func=render_form(
+                                form, child_path, child=True
+                            ),
+                            endpoint=child_path,
+                        )
                 app.add_url_rule(
-                    path, view_func=render_form(form), endpoint=path
+                    path,
+                    view_func=render_form(
+                        form, form["templatePath"].split(".")[0]
+                    ),
+                    endpoint=path,
                 )
             except AssertionError:
                 app.logger.error(
