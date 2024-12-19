@@ -1055,8 +1055,8 @@
     </div>
   </section>
 
-  {% with title_link="/blog/internet-of-things", groupId="1666", tag_id="3633" %}
-    {% include "internet-of-things/shared/_latest-news-iot.html" %}
+  {% with section_classes='p-strip--light', heading_topic='Embedded', tag_name='iot', tag_id='3633', limit='4', article_date='True' %}
+    {% include "shared/_latest_news_strip.html" %}
   {% endwith %}
 
   <script src="{{ versioned_static('js/dist/sticky-nav.js') }}"></script>

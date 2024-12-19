@@ -1,0 +1,287 @@
+{% extends "20-04/base_20-04.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% block title %}Ubuntu 20.04 LTS (Focal Fossa){% endblock %}
+
+{% block meta_description %}
+  Ubuntu 20.04 LTS (Focal Fossa) is out of standard support on 31 May 2025. Ubuntu Pro provides continued support and security coverage for Ubuntu 20.04 LTS for an additional 5 years, until 2030.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1BSlOqwe--4MoVvAEok6WssBfEfwiRSXN1dNWCoUffdY/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu 20.04 LTS (Focal Fossa)',
+    subtitle_text='Out of standard support <br class="u-hide-small u-hide-medium" />Upgrade to Ubuntu Pro',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        <strong>Ubuntu 20.04 LTS (Focal Fossa)</strong> was released on April 23, 2020, enhancing systemic enterprise security with Kernel Self Protection measures, WireGuard VPN, Secure Boot for protection against rootkits, and FIDO for passwordless authentication, among others.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/pro" class="p-button--positive">Get started with Ubuntu Pro for 20.04 LTS</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/74c5e0ac-hero-img.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Reaching end of standard support on 31 May 2025</h2>
+      </div>
+      <div class="col">
+        <p>
+          Transitioning to the latest operating system, such as Ubuntu 24.04 LTS, is important for performance, hardware enablement and new technology benefits and is recommended for new instances. But it might be a more complex process for existing deployments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>What are your options?</h2>
+      </div>
+      <div class="col">
+        <p>You can either migrate to the next LTS or upgrade to Ubuntu Pro to expand your security maintenance.</p>
+        <p>
+          With  Ubuntu Pro, the 20.04 LTS will be fully supported until 2030. Ubuntu Pro is free for personal and small-scale commercial use on up to 5 machines. Paid plans with transparent, per-machine pricing are available for large-scale deployments.
+        </p>
+        <div class="p-cta-block">
+          <a href="/pro/subscribe" class="p-button">Get a free trial for Ubuntu Pro</a>
+          <a href="/cloud/public-cloud">Learn more about Ubuntu Pro on public clouds&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Security updates for Ubuntu 20.04 LTS, with Ubuntu Pro</h2>
+      </div>
+      <div class="col">
+        {{ image(url="https://assets.ubuntu.com/v1/b695615a-security-updates.png",
+                alt="",
+                width="1200",
+                height="801",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
+        <p>
+          The Ubuntu Security Team is dedicated to providing timely security updates for all packages on Ubuntu 20.04 LTS for <em>x86-64</em> and <em>arm64</em> architectures.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Upgrading to Ubuntu 22.04 LTS, or Ubuntu 24.04 LTS fresh install</h2>
+      </div>
+      <div class="col">
+        <p>
+          Where it makes sense, you should transition workloads to later Ubuntu releases. You can either upgrade existing Ubuntu 20.04 LTS instances to Ubuntu 22.04 LTS or redeploy your workload onto a fresh Ubuntu 24.04 LTS instance.
+        </p>
+        <p>
+          There is no direct upgrade path from 20.04 LTS to Ubuntu 24.04 LTS, so you can either move to Ubuntu 22.04 LTS and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.
+        </p>
+        <div class="p-cta-block">
+          <ul class="p-inline-list">
+            <li class="p-inline-list__item">
+              <a href="/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-inline-list__item">
+              <a href="/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Expanded Security Maintenance (ESM) for 20.04 LTS</h2>
+        </div>
+        <div class="col">
+          <p>
+            <a href="/security/esm">Expanded Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX.
+          </p>
+          <p>
+            ESM is free on up to five machines and for broader enterprise use through an <a href="/pro">Ubuntu Pro subscription</a>. The subscription also includes additional services such as FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.
+          </p>
+          <div class="p-cta-block">
+            <a href="/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      {{ image(url="https://assets.ubuntu.com/v1/4fb3a7e7-esm-updated.png",
+            alt="",
+            width="2464",
+            height="1027",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    </div>
+  </section>
+
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
+    {%- if slot == 'title' -%}
+      <h2>
+        What do you get
+        <br class="u-hide-small u-hide-medium" />
+        with Ubuntu Pro for 20.04 LTS?
+      </h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <div class="p-section--shallow">
+        <p>
+          Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the Main Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Ubuntu Pro delivers security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of five years beyond the end of standard support.
+        </p>
+        <p>Additionally, Ubuntu Pro can also cover all packages in the Ubuntu Universe repository, until April 2030.</p>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Supported kernels</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>For continued Linux kernel security, Ubuntu Pro for Ubuntu 20.04 LTS includes support for the following versions:</p>
+      <table aria-label="Ubuntu releases and their associated architecture and kernel version">
+        <thead>
+          <tr>
+            <th>Ubuntu release</th>
+            <th>Architecture</th>
+            <th>Kernel Version</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <strong>Ubuntu 20.04 LTS</strong>
+            </th>
+            <td>arm64, x86-64 (AMD/Intel), riscv64 and s390x</td>
+            <td>5.4 (GA)</td>
+          </tr>
+          <tr>
+            <th>
+              <strong>Ubuntu 20.04 LTS</strong>
+            </th>
+            <td>arm64, x86-64  (AMD/Intel), riscv64 and s390x</td>
+            <td>5.15 (HWE)</td>
+          </tr>
+        </tbody>
+      </table>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Infrastructure packages</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>
+        For Ubuntu 20.04 LTS, where technically feasible, Canonical provides extended security maintenance to all binary packages that reside in the Ubuntu Main Repository.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+
+      <h3 class="p-heading--5">Application packages</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        Canonical provides application extended security maintenance to the binary packages that reside in Main and Universe.
+      </p>
+      <p>A few commonly-used packages include:</p>
+      <hr class="p-rule--muted u-no-margin--bottom" />
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Python - 3.8</li>
+        <li class="p-list__item is-ticked">PostgreSQL - 12</li>
+        <li class="p-list__item is-ticked">Ruby - 2.7</li>
+        <li class="p-list__item is-ticked">Ceph - 15.2.1</li>
+        <li class="p-list__item is-ticked">PHP - 7.4</li>
+      </ul>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {% call(slot) vf_quote_wrapper(
+    title_text="What our customers say",
+    quote_size="small",
+    quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
+    citation_source_name_text="Zivago Lee",
+    citation_source_title_text="Director of DevOps Engineering",
+    citation_source_organisation_text="Interana",
+    is_shallow=True
+    ) -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/interana-casestudy">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  {% call(slot) vf_quote_wrapper(
+    quote_size="small",
+    quote_text="ESM has given us the space to plan what comes next. It's helping us get into a position where we can have a more sustainable infrastructure.",
+    citation_source_name_text="Andy Parker",
+    citation_source_title_text="Engineering Manager",
+    citation_source_organisation_text="TIM"
+    ) -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/case-study-acuris">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  <hr class="is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/security/esm#get-in-touch">Get in touch</a> if you need advice on the best path for your company.
+      </h2>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+  {% with section_classes='p-section--deep', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', article_image='True', article_excerpt='True', tag_id='3789', tag_name='ubuntu-20-04' %}
+    {% include "shared/_latest_news_strip.html" %}
+  {% endwith %}
+
+{% endblock content %}
