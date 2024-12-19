@@ -22,12 +22,12 @@
 
   {% call(slot) vf_hero(
     title_text='Ubuntu 20.04 LTS (Focal Fossa)',
-    subtitle_text='Out of standard <br class="u-hide-small u-hide-medium" /> support Upgrade to Ubuntu Pro',
+    subtitle_text='Out of standard support <br class="u-hide-small u-hide-medium" />Upgrade to Ubuntu Pro',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        <strong>Ubuntu 20.04 LTS (Focal Fossa)</strong> was released on April 23, 2020, with a strong focus on security and performance. Ubuntu 20.04 LTS also includes new security features like Kernel Self Protection measures, control flow integrity, and stack-clash protection, enhancing systemic enterprise security. Additional updates include support for WireGuard VPN, Secure Boot for protection against rootkits, FIDO for passwordless authentication, and CIS hardening on the server.
+        <strong>Ubuntu 20.04 LTS (Focal Fossa)</strong> was released on April 23, 2020, enhancing systemic enterprise security with Kernel Self Protection measures, WireGuard VPN, Secure Boot for protection against rootkits, and FIDO for passwordless authentication, among others.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
@@ -94,7 +94,7 @@
                 loading="lazy") | safe
         }}
         <p>
-          The Ubuntu Security Team is dedicated to providing timely security updates for all packages on Ubuntu 20.04 LTS for x86-64 and arm64 architectures.
+          The Ubuntu Security Team is dedicated to providing timely security updates for all packages on Ubuntu 20.04 LTS for <em>x86-64</em> and <em>arm64</em> architectures.
         </p>
       </div>
     </div>
@@ -181,7 +181,7 @@
     {%- endif -%}
 
     {%- if slot == 'list_item_description_1' -%}
-      <p>For continued Linux kernel security, Ubuntu Pro for Ubuntu 18.04 LTS includes support for the below versions:</p>
+      <p>For continued Linux kernel security, Ubuntu Pro for Ubuntu 20.04 LTS includes support for the following versions:</p>
       <table aria-label="Ubuntu releases and their associated architecture and kernel version">
         <thead>
           <tr>
@@ -193,16 +193,16 @@
         <tbody>
           <tr>
             <th>
-              <strong>Ubuntu 18.04 LTS</strong>
+              <strong>Ubuntu 20.04 LTS</strong>
             </th>
-            <td>arm64, x86-64 (AMD/Intel) and s390x</td>
+            <td>arm64, x86-64 (AMD/Intel), riscv64 and s390x</td>
             <td>5.4 (GA)</td>
           </tr>
           <tr>
             <th>
               <strong>Ubuntu 20.04 LTS</strong>
             </th>
-            <td>arm64, x86-64 (AMD/Intel) and s390x</td>
+            <td>arm64, x86-64  (AMD/Intel), riscv64 and s390x</td>
             <td>5.15 (HWE)</td>
           </tr>
         </tbody>
@@ -241,7 +241,7 @@
   {%- endcall -%}
 
   {% call(slot) vf_quote_wrapper(
-    title_text="What customers say about ESM",
+    title_text="What our customers say",
     quote_size="small",
     quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
     citation_source_name_text="Zivago Lee",
@@ -280,7 +280,7 @@
   </section>
 
   <hr class="is-fixed-width" />
-  {% with section_classes='p-section--deep', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', article_image='True', article_excerpt='True', tag_id='3733', tag_name='ubuntu-20-04' %}
+  {% with section_classes='p-section--deep', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', article_image='True', article_excerpt='True', tag_id='3789', tag_name='ubuntu-20-04' %}
     {% include "shared/_latest_news_strip.html" %}
   {% endwith %}
 
