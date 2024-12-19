@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { DistributorProduct, UAProduct } from "../../utils/test/Mocks";
 import Taxes from "./Taxes";
 import userEvent from "@testing-library/user-event";
@@ -59,12 +59,11 @@ describe("TaxesTests", () => {
     );
 
     expect(screen.getByTestId("select-country")).toBeInTheDocument();
-    fireEvent.change(screen.getByTestId("select-country"), {
-      target: { value: "JP" },
-    });
+    userEvent.selectOptions(screen.getByTestId("select-country"), "JP");
+    expect(screen.queryByText("VAT number:")).not.toBeInTheDocument();
   });
 
-  it("When VAT country is selected, VAT Number input displays", () => {
+  it("When VAT country is selected, VAT Number input displays", async () => {
     const products = [
       {
         product: UAProduct,
@@ -82,14 +81,11 @@ describe("TaxesTests", () => {
     );
 
     expect(screen.getByTestId("select-country")).toBeInTheDocument();
-    fireEvent.change(screen.getByTestId("select-country"), {
-      target: { value: "FR" },
-    });
-
-    expect(screen.getByText("VAT number:")).toBeInTheDocument();
+    await userEvent.selectOptions(screen.getByTestId("select-country"), "FR");
+    expect(screen.queryByText("VAT number:")).toBeInTheDocument();
   });
 
-  it("When USA is selected, State select displays", () => {
+  it("When USA is selected, State select displays", async () => {
     const products = [
       {
         product: UAProduct,
@@ -105,13 +101,10 @@ describe("TaxesTests", () => {
         </Formik>
       </QueryClientProvider>,
     );
-    fireEvent.change(getByTestId("select-country"), {
-      target: { value: "US" },
-    });
+    await userEvent.selectOptions(getByTestId("select-country"), "US");
     expect(screen.getByText("State:")).toBeInTheDocument();
-    fireEvent.change(getByTestId("select-state"), {
-      target: { value: "Texas" },
-    });
+    await userEvent.selectOptions(getByTestId("select-state"), "Texas");
+    expect(screen.queryByText("VAT number:")).not.toBeInTheDocument();
   });
 
   it("sets status right if country is stored", () => {
@@ -160,7 +153,7 @@ describe("TaxesTests", () => {
     expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
   });
 
-  it("cancel button resets tax step values", () => {
+  it("cancel button resets tax step values", async () => {
     global.window = Object.create(window);
     Object.defineProperty(window, "accountId", { value: "ABCDEF" });
 
@@ -184,37 +177,27 @@ describe("TaxesTests", () => {
         </Formik>
       </QueryClientProvider>,
     );
-
-    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
-    fireEvent.change(screen.getByTestId("select-country"), {
-      target: { value: "FR" },
-    });
-    fireEvent.change(screen.getByTestId("field-vat-number"), {
-      target: { value: "FR123123123" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await userEvent.click(screen.getByRole("button", { name: "Edit" }));
+    await userEvent.selectOptions(screen.getByTestId("select-country"), "FR");
+    await userEvent.type(screen.getByTestId("field-vat-number"), "FR123123123");
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
     expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
     expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
 
-    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
-    fireEvent.change(screen.getByTestId("select-country"), {
-      target: { value: "US" },
-    });
-    fireEvent.change(screen.getByTestId("select-state"), {
-      target: { value: "AL" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await userEvent.click(screen.getByRole("button", { name: "Edit" }));
+    await userEvent.selectOptions(screen.getByTestId("select-country"), "US");
+    await userEvent.selectOptions(screen.getByTestId("select-state"), "AL");
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
     expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
     expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
 
-    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
-    fireEvent.change(screen.getByTestId("select-country"), {
-      target: { value: "CA" },
-    });
-    fireEvent.change(screen.getByTestId("select-ca-province"), {
-      target: { value: "AL" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await userEvent.click(screen.getByRole("button", { name: "Edit" }));
+    await userEvent.selectOptions(screen.getByTestId("select-country"), "CA");
+    await userEvent.selectOptions(
+      screen.getByTestId("select-ca-province"),
+      "AB",
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
     expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
     expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
   });
@@ -246,12 +229,12 @@ describe("TaxesTests", () => {
     );
 
     expect(screen.queryByRole("button", { name: "Edit" })).toBeInTheDocument();
-    userEvent.click(screen.getByRole("button", { name: "Edit" }));
-    await waitFor(() => {
-      expect(screen.getByTestId("select-country")).toBeInTheDocument();
-      expect(screen.getByTestId("field-vat-number")).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
-    });
+    await userEvent.click(screen.getByRole("button", { name: "Edit" }));
+
+    const countryField = await screen.findByTestId("select-country");
+    expect(countryField).toBeInTheDocument();
+    expect(screen.getByTestId("field-vat-number")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
   });
 
   it("Edit button should not be displayed for channel users", () => {
