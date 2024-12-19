@@ -82,6 +82,8 @@ class ChannelListing:
         status: str,
         product: Product = None,
         metadata: List[Metadata] = None,
+        exclusion_group: str = "",
+        effective_days: int = None,
     ):
         self.id = id
         self.name = name
@@ -91,6 +93,8 @@ class ChannelListing:
         self.currency = currency
         self.status = status
         self.metadata = metadata
+        self.exclusion_group = exclusion_group
+        self.effective_days = effective_days
 
 
 class UserSubscription:
@@ -142,11 +146,25 @@ class UserSubscription:
 
 
 class OfferItem:
-    def __init__(self, id: str, name: str, price: int, allowance: int):
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        price: int,
+        allowance: int,
+        effectiveDays: Optional[int] = None,
+        currency: Optional[str] = None,
+        productID: Optional[str] = None,
+        productName: Optional[str] = None,
+    ):
         self.id = id
         self.name = name
         self.price = price
+        self.currency = currency
         self.allowance = allowance
+        self.effectiveDays = effectiveDays
+        self.productID = productID
+        self.productName = productName
 
 
 class Offer:
@@ -171,7 +189,7 @@ class Offer:
         technical_contact_email: Optional[str] = None,
         technical_contact_name: Optional[str] = None,
         opportunity_number: Optional[str] = None,
-        version: Optional[str] = None,
+        exclusion_group: Optional[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -198,7 +216,7 @@ class Offer:
             self.technical_contact_email = technical_contact_email
             self.technical_contact_name = technical_contact_name
             self.opportunity_number = opportunity_number
-            self.version = version
+            self.exclusion_group = exclusion_group
 
     def check_is_channel_offer(self) -> bool:
         return self.is_channel_offer

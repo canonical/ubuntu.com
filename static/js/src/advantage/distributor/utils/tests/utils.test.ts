@@ -12,6 +12,7 @@ import {
   getPreSelectedItem,
   getProductId,
 } from "../utils";
+import { OfferItem } from "advantage/offers/types";
 
 describe("Test generateUniqueId", () => {
   test("should return a string", () => {
@@ -20,9 +21,9 @@ describe("Test generateUniqueId", () => {
   });
 
   test("should generate unique Ids on multiple calls", () => {
-    const id1 = generateUniqueId();
-    const id2 = generateUniqueId();
-    expect(id1).not.toBe(id2);
+    const id_1 = generateUniqueId();
+    const id_2 = generateUniqueId();
+    expect(id_1).not.toBe(id_2);
   });
 });
 
@@ -71,7 +72,7 @@ describe("Test getProductId", () => {
     expect(productId).toBe("uaia-essential-virtual");
   });
 
-  test("should return no-product", () => {
+  test("should return no-product for invalid combination", () => {
     const productId = getProductId(
       DistributorProductTypes.desktop,
       Support.infra,
@@ -79,156 +80,104 @@ describe("Test getProductId", () => {
     );
     expect(productId).toBe("no-product");
   });
+
+  test("should return no-product for unsupported SLA", () => {
+    const productId = getProductId(
+      DistributorProductTypes.physical,
+      Support.full,
+      "invalid-sla" as SLA,
+    );
+    expect(productId).toBe("no-product");
+  });
 });
 
+const mockItem: OfferItem = {
+  allowance: 2,
+  id: "test-id",
+  productID: "uaia-standard-physical",
+  name: "Product Name",
+  price: 10.99,
+};
+
 describe("Test getPreSelectedItem", () => {
-  test("should return pre-selected item for uio-standard-physical", () => {
-    const items = [
-      {
-        allowance: 2,
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uai-advanced-desktop-1y-channel-eur-v1",
-        price: 60000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.desktop,
-        support: Support.full,
-        sla: SLA.everyday,
-        quantity: 2,
-      },
-    ]);
+  test("should return pre-selected item for valid productID", () => {
+    const result = getPreSelectedItem(mockItem);
+
+    expect(result).toEqual({
+      id: "test-id",
+      type: DistributorProductTypes.physical,
+      support: Support.full,
+      sla: SLA.weekday,
+      quantity: 2,
+    });
   });
 
-  test("should return null for unknown item", () => {
-    const items = [
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "unknown-item-1y",
-        allowance: 2,
-        price: 60000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([null]);
+  test("should return null for invalid productID", () => {
+    const item = {
+      ...mockItem,
+      productID: "invalid-id",
+    };
+    const result = getPreSelectedItem(item);
+    expect(result).toBeNull();
   });
 
-  test("should handle multiple items", () => {
-    const items = [
-      {
-        allowance: 2,
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uai-advanced-desktop-1y-channel-eur-v1",
-        price: 60000,
-      },
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-gbp-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreSelectedItem(items);
-    expect(result).toEqual([
-      {
-        id: "lAIeXbXxG9D_nA5v5C5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.desktop,
-        support: Support.full,
-        sla: SLA.everyday,
-        quantity: 2,
-      },
-      {
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        type: DistributorProductTypes.virtual,
-        support: Support.infra,
-        sla: SLA.everyday,
-        quantity: 3,
-      },
-    ]);
+  test("should handle missing productID", () => {
+    const item = {
+      id: "test-id",
+      name: "Product Name",
+      allowance: 2,
+      price: 10.99,
+    };
+    const result = getPreSelectedItem(item);
+    expect(result).toBeNull();
   });
 });
 
 describe("Test getPreCurrency", () => {
-  test("should return eur when name has eur", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-eur-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
-    expect(result).toBe("eur");
+  test("should return correct currency for valid input", () => {
+    const item = {
+      ...mockItem,
+      currency: "eur",
+    };
+    const result = getPreCurrency(item);
+    expect(result).toBe(Currencies.eur);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-gbp-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
-    expect(result).toBe("gbp");
+  test("should default to USD for invalid currency", () => {
+    const item = { ...mockItem, currency: "unknown" };
+    const result = getPreCurrency(item);
+    expect(result).toBe(Currencies.usd);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreCurrency(items);
-    expect(result).toBe("usd");
+  test("should default to USD if currency field is missing", () => {
+    const result = getPreCurrency(mockItem);
+    expect(result).toBe(Currencies.usd);
   });
 });
 
 describe("Test getPreDuration", () => {
-  test("should return eur when name has eur", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-1y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  test("should return 1 for 365 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 365 });
     expect(result).toBe(1);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-2y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  test("should return 2 for 730 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 730 });
     expect(result).toBe(2);
   });
 
-  test("should return gbp when name has gbp", () => {
-    const items = [
-      {
-        allowance: 3,
-        id: "asdfasdfasdC5DQeisJ4E2DkLrmxtjXzvCU2nE",
-        name: "uio-advanced-virtual-3y-channel-usd-v1",
-        price: 80000,
-      },
-    ];
-    const result = getPreDuration(items);
+  test("should return 3 for 1095 days", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 1095 });
     expect(result).toBe(3);
+  });
+
+  test("should default to 1 for invalid effectiveDays", () => {
+    const result = getPreDuration({ ...mockItem, effectiveDays: 400 });
+    expect(result).toBe(1);
+  });
+
+  test("should default to 1 if effectiveDays is missing", () => {
+    const result = getPreDuration({ ...mockItem });
+    expect(result).toBe(1);
   });
 });
