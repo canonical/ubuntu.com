@@ -19,25 +19,28 @@
 
 {% block content %}
 
-  <section class="p-section--hero">
-    {% call(slot) vf_hero(
-      title_text='What is observability?',
-      layout='50/50-full-width-image'
-      ) -%}
-      {%- if slot == 'description' -%}
-        <p>
-          Your software system is observable when the telemetry you collect and the way you process it enables you to know and investigate in a timely fashion how your software system is performing, what issues are occurring and what their impact is.
-        </p>
-      {%- endif -%}
-      {%- if slot == 'image' -%}
-        <div class="p-image-container--cinematic is-cover">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/a299c914-GettyImages-DataCenter.jpeg"
-               alt="" />
-        </div>
-      {% endif -%}
-    {% endcall -%}
-  </section>
+  {% call(slot) vf_hero(
+    title_text='What is observability?',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Your software system is observable when the telemetry you collect and the way you process it enables you to know and investigate in a timely fashion how your software system is performing, what issues are occurring and what their impact is.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/3f94c289-hero.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"},) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
@@ -55,7 +58,7 @@
         <p>
           In the current practice of software, and especially in distributed systems and cloud-native software, monitoring is the commonplace means of achieving observability. Tools like Prometheus, OpenTelemetry, Jaeger, Elasticsearch or Graylog document the relevant workings of software systems by collecting and processing various telemetry types, such as metrics, distributed traces and logs.
         </p>
-        <div class="p-cta-block">
+        <div class="p-cta-block u-no-padding--bottom">
           <p>
             Read our <a href="/blog/observability-vs-monitoring-debate-an-irreverent-view">“Observability vs. monitoring debate: An irreverent view”</a> blog post for an in-depth look at the debate around “observability vs. monitoring”.
           </p>
@@ -148,10 +151,17 @@
           <br />
           The various telemetry types provide you with more insight when they are correlated with one another.
         </p>
-        <div class="p-image-container">
-          <!-- <img class="p-image-container__image"
-      src="https://assets.ubuntu.com/v1/a299c914-GettyImages-DataCenter.jpeg"
-      alt="" /> -->
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/2e3a4a28-telemetry-correlation.png",
+                        alt="",
+                        width="1200",
+                        height="801",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
         </div>
         <div>
           <hr class="p-rule--muted" />
@@ -181,10 +191,17 @@
           </div>
         </div>
       </div>
-      <div class="p-image-container--cinematic is-cover">
-        <img class="p-image-container__image"
-             src="https://assets.ubuntu.com/v1/a299c914-GettyImages-DataCenter.jpeg"
-             alt="" />
+      <div class="p-section--shallow">
+        <div class="p-image-container--cinematic is-cover is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/0322e32a-telemetry.png",
+                    alt="",
+                    width="2464",
+                    height="1028",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
       </div>
       <hr class="p-rule--muted" />
       <div class="row--50-50">
@@ -218,7 +235,9 @@
           Nowadays, controllability is not a term many software engineers use daily, but its essence is embodied, for example, by operators <a href="https://jaas.ai/?_ga=2.74388370.1830430303.1624442919-1608689799.1623932549">implemented with Juju</a> or other frameworks, which steer the software they operate and the infrastructure underneath to provide seamless configuration management and achieve scalability, reliability and graceful degradation.
         </p>
         <div class="p-cta-block">
-          <a href="blog/tag/model-driven-operations" class="p-button">Learn more about model-driven operations</a>
+          <a href="blog/tag/model-driven-operations"
+             class="p-button"
+             aria-label="Learn more about model-driven operations">Learn more about model-driven operations</a>
         </div>
       </div>
     </div>
@@ -236,7 +255,8 @@
         </p>
         <div class="p-cta-block">
           <a href="https://docs.google.com/document/u/0/d/1NxJdT3BD6EWnpsu-eathNyranQVImnDGhuCjzsIWh4s/edit"
-             class="p-button--positive">More about open source observability</a>
+             class="p-button--positive"
+             aria-label="Learn more about open source observability">More about open source observability</a>
         </div>
       </div>
     </div>
