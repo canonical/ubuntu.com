@@ -502,8 +502,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Sets up dial code dropdown options aka. intlTelInput.js
       // and pre fills the country field
-      // This gets triggered when the modal is opened
-      prepareInputFields(phoneNumberInput, countryInput);
+      // Prepares input fields for opened modal if it has not been initialised
+      if (!modalAlreadyExists) {
+        prepareInputFields(phoneNumberInput, countryInput);
+      }
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {
