@@ -15,12 +15,6 @@
 
 {% block content %}
 
-  <style>
-    .objPosTop {
-      object-position: top;
-    }
-  </style>
-
   {% call(slot) vf_hero(
     title_text='Manage thousands of Ubuntu<br /> machines as easily as one',
     subtitle_text='',
@@ -102,13 +96,29 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted is-cover">
-            {{ image(url="https://assets.ubuntu.com/v1/a259a8e1-patch compliance.png",
+            {{ image(url="https://assets.ubuntu.com/v1/f42fe551-patch compliance-updated.png",
                         alt="",
                         width="568",
                         height="853",
                         hi_def=True,
                         loading="lazy",
-                        attrs={"class": "p-image-container__image objPosTop"}) | safe
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--medium"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/d51507c7-patch compliance - tablet.png",
+                        alt="",
+                        width="568",
+                        height="569",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--large"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/f19c7eea-patch compliance - mobile.png",
+                        alt="",
+                        width="1174",
+                        height="782",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--medium u-hide--large"}) | safe
             }}
           </div>
         </div>
@@ -123,7 +133,23 @@
                         height="853",
                         hi_def=True,
                         loading="lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--medium"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/840b2dda-rbac%20-%20tablet.png",
+                        alt="",
+                        width="568",
+                        height="569",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--large"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/04ddcef2-rbac%20-%20mobile.png",
+                        alt="",
+                        width="1174",
+                        height="782",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--medium u-hide--large"}) | safe
             }}
           </div>
         </div>
@@ -138,7 +164,23 @@
                         height="853",
                         hi_def=True,
                         loading="lazy",
-                        attrs={"class": "p-image-container__image"}) | safe
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--medium"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/28f2d144-automated%20-%20tablet.png",
+                        alt="",
+                        width="568",
+                        height="569",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--large"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/d318bd9e-automated%20-%20mobile.png",
+                        alt="",
+                        width="1174",
+                        height="782",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--medium u-hide--large"}) | safe
             }}
           </div>
         </div>
@@ -153,7 +195,23 @@
                         height="853",
                         hi_def=True,
                         loading="lazy",
-                        attrs={"class": "p-image-container__image objPosTop"}) | safe
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--medium"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/acecc768-regulatory-compliance%20-%20tablet.png",
+                        alt="",
+                        width="568",
+                        height="569",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--small u-hide--large"}) | safe
+            }}
+            {{ image(url="https://assets.ubuntu.com/v1/39710e02-regulatory-compliance%20-%20mobile.png",
+                        alt="",
+                        width="1174",
+                        height="782",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image u-hide--medium u-hide--large"}) | safe
             }}
           </div>
         </div>
