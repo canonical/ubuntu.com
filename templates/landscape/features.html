@@ -21,35 +21,33 @@
     }
   </style>
 
-  <section class="p-section--hero u-no-padding--bottom">
-    {% call(slot) vf_hero(
-      title_text='Manage thousands of Ubuntu<br /> machines as easily as one',
-      subtitle_text='',
-      layout='50/50-full-width-image'
-      ) -%}
-      {%- if slot == 'description' -%}
-        <p>
-          Landscape is the most cost-effective way to support and administer large and growing networks of desktops, servers, clouds, and embedded devices. Reduce your team's efforts for day-to-day linux server management and desktop administration.
-        </p>
-      {%- endif -%}
-      {%- if slot == 'cta' -%}
-        <a href="/landscape/compare" class="p-button--positive">Get Landscape</a>
-        <a href="/landscape/contact-us" class="p-button js-invoke-modal">Contact us</a>
-      {%- endif -%}
-      {%- if slot == 'image' -%}
-        <div class="p-image-container--cinematic is-cover">
-          {{ image(url="https://assets.ubuntu.com/v1/6f7a10ec-hero.png",
-                    alt="",
-                    width="2464",
-                    height="1027",
-                    hi_def=True,
-                    loading="auto|lazy",
-                    attrs={"class": "p-image-container__image"}) | safe
-          }}
-        </div>
-      {% endif -%}
-    {% endcall -%}
-  </section>
+  {% call(slot) vf_hero(
+    title_text='Manage thousands of Ubuntu<br /> machines as easily as one',
+    subtitle_text='',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Landscape is the most cost-effective way to support and administer large and growing networks of desktops, servers, clouds, and embedded devices. Reduce your team's efforts for day-to-day linux server management and desktop administration.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/landscape/compare" class="p-button--positive">Get Landscape</a>
+      <a href="/landscape/contact-us" class="p-button js-invoke-modal">Contact us</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/6f7a10ec-hero.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
 
   <section class="p-section">
     <div class="row--50-50">
@@ -166,10 +164,10 @@
     </div>
   </section>
 
-  <section class="p-section--shallow">
+  <section class="p-section">
     {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
       {%- if slot == 'title' -%}
-        <h2>Why choose landscape?</h2>
+        <h2>Why choose Landscape?</h2>
       {%- endif -%}
 
       {%- if slot == 'list_item_title_1' -%}
@@ -219,7 +217,9 @@
 
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <h2>Deploy, monitor and manage your Ubuntu systems</h2>
+      <div class="p-section--shallow">
+        <h2>Deploy, monitor and manage your Ubuntu systems</h2>
+      </div>
       <div class="p-cta-block">
         <a href="/landscape/compare"
            class="p-button--positive"
