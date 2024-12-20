@@ -2,149 +2,33 @@
   "forms": {
     "/aws": {
       "templatePath": "/aws/index.html",
+      "childrenPaths": ["/aws/pro", "/aws/support", "/aws/outposts"],
       "isModal": true,
       "modalId": "contact-modal",
       "formData": {
-        "title": "Test form",
-        "introText": "Intro text",
-        "formId": "1266",
+        "title": "Canonical - the \"Ubuntu on AWS\" experts",
+        "introText": "Already running Ubuntu on AWS, or planning a migration to the public cloud? Canonical has the expertise to assist you in your project, whether it involves compliance, application architecture, optimisation or streamlining operations at scale. Share some details about your project with us and let's get started.",
+        "formId": "3790",
         "returnUrl": "/aws#contact-form-success",
         "product": ""
       },
       "fieldsets": [
         {
-          "title": "About your company",
-          "id": "about-company",
+          "title": "Tell us about your project",
+          "id": "about-your-project",
           "noCommentsFromLead": true,
-          "fields": [
-            {
-              "type": "text",
-              "id": "company",
-              "label": "Company name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "id": "job-title",
-              "label": "Job title",
-              "isRequired": true
-            }
-          ]
-        },
-        {
-          "title": "What would you like to talk to us about?",
-          "id": "comments",
-          "isRequired": true,
           "fields": [
             {
               "type": "long-text",
-              "id": "comments"
-            }
-          ]
-        },
-        {
-          "title": "How many devices?",
-          "id": "how-many-machines",
-          "inputName": "how-many-machines-do-you-have",
-          "isRequired": true,
-          "fields": [
-            {
-              "type": "radio",
-              "id": "less-5-machines",
-              "value": "less than 5",
-              "label": "< 5 machines"
-            },
-            {
-              "type": "radio",
-              "id": "5-to-15-machines",
-              "value": "5 to 15 machines",
-              "label": "5 - 15 machines"
-            },
-            {
-              "type": "radio",
-              "id": "15-to-50-machines",
-              "value": "15 to 50 machines",
-              "label": "15 - 50 machines"
-            },
-            {
-              "type": "radio",
-              "id": "50-to-100-machines",
-              "value": "50 to 100 machines",
-              "label": "50 - 100 machines"
-            },
-            {
-              "type": "radio",
-              "id": "greater-than-100",
-              "value": "greater than 100",
-              "label": "> 100 machines"
-            }
-          ]
-        },
-        {
-          "title": "How should we get in touch?",
-          "id": "about-you",
-          "noCommentsFromLead": true,
-          "fields": [
-            {
-              "type": "text",
-              "id": "firstName",
-              "label": "First name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "id": "lastName",
-              "label": "Last name",
-              "isRequired": true
-            },
-            {
-              "type": "email",
-              "id": "email",
-              "label": "Email address",
-              "isRequired": true
-            },
-            {
-              "type": "country",
-              "id": "",
-              "label": "",
-              "isRequired": true
-            },
-            {
-              "type": "tel",
-              "id": "phone",
-              "label": "Mobile/cell phone number"
-            }
-          ]
-        },
-        {
-          "title": "Which platform do you use?",
-          "id": "platform-select",
-          "fields": [
-            {
-              "type": "select",
-              "id": "platform",
-              "label": "Select your platform",
-              "isRequired": true,
-              "options": [
-                {
-                  "value": "raspberry-pi",
-                  "label": "Raspberry Pi"
-                },
-                {
-                  "value": "pc",
-                  "label": "PC"
-                },
-                {
-                  "value": "intel-nuc",
-                  "label": "Intel NUC"
-                }
-              ]
+              "id": "about-your-project",
+              "label": "Abour your project"
             }
           ]
         },
         {
           "title": "If you use Ubuntu, which version(s) are you using?",
           "id": "ubuntu-versions",
+          "inputType": "checkbox-visibility",
           "fields": [
             {
               "fieldTitle": "LTS within standard support",
@@ -232,6 +116,7 @@
           "title": "What kind of device are you using?",
           "id": "kind-of-device",
           "isRequired": true,
+          "inputType": "checkbox",
           "fields": [
             {
               "type": "checkbox",
@@ -262,6 +147,207 @@
               "id": "iot-edge-device",
               "value": "iot/edge device",
               "label": "IoT/Edge device"
+            }
+          ]
+        },
+        {
+          "title": "How many devices?",
+          "id": "how-many-machines",
+          "inputName": "how-many-machines-do-you-have",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "less-5-machines",
+              "value": "less than 5",
+              "label": "< 5 machines"
+            },
+            {
+              "type": "radio",
+              "id": "5-to-15-machines",
+              "value": "5 to 15 machines",
+              "label": "5 - 15 machines"
+            },
+            {
+              "type": "radio",
+              "id": "15-to-50-machines",
+              "value": "15 to 50 machines",
+              "label": "15 - 50 machines"
+            },
+            {
+              "type": "radio",
+              "id": "50-to-100-machines",
+              "value": "50 to 100 machines",
+              "label": "50 - 100 machines"
+            },
+            {
+              "type": "radio",
+              "id": "greater-than-100",
+              "value": "greater than 100",
+              "label": "> 100 machines"
+            }
+          ]
+        },
+        {
+          "title": "How do you consume open source?",
+          "id": "how-do-you-consume-open-source",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "ubuntu-repositories",
+              "value": "Ubuntu repositories",
+              "label": "Ubuntu repositories"
+            },
+            {
+              "type": "checkbox",
+              "id": "github-upstream",
+              "value": "GitHub/Upstream",
+              "label": "GitHub/Upstream"
+            },
+            {
+              "type": "checkbox",
+              "id": "internally-approved-repository",
+              "value": "Internally approved repository",
+              "label": "Internally approved repository"
+            },
+            {
+              "type": "checkbox",
+              "id": "i-dont-know",
+              "value": "I don't know",
+              "label": "I don't know"
+            }
+          ]
+        },
+        {
+          "title": "Do you have specific compliance or hardening requirements?",
+          "id": "hardening-requirements",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "pci",
+              "value": "PCI-DSS",
+              "label": "PCI-DSS"
+            },
+            {
+              "type": "checkbox",
+              "id": "hipaa",
+              "value": "HIPAA",
+              "label": "HIPAA"
+            },
+            {
+              "type": "checkbox",
+              "id": "fisma",
+              "value": "FISMA",
+              "label": "FISMA"
+            },
+            {
+              "type": "checkbox",
+              "id": "fips-140",
+              "value": "FIPS 140",
+              "label": "FIPS 140"
+            },
+            {
+              "type": "checkbox",
+              "id": "ncsc",
+              "value": "NCSC",
+              "label": "NCSC"
+            },
+            {
+              "type": "checkbox",
+              "id": "disa-stig",
+              "value": "DISA-STIG",
+              "label": "DISA-STIG"
+            },
+            {
+              "type": "checkbox",
+              "id": "fedramp",
+              "value": "FedRAMP",
+              "label": "FedRAMP"
+            },
+            {
+              "type": "checkbox",
+              "id": "cis-benchmark",
+              "value": "CIS Benchmark",
+              "label": "CIS Benchmark"
+            }
+          ]
+        },
+        {
+          "title": "Who is responsible for tracking, testing and applying CVE patches in a timely manner?",
+          "id": "responsible-for-tracking",
+          "fields": [
+            {
+              "type": "checkbox",
+              "id": "individual-developers",
+              "value": "Individual developers",
+              "label": "Individual developers"
+            },
+            {
+              "type": "checkbox",
+              "id": "project-team",
+              "value": "The project team",
+              "label": "The project team"
+            },
+            {
+              "type": "checkbox",
+              "id": "third-party-vendor",
+              "value": "Third-party vendor",
+              "label": "Third-party vendor"
+            },
+            {
+              "type": "checkbox",
+              "id": "i-dont-know",
+              "value": "I don't know",
+              "label": "I don't know"
+            }
+          ]
+        },
+        {
+          "title": "What advice are you looking for?",
+          "id": "advice",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "advice",
+              "label": "Tell us about your challenges and your goals"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "email",
+              "id": "email",
+              "label": "Email address",
+              "isRequired": true
+            },
+            {
+              "type": "country",
+              "id": "",
+              "label": "",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
             }
           ]
         }
@@ -372,6 +458,7 @@
         {
           "title": "If you use Ubuntu, which version(s) are you using?",
           "id": "ubuntu-versions",
+          "inputType": "checkbox-visibility",
           "fields": [
             {
               "fieldTitle": "LTS within standard support",
@@ -459,6 +546,7 @@
           "title": "What kind of device are you using?",
           "id": "kind-of-device",
           "isRequired": true,
+          "inputType": "checkbox",
           "fields": [
             {
               "type": "checkbox",

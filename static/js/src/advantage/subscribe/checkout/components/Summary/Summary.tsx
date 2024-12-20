@@ -330,7 +330,10 @@ function Summary({ products, action, coupon, setError }: Props) {
                 {format(new Date(priceData?.end_of_cycle), DATE_FORMAT)}
               </strong>
             </p>
-            <p>The same date as your existing subscription.</p>
+            <p>
+              This subscription is co-termed with your existing subscription.
+              Both subscriptions will end on the same date.
+            </p>
           </Col>
         ) : (
           <Col size={8}>
