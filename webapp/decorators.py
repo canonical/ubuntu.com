@@ -59,7 +59,7 @@ def rate_limit_with_backoff(
         try:
             # Get the initial request
             initial_request = json.loads(flask.session[func.__name__])
-            # Get the current limit
+            # Get the seconds limit for these attempts
             seconds_limit = rate_limit_attempt_map.get(request_limit)
             for limit in sorted(rate_limit_attempt_map.keys()):
                 seconds_limit = rate_limit_attempt_map.get(limit)
@@ -72,13 +72,13 @@ def rate_limit_with_backoff(
             # Abort if the time is too early for this number of attempts
             # Or if the max number of attempts has been exceeded
             if initial_request["attempts"] >= request_limit:
-                # Reset the timer if we have exceeded the limit
                 if (
                     time_since_last_request.total_seconds()
                     < seconds_limit.total_seconds()
                 ):
                     return flask.abort(429)
                 else:
+                    # Reset the timer if we have exceeded the limit
                     initial_request["timestamp"] = datetime.now()
 
             # Otherwise update the session
