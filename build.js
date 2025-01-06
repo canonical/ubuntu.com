@@ -32,7 +32,7 @@ let entries = {
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
   credEnterprisePurchasing: "./static/js/src/advantage/credentials/app.tsx",
   activate: "./static/js/src/activate.js",
-  "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
+  "chiseled-chart": "./static/js/src/charts/chiseled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
@@ -47,9 +47,7 @@ const captchaKey =
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
-    plugins: [
-      sassPlugin(),
-    ],
+    plugins: [sassPlugin()],
     entryPoints: [value],
     bundle: true,
     minify: !isDev,
@@ -57,12 +55,12 @@ for (const [key, value] of Object.entries(entries)) {
     sourcemap: !isDev,
     outfile: "static/js/dist/" + key + ".js",
     loader: {
-      '.js': 'jsx',
-      '.ts': 'ts',
-      '.tsx': 'tsx',
-      '.jsx': 'jsx',
+      ".js": "jsx",
+      ".ts": "ts",
+      ".tsx": "tsx",
+      ".jsx": "jsx",
     },
-    jsx: 'automatic', 
+    jsx: "automatic",
     target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":
