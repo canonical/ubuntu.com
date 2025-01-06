@@ -1,0 +1,606 @@
+{% extends "templates/base.html" %}
+
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/13VaiP6GGkGB4mE01bIqJ3cg8MfQXulNs9m3cmYb20HQ
+{% endblock meta_copydoc %}
+
+{% block title %}Understand the Cyber Resilience Act (CRA) and its requirements{% endblock %}
+
+{% block meta_description %}
+  Discover what you need to know about the EU Cyber Resilience Act requirements, and get clear recommendations for compliance. Understand how Canonical can help.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block outer_content %}
+
+  {% block content %}
+
+    <section class="p-section--hero">
+      <div class="row--50-50-on-large">
+        <div class="col">
+          <h1 class="u-no-margin--bottom">Meet your Cyber Resilience Act requirements with Canonical</h1>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow u-hide--large"></div>
+          <div class="p-section--shallow">
+            <p>
+              Build your products and device software with Ubuntu and Canonical's trusted open source portfolio. Fast-track your pathway to CRA compliance.
+            </p>
+          </div>
+          <div class="p-cta-block">
+            <a href="#"
+               aria-controls="contact-modal"
+               class="p-button--positive js-invoke-modal">Contact our team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>
+              What is the
+              <br class="u-hide--small u-hide--medium" />
+              Cyber Resilience Act (CRA)?
+            </h2>
+          </div>
+          <div class="col">
+            <p class="u-embedded-media">
+              <iframe title="What is the Cyber Resilience Act?"
+                      class="u-embedded-media__element"
+                      src="https://www.youtube.com/embed/ltBtIDvav6c"
+                      allowfullscreen=""
+                      frameborder="0"></iframe>
+            </p>
+            <p class="p-section--shallow u-no-padding--bottom">
+              The CRA is a European Union legislation that aims to make Products with Digital Elements (PDEs) safer by requiring developers, manufacturers, distributors and retailers to follow mandatory cybersecurity, documentation, and vulnerability reporting requirements. The CRA extends this protection throughout the product life cycle.
+            </p>
+            <hr class="p-rule--muted" />
+            <a href="https://ubuntu.com/blog/a-cisos-comprehensive-breakdown-of-the-cyber-resilience-act">
+              Read our CISO's full breakdown of the CRA &nbsp;&rsaquo;
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c46635ff-what-products-and-devices.png",
+              alt="",
+              width="1200",
+              height="1801",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col">
+            <h2>
+              What products and devices
+              <br class="u-hide--small u-hide--medium" />
+              does the CRA regulate?
+            </h2>
+            <p>
+              The CRA will cover all products or devices available in the EU market that are connected to any other device or network to exchange data. This includes PDEs that use:
+            </p>
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked u-hide"></li>
+              <li class="p-list__item is-ticked">Direct/indirect connection</li>
+              <li class="p-list__item is-ticked">Physical, wireless/radio or virtual</li>
+              <li class="p-list__item is-ticked">Remote data processing</li>
+            </ul>
+            <p>The CRA will cover all PDEs made available in the EU market regardless of:</p>
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked u-hide"></li>
+              <li class="p-list__item is-ticked">Where you are located</li>
+              <li class="p-list__item is-ticked">Where the product has been developed/produced</li>
+            </ul>
+            <p>The exceptions are:</p>
+            <ul class="p-list--divided">
+              <li class="p-list__item is-ticked u-hide"></li>
+              <li class="p-list__item is-ticked">Solutions used for internal purposes are not considered PDEs</li>
+              <li class="p-list__item is-ticked">Pure SaaS solutions will be excluded</li>
+              <li class="p-list__item is-ticked">PDEs that are already regulated by sector-specific regulations will be excluded</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="u-fixed-width">
+      <hr class="u-hide--small" />
+
+      <div class="u-fixed-width">
+        <div class="p-section--shallow">
+          <h2>The Cyber Resilience Act requirements in a nutshell</h2>
+        </div>
+      </div>
+
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">Vulnerability management</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>
+              Manufacturers must maintain security throughout the product lifecycle through:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">Security patching and maintenance</li>
+                <li class="p-list__item is-ticked">Incident response</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">Risk assessment</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>
+              Manufacturers must ensure that PDEs:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">Have no known exploitable vulnerabilities</li>
+                <li class="p-list__item is-ticked">Are secure by default with minimal attack surface</li>
+                <li class="p-list__item is-ticked">Minimize processing of data</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">Documentation</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>
+              Manufacturers must deliver documentation to address:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">Have no known exploitable vulnerabilities</li>
+                <li class="p-list__item is-ticked">Are secure by default with minimal attack surface</li>
+                <li class="p-list__item is-ticked">Minimize processing of data</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">Conformity assessment</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>
+              Manufacturers must provide a declaration of conformity, either though:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">Self assessment</li>
+                <li class="p-list__item is-ticked">Independent third party auditors</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/590335cc-servers.png",
+          alt="",
+          width="2464",
+          height="1028",
+          hi_def=True,
+          loading="auto|lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section--shallow">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>How the CRA classifies products</h2>
+          </div>
+          <div class="col">
+            The CRA is wide-reaching and its effects will vary depending on how your device or software is categorized. Devices and software are placed into four categories, based on their cybersecurity risk factor and their level of access authority or connection to sensitive infrastructure, networks, or systems.
+          </div>
+        </div>
+      </section>
+      <section class="p-section">
+        <div class="row">
+          <table aria-label="cra-table">
+            <thead>
+              <tr>
+                <th>Product classification</th>
+                <th>Product examples</th>
+                <th colspan="2">Declaration of conformity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="p-heading--5">Default Products</th>
+                <td>
+                  <ul class="p-list">
+                    <li class="p-list__item">Hard drives</li>
+                    <li class="p-list__item">Smart speakers</li>
+                  </ul>
+                </td>
+                <td colspan="2">
+                  <strong>Self assessment</strong> - Complete a checklist of requirements and issue a statement of compliance yourself.
+                </td>
+              </tr>
+              <tr>
+                <th class="p-heading--5">Important Products Class I</th>
+                <td>
+                  <ul class="p-list">
+                    <li class="p-list__item">Password managers</li>
+                    <li class="p-list__item">Operating systems</li>
+                    <li class="p-list__item">Wearable devices</li>
+                  </ul>
+                </td>
+                <td colspan="2">
+                  <strong>Independent Body Assessment or EU Certification</strong> - Your compliance efforts must be assessed by an accredited 3rd party for formal EU CRA certification.
+                </td>
+              </tr>
+              <tr>
+                <th class="p-heading--5">Important Products Class II</th>
+                <td>
+                  <ul class="p-list">
+                    <li class="p-list__item">Hypervisors</li>
+                    <li class="p-list__item">Firewalls</li>
+                    <li class="p-list__item">Intrusion detection systems</li>
+                  </ul>
+                </td>
+                <td colspan="2">
+                  <strong>Independent Body Assessment or EU Certification</strong>
+                </td>
+              </tr>
+              <tr>
+                <th class="p-heading--5">Critical Products</th>
+                <td>
+                  <ul class="p-list">
+                    <li class="p-list__item">Smartcards</li>
+                    <li class="p-list__item">Hardware Security Modules</li>
+                    <li class="p-list__item">Smart meter gateways</li>
+                  </ul>
+                </td>
+                <td colspan="2">
+                  <strong>Independent Body Assessment or EU Certification</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="u-fixed-width p-section--shallow">
+      {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=true, is_list_full_width_on_tablet=true) -%}
+        {%- if slot == 'title' -%}
+          <h2>Who does the Cyber Resilience Act apply to?</h2>
+        {%- endif -%}
+        {%- if slot == 'description' -%}
+          <div class="p-section--shallow">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c3405735-who-does-the-cra-apply-to.png",
+              alt="",
+              width="1832",
+              height="765",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+          </div>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_1' -%}
+          <h3 class="p-heading--5">Manufacturers</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_1' -%}
+          <p>Entities that produce and deliver PDEs to consumers in the EU market.</p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_2' -%}
+          <h3 class="p-heading--5">Providers</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_2' -%}
+          <p>Entities that provide components or software (whether open source or proprietary) used by manufacturers.</p>
+        {%- endif -%}
+
+        {%- if slot == 'list_item_title_3' -%}
+          <h3 class="p-heading--5">Importers</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_3' -%}
+          <p>Entities that import or distribute PDEs marketed in the EU.</p>
+        {%- endif -%}
+
+      {%- endcall -%}
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>
+              Canonical's commitment
+              <br class="u-hide--small u-hide--medium" />
+              to the CRA
+            </h2>
+          </div>
+          <div class="col">
+            <p>We are focusing on making CRA compliance as easy as possible on our entire range of products and services.</p>
+            <p>
+              Canonical has chosen to meet the challenges and requirements of the CRA head-on, allowing all of our customers who consume open source through us to benefit from our commitments to the CRA and focus on building future-proof products.
+            </p>
+            <p>
+              Canonical has committed to:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">Ensuring our operating systems are compliant</li>
+                <li class="p-list__item is-ticked">Completing certification on relevant products</li>
+                <li class="p-list__item is-ticked">Performing attestation for non-critical products</li>
+                <li class="p-list__item is-ticked">Assuming “manufacturer” duties under the CRA.</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width p-strip">
+      <section class="p-strip">
+        <h2>
+          <a aria-controls="contact-modal" class="js-invoke-modal">Need help with your CRA roadmap? Contact our experts &nbsp;&rsaquo;</a>
+        </h2>
+      </section>
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>
+              How the Cyber Resilience Act
+              <br class="u-hide--small u-hide--medium" />
+              will impact device manufacturers
+            </h2>
+          </div>
+          <div class="col">
+            <p class="u-embedded-media">
+              <iframe title="How will the CRA impact device manufacturers?"
+                      class="u-embedded-media__element"
+                      src="https://www.youtube.com/embed/aesdxS_JqFc?si=bQg0SOYmB7GIAEPU"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen=""
+                      frameborder="0"></iframe>
+            </p>
+            <p>
+              Get comprehensive information on how the CRA will affect device manufacturers in our webinar.
+              Watch to learn:
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked u-hide"></li>
+                <li class="p-list__item is-ticked">The vulnerability management obligations mandated by the CRA</li>
+                <li class="p-list__item is-ticked">The new requirements for long-term device management and support</li>
+                <li class="p-list__item is-ticked">
+                  How a hardened attack surface can help you minimize threats and simplify compliance
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>
+              Fast-track compliance
+              <br class="u-hide--small u-hide--medium" />
+              with Ubuntu Pro for Devices
+            </h2>
+          </div>
+          <div class="col">
+            <p class="p-section--shallow u-no-padding--bottom">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/c6897007-fast-track-compliance.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto|lazy"
+                ) | safe
+              }}
+            </p>
+            <p class="p-section--shallow u-no-padding--bottom">
+              Canonical offers device manufacturers a convenient subscription to access security maintenance for over 36,000 packages, and harness automation tools for compliance with multiple standards. With Ubuntu Pro for Devices, you can simplify your vulnerability management efforts to comply with the CRA.
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/pro/devices">Discover Pro for Devices &nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Frequently asked questions</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">What EU Certification do I need under the CRA?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          EU Cybersecurity Certification Scheme on Common Criteria <a href="https://certification.enisa.europa.eu/certification-library/eucc-certification-scheme_en">(EUCC)</a>: <a href="https://www.enisa.europa.eu/">ENISA</a> aims to provide a EU-wide certification scheme for companies to certify and be able to claim compliance to different regulations based on the Assurance Level and/or Protection Profile they chose to be in-scope of the certification.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">When will the CRA come into force?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          The European Parliament formally approved the CRA in March 2024, and it was adopted by the Council on October 10, 2024. The Cyber Resilience Act entered into force on December 10, 2024.  Manufacturers will need to follow CRA reporting obligations as of June 11, 2026.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">How long until manufacturers and other groups have to follow the CRA?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Manufacturers, importers and distributors of hardware and software products will have 36 months from the CRA’s official publication to adapt to the new requirements. However, there is only a 21-month grace period for manufacturers to adopt reporting obligations for incidents and vulnerabilities.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">What does the CRA require manufacturers to document?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          Under the CRA, manufacturers must provide a record of all their technical documentation, a Software Bill of Materials, an EU Declaration of Conformity, and clear user information and instructions, for a period of 10 years or the support period (whichever is longer) after the product enters the market.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">What are manufacturer reporting requirements under the CRA?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          Under the CRA, manufacturers must:
+          <ul class="p-list--divided">
+            <li class="p-list__item is-ticked u-hide"></li>
+            <li class="p-list__item is-ticked">
+              Inform CSIRT of product vulnerabilities within 24 hours. Details of the vulnerability and any corrective actions taken should be included.
+            </li>
+            <li class="p-list__item is-ticked">
+              Notify CSIRT of incidents impacting product security within 24 hours. Information on severity, impact, and suspected unlawful acts should be included.
+            </li>
+            <li class="p-list__item is-ticked">
+              Inform users about incidents and provide mitigation measures within a reasonable timeframe.
+            </li>
+            <li class="p-list__item is-ticked">
+              Report vulnerabilities in integrated components to the respective maintainers within a reasonable timeframe.
+            </li>
+          </ul>
+        </p>
+      {%- endif -%}
+
+    {%- endcall -%}
+
+    <hr class="p-rule is-fixed-width" />
+
+    <div class="u-fixed-width">
+      <section class="p-section--deep">
+        <div class="row--50-50">
+          <div class="col">
+            <h2>
+              Dive deep into the CRA
+              <br class="u-hide--small u-hide--medium" />
+              with our free resources
+            </h2>
+          </div>
+          <div class="col">
+            <p>
+              <a href="/engage/cra-yocto-core">Cyber Resilience Act: Yocto or Ubuntu Core for embedded devices?</a>
+            </p>
+            <p class="p-section--shallow">
+              Explore the critical considerations for device manufacturers, developers, and relevant stakeholders when choosing between custom-built Linux distributions using the Yocto Project and commercially supported solutions like Ubuntu Core.
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/engage/iot-compliance-in-the-global-market-a-guide-for-iot-device-manufacturers">
+                Understand IoT security and IoT compliance across global markets
+              </a>
+            </p>
+            <p class="p-section--shallow">
+              Get a comprehensive guide to understanding the new global compliance landscape for IoT devices and manufacturers, and meet compliance in every regional market with our Ubuntu blueprint for secure devices.
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/blog/what-the-cyber-resilience-act-cra-means-for-iot-manufacturers">
+                What the CRA means for IoT manufacturers
+              </a>
+            </p>
+            <p class="p-section--shallow">
+              Get a blueprint for cybersecurity that will help you to secure your PDEs and processes in order to meet CRA compliance.
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="https://canonical.com/blog/the-cyber-resilience-act-what-it-means-for-open-source">
+                Explore the impacts of the CRA on open source
+              </a>
+            </p>
+            <p>Find out about the CRA and its wider implications for the open source community.</p>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Form builder -->
+    <script defer src="{{ versioned_static('js/modals.js') }}"></script>
+
+    <div class="u-hide"
+         id="contact-form-container"
+         data-form-location="/shared/forms/form-template"
+         data-form-id="6051"
+         data-lp-id=""
+         data-return-url="/solutions/open-source-security/cyber-resilience-act/index.html#contact-form-success"
+         data-lp-url="/solutions/open-source-security/cyber-resilience-act/contact-us">
+      {% include "/shared/forms/form-template.html" %}
+    </div>
+
+  {% endblock %}
+{% endblock %}
