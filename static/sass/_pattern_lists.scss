@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @mixin ubuntu-p-lists {
   @include ubuntu-p-inline-list-icons;
   @include ubuntu-p-is-trisected;
@@ -256,7 +258,7 @@
           padding-bottom: 0.25rem;
 
           &::after {
-            background-color: transparentize($color-mid-light, 0.5);
+            background-color: color.adjust($color-mid-light, $alpha: -0.5);
           }
         }
       }
