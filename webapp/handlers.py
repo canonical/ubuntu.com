@@ -69,7 +69,7 @@ CSP = {
         "www.redditstatic.com",
         "snap.licdn.com",
         "connect.facebook.net",
-        # This is necessary for Google Tag Manager to function properly.
+        # This is necessary for Google Tag Manager to function properly
         "'unsafe-inline'",
     ],
     "font-src": [
