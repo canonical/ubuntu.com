@@ -69,6 +69,7 @@ CSP = {
         "www.redditstatic.com",
         "snap.licdn.com",
         "connect.facebook.net",
+        "jspm.dev",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
