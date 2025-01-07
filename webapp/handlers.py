@@ -70,6 +70,7 @@ CSP = {
         "snap.licdn.com",
         "connect.facebook.net",
         "jspm.dev",
+        "cdn.livechatinc.com",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -100,6 +101,11 @@ CSP = {
         "*.mktoresp.com",
         "prompts.maze.co",
         "*.google-analytics.com",
+        "pixel-config.reddit.com",
+        "www.redditstatic.com",
+        "conversions-config.reddit.com",
+        "px.ads.linkedin.com",
+        "ws.zoominfo.com",
     ],
     "frame-src": [
         "'self'",
