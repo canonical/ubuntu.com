@@ -6,6 +6,7 @@ from typing import Callable, Optional
 
 # Third party packages
 import flask
+
 from webapp.login import user_info
 
 
@@ -48,7 +49,7 @@ def rate_limit_with_backoff(
     }
 
     if limits:
-        additional_limits = {i: timedelta(seconds=j) for i, j in limits}
+        additional_limits = {limits[0]: timedelta(seconds=limits[1])}
         rate_limit_attempt_map = additional_limits
 
     # The request limit is derived from the limit attempt map
