@@ -134,7 +134,7 @@ CSP = {
     "child-src": [
         "api.livechatinc.com",
     ]
-
+}
 
 def init_handlers(app, sentry):
     @app.after_request
