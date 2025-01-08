@@ -45,7 +45,8 @@ def rate_limit_with_backoff(
 
     rate_limit_attempt_map = {
         1: timedelta(seconds=4),
-        4: timedelta(seconds=60),
+        4: timedelta(seconds=16),
+        16: timedelta(seconds=64),
     }
 
     if limits:
