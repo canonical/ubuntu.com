@@ -13,7 +13,6 @@ test.describe("Certified search results", () => {
   test("should update results when Apply is selected", async ({page}) => {
     await page.goto("/certified/laptops");
     await acceptCookiePolicy(page)
-    await page.waitForLoadState('networkidle');
     await page.getByLabel('Vendor').getByText('Dell').click();
     await page.getByRole("button", { name: /Apply/i }).click();
     await page.waitForLoadState('networkidle');
@@ -24,7 +23,6 @@ test.describe("Certified search results", () => {
   test("should clear filters when clear is selected", async ({page}) => {
     await page.goto("/certified/socs");
     await acceptCookiePolicy(page)
-    await page.waitForLoadState('networkidle');
     await page.getByText(/20.04 LTS/i).click();
     await page.getByRole("button", { name: /Apply/i }).click();
     await page.waitForLoadState('networkidle');
