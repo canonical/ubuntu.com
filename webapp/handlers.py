@@ -73,6 +73,7 @@ CSP = {
         "cdn.livechatinc.com",
         "api.livechatinc.com",
         "secure.livechatinc.com",
+        "www.tfaforms.com",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
