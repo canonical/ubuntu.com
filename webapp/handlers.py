@@ -129,6 +129,9 @@ CSP = {
         "www.googletagmanager.com",
         "www.google.com",
         "www.brighttalk.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "cdn.livechat-static.com",
     ],
     "style-src": [
         "'self'",
