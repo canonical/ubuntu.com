@@ -1,6 +1,6 @@
 import { debounce } from "../utils/debounce.js";
 
-function buildChiselledChart(selector, data, isFirst) {
+function buildChiseledChart(selector, data, isFirst) {
   const colors = ["#CBA7B8", "#923A66", "#000000"];
 
   const width = document.querySelector(selector).getBoundingClientRect().width;
@@ -70,7 +70,7 @@ function buildChiselledChart(selector, data, isFirst) {
     });
 }
 
-function clearChiselledChart(selector) {
+function clearChiseledChart(selector) {
   const chart = document.querySelector(selector);
   if (chart) {
     chart.innerHTML = "";
@@ -80,15 +80,15 @@ function clearChiselledChart(selector) {
 window.addEventListener(
   "resize",
   debounce(function () {
-    clearChiselledChart("#chiselled-dotnet-chart");
-    clearChiselledChart("#chiselled-java-chart");
-    clearChiselledChart("#chiselled-other-chart");
-    buildChiselledChart("#chiselled-dotnet-chart", [219, 116, 5], true);
-    buildChiselledChart("#chiselled-java-chart", [215, 113]);
-    buildChiselledChart("#chiselled-other-chart", [20, 12]);
+    clearChiseledChart("#chiseled-dotnet-chart");
+    clearChiseledChart("#chiseled-java-chart");
+    clearChiseledChart("#chiseled-other-chart");
+    buildChiseledChart("#chiseled-dotnet-chart", [219, 116, 5], true);
+    buildChiseledChart("#chiseled-java-chart", [215, 113]);
+    buildChiseledChart("#chiseled-other-chart", [20, 12]);
   }, 250),
 );
 
-buildChiselledChart("#chiselled-dotnet-chart", [219, 116, 5], true);
-buildChiselledChart("#chiselled-java-chart", [215, 113]);
-buildChiselledChart("#chiselled-other-chart", [20, 12]);
+buildChiseledChart("#chiseled-dotnet-chart", [219, 116, 5], true);
+buildChiseledChart("#chiseled-java-chart", [215, 113]);
+buildChiseledChart("#chiseled-other-chart", [20, 12]);
