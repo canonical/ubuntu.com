@@ -70,13 +70,16 @@ CSP = {
         "snap.licdn.com",
         "connect.facebook.net",
         "jspm.dev",
-        "cdn.livechatinc.com",
+        "*.livechatinc.com",
+        "cdn.livechat-static.com",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
     "font-src": [
         "'self'",
         "assets.ubuntu.com",
+        "*.livechatinc.com",
+        "fonts.google.com",
     ],
     "script-src": [
         "'self'",
@@ -125,8 +128,12 @@ CSP = {
     "media-src": [
         "'self'",
         "res.cloudinary.com",
+        "*.livechatinc.com",
+        "cdn.livechat-static.com"
     ],
-}
+    "child-src": [
+        "api.livechatinc.com",
+    ]
 
 
 def init_handlers(app, sentry):
