@@ -34,3 +34,28 @@ function setUserId() {
     }
   }
 }
+
+let utmCookies = getCookie("utms");
+if (!utmCookies) {
+  console.log("Setting UTMs");
+  setUtms();
+} else {
+  console.log("Already set UTM", utmCookies);
+}
+
+function setUtms() {
+  // No utms cookie, set one if URL has
+  const urlParams = new URLSearchParams(window.location.search);
+  let utmParams = "";
+  urlParams.forEach((value, key) => {
+    if (key.startsWith("utm_")) {
+      utmParams += key + ":" + value + "&";
+    }
+  });
+  if (utmParams.length > 0) {
+    if (utmParams.endsWith("&")) {
+      utmParams = utmParams.slice(0, -1);
+    }
+    document.cookie = "utms=" + utmParams + ";max-age=86400;";
+  }
+};

@@ -993,6 +993,21 @@ def marketo_submit():
         ],
     }
 
+    utms = flask.request.cookies.get("utms")
+    if utms:
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+        approved_utms = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_content",
+        ]
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
+
     try:
         ip_location = ip_reader.get(client_ip)
         if ip_location and "country" in ip_location:
@@ -1043,6 +1058,7 @@ def marketo_submit():
 
     # Send enrichment data
     try:
+        print("Enriched payload", enriched_payload)
         marketo_api.submit_form(enriched_payload).json()
     except Exception:
         pass
