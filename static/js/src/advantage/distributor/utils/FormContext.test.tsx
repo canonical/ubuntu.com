@@ -98,9 +98,6 @@ describe("FormProvider tests", () => {
     expect(result.current.technicalUserContact).toEqual(
       defaultValues.technicalUserContact,
     );
-    expect(result.current.channelProductList).toEqual(
-      defaultValues.channelProductList,
-    );
   });
 
   it("initializes values from props", () => {
@@ -129,28 +126,6 @@ describe("FormProvider tests", () => {
     expect(result.current.technicalUserContact).toEqual(
       initialProps.initialTechnicalUserContact,
     );
-  });
-
-  it("updates channelProductList based on offer exclusion group", () => {
-    const wrapper = createWrapper({ initialOffer: mockOffer });
-
-    const { result } = renderHook(() => React.useContext(FormContext), {
-      wrapper,
-    });
-
-    expect(result.current.channelProductList).toEqual({
-      "uio-standard-virtual-2y-channel-eur": {
-        id: "uio-standard-virtual-2y-channel-eur",
-        longId: "product-listing-id-1",
-        name: "uio-standard-virtual-2y-channel-eur",
-        price: { value: 100, currency: "EUR" },
-        productID: "uio-standard-virtual",
-        productName: "Ubuntu Pro + Infra Support (weekday) - Virtual",
-        marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
-        exclusion_group: "2024Q1",
-        effective_days: 730,
-      },
-    });
   });
 
   it("filters products based on subscriptionList and duration", () => {
@@ -187,16 +162,6 @@ describe("FormProvider tests", () => {
       name: "John Doe",
       email: "john.doe@example.com",
     });
-  });
-
-  it("handles empty channelProductList when no offer is provided", () => {
-    const wrapper = createWrapper();
-
-    const { result } = renderHook(() => React.useContext(FormContext), {
-      wrapper,
-    });
-
-    expect(result.current.channelProductList).toEqual({});
   });
 
   it("handles preselected items from the offer", () => {

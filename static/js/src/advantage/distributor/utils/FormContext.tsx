@@ -33,8 +33,6 @@ interface FormContext {
   products: ChannelProduct[] | null;
   offer: Offer | null;
   setOffer: React.Dispatch<React.SetStateAction<Offer | null>>;
-  channelProductList: ProductListings;
-  setChannelProductList: React.Dispatch<React.SetStateAction<ProductListings>>;
 }
 
 export const defaultValues: FormContext = {
@@ -54,8 +52,6 @@ export const defaultValues: FormContext = {
   setTechnicalUserContact: () => {},
   offer: null,
   setOffer: () => {},
-  channelProductList: {},
-  setChannelProductList: () => {},
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -78,7 +74,6 @@ export const FormProvider = ({
   initialOffer = defaultValues.offer,
   initialCurrency = defaultValues.currency,
   initialTechnicalUserContact = defaultValues.technicalUserContact,
-  initialChannelProductList = defaultValues.channelProductList,
   children,
 }: FormProviderProps) => {
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionItem[]>(
@@ -108,7 +103,7 @@ export const FormProvider = ({
     getLocalStorageItem(DISTRIBUTOR_SELECTOR_KEYS.OFFER_DATA, initialOffer),
   );
   const [channelProductList, setChannelProductList] = useState<ProductListings>(
-    initialChannelProductList,
+    {},
   );
 
   const updatedChannelProductList = useMemo(() => {
@@ -118,7 +113,7 @@ export const FormProvider = ({
     const offerExclusiveGroup = offer?.exclusion_group || "";
     const updatedListings: ProductListings = {};
 
-    const getDuration = (effectiveDays?: number): number | null =>
+    const getDurationYears = (effectiveDays?: number): number | null =>
       effectiveDays === 365
         ? 1
         : effectiveDays === 730
@@ -130,7 +125,7 @@ export const FormProvider = ({
     Object.values(rawChannelProductListings).forEach((listing: any) => {
       if (listing.exclusion_group === offerExclusiveGroup) {
         const { id, price, currency, product, effective_days } = listing;
-        const duration = getDuration(effective_days);
+        const duration = getDurationYears(effective_days);
         const newName =
           `${product?.id}-${duration}y-channel-${currency}`.toLowerCase();
 
@@ -244,8 +239,6 @@ export const FormProvider = ({
         setOffer,
         technicalUserContact,
         setTechnicalUserContact,
-        channelProductList,
-        setChannelProductList,
       }}
     >
       {children}
