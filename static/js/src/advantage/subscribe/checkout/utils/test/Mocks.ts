@@ -163,5 +163,5 @@ export const DistributorProduct: ChannelProduct = {
   productID: "uai-essential-desktop",
   productName: "Ubuntu Pro Desktop",
   marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
-  version: "1",
+  exclusion_group: "",
 };
