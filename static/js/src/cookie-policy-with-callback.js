@@ -35,17 +35,9 @@ function setUserId() {
   }
 }
 
-let utmCookies = getCookie("utms");
-if (!utmCookies) {
-  console.log("Setting UTMs");
-  setUtms();
-} else {
-  console.log("Already set UTM", utmCookies);
-}
+setUtms();
 
-function setUtms() {
-  // No utms cookie, set one if URL has
-  const urlParams = new URLSearchParams(window.location.search);
+function setUtmCookies(urlParams) {
   let utmParams = "";
   urlParams.forEach((value, key) => {
     if (key.startsWith("utm_")) {
@@ -56,6 +48,26 @@ function setUtms() {
     if (utmParams.endsWith("&")) {
       utmParams = utmParams.slice(0, -1);
     }
-    document.cookie = "utms=" + utmParams + ";max-age=86400;";
+    document.cookie = "utms=" + utmParams + ";max-age=86400;path=/;";
   }
-};
+}
+
+function setUtms() {
+  let utmCookies = getCookie("utms");
+  const urlParams = new URLSearchParams(window.location.search);
+  if (!utmCookies) {
+    if (urlParams.size > 0) {
+      setUtmCookies(urlParams);
+    }
+  } else {
+    if (urlParams.size > 0) {
+      setUtmCookies(urlParams);
+    } else {
+      const referrer = document.referrer;
+      const currentHost = window.location.host;
+      if (!referrer.includes(currentHost)) {
+        document.cookie = "utms=;max-age=0;path=/;";
+      }
+    }
+  }
+}

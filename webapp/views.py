@@ -1058,7 +1058,6 @@ def marketo_submit():
 
     # Send enrichment data
     try:
-        print("Enriched payload", enriched_payload)
         marketo_api.submit_form(enriched_payload).json()
     except Exception:
         pass
