@@ -11,7 +11,7 @@ import {
   FormContext,
   defaultValues,
 } from "advantage/distributor/utils/FormContext";
-import { distributorProduct } from "advantage/subscribe/checkout/utils/test/Mocks";
+import { DistributorProduct } from "advantage/subscribe/checkout/utils/test/Mocks";
 
 const mockSubscription: SubscriptionItem = {
   id: "mocked-id-1",
@@ -25,7 +25,7 @@ const mockContextValue = {
   ...defaultValues,
   subscriptionList: [mockSubscription] as SubscriptionItem[],
   setSubscriptionList: jest.fn(),
-  products: [distributorProduct] as ChannelProduct[],
+  products: [DistributorProduct] as ChannelProduct[],
   duration: 1,
 };
 

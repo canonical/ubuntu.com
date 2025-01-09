@@ -12,7 +12,7 @@ import {
   FormContext,
   defaultValues,
 } from "advantage/distributor/utils/FormContext";
-import { distributorProduct } from "advantage/subscribe/checkout/utils/test/Mocks";
+import { DistributorProduct } from "advantage/subscribe/checkout/utils/test/Mocks";
 import { ChannelOfferFactory } from "advantage/offers/tests/factories/channelOffers";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
@@ -27,7 +27,7 @@ const mockSubscription: SubscriptionItem = {
 const mockContextValue = {
   ...defaultValues,
   subscriptionList: [mockSubscription] as SubscriptionItem[],
-  products: [distributorProduct] as ChannelProduct[],
+  products: [DistributorProduct] as ChannelProduct[],
   offer: ChannelOfferFactory.build({ id: "offer-id-1" }),
 };
 
