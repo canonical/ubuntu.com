@@ -20,7 +20,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Open source observability for enterprises',
+    title_text='Open source observability<br /> for enterprises',
     subtitle_text='Monitoring tools and dashboards, secured and supported',
     layout='50/50-full-width-image'
     ) -%}
@@ -72,11 +72,11 @@
 
     {%- if slot == 'list_item_description_1' -%}
       <div class="p-section--shallow">
-        <div class="p-equal-height-row--wrap p-equal-height-row-50-50">
+        <div class="p-equal-height-row p-equal-height-row-50-50">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/2c395462-opentelemetry-collector-logo.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/0f3e124a-opentelemetry-collector-logo-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -86,15 +86,15 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://opentelemetry.io/docs/collector/">OpenTelemetry Collector</a>
             </div>
           </div>
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/cf590549-grafana-agent.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/d9f718c5-grafana-agent-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -104,8 +104,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://grafana.com/oss/agent/">Grafana Agent</a>
             </div>
           </div>
@@ -122,9 +122,9 @@
         <h3 class="p-heading--5">Metrics</h3>
         <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/4b32b3ce-prometheus.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/e9497083-prometheus-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -134,15 +134,15 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://prometheus.io/">Prometheus</a>
             </div>
           </div>
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/f9431ede-grafana-mimir.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/eccef11d-grafana-mimir-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -152,8 +152,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://grafana.com/oss/mimir/">Grafana Mimir</a>
             </div>
           </div>
@@ -162,9 +162,9 @@
         <h3 class="p-heading--5">Distributed tracing and profiling</h3>
         <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/e69cb550-grafana-tempo.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/62f483be-grafana-tempo-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -174,15 +174,15 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://grafana.com/oss/tempo/">Grafana Tempo</a>
             </div>
           </div>
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/8cf280e1-parca.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/be0a514f-parca-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -192,8 +192,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://www.parca.dev/">Parca</a>
             </div>
           </div>
@@ -202,9 +202,9 @@
         <h3 class="p-heading--5">Logs</h3>
         <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/c5090970-grafana-loki.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/a43f208b-grafana-loki-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -214,8 +214,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://grafana.com/oss/loki/">Grafana Loki</a>
             </div>
           </div>
@@ -231,9 +231,9 @@
       <div class="p-section--shallow">
         <div class="p-equal-height-row p-equal-height-row-50-50">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/085fc38d-grafana.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/ec152820-grafana-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -243,8 +243,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://grafana.com/oss/grafana/">Grafana</a>
             </div>
           </div>
@@ -260,9 +260,9 @@
       <div class="p-section--shallow">
         <div class="p-equal-height-row p-equal-height-row-50-50">
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/287bf69f-alertmanager.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/59a25357-alertmanager-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -272,15 +272,15 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a>
             </div>
           </div>
           <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row_item">
-              <div class="p-image-container--3-2 is-highlighted">
-                {{ image(url="https://assets.ubuntu.com/v1/61f20b4a-cos-alerter.png",
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/bb4f9f6e-cos-alerter-cinematic.png",
                                 alt="",
                                 width="852",
                                 height="481",
@@ -290,8 +290,8 @@
                 }}
               </div>
             </div>
-            <div class="p-equal-height-row-item">
-              <hr class="p-rule--muted" />
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
               <a href="https://github.com/canonical/cos-alerter">COS Alerter</a>
             </div>
           </div>
