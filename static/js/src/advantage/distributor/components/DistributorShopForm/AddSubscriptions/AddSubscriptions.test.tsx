@@ -45,7 +45,7 @@ describe("AddSubscriptions Component", () => {
     const wrapper = screen.getByTestId("wrapper");
     expect(wrapper).toBeInTheDocument();
     expect(wrapper).toHaveTextContent(
-      "Ubuntu Pro is avaiable for Ubuntu 14.04 and higher:",
+      "Ubuntu Pro is available for Ubuntu 14.04 and higher:",
     );
     expect(screen.getByRole("combobox")).toBeInTheDocument();
     expect(screen.getByText("Add")).toBeInTheDocument();
