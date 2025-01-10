@@ -72,6 +72,7 @@ CSP = {
         "jspm.dev",
         "cdn.livechatinc.com",
         "api.livechatinc.com",
+        "*.cloudfront.net",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -85,6 +86,7 @@ CSP = {
         "'unsafe-eval'",
         "'unsafe-hashes'",
         "'unsafe-inline'",
+        "'sha256-B3PrZvw4dXYyBE9v8D61ur6pH72usMrUxaRbzmnG12k='"
     ],
     "connect-src": [
         "'self'",
@@ -122,6 +124,7 @@ CSP = {
     "style-src": [
         "'self'",
         "'unsafe-inline'",
+        "'nonce-ecdf1756070a'",
     ],
     "media-src": [
         "'self'",
