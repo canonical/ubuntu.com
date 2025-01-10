@@ -1264,7 +1264,9 @@
 
         xhr.open("GET", "/takeovers.json", true);
         xhr.send();
-        fetchUserCountry.open("GET", "/user-country-tz.json", true);
+        
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        fetchUserCountry.open("GET", `/user-country-tz.json?tz=${timezone}`, true);
         fetchUserCountry.send();
       }
 
