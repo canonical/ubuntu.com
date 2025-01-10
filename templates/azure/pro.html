@@ -3,7 +3,7 @@
 {% block title %}Ubuntu Pro for Azure{% endblock %}
 
 {% block meta_description %}
-  Ubuntu Pro for Azure, the Ubuntu image optimised for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the Azure marketplace.
+  Ubuntu Pro for Azure is the Ubuntu image optimized for production and professional use on the public cloud. It includes broad security coverage, live kernel patching, certified components with hardening profiles, and backed by up to 12-years maintenance commitment by Canonical.
 {% endblock %}
 
 {% block meta_copydoc %}
@@ -24,7 +24,7 @@
           <p class="p-heading--2">For production. For professionals.</p>
           <div class="p-section--shallow">
             <p>
-              Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.
+              Ubuntu Pro for Azure is a premium image delivering security and compliance for the OS and open source apps on Azure. The image offers critical and high CVE patching, security for over 30,000 open source packages, automated hardening for compliance, and more Ubuntu Pro is suitable for all size Linux enterprise operations with pay-as-you-go or annual billing on your existing Azure invoice.
             </p>
           </div>
         </div>
@@ -45,15 +45,32 @@
   </section>
 
   <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Upgrade Ubuntu LTS to Ubuntu Pro</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>Upgrade your Ubuntu Server instances to Ubuntu Pro. Using Azure CLI, upgrading requires no disruption to your services or VM redeployment.</p>
+        </div>
+        <hr class="p-rule--muted" />
+        <a class="p-button--positive"
+           href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/get-ubuntu-pro/#running-instances">Learn how to upgrade</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
     <div class="row--50-50 p-section--shallow">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Ubuntu Pro 24.04 LTS</h2>
+        <h2>Launch Ubuntu Pro 24.04 LTS</h2>
       </div>
       <div class="col">
         <div class="p-section--shallow">
           <p>
-            Delivers additional layer of security and compliance services and security patches covering a wider range of packages, until 2034.
+            Ubuntu Pro 24.04 delivers additional layers of security and compliance services with security patches covering a wider range of packages, until 2034.
           </p>
         </div>
         <hr class="p-rule--muted" />
@@ -130,23 +147,6 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Upgrade Ubuntu LTS to Ubuntu Pro</h2>
-      </div>
-      <div class="col">
-        <div class="p-section--shallow">
-          <p>Upgrade to Ubuntu Pro, with no disruption to your services or VM redeployment.</p>
-        </div>
-        <hr class="p-rule--muted" />
-        <a class="p-button--positive"
-           href="https://portal.azure.com/#create/canonical.ubuntu-pro-upgrade">Learn how to upgrade</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
     <div class="u-fixed-width p-section--shallow">
       <hr class="p-rule" />
       <h2>What's in Ubuntu Pro?</h2>
@@ -158,10 +158,8 @@
           <div class="col-3 col-medium-2">
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">FIPS & CC-EAL2 certified</p>
-                <p>
-                  Officially certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO.
-                </p>
+                <p class="p-heading--5 u-no-margin">FIPS & CC-EAL2 certified</p>
+                <p>Officially certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO.</p>
               </div>
             </div>
           </div>
@@ -169,7 +167,7 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">CIS and DISA STIG</p>
+                <p class="p-heading--5 u-no-margin">CIS and DISA STIG</p>
                 <p>
                   For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading implementation guides available.
                 </p>
@@ -180,10 +178,8 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">Open source security</p>
-                <p>
-                  Ubuntu Pro adds security coverage for the most important open source applications like Apache Kafka, NGINX, Redis and PostgreSQL.
-                </p>
+                <p class="p-heading--5 u-no-margin">Open source security</p>
+                <p>Ubuntu Pro adds security coverage for the most important open source applications like Apache Kafka, NGINX, Redis and PostgreSQL.</p>
               </div>
             </div>
           </div>
@@ -197,10 +193,8 @@
           <div class="col-3 col-medium-2">
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">Predictable and optimised</p>
-                <p>
-                  Ubuntu Pro is based on Ubuntu and leverages both the breadth of open source included and the Azure optimisations built in.
-                </p>
+                <p class="p-heading--5 u-no-margin">Predictable and optimised</p>
+                <p>Ubuntu Pro is based on Ubuntu and leverages both the breadth of open source included and the Azure optimizations built in.</p>
               </div>
             </div>
           </div>
@@ -208,10 +202,8 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">Kernel Livepatch</p>
-                <p>
-                  Ubuntu kernel updates are regularly issued. With our Livepatch service, kernel patches are delivered immediately, without the need to reboot your VMs.
-                </p>
+                <p class="p-heading--5 u-no-margin">Kernel Livepatch</p>
+                <p>Ubuntu kernel updates are regularly issued. With our Livepatch service, kernel patches are delivered immediately, without the need to reboot your VMs.</p>
               </div>
             </div>
           </div>
@@ -219,10 +211,8 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">Priced for the cloud</p>
-                <p>
-                  Ubuntu Pro pricing tracks the underlying compute cost. Ubuntu Pro price varies between 3-4.5% of an average hourly compute cost, depending on the instance type.
-                </p>
+                <p class="p-heading--5 u-no-margin">Billed through the cloud</p>
+                <p>Choose between annual fixed or consumption-based pricing, with billing simplified through direct integration with your Azure bill and counting towards your Microsoft Azure Cloud Consumption (MACC) agreement.</p>
               </div>
             </div>
           </div>
@@ -236,8 +226,8 @@
           <div class="col-3 col-medium-2">
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">The right Ubuntu for you</p>
-                <p>Canonical brings the most popular Ubuntu Server distributions to choose from.</p>
+                <p class="p-heading--5 u-no-margin">Seamless integration with your Azure</p>
+                <p>Ubuntu Pro offers full integration with core Azure services such as Azure Pricing, Azure Guest Patching, and Update Management Center.</p>
               </div>
             </div>
           </div>
@@ -245,10 +235,8 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">10-year lifetime</p>
-                <p>
-                  Canonical backs Ubuntu Pro for 10 years, ensuring security updates are available throughout, with a guaranteed upgrade path.
-                </p>
+                <p class="p-heading--5 u-no-margin">Up to 12 years lifetime</p>
+                <p>Canonical backs Ubuntu Pro for up to 12 years, ensuring security updates are available throughout, with a guaranteed upgrade path.</p>
               </div>
             </div>
           </div>
@@ -256,8 +244,8 @@
             <hr class="u-hide--large u-hide--medium p-rule--muted" />
             <div class="list-matrix">
               <div class="list-matrix-container">
-                <p class="p-heading--5">Optional 24/7 support</p>
-                <p>Additional enterprise-grade support available through private offer for Pro.</p>
+                <p class="p-heading--5 u-no-margin">Optional 24/7 support</p>
+                <p>Additional enterprise-grade support is available through a private offer for Ubuntu Pro infrastructure and applications.</p>
               </div>
             </div>
           </div>
@@ -275,221 +263,36 @@
   </section>
 
   <section class="p-section">
-    <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
-      <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
-    </div>
     <div class="row--50-50">
+      <hr class="p-rule" />
       <div class="col">
-        <p>
-          Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure security for production and mission-critical workloads.
-        </p>
-        <p>
-          One key reason why developers prefer Ubuntu is that it includes a huge set &ndash; in total, over 26,000 packages &ndash; of upstream open source known as 'universe'. Universe includes workloads like NGINX, MongoDB, Redis, Kafka, but also language ecosystems like Python, Java, Ruby and Javascript/Node.js. With Ubuntu Pro's built-in CVE tracking and patching, CIOs and security officers can be confident they can roll these packages out to production.
-        </p>
+        <h2>Is Ubuntu Pro right for you?</h2>
       </div>
       <div class="col">
         <div class="p-section--shallow">
-          <div class="p-image-container--16-9 is-highlighted">
-            <img class="p-image-container__image"
-                 src="https://assets.ubuntu.com/v1/683e6225-Image.png"
-                 alt="" />
+          <div class="p-image-container">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/2db99b36-is-ubuntu-pro.png",
+              alt="",
+              width="1800",
+              height="805",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
           </div>
         </div>
+        <p>Use the <code>pro security-status</code> command to get a complete overview of your machine's installed packages and their corresponding security coverage.</p>
+        <hr class="p-rule--muted" />
+        <a href="https://canonical-ubuntu-pro-client.readthedocs-hosted.com/en/v30/explanations/how_to_interpret_the_security_status_command/">Learn more&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
 
-  <section class="p-section">
-    <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
-      <h2>
-        Scale, open source security and, Azure compliance
-        <br />
-        across your Ubuntu instances
-      </h2>
-    </div>
-    <div class="row--50-50">
-      <div class="col">
-        {{ image(url="https://assets.ubuntu.com/v1/5f95f2b4-optimising-scaling-in-the-cloud.png",
-                alt="",
-                width="1200",
-                height="677",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-        <h3 class="p-heading--5 u-no-margin--bottom">Scaling with Ubuntu Pro</h3>
-        <p>Building enterprise-grade infrastructure with open source, speed, reliability, and support.</p>
-        <hr class="p-rule--muted" />
-        <a class="p-button"
-           href="https://assets.ubuntu.com/v1/a60c04fd-Optimized+Scaling+In+The+Cloud.pdf?_ga=2.120134024.1619985575.1595233389-125046274.1557910907">Download the ebook</a>
-      </div>
-      <div class="col">
-        {{ image(url="https://assets.ubuntu.com/v1/90f1471d-leveraging-open-source.png",
-                alt="",
-                width="1200",
-                height="677",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-        <h3 class="p-heading--5 u-no-margin--bottom">Operating open source securely</h3>
-        <p>Achieve more through open source software in a trusted way &ndash; with no compromises on security and support.</p>
-        <hr class="p-rule--muted" />
-        <a class="p-button" href="/engage/azure-webinar">Watch the webinar</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="u-fixed-width">
-      <hr class="p-rule" />
-      <div class="p-section--shallow">
-        <h2>Ubuntu Pro feature coverage</h2>
-      </div>
-      <div class="p-section--shallow">
-        <table class="p-table u-no-margin--bottom">
-          <thead>
-            <tr>
-              <th style="width: 50%;"></th>
-              <th style="padding-left: 1rem;">Ubuntu</th>
-              <th>Ubuntu Pro</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Azure optimised kernel and userspace</td>
-              <td style="padding-left: 1rem;">
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-              <td>
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>Security patches for Ubuntu infrastructure components</td>
-              <td style="padding-left: 1rem;">
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-              <td>
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Security patches for hundreds of open source applications, including Apache Kafka,
-                <br />
-                RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js
-              </td>
-              <td>&nbsp;</td>
-              <td>
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>FIPS 140-2 and Common Criteria EAL2 certified components, with optional CIS hardening profile and DISA STIG</td>
-              <td>&nbsp;</td>
-              <td>
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>Kernel Livepatch for instant security and higher uptimes</td>
-              <td>&nbsp;</td>
-              <td>
-                <i class="p-icon--success" aria-label="Yes"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>Maintenance commitment</td>
-              <td style="padding-left: 1rem;">5 years</td>
-              <td>10 years</td>
-            </tr>
-          </tbody>
-        </table>
-        <hr class="p-rule--muted" />
-      </div>
-      <p>
-        <a href="https://assets.ubuntu.com/v1/26408fa0-UbuntuPro_Azure_Datasheet_21.pdf">Read the Ubuntu Pro datasheet&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Get Ubuntu Pro on Azure now</h2>
-      </div>
-      <div class="col">
-        <div class="row">
-          <div class="col-3">
-            <ul class="p-list--divided">
-              <li class="p-list__item">
-                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts">24.04 LTS&nbsp;&rsaquo;</a>
-              </li>
-              <li class="p-list__item">
-                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-jammy">22.04 LTS&nbsp;&rsaquo;</a>
-              </li>
-              <li class="p-list__item">
-                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal">20.04 LTS&nbsp;&rsaquo;</a>
-              </li>
-              <li class="p-list__item">
-                <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic">18.04 LTS&nbsp;&rsaquo;</a>
-              </li>
-              <li class="p-list__item">
-                <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">16.04 LTS&nbsp;&rsaquo;</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3">
-            <p class="u-no-margin--bottom">
-              <a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section--deep">
-    <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
-      <h2>Getting the best of Ubuntu Pro for Azure</h2>
-    </div>
-    <div class="row--50-50">
-      <div class="col">
-        {{ image(url="https://assets.ubuntu.com/v1/54e04042-a-technical-introduction.png",
-                alt="",
-                width="1200",
-                height="677",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-        <h3 class="p-heading--5 u-no-margin--bottom">Technical introduction to Ubuntu Pro</h3>
-        <p>
-          Open Source  means faster development and lower operation costs but how do you deal with open source software provenance, patching and Azure compliance?  Find out how Ubuntu Pro images are optimised, built, regularly patched and how you can customise them to simplify your infrastructure operations.
-        </p>
-        <hr class="p-rule--muted" />
-        <a class="p-button" href="/engage/ubuntu-pro-intro">Watch the webinar</a>
-      </div>
-      <div class="col">
-        {{ image(url="https://assets.ubuntu.com/v1/7eb0040a-utilising-cloud-init.png",
-                alt="",
-                width="1200",
-                height="677",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-        <h3 class="p-heading--5 u-no-margin--bottom">Simple VM provisioning with cloud-init</h3>
-        <p>
-          Cloud-init automates the provisioning of an operating system image into a fully running state. Typical tasks handled by cloud-init include networking and storage initialisation and optional package installation and configuration. This means users can build up-to-date images in no time and with minimum maintenance efforts.
-        </p>
-        <hr class="p-rule--muted" />
-        <a class="p-button"
-           href="https://assets.ubuntu.com/v1/05994c5c-Cloud-init_on_Azure.pdf">Download the e-book</a>
-      </div>
-    </div>
-  </section>
+  {% with title_link="/blog/tag/ubuntu-on-azure", tag_id="4540" %}
+    {% include "azure/shared/_latest-blogs-azure.html" %}
+  {% endwith %}
 
   <script src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
 
