@@ -119,6 +119,7 @@
 
     {%- if slot == 'list_item_description_2' -%}
       <div class="p-section--shallow">
+        <hr class="p-rule--muted u-hide--large" />
         <h4 class="p-heading--5">Metrics</h4>
         <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
           <div class="p-equal-height-row__col">
@@ -457,8 +458,8 @@
     </div>
   </section>
 
-  {% with title_link="/blog/tag/observability", tagId='4125', limit='4' %}
-    {% include "observability/shared/_latest-news-observability.html" %}
+  {% with section_classes='p-section--deep', title_link="/blog/tag/observability", tag_id='4125', limit='4', hide_date=True, tag_name='observability', link_image=True, show_image=True, show_excerpt=True, excerptLength=200, show_start_rule=True, is_title_link=True, heading_class="p-heading--2" %}
+    {% include "/shared/_latest_news_strip.html" %}
   {% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
