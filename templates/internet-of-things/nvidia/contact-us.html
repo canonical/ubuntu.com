@@ -39,7 +39,7 @@
           <fieldset class="u-no-margin--bottom">
             <div class="js-formfield">
               <div role="group" aria-labelledby="which-nvidia-orin-platforms">
-                <h2 class="p-heading--5" id="which-nvidia-orin-platforms">Which NVIDIA platforms are you interested in?</h2>
+                <h2 class="p-heading--5 js-formfield-title" id="which-nvidia-orin-platforms">Which NVIDIA platforms are you interested in?</h2>
                 <label class="p-checkbox">
                   <input class="p-checkbox__input"
                          type="checkbox"
@@ -84,12 +84,14 @@
                 </label>
               </div>
             </div>
-            <label for="tell-us-about-your-project">
-              <h3 class="p-heading--5">Tell us more about your project</h3>
-            </label>
-            <textarea id="tell-us-about-your-project"
-                      rows="4"
-                      maxlength="2000"></textarea>
+            <div class="js-formfield">
+              <label for="tell-us-about-your-project">
+                <h3 class="p-heading--5 js-formfield-title">Tell us more about your project</h3>
+              </label>
+              <textarea id="tell-us-about-your-project"
+                        rows="4"
+                        maxlength="2000"></textarea>
+            </div>
           </fieldset>
 
           <fieldset class="u-no-margin--bottom">
