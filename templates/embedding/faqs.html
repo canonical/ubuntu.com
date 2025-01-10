@@ -24,11 +24,13 @@
   <section class="p-section--deep">
     {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
       {%- if slot == 'title' -%}
-        <h2>FAQs</h2>
+        <div style="padding-top: 24px;">
+          <h2>FAQs</h2>
+        </div>
       {%- endif -%}
 
       {%- if slot == 'description' -%}
-        <div class="p-section--shallow">
+        <div class="p-section--shallow" style="padding-top: 24px;">
           <p>
             As per the <a href="/legal/intellectual-property-policy">IPRights Policy</a>, Canonical owns and manages certain intellectual property rights in Ubuntu and other associated intellectual property (Canonical IP) and licenses the use of these rights to enterprises, individuals and members of the Ubuntu community in accordance with the IPRights Policy.
           </p>
@@ -52,7 +54,7 @@
 
       {%- if slot == 'list_item_description_2' -%}
         <p class="faq-answer">
-          Yes, you can mirror our installation images and archives as long as those are mirrored exactly and without modifications.
+          Yes, you get free security updates on the "main" OS and packages for 5 years, you might want to consider an Ubuntu Pro subscription for wider and longer duration security coverage, or Support subscription for phone and email support.
         </p>
       {%- endif -%}
 
