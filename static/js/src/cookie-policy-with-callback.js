@@ -55,19 +55,13 @@ function setUtmCookies(urlParams) {
 function setUtms() {
   let utmCookies = getCookie("utms");
   const urlParams = new URLSearchParams(window.location.search);
-  if (!utmCookies) {
-    if (urlParams.size > 0) {
-      setUtmCookies(urlParams);
-    }
-  } else {
-    if (urlParams.size > 0) {
-      setUtmCookies(urlParams);
-    } else {
-      const referrer = document.referrer;
-      const currentHost = window.location.host;
-      if (!referrer.includes(currentHost)) {
-        document.cookie = "utms=;max-age=0;path=/;";
-      }
+  if (urlParams.size > 0) {
+    setUtmCookies(urlParams);
+  } else if (utmCookies) {
+    const referrer = document.referrer;
+    const currentHost = window.location.host;
+    if (!referrer.includes(currentHost)) {
+      document.cookie = "utms=;max-age=0;path=/;";
     }
   }
 }
