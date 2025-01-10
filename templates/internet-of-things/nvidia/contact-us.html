@@ -21,15 +21,12 @@
         <p>Fill out the form to receive the latest update from us!</p>
       </div>
       <div class="col-4 u-vertically-center u-hide--small u-hide--medium">
-        {{
-        image (
-        url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
-        alt="",
-        width="351",
-        height="259",
-        hi_def=True,
-        loading="auto"
-        ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+                  alt="",
+                  width="351",
+                  height="259",
+                  hi_def=True,
+                  loading="auto") | safe
         }}
       </div>
     </div>
@@ -47,7 +44,6 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="drive-orin"
-                         name="which-nvidia-orin-platforms"
                          value="DRIVE Orin" />
                   <span class="p-checkbox__label" id="drive-orin">Xavier</span>
                 </label>
@@ -55,7 +51,6 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="drive-orin"
-                         name="which-nvidia-orin-platforms"
                          value="DRIVE Orin" />
                   <span class="p-checkbox__label" id="drive-orin">DRIVE Orin</span>
                 </label>
@@ -63,7 +58,6 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="igx-orin"
-                         name="which-nvidia-orin-platforms"
                          value="IGX Orin" />
                   <span class="p-checkbox__label" id="igx-orin">IGX Orin</span>
                 </label>
@@ -71,7 +65,6 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-agx-orin"
-                         name="which-nvidia-orin-platforms"
                          value="Jetson AGX Orin" />
                   <span class="p-checkbox__label" id="jetson-agx-orin">Jetson AGX Orin</span>
                 </label>
@@ -79,7 +72,6 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-orin-nx"
-                         name="which-nvidia-orin-platforms"
                          value="Jetson Orin NX" />
                   <span class="p-checkbox__label" id="jetson-orin-nx">Jetson Orin NX</span>
                 </label>
@@ -87,21 +79,17 @@
                   <input class="p-checkbox__input"
                          type="checkbox"
                          aria-labelledby="jetson-orin-nano"
-                         name="which-nvidia-orin-platforms"
                          value="Jetson Orin Nano" />
                   <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
                 </label>
               </div>
             </div>
-            <div class="js-formfield">
-              <label for="tell-us-about-your-project">
-                <h3 class="p-heading--5">Tell us more about your project</h3>
-              </label>
-              <textarea id="tell-us-about-your-project"
-                        name="tell-us-about-your-project"
-                        rows="4"
-                        maxlength="2000"></textarea>
-            </div>
+            <label for="tell-us-about-your-project">
+              <h3 class="p-heading--5">Tell us more about your project</h3>
+            </label>
+            <textarea id="tell-us-about-your-project"
+                      rows="4"
+                      maxlength="2000"></textarea>
           </fieldset>
 
           <fieldset class="u-no-margin--bottom">
