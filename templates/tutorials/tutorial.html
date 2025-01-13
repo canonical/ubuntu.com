@@ -10,7 +10,6 @@
 {% block meta_image %}https://assets.ubuntu.com/v1/ebdfffbf-Aubergine_suru_background.png{% endblock %}
 
 {% block content %}
-
   <div class="p-strip">
     <div class="row">
       <div class="col-7 col-start-large-5">
@@ -44,7 +43,6 @@
           <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"] }}</h2>
 
           <article class="l-tutorial-section__content">{{ section.content | safe }}</article>
-
           {% if loop.last %}
             <div class="l-tutorial__feedback-options">
               <p>Was this tutorial useful?</p>
@@ -204,5 +202,25 @@
         });
       });
     })();
+    // Dealing with the 2 fragments (AKA anchors) 
+    let currentSection = '';
+    window.addEventListener("hashchange",function(event){
+      console.log(currentSection);
+      const hash = location.hash;
+      const hashSplit = hash.substr(1,hash.length - 1).split("#");
+      if(hashSplit.length == 1){
+        if(!isNaN(hashSplit[0][0])){
+          currentSection = hashSplit[0];
+        }
+        else {
+          location.hash = currentSection;
+          document.getElementsByName(hashSplit[0])[0].scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      else{
+        location.hash = "#" + hashSplit[0];
+        document.getElementsByName(hashSplit[1])[0].scrollIntoView({ behavior: "smooth" });
+      }
+    });
   </script>
 {% endblock %}
