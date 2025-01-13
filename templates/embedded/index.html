@@ -1055,8 +1055,8 @@
     </div>
   </section>
 
-  {% with section_classes='p-strip--light', heading_topic='Embedded', tag_name='iot', tag_id='3633', limit='4', article_date='True' %}
-    {% include "shared/_latest_news_strip.html" %}
+  {% with section_classes='p-section--deep', title_link="/blog/tag/iot", tag_id='3633', limit='4', hide_date=True, tag_name='iot', link_image=True, show_image=True, show_excerpt=True, excerptLength=200, show_start_rule=True, is_title_link=True, heading_class="p-heading--2" %}
+    {% include "/shared/_latest_news_strip.html" %}
   {% endwith %}
 
   <script src="{{ versioned_static('js/dist/sticky-nav.js') }}"></script>
