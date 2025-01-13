@@ -10,6 +10,10 @@
   https://docs.google.com/document/d/1Ep9mXvFXf9a1IE0TVJCfcbnAUTqtDOL9XE93pvK1V_A
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
   <section class="p-section--hero">
@@ -18,9 +22,7 @@
         <div class="p-section--shallow">
           <h1>Dell PowerFlex and Canonical:</h1>
           <h2>
-            A powerful partnership
-            <br />
-            for modern IT
+            A powerful partnership for&nbsp;modern&nbsp;IT
           </h2>
         </div>
         <div class="p-section--shallow">
@@ -34,10 +36,16 @@
         </div>
       </div>
       <div class="grid-col-4">
-        <div class="p-image-container--3-2 is-cover">
-          <img class="p-image-container__image"
-               src="https://assets.ubuntu.com/v1/fd9469b7-hero.png"
-               alt="" />
+        <div class="p-image-container--3-2 is-cover u-hide--medium">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/fd9469b7-hero.png",
+          alt="",
+          width="1800",
+          height="1128",
+          hi_def=True,
+          loading="auto|lazy"
+          ) | safe
+          }}
         </div>
       </div>
     </div>
@@ -46,6 +54,8 @@
   <section class="p-section">
     <div class="grid-row">
       <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
       <div class="grid-col-4 grid-col-medium-2">
         <h2>
           How can Dell PowerFlex
@@ -68,9 +78,11 @@
   </section>
 
   <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
     <div class="p-section--shallow">
       <div class="grid-row">
-        <hr class="p-rule" />
         <div class="grid-col-4 grid-col-medium-2">
           <h2>
             PowerFlex: The foundation
@@ -92,7 +104,7 @@
     <div class="grid-row">
       <div class="grid-col-4">
         <hr class="p-rule--highlight u-no-margin--bottom" />
-        <div class="p-card--overlay u-no-padding--top u-no-margin--bottom">
+        <div style="padding: 1.5rem" class="p-card--overlay u-no-padding--top">
           <h3>
             LXD:
             <br />
@@ -108,8 +120,7 @@
       </div>
       <div class="grid-col-4" sy>
         <hr class="p-rule--highlight u-no-margin--bottom" />
-        <div style="height: 100%"
-             class="p-card--overlay u-no-padding--top u-no-margin--bottom">
+        <div style="padding: 1.5rem" class="p-card--overlay u-no-padding--top">
           <h3>
             OpenStack:
             <br />
@@ -124,9 +135,11 @@
   </section>
 
   <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
     <div class="p-section--shallow">
       <div class="grid-row">
-        <hr class="p-rule" />
         <div class="grid-col-4 grid-col-medium-2">
           <h2>
             What are the Key Benefits
@@ -141,9 +154,9 @@
         </div>
       </div>
     </div>
-    <div class="grid-row">
+    <div class="grid-row u-hide--medium u-hide--small">
       <div class="grid-col-2 grid-col-start-large-3">
-        <div class="p-image-container u-hide--small u-hide--medium">
+        <div class="p-image-container">
           {{ image(url="https://assets.ubuntu.com/v1/062ca5d0-performance-and-scalability.png",
                     alt="",
                     width="400",
@@ -156,7 +169,7 @@
         <p>Optimize workload performance and seamlessly scale to meet future growth demands.</p>
       </div>
       <div class="grid-col-2">
-        <div class="p-image-container u-hide--small u-hide--medium">
+        <div class="p-image-container">
           {{ image(url="https://assets.ubuntu.com/v1/53927b6f-reduced-costs.png",
                     alt="",
                     width="400",
@@ -171,7 +184,7 @@
         </p>
       </div>
       <div class="grid-col-2">
-        <div class="p-image-container u-hide--small u-hide--medium">
+        <div class="p-image-container">
           {{ image(url="https://assets.ubuntu.com/v1/7a51971b-simplified-management.png",
                     alt="",
                     width="400",
@@ -184,16 +197,56 @@
         <p>Simplify complex virtual environments through user-friendly interfaces and automation tools.</p>
       </div>
     </div>
+    <!-- Implementation as a tiered list for small and mediim screens -->
+    <div class="u-hide--large">
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Performance and scalability</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>Optimize workload performance and seamlessly scale to meet future growth demands.</p>
+        </div>
+      </div>
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Reduced costs</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>
+            Consolidate infrastructure, optimize resource utilization, and benefit from the cost-efficiency of open-source solutions.
+          </p>
+        </div>
+      </div>
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Simplified management</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>Simplify complex virtual environments through user-friendly interfaces and automation tools.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="p-section">
     <div class="grid-row">
       <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
       <div class="grid-col-4">
         <h2>A partnership built for success: Dell Technologies and Canonical</h2>
       </div>
       <div class="grid-col-4">
-        <div class="p-image-container is-highlighted">
+        <div class="p-image-container is-highlighted u-hide--medium">
           {{ image (
           url="https://assets.ubuntu.com/v1/ae756da3-dell-technologies.png",
           alt="",
@@ -218,8 +271,10 @@
   </section>
 
   <section class="p-section">
-    <div class="grid-row grid-col-medium-2">
+    <div class="grid-row">
       <hr class="p-rule" />
+    </div>
+    <div class="grid-row grid-col-medium-2">
       <div class="grid-col-4 grid-col-medium-2">
         <h2>
           Ready to unleash
@@ -242,6 +297,8 @@
   <section class="p-section--deep">
     <div class="grid-row">
       <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
       <div class="grid-col-4">
         <h2>Know more about our solutions</h2>
       </div>
