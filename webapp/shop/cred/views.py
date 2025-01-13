@@ -681,7 +681,7 @@ def cred_your_exams(
                         }
                     )
                     continue
-
+                
                 r = reservation
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
@@ -696,8 +696,6 @@ def cred_your_exams(
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
-
-                # if assessment is provisioned
                 if assessment_id:
                     state = RESERVATION_STATES.get(
                         r["assessment"]["state"], r["state"]
@@ -715,6 +713,7 @@ def cred_your_exams(
                     else state
                 )
 
+                # if assessment is provisioned
                 if assessment_id:
                     is_in_window = (now > starts_at and now < end) or (
                         now < starts_at
