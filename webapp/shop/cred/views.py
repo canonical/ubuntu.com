@@ -665,6 +665,7 @@ def cred_your_exams(
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
 
+            # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
                 reservation_id = exam_contract["cueContext"]["reservation"][
                     "IDs"
@@ -696,6 +697,7 @@ def cred_your_exams(
                 now = utc.localize(datetime.utcnow())
                 end = starts_at + timedelta(minutes=75)
 
+                # if assessment is provisioned
                 if assessment_id:
                     state = RESERVATION_STATES.get(
                         r["assessment"]["state"], r["state"]
@@ -766,6 +768,7 @@ def cred_your_exams(
                     else:
                         exams_in_progress.append(exam_data)
 
+                # if at least 30 minutes away allow reschedule
                 elif state == "Scheduled":
                     if now + timedelta(minutes=30) < starts_at:
                         actions.extend(
@@ -792,6 +795,7 @@ def cred_your_exams(
                             "actions": actions,
                         }
                     )
+            # if exam expires
             elif (
                 "effectivenessContext" in exam_contract
                 and "status" in exam_contract["effectivenessContext"]
@@ -802,6 +806,7 @@ def cred_your_exams(
                     {"name": name, "state": "Expired", "actions": []}
                 )
 
+            # if exam is not used and is not expired
             else:
                 actions = [
                     {
@@ -837,9 +842,9 @@ def cred_your_exams(
         )
     )
 
+    # Do not cache this view
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
-
     return response
 
 
