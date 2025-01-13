@@ -681,7 +681,7 @@ def cred_your_exams(
                         }
                     )
                     continue
-                
+
                 r = reservation
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
