@@ -11,6 +11,8 @@ import jinja2
 import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
+from pathlib import Path
+
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -1292,11 +1294,11 @@ def render_form(form, template_path, child=False):
 
 
 def set_form_rules():
-    file_path = os.path.join(app.static_folder, "files", "forms-data.json")
-    with open(file_path) as forms_json:
-        data = json.load(forms_json)
-        for path, form in data["forms"].items():
-            try:
+    templates_folder = Path(app.root_path).parent / "templates"
+    for file_path in templates_folder.rglob("form-data.json"):
+        with open(file_path) as forms_json:
+            data = json.load(forms_json)
+            for path, form in data["form"].items():
                 if "childrenPaths" in form:
                     for child_path in form["childrenPaths"]:
                         app.add_url_rule(
@@ -1313,11 +1315,6 @@ def set_form_rules():
                     ),
                     endpoint=path,
                 )
-            except AssertionError:
-                app.logger.error(
-                    f"Error setting form rules for {path} \n", AssertionError
-                )
 
 
-# Disabling for now, the forms in form-data.json are for testing purposes
 set_form_rules()
