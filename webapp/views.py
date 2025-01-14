@@ -993,7 +993,7 @@ def marketo_submit():
         ],
     }
 
-    encoded_utms = flask.request.cookies.get("utms")    
+    encoded_utms = flask.request.cookies.get("utms")
     if encoded_utms:
         utms = unquote(encoded_utms)
         utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
