@@ -120,7 +120,7 @@ function isValidNumber(number) {
  */
 function resetErrorState(errorElement, phoneInput) {
   phoneInput?.parentNode?.parentNode.classList.remove("is-error");
-  phoneInput.removeAttribute("aria-describedby", "invalid-number-message");
+  phoneInput?.removeAttribute("aria-describedby", "invalid-number-message");
   if (errorElement.parentNode) {
     errorElement.remove();
   }
