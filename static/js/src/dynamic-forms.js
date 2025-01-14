@@ -286,10 +286,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         );
         checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
-            input.style.opacity = 1;
+            input.style.display = "block";
             input.focus();
           } else {
-            input.style.opacity = 0;
+            input.style.display = "none";
             input.value = "";
           }
         });
