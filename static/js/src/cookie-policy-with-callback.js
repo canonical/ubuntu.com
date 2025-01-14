@@ -48,7 +48,7 @@ function setUtmCookies(urlParams) {
     if (utmParams.endsWith("&")) {
       utmParams = utmParams.slice(0, -1);
     }
-    document.cookie = "utms=" + utmParams + ";max-age=86400;path=/;";
+    document.cookie = "utms=" + encodeURIComponent(utmParams) + ";max-age=86400;path=/;";
   }
 }
 
