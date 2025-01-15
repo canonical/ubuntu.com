@@ -53,35 +53,28 @@ def rate_limit_with_backoff(
         additional_limits = {limits[0]: timedelta(seconds=limits[1])}
         rate_limit_attempt_map = additional_limits
 
-    # The request limit is derived from the limit attempt map
-    request_limit = max(sorted(rate_limit_attempt_map.keys(), reverse=True))
-
     @functools.wraps(func)
     def rate_limited(*args, **kwargs):
         try:
             # Get the initial request
             initial_request = json.loads(flask.session[func.__name__])
-            # Get the seconds limit for these attempts
-            seconds_limit = rate_limit_attempt_map.get(request_limit)
             for limit in sorted(rate_limit_attempt_map.keys()):
-                seconds_limit = rate_limit_attempt_map.get(limit)
+                # Get the seconds limit for these attempts
                 if limit > initial_request["attempts"]:
+                    seconds_limit = rate_limit_attempt_map.get(limit)
+                    time_since_last_request = datetime.now() - datetime.fromtimestamp(
+                        initial_request["timestamp"]
+                    )
+                    # Abort if the time is too early for this number of attempts
+                    if (
+                        time_since_last_request.total_seconds()
+                        < seconds_limit.total_seconds()
+                    ):
+                        return flask.abort(429)
                     break
 
-            time_since_last_request = datetime.now() - datetime.fromtimestamp(
-                initial_request["timestamp"]
-            )
-            # Abort if the time is too early for this number of attempts
-            # Or if the max number of attempts has been exceeded
-            if initial_request["attempts"] >= request_limit:
-                if (
-                    time_since_last_request.total_seconds()
-                    < seconds_limit.total_seconds()
-                ):
-                    return flask.abort(429)
-                else:
-                    # Reset the timer if we have exceeded the limit
-                    initial_request["timestamp"] = datetime.now()
+            # Reset the timestamp if the request succeeds
+            initial_request["timestamp"] = datetime.now()
 
             # Otherwise update the session
             initial_request["attempts"] += 1
