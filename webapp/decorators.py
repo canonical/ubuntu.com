@@ -60,7 +60,7 @@ def rate_limit_with_backoff(
             initial_request = json.loads(flask.session[func.__name__])
             for limit in sorted(rate_limit_attempt_map.keys()):
                 # Get the seconds limit for these attempts
-                if limit > initial_request["attempts"]:
+                if limit >= initial_request["attempts"]:
                     seconds_limit = rate_limit_attempt_map.get(limit)
                     time_since_last_request = (
                         datetime.now()
