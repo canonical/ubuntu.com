@@ -14,6 +14,7 @@ if (!cookieAcceptanceValue) {
 } else {
   setUserId();
   cpNs.cookiePolicy();
+  setUtms();
 }
 
 function setUserId() {
@@ -35,8 +36,6 @@ function setUserId() {
   }
 }
 
-setUtms();
-
 function setUtmCookies(urlParams) {
   let utmParams = "";
   urlParams.forEach((value, key) => {
@@ -54,15 +53,21 @@ function setUtmCookies(urlParams) {
 }
 
 function setUtms() {
-  let utmCookies = getCookie("utms");
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.size > 0) {
-    setUtmCookies(urlParams);
-  } else if (utmCookies) {
-    const referrer = document.referrer;
-    const currentHost = window.location.host;
-    if (!referrer.includes(currentHost)) {
-      document.cookie = "utms=;max-age=0;path=/;";
+  cookieAcceptanceValue = getCookie("_cookies_accepted");
+  if (
+    cookieAcceptanceValue?.[2] === "all" ||
+    cookieAcceptanceValue?.[2] === "performance"
+  ){
+    let utmCookies = getCookie("utms");
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.size > 0) {
+      setUtmCookies(urlParams);
+    } else if (utmCookies) {
+      const referrer = document.referrer;
+      const currentHost = window.location.host;
+      if (!referrer.includes(currentHost)) {
+        document.cookie = "utms=;max-age=0;path=/;";
+      }
     }
   }
 }
