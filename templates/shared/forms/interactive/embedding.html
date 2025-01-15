@@ -31,24 +31,26 @@
             </label>
           </div>
           <div class="col">
-            <label class="p-radio">
-              <input class="p-radio__input"
-                     required
-                     type="radio"
-                     aria-labelledby="canonicalProductsYes"
-                     name="canonicalProducts"
-                     value="Yes" />
-              <span class="p-radio__label" id="canonicalProductsYes">Yes</span>
-            </label>
-            <label class="p-radio">
-              <input class="p-radio__input"
-                     required
-                     type="radio"
-                     aria-labelledby="canonicalProductsNo"
-                     name="canonicalProducts"
-                     value="No" />
-              <span class="p-radio__label" id="canonicalProductsNo">No</span>
-            </label>
+            <fieldset class="p-fieldset-section js-remove-radio-names">
+              <label class="p-radio">
+                <input class="p-radio__input"
+                       required
+                       type="radio"
+                       aria-labelledby="canonicalProductsYes"
+                       name="canonicalProducts"
+                       value="Yes" />
+                <span class="p-radio__label" id="canonicalProductsYes">Yes</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input"
+                       required
+                       type="radio"
+                       aria-labelledby="canonicalProductsNo"
+                       name="canonicalProducts"
+                       value="No" />
+                <span class="p-radio__label" id="canonicalProductsNo">No</span>
+              </label>
+            </fieldset>
           </div>
         </div>
       </div>
@@ -59,7 +61,7 @@
             <label for="about-use-case" class="p-heading--4 js-formfield-title">Tell us more about your needs</label>
           </div>
           <div class="col">
-            <textarea name="about-use-case" id="about-use-case" rows="5"></textarea>
+            <textarea id="about-use-case" rows="5"></textarea>
           </div>
         </div>
       </div>
