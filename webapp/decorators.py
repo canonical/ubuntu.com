@@ -62,10 +62,11 @@ def rate_limit_with_backoff(
                 # Get the seconds limit for these attempts
                 if limit > initial_request["attempts"]:
                     seconds_limit = rate_limit_attempt_map.get(limit)
-                    time_since_last_request = datetime.now() - datetime.fromtimestamp(
-                        initial_request["timestamp"]
+                    time_since_last_request = (
+                        datetime.now()
+                        - datetime.fromtimestamp(initial_request["timestamp"])
                     )
-                    # Abort if the time is too early for this number of attempts
+                    # Abort if the request is too soon
                     if (
                         time_since_last_request.total_seconds()
                         < seconds_limit.total_seconds()
