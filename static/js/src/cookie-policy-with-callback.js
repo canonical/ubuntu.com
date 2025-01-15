@@ -57,7 +57,7 @@ function setUtms() {
   if (
     cookieAcceptanceValue?.[2] === "all" ||
     cookieAcceptanceValue?.[2] === "performance"
-  ){
+  ) {
     let utmCookies = getCookie("utms");
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.size > 0) {
