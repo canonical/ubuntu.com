@@ -374,16 +374,6 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" 
-      id="contact-form-container" 
-      data-form-location="/shared/forms/form-template" 
-      data-form-id="{{ formData.formId }}" 
-      data-lp-id="" 
-      data-return-url="{{ formData.returnUrl }}"
-      data-lp-url="https://ubuntu.com/aws/contact-us"
-    >
-    {% include "/shared/forms/form-template.html" %}
-  </div>
+  {% include "/shared/forms/form-template.html" %}
 
 {% endblock content %}

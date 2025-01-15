@@ -1,21 +1,20 @@
 {% if isModal %}
-  <div class="u-hide" 
-  id="contact-form-container" 
-  data-form-location="/shared/forms/form-template" 
-  data-form-id="{{ formData.formId }}" 
-  data-lp-id="" 
-  data-return-url="{{ formData.returnUrl }}"
-  data-lp-url="https://ubuntu.com/aws/contact-us"
-  >
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/form-template"
+       data-form-id="{{ formData.formId }}"
+       data-lp-id=""
+       data-return-url="{{ formData.returnUrl }}"
+       data-lp-url="{{ formData.lpUrl }}">
     <div class="p-modal js-modal-ready" id="{{ modalId }}">
       <div class="p-modal__dialog is-wide-modal"
-          role="dialog"
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description">
+           role="dialog"
+           aria-labelledby="modal-title"
+           aria-describedby="modal-description">
         <header class="p-modal__header"
                 style="display: block;
-                      border-bottom: 0;
-                      overflow: auto">
+                       border-bottom: 0;
+                       overflow: auto">
           <button class="p-modal__close js-close"
                   aria-label="Close active modal"
                   style="margin-left: -1rem">Close</button>
