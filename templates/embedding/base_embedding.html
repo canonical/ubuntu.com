@@ -1,7 +1,14 @@
 {% extends "templates/base.html" %}
 
-{% block meta_copydoc %}https://drive.google.com/drive/folders/19PBDauuZAlJPizPte3Es-Rc3FFmp8Xt2{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://drive.google.com/drive/folders/19PBDauuZAlJPizPte3Es-Rc3FFmp8Xt2
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block outer_content %}
-    {% block content %}{% endblock %}
+
+  {% block content %}{% endblock %}
 {% endblock %}
