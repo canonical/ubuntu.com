@@ -49,6 +49,7 @@
   <section class="p-section--shallow">
     {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
       {%- if slot == 'title' -%}
+        <hr class="u-hide--medium u-hide--large" />
         <h2>Kubernetes-as-a-service from our team of experts</h2>
       {%- endif -%}
 
@@ -96,7 +97,7 @@
   <section class="p-section">
     <hr class="p-rule--highlight is-fixed-width u-no-margin--bottom" />
     <div class="u-fixed-width">
-      <p class="p-muted-heading">They trust us to run their K8s</p>
+      <h2 class="p-muted-heading">They trust us to run their K8s</h2>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -133,6 +134,16 @@
             {{ image(url="https://assets.ubuntu.com/v1/c1e66cb9-tamkeen-logo.png",
                         alt="Tamkeen",
                         width="313",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/645d6940-esa-logo.png",
+                        alt="ESA",
+                        width="241",
                         height="313",
                         hi_def=True,
                         loading="lazy",
@@ -205,7 +216,7 @@
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Enterprise SLA for your cloud, upgrades included</li>
           <li class="p-list__item is-ticked">
-            99.9% guaranteed uptime. All cluster components are highly available and proactively monitored to minimise unplanned downtime.
+            99.9% guaranteed uptime. All cluster components are highly available and proactively monitored to minimize unplanned downtime.
           </li>
           <li class="p-list__item is-ticked">
             Scale on demand with additional nodes. We will remotely test new hardware and scale your Kubernetes with zero downtime.
@@ -300,7 +311,7 @@
   <section class="p-section">
     <hr class="p-rule--highlight is-fixed-width u-no-margin--bottom" />
     <div class="u-fixed-width">
-      <p class="p-muted-heading">They trust us to run their K8s</p>
+      <h2 class="p-muted-heading">They trust us to run their K8s</h2>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
@@ -371,6 +382,7 @@
   <section class="p-section">
     {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
       {%- if slot == 'title' -%}
+        <hr class="u-hide--medium u-hide--large" />
         <h2>Managed IT services in a single hand&ndash;shake</h2>
       {%- endif -%}
 
