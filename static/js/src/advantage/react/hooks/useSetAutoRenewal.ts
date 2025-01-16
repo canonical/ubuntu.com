@@ -12,8 +12,8 @@ export const useSetAutoRenewal = () => {
   const mutation = useMutation<unknown, Error, { [key: string]: boolean }>({
     mutationFn: async (shouldAutoRenew: { [key: string]: boolean }) => {
       const response = await setAutoRenewal(shouldAutoRenew);
-      if(!shouldAutoRenew[Object.keys(shouldAutoRenew)[0]]){
-        window.usabilla_live('trigger', 'manual trigger');
+      if (!shouldAutoRenew[Object.keys(shouldAutoRenew)[0]]) {
+        window.usabilla_live("trigger", "manual trigger");
       }
       if (response.errors) {
         throw new Error(response.errors);
