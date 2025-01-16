@@ -13,7 +13,6 @@ export const useSetAutoRenewal = () => {
     mutationFn: async (shouldAutoRenew: { [key: string]: boolean }) => {
       const response = await setAutoRenewal(shouldAutoRenew);
       if(!shouldAutoRenew[Object.keys(shouldAutoRenew)[0]]){
-        console.log("Triggering manual feedback form");
         window.usabilla_live('trigger', 'manual trigger');
       }
       if (response.errors) {
