@@ -69,6 +69,8 @@ def parse_channel_product_listing(
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
         metadata=raw_product_listing.get("metadata"),
+        exclusion_group=raw_product_listing.get("exclusionGroup", ""),
+        effective_days=raw_product_listing.get("effectiveDays"),
     )
 
 
@@ -312,9 +314,25 @@ def parse_offer_items(
             for product_listing in raw_product_listings
             if product_listing.get("id") == item_listing
         ]
-
         allowance = raw_offer_item.get("value")
+        # total price ( price * quantity )
         price = product_listing[0].get("price").get("value") * allowance
+
+        is_channel_offer = (
+            product_listing[0].get("marketplace") == "canonical-pro-channel"
+        )
+
+        channel_item_fields = {}
+
+        if is_channel_offer:
+            channel_item_fields = {
+                "currency": product_listing[0]
+                .get("price", {})
+                .get("currency"),
+                "effectiveDays": product_listing[0].get("effectiveDays"),
+                "productID": product_listing[0].get("productID"),
+                "productName": product_listing[0].get("productName"),
+            }
 
         offer_items.append(
             OfferItem(
@@ -322,6 +340,7 @@ def parse_offer_items(
                 name=product_listing[0].get("name"),
                 price=price,
                 allowance=allowance,
+                **channel_item_fields,
             )
         )
 
@@ -344,48 +363,65 @@ def parse_offer(raw_offer: Dict) -> Offer:
         if raw_offer.get("activationAccountID")
         else None
     )
-
-    channel_deal_creator_name = get_metadata_value(
-        metadata, "channelDealCreatorName"
-    )
-    distributor_account_name = get_metadata_value(
-        metadata, "distributorAccountName"
-    )
-    end_user_account_name = get_metadata_value(metadata, "endUserAccountName")
-    reseller_account_name = get_metadata_value(metadata, "resellerAccountName")
-    technical_contact_email = get_metadata_value(
-        metadata, "technicalContactEmail"
-    )
-    technical_contact_name = get_metadata_value(
-        metadata, "technicalContactName"
-    )
-    opportunity_number = get_metadata_value(metadata, "opportunityNumber")
-    version = get_metadata_value(metadata, "version")
+    exclusion_group = raw_offer.get("exclusionGroup", "")
 
     purchase = "purchase" in raw_offer
 
-    return Offer(
-        id=raw_offer["id"],
-        account_id=raw_offer["accountID"],
-        marketplace=raw_offer["marketplace"],
-        created_at=raw_offer["createdAt"],
-        actionable=raw_offer["actionable"],
-        purchase=purchase,
-        total=sum(item.price for item in items),
-        items=items,
-        discount=raw_offer.get("discount"),
-        activation_account_id=raw_offer.get("activationAccountID"),
-        can_change_items=raw_offer.get("canChangeItems"),
-        external_ids=external_ids,
-        channel_deal_creator_name=channel_deal_creator_name,
-        distributor_account_name=distributor_account_name,
-        reseller_account_name=reseller_account_name,
-        end_user_account_name=end_user_account_name,
-        technical_contact_email=technical_contact_email,
-        technical_contact_name=technical_contact_name,
-        opportunity_number=opportunity_number,
-        version=version,
-    )
+    # Always included fields
+    offer_data = {
+        "id": raw_offer["id"],
+        "account_id": raw_offer["accountID"],
+        "marketplace": raw_offer["marketplace"],
+        "created_at": raw_offer["createdAt"],
+        "actionable": raw_offer["actionable"],
+        "purchase": purchase,
+        "total": sum(item.price for item in items),
+        "items": items,
+        "discount": raw_offer.get("discount"),
+    }
+
+    # Conditionally include fields related to activation_account_id
+    if raw_offer.get("activationAccountID"):
+        if metadata:
+            channel_deal_creator_name = get_metadata_value(
+                metadata, "channelDealCreatorName"
+            )
+            distributor_account_name = get_metadata_value(
+                metadata, "distributorAccountName"
+            )
+            end_user_account_name = get_metadata_value(
+                metadata, "endUserAccountName"
+            )
+            reseller_account_name = get_metadata_value(
+                metadata, "resellerAccountName"
+            )
+            technical_contact_email = get_metadata_value(
+                metadata, "technicalContactEmail"
+            )
+            technical_contact_name = get_metadata_value(
+                metadata, "technicalContactName"
+            )
+            opportunity_number = get_metadata_value(
+                metadata, "opportunityNumber"
+            )
+
+        offer_data.update(
+            {
+                "activation_account_id": raw_offer.get("activationAccountID"),
+                "can_change_items": raw_offer.get("canChangeItems"),
+                "external_ids": external_ids,
+                "channel_deal_creator_name": channel_deal_creator_name,
+                "distributor_account_name": distributor_account_name,
+                "reseller_account_name": reseller_account_name,
+                "end_user_account_name": end_user_account_name,
+                "technical_contact_email": technical_contact_email,
+                "technical_contact_name": technical_contact_name,
+                "opportunity_number": opportunity_number,
+                "exclusion_group": exclusion_group,
+            }
+        )
+
+    return Offer(**offer_data)
 
 
 def parse_offers(raw_offers: List) -> List[Offer]:
@@ -395,9 +431,8 @@ def parse_offers(raw_offers: List) -> List[Offer]:
 def get_metadata_value(
     metadata: Optional[List[Metadata]], key: str
 ) -> Optional[str]:
-    if metadata is None:
-        return None
-    for metadata in metadata:
-        if metadata.key == key:
-            return metadata.value
+    if metadata is not None:
+        for metadata in metadata:
+            if metadata.key == key:
+                return metadata.value
     return None

@@ -8,7 +8,9 @@ from webapp.context import (
     date_has_passed,
     descending_years,
     format_date,
+    format_to_id,
     get_json_feed,
+    get_meganav,
     get_navigation,
     modify_query,
     month_name,
@@ -16,9 +18,7 @@ from webapp.context import (
     releases,
     schedule_banner,
     sort_by_key_and_ordered_list,
-    get_meganav,
     split_list,
-    format_to_id,
 )
 from webapp.login import empty_session, user_info
 from webapp.security.api import SecurityAPIError
@@ -71,12 +71,18 @@ CSP = {
         "connect.facebook.net",
         "jspm.dev",
         "cdn.livechatinc.com",
+        "api.livechatinc.com",
+        "secure.livechatinc.com",
+        "www.tfaforms.com",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
     "font-src": [
         "'self'",
         "assets.ubuntu.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "fonts.google.com",
     ],
     "script-src": [
         "'self'",
@@ -106,6 +112,13 @@ CSP = {
         "conversions-config.reddit.com",
         "px.ads.linkedin.com",
         "ws.zoominfo.com",
+        "api.livechatinc.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "youtube.com",
+        "google.com",
+        "fonts.google.com",
+        "api.text.com",
     ],
     "frame-src": [
         "'self'",
@@ -117,6 +130,9 @@ CSP = {
         "www.googletagmanager.com",
         "www.google.com",
         "www.brighttalk.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "cdn.livechat-static.com",
     ],
     "style-src": [
         "'self'",
@@ -125,6 +141,17 @@ CSP = {
     "media-src": [
         "'self'",
         "res.cloudinary.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "cdn.livechat-static.com",
+    ],
+    "child-src": [
+        "api.livechatinc.com",
+        "cdn.livechatinc.com",
+        "secure.livechatinc.com",
+        "youtube.com",
+        "google.com",
+        "fonts.google.com",
     ],
 }
 

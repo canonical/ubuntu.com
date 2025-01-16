@@ -13,12 +13,14 @@
         </script>
         <!-- End Google Analytics and Google Optimize -->
         <script>
-            const getCookie = () => document.cookie.match(new RegExp("(^| )" + "user_id" + "=([^;]+)"));
-            let idValue = getCookie()[2];
-            if (idValue) {
-                dataLayer.push({
-                        user_id: idValue,
-                });
+            const userIDCookie = document.cookie.match(new RegExp("(^| )" + "user_id" + "=([^;]+)"));
+            if (userIDCookie !== null) {
+                let idValue = userIDCookie[2];
+                if (idValue) {
+                    dataLayer.push({
+                            user_id: idValue,
+                    });
+                }
             }
         </script>
         <!-- Google Tag Manager -->

@@ -79,7 +79,7 @@ function DistributorSummary({
         <Col size={8}>
           <p data-testid="subtotal">
             <strong>
-              {priceData && currency
+              {currency
                 ? currencyFormatter(currency).format(Number(defaultTotal) ?? 0)
                 : 0}
             </strong>
@@ -89,7 +89,7 @@ function DistributorSummary({
     </>
   );
 
-  if (taxAmount && defaultTotal) {
+  if (priceData && taxAmount && defaultTotal) {
     totalSection = (
       <>
         {discount && discount !== 0 ? (

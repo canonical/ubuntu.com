@@ -17,7 +17,7 @@ from ubuntu_release_info.data import Data
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
@@ -992,6 +992,23 @@ def marketo_submit():
             }
         ],
     }
+
+    encoded_utms = flask.request.cookies.get("utms")
+    if encoded_utms:
+        utms = unquote(encoded_utms)
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+        approved_utms = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_content",
+            "utm_term",
+        ]
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
 
     try:
         ip_location = ip_reader.get(client_ip)
