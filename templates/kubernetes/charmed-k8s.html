@@ -7,6 +7,7 @@
 {% endblock meta_description %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block body_class %}
   is-paper
@@ -81,11 +82,11 @@
     </div>
     <div class="u-fixed-width">
       <div class="p-section--shallow">
-        <div class="p-image-container--3-2 is-cover">
-          {{ image(url="https://assets.ubuntu.com/v1/f2505124-164488352-ceaad6dd-4eee-407c-9e73-64afa353226c.png",
+        <div class="p-image-container--3-2 is-cover is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/6e3228d0-highly-configurable-chart.png",
                     alt="",
-                    width="2396",
-                    height="1399",
+                    width="3696",
+                    height="2464",
                     hi_def=True,
                     loading="lazy") | safe
           }}
@@ -105,7 +106,10 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <div class="p-image-container">
+        <div class="p-section--shallow u-hide--large">
+          <h2>Model driven Kubernetes</h2>
+        </div>
+        <div class="p-image-container u-hide--small u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/9880631d-model%20driven.png",
                     alt="",
                     width="1800",
@@ -116,7 +120,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
+        <div class="p-section--shallow u-hide--medium u-hide--small">
           <h2>Model driven Kubernetes</h2>
         </div>
         <p class="p-heading--5">Streamlined cluster lifecycle management with Charmed Operators</p>
@@ -132,7 +136,7 @@
           </li>
           <li class="p-list__item is-ticked">Reduction of manual configuration and complexity for Day-0 to Day-2 operations</li>
           <li class="p-list__item is-ticked">
-            Out-of-the-box integrations with storage, networking, LBaaS, <a href="/observability">logging</a>, <a href="/observability">monitoring and alerting</a> tools
+            Out-of-the-box integrations with storage, networking, LBaaS, <a href="/observability">logging, monitoring and alerting</a> tools
           </li>
           <li class="p-list__item is-ticked">Easy upgrades to the latest versions</li>
           <li class="p-list__item is-ticked">Fine-grained service placement</li>
@@ -151,25 +155,11 @@
         <div class="p-section--shallow">
           <h2>Kubernetes on OpenStack</h2>
         </div>
-        <p>
-          Great K8s experience on the #1 OpenStack distribution. Build a multi-tenant, high-performing, cost-effective private cloud with Charmed Kubernetes on Charmed OpenStack.
-        </p>
-        <p>Building on Canonical's charmed operators provides:</p>
-        <hr class="p-rule--muted u-no-margin--bottom" />
-        <ul class="p-list--divided">
-          <li class="p-list__item is-ticked">A single platform for containerised and traditional workloads</li>
-          <li class="p-list__item is-ticked">A unified approach to operate apps and infra</li>
-          <li class="p-list__item is-ticked">Built-in security and isolation of workloads</li>
-          <li class="p-list__item is-ticked">Hardware acceleration with SR-IOV, DPDK &amp; OVS offloading</li>
-          <li class="p-list__item is-ticked">Load balancing in ingress</li>
-          <li class="p-list__item is-ticked">A single subscription for full-stack support</li>
-        </ul>
-        <div class="p-cta-block">
-          <a class="p-button" href="/kubernetes/docs/openstack-integration">How to install Kubernetes on OpenStack</a>
-        </div>
+        <div class="u-hide--medium u-hide--small">{% include "/kubernetes/_k8s-on-openstack.html" %}</div>
       </div>
       <div class="col">
-        <div class="p-image-container">
+        <div class="u-hide--large">{% include "/kubernetes/_k8s-on-openstack.html" %}</div>
+        <div class="p-image-container u-hide--medium u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/9bcc23aa-on%20openstack.png",
                     alt="",
                     width="1800",
@@ -201,7 +191,7 @@
           <li class="p-list__item is-ticked">Bare-metal performance</li>
           <li class="p-list__item is-ticked">Guaranteed full-stack high availability</li>
           <li class="p-list__item is-ticked">DevOps-driven bare metal management</li>
-          <li class="p-list__item is-ticked">Optimised hardware utilisation and elastic machine allocation</li>
+          <li class="p-list__item is-ticked">Optimized hardware utilization and elastic machine allocation</li>
           <li class="p-list__item is-ticked">Enhanced platform awareness for GPU auto-detection</li>
           <li class="p-list__item is-ticked">Fault-tolerant software-defined storage</li>
         </ul>
@@ -212,7 +202,7 @@
       </div>
     </div>
     <div class="u-fixed-width">
-      <div class="p-image-container is-highlighted">
+      <div class="p-image-container--cinematic is-highlighted">
         {{ image(url="https://assets.ubuntu.com/v1/a7ca37d1-kubernetes-maas.png",
                 alt="",
                 width="1294",
@@ -223,110 +213,94 @@
       </div>
     </div>
   </section>
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
 
-  <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2>
-            Leverage the Ubuntu cloud
-            <br />
-            native ecosystem
-          </h2>
-        </div>
-        <div class="col">
-          <p>
-            Charmed Kubernetes gives you total cluster control at scale. Integrate it with the Ubuntu ecosystem to build your full stack cloud native platform
-          </p>
-        </div>
+    {%- if slot == 'title' -%}
+      <h2>
+        Leverage the Ubuntu cloud
+        <br />
+        native ecosystem
+      </h2>
+    {%- endif -%}
+
+    {%- if slot == 'description' -%}
+      <p>
+        Charmed Kubernetes gives you total cluster control at scale. Integrate it with the Ubuntu ecosystem to build your full stack cloud native platform
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Edge and IoT</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">
+          Ubuntu is the leading platform for public cloud GPU instances, and Canonical offers private cloud expertise to match.
+        </li>
+        <li class="p-list__item is-ticked">
+          GPU and FPGA pass-through make your Kubernetes cluster a shared machine learning platform for your data scientists.
+        </li>
+        <li class="p-list__item is-ticked">
+          Kubeflow on Charmed Kubernetes completes a cloud-native framework for MLOps at scale.
+        </li>
+      </ul>
+      <div class="p-cta-block">
+        <a href="https://canonical.com/solutions/ai">Read about Canonical's AI solutions&nbsp;&rsaquo;</a>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-start-large-4 col-9">
-        <hr class="p-rule--muted" />
-        <div class="p-section--shallow">
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Edge and IoT</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--divided">
-                <li class="p-list__item is-ticked">
-                  Canonical Kubernetes delivers a fully-conformant, low-touch, self-healing <a href="/engage/micro-clouds">Kubernetes at the edge</a>.
-                </li>
-                <li class="p-list__item is-ticked">Single-command user experience, sensible defaults and batteries included.</li>
-                <li class="p-list__item is-ticked">x86 and ARM support for containers at your fingertips on any device.</li>
-              </ul>
-              <div class="p-cta-block">
-                <a href="/engage/secure-kubernetes-at-the-edge">Learn more about Kubernetes at the edge&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="p-section--shallow">
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">AI / ML and HPC</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--divided">
-                <li class="p-list__item is-ticked">
-                  Ubuntu is the leading platform for public cloud GPU instances, and Canonical offers private cloud expertise to match.
-                </li>
-                <li class="p-list__item is-ticked">
-                  GPU and FPGA pass-through make your Kubernetes cluster a shared machine learning platform for your data scientists.
-                </li>
-                <li class="p-list__item is-ticked">
-                  Kubeflow on Charmed Kubernetes completes a cloud-native framework for MLOps at scale.
-                </li>
-              </ul>
-              <div class="p-cta-block">
-                <a href="https://canonical.com/solutions/ai">Read about Canonical's AI solutions&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="p-section--shallow">
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Kubernetes for Telco</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--divided">
-                <li class="p-list__item is-ticked">
-                  Full set of EPA features such as SR-IOV, DPDK, NUMA, CPU pinning and GPU support.
-                </li>
-                <li class="p-list__item is-ticked">Validated with tier 1 operators with most popular CNFs on the market.</li>
-                <li class="p-list__item is-ticked">Telco grade security and compliance with ETSI, DISA STIG, NCSC, FIPS.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="p-section--shallow">
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Containers for legacy apps</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <ul class="p-list--divided">
-                <li class="p-list__item is-ticked">Use the Linux Containers Daemon, LXD, for pure-container guests in OpenStack.</li>
-                <li class="p-list__item is-ticked">
-                  Faster to launch, with zero latency and amazing quality of service, LXD guests are the bridge between traditional VMs and next-generation Kubernetes.
-                </li>
-              </ul>
-              <div class="p-cta-block">
-                <a href="https://linuxcontainers.org/">Visit the LXD website&nbsp;&rsaquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">AI / ML and HPC</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">
+          Ubuntu is the leading platform for public cloud GPU instances, and Canonical offers private cloud expertise to match.
+        </li>
+        <li class="p-list__item is-ticked">
+          GPU and FPGA pass-through make your Kubernetes cluster a shared machine learning platform for your data scientists.
+        </li>
+        <li class="p-list__item is-ticked">
+          Kubeflow on Charmed Kubernetes completes a cloud-native framework for MLOps at scale.
+        </li>
+      </ul>
+      <div class="p-cta-block">
+        <a href="https://canonical.com/solutions/ai">Read about Canonical's AI solutions&nbsp;&rsaquo;</a>
       </div>
-    </div>
-  </section>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Kubernetes for Telco</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">
+          Full set of EPA features such as SR-IOV, DPDK, NUMA, CPU pinning and GPU support.
+        </li>
+        <li class="p-list__item is-ticked">Validated with tier 1 operators with most popular CNFs on the market.</li>
+        <li class="p-list__item is-ticked">Telco grade security and compliance with ETSI, DISA STIG, NCSC, FIPS.</li>
+      </ul>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Containers for legacy apps</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Use the Linux Containers Daemon, LXD, for pure-container guests in OpenStack.</li>
+        <li class="p-list__item is-ticked">
+          Faster to launch, with zero latency and amazing quality of service, LXD guests are the bridge between traditional VMs and next-generation Kubernetes.
+        </li>
+      </ul>
+      <div class="p-cta-block">
+        <a href="https://linuxcontainers.org/">Visit the LXD website&nbsp;&rsaquo;</a>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
 
   <section class="p-section--deep">
     <div class="row--50-50">
