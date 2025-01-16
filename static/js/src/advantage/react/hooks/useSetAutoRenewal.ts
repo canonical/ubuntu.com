@@ -1,11 +1,21 @@
 import { setAutoRenewal } from "advantage/api/contracts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+declare global {
+  interface Window {
+    usabilla_live: (event: string, trigger: string) => void;
+  }
+}
+
 export const useSetAutoRenewal = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation<unknown, Error, { [key: string]: boolean }>({
     mutationFn: async (shouldAutoRenew: { [key: string]: boolean }) => {
       const response = await setAutoRenewal(shouldAutoRenew);
+      if(!shouldAutoRenew[Object.keys(shouldAutoRenew)[0]]){
+        console.log("Triggering manual feedback form");
+        window.usabilla_live('trigger', 'manual trigger');
+      }
       if (response.errors) {
         throw new Error(response.errors);
       }
