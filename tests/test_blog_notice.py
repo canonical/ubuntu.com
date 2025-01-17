@@ -49,7 +49,9 @@ class TestBlogNotice(VCRTestCase):
             one_year_old_notice = one_year_old_soup.find(id="date-notice")
 
             self.assertTrue(
-                re.search("more\s+than\s+1\s+year\s+old", one_year_old_notice.text)
+                re.search(
+                    r"more\s+than\s+1\s+year\s+old", one_year_old_notice.text
+                )
             )
 
             # posts updated more than one year ago should
@@ -66,7 +68,8 @@ class TestBlogNotice(VCRTestCase):
             )
             self.assertTrue(
                 re.search(
-                    "last\s+updated\s+3\s+year\s+s\s+ago", three_years_old_notice.text
+                    r"last\s+updated\s+3\s+year\s+s\s+ago",
+                    three_years_old_notice.text,
                 )
             )
 
