@@ -31,7 +31,6 @@ function scrollToRegularAnchor() {
    * As a result of navigation being tightly coupled to css, anchors for
    * regular links are not working as expected. This function is a workaround.
    */
-  console.log("scrollToRegularAnchor");
   const match = window.location.hash.match(/^#(.*)$/);
   const digitMatch = window.location.hash.match(/^#(\d+).*$/);
   if (match && !digitMatch) {
