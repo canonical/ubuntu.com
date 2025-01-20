@@ -20,8 +20,7 @@ const showExpandedReleaseFilterOptions = document.querySelector(
 tabBtn2.addEventListener("click", (e) => {
   if (tabBtn2.ariaExpanded === "true") {
     showExpandedVendorFilterOptions.classList.add("u-hide");
-  }
-  else {
+  } else {
     showExpandedVendorFilterOptions.classList.remove("u-hide");
   }
 });
@@ -29,8 +28,7 @@ tabBtn2.addEventListener("click", (e) => {
 tabBtn3.addEventListener("click", (e) => {
   if (tabBtn3.ariaExpanded === "true") {
     showExpandedReleaseFilterOptions.classList.add("u-hide");
-  }
-  else {
+  } else {
     showExpandedReleaseFilterOptions.classList.remove("u-hide");
   }
 });
