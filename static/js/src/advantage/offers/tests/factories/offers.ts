@@ -1,8 +1,8 @@
 import { UserSubscriptionMarketplace } from "./../../../api/enum";
 import { Factory } from "fishery";
-import { Offer, Item } from "../../types";
+import { Offer, OfferItem } from "../../types";
 
-export const ItemFactory = Factory.define<Item>(() => ({
+export const ItemFactory = Factory.define<OfferItem>(() => ({
   allowance: 2,
   id: "lAOqpXALfo-fyPavKxNwlu6pAxNqcPNzxgz2Ya1p3K_4",
   name: "uai-advanced-desktop-oneoff",

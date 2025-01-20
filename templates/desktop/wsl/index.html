@@ -188,7 +188,7 @@
         </div>
 
         <h3 class="p-heading--5">
-          <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">WWSL: Partnering with Canonical to support systemd</a>
+          <a href="https://www.youtube.com/watch?v=Ja3qikzd-as">WSL: Partnering with Canonical to support systemd</a>
         </h3>
       </div>
     </div>
@@ -242,7 +242,7 @@
                 <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/tutorials/">Ubuntu on WSL tutorials</a>
               </li>
               <li class="p-list__item">
-                <a href="https://ubuntu.com/landscape/docs/perform-common-tasks-with-wsl-in-landscape">Landscape WSL integration</a>
+                <a href="/landscape/docs/perform-common-tasks-with-wsl-in-landscape">Landscape WSL integration</a>
               </li>
               <li class="p-list__item">
                 <a href="https://learn.microsoft.com/en-us/windows/wsl/">Microsoft documentation for WSL</a>
@@ -268,6 +268,43 @@
       </div>
     </div>
   </section>
+
+  <section class="p-section--deep">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row">
+      <div class="col-3 col-medium-6">
+        <div class="p-section--shallow">
+          <h2 class="p-text--small-caps">
+            <a href="/blog/tag/ubuntu-wsl">Latest WSL news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+          </h2>
+        </div>
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="row p-section--shallow" id="ubuntu-wsl-latest"></div>
+      </div>
+    </div>
+    <template style="display:none" id="blog-template">
+      <div class="col-3 col-medium-2">
+        <div class="article-image u-blog-thumbnails p-image-wrapper"></div>
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+        <p class="article-excerpt"></p>
+      </div>
+    </template>
+  </section>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#ubuntu-wsl-latest",
+      articleTemplateSelector: "#blog-template",
+      linkImage: true,
+      excerptLength: 200,
+      tagId: 3332,
+      limit: 3
+    })
+  </script>
 
   <script src="/static/js/src/render-tutorials.js" type="text/javascript"></script>
   <script>

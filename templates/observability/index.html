@@ -1,5 +1,8 @@
 {% extends "observability/base_observability.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
 {% block title %}Open source observability for enterprises{% endblock %}
 
 {% block meta_description %}
@@ -10,364 +13,444 @@
   https://docs.google.com/document/d/1NxJdT3BD6EWnpsu-eathNyranQVImnDGhuCjzsIWh4s/edit#
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
-  <section class="p-strip u-no-padding--top u-no-padding--bottom">
-    <div class="p-strip--suru-topped">
-      <div class="row">
-        <div class="col-7">
-          <h1>Open source observability for enterprises</h1>
-          <h2>Monitoring tools and dashboards, secured and supported</h2>
-          <p>
-            Metrics, distributed tracing, logs, dashboards, alerts. Always know how well your applications are running in the Cloud, in containers, on virtual machines or bare metal.
-          </p>
-          <p>
-            Canonical offers security and support for the best in class open source monitoring tools and dashboards, and can also run these tools for you on private and public clouds.
-          </p>
-          <a href="/observability/contact-us"
-             class="p-button--positive js-invoke-modal">Contact Us</a>
-          <a href="/observability/what-is-observability">What is Observability?</a>
-        </div>
-        <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
-          alt="",
-          width="403",
-          height="230",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-          }}
-        </div>
+  {% call(slot) vf_hero(
+    title_text='Open source observability<br /> for enterprises',
+    subtitle_text='Monitoring tools and dashboards, secured and supported',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Metrics, distributed traces, profiles, logs, dashboards, and alerts. Always know how well your applications are running in the Cloud, in containers, on virtual machines, or bare metal. Canonical offers security and support for the best- in- class open source monitoring tools and dashboards, and can also run these tools for you on private and public clouds. With the operational experience of industry experts encoded into the stack, you can rest assured that when something happens, you’ll know.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/observability/contact-us"
+         class="p-button--positive js-invoke-modal">Contact us</a>
+      <a href="/observability/what-is-observability">Learn more about observability&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/0678347e-hero-img.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="auto|lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
-    </div>
-  </section>
+    {% endif -%}
+  {% endcall -%}
 
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
+      <h2>
+        Reliable monitoring tools
+        <br />
+        you can count on
+      </h2>
+    {%- endif -%}
 
-  <section class="p-strip is-bordered">
-    <div class="u-fixed-width u-sv3">
-      <h2>Reliable monitoring tools you can count on</h2>
+    {%- if slot == 'description' -%}
       <p>
         Future-proof your open source observability with Ubuntu Pro: a single, per-node subscription of the most comprehensive open source security and support, including a variety of best-in-class monitoring tools and dashboards.
       </p>
-      <a href="/pro/" class="p-button--positive">Get Ubuntu Pro</a>
-    </div>
-    <div class="row p-divider">
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4">Metrics</h3>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
-            alt="",
-            width="1200",
-            height="1190",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Prometheus</p>
+      <div class="p-cta-block">
+        <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
+      </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5 p-text--small-caps">Collection</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <div class="p-section--shallow">
+        <div class="p-equal-height-row p-equal-height-row-50-50">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/0f3e124a-opentelemetry-collector-logo-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://opentelemetry.io/docs/collector/">OpenTelemetry Collector</a>
+            </div>
           </div>
-        </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/14681911-telegraf-app-icon.png",
-            alt="",
-            width="589",
-            height="589",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">InfluxDB</p>
-          </div>
-        </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/14681911-telegraf-app-icon.png",
-            alt="",
-            width="589",
-            height="589",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Telegraf</p>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/d9f718c5-grafana-agent-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://grafana.com/oss/agent/">Grafana Agent</a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4">Distributed Tracing</h3>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/e01066c4-Jaeger_Logo_Final_PANTONE.svg",
-            alt="",
-            width="887",
-            height="1013",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Jaeger</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5 p-text--small-caps">Ingestion and storage</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <div class="p-section--shallow">
+        <hr class="p-rule--muted u-hide--large" />
+        <h4 class="p-heading--5">Metrics</h4>
+        <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/e9497083-prometheus-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://prometheus.io/">Prometheus</a>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/eccef11d-grafana-mimir-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://grafana.com/oss/mimir/">Grafana Mimir</a>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <h4 class="p-heading--5">Distributed tracing and profiling</h4>
+        <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/62f483be-grafana-tempo-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://grafana.com/oss/tempo/">Grafana Tempo</a>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/be0a514f-parca-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://www.parca.dev/">Parca</a>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <h4 class="p-heading--5">Logs</h4>
+        <div class="p-equal-height-row p-equal-height-row-50-50 u-sv3">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/a43f208b-grafana-loki-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://grafana.com/oss/loki/">Grafana Loki</a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4">Logs</h3>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/01becb3c-elastic-search-logo-color-64px.svg",
-            alt="",
-            width="64",
-            height="64",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Elasticsearch</p>
-          </div>
-        </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/c1d16634-graylog-app-icon.png",
-            alt="",
-            width="400",
-            height="400",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Graylog</p>
-          </div>
-        </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/cbc7da88-beats-logo-color-64px.svg",
-            alt="",
-            width="64",
-            height="64",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Filebeat</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5 p-text--small-caps">Dashboards and visualization</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <div class="p-section--shallow">
+        <div class="p-equal-height-row p-equal-height-row-50-50">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/ec152820-grafana-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://grafana.com/oss/grafana/">Grafana</a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4">Dashboards and Alerting</h3>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/54ac468e-grafana_logo_swirl-events.svg",
-            alt="",
-            width="250",
-            height="250",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Grafana</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5 p-text--small-caps">Alerting</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <div class="p-section--shallow">
+        <div class="p-equal-height-row p-equal-height-row-50-50">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/59a25357-alertmanager-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container--cinematic is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/bb4f9f6e-cos-alerter-cinematic.png",
+                                alt="",
+                                width="852",
+                                height="481",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-image-container__image"}) | safe
+                }}
+              </div>
+            </div>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--muted u-hide--medium" />
+              <a href="https://github.com/canonical/cos-alerter">COS Alerter</a>
+            </div>
           </div>
         </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/55f658f0-kibana-seeklogo.com.svg",
-            alt="",
-            width="256",
-            height="342",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Kibana</p>
-          </div>
-        </div>
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
-            alt="",
-            width="1200",
-            height="1190",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-            ) | safe
-            }}
-            <p class="p-heading-icon__title p-heading--5">Alertmanager</p>
-          </div>
+      </div>
+    {%- endif -%}
+
+  {%- endcall -%}
+
+  <section class="p-strip">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>You focus on your business, we run the monitoring tools for you</h2>
+      </div>
+      <div class="col">
+        <p>
+          Your monitoring tools and monitoring dashboards, run reliably and efficiently by Canonical, wherever your applications are. Keep your software observable, without the added effort.
+        </p>
+        <div class="p-cta-block">
+          <a href="/observability/managed">Learn more about managed services&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-bordered u-hide-small">
+  <hr class="is-fixed-width p-rule" />
+
+  <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <p class="p-muted-heading">Trusted by</p>
+      <a href="https://discourse.charmhub.io/" class="p-heading--2">Join our community of Ubuntu and Juju users&nbsp;&rsaquo;</a>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="u-fixed-width">
+      <h2 class="p-muted-heading">Trusted by</h2>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/bafeea04-logo-tele2.svg",
-            alt="tele 2 logo",
-            width="144",
-            height="144",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/311b7e22-tele2-logo.png",
+                        alt="Tele2",
+                        width="102",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/caf603f5-Deutsche+Telekom.png",
-            alt="deutche telekom logo",
-            width="292",
-            height="290",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/05fbfca9-deutsche-telekom-logo.png",
+                        alt="Deutsche Telekom",
+                        width="209",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/5b20f1f1-2018-logo-PCCW.svg",
-            alt="pccw logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/2d3fb62c-pccw-logo.png",
+                        alt="PCCW",
+                        width="209",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/bb4ee6fb-2018-logo-bnp-paribas.svg",
-            alt="bnp paribas",
-            width="146",
-            height="146",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/1d5ec85f-bnp-paribas-logo.png",
+                        alt="BNP Paribas",
+                        width="324",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/c2220484-logo-BT.svg",
-            alt="bt logo",
-            width="144",
-            height="144",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/627ceeec-bt-logo.png",
+                        alt="BT",
+                        width="113",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/cb930e58-2018-logo-cogeco.svg",
-            alt="cogeco logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/74a279c4-cogeco-logo.png",
+                        alt="Cogeco Datacenters",
+                        width="169",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/a2e4ca92-logo-rabobank.svg",
-            alt="radobank logo",
-            width="144",
-            height="144",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/5734cb8f-rabobank-logo.png",
+                        alt="Rabobank",
+                        width="209",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/52df407b-2018-logo-fibernet.svg",
-            alt="fibernet direct logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/0603b0c4-fibernet-logo.png",
+                        alt="Fibernet",
+                        width="211",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/99d78ec1-2018-logo-biznet-giocloud.svg",
-            alt="biznet giocloud logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/55bebf1d-biznet-giocloud-logo.png",
+                        alt="Biznet Gio",
+                        width="202",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/3e7e40cd-2018-logo-mimedia.svg",
-            alt="mimedia logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/96c36c48-mimedia-logo.png",
+                        alt="Mimedia",
+                        width="245",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/8fe23d60-2018-logo-voidbridge.svg",
-            alt="voidbridge logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/49ea7e4e-uct-logo-updated.png",
+                        alt="Voidbridge",
+                        width="68",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-            url="https://assets.ubuntu.com/v1/f853c09b-2018-logo-uct.svg",
-            alt="uct logo",
-            width="145",
-            height="145",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/93dc9ed5-uct-logo-1.png",
+                        alt="UCT",
+                        width="102",
+                        height="209",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
         </div>
@@ -375,34 +458,9 @@
     </div>
   </section>
 
-  {% with section_classes='p-strip', heading_topic='Observability', tag_name='observability', tag_id='4125', limit='4', article_date='True' %}
-    {% include "shared/_latest_news_strip.html" %}
+  {% with section_classes='p-section--deep', title_link="/blog/tag/observability", tag_id='4125', limit='4', hide_date=True, tag_name='observability', link_image=True, show_image=True, show_excerpt=True, excerptLength=200, show_start_rule=True, is_title_link=True, heading_class="p-heading--2" %}
+    {% include "/shared/_latest_news_strip.html" %}
   {% endwith %}
-
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        {{ image (
-        url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
-        alt="",
-        width="263",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-        }}
-      </div>
-      <div class="col-7">
-        <h3>You focus on your business, we run the monitoring tools for you</h3>
-        <p>
-          Your monitoring tools and monitoring dashboards, run reliably and efficiently by Canonical, wherever your applications are.
-        </p>
-        <p>
-          <a class="p-button--positive" href="/observability/managed">Learn more</a>
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"
@@ -410,7 +468,7 @@
        data-form-location="/shared/forms/interactive/observability-contact-us"
        data-form-id="4072"
        data-lp-id=""
-       data-return-url="https://www.ubuntu.com/observability/thank-you.html"
+       data-return-url="/observability#success"
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}

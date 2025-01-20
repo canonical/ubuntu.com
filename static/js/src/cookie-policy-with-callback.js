@@ -14,6 +14,7 @@ if (!cookieAcceptanceValue) {
 } else {
   setUserId();
   cpNs.cookiePolicy();
+  setUtms();
 }
 
 function setUserId() {
@@ -31,6 +32,42 @@ function setUserId() {
       dataLayer.push({
         user_id: user_id,
       });
+    }
+  }
+}
+
+function setUtmCookies(urlParams) {
+  let utmParams = "";
+  urlParams.forEach((value, key) => {
+    if (key.startsWith("utm_")) {
+      utmParams += key + ":" + value + "&";
+    }
+  });
+  if (utmParams.length > 0) {
+    if (utmParams.endsWith("&")) {
+      utmParams = utmParams.slice(0, -1);
+    }
+    document.cookie =
+      "utms=" + encodeURIComponent(utmParams) + ";max-age=86400;path=/;";
+  }
+}
+
+function setUtms() {
+  cookieAcceptanceValue = getCookie("_cookies_accepted");
+  if (
+    cookieAcceptanceValue?.[2] === "all" ||
+    cookieAcceptanceValue?.[2] === "performance"
+  ) {
+    let utmCookies = getCookie("utms");
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.size > 0) {
+      setUtmCookies(urlParams);
+    } else if (utmCookies) {
+      const referrer = document.referrer;
+      const currentHost = window.location.host;
+      if (!referrer.includes(currentHost)) {
+        document.cookie = "utms=;max-age=0;path=/;";
+      }
     }
   }
 }

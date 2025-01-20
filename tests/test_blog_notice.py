@@ -1,14 +1,15 @@
 # Standard library
 import logging
+import re
+
+import time_machine
 
 # Packages
 from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
-import time_machine
 
 # Local
 from webapp.app import app
-
 
 # Suppress talisker warnings, that get annoying
 logging.getLogger("talisker.context").disabled = True
@@ -46,7 +47,12 @@ class TestBlogNotice(VCRTestCase):
             self.assertEqual(one_year_old.status_code, 200)
             one_year_old_soup = BeautifulSoup(one_year_old.data, "html.parser")
             one_year_old_notice = one_year_old_soup.find(id="date-notice")
-            self.assertIn("more than 1 year old", one_year_old_notice.text)
+
+            self.assertTrue(
+                re.search(
+                    r"more\s+than\s+1\s+year\s+old", one_year_old_notice.text
+                )
+            )
 
             # posts updated more than one year ago should
             # contain "last updated x year(s) ago"
@@ -60,8 +66,11 @@ class TestBlogNotice(VCRTestCase):
             three_years_old_notice = three_years_old_soup.find(
                 id="date-notice"
             )
-            self.assertIn(
-                "last updated 3 years ago", three_years_old_notice.text
+            self.assertTrue(
+                re.search(
+                    r"last\s+updated\s+3\s+year\s+s\s+ago",
+                    three_years_old_notice.text,
+                )
             )
 
             # posts updated less that a year ago should not have a notice

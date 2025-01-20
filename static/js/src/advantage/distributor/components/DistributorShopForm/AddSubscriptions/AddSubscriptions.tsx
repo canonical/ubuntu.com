@@ -49,7 +49,7 @@ const AddSubscriptions = () => {
 
   return (
     <div data-testid="wrapper">
-      <p>Ubuntu Pro is avaiable for Ubuntu 14.04 and higher:</p>
+      <p>Ubuntu Pro is available for Ubuntu 14.04 and higher:</p>
       {subscriptionList?.length > 0 ? (
         subscriptionList.map((subscription: SubscriptionItem) => {
           return (

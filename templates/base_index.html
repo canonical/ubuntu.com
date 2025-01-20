@@ -937,7 +937,7 @@
           <p>Custom images with pre-installed apps</p>
         </li>
         <li class="p-list__item is-ticked col-medium-3 col-3 u-no-padding--top u-no-padding--bottom">
-          <a href="https://maas.io/docs/storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
+          <a href="https://maas.io/docs/about-machine-basics#p-17487-storage">Disk</a> and <a href="https://maas.io/docs/networking">network</a> configuration
         </li>
       </ul>
       <ul class="row p-list--divided is-homepage">
@@ -1057,7 +1057,7 @@
              style="background: rgba(0, 0, 0, 0.15)">
           <img src="https://assets.ubuntu.com/v1/6d657910-Multi-cloud%20Applications%C2%A0%C2%A0Beyond%20PAAS.png"
                alt=""
-               loading="lazy" 
+               loading="lazy"
                />
         </div>
         <hr class="p-rule" />
@@ -1264,7 +1264,9 @@
 
         xhr.open("GET", "/takeovers.json", true);
         xhr.send();
-        fetchUserCountry.open("GET", "/user-country.json", true);
+
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        fetchUserCountry.open("GET", `/user-country-tz.json?tz=${timezone}`, true);
         fetchUserCountry.send();
       }
 

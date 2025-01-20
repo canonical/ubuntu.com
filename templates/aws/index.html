@@ -118,7 +118,7 @@
     </div>
     <div class="row--50-50">
       <div class="col">
-        <hr class="p-rule--highlight" />
+        <hr class="p-rule--highlight u-no-margin--bottom" />
         <div class="p-card--overlay u-no-padding--top" style="padding: 1.5rem;">
           <div class="row p-section">
             <div class="col-3 col-medium-1 col-small-2">
@@ -144,7 +144,7 @@
         </div>
       </div>
       <div class="col">
-        <hr class="p-rule--highlight" />
+        <hr class="p-rule--highlight u-no-margin--bottom" />
         <div class="p-card--overlay u-no-padding--top" style="padding: 1.5rem;">
           <div class="row p-section--shallow">
             <div class="col-3 col-medium-1 col-small-2">
@@ -291,16 +291,6 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" 
-    id="contact-form-container" 
-    data-form-location="/shared/forms/form-template" 
-    data-form-id="{{ formData.formId }}" 
-    data-lp-id="" 
-    data-return-url="{{ formData.returnUrl }}"
-    data-lp-url="https://ubuntu.com/aws/contact-us"
-  >
-    {% include "/shared/forms/form-template.html" %}
-  </div>
+  {% include "/shared/forms/form-template.html" %}
 
 {% endblock content %}

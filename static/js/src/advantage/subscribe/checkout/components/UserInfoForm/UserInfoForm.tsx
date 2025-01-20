@@ -15,6 +15,7 @@ import registerPaymentMethod from "../../hooks/postCustomerInfo";
 import { FormValues } from "../../utils/types";
 import FormRow from "../FormRow";
 import PaymentMethodSummary from "./PaymentMethodSummary";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Error = {
   type: "validation_error";
@@ -38,13 +39,14 @@ const UserInfoForm = ({ setError }: Props) => {
   } = useFormikContext<FormValues>();
   const queryClient = useQueryClient();
   const paymentMethodMutation = registerPaymentMethod();
-  const [isEditing, setIsEditing] = useState(
-    !window.accountId || !initialValues.defaultPaymentMethod,
-  );
+  const isNewUser = !window.accountId || !initialValues.defaultPaymentMethod;
+  const [isEditing, setIsEditing] = useState(isNewUser);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
   const [showCardValidation, setShowCardValidation] = useState<boolean>(false);
+  const isChannelUser =
+    values.marketplace === UserSubscriptionMarketplace.CanonicalProChannel;
 
   const toggleEditing = () => {
     if (isEditing) {
@@ -144,10 +146,9 @@ const UserInfoForm = ({ setError }: Props) => {
     return errorMessage;
   };
 
-  const displayMode = (
+  const UserInfoSummary = () => (
     <>
-      <PaymentMethodSummary />
-      {values.buyingFor === "organisation" ? (
+      {values.buyingFor === "organisation" && (
         <>
           <Row>
             <Col size={4}>
@@ -163,7 +164,7 @@ const UserInfoForm = ({ setError }: Props) => {
           </Row>
           <hr />
         </>
-      ) : null}
+      )}
       <Row>
         <Col size={4}>
           <p>Your name:</p>
@@ -209,6 +210,13 @@ const UserInfoForm = ({ setError }: Props) => {
           </p>
         </Col>
       </Row>
+    </>
+  );
+
+  const displayMode = (
+    <>
+      <PaymentMethodSummary />
+      <UserInfoSummary />
     </>
   );
 
@@ -280,110 +288,123 @@ const UserInfoForm = ({ setError }: Props) => {
           }}
           required
           error={touched?.isCardValid && errors?.isCardValid}
+          data-testid="field-card-number"
         />
       </FormRow>
-      <Field
-        data-testid="field-customer-name"
-        as={Input}
-        type="text"
-        id="name"
-        name="name"
-        label="Name:"
-        stacked
-        validate={validateRequired}
-        error={touched?.name && errors?.name}
-      />
-      <FormRow label="I’m buying for:">
-        <div className="u-sv3 p-form p-form--inline" role="group">
-          <Field name="buyingFor">
-            {({ field }: any) => (
-              <>
-                <RadioInput
-                  {...field}
-                  id="myself"
-                  value="myself"
-                  checked={field.value === "myself"}
-                  onChange={() => setFieldValue("buyingFor", "myself")}
-                  label="Myself"
-                  disabled={window.accountId && initialValues.organisationName}
-                />
-                <RadioInput
-                  {...field}
-                  id="organisation"
-                  value="organisation"
-                  checked={field.value === "organisation"}
-                  onChange={() => setFieldValue("buyingFor", "organisation")}
-                  label="An organisation"
-                  disabled={window.accountId && initialValues.organisationName}
-                />
-              </>
-            )}
-          </Field>
-        </div>
-      </FormRow>
-      {initialValues.buyingFor === "myself" &&
-      window.accountId &&
-      initialValues.organisationName ? null : (
-        <Field
-          data-testid="field-org-name"
-          as={Input}
-          type="text"
-          id="organisationName"
-          name="organisationName"
-          disabled={
-            values.buyingFor === "myself" ||
-            (window.accountId && initialValues.organisationName)
-          }
-          label="Organisation:"
-          stacked
-          validate={validateOrganisationName}
-          error={
-            values.buyingFor === "organisation" &&
-            touched?.organisationName &&
-            errors?.organisationName
-          }
-        />
+      {isChannelUser && !isNewUser ? (
+        <UserInfoSummary />
+      ) : (
+        <>
+          <Field
+            data-testid="field-customer-name"
+            as={Input}
+            type="text"
+            id="name"
+            name="name"
+            label="Name:"
+            stacked
+            validate={validateRequired}
+            error={touched?.name && errors?.name}
+          />
+          <FormRow label="I'm buying for:">
+            <div className="u-sv3 p-form p-form--inline" role="group">
+              <Field name="buyingFor">
+                {({ field }: any) => (
+                  <>
+                    <RadioInput
+                      {...field}
+                      id="myself"
+                      value="myself"
+                      checked={field.value === "myself"}
+                      onChange={() => setFieldValue("buyingFor", "myself")}
+                      label="Myself"
+                      disabled={
+                        window.accountId && initialValues.organisationName
+                      }
+                    />
+                    <RadioInput
+                      {...field}
+                      id="organisation"
+                      value="organisation"
+                      checked={field.value === "organisation"}
+                      onChange={() =>
+                        setFieldValue("buyingFor", "organisation")
+                      }
+                      label="An organisation"
+                      disabled={
+                        window.accountId && initialValues.organisationName
+                      }
+                    />
+                  </>
+                )}
+              </Field>
+            </div>
+          </FormRow>
+          {initialValues.buyingFor === "myself" &&
+          window.accountId &&
+          initialValues.organisationName ? null : (
+            <Field
+              data-testid="field-org-name"
+              as={Input}
+              type="text"
+              id="organisationName"
+              name="organisationName"
+              disabled={
+                values.buyingFor === "myself" ||
+                (window.accountId && initialValues.organisationName)
+              }
+              label="Organisation:"
+              stacked
+              validate={validateOrganisationName}
+              error={
+                values.buyingFor === "organisation" &&
+                touched?.organisationName &&
+                errors?.organisationName
+              }
+            />
+          )}
+          <Field
+            data-testid="field-address"
+            as={Input}
+            type="text"
+            id="address"
+            name="address"
+            label="Address:"
+            stacked
+            validate={validateRequired}
+            error={touched?.address && errors?.address}
+          />
+          <Field
+            data-testid="field-city"
+            as={Input}
+            type="text"
+            id="city"
+            name="city"
+            label="City:"
+            stacked
+            validate={validateRequired}
+            error={touched?.city && errors?.city}
+          />
+          <Field
+            data-testid="field-post-code"
+            as={Input}
+            type="text"
+            id="postalCode"
+            name="postalCode"
+            label="Postal code:"
+            stacked
+            validate={validateRequired}
+            error={touched?.postalCode && errors?.postalCode}
+          />
+        </>
       )}
-      <Field
-        data-testid="field-address"
-        as={Input}
-        type="text"
-        id="address"
-        name="address"
-        label="Address:"
-        stacked
-        validate={validateRequired}
-        error={touched?.address && errors?.address}
-      />
-      <Field
-        data-testid="field-city"
-        as={Input}
-        type="text"
-        id="city"
-        name="city"
-        label="City:"
-        stacked
-        validate={validateRequired}
-        error={touched?.city && errors?.city}
-      />
-      <Field
-        data-testid="field-post-code"
-        as={Input}
-        type="text"
-        id="postalCode"
-        name="postalCode"
-        label="Postal code:"
-        stacked
-        validate={validateRequired}
-        error={touched?.postalCode && errors?.postalCode}
-      />
     </>
   );
 
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      {window.accountId && initialValues.defaultPaymentMethod ? (
+      {window.accountId && initialValues.defaultPaymentMethod && (
         <>
           <Col size={4}></Col>
           <Col size={8}>
@@ -407,7 +428,7 @@ const UserInfoForm = ({ setError }: Props) => {
             className="u-align--right"
             style={{ marginTop: "calc(.5rem - 1.5px)" }}
           >
-            {isEditing ? (
+            {isEditing && (
               <ActionButton
                 onClick={() => {
                   setFieldValue("buyingFor", initialValues.buyingFor);
@@ -426,17 +447,18 @@ const UserInfoForm = ({ setError }: Props) => {
               >
                 Cancel
               </ActionButton>
-            ) : null}
+            )}
             <ActionButton
               onClick={toggleEditing}
               loading={isSubmitting}
               disabled={isButtonDisabled}
+              data-testid="user-info-save-button"
             >
               {isEditing ? "Save" : "Edit"}
             </ActionButton>
           </div>
         </>
-      ) : null}
+      )}
     </Row>
   );
 };

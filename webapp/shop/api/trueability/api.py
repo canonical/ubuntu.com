@@ -82,6 +82,8 @@ class TrueAbilityAPI:
         group: str = None,
         state: List[str] = None,
         assessment_state: str = None,
+        email: str = None,
+        reservation_ids: List[str] = None,
     ):
         params = {
             "ability_screen_id": ability_screen_id,
@@ -91,6 +93,8 @@ class TrueAbilityAPI:
             "group": group,
             "state[]": state,
             "assessment_state[]": assessment_state,
+            "email": email,
+            "id[]": reservation_ids,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
         uri = "/api/v1/assessment_reservations?" + urlencode(

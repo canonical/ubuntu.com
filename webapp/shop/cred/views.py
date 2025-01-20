@@ -596,6 +596,9 @@ def cred_your_exams(
     **kwargs,
 ):
     email = flask.request.args.get("email", None)
+    user = user_info(flask.session)
+    if not email:
+        email = user["email"]
 
     agreement_notification = False
     confidentiality_agreement_enabled = strtobool(
@@ -636,6 +639,24 @@ def cred_your_exams(
     exams_expired = []
 
     if exam_contracts:
+        # Fetch all reservations in one API call
+        try:
+            reservations_response = (
+                trueability_api.get_assessment_reservations(
+                    per_page=500,
+                    email=email,
+                )
+            )
+            reservations = {
+                r["uuid"]: r
+                for r in reservations_response.get(
+                    "assessment_reservations", []
+                )
+            }
+
+        except Exception:
+            reservations = {}
+
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
             name = EXAM_NAMES.get(name, name)
@@ -643,12 +664,15 @@ def cred_your_exams(
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
+
             # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
-                response = trueability_api.get_assessment_reservation(
-                    exam_contract["cueContext"]["reservation"]["IDs"][-1]
-                )
-                if "assessment_reservation" not in response:
+                reservation_id = exam_contract["cueContext"]["reservation"][
+                    "IDs"
+                ][-1]
+                reservation = reservations.get(reservation_id)
+
+                if not reservation:
                     exams_expired.append(
                         {
                             "name": name,
@@ -657,20 +681,16 @@ def cred_your_exams(
                         }
                     )
                     continue
-                else:
-                    r = response.get("assessment_reservation")
-                    timezone = r["user"]["time_zone"]
-                    tz_info = pytz.timezone(timezone)
-                    starts_at = (
-                        datetime.strptime(
-                            r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
-                        )
-                        .replace(tzinfo=pytz.timezone("UTC"))
-                        .astimezone(tz_info)
-                    )
-                    assessment_id = (
-                        r.get("assessment") and r["assessment"]["id"]
-                    )
+
+                r = reservation
+                timezone = r["user"]["time_zone"]
+                tz_info = pytz.timezone(timezone)
+                starts_at = (
+                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    .replace(tzinfo=pytz.timezone("UTC"))
+                    .astimezone(tz_info)
+                )
+                assessment_id = r.get("assessment") and r["assessment"]["id"]
 
                 actions = []
                 utc = pytz.timezone("UTC")
@@ -692,6 +712,7 @@ def cred_your_exams(
                     ]
                     else state
                 )
+
                 # if assessment is provisioned
                 if assessment_id:
                     is_in_window = (now > starts_at and now < end) or (
@@ -783,6 +804,7 @@ def cred_your_exams(
                 exams_expired.append(
                     {"name": name, "state": "Expired", "actions": []}
                 )
+
             # if exam is not used and is not expired
             else:
                 actions = [
@@ -822,7 +844,6 @@ def cred_your_exams(
     # Do not cache this view
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
-
     return response
 
 

@@ -8,23 +8,24 @@
 </noscript>
 
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
+  {% if show_start_rule %}
+    <hr class="p-rule is-fixed-width" />
+  {% endif %}
   <div class="row p-section--shallow">
     {% if request.path == "/" %}
-    <h2 class="p-heading--1">
+      <h2 class="p-heading--1">
     {% else %}
-    <h2 class="{% if heading_class %}{{ heading_class }}{% else %}p-heading--3{% endif %}">
+      <h2 class="{% if heading_class %}{{ heading_class }}{% else %}p-heading--3{% endif %}">
     {% endif %}
-      {% if request.path == "/observability" %}
-        More about {{ heading_topic }} in
-      {% else %}
+    {% if not is_title_link %}
         Latest {{ heading_topic }} news from
-      {% endif %}
-        <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">our blog&nbsp;&rsaquo;</a>
+    {% endif %}
+    <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">{% if is_title_link %}Latest {{ heading_topic }} news from {% endif %}our blog&nbsp;&rsaquo;</a>
     </h2>
   </div>
   <div class="row">
     <div class="{% if spotlight %}col-9{% else %}col-12{% endif %}">
-      <div id="horizontal-latest-articles" class="row">
+      <div id="horizontal-latest-articles" class="p-equal-height-row--wrap">
         <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
@@ -35,28 +36,31 @@
   </div>
 
   <template style="display:none" id="horizontal-articles-template">
-    <hr class="p-rule--muted u-hide--large" />
-    <div class="col-3">
-      <div class="row">
-        <div class="col-medium-2 col-small-4 col-3">
-          {% if article_image %}
-          <div class="u-crop--16-9 u-hide--small">
-            <div class="article-image p-image-wrapper"></div>
-          </div>
-          {% endif %}
-          {% if article_date %}
+    <div class="p-equal-height-row__col">
+      {% if not hide_date %}
+        <div class="p-equal-height-row__item">
           <p class="u-no-margin--bottom p-muted-heading">
             <time datetime="" class="article-time"></time>
           </p>
-          {% endif %}
         </div>
-        <div class="col-medium-4 col-small-4 col-3">
-          <h3 class="p-heading--5"><a class="article-link article-title"></a></h3>
-          {% if article_excerpt %}
-          <p class="article-excerpt"></p>
-          {% endif %}
+      {% endif %}
+      {% if show_image %}
+        <div class="p-equal-height-row__item">
+          <div class="u-crop--16-9">
+            <div class="article-image p-image-wrapper"></div>
+          </div>
         </div>
+      {% endif %}
+      <div class="p-equal-height-row__item">
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
       </div>
+      {% if show_excerpt %}
+        <div class="p-equal-height-row__item">
+          <p class="article-excerpt"></p>
+        </div>
+      {% endif %}
     </div>
   </template>
 
@@ -87,8 +91,11 @@
         {% if spotlight %}spotlightContainerSelector: "#spotlight",
         spotlightTemplateSelector: "#spotlight-template",{% endif %}
         gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
-        {% if tag_name %}tagId: "{{ tag_id }}",{% endif %}
+        {% if tag_id %}tagId: "{{ tag_id }}",{% endif %}
+        {% if tag_name %}tag_name: "{{ tag_name }}",{% endif %}
         {% if limit %}limit: "{{ limit }}",{% endif %}
+        {% if link_image %}linkImage: true,{% endif %}
+        {% if excerptLength %}excerptLength: "{{ excerptLength }}",{% endif %}
       }
     )
 </script>
