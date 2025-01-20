@@ -1768,7 +1768,9 @@ legend {
 }
 
 .u-horizontal-nudge {
-  margin-left: $spv--small;
+  @media screen and ($breakpoint-large <= width) {
+    margin-left: $spv--small;
+  }
 }
 
 .u-vertical-nudge {
