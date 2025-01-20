@@ -1,0 +1,262 @@
+{% extends "case-study/base_case-study.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% from "macros/_macros-text-list.jinja" import text_list %}
+{% from "macros/_macros-highlights.jinja" import highlights %}
+{% from "macros/_macros-text.jinja" import text %}
+{% from "macros/_macros-image.jinja" import image_wrapper %}
+{% from "macros/_macros-cta.jinja" import cta %}
+
+{% block title %}EpiSensor accelerates the sustainable energy transition with Ubuntu Core{% endblock %}
+
+{% block meta_description %}
+  To help grid operators integrate more renewable energy, EpiSensor chose Ubuntu Core as the securely designed, scalable and extensible OS to power its IoT Gateway.
+{% endblock %}
+
+{% block meta_company_name %}EpiSensor{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1NxBHg59oiH-ry7bgMZX-xDxvWbC9IyqHYMei-bQciU4/edit?tab=t.0
+{% endblock %}
+
+{% block content %}
+  {%- call(slot) vf_hero(
+    title_text="EpiSensor accelerates the sustainable energy transition with securely designed IoT gateways powered by Ubuntu Core",
+    layout="25/75",
+    is_split_on_medium="true") -%}
+    {% if slot == "signpost_image" %}
+      {{ image(url="https://assets.ubuntu.com/v1/4432fc56-EpiSensor_Logo.png",
+            alt="EpiSensor logo",
+            width="675",
+            height="205",
+            hi_def=True,
+            loading="auto") | safe
+      }}
+    {% endif %}
+  {%- endcall -%}
+
+  {%- call(slot) text_list(title="About EpiSensor") -%}
+    {%- if slot == 'list_item_content_1' -%}
+      Irish company founded in 2007 with a mission to support the transition to sustainable energy through intelligent IoT infrastructure.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_2' -%}
+      EpiSensor solutions deliver superior ease of use, while maintaining the highest levels of accuracy, reliability, security, scalability, and open communications protocols.
+    {%- endif -%}
+    {%- if slot == 'list_item_content_3' -%}
+      Customers have deployed over 25,000 EpiSensor devices across more than 20 countries, driving the global transition to sustainable energy.
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) highlights(num_items=3) -%}
+    {%- if slot == 'highlights_item_content_1' -%}
+      EpiSensor delivers IoT infrastructure designed to improve energy efficiency and help grid operators integrate more renewable energy, and it chose Ubuntu Core as the securely designed, scalable and extensible OS to power its IoT Gateway.
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_2' -%}
+      Using its Dedicated Snap Store, EpiSensor provisioned IoT infrastructure at over 2,500 sites across Taiwan in just 6 weeks, and rolled out major software updates at scale. 
+    {%- endif -%}
+    {%- if slot == 'highlights_item_content_3' -%}
+      With Ubuntu Core, EpiSensor can easily satisfy the requirements of highly security-conscious customers, unlocking a wealth of opportunities for the business.
+    {%- endif -%}
+  {%- endcall %}
+  {%- call(slot) image_wrapper(caption="Screenshot of the EpiSensor Edge interface showing how snaps are integrated into the software.") -%}
+    {%- if slot == 'image_content' %}
+      <div class="row">
+        <div class="col-start-large-4 col-9">
+          {{ image(url="https://assets.ubuntu.com/v1/26633280-edge%20screenshot%201.png",
+                    alt="Engineer working on a server rack",
+                    width="2748",
+                    height="1408",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+  {%- call(slot) text(title="In the energy sector, there can be no compromises when it comes to the reliability and security of IoT infrastructure.") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        With organizations worldwide depending on EpiSensor’s IoT Gateways to enable their sustainable energy strategies, the devices need to meet the highest standards of security and reliability. That’s why EpiSensor chose Ubuntu Core as the OS for its Gateways.
+      </p>
+      <p>
+        Optimized for IoT and embedded devices, Ubuntu Core provides a minimal and securely designed environment for running <a href="https://episensor.com/edge/">EpiSensor’s Edge software</a>, along with the ability to remotely manage and deliver automatic updates to its entire fleet via a dedicated app store. With Ubuntu Core, EpiSensor can easily meet the requirements of the most security-conscious customers, and effortlessly manage deployments even on the far side of the globe.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/6b3e687a-image1.png",
+            alt="A row of servers in a datacenter",
+            width="1848",
+            height="771",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Challenge") -%}
+    {%- if slot == 'content' -%}
+      <p>
+
+        Renewables are set to be the world’s <a href="https://www.iea.org/reports/world-energy-outlook-2024">largest source of electricity by 2033</a>, and this shift is happening alongside a rapid electrification of heat and transport infrastructure, as well as massive increases in energy demand from data centers for AI workloads. These factors represent a major challenge for energy service providers who must balance demand on the electricity grid against the often unpredictable supply of renewable energy.
+      </p>
+      <p>
+
+        Brendan Carroll, CEO of EpiSensor, explains: “Traditionally, if demand increased, grid operators could ‘turn up the dial’ on fossil fuel power plants – but that’s not possible with renewables, and their intermittency means that grid operators have to be constantly prepared for the supply to disappear.”
+      </p>
+      <p>
+
+        EpiSensor is helping to solve this problem by providing IoT communications infrastructure that connects the demand side of the energy supply chain with the supply side. The company’s Industrial IoT Gateways are central to enabling smart energy solutions to see what’s happening on the grid in real time, so that they can consume power intelligently based on the availability of renewables at any given time.
+      </p>
+      <p>
+
+        Since EpiSensor’s Gateways play such a vital role in the electricity grid, and are often deployed in critical locations like hospitals and banks, security and reliability are paramount. The company needed a way to run its software in a security maintained and stable environment with the lowest possible attack surface. At the same time, the solution needed to be extensible, so that EpiSensor’s customers could run their own applications alongside EpiSensor’s Edge software. And finally, all of this needed to be manageable remotely and at scale.
+      </p>
+      <p>
+
+        Brendan Carroll continues: “If there’s a problem, it’s just not an option to visit hundreds, thousands, or even millions of sites to ‘press the reset button’. Server operating systems are built on a philosophy that you’re always connected and always have physical access to the hardware – that’s just not the case for the solutions we deploy.”
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) image_wrapper() -%}
+    {%- if slot == 'image_content' %}
+      {{ image(url="https://assets.ubuntu.com/v1/6503bd56-image2.png",
+            alt="A row of servers in a datacenter",
+            width="1848",
+            height="771",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe
+      }}
+    {%- endif -%}
+  {%- endcall -%}
+  {%- call(slot) text(title="Solution") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        In 2016, EpiSensor set out to find an operating system that was better suited to the Gateway use case. The company wanted an OS that its engineering team was familiar with, and that would meet the needs of its enterprise customers. EpiSensor considered building its own version of Debian running Docker, or using Yocto Linux or CentOS, but none of these offered the right balance of security, reliability, and remote management capability. Fortunately, EpiSensor discovered one OS that was an ideal match for its requirements – Ubuntu Core.
+      </p>
+      <p>
+        Ubuntu Core is a minimal and strictly confined version of Ubuntu built for deploying embedded devices, designed with security in mind. Delivered and maintained by Canonical, the OS receives up to 12 years of continuous security updates, and features full disk encryption, secure boot, and an array of additional security tools.
+      </p>
+      <p>
+        “Ubuntu Core represented the best solution we found for our IoT Gateway,” confirms Brendan Carroll. “A hardened and maintained environment to run our application software with fine-grained permissions that control access to features of the operating system and hardware peripherals, with robust delivery of automatic software updates that can be rolled back in the case of failure.” 
+      </p>
+      <p>
+        These automatic updates, as well as easy remote management of the device fleet as a whole, are made possible by the snap packaging format and EpiSensor’s Dedicated Snap Store. Snaps are applications bundled with their dependencies, and they can be fully containerised and immutable for added security. The Dedicated Snap Store gives EpiSensor a tailored, centralized platform from which it can remotely publish, distribute, and manage its snaps – with reliable over-the-air (OTA) updates – in a way that is both automated and controlled.
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="We package all of our software as snaps now, even our internal apps. It’s a good environment for running software in a nice, strict way and bringing applications up to a high standard",
+    citation_source_name_text="Brendan Carroll",
+    citation_source_title_text="CEO",
+    citation_source_organisation_text="EpiSensor",
+    is_shallow=True
+    )
+    -%}
+
+    {%- if slot == 'signpost_image' -%}
+      <div class="p-image-wrapper--logo">
+        {{ image(url="https://assets.ubuntu.com/v1/a3e5284b-quote-photo.png",
+                alt="EpiSensor logo",
+                width="540",
+                height="847",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  <section class="p-section">
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+
+        <p>
+          Unlike other packaging systems that require the developer to either write granular rules or grant unlimited privileges for their containers, snaps use predefined <a href="https://snapcraft.io/docs/supported-interfaces">interfaces</a> maintained by Canonical. These interfaces allow secure and controlled access to resources such as Zigbee, GPIO pins, network interfaces, the $HOME directory and more. This simplifies resource management and improves usability for confined applications. 
+        </p>
+        <p>
+          “We package all of our software as snaps now,” adds Brendan Carroll. “Even our internal apps. It’s a good environment for running software in a nice, strict way and bringing applications up to a high standard.”
+        </p>
+        <p>
+          Snaps also make Ubuntu Core fully extensible, which is precisely what EpiSensor’s customers need. It means that end users can deploy their own applications onto the IoT Gateway as snaps, right alongside EpiSensor’s software. What’s more, utilizing the snapd API, EpiSensor has been able to integrate its Dedicated Snap Store with its Edge web interface, so customers can seamlessly manage their snaps via the same portal that they use to control the rest of the device.
+        </p>
+      </div>
+    </div>
+  </section>
+  {%- call(slot) image_wrapper(caption="Screenshot of the EpiSensor Edge interface showing the Ollama snap being added to the device.") -%}
+    {%- if slot == 'image_content' %}
+      <div class="row">
+        <div class="col-start-large-4 col-9">
+          {{ image(url="https://assets.ubuntu.com/v1/a0aea0f9-edge%20screenshot%202.png",
+                    alt="Engineer working on a server rack",
+                    width="2748",
+                    height="1432",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) text(title="Results") -%}
+    {%- if slot == 'content' -%}
+      <p>
+        Between the macro developments around renewables, and the new rules and regulations emerging on a near-weekly basis, the energy landscape is changing at a rapid pace. But with Ubuntu Core, EpiSensor has no trouble keeping up. The company can easily push out regular software updates at scale, ensuring that customers continue to enjoy the highest levels of security and functionality. 
+      </p>
+      <p>
+        “We recently deployed IoT infrastructure at more than 2,500 sites in Taiwan,” comments Brendan Carroll. “We deployed that whole system in just six weeks, and within a few months we had already pushed out 15 major software updates to all those devices. Deploying updates at that rate, particularly on the other side of the world, wouldn’t have been possible without Ubuntu Core.”
+      </p>
+      <p>
+        Ubuntu Core and snaps have also become central to EpiSensor’s success with highly security conscious and risk averse customers.
+      </p>
+      <p>
+        “If you’re talking to a datacenter operator, you aren’t going to get past the first meeting without a good security story. Ubuntu Core makes it easy to show that our ducks are lined up from a security perspective, which lets us deploy on sites where we wouldn’t otherwise be able to.”
+      </p>
+      <p>
+        EpiSensor has now been successfully using Ubuntu Core for 8 years. As one of the earliest members of what is now a vast open source community surrounding the project, the company’s feedback and contributions have helped shape the OS to align even more closely with the needs of IoT technology vendors. And the community has evolved into an invaluable resource for EpiSensor. 
+      </p>
+      <p>
+        “We really appreciate the Canonical approach to developing software,” explains Brendan Carroll. “Everything is public by default. Not just the source code, but also the discussion. The forums are a huge bank of information that can solve 99% of even the most exotic problems you might encounter.”
+      </p>
+      <p>
+        Between security, reliability, and manageability – not to mention the added benefit of community support – Ubuntu Core wasn’t just the best fit for EpiSensor’s selection criteria in 2016, it continues to be the optimal choice for the IoT use case today.
+      </p>
+      <p>
+        Brendan Carroll concludes: “I have 30 years of experience using computers and Linux, which informs my judgment that Ubuntu Core is the right operating system for IoT Gateways. Once you get into it and start looking at the features, you’ll see questions answered that you never even considered.”
+      </p>
+    {%- endif -%}
+  {%- endcall -%}
+
+  {%- call(slot) vf_quote_wrapper(
+    quote_text="If you’re talking to a datacenter operator, you aren’t going to get past the first meeting without a good security story. Ubuntu Core makes it easy to show that our ducks are lined up from a security perspective, which lets us deploy on sites where we wouldn’t otherwise be able to.",
+    citation_source_name_text="Brendan Carroll",
+    citation_source_title_text="CEO",
+    citation_source_organisation_text="EpiSensor",
+    is_shallow=True,
+    )
+    -%}
+
+    {%- if slot == 'signpost_image' -%}
+      <div class="p-image-wrapper--logo">
+        {{ image(url="https://assets.ubuntu.com/v1/a3e5284b-quote-photo.png",
+                alt="EpiSensor logo",
+                width="540",
+                height="847",
+                hi_def=True,
+                loading="lazy") | safe
+        }}
+      </div>
+    {%- endif -%}
+  {%- endcall -%}
+
+{% endblock %}
