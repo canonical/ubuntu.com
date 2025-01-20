@@ -13,96 +13,78 @@
   <div>
     <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
       <ul class="p-accordion__list">
-        <li class="p-accordion__group--certified">
+        <li class="p-accordion__group">
           <div role="heading" aria-level="2">
             <button type="button"
                     class="p-accordion__tab u-no-padding--right"
                     id="tab1"
                     aria-controls="tab1-section"
                     aria-expanded="true">
-              <span>Category</span>
-              <div class="p-round-chip u-hide">
-                <span class="p-chip__value" id="category-count"></span>
-              </div>
+              <span class="p-heading--5">Category</span>
             </button>
           </div>
-          <hr class="p-rule--muted" />
           {% include "/certified/search/_category-filters.html" %}
         </li>
-        <li class="p-accordion__group--certified" id="vendor-section">
+        <li class="p-accordion__group" id="vendor-section">
           <div role="heading" aria-level="2">
             <button type="button"
                     class="p-accordion__tab u-no-padding--right"
                     id="tab2"
                     aria-controls="tab2-section"
                     aria-expanded="true">
-              Vendor
-              <div class="p-round-chip u-hide">
-                <span class="p-chip__value" id="vendor-count">1</span>
-              </div>
+              <span class="p-heading--5">Vendor</span>
             </button>
           </div>
-          <hr class="p-rule--muted" />
           <section class="p-accordion__panel is-dense"
                     id="tab2-section"
                     aria-hidden="false"
                     aria-labelledby="tab2">
           </section>
-          <p class="p-reveal-vendors is-dense js-show-all-vendors">
-            <button class="p-button--link js-vendor-count"
+          <div class="js-show-expanded-vendor-filter-options">
+            <button class="p-button--link js-vendor-count p-reveal-vendors is-dense js-show-all-vendors"
                     name="vendor"
                     onclick="toggleExpandFilters(event, this)"
                     value="true">Show all vendors</button>
-          </p>
-          <p class="p-reveal-vendors is-dense">
-            <button class="p-button--link js-show-less-vendors u-hide"
+            <button class="p-button--link p-reveal-vendors is-dense js-show-less-vendors u-hide"
                     name="vendor"
                     onclick="toggleExpandFilters(event, this)"
                     value="false">Show fewer</button>
-          </p>
+          </div>
         </li>
-        <li class="p-accordion__group--certified" id="version-section">
+        <li class="p-accordion__group" id="version-section">
           <div role="heading" aria-level="2">
             <button type="button"
                     class="p-accordion__tab u-no-padding--right"
                     aria-controls="tab3-section"
+                    id="tab3"
                     aria-expanded="true">
-              Certified ubuntu
-              <div class="p-round-chip u-hide">
-                <span class="p-chip__value" id="release-count">1</span>
-              </div>
-              release
+              <span class="p-heading--5">Certified ubuntu release</span>
             </button>
           </div>
-          <hr class="p-rule--muted" />
           <section class="p-accordion__panel is-dense"
                     id="tab3-section"
                     aria-hidden="false"
                     aria-labelledby="tab3">
           </section>
-          <span class="js-toggle-links">
-            <p class="p-reveal-versions is-dense">
-              <button class="p-button--link js-show-all-releases"
-                      name="release"
-                      onclick="toggleExpandFilters(event, this)"
-                      value="true">Show all versions</button>
-            </p>
-            <p class="p-reveal-versions is-dense u-hide">
-              <button class="p-button--link js-show-less-releases u-hide"
-                      name="release"
-                      onclick="toggleExpandFilters(event, this)"
-                      value="false">Show fewer</button>
-            </p>
-          </span>
+          <div class="js-show-expanded-release-filter-options">
+            <button class="p-button--link p-reveal-versions is-dense js-show-all-releases"
+                    name="release"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="true">Show all versions</button>
+            <button class="p-button--link p-reveal-versions is-dense js-show-less-releases u-hide"
+                    name="release"
+                    onclick="toggleExpandFilters(event, this)"
+                    value="false">Show fewer</button>
+          </div>
         </li>
       </ul>
-      <hr style="margin-bottom: 1rem;" />
     </aside>
-    <div class="u-align--right" style="padding-right: 0.5rem">
-      <button class="p-button p-update-results u-no-margin--right"
-              onclick="return clearFilters()">Clear</button>
-      <button class="p-button--positive p-update-results"
-              onclick="return submitFilters()">Apply</button>
+    <div class="certified-filter-buttons">
+      <hr style="margin-bottom: 1rem;" />
+      <button class="p-button--positive"
+              onclick="return submitFilters()">Apply filters</button>
+      <button class="p-button"
+              onclick="return clearFilters()">Clear all filters</button>
     </div>
   </div>
 </nav>
