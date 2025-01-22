@@ -53,7 +53,9 @@
       </div>
       <div class="col">
         <div class="p-tabs js-tabbed-content">
-          <div class="p-tabs__list" role="tablist" aria-label="Single-node and multi-node">
+          <div class="p-tabs__list"
+               role="tablist"
+               aria-label="Single-node and multi-node">
             <div class="p-tabs__item">
               <button class="p-tabs__link"
                       role="tab"
@@ -95,7 +97,8 @@
                       <pre class="p-code-snippet__block--icon"><code>sudo snap install k8s --classic</code></pre>
                     </div>
                     <p>
-                      Don’t have the snap command? <a href="https://docs.snapcraft.io/installing-snapd" aria-label="Learn more about snapd installation">Get set for snaps</a>
+                      Don’t have the snap command? <a href="https://docs.snapcraft.io/installing-snapd"
+    aria-label="Learn more about snapd installation">Get set for snaps</a>
                     </p>
                   </div>
                 </div>
@@ -145,17 +148,20 @@
                aria-labelledby="multi-node">
             <div class="p-section--shallow">
               <p>
-                To create a cluster out of two or more already-running Kubernetes instances, use the k8s join-cluster command. With three or more control plane nodes you will automatically get high availability.
+                To create a cluster out of two or more already-running Kubernetes instances, use the <i>k8s join-cluster</i> command. With three or more control plane nodes you will automatically get high availability.
               </p>
               <div class="p-cta-block">
-                <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/snap/" aria-label="Check out Kubernetes documentation">Read the docs to learn more</a>
+                <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/snap/"
+                   aria-label="Check out Kubernetes documentation">Read the docs to learn more</a>
               </div>
             </div>
 
             <ol class="p-stepped-list--detailed u-no-margin--bottom">
               <li class="p-stepped-list__item">
                 <div>
-                  <p class="p-stepped-list__title p-heading--5">Generate token on the already existing control-plane node</p>
+                  <p class="p-stepped-list__title p-heading--5">
+                    Generate token on the already existing <i>control-plane</i> node
+                  </p>
                 </div>
                 <div>
                   <div class="p-stepped-list__content">
@@ -167,7 +173,9 @@
               </li>
               <li class="p-stepped-list__item">
                 <div>
-                  <p class="p-stepped-list__title p-heading--5">To join the worker node to the cluster, run on the worker node</p>
+                  <p class="p-stepped-list__title p-heading--5">
+                    To join the worker node to the cluster, run on the <i>worker</i> node
+                  </p>
                 </div>
                 <div>
                   <div class="p-stepped-list__content">
@@ -180,7 +188,7 @@
               <li class="p-stepped-list__item">
                 <div>
                   <p class="p-stepped-list__title p-heading--5">
-                    Verify the worker node successfully joined the cluster, by running on the control-plane node
+                    Verify the worker node successfully joined the cluster, by running on the <i>control-plane</i> node
                   </p>
                 </div>
                 <div>
@@ -209,7 +217,8 @@
           Get automated Kubernetes operations from bare-metal to the cloud. Build your Kubernetes cluster from the ground up, integrate it with your favorite tools, and create multi-cloud topologies.
         </p>
         <div class="p-cta-block">
-          <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/charm/tutorial/getting-started/" aria-label="Get started with Juju">Install Canonical Kubernetes with Juju</a>
+          <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/charm/tutorial/getting-started/"
+             aria-label="Get started with Juju">Install Canonical Kubernetes with Juju</a>
         </div>
       </div>
     </div>
@@ -230,7 +239,8 @@
           With Canonical Kubernetes you can deploy and operate Kubernetes through Cluster API (CAPI) bootstrap and infrastructure providers.
         </p>
         <div class="p-cta-block">
-          <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/capi/tutorial/getting-started/" aria-label="Learn more about Kubernetes deployment with Cluster API">Deploy Canonical Kubernetes with Cluster API</a>
+          <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/src/capi/tutorial/getting-started/"
+             aria-label="Learn more about Kubernetes deployment with Cluster API">Deploy Canonical Kubernetes with Cluster API</a>
         </div>
       </div>
     </div>
