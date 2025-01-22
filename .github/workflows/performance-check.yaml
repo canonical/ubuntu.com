@@ -1,0 +1,17 @@
+name: Performance check on ubuntu.com
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Running Page Speed Insights
+        uses: jakepartusch/psi-action@v1.3
+        id: psi
+        with:
+          url: "https://ubuntu.com"
+          threshold: 70
+          strategy: desktop
