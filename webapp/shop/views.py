@@ -24,6 +24,7 @@ from webapp.shop.decorators import SERVICES, shop_decorator
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.schemas import (
     PurchaseTotalSchema,
+    delete_payment_method,
     ensure_purchase_account,
     get_purchase_account_status,
     invoice_view,
@@ -185,12 +186,36 @@ def post_payment_methods(ua_contracts_api, **kwargs):
         response = ua_contracts_api.put_payment_method(
             account_id, payment_method_id
         )
+        if not response.get("errors"):
+            flask.flash(
+                "Card added. Check your subscriptions' auto-renewal "
+                "status on your Ubuntu Pro Dashboard."
+            )
     except UAContractsUserHasNoAccount:
         name = flask.session["openid"]["fullname"]
 
         response = ua_contracts_api.put_customer_info(
             account_id, payment_method_id, None, name, None
         )
+
+    return response
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(delete_payment_method, location="json")
+def delete_payment_method(ua_contracts_api, **kwargs):
+    account_id = kwargs.get("account_id")
+
+    try:
+        account_info = ua_contracts_api.get_customer_info(account_id)
+        customer_info = account_info["customerInfo"]
+        default_payment_method = customer_info.get("defaultPaymentMethod")
+
+        response = ua_contracts_api.delete_payment_method(
+            account_id, default_payment_method["id"]
+        )
+    except UAContractsUserHasNoAccount:
+        pass
 
     return response
 
