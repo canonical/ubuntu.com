@@ -12,7 +12,7 @@ import {
 } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 import FormikField from "advantage/react/components/FormikField";
-import { useSetAutoRenewal, useUserSubscriptions } from "advantage/react/hooks";
+import { useSetAutoRenewal, useUserSubscriptions, useHasPaymentMethod } from "advantage/react/hooks";
 import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
 import { currencyFormatter, formatDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -89,10 +89,12 @@ const AutoRenewalLabel = ({
   );
 };
 
-function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
+function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[], disabled: boolean): {
   toggles: ReactNode[];
   initialValues: { [key: string]: boolean };
 } {
+  console.log("billingSubscriptions", billingSubscriptions);
+  console.log("disabled", disabled);
   const toggles: ReactNode[] = [];
   const initialValues: { [key: string]: boolean } = {};
 
@@ -136,6 +138,7 @@ function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
           labelClassName="u-no-margin--bottom"
           name={filteredBillingSubscriptions[0].subscription_id ?? ""}
           type="checkbox"
+          disabled={disabled}
         />,
       );
       initialValues[filteredBillingSubscriptions[0].subscription_id ?? ""] =
@@ -151,6 +154,7 @@ type Props = {
   marketplace: UserSubscriptionMarketplace;
 };
 
+
 export const RenewalSettings = ({
   positionNodeRef,
   marketplace,
@@ -164,7 +168,7 @@ export const RenewalSettings = ({
   } = useUserSubscriptions({
     select: selectAutoRenewableSubscriptionsByMarketplace(marketplace),
   });
-
+  
   const onCloseMenu = useCallback(() => {
     setMenuOpen(false);
     // Reset the form so that errors are cleared.
@@ -177,48 +181,69 @@ export const RenewalSettings = ({
   } else if (isSubscriptionsError || !renewableSubscriptions) {
     content = (
       <Notification
-        data-test="subscriptions-loading-error"
-        severity={NotificationSeverity.NEGATIVE}
+      data-test="subscriptions-loading-error"
+      severity={NotificationSeverity.NEGATIVE}
       >
         There was a problem loading your subscription information. Please
         refresh the page or try again later.
       </Notification>
     );
   } else {
+    const accountId = renewableSubscriptions?.[0]?.account_id;
+    console.log("accountId", accountId);  
+    const { data: hasPaymentMethod, isLoading: isLoadingPaymentMethod } = useHasPaymentMethod(accountId); 
+    console.log("customerInfo", hasPaymentMethod);
+    console.log("isLoadingCustomerInfo", isLoadingPaymentMethod);
+    console.log("hasPaymentMethod", hasPaymentMethod);
     const { toggles, initialValues } = generateAutoRenewalToggles(
       renewableSubscriptions,
+      !hasPaymentMethod,
     );
+  
     content = (
-      <Formik
+      <>
+        <Formik
         initialValues={initialValues}
         data-test="renewal-toggles"
         onSubmit={(state) => {
           setAutoRenew.mutate(state, {
             onSuccess: () => {
-              onCloseMenu();
-            },
-          });
-        }}
-      >
-        <>
-          {setAutoRenew.isError ? (
-            <Notification
+                onCloseMenu();
+              },
+            });
+          }}
+          >
+          <>
+            {setAutoRenew.isError ? (
+              <Notification
               data-test="update-error"
               severity="negative"
               title="Could not update auto renewal settings:"
-            >
-              {setAutoRenew.error?.message}
-            </Notification>
-          ) : null}
-          <RenewalSettingsForm
-            loading={setAutoRenew.isPending}
-            success={setAutoRenew.isSuccess}
-            onCloseMenu={onCloseMenu}
-          >
-            {toggles}
-          </RenewalSettingsForm>
-        </>
-      </Formik>
+              >
+                {setAutoRenew.error?.message}
+              </Notification>
+            ) : null}
+            {
+              !hasPaymentMethod ? (
+                <Notification
+                  data-test="no-payment-method"
+                  severity={NotificationSeverity.CAUTION}
+                  title="No active payment method present"
+                >
+                  To auto-renew your subscription, add one in <a href="/account/payment-methods">Payment method</a>.
+                </Notification>
+              ) : null
+            }
+            <RenewalSettingsForm
+              loading={setAutoRenew.isPending}
+              success={setAutoRenew.isSuccess}
+              onCloseMenu={onCloseMenu}
+              >
+              {toggles}
+            </RenewalSettingsForm>
+          </>
+        </Formik>
+      </>
     );
   }
 
@@ -228,15 +253,15 @@ export const RenewalSettings = ({
       dropdownClassName="p-subscription__renewal-dropdown"
       hasToggleIcon
       onToggleMenu={(isOpen) => {
-        if (isOpen) {
-          setMenuOpen(true);
-        } else {
+          if (isOpen) {
+              setMenuOpen(true);
+            } else {
           onCloseMenu();
         }
         sendAnalyticsEvent({
-          eventCategory: "Advantage",
-          eventAction: "subscription-auto-renewal-form",
-          eventLabel: `auto renewal dropdown ${isOpen ? "opened" : "closed"}`,
+            eventCategory: "Advantage",
+            eventAction: "subscription-auto-renewal-form",
+            eventLabel: `auto renewal dropdown ${isOpen ? "opened" : "closed"}`,
         });
       }}
       position="left"
