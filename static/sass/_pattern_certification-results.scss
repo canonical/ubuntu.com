@@ -43,11 +43,19 @@
       position: unset;
     }
 
-    .certified-filter-buttons {
+    .certified-filters-footer {
       background: #f3f3f3;
       bottom: 0;
       position: sticky;
       z-index: 2;
+    }
+
+    .certified-filters-footer-buttons {
+      margin-left: 1rem;
+
+      @media screen and (min-width: $breakpoint-large) {
+        margin-left: 0;
+      }
     }
 
     .p-checkbox__label {
@@ -71,6 +79,10 @@
       .p-accordion__tab,
       .p-button--link {
         padding-left: 0;
+      }
+
+      .certified-filter-buttons {
+        margin-left: 0;
       }
     }
   }
