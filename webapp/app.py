@@ -12,6 +12,7 @@ import requests
 import talisker.requests
 from jinja2 import ChoiceLoader, FileSystemLoader
 from pathlib import Path
+from flask_squeeze import Squeeze
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
@@ -183,6 +184,10 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# Compress JS and CSS
+squeeze = Squeeze()
+squeeze.init_app(app)
 
 # ChoiceLoader attempts loading templates from each path in successive order
 loader = ChoiceLoader(
