@@ -320,12 +320,9 @@ const SubscriptionEdit = ({
 
   const ResizeSchema = generateSchema(subscription, unitName);
 
-  const accountId = renewableSubscriptions?.[0]?.account_id;
-  console.log("accountId", accountId);  
-  const { data: hasPaymentMethod, isLoading: isLoadingPaymentMethod } = useHasPaymentMethod(accountId); 
-  console.log("customerInfo", hasPaymentMethod);
-  console.log("isLoadingCustomerInfo", isLoadingPaymentMethod);
-  console.log("hasPaymentMethod", hasPaymentMethod);
+  const accountId = renewableSubscriptions?.[0]?.account_id ?? null;
+  const { data: hasPaymentMethod } = useHasPaymentMethod(accountId);
+
   return (
     <>
       <Formik
@@ -360,17 +357,16 @@ const SubscriptionEdit = ({
                   <hr />
                 </div>
                 <h5>Resize subscription</h5>
-                {
-                  !hasPaymentMethod ? (
-                    <Notification
-                      data-test="no-payment-method"
-                      severity={NotificationSeverity.CAUTION}
-                      title="No active payment method present"
-                    >
-                      To auto-renew your subscription, add one in <a href="/account/payment-methods">Payment method</a>.
-                    </Notification>
-                  ) : null
-                }
+                {!hasPaymentMethod ? (
+                  <Notification
+                    data-test="no-payment-method"
+                    severity={NotificationSeverity.CAUTION}
+                    title="No active payment method present"
+                  >
+                    To auto-renew your subscription, add one in{" "}
+                    <a href="/account/payment-methods">Payment method</a>.
+                  </Notification>
+                ) : null}
                 <FormikField
                   className="p-subscription__resize"
                   error={errors.size || generateError(error)}

@@ -2,7 +2,6 @@ import { getCustomerInfo } from "advantage/api/contracts";
 import { UserSubscription } from "advantage/api/types";
 import { useQuery } from "@tanstack/react-query";
 
-
 export const useHasPaymentMethod = (
   accountId: UserSubscription["account_id"] | null,
 ) => {
@@ -10,7 +9,8 @@ export const useHasPaymentMethod = (
     queryKey: ["accountId", accountId],
     queryFn: async () => {
       const response = await getCustomerInfo(accountId);
-      const defaultPaymentMethod = response.data?.customerInfo?.defaultPaymentMethod;
+      const defaultPaymentMethod =
+        response.data?.customerInfo?.defaultPaymentMethod;
       return Boolean(defaultPaymentMethod);
     },
   });

@@ -397,7 +397,8 @@ const UserInfoForm = ({ setError }: Props) => {
             error={touched?.postalCode && errors?.postalCode}
           />
           <p>
-          We will save your payment card. You can change its details in your Ubuntu Pro Dashboard.
+            We will save your payment card. You can change its details in your
+            Ubuntu Pro Dashboard.
           </p>
         </>
       )}

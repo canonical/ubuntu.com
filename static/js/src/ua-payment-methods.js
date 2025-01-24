@@ -43,7 +43,9 @@ const editSection = document.getElementById("edit-payment-method-section");
 const paymentErrorElement = document.getElementById("payment-errors");
 const paymentWarningElement = document.getElementById("payment-warnings");
 const paymentSuccessElement = document.getElementById("payment-success");
-const emptyPaymentSection = document.getElementById("no-payment-method-section");
+const emptyPaymentSection = document.getElementById(
+  "no-payment-method-section",
+);
 const removePaymentModal = document.getElementById("remove-payment-modal");
 const addPaymentButton = document.getElementById("add-payment-method");
 const confirmRemoveButton = document.getElementById("confirm-remove-payment");
@@ -145,8 +147,9 @@ if (cardElement) {
       if (window.hasPaymentMethod) {
         previewSection.classList.remove("u-hide");
         paymentErrorElement.classList.add("u-hide");
-        paymentErrorElement.querySelector(".p-notification__message").innerHTML =
-          "";
+        paymentErrorElement.querySelector(
+          ".p-notification__message",
+        ).innerHTML = "";
       } else {
         emptyPaymentSection.classList.remove("u-hide");
       }
@@ -244,7 +247,6 @@ if (cardElement) {
   };
 }
 
-
 addPaymentButton.addEventListener("click", () => {
   emptyPaymentSection.classList.add("u-hide");
   editSection.classList.remove("u-hide");
@@ -252,19 +254,20 @@ addPaymentButton.addEventListener("click", () => {
 
 confirmRemoveButton.addEventListener("click", function () {
   this.classList.add("is-processing");
-  this.innerHTML =
-    '<i class="p-icon--spinner u-animation--spin is-light"></i>';
+  this.innerHTML = '<i class="p-icon--spinner u-animation--spin is-light"></i>';
   this.disabled = true;
   const cancelButton = document.getElementById("cancel-remove-payment");
   cancelButton.disabled = true;
 
-  deletePaymentMethod(window.accountId).then((data) => {
-    if (data.errors) {
-      throw new Error();
-    }
-    window.location.reload();
-  }).catch((err) => {    
-    removePaymentModal.classList.add("u-hide");
-    handlePaymentMethodErrors("There was an error with your card.");
-  });
+  deletePaymentMethod(window.accountId)
+    .then((data) => {
+      if (data.errors) {
+        throw new Error();
+      }
+      window.location.reload();
+    })
+    .catch((err) => {
+      removePaymentModal.classList.add("u-hide");
+      handlePaymentMethodErrors("There was an error with your card.");
+    });
 });
