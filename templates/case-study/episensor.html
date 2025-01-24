@@ -24,13 +24,12 @@
 {% block content %}
   {%- call(slot) vf_hero(
     title_text="EpiSensor accelerates the sustainable energy transition with securely designed IoT gateways powered by Ubuntu Core",
-    layout="25/75",
-    is_split_on_medium="true") -%}
+    layout="25/75") -%}
     {% if slot == "signpost_image" %}
       {{ image(url="https://assets.ubuntu.com/v1/4432fc56-EpiSensor_Logo.png",
-            alt="EpiSensor logo",
-            width="675",
-            height="205",
+            alt="",
+            width="225",
+            height="68",
             hi_def=True,
             loading="auto") | safe
       }}
@@ -65,7 +64,7 @@
       <div class="row">
         <div class="col-start-large-4 col-9">
           {{ image(url="https://assets.ubuntu.com/v1/26633280-edge%20screenshot%201.png",
-                    alt="Engineer working on a server rack",
+                    alt="",
                     width="2748",
                     height="1408",
                     hi_def=True,
@@ -90,7 +89,7 @@
   {%- call(slot) image_wrapper() -%}
     {%- if slot == 'image_content' %}
       {{ image(url="https://assets.ubuntu.com/v1/6b3e687a-image1.png",
-            alt="A row of servers in a datacenter",
+            alt="",
             width="1848",
             height="771",
             hi_def=True,
@@ -128,7 +127,7 @@
   {%- call(slot) image_wrapper() -%}
     {%- if slot == 'image_content' %}
       {{ image(url="https://assets.ubuntu.com/v1/6503bd56-image2.png",
-            alt="A row of servers in a datacenter",
+            alt="",
             width="1848",
             height="771",
             hi_def=True,
@@ -165,9 +164,9 @@
     {%- if slot == 'signpost_image' -%}
       <div class="p-image-wrapper--logo">
         {{ image(url="https://assets.ubuntu.com/v1/a3e5284b-quote-photo.png",
-                alt="EpiSensor logo",
-                width="540",
-                height="847",
+                alt="",
+                width="180",
+                height="282",
                 hi_def=True,
                 loading="lazy") | safe
         }}
@@ -196,7 +195,7 @@
       <div class="row">
         <div class="col-start-large-4 col-9">
           {{ image(url="https://assets.ubuntu.com/v1/a0aea0f9-edge%20screenshot%202.png",
-                    alt="Engineer working on a server rack",
+                    alt="",
                     width="2748",
                     height="1432",
                     hi_def=True,
@@ -249,9 +248,9 @@
     {%- if slot == 'signpost_image' -%}
       <div class="p-image-wrapper--logo">
         {{ image(url="https://assets.ubuntu.com/v1/a3e5284b-quote-photo.png",
-                alt="EpiSensor logo",
-                width="540",
-                height="847",
+                alt="",
+                width="180",
+                height="282",
                 hi_def=True,
                 loading="lazy") | safe
         }}
