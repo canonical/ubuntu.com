@@ -10,12 +10,12 @@ from webapp.shop.api.ua_contracts.models import (
     UserSubscription,
 )
 from webapp.shop.api.ua_contracts.parsers import (
+    parse_channel_product_listings,
     parse_contract,
     parse_contracts,
     parse_offers,
     parse_product_listing,
     parse_product_listings,
-    parse_channel_product_listings,
     parse_subscriptions,
     parse_users,
 )
@@ -287,3 +287,17 @@ class AdvantageMapper:
             request_body={"userCode": user_code, "contractID": contract_id},
             headers=headers,
         )
+
+    def change_subscriptions_auto_renewal(
+        self, account_id, marketplace: str, enabled: bool
+    ):
+        subscriptions = self.get_account_subscriptions(account_id, marketplace)
+        for subscription in subscriptions:
+            if (
+                subscription.status in ["active", "locked"]
+                and subscription.is_auto_renewing
+            ):
+                self.ua_contracts_api.post_subscription_auto_renewal(
+                    subscription_id=subscription.id,
+                    should_auto_renew=enabled,
+                )

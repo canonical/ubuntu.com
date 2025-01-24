@@ -10,11 +10,9 @@ export const useHasPaymentMethod = (
     queryKey: ["accountId", accountId],
     queryFn: async () => {
       const response = await getCustomerInfo(accountId);
-      // Error handling?
       const defaultPaymentMethod = response.data?.customerInfo?.defaultPaymentMethod;
       return Boolean(defaultPaymentMethod);
     },
-    enabled: true,
   });
   return query;
 };

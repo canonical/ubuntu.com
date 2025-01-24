@@ -260,11 +260,11 @@ confirmRemoveButton.addEventListener("click", function () {
 
   deletePaymentMethod(window.accountId).then((data) => {
     if (data.errors) {
-      throw new Error("There was an error with your card.");
+      throw new Error();
     }
     window.location.reload();
   }).catch((err) => {    
     removePaymentModal.classList.add("u-hide");
-    handlePaymentMethodErrors(err.message);
+    handlePaymentMethodErrors("There was an error with your card.");
   });
 });

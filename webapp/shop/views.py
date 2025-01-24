@@ -207,29 +207,16 @@ def post_payment_methods(ua_contracts_api, **kwargs):
 def delete_payment_method(advantage_mapper, ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
 
-    try:
-        account_info = ua_contracts_api.get_customer_info(account_id)
-        customer_info = account_info["customerInfo"]
-        default_payment_method = customer_info.get("defaultPaymentMethod")
+    account_info = ua_contracts_api.get_customer_info(account_id)
+    customer_info = account_info["customerInfo"]
+    default_payment_method = customer_info["defaultPaymentMethod"]
 
-        response = ua_contracts_api.delete_payment_method(
-            account_id, default_payment_method["id"]
-        )
-    except UAContractsUserHasNoAccount:
-        pass
-
-    # Disable auto-renewal for all billing subscriptions
-    subscriptions = advantage_mapper.get_account_subscriptions(
-        account_id=account_id, marketplace="canonical-ua"
+    response = ua_contracts_api.delete_payment_method(
+        account_id, default_payment_method["id"]
     )
-    for subscription in subscriptions:
-        if is_billing_subscription_auto_renewing(
-            subscriptions, subscription.id
-        ):
-            ua_contracts_api.post_subscription_auto_renewal(
-                subscription_id=subscription.id,
-                should_auto_renew=False,
-            )
+    advantage_mapper.change_subscriptions_auto_renewal(
+        account_id=account_id, marketplace="canonical-ua", enabled=False
+    )
 
     return response
 
