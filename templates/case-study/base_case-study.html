@@ -31,7 +31,7 @@
   {% block cta_content %}
     <!-- Hide footer on index page -->
     {% if hide_wrapper != True %}
-      {{ cta(title="Contact us", link="/contact-us", has_modal="true") }}
+      {{ cta(title=contact_title or "Contact us", link="/contact-us", has_modal="true") }}
 
       <!-- Set default Marketo information for contact form below-->
       <div class="u-hide"
