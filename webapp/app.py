@@ -21,6 +21,8 @@ from canonicalwebteam.discourse import (
     EngagePages,
     TutorialParser,
     Tutorials,
+    CategoryParser,
+    Category
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
@@ -535,6 +537,20 @@ app.add_url_rule(
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
 app.add_url_rule("/logout", view_func=logout)
+
+security_vulnerabilities_path = "/security/vulnerabilities"
+security_vulnerabilities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=53193,
+        url_prefix=security_vulnerabilities_path,
+    ),
+    category_id=308,
+    document_template="/security/vulnerabilities.html",
+    url_prefix=security_vulnerabilities_path,
+    blueprint_name="security-vulnerabilities",
+)
+security_vulnerabilities.init_app(app)
 
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
