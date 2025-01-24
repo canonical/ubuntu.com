@@ -16,6 +16,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.api.ua_contracts.helpers import (
     extract_last_purchase_ids,
+    is_billing_subscription_auto_renewing,
     to_dict,
 )
 
@@ -203,7 +204,7 @@ def post_payment_methods(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="account", permission="user", response="json")
 @use_kwargs(delete_payment_method, location="json")
-def delete_payment_method(ua_contracts_api, **kwargs):
+def delete_payment_method(advantage_mapper, ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
 
     try:
@@ -216,6 +217,19 @@ def delete_payment_method(ua_contracts_api, **kwargs):
         )
     except UAContractsUserHasNoAccount:
         pass
+
+    # Disable auto-renewal for all billing subscriptions
+    subscriptions = advantage_mapper.get_account_subscriptions(
+        account_id=account_id, marketplace="canonical-ua"
+    )
+    for subscription in subscriptions:
+        if is_billing_subscription_auto_renewing(
+            subscriptions, subscription.id
+        ):
+            ua_contracts_api.post_subscription_auto_renewal(
+                subscription_id=subscription.id,
+                should_auto_renew=False,
+            )
 
     return response
 
