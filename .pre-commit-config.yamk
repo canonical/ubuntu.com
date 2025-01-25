@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: npm-test
+        name: Run npm test
+        entry: npm test
+        language: system
+        pass_filenames: false
