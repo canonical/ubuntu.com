@@ -190,7 +190,7 @@ class UAContractsAPI:
     def delete_payment_method(self, account_id, payment_method_id) -> dict:
         return self._request(
             method="put",
-            path=f"v1/accounts/{account_id}/customer-info/stripe/",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
             json={
                 "deletePaymentMethod": {"Id": payment_method_id},
             },
