@@ -19,6 +19,8 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/11NbG_hLg0zZdMAzkOLXaS4ItOUfsRF31VAA1-093m_g{% endblock %}
 
+{% set contact_title = "Contact us to learn about Ubuntu Pro FIPS" %}
+
 {% block content %}
   <!-- Hero section -->
   {%- call(slot) vf_hero(
@@ -235,14 +237,4 @@
     )
     -%}
   {%- endcall -%}
-{% endblock %}
-
-{% block cta_content %}
-  {{ cta(title="Contact us to  learn  about Ubuntu Pro FIPS", link="/contact-us", has_modal=true) }}
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/case-study"
-       data-form-id="5919"
-       data-return-url="/case-study#contact-success"></div>
 {% endblock %}
