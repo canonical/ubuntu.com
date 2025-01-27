@@ -46,9 +46,6 @@ const paymentSuccessElement = document.getElementById("payment-success");
 const emptyPaymentSection = document.getElementById(
   "no-payment-method-section",
 );
-const removePaymentModal = document.getElementById("remove-payment-modal");
-const addPaymentButton = document.getElementById("add-payment-method");
-const confirmRemoveButton = document.getElementById("confirm-remove-payment");
 
 const handleSuccess = (message) => {
   paymentErrorElement.classList.add("u-hide");
@@ -58,7 +55,7 @@ const handleSuccess = (message) => {
     `${message}. Reloading page...`;
 };
 
-const handlePaymentMethodErrors = (message) => {
+const handleError = (message) => {
   paymentErrorElement.querySelector(".p-notification__message").innerHTML =
     `<strong>${message}</strong> Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
   paymentErrorElement.classList.remove("u-hide");
@@ -130,32 +127,33 @@ if (cardElement) {
       })
       .then((result) => {
         if (!result.paymentMethod) {
-          handleError();
+          handleUpdateError();
           return;
         }
 
         handlePaymentMethod(result);
       })
       .catch(() => {
-        handleError();
+        handleUpdateError();
       });
   });
 
   if (cancelButton)
     cancelButton.addEventListener("click", () => {
       editSection.classList.add("u-hide");
+      paymentErrorElement.classList.add("u-hide");
+      paymentErrorElement.querySelector(
+        ".p-notification__message",
+      ).innerHTML = "";
+      
       if (window.hasPaymentMethod) {
         previewSection.classList.remove("u-hide");
-        paymentErrorElement.classList.add("u-hide");
-        paymentErrorElement.querySelector(
-          ".p-notification__message",
-        ).innerHTML = "";
       } else {
         emptyPaymentSection.classList.remove("u-hide");
       }
     });
 
-  const handleError = () => {
+  const handleUpdateError = () => {
     updateButton.classList.remove("is-processing");
     updateButton.innerHTML = "Update";
     updateButton.disabled = false;
@@ -165,8 +163,8 @@ if (cardElement) {
   const handlePaymentMethod = (result) => {
     setPaymentMethod(window.accountId, result.paymentMethod.id).then((data) => {
       if (data.errors) {
-        handlePaymentMethodErrors("There was an error with your card.");
-        handleError();
+        handleError("There was an error with your card.");
+        handleUpdateError();
 
         return;
       }
@@ -191,7 +189,7 @@ if (cardElement) {
     resetElement(element);
 
     if (threeDSResponse.error) {
-      handlePaymentMethodErrors("There was an error with the payment.");
+      handleError("There was an error with the payment.");
     } else {
       handleSuccess("Payment successful");
       setTimeout(function () {
@@ -215,14 +213,14 @@ if (cardElement) {
           }
 
           if (!purchase.invoice) {
-            handlePaymentMethodErrors("There was an error with the payment.");
+            handleError("There was an error with the payment.");
             return;
           }
 
           const invoice = purchase.invoice;
 
           if (invoice.paymentStatus.status === "need_another_payment_method") {
-            handlePaymentMethodErrors("There was an error with the payment.");
+            handleError("There was an error with the payment.");
             return;
           }
 
@@ -231,7 +229,7 @@ if (cardElement) {
             return;
           }
 
-          handlePaymentMethodErrors("There was an error with the payment.");
+          handleError("There was an error with the payment.");
         });
       }, 5000);
     });
@@ -239,13 +237,19 @@ if (cardElement) {
 
   const resetElement = (element) => {
     if (element.tagName === "BUTTON") {
-      handleError();
+      handleUpdateError();
       return;
     }
 
     element.classList.add("u-hide");
   };
 }
+
+// Remove payment method
+
+const removePaymentModal = document.getElementById("remove-payment-modal");
+const addPaymentButton = document.getElementById("add-payment-method");
+const confirmRemoveButton = document.getElementById("confirm-remove-payment");
 
 addPaymentButton.addEventListener("click", () => {
   emptyPaymentSection.classList.add("u-hide");
@@ -268,6 +272,6 @@ confirmRemoveButton.addEventListener("click", function () {
     })
     .catch((err) => {
       removePaymentModal.classList.add("u-hide");
-      handlePaymentMethodErrors("There was an error with your card.");
+      handleError("There was an error with your card.");
     });
 });

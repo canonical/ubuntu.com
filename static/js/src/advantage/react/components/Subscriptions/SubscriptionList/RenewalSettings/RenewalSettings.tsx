@@ -100,8 +100,6 @@ function generateAutoRenewalToggles(
   toggles: ReactNode[];
   initialValues: { [key: string]: boolean };
 } {
-  console.log("billingSubscriptions", billingSubscriptions);
-  console.log("disabled", disabled);
   const toggles: ReactNode[] = [];
   const initialValues: { [key: string]: boolean } = {};
 
@@ -196,12 +194,9 @@ export const RenewalSettings = ({
     );
   } else {
     const accountId = renewableSubscriptions?.[0]?.account_id;
-    console.log("accountId", accountId);
-    const { data: hasPaymentMethod, isLoading: isLoadingPaymentMethod } =
+    const { data: hasPaymentMethod } =
       useHasPaymentMethod(accountId);
-    console.log("customerInfo", hasPaymentMethod);
-    console.log("isLoadingCustomerInfo", isLoadingPaymentMethod);
-    console.log("hasPaymentMethod", hasPaymentMethod);
+      
     const { toggles, initialValues } = generateAutoRenewalToggles(
       renewableSubscriptions,
       !hasPaymentMethod,
