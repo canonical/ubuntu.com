@@ -313,9 +313,8 @@ describe("RenewalSettings", () => {
       wrapper.find("Formik form").simulate("submit");
     });
     wrapper.update();
-    const notification = wrapper.find(Notification);
+    const notification = wrapper.find("Notification[data-test='update-error']");
     expect(notification.exists()).toBe(true);
-    expect(notification.prop("data-test")).toBe("update-error");
     expect(notification.text().includes("Uh oh")).toBe(true);
   });
 
@@ -365,4 +364,69 @@ describe("RenewalSettings", () => {
       wrapper.find("Notification[data-test='update-error']").exists(),
     ).toBe(false);
   });
+  
+  it("displays warning notification if no payment method", async () => {
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Monthly,
+          subscription_id: subscriptionID,
+          statuses: userSubscriptionStatusesFactory.build({
+            should_present_auto_renewal: true,
+            is_subscription_auto_renewing: true,
+          }),
+        }),
+      ],
+    );
+    queryClient.setQueryData(["hasPaymentMethod"], false);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
+      </QueryClientProvider>,
+    );
+
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    await act(async () => {});
+    expect(
+      wrapper.find("Notification[data-test='no-payment-method']").exists(),
+    ).toBe(true);
+  });
+  
+  it("does not display warning notification if payment method", async () => {
+    queryClient.setQueryData(
+      ["userSubscriptions"],
+      [
+        userSubscriptionFactory.build({
+          period: UserSubscriptionPeriod.Monthly,
+          subscription_id: subscriptionID,
+          statuses: userSubscriptionStatusesFactory.build({
+            should_present_auto_renewal: true,
+            is_subscription_auto_renewing: true,
+          }),
+        }),
+      ],
+    );
+    queryClient.setQueryData(["hasPaymentMethod"], true);
+
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
+      </QueryClientProvider>,
+    );
+
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    await act(async () => {});
+    expect(
+      wrapper.find("Notification[data-test='no-payment-method']").exists(),
+    ).toBe(false);
+  });
+
+
 });

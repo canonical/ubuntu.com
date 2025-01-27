@@ -196,7 +196,7 @@ export const RenewalSettings = ({
     const accountId = renewableSubscriptions?.[0]?.account_id;
     const { data: hasPaymentMethod } =
       useHasPaymentMethod(accountId);
-      
+
     const { toggles, initialValues } = generateAutoRenewalToggles(
       renewableSubscriptions,
       !hasPaymentMethod,

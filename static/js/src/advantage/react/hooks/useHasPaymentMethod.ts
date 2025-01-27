@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 export const useHasPaymentMethod = (
   accountId: UserSubscription["account_id"] | null,
 ) => {
-  const query = useQuery<any>({
-    queryKey: ["accountId", accountId],
+  const query = useQuery<boolean>({
+    queryKey: ["hasPaymentMethod"],
     queryFn: async () => {
       const response = await getCustomerInfo(accountId);
       const defaultPaymentMethod =
