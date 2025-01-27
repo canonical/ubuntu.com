@@ -17,7 +17,7 @@ from ubuntu_release_info.data import Data
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
-from urllib.parse import quote, unquote
+from urllib.parse import quote, unquote, urlparse
 
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
@@ -1070,12 +1070,25 @@ def marketo_submit():
             "name": flask.request.form.get("firstName"),
             "email": flask.request.form.get("email"),
         }
+
+        if return_url.startswith("http://") or return_url.startswith(
+            "https://"
+        ):
+            return flask.redirect(return_url)
+
+        if referrer:
+            parsed_referer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referer.scheme}://"
+                f"{parsed_referer.netloc}{return_url}"
+            )
+
         return flask.redirect(return_url)
 
     if referrer:
         return flask.redirect(f"/thank-you?referrer={referrer}")
-    else:
-        return flask.redirect("/thank-you")
+
+    return flask.redirect("/thank-you")
 
 
 def thank_you():
