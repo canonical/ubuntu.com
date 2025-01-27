@@ -114,6 +114,7 @@
                 Control plane hosts: used to manage the workers and monitor the health of the entire system
               </li>
             </ul>
+            <hr class="p-rule--muted" />
             <p>
               Every cluster has at least one worker, and the control plane services can be colocated on a single machine. In production environments, there is typically a large number of workers, depending on the number of containers to be run, and the control plane is distributed across multiple machines for high-availability and fault-tolerance purposes.
             </p>
@@ -140,23 +141,39 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3 col-medium-2 col-start-large-4">
-        <hr class="p-rule--highlight" />
-        <p>
-          Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
-        </p>
-      </div>
-      <div class="col-3">
-        <hr class="p-rule--highlight" />
-        <p>
-          Kubernetes maps out how applications should work and interact with other applications. Due to its elasticity, it can scale services up and down as required, perform rolling updates, switch traffic between different versions of your applications to test features or rollback problematic deployments.
-        </p>
-      </div>
-      <div class="col-3">
-        <hr class="p-rule--highlight" />
-        <p>
-          Kubernetes has emerged as a leading choice for organizations looking to build their multi-cloud environments. All public clouds have adopted Kubernetes and offer their own distributions, such as AWS Elastic Container Service for Kubernetes, Google Kubernetes Engine and Azure Kubernetes Service.
-        </p>
+      <div class="col-9 col-start-large-4 ">
+        <ul class="p-inline-list--stretch">
+          <div class="row">
+            <div class="col-3">
+              <li class="p-inline-list__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <hr class="p-rule--muted u-hide--large" />
+                <p>
+                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
+                </p>
+              </li>
+            </div>
+            <div class="col-3">
+              <li class="p-inline-list__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <hr class="p-rule--muted u-hide--large" />
+                <p>
+                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
+                </p>          
+              </li>
+            </div>
+            <div class="col-3">
+              <li class="p-inline-list__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <hr class="p-rule--muted u-hide--large" />
+                <p>
+                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
+                </p>          
+              </li>
+            </div>
+          </div>
+        
+        </ul>
       </div>
     </div>
   </section>
@@ -203,7 +220,6 @@
                         width="151",
                         height="313",
                         hi_def=True,
-                        attrs={"class": "p-logo-section__logo"},
                         loading="lazy") | safe
             }}
           </div>
@@ -213,7 +229,6 @@
                         width="382",
                         height="313",
                         hi_def=True,
-                        attrs={"class": "p-logo-section__logo"},
                         loading="lazy") | safe
             }}
           </div>
@@ -223,28 +238,26 @@
                         width="272",
                         height="313",
                         hi_def=True,
-                        attrs={"class": "p-logo-section__logo"},
                         loading="lazy") | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (url="https://assets.ubuntu.com/v1/eec7dbbe-vmware-logo.png",
-            alt="VMware",
-            width="323",
-            height="313",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/eec7dbbe-vmware-logo.png",
+                        alt="VMware",
+                        width="323",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy"
+                        ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (url="https://assets.ubuntu.com/v1/b8a0a584-maas-logo.png",
-            alt="MAAS",
-            width="250",
-            height="313",
-            hi_def=True,
-            attrs={"class": "p-logo-section__logo"},
-            loading="lazy") | safe
+            {{ image(url="https://assets.ubuntu.com/v1/b8a0a584-maas-logo.png",
+                        alt="MAAS",
+                        width="250",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -253,7 +266,6 @@
                         width="413",
                         height="313",
                         hi_def=True,
-                        attrs={"class": "p-logo-section__logo"},
                         loading="lazy") | safe
             }}
           </div>
@@ -263,7 +275,7 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
+    <div class="row--50-50-on-large">
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section--shallow u-hide--large">
@@ -356,15 +368,15 @@
           </ul>
         </div>
         <div class="p-cta-block">
-          <a href="kubernetes/resources" class="p-button">Find more resources</a>
-          <a href="js-invoke-modal">Contact us to get your K8s questions answered today&nbsp;&rsaquo;</a>
+          <a href="/kubernetes/resources" class="p-button">Find more resources</a>
+          <a href="/kubernetes/contact-us" class="js-invoke-modal">Contact us to get your K8s questions answered today&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
+    <div class="row--50-50-on-large">
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section--shallow">
@@ -441,7 +453,7 @@
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
     <div class="p-section--shallow">
-      <div class="row--50-50">
+      <div class="row--50-50-on-large">
         <div class="col">
           <h2>How does Kubernetes work?</h2>
         </div>
@@ -458,15 +470,17 @@
         </div>
       </div>
     </div>
-    <div class="u-fixed-width p-image-container is-highlighted">
-      {{ image (url="https://assets.ubuntu.com/v1/ef12fd86-chart.png",
-      alt="",
-      width="3696",
-      height="2209",
-      hi_def=True,
-      attrs={ "class": "p-image-container__image" },
-      loading="lazy") | safe
-      }}
+    <div class="row">
+      <div class="p-image-container--cinematic is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/104a2311-chart.png",
+                  alt="",
+                  width="3696",
+                  height="2209",
+                  hi_def=True,
+                  attrs={ "class": "p-image-container__image" },
+                  loading="lazy") | safe
+        }}
+      </div>
     </div>
   </section>
 
