@@ -16,7 +16,6 @@ from webapp.shop.api.ua_contracts.api import (
 )
 from webapp.shop.api.ua_contracts.helpers import (
     extract_last_purchase_ids,
-    is_billing_subscription_auto_renewing,
     to_dict,
 )
 
@@ -214,9 +213,20 @@ def delete_payment_method(advantage_mapper, ua_contracts_api, **kwargs):
     response = ua_contracts_api.delete_payment_method(
         account_id, default_payment_method["id"]
     )
-    advantage_mapper.change_subscriptions_auto_renewal(
-        account_id=account_id, marketplace="canonical-ua", enabled=False
+
+    # Disable auto-renewal for all billing subscriptions
+    subscriptions = advantage_mapper.get_account_subscriptions(
+        account_id, "canonical-ua"
     )
+    for subscription in subscriptions:
+        if (
+            subscription.status in ["active", "locked"]
+            and subscription.is_auto_renewing
+        ):
+            ua_contracts_api.post_subscription_auto_renewal(
+                subscription_id=subscription.id,
+                should_auto_renew=False,
+            )
 
     return response
 
