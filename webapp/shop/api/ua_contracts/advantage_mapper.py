@@ -10,12 +10,12 @@ from webapp.shop.api.ua_contracts.models import (
     UserSubscription,
 )
 from webapp.shop.api.ua_contracts.parsers import (
+    parse_channel_product_listings,
     parse_contract,
     parse_contracts,
     parse_offers,
     parse_product_listing,
     parse_product_listings,
-    parse_channel_product_listings,
     parse_subscriptions,
     parse_users,
 )

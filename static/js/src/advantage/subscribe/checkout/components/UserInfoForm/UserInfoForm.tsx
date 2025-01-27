@@ -396,6 +396,10 @@ const UserInfoForm = ({ setError }: Props) => {
             validate={validateRequired}
             error={touched?.postalCode && errors?.postalCode}
           />
+          <p>
+            We will save your payment card. You can change its details in your
+            Ubuntu Pro Dashboard.
+          </p>
         </>
       )}
     </>

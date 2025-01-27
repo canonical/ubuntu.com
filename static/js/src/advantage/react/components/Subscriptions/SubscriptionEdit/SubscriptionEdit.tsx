@@ -7,7 +7,9 @@ import * as Yup from "yup";
 import {
   ActionButton,
   Button,
+  Notification,
   NotificationProps,
+  NotificationSeverity,
   Spinner,
 } from "@canonical/react-components";
 import {
@@ -19,6 +21,7 @@ import {
   usePreviewResizeContract,
   useResizeContract,
   useUserSubscriptions,
+  useHasPaymentMethod,
 } from "advantage/react/hooks";
 import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
@@ -316,6 +319,10 @@ const SubscriptionEdit = ({
   };
 
   const ResizeSchema = generateSchema(subscription, unitName);
+
+  const accountId = renewableSubscriptions?.[0]?.account_id ?? null;
+  const { data: hasPaymentMethod } = useHasPaymentMethod(accountId);
+
   return (
     <>
       <Formik
@@ -350,6 +357,16 @@ const SubscriptionEdit = ({
                   <hr />
                 </div>
                 <h5>Resize subscription</h5>
+                {!hasPaymentMethod ? (
+                  <Notification
+                    data-test="no-payment-method"
+                    severity={NotificationSeverity.CAUTION}
+                    title="No active payment method present"
+                  >
+                    To auto-renew your subscription, add one in{" "}
+                    <a href="/account/payment-methods">Payment method</a>.
+                  </Notification>
+                ) : null}
                 <FormikField
                   className="p-subscription__resize"
                   error={errors.size || generateError(error)}
@@ -375,6 +392,7 @@ const SubscriptionEdit = ({
                   name="size"
                   type="number"
                   wrapperClassName="u-sv3"
+                  disabled={!hasPaymentMethod}
                 />
                 <ResizeSummary
                   oldNumberOfMachines={subscription.number_of_machines}
