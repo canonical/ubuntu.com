@@ -1766,3 +1766,17 @@ legend {
     height: 15rem;
   }
 }
+
+.u-horizontal-nudge {
+  @media screen and ($breakpoint-large <= width) {
+    margin-left: $spv--small;
+  }
+}
+
+.u-vertical-nudge {
+  margin-bottom: $spv--small !important;
+}
+
+.p-table--mobile-card tr td {
+  white-space: normal;
+}
