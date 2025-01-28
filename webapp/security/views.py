@@ -382,9 +382,9 @@ def cve_index():
             )
 
             for cve_package in cve["packages"]:
-                cve_package[
-                    "release_statuses"
-                ] = get_formatted_release_statuses(cve_package, friendly_names)
+                cve_package["release_statuses"] = (
+                    get_formatted_release_statuses(cve_package, friendly_names)
+                )
 
     else:
         # If not, request latest 5 high priority cves
@@ -413,9 +413,9 @@ def cve_index():
             )
 
             for cve_package in cve["packages"]:
-                cve_package[
-                    "release_statuses"
-                ] = get_formatted_release_statuses(cve_package, friendly_names)
+                cve_package["release_statuses"] = (
+                    get_formatted_release_statuses(cve_package, friendly_names)
+                )
 
     # Check if cve id is valid
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
