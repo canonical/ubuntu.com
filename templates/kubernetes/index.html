@@ -446,11 +446,88 @@
     <div class="p-section--shallow">
       <div class="row--50-50">
         <div class="col">
-          Cards here
+          <hr class="p-rule--highlight u-no-margin--bottom" />
+          <div class="p-card--overlay u-no-padding--top"
+               style="padding: 1.5rem;
+                      height: 95%;
+                      overflow: hidden">
+            <div class="row p-section--shallow">
+              <div class="col">
+                <h3>Kubernetes Explorer</h3>
+                <p class="u-text--muted">The low cost solution for maximum scalability.</p>
+              </div>
+            </div>              
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <div class="row">
+              <div class="col-2">
+                <h5 class="p-text--small-caps">What's included</h5>
+              </div>
+              <div class="col-4">
+                <ul class="p-list--divided">
+                  <li class="p-list__item is-ticked">Kubernetes fundamentals</li>
+                  <li class="p-list__item is-ticked">Container development basics</li>
+                  <li class="p-list__item is-ticked">MicroK8s enablement</li>
+                  <li class="p-list__item is-ticked">Charmed Kubernetes enablement</li>
+                  <li class="p-list__item is-ticked">Monitoring and logging</li>
+                  <li class="p-list__item is-ticked">Kubernetes lifecycle management</li>
+                  <li class="p-list__item is-ticked">Security essentials</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col">
-          Cards here
+          <hr class="p-rule--highlight u-no-margin--bottom" />
+          <div class="p-card--overlay u-no-padding--top"
+               style="padding: 1.5rem;
+                      height: 95%;
+                      overflow: hidden">
+            <div class="row">
+              <div class="col">
+                <div class="p-section--shallow">
+                  <h3 id="discoverer-text">Kubernetes Discoverer</h3>
+                  <p class="u-text--muted">Three-day training and 2-week deployment of reference K8s architecture, including:</p>
+                </div>
+                <p>
+                  <span class="p-heading--5">Discoverer</span>
+                  <label class="p-switch" style="display: inline-block; padding-left: 32px; padding-right: 32px;">
+                    <input type="checkbox" class="p-switch__input" role="switch" id="discoverer-switch" />
+                    <span class="p-switch__slider"></span>
+                  </label>
+                  <span class="p-heading--5">Discoverer Plus</span>
+                </p>
+              </div>
+            </div>              
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <div class="row">
+              <div class="col-2">
+                <h5 class="p-text--small-caps">What's included</h5>
+              </div>
+              <div class="col-4">
+                <ul class="p-list--divided">
+                  <li class="p-list__item is-ticked">High Availability</li>
+                  <li class="p-list__item is-ticked" id="discoverer-item">
+                    <a href="/public-cloud">Public clouds</a>, VMware, <a href="/openstack">OpenStack</a>
+                  </li>
+                  <li class="p-list__item is-ticked u-hide" id="discoverer-pro-item">
+                    <a href="/public-cloud">Public clouds</a>, VMware, <a href="/openstack">OpenStack</a>, <a href="/bare-metal">Bare Metal</a>
+                  </li>
+                  <li class="p-list__item is-ticked" id="discoverer-item">Storage and SDN basic options</li>
+                  <li class="p-list__item is-ticked u-hide" id="discoverer-pro-item">Storage and SDN extensive options</li>
+                  <li class="p-list__item is-ticked">Logging, monitoring, alerting</li>
+                  <li class="p-list__item is-ticked">Kubernetes lifecycle management</li>
+                  <li class="p-list__item is-ticked">Security essentials</li>
+                  <li class="p-list__item is-ticked">Supported or Fully Managed</li>
+
+                  <li class="p-list__item is-crossed u-text--muted" id="discoverer-muted-item">Third-party integrations</li>
+                  <li class="p-list__item is-crossed u-text--muted" id="discoverer-muted-item">GPU Acceleration</li>
+                  <li class="p-list__item is-crossed u-text--muted" id="discoverer-muted-item">Private registry options</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+        
       </div>
     </div>
   </section>
@@ -642,5 +719,44 @@
      data-lp-id="6274" 
      data-return-url="/kubernetes#contact-form-success" 
      data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const switchElement = document.getElementById('discoverer-switch');
+    const discovererText = document.getElementById('discoverer-text');
+    const discovererProItems = document.querySelectorAll('#discoverer-pro-item');
+    const discovererItems = document.querySelectorAll('#discoverer-item');
+    const discovererMutedItems = document.querySelectorAll('#discoverer-muted-item');
+  
+    switchElement.addEventListener('change', function() {
+      if (switchElement.checked) {
+        discovererMutedItems.forEach(item => {
+          item.classList.remove('is-crossed', 'u-text--muted');
+          item.classList.add('is-ticked');
+          discovererText.textContent = 'Kubernetes Discoverer Plus';
+        });
+        discovererItems.forEach(item => {
+          item.classList.add('u-hide');
+        });
+        discovererProItems.forEach(item => {
+          item.classList.remove('u-hide');
+        });
+
+      } else {
+        discovererMutedItems.forEach(item => {
+          item.classList.remove('is-ticked');
+          item.classList.add('is-crossed', 'u-text--muted');
+          discovererText.textContent = 'Kubernetes Discoverer';
+        });
+        discovererItems.forEach(item => {
+          item.classList.remove('u-hide');
+        });
+        discovererProItems.forEach(item => {
+          item.classList.add('u-hide');
+        });
+      }
+    });
+  });
+</script>
 
 {% endblock content %}
