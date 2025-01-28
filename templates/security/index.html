@@ -6,258 +6,305 @@
   Companies around the world rely on Ubuntu for secure open source solutions. We work with our customers to meet the highest security standards.
 {% endblock %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1yEocR1WXQvN_B1L1yBYrG_0D7ikS6QhcOz27sYs-teI/edit
 {% endblock meta_copydoc %}
 
-{% block content %}
-  <section class="p-strip--suru is-deep">
-    <div class="row">
-      <div class="col-8">
-        <h1>Dedicated to the security of Ubuntu</h1>
-        <p>
-          Since its inception in 2004, Ubuntu has been built on a foundation of enterprise-grade, industry leading security practices. From our toolchain to the suite of packages we use and from our update process to our industry standard certifications, Canonical never stops working to keep Ubuntu at the forefront of safety  and reliability.
-        </p>
-        <p>
-          <a class="p-button--positive"
-             href="/engage/ubuntu-cybersecurity-webinar"
-             onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });">Watch the Ubuntu cybersecurity webinar</a>
-          <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
-        </p>
-      </div>
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
-      <div class="col-4 u-hide--small u-hide--medium u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/c3814c0a-shields-security-white.svg",
-                alt="",
-                height="185",
-                width="325",
-                hi_def=True,
-                loading="auto") | safe
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Dedicated to the security of Ubuntu',
+    layout='50/50-full-width-image'
+  ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Since its inception in 2004, Ubuntu has been built on a foundation of enterprise-grade, industry leading security practices. From our toolchain to the suite of packages we use and from our update process to our industry standard certifications, Canonical never stops working to keep Ubuntu at the forefront of safety  and reliability.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+      <a href="/engage/ubuntu-cybersecurity-webinar"
+      onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });">Watch the Ubuntu cybersecurity webinar&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(
+          url="https://assets.ubuntu.com/v1/99a76c31-hero.png",
+          alt="",
+          width="2464",
+          height="1028",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "p-image-container__image"}
+          ) | safe
         }}
       </div>
-    </div>
-  </section>
+    {% endif -%}
+  {% endcall -%}
 
-  {% include "shared/_cra-banner.html" %}
-
-  <section class="p-strip is-deep">
-    <div class="row p-divider">
-      <div class="col-4 p-divider__block">
-        <h2 class="p-heading--3">Secure out of the box</h2>
-        <p>
-          All Canonical products are built with unrivalled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.
-        </p>
-        <p>
-          <a href="https://wiki.ubuntu.com/Security/Features">Learn more about Ubuntu’s security features</a>
-        </p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h2 class="p-heading--3">Hardening at scale</h2>
-        <p>
-          The default configuration of Ubuntu LTS releases balances between usability, performance and security. However, non general purpose systems can be further hardened to reduce their attack surface. Canonical provides certified tooling for automated audit and hardening. Comply with widely accepted industry hardening profiles, including CIS and DISA-STIG.
-        </p>
-        <p>
-          <a href="/security/compliance-automation">Learn more about hardening Ubuntu&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h2 class="p-heading--3">Certified compliance</h2>
-        <p>
-          Canonical offers a range of tools to enable organisations to manage their desktop fleet and cloud with specific compliance requirements. A FIPS (Federal Information Processing Standard) certified version of Ubuntu is also available to comply to US government standards.
-        </p>
-        <p>
-          <a href="/security/fips">Learn more about Ubuntu with FIPS 140&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light is">
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h2>Cybersecurity and Compliance with Ubuntu</h2>
-        <p>
-          Learn about cybersecurity and zero trust as well as the common challenges faced in the implementation of cybersecurity programs, including challenges in vulnerability management, secure configuration of software and defenses against malware. See how Canonical and Ubuntu can help manage these challenges and lay the software foundation of a successful cybersecurity program.
-        </p>
-        <p>
-          <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
-        </p>
-      </div>
-      <div class="col-6 u-hide--small u-hide--medium u-align--center">
-        <div class="jsBrightTALKEmbedWrapper"
-             style="width:100%;
-                    height:100%;
-                    position:relative;
-                    background:#ffffff">
-          <script class="jsBrightTALKEmbedConfig" type="application/json">
-            {
-              "channelId": 6793,
-              "language": "en-US",
-              "commId": 516333,
-              "displayMode": "standalone",
-              "height": "280"
-            }
-          </script>
-          <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js"
-                  class="jsBrightTALKEmbed"></script>
-          <script>
-            const iframe = document.querySelector('.jsBrightTALKEmbedWrapper iframe');
-            iframe.addEventListener('load', () => {
-              iframe.scrolling = "yes";
-            });
-          </script>
+  <!-- whether or not the following still needs to be shared TBD -->
+  <!-- {% include "shared/_cra-banner.html" %} -->
+  <section class="p-section">
+    <div class="row">
+      <div class="p-notification--information">
+        <div class="p-notification__content">
+          <div class="p-notification__message">
+            Need information about the Cyber Resilience Act (CRA)? Canonical is committed to delivering CRA-compliant Ubuntu. To learn more, visit our dedicated webpage for understanding the CRA and its requirements, or <a href="/security/contact-us" class="js-invoke-modal">contact our sales team</a>.
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2>Find out more</h2>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <h2>Heading pending</h2>
+      </div>
     </div>
-    <div class="row u-equal-height">
-      <div class="col-4 p-card u-align--center">
-        <p>
-          <a>
-            {{ image (
-            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-            alt="",
-            width="54",
-            height="47",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </a>
-        </p>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-equal-height-row has-divider-2">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight" />
+              <h3 class="p-heading--5">Secure out of the box</h3>
+            </div>            
+            <p class="p-equal-height-row__item">
+              All Canonical products are built with unrivaled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.
+            </p>
+            <div class="p-equal-height-row__item">
+              <p>
+                <a href="https://wiki.ubuntu.com/Security/Features">Learn more about Ubuntu's security features&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+    
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight" />
+              <h3 class="p-heading--5">Hardening at scale</h3>
+            </div>
 
-        <h3 class="p-heading--4 u-no-margin--bottom">
-          <a href="/engage/a-small-to-medium-size-business-guide-to-cybersecurity">A small to medium-size business guide to cybersecurity&nbsp;&rsaquo;</a>
-        </h3>
-      </div>
-      <div class="col-4 p-card u-align--center">
-        <p>
-          <a>
-            {{ image (
-            url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
-            alt="",
-            width="54",
-            height="47",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </a>
-        </p>
-
-        <h3 class="p-heading--4 u-no-margin--bottom">
-          <a href="https://assets.ubuntu.com/v1/8232357b-Cybersecurity.with.Ubuntu_07.12.21.1.pdf">Cybersecurity with Ubuntu datasheet&nbsp;&rsaquo;</a>
-        </h3>
-      </div>
-      <div class="col-4 p-card u-align--center">
-        <p>
-          <a>
-            {{ image (
-            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-            alt="",
-            width="54",
-            height="47",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-            }}
-          </a>
-        </p>
-        <h3 class="p-heading--4 u-no-margin--bottom">
-          <a href="https://assets.ubuntu.com/v1/66fcd858-canonical-ubuntu-core-security-2018-11-13.pdf">Ubuntu Core security&nbsp;&rsaquo;</a>
-        </h3>
+            <p class="p-equal-height-row__item">
+              The default configuration of Ubuntu LTS releases balances between usability, performance and security. However, non general purpose systems can be further hardened to reduce their attack surface. Canonical provides certified tooling for automated audit and hardening. Comply with widely accepted industry hardening profiles, including CIS and DISA-STIG.
+            </p>
+            <div class="p-equal-height-row__item">
+              <p>
+                <a href="/security/compliance-automation">Learn more about hardening Ubuntu&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+    
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight" />
+              <h3 class="p-heading--5">Certified compliance</h3>
+            </div>
+            <p class="p-equal-height-row__item">
+              Canonical offers a range of tools to enable organizations to manage their desktop fleet and cloud with specific compliance requirements. A FIPS (Federal Information Processing Standard) certified version of Ubuntu is also available to comply to US government standards.
+            </p>
+            <div class="p-equal-height-row__item">
+              <p>
+                <a href="/security/fips">Learn more about Ubuntu with FIPS 140&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light is-deep">
-    <div class="u-fixed-width">
-      <h2>Canonical puts security at the heart of Ubuntu</h2>
-    </div>
-    <div class="u-fixed-width">
-      <ul class="p-matrix is-trisected">
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Fast fixes</h3>
-            <p class="p-matrix__desc">
-              No system is 100% secure and vulnerabilities will always arise. What matters is the speed and success with which they are resolved &mdash; and nobody makes fixes available faster than Canonical.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Automatic updates</h3>
-            <p class="p-matrix__desc">
-              Security updates are provided for ten years for long term support (LTS) releases. With the default configuration for unattended upgrades (16.04 and after), these updates get applied to your system automatically.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Livepatch</h3>
-            <p class="p-matrix__desc">
-              The Ubuntu Livepatch Service enables live automatic security fixes to the kernel without rebooting. This service reduces unplanned downtime while maintaining compliance and security.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">10 years of support</h3>
-            <p class="p-matrix__desc">
-              A new LTS (Long Term Support) version of Ubuntu is released every two years, for desktop and server. Both versions receive updates and are supported for ten years.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Expanded security</h3>
-            <p class="p-matrix__desc">
-              Canonical offers Expanded Security Maintenance (ESM) for infrastructure and applications to provide kernel livepatches and vulnerability fixes through a secure and private archive.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">FIPS</h3>
-            <p class="p-matrix__desc">
-              Ubuntu provides you with FIPS 140 certified cryptographic packages enabling Linux workloads to run on U.S. government regulated and high security environments.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Designed to be secure</h3>
-            <p class="p-matrix__desc">
-              Linux is based on Unix. It inherits Discretionary Access Control and includes Mandatory Access Control via AppArmor.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Protected VMs</h3>
-            <!-- <p class="p-matrix__desc">LXD containers, libvirt VMs and OpenStack VMs are protected by AppArmor by default. A rich set of profiles are provided so users can opt-in to protection for other applications.</p> -->
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div>
-            <h3 class="p-matrix__title p-heading--4">Secure snap packages</h3>
-            <p class="p-matrix__desc">
-              Software packages delivered as strict-mode snaps are fully confined using AppArmor, device cgroups, and seccomp.
-            </p>
-          </div>
-        </li>
-      </ul>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Cybersecurity and Compliance with Ubuntu</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <a href="https://www.brighttalk.com/webcast/6793/516333?" aria-label="Watch the Cybersecurity & Compliance with Ubuntu webinar">
+            <div class="p-image-container--16-9 is-highlighted is-cover">
+              {{ image(
+                url="https://assets.ubuntu.com/v1/b1ba7501-webinar.png",
+                alt="",
+                width="1200",
+                height="676",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}
+                ) | safe
+              }}
+            </div>
+          </a>
+        </div>
+        <p>
+          Learn about cybersecurity and zero trust as well as the common challenges faced in the implementation of cybersecurity programs, including challenges in vulnerability management, secure configuration of software and defenses against malware. See how Canonical and Ubuntu can help manage these challenges and lay the software foundation of a successful cybersecurity program.
+        </p>
+        <div class="p-cta-block">
+          <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  {% include "shared/_case-study-itstrategen.html" %}
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Find out more</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Whitepapers</h3>
+          </div>
+          <div class="col-4">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/engage/a-small-to-medium-size-business-guide-to-cybersecurity">A small to medium-size business guide to cybersecurity&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://assets.ubuntu.com/v1/66fcd858-canonical-ubuntu-core-security-2018-11-13.pdf">Ubuntu Core security&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Datasheet</h3>
+          </div>
+          <div class="col-4">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://assets.ubuntu.com/v1/8232357b-Cybersecurity.with.Ubuntu_07.12.21.1.pdf">Cybersecurity with Ubuntu datasheet&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="p-strip--light">
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>Canonical puts security at the heart of Ubuntu</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Fast fixes</h3>
+              <p>
+                No system is 100% secure and vulnerabilities will always arise. What matters is the speed and success with which they are resolved &mdash; and nobody makes fixes available faster than Canonical.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Automatic updates</h3>
+              <p>
+                Security updates are provided for ten years for long term support (LTS) releases. With the default configuration for unattended upgrades (16.04 and after), these updates get applied to your system automatically.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Livepatch</h3>
+              <p>
+                The Ubuntu Livepatch Service enables live automatic security fixes to the kernel without rebooting. This service reduces unplanned downtime while maintaining compliance and security.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">10 years of support</h3>
+              <p>
+                A new LTS (Long Term Support) version of Ubuntu is released every two years, for desktop and server. Both versions receive updates and are supported for ten years.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Expanded security</h3>
+              <p>
+                Canonical offers Expanded Security Maintenance (ESM) for infrastructure and applications to provide kernel livepatches and vulnerability fixes through a secure and private archive.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">FIPS</h3>
+              <p>
+                Ubuntu provides you with FIPS 140 certified cryptographic packages enabling Linux workloads to run on U.S. government regulated and high security environments.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Designed to be secure</h3>
+              <p>
+                Linux is based on Unix. It inherits Discretionary Access Control and includes Mandatory Access Control via AppArmor.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Protected VMs</h3>
+              <p>
+                LXD containers, libvirt VMs and OpenStack VMs are protected by AppArmor by default. A rich set of profiles are provided so users can opt-in to protection for other applications.
+              </p>
+            </div>
+            <div class="col-3 col-medium-2">
+              <h3 class="p-heading--5">Secure snap packages</h3>
+              <p>
+                Software packages delivered as strict-mode snaps are fully confined using AppArmor, device cgroups, and seccomp.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section" id="stories">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Learn how ITstrategen keeps their applications secure with Ubuntu</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--16-9 is-highlighted is-cover">
+            {{ image(
+              url="https://assets.ubuntu.com/v1/d2c94444-it-strategen.png",
+              alt="",
+              width="1200",
+              height="801",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
+          </div>
+        </div>
+        <p>The security of customer data is of the utmost importance to ITstrategen, which is why Ubuntu is their server operating system of choice.</p>
+        <div class="p-cta-block">
+          <a href="/engage/ITstrategen-case-study">Download the case study&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
     <div class="u-fixed-width">
       <h2 class="p-muted-heading">Ubuntu is trusted by</h2>
       <div class="p-logo-section has-misaligned-images">
@@ -347,91 +394,176 @@
     </div>
   </section>
 
-  <section class="p-strip is-deep u-image-position">
-    <div class="row">
-      <div class="col-7">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Find out why the UK Government puts Ubuntu in first place for security</h2>
+      </div>
+      <div class="col">
         <p>
           <abbr title="Communications-Electronics Security Group">CESG</abbr>, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.
         </p>
-        <p>
+        <div class="p-cta-block">
           <a class="p-button"
              href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span>Read the <span class="u-off-screen">UK Gov Report Summary</span>case study</span></a>
-        </p>
-      </div>
-      <div class="col-5 u-align--center u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
-                alt="",
-                height="240",
-                width="200",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "u-hide--small u-hide--medium"}) | safe
-        }}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light is-deep">
-    <div class="row">
-      <div class="col-8">
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Helping you manage security</h2>
+      </div>
+      <div class="col">
         <p>
           Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates for the main OS. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.
         </p>
       </div>
     </div>
-    <div class="row u-equal-height">
-      <div class="col-6 p-card">
-        <h3>Reduce downtime and unplanned work</h3>
-        <p>
+    <div class="p-equal-height-row has-divider-3">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
+            {{ image(
+              url="https://assets.ubuntu.com/v1/13fc2636-reduce-downtime.png",
+              alt="",
+              width="568",
+              height="853",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small">
+          <h3 class="p-heading--5">
+            Reduce downtime and unplanned work
+          </h3>
+        </div>
+        <p class="p-equal-height-row__item">
           The Ubuntu Livepatch service eliminates the need for unplanned maintenance windows for high and critical severity kernel vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping uninterrupted service with Ubuntu Livepatch service for up to ten years.
         </p>
-        <p>
-          <a href="/security/livepatch">Learn more about the Livepatch Service&nbsp;&rsaquo;</a>
-        </p>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/security/livepatch">Learn more about the Livepatch Service&nbsp;&rsaquo;</a>
+          </p>
+        </div>
       </div>
-      <div class="col-6 p-card">
-        <h3>Be compliant and FIPS certified</h3>
-        <p>
+    
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
+            {{ image(
+              url="https://assets.ubuntu.com/v1/38b96c59-be-compliant.png",
+              alt="",
+              width="568",
+              height="853",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">  
+          <hr class="p-rule--highlight u-hide--medium u-hide--small">  
+          <h3 class="p-heading--5">
+            Be compliant and FIPS certified
+          </h3>
+        </div>
+        <p class="p-equal-height-row__item">
           Developing and running workloads for high security and government regulated environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 and Common Criteria certifications available with Ubuntu Advantage and Pro.
         </p>
-        <p>
-          <a href="/security/compliance-automation">Learn more about Ubuntu certifications&nbsp;&rsaquo;</a>
-        </p>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/security/compliance-automation">Learn more about Ubuntu certifications&nbsp;&rsaquo;</a>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="row u-equal-height">
-      <div class="col-6 p-card">
-        <h3>Manage security updates with Landscape</h3>
-        <p>
+    
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
+            {{ image(
+              url="https://assets.ubuntu.com/v1/2ef83b71-manage-security.png",
+              alt="",
+              width="568",
+              height="853",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small">
+          <h3 class="p-heading--5">
+            Manage security updates with Landscape
+          </h3>
+        </div>
+        <p class="p-equal-height-row__item">
           Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers and desktops. Landscape gives the ability to centrally view and manage the security updates that have been applied to their systems and, critically, the security updates which have not yet been applied.
         </p>
-        <p>
-          <a href="https://landscape.canonical.com">Get Landscape</a>
-        </p>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/landscape">Get Landscape&nbsp;&rsaquo;</a>
+          </p>
+        </div>
       </div>
-      <div class="col-6 p-card">
-        <h3>Expand your Ubuntu security maintenance</h3>
-        <p>
+    
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
+            {{ image(
+              url="https://assets.ubuntu.com/v1/ec15ce25-expand-your-ubuntu.png",
+              alt="",
+              width="568",
+              height="853",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-image-container__image"}
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small">
+          <h3 class="p-heading--5">
+            Expand your Ubuntu security maintenance
+          </h3>
+        </div>
+        <p class="p-equal-height-row__item">
           Canonical offers Expanded Security Maintenance (ESM), to Ubuntu Pro customers to provide important security fixes for the kernel and essential user space packages, toolchains, and applications. These updates are delivered via a secure, private archive exclusively available to Canonical customers.
         </p>
-        <p>
-          <a href="/engage/14-04-esm">Watch our security compliance webinar now&nbsp;&rsaquo;</a>
-        </p>
+        <div class="p-equal-height-row__item">
+          <p>
+            <a href="/engage/14-04-esm">Watch our security compliance webinar now&nbsp;&rsaquo;</a>
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-deep" id="ua-support">
-    <div class="row">
-      <div class="col-7">
+  <section class="p-section" id="ua-support">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Ubuntu Pro</h2>
-        <p class="p-heading--4">All of our security products are available for a one off fee.</p>
+      </div>
+      <div class="col">
+        <p class="p-heading--5">All of our security products are available for a one off fee.</p>
         <p>
           Ubuntu Pro is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:
         </p>
-        <ul class="p-list">
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
           <li class="p-list__item is-ticked">FIPS: certified cryptographic modules available for compliance requirements</li>
           <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
@@ -441,57 +573,74 @@
           <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
           <li class="p-list__item is-ticked">Optional support: phone and web-based support at multiple service levels</li>
         </ul>
-        <p>
+        <div class="p-cta-block">
           <a href="/pro" class="p-button--positive">Purchase Ubuntu Pro</a>
-        </p>
-        <p>
           <a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Pro&nbsp;&rsaquo;</a>
-        </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row u-equal-height">
-      <div class="col-8">
-        <h2>Talk to a member of our team</h2>
-        <p class="p-heading--4">We can recommend a security solution that best suits the needs of your&nbsp;organisation.</p>
-        <ul class="p-inline-list">
-          <li class="p-inline-list__item">
-            <a href="/support/contact-us" class="p-button js-invoke-modal">Contact us</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-                alt="",
-                height="178",
-                width="250",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
-      </div>
-    </div>
-  </section>
+  <hr class="p-rule is-fixed-width" />
 
   <section class="p-strip is-deep">
-    <div class="row u-equal-height">
-      <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/7076ef2d-ubuntu-documents.svg",
-                alt="",
-                height="178",
-                width="145",
-                hi_def=True,
-                loading="lazy",) | safe
-        }}
-      </div>
-      <div class="col-8">
+    <div class="u-fixed-width">
+      <h2>
+        Find a security solution that best suits the needs of your organization.</p>
+        <a class="p-heading--2" href="/support/contact-us" class="p-button js-invoke-modal">Talk to a member of our team&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
         <h2>Ubuntu security disclosure policy</h2>
+      </div>
+      <div class="col">
         <p>
           Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues.
           For more information on how to contact the Ubuntu Security Team and expectations, please refer to our <a href="/security/disclosure-policy">Ubuntu Security disclosure and embargo policy</a>.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Join the discussion</h3>
+          </div>
+          <div class="col-4">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened">Ubuntu security updates mailing list&nbsp;&rsaquo;</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Security announcements mailing list&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Canonical is offering Expanded Security Maintenance</h3>
+          </div>
+          <div class="col-4">
+            <p>Canonical is offering Ubuntu Expanded Security Maintenance (ESM) for security fixes and essential packages.</p>
+            <div class="p-cta-block">
+              <a href="/support/esm">Find out more about ESM&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
