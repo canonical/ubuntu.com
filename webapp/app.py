@@ -141,6 +141,7 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
+    process_active_vulnerabilities,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -547,6 +548,12 @@ security_vulnerabilities = Category(
     blueprint_name="security-vulnerabilities",
 )
 security_vulnerabilities.init_app(app)
+
+# Parse vulnerabilities to display to /security
+app.add_url_rule(
+    "/security",
+    view_func=process_active_vulnerabilities(security_vulnerabilities),
+)
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)

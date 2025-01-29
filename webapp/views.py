@@ -1,10 +1,10 @@
 # Standard library
-import datetime
 import html
 import math
 import os
 import re
 import json
+from datetime import datetime
 
 # Packages
 import dateutil
@@ -719,7 +719,7 @@ class BlogRedirects(BlogView):
             context["article"]["date_gmt"]
         ), dateutil.parser.parse(context["article"]["modified_gmt"])
 
-        date_now = datetime.datetime.now()
+        date_now = datetime.now()
 
         created_at_difference = dateutil.relativedelta.relativedelta(
             date_now, created_at
@@ -1157,3 +1157,34 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 
 def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
+
+
+def process_active_vulnerabilities(security_vulnerabilities):
+    """
+    Takes a list of security vulnerabilities and filters out the ones where
+    the 'Display until' date is in the past.
+    """
+
+    def security_index():
+        try: 
+            vulnerabilities_list = security_vulnerabilities.parser.category_index_metadata["vulnerabilities"]
+            current_date = datetime.now()
+            filtered_vulnerabilities = [
+                vulnerability
+                for vulnerability in vulnerabilities_list
+                if vulnerability.get("display-until")
+                and datetime.strptime(vulnerability["display-until"], "%d/%m/%Y")
+                > current_date
+            ]
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=filtered_vulnerabilities,
+            )
+        except Exception as e:
+            flask.current_app.extensions["sentry"].captureException(f"Error processing vulnerabilities: {e}")
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=[],
+            )
+
+    return security_index
