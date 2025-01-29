@@ -134,6 +134,43 @@ if (phoneNumberInput || countryInput) {
   prepareInputFields(phoneNumberInput, countryInput);
 }
 
+/**
+ * Initializes 'other' inputs. Where selecting the input triggers a textarea to appear.
+ */
+function setupOtherInputs() {
+  const otherTextarea = document.querySelectorAll(".js-other-input");
+  otherTextarea.forEach((textarea) => {
+    const triggerInputEle = document.querySelector(
+      `#${textarea.dataset.inputId}`,
+    );
+    document
+      .querySelectorAll(`[name=${triggerInputEle.name}]`)
+      .forEach((input) => {
+        input.onclick = () => {
+          if (input.type === "radio") {
+            if (input == triggerInputEle) {
+              textarea.classList.remove("u-hide");
+            } else {
+              textarea.classList.add("u-hide");
+            }
+          } else if (input.type === "checkbox") {
+            if (input === triggerInputEle) {
+              if (input.checked) {
+                textarea.classList.remove("u-hide");
+              } else {
+                textarea.classList.add("u-hide");
+              }
+            }
+          }
+        };
+      });
+    textarea.addEventListener("input", () => {
+      triggerInputEle.value = textarea.value;
+    });
+  });
+}
+setupOtherInputs();
+
 export default {
   prepareInputFields,
   setupIntlTelInput,
