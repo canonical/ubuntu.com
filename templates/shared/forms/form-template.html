@@ -1,8 +1,10 @@
+{% set form_id = formId or formData.formId %}
+
 {% if isModal %}
   <div class="u-hide"
        id="contact-form-container"
        data-form-location="/shared/forms/form-template"
-       data-form-id="{{ formData.formId }}"
+       data-form-id="{{ form_id }}"
        data-lp-id=""
        data-return-url="{{ formData.returnUrl }}"
        data-lp-url="{{ formData.lpUrl }}">

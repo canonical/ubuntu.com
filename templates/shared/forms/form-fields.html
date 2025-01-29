@@ -2,7 +2,7 @@
   <form {% if isModal %}class="js-modal-form"{% endif %}
         action="/marketo/submit"
         method="post"
-        id="mktoForm_{{ formData.formId }}">
+        id="mktoForm_{{ form_id }}">
     {% for fieldset in fieldsets %}
 
       {% if fieldset.id %}
@@ -165,7 +165,7 @@
                        aria-hidden="true"
                        aria-label="hidden field"
                        name="formid"
-                       value="{{ formData.formId }}" />
+                       value="{{ form_id }}" />
                 <input type="hidden"
                        aria-hidden="true"
                        aria-label="hidden field"
