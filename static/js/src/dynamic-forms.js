@@ -422,6 +422,20 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             });
           }
 
+          const checkboxFieldsets = document.querySelectorAll(
+            ".js-remove-checkbox-names",
+          );
+          if (checkboxFieldsets.length > 0) {
+            checkboxFieldsets.forEach((checkboxFieldset) => {
+              const checkboxInputs = checkboxFieldset.querySelectorAll(
+                "input[type='checkbox']",
+              );
+              checkboxInputs.forEach((checkboxInput) => {
+                checkboxInput.removeAttribute("name");
+              });
+            });
+          }
+
           return message;
         }
       }
