@@ -21,35 +21,32 @@
   {% call(slot) vf_hero(
     title_text='Dedicated to the security of Ubuntu',
     layout='50/50-full-width-image'
-  ) -%}
+    ) -%}
     {%- if slot == 'description' -%}
       <p>
         Since its inception in 2004, Ubuntu has been built on a foundation of enterprise-grade, industry leading security practices. From our toolchain to the suite of packages we use and from our update process to our industry standard certifications, Canonical never stops working to keep Ubuntu at the forefront of safety  and reliability.
       </p>
     {%- endif -%}
     {%- if slot == 'cta' -%}
-      <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+      <a class="p-button--positive js-invoke-modal"
+         href="/security/contact-us">Contact us</a>
       <a href="/engage/ubuntu-cybersecurity-webinar"
-      onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });">Watch the Ubuntu cybersecurity webinar&nbsp;&rsaquo;</a>
+         onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });">Watch the Ubuntu cybersecurity webinar&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
-        {{ image(
-          url="https://assets.ubuntu.com/v1/99a76c31-hero.png",
-          alt="",
-          width="2464",
-          height="1028",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "p-image-container__image"}
-          ) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/99a76c31-hero.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
     {% endif -%}
   {% endcall -%}
 
-  <!-- whether or not the following still needs to be shared TBD -->
-  <!-- {% include "shared/_cra-banner.html" %} -->
   <section class="p-section">
     <div class="row">
       <div class="p-notification--information">
@@ -65,6 +62,7 @@
   <section class="p-section">
     <div class="p-section--shallow">
       <div class="u-fixed-width">
+        <hr class="p-rule" />
         <h2>Heading pending</h2>
       </div>
     </div>
@@ -75,7 +73,7 @@
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight" />
               <h3 class="p-heading--5">Secure out of the box</h3>
-            </div>            
+            </div>
             <p class="p-equal-height-row__item">
               All Canonical products are built with unrivaled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.
             </p>
@@ -85,7 +83,7 @@
               </p>
             </div>
           </div>
-    
+
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight" />
@@ -101,7 +99,7 @@
               </p>
             </div>
           </div>
-    
+
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight" />
@@ -129,17 +127,16 @@
       </div>
       <div class="col">
         <div class="p-section--shallow">
-          <a href="https://www.brighttalk.com/webcast/6793/516333?" aria-label="Watch the Cybersecurity & Compliance with Ubuntu webinar">
+          <a href="https://www.brighttalk.com/webcast/6793/516333?"
+             aria-label="Watch the Cybersecurity & Compliance with Ubuntu webinar">
             <div class="p-image-container--16-9 is-highlighted is-cover">
-              {{ image(
-                url="https://assets.ubuntu.com/v1/b1ba7501-webinar.png",
-                alt="",
-                width="1200",
-                height="676",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"}
-                ) | safe
+              {{ image(url="https://assets.ubuntu.com/v1/b1ba7501-webinar.png",
+                            alt="",
+                            width="1200",
+                            height="676",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
               }}
             </div>
           </a>
@@ -265,9 +262,7 @@
             </div>
             <div class="col-3 col-medium-2">
               <h3 class="p-heading--5">Secure snap packages</h3>
-              <p>
-                Software packages delivered as strict-mode snaps are fully confined using AppArmor, device cgroups, and seccomp.
-              </p>
+              <p>Software packages delivered as strict-mode snaps are fully confined using AppArmor, device cgroups, and seccomp.</p>
             </div>
           </div>
         </div>
@@ -284,19 +279,19 @@
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container--16-9 is-highlighted is-cover">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/d2c94444-it-strategen.png",
-              alt="",
-              width="1200",
-              height="801",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/d2c94444-it-strategen.png",
+                        alt="",
+                        width="1200",
+                        height="801",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
-        <p>The security of customer data is of the utmost importance to ITstrategen, which is why Ubuntu is their server operating system of choice.</p>
+        <p>
+          The security of customer data is of the utmost importance to ITstrategen, which is why Ubuntu is their server operating system of choice.
+        </p>
         <div class="p-cta-block">
           <a href="/engage/ITstrategen-case-study">Download the case study&nbsp;&rsaquo;</a>
         </div>
@@ -306,84 +301,95 @@
 
   <section class="p-section">
     <div class="u-fixed-width">
+      <hr class="p-rule--highlight" />
       <h2 class="p-muted-heading">Ubuntu is trusted by</h2>
-      <div class="p-logo-section has-misaligned-images">
+      <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
-                        alt="Bloomberg",
-                        height="28",
-                        width="144",
+            {{ image(url="https://assets.ubuntu.com/v1/528b1e1d-Bloomberg-Logo.png",
+                        alt="Bloomber",
+                        width="313",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
-                        alt="AT&amp;T",
-                        height="88",
-                        width="88",
+            {{ image(url="https://assets.ubuntu.com/v1/288bb95d-AT&T-Logo.png",
+                        alt="AT&T",
+                        width="290",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
+            {{ image(url="https://assets.ubuntu.com/v1/799cb482-Walmart-logo.png",
+                        alt="Walmart",
+                        width="355",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/86b85fcd-deutsche-telekom.png",
                         alt="Deutsche Telekom",
-                        height="32",
-                        width="144",
+                        width="313",
+                        height="313",
                         hi_def=True,
-                        loading="lazy",
+                        loading="auto|lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg",
+            {{ image(url="https://assets.ubuntu.com/v1/14bd7913-ebay-logo.png",
                         alt="Ebay",
-                        height="55",
-                        width="144",
+                        width="232",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+            {{ image(url="https://assets.ubuntu.com/v1/2b182a31-cisco-logo.png",
                         alt="Cisco",
-                        height="76",
-                        width="144",
+                        width="189",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/73135672-ntt-logo.svg",
+            {{ image(url="https://assets.ubuntu.com/v1/207d453e-NTT-logo.png",
                         alt="NTT",
-                        height="53",
-                        width="144",
+                        width="254",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/8393d534-logo-bestbuy.svg",
+            {{ image(url="https://assets.ubuntu.com/v1/3d62574d-bestbuy-logo.png",
                         alt="Best Buy",
-                        height="84",
-                        width="144",
+                        width="140",
+                        height="313",
                         hi_def=True,
-                        loading="lazy",
+                        loading="auto|lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
-                        alt="PayPal",
-                        height="36",
-                        width="144",
+            {{ image(url="https://assets.ubuntu.com/v1/b7cd4edf-paypal-logo.png",
+                        alt="Paypal",
+                        width="280",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
@@ -405,46 +411,43 @@
           <abbr title="Communications-Electronics Security Group">CESG</abbr>, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.
         </p>
         <div class="p-cta-block">
-          <a class="p-button"
-             href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span>Read the <span class="u-off-screen">UK Gov Report Summary</span>case study</span></a>
+          <a href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span>Read the <span class="u-off-screen">UK Gov Report Summary</span>case study</span>&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Helping you manage security</h2>
-      </div>
-      <div class="col">
-        <p>
-          Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates for the main OS. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.
-        </p>
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Helping you manage security</h2>
+        </div>
+        <div class="col">
+          <p>
+            Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates for the main OS. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.
+          </p>
+        </div>
       </div>
     </div>
     <div class="p-equal-height-row has-divider-3">
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/13fc2636-reduce-downtime.png",
-              alt="",
-              width="568",
-              height="853",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/13fc2636-reduce-downtime.png",
+                        alt="",
+                        width="568",
+                        height="853",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <hr class="p-rule--highlight u-hide--medium u-hide--small">
-          <h3 class="p-heading--5">
-            Reduce downtime and unplanned work
-          </h3>
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Reduce downtime and unplanned work</h3>
         </div>
         <p class="p-equal-height-row__item">
           The Ubuntu Livepatch service eliminates the need for unplanned maintenance windows for high and critical severity kernel vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping uninterrupted service with Ubuntu Livepatch service for up to ten years.
@@ -455,27 +458,23 @@
           </p>
         </div>
       </div>
-    
+
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/38b96c59-be-compliant.png",
-              alt="",
-              width="568",
-              height="853",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/38b96c59-be-compliant.png",
+                        alt="",
+                        width="568",
+                        height="853",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
-        <div class="p-equal-height-row__item">  
-          <hr class="p-rule--highlight u-hide--medium u-hide--small">  
-          <h3 class="p-heading--5">
-            Be compliant and FIPS certified
-          </h3>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Be compliant and FIPS certified</h3>
         </div>
         <p class="p-equal-height-row__item">
           Developing and running workloads for high security and government regulated environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 and Common Criteria certifications available with Ubuntu Advantage and Pro.
@@ -486,27 +485,23 @@
           </p>
         </div>
       </div>
-    
+
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/2ef83b71-manage-security.png",
-              alt="",
-              width="568",
-              height="853",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/2ef83b71-manage-security.png",
+                        alt="",
+                        width="568",
+                        height="853",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <hr class="p-rule--highlight u-hide--medium u-hide--small">
-          <h3 class="p-heading--5">
-            Manage security updates with Landscape
-          </h3>
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Manage security updates with Landscape</h3>
         </div>
         <p class="p-equal-height-row__item">
           Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers and desktops. Landscape gives the ability to centrally view and manage the security updates that have been applied to their systems and, critically, the security updates which have not yet been applied.
@@ -517,27 +512,23 @@
           </p>
         </div>
       </div>
-    
+
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large">
-            {{ image(
-              url="https://assets.ubuntu.com/v1/ec15ce25-expand-your-ubuntu.png",
-              alt="",
-              width="568",
-              height="853",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-image-container__image"}
-              ) | safe
+            {{ image(url="https://assets.ubuntu.com/v1/ec15ce25-expand-your-ubuntu.png",
+                        alt="",
+                        width="568",
+                        height="853",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
             }}
           </div>
         </div>
         <div class="p-equal-height-row__item">
-          <hr class="p-rule--highlight u-hide--medium u-hide--small">
-          <h3 class="p-heading--5">
-            Expand your Ubuntu security maintenance
-          </h3>
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <h3 class="p-heading--5">Expand your Ubuntu security maintenance</h3>
         </div>
         <p class="p-equal-height-row__item">
           Canonical offers Expanded Security Maintenance (ESM), to Ubuntu Pro customers to provide important security fixes for the kernel and essential user space packages, toolchains, and applications. These updates are delivered via a secure, private archive exclusively available to Canonical customers.
@@ -586,76 +577,119 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        Find a security solution that best suits the needs of your organization.</p>
-        <a class="p-heading--2" href="/support/contact-us" class="p-button js-invoke-modal">Talk to a member of our team&nbsp;&rsaquo;</a>
+        Find a security solution that best suits the needs of your organization.
+      </p>
+      <a class="p-heading--2"
+         href="/support/contact-us"
+         class="p-button js-invoke-modal">Talk to a member of our team&nbsp;&rsaquo;</a>
+    </h2>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Ubuntu security disclosure policy</h2>
+    </div>
+    <div class="col">
+      <p>
+        Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues.
+        For more information on how to contact the Ubuntu Security Team and expectations, please refer to our <a href="/security/disclosure-policy">Ubuntu Security disclosure and embargo policy</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
+      <h2>Resources</h2>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-2">
+          <h3 class="p-heading--5">Join the discussion</h3>
+        </div>
+        <div class="col-4">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security updates mailing list&nbsp;&rsaquo;</a>
+            </li>
+            <li class="p-list__item">
+              <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list&nbsp;&rsaquo;</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="row">
+        <div class="col-2">
+          <h3 class="p-heading--5">Canonical is offering Expanded Security Maintenance</h3>
+        </div>
+        <div class="col-4">
+          <p>Canonical is offering Ubuntu Expanded Security Maintenance (ESM) for security fixes and essential packages.</p>
+          <div class="p-cta-block">
+            <a href="/support/esm">Find out more about ESM&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section--deep">
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>
+        <a href="/blog/tag/security">Latest from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
       </h2>
     </div>
-  </section>
-
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Ubuntu security disclosure policy</h2>
-      </div>
-      <div class="col">
-        <p>
-          Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues.
-          For more information on how to contact the Ubuntu Security Team and expectations, please refer to our <a href="/security/disclosure-policy">Ubuntu Security disclosure and embargo policy</a>.
-        </p>
-      </div>
+    <div class="p-section--shallow">
+      <div class="row" id="ubuntu-desktop-latest"></div>
     </div>
-  </section>
+  </div>
 
-  <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
-        <h2>Resources</h2>
+  <template id="ubuntu-desktop-template">
+    <div class="col-3 col-medium-2 u-equal-height-items">
+      <div class="u-crop--16-9">
+        <div class="article-image p-image-wrapper"></div>
       </div>
-      <div class="col">
-        <div class="row">
-          <div class="col-2">
-            <h3 class="p-heading--5">Join the discussion</h3>
-          </div>
-          <div class="col-4">
-            <ul class="p-list--divided">
-              <li class="p-list__item">
-                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened">Ubuntu security updates mailing list&nbsp;&rsaquo;</a>
-              </li>
-              <li class="p-list__item">
-                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Security announcements mailing list&nbsp;&rsaquo;</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-2">
-            <h3 class="p-heading--5">Canonical is offering Expanded Security Maintenance</h3>
-          </div>
-          <div class="col-4">
-            <p>Canonical is offering Ubuntu Expanded Security Maintenance (ESM) for security fixes and essential packages.</p>
-            <div class="p-cta-block">
-              <a href="/support/esm">Find out more about ESM&nbsp;&rsaquo;</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3 class="p-heading--5">
+        <a class="article-link article-title"></a>
+      </h3>
+      <p class="article-excerpt"></p>
     </div>
-  </section>
+  </template>
+</section>
 
-  {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+{# djlint:off #}
+  <script>  
+    canonicalLatestNews.fetchLatestNews(
+      {
+        articlesContainerSelector: "#ubuntu-desktop-latest",
+        articleTemplateSelector: "#ubuntu-desktop-template",
+        excerptLength: 200,
+        tagId: 1364,
+        linkImage: true,
+        limit: 4
+      }
+    )
+</script>
+{# djlint:on #}
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/general"
-       data-form-id="1257"
-       data-lp-id="2154"
-       data-return-url="https://ubuntu.com/contact-us/form/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide"
+     id="contact-form-container"
+     data-form-location="/shared/forms/interactive/general"
+     data-form-id="1257"
+     data-lp-id="2154"
+     data-return-url="https://ubuntu.com/contact-us/form/thank-you"
+     data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}
