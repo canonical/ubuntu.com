@@ -1166,16 +1166,18 @@ def process_active_vulnerabilities(security_vulnerabilities):
     """
 
     def security_index():
-        try: 
-            vulnerabilities_list = security_vulnerabilities.parser.category_index_metadata["vulnerabilities"]
+        try:
+            vulnerabilities_metadata = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
+            vulnerability_topics = security_vulnerabilities.get_topics_in_category()
+            
             current_date = datetime.now()
             filtered_vulnerabilities = [
-                vulnerability
-                for vulnerability in vulnerabilities_list
+                {**vulnerability, 'slug': vulnerability_topics.get(vulnerability['id'])}
+                for vulnerability in vulnerabilities_metadata
                 if vulnerability.get("display-until")
-                and datetime.strptime(vulnerability["display-until"], "%d/%m/%Y")
-                > current_date
+                and datetime.strptime(vulnerability["display-until"], '%d/%m/%Y') > current_date
             ]
+
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
