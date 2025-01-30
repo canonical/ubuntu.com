@@ -3,6 +3,7 @@ from typing import List
 
 import flask
 from canonicalwebteam import image_template
+from slugify import slugify
 
 from webapp.context import (
     current_year,
@@ -376,3 +377,7 @@ def init_handlers(app, sentry):
     app.add_template_filter(date_has_passed)
 
     app.add_template_filter(sort_by_key_and_ordered_list)
+
+    @app.template_filter()
+    def slug(text):
+        return slugify(text)
