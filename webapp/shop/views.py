@@ -24,6 +24,7 @@ from webapp.shop.decorators import SERVICES, shop_decorator
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.schemas import (
     PurchaseTotalSchema,
+    delete_payment_method,
     ensure_purchase_account,
     get_purchase_account_status,
     invoice_view,
@@ -192,6 +193,23 @@ def post_payment_methods(ua_contracts_api, **kwargs):
         response = ua_contracts_api.put_customer_info(
             account_id, payment_method_id, None, name, None
         )
+
+    return response
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(delete_payment_method, location="json")
+def delete_payment_method(ua_contracts_api, **kwargs):
+    account_id = kwargs.get("account_id")
+
+    account_info = ua_contracts_api.get_customer_info(account_id)
+    default_payment_method = account_info["customerInfo"][
+        "defaultPaymentMethod"
+    ]
+
+    response = ua_contracts_api.delete_payment_method(
+        account_id, default_payment_method["id"]
+    )
 
     return response
 
