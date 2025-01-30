@@ -550,6 +550,51 @@ class TestPutPaymentMethod(unittest.TestCase):
         self.assertEqual(session.request_kwargs, expected_args)
 
 
+class TestDeletePaymentMethod(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            session = Session(response=Response(status_code=code, content={}))
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error):
+                client.delete_payment_method(
+                    account_id="aAaBbCcDdEeFfGg",
+                    payment_method_id="pm_abcdef",
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=get_fixture("account"),
+            )
+        )
+        make_client(session).delete_payment_method(
+            account_id="aAaBbCcDdEeFfGg",
+            payment_method_id="pm_abcdef",
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "deletePaymentMethod": {"Id": "pm_abcdef"},
+            },
+            "method": "put",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/accounts/aAaBbCcDdEeFfGg/customer-info/stripe"
+            ),
+        }
+
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
 class TestGetAccountPurchases(unittest.TestCase):
     def test_errors(self):
         cases = [

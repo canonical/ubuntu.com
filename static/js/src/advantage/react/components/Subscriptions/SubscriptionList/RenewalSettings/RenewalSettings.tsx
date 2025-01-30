@@ -12,11 +12,16 @@ import {
 } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 import FormikField from "advantage/react/components/FormikField";
-import { useSetAutoRenewal, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useSetAutoRenewal,
+  useUserSubscriptions,
+  useHasPaymentMethod,
+} from "advantage/react/hooks";
 import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
 import { currencyFormatter, formatDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import RenewalSettingsForm from "./RenewalSettingsForm";
+import useRequestAccountUsers from "advantage/users/hooks/useRequestAccountUsers";
 
 type AutoRenewalLabelProps = {
   period: UserSubscriptionPeriod;
@@ -89,7 +94,10 @@ const AutoRenewalLabel = ({
   );
 };
 
-function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
+function generateAutoRenewalToggles(
+  billingSubscriptions: UserSubscription[],
+  disabled: boolean,
+): {
   toggles: ReactNode[];
   initialValues: { [key: string]: boolean };
 } {
@@ -136,6 +144,7 @@ function generateAutoRenewalToggles(billingSubscriptions: UserSubscription[]): {
           labelClassName="u-no-margin--bottom"
           name={filteredBillingSubscriptions[0].subscription_id ?? ""}
           type="checkbox"
+          disabled={disabled}
         />,
       );
       initialValues[filteredBillingSubscriptions[0].subscription_id ?? ""] =
@@ -185,9 +194,14 @@ export const RenewalSettings = ({
       </Notification>
     );
   } else {
+    const { data: accountUsers } = useRequestAccountUsers();
+    const accountId = accountUsers?.accountId;
+    const { data: hasPaymentMethod } = useHasPaymentMethod(accountId ?? null);
     const { toggles, initialValues } = generateAutoRenewalToggles(
       renewableSubscriptions,
+      !hasPaymentMethod,
     );
+
     content = (
       <Formik
         initialValues={initialValues}
