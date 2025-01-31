@@ -1225,7 +1225,7 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
 def testip():
-    flask.response.headers["Cache-Control"]  = "no-store max-age=0"
+    flask.Response.cache_control  = "no-store max-age=0"
     return flask.jsonify(
         {
             "ip": flask.request.remote_addr,
