@@ -49,7 +49,7 @@
 
   <section class="p-section">
     <div class="row">
-      <div class="p-notification--information">
+      <div class="p-notification--information is-light">
         <div class="p-notification__content">
           <div class="p-notification__message">
             Need information about the CRA? Canonical is committed to delivering Cyber Resilience Act (CRA) compliant Ubuntu. To learn more, <a href="https://canonical.com/solutions/open-source-security/cyber-resilience-act">visit our dedicated webpage</a> on the CRA and its requirements, or <a href="/security/contact-us" class="js-invoke-modal">contact our sales team</a>.
@@ -72,7 +72,7 @@
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
               <hr class="p-rule--highlight" />
-              <h3 class="p-heading--5">Secure out of the box</h3>
+              <h3 class="p-heading--5">Securely designed</h3>
             </div>
             <p class="p-equal-height-row__item">
               All Canonical products are built with unrivaled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.
@@ -406,7 +406,7 @@
       </div>
       <div class="col">
         <p>
-          <abbr title="Communications-Electronics Security Group">CESG</abbr>, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.
+          Communications-Electronics Security Group (CESG), the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.
         </p>
         <div class="p-cta-block">
           <a href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span>Read the <span class="u-off-screen">UK Gov Report Summary</span>case study</span>&nbsp;&rsaquo;</a>
@@ -662,6 +662,8 @@
     </template>
   </section>
 
+  {% include "/shared/forms/form-template.html" %}
+
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   {# djlint:off #}
   <script>  
@@ -677,14 +679,5 @@
     )
 </script>
   {# djlint:on #}
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/general"
-       data-form-id="1257"
-       data-lp-id="2154"
-       data-return-url="https://ubuntu.com/contact-us/form/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 {% endblock content %}
