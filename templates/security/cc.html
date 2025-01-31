@@ -12,6 +12,10 @@
   https://docs.google.com/document/d/1JLnHR9Xuuc1t6ojrnBuMWir5XABgf1L7WVpGGtlLaBo/edit#
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
   {% call(slot) vf_hero(
@@ -27,7 +31,6 @@
     {%- if slot == 'cta' -%}
       <a href="/security/contact-us"
          class="p-button--positive js-invoke-modal">Contact us</a>
-      <a href="/advantage">Get Ubuntu Advantage</a>
     {%- endif -%}
   {% endcall -%}
 
