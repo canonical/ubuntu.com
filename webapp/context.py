@@ -4,7 +4,6 @@ import datetime
 import calendar
 import logging
 import json
-import numpy
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -139,8 +138,33 @@ def descending_years(end_year):
     return range(now.year, end_year, -1)
 
 
-def split_list(array, parts):
-    return numpy.array_split(array, parts)
+def split_list(array, n):
+    """
+    Return a list of lists, splitting the input list into n parts.
+
+    Example:
+    ```
+    split_list([1, 2, 3, 4, 5, 6, 7], 3)
+    [
+        [1, 2, 3],
+        [4, 5],
+        [6, 7]
+    ]
+    ```
+    """
+
+    avg_size= len(array) // n
+    remainder = len(array) % n
+
+    parts = []
+    j = 0
+    for i in range(n):
+        extra = 1 if i < remainder else 0
+        end = j + avg_size + extra
+        parts.append(array[j:end])
+        j = end
+    
+    return parts
 
 
 def format_to_id(string):
