@@ -153,7 +153,7 @@ def split_list(array, n):
     ```
     """
 
-    avg_size= len(array) // n
+    avg_size = len(array) // n
     remainder = len(array) % n
 
     parts = []
@@ -163,7 +163,7 @@ def split_list(array, n):
         end = j + avg_size + extra
         parts.append(array[j:end])
         j = end
-    
+
     return parts
 
 
