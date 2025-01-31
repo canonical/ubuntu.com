@@ -1225,14 +1225,15 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
 def testip():
-    flask.Response.headers["Cache-Control"] = "no-store max_age=0"
-    return flask.jsonify(
-        {
-            "ip": flask.request.remote_addr,
-            "forwared-ip": flask.request.environ.get("HTTP_X_FORWARDED_FOR"),
-            "remote-ip": flask.request.environ.get("REMOTE_ADDR")
-        }
-    ), 200
+    resp = flask.Response(
+        f"""
+        ip: {flask.request.remote_addr},
+        forwared-ip: {flask.request.environ.get("HTTP_X_FORWARDED_FOR")},
+        remote-ip: {flask.request.environ.get("REMOTE_ADDR")}
+        """
+    )
+    resp.headers["Cache-Control"] = "no-store max_age=0"
+    return resp
 
 
 app.add_url_rule("/_testip", view_func=testip)
