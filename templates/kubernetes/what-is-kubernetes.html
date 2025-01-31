@@ -27,7 +27,7 @@
         Kubernetes, or k8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into a cloud native platform.
       </p>
       <p>
-        It’s one of the most significant advancements in IT since the public cloud came to being in 2009, and has already exceeded the 50% of overall adoption among the enterprise.
+        It's one of the most significant advancements in IT since the public cloud came to being in 2009, and has already exceeded the 50% of overall adoption among the enterprise.
       </p>
     {%- endif -%}
     {%- if slot == "cta" -%}
@@ -36,7 +36,7 @@
       <a href="https://documentation.ubuntu.com/canonical-kubernetes">Try Canonical Kubernetes today&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == "image" -%}
-      <div class="col-5 u-align--center p-image-container is-highlighted u-vertically-center u-hide--small u-hide--medium">
+      <div class="p-image-container--3-2 is-cover is-highlighted u-hide--small u-hide--medium">
         {{ image(url="https://assets.ubuntu.com/v1/9e060e28-hero img.png",
                 alt="",
                 width="1800",
@@ -61,7 +61,7 @@
             Container orchestration is about managing the lifecycle of containers, particularly in large, dynamic environments. It automates the deployment, networking, scaling, and availability of containerized workloads and services.
           </p>
           <p>
-            Running containers - which are lightweight and usually ephemeral by nature - in small numbers, is easy enough to be done manually. However, managing them at scale in production environments can be a significant challenge without the automation that container orchestration platforms offer.
+            Running containers &ndash; which are lightweight and usually ephemeral by nature &ndash; in small numbers, is easy enough to be done manually. However, managing them at scale in production environments can be a significant challenge without the automation that container orchestration platforms offer.
           </p>
           <p>Kubernetes has become the standard for container orchestration in the enterprise world.</p>
         </div>
@@ -78,7 +78,7 @@
       <div class="col-3">
         <hr class="p-rule--highlight" />
         <p class="p-heading--1 u-no-margin--bottom">65%</p>
-        <p>Improve maintainance, monitoring, and automation</p>
+        <p>Improved maintenance, monitoring, and automation</p>
       </div>
       <div class="col-3">
         <hr class="p-rule--highlight" />
@@ -116,7 +116,7 @@
             </ul>
             <hr class="p-rule--muted" />
             <p>
-              Every cluster has at least one worker, and the control plane services can be colocated on a single machine. In production environments, there is typically a large number of workers, depending on the number of containers to be run, and the control plane is distributed across multiple machines for high-availability and fault-tolerance purposes.
+              Every cluster has at least one worker, and the control plane services can be located on the single machine. In production environments, there is typically a large number of workers, depending on the number of containers to be run, and the control plane is distributed across multiple machines for high-availability and fault-tolerance purposes.
             </p>
           </div>
         </div>
@@ -142,38 +142,29 @@
     </div>
     <div class="row">
       <div class="col-9 col-start-large-4 ">
-        <ul class="p-inline-list--stretch">
-          <div class="row">
-            <div class="col-3">
-              <li class="p-inline-list__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <hr class="p-rule--muted u-hide--large" />
-                <p>
-                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
-                </p>
-              </li>
-            </div>
-            <div class="col-3">
-              <li class="p-inline-list__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <hr class="p-rule--muted u-hide--large" />
-                <p>
-                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
-                </p>          
-              </li>
-            </div>
-            <div class="col-3">
-              <li class="p-inline-list__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <hr class="p-rule--muted u-hide--large" />
-                <p>
-                  Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
-                </p>          
-              </li>
-            </div>
+        <div class="row">
+          <div class="col-3">
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            <hr class="p-rule--muted u-hide--large" />
+            <p>
+              Kubernetes is popular for its appealing architecture, a large and active community and the continuous need for extensibility that enables countless development teams to deliver and maintain software at scale by automating container orchestration.
+            </p>
           </div>
-        
-        </ul>
+          <div class="col-3">
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            <hr class="p-rule--muted u-hide--large" />
+            <p>
+              Kubernetes maps out how applications should work and interact with other applications. Due to its elasticity, it can scale services up and down as required, perform rolling updates, switch traffic between different versions of your applications to test features, or rollback problematic deployments.
+            </p>
+          </div>
+          <div class="col-3">
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+            <hr class="p-rule--muted u-hide--large" />
+            <p>
+              Kubernetes has emerged as a leading choice for organizations looking to build their multi-cloud environments. All public clouds have adopted Kubernetes and offer their own distributions, such as AWS Elastic Container Service for Kubernetes, Google Kubernetes Engine and Azure Kubernetes Service.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -187,13 +178,11 @@
         </div>
         <div class="col">
           <p>
-            Kubernetes (from the Greek ‘κυβερνήτης’ meaning ‘helmsman’) was originally developed by Google. Kubernetes' design has been heavily influenced by Google’s ‘Borg’ project –
+            Kubernetes (from the Greek ‘κυβερνήτης’ meaning 'helmsman') was originally developed by Google. Kubernetes' design has been heavily influenced by Google's 'Borg' project &ndash;
             a similar system used by Google to run much of its infrastructure. Kubernetes has since been donated to the <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> (CNCF),
             a collaborative project between the Linux Foundation and Google, Cisco, IBM, Docker, Microsoft, AWS and VMware.
-            <br />
-            <br />
-            <span class="p-heading--5">Did you know?</span>
           </p>
+          <p class="p-heading--5">Did you know?</p>
           <hr class="p-rule--muted u-no-margin--bottom" />
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
@@ -212,32 +201,12 @@
     <hr class="p-rule is-fixed-width" />
     <div class="u-fixed-width">
       <h2 class="p-muted-heading">Key contributors to Kubernetes</h2>
-      <div class="p-logo-section has-misaligned-images">
+      <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/e47272d1-aws.png",
-                      alt="AWS",
-                      width="101",
-                      height="209",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/347095e5-gcp.png",
-                      alt="GCP",
-                      width="255",
-                      height="209",
-                      hi_def=True,
-                      loading="lazy",
-                      attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/03477291-azure.png",
-                        alt="Microsoft Azure",
-                        width="272",
+            {{ image(url="https://assets.ubuntu.com/v1/e97b1e1e-canonical-logo.png",
+                        alt="Canonical",
+                        width="345",
                         height="313",
                         hi_def=True,
                         loading="lazy",
@@ -245,8 +214,28 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/eec7dbbe-vmware-logo.png",
-                        alt="VMware",
+            {{ image(url="https://assets.ubuntu.com/v1/ddc89e78-google-logo.png",
+                        alt="Google",
+                        width="197",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/a12cf97f-red-hat-logo.png",
+                        alt="Red Hat",
+                        width="313",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/327a26fd-vmware-logo.png",
+                        alt="VMWare",
                         width="323",
                         height="313",
                         hi_def=True,
@@ -255,9 +244,9 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/b8a0a584-maas-logo.png",
-                        alt="MAAS",
-                        width="250",
+            {{ image(url="https://assets.ubuntu.com/v1/7b4b8d89-microsoft-logo.png",
+                        alt="Microsoft",
+                        width="342",
                         height="313",
                         hi_def=True,
                         loading="lazy",
@@ -265,9 +254,49 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/7872bcd4-openstack-logo.png",
-                        alt="Openstack",
-                        width="413",
+            {{ image(url="https://assets.ubuntu.com/v1/d98187f4-ibm-logo.png",
+                        alt="IBM",
+                        width="152",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/7da635ce-amazon-logo.png",
+                        alt="AWS",
+                        width="283",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/bcc70954-daocloud-logo.png",
+                        alt="DaoCloud",
+                        width="451",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/f0720928-intel-new-logo.png",
+                        alt="Intel",
+                        width="162",
+                        height="313",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/d6761a2a-huawei-logo.png",
+                        alt="Hauwei",
+                        width="308",
                         height="313",
                         hi_def=True,
                         loading="lazy",
@@ -307,10 +336,8 @@
           reduce time-to-market, and transform their business. Developers like container-based development, as it helps break up monolithic applications
           into more maintainable microservices. Kubernetes allows their work to move seamlessly from development to production, and results in
           faster-time-to-market for business applications.
-          <br />
-          <br />
-          <span class="p-heading--5">Kubernetes works by</span>
         </p>
+        <p class="p-heading--5">Kubernetes works by:</p>
         <hr class="p-rule--muted u-no-margin--bottom" />
         <ul class="p-list--divided">
           <li class="p-list__item is-ticked">Orchestrating containerized applications across multiple hosts</li>
@@ -356,7 +383,7 @@
           <ul class="p-list--divided">
             <li class="p-list__item u-no-padding--bottom">
               <p>
-                <a href="https://ubuntu.com/case-study/esa">The European Space Agency modernized its infrastructure with Canonical Kubernetes</a>
+                <a href="/case-study/esa">The European Space Agency modernized its infrastructure with Canonical Kubernetes</a>
               </p>
               <p>
                 Find out why ESA chose Canonical to implement a new, dynamic platform for efficient, automated, and fast deployment of systems across their missions.
@@ -364,10 +391,10 @@
             </li>
             <li class="p-list__item u-no-padding--bottom">
               <p>
-                <a href="https://ubuntu.com/engage/oneuptime-cost-savings-case-study">OneUptime takes back its servers and saves $352,500 a year with Canonical infrastructure solutions</a>
+                <a href="/engage/oneuptime-cost-savings-case-study">OneUptime takes back its servers and saves $352,500 a year with Canonical infrastructure solutions</a>
               </p>
               <p>
-                Migrating to bare metal infrastructure using Canonical’s open source technologies allowed monitoring services provider OneUptime to have greater control over its infrastructure and services – while saving over 76% of their cloud costs.
+                Migrating to bare metal infrastructure using Canonical's open source technologies allowed monitoring services provider OneUptime to have greater control over its infrastructure and services &ndash; while saving over 76% of their cloud costs.
               </p>
             </li>
           </ul>
@@ -391,10 +418,8 @@
           <p>
             Kubernetes enables configuration, automation and management capabilities around containers. It has a vast tooling
             ecosystem and can address complex use cases, and this is the reason why many mistake it for a traditional Platform-as-a-Service (PaaS).
-            <br />
-            <br />
-            <span class="p-heading--5">Kubernetes, as opposed to PaaS, does not:</span>
           </p>
+          <p class="p-heading--5">Kubernetes, as opposed to PaaS, does not:</p>
           <hr class="p-rule--muted u-no-margin--bottom" />
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">
@@ -465,11 +490,11 @@
         <div class="col">
           <p>
             Kubernetes works by joining a group of physical or virtual host machines, referred to as “nodes”, into a cluster. This creates a “supercomputer” to run containerized applications with a greater processing speed, more storage capacity, and increased network capabilities than any single machine would have on its own. The nodes include all necessary services to run “pods”, which in turn run single or multiple containers. A pod corresponds to a single instance of an application in Kubernetes.
-            <br />
-            <br />
-            One (or more for larger clusters, or High Availability) node of the cluster is designated as the “control plane”. The control plane node then assumes responsibility for the cluster as the orchestration layer – scheduling and allocating tasks to the “worker” nodes in a way which optimises the resources of the cluster. All administrative and operational tasks on the cluster are done through the control plane, whether these are changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
-            <br />
-            <br />
+          </p>
+          <p>
+            One (or more for larger clusters, or High Availability) node of the cluster is designated as the “control plane”. The control plane node then assumes responsibility for the cluster as the orchestration layer &ndash; scheduling and allocating tasks to the “worker” nodes in a way which optimises the resources of the cluster. All administrative and operational tasks on the cluster are done through the control plane, whether these are changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
+          </p>
+          <p>
             The control plane is also responsible for monitoring all aspects of the cluster, enabling it to perform additional useful functions such as automatically reallocating workloads in case of failure, scaling up tasks which need more resources and otherwise ensuring that the assigned workloads are always operating correctly.
           </p>
         </div>
@@ -478,222 +503,199 @@
     <div class="row">
       <div class="p-image-container--cinematic is-highlighted">
         {{ image(url="https://assets.ubuntu.com/v1/104a2311-chart-2.png",
-                  alt="",
-                  width="3696",
-                  height="2209",
-                  hi_def=True,
-                  attrs={ "class": "p-image-container__image" },
-                  loading="lazy") | safe
+                alt="",
+                width="3696",
+                height="2209",
+                hi_def=True,
+                attrs={ "class": "p-image-container__image" },
+                loading="lazy") | safe
         }}
       </div>
     </div>
   </section>
 
-  <section class="p-section">
-    <hr class="p-rule is-fixed-width" />
-    <div class="p-section--shallow u-fixed-width">
+  {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=true) -%}
+    {%- if slot == 'title' -%}
       <h2>Kubernetes glossary</h2>
-    </div>
-    <div class="row">
-      <div class="col-start-large-4 col-9">
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Node</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A virtual or physical machine, depending on the cluster setup. Each node is managed by the control plane and contains the services necessary to run pods.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Pod</p>
-          </div>
-          <div class="col-6">
-            <p>The smallest unit in the Kubernetes object model that is used to host containers.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Container</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A standard unit of software that packages up code and all its dependencies, making it portable across different compute environments.
-            </p>
-            <hr class="p-rule--muted" />
-            <p>
-              <a href="/containers/what-are-containers">Learn more about containers&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Control plane</p>
-          </div>
-          <div class="col-6">
-            <p>The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Worker nodes</p>
-          </div>
-          <div class="col-6">
-            <p>
-              Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes, but minimum one.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">API server</p>
-          </div>
-          <div class="col-6">
-            <p>
-              The primary control plane component, which exposes the Kubernetes API, enabling communications between cluster components.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Controller-manager</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A control plane daemon that monitors the state of the cluster and makes all necessary changes for the cluster to reach its desired state.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Services</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A logical abstraction that groups multiple pods and provides network policies that define how the pods can be accessed.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Resources</p>
-          </div>
-          <div class="col-6">
-            <p>
-              Kubernetes is based on the principles of control theory. It allows users to manage their applications lifecycle by creating, modifying or deleting resources that are tracked by controllers, thus regulating the state of the entire system. In the Kubernetes API, every resource corresponds to a specific endpoint.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Custom resources</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A customization of a particular Kubernetes installation. They allow users to extend the Kubernetes API, beyond its default supported behavior, addressing more complicated use cases and making the platform more modular.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Etcd</p>
-          </div>
-          <div class="col-6">
-            <p>
-              The control plane database, a reliable key-value store,  used to store the state of the cluster, capturing details such as deployment status of containers, pod metrics and logs, network configuration, cluster certificates etc.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Ingress</p>
-          </div>
-          <div class="col-6">
-            <p>
-              A way to manage external access to the services in a cluster by exposing network routes through the Kubernetes API.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Kubelet</p>
-          </div>
-          <div class="col-6">
-            <p>An agent that runs on each worker node in the cluster and ensures that containers are running in a pod.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Kubeproxy</p>
-          </div>
-          <div class="col-6">
-            <p>Enables communication between worker nodes, by maintaining network rules on the nodes.</p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Container runtime/ CRI</p>
-          </div>
-          <div class="col-6">
-            <p>
-              The software responsible for running containers, by coordinating the use of system resources across containers.  Kubernetes can use different container runtimes (e.g. containerd, CRI-O) through the container runtime interface (CRI).
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">CNI</p>
-          </div>
-          <div class="col-6">
-            <p>
-              The Container Network Interface is a specification and a set of tools to define networking interfaces between network providers and Kubernetes.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">CSI</p>
-          </div>
-          <div class="col-6">
-            <p>
-              The Container Storage Interface is a specification for data storage tools and applications to integrate with Kubernetes clusters.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3">
-            <p class="p-heading--5">Kubectl</p>
-          </div>
-          <div class="col-6">
-            <p>A command-line tool for controlling Kubernetes clusters.</p>
-          </div>
-        </div>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_1' -%}
+      <h3 class="p-heading--5">Node</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_1' -%}
+      <p>
+        A virtual or physical machine, depending on the cluster setup. Each node is managed by the control plane and contains the services necessary to run pods.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_2' -%}
+      <h3 class="p-heading--5">Pod</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_2' -%}
+      <p>The smallest unit in the Kubernetes object model that is used to host containers.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_3' -%}
+      <h3 class="p-heading--5">Container</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_3' -%}
+      <p>
+        A standard unit of software that packages up code and all its dependencies, making it portable across different compute environments.
+      </p>
+      <div class="p-cta-block">
+        <a href="/containers/what-are-containers">Learn more about containers&nbsp;&rsaquo;</a>
       </div>
-    </div>
-  </section>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_4' -%}
+      <h3 class="p-heading--5">Control plane</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_4' -%}
+      <p>The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_5' -%}
+      <h3 class="p-heading--5">Worker nodes</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_5' -%}
+      <p>
+        Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes, but minimum one.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_6' -%}
+      <h3 class="p-heading--5">API server</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_6' -%}
+      <p>
+        The primary control plane component, which exposes the Kubernetes API, enabling communications between cluster components.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_7' -%}
+      <h3 class="p-heading--5">Controller-manager</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_7' -%}
+      <p>
+        A control plane daemon that monitors the state of the cluster and makes all necessary changes for the cluster to reach its desired state.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_8' -%}
+      <h3 class="p-heading--5">Services</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_8' -%}
+      <p>
+        A logical abstraction that groups multiple pods and provides network policies that define how the pods can be accessed.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_9' -%}
+      <h3 class="p-heading--5">Resources</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_9' -%}
+      <p>
+        Kubernetes is based on the principles of control theory. It allows users to manage their applications lifecycle by creating, modifying or deleting resources that are tracked by controllers, thus regulating the state of the entire system. In the Kubernetes API, every resource corresponds to a specific endpoint.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_10' -%}
+      <h3 class="p-heading--5">Custom resources</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_10' -%}
+      <p>
+        A customization of a particular Kubernetes installation. They allow users to extend the Kubernetes API, beyond its default supported behavior, addressing more complicated use cases and making the platform more modular.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_11' -%}
+      <h3 class="p-heading--5">Etcd</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_11' -%}
+      <p>
+        The control plane database, a reliable key-value store,  used to store the state of the cluster, capturing details such as deployment status of containers, pod metrics and logs, network configuration, cluster certificates etc.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_12' -%}
+      <h3 class="p-heading--5">Ingress</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_12' -%}
+      <p>
+        A way to manage external access to the services in a cluster by exposing network routes through the Kubernetes API.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_13' -%}
+      <h3 class="p-heading--5">Kubelet</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_13' -%}
+      <p>An agent that runs on each worker node in the cluster and ensures that containers are running in a pod.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_14' -%}
+      <h3 class="p-heading--5">Kubeproxy</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_14' -%}
+      <p>Enables communication between worker nodes, by maintaining network rules on the nodes.</p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_15' -%}
+      <h3 class="p-heading--5">Container runtime/ CRI</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_15' -%}
+      <p>
+        The software responsible for running containers, by coordinating the use of system resources across containers. Kubernetes can use different container runtimes (e.g. containerd, CRI-O) through the container runtime interface (CRI).
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_16' -%}
+      <h3 class="p-heading--5">CNI</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_16' -%}
+      <p>
+        The Container Network Interface is a specification and a set of tools to define networking interfaces between network providers and Kubernetes.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_17' -%}
+      <h3 class="p-heading--5">CSI</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_17' -%}
+      <p>
+        The Container Storage Interface is a specification for data storage tools and applications to integrate with Kubernetes clusters.
+      </p>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_title_18' -%}
+      <h3 class="p-heading--5">Kubectl</h3>
+    {%- endif -%}
+
+    {%- if slot == 'list_item_description_18' -%}
+      <p>A command-line tool for controlling Kubernetes clusters.</p>
+    {%- endif -%}
+  {%- endcall -%}
 
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
-    <div class="u-fixed-width u-vertically-center">
+    <div class="u-fixed-width">
       <p class="p-heading--2">
         <a href="/kubernetes/install">Get started with Kubernetes today&nbsp;&rsaquo;</a>
       </p>
