@@ -340,6 +340,22 @@ export async function setPaymentMethod(accountID, paymentMethodId) {
   return data;
 }
 
+export async function deletePaymentMethod(accountID, paymentMethodId) {
+  const response = await fetch("/account/payment-methods", {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: window.accountId,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function setAutoRenewal(value) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
