@@ -10,22 +10,29 @@
   https://docs.google.com/document/d/1zJwZzc-cERj9YKNXFtmrXwynJptyT7-D3qCNzBctRfo/edit?tab=t.0
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
 
   {% call(slot) vf_hero(
     title_text='DISA-STIG on Ubuntu',
-    subtitle_text='Comply with the DISA Security Technical Implementation Guide',
+    subtitle_text='Comply with the DISA Security <br />Technical Implementation Guide',
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
-
-      {{ image(url="https://assets.ubuntu.com/v1/92754de5-disa.png",
-            alt="DISA",
-            width="284",
-            height="68",
-            hi_def=False,
-            loading="auto") | safe
-      }}
+      <div style="width:284px;">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/92754de5-disa.png",
+        alt="",
+        width="852",
+        height="204",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+        }}
+      </div>
     {%- endif -%}
     {%- if slot == 'description' -%}
       <p>
@@ -119,39 +126,47 @@
         <h2>DISA-STIG for Ubuntu</h2>
       </div>
       <div class="col">
-        <p>
-          Together with Canonical, DISA has developed STIGs for Ubuntu. The U.S. DoD provides the <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">STIG checklist</a>, which can be viewed using <a href="https://public.cyber.mil/stigs/stig-viewing-tools/">STIG viewer</a>, and <a href="https://public.cyber.mil/stigs/scap/">SCAP content for auditing</a>. The versions of Ubuntu that have STIGs available by DISA are marked on the table below.
-        </p>
-        <div class="p-cta-block">
-          <a href="/security/certifications/docs/disa-stig">Read more about Ubuntu tooling and automation&nbsp;&rsaquo;</a>
+        <div class="p-section--shallow">
+          <p>
+            Together with Canonical, DISA has developed STIGs for Ubuntu. The U.S. DoD provides the <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">STIG checklist</a>, which can be viewed using <a href="https://public.cyber.mil/stigs/stig-viewing-tools/">STIG viewer</a>, and <a href="https://public.cyber.mil/stigs/scap/">SCAP content for auditing</a>. The versions of Ubuntu that have STIGs available by DISA are marked on the table below.
+          </p>
+          <div class="p-cta-block">
+            <a href="/security/certifications/docs/disa-stig">Read more about Ubuntu tooling and automation&nbsp;&rsaquo;</a>
+          </div>
         </div>
+
+        <hr class="p-rule--muted" />
+        <p>
+          DISA <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">Security Technical Implementation Guides (STIGs)</a> and <a href="https://public.cyber.mil/stigs/supplemental-automation-content/">Supplemental Automation Content</a> for Ubuntu
+        </p>
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 16.04 LTS</div>
+              <div class="col-3">Configuration guide</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 18.04 LTS</div>
+              <div class="col-3">Configuration guide</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 20.04 LTS</div>
+              <div class="col-3">Tooling and automation</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 22.04 LTS</div>
+              <div class="col-3">Tooling and automation</div>
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>
-    <div class="u-fixed-width u-table-horizontal-scroll">
-      <table class="u-table-horizontal-scroll__table"
-             style="white-space:wrap"
-             aria-label="Vanilla framework table example">
-        <thead>
-          <tr>
-            <th style="width:30%;" role="presentation"></th>
-            <th>Ubuntu 16.04 LTS</th>
-            <th>Ubuntu 18.04 LTS</th>
-            <th>Ubuntu 20.04 LTS</th>
-            <th>Ubuntu 22.04 LTS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>
-              DISA <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">Security Technical Implementation Guides (STIGs)</a> and <a href="https://public.cyber.mil/stigs/supplemental-automation-content/">Supplemental Automation Content</a> for Ubuntu
-            </th>
-            <td>Configuration guide</td>
-            <td>Configuration guide</td>
-            <td>Tooling and automation</td>
-            <td>Tooling and automation</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
@@ -225,7 +240,7 @@
     </div>
   </section>
 
-  <section class="p-section">
+  <section class="p-section--deep">
     <hr class="p-rule is-fixed-width" />
     <div class="row--50-50">
       <div class="col">
