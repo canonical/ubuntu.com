@@ -139,7 +139,6 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
-    build_case_study_index,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -589,7 +588,6 @@ app.add_url_rule(
     defaults={"language": None},
     view_func=build_engage_page(engage_pages),
 )
-app.add_url_rule("/case-study", view_func=build_case_study_index)
 app.add_url_rule(
     "/engage/<language>/<page>",
     endpoint="language-engage-page",
