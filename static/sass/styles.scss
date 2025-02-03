@@ -1766,3 +1766,8 @@ legend {
     height: 15rem;
   }
 }
+
+// XXX: Custom styling to remove the full-stop after the counter in 'p-stepped-list'
+ol.p-stepped-list.no-full-stop .p-stepped-list__item .p-stepped-list__title::before {
+  content: counter(p-stepped-list-counter);
+}
