@@ -22,6 +22,8 @@ from canonicalwebteam.discourse import (
     EngagePages,
     TutorialParser,
     Tutorials,
+    CategoryParser,
+    Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
@@ -147,6 +149,7 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
+    process_active_vulnerabilities,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -538,6 +541,26 @@ app.add_url_rule("/security/cves", view_func=cve_index)
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
+
+security_vulnerabilities_path = "/security/vulnerabilities"
+security_vulnerabilities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=53193,
+        url_prefix=security_vulnerabilities_path,
+    ),
+    category_id=308,
+    document_template="/security/vulnerabilities.html",
+    url_prefix=security_vulnerabilities_path,
+    blueprint_name="security-vulnerabilities",
+)
+security_vulnerabilities.init_app(app)
+
+# Parse vulnerabilities to display to /security
+app.add_url_rule(
+    "/security",
+    view_func=process_active_vulnerabilities(security_vulnerabilities),
 )
 
 # Login

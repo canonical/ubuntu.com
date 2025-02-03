@@ -59,6 +59,22 @@
     </div>
   </section>
 
+  {% if active_vulnerabilities %}
+    <section class="p-section">
+      <div class="u-fixed-width">
+        {% for vulnerability in active_vulnerabilities %}
+          <div class="p-notification--caution">
+            <div class="p-notification__content">
+              <p class="p-notification__title u-no-max-width">
+                <a href="/security/vulnerabilities/{{ vulnerability.slug }}">{{ vulnerability.name }}</a>
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
   <section class="p-section">
     <div class="p-section--shallow">
       <div class="u-fixed-width">
@@ -79,7 +95,9 @@
             </p>
             <div class="p-equal-height-row__item">
               <p>
-                <a href="https://wiki.ubuntu.com/Security/Features">Learn more about<br /> Ubuntu's security features&nbsp;&rsaquo;</a>
+                <a href="https://wiki.ubuntu.com/Security/Features">Learn more about
+                  <br />
+                Ubuntu's security features&nbsp;&rsaquo;</a>
               </p>
             </div>
           </div>
@@ -95,7 +113,9 @@
             </p>
             <div class="p-equal-height-row__item">
               <p>
-                <a href="/security/compliance-automation">Learn more about<br /> hardening Ubuntu&nbsp;&rsaquo;</a>
+                <a href="/security/compliance-automation">Learn more about
+                  <br />
+                hardening Ubuntu&nbsp;&rsaquo;</a>
               </p>
             </div>
           </div>
@@ -110,7 +130,9 @@
             </p>
             <div class="p-equal-height-row__item">
               <p>
-                <a href="/security/fips">Learn more about<br /> Ubuntu with FIPS 140&nbsp;&rsaquo;</a>
+                <a href="/security/fips">Learn more about
+                  <br />
+                Ubuntu with FIPS 140&nbsp;&rsaquo;</a>
               </p>
             </div>
           </div>
@@ -452,7 +474,9 @@
         </p>
         <div class="p-equal-height-row__item">
           <p>
-            <a href="/security/livepatch">Learn more about<br /> the Livepatch Service&nbsp;&rsaquo;</a>
+            <a href="/security/livepatch">Learn more about
+              <br />
+            the Livepatch Service&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -479,7 +503,9 @@
         </p>
         <div class="p-equal-height-row__item">
           <p>
-            <a href="/security/compliance-automation">Learn more about<br /> Ubuntu certifications&nbsp;&rsaquo;</a>
+            <a href="/security/compliance-automation">Learn more about
+              <br />
+            Ubuntu certifications&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -533,7 +559,9 @@
         </p>
         <div class="p-equal-height-row__item">
           <p>
-            <a href="/engage/14-04-esm">Watch our<br /> security compliance webinar now&nbsp;&rsaquo;</a>
+            <a href="/engage/14-04-esm">Watch our
+              <br />
+            security compliance webinar now&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
