@@ -1,0 +1,82 @@
+{
+  "form": {
+    "/landscape/managed": {
+      "templatePath": "/landscape/managed/index.html",
+      "childrenPaths": [],
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Talk to our Landscape team",
+        "introText": "Discuss your needs with an advisor",
+        "formId": 5054,
+        "returnUrl": "/landscape/managed#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "email",
+              "id": "email",
+              "label": "Work email",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            }
+          ]
+        },
+        {
+          "title": "Summary of what you would like to discuss",
+          "id": "contentSummary",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "contentSummary",
+              "label": "Abour your project"
+            }
+          ]
+        },
+        {
+          "title": "I prefer to be reached via",
+          "id": "contact-preference",
+          "inputName": "preferredContact",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "preferredContactTelephone",
+              "value": "Telephone",
+              "label": "Telephone"
+            },
+            {
+              "type": "radio",
+              "id": "preferredContactEmail",
+              "value": "Email",
+              "label": "Email"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
