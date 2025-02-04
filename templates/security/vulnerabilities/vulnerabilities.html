@@ -1,0 +1,33 @@
+{% extends "security/base_security.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block title %}Vulnerabilities{% endblock %}
+
+{% block meta_description %}
+{% endblock %}
+
+{% block body_class %}
+  is-paper is-vulnerabilities
+{% endblock body_class %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1yEocR1WXQvN_B1L1yBYrG_0D7ikS6QhcOz27sYs-teI/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+  <div class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-section--hero">
+        <h1>{{ document.title }}</h1>
+      </div>
+      {% for section in document.sections %}
+        <hr class="p-rule" />
+        <div class="p-section--shallow">
+          <h2>{{ section.title }}</h2>
+          {{ section.content | safe }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
