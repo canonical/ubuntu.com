@@ -1203,6 +1203,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
 
     return security_index
 
+
 def build_vulnerabilities_index(security_vulnerabilities):
     def vulnerabilities_index():
         try:
