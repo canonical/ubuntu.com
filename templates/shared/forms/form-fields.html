@@ -2,8 +2,21 @@
   <form {% if isModal %}class="js-modal-form"{% endif %}
         action="/marketo/submit"
         method="post"
-        id="mktoForm_{{ formData.formId }}">
+        id="mktoForm_{{ form_id }}">
     {% for fieldset in fieldsets %}
+
+      {% if fieldset.id %}
+        {% set fieldset_id = fieldset.id %}
+      {% else %}
+        {% set fieldset_id = fieldset.title|slug %}
+      {% endif %}
+
+      {% if fieldset.inputName %}
+        {% set fieldset_inputName = fieldset.inputName %}
+      {% else %}
+        {% set fieldset_inputName = fieldset_id %}
+      {% endif %}
+
       <div class="p-section">
         <hr class="p-rule is-fixed-width" />
         <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% elif fieldset.isRequired and fieldset.inputType == 'checkbox' %} js-required-checkbox{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
@@ -17,8 +30,26 @@
             <div class="col">
               <ul class="p-list">
                 {% for field in fieldset.fields %}
+
+                  {% if field.id %}
+                    {% set field_id = field.id %}
+                  {% elif field.fieldTitle is not defined %}
+                    {% set field_id = fieldset_id + '-' + field.label %}
+                  {% endif %}
+
+                  {% if field.value %}
+                    {% set field_value = field.value %}
+                  {% elif field.fieldTitle is not defined %}
+                    {% set field_value = field.label %}
+                  {% endif %}
+
                   {% if field.type == "country" %}
-                    {% include "shared/forms/_country.html" %}
+                    {% with %}
+                      {% if not field.isRequired %}
+                        {% set required = false %}
+                      {% endif %}
+                      {% include "shared/forms/_country.html" %}
+                    {% endwith %}
                   {% else %}
                     <li class="p-list__item">
                       {% if field.type == "text" or field.type == "tel" or field.type == "email" %}
@@ -134,12 +165,12 @@
                        aria-hidden="true"
                        aria-label="hidden field"
                        name="formid"
-                       value="{{ formData.formId }}" />
+                       value="{{ form_id }}" />
                 <input type="hidden"
                        aria-hidden="true"
                        aria-label="hidden field"
                        name="returnURL"
-                       value={% if path %}"{{ path }}/#contact-form-success"{% else %}{{ formData.returnUrl }}{% endif %} />
+                       value="{% if path %}{{ path }}#contact-form-success{% else %}{{ formData.returnUrl }}{% endif %}" />
                 <input type="hidden"
                        aria-hidden="true"
                        aria-label="hidden field"

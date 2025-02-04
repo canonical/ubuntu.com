@@ -74,6 +74,8 @@ CSP = {
         "api.livechatinc.com",
         "secure.livechatinc.com",
         "www.tfaforms.com",
+        "api.usabilla.com",
+        "*.cloudfront.net",
         # This is necessary for Google Tag Manager to function properly.
         "'unsafe-inline'",
     ],
@@ -133,8 +135,11 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
+        "*.cloudfront.net",
+        "app3.trueability.com",
     ],
     "style-src": [
+        "*.cloudfront.net",
         "'self'",
         "'unsafe-inline'",
     ],
