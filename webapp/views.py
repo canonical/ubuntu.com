@@ -1203,6 +1203,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
 
     return security_index
 
+
 def build_vulnerabilities_index(security_vulnerabilities):
     def vulnerabilities_index():
         try:
@@ -1221,8 +1222,9 @@ def build_vulnerabilities_index(security_vulnerabilities):
                 "templates/error.html",
                 error=e,
             )
-    
+
     return vulnerabilities_index
+
 
 def build_vulnerabilities(security_vulnerabilities):
     def vulnerabilities(path):
@@ -1235,7 +1237,7 @@ def build_vulnerabilities(security_vulnerabilities):
                 topics=topics,
                 metadata=metadata,
                 document=document,
-            ) 
+            )
         except Exception as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fecthing vulnerabilities: {e}"
@@ -1244,5 +1246,5 @@ def build_vulnerabilities(security_vulnerabilities):
                 "templates/error.html",
                 error=e,
             )
-    
+
     return vulnerabilities
