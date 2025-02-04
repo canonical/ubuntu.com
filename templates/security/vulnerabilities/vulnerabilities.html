@@ -24,7 +24,7 @@
       {% for section in document.sections %}
         <hr class="p-rule" />
         <div class="p-section--shallow">
-          <h2>{{ section.title }}</h2>
+          <h2 class="p-heading--3">{{ section.title }}</h2>
           {{ section.content | safe }}
         </div>
       {% endfor %}
