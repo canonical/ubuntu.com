@@ -766,14 +766,7 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/kubernetes"
-       data-form-id="3230"
-       data-lp-id="6274"
-       data-return-url="/kubernetes#contact-form-success"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {% include "/shared/forms/form-template.html" %}
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
