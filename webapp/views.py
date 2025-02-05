@@ -1230,11 +1230,15 @@ def build_vulnerabilities(security_vulnerabilities):
     def vulnerabilities(path):
         try:
             document = security_vulnerabilities.get_topic(path)
-            metadata_table = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
+            metadata_table = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
             for item in metadata_table:
-              if str(item["id"]) == str(document["topic_id"]):
-                document_metadata = item
-                break
+                if str(item["id"]) == str(document["topic_id"]):
+                    document_metadata = item
+                    break
             return flask.render_template(
                 "security/vulnerabilities/vulnerabilities.html",
                 metadata=document_metadata,
