@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-5">
+    {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left" %}
+      {% if offset >= total_results %}
+        {% set current_page = 1 %}
+      {% else %}
+        {% set current_page = ((offset / limit) + 1) | int %}
+      {% endif %}
+      {% if total_results > limit %}
+        {% include "shared/_pagination.html" %}
+      {% endif %}
+    {% endwith %}
+  </div>
+  <div class="col-4 u-align--right">
+    {% with total_results=total_results, limit=limit, page_position="bottom" %}
+      {% include "certified/search/_result-count-selector.html" %}
+    {% endwith %}
+  </div>
+</div>
