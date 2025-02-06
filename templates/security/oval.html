@@ -35,14 +35,14 @@
 <section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-7">
-      <h2>
+      <h2 id="how-we-use-oval">
         How we use Ubuntu OVAL
       </h2>
       <p>
         Ubuntu OVAL uses the OVAL vulnerability and patch definitions to enable auditing for Common Vulnerabilities and Exposures (CVEs) and to determine whether a particular patch, via an Ubuntu Security Notice (USN), is appropriate for the local system.
       </p>
       <p>
-        Ubuntu OVAL also allows for any third-party Security Content Automation Protocol (SCAP) compliant tools to accurately scan an Ubuntu system or an official Ubuntu OCI image for vulnerabilities.
+        Ubuntu OVAL also allows for any third-party Security Content Automation Protocol (SCAP) compliant tools to accurately scan an Ubuntu system or an official Ubuntu cloud image for vulnerabilities.
       </p>
       <a class="p-button" href="/security/notices">See the Ubuntu Security Notices</a>
     </div>
@@ -63,7 +63,7 @@
 
 <section class="p-strip is-deep" id="instructions">
   <div class="u-fixed-width">
-    <h2>
+    <h2 id="using-oval-data">
       Using Ubuntu's OVAL data
     </h2>
   </div>
@@ -99,7 +99,7 @@
           </li>
           <li class="p-stepped-list__item">
             <h3 class="p-stepped-list__title">
-              Scanning an OCI Image
+              Scanning an Official Cloud Image
             </h3>
             <div class="p-stepped-list__content">
               <p>
@@ -148,7 +148,7 @@ bunzip2 oci.com.ubuntu.focal.usn.oval.xml.bz2</code></pre>
     <section class="p-strip--light">
       <div class="row">
         <div class="col-7">
-          <h2>
+          <h2 id="oval-data-parameters">
             Ubuntu OVAL data parameters
           </h2>
           <table>
@@ -257,7 +257,7 @@ bunzip2 oci.com.ubuntu.focal.usn.oval.xml.bz2</code></pre>
     <section class="p-strip">
       <div class="row">
         <div class="col-7">
-          <h2>
+          <h2 id="how-oval-works">
             How Ubuntu OVAL data works
           </h2>
           <p>

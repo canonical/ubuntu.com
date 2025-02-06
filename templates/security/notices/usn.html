@@ -59,14 +59,14 @@
           {% for package_name, package in notice.release_packages[version].items() %}
             <li class="p-list__item">
               {% if package.source_link %}
-                <a href="{{package.source_link}}">{{ package.name }}</a>
+                <a href="{{ package.source_link }}">{{ package.name }}</a>
               {% else %}
                 {{ package.name }}
               {% endif %}
               -
               {% if package.version_link %}
-                <a href="{{package.version_link}}">{{ package.version }}</a>
-              {% else%}
+                <a href="{{ package.version_link }}">{{ package.version }}</a>
+              {% else %}
                 {{ package.version }}
               {% endif %}
               <div>
@@ -115,7 +115,7 @@
       <ul class="p-list">
         {% for notice in notice.related_notices %}
           <li class="p-list__item">
-            <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.packages }}
+            <a href="/security/notices/{{ notice }}">{{ notice }}</a>
           </li>
         {% endfor %}
       </ul>

@@ -46,6 +46,7 @@ TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 EXAM_NAMES = {
     "cue-test": "CUE Linux Beta",
     "cue-linux-essentials": "CUE.01 Linux",
+    "cue-01-linux": "CUE.01 Linux",
 }
 
 RESERVATION_STATES = {
@@ -108,12 +109,14 @@ def cred_self_study(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
+    search_type = flask.request.args.get("type")
     if flask.request.method == "GET":
         sign_up_open = True
         return flask.render_template(
-            "credentials/sign-up.html", sign_up_open=sign_up_open
+            "credentials/sign-up.html",
+            sign_up_open=sign_up_open,
+            search_type=search_type,
         )
-
     form_fields = {}
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
@@ -122,6 +125,10 @@ def cred_sign_up(**_):
             form_fields[key] = value
             if "utm_content" in form_fields:
                 form_fields["utmcontent"] = form_fields.pop("utm_content")
+
+    # remove country field for marketo
+    if "country" in form_fields:
+        form_fields.pop("country")
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
@@ -168,7 +175,21 @@ def cred_sign_up(**_):
     }
 
     try:
-        marketo_api.submit_form(payload).json()
+        response = marketo_api.submit_form(payload).json()
+        if response and response.get("result"):
+            result = response["result"][0]
+            if (
+                result.get("status") == "skipped"
+                or response.get("success") is False
+            ):
+                return (
+                    flask.render_template(
+                        "credentials/sign-up.html",
+                        error="Something went wrong",
+                        search_type=search_type,
+                    ),
+                    400,
+                )
     except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
@@ -176,7 +197,9 @@ def cred_sign_up(**_):
 
         return (
             flask.render_template(
-                "credentials/sign-up.html", error="Something went wrong"
+                "credentials/sign-up.html",
+                error="Something went wrong",
+                search_type=search_type,
             ),
             400,
         )
@@ -196,24 +219,112 @@ def cred_sign_up(**_):
 
     service = build("sheets", "v4", credentials=credentials)
 
+    def extract_json_comment(obj):
+        fields = [
+            "NativeLanguage",
+            "Country",
+            "areaOfExpertise",
+            "HasFormalTechnicalDegree",
+            "HighestLevelOfFormalEducation",
+            "UbuntuLastProfessionalExperience",
+            "CUEMotivation",
+            "whyNotOtherCertifications",
+            "UbuntuLastAcademicExperience",
+            "whyOtherCertifications",
+            "trainingExperiences",
+            "otherCertifications",
+            "UbuntuOverallExperience",
+            "YearsTechnicalRole",
+        ]
+        row = []
+        for key in fields:
+            cell = obj.get(key, None)
+            if cell is not None:
+                if isinstance(cell, dict):
+                    json_dict = json.dumps(cell)
+                    row.append(json_dict)
+                else:
+                    row.append(cell)
+            else:
+                row.append("")
+
+        return row
+
+    SHEET_ID = "1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU"
+    range = (
+        "Production"
+        if "staging"
+        not in os.getenv(
+            "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+        )
+        else "Staging"
+    )
+
     sheet = service.spreadsheets()
-    sheet.values().append(
-        spreadsheetId="1i9dT558_YYxxdPpDTG5VYewezb5gRUziMG77BtdUZGU",
-        range="Sheet1",
-        valueInputOption="RAW",
-        body={
-            "values": [
-                [
-                    form_fields.get("firstName"),
-                    form_fields.get("lastName"),
-                    form_fields.get("email"),
-                    form_fields.get("Job_Role__c"),
-                    form_fields.get("title"),
-                    form_fields.get("Comments_from_lead__c"),
-                    form_fields.get("canonicalUpdatesOptIn"),
-                ]
+    # add the header to the sheet if the sheet is empty initially
+    result = (
+        sheet.values()
+        .get(spreadsheetId=SHEET_ID, range=f"{range}!1:1")
+        .execute()
+    )
+    first_row = result.get("values", [])
+    if len(first_row) == 0:
+        header = [
+            "First Name",
+            "Last Name",
+            "Email",
+            "Job Role",
+            "Timestamp",
+            "Title",
+            "Comments",
+            "Canonical Updates Opt In",
+            "Exam Contributor Type",
+            "NativeLanguage",
+            "Country",
+            "Area Of Expertise",
+            "Has Formal Technical Degree",
+            "Highest Level Of Formal Education",
+            "Ubuntu Last Professional Experience",
+            "CUE Motivation",
+            "Why Not Other Certifications",
+            "Ubuntu Last Academic Experience",
+            "Why Other Certifications",
+            "Training Experiences",
+            "Other Certifications",
+            "Ubuntu Overall Experience",
+            "Years Technical Role",
+        ]
+        body = {"values": [header]}
+        sheet.values().append(
+            spreadsheetId=SHEET_ID,
+            range=f"{range}!A:A",
+            valueInputOption="RAW",
+            body=body,
+        ).execute()
+
+    body = {
+        "values": [
+            [
+                form_fields.get("firstName"),
+                form_fields.get("lastName"),
+                form_fields.get("email"),
+                form_fields.get("Job_Role__c"),
+                datetime.now(pytz.UTC).strftime("%Y-%m-%d %H:%M:%S"),
+                form_fields.get("title"),
+                form_fields.get("Comments_from_lead__c"),
+                form_fields.get("canonicalUpdatesOptIn"),
+                form_fields.get("exam_contributor_type"),
+                *extract_json_comment(
+                    json.loads(form_fields["Comments_from_lead__c"])
+                ),
             ]
-        },
+        ]
+    }
+    sheet.values().append(
+        spreadsheetId=SHEET_ID,
+        range=f"{range}!A:A",
+        valueInputOption="RAW",
+        body=body,
     ).execute()
 
     if return_url:
@@ -225,9 +336,19 @@ def cred_sign_up(**_):
         return flask.redirect(return_url)
 
     if referrer:
-        return flask.redirect(f"/thank-you?referrer={referrer}")
+        return flask.redirect(
+            f"/thank-you?referrer={referrer}?type={search_type}"
+        )
     else:
-        return flask.redirect("/thank-you")
+        return flask.redirect(f"/thank-you?type={search_type}")
+
+
+@shop_decorator(area="cred", response="html")
+def cred_thank_you(**_):
+    signup_type = flask.request.args.get("type")
+    return flask.render_template(
+        "credentials/thank-you.html", signup_type=signup_type
+    )
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -475,6 +596,9 @@ def cred_your_exams(
     **kwargs,
 ):
     email = flask.request.args.get("email", None)
+    user = user_info(flask.session)
+    if not email:
+        email = user["email"]
 
     agreement_notification = False
     confidentiality_agreement_enabled = strtobool(
@@ -515,6 +639,24 @@ def cred_your_exams(
     exams_expired = []
 
     if exam_contracts:
+        # Fetch all reservations in one API call
+        try:
+            reservations_response = (
+                trueability_api.get_assessment_reservations(
+                    per_page=500,
+                    email=email,
+                )
+            )
+            reservations = {
+                r["uuid"]: r
+                for r in reservations_response.get(
+                    "assessment_reservations", []
+                )
+            }
+
+        except Exception:
+            reservations = {}
+
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
             name = EXAM_NAMES.get(name, name)
@@ -522,12 +664,15 @@ def cred_your_exams(
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
+
             # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
-                response = trueability_api.get_assessment_reservation(
-                    exam_contract["cueContext"]["reservation"]["IDs"][-1]
-                )
-                if "assessment_reservation" not in response:
+                reservation_id = exam_contract["cueContext"]["reservation"][
+                    "IDs"
+                ][-1]
+                reservation = reservations.get(reservation_id)
+
+                if not reservation:
                     exams_expired.append(
                         {
                             "name": name,
@@ -536,20 +681,16 @@ def cred_your_exams(
                         }
                     )
                     continue
-                else:
-                    r = response.get("assessment_reservation")
-                    timezone = r["user"]["time_zone"]
-                    tz_info = pytz.timezone(timezone)
-                    starts_at = (
-                        datetime.strptime(
-                            r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
-                        )
-                        .replace(tzinfo=pytz.timezone("UTC"))
-                        .astimezone(tz_info)
-                    )
-                    assessment_id = (
-                        r.get("assessment") and r["assessment"]["id"]
-                    )
+
+                r = reservation
+                timezone = r["user"]["time_zone"]
+                tz_info = pytz.timezone(timezone)
+                starts_at = (
+                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    .replace(tzinfo=pytz.timezone("UTC"))
+                    .astimezone(tz_info)
+                )
+                assessment_id = r.get("assessment") and r["assessment"]["id"]
 
                 actions = []
                 utc = pytz.timezone("UTC")
@@ -571,6 +712,7 @@ def cred_your_exams(
                     ]
                     else state
                 )
+
                 # if assessment is provisioned
                 if assessment_id:
                     is_in_window = (now > starts_at and now < end) or (
@@ -662,6 +804,7 @@ def cred_your_exams(
                 exams_expired.append(
                     {"name": name, "state": "Expired", "actions": []}
                 )
+
             # if exam is not used and is not expired
             else:
                 actions = [
@@ -701,7 +844,6 @@ def cred_your_exams(
     # Do not cache this view
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
-
     return response
 
 

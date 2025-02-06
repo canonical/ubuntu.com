@@ -1,25 +1,53 @@
-<div class="u-fixed-width">
-  <table class="p-bordered-table">
-    <tbody aria-label="A table that shows which versions of Ceph are supported by Ubuntu LTS releases">
-      <tr aria-label="Ceph releases">
-        <th class="screen-readers-only" id="ceph">Ceph releases</th>
-        <td class="p-bordered-table__cell is-bold" aria-describedby="ceph ubuntu-20">Ceph<br />Octopus<br />15.2.x</td>
-        <td class="p-bordered-table__cell is-highlight is-bold" aria-describedby="ceph ubuntu-20">Ceph<br />Pacific<br />16.2.x</td>
-        <td class="p-bordered-table__cell is-highlight is-bold" aria-describedby="ceph ubuntu-20">Ceph<br />Quincy<br />17.2.x</td>
-        <td class="p-bordered-table__cell is-bold" aria-describedby="ceph ubuntu-22">Ceph<br />Quincy<br />17.2.x</td>
-        <td class="p-bordered-table__cell is-highlight is-bold" colspan="2" aria-describedby="ceph ubuntu-22">Ceph<br />Reef<br />18.2.x</td>
-      </tr>
-      <tr aria-label="Ubuntu releases">
-        <th class="screen-readers-only" id="ubuntu">Ubuntu releases</th>
-        <td class="p-bordered-table__cell" colspan="3" id="ubuntu-20" aria-describedby="ubuntu">Ubuntu<br />20.04.x LTS<br />Focal</td>
-        <td class="p-bordered-table__cell" colspan="3" id="ubuntu-22" aria-describedby="ubuntu">Ubuntu<br />22.04.x LTS<br />Jammy</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<style>
-  .screen-readers-only {
-    display: none;
-  }
-</style>
+<table aria-label="Diagram that shows which versions of Ceph are supported in each LTS release">
+  <thead>
+    <tr>
+      <th scope="col" class="u-darker-background">
+        Ubuntu
+        <br />
+        20.04.x LTS
+        <br />
+        Focal
+      </th>
+      <th scope="col" class="u-darker-background">
+        Ubuntu
+        <br />
+        22.04.x LTS
+        <br />
+        Jammy
+      </th>
+      <th scope="col" class="u-darker-background">
+        Ubuntu
+        <br />
+        24.04.x LTS
+        <br />
+        Noble
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ceph Quincy 17.2.x</td>
+      <td>Ceph Reef 18.2.x</td>
+      <td class="u-darker-background">
+        Ceph Squid 19.2.x *<span class="u-off-screen">Release supported under full LTS commitment</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Ceph Pacific 16.2.x</td>
+      <td class="u-darker-background">
+        Ceph Quincy 17.2.x *<span class="u-off-screen">Release supported under full LTS commitment</span>
+      </td>
+      <td aria-hidden="true">&ndash;</td>
+    </tr>
+    <tr>
+      <td class="u-darker-background">
+        Ceph Octopus 15.2.x *<span class="u-off-screen">Release supported under full LTS commitment</span>
+      </td>
+      <td aria-hidden="true">&ndash;</td>
+      <td aria-hidden="true">&ndash;</td>
+    </tr>
+  </tbody>
+</table>
+<hr class="p-rule--muted" />
+<p class="u-text--muted">The Ubuntu and Ceph support cadence</p>
+<i class="u-text--muted" aria-hidden="true">* Releases denoted with an asterisk are supported under the full LTS commitment.</i>

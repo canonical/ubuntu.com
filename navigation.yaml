@@ -80,8 +80,6 @@ managedapps:
       path: /ceph/managed
     - title: Apps
       path: /managed/apps
-    - title: Observability
-      path: /observability/managed
     - title: Firefighting
       path: /managed/firefighting-support
 
@@ -190,10 +188,10 @@ containers:
       path: /containers
     - title: What are containers
       path: /containers/what-are-containers
-    - title: Chiselled Ubuntu
-      path: /containers/chiselled
-    - title: Chiselled and .NET
-      path: /containers/chiselled/dotnet
+    - title: Chiseled Ubuntu
+      path: /containers/chiseled
+    - title: Chiseled and .NET
+      path: /containers/chiseled/dotnet
 
 ai:
   title: AI / ML
@@ -212,6 +210,8 @@ ai:
       path: /ai/consulting
     - title: Data Science
       path: /ai/data-science
+    - title: MLOps workshop
+      path: /ai/mlops-workshop
 
 kubernetes:
   title: Canonical Kubernetes
@@ -315,7 +315,7 @@ support:
     - title: Pricing
       path: /pricing/pro
     - title: Discourse
-      path: https://discourse.ubuntu.com/c/ubuntu-pro
+      path: https://discourse.ubuntu.com/c/project/ubuntu-pro/116/
 
 pro:
   title: Ubuntu Pro
@@ -333,7 +333,7 @@ pro:
     - title: Docs
       path: https://documentation.ubuntu.com/pro
     - title: Discourse
-      path: https://discourse.ubuntu.com/c/ubuntu-pro
+      path: https://discourse.ubuntu.com/c/project/ubuntu-pro/116/
 
 Distributor:
   title: Ubuntu Pro Distributor
@@ -404,18 +404,6 @@ legal:
       path: /legal/ubuntu-pro
     - title: Contributors
       path: /legal/contributors
-
-observability:
-  title: Observability
-  path: /observability
-
-  children:
-    - title: Overview
-      path: /observability
-    - title: What is observability
-      path: /observability/what-is-observability
-    - title: Managed
-      path: /observability/managed
 
 security:
   title: Security
@@ -645,10 +633,10 @@ landscape:
       path: /landscape/features
     - title: Managed
       path: /landscape/managed
-    - title: Pricing
-      path: /landscape/pricing
+    - title: Compare
+      path: /landscape/compare
     - title: Install
-      path: /landscape/install
+      path: /landscape/docs/quickstart-deployment
     - title: Docs
       path: /landscape/docs
     - title: Log in to Landscape

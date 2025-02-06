@@ -1,0 +1,120 @@
+<div tabindex="0"
+     role="tabpanel"
+     id="single-node-tab"
+     aria-labelledby="single-node">
+  <div class="row--50-50">
+    <div class="col">
+      <h3>Single-node deployment</h3>
+    </div>
+    <div class="col">
+      <ul class="p-list--divided u-no-margin--bottom">
+        <li class="p-list__item is-ticked">Uses MicroCeph</li>
+        <li class="p-list__item is-ticked">Works on a workstation or VM</li>
+        <li class="p-list__item is-ticked">Suitable for testing and development</li>
+      </ul>
+      <p>
+        These installation instructions use MicroCeph - Ceph in a snap.  MicroCeph is a pure upstream Ceph distribution designed for small scale and edge deployments, which can be installed and maintained with minimal knowledge and effort.
+      </p>
+      <div class="p-section--shallow">
+        <div class="p-notification--information">
+          <div class="p-notification__content">
+            <p class="p-notification__message">
+              You will need a multi-core processor and at least 8GiB of memory and 100GB of disk space.  MicroCeph has been tested on x86-based physical and virtual machines running Ubuntu 22.04 LTS.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      <ol class="p-stepped-list--detailed u-no-margin--bottom">
+        <li class="p-stepped-list__item">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <p class="p-stepped-list__title p-heading--5">
+                To get started, install the MicroCeph snap with the following command on each node to be used in the cluster:
+              </p>
+            </div>
+            <div class="col-6 col-medium-3">
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo snap install microceph</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <p class="p-stepped-list__title p-heading--5">Then bootstrap the cluster:</p>
+            </div>
+            <div class="col-6 col-medium-3">
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph cluster bootstrap</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <p class="p-stepped-list__title p-heading--5">Check the cluster status with the following command:</p>
+            </div>
+            <div class="col-6 col-medium-3">
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph status</code></pre>
+                </div>
+                <p>
+                  Here you should see that there is a single node in the cluster.
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <p class="p-stepped-list__title p-heading--5">
+                To use MicroCeph as a single node, the default CRUSH rules need to be modified:
+              </p>
+            </div>
+            <div class="col-6 col-medium-3">
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph.ceph osd crush rule rm replicated_rule<br />sudo microceph.ceph osd crush rule create-replicated single default osd</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <p class="p-stepped-list__title p-heading--5">Next, add some disks that will be used as OSDs:</p>
+            </div>
+            <div class="col-6 col-medium-3">
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block"><code>sudo microceph disk add /dev/sd[x] --wipe</code></pre>
+                </div>
+                <p>
+                  Repeat for each disk you would like to use as an OSD on that node, and additionally on the other nodes in the cluster. Cluster status can be verified using:
+                </p>
+                <div class="p-stepped-list__content">
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block"><code>sudo microceph.ceph status<br />sudo microceph.ceph osd status</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

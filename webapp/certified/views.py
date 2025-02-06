@@ -16,7 +16,7 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
-from webapp.certified.helpers import get_download_url
+from webapp.certified.helpers import _get_category_pathname, get_download_url
 
 session = Session()
 talisker.requests.configure(session)
@@ -36,6 +36,14 @@ def certified_routes(app):
     """
 
     app.add_url_rule("/certified", view_func=certified_home)
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>",
+        view_func=certified_platform_details,
+    )
+    app.add_url_rule(
+        "/certified/platforms/<platform_id>/<release>",
+        view_func=certified_platform_details_by_release,
+    )
     app.add_url_rule(
         "/certified/<canonical_id>",
         view_func=certified_model_details,
@@ -148,6 +156,60 @@ def _parse_query_params(all_releases, all_vendors):
         return None
     else:
         return new_query_params
+
+
+def certified_platform_details(platform_id):
+    platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+    return render_template(
+        "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
+        platform=platform,
+        releases=releases,
+        selected_release=None,
+    )
+
+
+def certified_platform_details_by_release(platform_id, release):
+    platform = api.certified_platform_details(platform_id)
+
+    # Get the set of all releases available for this platform
+    releases = set(
+        release
+        for _, certificate in platform["certificates"].items()
+        for release in certificate["releases"]
+    )
+
+    # If the release specified in the URL is not available for this platform,
+    # render the page for all releases
+    if release not in releases:
+        return render_template(
+            "certified/platforms/platform-details.html",
+            category_pathname=_get_category_pathname(platform["category"]),
+            platform=platform,
+            releases=releases,
+            selected_release=None,
+        )
+
+    # Filter only certificates for the release specified in the URL
+    platform["certificates"] = {
+        canonical_id: certificate
+        for canonical_id, certificate in platform["certificates"].items()
+        if release in certificate["releases"]
+    }
+    return render_template(
+        "certified/platforms/platform-details.html",
+        category_pathname=_get_category_pathname(platform["category"]),
+        platform=platform,
+        releases=releases,
+        selected_release=release,
+    )
 
 
 def get_vendors_releases_filters():
@@ -424,7 +486,7 @@ def certified_component_details(component_id):
     machines = machines_by_id.values()
 
     return render_template(
-        "certified/component-details.html",
+        "certified/components/component-details.html",
         component=component,
         machines=sorted(
             machines, key=lambda machine: machine["canonical_id"], reverse=True
@@ -482,7 +544,8 @@ def certified_hardware_details(canonical_id, release):
         hardware_details[category].append(device_info)
 
     return render_template(
-        "certified/hardware-details.html",
+        "certified/hardware-details/hardware-details.html",
+        category_pathname=_get_category_pathname(models["category"]),
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
@@ -564,8 +627,14 @@ def certified_model_details(canonical_id):
         canonical_id=canonical_id,
         name=model_release["model"],
         category=model_release["category"],
+        category_pathname=_get_category_pathname(model_release["category"]),
         form_factor=form_factor,
         vendor=model_release["make"],
+        platform_name=model_release["platform_name"],
+        platform_id=model_release["platform_id"],
+        platform_certified_configuration_count=model_release[
+            "platform_certified_configuration_count"
+        ],
         major_release=model_release["certified_release"],
         release_details=release_details,
         has_enabled_releases=has_enabled_releases,

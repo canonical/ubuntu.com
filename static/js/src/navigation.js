@@ -66,6 +66,8 @@ mainList.addEventListener("click", function (e) {
       goBackOneLevel(e, target);
     } else {
       handleDropdownClick(e.target.parentNode);
+      // This is a temporary fix until we migrate to use the vanilla meganav
+      closeNotifications();
     }
   } else if (
     target.classList.contains("p-navigation__dropdown-item") ||
@@ -77,6 +79,12 @@ mainList.addEventListener("click", function (e) {
     }
   }
 });
+
+// The current set up of the meganav doesn't work well with notifications. The simplest fix for this is to close all notifications when a dropdown is clicked. Can be removed on migration to vanilla meganav.
+function closeNotifications() {
+  const notification = document.querySelector(".p-popup-notification:target");
+  notification.style.display = "none";
+}
 
 let wasBelowSpecificWidth = window.innerWidth < MOBILE_VIEW_BREAKPOINT;
 window.addEventListener("resize", function () {
@@ -813,7 +821,7 @@ addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
 addGANavEvents("#use-case", "www.ubuntu.com-nav-1-use-case");
 addGANavEvents("#support", "www.ubuntu.com-nav-1-support");
 addGANavEvents("#community", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#get-ubuntu", "www.ubuntu.com-nav-1-get-ubuntu");
+addGANavEvents("#download-ubuntu", "www.ubuntu.com-nav-1-download-ubuntu");
 addGANavEvents(".p-navigation.is-secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");

@@ -1,4 +1,4 @@
-<div id="download-cheatsheet modal" class="p-modal u-hide">
+<div id="download-cheatsheet-modal" class="p-modal u-hide">
   <div class="p-modal__dialog"
        role="dialog"
        aria-labelledby="modal-title"
@@ -64,7 +64,7 @@
                    aria-labelledby="canonicalUpdatesOptIn"
                    name="canonicalUpdatesOptIn"
                    type="checkbox" />
-            <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I would like to receive news from Canonical by email.</span>
+            <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I would like to receive news from the Ubuntu newsletter and occasional updates from Canonical by email.</span>
           </label>
 
           <p>
@@ -139,7 +139,7 @@
     @param {HTMLElement} event modal Modal dialog to show or hide.
   */
   function toggleModal(event) {
-    var targetControls = document.getElementById("download-cheatsheet");
+    var targetControls = document.getElementById("download-cheatsheet-modal");
     if (targetControls && targetControls.classList.contains('p-modal')) {
       targetControls.classList.toggle('u-hide');
     }

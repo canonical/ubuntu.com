@@ -22,6 +22,11 @@ from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
 from ubuntu_release_info.data import Data
+from urllib.parse import quote, unquote, urlparse
+
+from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
+from bs4 import BeautifulSoup
 from werkzeug.exceptions import BadRequest
 
 # Local
@@ -323,66 +328,6 @@ def build_tutorials_index(session, tutorials_docs):
         )
 
     return tutorials_index
-
-
-def build_case_study_index():
-    case_study_path = os.path.join("templates/case-study/")
-    language = flask.request.args.get("language", default=None, type=str)
-    resource = flask.request.args.get("resource", default=None, type=str)
-    tag = flask.request.args.get("tag", default=None, type=str)
-
-    html_files = [
-        f for f in os.listdir(case_study_path) if f.endswith(".html")
-    ]
-    case_study_info = []
-
-    title_pattern = re.compile(
-        r"{% block title %}(.*?){% endblock %}", re.DOTALL
-    )
-    meta_description_pattern = re.compile(
-        r"{% block meta_description %}(.*?){% endblock %}", re.DOTALL
-    )
-
-    for file in html_files:
-        if (
-            file != "index.html"
-            and file != "base_case-study.html"
-            and file != "_case-study-card.html"
-        ):
-            file_path = os.path.join(case_study_path, file)
-            with open(file_path, "r", encoding="utf-8") as f:
-                content = f.read()
-                title_match = title_pattern.search(content)
-                meta_description_match = meta_description_pattern.search(
-                    content
-                )
-                title = (
-                    title_match.group(1).strip() if title_match else "No title"
-                )
-                meta_description = (
-                    meta_description_match.group(1).strip()
-                    if meta_description_match
-                    else ""
-                )
-                created_at = os.path.getctime(file_path)
-                # Append tags to case study info
-                case_study_info.append(
-                    {
-                        "title": title,
-                        "file_path": "/case-study/" + file,
-                        "meta_description": meta_description,
-                        "created_at": created_at,
-                    }
-                )
-    case_study_info.sort(key=lambda x: x["created_at"], reverse=True)
-
-    return flask.render_template(
-        "case-study/index.html",
-        language=language,
-        resource=resource,
-        tag=tag,
-        case_study_info=case_study_info,
-    )
 
 
 def build_engage_index(engage_docs):
@@ -973,6 +918,10 @@ def marketo_submit():
         enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
 
+    user_id = flask.request.cookies.get("user_id")
+    if user_id:
+        enrichment_fields["Google_Analytics_User_ID__c"] = user_id
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -983,6 +932,23 @@ def marketo_submit():
             }
         ],
     }
+
+    encoded_utms = flask.request.cookies.get("utms")
+    if encoded_utms:
+        utms = unquote(encoded_utms)
+        utm_dict = dict(i.split(":", 1) for i in utms.split("&"))
+        approved_utms = [
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
+            "utm_content",
+            "utm_term",
+        ]
+        for k, v in utm_dict.items():
+            if k in approved_utms:
+                if k == "utm_content":
+                    k = "utmcontent"
+                enrichment_fields[k] = v
 
     try:
         ip_location = ip_reader.get(client_ip)
@@ -1044,12 +1010,25 @@ def marketo_submit():
             "name": flask.request.form.get("firstName"),
             "email": flask.request.form.get("email"),
         }
+
+        if return_url.startswith("http://") or return_url.startswith(
+            "https://"
+        ):
+            return flask.redirect(return_url)
+
+        if referrer:
+            parsed_referer = urlparse(referrer)
+            return flask.redirect(
+                f"{parsed_referer.scheme}://"
+                f"{parsed_referer.netloc}{return_url}"
+            )
+
         return flask.redirect(return_url)
 
     if referrer:
         return flask.redirect(f"/thank-you?referrer={referrer}")
-    else:
-        return flask.redirect("/thank-you")
+
+    return flask.redirect("/thank-you")
 
 
 def thank_you():

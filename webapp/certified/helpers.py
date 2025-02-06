@@ -50,3 +50,12 @@ def _get_clean_in_filter(filter_in):
     if isinstance(filter_in, list):
         return ",".join(filter_in)
     return filter_in
+
+
+def _get_category_pathname(form_factor):
+    if form_factor == "Ubuntu Core":
+        return "iot"
+    elif form_factor == "Server SoC":
+        return "socs"
+    else:
+        return form_factor.lower() + "s"

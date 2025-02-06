@@ -1,0 +1,51 @@
+<section class="p-section--deep">
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>
+        <a href="{{ title_link }}">Latest news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </div>
+  <div class="p-section--shallow">
+    <div class="p-equal-height-row--wrap" id="iot-latest"></div>
+  </div>
+  <template id="iot-latest-template">
+    <div class="p-equal-height-row__col">
+      <div class="p-equal-height-row__item">
+        <div class="u-crop--16-9">
+          <div class="article-image p-image-wrapper"></div>
+        </div>
+      </div>
+      <div class="p-equal-height-row__item">
+        <h3 class="p-heading--5">
+          <a class="article-link article-title"></a>
+        </h3>
+      </div>
+      <div class="p-equal-height-row__item">
+        <p class="article-excerpt"></p>
+      </div>
+    </div>
+  </template>
+</section>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+{# djlint:off #}
+<script>
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#iot-latest",
+      articleTemplateSelector: "#iot-latest-template",
+      excerptLength: 200,
+      {% if groupId %}
+        groupId: {{ groupId }},
+      {% endif %}
+      {% if tagId %}
+        tagId: {{ tagId }},
+      {% endif %}
+      linkImage: true,
+      limit: 4
+    }
+  )
+</script>
+{# djlint:on #}

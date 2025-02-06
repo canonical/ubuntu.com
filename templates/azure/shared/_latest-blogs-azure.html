@@ -1,0 +1,48 @@
+<section class="p-section--deep">
+  <div class="u-fixed-width">
+    <hr class="p-rule" />
+    <h2>
+      <a href="{{ title_link }}">Latest news from&nbsp;our&nbsp;blog&nbsp;&rsaquo;</a>
+    </h2>
+  </div>
+  <div class="row--25-75">
+    <div class="col">
+      <div class="p-section--shallow">
+        <div class="row" id="azure-latest"></div>
+      </div>
+    </div>
+  </div>
+
+  <template id="azure-latest-template">
+    <div class="col-3 col-medium-2 u-equal-height-items">
+      <div class="u-crop--16-9">
+        <div class="article-image p-image-wrapper"></div>
+      </div>
+      <h3 class="p-text--default">
+        <a class="article-link article-title"></a>
+      </h3>
+      <p class="article-excerpt"></p>
+    </div>
+  </template>
+</section>
+
+<script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+{# djlint:off #}
+  <script>
+    canonicalLatestNews.fetchLatestNews(
+      {
+        articlesContainerSelector: "#azure-latest",
+        articleTemplateSelector: "#azure-latest-template",
+        excerptLength: 200,
+        {% if group_id %}
+          groupId: {{ group_id }},
+        {% endif %}
+        {% if tag_id %}
+          tagId: {{ tag_id }},
+        {% endif %}
+        linkImage: true,
+        limit: 3
+      }
+    )
+</script>
+{# djlint:on #}

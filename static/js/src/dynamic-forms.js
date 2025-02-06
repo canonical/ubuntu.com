@@ -286,10 +286,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         );
         checkbox?.addEventListener("change", function (e) {
           if (e.target.checked) {
-            input.style.opacity = 1;
+            input.style.display = "block";
             input.focus();
           } else {
-            input.style.opacity = 0;
+            input.style.display = "none";
             input.value = "";
           }
         });
@@ -408,14 +408,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             message += "\r\n\r\n";
           });
 
-          const howManyMachinesFieldset =
-            document.getElementById("how-many-machines");
-          const machinesInputs = howManyMachinesFieldset?.querySelectorAll(
-            "input[name='how-many-machines-do-you-have']",
+          const radioFieldsets = document.querySelectorAll(
+            ".js-remove-radio-names",
           );
-          machinesInputs.forEach((input) => {
-            input.removeAttribute("name");
-          });
+          if (radioFieldsets.length > 0) {
+            radioFieldsets.forEach((radioFieldset) => {
+              const radioInputs = radioFieldset.querySelectorAll(
+                "input[type='radio']",
+              );
+              radioInputs.forEach((radioInput) => {
+                radioInput.removeAttribute("name");
+              });
+            });
+          }
 
           return message;
         }
@@ -494,6 +499,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
 
       setCheckboxLimit();
+
+      // Sets up dial code dropdown options aka. intlTelInput.js
+      // and pre fills the country field
+      // Prepares input fields for opened modal if it has not been initialised
+      if (!modalAlreadyExists) {
+        prepareInputFields(phoneNumberInput, countryInput);
+      }
 
       // Set preferredLanguage hidden input
       function setpreferredLanguage() {

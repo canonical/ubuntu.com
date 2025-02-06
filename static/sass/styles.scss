@@ -65,6 +65,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_carousel";
 @import "pattern_checkout";
 @import "pattern_certification-results";
+@import "pattern_certified-model-details-tabs";
 @import "pattern_chart";
 @import "pattern_component-details-table";
 @import "pattern_component-table";
@@ -840,53 +841,18 @@ td.p-accordion {
 }
 
 // Styling to display a success message when forms are successfully submitted.
-#success {
+.p-popup-notification {
   display: none;
-  position: absolute;
+  position: relative;
+  padding-bottom: 0;
+  .p-notification__content {
+    margin-bottom: 0.6rem;
+  }
 }
 
-#success:target {
+.p-popup-notification:target {
   display: block;
-  z-index: 10;
-}
-
-#newsletter-signup {
-  display: none;
-  position: absolute;
-}
-
-#newsletter-signup:target {
-  display: block;
-  z-index: 10;
-}
-
-#contact-form-success {
-  display: none;
-  position: absolute;
-}
-
-#contact-form-success:target {
-  display: block;
-  z-index: 10;
-}
-
-#updated {
-  display: none;
-}
-
-#updated:target {
-  display: block;
-  z-index: 10;
-}
-
-#unsubscribed {
-  display: none;
-  position: absolute;
-}
-
-#unsubscribed:target {
-  display: block;
-  z-index: 10;
+  z-index: 9;
 }
 
 html {
@@ -1462,6 +1428,10 @@ $color-link-dark: #69c !default;
   &.is-product {
     background-color: #f3f3f3;
   }
+
+  &--logo {
+    margin-top: $spv--large;
+  }
 }
 
 .p-icon-section {
@@ -1726,6 +1696,7 @@ legend {
     padding-top: 0.5rem;
   }
 }
+
 // XXX: MPT: Can be removed once this is upstreamed in Vanilla
 // https://github.com/canonical/vanilla-framework/issues/5293
 .list-matrix {
@@ -1777,4 +1748,21 @@ legend {
 
 .u-no-wrap {
   white-space: nowrap;
+}
+
+// Fix for spacing in the footer
+.p-footer-list {
+  @extend %paragraph;
+}
+
+.u-additional-spacing--large {
+  @media screen and ($breakpoint-large <= width) {
+    margin-bottom: $sp-unit * 12.5;
+  }
+}
+
+.u-responsive-cta {
+  @media screen and ($breakpoint-large <= width) {
+    height: 15rem;
+  }
 }

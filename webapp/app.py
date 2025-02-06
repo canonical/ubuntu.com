@@ -8,8 +8,12 @@ import math
 import os
 
 import flask
+import jinja2
 import requests
 import talisker.requests
+from jinja2 import ChoiceLoader, FileSystemLoader
+from pathlib import Path
+
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -96,6 +100,7 @@ from webapp.shop.cred.views import (
     cred_shop_thank_you,
     cred_shop_webhook_responses,
     cred_sign_up,
+    cred_thank_you,
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
@@ -142,7 +147,6 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
-    build_case_study_index,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -186,6 +190,16 @@ app = FlaskBase(
     template_500="500.html",
     static_folder="../static",
 )
+
+# ChoiceLoader attempts loading templates from each path in successive order
+loader = ChoiceLoader(
+    [
+        FileSystemLoader("templates"),
+        FileSystemLoader("node_modules/vanilla-framework/templates"),
+    ]
+)
+
+app.jinja_loader = loader
 
 sentry = app.extensions["sentry"]
 session = talisker.requests.get_session()
@@ -582,7 +596,6 @@ app.add_url_rule(
     defaults={"language": None},
     view_func=build_engage_page(engage_pages),
 )
-app.add_url_rule("/case-study", view_func=build_case_study_index)
 app.add_url_rule(
     "/engage/<language>/<page>",
     endpoint="language-engage-page",
@@ -919,6 +932,9 @@ app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/exam-content", view_func=cred_syllabus_data)
 app.add_url_rule(
     "/credentials/sign-up", view_func=cred_sign_up, methods=["GET", "POST"]
+)
+app.add_url_rule(
+    "/credentials/thank-you", view_func=cred_thank_you, methods=["GET"]
 )
 app.add_url_rule(
     "/credentials/schedule",
@@ -1276,27 +1292,57 @@ def render_supermicro_blogs():
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
-def render_form(form):
+def render_form(form, template_path, child=False):
     @wraps(render_form)
     def wrapper_func():
-        with app.app_context() and app.test_request_context():
-            return flask.render_template(
-                form["templatePath"],
-                fieldsets=form["fieldsets"],
-                formData=form["formData"],
-                isModal=form.get("isModal"),
-                modalId=form.get("modalId"),
+        try:
+            if child:
+                return flask.render_template(
+                    template_path + ".html",
+                    fieldsets=form["fieldsets"],
+                    formData=form["formData"],
+                    isModal=form.get("isModal"),
+                    modalId=form.get("modalId"),
+                    path=template_path,
+                )
+            else:
+                return flask.render_template(
+                    template_path + ".html",
+                    fieldsets=form["fieldsets"],
+                    formData=form["formData"],
+                    isModal=form.get("isModal"),
+                    modalId=form.get("modalId"),
+                )
+        except jinja2.exceptions.TemplateNotFound:
+            flask.abort(
+                404, description=f"Template {form['templatePath']} not found."
             )
 
     return wrapper_func
 
 
 def set_form_rules():
-    filename = os.path.join(app.static_folder, "files", "forms-data.json")
-    with open(filename) as forms:
-        data = json.load(forms)
-        for path, form in data["forms"].items():
-            app.add_url_rule(path, view_func=render_form(form), endpoint=path)
+    templates_folder = Path(app.root_path).parent / "templates"
+    for file_path in templates_folder.rglob("form-data.json"):
+        with open(file_path) as forms_json:
+            data = json.load(forms_json)
+            for path, form in data["form"].items():
+                if "childrenPaths" in form:
+                    for child_path in form["childrenPaths"]:
+                        app.add_url_rule(
+                            child_path,
+                            view_func=render_form(
+                                form, child_path, child=True
+                            ),
+                            endpoint=child_path,
+                        )
+                app.add_url_rule(
+                    path,
+                    view_func=render_form(
+                        form, form["templatePath"].split(".")[0]
+                    ),
+                    endpoint=path,
+                )
 
 
 set_form_rules()

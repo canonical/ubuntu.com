@@ -15,6 +15,11 @@
 {% endblock body_class %}
 
 {% block content %}
+  <div class="p-strip is-shallow u-no-padding--bottom">
+    <div class="u-fixed-width">
+      {% include "shared/_azure-banner.html" %}
+    </div>
+  </div>
   <section class="p-section--hero">
     <div class="row--50-50">
       <div class="col">
@@ -22,25 +27,21 @@
           <h1>Ubuntu on Azure</h1>
         </div>
         <div class="p-section--shallow">
-          <p>
-            Canonical produces official Ubuntu images in the Microsoft Azure Marketplace and continuously tracks and delivers updates to these, ensuring security and stability are built-in from the moment your machines and containers launch.
-          </p>
-          <p>
-            Canonical works closely with Microsoft to optimise Ubuntu images on Azure and ensure Ubuntu supports the latest cloud features as these are released. Today, Ubuntu powers more mission-critical workloads on Azure than any other operating system.
-          </p>
-          <p>
-            Beyond Ubuntu Server images, Canonical offers a number of premium Ubuntu images that extend Ubuntu Server with additional security and management features, billed through your existing Microsoft Azure account.
-          </p>
+          <p>Canonical produces official Ubuntu images on Microsoft Azure with continuous updates to ensure security and stability from the moment your machines and containers launch.</p>
+          <p>Microsoft works closely with Canonical to optimize Ubuntu images on Microsoft Azure and ensure Ubuntu supports the latest cloud features as these are released. Today, Ubuntu powers a large number of mission-critical workloads on Azure.</p>
+          <p>Beyond Ubuntu, Canonical also offers Charmed Apps on Microsoft Azure, enabling hybrid environments.</p>
         </div>
-        <hr class="p-rule--muted" />
-        <a href="/azure/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Azure</a>
+        <div class="p-cta-block">
+          <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview" class="p-button--positive">Launch Ubuntu 24.04 on Azure</a>
+          <a href="/azure/contact-us" class="js-invoke-modal">Talk to us about Ubuntu on Azure&nbsp;&rsaquo;</a>
+        </div>
       </div>
       <div class="col">
-        <div class="p-image-container--16-9 is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+        <div class="p-image-container">
+          {{ image(url="https://assets.ubuntu.com/v1/1990c79f-canonical-public-cloud-microsoft-illustration.png",
                     alt="",
-                    width="168",
-                    height="49",
+                    width="1800",
+                    height="1224",
                     hi_def=True,
                     loading="auto",
                     attrs={"class": "p-image-container__image"}) | safe
@@ -52,56 +53,27 @@
 
   <section class="p-section">
     <div class="row--50-50">
-      <hr class="p-rule--muted" />
-      <div class="col p-section--shallow">
-        <h2>
-          Ubuntu on Azure powers
-          <br />
-          cloud leaders
-        </h2>
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Why choose Ubuntu on Azure?</h2>
       </div>
-      <div class="col p-section--shallow">
-        <div class="p-logo-section">
-          <div class="p-logo-section__items u-no-margin--bottom">
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/f6796ea6-AT&T-Logo%20.png",
-                            alt="AT&T",
-                            width="291",
-                            height="312",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/ac6cf6ff-deloitte-logo.png",
-                            alt="Deolitte",
-                            width="271",
-                            height="313",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image(url="https://assets.ubuntu.com/v1/7a26c782-avaya-logo.png",
-                            alt="Avaya",
-                            width="238",
-                            height="313",
-                            hi_def=True,
-                            loading="lazy",
-                            attrs={"class": "p-logo-section__logo"}) | safe
-              }}
-            </div>
-          </div>
-        </div>
+      <div class="col">
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item is-ticked">Azure-optimized kernel built from the latest releases</li>
+          <li class="p-list__item is-ticked">Broad set of open source application components</li>
+          <li class="p-list__item is-ticked">Security patches for the kernel and key infrastructure</li>
+          <li class="p-list__item is-ticked">Optional 12-year expanded security and compliance</li>
+          <li class="p-list__item is-ticked">Continuous updates in all Azure regions worldwide</li>
+          <li class="p-list__item is-ticked">Availability of confidential VMs</li>
+          <li class="p-list__item is-ticked">All available on Ubuntu and Ubuntu Pro</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section class="p-section">
     <div class="row--50-50 p-section--shallow">
-      <hr class="p-rule--muted" />
+      <hr class="p-rule" />
       <div class="col">
         <h2>Choose the right Ubuntu for you</h2>
       </div>
@@ -114,66 +86,53 @@
 
     <div class="row">
       <div class="col-6">
-        <hr class="p-rule--highlight" />
+        <hr class="p-rule--highlight u-no-margin--bottom" />
         <div class="p-card--overlay u-no-padding--top" style="padding: 1.5rem;">
-          <div class="row p-section">
-            <div class="col-3 col-medium-3 col-small-2">
-              <h3>Ubuntu</h3>
-            </div>
-            <div class="col-3 col-medium-3 col-small-2">
-              <p class="p-heading--4 u-align-text--right u-no-margin--bottom">Free to use</p>
-            </div>
+          <div class="row p-section--shallow">
+            <h3>Ubuntu LTS Server</h3>
+            <p class="p-heading--4">Free to use</p>
           </div>
           <hr class="p-rule--muted" />
           <ul class="p-list--divided p-section--shallow">
-            <li class="p-list__item is-ticked">Azure-optimised kernel and userspace components built from the latest releases</li>
-            <li class="p-list__item is-ticked">Broad set of open source application components available for development</li>
             <li class="p-list__item is-ticked">Security patches for the kernel and key infrastructure components</li>
-            <li class="p-list__item is-ticked">Updates mirrored and images published in all Azure regions worldwide</li>
-            <li class="p-list__item is-ticked">5-year lifetime</li>
+            <li class="p-list__item is-ticked">5-year lifetime support</li>
+            <li class="p-list__item is-ticked">No automated compliance and hardening</li>
+            <li class="p-list__item is-ticked">Patching requires a reboot</li>
+            <li class="p-list__item is-ticked">Community and update level support</li>
           </ul>
-          <hr class="p-rule--muted" />
-          <p>
+          <div class="p-cta-block">
             <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts"
-               class="p-button">Launch Ubuntu 24.04 LTS</a>
-          </p>
+               class="p-button">Launch Ubuntu on Azure</a>
+          </div>
         </div>
       </div>
       <div class="col-6">
-        <hr class="p-rule--highlight" />
+        <hr class="p-rule--highlight u-no-margin--bottom" />
         <div class="p-card--overlay u-no-padding--top" style="padding: 1.5rem;">
           <div class="row p-section--shallow">
-            <div class="col-3 col-medium-3 col-small-2">
-              <h3>Ubuntu Pro for Azure</h3>
-            </div>
-            <div class="col-3 col-medium-3 col-small-2">
-              <p class="p-heading--4 u-align-text--right">From $0.002/hour (Equivalent to $18/year)</p>
-            </div>
+            <h3>Ubuntu Pro</h3>
+            <p class="p-heading--4">Metered prices available on the <a href="https://azure.microsoft.com/en-us/pricing/calculator/?ef_id=_k_Cj0KCQjw99e4BhDiARIsAISE7P9FZn4N6s9LJYncwceywjOTlWDL1OPGAqO9hUTVXItGgd_P-6pbdlAaAnLHEALw_wcB_k_&ocid=AIDcmmy4pl1olr_SEM__k_Cj0KCQjw99e4BhDiARIsAISE7P9FZn4N6s9LJYncwceywjOTlWDL1OPGAqO9hUTVXItGgd_P-6pbdlAaAnLHEALw_wcB_k_&gad_source=1&gclid=Cj0KCQjw99e4BhDiARIsAISE7P9FZn4N6s9LJYncwceywjOTlWDL1OPGAqO9hUTVXItGgd_P-6pbdlAaAnLHEALw_wcB">Azure Calculator</a></p>
           </div>
           <hr class="p-rule--muted" />
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Includes all Ubuntu optimisations and updates of the free version</li>
+            <li class="p-list__item is-ticked">Expanded security patches beyond kernel and key infrastructure to apps and critical vulnerabilities (36,000 packages)</li>
+            <li class="p-list__item is-ticked">Up to 12-year lifetime support</li>
             <li class="p-list__item is-ticked">
-              Expanded security covering 26,000 additional application components delivered with Ubuntu
+              Automated compliance and hardening tools available
+              <ul>
+                <li>FIPS 140-2</li>
+                <li>CC-EAL certified components</li>
+                <li>DATA-STIG</li>
+              </ul>
             </li>
             <li class="p-list__item is-ticked">Kernel live patching for instant security and longer uptimes</li>
-            <li class="p-list__item is-ticked">FIPS 140-2 and CC-EAL certified components</li>
-            <li class="p-list__item is-ticked">
-              Security hardening and audit tools (CIS) to establish a security baseline across your systems (and help you meet the Azure Linux Security Baseline policy)
-            </li>
-            <li class="p-list__item is-ticked">
-              FIPS-certified modules and CIS audit/hardening tooling for Ubuntu Pro 22.04 are in progress, launch <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-jammy?tab=Overview">Ubuntu Pro</a> and activate the <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">fips-preview channel</a> for a preview, or use <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-focal-fips?tab=Overview">Ubuntu Pro FIPS 20.04 LTS</a>
-            </li>
-            <li class="p-list__item is-ticked">
-              Optional 24/7 support for your Ubuntu workloads (<a href="/azure/contact-us">contact us</a> to discuss adding this by Azure Marketplace Private Offer)
-            </li>
-            <li class="p-list__item is-ticked">10-year lifetime</li>
+            <li class="p-list__item is-ticked"><strong>Optional</strong> 24/7 enterprise level support for your Ubuntu workloads (<a href="/azure/contact-us" class="js-invoke-modal">contact us</a> to discuss adding this by Azure Marketplace Private Offer)</li>
           </ul>
           <hr class="p-rule--muted" />
           <ul class="p-inline-list u-responsive-realign u-no-margin--bottom">
             <li class="p-inline-list__item">
-              <a href="https://portal.azure.com/#create/canonical.ubuntu-24_04-ltsubuntu-pro"
-                 class="p-button--positive">Launch Ubuntu Pro 24.04 LTS</a>
+              <a href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/get-ubuntu-pro/"
+                 class="p-button--positive">Get Ubuntu Pro on Azure</a>
             </li>
             <li class="p-inline-list__item">
               <p>
@@ -187,39 +146,8 @@
   </section>
 
   <section class="p-section">
-    <div class="row">
-      <hr class="p-rule--muted" />
-      <div class="col-3 col-medium-3">
-        <h2>Features</h2>
-      </div>
-      <div class="col-9 col-medium-3">
-        <div class="row">
-          <div class="col-3">
-            <h3 class="p-heading--5">Optimised</h3>
-            <p>
-              Ubuntu on Azure runs on an Azure-optimised kernel, which includes improved device drivers, like <a href="https://azure.microsoft.com/en-us/blog/maximize-your-vm-s-performance-with-accelerated-networking-now-generally-available-for-both-windows-and-linux/">Accelerated Networking</a>, and out of the box support for accelerators like GPUs. This means faster instance starts and better runtime performance for your workloads.
-            </p>
-          </div>
-          <div class="col-3">
-            <h3 class="p-heading--5">Security built in</h3>
-            <p>
-              Our security teams track alerts 24/7 and release patches to system components and applications continuously. Canonical operates a worldwide distribution network ensuring that package updates are delivered in-region quickly.
-            </p>
-          </div>
-          <div class="col-3">
-            <h3 class="p-heading--5">All the bits you need</h3>
-            <p>
-              Ubuntu includes everything you need out of the box to build and operate cloud-native applications at scale. Supporting runtimes like Python, Node.js and Go, and server components like Apache Kafka, NGINX, MongoDB, Redis and PostgreSQL.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-section">
     <div class="row--50-50">
-      <hr class="p-rule--muted" />
+      <hr class="p-rule" />
       <div class="col">
         <h2>Get Ubuntu Pro on Azure now</h2>
       </div>
@@ -249,7 +177,7 @@
           </div>
           <div class="col-3">
             <p>
-              <a href="/azure/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a>
+              <a href="/azure/pro">Read more about Ubuntu Pro&nbsp;&rsaquo;</a>
             </p>
           </div>
         </div>
@@ -257,21 +185,129 @@
     </div>
   </section>
 
-  <section class="p-section--deep">
-    <div class="row--50-50">
-      <hr class="p-rule--muted" />
-      <div class="col">
-        <h2>Optimise your cloud journey with Canonical</h2>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <hr class="p-rule--highlight" />
+        <h2 class="p-muted-heading">Hear from our partners</h2>
       </div>
-      <div class="col">
-        <p>
-          Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimisation services are some of the ways in which we have helped customers make the most of Ubuntu and Azure together.
-        </p>
-        <hr class="p-rule--muted" />
-        <a href="/azure/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Azure</a>
+      <div class="row--25-75 p-section--shallow">
+        <div class="col">
+          {{ image(url="https://assets.ubuntu.com/v1/77b3a30b-yvonne.png",
+                    alt="Yvonne Muenc",
+                    width="852",
+                    height="847",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <div class="col">
+          <div class="row">
+            <hr class="p-rule--muted" />
+            <div class="col-6">
+              <p class="p-heading--4"><em>"Thanks to the combination of Microsoft Azure’s infrastructure and Canonical Ubuntu's stability and security, businesses can efficiently deploy agile applications, leverage AI and machine learning, and ensure regulatory compliance. Our collaboration with Canonical underscores a commitment to delivering flexible, innovative solutions via Azure Marketplace that drive digital transformation and operational excellence for organizations."</em></p>
+            </div>
+            <div class="col-3">
+              <p class="u-no-margin--bottom"><strong>Yvonne Muench</strong></p>
+              <p class="u-text--muted">Sr. Director - Marketplace & ISV Journey, Microsoft</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row--25-75 p-section--shallow">
+        <div class="col">
+          {{ image(url="https://assets.ubuntu.com/v1/42cc2819-ron-updated.png",
+                    alt="Ron Abellera",
+                    width="852",
+                    height="847",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <div class="col">
+          <div class="row">
+            <hr class="p-rule--muted" />
+            <div class="col-6">
+              <p class="p-heading--4"><em>"Canonical has proven to be an exceptional and influential partner in the Linux and open-source community. Our collaborative efforts with their engineering teams are driving innovative advancements in AI, security, and secure software supply chain. This partnership enables customers to seamlessly migrate their legacy on-premises distributions to a more secure environment with Ubuntu on Azure."</em></p>
+            </div>
+            <div class="col-3">
+              <p class="u-no-margin--bottom"><strong>Ron Abellera</strong></p>
+              <p class="u-text--muted">Global Black Belt in Linux at Microsoft</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <script src="{{ versioned_static('js/dist/utmInheritance.js') }}"></script>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <h2>Secure Data at Run-Time with Confidential Computing on Azure</h2>
+      </div>
+      <div class="col">
+        <p>If you're running critical workloads and need to process sensitive data, security at system memory is essential. With confidential computing, your workloads are  encrypted at run time, and are thus secure from all software vulnerabilities outside the VM perimeter &ndash; including the hypervisor and from unauthorized cloud admins. Pair confidential VMs with Ubuntu Pro for security in and out of your VM.</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Secure during compute</li>
+          <li class="p-list__item is-ticked">Enables zero trust</li>
+          <li class="p-list__item is-ticked">Process sensitive workloads without worry</li>
+          <li class="p-list__item is-ticked">Available on Ubuntu Pro for added security or the free versions of Ubuntu</li>
+        </ul>
+        <hr class="p-rule--muted" />
+        <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-confidential-vm-jammy?tab=Overview" class="p-button">Launch an Ubuntu Pro CVM now</a></p>
+        <div class="p-cta-block is-borderless">
+          <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview" style="margin-right: 1rem">Launch an Ubuntu CVM&nbsp;&rsaquo;</a>
+          <a href="/confidential-computing">Learn more about CVMs&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 class="p-muted-heading"><a href="/blog/tag/ubuntu-on-azure">Latest from our blog&nbsp;&rsaquo;</a></h2>
+      </div>
+      <div class="col">
+        <div id="blog-posts" class="row"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Optimise your cloud journey with Canonical</h2>
+      </div>
+      <div class="col">
+        <p>Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimization services are some of the ways in which we have helped customers make the most of Ubuntu and Azure together.</p>
+        <div class="p-cta-block">
+          <a href="/azure/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on Azure</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <template style="display: none" id="articles-template">
+    <div class="col-3">
+      <div class="article-image"></div>
+      <h3 class="p-heading--5" style="font-weight: normal"><a class="article-link article-title"></a></h3>
+      <div class="article-excerpt"></div>
+    </div>
+  </template>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews({
+      articlesContainerSelector: "#blog-posts",
+      articleTemplateSelector: "#articles-template",
+      excerptLength: 100,
+      tagId: "4540",
+      linkImage: true,
+    })
+  </script>
 {% endblock content %}

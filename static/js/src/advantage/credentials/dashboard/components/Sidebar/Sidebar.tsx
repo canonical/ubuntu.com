@@ -4,6 +4,30 @@ import { setupAppLayoutExamples } from "./utils";
 import { useQuery } from "@tanstack/react-query";
 import { getSystemStatuses } from "../../api/queryFns";
 
+const HeadingImage = () => (
+  <a
+    href="/credentials"
+    target="_blank"
+    className="p-link--soft"
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+      margin: "1rem 0rem",
+      cursor: "pointer",
+    }}
+  >
+    <img
+      src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg"
+      width={20}
+      height={"auto"}
+    />
+    <p className="p-heading--5" style={{ padding: "0rem", margin: "0rem" }}>
+      Credentials
+    </p>
+  </a>
+);
+
 const Sidebar = () => {
   const location = useLocation();
   const {
@@ -65,30 +89,12 @@ const Sidebar = () => {
     return status;
   }, [statuses]);
 
-  const handleClickDashboard = () => {
-    window.open("/credentials", "_blank");
-  };
-
   return (
     <>
       <div className="l-navigation-bar">
         <div className="p-panel is-dark">
           <div className="p-panel__header">
-            <a className="p-panel__logo" href="/credentials" target="_blank">
-              <img
-                className="p-panel__logo-icon"
-                src="https://assets.ubuntu.com/v1/7144ec6d-logo-jaas-icon.svg"
-                alt=""
-                width="24"
-                height="24"
-              />
-              <img
-                className="p-panel__logo-name is-fading-when-collapsed"
-                src="https://assets.ubuntu.com/v1/2e04d794-logo-jaas.svg"
-                alt="JAAS"
-                height="16"
-              />
-            </a>
+            <HeadingImage />
             <div className="p-panel__controls">
               <span className="p-panel__toggle js-menu-toggle">Menu</span>
             </div>
@@ -100,28 +106,7 @@ const Sidebar = () => {
         <div className="l-navigation__drawer">
           <div className="p-panel is-dark">
             <div className="p-panel__header is-sticky">
-              <div
-                onClick={handleClickDashboard}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1.2rem",
-                  margin: "1rem 0rem",
-                  cursor: "pointer",
-                }}
-              >
-                <img
-                  src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg"
-                  width={20}
-                  height={"auto"}
-                />
-                <p
-                  className="p-heading--5"
-                  style={{ padding: "0rem", margin: "0rem" }}
-                >
-                  Credentials
-                </p>
-              </div>
+              <HeadingImage />
               <div className="p-panel__controls u-hide--large">
                 <button className="p-button--base is-dark has-icon u-no-margin u-hide--medium js-menu-close">
                   <i className="is-light p-icon--close"></i>

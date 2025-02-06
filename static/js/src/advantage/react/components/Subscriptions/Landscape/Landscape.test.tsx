@@ -21,7 +21,7 @@ describe("Landscape", () => {
       "Install self-hosted Landscape",
     );
     expect(wrapper.find(Button).at(1).text()).toBe(
-      "Request a Landscape SaaS account",
+      "Get a Landscape SaaS account",
     );
   });
 });

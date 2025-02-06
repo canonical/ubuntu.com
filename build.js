@@ -32,7 +32,7 @@ let entries = {
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
   credEnterprisePurchasing: "./static/js/src/advantage/credentials/app.tsx",
   activate: "./static/js/src/activate.js",
-  "chiselled-chart": "./static/js/src/charts/chiselled-chart.js",
+  "chiseled-chart": "./static/js/src/charts/chiseled-chart.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
