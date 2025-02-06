@@ -393,14 +393,14 @@ class UAContractsAPI:
             error_rules=["default"],
         )
         return {}
-    
+
     def get_cue_user_bans(self) -> dict:
         return self._request(
             method="get",
             path=f"v1/cue/user-ban",
             error_rules=["default"],
         ).json()
-    
+
     def put_cue_user_ban(self, user_ban) -> dict:
         return self._request(
             method="put",
@@ -409,7 +409,7 @@ class UAContractsAPI:
                 "email": user_ban["email"],
                 "reason": user_ban["reason"],
                 "expiresAt": user_ban["expiresAt"],
-                "blocked": user_ban["blocked"],   
+                "blocked": user_ban["blocked"],
             },
             error_rules=["default"],
         ).json()

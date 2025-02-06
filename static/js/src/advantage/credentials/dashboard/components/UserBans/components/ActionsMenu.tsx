@@ -20,7 +20,9 @@ const ActionsMenu = (props: Props) => {
           </Fragment>
         ),
         onClick: () =>
-          navigate("/users/ensure-ban", { state: { ...userBan, blocked: false } }),
+          navigate("/users/ensure-ban", {
+            state: { ...userBan, blocked: false },
+          }),
         hasIcon: true,
       },
       {
