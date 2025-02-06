@@ -40,10 +40,10 @@
     </div>
     <div class="row">
       {% if document.sections|length > 1 %}
-        <a class="p-toggle--sticky js-drawer-toggle"
-           aria-controls="drawer"
-           href="#"
-           aria-expanded="false">Toggle side navigation</a>
+        <button class="p-toggle--sticky js-drawer-toggle"
+                aria-controls="drawer"
+                href="#"
+                aria-expanded="false">Toggle side navigation</button>
         <div class="col-3">
           <nav class="p-side-navigation--raw-html is-single-page" id="drawer">
             <div class="p-side-navigation__overlay js-drawer-toggle"
@@ -51,10 +51,10 @@
             <div class="p-side-navigation__drawer"
                  aria-label="documentation side navigation">
               <div class="p-side-navigation__drawer-header">
-                <a href="#"
-                   class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                   aria-controls="drawer"
-                   aria-expanded="false">Toggle side navigation</a>
+                <button href="#"
+                        class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                        aria-controls="drawer"
+                        aria-expanded="false">Toggle side navigation</button>
               </div>
               <ul>
                 {% for section in document.sections %}
@@ -73,11 +73,12 @@
       {% endif %}
       <div class="col-9">
         {% for section in document.sections %}
-          <div class="p-section--shallow">
+          <div class="p-section--shallow vulnerabilities-content">
             {% if not loop.first %}
               <hr class="p-rule" />
               <h2 class="p-heading--3 section-heading"
-                  id="{{ format_to_id(section.title) }}">{{ section.title }}</h2>
+                  id="{{ format_to_id(section.title) }}"
+                  >{{ section.title }}</h2>
             {% endif %}
             <div id="main-content" style="overflow-wrap: break-word;">{{ section.content | safe }}</div>
           </div>
