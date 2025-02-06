@@ -22,16 +22,16 @@
             <h1>{{ document.title }}</h1>
             <p class="p-heading--3 section-heading" id="description">{{ document.sections[0].title }}</p>
             <div class="row">
-              <div class="col-2">
+              <div class="col-2 col-medium-2 col-small-2">
                 <p class="u-no-margin--bottom u-sv1">Published</p>
               </div>
-              <div class="col-2">
+              <div class="col-2 col-medium-2 col-small-2">
                 <p class="u-no-margin--bottom u-sv1">{{ format_date(metadata.published) }}</p>
               </div>
             </div>
             <div class="row">
-              <div class="col-2">Updated</div>
-              <div class="col-2">{{ document.updated }}</div>
+              <div class="col-2 col-medium-2 col-small-2">Updated</div>
+              <div class="col-2 col-medium-2 col-small-2">{{ document.updated }}</div>
             </div>
           </div>
           <hr class="p-rule" />
