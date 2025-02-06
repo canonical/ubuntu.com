@@ -1208,15 +1208,15 @@ def build_vulnerabilities_index(security_vulnerabilities):
     def vulnerabilities_index():
         try:
             topics = security_vulnerabilities.get_topics_in_category()
-            metadata = security_vulnerabilities.get_category_index_metadata()
+            vulnerabilities = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
             return flask.render_template(
                 "security/vulnerabilities/index.html",
                 topics=topics,
-                metadata=metadata,
+                vulnerabilities=vulnerabilities,
             )
         except Exception as e:
             flask.current_app.extensions["sentry"].captureException(
-                f"Error fecthing vulnerabilities: {e}"
+                f"Error fetching vulnerabilities: {e}"
             )
             return flask.render_template(
                 "templates/error.html",
@@ -1246,7 +1246,7 @@ def build_vulnerabilities(security_vulnerabilities):
             )
         except Exception as e:
             flask.current_app.extensions["sentry"].captureException(
-                f"Error fecthing vulnerabilities: {e}"
+                f"Error fetching vulnerabilities: {e}"
             )
             return flask.render_template(
                 "templates/error.html",

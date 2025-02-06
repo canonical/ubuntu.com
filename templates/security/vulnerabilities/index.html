@@ -8,13 +8,340 @@
 
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
-<div class="section--hero">
-  <div class="row--25-75">
-    <div class="col">
-      <h1>Vulnerabilities knowledge base</h1>
-      <p>Applying security updates in a timely manner is critical to reducing risks, especially with high-impact vulnerabilities. Canonical releases Ubuntu Security Notices whenever a security fix is available for an official Ubuntu package.  When high-profile vulnerabilities are publicly disclosed, the Ubuntu Security Team also provides in-depth technical explanations and mitigation guidance in the form of Vulnerability Knowledge Base articles.</p>
+  <div class="p-section--hero">
+    <div class="row--25-75">
+      <div class="col">
+        <h1 class="p-heading--2">Vulnerabilities knowledge base</h1>
+        <p>
+          Applying security updates in a timely manner is critical to reducing risks, especially with high-impact vulnerabilities. Canonical releases <a href="/security/notices">Ubuntu Security Notices</a> whenever a security fix is available for an official Ubuntu package.
+        </p>
+        <p>
+          When high-profile vulnerabilities are publicly disclosed, the Ubuntu Security Team also provides in-depth technical explanations and mitigation guidance in the form of Vulnerability Knowledge Base articles.
+        </p>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--25-75">
+      <div class="col">
+        <h2>Recent Vulnerabilities</h2>
+      </div>
+      <div class="col">
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for vulnerability in vulnerabilities %}
+          {% if vulnerability.name %}
+            <div class="p-section--shallow">
+              <hr class="p-rule--muted" />
+              <div class="row">
+                <div class="col-6">
+                  <h3 class="p-heading--5">
+                    <a href="">{{ vulnerability.name }}</a>
+                  </h3>
+                  <p>
+                    Daniel Moghimi discovered that some Intel® Processors were vulnerable to information exposure through microarchitectural state after transient execution in certain vector execution units.
+                  </p>
+                </div>
+                <div class="col-3">
+                  {% if vulnerability.status|lower == "fixed" %}
+                    <i class="p-icon--success"></i>&nbsp;Fixed
+                  {% elif vulnerability.status|lower == "vulnerable" %}
+                    <i class="p-icon--error"></i>&nbsp;Vulnerable
+                  {% endif %}
+                  <p class="u-text--muted">Published {{ vulnerability.published }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--25-75">
+      <div class="col">
+        <h2>Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">Ubuntu Security Updates</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/security/notices">Ubuntu Security Notices</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/security/cves">Database of known CVEs in Ubuntu</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">Ubuntu Pro</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <p>
+                Up to 12 years of security coverage for Ubuntu
+                and 36,000 open-source applications and toolchains.
+              </p>
+              <a class="p-button" href="pro">Get Ubuntu Pro</a>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <p class="p-heading--5">From our blog</p>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/blog/what-is-vulnerability-management">What is vulnerability management?</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/what-is-system-hardening-definition-and-best-practices">What is System Hardening? Essential Checklists from OS to Application</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
