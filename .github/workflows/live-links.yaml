@@ -53,8 +53,11 @@ jobs:
 
       - name: Run linkchecker
         run: |
-          linkchecker https://ubuntu.com
+          linkchecker --no-status https://ubuntu.com | grep "404 Not Found" > linkchecker.log
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+        run: |
+          if [ -s linkchecker.log ]; then
+            curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+          fi
