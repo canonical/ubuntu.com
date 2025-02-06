@@ -11,7 +11,7 @@ import {
   getUpcomingExamsKey,
 } from "../../api/queryKeys";
 import { ModularTable } from "@canonical/react-components";
-import { upperCaseFirstChar } from "../../utils/common";
+import { getFormattedDate, upperCaseFirstChar } from "../../utils/common";
 import ActionsMenu from "./components/ActionsMenu";
 
 type APIResponse = {
@@ -25,7 +25,7 @@ const UpcomingExams = () => {
   const [page, setPage] = useState(1);
   const [fetchedPages] = useState(new Set([1]));
   const [cachedData, setCachedData] = useState<Record<number, APIResponse>>({});
-  const [setNotification, setsetNotification] = useState<
+  const [notification, setNotification] = useState<
     undefined | "negative" | "positive"
   >(undefined);
   const [notificationError, setNotificationError] = useState<string | null>(
@@ -117,17 +117,7 @@ const UpcomingExams = () => {
         accessor: "starts_at",
         sortType: "basic",
         Cell: (props: any) => {
-          const date = new Date(props.value).toLocaleString(
-            navigator.language,
-            {
-              month: "2-digit",
-              day: "2-digit",
-              year: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-              hour12: true,
-            },
-          );
+          const date = getFormattedDate(props.value);
           return props.row.depth === 0 ? <></> : <small>{date}</small>;
         },
       },
@@ -144,7 +134,7 @@ const UpcomingExams = () => {
               {props.value && (
                 <ActionsMenu
                   exam={props.row.original}
-                  setNotificationState={setsetNotification}
+                  setNotificationState={setNotification}
                   setNotificationError={setNotificationError}
                 />
               )}
@@ -258,13 +248,13 @@ const UpcomingExams = () => {
 
   return (
     <>
-      {setNotification && (
+      {notification && (
         <Notification
-          severity={setNotification}
+          severity={notification}
           title={
             notificationError
               ? notificationError
-              : setNotification === "positive"
+              : notification === "positive"
                 ? "Exam cancelled"
                 : "Failed to cancel exam"
           }

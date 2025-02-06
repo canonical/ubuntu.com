@@ -1422,6 +1422,18 @@ def cancel_scheduled_exam(trueability_api, **kwargs):
         return flask.jsonify({"status": "error"}), 500
 
 
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def cred_user_ban(ua_contracts_api, **kwargs):
+    method = flask.request.method
+
+    if method == "PUT":
+        data = flask.request.json
+        return ua_contracts_api.put_cue_user_ban(data)
+    elif method == "GET":
+        return ua_contracts_api.get_cue_user_bans()
+
+
 @shop_decorator(area="cred", permission="user", response="html")
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]

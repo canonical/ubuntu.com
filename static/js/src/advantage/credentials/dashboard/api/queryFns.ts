@@ -1,3 +1,5 @@
+import { UserBan } from "../utils/types";
+
 export async function getUpcomingExams(page = 1, onSuccess: any) {
   try {
     const URL = `/credentials/api/upcoming-exams?page=${page}&state[]=scheduled&state[]=created&sort=-id`;
@@ -204,6 +206,70 @@ export async function cancelScheduledExam(reservationId: string) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
+
+export async function getUserBans() {
+  try {
+    return {
+      banned_users: [
+        {
+          bannedBy: "admin@canonical.com",
+          blocked: true,
+          email: "jackie@canonical.com",
+          expiresAt: "2025-04-24T04:25:43.511+05:00",
+          reason: "This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user.",
+          timestamp: "2025-02-06T23:31:00+05:00",
+        },
+        {
+          bannedBy: "admin@canonical.com",
+          blocked: true,
+          email: "charlie@canonical.com",
+          expiresAt: "2026-01-01T14:25:43.511+00:00",
+          reason: "This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user.",
+          timestamp: "2025-02-06T23:31:00+05:00",
+        },
+      ],
+    };
+    const URL = `/credentials/api/user-bans`;
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
+
+
+export async function ensureCUEUserBan(userBan: UserBan) {
+  try {
+    const URL = `/credentials/api/user-ban`;
+    const response = await fetch(URL, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userBan),
     });
 
     const data = await response.json();

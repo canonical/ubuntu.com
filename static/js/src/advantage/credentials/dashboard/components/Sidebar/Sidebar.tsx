@@ -53,6 +53,12 @@ const Sidebar = () => {
         isActive: location.pathname.includes("/exams"),
       },
       {
+        to: "/users/user-bans",
+        label: "User Bans",
+        icon: "p-icon--user",
+        isActive: location.pathname.includes("/user-bans"),
+      },
+      {
         to: "/keys/list",
         label: "Keys",
         icon: "p-icon--units",
