@@ -220,26 +220,6 @@ export async function cancelScheduledExam(reservationId: string) {
 
 export async function getUserBans() {
   try {
-    return {
-      banned_users: [
-        {
-          bannedBy: "admin@canonical.com",
-          blocked: true,
-          email: "jackie@canonical.com",
-          expiresAt: "2025-04-24T04:25:43.511+05:00",
-          reason: "This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user.",
-          timestamp: "2025-02-06T23:31:00+05:00",
-        },
-        {
-          bannedBy: "admin@canonical.com",
-          blocked: true,
-          email: "charlie@canonical.com",
-          expiresAt: "2026-01-01T14:25:43.511+00:00",
-          reason: "This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user. This is a very long reason for banning a user.",
-          timestamp: "2025-02-06T23:31:00+05:00",
-        },
-      ],
-    };
     const URL = `/credentials/api/user-bans`;
     const response = await fetch(URL, {
       method: "GET",
