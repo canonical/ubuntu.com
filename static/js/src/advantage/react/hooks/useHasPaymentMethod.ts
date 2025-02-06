@@ -13,6 +13,7 @@ export const useHasPaymentMethod = (
         response.data?.customerInfo?.defaultPaymentMethod;
       return Boolean(defaultPaymentMethod);
     },
+    enabled: Boolean(accountId),
   });
   return query;
 };

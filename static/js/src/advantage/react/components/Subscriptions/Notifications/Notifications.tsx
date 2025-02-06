@@ -41,7 +41,7 @@ const Notifications = () => {
 
   return (
     <>
-      {!hasPaymentMethod ? (
+      {hasPaymentMethod === false ? (
         <Notification
           data-test="no-payment-method"
           severity="caution"
