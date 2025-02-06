@@ -1043,6 +1043,21 @@ export var kubernetesReleases = [
   },
 ];
 
+export var kubernetesReleasesLTS = [
+  {
+    startDate: new Date("2024-12-01T00:00:00"),
+    endDate: new Date("2034-12-01T00:00:00"),
+    taskName: "Kubernetes 1.32x LTS",
+    status: "CANONICAL_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2034-12-01T00:00:00"),
+    endDate: new Date("2036-12-01T00:00:00"),
+    taskName: "Kubernetes 1.32x LTS",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
+  },
+];
+
 export var microStackReleases = [
   {
     startDate: new Date("2026-04-01T00:00:00"),
@@ -1323,6 +1338,8 @@ export var kubernetesReleaseNames = [
   "Kubernetes 1.27",
   "Kubernetes 1.26",
 ];
+
+export var kubernetesReleaseNamesLTS = ["Kubernetes 1.32x LTS"];
 
 export var kernelReleaseScheduleNames = [
   "Ubuntu 14.04 LTS (v3.13)",
