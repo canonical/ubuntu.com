@@ -35,7 +35,7 @@ function setUpDynamicSideNav() {
         }
       },
       {
-        rootMargin: "-10% 0px -85% 0px",
+        rootMargin: "-5% 0px -80% 0px",
         threshold: 0.5,
       },
     );
