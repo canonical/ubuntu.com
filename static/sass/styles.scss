@@ -1766,3 +1766,20 @@ legend {
     height: 15rem;
   }
 }
+
+.p-side-navigation--raw-html.is-single-page {
+  position: sticky;
+  top: 4rem;
+
+  @media (max-width: $breakpoint-large) {
+    position: unset;
+    top: 0;
+  }
+}
+
+.p-toggle--sticky {
+  @extend .p-side-navigation__toggle;
+  position: sticky;
+  top: 4rem;
+  width: fit-content
+}

@@ -38,22 +38,23 @@
         </div>
       </div>
     </div>
-    <div class="row--25-75">
+    <div class="row">
       {% if document.sections|length > 1 %}
-        <div class="col">
-          <div class="p-side-navigation--raw-html u-hide--small u-hide--medium"
-               id="drawer"
-               style="position: sticky;
-                      top: 4rem">
-            <button class="p-side-navigation__toggle js-drawer-toggle"
-                    aria-controls="drawer">Toggle side navigation</button>
+        <a class="p-toggle--sticky js-drawer-toggle"
+           aria-controls="drawer"
+           href="#"
+           aria-expanded="false">Toggle side navigation</a>
+        <div class="col-3">
+          <nav class="p-side-navigation--raw-html is-single-page" id="drawer">
             <div class="p-side-navigation__overlay js-drawer-toggle"
                  aria-controls="drawer"></div>
-            <nav class="p-side-navigation__drawer"
+            <div class="p-side-navigation__drawer"
                  aria-label="documentation side navigation">
               <div class="p-side-navigation__drawer-header">
-                <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                        aria-controls="drawer">Toggle table of contents</button>
+                <a href="#"
+                   class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                   aria-controls="drawer"
+                   aria-expanded="false">Toggle side navigation</a>
               </div>
               <ul>
                 {% for section in document.sections %}
@@ -66,11 +67,11 @@
                   </li>
                 {% endfor %}
               </ul>
-            </nav>
-          </div>
+            </div>
+          </nav>
         </div>
       {% endif %}
-      <div class="col">
+      <div class="col-9">
         {% for section in document.sections %}
           <div class="p-section--shallow">
             {% if not loop.first %}
@@ -78,43 +79,11 @@
               <h2 class="p-heading--3 section-heading"
                   id="{{ format_to_id(section.title) }}">{{ section.title }}</h2>
             {% endif %}
-            {{ section.content | safe }}
+            <div id="main-content" style="overflow-wrap: break-word;">{{ section.content | safe }}</div>
           </div>
         {% endfor %}
       </div>
     </div>
   </div>
-
-  <script>
-    function setUpDynamicSideNav() {
-      const sections = Array.prototype.slice.call(
-        document.querySelectorAll(".section-heading")
-      );
-
-      const navigationLinks = Array.prototype.slice.call(
-        document.querySelectorAll(".highlight-link")
-      );
-
-      sections.forEach(function(section) {
-        const observer = new IntersectionObserver(function(entry) {
-          if (entry[0].isIntersecting) {
-            const sectionId = entry[0].target.id;
-            navigationLinks.forEach(function(link) {
-              if (link.getAttribute("href") === `#${sectionId}`) {
-                link.classList.add("is-active");
-              } else {
-                link.classList.remove("is-active");
-              }
-            });
-          }
-        }, {
-          rootMargin: "-200px 0px -400px",
-          threshold: 0.5,
-        });
-
-        observer.observe(section);
-      });
-    };
-    setUpDynamicSideNav();
-  </script>
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
 {% endblock content %}
