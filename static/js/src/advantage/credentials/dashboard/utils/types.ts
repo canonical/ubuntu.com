@@ -88,3 +88,12 @@ export type CredlyBadgeIssueBody = {
   issued_to_last_name: string;
   badge_template_id: string;
 };
+
+export type UserBan = {
+  email: string;
+  bannedBy: string;
+  expiresAt?: string;
+  timestamp: string;
+  reason: string;
+  blocked: boolean;
+};
