@@ -36,6 +36,7 @@ let entries = {
   tabbedContent: "./static/js/src/tabbed-content.js",
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
+  "canonical-cla": "./static/js/src/canonical-cla/app.tsx",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

@@ -2,10 +2,11 @@
 A Flask application for ubuntu.com
 """
 
-import os
 import json
 from functools import wraps
 import math
+import os
+
 import flask
 import jinja2
 import requests
@@ -26,6 +27,13 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
+from webapp.canonical_cla.views import (
+    canonical_cla_api_github_login,
+    canonical_cla_api_github_logout,
+    canonical_cla_api_launchpad_login,
+    canonical_cla_api_launchpad_logout,
+    canonical_cla_api_proxy,
+)
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
@@ -55,7 +63,10 @@ from webapp.shop.advantage.views import (
     get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
+    get_channel_offers,
     get_contract_token,
+    get_distributor_thank_you_view,
+    get_distributor_view,
     get_renewal,
     get_user_subscriptions,
     magic_attach_view,
@@ -67,9 +78,6 @@ from webapp.shop.advantage.views import (
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
-    get_channel_offers,
-    get_distributor_view,
-    get_distributor_thank_you_view,
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
@@ -83,14 +91,14 @@ from webapp.shop.cred.views import (
     cred_dashboard_system_statuses,
     cred_exam,
     cred_home,
+    cred_manage_shop,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
     cred_shop,
-    cred_manage_shop,
+    cred_shop_keys,
     cred_shop_thank_you,
     cred_shop_webhook_responses,
-    cred_shop_keys,
     cred_sign_up,
     cred_thank_you,
     cred_submit_form,
@@ -153,6 +161,7 @@ from webapp.views import (
     json_asset_query,
     marketo_submit,
     mirrors_query,
+    navigation_nojs,
     openstack_engage,
     openstack_install,
     releasenotes_redirect,
@@ -162,7 +171,6 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
-    navigation_nojs,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -606,6 +614,28 @@ app.add_url_rule(
 app.add_url_rule(
     "/engage/unlisted/<slug>",
     view_func=unlisted_engage_page,
+)
+
+app.add_url_rule(
+    "/legal/contributors/agreement/api",
+    methods=["POST", "GET"],
+    view_func=canonical_cla_api_proxy,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/github/logout",
+    view_func=canonical_cla_api_github_logout,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/github/login",
+    view_func=canonical_cla_api_github_login,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/launchpad/logout",
+    view_func=canonical_cla_api_launchpad_logout,
+)
+app.add_url_rule(
+    "/legal/contributors/agreement/api/launchpad/login",
+    view_func=canonical_cla_api_launchpad_login,
 )
 
 
