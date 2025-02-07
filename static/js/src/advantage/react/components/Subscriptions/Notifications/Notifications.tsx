@@ -20,7 +20,7 @@ const Notifications = () => {
   const { data: offers } = useGetOffersList();
   const { data: accountUsers, isSuccess: isAccountUsersSuccess } =
     useRequestAccountUsers();
-  const { data: hasPaymentMethod } = useHasPaymentMethod(
+  const { data: hasPaymentMethod, isSuccess: isHasPaymentMethodSuccess } = useHasPaymentMethod(
     accountUsers?.accountId ?? null,
   );
 
@@ -41,14 +41,14 @@ const Notifications = () => {
 
   return (
     <>
-      {hasPaymentMethod === false ? (
+      {isHasPaymentMethodSuccess && !hasPaymentMethod ? (
         <Notification
           data-test="no-payment-method"
           severity="caution"
           title="No payment method saved"
         >
           To auto-renew or resize your subscription, add one in{" "}
-          <a href="/account/payment-methods">Payment method</a>.
+          <a href={urls.account.paymentMethods}>Payment method</a>.
         </Notification>
       ) : null}
       {statusesSummary?.has_pending_purchases ? (

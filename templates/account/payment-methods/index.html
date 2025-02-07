@@ -63,9 +63,8 @@
         </div>
         <div class="col-4 u-align--right">
           <button class="p-button" id="cancel-payment-details">Cancel</button>
-          <button class="p-button--positive" id="update-payment-details" disabled>Update</button>
+          <button class="p-button--positive" id="update-payment-details" disabled>Save</button>
         </div>
-        <div class="col-8"></div>
       </div>
       <hr class="{% if not default_payment_method.id %}u-hide{% endif %}" />
 
@@ -73,11 +72,11 @@
            class="p-strip {% if default_payment_method.id %}u-hide{% endif %}">
         <div class="row">
           <div class="u-align--right col-4">
-            <i style="width: 4rem; height: 4rem; margin-top: 0.2rem;" 
+            <i style="width: 4rem; height: 4rem; margin-top: 0.4rem;" 
                class="p-icon--credit-card u-hide--medium u-hide--small"></i>
           </div>
           <div class="u-align--left col-8 col-medium-4 col-small-3">
-            <p class="p-heading--4 u-no-margin--bottom">You have no payment method saved</p>
+            <p style="margin-bottom: 0;" class="p-heading--4">You have no payment method saved</p>
             <p>Add a card to resize and automatically renew your subscriptions.</p>
             <button class="p-button--positive" id="add-payment-method">Add card</button>
           </div>
