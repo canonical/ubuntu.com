@@ -1209,6 +1209,15 @@ def build_vulnerabilities_index(security_vulnerabilities):
         try:
             topics = security_vulnerabilities.get_topics_in_category()
             vulnerabilities = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
+            # Add year to each vulnerability
+            for v in vulnerabilities:
+                dt = datetime.strptime(v["published"], "%d/%m/%Y")
+                v["year"] = dt.year
+            # Make sure they are in order of published date
+            vulnerabilities.sort(
+                key=lambda item: datetime.strptime(item["published"], "%d/%m/%Y"),
+                reverse=True
+            )
             return flask.render_template(
                 "security/vulnerabilities/index.html",
                 topics=topics,
