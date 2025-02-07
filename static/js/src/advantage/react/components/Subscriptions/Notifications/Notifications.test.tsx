@@ -163,7 +163,6 @@ describe("Payment method notification", () => {
         <Notifications />
       </QueryClientProvider>,
     );
-    console.log("wrapper", wrapper.debug());
     expect(wrapper.find("[data-test='no-payment-method']").exists()).toBe(
       false,
     );
