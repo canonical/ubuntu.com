@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext } from "react";
 import { QueryParamConfig, useQueryParam } from "use-query-params";
 import { AgreementType, AgreementTypes } from "../utils/constants";
 
@@ -42,15 +42,13 @@ export const SignFormProvider = ({ children }: Props) => {
     ConstListParam(AgreementTypes),
   );
 
-  const reset = () => {
-    setAgreementType(undefined);
-  };
-
-  useEffect(() => {
-    if (step === "success") {
-      reset();
+  const changeStep = (step: SignFormContext["step"]) => {
+    console.log("called");
+    if (step === "sign") {
+      setAgreementType(undefined);
     }
-  }, [step]);
+    setStep(step);
+  };
 
   return (
     <SignFormContext.Provider
@@ -58,7 +56,7 @@ export const SignFormProvider = ({ children }: Props) => {
         step: step as SignFormContext["step"],
         agreementType: agreementType as AgreementType,
 
-        changeStep: setStep,
+        changeStep,
         changeAgreementType: setAgreementType,
       }}
     >

@@ -25,11 +25,7 @@
   <noscript>You need to enable JavaScript to run this page.</noscript>
   <script>
     window.CANONICAL_CLA_API_URL = '{{ canonical_cla_api_url }}';
-    window.COUNTRIES_LIST = {
-      {
-        get_countries_list() | tojson
-      }
-    };
+    window.COUNTRIES_LIST = {{ get_countries_list() | tojson }};
   </script>
   <script src="{{ versioned_static('js/dist/canonical-cla.js') }}"
           type="module"
