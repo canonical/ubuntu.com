@@ -29,7 +29,7 @@ export function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
         toggleButtonInsideDrawer?.focus();
       }
       toggleButtonOutsideDrawer?.setAttribute("aria-expanded", "true");
-      toggleButtonInsideDrawer?.setAttribute("aria-expanded", "true");
+      toggleButtonInsideDrawer.setAttribute("aria-expanded", "true");
     } else {
       sideNavigation.classList.remove("is-expanded");
       sideNavigation.classList.add("is-collapsed");
@@ -38,7 +38,7 @@ export function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
         toggleButtonOutsideDrawer?.focus();
       }
       toggleButtonOutsideDrawer?.setAttribute("aria-expanded", "false");
-      toggleButtonInsideDrawer?.setAttribute("aria-expanded", "false");
+      toggleButtonInsideDrawer.setAttribute("aria-expanded", "false");
     }
   }
 }
