@@ -43,7 +43,6 @@ export const SignFormProvider = ({ children }: Props) => {
   );
 
   const changeStep = (step: SignFormContext["step"]) => {
-    console.log("called");
     if (step === "sign") {
       setAgreementType(undefined);
     }
