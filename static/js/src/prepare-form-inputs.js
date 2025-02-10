@@ -158,6 +158,7 @@ function setupOtherInputs() {
               if (input.checked) {
                 textarea.classList.remove("u-hide");
               } else {
+                textarea.value = "";
                 textarea.classList.add("u-hide");
               }
             }
