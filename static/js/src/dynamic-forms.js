@@ -399,7 +399,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 case "text":
                 case "number":
                 case "textarea":
-                  if (input.value !== "") {
+                  if (
+                    input.value !== "" &&
+                    !input.classList.contains("js-other-input")
+                  ) {
                     message += input.value + comma + " ";
                   }
                   break;
