@@ -61,9 +61,16 @@ export function setupIntlTelInput(countryCode, phoneInput) {
  */
 function addInputValidation(phoneInput) {
   const mobileInput = document.querySelector(".iti");
-  mobileInput.parentNode.classList.add("p-form-validation");
-  phoneInput.classList.add("p-form-validation__input");
+  const parentNode = mobileInput.parentNode;
+  parentNode.classList.add("p-form-validation");
 
+  // remove rogue li item from intlTelInput library
+  setTimeout(() => {
+    const listItems = parentNode.querySelectorAll("li");
+    listItems[listItems.length - 1]?.remove();
+  }, 2000);
+
+  phoneInput.classList.add("p-form-validation__input");
   const errorElement = createErrorMessage();
   phoneInput.addEventListener("blur", () =>
     validateInput(phoneInput, errorElement),
