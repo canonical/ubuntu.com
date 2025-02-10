@@ -177,7 +177,7 @@
             {
               "type": "radio",
               "id": "other",
-              "label": "Other",
+              "label": "Other - please describe",
               "value": "Other",
               "hasTextarea": true
             }
@@ -280,6 +280,11 @@
               "type": "tel",
               "id": "phone",
               "label": "Mobile/cell phone number"
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": true
             }
           ]
         }
