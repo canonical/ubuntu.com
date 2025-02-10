@@ -1,151 +1,278 @@
 {% extends "security/base_security.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_rich-vertical-list.jinja" import vf_rich_vertical_list %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
 {% block title %}LTS Docker Images{% endblock %}
 
-{% block meta_description %}The LTS Docker Image Portfolio on Docker Hub and public cloud container registries provides compliant, secure application images, with a long term maintenance commitment by Canonical.{% endblock meta_description %}
+{% block meta_description %}
+  The LTS Docker Image Portfolio on Docker Hub and public cloud container registries provides compliant, secure application images, with a long term maintenance commitment by Canonical.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1zZibtjU141e4mBxo_0PtfYxJ6e5fyaaAdFZ6v945XAM/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1zZibtjU141e4mBxo_0PtfYxJ6e5fyaaAdFZ6v945XAM/edit
+{% endblock meta_copydoc %}
 
 {% block content %}
-
-<section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <span class="u-sv3"><h1>Long Term Supported<br/>OCI Images</h1></span>
-      <p class="u-sv2">Hardened container images, with stable tracks from development to production. Up to ten years guaranteed security maintenance from Canonical's trusted repositories.</p>
-      <p><pre><code>$ docker pull ubuntu/<span class="typer" id="main" data-words="nginx,redis,grafana,prometheus,cassandra,cortex,apache2,mysql" data-delay="50" data-deleteDelay="2000" data-colors="#111111">nginx</span></code></pre></p>
+  {% call(slot) vf_hero(
+    title_text='Long Term Supported OCI Images',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
       <p>
-        <a href="/security/contact-us?product=docker" class="p-button--positive js-invoke-modal">Get commercial support</a>
-        <a href="https://hub.docker.com/u/ubuntu">Explore the images&nbsp;&rsaquo;</a>
+        Hardened container images, with stable tracks from development to production. Up to ten years guaranteed security maintenance from Canonical's trusted repositories.
       </p>
-    </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
-          alt="",
-          height="220",
-          width="220",
-          hi_def=True,
-          loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a class="p-button--positive js-invoke-modal"
+         href="/security/contact-us?product=docker">Get commercial support</a>
+      <a href="https://hub.docker.com/u/ubuntu">Explore the images&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/6faa08d1-hero.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
-          alt="",
-          height="210",
-          width="210",
-          hi_def=True,
-          loading="auto",
-        ) | safe
-      }}
-    </div>
-    <div class="col-8 u-vertically-center">
-      <h2>Critical CVE fixes in 24 hours</h2>
-      <p>Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure. Trusted provenance is key.</p>
-      <p>The LTS Docker Image Portfolio provides ready-to-use application base images, free of high and critical CVEs. Images are built on the same secure infrastructure that builds Ubuntu, and updated automatically when apps or dependencies are fixed.</p>
-      <a href="/security/cves">Explore our CVE-fixing track record&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Our Commitment</h2>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Minimum 5 years of 24/7 security updates from Canonical</li>
-      <li class="p-list__item is-ticked">Fixes for high and critical Common Vulnerabilities and Exposures (CVEs)</li>
-      <li class="p-list__item is-ticked">The Ubuntu distribution base image and application layers</li>
-      <li class="p-list__item is-ticked">All major architectures</li>
-      <li class="p-list__item is-ticked">Designed for layering - "<code>FROM public.ecr.aws/lts/mysql</code>"</li>
-    </ul>
-    <p>
-      <a href="/about/release-cycle">Learn more about the Ubuntu release cadence&nbsp;&rsaquo;</a>
-    </p>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{ image(url="https://assets.ubuntu.com/v1/8b0a474a-Microsoft_.NET_logo.svg",
-                      alt="Microsft .NET logo",
-                      width="230",
-                      height="230",
-                      hi_def=True,
-                      loading="auto") | safe }}
-    </div>
-    <div class="col-8 u-vertically-center">
-      <h2>Use case: Building .NET apps on Ubuntu LTS</h2>
-      <p>Getting started with .NET on Ubuntu is straightforward and efficient with Canonical-maintained ultra-small container images. Developers now have production-grade container images to ship their .NET apps on Ubuntu. Predictable release cadence aligned with Ubuntu LTS and .NET LTS releases guarantees security and stability, long-term. Security patches and support are available to Ubuntu Ppro customers, including on the Microsoft Azure platform.</p>
-      <a href="/blog/install-dotnet-on-ubuntu">Read about .NET support on Ubuntu&nbsp;&rsaquo;</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="u-sv3">FAQ on the LTS Docker Image Portfolio</h2>
-    <p class="p-heading--4"><strong>Where are the images?</strong></p>
-    <p>On Amazon ECR Public and Docker Hub, images are provided in three groups:</p>
-    <ul>
-      <li><strong>Ubuntu </strong><a href="https://hub.docker.com/u/ubuntu/">on Docker Hub</a> and <a href="https://gallery.ecr.aws/ubuntu">ECR Public</a> have development releases with security updates</li>
-      <li><strong>LTS </strong>("Canonical") on <a href="https://gallery.ecr.aws/lts">ECR Public</a> has Free LTS images with up to five years fixes</li>
-      <li>Customer-only content with up to ten years of fixes. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact us</a>.</li>
-    </ul>
-    <p>All of our Docker Hub repositories are exempted from per-user rate limits.</p>
-    <p class="p-heading--4"><strong>Are these Official Images on Docker Hub?</strong></p>
-    <p>Several images from the Canonical LTS Docker Image Portfolio are free Docker Official Image versions during their five year standard security maintenance period. The Ubuntu base image is available both as an official image on Docker hub and through the <a href="https://gallery.ecr.aws/lts/ubuntu">LTS</a> and <a href="https://gallery.ecr.aws/ubuntu/ubuntu">Ubuntu</a> namespaces on Amazon ECR Public.</p>
-    <p class="p-heading--4"><strong>Is the LTS Docker Image Portfolio a free or a commercial offering?</strong></p>
-    <p>Both. Some LTS Docker Images have a free five year maintenance period, based on the underlying Ubuntu LTS free standard security maintenance period. After five years, these LTS images will get five more years of security patches through the Expanded Security Maintenance (ESM) program. The ESM program is available with our Ubuntu Pro subscriptions. Some images don&apos;t get the free five initial LTS years, but still are eligible for the 10-year ESM program. On each image&apos;s documentation, the support dates and LTS/ESM logos indicate the current support status for every version. As with Ubuntu interim releases, ongoing development images are released regularly and receive free security updates while they are the current version. <a href="https://canonical.com/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read more.</a></p>
-
-    <p class="p-heading--4"><strong>Is there a long-term commitment? How long?</strong></p>
-    <p>ESM Images are security-maintained for the full ten year period of their underlying Ubuntu LTS release. Some applications will have versions on multiple Ubuntu LTS versions. In each case, the image is maintained for the full life of the underlying Ubuntu LTS.</p>
-    <p class="p-heading--4"><strong>Can I use these images to build other applications?</strong></p>
-    <p>Yes. Our hardened images are optimised for the developer experience, layering, and minimality. Each image is engineered to be clean, without layering artefacts, making it an ideal foundation for enterprise continuous integration and golden images. If you are an ISV, Canonical can offer embedded terms for redistribution and specific support. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Get in touch</a>.</p>
-    <p class="p-heading--4"><strong>Can I enable FIPS mode on Ubuntu-based container images?</strong></p>
-    <p>Yes, with a valid Ubuntu Pro subscription. Hosts or nodes running the hardened Ubuntu-based container images must be covered with Ubuntu Pro subscriptions. You can read more about how to enable FIPS mode on container images <a href="/blog/fips-ubuntu-container-security-updates">in this blog post</a>.</p>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/407cbd49-canonical-cloud.svg",
-          alt="",
-          height="150",
-          width="230",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Secure your cloud solutions</h2>
-        <p>Would you like to discuss your specific use case with us? Our team is here to help you secure your cloud solutions, starting with secure Docker images.</p>
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Critical CVE fixes in 24 hours</h2>
+      </div>
+      <div class="col">
         <p>
-          <a class="p-button--positive js-invoke-modal" href="/security/contact-us?product=docker">Get in touch</a>
+          Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure. Trusted provenance is key.
+        </p>
+        <p>
+          The LTS Docker Image Portfolio provides ready-to-use application base images, free of high and critical CVEs. Images are built on the same secure infrastructure that builds Ubuntu, and updated automatically when apps or dependencies are fixed.
+        </p>
+        <div class="p-cta-block">
+          <a href="/security/cves">Explore our CVE-fixing track record&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% call(slot) vf_rich_vertical_list(
+    title_text="Our Commitment",
+    list_item_tick_style="tick",
+    is_flipped=true
+    ) -%}
+
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--2-3 is-cover u-hide--small u-hide--medium">
+        {{ image(url="https://assets.ubuntu.com/v1/4dcb1735-our-commitment.png",
+                alt="",
+                width="1200",
+                height="1801",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'list_item_1' -%}
+      Minimum 5 years of 24/7 security updates from Canonical
+    {%- endif -%}
+    {%- if slot == 'list_item_2' -%}
+      Fixes for high and critical Common Vulnerabilities and Exposures (CVEs)
+    {%- endif -%}
+    {%- if slot == 'list_item_3' -%}
+      The Ubuntu distribution base image and application layers
+    {%- endif -%}
+    {%- if slot == 'list_item_4' -%}
+      All major architectures
+    {%- endif -%}
+    {%- if slot == 'list_item_5' -%}
+      Designed for layering - "<code>FROM public.ecr.aws/lts/mysql</code>"
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/about/release-cycle">Learn more about the Ubuntu release cadence&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Use case:
+          <br class="u-hide--medium u-hide--small" />
+          Building .NET apps on Ubuntu LTS
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container--3-2 is-cover is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/98571792-net.png",
+                        alt="Microsft .NET logo",
+                        width="1200",
+                        height="801",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Getting started with .NET on Ubuntu is straightforward and efficient with Canonical-maintained ultra-small container images.
+        </p>
+        <p>
+          Developers now have production-grade container images to ship their .NET apps on Ubuntu. Predictable release cadence aligned with Ubuntu LTS and .NET LTS releases guarantees security and stability, long-term. Security patches and support are available to Ubuntu Ppro customers, including on the Microsoft Azure platform.
+        </p>
+        <div class="p-cta-block">
+          <a href="/blog/install-dotnet-on-ubuntu">Read about .NET support on Ubuntu&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>FAQ on the LTS Docker Image Portfolio</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Where are the images?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_1' -%}
+        <p>On Amazon ECR Public and Docker Hub, images are provided in three groups:</p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item has-bullet u-no-padding--top">
+            Ubuntu <a href="https://hub.docker.com/u/ubuntu/">on Docker Hub</a> and <a href="https://gallery.ecr.aws/ubuntu">ECR Public</a> have development releases with security updates
+          </li>
+          <li class="p-list__item has-bullet">
+            LTS ("Canonical") on <a href="https://gallery.ecr.aws/lts">ECR Public</a> has Free LTS images with up to five years fixes
+          </li>
+          <li class="p-list__item has-bullet">
+            Customer-only content with up to ten years of fixes. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact us</a>.
+          </li>
+        </ul>
+        <hr class="p-rule--muted" />
+        <p>All of our Docker Hub repositories are exempted from per-user rate limits.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">
+          Are these Official Images
+          <br class="u-hide--medium u-hide--small" />
+          on Docker Hub?
+        </h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Several images from the Canonical LTS Docker Image Portfolio are free Docker Official Image versions during their five year standard security maintenance period. The Ubuntu base image is available both as an official image on Docker hub and through the <a href="https://gallery.ecr.aws/lts/ubuntu">LTS</a> and <a href="https://gallery.ecr.aws/ubuntu/ubuntu">Ubuntu</a> namespaces on Amazon ECR Public.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Is the LTS Docker Image Portfolio a free or a commercial offering?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Both. Some LTS Docker Images have a free five year maintenance period, based on the underlying Ubuntu LTS free standard security maintenance period. After five years, these LTS images will get five more years of security patches through the Expanded Security Maintenance (ESM) program. The ESM program is available with our Ubuntu Pro subscriptions. Some images don&apos;t get the free five initial LTS years,
+          but still are eligible for the 10-year ESM program. On each image&apos;s documentation, the support dates and LTS/ESM logos indicate the current support status for every version. As with Ubuntu interim releases, ongoing development images are released regularly and receive free security updates while they are the current version.
+        </p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="https://canonical.com/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read more&nbsp;&rsaquo;</a>
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Is there a long-term commitment? How long?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          ESM Images are security-maintained for the full ten year period of their underlying Ubuntu LTS release. Some applications will have versions on multiple Ubuntu LTS versions. In each case, the image is maintained for the full life of the underlying Ubuntu LTS.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Can I use these images to build other applications?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          Yes. Our hardened images are optimised for the developer experience, layering, and minimality. Each image is engineered to be clean, without layering artefacts, making it an ideal foundation for enterprise continuous integration and golden images. If you are an ISV, Canonical can offer embedded terms for redistribution and specific support.
+        </p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/security/contact-us?product=docker" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a>
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_6' -%}
+        <h3 class="p-heading--5">Can I enable FIPS mode on Ubuntu-based container images?</h3>
+      {%- endif -%}
+      {%- if slot == 'list_item_description_6' -%}
+        <p>
+          Yes, with a valid Ubuntu Pro subscription. Hosts or nodes running the hardened Ubuntu-based container images must be covered with Ubuntu Pro subscriptions. You can read more about how to enable FIPS mode on container images <a href="/blog/fips-ubuntu-container-security-updates">in this blog post</a>.
+        </p>
+      {%- endif -%}
+    {% endcall -%}
+  </section>
+
+  <section class="u-fixed-width p-section--shallow">
+    <div class="p-image-container--cinematic is-cover">
+      {{ image(url="https://assets.ubuntu.com/v1/f50399ab-secure-your-cloud.png",
+            alt="",
+            width="2464",
+            height="1028",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe
+      }}
+    </div>
+
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Secure your cloud solutions</h2>
+      </div>
+      <div class="col">
+        <p>
+          Would you like to discuss your specific use case with us? Our team is here to help you secure your cloud solutions, starting with secure Docker images.
+        </p>
+        <hr class="p-rule--muted" />
+        <p>
+          <a class="p-button--positive js-invoke-modal"
+             href="/security/contact-us?product=docker">Get in touch</a>
         </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
-<script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/docker-images"
+       data-form-id="3785"
+       data-lp-id=""
+       data-return-url="https://ubuntu.com/security/thank-you?product=docker"
+       data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
+  <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
 {% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
+
+{% block footer_extra %}
+  {{ marketo }}
+{% endblock footer_extra %}
