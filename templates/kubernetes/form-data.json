@@ -58,18 +58,20 @@
               {
                 "type": "tel",
                 "id": "phone",
-                "label": "Phone number"
+                "label": "Phone number",
+                "isRequired": true
               },
               {
-                "type": "company",
+                "type": "text",
+                "id": "company",
                 "label": "Company",
-                "isRequired": false
+                "isRequired": true
               },
               {
                 "type": "text",
                 "id": "jobTitle",
                 "label": "Job title",
-                "isRequired": true
+                "isRequired": false
               }
             ]
           }
