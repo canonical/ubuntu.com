@@ -1,0 +1,81 @@
+{
+    "form": {
+      "/kubernetes": {
+        "templatePath": "/kubernetes/index.html",
+        "childrenPaths": [
+          "/kubernetes/install",
+          "/kubernetes/managed",
+          "/kubernetes/resources",
+          "/kubernetes/compare",
+          "/kubernetes/charmed-k8s",
+          "/kubernetes/what-is-kubernetes"
+        ],
+        "isModal": true,
+        "modalId": "contact-modal",
+        "formData": {
+          "title": "Talk to our Kubernetes experts",
+          "formId": "3897",
+          "returnUrl": "/kubernetes#contact-form-success",
+          "lpUrl": "https://ubuntu.com/kubernetes/contact-us",
+          "product": ""
+        },
+        "fieldsets": [
+          {
+            "title": "Tell us more about your Kubernetes use cases",
+            "id": "advice",
+            "fields": [
+              {
+                "type": "long-text",
+                "id": "advice",
+                "placeholder": "Anything you'd like to communicate about your needs or interests?",
+                "label": "Anything you'd like to communicate about your needs or interests?"
+              }
+            ]
+          },
+          {
+            "title": "How should we get in touch?",
+            "id": "about-you",
+            "noCommentsFromLead": true,
+            "fields": [
+              {
+                "type": "text",
+                "id": "firstName",
+                "label": "First name",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "lastName",
+                "label": "Last name",
+                "isRequired": true
+              },
+              {
+                "type": "email",
+                "id": "email",
+                "label": "Work email",
+                "isRequired": true
+              },
+              {
+                "type": "tel",
+                "id": "phone",
+                "label": "Phone number",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "company",
+                "label": "Company",
+                "isRequired": true
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "label": "Job title",
+                "isRequired": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
