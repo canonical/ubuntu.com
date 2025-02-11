@@ -1,15 +1,10 @@
 ---
-wrapper_template: "base-docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Charmed Kubernetes documentation"
-  description: Documentation for the Canonical Distribution of Kubernetes.
-keywords: homepage
-tags: [getting_started]
-sidebar: k8smain-sidebar
-permalink: index.html
-layout: base_noedit
+  title: "Kubernetes documentation"
+  description: Documentation for Charmed Kubernetes.
 toc: False
 ---
 
