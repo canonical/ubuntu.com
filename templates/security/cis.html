@@ -124,8 +124,10 @@
     <hr class="p-rule--muted is-fixed-width" />
     <div class="row">
       <div class="col-start-large-7 col-6">
-        <a href="/pro" class="p-button">Get Ubuntu Pro</a>
-        <a href="/security/certifications/docs/cis">Learn more about Ubuntu Security Guide&nbsp;&rsaquo;</a>
+        <div class="p-cta-block is-borderless">
+          <a href="/pro" class="p-button">Get Ubuntu Pro</a>
+          <a href="/security/certifications/docs/cis">Learn more about Ubuntu Security Guide&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
@@ -183,8 +185,10 @@
     <hr class="p-rule--muted is-fixed-width" />
     <div class="row">
       <div class="col-start-large-7 col-6">
-        <a href="/pro" class="p-button">Get CIS tooling with Ubuntu Pro</a>
-        <a href="/security/certifications/docs/usg">Learn more about Ubuntu Security Guide&nbsp;&rsaquo;</a>
+        <div class="p-cta-block is-borderless">
+          <a href="/pro" class="p-button">Get CIS tooling with Ubuntu Pro</a>
+          <a href="/security/certifications/docs/usg">Learn more about Ubuntu Security Guide&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
@@ -194,26 +198,28 @@
       <hr class="p-rule" />
       <div class="col">
         <div class="p-section--shallow">
-          <h2>How does Charmed Kubernetes comply with CIS benchmarks?</h2>
-        </div>
-        <div class="p-section--shallow">
-          <p>
-            Charmed Kubernetes brings not only extensibility and fully automated operations but is designed to comply with the Kubernetes CIS benchmark by default. It further includes tooling to track cluster compliance.
-          </p>
+          <div class="p-section--shallow">
+            <h2>How does Charmed Kubernetes comply with CIS benchmarks?</h2>
+          </div>
+          <div class="p-section--shallow">
+            <p>
+              Charmed Kubernetes brings not only extensibility and fully automated operations but is designed to comply with the Kubernetes CIS benchmark by default. It further includes tooling to track cluster compliance.
+            </p>
+          </div>
         </div>
         <div class="p-cta-block">
-          <a href="/kubernetes/docs/cis-compliance" class="p-button--positive">Read more about Kubernetes and CIS</a>
+          <a href="/kubernetes/docs/cis-compliance" class="p-button">Read more about Kubernetes and CIS</a>
         </div>
       </div>
       <div class="col">
-        <div class="p-image-container is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/6585c1e7-logo-kubernetes.png",
-                    alt="",
-                    width="900",
-                    height="507",
-                    hi_def=True,
-                    loading="lazy",
-                    attrs={"class": "p-image-container__image"}) | safe
+        <div class="p-image-container--16-9 is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/ec2c2072-kubernetes-logo.png",
+            alt="",
+            width="1800",
+            height="1013",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
       </div>
