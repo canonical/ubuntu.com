@@ -260,15 +260,8 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/docker-images"
-       data-form-id="3785"
-       data-lp-id=""
-       data-return-url="https://ubuntu.com/security/thank-you?product=docker"
-       data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
-  <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
+  {% include "/shared/forms/form-template.html" %}
+
 {% endblock content %}
 
 {% block footer_extra %}
