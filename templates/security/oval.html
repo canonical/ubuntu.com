@@ -24,13 +24,13 @@
       </p>
     {%- endif -%}
     {%- if slot =='signpost_image' -%}
-      {{ image(url="https://assets.ubuntu.com/v1/aeb508c5-oval-logo.png",
-            alt="",
-            width="852",
-            height="333",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "u-hide--small u-hide--medium"}) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/97cb005e-oval-logo.png",
+                alt="",
+                width="858",
+                height="333",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "u-hide--small u-hide--medium"}) | safe
       }}
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -60,10 +60,8 @@
         <p>
           Ubuntu OVAL also allows for any third-party Security Content Automation Protocol (SCAP) compliant tools to accurately scan an Ubuntu system or an official Ubuntu cloud image for vulnerabilities.
         </p>
-        <div class="p-cta-block">
-          <p>
-            <a class="p-button" href="/security/notices">See the Ubuntu Security Notices</a>
-          </p>
+        <div class="p-cta-block">          
+          <a class="p-button" href="/security/notices">See the Ubuntu Security Notices</a>
         </div>
       </div>
     </div>
@@ -115,7 +113,7 @@
         </div>
         <div class="row">
           <div class="col-3 col-start-large-4">
-            <h3 class="p-heading--5 p-stepped-list__title">Scanning an Official Cloud Image</h3>
+            <h3 class="p-heading--5 p-stepped-list__title">Scanning an <br class="u-hide--medium u-hide--small" />Official Cloud Image</h3>
           </div>
           <div class="col-6 p-stepped-list__content">
             <p>
@@ -201,8 +199,8 @@
               <td>Link to bugreport about the issue</td>
             </tr>
             <tr>
-              <td class="u-no-padding--top"></td>
-              <td class="u-no-padding--top">
+              <td></td>
+              <td>
                 <small class="u-text--muted"><i>
                   Note: The above parameters are included in the OVAL xml file, but not all are shown in the resulting generated OpenSCAP report.
                 </i></small>
@@ -232,14 +230,14 @@
       </div>
     </div>
     <div class="u-fixed-width">
-      <div class="p-image-container--cinematic is-cover">
-        {{ image(url="https://assets.ubuntu.com/v1/7761320f-hero.png",
-                alt="",
-                width="2464",
-                height="1027",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-image-container__image"}) | safe
+      <div class="p-image-container--cinematic is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/4745474d-how-ubuntu-oval.png",
+                    alt="",
+                    width="3696",
+                    height="1541",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
         }}
       </div>
     </div>
