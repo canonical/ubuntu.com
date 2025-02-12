@@ -43,12 +43,12 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2018-04-01T00:00:00"),
-    endDate: new Date("2023-04-02T00:00:00"),
+    endDate: new Date("2023-05-02T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
-    startDate: new Date("2023-04-02T00:00:00"),
+    startDate: new Date("2023-05-02T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "18.04 LTS (Bionic Beaver)",
     status: "ESM",
@@ -67,12 +67,12 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2025-04-02T00:00:00"),
+    endDate: new Date("2025-05-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
-    startDate: new Date("2025-04-02T00:00:00"),
+    startDate: new Date("2025-05-02T00:00:00"),
     endDate: new Date("2030-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "ESM",
