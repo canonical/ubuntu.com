@@ -1,11 +1,13 @@
 {% extends "security/base_security.html" %}
 
-{% block title %}Vulnerabilities{% endblock %}
+{% block title %}Vulnerability Knowledge Base{% endblock %}
 
-{% block meta_description %}{% endblock %}
+{% block meta_description %}
+  A library with in-depth information and technical guidance for high-impact vulnerabilities that affect Ubuntu.
+{% endblock %}
 
 {% block meta_copydoc %}
-
+  https://docs.google.com/document/d/1nN_3QGibrmWSi4AAYfoO04q7EnQvHdSgDTaAXvy_4nc/edit?tab=t.0
 {% endblock meta_copydoc %}
 
 {% block body_class %}
@@ -69,7 +71,9 @@
           </div>
         {% endfor %}
         <div class="p-cta-block u-hide js-toggle-visibility">
-          <button class="p-button--positive"><span class="js-view-text">View all vulnerabilities</span><span class="js-hide-text u-hide">Hide vulnerabilities</span></button>
+          <button class="p-button--positive">
+            <span class="js-view-text">View all vulnerabilities</span><span class="js-hide-text u-hide">Hide vulnerabilities</span>
+          </button>
         </div>
       </div>
     </div>
@@ -108,7 +112,7 @@
                 Up to 12 years of security coverage for Ubuntu
                 and 36,000 open-source applications and toolchains.
               </p>
-              <a class="p-button" href="pro">Get Ubuntu Pro</a>
+              <a class="p-button" href="/pro">Get Ubuntu Pro</a>
             </ul>
           </div>
         </div>
@@ -139,7 +143,7 @@
       const viewText = document.querySelector(".js-view-text");
       const isExpanded = viewAllBtn.getAttribute("aria-expanded") === "true";
       const hiddenVulnerabilities = document.querySelectorAll(".js-hide");
-      
+
       hiddenVulnerabilities.forEach(hiddenVulnerability => {
         hiddenVulnerability.classList.toggle("u-hide", isExpanded);
       });
