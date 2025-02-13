@@ -1176,6 +1176,8 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 security_vulnerabilities.get_topics_in_category()
             )
             current_date = datetime.now()
+
+            # Filter out vulnerabilities that should not be displayed
             filtered_vulnerabilities = [
                 {
                     **vulnerability,
@@ -1188,6 +1190,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 )
                 > current_date
             ]
+
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
@@ -1213,10 +1216,18 @@ def build_vulnerabilities_index(security_vulnerabilities):
                     "vulnerabilities"
                 )
             )
+
+            # Add slug to each vulnerability
+            for vuln in vulnerabilities:
+                vuln_id = vuln['id']
+                if vuln_id in topics:
+                    vuln['slug'] = topics[vuln_id]
+
             # Add year to each vulnerability
             for v in vulnerabilities:
                 dt = datetime.strptime(v["published"], "%d/%m/%Y")
                 v["year"] = dt.year
+                
             # Make sure they are in order of published date
             vulnerabilities.sort(
                 key=lambda item: datetime.strptime(
@@ -1224,6 +1235,7 @@ def build_vulnerabilities_index(security_vulnerabilities):
                 ),
                 reverse=True,
             )
+
             return flask.render_template(
                 "security/vulnerabilities/index.html",
                 topics=topics,
@@ -1250,10 +1262,12 @@ def build_vulnerabilities(security_vulnerabilities):
                     "vulnerabilities"
                 )
             )
+
             for item in metadata_table:
                 if str(item["id"]) == str(document["topic_id"]):
                     document_metadata = item
                     break
+
             return flask.render_template(
                 "security/vulnerabilities/vulnerabilities.html",
                 metadata=document_metadata,
