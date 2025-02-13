@@ -1,163 +1,194 @@
 {% extends "security/base_security.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Ubuntu DISA-STIG compliance | Security{% endblock %}
 
 {% block meta_description %}Technical details on the Ubuntu DISA-STIG guide for Linux.{% endblock %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1zJwZzc-cERj9YKNXFtmrXwynJptyT7-D3qCNzBctRfo/edit#
+  https://docs.google.com/document/d/1zJwZzc-cERj9YKNXFtmrXwynJptyT7-D3qCNzBctRfo/edit?tab=t.0
 {% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-  <section class="p-strip--suru-topped">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-8">
-        <h1>DISA-STIG on Ubuntu</h1>
-        <h2 class="p-heading--4">Comply with the DISA Security Technical Implementation Guide</h2>
-        <p>
-          Security Technical Implementation Guides (STIG) are developed by the Defense Information System Agency (DISA) for the U.S. Department of Defense (DoD). <a href="/cloud/public-cloud">Ubuntu Pro on public cloud</a> and <a href="/pro">Ubuntu Pro (Infra)</a> have the necessary <a href="/security/fips">certifications</a> and controls to comply with DISA-STIG guidelines on Linux.
-        </p>
-        <a class="p-button--positive js-invoke-modal"
-           href="/security/contact-us">Contact us</a>
-        <a class="p-button" href="/pro">Get Ubuntu Pro (Infra)</a>
-      </div>
-      <div class="col-4 u-hide--medium u-hide--small u-align--center">
+  {% call(slot) vf_hero(
+    title_text='DISA-STIG on Ubuntu',
+    subtitle_text='Comply with the DISA Security <br />Technical Implementation Guide',
+    layout='25/75'
+    ) -%}
+    {%- if slot == 'signpost_image' -%}
+      <div style="width:284px;">
         {{ image (
-        url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
-        alt="DISA-STIG logo",
-        width="720",
-        height="264",
+        url="https://assets.ubuntu.com/v1/92754de5-disa.png",
+        alt="",
+        width="852",
+        height="204",
         hi_def=True,
         loading="auto"
         ) | safe
         }}
       </div>
-    </div>
-  </section>
-
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
-
-  <section class="p-strip">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-7">
-        <h2>How does Ubuntu enable your compliance with FIPS, and DISA-STIG?</h2>
-        <p>
-          Learn about the US government security standards and the common challenges faced by organisations in their implementation. See how the <a href="/security/certifications/docs/disa-stig">Ubuntu Security Guide</a> can transform systems compliance in a few minutes. Get to know how Ubuntu is a secure platform for government agencies and complying organisations to build, operate and innovate with open source applications and technologies.
-        </p>
-        <a class="p-button--positive js-invoke-modal"
-           href="/security/contact-us">Contact us</a>
+    {%- endif -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Security Technical Implementation Guides (STIG) are developed by the Defense Information System Agency (DISA) for the U.S. Department of Defense (DoD). <a href="/cloud/public-cloud">Ubuntu Pro on public cloud</a> and <a href="/advantage">Ubuntu Pro (Infra)</a> have the necessary <a href="/security/fips">certifications</a> and controls to comply with DISA-STIG guidelines on Linux.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/security/contact-us"
+         class="p-button--positive js-invoke-modal">Contact us</a>
+      <a href="/advantage">Get Ubuntu Pro (Infra)&nbsp;&rsaquo;</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/f759a607-hero.png",
+                alt="",
+                width="3696",
+                height="1540",
+                hi_def=True,
+                loading="auto",
+                fmt="jpg",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
       </div>
-      <div class="col-5 u-hide--medium u-hide--small u-align--center">
-        <div class="jsBrightTALKEmbedWrapper u-vertically-center"
-             style="width:100%;
-                    height:100%;
-                    position:relative;
-                    background: #ffffff">
-          <script class="jsBrightTALKEmbedConfig" type="application/json">
-            {
-              "channelId": 6793,
-              "language": "en-US",
-              "commId": 524647,
-              "displayMode": "standalone",
-              "height": "280"
-            }
-          </script>
-          <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js"
-                  class="jsBrightTALKEmbed"></script>
-          <script>
-            const iframe = document.querySelector('.jsBrightTALKEmbedWrapper iframe');
-            iframe.addEventListener('load', () => {
-              iframe.scrolling = "yes";
-            });
-          </script>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          How does Ubuntu enable your compliance with FIPS,
+          <br />
+          and DISA-STIG?
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/497f33c2-how-ubuntu-enables-webinar.png",
+                    alt="",
+                    width="1800",
+                    height="1013",
+                    hi_def=False,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <p>
+          Learn about the US government security standards and the common challenges faced by organizations in their implementation. See how the Ubuntu Security Guide can transform systems compliance in a few minutes. Get to know how Ubuntu is a secure platform for government agencies and complying organizations to build, operate and innovate with open source applications and technologies.
+        </p>
+        <div class="p-cta-block u-no-padding--bottom">
+          <a href="/security/contact-us"
+             class="p-button--positive js-invoke-modal">Contact us</a>
+          <a href="https://www.brighttalk.com/webcast/6793/604776"
+             aria-label="Watch the 'How does Ubuntu enable your compliance with FIPS, and DISA-STIG?' webinar">Watch the webinar&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>What is DISA-STIG?</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            The Defense Information System Agency (DISA) is a US Department of Defense combat support agency. It provides and operates information infrastructure to support military operations and national-level leadership. The Security Technical Implementation Guide (STIG) is a configuration standard consisting of guidelines for hardening systems to improve a system's security posture. It can be seen as a checklist for securing protocols, services, or servers to improve the overall security by reducing the attack surface.
+          </p>
+        </div>
+      </div>
+    </div>
     <div class="u-fixed-width">
-      <h2>What is DISA-STIG?</h2>
-      <p>
-        The Defense Information System Agency (DISA) is a US Department of Defense combat support agency. It provides and operates information infrastructure to support military operations and national-level leadership. The Security Technical Implementation Guide (STIG) is a configuration standard consisting of guidelines for hardening systems to improve a system’s security posture. It can be seen as a checklist for securing protocols, services, or servers to improve the overall security by reducing the attack surface.
-      </p>
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/3c7382e4-what-is-disa.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="lazy",
+                fmt="jpg",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
     </div>
   </section>
 
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2>DISA-STIG for Ubuntu</h2>
-      <p class="u-sv3">
-        Together with Canonical, DISA has developed STIGs for Ubuntu. The U.S. DoD provides the <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">STIG checklist</a>, which can be viewed using <a href="https://public.cyber.mil/stigs/stig-viewing-tools/">STIG viewer</a>, and <a href="https://public.cyber.mil/stigs/scap/">SCAP content for auditing</a>. The versions of Ubuntu that have STIGs available by DISA are marked on the table below.
-      </p>
-      <table class="p-table--compliance-profiles">
-        <thead>
-          <th class="u-hide--small"></th>
-          <th></th>
-          <th class="u-align--center">Ubuntu 16.04 LTS</th>
-          <th class="u-align--center">Ubuntu 18.04 LTS</th>
-          <th class="u-align--center">Ubuntu 20.04 LTS</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="u-hide--small">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
-              alt="DISA logo",
-              width="136",
-              height="50",
-              hi_def=True,
-              attrs={"style": "vertical-align: middle;"},
-              loading="lazy"
-              ) | safe
-              }}
-            </td>
-            <td>
-              Defense Information System Agency <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">Security Technical Implementation Guides (STIGs)</a> and <a href="https://public.cyber.mil/stigs/supplemental-automation-content/">Supplemental Automation Content</a> for Ubuntu
-            </td>
-            <td class="u-align--center">
-              {{ image(url="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg", alt="Yes: Configuration guide", width="14", height="14", hi_def=True, loading="lazy",) | safe }}
-            </td>
-            <td class="u-align--center">
-              {{ image(url="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg", alt="Yes: Configuration guide", width="14", height="14", hi_def=True, loading="lazy",) | safe }}
-            </td>
-            <td class="u-align--center">
-              <i class="p-icon--success">Yes: Tooling and automation</i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ul class="p-inline-list" aria-label="key">
-        <li class="p-inline-list__item">
-          <img src="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg"
-               alt="Yes: Configuration guide"
-               style="height: 14px;
-                      vertical-align: middle;
-                      width: 14px" />
-          <small>Configuration guide</small>
-        </li>
-        <li class="p-inline-list__item">
-          <i class="p-icon--success">Yes</i>
-          <small>Tooling and automation</small>
-        </li>
-      </ul>
-      <a class="p-button--positive"
-         href="/security/certifications/docs/disa-stig">Read more about Ubuntu tooling and automation</a>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50 p-section--shallow">
+      <div class="col">
+        <h2>DISA-STIG for Ubuntu</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            Together with Canonical, DISA has developed STIGs for Ubuntu. The U.S. DoD provides the <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">STIG checklist</a>, which can be viewed using <a href="https://public.cyber.mil/stigs/stig-viewing-tools/">STIG viewer</a>, and <a href="https://public.cyber.mil/stigs/scap/">SCAP content for auditing</a>. The versions of Ubuntu that have STIGs available by DISA are marked on the table below.
+          </p>
+          <div class="p-cta-block">
+            <a href="/security/certifications/docs/disa-stig">Read more about Ubuntu tooling and automation&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+
+        <hr class="p-rule--muted" />
+        <p>
+          DISA <a href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">Security Technical Implementation Guides (STIGs)</a> and <a href="https://public.cyber.mil/stigs/supplemental-automation-content/">Supplemental Automation Content</a> for Ubuntu
+        </p>
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 16.04 LTS</div>
+              <div class="col-3">Configuration guide</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 18.04 LTS</div>
+              <div class="col-3">Configuration guide</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 20.04 LTS</div>
+              <div class="col-3">Tooling and automation</div>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="row">
+              <div class="col-3">Ubuntu 22.04 LTS</div>
+              <div class="col-3">Tooling and automation</div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="u-sv3">How to audit and comply with DISA-STIG?</h2>
-        <ol class="p-stepped-list">
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          How to audit and comply
+          <br />
+          with DISA-STIG?
+        </h2>
+      </div>
+      <div class="col">
+        <ol class="p-stepped-list no-full-stop">
           <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">Auditing</h3>
+            <p class="p-stepped-list__title p-heading--5">Auditing</p>
             <div class="p-stepped-list__content">
-              <p>Using the Ubuntu Security Guide auditing is as simple as:</p>
+              <hr class="p-rule--muted" />
+              <p>Using the Ubuntu Security Guide for auditing is as simple as:</p>
               <div class="p-code-snippet">
                 <pre class="p-code-snippet__block--icon"><code>sudo usg audit disa_stig</code></pre>
               </div>
@@ -165,26 +196,102 @@
             </div>
           </li>
           <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">Compliance</h3>
+            <hr class="p-rule--muted" />
+            <p class="p-stepped-list__title p-heading--5">Compliance</p>
             <div class="p-stepped-list__content">
-              <p>Using the Ubuntu Security Guide applying the necessary rules for compliance is as simple as:</p>
+              <hr class="p-rule--muted" />
+              <p>Using the Ubuntu Security Guide for applying the necessary rules for compliance is as simple as:</p>
               <div class="p-code-snippet">
                 <pre class="p-code-snippet__block--icon"><code>sudo usg fix disa_stig</code></pre>
               </div>
+              <div class="p-cta-block">
+                <a href="/security/certifications/docs/disa-stig">Read more about Ubuntu Security Guide&nbsp;&rsaquo;</a>
+              </div>
             </div>
-          </li>
-        </ol>
-        <p>
-          <a class="p-button--positive"
-             href="/security/certifications/docs/disa-stig">Read more about Ubuntu Security Guide</a>
-        </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Canonical is offering
+          <br />
+          Expanded Security Maintenance
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/82d84ea0-canonical-is-offering.png",
+                    alt="",
+                    width="1800",
+                    height="1014",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <p>Canonical is offering Ubuntu Expanded Security Maintenance (ESM) for security fixes and essential packages.</p>
+        <div class="p-cta-block">
+          <a href="/security/esm">Find out more about ESM&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
+  <section class="p-section--deep">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Join the discussion</h3>
+          </div>
+          <div class="col-4">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened">Ubuntu security updates mailing list</a>
+              </li>
+              <li class="p-list__item">
+                <a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Security announcements mailing list</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted is-ficed-width u-no-margin--bottom" />
+        <div class="row">
+          <div class="col-2">
+            <h3 class="p-heading--5">Further reading</h3>
+          </div>
+          <div class="col-4">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/blog/a-comprehensive-guide-to-nis2-compliance-part-1-understanding-nis2-and-its-scope">A comprehensive guide to NIS2 Compliance: Part 1 &ndash; Understanding NIS2 and its scope</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/rsync-remote-code-execution">Rsync remote code execution and related vulnerability fixes available</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/needrestart-local-privilege-escalation">Needrestart local privilege escalation vulnerability fixes available</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/imagining-the-future-of-cybersecurity">Imagining the future of Cybersecurity</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">6 facts for CentOS users who are holding on</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"

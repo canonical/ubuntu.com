@@ -1,18 +1,28 @@
 {% extends "security/base_security.html" %}
 
-{% block title %}Ubuntu Security disclosure and embargo policy | Security{% endblock %}
+{% block title %}Ubuntu Security disclosure and embargo policy{% endblock %}
 
-{% block meta_description %}Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues. This describes how to contact the Ubuntu Security Team, what you can expect when you contact us, and what we expect from you.{% endblock %}
+{% block meta_description %}
+  Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues. This describes how to contact the Ubuntu Security Team, what you can expect when you contact us, and what we expect from you.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1WdamniXOHemuPzl6vESYD9StPgh4-PepbqdVHYrzbuI/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1WdamniXOHemuPzl6vESYD9StPgh4-PepbqdVHYrzbuI/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-8 u-vertically-center">
-      <h1>
-        Ubuntu Security disclosure and embargo policy
-      </h1>
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Security disclosure and embargo policy',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
       <p>
         <i>Valid since: October 2020</i>
         <i>Last updated: October 2023</i>
@@ -20,106 +30,201 @@
       <p>
         Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues. This describes how to contact the Ubuntu Security Team, what you can expect when you contact us, and what we expect from you.
       </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/13de40ac-hero.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>About Canonical</h2>
+      </div>
+      <div class="col">
+        <p>
+          Canonical publishes the Ubuntu operating system in collaboration with a community of Ubuntu developers. Canonical also publishes other software projects such as LXD, MAAS, Juju, snapd, Snapcraft, Landscape, Launchpad and Mir.
+        </p>
+        <p>
+          Canonical's Ubuntu Security Team tends to the security needs of the Ubuntu operating system and serves as a point of contact for Canonical-authored software, both proprietary and open-source, as well as Canonical-owned and -managed infrastructure.
+        </p>
+        <p>
+          Please contact us if you believe you have found a security issue in Ubuntu, Canonical software or Canonical services.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h2>
-        About Canonical
-      </h2>
-      <p>
-        Canonical publishes the Ubuntu operating system in collaboration with a community of Ubuntu developers. Canonical also publishes other software projects such as LXD, MAAS, Juju, snapd, Snapcraft, Landscape, Launchpad and Mir.
-      </p>
-      <p>
-        Canonical's Ubuntu Security Team tends to the security needs of the Ubuntu operating system and serves as a point of contact for Canonical-authored software, both proprietary and open-source, as well as Canonical-owned and -managed infrastructure.
-      </p>
-      <p>
-        Please contact us if you believe you have found a security issue in Ubuntu, Canonical software or Canonical services.
-      </p>
-      <h2 id="contact-us">
-        How to report an issue to us
-      </h2>
-      <p>
-        You may report issues to the Ubuntu Security Team via the Launchpad.net bug reporting interface (<code>ubuntu-bug &ltpackagename&gt</code> is the most convenient way to get to the bug reporting form). Please be aware that Launchpad.net will send email in plaintext in response to bug reports.
-      </p>
-      <p>
-        You may also send email to <a href="mailto:security@ubuntu.com">security@ubuntu.com</a>. Email may optionally be encrypted to OpenPGP key <code>4072 60F7 616E CE4D 9D12 4627 98E9 740D C345 39E0: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x407260f7616ece4d9d12462798e9740dc34539e0</code>
-      </p>
-      <p>
-        If you have a deadline for public disclosure, please let us know.
-      </p>
-      <h2>
-        Scope
-      </h2>
-      <p>
-        Ubuntu is built on the contributions of thousands of projects. Usually issues that affect Ubuntu will affect other projects and other Linux distributions. Sometimes we may ask reporters to contact upstream developers.
-      </p>
-      <p>
-        The Ubuntu distribution is divided into multiple pockets: main, universe, restricted, and multiverse. Packages in main are supported by the Ubuntu Security Team. Packages in universe and multiverse are supported by the community; the Ubuntu Security Team can sponsor fixes prepared and tested by community members.
-      </p>
-      <p>
-        Packages in restricted are supported by Canonical's business partners. The Ubuntu Security Team can coordinate with our partners.
-      </p>
-      <p>
-        Software written by Canonical, but delivered outside of Ubuntu, is supported by different teams at Canonical. The Ubuntu Security Team is happy to coordinate communication between external entities (i.e. analysts, reporters) and supporting teams within Canonical, as well as provide guidance and feedback.
-      </p>
-      <p>
-        The Canonical Launchpad code hosting service, Canonical Snap Store, and Canonical Juju Charm Store allows anyone to publish software to users. Launchpad, the Snap Store, and the Juju Charm Store provide a way to contact publishers. As per the <a href="/legal/developer-terms-and-conditions">terms and conditions for these services</a>, publishers are solely responsible for support of their software. If you believe any of these services are being used to host or distribute malicious software, this can be reported either to the Ubuntu Security team or to the relevant platform as appropriate.
-      </p>
-      <p>
-        Ubuntu and Canonical software is distributed through many channels: Canonical-operated download sites, public cloud providers, and community-operated mirrors. Sometimes security issues may be due to customizations at specific providers or distributors; in which case we may ask reporters to contact another party for support.
-      </p>
-      <h2>
-        Out of scope
-      </h2>
-      <p>
-        We will not issue CVEs or fixes for software that is no longer supported. Please check if found issues affect supported versions of software.
-      </p>
-      <p>
-        Not all bugs are vulnerabilities. We use a common understanding of Internet-connected multi-user computers where some of the user accounts may have privileges. Because of this, our idea of what constitutes a vulnerability may not match definitions used by other organizations. We cannot promise every issue reported to us as a security vulnerability will be handled as one; when we differ, we will endeavor to explain our reasoning.
-      </p>
-      <h2>
-        What to expect from us
-      </h2>
-      <p>
-        We intend to provide an initial response to reporters within two business days.
-      </p>
-      <p>
-        The Ubuntu Security Team can assign CVE numbers for issues in Canonical software, as well as anything shipped in Ubuntu. We may direct the reporter to use <a href="https://cveform.mitre.org">cveform.mitre.org</a> for publicly known issues in non-Canonical software to avoid duplicate assignments.
-      </p>
-      <p>
-        For issues that are not yet publicly known, we will abide by any embargoes as necessary. We reserve the right to release fixes before an embargo has expired if other parties disclose the issue before the agreed upon embargo date or if there is evidence of abuse.
-      </p>
-      <p>
-        We may or may not provide further information to reporters about similar issues. We may or may not ask reporters to collaborate on solutions or work-arounds. We may or may not ask reporters for assistance testing solutions or work-arounds.
-      </p>
-      <p>
-        We are not affiliated with any bug bounty programs. We do not ourselves pay for bug reports, in either our software or our infrastructure.
-      </p>
-      <p>
-        We are happy to give credit to reporters in our CVE assignments and in our Ubuntu Security Notices. We will use known identities of discoverers, with no affiliations, in our USNs.
-      </p>
-      <h2>
-        Disclosure timelines
-      </h2>
-      <p>
-        When we assign a CVE, we intend to publish CVE details within one week after we provide update notifications or release new versions of software. We may publish CVE details before we provide fixes. Reporters are free to prepare whatever content they wish. We would like exploits and proof of concept exploits to be held private for at least one week after fixes are published to allow our users adequate time to test and install updates before exploits are easily available.
-      </p>
-      <h2>
-        Safe harbour
-      </h2>
-      <p>
-        Ubuntu is proudly built on the contributions of thousands and our security is no exception. We welcome responsible research into the security of our software to make Ubuntu and Canonical software secure for everyone.
-      </p>
-      <p>
-        However, we do not welcome active security probing of Canonical or Ubuntu infrastructure and services. If you believe you have found a security issue in Canonical or Ubuntu infrastructure or services please <a href="#contact-us">contact us</a>.
-      </p>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <h2 id="contact-us">How to report an issue to us</h2>
+      </div>
     </div>
-  </div>
-</section>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <ol class="p-stepped-list--detailed u-no-margin--bottom">
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3">
+                <p class="p-stepped-list__title p-heading--5">Launchpad.net bug reporting interface</p>
+              </div>
+              <div class="col-6">
+                <p class="p-stepped-list__content">
+                  You may report issues to the Ubuntu Security Team via the Launchpad.net bug reporting interface. This is the most convenient way to get to the bug reporting form. Please be aware that Launchpad.net will send email in plaintext in response to bug reports.
+                </p>
+                <pre>ubuntu-bug &ltpackagename&gt</pre>
+              </div>
+            </div>
+          </li>
+          <li class="p-stepped-list__item">
+            <div class="row">
+              <div class="col-3">
+                <p class="p-stepped-list__title p-heading--5">Email</p>
+              </div>
+              <div class="col-6">
+                <p class="p-stepped-list__content">
+                  You may also send email to <a href="mailto:security@ubuntu.com">security@ubuntu.com</a>. Email may optionally be encrypted to:
+                </p>
+                <pre>OpenPGP key 4072 60F7 616E CE4D 9D12 4627 98E9 740D C345 39E0:
+https://keyserver.ubuntu.com/pks/lookup?
+op=get&search=0x407260f7616ece4d9d12462798e9740dc34539e0</pre>
+              </div>
+            </div>
+          </li>
+        </ol>
+        <p>If you have a deadline for public disclosure, please let us know.</p>
+      </div>
+    </div>
+  </section>
 
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Scope</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu is built on the contributions of thousands of projects. Usually issues that affect Ubuntu will affect other projects and other Linux distributions. Sometimes we may ask reporters to contact upstream developers.
+        </p>
+        <p>
+          The Ubuntu distribution is divided into multiple pockets: main, universe, restricted, and multiverse. Packages in main are supported by the Ubuntu Security Team. Packages in universe and multiverse are supported by the community; the Ubuntu Security Team can sponsor fixes prepared and tested by community members.
+        </p>
+        <p>
+          Packages in restricted are supported by Canonical's business partners. The Ubuntu Security Team can coordinate fixes with our partners.
+        </p>
+        <p>
+          Software written by Canonical, but delivered outside of Ubuntu, is supported by different teams at Canonical. The Ubuntu Security Team is happy to coordinate communication between external entities (i.e. analysts, reporters) and supporting teams within Canonical, as well as provide guidance and feedback.
+        </p>
+        <p>
+          The Canonical Launchpad code hosting service, Canonical Snap Store, and Canonical Juju Charm Store allows anyone to publish software to users. Launchpad, the Snap Store, and the Juju Charm Store provide a way to contact publishers. As per the <a href="/legal/developer-terms-and-conditions">terms and conditions for these services</a>, publishers are solely responsible for support of their software. If you believe any of these services are being used to host or distribute malicious software, this can be reported either to the Ubuntu Security team or to the relevant platform as appropriate.
+        </p>
+        <p>
+          Ubuntu and Canonical software is distributed through many channels: Canonical-operated download sites, public cloud providers, and community-operated mirrors. Sometimes security issues may be due to customizations at specific providers or distributors; in which case we may ask reporters to contact another party for support.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    {% endblock content %}
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Out of scope</h2>
+      </div>
+      <div class="col">
+        <p>
+          We will not issue CVEs or fixes for software that is no longer supported. Please check if found issues affect supported versions of software.
+        </p>
+        <p>
+          Not all bugs are vulnerabilities. We use a common understanding of Internet-connected multi-user computers where some of the user accounts may have privileges. Because of this, our idea of what constitutes a vulnerability may not match definitions used by other organizations. We cannot promise every issue reported to us as a security vulnerability will be handled as one; when we differ, we will endeavor to explain our reasoning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>What to expect from us</h2>
+        </div>
+        <div class="col">
+          <p>We intend to provide an initial response to reporters within two business days.</p>
+          <p>
+            The Ubuntu Security Team can assign CVE numbers for issues in Canonical software, as well as anything shipped in Ubuntu. We may direct the reporter to use <a href="https://cveform.mitre.org">cveform.mitre.org</a> for publicly known issues in non-Canonical software to avoid duplicate assignments.
+          </p>
+          <p>
+            For issues that are not yet publicly known, we will abide by any embargoes as necessary. We reserve the right to release fixes before an embargo has expired if other parties disclose the issue before the agreed upon embargo date or if there is evidence of abuse.
+          </p>
+          <p>
+            We may or may not provide further information to reporters about similar issues. We may or may not ask reporters to collaborate on solutions or work-arounds. We may or may not ask reporters for assistance testing solutions or work-arounds.
+          </p>
+          <p>
+            We are not affiliated with any bug bounty programs. We do not ourselves pay for bug reports, in either our software or our infrastructure.
+          </p>
+          <p>
+            We are happy to give credit to reporters in our CVE assignments and in our Ubuntu Security Notices. We will use real names of discoverers, with no affiliations, in our USNs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/1af4bfae-What%20to%20expect%20from%20us.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Disclosure timelines</h2>
+      </div>
+      <div class="col">
+        <p>
+          When we assign a CVE, we intend to publish CVE details within one week after we provide update notifications or release new versions of software. We may publish CVE details before we provide fixes. Reporters are free to prepare whatever content they wish. We would like exploits and proof of concept exploits to be held private for at least one week after fixes are published to allow our users adequate time to test and install updates before exploits are easily available.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Safe harbor</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu is proudly built on the contributions of thousands and our security is no exception. We welcome responsible research into the security of our software to make Ubuntu and Canonical software secure for everyone.
+        </p>
+        <p>
+          However, we do not welcome active security probing of Canonical or Ubuntu infrastructure and services. If you believe you have found a security issue in Canonical or Ubuntu infrastructure or services please <a href="#contact-us">contact us</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
