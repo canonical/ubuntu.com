@@ -26,6 +26,7 @@ import RenewalButton from "../RenewalButton";
 import SubscriptionCancel from "../SubscriptionCancel";
 import SubscriptionEdit from "../SubscriptionEdit";
 import DetailsContent from "./DetailsContent";
+import SubscriptionStatusChip from "../SubscriptionStatusChip";
 
 type Props = {
   modalActive?: boolean;
@@ -130,82 +131,19 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               >
                 Close
               </button>
-              {subscription.statuses.is_expired ? (
-                <button className="p-chip--negative">
-                  <span className="p-chip__value">Expired</span>
-                </button>
-              ) : (
-                <>
-                  {subscription.type == "legacy" && subscription.renewal_id ? (
-                    <>
-                      {subscription.statuses.is_renewed ? (
-                        <button className="p-chip--positive">
-                          <span className="p-chip__value">Renewed</span>
-                        </button>
-                      ) : (
-                        <>
-                          {subscription.statuses.is_renewal_actionable &&
-                          subscription.statuses.is_renewable ? (
-                            <button className="p-chip--caution">
-                              <span className="p-chip__value">Not renewed</span>
-                            </button>
-                          ) : null}
-                        </>
-                      )}
-                    </>
-                  ) : null}
-                  {subscription.type == "monthly" ||
-                  subscription.type == "yearly" ? (
-                    <>
-                      {subscription.statuses.is_subscription_active &&
-                      !subscription.statuses.is_cancelled ? (
-                        <>
-                          {subscription.statuses.is_renewed ? (
-                            <button className="p-chip--positive">
-                              <span className="p-chip__value">
-                                Auto-renewal on
-                              </span>
-                            </button>
-                          ) : null}
-                          {!subscription.statuses.is_renewed ? (
-                            <button className="p-chip--caution">
-                              <span className="p-chip__value">
-                                Auto-renewal off
-                              </span>
-                            </button>
-                          ) : null}
-                        </>
-                      ) : null}
-                      {subscription.statuses.is_cancelled ? (
-                        <button className="p-chip--negative">
-                          <span className="p-chip__value">Cancelled</span>
-                        </button>
-                      ) : null}
-                    </>
-                  ) : null}
-                  {subscription.type == "trial" ? (
-                    <>
-                      {subscription.statuses.is_subscription_active ? (
-                        <>
-                          {subscription.statuses.is_renewed &&
-                          !subscription.statuses.is_cancelled ? (
-                            <button className="p-chip--positive">
-                              <span className="p-chip__value">
-                                Auto-renewal on
-                              </span>
-                            </button>
-                          ) : null}
-                        </>
-                      ) : null}
-                      {subscription.statuses.is_cancelled ? (
-                        <button className="p-chip--negative">
-                          <span className="p-chip__value">Cancelled</span>
-                        </button>
-                      ) : null}
-                    </>
-                  ) : null}
-                </>
-              )}
+              {
+                <SubscriptionStatusChip subscription={subscription}>
+                  {(data) =>
+                    data ? (
+                      <button className={`p-chip--${data.type}`}>
+                        <span className="p-chip__value">{data.status}</span>
+                      </button>
+                    ) : (
+                      <></>
+                    )
+                  }
+                </SubscriptionStatusChip>
+              }
             </header>
             <ExpiryNotification
               borderless
