@@ -74,7 +74,11 @@
           </div>
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
-          <img id="takeover-image" src="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg" width="300" alt="" loading="lazy" />
+          <img id="takeover-image"
+               src="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg"
+               width="300"
+               alt=""
+               loading="lazy" />
         </div>
       </div>
     </section>
@@ -194,13 +198,12 @@
         </div>
         <div class="col">
           <div class="p-image-wrapper u-hide--medium">
-            {{ image(url="https://assets.ubuntu.com/v1/e93caaaf-Energise%20your%20engineers.png",
+            {{ image(url="https://assets.ubuntu.com/v1/a0ca630d-woman-computer@1x.jpg",
                         alt="",
-                        width="1200",
-                        height="1801",
+                        width="600",
+                        height="900",
                         hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "u-aspect-ratio--2-3"}) | safe
+                        loading="auto") | safe
             }}
           </div>
         </div>
@@ -334,6 +337,7 @@
                         height="1801",
                         hi_def=True,
                         loading="lazy",
+                        fmt="jpg",
                         attrs={"class": "u-aspect-ratio--2-3"}) | safe
             }}
           </div>
@@ -387,22 +391,34 @@
           <div class="p-logo-section--dense u-no-padding">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png"
-                     alt="Uber"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/86ee4118-uber-logo.png",
+                                alt="Uber",
+                                width="176",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png"
-                     alt="Spotify"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/d1a04730-spotify-logo.png",
+                                alt="Spotify",
+                                width="363",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png"
-                     alt="BNP"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/ce3090ee-bnp-paribas-logo.png",
+                                alt="BNP Paribas",
+                                width="436",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
@@ -481,34 +497,54 @@
             <div class="p-logo-section--dense">
               <div class="p-logo-section__items landing-logos u-no-padding">
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/b0292231-aws-logo.png"
-                       alt="AWS"
-                       loading="lazy"
-                       class="p-logo-section__logo" />
+                  {{ image(url="https://assets.ubuntu.com/v1/b0292231-aws-logo.png",
+                                    alt="AWS",
+                                    width="186",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"},) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/8e354832-is-dark=true.png"
-                       alt="GCP"
-                       loading="lazy"
-                       class="p-logo-section__logo" />
+                  {{ image(url="https://assets.ubuntu.com/v1/8e354832-is-dark=true.png",
+                                    alt="GCP",
+                                    width="382",
+                                    height="312",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"},) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png"
-                       alt="Microsoft Azure"
-                       loading="lazy"
-                       class="p-logo-section__logo" />
+                  {{ image(url="https://assets.ubuntu.com/v1/9e14fd33-microsoft-azure-logo.png",
+                                    alt="Microsoft Azure",
+                                    width="335",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"},) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png"
-                       alt="Liberty Global"
-                       loading="lazy"
-                       class="p-logo-section__logo" />
+                  {{ image(url="https://assets.ubuntu.com/v1/6f7d29aa-liberty-global-logo.png",
+                                    alt="Liberty Global",
+                                    width="162",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"},) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png"
-                       alt="ACI"
-                       loading="lazy"
-                       class="p-logo-section__logo" />
+                  {{ image(url="https://assets.ubuntu.com/v1/0f0a0c1d-aci-logo.png",
+                                    alt="ACI",
+                                    width="380",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"},) | safe
+                  }}
                 </div>
               </div>
             </div>
@@ -580,40 +616,64 @@
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png"
-                     alt="Best Buy"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/aabc2a34-bestbuy-logo.png",
+                                alt="Best Buy",
+                                width="129",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png"
-                     alt="BT"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/83e8dd19-bt-logo.png",
+                                alt="BT",
+                                width="125",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png"
-                     alt="Deutsche Telekom"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/8b939be3-deutsche-telekom.png",
+                                alt="Deutsche Telekom",
+                                width="289",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png"
-                     alt="Rabobank"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/b6d5d92b-rabobank-logo.png",
+                                alt="Rabobank",
+                                width="289",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png"
-                     alt="Bloomberg"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/2c5c1540-Bloomberg-Logo.png",
+                                alt="Bloomberg",
+                                width="288",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png"
-                     alt="AT&T"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/99a69f52-ATT-Logo.png",
+                                alt="AT&T",
+                                width="268",
+                                height="288",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
@@ -702,34 +762,54 @@
             <div class="p-logo-section--dense">
               <div class="p-logo-section__items landing-logos u-no-padding">
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
-                       class="p-logo-section__logo"
-                       loading="lazy"
-                       alt="Intel" />
+                  {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+                                    alt="Intel",
+                                    width="200",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png"
-                       class="p-logo-section__logo"
-                       loading="lazy"
-                       alt="Rexroth" />
+                  {{ image(url="https://assets.ubuntu.com/v1/1af15900-rexroth-logo.png",
+                                    alt="Rexroth",
+                                    width="263",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png"
-                       class="p-logo-section__logo"
-                       loading="lazy"
-                       alt="ARM" />
+                  {{ image(url="https://assets.ubuntu.com/v1/0d5fc741-arm-logo.png",
+                                    alt="ARM",
+                                    width="188",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png"
-                       class="p-logo-section__logo"
-                       loading="lazy"
-                       alt="Dell" />
+                  {{ image(url="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png",
+                                    alt="Dell",
+                                    width="172",
+                                    height="312",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
                 </div>
                 <div class="p-logo-section__item">
-                  <img src="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png"
-                       class="p-logo-section__logo"
-                       loading="lazy"
-                       alt="Advantech" />
+                  {{ image(url="https://assets.ubuntu.com/v1/d689e3b6-advantech-logo.png",
+                                    alt="Advantech",
+                                    width="379",
+                                    height="385",
+                                    hi_def=True,
+                                    loading="lazy",
+                                    attrs={"class": "p-logo-section__logo"}) | safe
+                  }}
                 </div>
               </div>
             </div>
@@ -772,9 +852,14 @@
     <section class="p-section ">
       <div class="u-fixed-width ">
         <div class="u-align--center u-vertically-center u-no-padding--bottom p-image-container--cinematic">
-          <img src="https://assets.ubuntu.com/v1/bb296524-Dell%20pcs.jpg"
-               alt=""
-               loading="lazy" />
+          {{ image(url="https://assets.ubuntu.com/v1/bb296524-Dell pcs.jpg",
+                    alt="",
+                    width="2464",
+                    height="1028",
+                    hi_def=True,
+                    loading="lazy",
+                    fmt="jpg",) | safe
+          }}
         </div>
         <hr class="p-rule" />
         <div class="p-section--shallow">
@@ -788,40 +873,64 @@
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png"
-                     alt="NVIDIA"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/3e3e698b-nvidia-logo.png",
+                                alt="Nvidia",
+                                width="380",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png"
-                     alt="Intel"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/86b50f30-intel-new-logo.png",
+                                alt="Intel",
+                                width="200",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/cc247653-amd-logo.png"
-                     alt="AMD"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/cc247653-amd-logo.png",
+                                alt="AMD",
+                                width="278",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png"
-                     alt="HP"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/af7e6fff-hp-logo.png",
+                                alt="HP",
+                                width="164",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png"
-                     class="p-logo-section__logo"
-                     loading="lazy"
-                     alt="Dell" />
+                {{ image(url="https://assets.ubuntu.com/v1/703330cd-dell-technologies-logo-white.png",
+                                alt="Dell",
+                                width="172",
+                                height="312",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png"
-                     alt="Lenovo"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/dc74391e-lenovo-logo.png",
+                                alt="Lenovo",
+                                width="277",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
@@ -886,9 +995,14 @@
       <div class="u-fixed-width"></div>
       <div class="u-fixed-width">
         <div class="p-image-container--cinematic">
-          <img src="https://assets.ubuntu.com/v1/39667d98-Open%20source%20security.jpg"
-               loading="lazy"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/39667d98-Open source security.jpg",
+                    alt="",
+                    width="2464",
+                    height="1054",
+                    hi_def=True,
+                    loading="lazy",
+                    fmt="jpg",) | safe
+          }}
         </div>
         <hr class="p-rule" />
         <div class="p-section--shallow">
@@ -901,40 +1015,64 @@
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png"
-                     alt="Verizon"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/d34aeb87-verizon-logo.png",
+                                alt="Verizon",
+                                width="384",
+                                height="390",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png"
-                     alt="Telefonica"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/874b530e-telefonica-logo.png",
+                                alt="Telefonica",
+                                width="484",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png"
-                     alt="Tele2"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/fe4dad9a-tele2-logo.png",
+                                alt="Tele2",
+                                width="188",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png"
-                     alt="Telecom Italia"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/06faa04e-telecom-italia-logo.png",
+                                alt="Telecom Italia",
+                                width="227",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png"
-                     alt="NEC"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/54f03cb5-nec-logo.png",
+                                alt="NEC",
+                                width="240",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png"
-                     alt="Barclays"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/5bcba2d8-barclays-logo.png",
+                                alt="Barclays",
+                                width="451",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
@@ -999,9 +1137,14 @@
     <section class="p-section">
       <div class="u-fixed-width">
         <div class="p-image-container--cinematic">
-          <img src="https://assets.ubuntu.com/v1/465d1258-Smart%20robots%20of%20all%20shapes%20and%20sizes.jpg"
-               loading="lazy"
-               alt="" />
+          {{ image(url="https://assets.ubuntu.com/v1/465d1258-Smart robots of all shapes and sizes.jpg",
+                    alt="",
+                    width="2464",
+                    height="1027",
+                    hi_def=True,
+                    loading="lazy",
+                    fmt="jpg",) | safe
+          }}
         </div>
         <hr class="p-rule" />
         <div class="p-section--shallow">
@@ -1012,40 +1155,64 @@
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png"
-                     alt="ABB"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/938bc6df-ABB-logo.png",
+                                alt="ABB",
+                                width="178",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png"
-                     alt="Pal Robotics"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/24808373-pal-robotics-logo.png",
+                                alt="Pal Robotics",
+                                width="225",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png"
-                     alt="Kuka"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/8825054e-Kuka-logo.png",
+                                alt="Kuka",
+                                width="357",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png"
-                     alt="Apollo"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/213d7454-apollo-logo.png",
+                                alt="Apollo",
+                                width="311",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png"
-                     alt="Bosch"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/feb30dca-bosch-logo.png",
+                                alt="Bosch",
+                                width="413",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png"
-                     alt="BMW"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/fbbc29ef-bmw-logo.png",
+                                alt="BMW",
+                                width="161",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
@@ -1110,28 +1277,44 @@
           <div class="p-logo-section--dense">
             <div class="p-logo-section__items landing-logos u-no-padding">
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png"
-                     alt="Panasonic"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/70b63088-Panasonic_logo.png",
+                                alt="Panasonic",
+                                width="395",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png"
-                     alt="Scania"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/9eff2c35-scania-logo.png",
+                                alt="Scania",
+                                width="567",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png"
-                     alt="SBI BTS"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/84772462-sbi-bits-logo.png",
+                                alt="SBI BTS",
+                                width="361",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
               <div class="p-logo-section__item">
-                <img src="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png"
-                     alt="Swissquote"
-                     loading="lazy"
-                     class="p-logo-section__logo" />
+                {{ image(url="https://assets.ubuntu.com/v1/e31ed5d5-swissquote-logo.png",
+                                alt="Swissquote",
+                                width="532",
+                                height="385",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
               </div>
             </div>
           </div>
