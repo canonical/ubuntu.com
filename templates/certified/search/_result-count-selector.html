@@ -1,5 +1,5 @@
 {% if total_results > 0 %}
-<p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
+<label for="page-size-{{ page_position }}">Results per page</label>
 <select id="page-size-{{ page_position }}"
         class="p-results-per-page"
         aria-label="Results per page"
