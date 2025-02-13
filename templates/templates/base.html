@@ -24,7 +24,7 @@
 
     <script src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
     <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
-    <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}"></script>
+    <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}" defer></script>
 
     <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}" />
     <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}" />
@@ -133,8 +133,6 @@
           {% include
           "templates/_tag_manager.html" %}
 
-          {% include "templates/_vwo_smartcode.html"
-          %}
         </head>
 
         <body class=" 

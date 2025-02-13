@@ -821,7 +821,7 @@ addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
 addGANavEvents("#use-case", "www.ubuntu.com-nav-1-use-case");
 addGANavEvents("#support", "www.ubuntu.com-nav-1-support");
 addGANavEvents("#community", "www.ubuntu.com-nav-1-community");
-addGANavEvents("#get-ubuntu", "www.ubuntu.com-nav-1-get-ubuntu");
+addGANavEvents("#download-ubuntu", "www.ubuntu.com-nav-1-download-ubuntu");
 addGANavEvents(".p-navigation.is-secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");

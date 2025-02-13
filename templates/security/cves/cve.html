@@ -243,8 +243,8 @@
             </div>
           </div>
           {% if cve.status == 'active' and only_upstream == False %}
-            <div class="row p-section--shallow u-table-horizontal-scroll">
-              <table class="cve-table u-table-horizontal-scroll__table">
+            <div class="row p-section--shallow u-cve-table-horizontal-scroll">
+              <table class="cve-table u-cve-table-horizontal-scroll__table">
                 <thead>
                   <tr>
                     <th style="width: 12rem;">Package</th>
@@ -344,7 +344,7 @@
                       <a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a>
                     </h3>
                   {% endif %}
-                  <p>{{ note.note }}</p>
+                  <p class="u-break-wrap">{{ note.note }}</p>
                 {% endfor %}
               </div>
             </div>
@@ -522,7 +522,7 @@
 
           {% if other_references %}
             <h3>Other references</h3>
-            <ul class="p-list">
+            <ul class="p-list u-break-wrap">
               {% for reference in other_references %}
                 <li class="p-list__item">
                   <a href="{{ reference }}">{{ reference }}</a>

@@ -8,16 +8,23 @@ context:
 toc: False
 ---
 
-Charmed Kubernetes<sup>&reg;</sup>, is pure Kubernetes tested across the widest range of clouds with modern metrics and
- monitoring, brought to you by the people who deliver Ubuntu.
+## Canonical Kubernetes
 
-Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container 
-capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
+We've just announced a 12-year support commitment for Canonical Kubernetes! It offers hassle-free maintenance, single-line installation process, and more control over your upgrade cadence.
 
-[Find out more in the Charmed Kubernetes overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
+[Read the Canonical Kubernetes 12-year LTS announcement >](https://canonical.com/blog/12-year-lts-for-kubernetes)
 
-<img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" style="float:right; margin-left: 2rem; border: 0
-" alt="">
+[Go to Canonical Kubernetes documentation >](https://documentation.ubuntu.com/canonical-kubernetes)
+
+---
+
+Charmed Kubernetes<sup>&reg;</sup>, is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
+
+Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
+
+[Find out more in the Charmed Kubernetes overview&nbsp;&rsaquo;](../overview)
+
+<img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" style="float:right; margin-left: 2rem; border: 0" alt="">
 
 ## In this documentation
 
@@ -53,3 +60,5 @@ Charmed Kubernetes is a member of the Ubuntu family. It's an open source project
 * [Join the Discourse forum](https://discuss.kubernetes.io/)
 * [Contribute to our documentation](https://github.com/charmed-kubernetes/kubernetes-docs)
 * [Source code and project management](https://github.com/charmed-kubernetes)
+
+

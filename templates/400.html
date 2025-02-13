@@ -1,17 +1,25 @@
-{% extends "templates/one-column.html" %} {% block title %}400: Bad Request{%
-endblock %} {% block content %}
-<div class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-align--center">
-      {{ image( url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
-      alt="", height="365", width="360", hi_def=True, loading="auto" ) | safe }}
-    </div>
-    <div class="col-6 u-vertically-center">
-      <div>
-        <h1>400: Bad request</h1>
-        <p class="p-heading--4">The server didn't understand the request.</p>
+{% extends "templates/one-column.html" %}
+
+{% block title %}400: Bad Request{% endblock %}
+
+{% block content %}
+  <div class="p-strip is-deep">
+    <div class="row u-equal-height">
+      <div class="col-6 u-vertically-center u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
+                alt="",
+                height="365",
+                width="360",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h1>400: Bad request</h1>
+          <p class="p-heading--4">The server didn't understand the request.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock content %}

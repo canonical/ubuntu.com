@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 import flask
 from canonicalwebteam import image_template
@@ -136,6 +137,7 @@ CSP = {
         "secure.livechatinc.com",
         "cdn.livechat-static.com",
         "*.cloudfront.net",
+        "app3.trueability.com",
     ],
     "style-src": [
         "*.cloudfront.net",
@@ -312,11 +314,27 @@ def init_handlers(app, sentry):
             "get_meganav": get_meganav,
             "split_list": split_list,
             "format_to_id": format_to_id,
+            "canonical_cla_api_url": os.getenv("CANONICAL_CLA_API_URL"),
         }
+
+    def get_countries_list() -> List[dict]:
+        """
+        Get a list of countries in a standard format
+        """
+        from pycountry import countries
+
+        countries = [
+            {"alpha2": country.alpha_2, "name": country.name}
+            for country in list(countries)
+        ]
+        return sorted(countries, key=lambda x: x["name"])
 
     @app.context_processor
     def utility_processor():
-        return {"image": image_template}
+        return {
+            "image": image_template,
+            "get_countries_list": get_countries_list,
+        }
 
     @app.after_request
     def add_headers(response):

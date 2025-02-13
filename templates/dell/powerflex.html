@@ -1,0 +1,322 @@
+{% extends "dell/base_dell.html" %}
+
+{% block title %}Dell Powerflex{% endblock %}
+
+{% block meta_description %}
+  From desktop to the edge, from the data centre to multi-cloud environments — Dell Technologies and Canonical bring you open source solutions that work out-of-the-box.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Ep9mXvFXf9a1IE0TVJCfcbnAUTqtDOL9XE93pvK1V_A
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  <section class="p-section--hero">
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <div class="p-section--shallow">
+          <h1>Dell PowerFlex and Canonical:</h1>
+          <h2>A powerful partnership for&nbsp;modern&nbsp;IT</h2>
+        </div>
+        <div class="p-section--shallow">
+          <p>
+            Unleash the power of open source with Dell PowerFlex and Canonical. Modernize your private cloud with a powerful combination of software-defined storage and open source orchestration.
+          </p>
+        </div>
+        <div class="p-cta-block">
+          <a href="/engage/dell-powerflex-canonical-lxd"
+             class="p-button--positive">Download the whitepaper</a>
+        </div>
+      </div>
+      <div class="grid-col-4">
+        <div class="p-image-container--3-2 is-cover u-hide--medium">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/fd9469b7-hero.png",
+          alt="",
+          width="1800",
+          height="1128",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-4 grid-col-medium-2">
+        <h2>
+          How can Dell PowerFlex
+          <br />
+          and Canonical revolutionize
+          <br />
+          your Private Cloud
+        </h2>
+      </div>
+      <div class="grid-col-4 grid-col-medium-2">
+        <p>In today's rapidly evolving IT landscape, agility and efficiency are paramount.</p>
+        <p>
+          With the integration of Dell PowerFlex, a leading software-defined storage (SDS) solution, and Canonical's open-source orchestration tools, LXD and OpenStack, organizations can unlock a future-proof solution for their private cloud environments.
+        </p>
+        <p>
+          This powerful union empowers you to streamline operations, reduce costs, and accelerate application delivery, all while leveraging the flexibility and security of open-source technologies.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-section--shallow">
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h2>
+            PowerFlex: The foundation
+            <br />
+            for high-performance storage
+          </h2>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>
+            Dell PowerFlex delivers a next-generation SDS solution designed to simplify your infrastructure management. It combines compute and high-performance storage resources into a unified fabric, enabling you to build scalable and efficient data centers.
+          </p>
+          <p>
+            PowerFlex empowers administrators with features that simplify management, scale storage capacity and performance on-demand, and ensure data protection and security.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <hr class="p-rule--highlight u-no-margin--bottom" />
+        <div style="padding: 1.5rem" class="p-card--overlay u-no-padding--top">
+          <h3>
+            LXD:
+            <br />
+            streamlined open source virtualization platform
+          </h3>
+          <p>
+            The integration of LXD with PowerFlex offers a compelling solution for managing both system containers and virtual machines within a single, scalable platform. LXD provides a lightweight infrastructure that efficiently utilizes resources by running both system containers and virtual machines on a single platform. Additionally, LXD's intuitive interface and automation capabilities simplify deployment, scaling, and management of virtualized environments.
+          </p>
+          <div class="p-cta-block">
+            <a href="/engage/dell-powerflex-canonical-lxd" class="p-button--link">Download the whitepaper&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid-col-4" sy>
+        <hr class="p-rule--highlight u-no-margin--bottom" />
+        <div style="padding: 1.5rem" class="p-card--overlay u-no-padding--top">
+          <h3>
+            OpenStack:
+            <br />
+            enterprise-grade cloud orchestration
+          </h3>
+          <p>
+            For organizations seeking a robust cloud orchestration platform, OpenStack seamlessly integrates with PowerFlex. This powerful combination provides a comprehensive set of features for managing compute, storage, and networking resources in your cloud environment. Leveraging the flexibility and scalability of OpenStack, organizations can build and manage large-scale cloud deployments, tailored to their specific needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="p-section--shallow">
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h2>
+            What are the Key Benefits
+            <br />
+            for your IT infrastructure
+          </h2>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>
+            By combining the power of Dell PowerFlex and Canonical's open-source orchestration tools, organizations can experience numerous benefits.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid-row u-hide--medium u-hide--small">
+      <div class="grid-col-2 grid-col-start-large-3">
+        <div class="p-image-container">
+          {{ image(url="https://assets.ubuntu.com/v1/062ca5d0-performance-and-scalability.png",
+                    alt="",
+                    width="400",
+                    height="600",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <h3 class="p-heading--5">Performance and scalability</h3>
+        <p>Optimize workload performance and seamlessly scale to meet future growth demands.</p>
+      </div>
+      <div class="grid-col-2">
+        <div class="p-image-container">
+          {{ image(url="https://assets.ubuntu.com/v1/53927b6f-reduced-costs.png",
+                    alt="",
+                    width="400",
+                    height="600",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <h3 class="p-heading--5">Reduced costs</h3>
+        <p>
+          Consolidate infrastructure, optimize resource utilization, and benefit from the cost-efficiency of open-source solutions.
+        </p>
+      </div>
+      <div class="grid-col-2">
+        <div class="p-image-container">
+          {{ image(url="https://assets.ubuntu.com/v1/7a51971b-simplified-management.png",
+                    alt="",
+                    width="400",
+                    height="600",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <h3 class="p-heading--5">Simplified management</h3>
+        <p>Simplify complex virtual environments through user-friendly interfaces and automation tools.</p>
+      </div>
+    </div>
+    <!-- Implementation as a tiered list for small and medium screens -->
+    <div class="u-hide--large">
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Performance and scalability</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>Optimize workload performance and seamlessly scale to meet future growth demands.</p>
+        </div>
+      </div>
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Reduced costs</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>
+            Consolidate infrastructure, optimize resource utilization, and benefit from the cost-efficiency of open-source solutions.
+          </p>
+        </div>
+      </div>
+      <div class="grid-row">
+        <hr class="is-muted" />
+      </div>
+      <div class="grid-row">
+        <div class="grid-col-4 grid-col-medium-2">
+          <h3 class="p-heading--5">Simplified management</h3>
+        </div>
+        <div class="grid-col-4 grid-col-medium-2">
+          <p>Simplify complex virtual environments through user-friendly interfaces and automation tools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <h2>A partnership built for success: Dell Technologies and Canonical</h2>
+      </div>
+      <div class="grid-col-4">
+        <div class="p-image-container is-highlighted u-hide--medium">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/ae756da3-dell-technologies.png",
+          alt="",
+          width="1800",
+          height="750",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+        </div>
+        <p>
+          Canonical and Dell Technologies have collaborated to create a series of feature-rich reference architectures applicable across industries, delivering superior customer experiences and value. Additionally, we offer professional services including consulting, deployment, and managed services to ensure a seamless transition to production.
+        </p>
+        <p>
+          Customers can access Canonical support subscriptions, services, and solutions for cloud, Kubernetes, AI/ML, storage, and edge directly from Dell, providing a single source for all Dell customers.
+        </p>
+        <p>
+          This collaboration ensures optimal integration between PowerFlex and both LXD and OpenStack, empowering organizations to leverage the power of open-source technologies within their Dell infrastructure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="grid-row grid-col-medium-2">
+      <div class="grid-col-4 grid-col-medium-2">
+        <h2>
+          Ready to unleash
+          <br />
+          the power of your Private Cloud?
+        </h2>
+      </div>
+      <div class="grid-col-4 grid-col-medium-2">
+        <p>
+          Download our whitepaper to learn more about the deployment process and unlock the full potential of the Dell PowerFlex and Canonical LXD integration.
+        </p>
+        <div class="p-cta-block">
+          <a href="/engage/dell-powerflex-canonical-lxd" class="p-button">Download the whitepaper</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="grid-row">
+      <hr class="p-rule" />
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-4">
+        <h2>Know more about our solutions</h2>
+      </div>
+      <div class="grid-col-4">
+        <ul class="p-list--divided">
+          <li class="p-list__item">
+            <a href="/dell">About the partnership</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://canonical.com/lxd">Lightweight open-source virtualization with LXD</a>
+          </li>
+          <li class="p-list__item">
+            <a href="/openstack">Enterprise cloud platform engineered for price-performance</a>
+          </li>
+          <li class="p-list__item no-border">
+            <a href="https://www.dell.com/en-us/shop/powerflex/sf/powerflex">Comprehensive and adaptable software-defined infrastructure</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

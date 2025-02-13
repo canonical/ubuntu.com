@@ -98,8 +98,7 @@
         </p>
 
         <p>
-          Optional Legacy support add-on on top of Ubuntu Pro extends the security maintenance and support for an additional 2 years, resulting in 12 years coverage overall.
-        </p>
+          Add on optional Legacy Support to Ubuntu Pro and expand security maintenance and support for an additional 2 years, resulting in 12 years of coverage overall.</p>
 
         <p>
           Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.
@@ -329,8 +328,39 @@
       <div class="u-fixed-width">
         <h2>Canonical Kubernetes release cycle</h2>
 
+        <h3>Canonical Kubernetes</h3>
+
         <p>
-          The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides expanded security maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.
+          Canonical now offers 12 years of security maintenance and support for Kubernetes with an <a href="/support">Ubuntu Pro</a> subscription, starting with Kubernetes 1.32.
+        </p>
+
+        <p>
+          Canonical will release a Kubernetes LTS every two years, aligned with the Ubuntu LTS cycle. Canonical will also provide upstream Kubernetes releases, with a new version every four months.
+        </p>
+
+        <p>
+          With the Ubuntu Pro subscription you get 10 years of security maintenance and support for the Canonical Kubernetes snap and built-in features: network, DNS, local storage, load balancer, gateway, ingress and metrics server. Upstream updates and fixes to snap components, provided as binaries or container images, will be included in the Canonical Kubernetes.
+        </p>
+
+        <p>
+          The optional Legacy Support add-on on top of Ubuntu Pro extends the security maintenance and support for an additional 2 years, resulting in 12 years coverage overall.
+        </p>
+
+        <p>
+          The Canonical Kubernetes support lifecycle can be represented this way:
+        </p>
+
+        
+        {% include "/about/release_cycles/k8s-lts.html" %}
+      
+        <p>
+For more information on previous and current releases, please see the <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/releases/">Canonical Kubernetes</a> release notes.
+        </p>
+
+        <h3>Charmed Kubernetes and MicroK8s</h3>
+
+        <p>
+          The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides Expanded Security Maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.
         </p>
 
         <p>
@@ -341,7 +371,7 @@
           ESM support includes fixes to high and critical CVEs related to Kubernetes charms and MicroK8s (snap), in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and MicroK8s.
         </p>
 
-        <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
+        <p>The Charmed Kubernetes and MicroK8s support lifecycle can be represented this way:</p>
       </div>
 
       {% include "/about/release_cycles/k8s-eol.html" %}

@@ -21,25 +21,13 @@
         <h1>Ubuntu Pro FIPS for AWS compliance</h1>
         <p class="p-heading--5">For AWS compliance in production environments.</p>
         <p>
-          Ubuntu Pro FIPS is the first and only FIPS 140-2 certified image for AWS. Built upon the enhanced stability and security features of <a href="/aws/pro">Ubuntu Pro</a>, Ubuntu Pro FIPS is a critical foundation for federal programs and government contractors.
+          Ubuntu Pro FIPS is a FIPS 140-3 out of the box certified image for AWS. Built upon the enhanced stability and security features of <a href="/aws/pro">Ubuntu Pro</a>, Ubuntu Pro FIPS is a critical foundation for federal programs and government contractors.
         </p>
-        <hr class="is-muted" />
-        <ul class="p-inline-list u-responsive-realign">
-          <li class="p-inline-list__item">
-            <a class="p-button--positive"
-               href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk">Launch Ubuntu Pro FIPS 20.04 LTS on AWS</a>
-          </li>
-          <li class="p-inline-list__item">
-            <p>
-              <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK">18.04&nbsp;&rsaquo;</a>
-            </p>
-          </li>
-          <li class="p-inline-list__item">
-            <p>
-              <a href="https://aws.amazon.com/marketplace/pp/B08GCQS6D8?qid=1607612084948&sr=0-1&ref_=srh_res_product_title">16.06&nbsp;&rsaquo;</a>
-            </p>
-          </li>
-        </ul>
+        <div class="p-cta-block u-no-padding--bottom">
+          <button class="p-button--positive" disabled>
+            Coming soon - Launch Ubuntu Pro FIPS 22.04
+          </button>
+        </div>
       </div>
       <div class="col">
         <div class="p-image-container--16-9 is-highlighted">
@@ -70,9 +58,7 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">FIPS-compliant by default</p>
-                <p>
-                  FIPS 140-2 Level 1 modules pre-enabled out of the box with Ubuntu Pro FIPS. No extra configuration steps required.
-                </p>
+                <p>FIPS 140-3 modules pre-enabled out of the box with Ubuntu Pro FIPS. No extra configuration steps required.</p>
               </div>
             </div>
           </div>
@@ -81,7 +67,7 @@
             <div class="list-matrix">
               <div class="list-matrix-container">
                 <p class="p-heading--5">FedRAMP compliance</p>
-                <p>Operate environments under the FedRAMP compliance regime, with FIPS 140-2 Level 1 certified modules.</p>
+                <p>Operate environments under the FedRAMP compliance regime, with FIPS 140-3 certified modules.</p>
               </div>
             </div>
           </div>
@@ -187,15 +173,30 @@
         <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Ubuntu Pro FIPS 22.04 LTS</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Ubuntu Pro FIPS 22.04 LTS includes an AWS-optimised FIPS-certified 5.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2032.
+            </p>
+            <hr class="p-rule--muted" />
+            <button class="p-button--positive" disabled>
+              Coming soon - Launch Ubuntu Pro FIPS 22.04
+            </button>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
             <h3 class="p-heading--5">Ubuntu Pro FIPS 20.04 LTS</h3>
           </div>
           <div class="col-6 col-medium-3">
             <p>
               Ubuntu Pro FIPS 20.04 LTS includes an AWS-optimised FIPS-certified 5.4 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2030.
             </p>
-            <hr class="is-muted" />
+            <hr class="p-rule--muted" />
             <a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk"
-               class="p-button--positive">Launch 20.04 LTS</a>
+               class="p-button">Launch 20.04 LTS</a>
           </div>
         </div>
         <hr class="p-rule--muted" />
@@ -207,7 +208,7 @@
             <p>
               Ubuntu Pro FIPS 18.04 LTS includes an AWS-optimised FIPS-certified 4.15 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2028.
             </p>
-            <hr class="is-muted" />
+            <hr class="p-rule--muted" />
             <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK"
                class="p-button">Launch 18.04 LTS</a>
           </div>
@@ -221,7 +222,7 @@
             <p>
               Ubuntu Pro FIPS 16.04 LTS includes FIPS-certified 4.4  kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2026.
             </p>
-            <hr class="is-muted" />
+            <hr class="p-rule--muted" />
             <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK"
                class="p-button">Launch 16.04 LTS</a>
           </div>
@@ -243,7 +244,7 @@
             With AWS, US government agencies and their partners have been able to combine unparalleled flexibility, breakthrough innovation, world- class security and AWS compliance. However when it comes to running a secure and compliant enterprise Linux on AWS, IT departments are often left with expensive options that sacrifice innovation for compliance. Watch this webinar on demand to see how AWS and Canonical, the publisher of Ubuntu, have collaborated to create a new way for government agencies to consume Linux on AWS.
           </p>
         </div>
-        <hr class="is-muted" />
+        <hr class="p-rule--muted" />
         <a class="p-button"
            href="https://www.brighttalk.com/webcast/6793/449853">Watch the webinar</a>
       </div>
@@ -255,6 +256,85 @@
       <hr />
       <div class="p-section--shallow">
         <h2>FIPS-certified Ubuntu components for AWS</h2>
+      </div>
+      <div class="p-section u-table-horizontal-scroll">
+        <table style="table-layout: unset"
+               aria-label="22.04 certified Ubuntu components"
+               class="u-table-horizontal-scroll__table">
+          <thead>
+            <tr>
+              <th>Ubuntu LTS</th>
+              <th>FIPS certified component</th>
+              <th>Description</th>
+              <th class="u-align--right">Version</th>
+              <th class="u-align--right">CMVP Certificate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>22.04</td>
+              <td>AWS Kernel</td>
+              <td>Kernel optimised for use in AWS clouds</td>
+              <td class="u-align--right">5.15</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4894">4894*</a>
+              </td>
+            </tr>
+            <tr>
+              <td>22.04</td>
+              <td>openssl</td>
+              <td>General purpose cryptographic library that includes TLS implementation</td>
+              <td class="u-align--right">3.0.2</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4794">4794</a>
+              </td>
+            </tr>
+            <tr>
+              <td>22.04</td>
+              <td>strongswan</td>
+              <td>IPSec-based VPN solution library</td>
+              <td class="u-align--right">5.9.5</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4911">4911</a>
+              </td>
+            </tr>
+            <tr>
+              <td>22.04</td>
+              <td>libgnutls30</td>
+              <td>A portable library which implements the TLS and DTLS protocols</td>
+              <td class="u-align--right">3.7.3</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/4855">4855</a>
+              </td>
+            </tr>
+            <tr>
+              <td>22.04</td>
+              <td>libgcrypt20</td>
+              <td>
+                The GNUPG cryptographic general purpose library
+                <br />
+                (provides fully certified full disk encryption)
+              </td>
+              <td class="u-align--right">1.9.4</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/4793">4793</a>
+              </td>
+            </tr>
+            <tr>
+              <td>22.04</td>
+              <td>libkcapi1</td>
+              <td>Linux Kernel Crypto API User Space Interface Library</td>
+              <td class="u-align--right">1.4.0</td>
+              <td class="u-align--right">
+                <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/4894">4894</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class="p-rule--muted" />
+        <div>
+          * The AWS kernel variant is based on the generic Ubuntu 22.04 kernel, which is certified under <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4894">NIST Certificate #4894</a>
+        </div>
       </div>
       <div class="p-section u-table-horizontal-scroll">
         <table style="table-layout: unset"
@@ -453,39 +533,39 @@
               <tr>
                 <td>t3.nano</td>
                 <td>$0.005</td>
-                <td class="u-align--right">$0.001</td>
+                <td class="u-align--right">$0.004</td>
               </tr>
               <tr>
                 <td>t3.medium</td>
                 <td>$0.042</td>
-                <td class="u-align--right">$0.009</td>
+                <td class="u-align--right">$0.004</td>
               </tr>
               <tr>
                 <td>c5.large</td>
                 <td>$0.085</td>
-                <td class="u-align--right">$0.019</td>
+                <td class="u-align--right">$0.004</td>
               </tr>
               <tr>
                 <td>r5.xlarge</td>
                 <td>$0.252</td>
-                <td class="u-align--right">$0.046</td>
+                <td class="u-align--right">$0.007</td>
               </tr>
               <tr>
                 <td>i3.2xlarge</td>
                 <td>$0.624</td>
-                <td class="u-align--right">$0.088</td>
+                <td class="u-align--right">$0.014</td>
               </tr>
               <tr>
                 <td>r5d.4xlarge</td>
                 <td>$1.152</td>
-                <td class="u-align--right">$0.127</td>
+                <td class="u-align--right">$0.028</td>
               </tr>
             </tbody>
           </table>
         </div>
         <hr class="p-rule--muted" />
         <p id="us-east-pricing">
-          *The above pricing is based on the US East (Northern Virginia) region. For complete pricing, see <a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk">Ubuntu Pro FIPS 20.04 LTS on the AWS Marketplace</a>
+          *The above pricing is based on the US East (Northern Virginia) region. For complete pricing, see Ubuntu Pro FIPS 22.04 LTS on the AWS Marketplace (Coming soon)
         </p>
       </div>
     </div>
@@ -499,14 +579,13 @@
       </div>
       <div class="col">
         <div class="p-image-container--16-9 is-highlighted">
-          {{ image(
-            url="https://assets.ubuntu.com/v1/26c8a871-aws_workspaces.png",
-            alt="",
-            width="900",
-            height="600",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-image-container__image"}) | safe
+          {{ image(url="https://assets.ubuntu.com/v1/26c8a871-aws_workspaces.png",
+                    alt="",
+                    width="900",
+                    height="600",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
           }}
         </div>
         <p>

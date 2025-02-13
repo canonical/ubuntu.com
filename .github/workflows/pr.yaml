@@ -193,6 +193,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           flags: javascript
+          commit_parent: ${{ github.event.pull_request.base.sha || github.event.before }}
 
   lint-js:
     runs-on: ubuntu-latest
