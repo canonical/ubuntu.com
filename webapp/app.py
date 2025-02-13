@@ -149,6 +149,8 @@ from webapp.views import (
     account_query,
     appliance_install,
     appliance_portfolio,
+    build_vulnerabilities,
+    build_vulnerabilities_index,
     process_active_vulnerabilities,
     build_engage_index,
     build_engage_page,
@@ -543,24 +545,29 @@ app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
 )
 
-security_vulnerabilities_path = "/security/vulnerabilities"
+# Security vulnerabilities
 security_vulnerabilities = Category(
     parser=CategoryParser(
         api=discourse_api,
         index_topic_id=53193,
-        url_prefix=security_vulnerabilities_path,
+        url_prefix="/security/vulnerabilities",
     ),
     category_id=308,
-    document_template="/security/vulnerabilities.html",
-    url_prefix=security_vulnerabilities_path,
-    blueprint_name="security-vulnerabilities",
 )
-security_vulnerabilities.init_app(app)
 
-# Parse vulnerabilities to display to /security
 app.add_url_rule(
     "/security",
     view_func=process_active_vulnerabilities(security_vulnerabilities),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities",
+    view_func=build_vulnerabilities_index(security_vulnerabilities),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities/<path:path>",
+    view_func=build_vulnerabilities(security_vulnerabilities),
 )
 
 # Login

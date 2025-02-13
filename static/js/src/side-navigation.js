@@ -12,7 +12,7 @@
  @param {Boolean} show Whether to show or hide the drawer.
  @param {Boolean} ignoreTogglerFocus when we click on menu there is no redirect, the focus should jump into selected section
  */
-function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
+export function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
   const toggleButtonOutsideDrawer = sideNavigation.querySelector(
     ".p-side-navigation__toggle",
   );
@@ -26,18 +26,18 @@ function toggleDrawer(sideNavigation, show, ignoreTogglerFocus = false) {
       sideNavigation.classList.add("is-expanded");
 
       if (!ignoreTogglerFocus) {
-        toggleButtonInsideDrawer.focus();
+        toggleButtonInsideDrawer?.focus();
       }
-      toggleButtonOutsideDrawer.setAttribute("aria-expanded", "true");
+      toggleButtonOutsideDrawer?.setAttribute("aria-expanded", "true");
       toggleButtonInsideDrawer.setAttribute("aria-expanded", "true");
     } else {
       sideNavigation.classList.remove("is-expanded");
       sideNavigation.classList.add("is-collapsed");
 
       if (!ignoreTogglerFocus) {
-        toggleButtonOutsideDrawer.focus();
+        toggleButtonOutsideDrawer?.focus();
       }
-      toggleButtonOutsideDrawer.setAttribute("aria-expanded", "false");
+      toggleButtonOutsideDrawer?.setAttribute("aria-expanded", "false");
       toggleButtonInsideDrawer.setAttribute("aria-expanded", "false");
     }
   }

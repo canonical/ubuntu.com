@@ -1196,3 +1196,55 @@ def process_active_vulnerabilities(security_vulnerabilities):
             )
 
     return security_index
+
+
+def build_vulnerabilities_index(security_vulnerabilities):
+    def vulnerabilities_index():
+        try:
+            topics = security_vulnerabilities.get_topics_in_category()
+            metadata = security_vulnerabilities.get_category_index_metadata()
+            return flask.render_template(
+                "security/vulnerabilities/index.html",
+                topics=topics,
+                metadata=metadata,
+            )
+        except Exception as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fecthing vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "templates/error.html",
+                error=e,
+            )
+
+    return vulnerabilities_index
+
+
+def build_vulnerabilities(security_vulnerabilities):
+    def vulnerabilities(path):
+        try:
+            document = security_vulnerabilities.get_topic(path)
+            metadata_table = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+            for item in metadata_table:
+                if str(item["id"]) == str(document["topic_id"]):
+                    document_metadata = item
+                    break
+            return flask.render_template(
+                "security/vulnerabilities/vulnerabilities.html",
+                metadata=document_metadata,
+                document=document,
+            )
+        except Exception as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fecthing vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "templates/error.html",
+                error=e,
+            )
+
+    return vulnerabilities
