@@ -126,21 +126,6 @@ function clearFilters() {
     clearFiltersButton.removeAttribute("disabled");
   }
 
-  // Disable other fields if a filter is already applied
-  const searchParams = new URLSearchParams(urlObj.search);
-  for (const [key, value] of searchParams) {
-    if (key === "language") {
-      resourceSelector.setAttribute("disabled", true);
-      tagSelector.setAttribute("disabled", true);
-    } else if (key === "resource") {
-      languageSelector.setAttribute("disabled", true);
-      tagSelector.setAttribute("disabled", true);
-    } else if (key === "tag") {
-      languageSelector.setAttribute("disabled", true);
-      resourceSelector.setAttribute("disabled", true);
-    }
-  } 
-
   function handleFilter(key, el, url) {
     if (!el) {
       return;
@@ -152,14 +137,11 @@ function clearFilters() {
 
     el.addEventListener("change", function(e) {
       const value = e.target.value;
-      const selectFields = document.querySelectorAll("select:checked")
-
-      // Reset filters, data explorer query can't search multiple fields
-      // at the same time
-      url.search = "";
 
       if (value !== "all") {
-        url.searchParams.append(key, value);
+        url.searchParams.set(key, value);
+      } else {
+        url.searchParams.delete(key);
       }
       window.location = url;
     });
