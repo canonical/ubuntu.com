@@ -1,34 +1,28 @@
 {% extends "templates/one-column.html" %}
+
 {% block title %}404: Page not found{% endblock %}
 
-
 {% block content %}
-<div class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
-          alt="",
-          height="365",
-          width="360",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-6 u-vertically-center">
-      <div>
-        <h1>404: Page not found</h1>
-        <p class="p-heading--4">
-          {% if message %}
-            {{ message }}
-          {% else %}
-            Sorry, we couldn't find that page.
-          {% endif %}
-        </p>
+  <div class="p-strip is-deep">
+    <div class="row u-equal-height">
+      <div class="col-6 u-vertically-center u-align--center">
+        {{ image(url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
+                alt="",
+                height="365",
+                width="360",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h1>404: Page not found</h1>
+          <p class="p-heading--4">Sorry, we couldn't find that page.</p>
+          <p class="p-heading--4">
+            You can <a href="https://github.com/canonical/ubuntu.com/issues/new?template=ISSUE_TEMPLATE.yaml">file a bug</a> if you think this is an error.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock content %}
