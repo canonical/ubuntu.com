@@ -15,7 +15,8 @@
 {% endblock body_class %}
 
 {% block outer_content %}
-  <form class="js-search-results p-section--deep">
+  <section class="p-section--deep">
+  <form class="js-search-results">
     <section class="p-section--hero">
       <div class="row--25-75">
         <div class="col">
@@ -53,4 +54,5 @@
       {% include "certified/search/_search-results-main-block.html" %}
     {% endwith %}
   </form>
+</section>
 {% endblock %}
