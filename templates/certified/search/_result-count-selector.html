@@ -3,8 +3,6 @@
 <select id="page-size-{{ page_position }}"
         class="p-results-per-page"
         aria-label="Results per page"
-        style="max-width: 5.3rem;
-               min-width: 5.3rem"
         name="limit"
         data-limit="{{ limit }}">
   <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
