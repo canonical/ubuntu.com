@@ -1,0 +1,32 @@
+<table class="p-certification-results">
+  <thead>
+    <tr>
+      <th>
+        Vendor
+      </th>
+      <th>
+        Configuration Name
+      </th>
+      <th>
+        Category
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in results %}
+      <tr>
+        <td>
+          {% if not vendor_page %}
+            <a href="/certified/vendors/{{ result.make }}">{{ result.make }}</a>
+          {% else %}
+            {{ result.make }}
+          {% endif %}
+        </td>
+        <td>
+          <a href="/certified/{{ result.canonical_id }}">{{ result.model }}</a>
+        </td>
+        <td>{{ result.category }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

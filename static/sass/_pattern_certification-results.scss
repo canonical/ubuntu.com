@@ -33,37 +33,62 @@
     width: fit-content;
   }
 
-  //hide <hr> after each group - moved to after each tab title
-  .p-accordion__group--certified {
-    &::after {
-      display: none;
+  .certified-filters {
+    .p-accordion__group {
+      &::after {
+        display: none;
+      }
+
+      padding-bottom: 1.5rem;
+      position: unset;
+    }
+
+    .certified-filters-footer {
+      background: #f3f3f3;
+      bottom: 0;
+      position: sticky;
+      z-index: 2;
+    }
+
+    .certified-filters-footer-buttons {
+      margin-left: 1rem;
+
+      @media screen and (min-width: $breakpoint-large) {
+        margin-left: 0;
+      }
+    }
+
+    .p-checkbox__label {
+      padding-left: 2.2rem;
+    }
+
+    .p-accordion__tab {
+      @extend .p-accordion__tab;
+
+      background-color: #f3f3f3;
+      z-index: 1;
+
+      &:hover,
+      &[aria-expanded="true"] {
+        background-color: #f3f3f3;
+      }
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      .p-accordion__panel,
+      .p-accordion__tab,
+      .p-button--link {
+        padding-left: 0;
+      }
+
+      .certified-filter-buttons {
+        margin-left: 0;
+      }
     }
   }
 
   .p-results-per-page {
     max-width: 5.3rem;
     min-width: 5.3rem;
-  }
-
-  .p-round-chip {
-    @extend .p-chip;
-
-    float: right;
-    margin-top: 0;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .p-accordion__tab {
-    &:hover {
-      .p-round-chip {
-        $base-background-opacity-amount: 0.1;
-        $color-background-base: adjust-color(
-          $color-x-dark,
-          $lightness: 100% * (1 - $base-background-opacity-amount)
-        );
-
-        background-color: $color-background-base;
-      }
-    }
   }
 }
