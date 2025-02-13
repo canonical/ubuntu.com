@@ -1202,3 +1202,70 @@ def process_active_vulnerabilities(security_vulnerabilities):
             )
 
     return security_index
+
+
+def build_vulnerabilities_index(security_vulnerabilities):
+    def vulnerabilities_index():
+        try:
+            topics = security_vulnerabilities.get_topics_in_category()
+            vulnerabilities = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+            # Add year to each vulnerability
+            for v in vulnerabilities:
+                dt = datetime.strptime(v["published"], "%d/%m/%Y")
+                v["year"] = dt.year
+            # Make sure they are in order of published date
+            vulnerabilities.sort(
+                key=lambda item: datetime.strptime(
+                    item["published"], "%d/%m/%Y"
+                ),
+                reverse=True,
+            )
+            return flask.render_template(
+                "security/vulnerabilities/index.html",
+                topics=topics,
+                vulnerabilities=vulnerabilities,
+            )
+        except Exception as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "templates/error.html",
+                error=e,
+            )
+
+    return vulnerabilities_index
+
+
+def build_vulnerabilities(security_vulnerabilities):
+    def vulnerabilities(path):
+        try:
+            document = security_vulnerabilities.get_topic(path)
+            metadata_table = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+            for item in metadata_table:
+                if str(item["id"]) == str(document["topic_id"]):
+                    document_metadata = item
+                    break
+            return flask.render_template(
+                "security/vulnerabilities/vulnerabilities.html",
+                metadata=document_metadata,
+                document=document,
+            )
+        except Exception as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "templates/error.html",
+                error=e,
+            )
+
+    return vulnerabilities
