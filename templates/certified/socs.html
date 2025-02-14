@@ -1,48 +1,53 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Certified SoCs{% endblock %}
+
 {% block meta_description %}SoCs that have been certified for use with Ubuntu.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1mcI6V6hem4PmG1YxQONjJq-U_I6LGaz_6kkpZOnGVU8/edit{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1mcI6V6hem4PmG1YxQONjJq-U_I6LGaz_6kkpZOnGVU8/edit
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block outer_content %}
-
-<section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width">
-    <a href="/certified">&lsaquo; Certified hardware</a>
-  </div>
-  <br />
-  <div class="row">
-    <div class="col-8">
-      <h1>Ubuntu certified SoCs</h1>
-      <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
-        alt="",
-        width="136",
-        height="153",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
+<section class="p-section--deep">
+  <form class="js-search-results">
+    <section class="p-section--hero">
+      <div class="row--25-75">
+        <div class="col">
+          {% with category="Server SoC" %}
+            {% include "certified/shared/category-image.html" %}
+          {% endwith %}
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <h1>Ubuntu certified SoCs</h1>
+          </div>
+          <div class="p-section--shallow">
+            <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
+            {% with query=query, placeholder="Search in certified SoCs" %}
+              {% include "/certified/search/_query-search-box.html" %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="p-rule is-fixed-width" />
+    {% with
+      title="All certified SoCs",
+      total_results=total_results,
+      total_pages=total_pages,
+      offset=offset,
+      limit=limit,
+      vendor_filters=vendor_filters,
+      release_filters=release_filters,
+      results=results
+      %}
+      {% include "certified/search/_search-results-main-block.html" %}
+    {% endwith %}
+  </form>
 </section>
-
-{% with
-  title="All certified SoCs",
-  query=query,
-  placeholder="Search in certified SoCs",
-  total_results=total_results,
-  total_pages=total_pages,
-  offset=offset,
-  limit=limit,
-  vendor_filters=vendor_filters,
-  release_filters=release_filters,
-  results=results
-%}
-  {% include "certified/shared/category-search-results.html" %}
-{% endwith %}
-
 {% endblock %}

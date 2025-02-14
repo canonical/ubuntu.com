@@ -1,37 +1,52 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Certified {{ vendor }} hardware{% endblock %}
+
 {% block meta_description %}Hardware by {{ vendor }} that have been certified for use with Ubuntu.{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block outer_content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width">
-    <a href="/certified">&lsaquo;&nbsp;Certified hardware</a>
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h1>Ubuntu certified {{ vendor }} hardware</h1>
-      <p>{{ vendor_data.short_description }}</p>
-      <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %} target="blank">Visit {{ vendor }}'s website here</a>
-    </div>
-    <div class="col-3 u-hide--medium u-hide--small u-align--center">
-      <img src="{{vendor_data.logo}}"/>
-    </div>
-  </div>
-</section>
+  <form class="js-search-results p-section--deep">
+    <section class="p-section--hero">
+      <div class="row--25-75">
+        <div class="col u-hide--small">
+          <img src="{{ vendor_data.logo }}" alt="{{ vendor }}" />
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <h1>Ubuntu certified {{ vendor }} hardware</h1>
+          </div>
+          <div class="p-section--shallow">
+            <p>{{ vendor_data.short_description }}</p>
+          </div>
+          <div class="p-cta-block">
+            <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %}
+               target="blank"
+               class="p-button">Visit vendor website</a>
+          </div>
+          <div class="p-section--shallow">
+            {% with query=query, placeholder="Search in all " + vendor + " certified devices" %}
+              {% include "/certified/search/_query-search-box.html" %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="p-rule is-fixed-width" />
 
-{% with
-  title="All " + vendor + " certified hardware",
-  query=query,
-  placeholder="Search in all " + vendor + " certified devices",
-  total_results=total_results,
-  total_pages=total_pages,
-  offset=offset,
-  limit=limit,
-  results=results,
-  vendor_page="true"
-%}
-  {% include "certified/shared/category-search-results.html" %}
-{% endwith %}
-
+    {% with
+      title="All " + vendor + " certified hardware",
+      total_results=total_results,
+      total_pages=total_pages,
+      offset=offset,
+      limit=limit,
+      results=results,
+      vendor_page="true"
+      %}
+      {% include "certified/search/_search-results-main-block.html" %}
+    {% endwith %}
+  </form>
 {% endblock %}

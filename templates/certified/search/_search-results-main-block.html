@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-3 p-side-navigation certified-filters" id="drawer">
+    {% include "/certified/search/_search-results-side-filters.html" %}
+  </div>
+  <div class="col-9">
+    {% if total_results > 0 %}
+      {% with total_results=total_results, limit=limit %}
+        {% include "certified/search/_search-results-top-block.html" %}
+      {% endwith %}
+
+      {% with
+        results=results,
+        vendor_page=vendor_page
+        %}
+        {% include "/certified/search/_search-results-table.html" %}
+      {% endwith %}
+
+      {% with total_results=total_results, limit=limit %}
+        {% include "certified/search/_search-results-bottom-block.html" %}
+      {% endwith %}
+    {% else %}
+      {% include "/certified/search/_no-results.html" %}
+    {% endif %}
+  </div>
+</div>
+
+<script type="text/javascript"
+        src="/static/js/src/certified-search-results.js"></script>

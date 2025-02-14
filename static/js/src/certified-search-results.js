@@ -9,16 +9,27 @@ const showLessReleases = document.querySelector(".js-show-less-releases");
 const tabBtn2 = document.querySelector("#tab2");
 const tabBtn3 = document.querySelector("#tab3");
 
+const showExpandedVendorFilterOptions = document.querySelector(
+  ".js-show-expanded-vendor-filter-options",
+);
+const showExpandedReleaseFilterOptions = document.querySelector(
+  ".js-show-expanded-release-filter-options",
+);
+
 // Hide more/less links when tabs are collapsed
 tabBtn2.addEventListener("click", (e) => {
   if (tabBtn2.ariaExpanded === "true") {
-    showAllVendors.classList.add("u-hide");
-    showLessVendors.classList.add("u-hide");
+    showExpandedVendorFilterOptions.classList.add("u-hide");
+  } else {
+    showExpandedVendorFilterOptions.classList.remove("u-hide");
   }
+});
 
+tabBtn3.addEventListener("click", (e) => {
   if (tabBtn3.ariaExpanded === "true") {
-    showAllReleases.classList.add("u-hide");
-    showLessReleases.classList.add("u-hide");
+    showExpandedReleaseFilterOptions.classList.add("u-hide");
+  } else {
+    showExpandedReleaseFilterOptions.classList.remove("u-hide");
   }
 });
 
