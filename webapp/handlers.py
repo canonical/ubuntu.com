@@ -138,6 +138,7 @@ CSP = {
         "cdn.livechat-static.com",
         "*.cloudfront.net",
         "app3.trueability.com",
+        "app.trueability.com",
     ],
     "style-src": [
         "*.cloudfront.net",
