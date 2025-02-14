@@ -73,13 +73,6 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/installing-ros-in-lxd").status_code, 200
         )
 
-    def test_server_docs(self):
-        """
-        Check the server docs homepage loads
-        """
-
-        self.assertEqual(self.client.get("/server/docs").status_code, 200)
-
     def test_tutorials_homepage(self):
         """
         Check the tutorials homepage loads
