@@ -1207,9 +1207,10 @@ def process_active_vulnerabilities(security_vulnerabilities):
     return security_index
 
 
-def build_vulnerabilities_index(security_vulnerabilities):
-    def vulnerabilities_index():
+def build_vulnerabilities_list(security_vulnerabilities, path=None):
+    def vulnerabilities_list():
         try:
+            template_path = "security/vulnerabilities/view-all.html"
             topics = security_vulnerabilities.get_topics_in_category()
             vulnerabilities = (
                 security_vulnerabilities.get_category_index_metadata(
@@ -1236,8 +1237,18 @@ def build_vulnerabilities_index(security_vulnerabilities):
                 reverse=True,
             )
 
+            # If not /view-all we only need the most recent 3 years
+            if path != "/view-all":
+                template_path = "security/vulnerabilities/index.html"
+                unique_years = {v["year"] for v in vulnerabilities}
+                sorted_years = sorted(unique_years, reverse=True)
+                top_years = sorted_years[:3]
+                vulnerabilities = [
+                    v for v in vulnerabilities if v["year"] in top_years
+                ]
+
             return flask.render_template(
-                "security/vulnerabilities/index.html",
+                template_path,
                 topics=topics,
                 vulnerabilities=vulnerabilities,
             )
@@ -1250,11 +1261,11 @@ def build_vulnerabilities_index(security_vulnerabilities):
                 error=e,
             )
 
-    return vulnerabilities_index
+    return vulnerabilities_list
 
 
 def build_vulnerabilities(security_vulnerabilities):
-    def vulnerabilities(path):
+    def vulnerability(path):
         try:
             document = security_vulnerabilities.get_topic(path)
             metadata_table = (
@@ -1269,7 +1280,7 @@ def build_vulnerabilities(security_vulnerabilities):
                     break
 
             return flask.render_template(
-                "security/vulnerabilities/vulnerabilities.html",
+                "security/vulnerabilities/_vulnerability.html",
                 metadata=document_metadata,
                 document=document,
             )
@@ -1281,4 +1292,5 @@ def build_vulnerabilities(security_vulnerabilities):
                 "templates/error.html",
                 error=e,
             )
-    return vulnerabilities
+
+    return vulnerability

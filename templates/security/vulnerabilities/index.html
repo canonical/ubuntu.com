@@ -36,13 +36,10 @@
         <h2>Recent Vulnerabilities</h2>
       </div>
       <div class="col">
-        {% set ns = namespace(previous_year=None, year_count=0) %}
+        {% set ns = namespace(previous_year=None) %}
         {% for vulnerability in vulnerabilities if vulnerability.name %}
           {% set is_new_year = vulnerability.year != ns.previous_year %}
-          {% if is_new_year %}
-            {% set ns.year_count = ns.year_count + 1 %}
-          {% endif %}
-          <div class="p-section--shallow {% if ns.year_count > 3 %}js-hide{% endif %}">
+          <div class="p-section--shallow">
             {% if is_new_year %}<p class="p-heading--5">{{ vulnerability.year }}</p>{% endif %}
             {% set ns.previous_year = vulnerability.year %}
             <hr class="p-rule--muted u-no-margin--bottom" />
@@ -70,10 +67,8 @@
             </div>
           </div>
         {% endfor %}
-        <div class="p-cta-block u-hide js-toggle-visibility">
-          <button class="p-button--positive">
-            <span class="js-view-text">View all vulnerabilities</span><span class="js-hide-text u-hide">Hide vulnerabilities</span>
-          </button>
+        <div class="p-cta-block">
+          <a href="/security/vulnerabilities/view-all" class="p-button--positive">View all vulnerabilities</a>
         </div>
       </div>
     </div>
@@ -135,37 +130,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function toggleVisibility() {
-      const viewAllBtn = this;
-      const hideText = document.querySelector(".js-hide-text");
-      const viewText = document.querySelector(".js-view-text");
-      const isExpanded = viewAllBtn.getAttribute("aria-expanded") === "true";
-      const hiddenVulnerabilities = document.querySelectorAll(".js-hide");
-
-      hiddenVulnerabilities.forEach(hiddenVulnerability => {
-        hiddenVulnerability.classList.toggle("u-hide", isExpanded);
-      });
-
-      viewAllBtn.setAttribute("aria-expanded", !isExpanded);
-      hideText.classList.toggle("u-hide", isExpanded)
-      viewText.classList.toggle("u-hide", !isExpanded)
-    }
-
-    function setUpVulnerabilitiesVisibility() {
-      const hiddenVulnerabilities = document.querySelectorAll(".js-hide");
-      const viewAllCont = document.querySelector(".js-toggle-visibility");
-      const viewAllBtn = viewAllCont.querySelector("button");
-
-      // We hide/unhide at the start so if JS isn't enabled you can still see the vulnerabilities
-      hiddenVulnerabilities.forEach(vulnerability => {
-        vulnerability.classList.add("u-hide");
-      });
-      viewAllCont.classList.remove("u-hide");
-
-      viewAllBtn.addEventListener("click", toggleVisibility);
-    }
-    setUpVulnerabilitiesVisibility();
-  </script>
+  W
 {% endblock content %}
