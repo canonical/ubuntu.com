@@ -3,6 +3,9 @@ name: Links on live
 on:
   schedule:
     - cron: "20 7 * * *"
+  pull_request:
+    branches:
+      - main
 
 jobs:
   check-links:
@@ -53,8 +56,10 @@ jobs:
 
       - name: Run linkchecker
         run: |
-          linkchecker https://ubuntu.com
+          linkchecker https://ubuntu.com/kubernetes/install
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+        run: |
+          curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+          
