@@ -73,6 +73,7 @@
       <div class="u-hide u-show--small" >
         <br /><br />
       </div>
+      <button id="apply-filters" class="p-button--positive u-no-margin--bottom" onclick="applyFilters()">Apply filters</button>
       <button id="clear-filters" class="u-no-margin--bottom" onclick="clearFilters()" type="reset" disabled>Clear filters</button>
     </div>
   </div>
@@ -119,6 +120,8 @@ function clearFilters() {
   const languageSelector = document.getElementById("language-selector");
   const resourceSelector = document.getElementById("resource-selector");
   const tagSelector = document.getElementById("tag-selector");
+
+  const applyFiltersButton = document.getElementById("apply-filters");
   const clearFiltersButton = document.getElementById("clear-filters");
   const urlObj = new URL(window.location);
 
@@ -126,30 +129,41 @@ function clearFilters() {
     clearFiltersButton.removeAttribute("disabled");
   }
 
-  function handleFilter(key, el, url) {
-    if (!el) {
+  function setFiltersDropdown(key, selector) {
+    if (!selector) {
       return;
     }
-
-    if (url.searchParams.has(key)) {
-      el.value = url.searchParams.get(key);
+    if (urlObj.searchParams.has(key)) {
+      selector.value = urlObj.searchParams.get(key);
     }
-
-    el.addEventListener("change", function(e) {
-      const value = e.target.value;
-
-      if (value !== "all") {
-        url.searchParams.set(key, value);
-      } else {
-        url.searchParams.delete(key);
-      }
-      window.location = url;
-    });
   }
 
-  handleFilter("language", languageSelector, urlObj);
-  handleFilter("resource", resourceSelector, urlObj);
-  handleFilter("tag", tagSelector, urlObj);
+  setFiltersDropdown("language", languageSelector);
+  setFiltersDropdown("resource", resourceSelector);
+  setFiltersDropdown("tag", tagSelector);  
+
+  function setFilters(key, selector) {
+    //if (urlObj.searchParams.has(key)) {
+    //  selector.value = urlObj.searchParams.get(key);
+    //}
+    
+    if (selector.value != "all") {
+      urlObj.searchParams.set(key, selector.value);
+    } else {
+      urlObj.searchParams.delete(key);
+    }
+  }
+
+  function applyFilters(event) {
+    event.preventDefault();
+
+    setFilters("language", languageSelector);
+    setFilters("resource", resourceSelector);
+    setFilters("tag", tagSelector);
+
+    window.location = urlObj.href;
+}
+  applyFiltersButton.addEventListener("click", applyFilters);
 })()
 </script>
 {% endblock content %}
