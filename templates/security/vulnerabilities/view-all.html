@@ -15,7 +15,7 @@
   <section class="p-section--hero">
     <div class="row--25-75">
       <div class="col">
-        <h1>Vulnerability Knowledge Base</h1>
+        <h1>Vulnerability knowledge base</h1>
       </div>
     </div>
   </section>
@@ -64,36 +64,7 @@
         {% set ns = namespace(previous_year=None) %}
         {% for vulnerability in vulnerabilities if vulnerability.name %}
           {% set is_new_year = vulnerability.year != ns.previous_year %}
-          <div class="p-section--shallow">
-            {% if is_new_year %}
-              <p class="p-heading--5 section-heading"
-                 id="year-{{ vulnerability.year }}">{{ vulnerability.year }}</p>
-            {% endif %}
-            {% set ns.previous_year = vulnerability.year %}
-            <hr class="p-rule--muted u-no-margin--bottom" />
-            <div class="row">
-              <div class="col-6">
-                <h3 class="p-heading--5 u-no-margin--bottom">
-                  <a href="/security/vulnerabilities/{{ vulnerability.slug }}">{{ vulnerability.name }}</a>
-                </h3>
-                <p class="u-no-margin--bottom">{{ vulnerability.description }}</p>
-              </div>
-              <div class="col-3">
-                {% if vulnerability.status|lower == "fixed" %}
-                  <p class="u-no-margin--bottom u-sv1">
-                    <i class="p-icon--success"></i>&nbsp;Fixed
-                  </p>
-                {% elif vulnerability.status|lower == "vulnerable" %}
-                  <p class="u-no-margin--bottom u-sv1">
-                    <i class="p-icon--error"></i>&nbsp;Vulnerable
-                  </p>
-                {% else %}
-                  <p class="u-no-margin--bottom u-sv1">{{ vulnerability.status }}</p>
-                {% endif %}
-                <p class="u-text--muted">Published {{ vulnerability.published }}</p>
-              </div>
-            </div>
-          </div>
+          {% include "security/vulnerabilities/_vulnerability-card.html" %}
         {% endfor %}
         <div class="p-top">
           <a href="#" class="p-top__link">Back to top</a>

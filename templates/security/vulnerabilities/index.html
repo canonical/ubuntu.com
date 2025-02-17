@@ -23,7 +23,7 @@
           Applying security updates in a timely manner is critical to reducing risks, especially with high-impact vulnerabilities. Canonical releases <a href="/security/notices">Ubuntu Security Notices</a> whenever a security fix is available for an official Ubuntu package.
         </p>
         <p>
-          When high-profile vulnerabilities are publicly disclosed, the Ubuntu Security Team also provides in-depth technical explanations and mitigation guidance in the form of Vulnerability Knowledge Base articles.
+          When high-profile vulnerabilities are publicly disclosed, the Ubuntu security team also provides in-depth technical explanations and mitigation guidance in the form of vulnerability knowledge base articles.
         </p>
       </div>
     </div>
@@ -31,41 +31,15 @@
 
   <div class="p-section">
     <hr class="p-rule is-fixed-width" />
-    <div class="row--25-75">
+    <div class="row--25-75-on-large">
       <div class="col">
-        <h2>Recent Vulnerabilities</h2>
+        <h2>Recent vulnerabilities</h2>
       </div>
       <div class="col">
         {% set ns = namespace(previous_year=None) %}
         {% for vulnerability in vulnerabilities if vulnerability.name %}
           {% set is_new_year = vulnerability.year != ns.previous_year %}
-          <div class="p-section--shallow">
-            {% if is_new_year %}<p class="p-heading--5">{{ vulnerability.year }}</p>{% endif %}
-            {% set ns.previous_year = vulnerability.year %}
-            <hr class="p-rule--muted u-no-margin--bottom" />
-            <div class="row">
-              <div class="col-6">
-                <h3 class="p-heading--5 u-no-margin--bottom">
-                  <a href="/security/vulnerabilities/{{ vulnerability.slug }}">{{ vulnerability.name }}</a>
-                </h3>
-                <p class="u-no-margin--bottom">{{ vulnerability.description }}</p>
-              </div>
-              <div class="col-3">
-                {% if vulnerability.status|lower == "fixed" %}
-                  <p class="u-no-margin--bottom u-sv1">
-                    <i class="p-icon--success"></i>&nbsp;Fixed
-                  </p>
-                {% elif vulnerability.status|lower == "vulnerable" %}
-                  <p class="u-no-margin--bottom u-sv1">
-                    <i class="p-icon--error"></i>&nbsp;Vulnerable
-                  </p>
-                {% else %}
-                  <p class="u-no-margin--bottom u-sv1">{{ vulnerability.status }}</p>
-                {% endif %}
-                <p class="u-text--muted">Published {{ vulnerability.published }}</p>
-              </div>
-            </div>
-          </div>
+          {% include "security/vulnerabilities/_vulnerability-card.html" %}
         {% endfor %}
         <div class="p-cta-block">
           <a href="/security/vulnerabilities/view-all" class="p-button--positive">View all vulnerabilities</a>
@@ -83,7 +57,7 @@
       <div class="col">
         <div class="row">
           <div class="col-3">
-            <p class="p-heading--5">Ubuntu Security Updates</p>
+            <h3 class="p-heading--5">Ubuntu security updates</h3>
           </div>
           <div class="col-6">
             <ul class="p-list--divided">
@@ -99,7 +73,7 @@
         <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3">
-            <p class="p-heading--5">Ubuntu Pro</p>
+            <h3 class="p-heading--5">Ubuntu Pro</h3>
           </div>
           <div class="col-6">
             <ul class="p-list--divided">
@@ -114,7 +88,7 @@
         <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3">
-            <p class="p-heading--5">From our blog</p>
+            <h3 class="p-heading--5">From our blog</h3>
           </div>
           <div class="col-6">
             <ul class="p-list--divided">

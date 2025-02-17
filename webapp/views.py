@@ -1195,7 +1195,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
             )
-        except Exception as e:
+        except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error processing vulnerabilities: {e}"
             )
@@ -1252,13 +1252,9 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 topics=topics,
                 vulnerabilities=vulnerabilities,
             )
-        except Exception as e:
+        except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
-            )
-            return flask.render_template(
-                "templates/error.html",
-                error=e,
             )
 
     return vulnerabilities_list
@@ -1280,17 +1276,13 @@ def build_vulnerabilities(security_vulnerabilities):
                     break
 
             return flask.render_template(
-                "security/vulnerabilities/_vulnerability.html",
+                "security/vulnerabilities/vulnerability-detailed.html",
                 metadata=document_metadata,
                 document=document,
             )
-        except Exception as e:
+        except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
-            )
-            return flask.render_template(
-                "templates/error.html",
-                error=e,
             )
 
     return vulnerability
