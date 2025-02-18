@@ -3,6 +3,7 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 {% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+{% from "macros/_macros-resource.jinja" import resource_section %}
 
 {% block title %}Ubuntu Livepatch Service | Security{% endblock %}
 
@@ -302,7 +303,7 @@ meta_copydoc %}
       {%- endif -%}
 
       {%- if slot == 'description' -%}
-        <div class="p-section--shallow">
+        <div class="p-section--shallow u-hide--medium u-hide--small">
           <div class="p-image-container is-highlighted">
             {{ image(url="https://assets.ubuntu.com/v1/df38fad4-ubuntu-pro.png",
                         alt="",
@@ -362,6 +363,7 @@ meta_copydoc %}
             Note: obtain the subscription token via the <a href="/pro/dashboard">Ubuntu Pro portal</a>.
           </p>
         </div>
+        <hr class="p-rule--muted" />
         <p>
           <b>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable Livepatch on your system</b>
         </p>
@@ -406,84 +408,87 @@ meta_copydoc %}
              role="tabpanel"
              id="webinar-tab"
              aria-labelledby="webinar">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <a href="/engage/patching-automations-best-practices">Rajan Patel</a>
-                <p>3 June 2024</p>
-              </div>
-              <div class="col-6">
-                <a href="/engage/patching-automations-best-practices"
-                   class="p-heading--4">Best practices for scheduling security patching automations</a>
-                <p>
-                  In this webinar, you’ll learn about Canonical's release schedule for Ubuntu and its security updates, and how you can use this information to set optimal manual and automated security patching maintenance intervals.
-                </p>
-              </div>
-              <div class="col-3">
-                <div class="p-image-container">
-                  {{ image(url="https://assets.ubuntu.com/v1/009c321d-how-does-ubuntu.png",
-                                    alt="",
-                                    width="852",
-                                    height="481",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"}) | safe
-                  }}
-                </div>
-              </div>
-            </div>
-          </div>
+          {%- call(slot) resource_section(
+            date="3 June 2024",
+            hr=False
+            ) -%}
+
+            {%- if slot == "author_links" -%}
+              <a href="https://canonical.com/blog/author/rajanpatel927"
+                 aria-label="Rajan Patel's blog author profile">Rajan Patel</a>
+            {%- endif -%}
+
+            {%- if slot == "title_link" -%}
+              <a href="/engage/patching-automations-best-practices"
+                 aria-label="Watch 'Best practices for scheduling security patching automations'">Best practices for scheduling security patching automations</a>
+            {%- endif -%}
+
+            {%- if slot == "description" -%}
+              <p>
+                In this webinar, you’ll learn about Canonical's release schedule for Ubuntu and its security updates, and how you can use this information to set optimal manual and automated security patching maintenance intervals.
+              </p>
+            {%- endif -%}
+
+            {%- if slot == "image" -%}
+              {{ image(url="https://assets.ubuntu.com/v1/009c321d-how-does-ubuntu.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            {%- endif -%}
+          {%- endcall %}
         </div>
         <div tabindex="0"
              role="tabpanel"
              id="documentation-tab"
              aria-labelledby="documentation">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3"></div>
-              <div class="col-6">
-                <a href="/security/livepatch/docs" class="p-heading--4">Access the Livepatch documentation</a>
-              </div>
-              <div class="col-3">
-                <div class="p-image-container">
-                  {{ image(url="https://assets.ubuntu.com/v1/88295eae-maximizing-security-and-1.png",
-                                    alt="",
-                                    width="852",
-                                    height="481",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"}) | safe
-                  }}
-                </div>
-              </div>
-            </div>
-          </div>
+          {%- call(slot) resource_section(
+            hr=False
+            ) -%}
+
+            {%- if slot == "title_link" -%}
+              <a href="/security/livepatch/docs" aria-label="Visit Livepatch docs">Access the Livepatch documentation</a>
+            {%- endif -%}
+
+            {%- if slot == "image" -%}
+              {{ image(url="https://assets.ubuntu.com/v1/88295eae-maximizing-security-and-1.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            {%- endif -%}
+          {%- endcall %}
         </div>
         <div tabindex="0"
              role="tabpanel"
              id="datasheet-tab"
              aria-labelledby="datasheet">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3"></div>
-              <div class="col-6">
-                <a href="https://assets.ubuntu.com/v1/4a8eed26-Livepatch-Datasheet_25.10.21.pdf"
-                   class="p-heading--4">Download the datasheet for the product overview, system requirements, and FAQs</a>
-              </div>
-              <div class="col-3">
-                <div class="p-image-container">
-                  {{ image(url="https://assets.ubuntu.com/v1/05128fd0-maximizing-security-and-2.png",
-                                    alt="",
-                                    width="852",
-                                    height="480",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"}) | safe
-                  }}
-                </div>
-              </div>
-            </div>
-          </div>
+          {%- call(slot) resource_section(
+            hr=False
+            ) -%}
+
+            {%- if slot == "title_link" -%}
+              <a href="https://assets.ubuntu.com/v1/4a8eed26-Livepatch-Datasheet_25.10.21.pdf"
+                 aria-label="Get the datasheet for the product overview, system requirements, and FAQs">Download the datasheet for the product overview, system requirements, and FAQs</a>
+            {%- endif -%}
+
+            {%- if slot == "image" -%}
+              {{ image(url="https://assets.ubuntu.com/v1/05128fd0-maximizing-security-and-2.png",
+                            alt="",
+                            width="852",
+                            height="480",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            {%- endif -%}
+          {%- endcall %}
         </div>
       </div>
     </div>
