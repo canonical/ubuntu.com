@@ -143,10 +143,6 @@ function clearFilters() {
   setFiltersDropdown("tag", tagSelector);  
 
   function setFilters(key, selector) {
-    //if (urlObj.searchParams.has(key)) {
-    //  selector.value = urlObj.searchParams.get(key);
-    //}
-    
     if (selector.value != "all") {
       urlObj.searchParams.set(key, selector.value);
     } else {
@@ -161,6 +157,7 @@ function clearFilters() {
     setFilters("resource", resourceSelector);
     setFilters("tag", tagSelector);
 
+    urlObj.searchParams.delete("page");
     window.location = urlObj.href;
 }
   applyFiltersButton.addEventListener("click", applyFilters);
