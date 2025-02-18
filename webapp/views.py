@@ -137,17 +137,6 @@ def appliance_install(appliance, device):
     )
 
 
-def appliance_portfolio():
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
-
-    return flask.render_template(
-        "appliance/portfolio.html",
-        http_host=flask.request.host,
-        appliances=appliances["appliances"],
-    )
-
-
 def releasenotes_redirect():
     """
     View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
