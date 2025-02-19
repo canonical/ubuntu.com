@@ -12,10 +12,13 @@
 
 {% block content %}
 
+  {% set breadcrumbs = [{"name": "Vulnerability knowledge base", "href": "/security/vulnerabilities"}, {"name": "View all"}] %}
+  {% include '/shared/_breadcrumbs.html' %}
+
   <section class="p-section--hero">
     <div class="row--25-75">
       <div class="col">
-        <h1>Vulnerability knowledge base</h1>
+        <h1 class="p-heading--2">Vulnerability knowledge base</h1>
       </div>
     </div>
   </section>
