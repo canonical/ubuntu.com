@@ -1,0 +1,16 @@
+<div class="u-fixed-width">
+  <div class="p-breadcrumbs u-no-margin--bottom" aria-label="Breadcrumbs">
+    <ol class="p-breadcrumbs__items p-text--small-caps">
+      {% for breadcrumb in breadcrumbs %}
+        <li class="p-breadcrumbs__item">
+          {% if breadcrumb.href %}
+            <a href="{{ breadcrumb.href }}">{{ breadcrumb.name }}</a>
+          {% else %}
+            {{ breadcrumb.name }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <hr class="p-rule u-no-margin--bottom" />
+</div>

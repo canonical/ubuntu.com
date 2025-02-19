@@ -1,9 +1,7 @@
 import { toggleDrawer } from "./side-navigation.js";
 
 function setUpDynamicSideNav() {
-  const sideNavigationElement = document.querySelector(
-    ".p-side-navigation--raw-html",
-  );
+  const sideNavigationElement = document.querySelector(".js-dynamic-toc");
   const sideNavigationToggle = document.querySelector(".js-drawer-toggle");
   const sections = Array.prototype.slice.call(
     document.querySelectorAll(".section-heading"),
@@ -35,7 +33,7 @@ function setUpDynamicSideNav() {
         }
       },
       {
-        rootMargin: "-5% 0px -85% 0px",
+        rootMargin: "-5% 0px -87% 0px",
         threshold: 0.5,
       },
     );
