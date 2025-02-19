@@ -17,7 +17,7 @@
 {% endblock body_class %}
 
 {% block content %}
-  <section class="p-section--shallow">
+  <section class="u-fixed-width">
     <div class="row">
       <nav class="p-breadcrumbs" aria-label="Breadcrumbs">
         <ol class="p-breadcrumbs__items">
@@ -55,7 +55,7 @@
         <h2>What is VEX?</h2>
       </div>
       <div class="col">
-        <div class="p-image-container p-section--shallow">
+        <div class="p-image-container">
           {{ image(url="https://assets.ubuntu.com/v1/bf47ee71-what-is-vex.png",
                     alt="",
                     width="1200",
@@ -151,42 +151,60 @@
   </section>
 
   <section class="p-section">
-    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
-    {%- if slot == 'title' -%}
-        <h2>How does Ubuntu VEX data work?</h2>
-    {%- endif -%}
-    {%- if slot == 'description' -%}
-    <div class="p-section">
-      <p>Canonical offers secure, modular and interoperable solutions. Ideal for public and private clouds, multi-cloud or hybrid-cloud environments at centralized or distributed sites.</p>
-    </div>
-    <div class="p-section--shallow">
-      <div class="p-image-container">
-        {{ image(url="https://assets.ubuntu.com/v1/a942ed7e-how-does-ubuntu-vex.png",
-        alt="",
-        width="1200",
-        height="676",
-        hi_def=True,
-        loading="auto|lazy"
-        ) | safe
-      }}
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="row--50-50">
+        <div class="col">
+          <h2>How does Ubuntu VEX data work?</h2>
+        </div>
+        <div class="col">
+          <div class="p-section--shallow">
+            <div class="p-image-container">
+              {{ image(url="https://assets.ubuntu.com/v1/a942ed7e-how-does-ubuntu-vex.png",
+              alt="",
+              width="1200",
+              height="676",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="is-muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">CVE VEX</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <div class="p-section--shallow">
+              <p>As software vulnerabilities are discovered, they are assigned CVE identifiers by MITRE and other organizations. Canonical triages these CVEs to determine whether the vulnerabilities affect software distributed within Ubuntu. The results of this triage are then used to generate the first version of the CVE VEX document, which specifies the status of the CVE for every related product in the Ubuntu ecosystem, and every supported release.</p> 
+              <p>After the initial triage, the CVE might be revisited again by the Ubuntu Security team, either to mark it as resolved, or to adapt its status after communication with the team behind the distribution of a specific package. The team may also edit the CVE to add notes and comments about this vulnerability. When any of this happens, a new VEX document is created, with an incremented version, and more information about the new status.</p>
+              <p>This document can be used to assess the local system for vulnerabilities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="is-muted" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-medium-3 col-3 col-start-large-4">
+            <h3 class="p-heading--5">USN VEX</h3>
+          </div>
+          <div class="col-medium-3 col-6">
+            <p>When Ubuntu's Security Team patches software to address one or more CVEs, an Ubuntu Security Notice (USN) is published announcing the update. USN VEX data is generated from information encapsulated within the USN, and can be used to assess the system for missing patches.</p>
+          </div>
+        </div>
       </div>
     </div>
-    {%- endif -%}
-    {%- if slot == 'list_item_title_1' -%}
-    <h3 class="p-heading--5">CVE VEX</h3>
-    {%- endif -%}
-    {%- if slot == 'list_item_description_1' -%}
-    <p>As software vulnerabilities are discovered, they are assigned CVE identifiers by MITRE and other organizations. Canonical triages these CVEs to determine whether the vulnerabilities affect software distributed within Ubuntu. The results of this triage are then used to generate the first version of the CVE VEX document, which specifies the status of the CVE for every related product in the Ubuntu ecosystem, and every supported release.</p> 
-    <p>After the initial triage, the CVE might be revisited again by the Ubuntu Security team, either to mark it as resolved, or to adapt its status after communication with the team behind the distribution of a specific package. The team may also edit the CVE to add notes and comments about this vulnerability. When any of this happens, a new VEX document is created, with an incremented version, and more information about the new status.</p>
-    <p>This document can be used to assess the local system for vulnerabilities.</p>
-    {%- endif -%}
-    {%- if slot == 'list_item_title_2' -%}
-    <h3 class="p-heading--5">USN VEX</h3>
-    {%- endif -%}
-    {%- if slot == 'list_item_description_2' -%}
-    <p>When Ubuntu's Security Team patches software to address one or more CVEs, an Ubuntu Security Notice (USN) is published announcing the update. USN VEX data is generated from information encapsulated within the USN, and can be used to assess the system for missing patches.</p>
-    {%- endif -%}
-    {%- endcall -%}
   </section>
 
   <section class="p-section--deep">
