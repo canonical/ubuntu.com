@@ -37,135 +37,133 @@
         </div>
       </div>
       <div class="col-6 u-hide--medium u-hide--small">
-        {{ image(url="https://assets.ubuntu.com/v1/6855a62e-azure.png",
-                alt="",
-                width="852",
-                height="481",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/0e70093f-azure-logo.png",
+                    alt="",
+                    width="1200",
+                    height="800",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
       </div>
     </div>
   </section>
 
   <section class="p-section">
     <div class="u-fixed-width p-section--shallow">
-      <hr class="p-rule" />
+      <hr />
       <h2>What's in Ubuntu Pro FIPS?</h2>
     </div>
-    <div class="row--25-75-on-large">
-      <div class="col">
-        <hr class="p-rule--muted u-hide--small" />
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">FIPS compliant by default</h3>
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">FIPS-compliant by default</p>
                 <p>FIPS 140-3 modules pre-enabled out of the box with Ubuntu Pro FIPS. No extra configuration steps required.</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
           <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">FedRAMP compliance</h3>
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">FedRAMP compliance</p>
                 <p>Operate environments under the FedRAMP compliance regime, with FIPS 140-3 certified modules.</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
           <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">CIS and DISA STIG</h3>
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">CIS and DISA STIG</p>
                 <p>
                   Automated auditing and remediation for the DISA STIG and CIS security benchmarks through the <a href="/security/certifications/docs/usg">Ubuntu Security Guide</a>.
                 </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row--25-75-on-large">
-      <div class="col">
-        <hr class="p-rule--muted u-hide--small" />
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">HIPAA, PCI, ISO compliance</h3>
-                <p>
-                  Healthcare, financial services, insurance and other organizations that operate in heavily-regulated
-                  industries ensure compliance with HIPAA, PCI and ISO.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">Predictable and Secure</h3>
-                <p>
-                  Ubuntu Pro FIPS is based on <a href="/azure/pro">Ubuntu Pro premium images</a>, with Azure
-                  optimizations built-in and the most comprehensive open-source security coverage in the industry.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">Common Criteria EAL2 certification</h3>
-                <p>Ubuntu Pro FIPS has been evaluated to assurance level EAL2, with Common Criteria certification.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row--25-75-on-large">
-      <div class="col">
-        <hr class="p-rule--muted u-hide--small" />
-        <div class="row">
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">Open source security</h3>
-                <p>
-                  Ubuntu Pro adds security coverage for the most important open source applications such as Apache Kafka, NGINX, MongoDB, Redis, and PostgreSQL.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">10-year lifetime</h3>
-                <p>
-                  Canonical backs Ubuntu Pro FIPS for 10 years after release, ensuring security updates are available throughout, with a
-                  guaranteed upgrade path.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-3 col-medium-2">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">
-                <h3 class="p-heading--5 u-no-padding--top">Priced for the cloud</h3>
-                <p>
-                  Ubuntu Pro FIPS pricing tracks the underlying compute cost, starting at under $0.01 for the smallest B1ls
-                  instance type, and ramping down to less than 1% of hourly compute.
-                </p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <hr class="p-rule--muted" />
-      <div class="col-6 col-start-large-7">
-        <a href="/azure/contact-us" class="p-button">Let's talk about Ubuntu FIPS</a>
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">HIPAA, PCI, ISO compliance</p>
+                <p>
+                  Healthcare, financial services, insurance and other organizations that operate in heavily-regulated industries ensure compliance with HIPAA, PCI and ISO.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">Predictable and Secure</p>
+                <p>
+                  Ubuntu Pro FIPS is based on <a href="/aws/pro">Ubuntu Pro premium images</a>, with AWS optimizations built in and the most comprehensive open source security coverage in the industry.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">Common Criteria EAL2 certification</p>
+                <p>Ubuntu Pro FIPS has been evaluated to assurance level EAL2, with Common Criteria certification.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">Open source security</p>
+                <p>
+                  Ubuntu Pro adds security coverage for the most important open source applications, such as Apache Kafka, NGINX, MongoDB, Redis, and PostgreSQL.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">10-year lifetime</p>
+                <p>
+                  Canonical backs Ubuntu Pro FIPS for 10 years, ensuring security updates are available throughout, with a guaranteed upgrade path.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="u-hide--large u-hide--medium p-rule--muted" />
+            <div class="list-matrix">
+              <div class="list-matrix-container">
+                <p class="p-heading--5">Priced for the cloud</p>
+                <p>
+                  Ubuntu Pro FIPS pricing tracks the underlying compute cost, starting at under $0.01 for the smallest instance type, and ramping down to less than 1% of hourly compute.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -354,8 +352,13 @@
           </tr>
         </tbody>
       </table>
-      <p id="footnote1">
-        * The Azure kernel variant is based on the generic Ubuntu 22.04 kernel, which is certified under NIST Certificate #4894 . For more information, <a href="/blog/fips-140-3-for-ubuntu-22-04lts">read our blog</a>.
+      <hr class="p-rule--muted" />
+      <p class="u-align-text--right">
+        <em id="footnote1" class="u-text--muted">
+          * The Azure kernel variant is based on the generic Ubuntu 22.04 kernel, which is
+          <br />
+          certified under NIST Certificate #4894 . For more information, <a href="/blog/fips-140-3-for-ubuntu-22-04lts">read our blog</a>.
+        </em>
       </p>
       <br />
       <table class="p-table--mobile-card" style="overflow-x: auto;">
