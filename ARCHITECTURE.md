@@ -72,7 +72,6 @@ There are a large number of documentation areas on ubuntu.com (complete at the t
 - [ubuntu.com/security/livepatch/docs](http://ubuntu.com/security/livepatch/docs) ([code](webapp/app.py#L969-L979))
 - [ubuntu.com/security/certifications/docs](http://ubuntu.com/security/certifications/docs) ([code](webapp/app.py#L996-L1006))
 - [ubuntu.com/landscape/docs](http://ubuntu.com/landscape/docs) ([code](webapp/app.py#L1023-L1033))
-- [ubuntu.com/robotics/docs](http://ubuntu.com/robotics/docs) ([code](webapp/app.py#L1050-L1060))
 
 Each of these is served with [our Discourse module](https://github.com/canonical/canonicalwebteam.discourse), and pulls its content from a set of topics in Discourse, as with the takeovers and engage pages.
 
