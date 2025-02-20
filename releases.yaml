@@ -18,12 +18,12 @@ lts:
   slug: NobleNumbat
   name: "Noble Numbat"
   short_version: "24.04"
-  full_version: "24.04.1"
+  full_version: "24.04.2"
   release_date: "April 2024"
   eol: "April 2029"
   release_notes_url: "https://discourse.ubuntu.com/t/noble-numbat-release-notes/39890"
-  iso_download_size: "5.8GB"
-  server_iso_size: "2.6GB"
+  iso_download_size: "5.9GB"
+  server_iso_size: "3GB"
   raspi_desktop_iso_size: "2.6GB"
   raspi_server_iso_size: "1.1GB"
 previous_lts:
@@ -47,30 +47,34 @@ openstack_lts:
 core_lts:
   version: "24"
   eol: "April 2034"
+wsl:
+  version: "24.04.2"
+  iso_download_size: "357M"
+
 
 checksums:
   desktop:
     "24.10": "489079483487f92ad0d2f3d4b6c88a7b197969eb286b277534047920854a8b03 *ubuntu-24.10-desktop-amd64.iso"
-    "24.04.1": "c2e6f4dc37ac944e2ed507f87c6188dd4d3179bf4a3f9e110d3c88d1f3294bdc *ubuntu-24.04.1-desktop-amd64.iso"
+    "24.04.2": "d7fe3d6a0419667d2f8eff12796996328daa2d4f90cd9f87aa9371b362f987bf *ubuntu-24.04.2-desktop-amd64.iso"
     "22.04.5": "bfd1cee02bc4f35db939e69b934ba49a39a378797ce9aee20f6e3e3e728fefbf *ubuntu-22.04.5-desktop-amd64.iso"
     "21.10": "f8d3ab0faeaecb5d26628ae1aa21c9a13e0a242c381aa08157db8624d574b830 *ubuntu-21.10-desktop-amd64.iso"
     "20.04.6": "510ce77afcb9537f198bc7daa0e5b503b6e67aaed68146943c231baeaab94df1 *ubuntu-20.04.6-desktop-amd64.iso"
   live-server:
     "24.10": "4fce7c02a5e5dbe3426da4aa0f8b7845e9a36aff29c5884d206a08e51b2c4c47 *ubuntu-24.10-live-server-amd64.iso"
-    "24.04.1": "e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9 *ubuntu-24.04.1-live-server-amd64.iso"
+    "24.04.2": "d6dab0c3a657988501b4bd76f1297c053df710e06e0c3aece60dead24f270b4d *ubuntu-24.04.2-live-server-amd64.iso"
     "22.04.5": "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0 *ubuntu-22.04.5-live-server-amd64.iso"
     "21.10": "e84f546dfc6743f24e8b1e15db9cc2d2c698ec57d9adfb852971772d1ce692d4 *ubuntu-21.10-live-server-amd64.iso"
     "20.04.6": "b8f31413336b9393ad5d8ef0282717b2ab19f007df2e9ed5196c13d8f9153c8b *ubuntu-20.04.6-live-server-amd64.iso"
     "18.04.6": "6c647b1ab4318e8c560d5748f908e108be654bad1e165f7cf4f3c1fc43995934 *ubuntu-18.04.6-live-server-amd64.iso"
   desktop-arm64+raspi:
     "24.10": "9aaacf14e4d12bd59ac20ba07d34dbe6ad2dee14bc211947915d6b2b845af424 *ubuntu-24.10-preinstalled-desktop-arm64+raspi.img.xz"
-    "24.04.1": "5bd01d2a51196587b3fb2899a8f078a2a080278a83b3c8faa91f8daba750d00c *ubuntu-24.04.1-preinstalled-desktop-arm64+raspi.img.xz"
+    "24.04.2": "43a613278a688f2624c7b8482de4503656eba545868c1e896f0b33821fd4d5a0 *ubuntu-24.04.2-preinstalled-desktop-arm64+raspi.img.xz"
     "22.04.5": "74764944dd4a96bdddd30cf1ffc133ecbe5ebb1d1f2eaa34cd5f8fbb57211c86 *ubuntu-22.04.5-preinstalled-desktop-arm64+raspi.img.xz"
     "21.10": "5187d507099f26bc4d8218085109af498fae5ff93b40c668f83bab5c7574d954 *ubuntu-21.10-preinstalled-desktop-arm64+raspi.img.xz"
     "21.04": "d89ee327a00b98d7166b1a8cc95d17762aaacd3b4d0fc756c5b6b65df1708f48 *ubuntu-21.04-preinstalled-desktop-arm64+raspi.img.xz"
   server-arm64+raspi:
     "24.10": "ef594f0a75f79294b374466c7c49b2d56da223c99fa38d7baefb118ed8a0fb94 *ubuntu-24.10-preinstalled-server-arm64+raspi.img.xz"
-    "24.04.1": "e59925e211080b20f02e4504bb2c8336b122d0738668491986ee29a95610e5b1 *ubuntu-24.04.1-preinstalled-server-arm64+raspi.img.xz"
+    "24.04.2": "07fe39e530381cee7095c16f54d05fd99db2fe8233e05ebf8948437e40b5feaa *ubuntu-24.04.2-preinstalled-server-arm64+raspi.img.xz"
     "22.04.5": "fd7687c5c9422a6c7ba4717c227bf6473fe4e0c954d5a9f664201dcecc63e822 *ubuntu-22.04.5-preinstalled-server-arm64+raspi.img.xz"
     "21.10": "126f940d3b270a6c1fc5a183ac8a3d193805fead4f517296a7df9d3e7d691a03 *ubuntu-21.10-preinstalled-server-arm64+raspi.img.xz"
     "20.04.5": "44b98acd3fd4379c6b194696520b6aecb2f596b601e43e9b6934c83f0aa61026 *ubuntu-20.04.5-preinstalled-server-arm64+raspi.img.xz"
@@ -81,7 +85,7 @@ checksums:
     "20.04.5": "065c41846ddf7a1c636a1aac5a7d49ebcee819b141f9d57fd586c5f84b9b7942 *ubuntu-20.04.5-preinstalled-server-armhf+raspi.img.xz"
   server-riscv64:
     "24.10": "a5c932527a48c65713d6c49ef2db258aa00753e910e038571ad09d4fbfa1e9bb *ubuntu-24.10-live-server-riscv64.img.gz"
-    "24.04.1": "a93a43ec0af7df778c6e4cec4f0838c1e6549e37c60fcbba18d8ccf324983241 *ubuntu-24.04.1-live-server-riscv64.img.gz"
+    "24.04.2": "12164f182344dafac5895a7df44d1ddbb3f68d95dd0a4af6df2abc1f7d6464b1 *ubuntu-24.04.2-live-server-riscv64.img.gz"
     "23.10": "5c300b9fff78f5d86fec06787e833573220165aeb310a8f1b5c56ca888bc91c2 *ubuntu-23.10-preinstalled-server-riscv64+unmatched.img.xz"
     "22.04.5": "4281edf7bff64d7ac4f8bae5b1ded7b66937ec51dd62ddfdbc7851e5c8c68ecb *ubuntu-22.04.5-preinstalled-server-riscv64+unmatched.img.xz"
     "21.10": "8067892fa627eb219b31dc629f31f3bda6b015dfeabf2fdc9b0ed150bf7984b8 *ubuntu-21.10-preinstalled-server-riscv64+unmatched.img.xz"
@@ -89,3 +93,5 @@ checksums:
     "24": "f8e1c4882e7bb0b9357dd41789f94ea6f9ad7caa50ce7a16b32a1e628f591c74 *ubuntu-core-24-arm64+raspi.img.xz"
   core-22-armhf+raspi:
     "22": "4c4b3958626611aff85bfa5873c45ad22fdf7642be868b5722900fa88e6fca86 *ubuntu-core-22-armhf+raspi.img.xz"
+  wsl:
+    "24.04.2": "5d1eea52103166f1c460dc012ed325c6eb31d2ce16ef6a00ffdfda8e99e12f43 *ubuntu-24.04.2-wsl-amd64.wsl"
