@@ -1237,6 +1237,7 @@ def render_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
@@ -1259,6 +1260,7 @@ def render_public_cloud_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=1000, thumbnail_height=700
         ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
@@ -1280,6 +1282,7 @@ def render_supermicro_blogs():
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
         tag_ids=[2247],
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         per_page=3,
         blog_title="Supermicro blogs",
     )
