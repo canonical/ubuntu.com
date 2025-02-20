@@ -17,18 +17,20 @@
 {% block content %}
 
   <section class="p-section--hero">
-    <div class="row--50-50">
+    <div class="row--50-50-on-large">
       <div class="col">
-        <h1>
-          Find your favorite
-          <br />
-          Ubuntu Appliance
-        </h1>
+        <div class="p-section--shallow">
+          <h1>
+            Find your favorite
+            <br />
+            Ubuntu Appliance
+          </h1>
+        </div>
       </div>
       <div class="col">
-        <div class="row p-equal-height-row--wrap u-sv4">
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+        <div class="row--50-50">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/cc6c0d7c-Adguard.png",
                                 alt="",
@@ -39,14 +41,12 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/adguard">AdGuard</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/adguard" class="p-heading--5">AdGuard</a>
             </div>
           </div>
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/0fe572bc-LXD.png",
                                 alt="",
@@ -57,16 +57,14 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/lxd">LXD</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/lxd" class="p-heading--5">LXD</a>
             </div>
           </div>
         </div>
-        <div class="row p-equal-height-row--wrap u-sv4">
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+        <div class="row--50-50">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/66bddd73-Mosquitto.png",
                                 alt="",
@@ -77,14 +75,12 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/mosquitto">Mosquitto</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/mosquitto" class="p-heading--5">Mosquitto</a>
             </div>
           </div>
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/72a6a67c-Nextcloud.png",
                                 alt="",
@@ -95,16 +91,14 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/nextcloud">Nextcloud</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/nextcloud" class="p-heading--5">Nextcloud</a>
             </div>
           </div>
         </div>
-        <div class="row p-equal-height-row--wrap u-sv4">
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+        <div class="row--50-50">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/d6297a60-OpenHab.png",
                                 alt="",
@@ -115,14 +109,12 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/openhab">OpenHab</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/openhab" class="p-heading--5">OpenHab</a>
             </div>
           </div>
-          <div class="p-equal-height-row__col">
-            <div class="p-equal-height-row__item">
+          <div class="col">
+            <div class="p-section--shallow">
               <div class="p-image-container is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/9fd5be85-Plex.png",
                                 alt="",
@@ -133,10 +125,8 @@
                                 attrs={"class": "p-image-container__image"}) | safe
                 }}
               </div>
-            </div>
-            <div class="p-equal-height-row__item">
-              <hr class="p-rule--muted u-hide--medium u-hide--small" />
-              <a href="/appliance/plex">Plex</a>
+              <hr class="p-rule--muted" />
+              <a href="/appliance/plex" class="p-heading--5">Plex</a>
             </div>
           </div>
         </div>
@@ -144,7 +134,7 @@
     </div>
   </section>
 
-  <section class="p-section">
+  <section class="p-section--deep">
     <hr class="is-fixed-width p-rule" />
     <div class="row--50-50">
       <div class="col">
