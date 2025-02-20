@@ -1,0 +1,76 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}{{ resource_name }} İndir{% endblock %}
+
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+  <section class="p-strip p-engage-banner--grad">
+    <div class="u-fixed-width navigation-logo-engage">
+      <a href="/">
+        {{ image(url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+                alt="Ubuntu",
+                width="143",
+                height="32",
+                hi_def=True,
+                loading="auto",) | safe
+        }}
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <h1>Teşekkürler</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
+
+        <h3>Bir kopyasını {{ resource_name }} e-posta adresinize gönderdik: {{ form_details.email }}</h3>
+        <p>
+          <a class="p-button--positive" href="{{ request_url }}">Önceki sayfaya dön</a>
+          <a class="p-button" href="/contact-us">Bize Ulaşın</a>
+        </p>
+        <p>E-postayı almadınız mı? Spam klasörünüzü kontrol edin ve doğru e-posta adresini kullandığınızdan emin olun.</p>
+
+      {% else %}
+        {% if "thank_you_text" in metadata %}
+          <p>{{ metadata["thank_you_text"] }}</p>
+        {% else %}
+          <p>{{ resource_name }} şimdi indirilmeye hazır.</p>
+        {% endif %}
+        {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+          {% if metadata.resource_url and metadata.resource_url != "" %}
+            <p>
+              <a class="p-button--positive" href="{{ resource_url }}">İndir</a>
+            </p>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </section>
+
+  {% if related | length > 0 %}
+    <section class="p-strip--light">
+      <div class="row">
+        <div class="col-8">
+          <h2 class="p-heading--3">İlgilenebileceğiniz diğer içerikler &hellip;</h2>
+        </div>
+      </div>
+      <div class="row p-divider">
+        {% for page in related[0:3] %}
+          <div class="col-4 p-divider__block">
+            <!-- ÜÇ EK CTA -->
+            <h4>{{ page["topic_name"] }}</h4>
+            <p>{{ page["subtitle"] }}</p>
+            <p>
+              <a href="{{ page['path'] }}">Daha fazla gör&nbsp;&rsaquo;</a>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock content %}
