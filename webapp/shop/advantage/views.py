@@ -33,6 +33,17 @@ from webapp.shop.schemas import (
     put_contract_entitlements,
 )
 
+import logging
+import http.client
+
+http.client.HTTPConnection.debuglevel = 1
+
+logging.basicConfig()
+logging.getLogger().setLevel(logging.DEBUG)
+requests_log = logging.getLogger("requests.packages.urllib3")
+requests_log.setLevel(logging.DEBUG)
+requests_log.propagate = True
+
 
 @shop_decorator(area="advantage", response="html")
 def pro_page_view(advantage_mapper, **kwargs):

@@ -10,7 +10,7 @@ class UAContractsAPI:
         session,
         authentication_token,
         token_type="Macaroon",
-        api_url="https://contracts.canonical.com",
+        api_url="https://contracts.staging.canonical.com",
         is_for_view=False,
         remote_addr=None,
     ):
@@ -49,7 +49,7 @@ class UAContractsAPI:
         )
 
         if self.remote_addr:
-            headers["X-Forwarded-For"] = self.remote_addr
+            headers["X-Real-IP"] = self.remote_addr
             logger = logging.getLogger("talisker.requests")
             logger.info(
                 "remote address", extra={"remote_addr": self.remote_addr}
