@@ -1223,22 +1223,21 @@
   resolved "https://registry.yarnpkg.com/@canonical/latest-news/-/latest-news-1.5.0.tgz#22b0c211114ef8d0b9a10d495d035411b21e1a86"
   integrity sha512-pNCNhBn/LFnCe9Fp3Dm4WJwVkGrJMlL6lZft1SnLqufE5k6+ihZVr03revNxyMwnSu5EPpDcEduqYrTuQQGM4A==
 
-"@canonical/react-components@^0.59.1":
-  version "0.59.1"
-  resolved "https://registry.yarnpkg.com/@canonical/react-components/-/react-components-0.59.1.tgz#bcc4cc6ec7b309a179fca2aaffd58f03a75df4e1"
-  integrity sha512-vHd287WhZxJpojGCYW312Z/BcorO1ybQ7CEE/MRERXl7XUYZlvx9i8AortoesAxFZK/BgujQgafx/zesL/9uUQ==
+"@canonical/react-components@^2.0.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@canonical/react-components/-/react-components-2.1.0.tgz#439d5ca03b009b0c0ad72c8bb5170857bbecce86"
+  integrity sha512-OaZcQmwoXj25kCvOxYhaJQhUc4CX8t5pVbuqb+t2ELfREVRvlTnKAxMHeuAyihK81FQ712M8ziiKfybp2mNZYg==
   dependencies:
-    "@types/jest" "29.5.12"
-    "@types/node" "20.12.11"
-    "@types/react" "18.3.1"
-    "@types/react-dom" "18.3.0"
+    "@types/jest" "29.5.14"
+    "@types/node" "20.17.13"
+    "@types/react" "19.0.8"
+    "@types/react-dom" "19.0.3"
     "@types/react-table" "7.7.20"
     classnames "2.5.1"
     jest-environment-jsdom "29.7.0"
     lodash.isequal "4.5.0"
     prop-types "15.8.1"
     react-table "7.8.0"
-    react-useportal "1.0.19"
 
 "@cfaester/enzyme-adapter-react-18@0.8.0":
   version "0.8.0"
@@ -2092,6 +2091,14 @@
     expect "^29.0.0"
     pretty-format "^29.0.0"
 
+"@types/jest@29.5.14":
+  version "29.5.14"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.14.tgz#2b910912fa1d6856cadcd0c1f95af7df1d6049e5"
+  integrity sha512-ZN+4sdnLUbo8EVvVc2ao0GFW6oVrQRPn4K2lglySj7APvSrgzxHiNNK99us4WDMi57xxA2yggblIAMNhXOotLQ==
+  dependencies:
+    expect "^29.0.0"
+    pretty-format "^29.0.0"
+
 "@types/jsdom@^20.0.0":
   version "20.0.1"
   resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-20.0.1.tgz#07c14bc19bd2f918c1929541cdaacae894744808"
@@ -2116,12 +2123,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.47.tgz#efa9e3e0f72e7aa6a138055dace7437a83d9f91c"
   integrity sha512-fpP+jk2zJ4VW66+wAMFoBJlx1bxmBKx4DUFf68UHgdGCOuyUTDlLWqsaNPJh7xhNDykyJ9eIzAygilP/4WoN8g==
 
-"@types/node@20.12.11":
-  version "20.12.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.12.11.tgz#c4ef00d3507000d17690643278a60dc55a9dc9be"
-  integrity sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==
+"@types/node@20.17.13":
+  version "20.17.13"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.17.13.tgz#26a7d3e72724ed73bc2fd39a66a2ab17e6e19a00"
+  integrity sha512-RNf+4dEeV69PIvyp++4IKM2vnLXtmp/JovfeQm5P5+qpKb6wHoH7INywLdZ7z+gVX46kgBP/fwJJvZYaHxtdyw==
   dependencies:
-    undici-types "~5.26.4"
+    undici-types "~6.19.2"
 
 "@types/node@^20.9.3":
   version "20.9.3"
@@ -2135,7 +2142,12 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.3.tgz"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/react-dom@18.3.0", "@types/react-dom@^18.3.0":
+"@types/react-dom@19.0.3":
+  version "19.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.0.3.tgz#0804dfd279a165d5a0ad8b53a5b9e65f338050a4"
+  integrity sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==
+
+"@types/react-dom@^18.3.0":
   version "18.3.0"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
   integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
@@ -2165,12 +2177,11 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@18.3.1":
-  version "18.3.1"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.1.tgz#fed43985caa834a2084d002e4771e15dfcbdbe8e"
-  integrity sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==
+"@types/react@19.0.8":
+  version "19.0.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.0.8.tgz#7098e6159f2a61e4f4cef2c1223c044a9bec590e"
+  integrity sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==
   dependencies:
-    "@types/prop-types" "*"
     csstype "^3.0.2"
 
 "@types/react@^16":
@@ -7313,6 +7324,11 @@ undici-types@~5.26.4:
   version "5.26.5"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
+
+undici-types@~6.19.2:
+  version "6.19.8"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
+  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
