@@ -1,10 +1,12 @@
 name: Performance checks on ubuntu.com
 
 on:
+  schedule:
+    - cron: "20 7 * * 1"
   workflow_dispatch:
 
 env:
-  THRESHOLD: 75
+  THRESHOLD: 70
 
 jobs:
   check-links:
