@@ -214,11 +214,10 @@
          role="tabpanel"
          id="videos-and-webinars-tab"
          aria-labelledby="videos-and-webinars">
-         {%- call(slot) resource_section(date="24 January 2024", hr=False) -%}
+         {%- call(slot) resource_section(date="24 January 2024", hr=False, title_header="h3") -%}
           {%- if slot == "author_links" -%}
             Henry Coggill, Chris Huffman
           {%- endif -%}
-  
           {%- if slot == "title_link" -%}
             <a href="https://www.brighttalk.com/webcast/6793/591276">How does Ubuntu enable your compliance
               <br />
@@ -251,7 +250,7 @@
          id="whitepapers-and-industry-reports-tab"
          aria-labelledby="whitepapers-and-industry-reports">
 
-        {%- call(slot) resource_section(hr=False) -%}
+        {%- call(slot) resource_section(hr=False, title_header="h3") -%}
           {%- if slot == "title_link" -%}
             <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Maximizing security and compliance
               <br />
@@ -276,7 +275,7 @@
           {%- endif -%}
         {%- endcall %}
 
-        {%- call(slot) resource_section(hr=False) -%}
+        {%- call(slot) resource_section(hr=False, title_header="h3") -%}
 
           {%- if slot == "title_link" -%}
             <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
