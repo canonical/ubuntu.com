@@ -2,6 +2,7 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_macros-resource.jinja" import resource_section %}
 
 {% block title %}Compliance automation with Ubuntu Pro | Security{% endblock %}
 
@@ -35,13 +36,12 @@
     {%- if slot == 'image' -%}
       <div class="p-section--shallow">
         <div class="p-image-container--cinematic is-cover is-highlighted">
-          {{ image(url="https://assets.ubuntu.com/v1/12127d22-hero-img.png",
+          {{ image(url="https://assets.ubuntu.com/v1/77af70e2-hero-img-new.png",
                     alt="",
                     width="1848",
                     height="770",
                     hi_def=True,
-                    loading="auto",
-                    attrs={"class": "u-hide--small u-hide--medium"}) | safe
+                    loading="auto") | safe
           }}
         </div>
       </div>
@@ -125,8 +125,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-start-large-4 col-3">
-        <div class="p-image-container is-highlighted">
+      <div class="col-start-large-4 col-3 col-medium-2">
+        <div class="p-image-container is-highlighted u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/7b612d59-aws.png",
                     alt="",
                     width="852",
@@ -137,12 +137,12 @@
         </div>
         <p>
           <a href="/aws">Learn more about Ubuntu
-            <br />
+            <br class="u-hide--small"/>
           on AWS&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
-        <div class="p-image-container is-highlighted">
+      <div class="col-3 col-medium-2">
+        <div class="p-image-container is-highlighted u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/cc0200cd-azure.png",
                     alt="",
                     width="852",
@@ -153,12 +153,12 @@
         </div>
         <p>
           <a href="/azure">Learn more about Ubuntu
-            <br />
+            <br class="u-hide--small"/>
           on Azure&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
-        <div class="p-image-container is-highlighted">
+      <div class="col-3 col-medium-2">
+        <div class="p-image-container is-highlighted u-hide--medium">
           {{ image(url="https://assets.ubuntu.com/v1/bc125de5-googlecloud.png",
                     alt="",
                     width="852",
@@ -169,7 +169,7 @@
         </div>
         <p>
           <a href="/gcp">Learn more about Ubuntu
-            <br />
+            <br class="u-hide--small"/>
           on Google Cloud Platform&nbsp;&rsaquo;</a>
         </p>
       </div>
@@ -178,130 +178,134 @@
 
   <section class="p-section">
     <div class="u-fixed-width">
-      <div class="js-tabbed-content">
-        <div class="p-tabs">
-          <div class="p-tabs__list" role="tablist" aria-label="Juju technology">
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="true"
-                      aria-controls="videos-webinars-tab"
-                      id="videos-webinars">Videos and webinars</button>
-            </div>
-            <div class="p-tabs__item">
-              <button class="p-tabs__link"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="whitepapers-reports-tab"
-                      id="whitepapers-reports"
-                      tabindex="-1">Whitepapers and industry reports</button>
-            </div>
-          </div>
-        </div>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">        
+        <h2>Resources</h2>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <nav class="p-tabs js-tab-container">
+        <ul class="p-tabs__list js-tabbed-content"
+            role="tablist"
+            aria-label="Resources"
+            data-maintain-hash="true">
+          <li class="p-tabs__item">
+            <a href="#videos-and-webinars"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="true"
+               aria-controls="videos-and-webinars-tab"
+               id="videos-and-webinars">Videos and webinars</a>
+          </li>
+          <li class="p-tabs__item">
+            <a href="#whitepapers-and-industry-reports"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               aria-controls="whitepapers-and-industry-reports-tab"
+               id="whitepapers-and-industry-reports"
+               tabindex="-1">Whitepapers and industry reports</a>
+          </li>
+        </ul>
+      </nav>
 
-        <div tabindex="0"
-             role="tabpanel"
-             id="videos-webinars-tab"
-             aria-labelledby="videos-webinars">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <h3 class="p-heading--5 u-no-margin--bottom">Henry Coggill, Chris Huffman</h3>
-                <p class="u-no-padding--top">24 January 2024</p>
-              </div>
-              <div class="col-6">
-                <h4>
-                  <a href="https://www.brighttalk.com/webcast/6793/591276">How does Ubuntu enable your compliance
-                    <br />
-                  with FIPS, and DISA-STIG?</a>
-                </h4>
-                <p>
-                  The operating system is the cornerstone of a security compliance program. Ubuntu Pro enables functionality such as FIPS-certified crypto libraries and system hardening with the Ubuntu Security Guide to help meet stringent government security standards. Watch this webinar to find out more.
-                </p>
-              </div>
-              <div class="col-3">
-                <div class="p-image-container--16-9">
-                  <a href="https://www.brighttalk.com/webcast/6793/591276">
-                    {{ image(url="https://assets.ubuntu.com/v1/5bef3654-how-does-ubuntu.png",
-                                        alt="",
-                                        width="852",
-                                        height="480",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"}) | safe
-                    }}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="p-tabs__content"
+         tabindex="0"
+         role="tabpanel"
+         id="videos-and-webinars-tab"
+         aria-labelledby="videos-and-webinars">
+         {%- call(slot) resource_section(date="24 January 2024", hr=False) -%}
+          {%- if slot == "author_links" -%}
+            Henry Coggill, Chris Huffman
+          {%- endif -%}
+  
+          {%- if slot == "title_link" -%}
+            <a href="https://www.brighttalk.com/webcast/6793/591276">How does Ubuntu enable your compliance
+              <br />
+            with FIPS, and DISA-STIG?</a>
+          {%- endif -%}
+  
+          {%- if slot == "description" -%}
+            <p>
+              The operating system is the cornerstone of a security compliance program. Ubuntu Pro enables functionality such as FIPS-certified crypto libraries and system hardening with the Ubuntu Security Guide to help meet stringent government security standards. Watch this webinar to find out more.
+            </p>
+          {%- endif -%}
+  
+          {%- if slot == "image" -%}
+            {{ image(url="https://assets.ubuntu.com/v1/a8a4f114-how-does-ubuntu-transparent.png",
+                      alt="",
+                      width="2400",
+                      height="1352",
+                      hi_def=True,
+                      loading="lazy",
+                      attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
+            }}
+          {%- endif -%}
+        {%- endcall %}
 
-        <div tabindex="0"
-             role="tabpanel"
-             id="whitepapers-reports-tab"
-             aria-labelledby="whitepapers-reports">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-start-large-4 col-6">
-                <h4>
-                  <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Maximizing security and compliance
-                    <br />
-                  in the US public sector with Ubuntu Pro</a>
-                </h4>
-                <p>
-                  Navigating the maze of complex compliance requirements facing the US Public Sector is a daunting prospect. Confusing abbreviations and terminology only make charting this course more difficult. If you’re looking to understand what FIPS, FedRAMP, and DISA-STIG are all about, this whitepaper is for you.
-                </p>
-              </div>
-              <div class="col-3">
-                <div class="p-image-container--16-9">
-                  <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">
-                    {{ image(url="https://assets.ubuntu.com/v1/17c8ad9b-maximizing-security-and.png",
-                                        alt="",
-                                        width="852",
-                                        height="480",
-                                        hi_def=True,
-                                        loading="lazy",
-                                        attrs={"class": "p-image-container__image"}) | safe
-                    }}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <hr class="p-rule--muted" />
-            <div class="col-start-large-4 col-6">
-              <h4>
-                <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
-              </h4>
-              <p>
-                The ever-present threats of ransomware and data breaches make it imperative to lock down systems and prevent attackers from gaining a foothold. Using industry best-practice guidelines such as the CIS benchmarks, this whitepaper will walk you through the process of hardening Linux-based deployments.
-              </p>
-            </div>
-            <div class="col-3">
-              <div class="p-image-container--16-9">
-                <a href="/engage/a-guide-to-infrastructure-hardening">
-                  {{ image(url="https://assets.ubuntu.com/v1/d9871ffc-a-guide-to.png",
-                                    alt="",
-                                    width="852",
-                                    height="480",
-                                    hi_def=True,
-                                    loading="lazy",
-                                    attrs={"class": "p-image-container__image"}) | safe
-                  }}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+          
+      <div class="p-tabs__content u-hide"
+         tabindex="0"
+         role="tabpanel"
+         id="whitepapers-and-industry-reports-tab"
+         aria-labelledby="whitepapers-and-industry-reports">
+
+        {%- call(slot) resource_section(hr=False) -%}
+          {%- if slot == "title_link" -%}
+            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Maximizing security and compliance
+              <br />
+            in the US public sector with Ubuntu Pro</a>
+          {%- endif -%}
+
+          {%- if slot == "description" -%}
+            <p>
+              Navigating the maze of complex compliance requirements facing the US Public Sector is a daunting prospect. Confusing abbreviations and terminology only make charting this course more difficult. If you’re looking to understand what FIPS, FedRAMP, and DISA-STIG are all about, this whitepaper is for you.
+            </p>
+          {%- endif -%}
+
+          {%- if slot == "image" -%}
+            {{ image(url="https://assets.ubuntu.com/v1/eeb67d88-maximizing-security-transparent.png",
+                    alt="",
+                    width="2400",
+                    height="1352",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
+            }}
+          {%- endif -%}
+        {%- endcall %}
+
+        {%- call(slot) resource_section(hr=False) -%}
+
+          {%- if slot == "title_link" -%}
+            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+          {%- endif -%}
+
+          {%- if slot == "description" -%}
+            <p>
+              The ever-present threats of ransomware and data breaches make it imperative to lock down systems and prevent attackers from gaining a foothold. Using industry best-practice guidelines such as the CIS benchmarks, this whitepaper will walk you through the process of hardening Linux-based deployments.
+            </p>
+          {%- endif -%}
+
+          {%- if slot == "image" -%}
+          {{ image(url="https://assets.ubuntu.com/v1/fec3b184-a-guide-to-transparent.png",
+                  alt="",
+                  width="2400",
+                  height="1352",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
+          }}
+          {%- endif -%}
+        {%- endcall %}
       </div>
     </div>
   </section>
 
   <section class="p-section">
     <div class="u-fixed-width">
-      <div class="p-image-container--cinematic">
+      <div class="p-image-container--cinematic u-hide--medium u-hide--small">
         {{ image(url="https://assets.ubuntu.com/v1/a01f3eb3-servers.png",
                 alt="",
                 width="1848",
@@ -334,99 +338,77 @@
         </div>
       </div>
     </div>
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule--muted" />
-        <div class="col">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <div class="p-image-container is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/56bf9493-cis.png",
-                                    alt="",
-                                    width="852",
-                                    height="569",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </div>
+    
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/56bf9493-cis.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
               </div>
-              <div class="col-3">
-                <p>USG profile:</p>
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-                </ul>
-              </div>
-              <hr class="p-rule--muted u-hide--medium u-hide--large" />
-              <p class="u-hide--medium u-hide--large">
-                <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks
-                  <br />
-                for Ubuntu systems&nbsp;&rsaquo;</a>
+              <p>
+                <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks for Ubuntu systems&nbsp;&rsaquo;</a>
               </p>
+            </div>
+            <div class="col-3">
+              <p>USG profile:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <div class="p-image-container is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/1c385837-disa.png",
-                                    alt="",
-                                    width="852",
-                                    height="569",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/1c385837-disa.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
               </div>
-              <div class="col-3">
-                <p>USG profile:</p>
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-                </ul>
-                <p>Configuration guides:</p>
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-                </ul>
-              </div>
-              <hr class="p-rule--muted u-hide--medium u-hide--large" />
-              <p class="u-hide--medium u-hide--large">
-                <a href="/security/disa-stig">Defence Information System Agency (DISA)
-                  <br class="u-hide--small" />
-                Security Technical Implementation Guides (STIGs)&nbsp;&rsaquo;</a>
+              <p>
+                <a href="/security/disa-stig">Defence Information System Agency (DISA) Security Technical Implementation Guides (STIGs)&nbsp;&rsaquo;</a>
               </p>
             </div>
+            <div class="col-3">
+              <p>USG profile:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+              </ul>
+              <p>Configuration guides:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <hr class="p-rule--muted u-hide--small" />
-        <div class="col u-hide--small">
-          <p>
-            <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks
-              <br />
-            for Ubuntu systems&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col u-hide--small">
-          <p>
-            <a href="/security/disa-stig">Defence Information System Agency (DISA)
-              <br />
-            Security Technical Implementation Guides (STIGs)&nbsp;&rsaquo;</a>
-          </p>
         </div>
       </div>
     </div>
     <div class="row">
+      <hr class="p-rule--muted" />
       <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
-        <hr class="p-rule--muted" />
         <a href="/security/contact-us" class="p-button js-invoke-modal">Contact us</a>
       </div>
     </div>
@@ -445,86 +427,75 @@
           </p>
         </div>
       </div>
-    </div>
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule--muted" />
-        <div class="col">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <div class="p-image-container is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/babd31f2-fips-140-2.png",
-                                    alt="",
-                                    width="852",
-                                    height="569",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </div>
+    </div>    
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/babd31f2-fips-140-2.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
               </div>
-              <div class="col-3">
-                <p>These modules are NIST-certified:</p>
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-                  <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-                </ul>
-              </div>
-              <hr class="p-rule--muted u-hide--medium u-hide--large" />
-              <p class="u-hide--medium u-hide--large">
+              <p>
                 <a href="/security/fips">FIPS 140-2 Level 1&nbsp;&rsaquo;</a>
               </p>
             </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="p-section--shallow">
-            <div class="row">
-              <div class="col-3">
-                <div class="p-image-container is-highlighted">
-                  {{ image(url="https://assets.ubuntu.com/v1/9ecfeade-fips-140-3.png",
-                                    alt="",
-                                    width="852",
-                                    height="569",
-                                    hi_def=True,
-                                    loading="lazy") | safe
-                  }}
-                </div>
-              </div>
-              <div class="col-3">
-                <p>
-                  These modules have been assessed by a NIST-approved testing laboratory and are awaiting final certification by <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list">CMVP</a>:
-                </p>
-                <hr class="p-rule--muted u-no-margin--bottom" />
-                <ul class="p-list--divided">
-                  <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-                </ul>
-              </div>
-              <hr class="p-rule--muted u-hide--medium u-hide--large" />
-              <p class="u-hide--medium u-hide--large">
-                <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1&nbsp;&rsaquo;</a>
-              </p>
+            <div class="col-3">
+              <p>These modules are NIST-certified:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
             </div>
           </div>
         </div>
-        <hr class="p-rule--muted u-hide--small" />
-        <div class="col u-hide--small">
-          <p>
-            <a href="/security/fips">FIPS 140-2 Level 1&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-        <div class="col u-hide--small">
-          <p>
-            <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1&nbsp;&rsaquo;</a>
-          </p>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/9ecfeade-fips-140-3.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
+              </div>
+              <p>
+                <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <p>
+                These modules have been assessed by a NIST-approved testing laboratory and are awaiting final certification by <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list">CMVP</a>:
+              </p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+              </ul>
+            </div>
+            <hr class="p-rule--muted u-hide--medium u-hide--large" />
+            <p class="u-hide--medium u-hide--large">
+              <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1&nbsp;&rsaquo;</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
+      <hr class="p-rule--muted" />
       <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
-        <hr class="p-rule--muted" />
         <a href="/security/contact-us" class="p-button js-invoke-modal">Contact us</a>
       </div>
     </div>
