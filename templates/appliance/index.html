@@ -2,350 +2,182 @@
 
 {% block title %}Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}An Ubuntu Appliance is an official system image which blends a single application with Ubuntu Core. Ubuntu Appliances are certified to run flawlessly on Raspberry Pi and PC boards. They are free, privacy-friendly and come with maintenance guarantees.{% endblock %}
+{% block meta_description %}
+  An Ubuntu Appliance is an official system image which blends a single application with Ubuntu Core. Ubuntu Appliances are certified to run flawlessly on Raspberry Pi and PC boards. They are free, privacy-friendly and come with maintenance guarantees.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1Fcr5b5Rn06AB89D6DGPmoIgXLxLalijMhwnu_IyUxV4/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1Fcr5b5Rn06AB89D6DGPmoIgXLxLalijMhwnu_IyUxV4/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
-  <div class="row">
-    <h1>
-      The Ubuntu Appliance portfolio
-    </h1>
-    <p class="p-heading--4">
-      Free appliance images for your PC or Raspberry Pi
-    </p>
-  </div>
-</section>
+  <section class="p-section--hero">
+    <div class="row--50-50-on-large">
+      <div class="col">
+        <div class="p-section--shallow">
+          <h1>
+            Find your favorite
+            <br />
+            Ubuntu Appliance
+          </h1>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/adguard" aria-label="AdGuard">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/cc6c0d7c-Adguard.png",
+                                    alt="",
+                                    width="852",
+                                    height="480",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">AdGuard</p>
+              </a>
 
-<section class="p-strip u-no-padding--top is-bordered">
-  {% with heading="Featured" %}{% include "/appliance/shared/_featured_appliances.html" %}{% endwith %}
-</section>
+            </div>
+          </div>
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/lxd" aria-label="LXD">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/0fe572bc-LXD.png",
+                                    alt="",
+                                    width="852",
+                                    height="480",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">LXD</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/mosquitto" aria-label="Mosquitto">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/66bddd73-Mosquitto.png",
+                                    alt="",
+                                    width="852",
+                                    height="480",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">Mosquitto</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/nextcloud"  aria-label="Nextcloud">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/72a6a67c-Nextcloud.png",
+                                    alt="",
+                                    width="852",
+                                    height="480",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">Nextcloud</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/openhab" aria-label="OpenHab">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/d6297a60-OpenHab.png",
+                                    alt="",
+                                    width="852",
+                                    height="480",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">OpenHab</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-3 col-medium-3">
+            <div class="p-section--shallow">
+              <a href="/appliance/plex" aria-label="Plex">
+                <div class="p-image-container is-highlighted">
+                  {{ image(url="https://assets.ubuntu.com/v1/9fd5be85-Plex.png",
+                                    alt="",
+                                    width="852",
+                                    height="483",
+                                    hi_def=True,
+                                    loading="auto",
+                                    attrs={"class": "p-image-container__image"}) | safe
+                  }}
+                </div>
+                <hr class="p-rule--muted" />
+                <p class="p-heading--5">Plex</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip--light is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <h2>
-        Make something great today
-      </h2>
-      <p class="p-heading--4">
-        We've got just the thing for you
-      </p>
-      <p>
-        Transform a spare PC or Pi into a smart, secure, and ultra-simple box that does exactly what you want. Brilliantly.
-      </p>
-      <p>
-        Open or commercial. Enterprise or home. Entertainment. Automation. Gaming. Network. Storage. Fun. Play with something new today.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/appliance">Browse the portfolio</a>
-      </p>
+  <section class="p-section--deep">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Turn your app
+          <br />
+          into an Ubuntu Appliance
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/c611f6cb-Image wrapper.png",
+                        alt="",
+                        width="1800",
+                        height="1013",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"}) | safe
+            }}
+          </div>
+        </div>
+        <p>
+          Anyone can build their own Ubuntu Appliance, a software-defined IoT device that uses Ubuntu for security and to stay up to date. But it’s really all you. See our <a href="/appliance/community">community page</a> for more information or jump right to discourse to propose your new Ubuntu Appliance and start the conversation.
+        </p>
+        <div class="p-cta-block">
+          <a href="https://discourse.ubuntu.com/c/appliances" class="p-button">Propose your new appliance</a>
+        </div>
+      </div>
     </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/6ec5c97f-embedded-linux_AW.svg",
-        alt="",
-        height="114",
-        width="189",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/d127abd7-safety+reliability.svg",
-        alt="",
-        height="180",
-        width="180",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <h2>
-        Try before you Pi
-      </h2>
-      <p class="p-heading--4">
-        Test drive safely on your laptop
-      </p>
-      <p>
-        Run a Virtual Ubuntu Appliance on any PC without affecting your existing system. Most appliances have a virtual version unless they depend on special hardware.
-      </p>
-      <p>
-        No need for a spare disk or board, just follow the steps and you'll be up and running in seconds. Virtual Ubuntu Appliances work on Ubuntu, Windows and macOS.
-      </p>
-      <p>
-        <a class="p-button" href="/appliance/vm">Try an instant appliance now</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
-
-  <div class="row">
-    <div class="col-7">
-      <h2>
-        App store easy
-      </h2>
-      <p class="p-heading--4">
-        An app or two for extra foo
-      </p>
-      <p>
-        Upgrade your appliance with extra apps. Try a new autopilot. Enjoy the latest game. Each appliance starts with the essential stuff. Add the sauce you like.
-      </p>
-      <p>
-        Enjoy the same huge app selection as Ubuntu, or get a dedicated store with unique apps for your specific thing. Publishers curate the store you see.
-      </p>
-      <p>
-        Ubuntu Appliances get apps and updates from our global backbone, just like millions of Ubuntu workstations, devices, laptops and servers every day.
-      </p>
-      <p>
-        <a class="p-button" href="https://snapcraft.io/store">Visit the Snap Store</a>
-      </p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/22f88d02-apps.svg",
-        alt="",
-        height="114",
-        width="200",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
-
-  <div class="row">
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
-        alt="",
-        height="180",
-        width="180",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <h2>
-        Secure by design
-      </h2>
-      <p class="p-heading--4">
-        Crisp. Clean. Carrier-grade. Core.
-      </p>
-      <p>
-        SecureBoot. Full disk encryption. Hardware crypto keys. An ironclad commitment to your peace of mind.
-      </p>
-      <p>
-        We toughened Ubuntu to harden these things. They bring their magic, we bring our mettle. Community or business-backed, both enjoy the same robust, secure Ubuntu Core.
-      </p>
-      <p>
-        Strict confinement and read-only packages keep bad code locked down. Certs and signatures for tamper-proof provenance. Full containerisation for no loose ends. And we've got your back on critical jobs with ten year updates guaranteed.
-      </p>
-      <p>
-        <a class="p-button " href="/core">Learn about Ubuntu Core</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-{# 2 by 2 section #}
-<section class="p-strip--square-lightsuru is-deep">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
-        alt="",
-        height="85",
-        width="149",
-        hi_def=True,
-        loading="auto",
-        attrs={"class": "u-hide--small"}
-        ) | safe
-      }}
-      <h2>
-        Clear privacy policies
-      </h2>
-      <p>
-        Every Ubuntu Appliance complies with EU data protection or California privacy law. Your personal data is precious. Your privacy even more so. Our mission is to defend them in this new world of ever-present sensor-driven software.
-      </p>
-      <p>
-        Voice-activated software and computer vision are amazing tools. We ensure those microphones and cameras only work for you.
-      </p>
-      <p>
-        <a href="/appliance/community">Learn about your privacy protection&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
-        alt="",
-        height="85",
-        width="85",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2>
-        Enterprise-grade control
-      </h2>
-      <p class="p-heading--4">
-        Define the flow of fixes across your whole estate.
-      </p>
-      <p>
-        Imagine a world where every firmware update was instantly available on any device. Imagine you could determine exactly when and where it rolled out. Imagine you knew the CVE status of everything you care about, everywhere, all the time.
-      </p>
-      <p>
-        That's the precision of every Ubuntu Appliance. Made for mission-critical. One dashboard, one practice, one process for your entire multi-vendor estate. With universal Ubuntu Core, your updates and security align from edge to cloud, no matter which hardware, no matter which brand.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <p class="u-sv3">
-     &nbsp;
-    </p>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/d82d3860-backup+boot+paths.svg",
-        alt="",
-        height="85",
-        width="85",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2>
-        Future proven
-      </h2>
-      <p class="p-heading--4">
-        Stable. Beta. RC. Edge. Get future fixes faster.
-      </p>
-      <p>
-        Every piece of software on your Ubuntu Appliance is offered in a set of streams. These channels offer all the current builds and - if the publisher allows - early access versions too.
-      </p>
-      <p>
-        Set your appliance to preview channels for a taste of future change before it's fully done. Choose a safe canary box, and catch the issues there. Switch software streams at any time, for any system, anywhere.
-      </p>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
-        alt="",
-        height="85",
-        width="63",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2>
-        Certified, Maintained or Experimental
-      </h2>
-      <p>
-        Some appliances are serious things, and you want to know that Canonical will keep them reliable, year after year. Those are marked 'certified', and they get constant testing and security coverage.
-      </p>
-      <p>
-        Other appliances have a company to keep the updates coming, for at least a certain time. Those are tagged 'maintained' and you can always see the minimum time assured of maintenance.
-      </p>
-      <p>
-        And then there are the crazy things, the community things, the experimental things. Enjoy those, but don't get too attached. If enough people love them then they'll get maintenance commitments soon enough.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <p class="u-sv3">
-     &nbsp;
-
-    </p>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/5552afb7-community-support.svg",
-        alt="",
-        height="85",
-        width="85",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2>
-        Community and Commercial
-      </h2>
-      <p>
-        Our open source community appliances get all the updates, benefits and care that goes into our mission-critical customers. That's Ubuntu. That's Canonical.
-      </p>
-      <p>
-        Whatever your appliance interests, we hope you will join the Ubuntu Discourse and make yourself heard. Share your ideas with the community, discuss and design new appliances, join one of our teams or teach others how to make the most of something special.
-      </p>
-      <p>
-        <a href="https://discourse.ubuntu.com/c/appliance">Join the discussion</a>
-      </p>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/ebac33ef-hardware_easy.svg",
-        alt="",
-        height="85",
-        width="149",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2>
-        Confidently compatible
-      </h2>
-      <p class="p-heading--4">
-        Choose your certified board or box
-      </p>
-      <p>
-        It takes a team to make this work. Canonical and appliance publishers, hardware vendors and open source communities work together to ensure your appliance is updated, safely, for years to come.
-      </p>
-      <p>
-        We test all the certified combinations of appliance image and device, every time we change the system, for a decade or more. You can relax and let Ubuntu Core keep you up to date year after year with the latest features and fixes, and never miss a beat.
-      </p>
-      <p>
-        <a href="/certified/iot">See Canonical-certified hardware</a>
-      </p>
-    </div>
-  </div>
-  <div class="u-no-fixed-width u-align--center">
-    <h3 class="u-no-max-width" style="padding-top: 3rem;">
-      <a href="/appliance">Browse the Ubuntu Appliance Portfolio&nbsp;&rsaquo;</a>
-    </h3>
-
-  </div>
-</section>
+  </section>
 
 {% endblock content %}
