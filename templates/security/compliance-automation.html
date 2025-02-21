@@ -556,4 +556,25 @@
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script>
+    function adjustScrollOffset() {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - offset;
+  
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }
+    }
+  
+    window.addEventListener("load", adjustScrollOffset);
+    window.addEventListener("hashchange", adjustScrollOffset);
+  </script>
 {% endblock content %}
