@@ -1,187 +1,187 @@
 {% extends "appliance/_base-appliance.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
 {% block title %}What is an Ubuntu Appliance?{% endblock %}
 
-{% block meta_description %}An Ubuntu Appliance is a system disk image which turns a Raspberry Pi or PC into a specialised appliance on Ubuntu Core. They are free to download and install, with clear privacy policies and ten years of security fixes.{% endblock %}
+{% block meta_description %}
+  An Ubuntu Appliance is a system disk image which turns a Raspberry Pi or PC into a specialized appliance on Ubuntu Core. They are free to download and install, with clear privacy policies and ten years of security fixes.
+{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1UM4K9n9SFNiWdmKIBnPGCsjLQrPSOnqZHMNIMwQ2CZI/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1UM4K9n9SFNiWdmKIBnPGCsjLQrPSOnqZHMNIMwQ2CZI/edit
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
 
-<section class="p-strip--suru-bottomed">
-  <div class="row">
-    <div class="col-8">
-      <h1>What is an Ubuntu Appliance?</h1>
-      <p>An Ubuntu Appliance turns a computer into a specialised appliance for home or work. It is a system disk image for a PC or Raspberry Pi, built for security and simplicity. Ubuntu Appliances have strong privacy policies and long term security maintenance guarantees. They are published by companies and open source communities, who follow the Ubuntu code of conduct and appliance guidelines, together with Canonical, the publisher of&nbsp;Ubuntu.</p>
-      <p><a href="/appliance/portfolio" class="p-button--positive">Download now</a></p>
-    </div>
-    <div class="col-4">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9c8d314f-what-is-an-appiance-header.svg",
-        alt="",
-        width="365",
-        height="300",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
+  {% call(slot) vf_hero(
+    title_text='What is an Ubuntu Appliance?',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        An Ubuntu appliance turns a computer into a dedicated, purpose-built smart device optimized for running a specific application or workload. It is a system disk image built for security and simplicity. Ubuntu appliances have strong privacy policies and long term security maintenance guarantees.
+      </p>
+      <p>
+        Companies and open source communities who publish appliances, follow our appliance guidelines and the <a href="/community/ethos/code-of-conduct">Ubuntu code of conduct</a>.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/appliance" class="p-button--positive">Browse appliances</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/997f3e4f-hero-updated.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-10">
-      <h2>Why are we hosting Ubuntu Appliances?</h2>
-      <p class="u-no-max-width">Software is everywhere in the modern home and office &mdash; in your fridge, in your vacuum cleaner, in your heating and lighting system. Software-based appliances enhance our modern lives. But they also represent a risk &mdash; of bad data practices, or bad software. Ubuntu Appliances set the standard for smart connected devices that meet consistent criteria for security, privacy, maintenance and operations.</p>
-      <p class="u-no-max-width">The Ubuntu Appliance mission is to enable secure, self-healing, smart things, everywhere. Open source is the backbone of the platform, and both open and commercial appliances co-exist in the ecosystem.</p>
-      <h3>Free to download and use</h3>
-      <p>All Ubuntu Appliances are free to download and install.</p>
+  <section class="p-section">
+    <hr class="is-fixed-width p-rule" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Why are we hosting
+          <br />
+          Ubuntu Appliances?
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Smart devices are everywhere - from your home to industrial settings. They make our lives easier, but can come with risks such as bad security or software management practices. Ubuntu appliances set the standard for smart devices that meet consistent criteria for security, privacy, maintenance, and operations.
+        </p>
+        <p>
+          The Ubuntu appliance mission is to enable secure, self-healing, smart things, everywhere. To achieve this mission, Ubuntu appliances are built with Ubuntu Core, the highly secure, fully containerized Linux with transactional updates and data snapshot guardrails that can always roll back to a known-good state
+        </p>
+        <p>All Ubuntu appliances are free to download and use.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>Easy to use and maintain</h2>
+      {%- endif -%}
 
-  <div class="row">
-    <div class="col-8">
-      <h2 class="u-sv3">We've taken care of everything for you</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3>Easy to install, low maintenance</h3>
-      <p>Each Ubuntu Appliance is a boot disk image. Install it on a spare disk with a disk imaging tool and boot from it. You will need a keyboard and monitor. Or <a href="/appliance/vm">give it a try in a virtual machine</a> on Windows, Mac or Linux. During startup you make yourself the owner and set up the appliance. That's it! Leave it running and it will take care of itself.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3>App store included<span class="u-hide--small"><br /><br /></span></h3>
-      <p>Ubuntu Appliances have an app store to upgrade them with extra features. Find retro games for your console, better routing on your mesh network, or a fancier autopilot for your quadcopter. Each app is strictly confined. Integration between apps is secure. Apps can be specific to an appliance, or published for many types of appliances.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3>Clear privacy policy<span class="u-hide--small"><br /><br /></span></h3>
-      <p>Every Ubuntu Appliance has a clear privacy policy which explains what data leaves the device, where it goes and who has access to it. The privacy policy must comply with global standards such as EU GDPR and California privacy law, and the appliance page makes it clear what commitments the publisher makes. If an appliance fails to meet that standard then it is removed from the portfolio.</p>
-    </div>
-  </div>
-</section>
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Simple setup</h3>
+      {%- endif -%}
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Security and simplicity, by design</h2>
-      <p>The Ubuntu Appliance goal is automatic widespread security without human supervision, in every building and on every street. Security is a many-layered endeavour &mdash; Ubuntu Appliances respond with defence in depth. Every aspect of an Ubuntu Appliance is built with security in mind:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Secure boot protocols defend against low-level attacks on system integrity.</li>
-        <li class="p-list__item is-ticked">Strict confinement of every application reduces the blast radius of a compromised or malicious application.</li>
-        <li class="p-list__item is-ticked">Transactional updates enable automatic security patches with rollback on failure.</li>
-        <li class="p-list__item is-ticked">Full disk encryption and hardware key management protect your data.</li>
-      </ul>
-      <p>Canonical scans every app for known vulnerabilities and proactively notifies community and commercial publishers to fix them. Canonical blocks any app that turns out to be malware, and keeps a rigorous log of all the artefacts used in the creation of every image and every component to fix them or analyse them in the future.</p>
-    </div>
-    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0b407650-security-simplicity-by-design.svg",
-        alt="",
-        width="242",
-        height="218",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9a3f63fa-automatic-system-updates-core.svg",
-        alt="",
-        width="270",
-        height="241",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h2>Automatic system updates</h2>
-      <p>All Ubuntu Appliances are Ubuntu Core, the highly secure, fully containerised Linux with transactional updates and data snapshot guardrails that can always roll back to a known-good state. Emergency repair mechanisms provide safety nets in the event of a bad update. Ubuntu Appliances evolve and improve automatically, every day, with no human intervention needed. Millions of devices use these mechanisms every day for critical software updates around the world. The underlying package delivery system optimises bandwidth and efficiency with compressed binary delta updates that reduce total traffic and speed up the delivery of critical fixes.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-rule" />
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>Enterprise grade security and&nbsp;control</h2>
-      <p>Control the flow of changes to enterprise Ubuntu Appliances with a local enterprise app store. Groups of devices are guaranteed a coherent view of updates, to ensure consistency in a critical cluster or highly available set. A local enterprise store can restrict the use of particular applications across your estate, or adjust the specific versions used by your devices. Enterprise Ubuntu Appliances typically use full disk encryption with hardware crypto keys to protect data at rest, and Secure Boot for system integrity at every stage of deployment and recycling of old hardware.</p>
-    </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/afd404f1-enterprise-security-control.svg",
-        alt="",
-        width="208",
-        height="249",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <h2>Built securely for the future</h2>
-  </div>
-  <div class="row">
-    <ul class="p-matrix p-matrix--two-col u-clearfix">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Long term security</h3>
-          <p class="p-matrix__desc">Ubuntu Core and the open source Ubuntu Appliances are securely maintained for ten years by Canonical to meet enterprise security and longevity requirements. Proprietary Ubuntu Appliances follow the maintenance commitment of the appliance vendor. Each appliance tells you exactly what commitment is being made, and for how long.</p>
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Each Ubuntu appliance is a boot disk image. Install it on a spare disk with a disk imaging tool and boot from it. Or <a href="/appliance/hardware#vm">give it a try in a virtual machine</a> on Windows, Mac, or Linux. During startup you make yourself the owner and set up the appliance. That’s it! Leave it running and it will take care of itself.
+        </p>
+        <div class="p-cta-block">
+          <a href="/appliance/hardware#vm">Try an instant appliance now&nbsp;&rsaquo;</a>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Built on trusted infrastructure</h3>
-          <p class="p-matrix__desc">All Ubuntu Appliance images and open source components are assembled on the same secure infrastructure as Ubuntu. Proprietary components are built by the official vendor for that application, just like the software you download directly from them. Since an Ubuntu Appliance is made of digitally signed packages, you always know exactly where each component comes from, when it was updated, and which versions are available.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">A growing app ecosystem</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Ubuntu papliances developers can leverage the rich ecosystem of applications available in the Snap Store. Find retro games for your console, better routing on your mesh network, or a fancier autopilot for your quadcopter. Each app is strictly confined. Apps can be specific to an appliance, or published for many types of appliances.
+        </p>
+        <div class="p-cta-block">
+          <a href="https://snapcraft.io/store">Discover applications for your appliance&nbsp;&rsaquo;</a>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Always fresh and future-proof</h3>
-          <p class="p-matrix__desc">Appliance software components follow stable channels by default. They can follow beta or candidate channels for pre-release testing and early access to future features. The device chooses stable versions when there is nothing new to test, and rolls back from failed updates automatically. Automatic healing makes it safer to live on the edge.</p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Clear privacy policy</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Every Ubuntu appliance has a clear privacy policy that explains what data leaves the device, where it goes, and who can access it. The privacy policy must comply with global standards such as EU GDPR and California privacy law. We remove appliances that don’t meet privacy standards.
+        </p>
+        <div class="p-cta-block">
+          <a href="/appliance/community">Learn about your privacy protection&nbsp;&rsaquo;</a>
         </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Standardised experience</h3>
-          <p class="p-matrix__desc">All Ubuntu Appliances share common capabilities and consistent operations. The platform guarantees a standard approach to software updates and versioning, and evolution to newer platform versions. Multiple devices from multiple manufacturers all fit into a single management framework, and receive updates consistently across the estate.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Community and commercial, together</h3>
-          <p class="p-matrix__desc">Ubuntu Appliances bring enterprise and community together. Ubuntu Core is completely open-source, so open source appliances are true free software devices. Commercial software appliances reuse the same mechanisms, and by doing so enhance and expand the capabilities of the free platform enjoyed by community publishers.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Widely compatible</h3>
-          <p class="p-matrix__desc">Ubuntu Appliances benefit from the testing and investment that makes Ubuntu so popular on PCs and servers. Canonical, the publisher of Ubuntu, works with all major manufacturers to enable and certify a wide range of hardware. As they add hardware for Ubuntu server or desktop, you gain more options for your appliances as well. Certified Ubuntu Appliances are continuously tested to work perfectly on certified boards.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Long term security</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          Ubuntu appliances are securely maintained for ten years by Canonical to meet enterprise security and longevity requirements. Proprietary Ubuntu appliances follow the maintenance commitment of the appliance vendor. Each appliance tells you exactly what commitment is being made, and for how long.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+
+    <div class="u-fixed-width">
+      <div class="p-image-container is-cinematic">
+        {{ image(url="https://assets.ubuntu.com/v1/75fedc37-Easy to use and maintain.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    {%- call(slot) vf_tiered_list(is_list_full_width_on_tablet=false) -%}
+      {%- if slot == 'title' -%}
+        <h2>
+          Security and simplicity,
+          <br />
+          by design
+        </h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Built on trusted infrastructure</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>Every aspect of an Ubuntu Appliance is built with security in mind:</p>
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided u-no-margin--bottom">
+          <li class="p-list__item is-ticked">Secure boot protocols defend against low-level attacks on system integrity</li>
+          <li class="p-list__item is-ticked">
+            Strict confinement of every application reduces the blast radius of a compromised or malicious application
+          </li>
+          <li class="p-list__item is-ticked">
+            Transactional updates enable automatic security patches with rollback on failure
+          </li>
+          <li class="p-list__item is-ticked">Full disk encryption and hardware key management protect your data</li>
+        </ul>
+        <p>
+          We check every appliance for vulnerabilities and tell creators to fix any issues we find. If we discover harmful apps, we block them right away.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Standardized experience</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          All Ubuntu appliances share common capabilities and consistent operations. The platform guarantees a standard approach to software updates and versioning, and evolution to newer platform versions. Multiple devices from multiple manufacturers all fit into a single management framework, and receive updates consistently across the estate.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
 
 {% endblock content %}
