@@ -6,20 +6,24 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Z63eMCe9o4Onk2ezPFLPDTbI-uJezAOzI-aSpXmZ5lc/edit#{% endblock meta_copydoc %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block content %}
-<section class="p-strip--suru-half-and-half-reversed is-dark">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Ubuntu Masters:<br />the masters speak</h1>
-      <p>Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from previous Ubuntu Masters speakers, featuring inspiring doers who are solving complex industry-wide challenges.</p>
-    </div>
-    <div class="col-6 u-hide--small u-align--right">
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Masters:<br />the masters speak',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from previous Ubuntu Masters speakers, featuring inspiring doers who are solving complex industry-wide challenges.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <iframe title="Master conference intro" class="u-embedded-media__element" src="https://player.vimeo.com/video/425889911" width="504" height="280" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
-    </div>
-  </div>
-</section>
+    {% endif -%}
+  {% endcall -%}
 
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
@@ -84,11 +88,11 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>
-        Mastering multicloud with  SLURM and Juju
+        Mastering multicloud with SLURM and Juju
       </h2>
       <p>
         <strong>
-          Erik Lonroth, Tech Lead HPC & Open Source Forum Chairman<br>
+          Erik Lonroth, Tech Lead HPC &amp; Open Source Forum Chairman<br>
           Scania
         </strong>
       </p>
@@ -103,7 +107,7 @@
     </div>
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="Mastering multicloud for HPC systems" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/SGrRqCuiT90" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="Mastering multicloud for HPC systems" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/SGrRqCuiT90" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -114,7 +118,7 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="Streamlined provisioning of IoT devices" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/8u-sM4xpfZE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="Streamlined provisioning of IoT devices" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/8u-sM4xpfZE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <div class="col-6">
@@ -163,7 +167,7 @@
     </div>
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="The open (source) road to smarter robots" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ma1hzMf6YO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="The open (source) road to smarter robots" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/Ma1hzMf6YO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -178,7 +182,7 @@
     <div class="row u-equal-height p-reverse-cols--small">
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Scaling Years of Growth in One Week" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/WvZB3xn1bWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Scaling Years of Growth in One Week" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/WvZB3xn1bWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-6">
@@ -210,7 +214,7 @@
       </div>
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="An introudction to edge computing for computer vision and robotics" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/txNszs1AJf4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="An introudction to edge computing for computer vision and robotics" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/txNszs1AJf4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -222,7 +226,7 @@
     <div class="row u-equal-height p-reverse-cols--small">
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Building the data centre" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/dSZqax12Q7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Building the data centre" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/dSZqax12Q7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-6">
@@ -246,7 +250,7 @@
     <div class="row u-equal-height p-reverse-cols--small">
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Netflix talks about Extended BPF" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/7pmXdG8-7WU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Netflix talks about Extended BPF" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/7pmXdG8-7WU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
 
@@ -295,7 +299,7 @@
 
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Adobe meets huge demand with a lean approach" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/IUgODRm9Soc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Adobe meets huge demand with a lean approach" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/IUgODRm9Soc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -307,7 +311,7 @@
     <div class="row u-equal-height p-reverse-cols--small">
       <div class="col-6">
         <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/SwlU4U-BWRo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/SwlU4U-BWRo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
 
