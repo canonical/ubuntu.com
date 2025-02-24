@@ -25,7 +25,8 @@
     "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
     "check-prettier": "prettier -c 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
-    "format-prettier": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'"
+    "format-prettier": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'",
+    "percy": "percy snapshot snapshots.yml"
   },
   "keywords": [
     "website",
@@ -90,6 +91,7 @@
     "@canonical/global-nav": "3.6.4",
     "@canonical/latest-news": "1.5.0",
     "@canonical/react-components": "^0.59.1",
+    "@percy/cli": "^1.30.7",
     "@reduxjs/toolkit": "2.2.7",
     "@sentry/react": "^8.19.0",
     "@sentry/tracing": "^7.114.0",
