@@ -3,7 +3,7 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 {% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
-{% block title %}Ubuntu Appliance Community - Governance and Policies{% endblock %}
+{% block title %}Community | Appliance{% endblock %}
 
 {% block meta_description %}
   Join the Ubuntu community by developing, discussing or even simply downloading one of the Ubuntu appliances. Anyone can create an Ubuntu appliance. Have your project benefit from all of the goodness that goes into Ubuntu.
@@ -20,7 +20,7 @@
 {% block content %}
 
   {% call(slot) vf_hero(
-    title_text='Welcome to our<br /> Ubuntu appliance community',
+    title_text='Welcome to our<br class="u-hide--small" /> Ubuntu appliance community',
     layout='50/50'
     ) -%}
     {%- if slot == 'description' -%}
@@ -51,13 +51,13 @@
       <div class="col">
         <h2>
           New Ubuntu appliance ideas
-          <br />
+          <br class="u-hide--small" />
           and proposals
         </h2>
       </div>
       <div class="col">
         <p>To suggest a new Ubuntu appliance:</p>
-        <hr class="p-rule--muted" />
+        <hr class="p-rule--muted u-no-margin--bottom" />
         <ol class="p-list--divided u-no-margin--bottom">
           <li class="p-list__item">
             <a href="https://discourse.ubuntu.com/c/appliance">Share your idea</a> with a <a href="https://discourse.ubuntu.com/c/appliances/proposed-new-appliances">Proposed New appliance</a> topic to get community feedback
@@ -70,6 +70,7 @@
           </li>
           <li class="p-list__item">Optimize your appliance images for devices you want to support</li>
         </ol>
+        <p>Your Proposed New appliance topic is where we coordinate image creation and inclusion.</p>
       </div>
     </div>
   </section>
