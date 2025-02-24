@@ -397,14 +397,14 @@ class UAContractsAPI:
     def get_cue_user_bans(self) -> dict:
         return self._request(
             method="get",
-            path=f"v1/cue/user-ban",
+            path="v1/cue/user-ban",
             error_rules=["default"],
         ).json()
 
     def put_cue_user_ban(self, user_ban) -> dict:
         return self._request(
             method="put",
-            path=f"v1/cue/user-ban",
+            path="v1/cue/user-ban",
             json={
                 "email": user_ban["email"],
                 "reason": user_ban["reason"],
