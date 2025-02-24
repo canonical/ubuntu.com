@@ -13,7 +13,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const triggeringHash = "#get-in-touch";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
-    const contactForm = document.getElementById("contact-form-container");
     let returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
@@ -22,7 +21,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
         if (window.location.pathname) {
-          contactForm.setAttribute("data-return-url", returnData);
+          formContainer.setAttribute("data-return-url", returnData);
         }
 
         if (contactButton.dataset.formLocation) {
@@ -220,6 +219,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
+        addDataLayerConsentInfo();
         if (!isMultipage) {
           comment.value = createMessage(true);
         }
@@ -548,6 +548,12 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         submitButton.disabled = true;
         submitButton.innerText = "";
         submitButton.appendChild(spinnerIcon);
+      }
+
+
+      function addDataLayerConsentInfo() {
+        const dataLayer = window.dataLayer || [];
+        console.log("Consent info", dataLayer[0][2]);
       }
 
       function fireLoadedEvent() {
