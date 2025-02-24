@@ -150,7 +150,7 @@ from webapp.views import (
     appliance_install,
     appliance_portfolio,
     build_vulnerabilities,
-    build_vulnerabilities_index,
+    build_vulnerabilities_list,
     process_active_vulnerabilities,
     build_engage_index,
     build_engage_page,
@@ -562,7 +562,16 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/security/vulnerabilities",
-    view_func=build_vulnerabilities_index(security_vulnerabilities),
+    endpoint="vulnerabilities_list",
+    view_func=build_vulnerabilities_list(security_vulnerabilities),
+)
+
+app.add_url_rule(
+    "/security/vulnerabilities/view-all",
+    endpoint="vulnerabilities_list-all",
+    view_func=build_vulnerabilities_list(
+        security_vulnerabilities, "/view-all"
+    ),
 )
 
 app.add_url_rule(
