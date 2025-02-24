@@ -1218,16 +1218,14 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 )
             )
 
-            # Add slug to each vulnerability
             for vuln in vulnerabilities:
+                # Add slug
                 vuln_id = vuln["id"]
                 if vuln_id in topics:
                     vuln["slug"] = topics[vuln_id]
-
-            # Add year to each vulnerability
-            for v in vulnerabilities:
-                dt = datetime.strptime(v["published"], "%d/%m/%Y")
-                v["year"] = dt.year
+                # Add year
+                dt = datetime.strptime(vuln["published"], "%d/%m/%Y")
+                vuln["year"] = dt.year
 
             # Make sure they are in order of published date
             vulnerabilities.sort(
