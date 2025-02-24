@@ -1318,7 +1318,7 @@ def render_form(form, template_path, child=False):
                 )
         except jinja2.exceptions.TemplateNotFound:
             flask.abort(
-                404, description=f"Template {form['templatePath']} not found."
+                404, description=f"Template {template_path} not found."
             )
 
     return wrapper_func
