@@ -3,7 +3,7 @@
 # description: Description of the resource
 # hr: Whether to show a hr above, defaults to true
 
-{%- macro resource_section(date, hr=True) -%}
+{%- macro resource_section(date, hr=True, title_header=None) -%}
   <div class="p-section--shallow">
     {%- if hr -%}
       <hr class="p-rule--muted" />
@@ -31,9 +31,15 @@
 
       <div class="col-6 col-medium-3">
         {%- if title_link|trim|length > 0 -%}
-          <h2 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
-            {{ title_link | safe }}
-          </h2>
+          {%- if title_header == "h3" -%}
+            <h3 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+              {{ title_link | safe }}
+            </h3>
+          {%- else -%}
+            <h2 class="p-heading--4 u-hide--medium" style="padding-top: 0.275rem;">
+              {{ title_link | safe }}
+            </h2>
+          {%- endif -%}
         {%- endif -%}
 
         {%- set description = caller("description") -%}
