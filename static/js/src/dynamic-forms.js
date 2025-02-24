@@ -193,6 +193,25 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
+    function setDataLayerConsentInfo() {
+      const modalForm = document.querySelector(".js-modal-form");
+      const dataLayer = window.dataLayer || [];
+      if (dataLayer.length > 0 && dataLayer[0][2]) {
+        const consentInfoValue = JSON.stringify(dataLayer[0][2]);
+        
+        var consentInfo = document.createElement("input");
+        consentInfo.setAttribute("type", "text");
+        consentInfo.setAttribute("name", "Google_Consent_Mode__c");
+        consentInfo.setAttribute("value", consentInfoValue);
+        consentInfo.setAttribute("hidden", "true");
+        consentInfo.setAttribute("class", "u-no-margin u-no-padding");
+
+        if (!modalForm.querySelector('input[name="Google_Consent_Mode__c"]')) {
+          modalForm.appendChild(consentInfo);
+        }
+      };
+    }
+
     function initialiseForm() {
       let contactIndex = 1;
       const contactModal = document.getElementById(contactModalSelector);
@@ -219,7 +238,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
-        addDataLayerConsentInfo();
+        setDataLayerConsentInfo();
         if (!isMultipage) {
           comment.value = createMessage(true);
         }
@@ -548,12 +567,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         submitButton.disabled = true;
         submitButton.innerText = "";
         submitButton.appendChild(spinnerIcon);
-      }
-
-
-      function addDataLayerConsentInfo() {
-        const dataLayer = window.dataLayer || [];
-        console.log("Consent info", dataLayer[0][2]);
       }
 
       function fireLoadedEvent() {

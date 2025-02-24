@@ -943,6 +943,10 @@ def marketo_submit():
     except Exception:
         pass
 
+    enrichment_fields["Google_Consent_Mode__c"] = form_fields.pop(
+        "Google_Consent_Mode__c"
+    )
+
     enriched_payload = {
         "formId": "4198",
         "input": [{"leadFormFields": enrichment_fields}],
