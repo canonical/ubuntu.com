@@ -284,3 +284,23 @@ requiredFieldset?.forEach((fieldset) => {
     requiredCheckbox(fieldset, event.target);
   });
 });
+
+function setDataLayerConsentInfo() {
+  const staticForm = document.getElementById("about-you");
+  const dataLayer = window.dataLayer || [];
+  if (dataLayer.length > 0 && dataLayer[0][2]) {
+    const consentInfoValue = JSON.stringify(dataLayer[0][2]);
+
+    var consentInfo = document.createElement("input");
+    consentInfo.setAttribute("type", "text");
+    consentInfo.setAttribute("name", "Google_Consent_Mode__c");
+    consentInfo.setAttribute("value", consentInfoValue);
+    consentInfo.setAttribute("hidden", "true");
+    consentInfo.setAttribute("class", "u-no-margin u-no-padding");
+
+    if (!staticForm.querySelector('input[name="Google_Consent_Mode__c"]')) {
+      staticForm.appendChild(consentInfo);
+    }
+  }
+}
+setDataLayerConsentInfo();

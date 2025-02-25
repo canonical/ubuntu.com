@@ -198,7 +198,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       const dataLayer = window.dataLayer || [];
       if (dataLayer.length > 0 && dataLayer[0][2]) {
         const consentInfoValue = JSON.stringify(dataLayer[0][2]);
-        
+
         var consentInfo = document.createElement("input");
         consentInfo.setAttribute("type", "text");
         consentInfo.setAttribute("name", "Google_Consent_Mode__c");
@@ -209,7 +209,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         if (!modalForm.querySelector('input[name="Google_Consent_Mode__c"]')) {
           modalForm.appendChild(consentInfo);
         }
-      };
+      }
     }
 
     function initialiseForm() {
