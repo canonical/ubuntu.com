@@ -6,21 +6,26 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Z63eMCe9o4Onk2ezPFLPDTbI-uJezAOzI-aSpXmZ5lc/edit#{% endblock meta_copydoc %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block content %}
-<section class="p-strip--suru-half-and-half-reversed is-dark">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Ubuntu Masters:<br />the masters speak</h1>
-      <p>Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from previous Ubuntu Masters speakers, featuring inspiring doers who are solving complex industry-wide challenges.</p>
-    </div>
-    <div class="col-6 u-hide--small u-align--right">
+  {% call(slot) vf_hero(
+    title_text='Ubuntu Masters:<br />the masters speak',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from previous Ubuntu Masters speakers, featuring inspiring doers who are solving complex industry-wide challenges.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
       <div class="u-embedded-media">
         <iframe title="Master conference intro" class="u-embedded-media__element" src="https://player.vimeo.com/video/425889911" width="504" height="280" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
-    </div>
-  </div>
-</section>
+    {% endif -%}
+  {% endcall -%}
 
+<hr class="p-rule" />
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <p class="u-sv3 p-heading--3"><strong>Ubuntu Masters 4</strong>: Innovating for the future</p>
@@ -84,11 +89,11 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>
-        Mastering multicloud with  SLURM and Juju
+        Mastering multicloud with SLURM and Juju
       </h2>
       <p>
         <strong>
-          Erik Lonroth, Tech Lead HPC & Open Source Forum Chairman<br>
+          Erik Lonroth, Tech Lead HPC &amp; Open Source Forum Chairman<br />
           Scania
         </strong>
       </p>
@@ -103,7 +108,7 @@
     </div>
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="Mastering multicloud for HPC systems" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/SGrRqCuiT90" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="Mastering multicloud for HPC systems" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/SGrRqCuiT90" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -114,7 +119,7 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="Streamlined provisioning of IoT devices" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/8u-sM4xpfZE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="Streamlined provisioning of IoT devices" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/8u-sM4xpfZE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <div class="col-6">
@@ -123,7 +128,7 @@
       </h2>
       <p>
         <strong>
-          Giancarlo Fanelli, CTO & Andrea Rossali, Senior DevOps Engineer<br>
+          Giancarlo Fanelli, CTO & Andrea Rossali, Senior DevOps Engineer<br />
           Domotz
         </strong>
       </p>
@@ -148,7 +153,7 @@
       </h2>
       <p>
         <strong>
-          Zachary Keeton, Yonder Group Lead<br>
+          Zachary Keeton, Yonder Group Lead<br />
           Plus One Robotics
         </strong>
       </p>
@@ -163,168 +168,169 @@
     </div>
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-        <iframe title="The open (source) road to smarter robots" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ma1hzMf6YO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe title="The open (source) road to smarter robots" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/Ma1hzMf6YO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h3><strong>Ubuntu Masters 2</strong>: The virtual conference</h3>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h3><strong>Ubuntu Masters 2</strong>: The virtual conference</h3>
+    </div>
+  </div>
+
+  <div class="row u-equal-height p-reverse-cols--small">
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="Scaling Years of Growth in One Week" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/WvZB3xn1bWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
+    <div class="col-6">
+      <h2>Scaling years of growth in one week</h2>
+      <p>Building a high performance global internet edge using Ubuntu and open source</p>
+      <p class="p-heading--5">
+        Rob Cameron, Technical Director, Cloud Services<br />
+        Adam Mills, Principal Engineer<br />
+        Roblox
+      </p>
+      <p>Hear how Roblox scaled years worth of traffic growth in just one week during a time when they needed to rapidly scale up to meet the needs of their users.</p>
+      <p><a href="https://maas.io/">Find out more about MAAS</a></p>
+      <p class="u-no-margin--bottom"><a href="/internet-of-things">Find out more about IoT&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 
-    <div class="row u-equal-height p-reverse-cols--small">
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Scaling Years of Growth in One Week" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/WvZB3xn1bWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="col-6">
-        <h2>Scaling years of growth in one week</h2>
-        <p>Building a high performance global internet edge using Ubuntu and open source</p>
-        <p class="p-heading--5">
-          Rob Cameron, Technical Director, Cloud Services<br />
-          Adam Mills, Principal Engineer<br />
-          Roblox
-        </p>
-        <p>Hear how Roblox scaled years worth of traffic growth in just one week during a time when they needed to rapidly scale up to meet the needs of their users.</p>
-        <p><a href="https://maas.io/">Find out more about MAAS</a></p>
-        <p class="u-no-margin--bottom"><a href="/internet-of-things">Find out more about IoT&nbsp;&rsaquo;</a></p>
+  <div class="u-fixed-width">
+    <hr style="margin: 2rem 0;" />
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>An introduction to edge computing for computer vision and robotics</h2>
+      <p class="p-heading--5">
+        Sean Kelly, Senior Software Engineer<br />
+        ifm
+      </p>
+      <p>This is an introductory look at how distributed and edge computing has enhanced computer vision and sensor fusion workloads. Hear about system architecture design choices and practical examples for deployment.</p>
+    </div>
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="An introudction to edge computing for computer vision and robotics" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/txNszs1AJf4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
+  </div>
 
-    <div class="u-fixed-width">
-      <hr style="margin: 2rem 0;" />
-    </div>
+  <div class="u-fixed-width">
+    <hr style="margin: 2rem 0;" />
+  </div>
 
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h2>An introduction to edge computing for computer vision and robotics</h2>
-        <p class="p-heading--5">
-          Sean Kelly, Senior Software Engineer<br />
-          ifm
-        </p>
-        <p>This is an introductory look at how distributed and edge computing has enhanced computer vision and sensor fusion workloads. Hear about system architecture design choices and practical examples for deployment.</p>
-      </div>
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="An introudction to edge computing for computer vision and robotics" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/txNszs1AJf4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+  <div class="row u-equal-height p-reverse-cols--small">
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="Building the data centre" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/dSZqax12Q7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-
-    <div class="u-fixed-width">
-      <hr style="margin: 2rem 0;" />
+    <div class="col-6">
+      <h2>Building the data centre: Implementing self-service for large scale operations</h2>
+      <p class="p-heading--5">
+        Joshua McClintock, MTS, Systems Design Engineering<br />
+        T-Mobile
+      </p>
+      <p>Joshua talks about design considerations when implementing MAAS as the foundation of a bare metal self - service offering in a large enterprise, including examples in play.</p>
     </div>
+  </div>
+</section>
 
-    <div class="row u-equal-height p-reverse-cols--small">
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Building the data centre" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/dSZqax12Q7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="col-6">
-        <h2>Building the data centre: Implementing self-service for large scale operations</h2>
-        <p class="p-heading--5">
-          Joshua McClintock, MTS, Systems Design Engineering<br />
-          T-Mobile
-        </p>
-        <p>Joshua talks about design considerations when implementing MAAS as the foundation of a bare metal self - service offering in a large enterprise, including examples in play.</p>
-      </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h3><strong>Ubuntu Masters 1</strong>: The California launch</h3>
     </div>
-  </section>
+  </div>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
-        <h3><strong>Ubuntu Masters 1</strong>: The California launch</h3>
-      </div>
-    </div>
-
-    <div class="row u-equal-height p-reverse-cols--small">
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Netflix talks about Extended BPF" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/7pmXdG8-7WU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-
-      <div class="col-6">
-        <h2>Extended BPF: A new way to understand software</h2>
-
-        <p class="p-heading--5">
-          Brendan Gregg, Netflix<br />
-          Senior Performance Architect
-        </p>
-
-        <p>BPF changes a long-standing model of operating systems, adding a new interface that exists in parallel to syscalls and is used by new kernel-mode applications. The result is optimal capacity planning, security analysis and performance wins.</p>
-
-        <p>
-          <a href="/server">Find out more about Ubuntu Server&nbsp;&rsaquo;</a>
-        </p>
-
-        <p class="u-no-margin--bottom">
-          <a href="http://www.brendangregg.com/">Access Extended BPF resources</a>
-        </p>
+  <div class="row u-equal-height p-reverse-cols--small">
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="Netflix talks about Extended BPF" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/7pmXdG8-7WU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
 
-    <div class="u-fixed-width">
-      <hr style="margin: 2rem 0;" />
+    <div class="col-6">
+      <h2>Extended BPF: A new way to understand software</h2>
+
+      <p class="p-heading--5">
+        Brendan Gregg, Netflix<br />
+        Senior Performance Architect
+      </p>
+
+      <p>BPF changes a long-standing model of operating systems, adding a new interface that exists in parallel to syscalls and is used by new kernel-mode applications. The result is optimal capacity planning, security analysis and performance wins.</p>
+
+      <p>
+        <a href="/server">Find out more about Ubuntu Server&nbsp;&rsaquo;</a>
+      </p>
+
+      <p class="u-no-margin--bottom">
+        <a href="https://www.brendangregg.com/">Access Extended BPF resources</a>
+      </p>
     </div>
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h2>Scaling and delivering applications with high performance and low friction</h2>
+  </div>
 
-        <p class="p-heading--5">
-          Joe Sandoval, Adobe Ad Platform<br />
-          Site Reliability Engineering Manager
-        </p>
+  <div class="u-fixed-width">
+    <hr style="margin: 2rem 0;" />
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Scaling and delivering applications with high performance and low friction</h2>
 
-        <p>How do you support a diverse infrastructure that spans six data centres, three continents and the public cloud? Adobe uses open-source technologies, including Ubuntu, Kubernetes and OpenStack, to craft a feature-rich platform that developers can build on to best serve their customers. </p>
+      <p class="p-heading--5">
+        Joe Sandoval, Adobe Ad Platform<br />
+        Site Reliability Engineering Manager
+      </p>
 
-        <p>
-          <a href="/kubernetes">Find out more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a>
-        </p>
+      <p>How do you support a diverse infrastructure that spans six data centres, three continents and the public cloud? Adobe uses open-source technologies, including Ubuntu, Kubernetes and OpenStack, to craft a feature-rich platform that developers can build on to best serve their customers. </p>
 
-        <p class="u-no-margin--bottom">
-          <a href="/openstack">Find out more about OpenStack on Ubuntu&nbsp;&rsaquo;</a>
-        </p>
-      </div>
+      <p>
+        <a href="/kubernetes">Find out more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a>
+      </p>
 
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="Adobe meets huge demand with a lean approach" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/IUgODRm9Soc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
+      <p class="u-no-margin--bottom">
+        <a href="/openstack">Find out more about OpenStack on Ubuntu&nbsp;&rsaquo;</a>
+      </p>
     </div>
 
-    <div class="u-fixed-width">
-      <hr style="margin: 2rem 0;" />
-    </div>
-
-    <div class="row u-equal-height p-reverse-cols--small">
-      <div class="col-6">
-        <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
-          <iframe title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/SwlU4U-BWRo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-
-      <div class="col-6">
-        <h2>Migration path to Linux container orchestration on Ubuntu</h2>
-
-        <p class="p-heading--5">
-          Rob Cameron, Roblox<br />
-          Technical Director for Cloud Services
-        </p>
-
-        <p>Roblox moved its game servers from Windows to Linux to reduce costs and create a better player experience. The work included the migration to containerised workloads (approximately 200k) in a very short timeframe. The infrastructure capabilities found with MAAS and Ubuntu with an updated kernel were two of the components that contributed to success as part of the path to full orchestration.</p>
-
-        <p class="u-no-margin--bottom">
-          <a href="https://maas.io/">Find out more about MAAS</a>
-        </p>
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="Adobe meets huge demand with a lean approach" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/IUgODRm9Soc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr style="margin: 2rem 0;" />
+  </div>
+
+  <div class="row u-equal-height p-reverse-cols--small">
+    <div class="col-6">
+      <div class="u-embedded-media u-vertically-center--direct" style="margin-left: auto; margin-right: auto; max-width: 100%; width: 466px;">
+        <iframe title="How Roblox went from Windows to Ubuntu in 7 days for edge compute nodes" class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/SwlU4U-BWRo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <h2>Migration path to Linux container orchestration on Ubuntu</h2>
+
+      <p class="p-heading--5">
+        Rob Cameron, Roblox<br />
+        Technical Director for Cloud Services
+      </p>
+
+      <p>Roblox moved its game servers from Windows to Linux to reduce costs and create a better player experience. The work included the migration to containerised workloads (approximately 200k) in a very short timeframe. The infrastructure capabilities found with MAAS and Ubuntu with an updated kernel were two of the components that contributed to success as part of the path to full orchestration.</p>
+
+      <p class="u-no-margin--bottom">
+        <a href="https://maas.io/">Find out more about MAAS</a>
+      </p>
+    </div>
+  </div>
+</section>
   {% endblock %}
