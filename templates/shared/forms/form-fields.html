@@ -19,7 +19,7 @@
 
       <div class="p-section">
         <hr class="p-rule is-fixed-width" />
-        <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% elif fieldset.isRequired and fieldset.inputType == 'checkbox' %} js-required-checkbox{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %}"
+        <fieldset class="p-fieldset-section{% if fieldset.inputType == 'checkbox-visibility' %} js-toggle-checkbox-visibility{% elif fieldset.isRequired and fieldset.inputType == 'checkbox' %} js-required-checkbox{% elif fieldset.inputType == 'radio' %} js-remove-radio-names{% endif %} {% if fieldset.inputType == 'checkbox' or fieldset.inputType == 'checkbox-visibility' %}js-remove-checkbox-names{% endif %}"
                   id="{{ fieldset.id }}"
                   aria-labelledby="{{ fieldset.id }}">
           <div class="row--50-50 {% if not fieldset.noCommentsFromLead %}js-formfield{% endif %}">
@@ -72,19 +72,33 @@
                           <input {% if fieldset.isRequired %}required{% endif %}
                                  class="p-radio__input"
                                  type="radio"
+                                 id="{{ field.id }}"
+                                 name="{{ fieldset_inputName }}"
                                  aria-labelledby="{{ field.id }}"
                                  name="{{ fieldset.inputName }}"
                                  value="{{ field.value }}" />
-                          <span class="p-radio__label" id="{{ field.id }}">{{ field.label }}</span>
+                          <span class="p-radio__label">{{ field.label }}</span>
                         </label>
+                        {% if field.hasTextarea %}
+                          <textarea class="js-other-input u-hide"
+                                    data-input-id="{{ field_id }}"
+                                    id="{{ field_id }}-textarea"></textarea>
+                        {% endif %}
                       {% elif field.type == "checkbox" %}
                         <label class="p-checkbox">
                           <input class="p-checkbox__input js-checkbox-visibility"
                                  type="checkbox"
+                                 id="{{ field.id }}"
+                                 name="{{ fieldset_inputName }}"
                                  aria-labelledby="{{ field.label }}"
                                  value="{{ field.value }}" />
-                          <span class="p-checkbox__label" id="{{ field.id }}">{{ field.label }}</span>
+                          <span class="p-checkbox__label">{{ field.label }}</span>
                         </label>
+                        {% if field.hasTextarea %}
+                          <textarea class="js-other-input u-hide"
+                                    data-input-id="{{ field_id }}"
+                                    id="{{ field_id }}-textarea"></textarea>
+                        {% endif %}
                       {% elif field.fieldTitle is defined and field.fieldTitle|length > 0 %}
                         <div class="p-section--shallow">
                           <strong>{{ field.fieldTitle }}</strong>
