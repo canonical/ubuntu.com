@@ -193,8 +193,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
-    function setDataLayerConsentInfo() {
-      const modalForm = document.querySelector(".js-modal-form");
+    function setDataLayerConsentInfo(form) {
       const dataLayer = window.dataLayer || [];
       if (dataLayer.length > 0 && dataLayer[0][2]) {
         const consentInfoValue = JSON.stringify(dataLayer[0][2]);
@@ -206,8 +205,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         consentInfo.setAttribute("hidden", "true");
         consentInfo.setAttribute("class", "u-no-margin u-no-padding");
 
-        if (!modalForm.querySelector('input[name="Google_Consent_Mode__c"]')) {
-          modalForm.appendChild(consentInfo);
+        if (!form.querySelector('input[name="Google_Consent_Mode__c"]')) {
+          form.appendChild(consentInfo);
         }
       }
     }
@@ -238,7 +237,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
-        setDataLayerConsentInfo();
+        setDataLayerConsentInfo(e.target);
         if (!isMultipage) {
           comment.value = createMessage(true);
         }

@@ -944,7 +944,7 @@ def marketo_submit():
         pass
 
     enrichment_fields["Google_Consent_Mode__c"] = form_fields.pop(
-        "Google_Consent_Mode__c"
+        "Google_Consent_Mode__c", None
     )
 
     enriched_payload = {
