@@ -27,7 +27,7 @@
   <section class="p-section--shallow u-sv-3">
     <div class="u-fixed-width">
       <div class="p-tabs js-tabbed-content">
-        <div class="p-tabs__list" role="tablist" aria-label="Juju technology">
+        <div class="p-tabs__list" role="tablist" aria-label="Certified hardware">
           <div class="p-tabs__item">
             <h2 class="p-tabs__link p-heading--3"
                 tabindex="0"
@@ -302,7 +302,7 @@
       </div>
     </section>
 
-    {% with for="Raspberry Pi" %}
+    {% with hardware="Raspberry Pi" %}
       {% include "/appliance/shared/_certified-appliances.html" %}
     {% endwith %}
 
@@ -459,7 +459,8 @@
                 <div class="p-equal-height-row__item">
                   <div class="u-sv1"></div>
                   <hr class="p-rule--muted u-hide--large" />
-                  <p class="p-button is-disabled">Discontinued</p>
+                  <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html"
+                     class="p-button">Product details</a>
                 </div>
               </div>
             </div>
@@ -468,7 +469,7 @@
       </div>
     </section>
 
-    {% with for="Intel NUC" %}
+    {% with hardware="Intel NUC" %}
       {% include "/appliance/shared/_certified-appliances.html" %}
     {% endwith %}
   </div>
@@ -501,7 +502,7 @@
       </div>
     </section>
 
-    {% with for="VM" %}
+    {% with hardware="VM" %}
       {% include "/appliance/shared/_certified-appliances.html" %}
     {% endwith %}
   </div>

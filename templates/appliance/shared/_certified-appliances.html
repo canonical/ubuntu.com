@@ -1,8 +1,8 @@
 <section class="p-section">
-  {% if for!="VM" %}<hr class="is-fixed-width p-rule--muted" />{% endif %}
+  {% if hardware!="VM" %}<hr class="is-fixed-width p-rule--muted" />{% endif %}
   <div class="row--25-75-on-large">
     <div class="col">
-      {% if for!="VM" %}<h3 class="p-heading--5">Certified appliances for {{ for }}</h3>{% endif %}
+      {% if hardware!="VM" %}<h3 class="p-heading--5">Certified appliances for {{ hardware }}</h3>{% endif %}
     </div>
     <div class="col">
       <div class="row">
