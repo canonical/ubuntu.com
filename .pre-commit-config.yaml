@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: yarn-lint-scss
+        name: Run yarn lint-scss
+        entry: yarn lint-scss
+        language: system
+        pass_filenames: false
+      - id: yarn-lint-js
+        name: Run yarn lint-js
+        entry: yarn lint-js
+        language: system
+        pass_filenames: false
+      - id: yarn-lint-python
+        name: Run yarn lint-python
+        entry: yarn lint-python
+        language: system
+        pass_filenames: false
+      - id: yarn-lint-html
+        name: Run yarn lint-html
+        entry: ./scripts/djlint lint --cached
+        language: system
+        pass_filenames: false
