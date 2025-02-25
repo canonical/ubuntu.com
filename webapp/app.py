@@ -1318,7 +1318,7 @@ def render_form(form, template_path, child=False):
                 )
         except jinja2.exceptions.TemplateNotFound:
             flask.abort(
-                404, description=f"Template {form['templatePath']} not found."
+                404, description=f"Template {template_path} not found."
             )
 
     return wrapper_func
@@ -1332,12 +1332,19 @@ def set_form_rules():
             for path, form in data["form"].items():
                 if "childrenPaths" in form:
                     for child_path in form["childrenPaths"]:
+                        # If the child path ends with 'index', remove it for
+                        # the path
+                        path_split = child_path.strip("/").split("/")
+                        if path_split[-1] == "index":
+                            processed_path = "/" + "/".join(path_split[:-1])
+                        else:
+                            processed_path = child_path
                         app.add_url_rule(
-                            child_path,
+                            processed_path,
                             view_func=render_form(
                                 form, child_path, child=True
                             ),
-                            endpoint=child_path,
+                            endpoint=processed_path,
                         )
                 app.add_url_rule(
                     path,
