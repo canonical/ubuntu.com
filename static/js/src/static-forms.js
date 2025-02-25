@@ -175,6 +175,10 @@ function setUpStaticForms(form, formId) {
   if (submitButton && !cancelLoader) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
+
+  form.addEventListener("submit", function (e) {
+    setDataLayerConsentInfo(e.target);
+  });
 }
 
 /**
@@ -284,3 +288,21 @@ requiredFieldset?.forEach((fieldset) => {
     requiredCheckbox(fieldset, event.target);
   });
 });
+
+function setDataLayerConsentInfo(form) {
+  const dataLayer = window.dataLayer || [];
+  if (dataLayer.length > 0 && dataLayer[0][2]) {
+    const consentInfoValue = JSON.stringify(dataLayer[0][2]);
+
+    var consentInfo = document.createElement("input");
+    consentInfo.setAttribute("type", "text");
+    consentInfo.setAttribute("name", "Google_Consent_Mode__c");
+    consentInfo.setAttribute("value", consentInfoValue);
+    consentInfo.setAttribute("hidden", "true");
+    consentInfo.setAttribute("class", "u-no-margin u-no-padding");
+
+    if (!form.querySelector('input[name="Google_Consent_Mode__c"]')) {
+      form.appendChild(consentInfo);
+    }
+  }
+}
