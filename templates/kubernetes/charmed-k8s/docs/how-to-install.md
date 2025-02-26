@@ -30,7 +30,7 @@ There are also two 'special case' scenarios we provide guidance for:
 
 If you wish to uninstall:
 
-- [Uninstalling Charmed Kubernetes](kubernetes/charmed-k8s/docs/uninstall) 
+- [Uninstalling Charmed Kubernetes](/kubernetes/charmed-k8s/docs/uninstall) 
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

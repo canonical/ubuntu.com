@@ -12,8 +12,6 @@ permalink: release-notes.html
 layout: [base, ubuntu-com]
 toc: False
 ---
-
-<!-- AUTOGENERATE RELEASE NOTES HERE -->
 # 1.32
 
 ### February 24, 2025 - `charmed-kubernetes --channel 1.32/stable`
