@@ -47,7 +47,6 @@
         {
           "title": "Summary of what you would like to discuss",
           "id": "contentSummary",
-          "noCommentsFromLead": true,
           "fields": [
             {
               "type": "long-text",
@@ -70,6 +69,7 @@
             },
             {
               "type": "radio",
+              "isSelected": true,
               "id": "preferredContactEmail",
               "value": "Email",
               "label": "Email"

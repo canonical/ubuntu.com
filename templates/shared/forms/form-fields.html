@@ -75,8 +75,8 @@
                                  id="{{ field.id }}"
                                  name="{{ fieldset_inputName }}"
                                  aria-labelledby="{{ field.id }}"
-                                 name="{{ fieldset.inputName }}"
-                                 value="{{ field.value }}" />
+                                 value="{{ field.value }}"
+                                 {% if field.isSelected %}checked{% endif %} />
                           <span class="p-radio__label">{{ field.label }}</span>
                         </label>
                         {% if field.hasTextarea %}
@@ -91,7 +91,8 @@
                                  id="{{ field.id }}"
                                  name="{{ fieldset_inputName }}"
                                  aria-labelledby="{{ field.label }}"
-                                 value="{{ field.value }}" />
+                                 value="{{ field.value }}"
+                                 {% if field.isSelected %}checked{% endif %} />
                           <span class="p-checkbox__label">{{ field.label }}</span>
                         </label>
                         {% if field.hasTextarea %}
