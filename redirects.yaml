@@ -352,6 +352,7 @@ developer/target-platforms/boards/up-squared/?: "/download/up-squared-iot-grove-
 developers/?: "/desktop/developers"
 developer-terms-and-conditions/?: "/legal/developer-terms-and-conditions"
 server/docs/?: "https://documentation.ubuntu.com/server/"
+server/docs/(?P<path>.*): "https://documentation.ubuntu.com/server/{path}"
 docs/prometheus-metrics/?: "https://maas.io/docs/how-to-monitor-maas"
 docs/networking/?: "https://maas.io/docs/about-maas-networking"
 donations/?: "/download/desktop/contribute/"
