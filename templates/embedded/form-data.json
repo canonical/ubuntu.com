@@ -14,125 +14,171 @@
       "fieldsets": [
         {
           "title": "Do you have a commercial project?",
+          "id": "commercial-project",
           "inputType": "radio",
           "isRequired": true,
           "fields": [
             {
               "type": "radio",
-              "label": "Yes"
+              "label": "Yes",
+              "value": "Yes",
+              "id": "yes"
             },
             {
               "type": "radio",
-              "label": "No"
+              "label": "No",
+              "value": "No",
+              "id": "no"
             }
           ]
         },
         {
           "title": "When do you need to ship?",
+          "id": "when-to-ship",
           "inputType": "radio",
           "isRequired": true,
           "fields": [
             {
               "type": "radio",
-              "label": "Next 3 months"
+              "label": "Next 3 months",
+              "value": "Next 3 months",
+              "id": "next-3-months"
             },
             {
               "type": "radio",
-              "label": "Next 3 - 6 months"
+              "label": "Next 3 - 6 months",
+              "value": "Next 3 - 6 months",
+              "id": "next-3-6-months"
             },
             {
               "type": "radio",
-              "label": "Next 6 - 12 months"
+              "label": "Next 6 - 12 months",
+              "value": "Next 6 - 12 months",
+              "id": "next-6-12-months"
             },
             {
               "type": "radio",
-              "label": "No timeline - just researching"
+              "label": "No timeline - just researching",
+              "value": "No timeline - just researching",
+              "id": "no-timeline"
             }
           ]
         },
         {
           "title": "What is your first year ship volume?",
+          "id": "first-year-ship-volume",
           "inputType": "radio",
           "isRequired": true,
           "fields": [
             {
               "type": "radio",
-              "label": "0-100 units"
+              "label": "0-100 units",
+              "value": "0-100 units",
+              "id": "0-100-units"
             },
             {
               "type": "radio",
-              "label": "100-1000 units"
+              "label": "100-1000 units",
+              "value": "100-1000 units",
+              "id": "100-1000-units"
             },
             {
               "type": "radio",
-              "label": "1000-5,000 units"
+              "label": "1000-5,000 units",
+              "value": "1000-5,000 units",
+              "id": "1000-5000-units"
             },
             {
               "type": "radio",
-              "label": "1000-5,000 units"
+              "label": "5,000-25,000 units",
+              "value": "5,000-25,000 units",
+              "id": "5000-25000-units"
             },
             {
               "type": "radio",
-              "label": "5,000-25,000 units"
+              "label": "25,000-50,000 units",
+              "value": "25,000-50,000 units",
+              "id": "25000-50000-units"
             },
             {
               "type": "radio",
-              "label": "25,000-50,000 units"
+              "label": "50,000-100,000 units",
+              "value": "50,000-100,000 units",
+              "id": "50000-100000-units"
             },
             {
               "type": "radio",
-              "label": "50,000-100,000 units"
-            },
-            {
-              "type": "radio",
-              "label": "100,000+ units"
+              "label": "100,000+ units",
+              "value": "100,000+ units",
+              "id": "100000-units"
             }
           ]
         },
         {
           "title": "What is your selected hardware?",
+          "id": "selected-hardware",
           "inputType": "radio",
           "isRequired": true,
           "fields": [
             {
               "type": "radio",
-              "label": "Intel"
+              "label": "Intel",
+              "value": "Intel",
+              "id": "intel"
             },
             {
               "type": "radio",
-              "label": "Arm"
+              "label": "Arm",
+              "value": "Arm",
+              "id": "arm"
             },
             {
               "type": "radio",
-              "label": "Raspberry Pi/CM"
+              "label": "Raspberry Pi/CM",
+              "value": "Raspberry Pi/CM",
+              "id": "raspberry-pi"
             },
             {
               "type": "radio",
-              "label": "NXP"
+              "label": "NXP",
+              "value": "NXP",
+              "id": "nxp"
             },
             {
               "type": "radio",
-              "label": "Nvidia"
+              "label": "Nvidia",
+              "value": "Nvidia",
+              "id": "nvidia"
             },
             {
               "type": "radio",
-              "label": "Qualcomm"
+              "label": "Qualcomm",
+              "value": "Qualcomm",
+              "id": "qualcomm"
             },
             {
               "type": "radio",
-              "label": "Texas Instruments"
+              "label": "Texas Instruments",
+              "value": "Texas Instruments",
+              "id": "texas-instruments"
             },
             {
               "type": "radio",
-              "label": "Rockchip"
+              "label": "Rockchip",
+              "value": "Rockchip",
+              "id": "rockchip"
             },
             {
               "type": "radio",
-              "label": "Not sure"
+              "label": "Not sure",
+              "value": "Not sure",
+              "id": "not-sure"
             },
             {
               "type": "radio",
-              "label": "Other",
+              "id": "other",
+              "label": "Other - please describe",
+              "value": "Other",
               "hasTextarea": true
             }
           ]
