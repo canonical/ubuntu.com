@@ -60,7 +60,7 @@ documentation, but you may find the following links useful.
 
 -   Amazon Web Services -	<https://aws.amazon.com/security/>
 -   Google Cloud Platform	- <https://cloud.google.com/security/>
--   Metal As A Service(MAAS) -  <https://maas.io/docs/snap/3.0/ui/hardening-your-maas-installation>
+-   Metal As A Service(MAAS) -  <https://maas.io/docs/how-to-enhance-maas-security>
 -   Microsoft Azure	- <https://docs.microsoft.com/en-us/azure/security/azure-security>
 -   VMWare VSphere	- <https://www.vmware.com/security/hardening-guides.html>
 

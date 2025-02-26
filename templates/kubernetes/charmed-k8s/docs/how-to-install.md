@@ -28,6 +28,10 @@ There are also two 'special case' scenarios we provide guidance for:
 - [Installing offline, or in a restricted environment](/kubernetes/charmed-k8s/docs/install-offline)
 - [Installing for NVIDIA DGX](/kubernetes/charmed-k8s/docs/nvidia-dgx)
 
+If you wish to uninstall:
+
+- [Uninstalling Charmed Kubernetes](kubernetes/charmed-k8s/docs/uninstall) 
+
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <div class="p-notification__content">
