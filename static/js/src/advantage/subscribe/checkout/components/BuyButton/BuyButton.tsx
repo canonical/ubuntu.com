@@ -300,9 +300,16 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         localStorage.removeItem(key);
       });
 
-      const address = userInfo
-        ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
-        : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
+      const address = [
+        values?.address,
+        values?.postalCode,
+        values?.city,
+        values?.usState,
+        values?.caProvince,
+        values?.country,
+      ]
+        .filter(Boolean)
+        .join(" ");
 
       const getName = () => {
         const name = userInfo?.customerInfo?.name || values?.name;
