@@ -380,7 +380,7 @@ def cred_schedule(
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 0.5 if is_staging else 3
+    time_buffer = 0.5 if is_staging else 3
     time_delay = "30 minutes" if is_staging else "3 hours"
 
     if flask.request.method == "POST":
@@ -407,7 +407,7 @@ def cred_schedule(
             assessment_reservation_uuid = flask.request.args.get("uuid")
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            hours=time_delta
+            hours=time_buffer
         ):
             error = (
                 f"Start time should be at least {time_delay}"
@@ -449,7 +449,7 @@ def cred_schedule(
             if not contract_long_id:
                 return flask.redirect("/credentials/your-exams")
             effective_from = now.astimezone(tz_info) + timedelta(
-                hours=time_delta
+                hours=time_buffer
             )
             effective_to = (
                 datetime.strptime(
@@ -488,7 +488,7 @@ def cred_schedule(
                 )
             # exam rescheduled successfully
             else:
-                # update the student session with proctor
+                # update/create the session with proctor
                 try:
                     student = proctor_api.get_student(user["email"])
                     student_sessions = proctor_api.get_student_sessions(
@@ -503,48 +503,33 @@ def cred_schedule(
                     student_session = None
                     if len(student_session_array) > 0:
                         student_session = student_session_array[0]
+                    session_data = {
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "student_email": user["email"],
+                        "exam_date_time": starts_at.isoformat(),
+                        "ext_exam_id": response["assessment_reservation"][
+                            "uuid"
+                        ],
+                        "client_exam_id": 1,
+                        "timezone": timezone,
+                        "ai_enabled": "1",
+                        "exam_link": base_url
+                        + "credentials/exam?uuid="
+                        + f"{response['assessment_reservation']['uuid']}",
+                    }
+                    # update the student session
                     if student_session:
                         student_session_id = student_session.get(
                             "session_link", ""
                         )
-                        updated_student_session_data = {
-                            "first_name": first_name,
-                            "last_name": last_name,
-                            "student_email": user["email"],
-                            "exam_date_time": starts_at.isoformat(),
-                            "ext_exam_id": response["assessment_reservation"][
-                                "uuid"
-                            ],
-                            "client_exam_id": 1,
-                            "timezone": timezone,
-                            "ai_enabled": "1",
-                            "exam_link": base_url
-                            + "credentials/exam?uuid="
-                            + f"{response['assessment_reservation']['uuid']}",
-                        }
                         proctor_api.update_student_session(
                             student_session_id,
-                            updated_student_session_data,
+                            session_data,
                         )
+                    # create a new student session
                     else:
-                        student_session_data = {
-                            "first_name": first_name,
-                            "last_name": last_name,
-                            "student_email": user["email"],
-                            "exam_date_time": starts_at.isoformat(),
-                            "client_exam_id": 1,
-                            "ext_exam_id": response["assessment_reservation"][
-                                "uuid"
-                            ],
-                            "timezone": timezone,
-                            "ai_enabled": "1",
-                            "exam_link": base_url
-                            + "credentials/exam?uuid="
-                            + f"{response['assessment_reservation']['uuid']}",
-                        }
-                        proctor_api.create_student_session(
-                            student_session_data
-                        )
+                        proctor_api.create_student_session(session_data)
                 except Exception as error:
                     flask.current_app.extensions["sentry"].captureException(
                         extra={
@@ -602,10 +587,11 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
-            # exam scheduled successfully
+            # exam scheduled successfully, now create a session with proctor
             else:
                 uuid = response.get("reservation", {}).get("IDs", [])[-1]
-                # get or create a student session with proctor
+                # create a student session with
+                # proctor since the exam is scheduled
                 try:
                     student_session_data = {
                         "first_name": first_name,
@@ -620,9 +606,7 @@ def cred_schedule(
                         + "credentials/"
                         + f"exam?uuid={uuid}",
                     }
-                    student_session = proctor_api.create_student_session(
-                        student_session_data
-                    )
+                    proctor_api.create_student_session(student_session_data)
                 except Exception as error:
                     flask.current_app.extensions["sentry"].captureException(
                         extra={
