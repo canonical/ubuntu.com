@@ -114,8 +114,8 @@ const IndividualContactForm = () => {
 
             <h5 id="choose-emails">* Choose at least one email address:</h5>
             <p className="p-form-help-text">
-              The contributor must use the chosen email address(es) during Git
-              commits.
+              Contributors may use either their chosen email address or their
+              signed-in username when submitting contributions.
             </p>
             <div className="row p-divider">
               <div className="col-4 p-divider__block u-vertically-center">
