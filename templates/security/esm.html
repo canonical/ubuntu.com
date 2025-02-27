@@ -61,7 +61,7 @@
       <div class="col-start-large-7 col-6 col-medium-6">
         <div class="row">
           <div class="col-3 col-medium-3">
-            <div class="p-image-container">
+            <div class="p-image-container u-hide--small">
               {{ image(url="https://assets.ubuntu.com/v1/f1c3a02f-security-updates.png",
                             alt="",
                             width="568",
@@ -77,7 +77,7 @@
             </p>
           </div>
           <div class="col-3 col-medium-3">
-            <div class="p-image-container">
+            <div class="p-image-container u-hide--small">
               {{ image(url="https://assets.ubuntu.com/v1/ea0c219c-svf.png",
                             alt="",
                             width="568",
@@ -142,122 +142,24 @@
     {%- endcall -%}
   </section>
 
-  <section class="p-section--deep">
+  <section class="p-section">
     <div class="u-fixed-width">
       <hr class="p-rule" />
-      <h2>Ubuntu security maintenance schedule</h2>
-      <div class="esm-table p-strip is-shallow">
-        <table class="p-table">
-          <thead>
-            <tr>
-              <th width="51%">
-                Security patching
-                <br />
-                <span class="u-text--muted">(Coverage for critical, high and selected medium CVEs)</span>
-              </th>
-              <th width="15%" class="u-align--left">Ubuntu LTS</th>
-              <th width="24%" class="u-align--left">
-                Ubuntu Pro (Infra-only)
-                <br />
-                <span class="u-text--muted">(Previously known as ”Ubuntu Advantage for Infrastructure”)</span>
-              </th>
-              <th width="10%" class="u-align--left">Ubuntu Pro</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Over 2,300 packages in Ubuntu Main repository</td>
-              <td class="u-align--left">5 years</td>
-              <td class="u-align--left">10 years</td>
-              <td class="u-align--left">10 years</td>
-            </tr>
-            <tr>
-              <td>Over 23,000 packages in Ubuntu Universe repository</td>
-              <td class="u-align--left">Best effort</td>
-              <td class="u-align--left">Best effort</td>
-              <td class="u-align--left">10 years</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="p-section--shallow">
+        <h2>Ubuntu security maintenance schedule</h2>
       </div>
     </div>
-
     <div class="u-fixed-width">
-      <div class="p-esm-chart">
-        <div class="p-esm-chart__row">
-          <div class="p-esm-chart__left-col">
-            <hr class="p-rule" />
-            <p class="p-esm-chart__label">
-              <strong class="p-esm-chart__label-numbers">2,300</strong>
-              <span class="p-esm-chart__label-text">Ubuntu Main packages +</span>
-            </p>
-            <p class="p-esm-chart__label">
-              <strong class="p-esm-chart__label-numbers">23,000</strong>
-              <span class="p-esm-chart__label-text">Ubuntu Universe packages</span>
-            </p>
-          </div>
-          <div class="p-esm-chart__right-col p-esm-chart__right-col--Ubuntu-Pro"
-               style="height: 16.5rem">
-            <p>Ubuntu Pro</p>
-          </div>
-        </div>
-        <div class="p-esm-chart__row">
-          <div class="p-esm-chart__left-col">
-            <hr class="p-rule" />
-            <p class="p-esm-chart__label" style="padding-top: 0">
-              <strong class="p-esm-chart__label-numbers">2,300</strong>
-              <span class="u-truncate p-esm-chart__label-text">Ubuntu Main packages</span>
-            </p>
-          </div>
-          <div class="p-esm-chart__right-col" style="background-color: #000">
-            <div class="p-esm-chart__right-col-lts">
-              <div style="background: #E95420;">
-                <p style="margin-bottom: 0; padding-top: 0;">Ubuntu LTS</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="p-esm-chart__row">
-          <div class="p-esm-chart__left-col">
-            <hr class="p-rule" />
-            <p class="u-align-text--right">GA</p>
-          </div>
-          <div class="p-esm-chart__right-col p-esm-chart__right-col-axis">
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>1 year</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>2 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>3 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>4 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick">
-              <p>5 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>6 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>7 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>8 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
-              <p>9 years</p>
-            </div>
-            <div class="p-esm-chart__axis-tick">
-              <p>10 years</p>
-            </div>
-          </div>
-        </div>
+      <div class="p-section--shallow">
+        <div class="u-hide--small" id="server-desktop-eol-old"></div>
       </div>
+      {% include "about/release_cycles/releases-table.html" %}
+
     </div>
   </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"></script>
+
 
   <section class="p-section">
     <div class="row--50-50">
@@ -449,10 +351,6 @@
       citation_source_title_text="Customer Success Manager",
       citation_source_organisation_text="Games publishing company"
       ) -%}
-
-      {%- if slot == 'heading_link' -%}
-        <a href="#">All the success stories &rsaquo;</a>
-      {%- endif -%}
 
       {%- if slot == 'cta' -%}
         <a href="/case-study/ubuntu-pro-support-for-games-developer">Read the full case study&nbsp;&rsaquo;</a>
