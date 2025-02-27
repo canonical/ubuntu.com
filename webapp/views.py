@@ -908,6 +908,10 @@ def marketo_submit():
     if user_id:
         enrichment_fields["Google_Analytics_User_ID__c"] = user_id
 
+    enrichment_fields["Google_Consent_Mode__c"] = form_fields.pop(
+        "Google_Consent_Mode__c", None
+    )
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -942,10 +946,6 @@ def marketo_submit():
             enrichment_fields["country"] = ip_location["country"]["iso_code"]
     except Exception:
         pass
-
-    enrichment_fields["Google_Consent_Mode__c"] = form_fields.pop(
-        "Google_Consent_Mode__c", None
-    )
 
     enriched_payload = {
         "formId": "4198",
