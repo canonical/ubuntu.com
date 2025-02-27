@@ -44,22 +44,23 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2 id="osv-open-format-vuln-management">OSV – an open format for vulnerability management</h2>
+        <h2 id="osv-open-format-vuln-management">OSV &mdash; an open format for vulnerability management</h2>
       </div>
       <div class="col">
         <div class="p-section--shallow">
           <div class="p-image-container--3-2 is-cover is-highlighted">
             {{ image(url="https://assets.ubuntu.com/v1/dc01a986-osv.png",
-                        alt="",
+                        alt="OSV",
                         width="1200",
                         height="800",
                         hi_def=True,
-                        loading="auto|lazy") | safe
+                        loading="auto") | safe
             }}
           </div>
         </div>
         <p>
-          Open Source Vulnerabilities (OSV) is a <a href="https://ossf.github.io/osv-schema/">JSON schema</a> that provides a human and machine readable data format to describe vulnerabilities in a way that precisely maps to open source package versions. This schema is developed and maintained by the Open Source Security Foundation (OSSF). OSV also consists of a reference infrastructure and tooling (OSV-Scanner).
+          Open Source Vulnerabilities (OSV) is a <a href="https://ossf.github.io/osv-schema/"
+    aria-label="OSV JSON schema">JSON schema</a> that provides a human and machine readable data format to describe vulnerabilities in a way that precisely maps to open source package versions. This schema is developed and maintained by the Open Source Security Foundation (OSSF). OSV also consists of a reference infrastructure and tooling (OSV-Scanner).
         </p>
       </div>
     </div>
@@ -76,14 +77,14 @@
                         width="1200",
                         height="1800",
                         hi_def=True,
-                        loading="auto|lazy") | safe
+                        loading="lazy") | safe
             }}
           </div>
         </div>
       </div>
       <div class="col">
         <div class="p-section--shallow">
-          <h2>When to use OSV</h2>
+          <h2>When to use OSV?</h2>
         </div>
         <p>OSV helps with:</p>
         <hr class="p-rule--muted" />
@@ -173,7 +174,7 @@
       </div>
       <div class="col">
         <p>
-          Currently, the osv.dev database provides an <a href="https://osv.dev/#use-the-api">API</a> to query OSV data.
+          Currently, the osv.dev database provides an <a href="https://osv.dev/#use-the-api" aria-label="OSV API">API</a> to query OSV data.
         </p>
         <p>
           For tools, there's the official <a href="https://google.github.io/osv-scanner/">osv-scanner</a>, as well as some additional community maintained <a href="https://google.github.io/osv.dev/third-party/">tools</a>.
@@ -194,7 +195,8 @@
       </div>
       <div class="col">
         <p>
-          Yes,  Ubuntu includes both NVD’s CVSS scores as well as <a href="/security/cves/about#priority">Ubuntu’s priority.</a>
+          Yes,  Ubuntu includes both NVD’s CVSS scores as well as <a href="/security/cves/about#priority"
+    aria-label="Read about CVE priority levels">Ubuntu’s priority.</a>
         </p>
       </div>
     </div>
