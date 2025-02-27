@@ -334,7 +334,9 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
         "company",
         (userInfo?.accountInfo?.name || values?.organisationName) ?? "",
       );
-      formData.append("street", address ?? "");
+      if (address) {
+        formData.append("street", address ?? "");
+      }
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
