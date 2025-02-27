@@ -1,0 +1,137 @@
+{
+  "form": {
+    "/internet-of-things/smart-home": {
+      "templatePath": "/internet-of-things/smart-home/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Let's get your device to market faster!",
+        "introText": "Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.",
+        "formId": 4509,
+        "returnUrl": "/internet-of-things/smart-home#success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
+        "product": "smart-home"
+      },
+      "fieldsets": [
+        {
+          "title": "Are you interested in custom Hardware Enablement and Certification?",
+          "id": "hardware-enablement",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "yes",
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "no",
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "title": "Do you want to learn more about Brand Store and our management solution to deploy software?",
+          "id": "brand-store-learn-more",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "yes",
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "no",
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "title": "Do you need support getting to market?",
+          "id": "get-to-market-support",
+          "inputType": "radio",
+          "isRequired": true,
+          "fields": [
+            {
+              "type": "radio",
+              "id": "yes",
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "no",
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "title": "Anything else you would like to tell us?",
+          "id": "open-question",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "open-question",
+              "label": "What type of devices are you considering bringing to market?"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title",
+              "isRequired": true
+            },
+            {
+              "type": "email",
+              "id": "email",
+              "label": "Email address",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number"
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

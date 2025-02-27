@@ -94,7 +94,8 @@
           </p>
           <hr class="p-rule--muted" />
           <p>
-            <a href="/internet-of-things/contact-us?product=management" class="js-invoke-modal">Get in touch to discuss your device management needs&nbsp;&rsaquo;</a>
+            <a href="/internet-of-things/contact-us?product=management"
+               class="js-invoke-modal">Get in touch to discuss your device management needs&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -221,7 +222,8 @@
             We know that everyone’s needs are different. That’s why we have multiple solutions available for you to use to manage your devices.
           </p>
           <hr class="p-rule--muted" />
-          <a href="/internet-of-things/contact-us?product=management" class="js-invoke-modal">Get in touch to discuss the best solution for you&nbsp;&rsaquo;</a>
+          <a href="/internet-of-things/contact-us?product=management"
+             class="js-invoke-modal">Get in touch to discuss the best solution for you&nbsp;&rsaquo;</a>
         </div>
       {%- endif -%}
 
@@ -489,13 +491,8 @@
     </div>
   </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide"
-     id="contact-form-container"
-     data-form-location="/shared/forms/interactive/internet-of-things"
-     data-form-id="4296"
-     data-lp-id=""
-     data-return-url="/internet-of-things#success"
-     data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {% with formId=4296 %}
+    {% include "/shared/forms/form-template.html" %}
+  {% endwith %}
 
 {% endblock content %}
