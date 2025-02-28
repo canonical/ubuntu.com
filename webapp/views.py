@@ -1231,11 +1231,13 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                     v for v in vulnerabilities if v["year"] in top_years
                 ]
 
-            return flask.render_template(
+            response = flask.render_template(
                 template_path,
                 topics=topics,
                 vulnerabilities=vulnerabilities,
             )
+            response.cache_control.max_age = "300"
+            return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
@@ -1259,11 +1261,13 @@ def build_vulnerabilities(security_vulnerabilities):
                     document_metadata = item
                     break
 
-            return flask.render_template(
+            response = flask.render_template(
                 "security/vulnerabilities/vulnerability-detailed.html",
                 metadata=document_metadata,
                 document=document,
             )
+            response.cache_control.max_age = "300"
+            return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
