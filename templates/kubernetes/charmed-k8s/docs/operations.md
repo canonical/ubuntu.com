@@ -59,7 +59,7 @@ kubectl cluster-info
 Now you can run pods inside the Kubernetes cluster:
 
 ```bash
-kubectl create -f example.yaml
+kubectl create deployment nginx --image=nginx:latest
 ```
 
 List all pods in the cluster:
@@ -68,12 +68,29 @@ List all pods in the cluster:
 kubectl get pods
 ```
 
+To get pods in specific namespace:
+
+```bash
+kubectl get pods -n test
+```
+
+To create a sample service in the cluster:
+
+```bash
+kubectl expose deployment nginx --port=80 --target-port=8000
+```
+
 List all services in the cluster:
 
 ```bash
 kubectl get services
 ```
 
+To get the service in specific namespace:
+
+```bash
+kubectl get services -n test
+```
 
 ## Accessing the Kubernetes dashboard
 

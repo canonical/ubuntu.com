@@ -8,16 +8,6 @@ context:
 toc: False
 ---
 
-## Canonical Kubernetes
-
-We've just announced a 12-year support commitment for Canonical Kubernetes! It offers hassle-free maintenance, single-line installation process, and more control over your upgrade cadence.
-
-[Read the Canonical Kubernetes 12-year LTS announcement >](https://canonical.com/blog/12-year-lts-for-kubernetes)
-
-[Go to Canonical Kubernetes documentation >](https://documentation.ubuntu.com/canonical-kubernetes)
-
----
-
 Charmed Kubernetes<sup>&reg;</sup>, is pure Kubernetes tested across the widest range of clouds with modern metrics and monitoring, brought to you by the people who deliver Ubuntu.
 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
