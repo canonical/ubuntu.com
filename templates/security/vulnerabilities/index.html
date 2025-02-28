@@ -1,0 +1,110 @@
+{% extends "security/base_security.html" %}
+
+{% block title %}Vulnerability Knowledge Base{% endblock %}
+
+{% block meta_description %}
+  A library with in-depth information and technical guidance for high-impact vulnerabilities that affect Ubuntu.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1nN_3QGibrmWSi4AAYfoO04q7EnQvHdSgDTaAXvy_4nc/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <div class="p-section--hero">
+    <div class="row--25-75">
+      <div class="col">
+        <h1 class="p-heading--2">Vulnerability knowledge base</h1>
+        <p>
+          Applying security updates in a timely manner is critical to reducing risks, especially with high-impact vulnerabilities. Canonical releases <a href="/security/notices">Ubuntu Security Notices</a> whenever a security fix is available for an official Ubuntu package.
+        </p>
+        <p>
+          When high-profile vulnerabilities are publicly disclosed, the Ubuntu security team also provides in-depth technical explanations and mitigation guidance in the form of vulnerability knowledge base articles.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--25-75-on-large">
+      <div class="col">
+        <h2>Recent vulnerabilities</h2>
+      </div>
+      <div class="col">
+        {% set ns = namespace(previous_year=None) %}
+        {% for vulnerability in vulnerabilities if vulnerability.name %}
+          {% set is_new_year = vulnerability.year != ns.previous_year %}
+          {% include "security/vulnerabilities/_vulnerability-card.html" %}
+        {% endfor %}
+        <div class="p-cta-block">
+          <a href="/security/vulnerabilities/view-all" class="p-button--positive">View all vulnerabilities</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-section--deep">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--25-75">
+      <div class="col">
+        <h2>Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Ubuntu security updates</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/security/notices">Ubuntu Security Notices</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/security/cves">Database of known CVEs in Ubuntu</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Ubuntu Pro</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <p>
+                Up to 12 years of security coverage for Ubuntu
+                and 36,000 open-source applications and toolchains.
+              </p>
+              <div class="p-cta-block">
+                <a class="p-button" href="/pro">Get Ubuntu Pro</a>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">From our blog</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item">
+                <a href="/blog/what-is-vulnerability-management">What is vulnerability management?</a>
+              </li>
+              <li class="p-list__item">
+                <a href="/blog/what-is-system-hardening-definition-and-best-practices">What is System Hardening? Essential Checklists from OS to Application</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock content %}
