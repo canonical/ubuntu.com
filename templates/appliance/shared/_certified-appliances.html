@@ -1,0 +1,108 @@
+<section class="p-section">
+  {% if hardware!="VM" %}<hr class="is-fixed-width p-rule--muted" />{% endif %}
+  <div class="row--25-75-on-large">
+    <div class="col">
+      {% if hardware!="VM" %}<h3 class="p-heading--5">Certified appliances for {{ hardware }}</h3>{% endif %}
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/adguard" aria-label="AdGuard">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/5fa28a84-adguard.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">AdGuard</p>
+          </a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/lxd" aria-label="LXD">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/c4b238fe-lxd.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">LXD</p>
+          </a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/mosquitto" aria-label="Mosquitto">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/d73a5c90-mosquitto.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">Mosquitto</p>
+          </a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/nextcloud" aria-label="Nextcloud">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/ba674e54-nextcloud.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">Nextcloud</p>
+          </a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/openhab" aria-label="OpenHAB">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/35f61d78-openhab.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">OpenHAB</p>
+          </a>
+        </div>
+        <div class="col-3 col-medium-2">
+          <a href="/appliance/plex" aria-label="Plex">
+            <div class="p-image-container is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/5ff35566-plex.png",
+                            alt="",
+                            width="852",
+                            height="481",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-image-container__image"}) | safe
+              }}
+            </div>
+            <hr class="p-rule--muted" />
+            <p class="p-heading--5">Plex</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
