@@ -1,0 +1,290 @@
+{% extends "landscape/base_landscape.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block title %}Managed Landscape{% endblock %}
+
+{% block meta_description %}
+  Managed Landscape is for customers that need the flexibility of self-hosted Landscape, and the convenience and assurance of a software as a service solution.
+{% endblock meta_description %}
+
+{% block meta_image %}
+  https://assets.ubuntu.com/v1/d6bc9bdb-Canonical%20Landscape@5x.png
+{% endblock meta_image %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1MycPWcmMveCZxrGtn7ASc0myWNxPzLTciHfQIA6kPZ4/edit#
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  <section class="p-section--hero u-no-padding--bottom">
+    {% call(slot) vf_hero(
+      title_text='Managed Landscape',
+      layout='50/50',
+      is_split_on_medium=true
+      ) -%}
+      {%- if slot == 'description' -%}
+        <p class="u-no-padding--top">
+          <b>Software as a service convenience, in an environment you control.</b>
+          <br />
+          Manage machines at scale without worrying about tooling. Let Canonical handle Landscape's installation, patching, scaling and maintenance.
+        </p>
+      {%- endif -%}
+      {%- if slot == 'cta' -%}
+        <a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+        <div class="p-image-container--3-2 is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/798a1063-hero-img.png",
+                    alt="",
+                    width="1200",
+                    height="752",
+                    hi_def=True,
+                    loading="auto|lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      {%- endif -%}
+    {% endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <h2>
+          We take care of the installation
+          <br class="u-hide--small" />
+          and maintenance
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-medium-6 col-start-large-4">
+        <div class="row">
+          <div class="col-3 col-medium-2">
+            <hr class="p-rule--highlight" />
+            <p class="p-heading--1 u-sv-2">
+              Up to
+              <br class="u-hide--small" />
+              99.9% uptime
+            </p>
+            <p>Backed by an SLA.</p>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="p-rule--highlight" />
+            <p class="p-heading--1 u-sv-2">24/7 monitoring</p>
+            <p>Active management and break/fix response by Canonical engineers.</p>
+          </div>
+          <div class="col-3 col-medium-2">
+            <hr class="p-rule--highlight" />
+            <p class="p-heading--1 u-sv-2">High availability</p>
+            <p>Fault-tolerant and ready for real-world challenges.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Any-cloud ready</h2>
+      </div>
+      <div class="col">
+        <p>
+          Managed Landscape can be deployed in high availability across multiple machines, anywhere. Whether you are running your workloads across multiple clouds or a hybrid cloud with your own infrastructure, Managed Landscape can easily provide a scalable and reliable service to maintain your Ubuntu environment.
+        </p>
+        <div>
+          <hr class="p-rule--muted" />
+          <div class="p-logo-section--dense">
+            <div class="p-logo-section__items">
+              <div class="p-logo-section__item">
+                {{ image(url="https://assets.ubuntu.com/v1/48b68d11-gcp-logo.png",
+                                alt="Google Cloud Platform",
+                                width="98",
+                                height="209",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item">
+                {{ image(url="https://assets.ubuntu.com/v1/3ec94c2d-aws-logo.png",
+                                alt="Amazon Web Services",
+                                width="101",
+                                height="209",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item">
+                {{ image(url="https://assets.ubuntu.com/v1/ae511063-azure-logo.png",
+                                alt="Microsoft Azure",
+                                width="79",
+                                height="209",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item">
+                {{ image(url="https://assets.ubuntu.com/v1/bd83cd83-opensearch-logo.png",
+                                alt="OpenStack",
+                                width="81",
+                                height="209",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
+              </div>
+              <div class="p-logo-section__item">
+                {{ image(url="https://assets.ubuntu.com/v1/7589afda-vmware-logo.png",
+                                alt="VMWare",
+                                width="216",
+                                height="209",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"}) | safe
+                }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Bring your own identity and access management platform</h2>
+        </div>
+        <div class="col">
+          <p>
+            Landscape supports OpenID Connect (OIDC) to authenticate users, and integrates enterprise identity providers like Azure AD, Google, Okta, IBM, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width u-hide--small">
+      <div class="p-image-container--full-width is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/9423d6a0-bring-own-identity.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Mirror Ubuntu repositories,
+          <br />
+          and distribute software internally
+        </h2>
+      </div>
+      <div class="col">
+        <div class="u-sv3">
+          <p>
+            Landscape simplifies the task of scheduling software updates, and provides a mirroring mechanism to deliver software updates at scale, over your local network (LAN).
+          </p>
+          <p>
+            Organizations developing proprietary software on Ubuntu benefit from Managed Landscape's support for private repositories.
+          </p>
+        </div>
+        <div class="p-image-container is-cover">
+          {{ image(url="https://assets.ubuntu.com/v1/f47e7166-mirror-ubuntu repos.png",
+                    alt="",
+                    width="1200",
+                    height="801",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Pricing that is clear
+          <br class="u-hide--small" />
+          and transparent
+        </h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p>
+            Our Field Engineering team can recommend the number and type of machines your Managed Landscape deployment would need.
+          </p>
+          <div class="p-cta-block">
+            <a href="/contact-us" class="js-invoke-modal">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+
+        <table aria-label="Managed Landscape Pricing Table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Per Landscape virtual machine/year</th>
+              <th>Per Landscape physical machine/year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Managed Landscape on public clouds, VMware, OpenStack or LXD</th>
+              <td>$3,099</td>
+              <td>
+                $6,861<a href="/managed/apps">*</a>
+              </td>
+            </tr>
+            <tr>
+              <th>Managed Landscape on bare metal</th>
+              <td>N/A</td>
+              <td>$9,470</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr class="p-rule--muted" />
+        <p class="p-text--small u-text--muted">
+          * *  <i>Review the <a href="/managed/apps?_ga=2.124403338.1493445535.1734514472-498580729.1704275961&_gl=1*19cgxe8*_gcl_au*MzAwNDUwMDU4LjE3MjgzNzYwNzI.">details for managed apps</a>.</i>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        Got questions? Landscape's API can bridge any requirements
+        <br />
+        our dashboard may not natively address.
+      </h2>
+      <div class="p-cta-block">
+        <a href="/contact-us" class="js-invoke-modal">Contact us about your unique requirements&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  {% include "/shared/forms/form-template.html" %}
+{% endblock content %}

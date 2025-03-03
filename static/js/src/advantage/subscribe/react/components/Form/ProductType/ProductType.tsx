@@ -89,7 +89,7 @@ const PublicCloudInfo = {
     describe: (
       <>
         You can{" "}
-        <a href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1&pli=1">
+        <a href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20LTS%20canonical%20group">
           launch new Ubuntu Pro instances on the Google Compute Engine
         </a>{" "}
         at an hourly, per-machine rate. If you have a running Ubuntu LTS

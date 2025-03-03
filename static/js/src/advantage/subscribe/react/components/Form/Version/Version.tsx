@@ -20,20 +20,12 @@ const CISBenchmark =
   "Certified CIS benchmark tooling and DISA-STIG configuration guide";
 const CISBenchmarkAndAutomation =
   "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
-const FIPS =
+const FIPS_140_2 =
   "FIPS 140-2 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
-const FIPSComingSoon = (
-  <>
-    FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS
-    compliance
-    <StatusLabel appearance="positive">Coming soon</StatusLabel>
-  </>
-);
-const CIS = (
-  <>
-    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-  </>
-);
+const FIPS_140_3 =
+  "FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
+const CIS =
+  "Ubuntu Security Guide (USG) for CIS and DISA STIG benchmark tooling & automation";
 const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
@@ -63,7 +55,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
-    FIPSComingSoon,
+    FIPS_140_3,
     CIS,
     KVMDrivers,
     landscape,
@@ -73,7 +65,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.focal]: [
     `${ESMEndDate} 2030`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmarkAndAutomation,
     KVMDrivers,
     landscape,
@@ -82,7 +74,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.bionic]: [
     `${ESMEndDate} 2028`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     KVMDrivers,
@@ -92,7 +84,7 @@ const PhysicalServerVersionDetails: {
   [LTSVersions.xenial]: [
     `${ESMEndDate} 2026`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     KVMDrivers,
@@ -117,7 +109,7 @@ const DesktopVersionDetails: {
     `${DesktopESMEndDate} 2032`,
     AAD,
     livepatch,
-    FIPSComingSoon,
+    FIPS_140_3,
     CIS,
     landscape,
     knowledgeBase,
@@ -127,7 +119,7 @@ const DesktopVersionDetails: {
     `${DesktopESMEndDate} 2030`,
     AAD,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
@@ -135,7 +127,7 @@ const DesktopVersionDetails: {
   [LTSVersions.bionic]: [
     `${DesktopESMEndDate} 2028`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     landscape,
@@ -144,7 +136,7 @@ const DesktopVersionDetails: {
   [LTSVersions.xenial]: [
     `${DesktopESMEndDate} 2026`,
     livepatch,
-    FIPS,
+    FIPS_140_2,
     CISBenchmark,
     CommonCriteria,
     landscape,

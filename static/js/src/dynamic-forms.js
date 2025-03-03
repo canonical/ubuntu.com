@@ -399,7 +399,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
                 case "text":
                 case "number":
                 case "textarea":
-                  if (input.value !== "") {
+                  if (
+                    input.value !== "" &&
+                    !input.classList.contains("js-other-input")
+                  ) {
                     message += input.value + comma + " ";
                   }
                   break;
@@ -418,6 +421,20 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
               );
               radioInputs.forEach((radioInput) => {
                 radioInput.removeAttribute("name");
+              });
+            });
+          }
+
+          const checkboxFieldsets = document.querySelectorAll(
+            ".js-remove-checkbox-names",
+          );
+          if (checkboxFieldsets.length > 0) {
+            checkboxFieldsets.forEach((checkboxFieldset) => {
+              const checkboxInputs = checkboxFieldset.querySelectorAll(
+                "input[type='checkbox']",
+              );
+              checkboxInputs.forEach((checkboxInput) => {
+                checkboxInput.removeAttribute("name");
               });
             });
           }

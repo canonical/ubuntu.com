@@ -332,32 +332,23 @@ def build_engage_index(engage_docs):
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
-        limit = 20  # adjust as needed
+        limit = 21  # adjust as needed
         offset = (page - 1) * limit
-        if resource:
+
+        if tag or resource or language:
             (
                 metadata,
                 count,
                 active_count,
                 current_total,
             ) = engage_docs.get_index(
-                limit, offset, key="type", value=resource
-            )
-        elif tag:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(limit, offset, key="tag", value=tag)
-        elif language:
-            (
-                metadata,
-                count,
-                active_count,
-                current_total,
-            ) = engage_docs.get_index(
-                limit, offset, key="language", value=language
+                limit,
+                offset,
+                tag_value=tag,
+                key="type",
+                value=resource,
+                second_key="language",
+                second_value=language,
             )
         else:
             (

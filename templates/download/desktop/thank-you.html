@@ -66,7 +66,10 @@
                   now</a>.
                 {% endif %}
                 <br />
-                You can <a href="/tutorials/tutorial-how-to-verify-ubuntu">verify your download</a>, or <a href="/tutorials/install-ubuntu-desktop">get help installing</a>.
+                {% with version=version, system="desktop", architecture=architecture %}
+                  {% include "download/shared/_verify-checksums.html" %}
+                {% endwith %}
+
               </p>
             {% else %}
               <h1>Thank you for your contribution</h1>

@@ -2,11 +2,7 @@
   "form": {
     "/aws": {
       "templatePath": "/aws/index.html",
-      "childrenPaths": [
-        "/aws/pro",
-        "/aws/support",
-        "/aws/outposts"
-      ],
+      "childrenPaths": ["/aws/pro", "/aws/support", "/aws/outposts"],
       "isModal": true,
       "modalId": "contact-modal",
       "formData": {
@@ -197,6 +193,7 @@
         {
           "title": "How do you consume open source?",
           "id": "how-do-you-consume-open-source",
+          "inputType": "checkbox",
           "fields": [
             {
               "type": "checkbox",
@@ -227,6 +224,7 @@
         {
           "title": "Do you have specific compliance or hardening requirements?",
           "id": "hardening-requirements",
+          "inputType": "checkbox",
           "fields": [
             {
               "type": "checkbox",
@@ -281,6 +279,7 @@
         {
           "title": "Who is responsible for tracking, testing and applying CVE patches in a timely manner?",
           "id": "responsible-for-tracking",
+          "inputType": "checkbox",
           "fields": [
             {
               "type": "checkbox",
@@ -325,24 +324,6 @@
           "id": "about-you",
           "noCommentsFromLead": true,
           "fields": [
-            {
-              "type": "text",
-              "id": "firstName",
-              "label": "First name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "id": "lastName",
-              "label": "Last name",
-              "isRequired": true
-            },
-            {
-              "type": "email",
-              "id": "email",
-              "label": "Email address",
-              "isRequired": true
-            },
             {
               "type": "country",
               "label": "Country",

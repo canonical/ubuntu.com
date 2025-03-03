@@ -1,0 +1,268 @@
+{% extends "security/base_security.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+
+{% block title %}Platform security features in Ubuntu | Linux security{% endblock %}
+
+{% block meta_description %}
+  Learn about the platform security features built into Ubuntu, such as secure boot, full disk encryption, Apparmor and confidential computing capabilities.
+{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1c1l_IfbrtF-b6JN0IDZiSHe2YWdLrLo_NQ-1Ajvf5Qk/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Ubuntu: Engineered for security.</h1>
+        <h2>Built for usability</h2>
+      </div>
+      <div class="col p-section--shallow">
+        <div class="p-section--shallow">
+          <p>
+            Ubuntu's platform security features are carefully designed to enhance security while providing an intuitive user experience - from hardware roots of trust to secure boot and confidential computing.
+          </p>
+        </div>
+        <hr class="p-rule--muted" />
+        <p>
+          <a href="/engage/security-in-depth" class="p-button--positive">Download our guide</a>
+        </p>
+      </div>
+      <div class="p-image-container--cinematic is-highlighted u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/0678347e-hero-img.png",
+                alt="",
+                width="2464",
+                height="1028",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Secure boot</h2>
+      </div>
+      <div class="col">
+        {{ image(url="https://assets.ubuntu.com/v1/ebbf16f1-secure-boot.png",
+                alt="",
+                width="1200",
+                height="676",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+        <p>
+          Secure boot is a security feature that  enforces a chain of trust during the boot process, preventing unauthorized code from running and ensuring that only signed, trusted software is loaded. On Ubuntu, all pre-built boot binaries, except the initrd, are signed with Canonical’s UEFI certificate.
+
+        </p>
+        <p>
+          Securing early boot software and firmware is critically important as it acts as a root of trust for the entire platform. When compromised, they allow malware to execute with the highest privileges, even before the OS security mechanisms are loaded.
+        </p>
+        <div class="p-cta-block">
+          <a href="/pricing/infra#:~:text=Fully%20managed%20OpenStack%2C%20Kubernetes%20and%20LMA">Explore pricing for self-managed with support&nbsp;&rsaquo;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Full-disk encryption</h2>
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
+        {{ image(url="https://assets.ubuntu.com/v1/ad35636d-full-disk-encryption.png",
+                alt="",
+                width="1200",
+                height="676",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Full Disk Encryption with passphrases</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Ubuntu has designed Full Disk Encryption (FDE) to allow  users to encrypt their data while stored on the device’s  hard drive or storage disk.
+        </p>
+        <p>
+          Today, this is achieved using the Linux Unified Key Setup (LUKS) framework, which provides disk encryption at the block level. The data is  then only decrypted if the correct passphrase is provided by the user.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">TPM backed Full Disk Encryption</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Tomorrow’s next generation FDE is already underway and will be backed by a Trusted Platform Module. This eliminates the need to manually enter passphrases and lowers barriers to encryption on shared devices in enterprise environments,  simplifying the boot process for large-scale deployments.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'cta' -%}
+        <a href="/blog/tpm-backed-full-disk-encryption-is-coming-to-ubuntu">Learn more about Ubuntu upcoming TPM-backed FDE &rsaquo;</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Constrain the impact of zero day vulnerabilities with AppArmor</h2>
+      </div>
+      <div class="col">
+        {{ image(url="https://assets.ubuntu.com/v1/8f09aec8-apparmor.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+        <p>
+          AppArmor enforces Mandatory Access Control through profiles that define strict limits on what applications can access and do. This significantly restrains the attacker’s ability to move laterally within the system.
+
+        </p>
+        <p>
+          Ubuntu comes pre-installed with a range of AppArmor profiles for common applications. But if your critical workload application doesn’t have a profile, it is straightforward to create one.
+        </p>
+        <div class="p-cta-block">
+          <a href="/tutorials/beginning-apparmor-profile-development#1-overview">Get started with AppArmor profiles for your applications&nbsp;&rsaquo;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <hr class="p-rule" />
+        <h2>Leading platform for confidential computing</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-9">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">A new threat model</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Unlike traditional VMs, where you have to trust that the host software is also secure, confidential VMs only require you to trust the software running within it and the platform’s hardware root of trust. To achieve this, Ubuntu confidential VMs make use of the newer hardware encryption engines to keep your data encrypted in system memory.
+              </p>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Public cloud portfolio</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Ubuntu offers the largest portfolio of confidential VMs  across all major public cloud providers. It is also the preferred launch partner for all confidential AI  offerings that leverage the confidential computing properties of Nvidia’s H100 GPUs.
+              </p>
+            </div>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Private cloud portfolio</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                For your private cloud deployment,  we offer Intel TDX-optimized Ubuntu images for both guest and host. With confidential computing, you can protect your sensitive on-premises data with hardware-rooted primitives, ensuring confidentiality and integrity beyond traditional measures.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr class="p-rule" />
+        <div class="row">
+          <div class="col-6 col-start-large-7 col-medium-3 col-start-medium-4">
+
+            <a href="/confidential-computing">Learn more about confidential computing&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <p class="p-heading--2">
+        <a href="/security">Explore other security features in Ubuntu&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="p-section--shallow">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Platform security resources</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <p class="p-heading--5 u-no-margin--bottom">
+            <a href="/engage/defense-in-depth">Ubuntu's defense in depth approach</a>
+          </p>
+          <p>
+            Ubuntu's security offerings are much more than just a collection of tools. They are an ecosystem of layered defenses, each tuned to address specific threat levels and attacker capabilities. By understanding the unique threats each counter measures, you can make informed choices about which defenses are most important for your environment.
+          </p>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <p class="p-heading--5 u-no-margin--bottom">
+            <a href="https://canonical.com/blog/confidential-computing-intel-tdx-ubuntu">Confidential computing in the private cloud</a>
+          </p>
+          <p>
+            Your on-premises servers face risks from insider threats and run similar privileged system software as public clouds, making them vulnerable to the same security issues. To enhance confidential computing in private clouds, Canonical offers Intel® Trust Domain Extensions (TDX) on Ubuntu. Intel TDX optimized images include base host and guest operating systems, along with remote attestation capabilities.
+          </p>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="p-section--shallow">
+          <p class="p-heading--5 u-no-margin--bottom">
+            <a href="/confidential-computing/ai">Confidential AI</a>
+          </p>
+          <p>
+            Organizations leveraging machine learning in the cloud face concerns over data security and model protection. Strict industry regulations frequently restrict the sharing of sensitive information, limiting AI's potential in critical sectors. Learn how confidential computing can alleviate these concerns.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <p class="p-heading--2">
+        Enhance your security with vulnerability management and compliance.
+        <a href="/pro">Discover Ubuntu Pro&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </section>
+{% endblock content %}

@@ -1,5 +1,9 @@
 {% extends "security/base_security.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "macros/_macros-resource.jinja" import resource_section %}
+
 {% block title %}Compliance automation with Ubuntu Pro | Security{% endblock %}
 
 {% block meta_description %}
@@ -10,304 +14,539 @@
   https://docs.google.com/document/d/13RcVvHBAoywfk3o5Dy-16F3KrMytL9-2v6wWbW444Ko/edit
 {% endblock meta_copydoc %}
 
+{% block body_class %}
+  is-paper
+{% endblock %}
+
 {% block content %}
 
-  <section class="p-strip--suru-topped">
-    <div class="row u-equal-height u-vertically-center">
-      <div class="col-8">
-        <h1>Compliance automation</h1>
-        <h2 class="p-heading--3">Run regulated and high security workloads on Ubuntu</h2>
-        <p>
-          <a href="/pro">Ubuntu Pro</a> has been designed to simplify your security compliance burden for frameworks such as NIST, FedRAMP, PCI-DSS, ISO27001, or CIS. Pro includes security vulnerability patching for up to 12 years, FIPS-validated cryptographic modules, and automated system hardening for CIS and DISA STIG, and can be deployed on-premise or in the <a href="/public-cloud">public cloud</a>.
-        </p>
-        <p>
-          <a class="p-button--positive js-invoke-modal"
-             href="/security/contact-us">Contact us</a>
-          <a href="/security/certifications/docs">Read the documentation&nbsp;&rsaquo;</a>
-        </p>
+  {% call(slot) vf_hero(
+    title_text='Compliance automation',
+    subtitle_text='Run regulated and high security workloads on Ubuntu',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        <a href="/pro">Ubuntu Pro</a> has been designed to simplify your security compliance burden for frameworks such as NIST, FedRAMP, PCI-DSS, ISO27001, or CIS. Pro includes security vulnerability patching for up to 12 years, FIPS-validated cryptographic modules, and automated system hardening for CIS and DISA STIG, and can be deployed on-premise or in the <a href="/public-cloud">public cloud</a>.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <p>
+        <a class="p-button--positive js-invoke-modal"
+           href="/security/contact-us">Contact us</a>
+        <a href="/security/certifications/docs">Read the documentation&nbsp;&rsaquo;</a>
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-section--shallow">
+        <div class="p-image-container--cinematic is-cover is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/77af70e2-hero-img-new.png",
+                    alt="",
+                    width="1848",
+                    height="770",
+                    hi_def=True,
+                    attrs={"class": "p-image-container__image"},
+                    loading="auto") | safe
+          }}
+        </div>
       </div>
-      <div class="col-4 u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
-                alt="",
-                height="300",
-                width="250",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "u-hide--small u-hide--medium"}) | safe
-        }}
-      </div>
-    </div>
-  </section>
+      {% include "shared/_cra-banner.html" %}
+    {%- endif -%}
+  {% endcall -%}
 
-  {% include "shared/_cra-banner.html" %}
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>An OS you can trust</h2>
+      {%- endif -%}
 
-  <section class="p-strip--light">
-    <div class="row p-divider">
-      <div class="col-4 p-divider__block">
-        <h3>Access certifications for high security environments</h3>
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">
+          Access certifications
+          <br />
+          for high security environments
+        </h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
         <p>
           <a href="/pro">Ubuntu Pro</a> provides access to FIPS 140 certified cryptographic packages, allowing you to deploy workloads that need to operate under compliance regimes like FedRAMP, HIPAA, and PCI-DSS. Canonical works with NIST-approved testing labs to certify the core cryptographic modules within Ubuntu for FIPS 140 requirements, enabling applications to use these libraries in compliance with the FIPS standard.
         </p>
-        <a class="p-button" href="#compliance-profiles">Explore our certifications</a>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>Automate hardening with the Ubuntu Security Guide</h3>
+
+        <div class="p-section--shallow">
+          <div class="p-cta-block">
+            <a href="#compliance-profiles">Explore our certifications&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">
+          Automate hardening
+          <br />
+          with the Ubuntu Security Guide
+        </h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
         <p>
           The default configuration of Ubuntu balances usability and security. However, systems carrying dedicated workloads can be further hardened to reduce their attack surface. Canonical provides the Ubuntu Security Guide to automatically harden systems to DISA STIG and CIS benchmarks profiles, and generate audit reports. Available with <a href="/pro">Ubuntu Pro on-premise</a> or ready-built on <a href="/public-cloud">public clouds</a>.
         </p>
-        <a class="p-button"
-           href="/security/compliance-automation#compliance-profiles">See our compliance profiles</a>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3>Fix security vulnerabilities across the estate</h3>
+
+        <div class="p-section--shallow">
+          <div class="p-cta-block">
+            <a href="/security/compliance-automation#compliance-profiles">See our compliance profiles&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">
+          Fix security vulnerabilities
+          <br />
+          across the estate
+        </h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
         <p>
           Each Ubuntu LTS release enables <a href="https://wiki.ubuntu.com/Security/Features">state of the art protection</a> against vulnerability exploitation and malware. Canonical has a <a href="/security/disclosure-policy">public vulnerability disclosure policy</a> and vulnerabilities are fixed with automated security updates and <a href="/security/livepatch">kernel livepatches</a> and publicly disclosed with <a href="/security/notices">our security notices</a>. We further provide <a href="/security/oval">machine readable OVAL</a> CVE output to be used by OpenSCAP and other 3rd party vulnerability management tools. Critical CVEs are typically patched within 24 hours.
         </p>
-        <a class="p-button" href="https://wiki.ubuntu.com/Security/Features">See our security features</a>
+        <div class="p-section--shallow">
+          <div class="p-cta-block">
+            <a href="https://wiki.ubuntu.com/Security/Features">See our security features&nbsp;&rsaquo;</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+    {%- endcall -%}
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="u-fixed-width">
+        <hr class="p-rule" />
+        <h2>Available on-prem and in the cloud</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-start-large-4 col-3 col-medium-2">
+        <a href="/aws">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/7b612d59-aws.png",
+                      alt="",
+                      width="852",
+                      height="481",
+                      hi_def=True,
+                      loading="lazy") | safe
+            }}
+          </div>
+          <p>
+            Learn more about Ubuntu<br class="u-hide--small"/>on AWS&nbsp;&rsaquo;
+          </p>
+        </a>
+      </div>
+      <div class="col-3 col-medium-2">
+        <a href="/azure">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/cc0200cd-azure.png",
+                      alt="",
+                      width="852",
+                      height="481",
+                      hi_def=True,
+                      loading="lazy") | safe
+            }}
+          </div>
+          <p>
+            Learn more about Ubuntu<br class="u-hide--small"/>on Azure&nbsp;&rsaquo;
+          </p>
+        </a>
+      </div>
+      <div class="col-3 col-medium-2">
+        <a href="/gcp">
+          <div class="p-image-container is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/bc125de5-googlecloud.png",
+                      alt="",
+                      width="852",
+                      height="481",
+                      hi_def=True,
+                      loading="lazy") | safe
+            }}
+          </div>
+          <p>
+            Learn more about Ubuntu
+              <br class="u-hide--small"/>
+            on Google Cloud Platform&nbsp;&rsaquo;
+          </p>
+        </a>
       </div>
     </div>
   </section>
 
   <section class="p-section">
-    <div class="row p-strip p-divider">
-      <h2>Available on-prem and in the cloud</h2>
-      <div class="col-4 col-medium-2">
-        <img src="https://assets.ubuntu.com/v1/9faa9b91-aws-logo.png"
-             alt="AWS"
-             style="width:auto;
-                    height: 6.5rem"
-             loading="lazy" />
-        <p>
-          <a href="/aws">Learn more about Ubuntu on AWS&nbsp;></a>
-        </p>
-      </div>
-      <div class="col-4 col-medium-2 p-divider__block">
-        <img src="https://assets.ubuntu.com/v1/21c19804-microsoft-azure-logo.png"
-             alt="Microsoft Azure"
-             style="width:auto;
-                    height: 6.5rem"
-             loading="lazy" />
-        <p>
-          <a href="/azure">Learn more about Ubuntu on Azure&nbsp;></a>
-        </p>
-      </div>
-      <div class="col-4 col-medium-2 p-divider__block">
-        <img src="https://assets.ubuntu.com/v1/92c62d40-lockup_GoogleCloud_FullColor_rgb_544x96px.png"
-             alt="Google Cloud"
-             style="width:auto;
-                    height: 2rem;
-                    margin-top: 2rem;
-                    margin-bottom: 2.5rem"
-             loading="lazy" />
-        <p>
-          <a href="/gcp">Learn more about Ubuntu on Google Cloud Platform&nbsp;></a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-6">
-        <h2>How does Ubuntu enable your compliance with FIPS, and DISA-STIG?</h2>
-        <p>
-          The operating system is the cornerstone of a security compliance program. Ubuntu Pro enables functionality such as FIPS-certified crypto libraries and system hardening with the Ubuntu Security Guide to help meet stringent government security standards. Watch this webinar to find out more.
-        </p>
-      </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center">
-        <div class="jsBrightTALKEmbedWrapper"
-             style="width:100%;
-                    height:100%;
-                    position:relative;
-                    background: #f3f3f3">
-          <script class="jsBrightTALKEmbedConfig" type="application/json">
-            {
-              "channelId": 6793,
-              "language": "en-US",
-              "commId": 591276,
-              "displayMode": "standalone",
-              "height": "280"
-            }
-          </script>
-          <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js"
-                  class="jsBrightTALKEmbed"></script>
-          <script>
-            const iframe = document.querySelector('.jsBrightTALKEmbedWrapper iframe');
-            iframe.addEventListener('load', () => {
-              iframe.scrolling = "yes";
-            });
-          </script>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-6">
-        <h2>Maximizing security and compliance in the US public sector with Ubuntu Pro</h2>
-        <p>
-          Navigating the maze of complex compliance requirements facing the US Public Sector is a daunting prospect. Confusing abbreviations and terminology only make charting this course more difficult. If you’re looking to understand what FIPS, FedRAMP, and DISA-STIG are all about, this whitepaper is for you.
-        </p>
-        <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG"
-           class="p-button--positive">Download the whitepaper</a>
-      </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center">
-        <img src="https://assets.ubuntu.com/v1/4f295d2e-Whitepaper-Containers-Security.png"
-             alt="Whitepaper-Containers-Security"
-             loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-6">
-        <h2>A guide to Infrastructure Hardening</h2>
-        <p>
-          The ever-present threats of ransomware and data breaches make it imperative to lock down systems and prevent attackers from gaining a foothold. Using industry best-practice guidelines such as the CIS benchmarks, this whitepaper will walk you through the process of hardening Linux-based deployments.
-        </p>
-        <a href="/engage/a-guide-to-infrastructure-hardening"
-           class="p-button--positive">Download the whitepaper</a>
-      </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center">
-        <img src="https://assets.ubuntu.com/v1/eb06b681-security_hardening_1.png"
-             width="428"
-             alt="Whitepaper-Containers-Security"
-             loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip" id="compliance-profiles">
     <div class="u-fixed-width">
-      <h2>Ubuntu compliance &amp; hardening profiles</h2>
-      <p class="u-sv2">
-        The default configuration of Ubuntu LTS releases balances between usability, performance, and security. Mission-critical systems can be further hardened to reduce their attack surface. Reducing the attack surface is a widely accepted security best practice, and is often required by cybersecurity frameworks. Canonical works with industry leading organizations, such as CIS and DISA, to produce security hardening benchmarks for Ubuntu.
-      </p>
-      <p>
-        These security benchmarks contain hundreds of steps which can be prohibitively time-consuming to apply manually, so we provide the <a href="/security/certifications/docs/usg">Ubuntu Security Guide (USG)</a> - a tool based on OpenSCAP - to automate the process. USG can generate remediation scripts to harden a system in one procedure, as well as producing audit reports detailing the hardening rules that have been applied. USG profiles are available for CIS benchmarks and DISA STIGs.
-      </p>
-      <div class="row p-divider">
-        <div class="col-6 p-divider__block">
-          {{ image(url="https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
-                    alt="CIS",
-                    width="50",
-                    height="50",
+      <hr class="p-rule" />
+      <div class="p-section--shallow">        
+        <h2>Resources</h2>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <nav class="p-tabs js-tab-container">
+        <ul class="p-tabs__list js-tabbed-content"
+            role="tablist"
+            aria-label="Resources"
+            data-maintain-hash="true">
+          <li class="p-tabs__item">
+            <a href="#videos-and-webinars"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="true"
+               aria-controls="videos-and-webinars-tab"
+               id="videos-and-webinars">Videos and webinars</a>
+          </li>
+          <li class="p-tabs__item">
+            <a href="#whitepapers-and-industry-reports"
+               class="p-tabs__link"
+               role="tab"
+               aria-selected="false"
+               aria-controls="whitepapers-and-industry-reports-tab"
+               id="whitepapers-and-industry-reports"
+               tabindex="-1">Whitepapers and industry reports</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="p-tabs__content"
+         tabindex="0"
+         role="tabpanel"
+         id="videos-and-webinars-tab"
+         aria-labelledby="videos-and-webinars">
+         {%- call(slot) resource_section(date="24 January 2024", hr=False, title_header="h3") -%}
+          {%- if slot == "author_links" -%}
+            Henry Coggill, Chris Huffman
+          {%- endif -%}
+          {%- if slot == "title_link" -%}
+            <a href="https://www.brighttalk.com/webcast/6793/591276">How does Ubuntu enable your compliance
+              <br />
+            with FIPS, and DISA-STIG?</a>
+          {%- endif -%}
+  
+          {%- if slot == "description" -%}
+            <p>
+              The operating system is the cornerstone of a security compliance program. Ubuntu Pro enables functionality such as FIPS-certified crypto libraries and system hardening with the Ubuntu Security Guide to help meet stringent government security standards. Watch this webinar to find out more.
+            </p>
+          {%- endif -%}
+  
+          {%- if slot == "image" -%}
+            {{ image(url="https://assets.ubuntu.com/v1/a8a4f114-how-does-ubuntu-transparent.png",
+                      alt="",
+                      width="2400",
+                      height="1352",
+                      hi_def=True,
+                      loading="lazy",
+                      attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
+            }}
+          {%- endif -%}
+        {%- endcall %}
+
+      </div>
+          
+      <div class="p-tabs__content u-hide"
+         tabindex="0"
+         role="tabpanel"
+         id="whitepapers-and-industry-reports-tab"
+         aria-labelledby="whitepapers-and-industry-reports">
+
+        {%- call(slot) resource_section(hr=False, title_header="h3") -%}
+          {%- if slot == "title_link" -%}
+            <a href="/engage/security-compliance-US-public-sector-FIPS-DISASTIG">Maximizing security and compliance
+              <br />
+            in the US public sector with Ubuntu Pro</a>
+          {%- endif -%}
+
+          {%- if slot == "description" -%}
+            <p>
+              Navigating the maze of complex compliance requirements facing the US Public Sector is a daunting prospect. Confusing abbreviations and terminology only make charting this course more difficult. If you’re looking to understand what FIPS, FedRAMP, and DISA-STIG are all about, this whitepaper is for you.
+            </p>
+          {%- endif -%}
+
+          {%- if slot == "image" -%}
+            {{ image(url="https://assets.ubuntu.com/v1/eeb67d88-maximizing-security-transparent.png",
+                    alt="",
+                    width="2400",
+                    height="1352",
                     hi_def=True,
-                    loading="lazy") | safe
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
+            }}
+          {%- endif -%}
+        {%- endcall %}
+
+        {%- call(slot) resource_section(hr=False, title_header="h3") -%}
+
+          {%- if slot == "title_link" -%}
+            <a href="/engage/a-guide-to-infrastructure-hardening">A guide to Infrastructure Hardening</a>
+          {%- endif -%}
+
+          {%- if slot == "description" -%}
+            <p>
+              The ever-present threats of ransomware and data breaches make it imperative to lock down systems and prevent attackers from gaining a foothold. Using industry best-practice guidelines such as the CIS benchmarks, this whitepaper will walk you through the process of hardening Linux-based deployments.
+            </p>
+          {%- endif -%}
+
+          {%- if slot == "image" -%}
+          {{ image(url="https://assets.ubuntu.com/v1/fec3b184-a-guide-to-transparent.png",
+                  alt="",
+                  width="2400",
+                  height="1352",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"class": "p-image-container__image", "style": "background: #262626;"}) | safe
           }}
-          <p>
-            <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks for Ubuntu systems</a>
-          </p>
-          <h3 class="p-heading--5">USG profile:</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-          </ul>
-        </div>
-        <div class="col-6 p-divider__block">
-          {{ image(url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
-                    alt="DISA",
-                    width="136",
-                    height="50",
-                    hi_def=True,
-                    loading="lazy") | safe
-          }}
-          <p>
-            <a href="/security/disa-stig">Defence Information System Agency (DISA) Security Technical Implementation Guides (STIGs)</a>
-          </p>
-          <h3 class="p-heading--5">USG profile:</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-          </ul>
-          <h3 class="p-heading--5">Configuration guides</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-          </ul>
-        </div>
+          {%- endif -%}
+        {%- endcall %}
       </div>
-      <a href="/security/compliance-automation#get-in-touch"
-         class="p-button--positive js-invoke-modal">Contact us</a>
     </div>
   </section>
 
-  <section class="p-strip--light" id="security-certifications">
+  <section class="p-section">
     <div class="u-fixed-width">
-      <h2>Ubuntu FIPS certifications</h2>
-      <p class="u-sv2">
-        We strive to make Ubuntu the platform of choice in regulated and high-security environments. Ubuntu Pro enables access to the certification artifacts as well as the necessary tooling for such environments. The following is a list of the certifications available with <a href="/pro">Ubuntu Pro</a>. Click on each for more detailed information.
-      </p>
-      <div class="row p-strip--shallow p-divider  u-vertically-center">
-        <div class="col-6 col-medium-3">
-
-          <a href="/security/fips">FIPS 140-2 Level 1</a>
-          <h3 class="p-heading--5">These modules are NIST-certified:</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
-            <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
-          </ul>
-        </div>
-        <div class="col-6 col-medium-3 p-divider__block">
-          <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1</a>
-          <h3 class="p-heading--5">
-            These modules have been assessed by a NIST-approved testing laboratory and are awaiting final certification by <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list">CMVP</a>:
-          </h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
-          </ul>
-        </div>
-      </div>
-      <a href="/security/compliance-automation#get-in-touch"
-         class="p-button--positive js-invoke-modal">Contact us</a>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2>Frequently asked questions about security certifications</h2>
-      <h3>How do I harden my Ubuntu system?</h3>
-      <p>
-        Hardening always involves a tradeoff with usability and performance. The default configuration of Ubuntu LTS releases, as provided by Canonical, balances between usability, performance, and security. However, systems with a dedicated workload are well positioned to benefit from hardening. You can reduce your workload's attack surface by applying an Industry-accepted baseline. At Canonical we recommend applying <a href="/security/cis">the Center for Internet Security (CIS) benchmarks</a> for hardening the configuration of Ubuntu.
-      </p>
-      <h3>How do I comply with PCI-DSS?</h3>
-      <p>
-        PCI-DSS is a payment industry standard and any company that stores, processes, or transmits payment card or cardholder information is required to comply with it. The standard is defined by the Payment Card Industry council and defines measures and processes to secure online financial transactions. The standard is about making business as usual processes like monitoring of security controls, timely response, review of environmental and organizational changes, as well as review of hardware and software being under support by its vendors. For companies with large volumes of transactions compliance with the standard is enforced by an audit of a Qualified Security Assessor (QSA).
-      </p>
-      <p>
-        Achieving and maintaining compliance is a complex and costly process that involves business processes in addition to software requirements. Ubuntu by Canonical contains software and security controls, such as disk encryption, password settings configuration, <a href="/security/fips">cryptographic compliance with FIPS140-2</a>, <a href="/security/cis">CIS hardening</a>, as well as <a href="/pro">a comprehensive Enterprise software maintenance program</a>, to achieve and maintain compliance with the standard.
-      </p>
-      <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal">Contact us</a>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-4 u-hide--medium u-hide--small u-align--center">
-        {{ image(url="https://assets.ubuntu.com/v1/7076ef2d-ubuntu-documents.svg",
+      <div class="p-image-container--cinematic u-hide--medium u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/a01f3eb3-servers.png",
                 alt="",
-                width="166",
-                height="200",
+                width="1848",
+                height="771",
                 hi_def=True,
                 loading="lazy") | safe
         }}
       </div>
-      <div class="col-8">
-        <h2>Security Compliance and Certification documentation</h2>
-        <a href="/security/certifications/docs" class="p-button--positive">Read the docs</a>
+    </div>
+  </section>
+
+  <section class="p-section" id="compliance-profiles">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>
+            Ubuntu compliance
+            <br />
+            &amp; hardening profiles
+          </h2>
+        </div>
+        <div class="col">
+          <p>
+            The default configuration of Ubuntu LTS releases balances between usability, performance, and security. Mission-critical systems can be further hardened to reduce their attack surface. Reducing the attack surface is a widely accepted security best practice, and is often required by cybersecurity frameworks. Canonical works with industry leading organizations, such as CIS and DISA, to produce security hardening benchmarks for Ubuntu.
+          </p>
+          <p>
+            These security benchmarks contain hundreds of steps which can be prohibitively time-consuming to apply manually, so we provide the <a href="/security/certifications/docs/usg">Ubuntu Security Guide (USG)</a> &ndash; a tool based on OpenSCAP &ndash; to automate the process. USG can generate remediation scripts to harden a system in one procedure, as well as producing audit reports detailing the hardening rules that have been applied. USG profiles are available for CIS benchmarks and DISA STIGs.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/56bf9493-cis.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
+              </div>
+              <p>
+                <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks for Ubuntu systems&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <p>USG profile:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/1c385837-disa.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
+              </div>
+              <p>
+                <a href="/security/disa-stig">Defence Information System Agency (DISA) Security Technical Implementation Guides (STIGs)&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <p>USG profile:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+              </ul>
+              <p>Configuration guides:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted" />
+      <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
+        <a href="/security/contact-us" class="p-button js-invoke-modal">Contact us</a>
       </div>
     </div>
   </section>
 
-  {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
-    {% include "shared/contextual_footers/_contextual_footer.html" %}
-  {% endwith %}
+  <section class="p-section" id="security-certifications">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Ubuntu FIPS certifications</h2>
+        </div>
+        <div class="col">
+          <p>
+            We strive to make Ubuntu the platform of choice in regulated and high-security environments. Ubuntu Pro enables access to the certification artifacts as well as the necessary tooling for such environments. The following is a list of the certifications available with <a href="/pro">Ubuntu Pro</a>. Click on each for more detailed information.
+          </p>
+        </div>
+      </div>
+    </div>    
+    <div class="row--50-50">
+      <hr class="p-rule--muted" />
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/babd31f2-fips-140-2.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
+              </div>
+              <p>
+                <a href="/security/fips">FIPS 140-2 Level 1&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <p>These modules are NIST-certified:</p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+                <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="row">
+            <div class="col-3">
+              <div class="p-image-container is-highlighted">
+                {{ image(url="https://assets.ubuntu.com/v1/9ecfeade-fips-140-3.png",
+                                  alt="",
+                                  width="852",
+                                  height="569",
+                                  hi_def=True,
+                                  loading="lazy") | safe
+                }}
+              </div>
+              <p>
+                <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview">FIPS 140-3 Level 1&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-3">
+              <p>
+                These modules have been assessed by a NIST-approved testing laboratory and are awaiting final certification by <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list">CMVP</a>:
+              </p>
+              <hr class="p-rule--muted u-no-margin--bottom" />
+              <ul class="p-list--divided">
+                <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <hr class="p-rule--muted" />
+      <div class="col-start-large-7 col-6 col-start-medium-4 col-medium-3">
+        <a href="/security/contact-us" class="p-button js-invoke-modal">Contact us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Frequently asked questions about security certifications</h2>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">How do I harden my Ubuntu system?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Hardening always involves a tradeoff with usability and performance. The default configuration of Ubuntu LTS releases, as provided by Canonical, balances between usability, performance, and security. However, systems with a dedicated workload are well positioned to benefit from hardening. You can reduce your workload's attack surface by applying an Industry-accepted baseline. At Canonical we recommend applying <a href="/security/cis">the Center for Internet Security (CIS) benchmarks</a> for hardening the configuration of Ubuntu.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">How do I comply with PCI-DSS?</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          PCI-DSS is a payment industry standard and any company that stores, processes, or transmits payment card or cardholder information is required to comply with it. The standard is defined by the Payment Card Industry council and defines measures and processes to secure online financial transactions. The standard is about making business as usual processes like monitoring of security controls, timely response, review of environmental and organizational changes, as well as review of hardware and software being under support by its vendors. For companies with large volumes of transactions compliance with the standard is enforced by an audit of a Qualified Security Assessor (QSA).
+        </p>
+        <p>
+          Achieving and maintaining compliance is a complex and costly process that involves business processes in addition to software requirements. Ubuntu by Canonical contains software and security controls, such as disk encryption, password settings configuration, <a href="/security/fips">cryptographic compliance with FIPS140-2</a>, <a href="/security/cis">CIS hardening</a>, as well as <a href="/pro">a comprehensive Enterprise software maintenance program</a>, to achieve and maintain compliance with the standard.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'cta' -%}
+        <a href="/security/contact-us" class="p-button js-invoke-modal">Contact us</a>
+      {%- endif -%}
+    {%- endcall -%}
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>Security Compliance and Certification documentation</h2>
+      <h2>
+        <a href="/security/certifications/docs">Read the docs&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"
@@ -318,4 +557,26 @@
        data-return-url="/contact-us/form/thank-you"
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script>
+    function adjustScrollOffset() {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - offset;
+  
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }
+    }
+  
+    window.addEventListener("load", adjustScrollOffset);
+    window.addEventListener("hashchange", adjustScrollOffset);
+  </script>
 {% endblock content %}

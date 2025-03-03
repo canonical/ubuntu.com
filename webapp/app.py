@@ -1237,6 +1237,7 @@ def render_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[4307],
         per_page=3,
         blog_title="HPE blogs",
@@ -1259,6 +1260,7 @@ def render_public_cloud_blogs():
         api=BlogAPI(
             session=session, thumbnail_width=1000, thumbnail_height=700
         ),
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
@@ -1280,6 +1282,7 @@ def render_supermicro_blogs():
             session=session, thumbnail_width=555, thumbnail_height=311
         ),
         tag_ids=[2247],
+        excluded_tags=[3184, 3265, 3408, 3960, 4491, 3599],
         per_page=3,
         blog_title="Supermicro blogs",
     )
@@ -1315,7 +1318,7 @@ def render_form(form, template_path, child=False):
                 )
         except jinja2.exceptions.TemplateNotFound:
             flask.abort(
-                404, description=f"Template {form['templatePath']} not found."
+                404, description=f"Template {template_path} not found."
             )
 
     return wrapper_func
@@ -1329,12 +1332,19 @@ def set_form_rules():
             for path, form in data["form"].items():
                 if "childrenPaths" in form:
                     for child_path in form["childrenPaths"]:
+                        # If the child path ends with 'index', remove it for
+                        # the path
+                        path_split = child_path.strip("/").split("/")
+                        if path_split[-1] == "index":
+                            processed_path = "/" + "/".join(path_split[:-1])
+                        else:
+                            processed_path = child_path
                         app.add_url_rule(
-                            child_path,
+                            processed_path,
                             view_func=render_form(
                                 form, child_path, child=True
                             ),
-                            endpoint=child_path,
+                            endpoint=processed_path,
                         )
                 app.add_url_rule(
                     path,
