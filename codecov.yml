@@ -6,7 +6,7 @@ codecov:
 comment:
   layout: "diff, files"
   behavior: default
-  require_changes: false
+  require_changes: true
   require_base: true
   require_head: true
 
@@ -23,3 +23,9 @@ coverage:
         threshold: 0%
         flags:
           - python
+      patch:
+        default:
+          target: auto
+          threshold: 0%
+          paths:
+            - "webapp/"

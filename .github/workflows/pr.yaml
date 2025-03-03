@@ -163,12 +163,20 @@ jobs:
         run: dotrun build
 
       - name: Run tests with coverage
-        run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
+        run: |
+          dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
+          dotrun exec coverage xml -o tests/coverage.xml
+
+      - name: Fix coverage file permissions
+        run: sudo chmod 777 coverage.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
+          file: tests/coverage.xml
           flags: python
+          fail_ci_if_error: false
+          commit_parent: ${{ github.event.pull_request.base.sha }}
 
   test-js:
     runs-on: ubuntu-latest
