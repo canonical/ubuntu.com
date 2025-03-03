@@ -193,7 +193,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
-    function setDataLayerConsentInfo(form) {
+    function setDataLayerConsentInfo() {
       const dataLayer = window.dataLayer || [];
       const latestConsentUpdateElements = dataLayer
         .slice()
@@ -204,17 +204,13 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
             item !== null &&
             item[0] === "consent" &&
             item[1] === "update",
-        )[0][2];
+        )[0]?.[2];
 
       if (latestConsentUpdateElements) {
-        const consentInfoValue = JSON.stringify(latestConsentUpdateElements);
-        var consentInfo = document.createElement("input");
-        consentInfo.setAttribute("type", "text");
-        consentInfo.setAttribute("name", "Google_Consent_Mode__c");
-        consentInfo.setAttribute("value", consentInfoValue);
-        consentInfo.setAttribute("hidden", "true");
-        consentInfo.setAttribute("class", "u-no-margin u-no-padding");
-        form.appendChild(consentInfo);
+        document.cookie =
+          "consent_info=" +
+          JSON.stringify(latestConsentUpdateElements) +
+          ";max-age=31536000;";
       }
     }
 
@@ -244,7 +240,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
-        setDataLayerConsentInfo(e.target);
+        setDataLayerConsentInfo();
         if (!isMultipage) {
           comment.value = createMessage(true);
         }

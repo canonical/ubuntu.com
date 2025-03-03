@@ -177,7 +177,7 @@ function setUpStaticForms(form, formId) {
   }
 
   form.addEventListener("submit", function (e) {
-    setDataLayerConsentInfo(e.target);
+    setDataLayerConsentInfo();
   });
 }
 
@@ -289,7 +289,7 @@ requiredFieldset?.forEach((fieldset) => {
   });
 });
 
-function setDataLayerConsentInfo(form) {
+function setDataLayerConsentInfo() {
   const dataLayer = window.dataLayer || [];
   const latestConsentUpdateElements = dataLayer
     .slice()
@@ -300,16 +300,12 @@ function setDataLayerConsentInfo(form) {
         item !== null &&
         item[0] === "consent" &&
         item[1] === "update",
-    )[0][2];
+    )[0]?.[2];
 
   if (latestConsentUpdateElements) {
-    const consentInfoValue = JSON.stringify(latestConsentUpdateElements);
-    var consentInfo = document.createElement("input");
-    consentInfo.setAttribute("type", "text");
-    consentInfo.setAttribute("name", "Google_Consent_Mode__c");
-    consentInfo.setAttribute("value", consentInfoValue);
-    consentInfo.setAttribute("hidden", "true");
-    consentInfo.setAttribute("class", "u-no-margin u-no-padding");
-    form.appendChild(consentInfo);
+    document.cookie =
+      "consent_info=" +
+      JSON.stringify(latestConsentUpdateElements) +
+      ";max-age=31536000;";
   }
 }
