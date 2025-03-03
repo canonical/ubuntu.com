@@ -168,7 +168,7 @@ jobs:
           dotrun exec coverage xml -o ./tests/coverage.xml
 
       - name: Fix coverage file permissions
-        run: sudo chmod 777 coverage.xml
+        run: sudo chmod 777 ./tests/coverage.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
