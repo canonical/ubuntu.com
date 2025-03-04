@@ -24,6 +24,7 @@ from canonicalwebteam.discourse import (
     Tutorials,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from canonicalwebteam.parser import scan_directory
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
@@ -1356,3 +1357,14 @@ def set_form_rules():
 
 
 set_form_rules()
+
+
+def get_sitemaps_tree():
+    try:
+        tree = scan_directory(os.getcwd() + "/templates")
+    except Exception as e:
+        raise Exception(f"Error scanning directory: {e}")
+    return tree
+
+
+get_sitemaps_tree()
