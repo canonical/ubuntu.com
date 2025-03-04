@@ -1,96 +1,72 @@
-<section class="{% if section %}{{ section }}{% else %}p-strip{% endif %}">
-  <div class="u-fixed-width">
-    <h2>Learn more about robotics solutions</h2>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            loading="lazy",
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Webinars</h4>
+<section class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  {% call(slot) vf_hero(
+    title_text='',
+    subtitle_text='Learn more about robotics solutions',
+    layout='50/50',
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == 'image' -%}
+      <div class="col-6 col-medium-3">
+        <div class="row">
+          <div class="col-2">
+            <h5>Webinars</h5>
+          </div>
+          <div class="col-4">
+            <p>A detailed look into choosing your robot's OS, getting to market, and more.</p>
+            <hr class="p-rule--muted" />
+            <ul class="p-list">
+              <li class="p-list__item">
+                <a href="/engage/ros-kinetic-eol">ROS Kinetic EOL: Keep your robot secure with ROS ESM</a>
+              </li>
+              <hr class="p-rule--muted" />
+              <li class="p-list__item">
+                <a href="https://ubuntu.com/robotics/docs/securing-ros-robotic-platforms">Securing ROS robotics platforms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2">
+            <h5>Case Studies</h5>
+          </div>
+          <div class="col-4">
+            <p>Case studies from customers and partners who are using Ubuntu for their robots.</p>
+            <hr class="p-rule--muted" />
+            <ul class="p-list">
+              <li class="p-list__item">
+                <a href="/engage/cyberdyne">Cyberdyne keeps cleaning robots up-to-date</a>
+              </li>
+              <hr class="p-rule--muted" />
+              <li class="p-list__item">
+                <a href="https://husarion.com/blog/using%20snaps/">
+                  Husarion blog - Beyond Docker: our journey to software deployment with snaps
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-2">
+            <h5>Whitepaper</h5>
+          </div>
+          <div class="col-4">
+            <p>Examine the fundamentals of a successful robotics project that helps your organisation achieve their ambitions.</p>
+            <hr class="p-rule--muted" />
+            <ul class="p-list">
+              <li class="p-list__item">
+                <a href="/whitepapers/beta/robotics">Pick the right OS for your robotics platform</a>
+              </li>
+              <hr class="p-rule--muted" />
+              <li class="p-list__item">
+                <a href="/engage/dockerandros">Docker &amp; ROS: When all you have is a hammer, everything looks like a nail</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <p>A detailed look into choosing your robot's OS, getting to market, and more.</p>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a href="/engage/ros-kinetic-eol">
-            ROS Kinetic EOL: Keep your robot secure with ROS ESM
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a href="https://ubuntu.com/robotics/docs/securing-ros-robotic-platforms">
-            Securing ROS robotics platforms
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
-            alt="",
-            height="32",
-            width="32",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-          ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Case Studies</h4>
-        </div>
-      </div>
-      <p>Case studies from customers and partners who are using Ubuntu for their robots.</p>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a href="/engage/cyberdyne">
-            Cyberdyne keeps cleaning robots up-to-date
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a href="https://husarion.com/blog/using%20snaps/">
-            Husarion blog - Beyond Docker: our journey to software deployment with snaps
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              height="28",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
-        </div>
-      </div>
-      <p>Examine the fundamentals of a successful robotics project that helps your organisation achieve their ambitions.</p>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a href="/whitepapers/beta/robotics">Pick the right OS for your robotics platform</a>
-        </li>
-        <li class="p-list__item">
-          <a href="/engage/dockerandros">Docker &amp; ROS: When all you have is a hammer, everything looks like a nail</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+    {%- endif -%}
+  {% endcall -%}
 </section>
