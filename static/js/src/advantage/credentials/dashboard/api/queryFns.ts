@@ -241,7 +241,7 @@ export async function getUserBans() {
 
 export async function ensureCUEUserBan(userBan: UserBan) {
   try {
-    const URL = `/credentials/api/user-ban`;
+    const URL = `/credentials/api/user-bans`;
     const response = await fetch(URL, {
       method: "PUT",
       headers: {
