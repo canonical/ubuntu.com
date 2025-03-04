@@ -8,7 +8,7 @@
     <meta name="keywords" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} | Ubuntu</title>
-    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" />
     <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
     <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}" type="module"></script>
     <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
@@ -16,69 +16,69 @@
     <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
     <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}" defer></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}">
-    <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}" />
     <script>
       performance.mark("Stylesheets finished");
     </script>
 
-    <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
 
     <link rel="apple-touch-icon"
           sizes="180x180"
-          href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png">
+          href="https://assets.ubuntu.com/v1/f38b9c7e-COF%20apple-touch-icon.png" />
     <link rel="icon"
           type="image/png"
           sizes="32x32"
-          href="https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png">
+          href="https://assets.ubuntu.com/v1/be7e4cc6-COF-favicon-32x32.png" />
     <link rel="icon"
           type="image/png"
           sizes="16x16"
-          href="https://assets.ubuntu.com/v1/16c27f81-COF%20favicon-16x16.png">
-    <link rel="manifest" href="{{ versioned_static("files/site.webmanifest") }}">
+          href="https://assets.ubuntu.com/v1/16c27f81-COF%20favicon-16x16.png" />
+    <link rel="manifest" href="{{ versioned_static("files/site.webmanifest") }}" />
     <!-- Serving favicon for search engines locally -->
-    <link rel="icon" type="image/png" sizes="48x48" href="{{ versioned_static("favicons/COF-favicon-48x48.png") }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ versioned_static("favicons/COF-favicon-48x48.png") }}" />
     {%- block head_extra %}{% endblock %}
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/f1ea362b-Ubuntu%5Bwdth,wght%5D-latin-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/90b59210-Ubuntu-Italic%5Bwdth,wght%5D-latin-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/d5fc1819-UbuntuMono%5Bwght%5D-latin-v0.869.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/77cd6650-Ubuntu%5Bwdth,wght%5D-cyrillic-extended-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/2702fce5-Ubuntu%5Bwdth,wght%5D-cyrillic-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/5c108b7d-Ubuntu%5Bwdth,wght%5D-greek-extended-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/0a14c405-Ubuntu%5Bwdth,wght%5D-greek-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
     <link rel="preload"
           as="font"
           type="font/woff2"
           href="https://assets.ubuntu.com/v1/19f68eeb-Ubuntu%5Bwdth,wght%5D-latin-extended-v0.896a.woff2"
-          crossorigin>
+          crossorigin />
 
     <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}">
     <meta name="facebook-domain-verification"
