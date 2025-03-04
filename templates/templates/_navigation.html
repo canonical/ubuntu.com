@@ -80,7 +80,7 @@
               onmouseenter="fetchDropdown('/templates/meganav/download-ubuntu', 'download-ubuntu', event); this.onmouseenter = null;">
             <a class="p-navigation__link"
                href="/navigation#download-ubuntu-navigation"
-               aria-controls="#download-ubuntu-content"
+               aria-controls="download-ubuntu-content"
                tabindex="0"
                onfocus="fetchDropdown('/templates/meganav/download-ubuntu', 'download-ubuntu');">Download Ubuntu</a>
           </li>
@@ -103,7 +103,7 @@
                     class="p-search-box__input u-hide "
                     name="search"
                     placeholder="Search our sites"
-                    aria-label="Search our sites" 
+                    aria-label="Search our sites"
                     value=""/>
             <!-- end of honeypot search input -->
             <input type="search"
@@ -157,7 +157,7 @@
             {% endif %}
           {% endif %}
         </div>
-        
+
         <nav class="p-navigation__nav"
              aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
           {% if breadcrumbs.children %}
