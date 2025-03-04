@@ -13,7 +13,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const triggeringHash = "#get-in-touch";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
-    const contactForm = document.getElementById("contact-form-container");
     let returnData = window.location.pathname + "#success";
     const contactModalSelector = "contact-modal";
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
@@ -22,7 +21,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
         if (window.location.pathname) {
-          contactForm.setAttribute("data-return-url", returnData);
+          formContainer.setAttribute("data-return-url", returnData);
         }
 
         if (contactButton.dataset.formLocation) {
@@ -194,6 +193,27 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       }
     }
 
+    function setDataLayerConsentInfo() {
+      const dataLayer = window.dataLayer || [];
+      const latestConsentUpdateElements = dataLayer
+        .slice()
+        .reverse()
+        .filter(
+          (item) =>
+            typeof item === "object" &&
+            item !== null &&
+            item[0] === "consent" &&
+            item[1] === "update",
+        )[0]?.[2];
+
+      if (latestConsentUpdateElements) {
+        document.cookie =
+          "consent_info=" +
+          JSON.stringify(latestConsentUpdateElements) +
+          ";max-age=31536000;";
+      }
+    }
+
     function initialiseForm() {
       let contactIndex = 1;
       const contactModal = document.getElementById(contactModalSelector);
@@ -220,6 +240,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       contactModal.addEventListener("submit", function (e) {
         addLoadingSpinner();
+        setDataLayerConsentInfo();
         if (!isMultipage) {
           comment.value = createMessage(true);
         }

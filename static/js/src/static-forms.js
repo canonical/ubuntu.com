@@ -175,6 +175,10 @@ function setUpStaticForms(form, formId) {
   if (submitButton && !cancelLoader) {
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
+
+  form.addEventListener("submit", function (e) {
+    setDataLayerConsentInfo();
+  });
 }
 
 /**
@@ -284,3 +288,24 @@ requiredFieldset?.forEach((fieldset) => {
     requiredCheckbox(fieldset, event.target);
   });
 });
+
+function setDataLayerConsentInfo() {
+  const dataLayer = window.dataLayer || [];
+  const latestConsentUpdateElements = dataLayer
+    .slice()
+    .reverse()
+    .filter(
+      (item) =>
+        typeof item === "object" &&
+        item !== null &&
+        item[0] === "consent" &&
+        item[1] === "update",
+    )[0]?.[2];
+
+  if (latestConsentUpdateElements) {
+    document.cookie =
+      "consent_info=" +
+      JSON.stringify(latestConsentUpdateElements) +
+      ";max-age=31536000;";
+  }
+}

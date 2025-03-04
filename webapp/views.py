@@ -908,6 +908,10 @@ def marketo_submit():
     if user_id:
         enrichment_fields["Google_Analytics_User_ID__c"] = user_id
 
+    consent_info = flask.request.cookies.get("consent_info")
+    if consent_info:
+        enrichment_fields["Google_Consent_Mode__c"] = consent_info
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
