@@ -1069,7 +1069,7 @@ app.add_url_rule(
     methods=["DELETE"],
 )
 app.add_url_rule(
-    "/credentials/api/user-ban",
+    "/credentials/api/user-bans",
     view_func=cred_user_ban,
     methods=["GET", "PUT"],
 )

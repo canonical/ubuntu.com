@@ -1429,9 +1429,19 @@ def cred_user_ban(ua_contracts_api, **kwargs):
 
     if method == "PUT":
         data = flask.request.json
-        return ua_contracts_api.put_cue_user_ban(data)
+        sanitized_data = {
+            "email": data.get("email", ""),
+            "reason": data.get("reason", ""),
+            "blocked": data.get("blocked", True),
+            "expiresAt": data.get("expiresAt", None),
+        }
+        resp = ua_contracts_api.put_cue_user_ban(sanitized_data)
+        if resp.get("errors", False):
+            return flask.jsonify(resp), 400
+        return flask.jsonify(resp)
     elif method == "GET":
-        return ua_contracts_api.get_cue_user_bans()
+        resp = ua_contracts_api.get_cue_user_bans()
+        return flask.jsonify(resp)
 
 
 @shop_decorator(area="cred", permission="user", response="html")
