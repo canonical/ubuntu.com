@@ -15,8 +15,6 @@ import flask
 import jinja2
 import talisker.requests
 import yaml
-from bs4 import BeautifulSoup
-from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from canonicalwebteam.directory_parser import generate_sitemap
