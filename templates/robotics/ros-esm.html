@@ -72,49 +72,45 @@
     {%- endif -%}
   {% endcall -%}
 
-  <section class="p-section">
+  <section class="p-section--shallow">
     <hr class="p-rule is-fixed-width" />
     <div class="p-section--shallow u-fixed-width">
       <h2>ROS ESM security coverage</h2>
     </div>
-    <div class="p-section--shallow">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h4 class="p-heading--5">Main</h4>
-            </div>
-            <div class="col-6">
-              <p>
-                <a href="/kubernetes/charmed-k8s">2,300 packages in the Ubuntu Main repo supported for 5 years after EOL.</a>
-              </p>
-            </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-9">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Main</h3>
           </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h4 class="p-heading--5">Universe</h4>
-            </div>
-            <div class="col-6">
-              <p>
-                <a href="/kubernetes/charmed-k8s">Learn more about Charmed Kubernetes&nbsp;&rsaquo;</a>
-              </p>
-            </div>
+          <div class="col-6">
+            <p>2,300 packages in the Ubuntu Main repo supported for 5 years after EOL
+            </p>
           </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h4 class="p-heading--5">ROS ESM</h4>
-            </div>
-            <div class="col-6">
-              <p>
-                More than 600 packages across ROS 1 Kinetic, Melodic and Noetic and ROS 2 Foxy. Other ROS 2 distributions continue to be added.
-              </p>
-            </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Universe</h3>
           </div>
-          <hr class="p-rule--muted" />
+          <div class="col-6">
+            <p>
+              An additional 23,000+ packages in the Ubuntu Universe repository for 10 years
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">ROS ESM</h3>
+          </div>
+          <div class="col-6">
+            <p>
+              More than 600 packages across ROS 1 Kinetic, Melodic and Noetic and ROS 2 Foxy. Other ROS 2 distributions continue to be added.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -123,27 +119,27 @@
   <section class="p-section--shallow">
     <hr class="p-rule is-fixed-width" />
     <div class="row">
-      <div class="col-8">
+      <div class="col-8 p-section--shallow">
         <h2>ROS distributions available today in ROS ESM:</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-3 col-medium-2 col-small-2">
+      <div class="col-3 col-medium-2 col-small-2 u-sv3">
         <img src="https://assets.ubuntu.com/v1/b49ac600-kinetic%20kame.png"
              alt="Kinetic" />
         <figcaption>Kinetic Kane</figcaption>
       </div>
-      <div class="col-3 col-medium-2 col-small-2">
+      <div class="col-3 col-medium-2 col-small-2 u-sv3">
         <img src="https://assets.ubuntu.com/v1/5daf18c8-melodic%20morenia.png"
              alt="Melodic" />
         <figcaption>Melodic Morenia</figcaption>
       </div>
-      <div class="col-3 col-medium-2 col-small-2">
+      <div class="col-3 col-medium-2 col-small-2 u-sv3">
         <img src="https://assets.ubuntu.com/v1/40e2ee8a-foxy%20fitzroy.png"
              alt="Foxy" />
         <figcaption>Foxy Fitzroy</figcaption>
       </div>
-      <div class="col-3 col-medium-2 col-small-2">
+      <div class="col-3 col-medium-2 col-small-2 u-sv3">
         <img src="https://assets.ubuntu.com/v1/4ffd790a-noetic%20ninjemys-2.png"
              alt="Noetic" />
         <figcaption>Noetic Ninjemys</figcaption>
@@ -173,8 +169,8 @@
                  class="p-logo-section__logo" />
           </div>
           <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/74ba014d-144px%20FFmpeg%20logo.svg"
-                 alt="FFmpeg"
+            <img src="https://assets.ubuntu.com/v1/2632bd00-144px%20OpenCV%20logo.svg"
+                 alt="OpenCV"
                  class="p-logo-section__logo" />
           </div>
           <div class="p-logo-section__item">
@@ -193,8 +189,8 @@
                  class="p-logo-section__logo" />
           </div>
           <div class="p-logo-section__item">
-            <img src="https://assets.ubuntu.com/v1/2632bd00-144px%20OpenCV%20logo.svg"
-                 alt="OpenCV"
+            <img src="https://assets.ubuntu.com/v1/74ba014d-144px%20FFmpeg%20logo.svg"
+                 alt="FFmpeg"
                  class="p-logo-section__logo" />
           </div>
         </div>
@@ -264,15 +260,19 @@
             Prevent the risks of running unpatched and unmaintained ROS versions for your robot, company and customers. Risks that increase when working with End-Of-Life (EOL) ROS distributions or dependencies.
           </p>
           <p>
-            With ROS ESM, you can count on backports for critical security updates, common vulnerabilities and exposures (CVE) fixes and bug fixes for ROS and the Ubuntu base OS. Our security experts follow a standardised process to identify vulnerabilities and create and test security patches.
+            With ROS ESM, you can count on backports for critical security updates, common vulnerabilities and exposures (CVE) fixes and bug fixes for ROS and the Ubuntu base OS. Our security experts follow a standardized process to identify vulnerabilities and create and test security patches.
           </p>
           <p>With ROS ESM, keeping core ROS packages secure is a fast and straightforward process.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-6 col-medium-3 col-start-large-5">
-          <img src="https://assets.ubuntu.com/v1/894ffe5b-ESM+for+ROS+vertical.svg"
-               alt="" />
+        <div class="col-3"></div>
+        <div class="col-9">
+          <div class="p-image-container--3-2 is-highlighted">
+            <img class="p-image-container__image"
+                 src="https://assets.ubuntu.com/v1/ba547e6c-ros-esm-rebranded-chart.png"
+                 alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -324,7 +324,7 @@
               </tr>
               <tr>
                 <td class="u-no-padding--left" data-heading="Real time kernel">
-                  <a href="https://ubuntu.com/real-time">Real time kernel</a>
+                  <a href="/real-time">Real time kernel</a>
                 </td>
                 <td data-heading="Ubuntu LTS">No</td>
                 <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
@@ -333,7 +333,7 @@
               <tr>
                 <td class="u-no-padding--left"
                     data-heading="NIST-certified FIPS crypto-modules">
-                  <a href="/security/compliance-automation">NIST-certified FIPS crypto-modules</a>
+                  <a href="/security/certifications">NIST-certified FIPS crypto-modules</a>
                 </td>
                 <td data-heading="Ubuntu LTS">No</td>
                 <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
@@ -342,7 +342,7 @@
               <tr>
                 <td class="u-no-padding--left"
                     data-heading="USG hardening with CIS and DISA-STIG profiles">
-                  <a href="/security/compliance-automation">USG hardening with CIS and DISA-STIG profiles</a>
+                  <a href="/security/certifications">USG hardening with CIS and DISA-STIG profiles</a>
                 </td>
                 <td data-heading="Ubuntu LTS">No</td>
                 <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
@@ -350,7 +350,7 @@
               </tr>
               <tr>
                 <td class="u-no-padding--left" data-heading="Common Criteria EAL2">
-                  <a href="/security/compliance-automation">Common Criteria EAL2</a>
+                  <a href="/security/certifications">Common Criteria EAL2</a>
                 </td>
                 <td data-heading="Ubuntu LTS">No</td>
                 <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
@@ -365,22 +365,20 @@
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
-    <div class="p-section--shallow row">
-      <div class="col-6 col-medium-3">
+    <div class="is-shallow row">
+      <div class="col-6 col-medium-3 u-sv1">
         <h2 class="u-no-margin--bottom">Get ROS ESM</h2>
       </div>
       <div class="col-6 col-medium-3">
-        <h3>
-          30-day trial for enterprises.
-          <br class="u-hide--small u-hide--medium" />
-          Always free for personal use.
-        </h3>
+        <p>
+          30-day trial for enterprises. Always free for personal use.
+        </p>
       </div>
     </div>
-    <div class="p-section--shallow row">
+    <div class="is-shallow row">
       <div class="col-3"></div>
       <div class="col-9">
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3">
             <h3 class="p-heading--5">Development stations?</h3>
@@ -393,14 +391,14 @@
             <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
           </div>
         </div>
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3">
-            <h3 class="p-heading--5">Large fleet of devices?</h3>
+            <h3 class="p-heading--5">Deployed devices in the field?</h3>
           </div>
           <div class="col-6">
             <p>
-              If you have a large fleet of devices or need to support estates that grow over time, <a href="https://ubuntu.com/pro/devices">Ubuntu Pro for devices</a> might be a better option.
+              If you have a fleet of devices or need to support deployments that grow over time, <a href="https://ubuntu.com/pro/devices">Ubuntu Pro for devices</a> might be a better option.
             </p>
             <p>
               It will not only grant you access to the Ubuntu Pro subscription but also apply a beneficial discount-based model and the option of a one-time-fee per device.
@@ -410,14 +408,14 @@
                href="/internet-of-things/contact-us?product=robotics">Get in touch</a>
           </div>
         </div>
-        <hr class="p-rule is-fixed-width" />
+        <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-3">
             <h3 class="p-heading--5">Using Ubuntu Core?</h3>
           </div>
           <div class="col-6">
             <p>
-              <a>Ubuntu Core</a> is an open source minimal, secure and strictly confined operating system for embedded devices.
+              <a href="https://ubuntu.com/core">Ubuntu Core</a> is an open source minimal, secure and strictly confined operating system for embedded devices.
             </p>
             <p>
               Canonical customers using any of our <a href="https://ubuntu.com/pricing/devices">enterprise IOT services</a> get a Ubuntu Pro subscription for free as part of their contracts.
@@ -428,8 +426,8 @@
     </div>
   </section>
 
-  <section class="p-section u-padding-top u-padding-bottom">
-    <hr class="p-rule is-fixed-width" />
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip">
     <div class="row">
       <div class="col">
         <h2 class="u-no-margin--bottom">Questions?</h2>
@@ -441,20 +439,16 @@
     </div>
   </section>
 
-  {% with section='p-strip--light' %}
-    {% include "robotics/shared/_learn-more-about-robotics.html" %}
-  {% endwith %}
+  {% include "robotics/shared/_learn-more-about-robotics.html" %}
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
-    {% call(slot) vf_hero(
-      title_text='',
-      subtitle_text='Want to deploy your devices with Ubuntu Core?',
-      layout='50/50',
-      is_split_on_medium=true
-      ) -%}
-      {%- if slot == 'image' -%}
-        <div class="p-image-container--3-2 is-cover">
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Want to deploy your devices with Ubuntu Core?</h2>
+      </div>
+      <div class="col">
+        <div class="p-image-container--3-2 is-highlighted">
           <img class="p-image-container__image"
                src="https://assets.ubuntu.com/v1/cade9b40-ubuntu-core-img.png"
                alt="" />
@@ -465,9 +459,8 @@
           <a href="/core"
              onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'u.c/core', 'eventLabel' : 'Develop with Ubuntu core', 'eventValue' : undefined });">Discover Ubuntu Core ></a>
         </p>
-      {%- endif -%}
-    {% endcall -%}
+      </div>
+    </div>
   </section>
 
-  
 {% endblock content %}
