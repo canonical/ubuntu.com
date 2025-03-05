@@ -1,16 +1,14 @@
 <section class="p-section">
   <hr class="p-rule is-fixed-width" />
-  {% call(slot) vf_hero(
-    title_text='',
-    subtitle_text='Learn more about robotics solutions',
-    layout='50/50',
-    is_split_on_medium=true
-    ) -%}
-    {%- if slot == 'image' -%}
+  <div class="row--50-50">
+    <div class="col">
+      <h2>Learn more <br/> about robotics solutions</h2>
+    </div>
+    <div class="col">
       <div class="col-6 col-medium-3">
         <div class="row">
           <div class="col-2">
-            <h5>Webinars</h5>
+            <h3>Webinars</h3>
           </div>
           <div class="col-4">
             <p>A detailed look into choosing your robot's OS, getting to market, and more.</p>
@@ -29,7 +27,7 @@
         <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-2">
-            <h5>Case Studies</h5>
+            <h3>Case Studies</h3>
           </div>
           <div class="col-4">
             <p>Case studies from customers and partners who are using Ubuntu for their robots.</p>
@@ -50,10 +48,10 @@
         <hr class="p-rule--muted" />
         <div class="row">
           <div class="col-2">
-            <h5>Whitepaper</h5>
+            <h3>Whitepaper</h3>
           </div>
           <div class="col-4">
-            <p>Examine the fundamentals of a successful robotics project that helps your organisation achieve their ambitions.</p>
+            <p>Examine the fundamentals of a successful robotics project that helps your organization achieve their ambitions.</p>
             <hr class="p-rule--muted" />
             <ul class="p-list">
               <li class="p-list__item">
@@ -67,6 +65,6 @@
           </div>
         </div>
       </div>
-    {%- endif -%}
-  {% endcall -%}
+    </div>
+  </div>
 </section>
