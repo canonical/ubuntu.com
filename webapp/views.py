@@ -1231,15 +1231,22 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                     v for v in vulnerabilities if v["year"] in top_years
                 ]
 
-            return flask.render_template(
-                template_path,
-                topics=topics,
-                vulnerabilities=vulnerabilities,
+            response = flask.make_response(
+                flask.render_template(
+                    template_path,
+                    topics=topics,
+                    vulnerabilities=vulnerabilities,
+                )
             )
+            response.headers["Cache-Control"] = (
+                "max-age=900, stale-while-revalidate=900, stale-if-error=3600"
+            )
+            return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
             )
+            return flask.Response("Internal Server Error", status=500)
 
     return vulnerabilities_list
 
@@ -1259,14 +1266,21 @@ def build_vulnerabilities(security_vulnerabilities):
                     document_metadata = item
                     break
 
-            return flask.render_template(
-                "security/vulnerabilities/vulnerability-detailed.html",
-                metadata=document_metadata,
-                document=document,
+            response = flask.make_response(
+                flask.render_template(
+                    "security/vulnerabilities/vulnerability-detailed.html",
+                    metadata=document_metadata,
+                    document=document,
+                )
             )
+            response.headers["Cache-Control"] = (
+                "max-age=900, stale-while-revalidate=900, stale-if-error=3600"
+            )
+            return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error fetching vulnerabilities: {e}"
             )
+            return flask.Response("Internal Server Error", status=500)
 
     return vulnerability
