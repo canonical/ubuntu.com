@@ -9,13 +9,8 @@
     <div class="col-8">
       <h1>Ubuntu kernel variants from Canonical</h1>
       <p>A kernel variant is a kernel that deviates from the General Availability (GA) kernel by changes to its configuration and/or by having modules added and/or removed. In short, a kernel variant is an Ubuntu kernel that reports a kernel version and flavour other than what is reported with an Ubuntu LTS <code><em>-generic</em></code> kernel when you run the <code>$ uname -a</code> command. It is possible to have kernel variants for multiple releases of a kernel, which is something that will happen naturally over time to a newly-released custom kernel.</p>
+      <h2 id="variant-categories">Variant categories</h2>
       <p>Canonical's Kernel Team strives to support all use cases from the generic kernel. Only where this is not possible are kernel variants created. Variants fall into four broad categories:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked"><a href="#version-specific-kernels">Version-specific</a>, where the kernel base version differs</li>
-        <li class="p-list__item is-ticked"><a href="#configuration-specific-kernels">Configuration-specific</a>, where desired kernel configurations are incompatible and the underlying features are not runtime selectable</li>
-        <li class="p-list__item is-ticked"><a href="#platform-specific-kernels">Platform-specific</a>, where a specific platform requires patches that are not currently applicable to the primary kernels</li>
-        <li class="p-list__item is-ticked"><a href="#project-specific-kernels">Project-specific</a>, where project deadlines require expedited delivery</li>
-      </ul>
     </div>
   </div>
 </section>
@@ -23,6 +18,7 @@
   <div class="row">
     <div class="col-8">
       <h2 id="version-specific-kernels">Version-specific kernels</h2>
+      <p><strong>Version-specific, where the kernel base version differs</strong></p>
       <p>It is not possible to sensibly combine kernels at different upstream versions. For any Ubuntu LTS release  where we carry a General Availability (GA) kernel at one version, and a Hardware Enablement (HWE) kernel at another version, those are delivered as separate kernels. Version-specific kernels provide a consistent operating environment for Application Binary Interface (ABI)-sensitive workloads. It is not possible to combine kernels based on different upstream versions, which means maintaining a version-specific kernel is done through backporting fixes for serious/critical bugs and CVEs, which is the primary differentiator for this kernel variant. Version-specific kernels are just as rigorously maintained by Canonical as our generic kernels but Canonical ensures backport of critical/high CVE mitigation.</p>
       <p>There is no significant additional technical consideration with a version-specific kernel variant since the work of backporting patches is a well-understood industry practice. However, there are business considerations regarding scope, cost and effort to maintain ABI compatibility over time as a version-specific kernel ages and gets further and further away from the latest upstream stable kernels, which makes backporting critical and high patches increasingly complicated and expensive.</p>
     </div>
@@ -32,6 +28,7 @@
   <div class="row">
     <div class="col-8">
       <h2 id="configuration-specific-kernels">Configuration-specific kernels</h2>
+      <p><strong>Configuration-specific, where desired kernel configurations are incompatible and the underlying features are not runtime selectable</strong></p>
       <p>Our primary kernels are targeted to a general-purpose configuration with wide applicability. Where additional configuration combinations are needed, and cannot be runtime selected, we create use-case-specific kernels. For example, some memory management unit (MMU) page table code is build time selectable for performance reasons.</p>
     </div>
   </div>
@@ -40,6 +37,7 @@
   <div class="row">
     <div class="col-8">
       <h2 id="platform-specific-kernels">Platform-specific kernels</h2>
+      <p><strong>Platform-specific, where a specific platform requires patches that are not currently applicable to the primary kernels</strong></p>
       <p>Some platforms exhibit a very large delta to the primary kernel code base. It is common for this delta to change platform-agnostic code in ways which create risk for other platforms and are not yet accepted upstream. In these cases it is desirable to create a separate kernel for this platform to contain the risk.</p>
     </div>
   </div>
@@ -48,6 +46,7 @@
   <div class="row">
     <div class="col-8">
       <h2 id="project-specific-kernels">Project-specific kernels</h2>
+      <p><strong>Project-specific, where project deadlines require expedited delivery</strong></p>
       <p>For some projects it might be required  to release kernels out of sync with the primary kernels, or to release fixes to those projects quicker than is possible to cycle a full suite of testing. In these cases it is desirable to create a separate kernel to release it from those constraints.</p>
     </div>
   </div>
@@ -82,7 +81,7 @@
         <tr role="row">
           <td role="rowheader" data-heading="Name">lowlatency-hwe</td>
           <td role="gridcell" data-heading="Type">
-            version<br>
+            version<br />
             configuration
           </td>
           <td role="gridcell" data-heading="Description">Targets latency-sensitive applications such as sound processing at the same version as the generic-hwe kernel.</td>
@@ -95,7 +94,7 @@
         <tr role="row">
           <td role="rowheader" data-heading="Name">lowlatency-hwe-edge</td>
           <td role="gridcell" data-heading="Type">
-            version<br>
+            version<br />
             configuration
           </td>
           <td role="gridcell" data-heading="Description">Provides early access to the next lowlatency-hwe kernel.</td>
@@ -113,7 +112,7 @@
         <tr role="row">
           <td role="rowheader" data-heading="Name">azure</td>
           <td role="gridcell" data-heading="Type">
-            configuration<br>
+            configuration<br />
             version
           </td>
           <td role="gridcell" data-heading="Description">Targeting the Azure cloud.</td>
