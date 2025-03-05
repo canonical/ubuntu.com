@@ -1346,8 +1346,11 @@ def get_sitemaps_tree():
     return tree
 
 
-app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
-
 # Build sitemap on app startup
 serve_sitemap()
 app.add_url_rule("/sitemap_tree.xml", view_func=serve_sitemap)
+
+get_sitemaps_tree()
+
+# TODO: Endpoint for testing and QA purposes only
+app.add_url_rule("/sitemaps_parser", view_func=get_sitemaps_tree)
