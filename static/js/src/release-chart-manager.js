@@ -172,14 +172,6 @@ function buildCharts() {
       kernelReleaseSchedule,
     );
   }
-  if (document.querySelector("#microstack-eol")) {
-    createReleaseChartOld(
-      "#microstack-eol",
-      microStackReleaseNames,
-      microStackStatus,
-      microStackReleases,
-    );
-  }
 }
 
 function clearCharts() {
