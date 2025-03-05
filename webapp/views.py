@@ -1233,12 +1233,14 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
 
             response = flask.make_response(
                 flask.render_template(
-                template_path,
-                topics=topics,
-                vulnerabilities=vulnerabilities,
+                    template_path,
+                    topics=topics,
+                    vulnerabilities=vulnerabilities,
                 )
             )
-            response.headers["Cache-Control"] = "max-age=900, stale-while-revalidate=1200, stale-if-error=3600"
+            response.headers["Cache-Control"] = (
+                "max-age=900, stale-while-revalidate=900, stale-if-error=3600"
+            )
             return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
@@ -1266,12 +1268,14 @@ def build_vulnerabilities(security_vulnerabilities):
 
             response = flask.make_response(
                 flask.render_template(
-                "security/vulnerabilities/vulnerability-detailed.html",
-                metadata=document_metadata,
-                document=document,
+                    "security/vulnerabilities/vulnerability-detailed.html",
+                    metadata=document_metadata,
+                    document=document,
                 )
             )
-            response.headers["Cache-Control"] = "max-age=900, stale-while-revalidate=1200, stale-if-error=3600"
+            response.headers["Cache-Control"] = (
+                "max-age=900, stale-while-revalidate=900, stale-if-error=3600"
+            )
             return response
         except HTTPError as e:
             flask.current_app.extensions["sentry"].captureException(
