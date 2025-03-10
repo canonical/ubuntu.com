@@ -38,6 +38,72 @@
       </div>
     </div>
     <div class="row">
+      <hr class="p-rule" />
+      <div class="col-2 col-medium-6">
+        <h3 class="p-heading--5">Ubuntu Pro for personal users</h3>
+      </div>
+      <div class="col-10 col-medium-6">
+        <p>Ubuntu Pro is free for personal users on up to 5 machines, and on up to 50 machines for active <a href="/community/membership">Ubuntu Community members</a>.</p>
+        <aside class="p-accordion">
+          <ul class="p-accordion__list">
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="3" class="p-accordion__heading">
+                <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="false">What is included in a free Pro subscription?</button>
+              </div>
+              <section class="p-accordion__panel" id="tab1-section" aria-hidden="true" aria-labelledby="tab1">
+                {% set free_data = [
+                  ['Security patching for Ubuntu Main repository for 10 years (esm-infra)', None, True],
+                  ['Security patching for Ubuntu Universe repository for 10 years (esm-apps)', '(Ubuntu 16.04 LTS onwards)', True],
+                  ['Kernel Livepatch to avoid unscheduled reboots', None, True],
+                  ['Systems management at scale with Landscape', None, True],
+                  ['Real-time kernel', '(Ubuntu 22.04 LTS onwards)', True],
+                  ['NIST-certified FIPS crypto-modules', '(pending for Ubuntu 24.04 LTS)', True],
+                  ['USG hardening with CIS and DISA-STIG profiles', '(DISA-STIG tooling & automation for Ubuntu 20.04 LTS and 22.04 LTS)', True],
+                  ['Common Criteria EAL2', '(Ubuntu LTS 14.04 LTS and 16.04 LTS only)', True],
+                  ['Advanced Active Directory policies for Ubuntu Desktop', None, True],
+                  ['Certified Windows drivers for KVM guests', None, False],
+                  ['Knowledge base access', None, False],
+                  ['Ubuntu Assurance Program', None, False],
+                ] %}
+                <table aria-label="What is included in a free Pro subscription?">
+                  <thead>
+                    <tr>
+                      <th style="width: 79%;" scope="col">
+                        Security and Compliance
+                      </th>
+                      <th scope="col">
+                        Free tier
+                        <br />
+                        <span class="u-text--muted">(software only)</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for (title, muted, included) in free_data %}
+                      <tr>
+                        <th scope="row">
+                          {{ title }}
+                          {% if muted %}
+                            <br />
+                            <span class="u-text--muted">{{ muted }}</span>
+                          {% endif %}
+                        </th>
+                        <td>
+                          {% if included %}
+                            <i class="p-icon--success">yes</i>
+                          {% else %}
+                            <i class="p-icon--error">no</i>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </section>
+            </li>
+          </ul>
+        </aside>
+      </div>
       <div class="col-10 col-medium-6 col-start-large-3">
         <table aria-label="Ubuntu Pro Pricing">
           <thead>
@@ -185,7 +251,7 @@
               <th scope="row">
                 NIST-certified FIPS crypto-modules
                 <br />
-                <span class="u-text--muted">(pending for Ubuntu 22.04 LTS)</span>
+                <span class="u-text--muted">(pending for Ubuntu 24.04 LTS)</span>
               </th>
               <td>
                 <i class="p-icon--success">yes</i>
@@ -602,9 +668,9 @@
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h3 class="p-heading--2">Ceph and Swift</h3>
+        <h3 class="p-heading--2">Ceph</h3>
         <p>
-          Only applies if attaching more than 384TB of raw Ceph/Swift capacity per node in the cluster.  Additional capacity is priced per node exceeding 384TB included in Ubuntu Pro.
+          Only applies if attaching more than 384TB of raw Ceph capacity per node in the cluster.  Additional capacity is priced per node exceeding 384TB included in Ubuntu Pro.
         </p>
       </div>
 
@@ -816,5 +882,4 @@
 
 {% endblock content %}
 
-{% block footer_extra %}
-{% endblock footer_extra %}
+{% block footer_extra %}{% endblock footer_extra %}
