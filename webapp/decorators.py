@@ -43,7 +43,9 @@ def rate_limiter(func):
 
         if len(rate_limits[user["email"]]) >= RATE_LIMIT:
             return (
-                flask.jsonify({"error": "Rate limit exceeded, try again later."}),
+                flask.jsonify(
+                    {"error": "Rate limit exceeded, try again later."}
+                ),
                 429,
             )
         rate_limits[user["email"]].append(current_time)
