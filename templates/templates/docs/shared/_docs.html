@@ -24,12 +24,8 @@
         {% if expandable %}
           {% if element.children %}
             <button class="p-side-navigation__expand"
-                    aria-expanded="{% if element.is_active or element.has_active_child %}true{% else %}false{% endif %}" aria-label="
-                    show
-                    submenu
-                    for
-                    {{ element.navlink_text }}
-                    "></button>
+                    aria-expanded="{% if element.is_active or element.has_active_child %}true{% else %}false{% endif %}"
+                    aria-label=" show submenu for {{ element.navlink_text }} "></button>
           {% endif %}
           {{ create_navigation(element.children, expandable, element.is_active or element.has_active_child) }}
         {% else %}
@@ -223,4 +219,18 @@
       }
     }
   </script>
+
+  <!-- These styles take care of the issue where the same page links for h2, h3 are cut-off from the top upon click and auto-scroll -->
+  <style>
+    h2,
+    h3 {
+      &[id] {
+        scroll-margin: 2.05rem;
+      }
+
+      & a.p-link--anchor-heading {
+        scroll-margin: 4rem;
+      }
+    }
+  </style>
 {% endblock %}
