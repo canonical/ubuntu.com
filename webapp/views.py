@@ -365,6 +365,7 @@ def build_engage_index(engage_docs):
             "Webinar",
             "Whitepaper",
             "Form",
+            "Event",
         ]
         tags_list = engage_docs.get_engage_pages_tags()
         total_pages = math.ceil(current_total / limit)
