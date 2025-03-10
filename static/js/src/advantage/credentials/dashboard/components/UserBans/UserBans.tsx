@@ -8,6 +8,7 @@ import { ModularTable } from "@canonical/react-components";
 import { getFormattedDate } from "../../utils/common";
 import ActionsMenu from "./components/ActionsMenu";
 import { Link } from "react-router-dom";
+import EmptyUserBans from "./components/EmptyUserBans";
 
 type APIResponse = {
   banned_users: UserBan[];
@@ -68,17 +69,28 @@ const UserBans = () => {
     return COLS;
   }, []);
 
+  const isEmptyState = useMemo(() => {
+    return !isLoading && !isFetching && (!data || !data?.banned_users);
+  }, [data]);
+
+  console.log(isLoading);
+  console.log(isFetching);
+  console.log(data);
+
   return (
     <>
       {(isLoading || isFetching) && <Spinner text="Loading..." />}
-      <Row>
-        <Col size={10} />
-        <Col size={2}>
-          <Link to="/users/ensure-ban">
-            <Button appearance="positive">Create New</Button>
-          </Link>
-        </Col>
-      </Row>
+      {!isEmptyState && (
+        <Row>
+          <Col size={10} />
+          <Col size={2}>
+            <Link to="/users/ensure-ban">
+              <Button appearance="positive">Create New</Button>
+            </Link>
+          </Col>
+        </Row>
+      )}
+      {isEmptyState && <EmptyUserBans />}
       {data?.banned_users && data?.banned_users?.length > 0 && (
         <>
           <ModularTable data={data?.banned_users} columns={columns} sortable />

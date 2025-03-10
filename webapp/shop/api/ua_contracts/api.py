@@ -402,7 +402,7 @@ class UAContractsAPI:
         ).json()
 
     def put_cue_user_ban(self, user_ban) -> dict:
-        return self._request(
+        response = self._request(
             method="put",
             path="v1/cue/user-ban",
             json={
@@ -412,7 +412,10 @@ class UAContractsAPI:
                 "blocked": user_ban["blocked"],
             },
             error_rules=["default"],
-        ).json()
+        )
+        if response.status_code == 200:
+            return {}
+        return response.json()
 
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
