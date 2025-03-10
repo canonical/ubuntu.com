@@ -3,6 +3,7 @@ import json
 from typing import List
 
 import flask
+from webapp.decorators import rate_limiter
 from webargs.fields import String
 
 from webapp.login import user_info
@@ -716,6 +717,7 @@ def blender_shop_view(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
+@rate_limiter
 def activate_magic_attach(advantage_mapper, **kwargs):
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
