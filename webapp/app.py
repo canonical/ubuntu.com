@@ -1356,3 +1356,6 @@ def set_form_rules():
 
 
 set_form_rules()
+
+def test_func_to_trigger_pycov():
+    return
