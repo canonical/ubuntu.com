@@ -9,91 +9,105 @@ env:
   THRESHOLD: 70
 
 jobs:
-  check-links:
+  perf-checks:
     runs-on: ubuntu-latest
 
     steps:
       - name: Running performance checks on the homepage
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the desktop overview page
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/desktop"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the download overview page
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/download"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the blog
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/blog"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the openstack overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/openstack"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the kubernetes overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/kubernetes"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the managed overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/managed"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the ai overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/ai"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the robotics overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/robotics"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the core overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/core"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the cloud overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/cloud"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the tutorials overview
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/tutorials"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on a tutorial
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/tutorials/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-aws-using-aws-license-manager#1-overview"
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the core docs
         uses: jakepartusch/psi-action@v1.3
         with:
+          key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/core/docs"
           threshold: $THRESHOLD
           strategy: desktop
