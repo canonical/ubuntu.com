@@ -1,32 +1,31 @@
 {% extends "legal/_base_legal.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Contributor licence agreement FAQ | Contributors{% endblock %}
 {% block meta_description %}Canonical Contribution Agreement for work to be included in selected open source software projects.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1vluNwZuA2poLIA3o0O-5HFvyDEltrMxAenrnF-3A3-U/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section id="contributors-faq" class="p-section--hero">
-  <div class="row--50-50">
-    <div class="col">
-      <h1>Frequently asked questions</h1>
-    </div>
-    <div class="col">
-      <div class="p-section--shallow">
-        <p>Here are answers to some common questions about the arrangements for contributing to projects. These FAQs cover the contributor licence agreement in use since July 2011.
-        </p>
-      </div>
-      <div class="p-cta-block">
-        <a href="https://canonical.com/projects">Explore our open source software projects&nbsp;&rsaquo;</a>
-      </div>
-    </div>
-  </div>
-</section>
+{% call(slot) vf_hero(
+  title_text='Frequently asked questions',
+  layout='50/50'
+  ) -%}
+  {%- if slot == 'description' -%}
+    <p>
+      Here are answers to some common questions about the arrangements for contributing to projects.
+    </p>
+  {%- endif -%}
+  {%- if slot == 'cta' -%}
+  <a href="https://canonical.com/projects">Explore our open source software projects&nbsp;&rsaquo;</a>
+  {%- endif -%}
+{% endcall -%}
 
 <section class="p-section">
   <div class="row--50-50">
     <hr />
     <div class="col">
-      <h2 id="why">Why do you ask contributors to send in the agreement?</h2>
+      <h2 id="why" class="p-heading--3">Why do you ask contributors to send in the agreement?</h2>
     </div>
     <div class="col">
       <p>We need to make sure that we &dash; and the users of our software &dash; are legally entitled to distribute your contributed code, anywhere in the world.</p>
@@ -38,7 +37,7 @@
   <div class="row--50-50">
     <hr />
     <div class="col">
-      <h2 id="new-copies">Do I have to submit the Contributor License Agreement form for each project I contribute to?</h2>
+      <h2 id="new-copies" class="p-heading--3">Do I have to submit the Contributor License Agreement form for each project I contribute to?</h2>
     </div>
     <div class="col">
       <p>No, you only need to submit the Contributor License Agreement once. It covers you for all Canonical projects, now and in the future. After you complete the Contributor License Agreement form for one Canonical project, you will not have to worry about it again.</p>
@@ -50,7 +49,7 @@
   <div class="row--50-50">
     <hr />
     <div class="col">
-      <h2 id="who-owns-copyright">Who owns the copyright?</h2>
+      <h2 id="who-owns-copyright" class="p-heading--3">Who owns the copyright?</h2>
     </div>
     <div class="col">
       <p>You do. Section 2.1(a) states the following:</p>
@@ -63,7 +62,7 @@
   <div class="row--50-50">
     <hr />
     <div class="col">
-      <h2 id="other-projects">Can I contribute the same code to other projects as well?</h2>
+      <h2 id="other-projects" class="p-heading--3">Can I contribute the same code to other projects as well?</h2>
     </div>
     <div class="col">
       <p>Yes. You retain the full rights to redistribute your own code as you wish. The agreement is not exclusive and you may contribute what you write to as many other projects or organisations as you wish to share it with.</p>
