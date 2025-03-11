@@ -4,6 +4,7 @@
   {% for node in tree %}
   <url>
     <loc>{{ base_url }}{{ node["name"] }}</loc>    
+    <lastmod>{{ node["last_modified"] }}</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   {% if node["children"]|length > 0 %}
