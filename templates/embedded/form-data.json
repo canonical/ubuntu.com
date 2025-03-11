@@ -16,6 +16,7 @@
           "title": "Do you have a commercial project?",
           "id": "commercial-project",
           "inputType": "radio",
+          "inputName": "commercial-project",
           "isRequired": true,
           "fields": [
             {
@@ -36,6 +37,7 @@
           "title": "When do you need to ship?",
           "id": "when-to-ship",
           "inputType": "radio",
+          "inputName": "when-to-ship",
           "isRequired": true,
           "fields": [
             {
@@ -68,6 +70,7 @@
           "title": "What is your first year ship volume?",
           "id": "first-year-ship-volume",
           "inputType": "radio",
+          "inputName": "first-year-ship-volume",
           "isRequired": true,
           "fields": [
             {
@@ -118,6 +121,7 @@
           "title": "What is your selected hardware?",
           "id": "selected-hardware",
           "inputType": "radio",
+          "inputName": "selected-hardware",
           "isRequired": true,
           "fields": [
             {
@@ -248,18 +252,6 @@
           "fields": [
             {
               "type": "text",
-              "id": "firstName",
-              "label": "First name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "id": "lastName",
-              "label": "Last name",
-              "isRequired": true
-            },
-            {
-              "type": "text",
               "id": "company",
               "label": "Company name",
               "isRequired": true
@@ -268,12 +260,6 @@
               "type": "text",
               "id": "title",
               "label": "Job title",
-              "isRequired": true
-            },
-            {
-              "type": "email",
-              "id": "email",
-              "label": "Work email",
               "isRequired": true
             },
             {
