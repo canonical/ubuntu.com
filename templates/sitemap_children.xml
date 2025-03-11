@@ -1,0 +1,11 @@
+{% for child in children %}
+  <url>
+    <loc>{{ base_url }}{{ child["name"] }}</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  {% if child["children"]|length > 0 %}
+    {% with children=child["children"]%}
+      {% include "sitemap_children.xml" %}
+    {% endwith %}
+  {% endif %}
+{% endfor %}
