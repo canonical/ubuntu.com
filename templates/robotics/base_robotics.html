@@ -4,10 +4,8 @@
 
   {% block content %}{% endblock %}
 
-  {% with section='p-strip--light' %}
-    {% include "shared/contextual_footers/_robotics_newsletter_signup.html" %}
-    {% include "shared/contextual_footers/_robotics_further_reading.html" %}
-  {% endwith %}
+  {% include "shared/contextual_footers/_robotics_newsletter_signup.html" %}
+  {% include "shared/contextual_footers/_robotics_further_reading.html" %}
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"
        id="contact-form-container"
