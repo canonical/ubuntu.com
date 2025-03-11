@@ -1,7 +1,9 @@
 <div class="col-4 p-divider__block">
   <h3 class="p-heading--4">Further reading</h3>
   <ul class="p-list" id="latest-articles">
-    <li><i class="p-icon--spinner u-animation--spin">Loading...</i></li>
+    <li>
+      <i class="p-icon--spinner u-animation--spin">Loading...</i>
+    </li>
   </ul>
 </div>
 
@@ -13,17 +15,24 @@
 
 <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
 <script>
-  canonicalLatestNews.fetchLatestNews(
+  canonicalLatestNews.fetchLatestNews({
+    articlesContainerSelector: "#latest-articles",
+    articleTemplateSelector: "#article-template",
+    limit: "{{ limit }}",
     {
-      articlesContainerSelector: "#latest-articles",
-      articleTemplateSelector: "#article-template",
-      limit: "{{ limit }}",
-      {% if tagId %}
-      tagId: "{{ tagId }}",
-      {% endif %}
-      {% if groupId %}
-      groupId: "{{ groupId }}",
-      {% endif %}
+      %
+      if tagId %
     }
-  )
+    tagId: "{{ tagId }}",
+    {
+      % endif %
+    } {
+      %
+      if groupId %
+    }
+    groupId: "{{ groupId }}",
+    {
+      % endif %
+    }
+  })
 </script>
