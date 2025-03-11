@@ -87,6 +87,13 @@
           </li>
           <li>
             <button class="p-tabs__item"
+                    id="pine64-star64"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="pine64-star64-tab">Pine64 Star64</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="milk-v-mars"
                     role="tab"
                     aria-selected="false"
@@ -126,6 +133,7 @@
             <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
             <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
             <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
+            <option value="pine64-star64-tab">Pine64 Star64</option>
             <option value="milk-v-mars-tab">Milk-V Mars</option>
             <option value="qemu-tab">QEMU emulator</option>
             <option value="quemu-sifive-image-tab">SiFive Unmatched</option>
@@ -138,6 +146,7 @@
         {% include "download/risc-v/allwinner-nezha.html" %}
         {% include "download/risc-v/microchip-curiosity.html" %}
         {% include "download/risc-v/microchip-polarfire.html" %}
+        {% include "download/risc-v/pine64-star64.html" %}
         {% include "download/risc-v/milk-v-mars.html" %}
         {% include "download/risc-v/qemu-emulator.html" %}
         {% include "download/risc-v/sifive-unmatched.html" %}
