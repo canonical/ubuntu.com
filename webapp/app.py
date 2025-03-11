@@ -1374,6 +1374,7 @@ def set_form_rules():
 set_form_rules()
 
 
+# TODO: Endpoint for testing and QA purposes only
 def get_sitemaps_tree():
     try:
         tree = scan_directory(os.getcwd() + "/templates")
@@ -1382,7 +1383,24 @@ def get_sitemaps_tree():
     return tree
 
 
-get_sitemaps_tree()
-
-# TODO: Endpoint for testing and QA purposes only
 app.add_url_rule("/sitemaps_parser", view_func=get_sitemaps_tree)
+
+
+def build_sitemaps():
+    try:
+        tree = scan_directory(os.getcwd() + "/templates")
+    except Exception as e:
+        raise Exception(f"Error scanning directory: {e}")
+
+    xml_sitemap = flask.render_template(
+        "/sitemap_template.xml",
+        tree=tree["children"],
+        base_url="https://ubuntu.com",
+    )
+    response = flask.make_response(xml_sitemap)
+
+    response.headers["Content-Type"] = "application/xml"
+    return response
+
+
+app.add_url_rule("/sitemaps_tree.xml", view_func=build_sitemaps)
