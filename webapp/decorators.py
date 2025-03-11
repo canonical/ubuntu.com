@@ -6,8 +6,8 @@ import time
 # Third party packages
 import flask
 from webapp.login import user_info
+from flask import session
 
-rate_limits = defaultdict(deque)
 RATE_LIMIT = 5  # Max requests
 TIME_WINDOW = 60  # Time window in seconds (e.g., 60 seconds)
 
@@ -30,14 +30,17 @@ def login_required(func):
 
 def rate_limiter(func):
     def wrapper(*args, **kwargs):
-        if not user_info(flask.session):
+        user = user_info(flask.session)
+        if not user:
             return flask.redirect("/login?next=" + flask.request.path)
 
+        if "rate_limits" not in flask.session:
+            flask.session["rate_limits"] = []
+
         current_time = time.time()
-        user = user_info(flask.session)
-        rate_limits[user["email"]] = [
+        rate_limits = [
             timestamp
-            for timestamp in rate_limits[user["email"]]
+            for timestamp in rate_limits
             if current_time - timestamp < TIME_WINDOW
         ]
 
@@ -48,7 +51,8 @@ def rate_limiter(func):
                 ),
                 429,
             )
-        rate_limits[user["email"]].append(current_time)
+        rate_limits.append(current_time)
+        flask.session["rate_limits"] = rate_limits
         return func(*args, **kwargs)
 
     return wrapper
