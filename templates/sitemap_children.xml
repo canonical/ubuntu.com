@@ -1,6 +1,7 @@
 {% for child in children %}
   <url>
     <loc>{{ base_url }}{{ child["name"] }}</loc>
+    <lastmod>{{ child["last_modified"] }}</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   {% if child["children"]|length > 0 %}
