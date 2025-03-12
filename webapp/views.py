@@ -1292,6 +1292,7 @@ def serve_sitemap():
         if not os.path.exists(sitemap_path):
             generate_sitemap(sitemap_path)
         else:
+            # Use GH actions to update the lastmod dates of sitemaps
             print("Sitemap already exists, update")
 
         with open(sitemap_path, "r") as f:
