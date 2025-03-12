@@ -8,7 +8,6 @@ import os
 import flask
 import requests
 import talisker.requests
-import logging
 from jinja2 import ChoiceLoader, FileSystemLoader
 
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
@@ -1349,6 +1348,7 @@ def get_sitemaps_tree():
 
 app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
 
+# Build sitemap on app startup
 serve_sitemap()
 app.add_url_rule("/sitemap_tree.xml", view_func=serve_sitemap)
 
