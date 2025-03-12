@@ -93,6 +93,7 @@ const SubscriptionCancel = ({
                   eventAction: "subscription-cancel-form",
                   eventLabel: "subscription cancelled",
                 });
+                window.usabilla_live('trigger', 'cancel popup survey');
               },
             });
           } else {
