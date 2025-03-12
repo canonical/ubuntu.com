@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
+from canonicalwebteam.sitemaps_parser import scan_directory
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
@@ -1267,3 +1268,38 @@ def build_vulnerabilities(security_vulnerabilities):
             )
 
     return vulnerability
+
+
+def generate_sitemap(output_path):
+    tree = scan_directory(os.getcwd() + "/templates")
+
+    xml_sitemap = flask.render_template(
+        "/sitemap_template.xml",
+        tree=tree["children"],
+        base_url="https://ubuntu.com",
+    )
+
+    with open(output_path, "w") as f:
+        f.write(xml_sitemap)
+
+    print(f"Sitemap saved to {output_path}")
+
+
+def serve_sitemap():
+    try:
+        sitemap_path = os.getcwd() + "/static/files/sitemap_tree.xml"
+
+        if not os.path.exists(sitemap_path):
+            generate_sitemap(sitemap_path)
+        else:
+            print("Sitemap already exists, update")
+
+        with open(sitemap_path, "r") as f:
+            xml_sitemap = f.read()
+
+        response = flask.make_response(xml_sitemap)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+
+    except Exception as e:
+        return f"Error generating sitemap: {e}", 500
