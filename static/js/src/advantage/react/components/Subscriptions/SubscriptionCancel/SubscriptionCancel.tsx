@@ -93,7 +93,6 @@ const SubscriptionCancel = ({
                   eventAction: "subscription-cancel-form",
                   eventLabel: "subscription cancelled",
                 });
-                window.usabilla_live("trigger", "cancel popup survey");
               },
             });
           } else {
@@ -108,6 +107,7 @@ const SubscriptionCancel = ({
               },
             });
           }
+          window.usabilla_live("trigger", "cancel popup survey");
         }}
         validateOnMount
         validationSchema={CancelSchema}
