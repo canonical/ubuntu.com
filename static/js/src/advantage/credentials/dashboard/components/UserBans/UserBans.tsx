@@ -73,10 +73,6 @@ const UserBans = () => {
     return !isLoading && !isFetching && (!data || !data?.banned_users);
   }, [data]);
 
-  console.log(isLoading);
-  console.log(isFetching);
-  console.log(data);
-
   return (
     <>
       {(isLoading || isFetching) && <Spinner text="Loading..." />}
