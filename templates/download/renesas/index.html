@@ -1,0 +1,9 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Contact us | Renesas{% endblock %}
+
+{% block content %}
+  {% with formId=6153 %}
+    {% include "/shared/forms/form-template.html" %}
+  {% endwith %}
+{% endblock content %}
