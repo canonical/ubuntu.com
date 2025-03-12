@@ -173,13 +173,17 @@ jobs:
       - name: Check coverage file
         run: ls -lah ./tests/coverage.xml
 
+      - name: Debug Codecov Upload
+        run: bash <(curl -s https://codecov.io/bash) -f ./tests/coverage.xml -v
+
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           file: ./tests/coverage.xml
           flags: python
           fail_ci_if_error: false
-          commit_parent: ${{ github.event.pull_request.base.sha }}
+          commit_parent: ${{ github.sha }}
 
   test-js:
     runs-on: ubuntu-latest
