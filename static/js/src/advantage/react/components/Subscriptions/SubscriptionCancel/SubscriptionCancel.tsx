@@ -107,6 +107,7 @@ const SubscriptionCancel = ({
               },
             });
           }
+          window.usabilla_live("trigger", "cancel popup survey");
         }}
         validateOnMount
         validationSchema={CancelSchema}
