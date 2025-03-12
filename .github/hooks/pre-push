@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if ! yarn lint-scss; then
+  echo "SCSS linting failed. Push denied."
+  exit 1
+fi
+
+if ! yarn lint-js; then
+  echo "JS linting failed. Push denied."
+  exit 1
+fi
+
+if ! yarn lint-python; then
+  echo "Python linting failed. Push denied."
+  exit 1
+fi
+
+if ! ./scripts/djlint lint --cached; then
+  echo "DJLint failed. Push denied."
+  exit 1
+fi
+
+exit 0
