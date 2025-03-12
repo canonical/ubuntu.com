@@ -1,12 +1,10 @@
 # Core packages
 import functools
-from collections import defaultdict, deque
 import time
 
 # Third party packages
 import flask
 from webapp.login import user_info
-from flask import session
 
 RATE_LIMIT = 5  # Max requests
 TIME_WINDOW = 60  # Time window in seconds (e.g., 60 seconds)
@@ -40,11 +38,11 @@ def rate_limiter(func):
         current_time = time.time()
         rate_limits = [
             timestamp
-            for timestamp in rate_limits
+            for timestamp in flask.session["rate_limits"]
             if current_time - timestamp < TIME_WINDOW
         ]
 
-        if len(rate_limits[user["email"]]) >= RATE_LIMIT:
+        if len(rate_limits) >= RATE_LIMIT:
             return (
                 flask.jsonify(
                     {"error": "Rate limit exceeded, try again later."}
