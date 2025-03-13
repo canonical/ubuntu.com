@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
-from canonicalwebteam.sitemaps_parser import scan_directory
+from canonicalwebteam.directory_parser import generate_sitemap
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
@@ -1150,27 +1150,24 @@ def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
 
 
-def generate_sitemap(output_path):
-    tree = scan_directory(os.getcwd() + "/templates")
-
-    xml_sitemap = flask.render_template(
-        "/sitemap_template.xml",
-        tree=tree["children"],
-        base_url="https://ubuntu.com",
-    )
-
-    with open(output_path, "w") as f:
-        f.write(xml_sitemap)
-
-    print(f"Sitemap saved to {output_path}")
-
-
 def serve_sitemap():
     try:
         sitemap_path = os.getcwd() + "/static/files/sitemap_tree.xml"
 
         if not os.path.exists(sitemap_path):
-            generate_sitemap(sitemap_path)
+            directory_path = os.getcwd() + "/templates"
+            base_url = "https://ubuntu.com"
+            try:
+                xml_sitemap = generate_sitemap(directory_path, base_url)
+                if xml_sitemap:
+                    with open(sitemap_path, "w") as f:
+                        f.write(xml_sitemap)
+                    print(f"Sitemap saved to {sitemap_path}")
+                else:
+                    print("xml_sitemap empty")
+
+            except Exception as e:
+                return f"Generate_sitemap error: {e}", 500
         else:
             # Use GH actions to update the lastmod dates of sitemaps
             print("Sitemap already exists, update")
