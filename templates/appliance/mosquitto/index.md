@@ -46,8 +46,9 @@ context:
       published_date: "26 May 2020"
 ---
 
-#### Eclipse Mosquitto MQTT broker
+<h2>Eclipse Mosquitto MQTT broker</h2>
 
+<br />
 This is a message broker that supports version 5.0, 3.1.1, and 3.1 of the MQTT protocol. MQTT provides a method of carrying out messaging using a publish/subscribe model. It is lightweight, both in terms of bandwidth usage and ease of implementation. This makes it particularly useful at the edge of the network where a sensor or other simple device may be implemented using an arduino for example.
 
 By default mosquitto will be installed as a system service, using the default configuration at `/snap/mosquitto/current/default_config.conf`. If this does not meet your needs, create the file `/var/snap/mosquitto/common/mosquitto.conf` and this will be used instead. Note that only files inside `/var/snap/mosquitto/common` can be read by mosquitto, you cannot put other configuration files in `/etc/mosquitto`.
