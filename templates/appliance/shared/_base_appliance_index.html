@@ -198,7 +198,7 @@
         <div class="p-section--shallow">
           <p>
             Grab a spare board
-            {% if downloads.pc %}, PC{% endif %}
+            {%- if downloads.pc -%}, PC{% endif %}
             or NUC.
             {% if downloads.pc %}
               We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
@@ -209,7 +209,7 @@
           <div class="grid-col-2">
             {% if downloads.raspberrypi %}
               <div class="p-image-container is-highlighted">
-                <img src="https://assets.ubuntu.com/v1/d090c878-rpi3%20and%204.png" alt="" />
+                <img src="https://assets.ubuntu.com/v1/2560d6f8-pi-4-updated.png" alt="" />
               </div>
               {% if downloads.pi2 %}
                 <p>
