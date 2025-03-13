@@ -14,17 +14,15 @@
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
-                aria-labelledby="how-do-you-use-ubuntu-legend"
-                aria-required="true">
+                aria-labelledby="how-do-you-use-ubuntu-legend">
         <div class="row--50-50">
           <div class="col">
-            <legend class="p-heading--2 js-formfield-title is-required"
+            <legend class="p-heading--2 js-formfield-title"
                     id="how-do-you-use-ubuntu-legend">How do you currently use Ubuntu?</legend>
           </div>
           <div class="col">
             <label class="p-radio">
-              <input required
-                     class="p-radio__input"
+              <input class="p-radio__input"
                      type="radio"
                      aria-labelledby="private-only"
                      name="how-do-you-use-ubuntu"
@@ -63,17 +61,15 @@
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
-                aria-labelledby="how-many-employees-legend"
-                aria-required="true">
+                aria-labelledby="how-many-employees-legend">
         <div class="row--50-50">
           <div class="col">
-            <legend class="p-heading--2 js-formfield-title is-required"
+            <legend class="p-heading--2 js-formfield-title"
                     id="how-many-employees-legend">How many employees does your organisation have?</legend>
           </div>
           <div class="col">
             <label class="p-radio">
-              <input required
-                     class="p-radio__input"
+              <input class="p-radio__input"
                      type="radio"
                      aria-labelledby="none"
                      name="how-many-employees"
@@ -129,17 +125,15 @@
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
-                aria-labelledby="how-many-ubuntu-servers-legend"
-                aria-required="true">
+                aria-labelledby="how-many-ubuntu-servers-legend">
         <div class="row--50-50">
           <div class="col">
-            <legend class="p-heading--2 js-formfield-title is-required"
+            <legend class="p-heading--2 js-formfield-title"
                     id="how-many-ubuntu-servers-legend">Number of Ubuntu servers currently deployed?</legend>
           </div>
           <div class="col">
             <label class="p-radio">
-              <input required
-                     class="p-radio__input"
+              <input class="p-radio__input"
                      type="radio"
                      aria-labelledby="25-or-less"
                      name="how-many-ubuntu-servers"
@@ -187,17 +181,15 @@
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
-                aria-labelledby="why-are-you-interested-in-cloud-legend"
-                aria-required="true">
+                aria-labelledby="why-are-you-interested-in-cloud-legend">
         <div class="row--50-50">
           <div class="col">
-            <legend class="p-heading--2 js-formfield-title is-required"
+            <legend class="p-heading--2 js-formfield-title"
                     id="why-are-you-interested-in-cloud-legend">Why are you interested in cloud?</legend>
           </div>
           <div class="col">
             <label class="p-radio">
-              <input required
-                     class="p-radio__input"
+              <input class="p-radio__input"
                      type="radio"
                      aria-labelledby="increasing-revenues"
                      name="why-are-you-interested-in-cloud"
@@ -253,17 +245,15 @@
     <div class="p-section">
       <hr class="p-rule is-fixed-width" />
       <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
-                aria-labelledby="how-soon-do-you-plan-to-deploy-legend"
-                aria-required="true">
+                aria-labelledby="how-soon-do-you-plan-to-deploy-legend">
         <div class="row--50-50">
           <div class="col">
-            <legend class="p-heading--2 js-formfield-title is-required"
+            <legend class="p-heading--2 js-formfield-title"
                     id="how-soon-do-you-plan-to-deploy-legend">How soon do you plan to deploy your cloud solution?</legend>
           </div>
           <div class="col">
             <label class="p-radio">
-              <input required
-                     class="p-radio__input"
+              <input class="p-radio__input"
                      type="radio"
                      aria-labelledby="less-than-3-months"
                      name="how-soon-do-you-plan-to-deploy"
@@ -363,18 +353,11 @@
                 <input required id="company" name="company" maxlength="255" type="text" />
               </li>
               <li class="p-list__item">
-                <label class="is-required" for="job-title">Job title:</label>
-                <input required id="job-title" name="title" maxlength="255" type="text" />
+                <label for="job-title">Job title:</label>
+                <input id="job-title" name="title" maxlength="255" type="text" />
               </li>
-              <li class="p-list__item">
-                <label class="is-required" for="industry">Industry:</label>
-                <input required id="industry" name="industry" maxlength="255" type="text" />
-              </li>
+              {% include "shared/forms/_industry.html" %}
               {% include "shared/forms/_country.html" %}
-              <li class="p-list__item">
-                <label for="phone" class="is-required">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" class="is-required" />
-              </li>
             </ul>
             <ul class="p-list">
               <li class="p-list__item">
