@@ -22,7 +22,7 @@ from canonicalwebteam.discourse import (
     Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
-from canonicalwebteam.sitemaps_parser import scan_directory
+from canonicalwebteam.directory_parser import scan_directory
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
