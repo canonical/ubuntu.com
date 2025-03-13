@@ -1,6 +1,6 @@
 <li class="p-list__item">
-  <label for="Industry">Industry:</label>
-  <select required id="Industry" name="Industry">
+  <label {% if required %}class="is-required"{% endif %} for="industry">Industry:</label>
+  <select {% if required %}required{% endif %} id="industry" name="industry">
     <option value="">Select...</option>
     <option value="Accountancy &amp; Tax">Accountancy &amp; Tax</option>
     <option value="Aerospace &amp; Aviation">Aerospace &amp; Aviation</option>
