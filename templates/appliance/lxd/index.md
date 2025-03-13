@@ -47,7 +47,7 @@ context:
       published_date: "18 September 2020"
 ---
 
-### System container manager and API
+<h2> System container manager and API</h2>
 
 #### LXD is a system container manager
 

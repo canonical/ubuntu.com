@@ -50,8 +50,9 @@ context:
       published_date: "29 April 2020"
 ---
 
-#### Plex magically organizes your media libraries and streams them to any device
+<h2>Plex magically organizes your media libraries and streams them to any device</h2>
 
+<br />
 Master your Mediaverse. Stream all your personal video, music, and photo collections, as well as your preferred podcasts, web shows, and online news, plus thousands of free movies and TV shows, to any of your devices.
 
 - Magically organize all your personal media—photos, music, movies, shows, even DVR-ed TV—and stream it to any device in a beautiful, simple interface; Plex adds rich descriptions, artwork, and other related information

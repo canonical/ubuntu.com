@@ -49,8 +49,9 @@ context:
       published_date: "19 May 2020"
 ---
 
-#### Empowering the smart home
+<h2>Empowering the smart home</h2>
 
+<br />
 The open Home Automation Bus (openHAB, pronounced ˈəʊpənˈhæb) is an open source, technology agnostic home automation platform which runs as the center of your smart home!
 
 Some of openHAB's strengths are:
