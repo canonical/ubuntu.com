@@ -50,13 +50,13 @@ context:
 
 <h2> System container manager and API</h2>
 
-<h3>LXD is a system container manager</h3>
+<h3 class="p-heading--4">LXD is a system container manager</h3>
 
 With LXD you can run hundreds of containers of a variety of Linux distributions, apply resource limits, pass in directories, USB devices or GPUs and setup any network and storage you want.
 
 LXD containers are lightweight, secure by default and a great alternative to running Linux virtual machines.
 
-<h3>Run any Linux distribution you want</h3>
+<h3 class="p-heading--4">Run any Linux distribution you want</h3>
 
 Pre-made images are available for Ubuntu, Alpine Linux, ArchLinux, CentOS, Debian, Fedora, Gentoo, OpenSUSE and more.
 
@@ -64,13 +64,13 @@ Pre-made images are available for Ubuntu, Alpine Linux, ArchLinux, CentOS, Debia
 
 Can't find the distribution you want? It's easy to make your own images too, either using our distrobuilder tool or by assembling your own image tarball by hand.
 
-<h3>Containers at scale</h3>
+<h3 class="p-heading--4">Containers at scale</h3>
 
 LXD is network aware and all interactions go through a simple REST API, making it possible to remotely interact with containers on remote systems, copying and moving them as you wish.
 
 Want to go big? LXD also has built-in clustering support, letting you turn dozens of servers into one big LXD server.
 
-<h3>Configuration options</h3>
+<h3 class="p-heading--4">Configuration options</h3>
 
 Supported options for the LXD snap (`snap set lxd KEY=VALUE`):
 

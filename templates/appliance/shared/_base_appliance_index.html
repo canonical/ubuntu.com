@@ -120,7 +120,7 @@
         </div>
 
         <div class="p-section--shallow">
-          <h3>Relevant links</h3>
+          <h3 class="p-heading--5">Relevant links</h3>
           <hr class="p-rule--muted" />
           <ul class="p-list">
             {% for link in links.values() %}
@@ -131,15 +131,15 @@
           </ul>
         </div>
 
-        <h3>Privacy compliance</h3>
+        <h3 class="p-heading--5">Privacy compliance</h3>
         <hr class="p-rule--muted u-no-margin--bottom" />
         <ul class="p-list--divided">
           {% for comp in compliance.values() %}<li class="p-list__item is-ticked">{{ comp }}</li>{% endfor %}
         </ul>
-        <h3>Base</h3>
+        <h3 class="p-heading--5">Base</h3>
         <hr class="p-rule--muted" />
         <p class="u-no-padding--top">{{ base }}</p>
-        <h3>Date published</h3>
+        <h3 class="p-heading--5">Date published</h3>
         <hr class="p-rule--muted" />
         <p class="u-no-padding--top">{{ published_date }}</p>
       </div>
