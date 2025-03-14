@@ -7,7 +7,8 @@ context:
   company_name: "Plex Inc. (plexinc)"
   logo: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
   category: "Entertainment"
-  meta_description: "Build your Plex Media Server appliance with the Ubuntu Appliance image. Plex organises your media libraries and streams them to any device – including all your video, music and photo libraries."
+  meta_description: "Build your Plex Media Server appliance with the Ubuntu Appliance image. Plex organizes your media libraries and streams them to any device – including all your video, music and photo libraries."
+  meta_copydoc: https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/edit?tab=t.0
   downloads:
     raspberrypi: True
     pc: True
@@ -50,8 +51,9 @@ context:
       published_date: "29 April 2020"
 ---
 
-#### Plex magically organizes your media libraries and streams them to any device
+<h2>Plex magically organizes your media libraries and streams them to any device</h2>
 
+<br />
 Master your Mediaverse. Stream all your personal video, music, and photo collections, as well as your preferred podcasts, web shows, and online news, plus thousands of free movies and TV shows, to any of your devices.
 
 - Magically organize all your personal media—photos, music, movies, shows, even DVR-ed TV—and stream it to any device in a beautiful, simple interface; Plex adds rich descriptions, artwork, and other related information
