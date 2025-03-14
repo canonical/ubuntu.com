@@ -26,10 +26,6 @@
       padding-left: 0;
     }
 
-    ol > li > p:first-child {
-      display: contents;
-    }
-
     ol > li > p,
     ol > li > ol,
     ol > li > ul,
@@ -41,6 +37,10 @@
       margin-left: $sp-medium;
       padding-left: $sp-medium;
       padding-top: $spv--small;
+    }
+
+    ol > li > p:first-child {
+      display: contents;
     }
 
     ol > li > h3,
