@@ -8,6 +8,7 @@ context:
   logo: "https://dashboard.snapcraft.io/site_media/appmedia/2016/06/icon.svg_1.png"
   category: "Collaboration"
   meta_description: "Take control of your data with Nextcloud, a completely integrated on-premises platform for online content collaboration and data storage out of the box."
+  meta_copydoc: https://docs.google.com/document/d/1APNIgG9i07O7ZHwgoppi8PQhp1Wbw3PKwP5zA95fZ5I/edit?tab=t.0
   downloads:
     raspberrypi: True
     pc: True

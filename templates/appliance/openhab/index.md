@@ -8,6 +8,7 @@ context:
   logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
   category: "Smart Home"
   meta_description: "Build your openHAB appliance with the Ubuntu Appliance image's preinstalled snaps. openHAB puts the control of your data and your home at your finger tips. openHAB is the most flexible tool available to make almost any home automation wish come true."
+  meta_copydoc: https://docs.google.com/document/d/14sEgchP6BUjnUtJt67XJ-fKl7k8dAevaf5EJac9Pmyc/edit?tab=t.0
   downloads:
     raspberrypi: True
     pc: True

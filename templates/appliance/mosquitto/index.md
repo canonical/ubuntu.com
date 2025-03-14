@@ -8,6 +8,7 @@ context:
   logo: "https://dashboard.snapcraft.io/site_media/appmedia/2018/08/mosquitto-logo-only.svg.png"
   category: "MQTT Broker"
   meta_description: "Mosquitto is a message broker from the Eclipse Foundation. MQTT provides a method of carrying out messaging using a publish/subscribe model. It is lightweight, both in terms of bandwidth usage and ease of implementation."
+  meta_copydoc: https://docs.google.com/document/d/1Gg4Ltt550H8zN4dmZpd5cjIeRz52AyXFL-nDrGI5rb8/edit?tab=t.0
   downloads:
     raspberrypi: True
     pc: True

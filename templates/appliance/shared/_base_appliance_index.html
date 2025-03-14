@@ -7,7 +7,7 @@
 {% block meta_description %}{{ meta_description }}{% endblock %}
 
 {% block meta_copydoc %}
-  https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/
+  {{ meta_copydoc }}
 {% endblock meta_copydoc %}
 
 {% block content %}
@@ -25,16 +25,15 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       {% if downloads.raspberrypi %}
-        <a href="/appliance/{{ short_name }}/raspberry-pi"
-           class="p-button--positive">
+        <a href="/appliance/{{ short_name }}/raspberry-pi" class="p-button">
           Install on
           {% if pi.3 or pi.4 %}
             Raspberry Pi
             {% if pi.3 %}3{% endif %}
-            {% if pi.3 and pi.4 %}&amp;{% endif %}
+            {% if pi.3 and pi.4 %}and{% endif %}
             {% if pi.4 %}4{% endif %}
           {% else %}
-            Raspberry Pi 3 &amp; 4 {{ pi.4 }}
+            Raspberry Pi 3 and 4 {{ pi.4 }}
           {% endif %}
         </a>
       {% endif %}
@@ -121,7 +120,7 @@
         </div>
 
         <div class="p-section--shallow">
-          <h5>Relevant links</h5>
+          <h3>Relevant links</h3>
           <hr class="p-rule--muted" />
           <ul class="p-list">
             {% for link in links.values() %}
@@ -132,15 +131,15 @@
           </ul>
         </div>
 
-        <h5>Privacy compliance</h5>
+        <h3>Privacy compliance</h3>
         <hr class="p-rule--muted u-no-margin--bottom" />
         <ul class="p-list--divided">
           {% for comp in compliance.values() %}<li class="p-list__item is-ticked">{{ comp }}</li>{% endfor %}
         </ul>
-        <h5>Base</h5>
+        <h3>Base</h3>
         <hr class="p-rule--muted" />
         <p class="u-no-padding--top">{{ base }}</p>
-        <h5>Date published</h5>
+        <h3>Date published</h3>
         <hr class="p-rule--muted" />
         <p class="u-no-padding--top">{{ published_date }}</p>
       </div>
@@ -222,10 +221,10 @@
                   {% if pi.3 or pi.4 %}
                     Raspberry
                     {% if pi.3 %}3{% endif %}
-                    {% if pi.3 and pi.4 %}&amp;{% endif %}
+                    {% if pi.3 and pi.4 %}and{% endif %}
                     {% if pi.4 %}4{% endif %}
                   {% else %}
-                    Raspberry Pi 3 &amp; 4{{ pi.4 }}
+                    Raspberry Pi 3 and 4{{ pi.4 }}
                   {% endif %}
                   &nbsp;Pi
                 </a>

@@ -7,7 +7,8 @@ context:
   company_name: "Plex Inc. (plexinc)"
   logo: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
   category: "Entertainment"
-  meta_description: "Build your Plex Media Server appliance with the Ubuntu Appliance image. Plex organises your media libraries and streams them to any device – including all your video, music and photo libraries."
+  meta_description: "Build your Plex Media Server appliance with the Ubuntu Appliance image. Plex organizes your media libraries and streams them to any device – including all your video, music and photo libraries."
+  meta_copydoc: https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/edit?tab=t.0
   downloads:
     raspberrypi: True
     pc: True

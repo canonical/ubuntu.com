@@ -8,6 +8,7 @@ context:
   logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
   category: "Security"
   meta_description: "AdGuard Home is a network-wide software for blocking and tracking ads. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that."
+  meta_copydoc: https://docs.google.com/document/d/1-OETrr26H36YpewFgSlCxOaSXSf3QoWpKZV5lc8ONbs/edit
   downloads:
     raspberrypi: True
     pc: True
