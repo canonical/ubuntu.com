@@ -356,7 +356,9 @@ def build_engage_index(engage_docs):
                 count,
                 active_count,
                 current_total,
-            ) = engage_docs.get_index(limit, offset)
+            ) = engage_docs.get_index(
+                limit, offset, key="is_static", value=None
+            )
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
