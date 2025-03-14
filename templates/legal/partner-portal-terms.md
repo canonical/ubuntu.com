@@ -3,7 +3,7 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Partner Portal terms and conditions"
   description: "This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website."
-  update_date: "Version - January 2024"
+  update_date: "January 2024"
   copydoc: https://docs.google.com/document/d/1CqJbwC3KpEJeJaCUVjAIN0y6ZLmoc7gVlFyc-BeFMYw/edit#
 ---
 

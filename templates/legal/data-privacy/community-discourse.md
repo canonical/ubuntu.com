@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Ubuntu Community Discourse"
   description: This privacy notice tells you about the information collected from you when you register for an Ubuntu Community Discourse account. Ubuntu Community Discourse is a forum where Ubuntu contributors can coordinate their contributions to Ubuntu and closely related products. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
+  update_date: "March 2023"
   copydoc: https://docs.google.com/document/d/15DqAWthYZvF9aOeBu-O1UA_jjCplkl1lJsIeV_dER-g/edit#
 ---
-
-<h4 class="p-muted-heading">Version - March 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – Ubuntu Community Discourse
 

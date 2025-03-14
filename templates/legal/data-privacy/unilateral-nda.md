@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy Notice – Unilateral NDA"
   description: This privacy notice tells you about the information we collect from you when you submit your information to us via the confidentiality agreement form on our website.
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1MzxiuSwLvT440Ew5-3aPsFHo2zy2QVt1ZEJJpVEaZho/edit?ts=5f33e3f5#
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Confidentiality agreement
 

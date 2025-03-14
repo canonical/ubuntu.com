@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Online purchase"
   description: "This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website."
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1ZSNnMiLJl6SGSV0D_cr6MJAwpkf6xzbKYJdTL9MxLHc/edit
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Online purchase
 

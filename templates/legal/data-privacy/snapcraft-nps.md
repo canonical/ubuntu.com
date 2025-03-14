@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Snapcraft NPS Survey"
   description: This Privacy notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey.
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1JODNGJQ0G-aSrycKTv4XOGmJVWw98Fqk2gLfHmQqgB4/edit
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – Snapcraft NPS Survey
 

@@ -1,8 +1,9 @@
 ---
-wrapper_template: "legal/ubuntu-pro-service-terms/_base_uast_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Ubuntu Pro service terms"
   description: "Ubuntu and Canonical Legal - Ubuntu Pro service terms"
+  update_date: "10 Dec 2024"
   copydoc: https://docs.google.com/document/d/1aeqs6k-jgTf8xu3bOcloYpRgvIy7DuGjwyk7TLeTcqw/edit
 ---
 
@@ -124,8 +125,18 @@ When used in this Agreement, the following terms mean:
    2.  The preceding exclusive jurisdiction requirement does not apply to the extent a party seeks immediate injunctive relief (for example, in connection with a breach or impending breach of confidentiality obligations) that would not be reasonably effective unless obtained in the jurisdiction of the conduct at issue.
    3.  The provisions of the United Nations Convention on Contracts for the International Sale of Goods will not apply to this Agreement.
 
-Last updated 10 Dec 2024
+---
 
-<div class="p-top">
-  <a href="#" class="p-top__link">Back to top</a>
-</div>
+### Older versions
+
+- [16 February 2024 ›](/legal/ubuntu-pro-service-terms/2024-02-16)
+- [25 January 2023 ›](/legal/ubuntu-pro-service-terms/2023-01-25)
+- [11 February 2019 ›](/legal/ubuntu-pro-service-terms/2019-02-11)
+- [24 June 2016 ›](/legal/ubuntu-pro-service-terms/2016-06-24)
+- [20 May 2016 ›](/legal/ubuntu-pro-service-terms/2016-05-20)
+- [09 September 2015 ›](/legal/ubuntu-pro-service-terms/2015-09-09)
+- [24 June 2015 ›](/legal/ubuntu-pro-service-terms/2015-06-24)
+
+### Japanese translation
+
+- [略式サービス契約 ›](/legal/ubuntu-pro-service-terms/ja)
