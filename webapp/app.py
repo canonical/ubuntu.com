@@ -24,7 +24,7 @@ from canonicalwebteam.discourse import (
     Tutorials,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
-from canonicalwebteam.sitemaps_parser import scan_directory
+from canonicalwebteam.directory_parser import scan_directory
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
@@ -172,6 +172,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    serve_sitemap,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -1359,15 +1360,17 @@ def set_form_rules():
 set_form_rules()
 
 
+# TODO: Endpoint for testing and QA purposes only
 def get_sitemaps_tree():
     try:
         tree = scan_directory(os.getcwd() + "/templates")
     except Exception as e:
-        raise Exception(f"Error scanning directory: {e}")
+        return {"Error:": str(e)}, 500
     return tree
 
 
-get_sitemaps_tree()
+app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
 
-# TODO: Endpoint for testing and QA purposes only
-app.add_url_rule("/sitemaps_parser", view_func=get_sitemaps_tree)
+# Build sitemap on app startup
+serve_sitemap()
+app.add_url_rule("/sitemap_tree.xml", view_func=serve_sitemap)
