@@ -3,8 +3,8 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Canonical Ubuntu Community Discourse Forum Terms of Service"
   description: "Ubuntu and Canonical Legal - Canonical Ubuntu Community Discourse Forum Terms of Service"
-  update_date: "Version - April 2023"
-  copydoc: https://docs.google.com/document/d/1Yv4bItPlNPS4oOSvUsUavT3qD6NmVrf_EjQNVFLx40w/edit
+  update_date: "April 2023"
+  copydoc: https://docs.google.com/document/d/1Yv4bItPlNPS4oOSvUsUavT3qD6NmVrf_EjQNVFLx40w/edit"
 ---
 
 # Ubuntu Community Discourse Forum terms and conditions

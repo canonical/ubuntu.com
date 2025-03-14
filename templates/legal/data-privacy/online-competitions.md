@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy Notice – Online Competitions"
   description: This Privacy Notice tells you about the information collected from you when you enter into an online competition and agree to your personal data being stored by Canonical.
+  update_date: "April 2020"
   copydoc: https://docs.google.com/document/d/1vy3Ta47YBWoKtvpbJyk01iYv3czAQMWz54G-UErA9zE/edit#
 ---
-
-<h4 class="p-muted-heading">Version - April 2020</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Online&nbsp;competitions
 

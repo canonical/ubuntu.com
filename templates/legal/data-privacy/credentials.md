@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Canonical Credentials"
   description: This privacy notice tells you about the information collected from you when you access Canonical Credentials. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data.
+  update_date: "February 2023"
   copydoc: https://docs.google.com/document/d/1Ovw3ypWDQwxWZ_tU_2U57uWUW-437v6R2UIMX6wfYYg/edit?ts=600ae156#
 ---
-
-<h4 class="p-muted-heading">Version - February 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – The Canonical Credentials service
 
@@ -27,7 +25,7 @@ When you register to access the Canonical Credentials service we ask you for you
 
 We will use your information for carrying out the Canonical Credentials service, including but not limited to making available the exams and training materials, tracking the exams that you have completed and the badges that you have received for passing exams, as well as for user and product research purposes. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent.
 
-Where relevant, we will share your information with third party TrueAbility, Inc.  with a registered office at 1150 N. 1604W, Suite 108-244, San Antonio, Texas, 78248. We may also use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
+Where relevant, we will share your information with third party TrueAbility, Inc. with a registered office at 1150 N. 1604W, Suite 108-244, San Antonio, Texas, 78248. We may also use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
 
 ## What do we do with your information?
 
@@ -57,11 +55,11 @@ You have a number of important rights under data protection laws. In summary, th
 For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner’s Office (ICO) on individuals rights under the General Data Protection Regulation.
 
 If you would like to exercise any of those rights, please:
+
 1. Email or write to us (see “Your right to complain” below).
 2. Provide us enough information to identify you.
 3. Provide us proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill).
 4. Let us know the information to which your request relates.
-
 
 If you would like to unsubscribe from any email, you can also click the “unsubscribe” button at the bottom of the email. Please note that unsubscribing is not automatic, but will be implemented once confirmed by our personnel.
 
@@ -80,7 +78,7 @@ We hope that we can resolve any query or concern you raise about our use of your
     Legal, Canonical<br />
     5 New Street Square<br/>
     London, EC4A 3TW<br/>
-    United Kingdom<br/> 
+    United Kingdom<br/>
   </p>
 </div>
 
