@@ -631,8 +631,7 @@ def cve(cve_id):
         },
         "esm-infra-legacy": {
             "text": (
-                "Fix available with Ubuntu Pro with "
-                "Legacy support add-on."
+                "Fix available with Ubuntu Pro with " "Legacy support add-on."
             ),
             "label": "Ubuntu Pro",
             "href": "/pro",
