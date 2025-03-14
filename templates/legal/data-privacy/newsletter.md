@@ -3,12 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice | Newsletter signup"
   description: "This privacy notice tells you about the information we collect from you when you sign up to receive our regular newsletter via our website or consent to receiving information about our products and services."
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1Et7uuP82vYgk-sXTOeLLlKi0NzwCdDHkSlfLS7IClzo/edit
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Newsletter signup and information about products and services
 
@@ -22,7 +19,7 @@ We are not required to have a data protection officer, so any enquiries about ou
 
 ## What personal data do we collect?
 
-When you subscribe to our newsletter, or sign up to receive information about products and services,  we ask you for your name and your email address and related information.
+When you subscribe to our newsletter, or sign up to receive information about products and services, we ask you for your name and your email address and related information.
 
 ## Why do we collect this information?
 
@@ -92,7 +89,7 @@ To submit a request by email, post or telephone, please use the contact informat
 
 Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service to ensure that the emails you receive are relevant to your interests.
 
-Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with “STOP”,  (iii) sending an email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a>, or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate.
+Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with “STOP”, (iii) sending an email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a>, or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate.
 
 ## Keeping your personal information secure
 
