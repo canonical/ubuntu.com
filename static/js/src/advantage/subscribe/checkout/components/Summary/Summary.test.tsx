@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { render, screen } from "@testing-library/react";
 import * as useCalculate from "../../hooks/useCalculate";
 import * as usePreview from "../../hooks/usePreview";
-import { taxInfo, UAProduct } from "../../utils/test/Mocks";
+import { CUEProduct, taxInfo, UAProduct } from "../../utils/test/Mocks";
 import Summary from "./Summary";
 
 const DATE_FORMAT = "dd MMMM yyyy";
@@ -310,6 +310,56 @@ describe("Summary", () => {
       <>
         You already have a pending purchase. Please go to{" "}
         <a href="/account/payment-methods">payment methods</a> to retry.
+      </>
+    );
+
+    expect(setError).toHaveBeenCalledWith(message);
+  });
+
+  it("renders cue banned user purchase error", () => {
+    jest.spyOn(usePreview, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          ...taxInfo,
+          tax: 10000,
+          total: 30000,
+          end_of_cycle: "2042-02-03T16:32:54Z",
+        },
+        isError: true,
+        isSuccess: false,
+        error: new Error(
+          "invalid purchase: user has been banned from purchasing products in the canonical-cube marketplace",
+        ),
+        isFetching: false,
+      };
+    });
+    const products = [
+      {
+        product: CUEProduct,
+        quantity: 1,
+      },
+    ];
+    const setError = jest.fn();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Summary
+              products={products}
+              action={"purchase"}
+              setError={setError}
+              coupon={{ origin: "", IDs: [] }}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>,
+    );
+
+    const message = (
+      <>
+        You cannot make this purchase as your account has been banned from
+        purchasing CUE exams.
       </>
     );
 

@@ -8,6 +8,8 @@ import BadgeTracking from "../BadgeTracking/BadgeTracking";
 import Exams from "../../routes/Exams";
 import Credly from "../../routes/Credly";
 import Keys from "../../routes/Keys";
+import UserBans from "../UserBans/UserBans";
+import UserBanForm from "../UserBanForm/UserBanForm";
 import { getUserPermissions } from "../../api/queryFns";
 import { getUserPermissionsKey } from "../../api/queryKeys";
 import { useQuery } from "@tanstack/react-query";
@@ -27,6 +29,12 @@ const Routes = () => {
           <Route path="/exams/results" element={<ExamResults />} />
         )}
       </Route>
+      {permissions?.is_credentials_admin && (
+        <>
+          <Route path="/users/user-bans" element={<UserBans />} />
+          <Route path="/users/ensure-ban" element={<UserBanForm />} />
+        </>
+      )}
       <Route path="/keys" element={<Keys />}>
         <Route path="/keys/list" element={<KeysList />} />
       </Route>

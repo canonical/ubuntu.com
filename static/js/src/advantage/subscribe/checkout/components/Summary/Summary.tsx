@@ -133,6 +133,17 @@ function Summary({ products, action, coupon, setError }: Props) {
             to choose a substitute offering.
           </>
         );
+      } else if (
+        error.message.includes(
+          "user has been banned from purchasing products in the canonical-cube marketplace",
+        )
+      ) {
+        message = (
+          <>
+            You cannot make this purchase as your account has been banned from
+            purchasing CUE exams.
+          </>
+        );
       } else {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }
