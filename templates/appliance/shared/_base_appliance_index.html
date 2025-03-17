@@ -1,239 +1,263 @@
 {% extends "appliance/_base-appliance.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Install {{ appliance_name }} | Ubuntu Appliance{% endblock %}
 
 {% block meta_description %}{{ meta_description }}{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/{% endblock meta_copydoc %}
+{% block meta_copydoc %}
+  {{ meta_copydoc }}
+{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-6">
-      <div class="p-media-object u-no-margin--bottom">
-        <img src="{{ logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
-        <div class="p-media-object__details">
-          <h1 class="p-heading--3 u-no-margin--bottom">
-            {{ appliance_name }}
-          </h1>
-          <p class="p-muted-heading">Ubuntu Appliance</p>
-          <ul class="p-inline-list--middot u-no-margin--bottom">
-            <li class="p-inline-list__item">By {{ company_name }}</li>
-            <li class="p-inline-list__item">{{ category }}<br class="u-hide--medium"></li>
+  {% call(slot) vf_hero(
+    title_text=appliance_name,
+    subtitle_text='Ubuntu Appliance',
+    layout='25/75',
+    )
+    -%}
+    {%- if slot == 'description' -%}
+      <ul class="p-inline-list--middot u-no-margin--bottom">
+        <li class="p-inline-list__item">By {{ company_name }}</li>
+        <li class="p-inline-list__item">{{ category }}</li>
+      </ul>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      {% if downloads.raspberrypi %}
+        <a href="/appliance/{{ short_name }}/raspberry-pi" class="p-button">
+          Install on
+          {% if pi.3 or pi.4 %}
+            Raspberry Pi
+            {% if pi.3 %}3{% endif %}
+            {% if pi.3 and pi.4 %}and{% endif %}
+            {% if pi.4 %}4{% endif %}
+          {% else %}
+            Raspberry Pi 3 and 4 {{ pi.4 }}
+          {% endif %}
+        </a>
+      {% endif %}
+      {% if downloads.intelnuc %}
+        <a href="/appliance/{{ short_name }}/intel-nuc" class="p-button">Install on Intel NUC</a>
+      {% endif %}
+      {% if downloads.pc %}<a href="/appliance/{{ short_name }}/vm" class="p-button">Install on VM</a>{% endif %}
+    {%- endif -%}
+    {%- if slot == 'signpost_image' -%}
+      <img src="{{ logo }}" alt="" class="p-media-object__image is-round" />
+    {%- endif -%}
+  {% endcall -%}
+
+  <hr class="p-rule is-fixed-width" />
+
+  <section class="p-strip is-shallow">
+    <div class="grid-row">
+      <div class="grid-col-6">
+        <div class="u-embedded-media u-no-margin--top">
+          {% if "youtu" in screenshots.1 %}
+            <iframe title="Screenshots"
+                    class="u-embedded-media__element"
+                    src="{{ screenshots.1 }}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          {% else %}
+            <div class="p-image-container--16-9 is-highlighted">
+              <img src="{{ screenshots.1 }}"
+                   alt="{{ appliance_name }} screenshots"
+                   class="p-image-container__image"
+                   width="700" />
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid-col-2">
+        <ul class="p-list">
+          <div class="grid-row">
+            {% for image in screenshots.values() %}
+              {% if "youtu" not in image %}
+                <div class="grid-col-2 grid-col-small-1 grid-col-medium-1">
+                  <li class="p-list__item u-no-padding--top" style="margin-bottom: 1rem;">
+                    <a href="{{ image }}" class="js-lightbox-item">
+                      <div class="p-image-container--16-9 is-highlighted">
+                        <img src="{{ image }}?w=200"
+                             alt="{{ name }} screenshot"
+                             class="p-image-container__image"
+                             width="200" />
+                      </div>
+                    </a>
+                  </li>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="grid-row">
+      <hr class="p-rule" />
+      <div class="grid-col-start-large-3 grid-col-4">{{ content | safe }}</div>
+      <div class="grid-col-2">
+        <div class="p-section--shallow">
+          {% if maintenance_date %}
+            <div class="p-label--new">Certified</div>
+            {% if certification_note %}
+              <p>
+                <em>{{ certification_note }}</em>
+              </p>
+            {% endif %}
+            <p>
+              Maintained until {{ maintenance_date }}
+              <br />
+              {% if downloads.raspberrypi %}ARM{% endif %}
+              {% if downloads.pc and downloads.raspberrypi %},{% endif %}
+              {% if downloads.pc %}x86{% endif %}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="p-section--shallow">
+          <h3 class="p-heading--5">Relevant links</h3>
+          <hr class="p-rule--muted" />
+          <ul class="p-list">
+            {% for link in links.values() %}
+              <li class="p-list__item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
+
+        <h3 class="p-heading--5">Privacy compliance</h3>
+        <hr class="p-rule--muted u-no-margin--bottom" />
+        <ul class="p-list--divided">
+          {% for comp in compliance.values() %}<li class="p-list__item is-ticked">{{ comp }}</li>{% endfor %}
+        </ul>
+        <h3 class="p-heading--5">Base</h3>
+        <hr class="p-rule--muted" />
+        <p class="u-no-padding--top">{{ base }}</p>
+        <h3 class="p-heading--5">Date published</h3>
+        <hr class="p-rule--muted" />
+        <p class="u-no-padding--top">{{ published_date }}</p>
       </div>
     </div>
-    <div class="col-6">
-      <div class="row">
-        {% if downloads.raspberrypi %}
-        <div class="col-2">
-          <a href="/appliance/{{ short_name }}/raspberry-pi">
-            <h3 class="p-heading--5 u-no-padding--top">
-              {% if pi.3 or pi.4 %}
-              Raspberry Pi {% if pi.3 %}3{% endif %}{% if pi.3 and pi.4%} &amp; {% endif %}{% if pi.4 %}4{% endif %}
-              {% else %}
-              Raspberry Pi 3 &amp; 4 {{ pi.4 }}
-              {% endif %}
-            </h3>
-            <hr>
-            <div class="u-align--center">
-              <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=100" alt="" style="width: 68px; height: 44px;">
-            </div>
-          </a>
-        </div>
-        {% endif %}
-        {% if downloads.intelnuc %}
-        <div class="col-2">
-          <a href="/appliance/{{ short_name }}/intel-nuc">
-            <h3 class="p-heading--5 u-no-padding--top">
-              Intel NUC
-            </h3>
-            <hr>
-            <div class="u-align--center">
-              <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=100" style="width: 68px; height: 45px;">
-            </div>
-          </a>
-        </div>
-        {% endif %}
-        {% if downloads.pc %}
-        <div class="col-2">
-          <a href="/appliance/{{ short_name }}/vm">
-            <h3 class="p-heading--5 u-no-padding--top">
-              VM
-            </h3>
-            <hr>
-            <div class="u-align--center">
-              <img src="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg" style="width:40px; height: 40px;">
-            </div>
-          </a>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-10">
-      <div class="u-embedded-media u-no-margin--top" style="margin-bottom: 1rem;">
-        {% if "youtu" in screenshots.1 %}
-        <iframe title="Screenshots" class="u-embedded-media__element" src="{{ screenshots.1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        {% else %}
-        <img src="{{ screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance_name }} screenshots">
-        {% endif %}
-      </div>
+  <section class="p-strip u-no-padding--top">
+    <div class="grid-row">
+      <hr class="p-rule" />
+      <h2>Snaps in the image</h2>
     </div>
-    <div class="col-2 u-align--center">
-      <ul class="p-list row">
-        {% for image in screenshots.values() %}
-        {% if "youtu" not in image %}
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <a href="{{ image }}" class="js-lightbox-item">
-            <img src="{{ image }}?w=200" alt="{{ name }} screenshot" height="150" width="150">
-          </a>
-        </li>
-        {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-9">
-      {{ content | safe }}
-    </div>
-    <div class="col-3">
-      {% if maintenance_date %}
-      <div class="p-label--new">Certified</div>
-      {% if certification_note %}
-      <p><em>{{ certification_note }}</em></p>
-      {% endif %}
-      <p>Maintained until {{ maintenance_date }}<br />
-        {% if downloads.raspberrypi %}ARM{% endif %}{% if downloads.pc and downloads.raspberrypi %}, {% endif %}{% if downloads.pc %}x86{% endif %}
-      </p>
-      {% endif %}
-
-      <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
-      <ul class="p-list">
-        {% for link in links.values() %}
-        <li class="p-list__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-      <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
-      <ul class="p-list">
-        {% for comp in compliance.values() %}
-        <li class="p-list__item is-ticked">{{ comp }}</li>
-        {% endfor %}
-      </ul>
-      <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
-      <p>{{ base }}</p>
-      <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
-      <p>{{ published_date }}</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--top">
-  <div class="row">
-    <div class="col-10">
-      <h2 class="p-heading--4">Snaps in the image</h2>
-      <table>
-        <thead>
-          <tr>
-            <td style="width: 33%;">&nbsp;</td>
-            <th>PUBLISHER</th>
-            <th>VERSION</th>
-            <th>UPDATED</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for snap in snaps.values() %}
-          <tr>
-            <td>
-              <div class="p-media-object">
-                <img src="{{ snap.icon }}?w=50" alt="" class="p-media-object__image is-round" height="50" width="50">
-                <div class="p-media-object__details">
+    <div class="grid-row">
+      <div class="grid-col-8 grid-col-start-large-3">
+        <table>
+          <thead>
+            <tr>
+              <td style="width: 33%;">&nbsp;</td>
+              <th>PUBLISHER</th>
+              <th>VERSION</th>
+              <th>UPDATED</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for snap in snaps.values() %}
+              <tr>
+                <td>
                   <p>
                     <a href="{{ snap.link }}">{{ snap.name }}</a>
                   </p>
-                </div>
+                </td>
+                <td>
+                  <p>{{ snap.publisher }}</p>
+                </td>
+                <td>
+                  <p>{{ snap.version }}</p>
+                </td>
+                <td>
+                  <p>{{ snap.published_date }}</p>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep u-no-padding--top">
+    <div class="grid-row">
+      <hr class="p-rule" />
+      <div class="grid-col-4">
+        <h2>Try it out!</h2>
+      </div>
+      <div class="grid-col-4">
+        <div class="p-section--shallow">
+          <p>
+            Grab a spare board
+            {%- if downloads.pc -%}, PC{% endif %}
+            or NUC.
+            {% if downloads.pc %}
+              We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
+            {% endif %}
+          </p>
+        </div>
+        <div class="grid-row">
+          <div class="grid-col-2">
+            {% if downloads.raspberrypi %}
+              <div class="p-image-container is-highlighted">
+                <img src="https://assets.ubuntu.com/v1/2560d6f8-pi-4-updated.png" alt="" />
               </div>
-            </td>
-            <td><p>{{ snap.publisher }}</p></td>
-            <td><p>{{ snap.version }}</p></td>
-            <td><p>{{ snap.published_date }}</p></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--top">
-  <div class="row">
-    <div class="col-6">
-      <h3>Try it out!</h3>
-      <p>
-        Grab a spare board{% if downloads.pc %}, PC{% endif %} or NUC.
-        {% if downloads.pc %}
-        We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
-        {% endif %}
-      </p>
-    </div>
-    {% if downloads.raspberrypi %}
-    <div class="col-3">
-        <div class="u-align--center">
-          <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=100" alt="" style="width: 50%;">
-        {% if downloads.pi2 %}
-      <p>
-        <a href="/appliance/{{ short_name }}/raspberry-pi2">Install on a Raspberry Pi 2&nbsp;&rsaquo;
-      </a>
-      </p>
-      {% endif %}
-      <p>
-        <a href="/appliance/{{ short_name }}/raspberry-pi">
-           Install on a {% if pi.3 or pi.4 %}Raspberry {% if pi.3 %}3{% endif %}{% if pi.3 and pi.4%} &amp; {% endif %}{% if pi.4 %}4{% endif %}{% else %}Raspberry Pi 3 &amp; 4{{ pi.4 }}{% endif %}&nbsp;Pi&nbsp;&rsaquo;
-</a>
-</p>
-
+              {% if downloads.pi2 %}
+                <p>
+                  <a href="/appliance/{{ short_name }}/raspberry-pi2">Install on a Raspberry Pi 2</a>
+                </p>
+              {% endif %}
+              <h3 class="p-heading--5">
+                <a href="/appliance/{{ short_name }}/raspberry-pi">
+                  Install on a
+                  {% if pi.3 or pi.4 %}
+                    Raspberry
+                    {% if pi.3 %}3{% endif %}
+                    {% if pi.3 and pi.4 %}and{% endif %}
+                    {% if pi.4 %}4{% endif %}
+                  {% else %}
+                    Raspberry Pi 3 and 4{{ pi.4 }}
+                  {% endif %}
+                  &nbsp;Pi
+                </a>
+              </h3>
+            {% endif %}
+          </div>
+          <div class="grid-col-2">
+            {% if downloads.intelnuc %}
+              <div class="p-image-container is-highlighted">
+                <img src="https://assets.ubuntu.com/v1/abb2df0f-intel-nuc.png" alt="" />
+              </div>
+              <h3 class="p-heading--5">
+                <a href="/appliance/{{ short_name }}/intel-nuc">Install on an Intel NUC</a>
+              </h3>
+            {% endif %}
+          </div>
         </div>
-
-
+      </div>
     </div>
-    {% endif %}
-    {% if downloads.intelnuc %}
-    <div class="col-3">
-      <a href="/appliance/{{ short_name }}/intel-nuc">
-        <div class="u-align--center">
-          <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=100" style="width: 50%;">
-          <p>Install on an Intel NUC&nbsp;&rsaquo;</p>
-        </div>
-      </a>
-    </div>
-    {% endif %}
-  </div>
-</section>
+  </section>
 
-{% include "/appliance/shared/_join_the_community.html" %}
-
-<script>
-  (function () {
-    var downloadForm = document.querySelector(".js-download");
-    if (downloadForm) {
-      const linkElement = downloadForm.querySelector('.js-download-button');
-      const selectElement = downloadForm.querySelector('.js-platform-select');
-      if (linkElement && selectElement) {
-        selectElement.addEventListener('change', function() {
-          linkElement.href = window.location.pathname + '/' + selectElement.value;
-        });
+  <script>
+    (function() {
+      var downloadForm = document.querySelector(".js-download");
+      if (downloadForm) {
+        const linkElement = downloadForm.querySelector('.js-download-button');
+        const selectElement = downloadForm.querySelector('.js-platform-select');
+        if (linkElement && selectElement) {
+          selectElement.addEventListener('change', function() {
+            linkElement.href = window.location.pathname + '/' + selectElement.value;
+          });
+        }
       }
-    }
-  })();
-</script>
+    })();
+  </script>
 
 {% endblock content %}
