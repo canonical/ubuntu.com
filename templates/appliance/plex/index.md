@@ -56,8 +56,10 @@ context:
 <br />
 Master your Mediaverse. Stream all your personal video, music, and photo collections, as well as your preferred podcasts, web shows, and online news, plus thousands of free movies and TV shows, to any of your devices.
 
-- Magically organize all your personal media—photos, music, movies, shows, even DVR-ed TV—and stream it to any device in a beautiful, simple interface; Plex adds rich descriptions, artwork, and other related information
-- Search for your favourite podcast or discover new ones through personalized recommendations. Plus: 30 second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)
-- Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US
-- Stream 1000s of FREE movies and TV shows from filmmakers around the world. From Oscar™ award-winning movies to Anime, Bollywood musicals, documentaries, family-friendly shows, and much more
-- Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, at home or away, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner
+<ul class="p-list--divided">
+  <li class="p-list__item is-ticked">Magically organize all your personal media—photos, music, movies, shows, even DVR-ed TV—and stream it to any device in a beautiful, simple interface; Plex adds rich descriptions, artwork, and other related information</li>
+  <li class="p-list__item is-ticked">Search for your favourite podcast or discover new ones through personalized recommendations. Plus: 30 second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)</li>
+  <li class="p-list__item is-ticked">Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US</li>
+  <li class="p-list__item is-ticked">Stream 1000s of FREE movies and TV shows from filmmakers around the world. From Oscar™ award-winning movies to Anime, Bollywood musicals, documentaries, family-friendly shows, and much more</li>
+  <li class="p-list__item is-ticked">Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, at home or away, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner</li>
+</ul>

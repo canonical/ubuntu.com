@@ -57,15 +57,19 @@ The open Home Automation Bus (openHAB, pronounced ˈəʊpənˈhæb) is an open s
 
 Some of openHAB's strengths are:
 
-- Its ability to integrate a multitude of other devices and systems. openHAB includes other home automation systems, (smart) devices and other technologies into a single solution
-- To provide a uniform user interface and a common approach to automation rules across the entire system, regardless of the number of manufacturers and sub-systems involved
-- Giving you the most flexible tool available to make almost any home automation wish come true; if you can think it, odds are that you can implement it with openHAB
+<ul class="p-list--divided">
+  <li class="p-list__item is-ticked">Its ability to integrate a multitude of other devices and systems. openHAB includes other home automation systems, (smart) devices and other technologies into a single solution</li>
+  <li class="p-list__item is-ticked">To provide a uniform user interface and a common approach to automation rules across the entire system, regardless of the number of manufacturers and sub-systems involved</li>
+  <li class="p-list__item is-ticked">Giving you the most flexible tool available to make almost any home automation wish come true; if you can think it, odds are that you can implement it with openHAB</li>
+</ul>
 
 When home automation just seems to work, it is always the result of hard work. Home automation is fascinating and requires a considerable investment of your time. Here are some key considerations especially for new users. To be successful, you will need to:
 
-- Start slowly and one step at a time
-- Be prepared to learn
-- Remain flexible in how you want to achieve your goal
-- Celebrate all the small successes
+<ul class="p-list--divided">
+  <li class="p-list__item is-ticked">Start slowly and one step at a time</li>
+  <li class="p-list__item is-ticked">Be prepared to learn</li>
+  <li class="p-list__item is-ticked">Remain flexible in how you want to achieve your goal</li>
+  <li class="p-list__item is-ticked">Celebrate all the small successes</li>
+</ul>
 
 Remember, openHAB is just a computer program. The computer will only do what you tell it to do. openHAB can provide many default solutions that are easy to setup. On the flip side, the more you insist that everything should look and work exactly as you want it, the more work you will have to do. openHAB is fully customizable, but doing so will require substantial effort on your part.

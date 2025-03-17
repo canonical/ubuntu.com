@@ -60,8 +60,10 @@ LXD containers are lightweight, secure by default and a great alternative to run
 
 Pre-made images are available for Ubuntu, Alpine Linux, ArchLinux, CentOS, Debian, Fedora, Gentoo, OpenSUSE and more.
 
+<hr class="p-rule--muted" />
 <a href="https://images.linuxcontainers.org">View a full list of available images&nbsp;&rsaquo;</a>
 
+<br />
 Can't find the distribution you want? It's easy to make your own images too, either using our distrobuilder tool or by assembling your own image tarball by hand.
 
 <h3 class="p-heading--4">Containers at scale</h3>
@@ -74,13 +76,15 @@ Want to go big? LXD also has built-in clustering support, letting you turn dozen
 
 Supported options for the LXD snap (`snap set lxd KEY=VALUE`):
 
-- `ceph.builtin`: Use snap-specific ceph configuration [default=false]
-- `criu.enable`: Enable experimental live-migration support [default=false]
-- `daemon.debug`: Increases logging to debug level [default=false]
-- `daemon.group`: Group of users that can interact with LXD [default=lxd]
-- `daemon.preseed`: A YAML configuration to feed `lxd init` on initial start
-- `lxcfs.pidfd`: Start per-container process tracking [default=false]
-- `lxcfs.loadavg`: Start tracking per-container load average [default=false]
-- `lxcfs.cfs`: Consider CPU shares for CPU usage [default=false]
-- `openvswitch.builtin`: Run a snap-specific OVS daemon [default=false]
-- `shiftfs.enable`: Enable shiftfs support [default=auto]
+<ul class="p-list--divided">
+  <li class="p-list__item has-bullet"><code>ceph.builtin</code>: Use snap-specific ceph configuration [default=false]</li>
+  <li class="p-list__item has-bullet"><code>criu.enable</code>: Enable experimental live-migration support [default=false]</li>
+  <li class="p-list__item has-bullet"><code>daemon.debug</code>: Increases logging to debug level [default=false]</li>
+  <li class="p-list__item has-bullet"><code>daemon.group</code>: Group of users that can interact with LXD [default=lxd]</li>
+  <li class="p-list__item has-bullet"><code>daemon.preseed</code>: A YAML configuration to feed `lxd init` on initial start</li>
+  <li class="p-list__item has-bullet"><code>lxcfs.pidfd</code>: Start per-container process tracking [default=false]</li>
+  <li class="p-list__item has-bullet"><code>lxcfs.loadavg</code>: Start tracking per-container load average [default=false]</li>
+  <li class="p-list__item has-bullet"><code>lxcfs.cfs</code>: Consider CPU shares for CPU usage [default=false]</li>
+  <li class="p-list__item has-bullet"><code>openvswitch.builtin</code>: Run a snap-specific OVS daemon [default=false]</li>
+  <li class="p-list__item has-bullet"><code>shiftfs.enable</code>: Enable shiftfs support [default=auto]</li>
+</ul>
