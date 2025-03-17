@@ -86,34 +86,6 @@ jobs:
       - name: Lint python
         run: dotrun lint-python
 
-  lint-jinja:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install node dependencies
-        run: yarn install --immutable
-
-      - name: Install python dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          sudo pip3 install djlint
-
-      - name: Get changed HTML files in the templates folder
-        id: changed-files
-        uses: tj-actions/changed-files@v43
-        with:
-          files: templates/**/*.html
-
-      - name: Lint jinja
-        if: steps.changed-files.outputs.any_changed == 'true'
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        run: |
-          echo "The following files have changed: $CHANGED_FILES"
-          djlint $CHANGED_FILES --lint --profile="jinja"
-
   validate-deploy:
     runs-on: ubuntu-latest
 
