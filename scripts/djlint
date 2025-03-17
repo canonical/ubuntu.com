@@ -4,6 +4,8 @@ lint_html() {
   local diff_option=$1
   if [ "$diff_option" == "--cached" ]; then
     CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
+  elif [ "$diff_option" == "--committed" ]; then
+    CHANGED_FILES=$(git diff HEAD~1 --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
   else
     CHANGED_FILES=$(git diff --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
     STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'templates/.*\.html' || true)
