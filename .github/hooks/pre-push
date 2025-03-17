@@ -14,12 +14,46 @@ do
 
   changed_files=$(git diff --name-only "$range")
 
-  echo "$changed_files" | grep -qE '\.scss$' && ! yarn lint-scss && exit 1
-  echo "$changed_files" | grep -qE '\.js$'   && ! yarn lint-js && exit 1
-  echo "$changed_files" | grep -qE '\.py$'   && ! yarn lint-python && exit 1
-  echo "$changed_files" | grep -qE '\.html$' && ! ./scripts/djlint lint --cached && exit 1
+  error_flag=0
+
+  if echo "$changed_files" | grep -qE '\.scss$'; then
+    echo "Running lint-scss..."
+    if ! yarn lint-scss; then
+      echo "lint-scss failed."
+      error_flag=1
+    fi
+  fi
+
+  if echo "$changed_files" | grep -qE '\.js$'; then
+    echo "Running lint-js..."
+    if ! yarn lint-js; then
+      echo "lint-js failed."
+      error_flag=1
+    fi
+  fi
+
+  if echo "$changed_files" | grep -qE '\.py$'; then
+    echo "Running lint-python..."
+    if ! yarn lint-python; then
+      echo "lint-python failed."
+      error_flag=1
+    fi
+  fi
+
+  if echo "$changed_files" | grep -qE '\.html$'; then
+    echo "Running lint-html..."
+    if ! ./scripts/djlint lint --committed; then
+      echo "lint-html failed."
+      error_flag=1
+    fi
+  fi
 
 done
 
-exit 0
-
+if [ "$error_flag" -eq 1 ]; then
+  echo "❌ One or more linters failed. Push denied."
+  exit 1
+else
+  echo "✅ All linters passed. Push allowed."
+  exit 0
+fi
