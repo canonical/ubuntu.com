@@ -497,6 +497,7 @@ def cve(cve_id):
             for status in package["statuses"]:
                 if (
                     status["pocket"] == "esm-infra"
+                    or status["pocket"] == "esm-infra-legacy"
                     or status["pocket"] == "esm-apps"
                 ):
                     cve["expanded_coverage"] = True
@@ -624,6 +625,13 @@ def cve(cve_id):
             "text": (
                 "Fix available with Ubuntu Pro and "
                 "Ubuntu Pro (Infra-only) via ESM Infra."
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-infra-legacy": {
+            "text": (
+                "Fix available with Ubuntu Pro with " "Legacy support add-on."
             ),
             "label": "Ubuntu Pro",
             "href": "/pro",

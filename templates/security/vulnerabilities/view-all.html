@@ -1,0 +1,79 @@
+{% extends "security/base_security.html" %}
+
+{% block title %}Vulnerability Knowledge Base{% endblock %}
+
+{% block meta_description %}
+  A library with in-depth information and technical guidance for high-impact vulnerabilities that affect Ubuntu.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {% set breadcrumbs = [{"name": "Vulnerability knowledge base", "href": "/security/vulnerabilities"}, {"name": "View all"}] %}
+  {% include '/shared/_breadcrumbs.html' %}
+
+  <section class="p-section--hero">
+    <div class="row--25-75">
+      <div class="col">
+        <h1 class="p-heading--2">Vulnerability knowledge base</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="p-section--deep">
+    <div class="row">
+      <button class="p-toggle--sticky js-drawer-toggle"
+              aria-controls="drawer"
+              href="#"
+              aria-expanded="false">Open side navigation</button>
+      <div class="col-3">
+        <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
+             id="drawer">
+          <div class="p-side-navigation__overlay js-drawer-toggle"
+               aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer"
+               aria-label="documentation side navigation">
+            <div class="p-side-navigation__drawer-header">
+              <button href="#"
+                      class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer"
+                      aria-expanded="false">Close side navigation</button>
+            </div>
+            <ul>
+              {% set ns = namespace(previous_year=None) %}
+              {% for vulnerability in vulnerabilities if vulnerability.name %}
+                {% set is_new_year = vulnerability.year != ns.previous_year %}
+                <li class="p-side-navigation__item">
+                  {% if is_new_year %}
+                    {% if loop.first %}
+                      <a class="highlight-link is-active"
+                         href="#year-{{ vulnerability.year }}">{{ vulnerability.year }}</a>
+                    {% else %}
+                      <a class="highlight-link" href="#year-{{ vulnerability.year }}">{{ vulnerability.year }}</a>
+                    {% endif %}
+                  {% endif %}
+                </li>
+                {% set ns.previous_year = vulnerability.year %}
+              {% endfor %}
+              {% for vulnerability in vulnerabilities if vulnerability.name %}<li class="p-side-navigation__item"></li>{% endfor %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-9 vulnerabilities-content">
+        {% set ns = namespace(previous_year=None) %}
+        {% for vulnerability in vulnerabilities if vulnerability.name %}
+          {% set is_new_year = vulnerability.year != ns.previous_year %}
+          {% include "security/vulnerabilities/_vulnerability-card.html" %}
+        {% endfor %}
+        <div class="p-top">
+          <a href="#" class="p-top__link">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
+{% endblock content %}
