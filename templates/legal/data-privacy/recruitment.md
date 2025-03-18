@@ -128,19 +128,3 @@ If you have any questions about this notice, or about how we use or retain your 
 ## 13\. Policy changes
 
 This is the latest version of our Recruitment Privacy Notice and is in effect as of the “Last Updated” date which may be found at the top of the notice. As we may change this notice from time to time, you should check here regularly for the most up-to-date version.
-
-#### Contents
-
-- [1\. Introduction](#introduction)
-- [2\. What information we collect](#what-information-we-collect)
-- [3\. How we collect your information](#how-we-collect-your-information)
-- [4\. Why we use your information](#why-we-use-your-information)
-- [5\. Who we share your information with](#who-we-share-your-information-with)
-- [6\. International data transfers](#international-data-transfers)
-- [7\. How we protect your information](#how-we-protect-your-information)
-- [8\. How long we keep your information](#how-long-we-keep-your-information)
-- [9\. Your rights](#your-rights)
-- [10\. Exercising your rights](#exercising-your-rights)
-- [11\. Right to complain](#right-to-complain)
-- [12\. Contact information](#contact-information)
-- [13\. Policy changes](#policy-changes)

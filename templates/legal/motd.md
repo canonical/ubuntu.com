@@ -75,7 +75,7 @@ Isle of Man
 This is an example of a motd-news message:
 
 ```
-\* MicroK8s gets a native Windows installer and command-line integration.
+* MicroK8s gets a native Windows installer and command-line integration.
 https://ubuntu.com/blog/microk8s-installers-windows-and-macos
 ```
 

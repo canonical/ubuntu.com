@@ -348,50 +348,50 @@ defer></script>
           </style></div>
           <form method="post" action="https://www.tfaforms.com/responses/processor" class=" labelsLeftAligned" id="36087" role="form" enctype="multipart/form-data">
             <div class="htmlSection" id="tfa_9631608629065"><div class="htmlContent" id="tfa_9631608629065-HTML">
-              <p class="western" style="margin-bottom: 0cm"><font color="#ff0000">* signifies a required field</font></p>
+              <p class="western" style="margin-bottom: 0cm">* signifies a required field</p>
             </div></div>
             <fieldset id="tfa_Yourcontactdetai" class="section">
               <legend id="tfa_Yourcontactdetai-L">Your contact details</legend>
               <div class="oneField field-container-D    " id="tfa_Firstname-D">
-                <label id="tfa_Firstname-L" class="label preField reqMark" for="tfa_Firstname">First name</label><div class="inputWrapper"><input type="text" id="tfa_Firstname" name="tfa_Firstname" value="" aria-required="true" title="First name" class="required"></div>
+                <label id="tfa_Firstname-L" class="label preField  is-required" for="tfa_Firstname" required>First name</label><div class="inputWrapper"><input type="text" id="tfa_Firstname" name="tfa_Firstname" value="" aria-required="true" title="First name" class="required"></div>
               </div>
               <div class="oneField field-container-D    " id="tfa_Lastname-D">
-                <label id="tfa_Lastname-L" class="label preField reqMark" for="tfa_Lastname">Last name</label><div class="inputWrapper"><input type="text" id="tfa_Lastname" name="tfa_Lastname" value="" aria-required="true" title="Last name" class="required"></div>
+                <label id="tfa_Lastname-L" class="label preField  is-required" for="tfa_Lastname">Last name</label><div class="inputWrapper"><input type="text" id="tfa_Lastname" name="tfa_Lastname" value="" aria-required="true" title="Last name" class="required"></div>
               </div>
               <div class="oneField field-container-D    " id="tfa_Email-D">
-                <label id="tfa_Email-L" class="label preField reqMark" for="tfa_Email">Email</label><div class="inputWrapper"><input type="text" id="tfa_Email" name="tfa_Email" value="" aria-required="true" title="Email" class="validate-email required"></div>
+                <label id="tfa_Email-L" class="label preField  is-required" for="tfa_Email">Email</label><div class="inputWrapper"><input type="text" id="tfa_Email" name="tfa_Email" value="" aria-required="true" title="Email" class="validate-email required"></div>
               </div>
               <div class="oneField field-container-D    " id="tfa_Phonenumber-D">
-                <label id="tfa_Phonenumber-L" class="label preField reqMark" for="tfa_Phonenumber">Phone number</label><div class="inputWrapper"><input type="text" id="tfa_Phonenumber" name="tfa_Phonenumber" value="" aria-required="true" title="Phone number" class="required"></div>
+                <label id="tfa_Phonenumber-L" class="label preField  is-required" for="tfa_Phonenumber">Phone number</label><div class="inputWrapper"><input type="text" id="tfa_Phonenumber" name="tfa_Phonenumber" value="" aria-required="true" title="Phone number" class="required"></div>
               </div>
             </fieldset>
             <div class="oneField field-container-D    " id="tfa_Areyoumakingther-D">
-              <label id="tfa_Areyoumakingther-L" class="label preField reqMark" for="tfa_Areyoumakingther">Are you making the request on behalf of a company?</label><div class="inputWrapper"><select id="tfa_Areyoumakingther" name="tfa_Areyoumakingther" title="Are you making the request on behalf of a company?" aria-required="true" class="required"><option value="">Please select...</option>
+              <label id="tfa_Areyoumakingther-L" class="label preField  is-required" for="tfa_Areyoumakingther">Are you making the request on behalf of a company?</label><div class="inputWrapper"><select id="tfa_Areyoumakingther" name="tfa_Areyoumakingther" title="Are you making the request on behalf of a company?" aria-required="true" class="required"><option value="">Please select...</option>
                 <option value="tfa_Yes" id="tfa_Yes" data-conditionals="#tfa_CompanyInformati,#tfa_Companyname1,#tfa_Website1,#tfa_Companyaddressre,#tfa_Street,#tfa_StateProvince,#tfa_City,#tfa_ZipPostalcode,#tfa_Country" class="">Yes</option>
                 <option value="tfa_No" id="tfa_No" class="">No</option></select></div>
               </div>
               <fieldset id="tfa_CompanyInformati" class="section" data-condition="`#tfa_Yes`">
                 <legend id="tfa_CompanyInformati-L">Company Information</legend>
                 <div class="oneField field-container-D    " id="tfa_Companyname1-D">
-                  <label id="tfa_Companyname1-L" class="label preField reqMark" for="tfa_Companyname1">Company name</label><div class="inputWrapper"><input type="text" id="tfa_Companyname1" name="tfa_Companyname1" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Company name" class="required"></div>
+                  <label id="tfa_Companyname1-L" class="label preField  is-required" for="tfa_Companyname1">Company name</label><div class="inputWrapper"><input type="text" id="tfa_Companyname1" name="tfa_Companyname1" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Company name" class="required"></div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_Website1-D">
-                  <label id="tfa_Website1-L" class="label preField reqMark" for="tfa_Website1">Website</label><div class="inputWrapper"><input type="text" id="tfa_Website1" name="tfa_Website1" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Website" class="required"></div>
+                  <label id="tfa_Website1-L" class="label preField  is-required" for="tfa_Website1">Website</label><div class="inputWrapper"><input type="text" id="tfa_Website1" name="tfa_Website1" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Website" class="required"></div>
                 </div>
               </fieldset>
               <fieldset id="tfa_Companyaddressre" class="section" data-condition="`#tfa_Yes`">
                 <legend id="tfa_Companyaddressre-L">Company address</legend>
                 <div class="oneField field-container-D    " id="tfa_Street-D">
-                  <label id="tfa_Street-L" class="label preField reqMark" for="tfa_Street">Street</label><div class="inputWrapper"><input type="text" id="tfa_Street" name="tfa_Street" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Street" class="required"></div>
+                  <label id="tfa_Street-L" class="label preField  is-required" for="tfa_Street">Street</label><div class="inputWrapper"><input type="text" id="tfa_Street" name="tfa_Street" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Street" class="required"></div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_StateProvince-D">
-                  <label id="tfa_StateProvince-L" class="label preField reqMark" for="tfa_StateProvince">State/Province</label><div class="inputWrapper"><input type="text" id="tfa_StateProvince" name="tfa_StateProvince" value="" aria-required="true" data-condition="`#tfa_Yes`" title="State/Province" class="required"></div>
+                  <label id="tfa_StateProvince-L" class="label preField  is-required" for="tfa_StateProvince">State/Province</label><div class="inputWrapper"><input type="text" id="tfa_StateProvince" name="tfa_StateProvince" value="" aria-required="true" data-condition="`#tfa_Yes`" title="State/Province" class="required"></div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_City-D">
-                  <label id="tfa_City-L" class="label preField reqMark" for="tfa_City">City</label><div class="inputWrapper"><input type="text" id="tfa_City" name="tfa_City" value="" aria-required="true" data-condition="`#tfa_Yes`" title="City" class="required"></div>
+                  <label id="tfa_City-L" class="label preField  is-required" for="tfa_City">City</label><div class="inputWrapper"><input type="text" id="tfa_City" name="tfa_City" value="" aria-required="true" data-condition="`#tfa_Yes`" title="City" class="required"></div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_ZipPostalcode-D">
-                  <label id="tfa_ZipPostalcode-L" class="label preField reqMark" for="tfa_ZipPostalcode">Zip/Postal code</label><div class="inputWrapper"><input type="text" id="tfa_ZipPostalcode" name="tfa_ZipPostalcode" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Zip/Postal code" class="required"></div>
+                  <label id="tfa_ZipPostalcode-L" class="label preField  is-required" for="tfa_ZipPostalcode">Zip/Postal code</label><div class="inputWrapper"><input type="text" id="tfa_ZipPostalcode" name="tfa_ZipPostalcode" value="" aria-required="true" data-condition="`#tfa_Yes`" title="Zip/Postal code" class="required"></div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_Country-D">
                   <label id="tfa_Country-L" class="label preField " for="tfa_Country">Country</label><div class="inputWrapper"><select id="tfa_Country" name="tfa_Country" data-condition="`#tfa_Yes`" title="Country" class=""><option value="">Please select...</option>
@@ -635,7 +635,7 @@ defer></script>
                   </div>
                 </fieldset>
                 <div class="oneField field-container-D    " id="tfa_Whataredoyouplan-D" role="group" aria-labelledby="tfa_Whataredoyouplan-L" data-tfa-labelledby="-L tfa_Whataredoyouplan-L">
-                  <label id="tfa_Whataredoyouplan-L" class="label preField reqMark" aria-label="In what capacity are you requesting to use the trademark?   required">In what capacity are you requesting to use the trademark?</label>
+                  <label id="tfa_Whataredoyouplan-L" class="label preField  is-required" aria-label="In what capacity are you requesting to use the trademark?   required">In what capacity are you requesting to use the trademark?</label>
 
                   <div class="inputWrapper">
                     <span id="tfa_Whataredoyouplan" class="choices  required">
@@ -660,15 +660,15 @@ defer></script>
                   </div>
                 </div>
                 <div class="oneField field-container-D    " id="tfa_Areyouamemberofa-D">
-                  <label id="tfa_Areyouamemberofa-L" class="label preField reqMark" for="tfa_Areyouamemberofa">Are you a member of an approved LoCo team?</label><div class="inputWrapper"><select id="tfa_Areyouamemberofa" name="tfa_Areyouamemberofa" data-condition="`#tfa_Community`" title="Are you a member of an approved LoCo team?" aria-required="true" class="required"><option value="">Please select...</option>
+                  <label id="tfa_Areyouamemberofa-L" class="label preField  is-required" for="tfa_Areyouamemberofa">Are you a member of an approved LoCo team?</label><div class="inputWrapper"><select id="tfa_Areyouamemberofa" name="tfa_Areyouamemberofa" data-condition="`#tfa_Community`" title="Are you a member of an approved LoCo team?" aria-required="true" class="required"><option value="">Please select...</option>
                     <option value="tfa_Yes1" id="tfa_Yes1" data-conditionals="#tfa_Pleasestatewhich" class="">Yes</option>
                     <option value="tfa_No1" id="tfa_No1" class="">No</option></select></div>
                   </div>
                   <div class="oneField field-container-D    " id="tfa_Pleasestatewhich-D">
-                    <label id="tfa_Pleasestatewhich-L" class="label preField reqMark" for="tfa_Pleasestatewhich">Please state which LoCo team</label><div class="inputWrapper"><input type="text" id="tfa_Pleasestatewhich" name="tfa_Pleasestatewhich" value="" aria-required="true" data-condition="`#tfa_Yes1`" title="Please state which LoCo team" class="required"></div>
+                    <label id="tfa_Pleasestatewhich-L" class="label preField  is-required" for="tfa_Pleasestatewhich">Please state which LoCo team</label><div class="inputWrapper"><input type="text" id="tfa_Pleasestatewhich" name="tfa_Pleasestatewhich" value="" aria-required="true" data-condition="`#tfa_Yes1`" title="Please state which LoCo team" class="required"></div>
                   </div>
                   <div class="oneField field-container-D  labelsLeftAligned  " id="tfa_Inwhatcapacitydo-D">
-                    <label id="tfa_Inwhatcapacitydo-L" class="label preField reqMark" for="tfa_Inwhatcapacitydo">In what capacity do you propose to use the Ubuntu trademark? (select all that apply)</label><div class="inputWrapper"><select id="tfa_Inwhatcapacitydo" multiple name="tfa_Inwhatcapacitydo[]" title="In what capacity do you propose to use the Ubuntu trademark? (select all that apply)" aria-required="true" class="required"><option value="">Please select...</option>
+                    <label id="tfa_Inwhatcapacitydo-L" class="label preField  is-required" for="tfa_Inwhatcapacitydo">In what capacity do you propose to use the Ubuntu trademark? (select all that apply)</label><div class="inputWrapper"><select id="tfa_Inwhatcapacitydo" multiple name="tfa_Inwhatcapacitydo[]" title="In what capacity do you propose to use the Ubuntu trademark? (select all that apply)" aria-required="true" class="required"><option value="">Please select...</option>
                       <option value="tfa_DistributionofUb" id="tfa_DistributionofUb" class="">Distribution of Ubuntu</option>
                       <option value="tfa_Salesofmerchandi" id="tfa_Salesofmerchandi" class="">Sales of merchandise</option>
                       <option value="tfa_Publishing" id="tfa_Publishing" class="">Publishing</option>
@@ -680,7 +680,7 @@ defer></script>
                       <option value="tfa_Other" id="tfa_Other" class="">Other</option></select></div>
                     </div>
                     <div class="oneField field-container-D  labelsAbove  " id="tfa_Pleaseaddanyothe-D">
-                      <label id="tfa_Pleaseaddanyothe-L" class="label preField reqMark" for="tfa_Pleaseaddanyothe">Please describe your request in more detail</label><br><div class="inputWrapper"><textarea cols="90" rows="6" aria-required="true" id="tfa_Pleaseaddanyothe" name="tfa_Pleaseaddanyothe" title="Please describe your request in more detail" class="required"></textarea></div>
+                      <label id="tfa_Pleaseaddanyothe-L" class="label preField  is-required" for="tfa_Pleaseaddanyothe">Please describe your request in more detail</label><br><div class="inputWrapper"><textarea cols="90" rows="6" aria-required="true" id="tfa_Pleaseaddanyothe" name="tfa_Pleaseaddanyothe" title="Please describe your request in more detail" class="required"></textarea></div>
                     </div>
                     <div class="htmlSection" id="tfa_9631608629066"><div class="htmlContent" id="tfa_9631608629066-HTML"><font color="#a4a4a4">Data collected from this survey will be handled in accordance with the Canonical <a href="/legal">privacy policy</a></font></div></div>
                     <div class="oneField field-container-D    " id="tfa_9631608629067-D">
