@@ -1,11 +1,17 @@
 #!/bin/bash
 
+scss_files=()
+js_files=()
+html_files=()
+
 while read local_ref local_sha remote_ref remote_sha
 do
+  # Ignore deleted files
   if [ "$local_sha" = "0000000000000000000000000000000000000000000" ]; then
     continue
   fi
 
+  # Find appropriate commit range
   if [ "$remote_sha" = "0000000000000000000000000000000000000000000" ]; then
     range="${local_sha}"
   else
@@ -14,41 +20,39 @@ do
 
   changed_files=$(git diff --name-only "$range")
 
-  error_flag=0
-
-  if echo "$changed_files" | grep -qE '\.scss$'; then
-    echo "Running lint-scss..."
-    if ! yarn lint-scss; then
-      echo "lint-scss failed."
-      error_flag=1
-    fi
-  fi
-
-  if echo "$changed_files" | grep -qE '\.js$'; then
-    echo "Running lint-js..."
-    if ! yarn lint-js; then
-      echo "lint-js failed."
-      error_flag=1
-    fi
-  fi
-
-  if echo "$changed_files" | grep -qE '\.py$'; then
-    echo "Running lint-python..."
-    if ! yarn lint-python; then
-      echo "lint-python failed."
-      error_flag=1
-    fi
-  fi
-
-  if echo "$changed_files" | grep -qE '\.html$'; then
-    echo "Running lint-html..."
-    if ! ./scripts/djlint lint --committed; then
-      echo "lint-html failed."
-      error_flag=1
-    fi
-  fi
-
+  # Group file types
+  for file in $changed_files; do
+    case "$file" in
+      *.scss) scss_files+=("$file") ;;
+      *.js) js_files+=("$file") ;;
+      *.html) html_files+=("$file") ;;
+    esac
+  done
 done
+
+error_flag=0
+
+if [ ${#scss_files[@]} -gt 0 ]; then
+  if ! npx stylelint "${scss_files[@]}"; then
+    error_flag=1
+  fi
+
+  if ! npx flake8 "${scss_files[@]}" && black --check --line-length 79 "${scss_files[@]}"; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#js_files[@]} -gt 0 ]; then
+  if ! npx eslint "${js_files[@]}"; then
+    error_flag=1
+  fi
+fi
+
+if [ ${#html_files[@]} -gt 0 ]; then
+  if ! ./scripts/djlint lint --committed; then
+    error_flag=1
+  fi
+fi
 
 if [ "$error_flag" -eq 1 ]; then
   echo "❌ One or more linters failed. Push denied."
