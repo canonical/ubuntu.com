@@ -129,6 +129,19 @@ When making changes to the codebase please make sure it's properly formatted and
 
 These tools should take their configuration from files stored in our codebases, e.g. `.eslintrc.js`. Additionally, editor settings (indentation etc.) for particular types of files should be picked up from `.editorconfig` files if they exist in the codebase.
 
+## Pre-push hook
+
+We has a pre-push hook that will run anytime you try to push changes. To get it to work you need to copy over the pre-push script to `.git/hooks`. This can be done with the following command:
+
+`cp .github/hooks/pre-push .git/hooks`
+
+Once initialized, it will require the following lint check to pass before it allows you to push:
+
+- lint-js
+- lint-html
+- lint-python
+- lint-scss
+
 ### Installing tools
 
 First install the necessary tools globally:
