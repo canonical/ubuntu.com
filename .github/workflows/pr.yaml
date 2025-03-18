@@ -91,6 +91,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -99,21 +101,19 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           sudo pip3 install djlint
-      
-      - name: Test GH events
-        id: test-gh-events
-        run: more $GITHUB_EVENT_PATH
 
       - name: Get changed HTML files in the templates folder
         id: changed-files
         run: |
-          CHANGED_FILES=$(git diff --name-only ${{ github.base.sha }} ${{ github.after }})
+          TARGET_SHA=$(git rev-parse origin/$GITHUB_BASE_REF)
+          CHANGED_FILES=$(git diff --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**.html' | tr '\n' ' ')
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
       - name: Lint jinja
-        if: env.CHANGED_FILE != ''
+        if: env.CHANGED_FILES != ''
         run: |
           echo "The following files have changed: $CHANGED_FILES"
-          djlint $CHANGED_FILES --lint --profile="jinja"            
+          djlint $CHANGED_FILES --lint --profile="jinja"
 
   validate-deploy:
     runs-on: ubuntu-latest
