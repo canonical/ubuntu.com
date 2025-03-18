@@ -1,11 +1,11 @@
 # Standard library
-import datetime
 import html
 import json
 import math
 import os
 import re
 from urllib.parse import quote, unquote, urlparse
+from datetime import datetime
 
 # Packages
 import dateutil
@@ -708,7 +708,7 @@ class BlogRedirects(BlogView):
             context["article"]["date_gmt"]
         ), dateutil.parser.parse(context["article"]["modified_gmt"])
 
-        date_now = datetime.datetime.now()
+        date_now = datetime.now()
 
         created_at_difference = dateutil.relativedelta.relativedelta(
             date_now, created_at
@@ -1150,3 +1150,130 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
 
 def navigation_nojs():
     return flask.render_template("templates/meganav/navigation-nojs.html")
+
+
+def process_active_vulnerabilities(security_vulnerabilities):
+    """
+    Takes a list of security vulnerabilities and filters out the ones where
+    the 'Display until' date is in the past.
+    """
+
+    def security_index():
+        try:
+            vulnerabilities_metadata = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+            vulnerability_topics = (
+                security_vulnerabilities.get_topics_in_category()
+            )
+            current_date = datetime.now()
+
+            # Filter out vulnerabilities that should not be displayed
+            filtered_vulnerabilities = [
+                {
+                    **vulnerability,
+                    "slug": vulnerability_topics.get(vulnerability["id"]),
+                }
+                for vulnerability in vulnerabilities_metadata
+                if vulnerability.get("display-until")
+                and datetime.strptime(
+                    vulnerability["display-until"], "%d/%m/%Y"
+                )
+                > current_date
+            ]
+
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=filtered_vulnerabilities,
+            )
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error processing vulnerabilities: {e}"
+            )
+            return flask.render_template(
+                "security/index.html",
+                active_vulnerabilities=[],
+            )
+
+    return security_index
+
+
+def build_vulnerabilities_list(security_vulnerabilities, path=None):
+    def vulnerabilities_list():
+        try:
+            template_path = "security/vulnerabilities/view-all.html"
+            topics = security_vulnerabilities.get_topics_in_category()
+            vulnerabilities = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+
+            for vuln in vulnerabilities:
+                # Add slug
+                vuln_id = vuln["id"]
+                if vuln_id in topics:
+                    vuln["slug"] = topics[vuln_id]
+                # Add year
+                dt = datetime.strptime(vuln["published"], "%d/%m/%Y")
+                vuln["year"] = dt.year
+
+            # Make sure they are in order of published date
+            vulnerabilities.sort(
+                key=lambda item: datetime.strptime(
+                    item["published"], "%d/%m/%Y"
+                ),
+                reverse=True,
+            )
+
+            # If not /view-all we only need the most recent 3 years
+            if path != "/view-all":
+                template_path = "security/vulnerabilities/index.html"
+                unique_years = {v["year"] for v in vulnerabilities}
+                sorted_years = sorted(unique_years, reverse=True)
+                top_years = sorted_years[:3]
+                vulnerabilities = [
+                    v for v in vulnerabilities if v["year"] in top_years
+                ]
+
+            return flask.render_template(
+                template_path,
+                topics=topics,
+                vulnerabilities=vulnerabilities,
+            )
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+
+    return vulnerabilities_list
+
+
+def build_vulnerabilities(security_vulnerabilities):
+    def vulnerability(path):
+        try:
+            document = security_vulnerabilities.get_topic(path)
+            metadata_table = (
+                security_vulnerabilities.get_category_index_metadata(
+                    "vulnerabilities"
+                )
+            )
+
+            for item in metadata_table:
+                if str(item["id"]) == str(document["topic_id"]):
+                    document_metadata = item
+                    break
+
+            return flask.render_template(
+                "security/vulnerabilities/vulnerability-detailed.html",
+                metadata=document_metadata,
+                document=document,
+            )
+        except HTTPError as e:
+            flask.current_app.extensions["sentry"].captureException(
+                f"Error fetching vulnerabilities: {e}"
+            )
+
+    return vulnerability
