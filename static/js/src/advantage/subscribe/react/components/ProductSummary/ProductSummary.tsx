@@ -138,7 +138,9 @@ const ProductSummary = () => {
           <Col size={12}>
             <p>
               {productUser == ProductUsers.myself ? 5 : quantity} subscription
-              {+quantity > 1 || productUser == ProductUsers.myself ? "s" : ""}{" "}
+              {+quantity > 1 || productUser == ProductUsers.myself
+                ? "s"
+                : ""}{" "}
               for
             </p>
           </Col>
