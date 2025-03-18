@@ -1395,3 +1395,12 @@ def set_form_rules():
 
 
 set_form_rules()
+
+
+def test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 0
+    return
