@@ -99,20 +99,21 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           sudo pip3 install djlint
+      
+      - name: Test GH events
+        id: test-gh-events
+        run: more $GITHUB_EVENT_PATH
 
       - name: Get changed HTML files in the templates folder
         id: changed-files
-        uses: tj-actions/changed-files@v43
-        with:
-          files: templates/**/*.html
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.base.sha }} ${{ github.after }})
 
       - name: Lint jinja
-        if: steps.changed-files.outputs.any_changed == 'true'
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        if: env.CHANGED_FILE != ''
         run: |
           echo "The following files have changed: $CHANGED_FILES"
-          djlint $CHANGED_FILES --lint --profile="jinja"
+          djlint $CHANGED_FILES --lint --profile="jinja"            
 
   validate-deploy:
     runs-on: ubuntu-latest
