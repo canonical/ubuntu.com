@@ -103,9 +103,7 @@
             {% endif %}
 
             {% for note in release.notes %}
-              <p>
-                {{ note.comment | replace('\n', '<br />') | safe }}
-              </p>
+              {{ note.comment | convert_markdown_to_html | safe }}
             {% endfor %}
 
             <div class="p-section--shallow">

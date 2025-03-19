@@ -31,6 +31,7 @@ from webapp.shop.api.ua_contracts.api import (
     UnauthorizedErrorView,
 )
 from webapp.shop.flaskparser import UAContractsValidationError
+from webapp.certified.helpers import convert_markdown_to_html
 
 CSP = {
     "default-src": ["'self'"],
@@ -377,6 +378,8 @@ def init_handlers(app, sentry):
     app.add_template_filter(date_has_passed)
 
     app.add_template_filter(sort_by_key_and_ordered_list)
+
+    app.add_template_filter(convert_markdown_to_html)
 
     @app.template_filter()
     def slug(text):
