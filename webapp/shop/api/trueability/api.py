@@ -27,17 +27,6 @@ class TrueAbilityAPI:
     ):
         uri = f"{self.base_url}{path}"
         headers["X-API-KEY"] = f"{self.api_key}"
-        headers["Cache-Control"]= "no-cache, no-store, must-revalidate"
-        headers["Pragma"]= "no-cache"
-        headers["Expires"]= "0"
-
-        if os.getenv("DEVEL", "true")=="true":
-            proxies = None
-        else:
-            proxies = {
-                'http': 'http://squid.ps6.internal:3128/',
-                'https': 'http://squid.ps6.internal:3128/',
-            }
 
         response = self.session.request(
             method,
@@ -46,8 +35,6 @@ class TrueAbilityAPI:
             data=data,
             json=json,
             allow_redirects=allow_redirects,
-            proxies=proxies,
-            # verify=False,
         )
         if retry and response.status_code == 401:
             response = self.make_request(
@@ -57,8 +44,6 @@ class TrueAbilityAPI:
                 data=data,
                 json=json,
                 retry=False,
-                proxies=proxies,
-                # verify=False,
             )
 
         return response
