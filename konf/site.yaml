@@ -1031,9 +1031,9 @@ staging:
 
 demo:
   env:
-    - name: HTTP_PROXY:
+    - name: HTTP_PROXY
       value: http://squid.ps6.internal:3128
-    - name: HTTPS_PROXY:
+    - name: HTTPS_PROXY
       value: http://squid.ps6.internal:3128
     - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
       value: false
