@@ -1789,10 +1789,37 @@ ol.p-stepped-list.no-full-stop
   text-align: left;
 }
 
+// Zoom effect for images on hover, used on /summit page
 .image-hover__zoom {
   transition: transform 1s;
 }
 
 .image-hover__zoom:hover {
   transform: scale(1.25); 
+}
+
+// Custom styling for side navigation used as a TOC
+.p-side-navigation--raw-html.is-single-page {
+  position: sticky;
+  top: 4rem;
+
+  @media (max-width: $breakpoint-large) {
+    position: unset;
+    top: 0;
+  }
+}
+
+.p-toggle--sticky {
+  @extend .p-side-navigation__toggle;
+  position: sticky;
+  top: 4rem;
+  width: fit-content;
+  z-index: 102;
+}
+
+.vulnerabilities-content .section-heading {
+  scroll-margin-top: 80px;
+  @media (max-width: $breakpoint-large) {
+    scroll-margin-top: 100px;
+  }
 }

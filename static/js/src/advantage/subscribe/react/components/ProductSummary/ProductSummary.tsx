@@ -137,7 +137,11 @@ const ProductSummary = () => {
         <Row className="u-sv3">
           <Col size={12}>
             <p>
-              {quantity} subscription{+quantity > 1 ? "s" : ""} for
+              {productUser == ProductUsers.myself ? 5 : quantity} subscription
+              {+quantity > 1 || productUser == ProductUsers.myself
+                ? "s"
+                : ""}{" "}
+              for
             </p>
           </Col>
           <Col size={12}>
@@ -175,9 +179,12 @@ const ProductSummary = () => {
           </Col>
           <Col size={1} small={2}>
             <p className="p-heading--2">
-              {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0),
-              )}
+              {productUser == ProductUsers.myself
+                ? "Free"
+                : currencyFormatter.format(
+                    ((product?.price.value ?? 0) / 100) *
+                      (Number(quantity) ?? 0),
+                  )}
             </p>
             {productUser === ProductUsers.myself ? (
               <a
