@@ -722,6 +722,10 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
+        - name: HTTPS_PROXY
+          value: http://squid.ps6.internal:3128
+        - name: HTTP_PROXY
+          value: http://squid.ps6.internal:3128
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -1027,6 +1031,10 @@ staging:
 
 demo:
   env:
+    - name: HTTP_PROXY:
+      value: http://squid.ps6.internal:3128
+    - name: HTTPS_PROXY:
+      value: http://squid.ps6.internal:3128
     - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
       value: false
 
