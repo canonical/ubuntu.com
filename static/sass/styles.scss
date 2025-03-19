@@ -1788,3 +1788,11 @@ ol.p-stepped-list.no-full-stop
   content: counter(p-stepped-list-counter);
   text-align: left;
 }
+
+.image-hover__zoom {
+  transition: transform 1s;
+}
+
+.image-hover__zoom:hover {
+  transform: scale(1.25); 
+}
