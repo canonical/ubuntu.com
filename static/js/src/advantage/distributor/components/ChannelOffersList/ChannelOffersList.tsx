@@ -98,10 +98,13 @@ const ChannelOffersList = () => {
       </Row>
       <MainTable
         data-testid="channel-offer-table"
-        className="u-no-margin--bottom"
+        className="u-no-margin--bottom channel-offer-table"
         headers={[
           {
-            content: "Deal registration id",
+            content: "Opp ID",
+          },
+          {
+            content: "Opp number",
           },
           {
             content: "Creator",
@@ -125,8 +128,13 @@ const ChannelOffersList = () => {
         ]}
         rows={sortedOffersList?.map((offer: OfferType) => {
           const status = offer?.actionable ? "Valid" : "Invalid";
+          const opId = offer?.external_ids?.[0]?.ids?.[0];
+
           return {
             columns: [
+              {
+                content: opId ?? "-",
+              },
               {
                 content: offer?.opportunity_number ?? "-",
               },

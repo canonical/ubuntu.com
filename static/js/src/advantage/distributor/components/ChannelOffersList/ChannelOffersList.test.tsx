@@ -32,6 +32,43 @@ describe("Test ChannelOffersList", () => {
         <ChannelOffersList />
       </QueryClientProvider>,
     );
+
+    expect(
+      screen.getByRole("columnheader", { name: /Opp ID/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Opp number/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Creator/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Technical user/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Customer/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Created/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Status/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: /Actions/i }),
+    ).toBeInTheDocument();
+  });
+
+  it("Should display table headers", () => {
+    queryClient.setQueryData(
+      ["channelOffers"],
+      [ChannelOfferFactory.build({ id: "1" })],
+    );
+    render(
+      <QueryClientProvider client={queryClient}>
+        <ChannelOffersList />
+      </QueryClientProvider>,
+    );
     expect(screen.getByTestId("channel-offer-table")).toBeInTheDocument();
   });
 
@@ -76,6 +113,12 @@ describe("Test ChannelOffersList", () => {
           reseller_account_name: "Test reseller account 1",
           created_at: "14 Aug 2024 00:00:00 UTC",
           actionable: true,
+          external_ids: [
+            {
+              ids: ["zift-id-test-1"],
+              origin: "Zift",
+            },
+          ],
         }),
       ],
     );
@@ -89,6 +132,7 @@ describe("Test ChannelOffersList", () => {
     expect(screen.getByText("Test reseller account 1")).toBeInTheDocument();
     expect(screen.getByText("14 Aug 2024")).toBeInTheDocument();
     expect(screen.getByText("Valid")).toBeInTheDocument();
+    expect(screen.getByText("zift-id-test-1")).toBeInTheDocument();
   });
 
   it("If data is missing, show '-'", () => {
