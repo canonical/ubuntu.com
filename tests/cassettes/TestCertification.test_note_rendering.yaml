@@ -1,0 +1,116 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://certification.canonical.com/api/v2/certified-configuration-details/?format=json&canonical_id=202301-31183&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":3,"next":null,"previous":null,"results":[{"id":15981,"canonical_id":"202301-31183","architecture":"amd64","bios":"Lenovo:
+        ESE124F-3.13 (UEFI)","hardware_website":"https://lenovopress.lenovo.com/lp1601-thinksystem-sr650-v3-server","category":"Server","kernel_version":"5.15.0-117-generic","notes":[{"title":"test
+        note","comment":"# Heading 1\r\n## Heading 2\r\n**Bold text**\r\n*Italic text*\r\n[Link
+        text](https://example.com)\r\n\r\n* List item 1\r\n* List item 2\r\n\r\n<script>alert(''XSS
+        attack'');</script>\r\n<div class=\"dangerous\">\r\n<h1>Custom HTML</h1>\r\n</div>\r\n<img
+        src=\"javascript:alert(''XSS'')\" />"}],"make":"Lenovo","model":"ThinkSystem
+        SR650 V3 (SPR)","platform_name":"ThinkSystem SR650 V3","platform_id":"13487","processor":[{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"},{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"}],"video":[{"name":"ASPEED
+        Graphics Family","make":"ASPEED Technology, Inc.","bus":"pci","identifier":"1a03:2000","subsystem":"1a03:2000","subproduct_name":"","vendor_id":1736,"subvendor_id":1736,"category":"VIDEO"}],"wireless":[],"certified_release":"24.04
+        LTS","level":"Certified","name":"2408-15981","form_factor":"Server","platform_certified_configuration_count":2},{"id":15552,"canonical_id":"202301-31183","architecture":"amd64","bios":"Lenovo:
+        ESE124B-3.11 (UEFI)","hardware_website":"https://lenovopress.lenovo.com/lp1601-thinksystem-sr650-v3-server","category":"Server","kernel_version":"6.8.0-11-generic","notes":[],"make":"Lenovo","model":"ThinkSystem
+        SR650 V3 (SPR)","platform_name":"ThinkSystem SR650 V3","platform_id":"13487","processor":[{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"},{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"}],"video":[{"name":"ASPEED
+        Graphics Family","make":"ASPEED Technology, Inc.","bus":"pci","identifier":"1a03:2000","subsystem":"1a03:2000","subproduct_name":"","vendor_id":1736,"subvendor_id":1736,"category":"VIDEO"}],"wireless":[],"certified_release":"20.04
+        LTS","level":"Certified","name":"2404-15552","form_factor":"Server","platform_certified_configuration_count":2},{"id":14130,"canonical_id":"202301-31183","architecture":"amd64","bios":"Lenovo:
+        ESE109N-1.10 (UEFI)","hardware_website":"https://lenovopress.lenovo.com/lp1601-thinksystem-sr650-v3-server","category":"Server","kernel_version":"5.15.0-58-generic","notes":[],"make":"Lenovo","model":"ThinkSystem
+        SR650 V3 (SPR)","platform_name":"ThinkSystem SR650 V3","platform_id":"13487","processor":[{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"},{"name":"Intel(R)
+        Xeon(R) Platinum 8490H","make":"Intel Corp.","bus":"dmi","identifier":"dmi:Intel(R)Xeon(R)Platinum8490H","subsystem":"","subproduct_name":"","vendor_id":4103,"subvendor_id":"","category":"PROCESSOR"}],"network":[{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"},{"name":"NetXtreme
+        BCM5719 Gigabit Ethernet PCIe","make":"Broadcom Corp.","bus":"pci","identifier":"14e4:1657","subsystem":"17aa:4104","subproduct_name":"","vendor_id":5843,"subvendor_id":3654,"category":"NETWORK"}],"video":[{"name":"ASPEED
+        Graphics Family","make":"ASPEED Technology, Inc.","bus":"pci","identifier":"1a03:2000","subsystem":"1a03:2000","subproduct_name":"","vendor_id":1736,"subvendor_id":1736,"category":"VIDEO"}],"wireless":[],"certified_release":"22.04
+        LTS","level":"Certified","name":"2302-14130","form_factor":"Server","platform_certified_configuration_count":2}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Content-Length:
+      - '6554'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Mar 2025 13:22:58 GMT
+      Server:
+      - WSGIServer/0.2 CPython/3.9.5
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '13'
+      X-QueryInspect-Total-Request-Time:
+      - 57 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 19 ms
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://certification.canonical.com/api/v2/component-summaries/?format=json&canonical_id=202301-31183&pagination=limitoffset
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Mar 2025 13:22:58 GMT
+      Server:
+      - WSGIServer/0.2 CPython/3.9.5
+      Vary:
+      - Accept, Cookie
+      X-QueryInspect-Duplicate-SQL-Queries:
+      - '0'
+      X-QueryInspect-Num-SQL-Queries:
+      - '1'
+      X-QueryInspect-Total-Request-Time:
+      - 4 ms
+      X-QueryInspect-Total-SQL-Time:
+      - 2 ms
+    status:
+      code: 200
+      message: OK
+version: 1
