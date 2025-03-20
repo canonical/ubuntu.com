@@ -8,6 +8,7 @@ def get_download_url(model_details):
     platform_category = model_details.get("category", "").lower()
     architecture = model_details.get("architecture", "").lower()
     make = model_details.get("make", "").lower()
+    configuration_name = model_details.get("model", "").lower()
 
     if model_details.get("level") == "Enabled":
         # Enabled systems use oem images without download links.
@@ -15,6 +16,9 @@ def get_download_url(model_details):
 
     if platform_category in ["desktop", "laptop"]:
         return "https://ubuntu.com/download/desktop"
+
+    if make == "nvidia" and "jetson" in configuration_name:
+        return "https://ubuntu.com/download/nvidia-jetson"
 
     if "core" in platform_category:
         if make == "xilinx":
