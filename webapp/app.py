@@ -2,17 +2,16 @@
 A Flask application for ubuntu.com
 """
 
-import os
 import json
-from functools import wraps
 import math
+import os
+from functools import wraps
+from pathlib import Path
+
 import flask
 import jinja2
 import requests
 import talisker.requests
-from jinja2 import ChoiceLoader, FileSystemLoader
-from pathlib import Path
-
 from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
 from canonicalwebteam.discourse import (
     DiscourseAPI,
@@ -25,6 +24,7 @@ from canonicalwebteam.discourse import (
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
+from jinja2 import ChoiceLoader, FileSystemLoader
 
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
@@ -55,7 +55,10 @@ from webapp.shop.advantage.views import (
     get_activate_view,
     get_advantage_offers,
     get_annotated_subscriptions,
+    get_channel_offers,
     get_contract_token,
+    get_distributor_thank_you_view,
+    get_distributor_view,
     get_renewal,
     get_user_subscriptions,
     magic_attach_view,
@@ -67,48 +70,45 @@ from webapp.shop.advantage.views import (
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
-    get_channel_offers,
-    get_distributor_view,
-    get_distributor_thank_you_view,
 )
 from webapp.shop.cred.views import (
     activate_activation_key,
+    cancel_scheduled_exam,
     confidentiality_agreement_webhook,
     cred_assessments,
     cred_beta_activation,
     cred_cancel_exam,
     cred_dashboard,
-    cred_dashboard_upcoming_exams,
     cred_dashboard_exam_results,
     cred_dashboard_system_statuses,
+    cred_dashboard_upcoming_exams,
     cred_exam,
     cred_home,
+    cred_manage_shop,
     cred_redeem_code,
     cred_schedule,
     cred_self_study,
     cred_shop,
-    cred_manage_shop,
+    cred_shop_keys,
     cred_shop_thank_you,
     cred_shop_webhook_responses,
-    cred_shop_keys,
     cred_sign_up,
-    cred_thank_you,
     cred_submit_form,
     cred_syllabus_data,
+    cred_thank_you,
     cred_your_exams,
     get_activation_key_info,
     get_activation_keys,
+    get_cred_user_permissions,
     get_cue_products,
     get_issued_badges,
     get_issued_badges_bulk,
-    get_test_taker_stats,
-    issue_credly_badge,
-    get_cred_user_permissions,
     get_my_issued_badges,
+    get_test_taker_stats,
     get_webhook_response,
     issue_badges,
+    issue_credly_badge,
     rotate_activation_key,
-    cancel_scheduled_exam,
 )
 from webapp.shop.views import (
     account_view,
@@ -153,6 +153,7 @@ from webapp.views import (
     json_asset_query,
     marketo_submit,
     mirrors_query,
+    navigation_nojs,
     openstack_engage,
     openstack_install,
     releasenotes_redirect,
@@ -162,7 +163,6 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
-    navigation_nojs,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -610,6 +610,11 @@ app.add_url_rule(
 
 
 def takeovers_json():
+    """Get active takeovers as JSON with caching.
+    
+    Returns:
+        JSON response with active takeovers
+    """
     active_takeovers = discourse_takeovers.parse_active_takeovers()
     response = flask.jsonify(active_takeovers)
     response.cache_control.max_age = "300"
@@ -1215,16 +1220,12 @@ def render_blogs():
     return flask.render_template(
         "/hpe/index.html", blogs=hpe_articles["articles"]
     )
-
-
-app.add_url_rule("/hpe", view_func=render_blogs)
-
-
 # Public-cloud blog section
 # tag_ids:
 # public-cloud - 1350, aws - 1205, azure - 1748, google-cloud - 4191,
 # ubuntu-on-aws - 4478, ubuntu-on-gcp - 4387, ubuntu-on-azure - 4540
 def render_public_cloud_blogs():
+    """Render the public cloud blogs page with sorted articles."""
     blogs = BlogViews(
         api=BlogAPI(
             session=session, thumbnail_width=1000, thumbnail_height=700
@@ -1232,6 +1233,11 @@ def render_public_cloud_blogs():
         tag_ids=[1205, 1350, 1748, 4191, 4478, 4540, 4387],
         per_page=3,
         blog_title="Public-cloud blogs",
+    )
+    public_cloud_articles = blogs.get_index()["articles"]
+    sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"], reverse=True)
+    return flask.render_template(
+        "/cloud/public-cloud.html", blogs=sorted_articles
     )
     public_cloud_articles = blogs.get_index()["articles"]
     sorted_articles = sorted(public_cloud_articles, key=lambda x: x["date"])
@@ -1256,53 +1262,59 @@ def render_supermicro_blogs():
     supermicro_articles = blogs.get_tag("supermicro")
     return flask.render_template(
         "/supermicro/index.html", blogs=supermicro_articles["articles"]
-    )
-
-
-app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
-
-
 def render_form(form, template_path, child=False):
+    """Render a form template with the provided form data.
+    
+    Args:
+        form: Dictionary containing form configuration
+        template_path: Path to the template
+        child: Boolean indicating if this is a child form
+        
+    Returns:
+        A function that renders the template with form data
+    """
     @wraps(render_form)
     def wrapper_func():
+        template_filename = template_path + ".html"
+        common_args = {
+            "fieldsets": form["fieldsets"],
+            "formData": form["formData"],
+            "isModal": form.get("isModal"),
+            "modalId": form.get("modalId"),
+        }
+        
         try:
             if child:
-                return flask.render_template(
-                    template_path + ".html",
-                    fieldsets=form["fieldsets"],
-                    formData=form["formData"],
-                    isModal=form.get("isModal"),
-                    modalId=form.get("modalId"),
-                    path=template_path,
-                )
-            else:
-                return flask.render_template(
-                    template_path + ".html",
-                    fieldsets=form["fieldsets"],
-                    formData=form["formData"],
-                    isModal=form.get("isModal"),
-                    modalId=form.get("modalId"),
-                )
+                common_args["path"] = template_path
+            return flask.render_template(template_filename, **common_args)
         except jinja2.exceptions.TemplateNotFound:
             flask.abort(
                 404, description=f"Template {form['templatePath']} not found."
             )
-
-    return wrapper_func
-
-
 def set_form_rules():
+    """Configure URL rules for forms based on form-data.json files."""
     templates_folder = Path(app.root_path).parent / "templates"
     for file_path in templates_folder.rglob("form-data.json"):
-        with open(file_path) as forms_json:
+        with open(file_path, encoding="utf-8") as forms_json:
             data = json.load(forms_json)
             for path, form in data["form"].items():
+                # Register child paths if any
                 if "childrenPaths" in form:
                     for child_path in form["childrenPaths"]:
                         app.add_url_rule(
                             child_path,
                             view_func=render_form(
                                 form, child_path, child=True
+                            ),
+                            endpoint=child_path,
+                        )
+                # Register the main form path
+                template_path = form["templatePath"].split(".")[0]
+                app.add_url_rule(
+                    path,
+                    view_func=render_form(form, template_path),
+                    endpoint=path,
+                )
                             ),
                             endpoint=child_path,
                         )
