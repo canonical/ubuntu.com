@@ -86,7 +86,7 @@ The message below is the full MOTD, displayed when you login via the console to 
 ```
 Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-101-generic x86_64)
 
-\* Documentation: https://help.ubuntu.com \* Management: https://landscape.canonical.com \* Support: https://ubuntu.com/pro
+* Documentation: https://help.ubuntu.com * Management: https://landscape.canonical.com * Support: https://ubuntu.com/pro
 
 System information as of Wed Jun 17 11:56:43 MDT 2020
 
@@ -100,7 +100,7 @@ IP address for br0: 10.10.0.13
 
 => / is using 85.0% of 53.79GB
 
-\* MicroK8s gets a native Windows installer and command-line integration.
+* MicroK8s gets a native Windows installer and command-line integration.
 
 https://ubuntu.com/blog/microk8s-installers-windows-and-macos
 
@@ -115,5 +115,5 @@ configuration supported for the full lifetime of the LTS will become
 available on 2020-07-21 and can be installed by running 'update-manager'
 in the Dash.
 
-\*\*\* System restart required \*\*\*
+*** System restart required ***
 ```
