@@ -3,7 +3,7 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Canonical Support Portal - Terms of Service"
   description: "Ubuntu and Canonical Legal - Canonical Support Portal Terms of Service"
-  update_date: "Version - December 2023"
+  update_date: "December 2023"
   copydoc: https://docs.google.com/document/d/1ugZ-7R6qSYSKjofiPicy444c5zXho81J3Z_f-hpCcZc/edit
 ---
 
@@ -101,12 +101,10 @@ Failure by Canonical to enforce any right or provision of these Terms of Service
 
 Any notices should be sent by registered post to:
 
-<div style="margin: 2rem;">
-  <p>
-    Canonical Group Limited,<br />
-    St Dunstans House<br />
-    4th floor, 201 Borough High St<br />
-    London SE1 1JA<br />
-    United Kingdom<br />
-  </p>
-</div>
+```
+Canonical Group Limited,
+St Dunstans House
+4th floor, 201 Borough High St
+London SE1 1JA
+United Kingdom
+```

@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Single Sign On (SSO) and Ubuntu One"
   description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) and/or Ubuntu One account"
+  update_date: "August 2022"
   copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#
 ---
-
-<h4 class="p-muted-heading">Version - August 2022</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Single Sign On (SSO) and Ubuntu One
 

@@ -1,0 +1,117 @@
+---
+wrapper_template: "legal/_base_legal_markdown.html"
+context:
+  title: "Miracle Linux - UA Short Form Services Agreement"
+  copydoc: "https://docs.google.com/document/d/1iEhWDqhUPoDazegSadjgVuyzWquNi3Ee6b8_3nnwbf4/edit"
+---
+
+# Miracle Linux - UA Short Form Services Agreement
+
+This short form services agreement (the "Agreement") takes effect as of the date Customer signs an Order incorporating its terms or otherwise accepts its terms as part of a Registration Process (the "Effective Date") between, Canonical Group Limited, a company registered in England (company number 110334C) whose registered office is at 5 New Street Square, London EC4A 3TW ("Canonical"), and the customer identified in the Order ("Customer").
+
+## 1. Interpretation
+
+When used in this Agreement, the following terms mean:
+
+**Affiliate**: a corporate entity that directly or indirectly controls, is controlled by, or is under common control with a party, where "control" means ownership of more than 50% of the outstanding shares or securities representing the right to vote for the election of directors or other managing authority of such corporate entity.
+
+**Confidential Information**: the terms of this Agreement, and any information identified by the disclosing party as confidential or which the receiving party reasonably ought to know is confidential in light of the nature of the information or the circumstances of its disclosure.
+
+**Fee(s)**: the amounts payable by Customer for the Services, as set out in the Order.
+
+**Intellectual Property Rights**: all vested and future rights of copyright and related rights, design rights, database rights, patents, rights to inventions, trade marks and get-up (and goodwill attaching to those trade marks and that get up), domain names, applications for and the right to apply for any of the above, moral rights, goodwill (and the right to sue for passing off and unfair competition), rights in know-how, rights in confidential information, rights in computer software and semiconductor topographies, and any other intellectual or industrial property rights or equivalent forms of protection, whether or not registered or capable of registration, and all renewals and extensions of such rights, whether now known or in future subsisting in any part of the world.
+
+**Open Source Software**: any software which is distributed under any of the many known variations of licence terms which allow the free distribution and modification of the software's source code or which require all distributors to make such source code freely available upon request, including any contributions or modifications thereto made by such distributor.
+
+**Order**: If Customer is buying Services directly from Canonical: Customer's order for Services which incorporates this Agreement and identifies Customer's name, contact information, Services, Fees, and Services Term. If Customer is buying Services through Canonical's reseller: Customer's agreement to purchase the Services and pay applicable Fees.
+
+**Registration Process**: The process under which a Customer registers with Canonical to receive Services purchased through Canonical's reseller.
+
+**Services**: the services to be performed by Canonical as identified in the Order and described at [www.canonical.com/ua-servicedescription](http://www.canonical.com/ua-servicedescription) as of the Effective Date.
+
+**Services Term**: the period for time beginning when Canonical first makes the Services available to Customer and ending after the period of time specified in the Order.
+
+**Ubuntu**: a version of the operating system known as "Ubuntu", which is supported by Canonical pursuant to Canonical's public announcements and support schedule and is either Canonical's standard version with no modifications or a version modified by Canonical.
+
+## 2. Services
+
+1.  Canonical will make the Services available to Customer within 5 days of any of the following events: (i) Canonical receives a purchase order from Customer for the Fees, (ii) Customer pays the Fees to Canonical, or (iii) Canonical's reseller orders the Services with respect to Customer. Subject to this Agreement, including Customer's payment of the Fees, Canonical will provide the Services during the Services Term using reasonable skill and care and through suitably qualified employees and contractors.
+2.  Canonical is not obligated to perform (i) any service or function except as expressly identified in the Order (ii) any Services to the extent its performance is limited by Customer's failure to meet any reasonable dependency.
+
+## 3. Intellectual Property Rights
+
+1.  Each party will retain ownership of its Intellectual Property Rights and any Intellectual Property Rights it creates or obtains. Nothing Canonical creates or provides under this Agreement will be considered a "work made for hire", and no Intellectual Property Rights will transfer under this Agreement.
+2.  Ubuntu is licensed under applicable Open Source Software licences and not this Agreement. If Canonical creates or provides any software to Customer in the course of providing the Services, Canonical will provide such software under an Open Source Software licence, unless otherwise licensed under this Agreement.
+3.  During and after the term of this Agreement, Customer will comply with Canonical's Intellectual Property Rights policy at [http://www.canonical.com/intellectual-property-policy](http://www.canonical.com/intellectual-property-policy).
+4.  With respect to Services which include Canonical's "Landscape Dedicated Server" product (the "LDS Product"), Canonical hereby grants to Customer, subject to all Open Source Software licences, a world-wide, non-exclusive, non-transferable, revocable (in the event of breach or termination of this Agreement) licence, during the term of this Agreement, to (i) use the LDS Product in accordance with this Agreement and subject to any quantity or usage limitations set forth in the Order and (ii) to make a reasonable number of copies of the LDS Product for backup and installation purposes. Customer may not: use, copy, modify, disassemble, decompile, reverse engineer, or distribute the LDS Product except as expressly permitted in this Agreement; permit access to the LDS Product to any third party other than those acting on Customer's behalf; or move the LDS Product from one machine to another without the prior written consent of Canonical.
+5.  With respect to Services which include Canonical's paravirtualized drivers for Microsoft Windows systems to run as guests on Ubuntu (the "VirtIO Drivers"), Canonical hereby grants to Customer, a world-wide, non-exclusive, non-transferable, revocable (in the event of breach or termination of this Agreement) licence, during the term of the applicable Services, to (i) use the VirtIO Drivers in accordance with this Agreement solely in connection with those computer systems for which Customer has purchased the Services, (ii) to make a reasonable number of copies of the VirtIO Drivers for backup and installation purposes. Customer may not: use, copy, modify, disassemble, decompile, reverse engineer, or distribute the VirtIO Drivers except as expressly permitted in this Agreement or permit access to the VirtIO Drivers to any third party other than those acting on Customer's behalf, and (iii) to distribute the VirtIO Drivers to third party users of Customer's cloud computing services. In connection with the distribution licence granted under (iii) of the preceding sentence, Customer may sublicense the licence granted under (i) and (ii) of the preceding sentence to third party users Customer's cloud computing services. Such sublicence must be on terms that are no less protective of Canonical's rights than those of this Agreement, and must be revoked upon the revocation of the licence under this Clause 3.5.
+
+## 4. Customer responsibilities
+
+1.  Customer will not (i) use the Services other than in connection with the Customer systems for which Customer has purchased the Services or (ii) resell the Services.
+2.  Customer is responsible for the back-up of its data and software. Canonical will not be liable for any loss, corruption, or damage to data or software.
+3.  If Customer engages Canonical to install or use any third party software or materials as part of the Services, Customer will have and maintain sufficient rights or licences to such software to allow Canonical to perform the Services.
+4.  Where Canonical provides access to online resources as part of the Services, Customer (i) will comply with Canonical's reasonable instructions and (ii) will not cause any adverse impact to the Services.
+
+## 5. Confidentiality
+
+1.  During and after the term of this Agreement, each party will and will cause its officers, employees, contractors and agents to keep secret and confidential all Confidential Information of the other and will not copy, use or disclose any such information to any third party, other than as may be necessary to comply with its obligations under this Agreement; provided that a party may disclose the other party's Confidential Information to Affiliates.
+2.  The obligation of confidence will not apply where the Confidential Information: is required to be disclosed by operation of law; was lawfully in the possession of the recipient prior to disclosure by the other party; is subsequently lawfully acquired from a third party or independently developed by the recipient without breach of any known obligation of confidence; is or becomes generally available to the public through no act or default of the recipient; or is disclosed on a confidential basis for the purposes of obtaining professional advice.
+3.  Each party will give the other prompt written notice of any disclosure of the party's Confidential Information as required by operation of law during and after the term of this Agreement.
+4.  Each party agrees that damages would not be an adequate remedy for any failure to comply with the confidentiality obligations in this Agreement and that the other party will be entitled to the remedies of injunction, specific performance and/or other equitable relief for any threatened or actual failure to comply with those obligations.
+
+## 6. Fees and payment
+
+1.  If Customer is purchasing the Services directly from Canonical, Customer will pay the Fees at the time of Customer's Order. If Customer is purchasing the Services through Canonical's reseller, Customer shall pay the Fees in accordance with the reseller's process and the terms of this Clause 6 will not otherwise apply.
+2.  The Fees are exclusive of all applicable taxes, which Customer will pay in addition to the Fees at the rate prevailing on the date of the invoice. Any sums payable by Customer to Canonical will be paid clear of any deductions or withholdings. In the event that Customer is required by applicable law to withhold or deduct any amounts from the Fees, Customer will pay any additional amounts necessary to ensure that Canonical is in the same position as it would have been in had no deductions or withholdings been required.
+3.  During the term of this Agreement, Canonical may request Customer's confirmation of its compliance with this Agreement or, if Canonical reasonably suspects that Customer is not in compliance with this Agreement, audit Customer's use of the Services to confirm compliance. If any audit reveals that Customer was not in compliance with the Agreement, Customer will immediately come into compliance. If Customer's confirmation or an audit reveals that additional Fees are due, Customer will pay such Fees and interest (at the rate applicable to past due amounts), within 30 days of the date of Canonical's invoice. If the additional Fees exceed the Fees originally invoiced for the period covered by the audit by 5%, Customer will reimburse Canonical for the costs of the audit.
+4.  Canonical may charge interest on any past due payment amounts, plus any related collection and legal costs. Such interest will accrue at the annual rate of 2% above the base rate of the Bank of England in force from the due date until the date of payment, or the highest rate allowable by applicable law (if lower). Interest will accrue on a daily basis, whether before or after judgement.
+
+## 7. Warranty disclaimer
+
+1.  Neither party makes any representations or warranties of any kind, whether oral or written, whether express, implied, or arising by statute, custom, course of dealing or trade usage, with respect to the subject matter hereof or otherwise in connection with this Agreement. Each party specifically disclaims any and all implied warranties or conditions of title, satisfactory quality, merchantability, satisfactoriness, fitness for a particular purpose and non-infringement.
+
+## 8. Liability limitations
+
+1.  Subject to Clause 8.3, each party's aggregate liability under this Agreement, in any Contract Year, whether based on contract, tort (including negligence) or otherwise, will not exceed the amount of Fees becoming payable in that particular Contract Year. "Contract Year" means any period of 12 months commencing on the Effective Date or any anniversary of the Effective Date.
+2.  Subject to Clause 8.3, neither party will be liable for any indirect, special, incidental, punitive, or consequential loss or damage or for any loss of or damage to data, ex gratia payments, loss of profit, loss of contract or loss of other economic advantage (in each case whether direct or indirect) arising out of or in connection with this Agreement, even if that party has previously been advised of the possibility of the same and whether foreseeable or not. These limitations will apply notwithstanding any failure of essential purpose of any limited remedy.
+3.  Nothing in this Agreement excludes or limits the liability of either party for: (i) death or personal injury; (ii) fraud; (iii) breach of the confidentiality provisions of this Agreement, and (iv) anything else that cannot be excluded of limited by applicable law.
+4.  The limitations of liability set forth in this Clause 8 are a reasonable allocation of risk between the parties, and the parties would not have entered into this Agreement, absent such allocation.
+
+## 9. Term and termination
+
+1.  This Agreement will come into force on the Effective Date and will continue until the end of the Services Term unless terminated earlier under this Clause 9.
+2.  Unless Customer is purchasing the Services from Canonical's reseller, if Canonical has not received a purchase order for the Fees or payment of the Fees within 30 days of the Effective Date, this Agreement will automatically terminate.
+3.  Either party may terminate this Agreement immediately by written notice if the other party:
+4.  commits a material breach of this Agreement and, if such breach is capable of remedy, fails to remedy the breach within 14 days of receiving notice of the breach;
+5.  enters into liquidation whether compulsorily or voluntarily (otherwise than for the purposes of a solvent amalgamation or reconstruction); becomes insolvent; ceases or threatens to cease to carry on business; or any similar event.
+6.  Canonical may terminate this Agreement for convenience upon giving 90 days prior notice to Customer.
+7.  On expiration or termination this Agreement for any reason, Canonical's obligation to provide the Services will immediately terminate and any licences granted under this Agreement will terminate, unless otherwise agreed. On termination other than by Canonical for convenience in accordance with Clause 9.4, Customer will immediately pay all outstanding Fees applicable to this Agreement including Fees that would otherwise have been payable with respect to the full Agreement term. On termination of this Agreement by Canonical for convenience in accordance with Clause 9.4, Canonical will provide Customer with a pro rata refund of any prepaid Fees for the remaining unexpired portion of the Services term.
+
+## 10. Escalation
+
+1.  If there is a disagreement in relation to this Agreement, the parties will use their reasonable endeavours to negotiate and settle the disagreement. If it is not possible to settle the disagreement within 14 days, representatives of both parties will meet to try to resolve the disagreement. If the disagreement is not resolved within a further 14 days, the disagreement may be referred by either party to a meeting between the senior managers of the parties. Subject to Clause 10.2, neither party will refer any dispute to the courts unless and until the dispute resolution procedures of this Clause 10 have been followed.
+2.  Nothing in this Clause 10 will prevent either party applying to the courts of any country for injunctive or other interim relief.
+
+## 11. General
+
+1.  Neither party will be liable for any breach of this Agreement directly or indirectly caused by circumstances beyond the reasonable control of that party, provided that a lack of funds will not be regarded as a circumstance beyond that party's reasonable control.
+2.  Neither party may assign, transfer, charge, create a trust over or otherwise deal in its rights and/or obligations under this Agreement (or purport to do so) without the other party's prior written consent except to an Affiliate pursuant to a bona fide re-structure, merger, consolidation, sale of all or substantially all of its assets, or a sale of the business to which the Services relate.
+3.  There are no intended third party beneficiaries to this Agreement. The parties do not intend that any provision of this Agreement will be enforceable by any person who is not a party to this Agreement.
+4.  No amendment or modification of this Agreement will be binding upon the parties unless made in writing and signed by the authorized representatives of both parties.
+5.  A failure or delay by a party to exercise any right or remedy under this Agreement will not be construed or operate as a waiver of that right or remedy. Nor single or partial exercise of any right or remedy will preclude the further exercise of that right or remedy by that party.
+6.  During the term of this Agreement and for 6 months thereafter, Customer will not solicit to be hired or hire, as an employee or independent contractor, any individual (i) who is then the personnel of Canonical or any of its Affiliates or was the personnel of Canonical or any of its Affiliates during the previous 6 months (unless Canonical terminated that individual's employment or contract) and (ii) who during any part of the term of this Agreement was assigned by Canonical to provide services to Canonical's customers.
+7.  This Agreement represents the entire terms agreed between the parties in relation to its subject matter and supersedes all previous contracts or arrangements (including any usage or custom and any terms arising through any course of dealing) of any kind between the parties relating to its subject matter. No terms or conditions included in or delivered with any Customer acceptance of Services, proposal, purchase order or similar document will form part of this Agreement.
+8.  Each of the provisions of this Agreement will be construed as independent of every other such provision, so that if any provision of this Agreement will be determined by any court of competent authority to be illegal, invalid and/or unenforceable this will not affect any other provision of this Agreement, which will remain in full force and effect.
+9.  Nothing in this Agreement and no action taken by the parties pursuant to this Agreement will be construed as creating a partnership or joint venture of any kind between the parties or as constituting either party as the agent of the other party. No party will have the authority to bind the other party or to contract in the name of or create a liability against the other party.
+10. Any notice required to be given or sent under this Agreement will be in writing and delivered to the recipient at the address set out in this Agreement or, if no address is set out, to the recipient's registered office address. A party may update its address by providing notice to the other party. Valid delivery methods are (i) in-person delivery, (ii) first class registered post (or equivalent), or (iii) internationally recognized overnight courier service.
+11. Canonical may provide copies of this Agreement in different languages for information purposes. Only the English language version of this Agreement will be binding. In the event of any dispute, any version in any language other than English will be disregarded.
+12. Customer acknowledges that export laws and regulations of the United States and European territories may apply to materials delivered by Canonical under this Agreement. Customer agrees that such export control laws and regulations govern its use of materials and will comply with all such laws and regulations. Customer will not export, directly or indirectly, such materials in violation of these laws or regulations, or use them for any purpose prohibited by these laws.
+
+## 12. Governing law
+
+1.  This Agreement and any non-contractual obligations arising from this Agreement will be governed by and construed in accordance with the laws of Japan. The parties submit to the exclusive jurisdiction of the Tokyo District Court in Japan, except when a party seeks immediate injunctive relief (for example, in connection with a breach or impending breach of confidentiality obligations) that would not be reasonably effective unless obtained in the jurisdiction of the conduct at issue. The provisions of the United Nations Convention on Contracts for the International Sale of Goods will not apply to this Agreement.
+
+### Japanese translation
+
+- [Miracle Linux - UA 略式サービス契約 ›](ua-miracle-tc-ja)

@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – User Survey"
   description: "This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla."
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1XKWK3VvJe0Z_soJqO3F0BrrXwlP9ZObYYKxA1hym7QU/edit
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy notice – User Survey
 

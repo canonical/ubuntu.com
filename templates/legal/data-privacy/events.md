@@ -3,11 +3,9 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy Notice – Events"
   description: This Privacy Notice tells you about the information collected from you when you participate in the Canonical event.
+  update_date: "July 2023"
   copydoc: https://docs.google.com/document/d/1-2bcVP8SVKnfe-qdCrqWM0rCRk8A0JKo_dcKR8jJ2wY
 ---
-
-<h4 class="p-muted-heading">Version - July 2023</h4>
-<hr style="margin-bottom: 2rem;" />
 
 # Privacy Notice – Events
 
