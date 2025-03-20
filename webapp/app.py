@@ -230,7 +230,8 @@ search_engine_id = "adb2397a224a1fe55"
 init_handlers(app, sentry)
 
 # Prepare forms
-form_loader = FormGenerator(app)
+form_template_path = "shared/forms/form-template.html"
+form_loader = FormGenerator(app, form_template_path)
 form_loader.load_forms()
 
 # Routes
