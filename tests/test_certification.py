@@ -1,11 +1,8 @@
-from textwrap import dedent
-
 # Packages
 from vcr_unittest import VCRTestCase
 
 # Local
 from webapp.app import app
-from webapp.certified.helpers import convert_markdown_to_html
 
 
 class TestCertification(VCRTestCase):
