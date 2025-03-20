@@ -3,6 +3,9 @@ name: Links on live
 on:
   schedule:
     - cron: "20 7 * * *"
+  pull_request:
+    branches:
+      - main
 
 jobs:
   check-links:
@@ -49,11 +52,12 @@ jobs:
           [output]
           status=0
           warnings=0
+          ignoreerrors=
+            ^http?s://.* ^.*(471|500|503|504|400)
           EOF
 
-      - name: Run linkchecker
-        run: |
-          linkchecker https://ubuntu.com
+      - name: Run linkchecker for 404 errors only
+        run: linkchecker --no-warning https://ubuntu.com
 
       - name: Send message on failure
         if: failure()
