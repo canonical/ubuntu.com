@@ -34,13 +34,13 @@ done
 error_flag=0
 
 if [ ${#scss_files[@]} -gt 0 ]; then
-  if ! npx stylelint "${scss_files[@]}"; then
+  if ! npx stylelint --quiet "${scss_files[@]}" ; then
     error_flag=1
   fi
 fi
 
 if [ ${#js_files[@]} -gt 0 ]; then
-  if ! npx eslint "${js_files[@]}"; then
+  if ! npx eslint "${js_files[@]}" ; then
     error_flag=1
   fi
 fi
@@ -55,15 +55,15 @@ if [ ${#py_files[@]} -gt 0 ]; then
 fi
 
 if [ ${#html_files[@]} -gt 0 ]; then
-  if ! ./scripts/djlint lint --committed; then
+  if ! ./scripts/djlint lint --committed ; then
     error_flag=1
   fi
 fi
 
 if [ "$error_flag" -eq 1 ]; then
-  echo "❌ One or more linters failed. Push denied."
+  echo "One or more linters failed. Push denied."
   exit 1
 else
-  echo "✅ All linters passed. Push allowed."
+  echo "All linters passed. Push allowed."
   exit 0
 fi
