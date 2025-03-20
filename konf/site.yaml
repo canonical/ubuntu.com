@@ -720,6 +720,7 @@ staging:
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
+      useProxy: False
       memoryLimit: 512Mi
       env:
         - name: HTTPS_PROXY
