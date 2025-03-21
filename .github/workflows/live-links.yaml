@@ -3,9 +3,6 @@ name: Links on live
 on:
   schedule:
     - cron: "20 7 * * *"
-  pull_request:
-    branches:
-      - main
 
 jobs:
   check-links:
