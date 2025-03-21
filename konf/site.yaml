@@ -720,8 +720,13 @@ staging:
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
+      useProxy: False
       memoryLimit: 512Mi
       env:
+        - name: HTTPS_PROXY
+          value: http://squid.ps6.internal:3128
+        - name: HTTP_PROXY
+          value: http://squid.ps6.internal:3128
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -1026,7 +1031,14 @@ staging:
     }
 
 demo:
+  useProxy: False
   env:
+    - name: HTTP_PROXY
+      value: http://squid.ps6.internal:3128
+
+    - name: HTTPS_PROXY
+      value: http://squid.ps6.internal:3128
+    
     - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
       value: false
 
