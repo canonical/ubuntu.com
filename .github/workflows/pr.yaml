@@ -91,6 +91,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install node dependencies
         run: yarn install --immutable
@@ -102,14 +104,13 @@ jobs:
 
       - name: Get changed HTML files in the templates folder
         id: changed-files
-        uses: tj-actions/changed-files@v43
-        with:
-          files: templates/**/*.html
+        run: |
+          TARGET_SHA=$(git rev-parse origin/$GITHUB_BASE_REF)
+          CHANGED_FILES=$(git diff --name-only $TARGET_SHA $GITHUB_SHA -- 'templates/**.html' | tr '\n' ' ')
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
       - name: Lint jinja
-        if: steps.changed-files.outputs.any_changed == 'true'
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        if: env.CHANGED_FILES != ''
         run: |
           echo "The following files have changed: $CHANGED_FILES"
           djlint $CHANGED_FILES --lint --profile="jinja"
