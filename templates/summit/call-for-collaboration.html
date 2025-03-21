@@ -2,11 +2,13 @@
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
 
-{% block title %}Ubuntu Summit 2024 | Call for collaboration{% endblock %}
+{% block title %}
+  Ubuntu Summit 2024 | Call for collaboration
+{% endblock title %}
 
 {% block meta_description %}
   The Ubuntu Summit is a showcase for the innovative and the ambitious. We invite all experts, builders, engineers, tinkerers, designers and dreamers to join us for an unforgettable three days.
-{% endblock %}
+{% endblock meta_description %}
 
 {% block content %}
   {% call(slot) vf_hero(
@@ -37,7 +39,7 @@
     </div>
     <div class="u-fixed-width">
       <div class="p-image-container">
-        {{ image(url="https://assets.ubuntu.com/v1/6ec0f462-exciting-things.jpg",
+        {{ image(url="https://assets.ubuntu.com/v1/a1ca31a2-updated-exciting-things.png",
                 alt="",
                 width="2464",
                 height="1027",
@@ -83,7 +85,7 @@
           <div class="p-section--shallow">
             <div class="p-image-container">
 
-              {{ image(url="https://assets.ubuntu.com/v1/528832a0-idea-to-share.jpg",
+              {{ image(url="https://assets.ubuntu.com/v1/28d38c09-updated-idea-to-share.png",
                             alt="",
                             width="1832",
                             height="764",
@@ -170,7 +172,7 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/dfc82e53-logo-4.png",
+            {{ image(url="https://assets.ubuntu.com/v1/e9bdc747-logo-4.png",
                         alt="Asahi Linux",
                         width="113",
                         height="208",
@@ -211,12 +213,13 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/2cf03d47-logo-5.png",
-                        alt="",
-                        width="95",
+            {{ image(url="https://assets.ubuntu.com/v1/24259c89-lutris-logo.png",
+                        alt="Lutis",
+                        width="97",
                         height="208",
+                        attrs={"class": "p-logo-section__logo"},
                         hi_def=True,
-                        loading="auto|lazy") | safe
+                        loading="lazy") | safe
             }}
           </div>
           <div class="p-logo-section__item">
@@ -232,7 +235,7 @@
           </div>
           <div class="p-logo-section__item">
             {{ image(url="https://assets.ubuntu.com/v1/f7cc0bc6-logo-6.png",
-                        alt="",
+                        alt="Snapcrafters",
                         width="122",
                         height="208",
                         hi_def=True,
@@ -251,13 +254,13 @@
             }}
           </div>
           <div class="p-logo-section__item">
-
-            {{ image(url="https://assets.ubuntu.com/v1/f41a64fb-fairphone-Logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/bb618783-fairphone-Logo.png",
                         alt="Fairphone",
-                        width="233",
+                        width="237",
                         height="208",
                         hi_def=True,
-                        loading="auto|lazy") | safe
+                        attrs={"class": "p-logo-section__logo"},
+                        loading="lazy") | safe
             }}
           </div>
         </div>
@@ -269,10 +272,12 @@
       <div class="row--50-50">
         <hr class="p-rule" />
         <div class="col">
-          <h2>We’ve got exciting things in the works for 2025.</h2>
+          <h2>Speak at the Summit or host a workshop</h2>
         </div>
         <div class="col">
-          <p>Keep an eye out on this page for future updates. In the meantime,  explore what we were up to in 2024.</p>
+          <p>
+            The Ubuntu Summit 2024 Call for Abstracts is officially open and we are looking for speakers who desire to share their bold vision of the future.
+          </p>
           <div class="p-cta-block">
             <a href="https://events.canonical.com/event/51/page/459-conference-workshop-lightning-talk-expectations-and-guidelines">
             Read our guidelines&nbsp;&rsaquo;</a>
@@ -282,7 +287,7 @@
     </div>
     <div class="u-fixed-width">
       <div class="p-image-container">
-        {{ image(url="https://assets.ubuntu.com/v1/91a7c151-speak-at-summit.jpg",
+        {{ image(url="https://assets.ubuntu.com/v1/1c7f5269-updated-speak-at-summit.jpg",
                 alt="",
                 width="2464",
                 height="1027",
