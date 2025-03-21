@@ -1,5 +1,5 @@
 ---
-wrapper_template: "legal/ubuntu-pro/personal/_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Ubuntu Pro - personal, Terms of Service"
   description: "The terms of Ubuntu Pro - personal subscription which provides users of Ubuntu with Ubuntu Pro with no support on up to five physical Ubuntu systems for the eligible LTS release. And up to 50 machines for official Ubuntu Community members."
@@ -89,3 +89,17 @@ Nothing in these Terms of Service will exclude or limit Canonical's liability fo
 These Terms of Service are governed by the laws of England and any dispute will be heard by the courts in England.
 
 Nothing in these Terms of Service and no action taken by you pursuant to these Terms of Service will be construed as creating a partnership or joint venture of any kind or as constituting either party as the agent of the other party. No party will have the authority to bind the other party or to contract in the name of or create a liability against the other party. Failure by Canonical to enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision. If any part of these Terms of Service is held invalid or unenforceable, that part will be construed to reflect the parties' original intent, and the remaining portions will remain in full force and effect. The terms of these Terms of Service do not affect your statutory rights.
+
+---
+
+### Registered office
+
+```
+5 New Street Square
+London EC4A 3TW
+United Kingdom
+```
+
+### Contact us
+
+Please note Canonical will not provide legal advice. For other queries, please contact us via [legal@canonical.com](mailto:legal@canonical.com)
