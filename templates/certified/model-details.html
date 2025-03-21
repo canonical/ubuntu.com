@@ -102,11 +102,7 @@
               </p>
             {% endif %}
 
-            {% for note in release.notes %}
-              <p>
-                {{ note.comment | replace('\n', '<br />') | safe }}
-              </p>
-            {% endfor %}
+            {% for note in release.notes %}{{ note.comment | convert_markdown_to_html | safe }}{% endfor %}
 
             <div class="p-section--shallow">
               <table aria-label="Software" style="margin-top:1.4rem">

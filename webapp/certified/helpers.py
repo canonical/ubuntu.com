@@ -1,3 +1,9 @@
+import html
+import bleach
+import markdown
+from markupsafe import Markup
+
+
 def get_download_url(model_details):
     """
     Return the appropriate ubuntu models.com/download url for the model
@@ -41,6 +47,57 @@ def get_download_url(model_details):
         return f"https://ubuntu.com/download/server/{arch}"
 
     return "https://ubuntu.com/download"
+
+
+def convert_markdown_to_html(text):
+    """
+    Convert markdown to HTML while ensuring security by sanitizing
+    the output.  Only pure Markdown is allowed, raw HTML is escaped
+    and displayed as code.  Tables and images are not supported.
+    """
+    if not text:
+        return ""
+
+    escaped_text = html.escape(text)
+
+    html_content = markdown.markdown(
+        escaped_text,
+        extensions=[
+            "markdown.extensions.fenced_code",
+            "markdown.extensions.nl2br",
+        ],
+    )
+
+    allowed_tags = [
+        "p",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "hr",
+        "br",
+        "ul",
+        "ol",
+        "li",
+        "blockquote",
+        "pre",
+        "code",
+        "em",
+        "strong",
+        "a",
+    ]
+    allowed_attrs = {
+        "a": ["href", "title"],
+        "code": ["class"],
+        "pre": ["class"],
+    }
+
+    clean_html = bleach.clean(
+        html_content, tags=allowed_tags, attributes=allowed_attrs, strip=True
+    )
+    return Markup(clean_html)
 
 
 def _get_clean_in_filter(filter_in):
