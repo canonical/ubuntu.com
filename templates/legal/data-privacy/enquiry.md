@@ -14,7 +14,7 @@ context:
 Please contact us using the form below for any enquiry about how Canonical collects and processes personal data or for any other questions relating to privacy or data protection. A member of our team will be in touch with you shortly. Alternatively please contact us on <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a>.</p>
 
 <form method="post" action="https://www.tfaforms.com/responses/processor" class="hintsBelow labelsLeftAligned" id="tfa_0" enctype="multipart/form-data">
-  <fieldset>
+  <fieldset class="u-no-margin--bottom">
     <legend class="u-off-screen">Your contact details</legend>
     <h2 id="tfa_16-L" class="p-heading--3">Your contact details</h2>
     <ul class="p-list">
@@ -92,7 +92,7 @@ Please contact us using the form below for any enquiry about how Canonical colle
     </ul>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="u-no-margin--bottom">
     <legend class="u-off-screen">Company information</legend>
     <h2 class="p-heading--3">Company information</h2>
     <ul class="p-list">
@@ -149,7 +149,7 @@ Please contact us using the form below for any enquiry about how Canonical colle
     </ul>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="u-no-margin--bottom">
     <legend class="u-off-screen">Additional information</legend>
     <ul class="p-list">
       <li class="p-list__item">
@@ -188,7 +188,7 @@ Please contact us using the form below for any enquiry about how Canonical colle
     </ul>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="u-no-margin--bottom">
     <legend class="u-off-screen">Privacy policy</legend>
     <p>Data collected from this survey will be handled in accordance with Canonical's <a href="/legal/data-privacy/contact">privacy notice</a> and <a href="/legal/data-privacy">privacy policy</a>.</p>
     <ul class="p-list">

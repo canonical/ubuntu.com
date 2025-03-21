@@ -94,11 +94,9 @@ Nothing in these Terms of Service and no action taken by you pursuant to these T
 
 ### Registered office
 
-```
-5 New Street Square
-London EC4A 3TW
+5 New Street Square<br />
+London EC4A 3TW<br />
 United Kingdom
-```
 
 ### Contact us
 
