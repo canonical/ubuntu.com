@@ -165,3 +165,17 @@ export const DistributorProduct: ChannelProduct = {
   marketplace: UserSubscriptionMarketplace.CanonicalProChannel,
   exclusion_group: "",
 };
+
+export const CUEProduct: ChannelProduct = {
+  id: "uai-essential-desktop-1y-channel-eur-v2",
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  name: "uai-essential-desktop-1y-channel-eur-v2",
+  price: {
+    value: 50000,
+    currency: Currencies.eur,
+  },
+  productID: "uai-essential-desktop",
+  productName: "CUE.01",
+  marketplace: UserSubscriptionMarketplace.CanonicalCUBE,
+  exclusion_group: "",
+};
