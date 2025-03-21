@@ -65,7 +65,6 @@ class TestCertification(VCRTestCase):
         Raw HTML should be escaped
         """
         response = self.client.get("/certified/202301-31183")
-        # self.assertEqual(response.status_code, 200)
         content = response.data.decode("utf-8")
 
         # Check for headings
