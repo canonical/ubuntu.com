@@ -525,6 +525,6 @@
 
   {% include "/aws/shared/_get_pro.html" %}
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/aws") | safe }}
 
 {% endblock content %}
