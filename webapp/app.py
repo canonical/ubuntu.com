@@ -1337,7 +1337,7 @@ def render_supermicro_blogs():
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
-# TODO: Endpoint for testing and QA purposes only
+# TODO: Endpoint and function for QA purposes only
 def get_sitemaps_tree():
     try:
         tree = scan_directory(os.getcwd() + "/templates")
@@ -1346,13 +1346,9 @@ def get_sitemaps_tree():
     return tree
 
 
-app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
+app.add_url_rule("/sitemaps_parser", view_func=get_sitemaps_tree)
+
 
 # Build sitemap on app startup
 serve_sitemap()
 app.add_url_rule("/sitemap_tree.xml", view_func=serve_sitemap)
-
-get_sitemaps_tree()
-
-# TODO: Endpoint for testing and QA purposes only
-app.add_url_rule("/sitemaps_parser", view_func=get_sitemaps_tree)
