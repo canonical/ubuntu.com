@@ -65,7 +65,7 @@ const UserBanForm = () => {
     return {
       email: ban.email,
       expiresAt: expiresAt,
-      reason: ban.reason,
+      reason: "",
       blocked: ban.blocked,
     };
   };

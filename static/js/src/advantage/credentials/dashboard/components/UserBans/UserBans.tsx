@@ -89,7 +89,15 @@ const UserBans = () => {
       {isEmptyState && <EmptyUserBans />}
       {data?.banned_users && data?.banned_users?.length > 0 && (
         <>
-          <ModularTable data={data?.banned_users} columns={columns} sortable />
+          <ModularTable
+          getCellProps={() => {
+            return {
+              style: {
+                "lineBreak": "anywhere",
+              }
+            }
+          }}
+          data={data?.banned_users} columns={columns} sortable />
         </>
       )}
     </>
