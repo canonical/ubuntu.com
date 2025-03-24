@@ -1,3 +1,5 @@
+import { UserBan } from "../utils/types";
+
 export async function getUpcomingExams(page = 1, onSuccess: any) {
   try {
     const URL = `/credentials/api/upcoming-exams?page=${page}&state[]=scheduled&state[]=created&sort=-id`;
@@ -204,6 +206,49 @@ export async function cancelScheduledExam(reservationId: string) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
+
+export async function getUserBans() {
+  try {
+    const URL = `/credentials/api/user-bans`;
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    return data;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+}
+
+export async function ensureCUEUserBan(userBan: UserBan) {
+  try {
+    const URL = `/credentials/api/user-bans`;
+    const response = await fetch(URL, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userBan),
     });
 
     const data = await response.json();

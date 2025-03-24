@@ -104,6 +104,7 @@ from webapp.shop.cred.views import (
     cred_syllabus_data,
     cred_your_exams,
     get_activation_key_info,
+    cred_user_ban,
     get_activation_keys,
     get_cue_products,
     get_issued_badges,
@@ -1106,6 +1107,11 @@ app.add_url_rule(
     "/credentials/api/cancel-scheduled-exam/<reservation_id>",
     view_func=cancel_scheduled_exam,
     methods=["DELETE"],
+)
+app.add_url_rule(
+    "/credentials/api/user-bans",
+    view_func=cred_user_ban,
+    methods=["GET", "PUT"],
 )
 
 app.add_url_rule(
