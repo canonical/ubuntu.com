@@ -189,7 +189,7 @@ function setUpStaticForms(form, formId) {
       submitButton.style.height = "";
       submitButton.innerHTML = originalButtonHTML;
     };
-  
+
     // Reset button when loaded from cache to avoid stuck loading spinner
     window.addEventListener("pageshow", (event) => {
       if (event.persisted) {
