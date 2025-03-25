@@ -1298,8 +1298,6 @@ def serve_sitemap():
 
             except Exception as e:
                 return f"Generate_sitemap error: {e}", 500
-        else:
-            # update_sitemap()
 
         with open(sitemap_path, "r") as f:
             xml_sitemap = f.read()
