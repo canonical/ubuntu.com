@@ -157,8 +157,13 @@ function setUpStaticForms(form, formId) {
    * form submission
    */
   function attachLoadingSpinner(submitButton) {
+    let spinnerClassName = "p-icon--spinner u-animation--spin";
+    if (submitButton.classList.contains("p-button--positive")) {
+      spinnerClassName += " is-light";
+    }
+
     const spinnerIcon = document.createElement("i");
-    spinnerIcon.className = "p-icon--spinner u-animation--spin is-light";
+    spinnerIcon.className = spinnerClassName;
     const buttonRect = submitButton.getBoundingClientRect();
     submitButton.style.width = buttonRect.width + "px";
     submitButton.style.height = buttonRect.height + "px";
@@ -167,12 +172,31 @@ function setUpStaticForms(form, formId) {
     submitButton.innerText = "";
     submitButton.appendChild(spinnerIcon);
   }
-  const submitButton = form.querySelector('button[type="submit"]');
 
+  const submitButton = form.querySelector('button[type="submit"]');
   // Exclude forms that don't need loader
   const cancelLoader = submitButton.classList.contains("no-loader");
 
   if (submitButton && !cancelLoader) {
+    // Save the state of the button to get around bfcache
+    const originalButtonHTML = submitButton.innerHTML;
+    const originalDisabled = submitButton.disabled;
+
+    const resetSubmitButton = () => {
+      submitButton.classList.remove("is-processing");
+      submitButton.disabled = originalDisabled;
+      submitButton.style.width = "";
+      submitButton.style.height = "";
+      submitButton.innerHTML = originalButtonHTML;
+    };
+  
+    // Reset button when loaded from cache to avoid stuck loading spinner
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        resetSubmitButton();
+      }
+    });
+
     form.addEventListener("submit", () => attachLoadingSpinner(submitButton));
   }
 
