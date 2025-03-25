@@ -22,7 +22,7 @@ def indent(elem, level=0):
             elem.tail = i
 
 
-def update_sitemap(files, last_mod, action):
+def update_sitemap(action, files, last_mod):
     # Use GH actions to update the lastmod dates of sitemaps
     print("Files:", files)
     print("Action:", action)
@@ -47,13 +47,18 @@ def update_sitemap(files, last_mod, action):
             last_mod_elem.text = last_mod
             indent(url_elem, 1)
             root.append(url_elem)
+        elif action == "DELETE":
+            print(root[100][0].text, url_path)
+            for child in root:
+                if child[0].text == url_path:
+                    root.remove(child)
 
     tree.write(sitemap_path, encoding="utf-8", xml_declaration=True)
     return
 
 
 if __name__ == "__main__":
-    files = sys.argv[1]
-    last_mod = sys.argv[2]
-    action = sys.argv[3]
-    update_sitemap(files, last_mod, action)
+    action = sys.argv[1]
+    files = sys.argv[2]
+    last_mod = sys.argv[3] if len(sys.argv) > 3 else None
+    update_sitemap(action, files, last_mod)
