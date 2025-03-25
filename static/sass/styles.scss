@@ -1789,6 +1789,15 @@ ol.p-stepped-list.no-full-stop
   text-align: left;
 }
 
+// Zoom effect for images on hover, used on /summit page
+.image-hover__zoom {
+  transition: transform 1s;
+}
+
+.image-hover__zoom:hover {
+  transform: scale(1.25);
+}
+
 // Custom styling for side navigation used as a TOC
 .p-side-navigation--raw-html.is-single-page {
   position: sticky;
