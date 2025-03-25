@@ -1,5 +1,5 @@
 name: Percy Snapshot
-description: Starts Vanilla local server, captures example snapshots, & uploads them to Percy
+description: Starts local server, captures example snapshots, & uploads them to Percy
 inputs:
   pr_number:
     required: false
@@ -48,7 +48,7 @@ runs:
       shell: bash
       env:
         SECRET_KEY: local_development_fake_key
-      run: ./entrypoint 0.0.0.0:8101 &
+      run: ./entrypoint 0.0.0.0:8001 &
 
     - name: Wait for server availability
       shell: bash
@@ -58,7 +58,7 @@ runs:
         max_wait_time_secs=30
         wait_time_secs=0
         while [ "$wait_time_secs" -lt "$max_wait_time_secs" ]; do
-          if curl -s localhost:8101/_status/check -I; then
+          if curl -s localhost:8001/_status/check -I; then
             echo "Server is up!"
             # sometimes if we start the server too soon after it starts responding, percy snapshot errors happen.
             sleep 5
