@@ -4,20 +4,20 @@
     <div class="col">
       <div>
         <h2>
-          Start using your<br /> {{ appliance.name }} Ubuntu Appliance
+          Start using your
+          <br />
+          {{ appliance.name }} Ubuntu Appliance
         </h2>
       </div>
     </div>
     <div class="col">
       <div class="p-section--shallow">
-        {{  image(
-          url="https://assets.ubuntu.com/v1/5727f492-openhab-first-screen.jpg",
-          alt="Openhab wizard screen",
-          width="988",
-          height="704",
-          hi_def=True,
-          loading="lazy",
-          ) | safe}}
+        {{ image(url="https://assets.ubuntu.com/v1/5727f492-openhab-first-screen.jpg",
+                alt="Openhab wizard screen",
+                width="988",
+                height="704",
+                hi_def=True,
+                loading="lazy",) | safe}}
       </div>
       <p>
         When you start openHAB for the first time, it only starts the dashboard. So let's have a look at it: open a browser and browse to your openHAB dashboard:
