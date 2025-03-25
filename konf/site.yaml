@@ -720,7 +720,7 @@ staging:
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
-      useProxy: False
+      useProxy: false
       memoryLimit: 512Mi
       env:
         - name: HTTPS_PROXY
@@ -1031,6 +1031,7 @@ staging:
     }
 
 demo:
+  useProxy: false
   env:
     - name: HTTP_PROXY
       value: http://squid.ps6.internal:3128
@@ -1139,7 +1140,7 @@ demo:
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - name: TRUEABILITY_URL
-      value: https://app3.trueability.com
+      value: https://app.trueability.com
 
     - name: TRUEABILITY_API_KEY
       secretKeyRef:
