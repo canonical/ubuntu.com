@@ -63,5 +63,9 @@
     ol > li > h4:first-child {
       display: inline;
     }
+
+    :target {
+      scroll-margin-top: 4.5rem; // 4.5rem is the height of the sticky header
+    }
   }
 }
