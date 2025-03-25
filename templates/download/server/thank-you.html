@@ -21,15 +21,24 @@
   <section class="p-strip is-shallow u-no-padding--bottom">
     <div class="row--50-50">
       <div class="col">
-        <h1>Thank you for downloading Ubuntu Server {{ version }}{{ " LTS" if lts }}</h1>
-        <p>
-          Your download should start in the background. If it doesn't,
-          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.
-          <br />
-          {% with version=version, system="live-server", architecture="amd64" %}
-            {% include "download/shared/_verify-checksums.html" %}
-          {% endwith %}
-        </p>
+        {% if version %}
+          <h1>Thank you for downloading Ubuntu Server {{ version }}{{ " LTS" if lts }}</h1>
+          <p>
+            Your download should start in the background. If it doesn't,
+            <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.
+            <br />
+            {% with version=version, system="live-server", architecture="amd64" %}
+              {% include "download/shared/_verify-checksums.html" %}
+            {% endwith %}
+          </p>
+        {% else %}
+          <h1>Thank you</h1>
+          <p>
+            However, you have not selected an image to download.
+            <br />
+            Go to the <a href="/download/server">download page</a> to select an image.
+          </p>
+        {% endif %}
       </div>
       <div class="col">
         {% include 'download/shared/_server_weekly_news.html' %}
@@ -39,17 +48,16 @@
             Learn how to use the command line efficiently and get started with DevOps &mdash; from basic file management to LXD virtualization and Ubuntu Pro.
           </p>
         </div>
-        <button class="p-button--positive"
-           onclick="toggleModal()">Download the CLI cheat sheet</button>
-           <div class="p-section--shallow p-image-wrapper">
-            {{ image(url="https://assets.ubuntu.com/v1/639c1f12-server-cli-cheatsheet.png",
-                      alt="CLI cheat sheet",
-                      width="1200",
-                      height="849",
-                      hi_def=True,
-                      loading="auto") | safe
-            }}
-          </div>
+        <button class="p-button--positive" onclick="toggleModal()">Download the CLI cheat sheet</button>
+        <div class="p-section--shallow p-image-wrapper">
+          {{ image(url="https://assets.ubuntu.com/v1/639c1f12-server-cli-cheatsheet.png",
+                    alt="CLI cheat sheet",
+                    width="1200",
+                    height="849",
+                    hi_def=True,
+                    loading="auto") | safe
+          }}
+        </div>
       </div>
     </div>
   </section>
@@ -237,10 +245,11 @@
 
   <script defer>
     var version = '{{ version }}';
+    if (version) {
+      var GAlabel = version + '-server-amd64';
+      var imagePath = version + '/ubuntu-' + version + '-live-server-amd64.iso';
 
-    var GAlabel = version + '-server-amd64';
-    var imagePath = version + '/ubuntu-' + version + '-live-server-amd64.iso';
-
-    window.initImageDownload(imagePath, GAlabel);
+      window.initImageDownload(imagePath, GAlabel);
+    }
   </script>
 {% endblock footer_extra %}
