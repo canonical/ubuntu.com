@@ -1,5 +1,5 @@
 name: PR checks
-on: [push, pull_request]
+on: [push, pull_request_target]
 env:
   SECRET_KEY: insecure_test_key
 
@@ -239,30 +239,21 @@ jobs:
 
   update-sitemap:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Install requirements
         run: |
           sudo apt-get update && sudo apt-get install --yes python3-setuptools
-          sudo pip3 install -r requirements.txt    
-
-      - name: Install dotrun
-        run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256
-
-      - name: Install node dependencies
-        run: |
-          sudo chmod -R 777 .
-          dotrun install
-
-      - name: Install dependencies
-        run: dotrun exec pip3 install coverage
-
-      - name: Build resources
-        run: dotrun build
+          sudo pip3 install -r requirements.txt
 
       - name: Get changed HTML files
         id: added-files
@@ -292,3 +283,16 @@ jobs:
         run: |
           LAST_MOD=$(git log -1 --format=%cI $GITHUB_SHA)
           python3 ${{ github.workspace }}/webapp/sitemap.py "UPDATE" "$UPDATED_FILES" "$LAST_MOD"
+
+      - name: Check for changes in sitemap_tree.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain static/files/sitemap_tree.xml)" ]; then
+            echo "Changes detected in sitemap_tree.xml"
+            git add static/files/sitemap_tree.xml
+            git commit -m "Update sitemap_tree.xml"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          else
+            echo "No changes detected in sitemap_tree.xml"
+          fi
