@@ -1,18 +1,30 @@
+const baseURL = 'http://localhost:8001';
+var timeout = 1000;
+const acceptCookies = () => {
+  const cookieBanner = document.querySelector(".cookie-policy");
+  if (cookieBanner) {
+    const acceptButton = cookieBanner.querySelector("#cookie-policy-button-accept");
+    if (acceptButton) {
+      acceptButton.click();
+    }
+  }
+};
+
 module.exports = [
   {
     name: '/',
-    url: 'http://localhost:8001/',
-    "waitForTimeout": 1000,
+    url: baseURL,
+    waitForTimeout: timeout,
     execute: {
-      beforeSnapshot() {
-        document.querySelector(".cookie-policy").style.display = "none";
-      },
+      beforeSnapshot: acceptCookies,
     }
   },
   {
-    name: '/dowload/desktop',
-    url: 'http://localhost:8001/download/desktop',
-    "waitForTimeout": 1000,
-  },
-]
-
+    name: '/download/desktop',
+    url: baseURL+'/download/desktop',
+    waitForTimeout: timeout,
+    execute: {
+      beforeSnapshot: acceptCookies,
+    }
+  }
+];
