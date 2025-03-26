@@ -1,69 +1,53 @@
 <li class="p-stepped-list__item">
-  <hr class="p-rule--muted" />
-  <div class="row--50-50">
-    <div class="col">
-      <h4 class="p-stepped-list__title">
-        Install your appliance image
-      </h4>
-    </div>
-    <div class="col">
-      <div class="p-stepped-list__content">
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Connect your USB hub, keyboard, mouse and monitor to the NUC</li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Insert the first USB flash drive, containing Ubuntu Desktop 20.04 LTS</li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Start the NUC and push <code>F10</code> to enter the boot menu</li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Select the USB flash drive as a boot option</li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Select <code>Try Ubuntu without installing</code></li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Once the Ubuntu session has started, insert the second USB flash drive containing the appliance image file</li>
-            </p>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Open a terminal and use the following command to find out the target disk device to install the appliance to:
-              <pre><code>sudo fdisk -l</code></pre>
-            </p>
-          </li>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Run the following command, where &lt;disk label&gt; is the label of the second USB flash drive:
-              <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-
+  <h4 class="p-stepped-list__title">
+    Install your appliance image
+  </h4>
+  <div class="p-stepped-list__content">
+    <ol>
+      <li>
+        <p>
+          Connect your USB hub, keyboard, mouse and monitor to the NUC</li>
+        </p>
+      <li>
+        <p>
+          Insert the first USB flash drive, containing Ubuntu Desktop 20.04 LTS</li>
+        </p>
+      <li>
+        <p>
+          Start the NUC and push <code>F10</code> to enter the boot menu</li>
+        </p>
+      <li>
+        <p>
+          Select the USB flash drive as a boot option</li>
+        </p>
+      <li>
+        <p>
+          Select <code>Try Ubuntu without installing</code></li>
+        </p>
+      <li>
+        <p>
+          Once the Ubuntu session has started, insert the second USB flash drive containing the appliance image file</li>
+        </p>
+      <li>
+        <p>
+          Open a terminal and use the following command to find out the target disk device to install the appliance to:
+          <pre><code>sudo fdisk -l</code></pre>
+        </p>
+      </li>
+      <li>
+        <p>
+          Run the following command, where &lt;disk label&gt; is the label of the second USB flash drive:
+          <pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-
 m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk
 device&gt; bs=32M status=progress; sync</code></pre>
-            </p>
-          </li>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where your appliance image has been flashed
-            </p>
-          </li>
-        </ol>
-      </div>
-    </div>
+        </p>
+      </li>
+      <li>
+        <p>
+          Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where your appliance image has been flashed
+
+        </p>
+      </li>
+    </ol>
   </div>
 </li>
-
-<style>
-  .p-stepped-list__item > pre {
-    margin-left: 3rem;
-  }
-
-  .p-stepped-list .p-stepped-list .p-stepped-list__item{
-    padding-bottom: 0;
-  }
-</style>

@@ -1,38 +1,32 @@
 <li class="p-stepped-list__item">
-  <div class="row--50-50">
-    <div class="col">
-      <h4 class="p-stepped-list__title">Generate Secure Shell (SSH) keys</h4>
-    </div>
-    <div class="col">
-      <div class="p-stepped-list__content">
-        <p>
-          The 'Secure Shell' protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You need SSH software and keys.
-        </p>
-        <p>
-          Run the following command:
-        </p>
-        <pre><code>ssh-keygen -t rsa</code></pre>
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              This starts the key generation process. When you execute this command, the <em>ssh-keygen</em> utility prompts you to indicate where to store the key
-            </p>
-          </li>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Press the <code>ENTER</code> key to accept the default location. The <em>ssh-keygen</em> utility prompts you for a passphrase
-            </p>
-          </li>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Type in a passphrase
-            </p>
-          </li>
-        </ol>
-        <p>
-          You now have a public and private key that you can use to authenticate.
-        </p>
-      </div>
-    </div>
+  <h4 class="p-stepped-list__title">Generate Secure Shell (SSH) keys</h4>
+  <div class="p-stepped-list__content">
+    <p>
+      The 'Secure Shell' protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You need SSH software and keys.
+    </p>
+    <p>
+      Run the following command:
+    </p>
+    <pre><code>ssh-keygen -t rsa</code></pre>
+    <ol class="">
+      <li class="">
+        This starts the key generation process. When you execute this command, the <em>ssh-keygen</em> utility prompts you to indicate where to store the key
+        <!-- <p class="p-stepped-list__title">
+        </p> -->
+      </li>
+      <li class="">
+        Press the <code>ENTER</code> key to accept the default location. The <em>ssh-keygen</em> utility prompts you for a passphrase
+        <!-- <p class="p-stepped-list__title">
+        </p> -->
+      </li>
+      <li class="">
+        Type in a passphrase
+        <!-- <p class="p-stepped-list__title">
+        </p> -->
+      </li>
+    </ol>
+    <p>
+      You now have a public and private key that you can use to authenticate.
+    </p>
   </div>
 </li>
