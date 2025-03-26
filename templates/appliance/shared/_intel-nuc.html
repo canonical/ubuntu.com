@@ -76,7 +76,7 @@
         {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
         {% include 'appliance/shared/_how-to-install.html' %}
         <div class="u-fixed-width">
-          <ol class="p-stepped-list">
+          <ol class="p-stepped-list--detailed">
             {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
             {% with command='cat' %}
               {% include 'appliance/shared/_steps_sso.html' %}
@@ -98,7 +98,7 @@
         {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
         {% include 'appliance/shared/_how-to-install.html' %}
         <div class="u-fixed-width">
-          <ol class="p-stepped-list">
+          <ol class="p-stepped-list--detailed">
             {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
             {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
             {% include 'appliance/shared/_steps_sso_windows.html' %}
@@ -119,7 +119,7 @@
         {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
         {% include 'appliance/shared/_how-to-install.html' %}
         <div class="u-fixed-width">
-          <ol class="p-stepped-list">
+          <ol class="p-stepped-list--detailed">
             {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
             {% include 'appliance/shared/_steps_sso.html' %}
             {% with os='macos' %}
@@ -136,16 +136,23 @@
 </section>
 
 <style>
-  .p-stepped-list__item>pre {
+  .p-stepped-list__item > pre {
     margin-left: 3rem;
   }
 
-  .p-stepped-list .p-stepped-list .p-stepped-list__item {
-    padding-bottom: 0;
+  .p-stepped-list--detailed ol li {
+    margin-bottom: 1rem;
   }
 
   .p-tabs__content {
     scroll-margin-top: 8rem
+  }
+
+  .p-stepped-list--detailed > .p-stepped-list__item:first-child {
+    &::after {
+      display: none;
+    }
+    border: 0;
   }
 </style>
 

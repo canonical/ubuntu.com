@@ -1,49 +1,43 @@
 <li class="p-stepped-list__item">
-  <div class="row--50-50">
-    <div class="col">
-      <h4 class="p-stepped-list__title">Install OpenSSH</h4>
-    </div>
-    <div class="col">
-      <div class="p-stepped-list__content">
+  <h4 class="p-stepped-list__title">Install OpenSSH</h4>
+  <div class="p-stepped-list__content">
+    <p>
+      The 'Secure Shell' protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You will need SSH software and keys.
+    </p>
+    <p>
+      Some versions of Windows 10 include an SSH client already, but if yours does not or you're unsure, follow these steps to install one.
+    </p>
+    <ol>
+      <li>
+        <p>OpenSSH client is an installable feature of Windows 10.</p>
         <p>
-          The 'Secure Shell' protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You will need SSH software and keys.
+          To install OpenSSH, start Settings then go to <code>Apps > Apps and Features > Manage Optional Features</code>.
+        </p>
+      </li>
+      <li>
+        <p>
+          Scan this list to see if OpenSSH client is already installed. If not, at the top of the page select <code>Add a feature</code>, then, to install the OpenSSH client, locate <code>OpenSSH Client</code> and click <code>Install</code>
         </p>
         <p>
-          Some versions of Windows 10 include an SSH client already, but if yours does not or you're unsure, follow these steps to install one.
+          Once the installation completes, return to <code>Apps > Apps and Features > Manage Optional Features</code> and you should see the OpenSSH component(s) listed.
         </p>
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">OpenSSH client is an installable feature of Windows 10.</p>
-            <p class="p-stepped-list__content">
-              To install OpenSSH, start Settings then go to <code>Apps > Apps and Features > Manage Optional Features</code>.
-            </p>
-          </li>
-          <li class="p-stepped-list__item">
-            <p class="p-stepped-list__title">
-              Scan this list to see if OpenSSH client is already installed. If not, at the top of the page select <code>Add a feature</code>, then, to install the OpenSSH client, locate <code>OpenSSH Client</code> and click <code>Install</code>
-            </p>
-            <p class="p-stepped-list__content">
-              Once the installation completes, return to <code>Apps > Apps and Features > Manage Optional Features</code> and you should see the OpenSSH component(s) listed.
-            </p>
-          </li>
-        </ol>
-        <p>
-          To install OpenSSH using PowerShell, first launch PowerShell as an Administrator. To make sure that the OpenSSH features are available for install type the command:
-        </p>
-        <p>
-          <pre><code>Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'</code></pre>
-        </p>
-        <p>This should return:</p>
+      </li>
+    </ol>
+    <p>
+      To install OpenSSH using PowerShell, first launch PowerShell as an Administrator. To make sure that the OpenSSH features are available for install type the command:
+    </p>
+    <p>
+      <pre><code>Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'</code></pre>
+    </p>
+    <p>This should return:</p>
 <pre><code>Name  : OpenSSH.Client~~~~0.0.1.0
 State : NotPresent</code></pre>
-        <p>Then, install the client features:</p>
+    <p>Then, install the client features:</p>
 <pre><code>Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0</code></pre>
-        <p>Both commands should return:</p>
+    <p>Both commands should return:</p>
 <pre><code>Path          :
 Online        : True
 RestartNeeded : False
 </code></pre>
-      </div>
-    </div>
   </div>
 </li>
