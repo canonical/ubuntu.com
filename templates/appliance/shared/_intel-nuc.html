@@ -41,7 +41,7 @@
 
     <div class="js-tab-container">
       <nav class="p-tabs">
-        <ul class="p-tabs__list" role="tablist">
+        <ul class="p-tabs__list js-tabbed-content" role="tablist" aria-label="Intel NUC installation instructions" data-maintain-hash="true">
           <li class="p-tabs__item" role="presentation">
             <a href="#ubuntuos"
                class="p-tabs__link"
@@ -53,7 +53,6 @@
           <li class="p-tabs__item" role="presentation">
             <a href="#windows"
                class="p-tabs__link"
-               tabindex="-1"
                role="tab"
                id="windows-tab"
                aria-controls="windows">Windows</a>
@@ -61,7 +60,6 @@
           <li class="p-tabs__item" role="presentation">
             <a href="#macos"
                class="p-tabs__link"
-               tabindex="-1"
                role="tab"
                id="macos-tab"
                aria-controls="macos">macOS</a>
@@ -136,16 +134,8 @@
 </section>
 
 <style>
-  .p-stepped-list__item > pre {
-    margin-left: 3rem;
-  }
-
   .p-stepped-list--detailed ol li {
     margin-bottom: 1rem;
-  }
-
-  .p-tabs__content {
-    scroll-margin-top: 8rem
   }
 
   .p-stepped-list--detailed > .p-stepped-list__item:first-child {
@@ -156,4 +146,4 @@
   }
 </style>
 
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
