@@ -1,30 +1,33 @@
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6">
+<section class="p-section--deep">
+  <div class="row--50-50">
+    <hr class="p-rule" />
+    <div class="col">
       <div>
         <h2>
-          Start using your {{ appliance.name }} Ubuntu Appliance
+          Start using your
+          <br />
+          openHAB Ubuntu Appliance
         </h2>
-        <p>
-          When you start openHAB for the first time, it only starts the dashboard. So let's have a look at it: open a browser and browse to your openHAB dashboard:
-        </p>
-        <p>
-          <code>http://&lt;IP-of-your-machine&gt;:8080</code>
-        </p>
-        <p>
-          Now just follow the instructions on the screen to use your new openHAB Ubuntu Appliance. For more information or more <a href="https://www.openhab.org/docs/">documentation</a>, the <a href="https://www.openhab.org/">openHAB website</a> is the best place to go next.
-        </p>
       </div>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/5727f492-openhab-first-screen.jpg",
-        alt="Openhab wizard screen",
-        width="988",
-        height="704",
-        hi_def=True,
-        loading="lazy",
-        ) | safe}}
+    <div class="col">
+      <div class="p-section--shallow">
+        {{ image(url="https://assets.ubuntu.com/v1/5727f492-openhab-first-screen.jpg",
+                alt="Openhab wizard screen",
+                width="988",
+                height="704",
+                hi_def=True,
+                loading="lazy",) | safe }}
       </div>
+      <p>
+        When you start openHAB for the first time, it only starts the dashboard. So let's have a look at it: open a browser and browse to your openHAB dashboard:
+      </p>
+      <p>
+        <code>http://&lt;IP-of-your-machine&gt;:8080</code>
+      </p>
+      <p>
+        Now just follow the instructions on the screen to use your new openHAB Ubuntu Appliance. For more information or more <a href="https://www.openhab.org/docs/">documentation</a>, the <a href="https://www.openhab.org/">openHAB website</a> is the best place to go next.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
