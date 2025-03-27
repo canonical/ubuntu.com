@@ -1,42 +1,48 @@
 <li class="p-stepped-list__item">
-  <h4 class="p-stepped-list__title">
-    Prepare the microSD card
-  </h4>
+  <h4 class="p-stepped-list__title">Prepare the microSD card</h4>
   <div class="p-stepped-list__content">
-    <div class="p-notification--caution">
+    <div class="p-notification--caution is-light">
       <div class="p-notification__content">
         <span class="p-notification__title">Warning</span>
         <p class="p-notification__message">This will completely erase the microSD card.</p>
       </div>
     </div>
     <ul class="p-list">
-      <li>Insert the microSD card into your computer
-      </li>
-      <li>Run the imager and click <code>CHOOSE OS</code>
-        <div class="p-strip is-shallow">
-          {{  image(
-            url="https://assets.ubuntu.com/v1/1148ca79-1_.png",
-            alt="CHOOSE OS",
-            width="750",
-            height="505",
-            hi_def=True,
-            loading="lazy"  ) | safe}}
+      <li class="p-list__item">Insert the microSD card into your computer</li>
+      <li class="p-list__item">
+        <p>
+          Run the imager and click <code>CHOOSE OS</code>
+        </p>
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/7987f409-screenshot1.png",
+                    alt="",
+                    width="1800",
+                    height="1201",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
         </div>
-        </li>
-        <li>Next, choose <code>Use Custom</code>. Select the image you downloaded.
-          <div class="p-strip is-shallow">
-            {{  image(      url="https://assets.ubuntu.com/v1/8f1a170c-raspberry-pi-imager-step2.png",
-            alt="Custom",
-            width="750",
-            height="494",
-            hi_def=True,
-            loading="lazy",       ) | safe}}
-          </div>
-        </li>
-        <li>Select your microSD card and click <code>WRITE</code>.</li>
-      </ul>
-      <p>
-        While it is preparing the disk you can go on to the next step and create your SSH keys for secure access to the appliance.
-      </p>
-    </div>
-  </li>
+      </li>
+      <li class="p-list__item">
+        <p>
+          Next, choose <code>Use Custom</code>. Select the image you downloaded.
+        </p>
+        <div class="p-section--shallow">
+          {{ image(url="https://assets.ubuntu.com/v1/aea8201e-screenshot2.png",
+                    alt="",
+                    width="1800",
+                    height="1201",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      </li class="p-list__item">
+      <li>
+        Select your microSD card and click <code>WRITE</code>.
+      </li>
+    </ul>
+    <p>
+      While it is preparing the disk you can go on to the next step and create your SSH keys for secure access to the appliance.
+    </p>
+  </div>
+</li>
