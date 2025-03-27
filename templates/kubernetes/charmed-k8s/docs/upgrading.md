@@ -22,9 +22,9 @@ toc: False
   </div>
   <div class="p-notification__meta">
     <div class="p-notification__actions">
-      <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.29/upgrading'>Upgrade to 1.29</a>
-      <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.28/upgrading'>Upgrade to 1.28</a>
-      <a class='p-notification__action' href='/kubernetes/charmed-k8s/docs/1.27/upgrading'>Upgrade to 1.27</a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.32/upgrading'>Upgrade to 1.32</a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.31/upgrading'>Upgrade to 1.31</a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.30/upgrading'>Upgrade to 1.30</a>
     </div>
   </div>
 </div>
@@ -80,21 +80,24 @@ documentation for the version you are upgrading to.
 
 ### Supported versions
 
-- [Upgrading from 1.29.x to 1.30.x](/kubernetes/charmed-k8s/docs/1.30/upgrading)
-- [Upgrading from 1.28.x to 1.29.x](/kubernetes/charmed-k8s/docs/1.29/upgrading)
-- [Upgrading from 1.27.x to 1.28.x](/kubernetes/charmed-k8s/docs/1.28/upgrading)
+- [Upgrading from 1.31.x to 1.32.x](/kubernetes/docs/1.32/upgrading)
+- [Upgrading from 1.30.x to 1.31.x](/kubernetes/docs/1.31/upgrading)
+- [Upgrading from 1.29.x to 1.30.x](/kubernetes/docs/1.30/upgrading)
 
 ### Older versions
 
-- [Upgrading from 1.25.x to 1.26.x](/kubernetes/charmed-k8s/docs/1.26/upgrading)
-- [Upgrading from 1.24.x to 1.25.x](/kubernetes/charmed-k8s/docs/1.25/upgrading)
-- [Upgrading from 1.23.x to 1.24.x](/kubernetes/charmed-k8s/docs/1.24/upgrading)
-- [Upgrading from 1.22.x to 1.23.x](/kubernetes/charmed-k8s/docs/1.23/upgrading)
-- [Upgrading from 1.21.x to 1.22.x](/kubernetes/charmed-k8s/docs/1.22/upgrading)
-- [Upgrading from 1.20.x to 1.21.x](/kubernetes/charmed-k8s/docs/1.21/upgrading)
-- [Upgrading from 1.19.x to 1.20.x](/kubernetes/charmed-k8s/docs/1.20/upgrading)
-- [Upgrading from 1.18.x to 1.19.x](/kubernetes/charmed-k8s/docs/1.19/upgrading)
-- [Upgrading from 1.17.x to 1.18.x](/kubernetes/charmed-k8s/docs/1.18/upgrading)
+- [Upgrading from 1.28.x to 1.29.x](/kubernetes/docs/1.29/upgrading)
+- [Upgrading from 1.27.x to 1.28.x](/kubernetes/docs/1.28/upgrading)
+- [Upgrading from 1.26.x to 1.27.x](/kubernetes/docs/1.27/upgrading)
+- [Upgrading from 1.25.x to 1.26.x](/kubernetes/docs/1.26/upgrading)
+- [Upgrading from 1.24.x to 1.25.x](/kubernetes/docs/1.25/upgrading)
+- [Upgrading from 1.23.x to 1.24.x](/kubernetes/docs/1.24/upgrading)
+- [Upgrading from 1.22.x to 1.23.x](/kubernetes/docs/1.23/upgrading)
+- [Upgrading from 1.21.x to 1.22.x](/kubernetes/docs/1.22/upgrading)
+- [Upgrading from 1.20.x to 1.21.x](/kubernetes/docs/1.21/upgrading)
+- [Upgrading from 1.19.x to 1.20.x](/kubernetes/docs/1.20/upgrading)
+- [Upgrading from 1.18.x to 1.19.x](/kubernetes/docs/1.19/upgrading)
+- [Upgrading from 1.17.x to 1.18.x](/kubernetes/docs/1.18/upgrading)
 
 <a id='verify-upgrade'> </a>
 
