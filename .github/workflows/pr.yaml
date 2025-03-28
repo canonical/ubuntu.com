@@ -144,6 +144,9 @@ jobs:
         with:
           fetch-depth: 0 # fetch all history for codecov
 
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Install requirements
         run: |
           sudo apt-get update && sudo apt-get install --yes python3-setuptools
