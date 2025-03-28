@@ -36,35 +36,7 @@
     </div>
 
     <div class="js-tab-container">
-      <nav class="p-tabs">
-        <ul class="p-tabs__list" role="tablist">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntuos"
-               class="p-tabs__link"
-               id="ubuntuos-tab"
-               role="tab"
-               aria-controls="ubuntuos"
-               aria-selected="true">Ubuntu</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#windows"
-               class="p-tabs__link"
-               tabindex="-1"
-               role="tab"
-               id="windows-tab"
-               aria-controls="windows">Windows</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#macos"
-               class="p-tabs__link"
-               tabindex="-1"
-               role="tab"
-               id="macos-tab"
-               aria-controls="macos">macOS</a>
-          </li>
-        </ul>
-      </nav>
-
+      {% include "appliance/shared/_appliance-os-tabs.html" %}
       <div id="ubuntuos"
            class="p-tabs__content"
            role="tabpanel"
