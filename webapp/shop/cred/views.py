@@ -360,8 +360,11 @@ def cred_schedule(
     cred_maintenance_end,
     is_cred_admin,
     trueability_api,
+    proctor_api,
     **_,
 ):
+    user = user_info(flask.session)
+    base_url = flask.request.url_root
     error = None
 
     contract_long_id = flask.request.args.get("contractLongID")
@@ -377,12 +380,11 @@ def cred_schedule(
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    time_delta = 0.5 if is_staging else 3
+    time_buffer = 0.5 if is_staging else 3
     time_delay = "30 minutes" if is_staging else "3 hours"
 
     if flask.request.method == "POST":
         data = flask.request.form
-
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = datetime.strptime(
@@ -405,7 +407,7 @@ def cred_schedule(
             assessment_reservation_uuid = flask.request.args.get("uuid")
 
         if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            hours=time_delta
+            hours=time_buffer
         ):
             error = (
                 f"Start time should be at least {time_delay}"
@@ -440,13 +442,14 @@ def cred_schedule(
                 maintenance_end=maintenance_end_tz,
             )
 
+        # if the exam is rescheduled
         if assessment_reservation_uuid:
             """check if the rescheduled datetime falls
             between the contract effectiveness window"""
             if not contract_long_id:
                 return flask.redirect("/credentials/your-exams")
             effective_from = now.astimezone(tz_info) + timedelta(
-                hours=time_delta
+                hours=time_buffer
             )
             effective_to = (
                 datetime.strptime(
@@ -483,7 +486,60 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
+            # exam rescheduled successfully
             else:
+                # update/create the session with proctor
+                try:
+                    student = proctor_api.get_student(user["email"])
+                    student_sessions = proctor_api.get_student_sessions(
+                        {
+                            "ext_exam_id": assessment_reservation_uuid,
+                            "student_id": student.get("data", {}).get(
+                                "student_id"
+                            ),
+                        }
+                    )
+                    student_session_array = student_sessions.get("data", [{}])
+                    student_session = None
+                    if len(student_session_array) > 0:
+                        student_session = student_session_array[0]
+                    session_data = {
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "student_email": user["email"],
+                        "exam_date_time": starts_at.isoformat(),
+                        "ext_exam_id": response["assessment_reservation"][
+                            "uuid"
+                        ],
+                        "client_exam_id": 1,
+                        "timezone": timezone,
+                        "ai_enabled": "1",
+                        "exam_link": base_url
+                        + "credentials/exam?uuid="
+                        + f"{response['assessment_reservation']['uuid']}",
+                    }
+                    # update the student session
+                    if student_session:
+                        student_session_id = student_session.get(
+                            "session_link", ""
+                        )
+                        proctor_api.update_student_session(
+                            student_session_id,
+                            session_data,
+                        )
+                    # create a new student session
+                    else:
+                        proctor_api.create_student_session(session_data)
+                except Exception as error:
+                    flask.current_app.extensions["sentry"].captureException(
+                        extra={
+                            "user_info": user_info(flask.session),
+                            "request_url": error.request.url,
+                            "request_headers": error.request.headers,
+                            "response_headers": error.response.headers,
+                            "response_body": error.response.json(),
+                        }
+                    )
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
@@ -496,6 +552,7 @@ def cred_schedule(
                     exam=exam,
                     contract_long_id=contract_long_id,
                 )
+        # if the exam is scheduled for the first time
         else:
             try:
                 response = ua_contracts_api.post_assessment_reservation(
@@ -530,8 +587,36 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
+            # exam scheduled successfully, now create a session with proctor
             else:
                 uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                # create a student session with
+                # proctor since the exam is scheduled
+                try:
+                    student_session_data = {
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "student_email": user["email"],
+                        "exam_date_time": starts_at.isoformat(),
+                        "client_exam_id": 1,
+                        "ext_exam_id": uuid,
+                        "timezone": timezone,
+                        "ai_enabled": "1",
+                        "exam_link": base_url
+                        + "credentials/"
+                        + f"exam?uuid={uuid}",
+                    }
+                    proctor_api.create_student_session(student_session_data)
+                except Exception as error:
+                    flask.current_app.extensions["sentry"].captureException(
+                        extra={
+                            "user_info": user_info(flask.session),
+                            "request_url": error.request.url,
+                            "request_headers": error.request.headers,
+                            "response_headers": error.response.headers,
+                            "response_body": error.response.json(),
+                        }
+                    )
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
@@ -589,6 +674,7 @@ def cred_schedule(
 def cred_your_exams(
     ua_contracts_api,
     trueability_api,
+    proctor_api,
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
@@ -728,21 +814,39 @@ def cred_your_exams(
                         state == RESERVATION_STATES["in_progress"]
                         or provisioned_but_not_taken
                     ):
-                        actions.extend(
-                            [
-                                {
-                                    "text": (
-                                        "Continue exam"
-                                        if state
-                                        == RESERVATION_STATES["in_progress"]
-                                        else "Take exam"
-                                    ),
-                                    "href": "/credentials/exam?"
-                                    f"id={assessment_id}",
-                                    "button_class": "p-button--positive",
-                                }
-                            ]
+                        student_session = proctor_api.get_student_sessions(
+                            {
+                                "ext_exam_id": r["uuid"],
+                            }
                         )
+                        proctor_link = None
+                        if student_session is not None:
+                            student_session_array = student_session.get(
+                                "data", [{}]
+                            )
+                            student_session = None
+                            if len(student_session_array) > 0:
+                                student_session = student_session_array[0]
+                                proctor_link = student_session.get(
+                                    "display_session_link", None
+                                )
+                        action = {
+                            "text": (
+                                "Continue exam"
+                                if state == RESERVATION_STATES["in_progress"]
+                                else "Take exam"
+                            ),
+                            "button_class": "p-button--positive",
+                            "href": "",
+                        }
+                        if proctor_link:
+                            action["href"] = proctor_link
+                        else:
+                            action["href"] = (
+                                f"/credentials/exam?id={assessment_id}"
+                            )
+
+                        actions.append(action)
 
                     exam_data = {
                         "name": name,
@@ -898,9 +1002,10 @@ def cred_assessments(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-def cred_exam(trueability_api, **_):
+def cred_exam(trueability_api, proctor_api, **_):
     email = flask.session["openid"]["email"].lower()
-
+    user = user_info(flask.session)
+    first_name, last_name = get_user_first_last_name()
     confidentiality_agreement_enabled = strtobool(
         os.getenv("CREDENTIALS_CONFIDENTIALITY_ENABLED", "false")
     )
@@ -912,12 +1017,83 @@ def cred_exam(trueability_api, **_):
         return flask.render_template("credentials/exam-no-agreement.html"), 403
 
     assessment_id = flask.request.args.get("id")
-    assessment = trueability_api.get_assessment(assessment_id)
+    reservation_id = flask.request.args.get("uuid")
+    base_url = flask.request.url_root
+    if reservation_id:
+        reservation = trueability_api.get_assessment_reservation(
+            reservation_id
+        )
+        assessment_id = (
+            reservation.get("assessment_reservation", {})
+            .get("assessment", {})
+            .get("id")
+        )
 
+    assessment = trueability_api.get_assessment(assessment_id)
     if assessment.get("error"):
         return flask.abort(404)
 
-    assessment_user = assessment["assessment"]["user"]["email"]
+    assessment = assessment["assessment"]
+    assessment_reservation = assessment.get("assessment_reservation", None)
+
+    student_session = None
+    ext_exam_id = None
+    exam_date_time = None
+    if not assessment_reservation:
+        return flask.abort(403)
+    else:
+        student_session = proctor_api.get_student_sessions(
+            {"ext_exam_id": assessment_reservation["uuid"]}
+        )
+        ext_exam_id = assessment_reservation["uuid"]
+        exam_date_time = (
+            datetime.strptime(
+                assessment_reservation["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+            )
+            .replace(tzinfo=pytz.UTC)
+            .isoformat()
+        )
+
+    student_session_array = student_session.get("data", [{}])
+    should_redirect = False
+
+    # if session exists
+    if len(student_session_array) > 0:
+        student_session = student_session_array[0]
+    # create a new session if it does not exist
+    else:
+        exam_link = (
+            base_url
+            + "credentials/exam?uuid="
+            + f"{assessment_reservation.get('uuid', '')}"
+        )
+        student_session_response = proctor_api.create_student_session(
+            {
+                "first_name": first_name,
+                "last_name": last_name,
+                "student_email": user["email"],
+                "exam_date_time": exam_date_time,
+                "client_exam_id": 1,
+                "ext_exam_id": ext_exam_id,
+                "exam_link": exam_link,
+            }
+        )
+        student_session = student_session_response.get("data", None)
+        should_redirect = True
+
+    if student_session is None or student_session.get("id", None) is None:
+        return flask.abort(403)
+
+    if (
+        should_redirect
+        or student_session.get("status", "not started") == "not started"
+    ):
+        if student_session.get("display_session_link"):
+            return flask.redirect(student_session["display_session_link"])
+        if exam_link:
+            return flask.redirect(exam_link)
+
+    assessment_user = assessment["user"]["email"]
     sso_user = user_info(flask.session)["email"]
 
     if assessment_user != sso_user:
@@ -1350,7 +1526,6 @@ def get_test_taker_stats(trueability_api, **kwargs):
         return addresses
 
     def fetch_assessments(page: int):
-        print(page)
         result = trueability_api.get_assessments(page=page)
         return get_addresses(result["assessments"])
 
@@ -1586,13 +1761,20 @@ def cred_dashboard_exam_results(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="json")
 @credentials_group()
-def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
+def cred_dashboard_system_statuses(
+    trueability_api, proctor_api, ua_contracts_api, **_
+):
     ta_status = trueability_api.get_system_status()
+    proctor_status = proctor_api.get_system_status()
     contracts_status = {}
     try:
         ua_contracts_api.get_product_listings("canonical-cube")
         contracts_status = {"error": False}
     except Exception:
         contracts_status = {"error": True}
-    statuses = {"ta_status": ta_status, "contracts_status": contracts_status}
+    statuses = {
+        "ta_status": ta_status,
+        "contracts_status": contracts_status,
+        "proctor_status": proctor_status,
+    }
     return flask.jsonify(statuses)
