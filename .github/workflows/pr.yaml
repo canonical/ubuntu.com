@@ -144,9 +144,6 @@ jobs:
         with:
           fetch-depth: 0 # fetch all history for codecov
 
-      - name: Configure Git safe directory
-        run: git config --global --add safe.directory /home/ubuntu/ubuntu-com
-
       - name: Install requirements
         run: |
           sudo apt-get update && sudo apt-get install --yes python3-setuptools
@@ -174,7 +171,9 @@ jobs:
         run: dotrun exec pip3 install diff-cover
 
       - name: Show diff coverage report
-        run: dotrun exec diff-cover ./tests/coverage.xml --compare-branch=origin/main
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          dotrun exec diff-cover ./tests/coverage.xml --compare-branch=origin/main
 
   test-js:
     runs-on: ubuntu-latest
