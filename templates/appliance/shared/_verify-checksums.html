@@ -1,14 +1,34 @@
-<p>
-<span class="p-contextual-menu--left">
-    <a href="#" class="p-contextual-menu__toggle" data-trigger="click" aria-controls="menu-4" aria-expanded="false" aria-haspopup="true"><i class="p-icon--information"></i>&nbsp;&nbsp;&nbsp;Verify your download</a>
-    <span class="p-contextual-menu__dropdown" id="menu-4" aria-hidden="true" aria-label="Verification instructions:" style="width: 600px; max-width: 70vw; padding: 1rem; z-index: 10;">
-      <span class="p-contextual-menu__group">
+<p class="js-checksum-tooltip">
+  <span class="p-contextual-menu--left">
+    <a href="#" class="p-contextual-menu__toggle js-checksum-toggle" data-trigger="click" aria-controls="menu-4" aria-expanded="false" aria-haspopup="true"><i class="p-icon--information"></i>&nbsp;&nbsp;&nbsp;How to verify your download</a>
+    <span class="p-contextual-menu__dropdown js-checksum-dropdown" id="menu-4" aria-hidden="true" aria-label="Verification instructions:" style="width: 600px; max-width: 70vw; padding: 1rem; z-index: 10;">
+      <span  class="p-contextual-menu__group">
         <small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small><br />
-        <code style="display: block; margin-top: 1rem;">echo "{{ appliance.checksum.raspberrypi }}" | shasum -a 256 --check</code><br />
+        <code style="display: block; margin-top: 1rem;">echo {% if "raspberry-pi" in request.path %} "{{ appliance.checksum.raspberrypi }}" {% else %} "{{ appliance.checksum.pc }}" {% endif %} | shasum -a 256 --check</code><br />
         <small>You should get the following output:</small><br />
-        <code style="display: block; margin-top: 1rem;">{{ appliance.iso_url.raspberrypi }}: OK</code><br />
+        <code style="display: block; margin-top: 1rem;">{% if "raspberry-pi" in request.path %} {{ appliance.iso_url.raspberrypi }} {% else %} {{ appliance.iso_url.pc }} {% endif %}: OK</code><br />
         <small>Or follow this tutorial to learn <a href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
       </span>
     </span>
   </span>
 </p>
+
+<script>
+  // Closes dropdown when click is registered outside of the tooltip
+  function toggleChecksumDropdown() {
+    const toggleControl = document.querySelector(".js-checksum-toggle");
+    const dropdown = document.querySelector(".js-checksum-dropdown");
+    const tooltip = document.querySelector(".js-checksum-tooltip");
+  
+    if (tooltip) {
+      document.addEventListener("click", (e) => {
+        if (!tooltip.contains(e.target)) {
+          toggleControl.setAttribute("aria-expanded", false)
+          dropdown.setAttribute("aria-hidden", true)
+        }
+      });
+    }
+  }
+
+toggleChecksumDropdown()
+</script>

@@ -1,51 +1,29 @@
-<section class="p-strip--suru-topped" style="overflow: visible;">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h1>Setup the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
-    </div>
-    <div class="col-4 u-hide-small u-vertically-center u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
-        alt="",
-        width="180",
-        height="180",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
+<section class="p-section--hero">
+  <div class="u-fixed-width">
+    <h1>
+      Setup the {{ appliance.appliance_name }} Ubuntu Appliance
+      <br />
+      in a virtual machine
+    </h1>
   </div>
 </section>
 
-<hr>
-<section class="p-strip is-bordered">
+<section class="p-section">
   <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
-    <div class="js-tab-container">
-      <nav class="p-tabs">
-        <ul class="p-tabs__list" role="tablist">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntuos" class="p-tabs__link" id="ubuntuos-tab" role="tab" aria-controls="ubuntuos" aria-selected="true">
-              Ubuntu
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" aria-controls="windows">
-              Windows
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" aria-controls="macos">
-              macOS
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>Installation instructions</h2>
+    </div>
 
-      <div id="ubuntuos" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntuos-tab">
-        {% include "appliance/shared/_steps_vm_intro.html" %}
+    <div class="js-tab-container">
+      {% include "appliance/shared/_appliance-os-tabs.html" %}
+
+      <div id="ubuntuos"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="ubuntuos-tab">
         {% include "appliance/shared/_install_instructions_vm_ubuntu.html" %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_ubuntu.html" %}
           {% include "appliance/shared/_steps-multipass-launch.html" %}
@@ -54,9 +32,12 @@
         </ol>
       </div>
 
-      <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-        {% include "appliance/shared/_steps_vm_intro.html" %}
+      <div id="windows"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="windows-tab">
         {% include "appliance/shared/_install_instructions_vm_windows.html" %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_windows.html" %}
           {% include "appliance/shared/_steps-multipass-launch.html" %}
@@ -65,9 +46,12 @@
         </ol>
       </div>
 
-      <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-        {% include "appliance/shared/_steps_vm_intro.html" %}
+      <div id="macos"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="macos-tab">
         {% include "appliance/shared/_install_instructions_vm_macos.html" %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_macos.html" %}
           {% include "appliance/shared/_steps-multipass-launch.html" %}

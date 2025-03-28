@@ -1,24 +1,16 @@
 <li class="p-stepped-list__item">
-  <h4 class="p-stepped-list__title">
-    Find and connect to your appliance
-  </h4>
-    <div class="p-stepped-list__content">
-      <h5>
-        Hyper-V instructions
-      </h5>
-      <p>
-        On Hyper-V, find your virtual appliance IP address:
-      </p>
-      <pre><code>multipass list</code></pre>
-      <h5>
-        VirtualBox instructions
-      </h5>
-      <p>
-        On VirtualBox, forward the appliance port to the outside world with this command in an Administrator PowerShell:
-      </p>
-      <pre><code>env:USERPROFILE\Downloads\PSTools\PsExec.exe -s $env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe controlvm "&lt;instance name&gt;" --natpf1 "{{ appliance.alias }},tcp,,{{ appliance.port}},,{{ appliance.port}}"</code></pre>
-      <p>
-        For more information about this command see the <a href="https://multipass.run/docs/using-virtualbox-in-multipass-windows#port-forwarding">Multipass documentation</a>.
-      </p>
-    </div>
+  <h4 class="p-stepped-list__title">Find and connect to your appliance</h4>
+  <div class="p-stepped-list__content">
+    <h5>Hyper-V instructions</h5>
+    <p>On Hyper-V, find your virtual appliance IP address:</p>
+    <pre><code>multipass list</code></pre>
+    <h5>VirtualBox instructions</h5>
+    <p>On VirtualBox, forward the appliance port to the outside world with this command in an Administrator PowerShell:</p>
+    <pre><code>env:USERPROFILE\Downloads\PSTools\PsExec.exe -s
+$env:VBOX_MSI_INSTALL_PATH\VBoxManage.exe controlvm "&lt;instance 
+name&gt;" --natpf1 "{{ appliance.alias }},tcp,,{{ appliance.port}},,{{ appliance.port}}"</code></pre>
+    <p>
+      For more information about this command see the <a href="https://multipass.run/docs/using-virtualbox-in-multipass-windows#port-forwarding">Multipass documentation</a>.
+    </p>
+  </div>
 </li>

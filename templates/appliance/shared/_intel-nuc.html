@@ -22,7 +22,7 @@
           <div class="p-cta-block">
             <a class="p-button--positive is-inline u-no-margin--left"
                href="{{ appliance.iso_url.pc }}">Download the {{ appliance.appliance_name }} image</a>
-            {% include "appliance/shared/_verify-checksums-pc.html" %}
+            {% include "appliance/shared/_verify-checksums.html" %}
           </div>
         {% else %}
           <h1>Setup your Ubuntu {{ appliance.name }} appliance for an Intel NUC</h1>
@@ -40,32 +40,7 @@
     </div>
 
     <div class="js-tab-container">
-      <nav class="p-tabs">
-        <ul class="p-tabs__list js-tabbed-content" role="tablist" aria-label="Intel NUC installation instructions" data-maintain-hash="true">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntuos"
-               class="p-tabs__link"
-               id="ubuntuos-tab"
-               role="tab"
-               aria-controls="ubuntuos"
-               aria-selected="true">Ubuntu</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#windows"
-               class="p-tabs__link"
-               role="tab"
-               id="windows-tab"
-               aria-controls="windows">Windows</a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#macos"
-               class="p-tabs__link"
-               role="tab"
-               id="macos-tab"
-               aria-controls="macos">macOS</a>
-          </li>
-        </ul>
-      </nav>
+      {% include "appliance/shared/_appliance-os-tabs.html" %}
 
       <section id="ubuntuos"
                class="p-tabs__content"
@@ -133,17 +108,4 @@
   </div>
 </section>
 
-<style>
-  .p-stepped-list--detailed ol li {
-    margin-bottom: 1rem;
-  }
-
-  .p-stepped-list--detailed > .p-stepped-list__item:first-child {
-    &::after {
-      display: none;
-    }
-    border: 0;
-  }
-</style>
-
-<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
