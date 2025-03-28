@@ -5,31 +5,12 @@
   <div class="col">
     <ul class="p-list--divided">
       <li class="p-list__item is-ticked">A microSD card (4GB minimum, 8GB recommended)</li>
-      <li class="p-list__item is-ticked">A Raspberry Pi 
-        {% if appliance.pi is defined and appliance.pi %}
-          {% if appliance.pi.3 %}3{% endif %}
-          {% if appliance.pi.3 and appliance.pi.4 %} &amp; {% endif %}
-          {% if appliance.pi.4 %}4{% endif %}
-        {% else %}3 or 4{% endif %}</li>
+      <li class="p-list__item is-ticked">A Raspberry Pi 3 or 4</li>
       <li class="p-list__item is-ticked">A computer with a microSD card drive</li>
-      <li class="p-list__item is-ticked">A 
-        {% if appliance.pi is defined and appliance.pi %}
-        {% if appliance.pi.3 %}micro-USB power cable{% endif %}
-        {% if appliance.pi.3 and appliance.pi.4 %} ({% endif %}
-        {% if appliance.pi.4 %}USB-C cable for the Pi 4{% endif %}
-        {% if appliance.pi.3 and appliance.pi.4 %}) {% endif %}
-      {% else %}micro-USB power cable (USB-C cable for the Pi 4){% endif %}</li>
+      <li class="p-list__item is-ticked">A micro-USB power cable (USB-C cable for the Pi 4)</li>
       <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-      <li class="p-list__item is-ticked">A{% if appliance.pi is defined and appliance.pi %}
-        {% if appliance.pi.3 %}n HDMI cable for the Pi 3{% endif %}
-        {% if appliance.pi.3 and appliance.pi.4 %} and a{% endif %}
-        {% if appliance.pi.4 %} MicroHDMI cable for the Pi 4{% endif %}
-        {% if appliance.pi.3 and appliance.pi.4 %}) {% endif %}
-      {% else %}HDMI cable for the Pi 3 and a MicroHDMI cable for the Pi 4{% endif %}</li>
+      <li class="p-list__item is-ticked">An HDMI cable for the Pi 3 and a MicroHDMI cable for the Pi 4 </li>
       <li class="p-list__item is-ticked">A USB keyboard</li>
-      {% if appliance.extra_requirements is defined and appliance.extra_requirements.raspberrypi %}
-      <li class="p-list__item is-ticked">{{ appliance.extra_requirements.raspberrypi }}</li>
-      {% endif %}
     </ul>
   </div>
 </div>
