@@ -38,6 +38,7 @@ let entries = {
   credentialsDashboard:
     "./static/js/src/advantage/credentials/dashboard/app.tsx",
   "canonical-cla": "./static/js/src/canonical-cla/app.tsx",
+  "table-of-contents": "./static/js/src/table-of-contents.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

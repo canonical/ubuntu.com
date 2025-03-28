@@ -26,13 +26,21 @@
         </div>
       </div>
     {% endif %}
-      <div class="row">
-        <div class="col-8 l-legal-pages">
+      <div class="row" id="service-description">
+        <div class="col-8 l-legal-pages page-content">
           {{ content | safe }}
           <div class="p-top">
             <a href="#" class="p-top__link">Back to top</a>
           </div>
         </div>
+        <div class="col-3 col-start-large-10">
+          <div class="p-table-of-contents">
+            <div class="p-table-of-contents__section">
+              <h2 class="p-table-of-contents__header">On this page</h2>
+              <nav class="p-table-of-contents__nav" aria-label="Table of contents" id="table-of-contents"></nav>
+            </div>
+          </div>
+          <script src="{{ versioned_static('js/dist/table-of-contents.js') }}" defer></script>
       </div>
     </div>
   {% endblock %}
