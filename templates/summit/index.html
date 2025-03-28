@@ -11,405 +11,562 @@
 {% endblock %}
 
 {% block content %}
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h1 class="p-heading--display">Ubuntu Summit 2024</h1>
+      <hr class="p-rule--muted" />
+      <h2 class="p-heading--1">We've got exciting things in the works for 2025.</h2>
+      <p class="p-heading--2">
+        Keep an eye out on this page for future updates.
+        <br />
+        In the meantime, explore what we were up to in 2024.
+      </p>
+    </div>
+  </section>
 
-  <header id="navigation" class="p-navigation is-dark">
-    <div class="p-navigation__row--25-75">
-      <div class="p-navigation__banner">
-        <div class="p-navigation__tagged-logo">
-          <a class="p-navigation__link" href="#">
-            <div class="p-navigation__logo-tag">
-              <img class="p-navigation__logo-icon"
-                   src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg"
-                   alt="" />
-            </div>
-            <span class="p-navigation__logo-title">Ubuntu Summit</span>
-          </a>
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2 class="p-heading--1">October 25-27</h2>
+          <h2>The Hague, Netherlands</h2>
         </div>
-        <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
-        <a href="#navigation-closed"
-           class="p-navigation__toggle--close"
-           title="close menu">Close menu</a>
+        <div class="col">
+          <p>
+            The Ubuntu Summit is a showcase for the innovative and the ambitious. We invite all experts, builders, engineers, tinkerers, designers and dreamers to join us for an unforgettable three days.
+          </p>
+        </div>
       </div>
-      <nav class="p-navigation__nav" aria-label="Ubuntu summit navigation">
-        <ul class="p-navigation__items">
-          <li class="p-navigation__item is-selected">
-            <a class="p-navigation__link" href="#">About</a>
-          </li>
-          <li class="p-navigation__item">
-            <a class="p-navigation__link" href="https://events.canonical.com/event/51/registrations/">Register</a>
-          </li>
-        </ul>
-      </nav>
     </div>
-  </header>
+    <div class="u-fixed-width">
+      <div class="p-section--shallow">
+        <div class="u-embedded-media u-no-margin--bottom">
+          <iframe width="560"
+                  height="315"
+                  class="u-embedded-media__element"
+                  src="https://www.youtube.com/embed/aR-yTFtjGtw?si=VdJuwA6Uq4u2kEiV&autoplay=1&mute=1&loop=1&playlist=aR-yTFtjGtw"
+                  title="Ubuntu Summit 2024 Highlights"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="u-align--right">
+        <a class="p-heading--2"
+           href="https://youtube.com/playlist?list=PLwFSk464RMxmaZj6wi3e-NLOGtRr4iFF6&feature=shared">Watch talks from
+          <br class="u-hide--large u-hide--medium" />
+        last year&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="p-section--hero">
-    <div class="row">
-      <div class="col-8">
-        <h1 class="p-heading--1 u-no-margin--bottom">Ubuntu Summit 2024</h1>
-        <h2 class="p-heading--2">October 25-27</h2>
-        <h3 class="p-heading--5">The Hague, Netherlands</h3>
-        <p>
-          The Ubuntu Summit is a showcase for the innovative and the ambitious. We invite all experts, builders, engineers, tinkerers, designers and dreamers to join us for an unforgettable three days.
-        </p>
-        <p>
-          <a href="https://events.canonical.com/event/51/registrations/"
-             class="p-button--positive">Join for free</a>
-        </p>
-      </div>
-      <div class="col-4 u-vertically-center">
-        {{ image(url="https://assets.ubuntu.com/v1/048df0ca-Canonical%20Ubuntu%20Summit%20Logo%202024%20with%20text.png",
-                  alt="Ubuntu Summit 2024 Logo",
-                  width="350",
-                  hi_def=True,
-                  loading="auto") | safe
-        }}
-      </div>
-    </div>
-  </div>
   <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>An event for makers</h2>
+        <h2 class="p-heading--1">An event for makers</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow">
+          <div class="p-image-container ">
+            {{ image(url="https://assets.ubuntu.com/v1/56a7db37-event-for-makers.png",
+                        alt="",
+                        width="1200",
+                        height="675",
+                        hi_def=True,
+                        attrs={"class": "p-image-container__image"},
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
         <p>
           The Ubuntu Summit is a showcase of open source innovation. Bringing developers, engineers, designers and tinkerers from all over the world to shape the world through open code.
         </p>
-        <p>Unsure if the Summit is for you? Listen to attendees from last year.</p>
-      </div>
-      <div class="col">
-          <iframe width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/ZOSMTaX5u4c?si=-bSujVqaG8-nzsZf"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen>
-          </iframe>
       </div>
     </div>
   </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <h2 class="p-heading--1">Free to attend and contribute</h2>
+      <p class="p-heading--2">
+        In true open source spirit, the Ubuntu Summit
+        <br />
+        is completely free to attend - both in person and online.
+      </p>
+      <div class="p-section--shallow">
+        <div class="p-image-container">
+          {{ image(url="https://assets.ubuntu.com/v1/e0e28f56-free-to-attend.png",
+                    alt="",
+                    width="2464",
+                    height="1028",
+                    attrs={"class": "p-image-container__image"},
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+      </div>
+      <hr class="p-rule--muted" />
+      <div class="u-align--right">
+        <a class="p-heading--2" href="/summit/call-for-collaboration">Find out how you can contribute&nbsp;&rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2 class="p-heading--1">Featured speakers</h2>
+        </div>
+        <div class="col">
+          <p>
+            The Ubuntu Summit will include a series of talks, workshops, panels and Q&A. We cover a broad range of topics to appeal not only to developers, but anyone involved in open source. You will learn about Linux Desktop, cloud and infrastructure, community, arts, design, and much more.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <hr class="p-rule--muted" />
+      <div class="u-align--right u-sv1">
+        <a href="#"
+           id="carousel-previous"
+           class="p-carousel__previous"
+           style="text-decoration: unset">
+          <i class="p-icon--chevron-left">Previous image</i>
+        </a>
+        &nbsp;
+        <a href="#"
+           id="carousel-next"
+           class="p-carousel__next"
+           style="text-decoration: unset">
+          <i class="p-icon--chevron-right">Next image</i>
+        </a>
+      </div>
+      <div class="p-section--shallow">
+        <div class="p-carousel">
+          <div id="carousel_target">
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/33033ff9-new-speaker-img-1.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/d47edc7a-final_speaker-img-2.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/f47671b6-final_speaker-img-3.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/98a97756-final_speaker-img-4.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/c2044ab9-final_speaker-img-5.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/a48d1893-final_speaker-img-6.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/46eb60da-final_speaker-img-7.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+            <div class="p-carousel__cell">
+              <div class="p-image-container">
+                {{ image(url="https://assets.ubuntu.com/v1/6a882152-final_speaker-img-8.jpg",
+                                alt="",
+                                width="1832",
+                                height="1032",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image"},
+                                loading="lazy") | safe
+                }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="p-rule--highlight" />
+      <p>
+        <a class="p-text--small-caps"
+           href="https://events.canonical.com/event/51/contributions/">View the full list of speakers&nbsp;&rsaquo;</a>
+      </p>
+
+      <ul class="p-list--divided row">
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/545">Marc Jackels</a>
+          </h3>
+          <p class="u-no-padding--top">Dreamworks</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/590">David Morin</a>
+          </h3>
+          <p class="u-no-padding--top">Academy Software Foundation</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/519">Jose Blanquicet</a>
+          </h3>
+          <p class="u-no-padding--top">Microsoft</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/510">Thomas Crider</a>
+          </h3>
+          <p class="u-no-padding--top">Proton-GE</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/509">Carl Richell</a>
+          </h3>
+          <p class="u-no-padding--top">System 76</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/549">Dr. Kevin Ottens</a>
+          </h3>
+          <p class="u-no-padding--top">KDE</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/540">Dongge Liu</a>
+          </h3>
+          <p class="u-no-padding--top">Google</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/512">Matthew Hodgson</a>
+          </h3>
+          <p class="u-no-padding--top">Matrix Foundation</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/544">Erik Holk</a>
+          </h3>
+          <p class="u-no-padding--top">Rust Leadership Council</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/516">Rakhi Sharma</a>
+          </h3>
+          <p class="u-no-padding--top">Servo Project</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 col-start-large-7 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href=" https://events.canonical.com/event/51/contributions/588">Christian Holsing</a>
+          </h3>
+          <p class="u-no-padding--top">Intel</p>
+        </li>
+        <li class="p-list__item col-3 col-medium-3 u-no-padding--top u-no-padding--bottom">
+          <h3 class="p-heading--5 u-no-margin--bottom">
+            <a href="https://events.canonical.com/event/51/contributions/557">Nirav Patel</a>
+          </h3>
+          <p class="u-no-padding--top">Framework</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="p-section">
     <div class="row">
       <hr class="p-rule" />
-      <h2>Featured speakers</h2>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/1666/picture-895558193",
-                    alt="Mark Jackels",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
+      <div class="col-3 col-medium-6">
+        <h2 class="p-heading--1">Topics</h2>
+      </div>
+      <div class="col-9 col-medium-6">
+        <div class="p-equal-height-row">
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/fed38b56-new-linux.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Linux Desktop</h3>
+            <p class="p-equal-height-row__item">
+              Sessions on this track will focus on Linux desktop technologies and applications, desktop environments, Raspberry PI, packaging.
+            </p>
           </div>
-          <a href="https://events.canonical.com/event/51/contributions/545/">
-            <h3 class="p-heading--5">Mark Jackels</h3>
-          </a>
-          <p>Dreamworks</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/3099/picture-1004041007",
-                    alt="David Morin",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/ec34b48a-new-app-ecosystem.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Application Ecosystem</h3>
+            <p class="p-equal-height-row__item">
+              This track will showcase Open Source applications, programming languages, APIs and tools to build and deploy applications.
+            </p>
           </div>
-          <a href="https://events.canonical.com/event/51/contributions/590/">
-            <h3 class="p-heading--5">David Morin</h3>
-          </a>
-          <p>Academy Software Foundation</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2990/picture-3687146351",
-                    alt="Jose Blanquicet",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/8a92eed1-new-content-design.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Content and Design</h3>
+            <p class="p-equal-height-row__item">
+              This track will take you on a journey to discover what makes a great user experience on a wide range of products and using different technologies.
+            </p>
           </div>
-          <a href="https://events.canonical.com/event/51/contributions/519/">
-            <h3 class="p-heading--5">Jose Blanquicet</h3>
-          </a>
-          <p>Microsoft</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2835/picture-4162133408",
-                    alt="Thomas Crider",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/c71d8fa6-new-community.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Community</h3>
+            <p class="p-equal-height-row__item">
+              This track will focus on community building and management, tools and processes useful to community leaders, and documentation in open source projects.
+            </p>
           </div>
-          <a href="https://events.canonical.com/event/51/contributions/510/">
-            <h3 class="p-heading--5">Thomas Crider</h3>
-          </a>
-          <p>Proton-GE</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/270/picture-1215077797",
-                    alt="Carl Richell",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/509/">
-            <h3 class="p-heading--5">Carl Richell</h3>
-          </a>
-          <p>System76</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2933/picture-4115884446",
-                    alt="Dr. Kevin Ottens",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/549/">
-            <h3 class="p-heading--5">Dr. Kevin Ottens</h3>
-          </a>
-          <p>KDE</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2994/picture-4096009663",
-                    alt="Dongge Liu",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/540/">
-            <h3 class="p-heading--5">Dongge Liu</h3>
-          </a>
-          <p>Google</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2947/picture-4051697592",
-                    alt="Matthew Hodgson",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/512/">
-            <h3 class="p-heading--5">Matthew Hodgson</h3>
-          </a>
-          <p>Matrix Foundation</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/3019/picture-407386855",
-                    alt="Eric Holk",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/544/">
-            <h3 class="p-heading--5">Eric Holk</h3>
-          </a>
-          <p>Rust Leadership Council</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2988/picture-3300584080",
-                    alt="Rakhi Sharma",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/516/">
-            <h3 class="p-heading--5">Rakhi Sharma</h3>
-          </a>
-          <p>Servo Project</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/1645/picture-12244883",
-                    alt="Christian Holsing",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/588/">
-            <h3 class="p-heading--5">Christian Holsing</h3>
-          </a>
-          <p>Intel</p>
-        </div>
-      </div>
-      <div class="col-2 p-card">
-        <div class="p-card__content">
-          <div class="p-card__image">
-            {{ image(url="https://events.canonical.com/user/2964/picture-2653677503",
-                    alt="Nirav Patel",
-                    width="165",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <a href="https://events.canonical.com/event/51/contributions/557/">
-            <h3 class="p-heading--5">Nirav Patel</h3>
-          </a>
-          <p>Framework</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <a href="https://events.canonical.com/event/51/timetable/?layout=room#20241025.detailed"
-           class="p-button">Full timetable</a>
-      </div>
-    </div>
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/359e01a1-new-infrastructure.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Infrastructure</h3>
+            <p class="p-equal-height-row__item">
+              This track is focused on Linux server, infrastructure and cloud: where and how they can be deployed, and how they are optimized on platforms ranging from raspberryPI to IoT.
 
+            </p>
+          </div>
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/5fba2c50-new-devices.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Devices</h3>
+            <p class="p-equal-height-row__item">
+              From small smart home devices to robots in space stations, Linux is everywhere. This track celebrates our community work in the robotics and IoT field.
+
+            </p>
+          </div>
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/70b56649-new-data.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Data, MLOps and AI/ML</h3>
+            <p class="p-equal-height-row__item">
+              This landscape is a dynamic one, with new tools, frameworks and models emerging daily. This track is focused on Data, MLOps and AI/ML and how open source empowers the next technological revolution.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/5c5e4abc-new-gaming.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Gaming</h3>
+            <p class="p-equal-height-row__item">
+              In this track, you'll learn about the people behind the gaming software, creative tools and and APIs that are powering this unstoppable phenomenon.
+
+            </p>
+          </div>
+          <div class="p-equal-height-row__col u-sv2">
+            <div class="p-equal-height-row__item">
+              <div class="p-image-container u-hide--small" style="overflow: hidden;">
+                {{ image(url="https://assets.ubuntu.com/v1/e298d421-new-security.png",
+                                alt="",
+                                width="566",
+                                height="380",
+                                hi_def=True,
+                                attrs={"class": "p-image-container__image u-zoom-on-hover"},
+                                loading="lazy") | safe
+                }}
+              </div>
+              <hr class="p-rule--highlight u-hide--medium" />
+            </div>
+            <h3 class="p-heading--5 p-equal-height-row__item">Security</h3>
+            <p class="p-equal-height-row__item">
+              Security is fundamental to Ubuntu, Canonical, and the open source community. This track will focus on the latest developments and practices to keep users and information secure.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="p-section--shallow">
-    <div class="row">
-      <hr class="p-rule" />
-      <h2>Community booths</h2>
-      <p>
-        We're introducing a new element to the Ubuntu Summit experience. This year, attendees can visit a number of community focused booths stationed throughout the main venue space.
-      </p>
+  <hr class="is-fixed-width" />
 
-      <div class="p-logo-section has-misaligned-images">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d86e845a-Canonical_logo_2023.svg",
-                    alt="Canonical",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/92c89bba-microsoft-logo.png",
-                    alt="Microsoft",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/df00697d-Thunderbird_2023_icon.png",
-                    alt="Thunderbird",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/647ef6e6-AsahiLinux_logo_darkbg.png",
-                    alt="Asahi Linux",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/7844834d-Intel_logo_2023.svg.png",
-                    alt="Intel",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/669623f8-UBports.png",
-                    alt="UBPorts",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/7b309b98-system76.png",
-                    alt="System76",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/e8c86767-Framework_Computer_logo.png",
-                    alt="Framework",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/c4ad31db-lutris.png",
-                    alt="Lutris",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/7dfd7dbe-Fairphone_logo.svg.png",
-                    alt="Fairphone",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/11e66fc8-Opensearch_Logo.svg",
-                    alt="OpenSearch",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/ab8ba220-snapcrafters.png",
-                    alt="Snapcrafters",
-                    width="104",
-                    hi_def=True,
-                    loading="lazy") | safe
-            }}
-          </div>
-        </div>
-      </div>
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <p class="p-heading--2">
+        Questions?
+        <br />
+        <a href="mailto:summit@ubuntu.com">Email us</a> or <a href="https://matrix.to/#/#summit:ubuntu.com">join the conversation on Matrix</a>
+      </p>
     </div>
   </section>
 
   {% with title_link="/blog/tag/ubuntu-summit", tag_id="4374" %}
-    {% include "download/shared/_latest-blogs_download.html" %}
+    {% include "/summit/shared/_latest-blogs_summit.html" %}
   {% endwith %}
+
+  <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+
+  <script>
+    initCarousel('#carousel_target', '#carousel-next', '#carousel-previous');
+
+    function initCarousel(carouselSelector, nextSelector, previousSelector) {
+      var nextButton = document.querySelector(nextSelector);
+      var previousButton = document.querySelector(previousSelector);
+      var carousel = new Flickity(carouselSelector, {
+        prevNextButtons: false,
+        wrapAround: true,
+        pageDots: false,
+        autoPlay: true,
+        pauseAutoPlayOnHover: true
+      });
+
+      if (nextButton) {
+        nextButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          carousel.next();
+        });
+      }
+
+      if (previousButton) {
+        previousButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          carousel.previous();
+        });
+      }
+    }
+  </script>
 
 {% endblock content %}

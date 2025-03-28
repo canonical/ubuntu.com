@@ -19,20 +19,11 @@
     articlesContainerSelector: "#latest-articles",
     articleTemplateSelector: "#article-template",
     limit: "{{ limit }}",
-    {
-      %
-      if tagId %
-    }
+    {% if tagId %}
     tagId: "{{ tagId }}",
-    {
-      % endif %
-    } {
-      %
-      if groupId %
-    }
+    {% endif %}
+    {% if groupId %}
     groupId: "{{ groupId }}",
-    {
-      % endif %
-    }
+    {% endif %}
   })
 </script>
