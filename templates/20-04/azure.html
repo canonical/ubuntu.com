@@ -1,0 +1,226 @@
+{% extends "20-04/base_20-04.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% block title %}Ubuntu 20.04 LTS (Focal Fossa) EOS on Azure{% endblock %}
+
+{% block meta_description %}
+  Ubuntu 20.04 LTS goes out of support in May. Upgrade to Ubuntu Pro or move to a newer version of Ubuntu to maintain a supported OS. Learn more.
+{% endblock %}
+
+{% block meta_keywords %}Ubuntu on Azure, Secure VMs{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1qlz7QbmUGHouIvq95XuJbQkhzitzG7UupBKq_Bl2zfg/edit
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on Azure',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu 20.04 LTS (Focal Fossa) is reaching the end of its 5 years of standard support on May 31, 2025, exposing your systems to unpatched vulnerabilities. To stay secure, you must act now. Explore your options below to ensure continued protection.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/get-ubuntu-pro/"
+         class="p-button--positive">Update on Azure</a>
+      <a href="https://www.brighttalk.com/webcast/6793/638246"
+         class="p-button">Watch our webinar</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--3-2 is-cover is-highlighted">
+        {{ image(url="https://assets.ubuntu.com/v1/74c5e0ac-hero-img.png",
+                alt="",
+                width="1200",
+                height="800",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Standard support for Ubuntu 20.04 LTS  ends on May 31, 2025</h2>
+      </div>
+      <div class="col">
+        <p>
+          Transitioning to an Ubuntu version with active standard support (Ubuntu 22.04 LTS or 24.04 LTS) is crucial for performance, hardware compatibility, and access to new technologies, making it ideal for new workloads. However, for existing deployments, the process may be more complex.
+        </p>
+        <div class="p-cta-block">
+          <a href="https://ubuntu.com/about/release-cycle">Learn more about the Ubuntu lifecycle and release cadence&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <h2>What are your options?</h2>
+
+      <ol class="p-stepped-list--detailed">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Upgrade to an Ubuntu version with active standard support (Ubuntu 22.04 LTS or 24.04 LTS)
+          </h3>
+          <div class="p-stepped-list__content">
+            <h4 class="p-heading--5">For Ubuntu 22.04 LTS (coverage through 2027):</h4>
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">Upgrade directly from Ubuntu 20.04 LTS</li>
+              <li class="p-list__item has-bullet">
+                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-server-jammy?tab=Overview">Launch a new instance of Ubuntu 22.04 LTS</a>
+              </li>
+            </ul>
+            <h4 class="p-heading--5">For Ubuntu 24.04 LTS (coverage through 2029):</h4>
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">Upgrade to Ubuntu 22.04 LTS first and then upgrade to 24.04 LTS</li>
+              <li class="p-list__item has-bullet">
+                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview">Launch a new instance of Ubuntu 24.04 LTS</a>
+              </li>
+            </ul>
+            <div class="p-cta-block">
+              <a href="https://ubuntu.com/server/docs/upgrade-introduction"
+                 class="p-button--positive">Upgrade Ubuntu Server</a>
+              <a href="https://ubuntu.com/blog/ubuntu-2004-lts-security-after-standard-support">Launch a fresh instance through CLI&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Expand security maintenance with an Ubuntu Pro 20.04 subscription (coverage through 2030)
+          </h3>
+          <div class="p-stepped-list__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/get-ubuntu-pro/">In-place upgrade from Ubuntu 20.04 to Ubuntu Pro 20.04 with no downtime</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal?tab=Overview">Fresh installation of Ubuntu Pro 20.04</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="https://ubuntu.com/azure#get-in-touch">Contact us</a> to purchase annual subscription tokens
+              </li>
+            </ul>
+
+            <hr class="p-rule--muted" />
+            <p>
+              Ubuntu Pro 20.04 LTS expanded security maintenance (ESM) for your entire software supply chain including the Linux kernel, Ubuntu base OS, key infrastructure components, and over 25,000 open-source applications until 2030, adding 5 years of support. It includes 24-hour critical vulnerability fixes, Landscape, kernel livepatching, hardening scripts based on CIS and DISA-STIG standards, and FIPS 140 compliance, ensuring your infrastructure meets U.S. government security requirements for cryptographic modules.
+            </p>
+            <p>
+              Ubuntu Pro 20.04 is available with pay-as-you-go metered pricing on Azure, with charges automatically billed to your Azure account for easy procurement. Additionally, you can easily perform an in-place upgrade to ensure a seamless transition from Ubuntu LTS to Ubuntu Pro. An in-place upgrade is 2 commands with no downtime.
+            </p>
+            <div class="p-cta-block">
+              <a href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/get-ubuntu-pro/">Learn how to easily perform an in-place upgrade on Azure&nbsp;&rsaquo;</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3>Add-ons</h3>
+      </div>
+      <div class="col">
+        <h4 class="p-heading--5 u-no-margin--bottom">Enterprise-grade phone & ticket support</h4>
+        <p>
+          Build confidently with 24/7/365 phone and ticket support, ensuring fast resolution for issues across 25,000+ Ubuntu packages, backed by 20 years of expertise in building and sustaining open source software. Learn more here.
+        </p>
+        <hr class="p-rule--muted" />
+        <h4 class="p-heading--5 u-no-margin--bottom">Legacy support</h4>
+        <p>Add on Legacy Support to Ubuntu Pro and expand security maintenance (coverage through 2032)</p>
+      </div>
+    </div>
+  </section>
+  <section class="p-section">
+    <div class="u-fixed-width">
+      {{ image(url="https://assets.ubuntu.com/v1/4fb3a7e7-esm-updated.png",
+            alt="",
+            width="2464",
+            height="1027",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    </div>
+  </section>
+
+  {% call(slot) vf_quote_wrapper(
+    title_text="What our customers say",
+    quote_size="medium",
+    quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
+    citation_source_name_text="Zivago Lee",
+    citation_source_title_text="Director of DevOps Engineering",
+    citation_source_organisation_text="Interana",
+    is_shallow=True
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/8e72bb50-interana.png",
+            alt="",
+            width="568",
+            height="125",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/interana-casestudy">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  {% call(slot) vf_quote_wrapper(
+    quote_size="medium",
+    quote_text="ESM has given us the space to plan what comes next. It's helping us get into a position where we can have a more sustainable infrastructure.",
+    citation_source_name_text="Andy Parker",
+    citation_source_title_text="Engineering Manager",
+    citation_source_organisation_text="TIM"
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/6a7de9ba-tim.png",
+            alt="",
+            width="568",
+            height="149",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/case-study-acuris">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  <hr class="is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        We’re here to help – <a href="https://ubuntu.com/azure#get-in-touch">send a message</a> or <a href="mailto:azure@canonical.com">email azure@canonical.com</a>
+      </h2>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+  {% with section_classes='p-section--deep', heading_topic='Ubuntu 20.04 LTS', heading_class='p-heading--2', limit='4', show_image='True', show_excerpt='True', hide_date='True', is_title_link='True', tag_id='4540', tag_name='ubuntu-on-azure' %}
+    {% include "shared/_latest_news_strip.html" %}
+  {% endwith %}
+
+{% endblock content %}
