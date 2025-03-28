@@ -167,15 +167,11 @@ jobs:
           dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
           dotrun exec coverage xml -o ./tests/coverage.xml
 
-  python-coverage:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Get Cover 
-        uses: orgoro/coverage@v3.2
-        with:
-          coverageFile: ./tests/coverage.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install diff-cover
+        run: dotrun exec pip3 install diff-cover
 
+      - name: Show diff coverage report
+        run: dotrun exec diff-cover ./tests/coverage.xml --compare-branch=origin/main
 
   test-js:
     runs-on: ubuntu-latest
