@@ -145,7 +145,7 @@ jobs:
           fetch-depth: 0 # fetch all history for codecov
 
       - name: Configure Git safe directory
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        run: git config --global --add safe.directory /home/ubuntu/ubuntu-com
 
       - name: Install requirements
         run: |
