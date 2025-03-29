@@ -1,0 +1,449 @@
+{% extends 'base_index.html' %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1hQ-n0FrjzQGAOUzIAshzxwhu5PpBC2ClBJMNSMO90Zo/edit
+{% endblock meta_copydoc %}
+
+{% block title %}Ubuntu Security Assurances{% endblock %}
+
+{% block meta_description %}
+  Ubuntu is continuously developed to provide leading protection in a dynamic cybersecurity environment.
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu security assurances',
+    layout='50/50-full-width-image'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        The open source software ecosystem is vast, requiring careful consideration in information security risk management. Ubuntu is carefully engineered to provide a solid foundation for any type of deployment, with transparent security processes built on modern best practices.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <div class="p-image-container--cinematic is-cover">
+        {{ image(url="https://assets.ubuntu.com/v1/6656461c-hero.png",
+                alt="",
+                width="2464",
+                height="1027",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-image-container__image"}) | safe
+        }}
+      </div>
+    {% endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>A critical link in your software supply chain</h2>
+      </div>
+      <div class="col">
+        <p>
+          Assessing the software supply chain is a critical aspect of building a strong security posture. Through its commitment to open source, Ubuntu is built on transparent processes that can be relied upon by all its users and integrated within enterprise risk assessment programs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Stable security updates</h2>
+        </div>
+        <div class="col">
+          <p>
+            The Ubuntu Security Team fixes vulnerabilities through targeted security updates that maintain backwards compatibility in all LTS releases, with support for up to 12 years.
+          </p>
+          <hr class="p-rule--muted" />
+          <p>
+            <a href="/security/esm">Learn about Expanded Security Maintenance</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Vulnerability visibility</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Known vulnerabilities that affect Ubuntu packages are tracked in the public Ubuntu CVE Tracker. The information, including available fixes, is distributed through open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>) that can be integrated with any third-party tool that supports these schemas.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Long-term stability</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Most open source software suppliers only address vulnerabilities in the latest version, but updating to a cutting-edge release carries a risk of introducing incompatible changes or the removal of relied-upon functionality. Instead, Ubuntu users receive bespoke security updates that only address the security flaws and retain compatibility with the software version originally distributed in the Ubuntu release they have installed.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Regression mitigation</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              Packages go through comprehensive regression testing before updates are made available, reducing the risk of downtime or the complexities of rolling them back. The unattended-upgrades feature applies updates automatically and is enabled by default on Ubuntu installations.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Rapid fixes</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              The Ubuntu Security Team collaborates with security researchers, open-source projects and other industry groups to prepare fixes for high-impact vulnerabilities within closed embargoes, in order to deliver security updates at the same time the vulnerabilities are publicly disclosed.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">Notification</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              All security updates are followed by Ubuntu Security Notices (<a href="/security/notices">USNs</a>), allowing operational teams to triage and apply them in a timely fashion. For custom integrations, the vulnerability data feeds provide the same information in open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Software assessment</h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu distributes over 36,000 open source software packages. Understanding the risk exposure from such a large catalogue is a daunting task.
+        </p>
+        <p>The distinction between the Main and Universe repositories is meant to help with this evaluation:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4 col-medium-6">
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">The Main repository</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              With over 2,300 pieces of software, the Main repository is assembled by hand-picking the most critical packages and evaluating them from a quality, maintainability and security point of view, a process known as a Main Inclusion Review (MIR). This includes security audits, which often reveal vulnerabilities that are subsequently fixed.
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3 col-medium-3">
+            <h3 class="p-heading--5">The Universe repository</h3>
+          </div>
+          <div class="col-6 col-medium-3">
+            <p>
+              This repository provides a vast, ready-to-use ecosystem of open source software and consists of over 34,000 packages in the latest Ubuntu LTS (Noble Numbat). In addition to community support, selected security updates are also provided by the Ubuntu Security Team as part of Ubuntu Pro Expanded Security Maintenance for applications (ESM-Apps).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Up-to-date cryptography</h2>
+        </div>
+        <div class="col">
+          <p>
+            Cryptography underpins information security, so it is critical to stay up to date with the recommended protocol versions and algorithms. Ubuntu offers the foundation for a strong security posture.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="p-equal-height-row">
+        <div class="p-equal-height-row__col u-hide--medium u-hide--small"></div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/e77ef162-1.png",
+                            alt="",
+                            width="852",
+                            height="1278",
+                            hi_def=True,
+                            attrs={"class": "p-image-container__image"},
+                            loading="lazy") | safe
+              }}
+            </div>
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          </div>
+          <div class="p-equal-height-row__item">
+            <p class="p-heading--5">Diverse libraries</p>
+            <p>
+              Ubuntu distributes a large selection of cryptographic libraries. This facilitates the security maintenance of a wide range of software, whether internally-developed or popular open source projects. Stable security updates reduce incompatibility risks and simplify patch management.
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/1b63136f-2.png",
+                            alt="",
+                            width="852",
+                            height="1278",
+                            attrs={"class": "p-image-container__image"},
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          </div>
+          <div class="p-equal-height-row__item">
+            <p class="p-heading--5">Modern cryptography</p>
+            <p>
+              The Ubuntu Security Team ensures that recommended algorithms are used in the core functions of the operating system, in addition to deprecating the ones that are no longer considered safe by current best practices.
+            </p>
+          </div>
+        </div>
+        <div class="p-equal-height-row__col">
+          <div class="p-equal-height-row__item">
+            <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+              {{ image(url="https://assets.ubuntu.com/v1/c7d53200-3.png",
+                            alt="",
+                            width="852",
+                            height="1278",
+                            attrs={"class": "p-image-container__image"},
+                            hi_def=True,
+                            loading="lazy") | safe
+              }}
+            </div>
+            <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          </div>
+          <div class="p-equal-height-row__item">
+            <p class="p-heading--5">FIPS certification</p>
+            <p>
+              Ubuntu Pro delivers drop-in replacements of the most popular cryptographic software packages for use in deployments that require compliance with the FIPS 140 series of standards, in accordance with U.S. government regulations. The necessary validation process is done through an accredited third-party auditor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-section--shallow">
+      <div class="grid-row">
+        <hr class="p-rule--muted" />
+        <div class="grid-col-4 grid-col-start-large-5 grid-col-medium-2 grid-col-small-2">
+          <p>
+            <a href="/pro">Explore the benefits of Ubuntu Pro</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="p-section--shallow">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h2>Continuous hardening</h2>
+        </div>
+        <div class="col">
+          <p>
+            When vulnerabilities are inevitably discovered, security safeguards reduce the likelihood that threats materialize through exploitation – reducing risk. Ubuntu is regularly updated to integrate the latest security features that have a broad impact on all software running on the distribution.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="p-section">
+      <div class="row">
+        <div class="col-9 col-start-large-4 col-medium-6">
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Binary protection</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                The Ubuntu Security Team periodically reviews system-wide software compilation settings to include the newest security features, such as memory exploitation protections.
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Linux hardening</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                The Linux kernel fulfils a central role in providing mitigations for a wide-range of vulnerabilities. The Ubuntu-distributed kernel packages have a selection of hand-picked settings enabled that provide a strong balance between usability and security; these are evaluated on a continuous basis.
+              </p>
+            </div>
+          </div>
+          <hr class="p-rule--muted" />
+          <div class="row">
+            <div class="col-3 col-medium-3">
+              <h3 class="p-heading--5">Security features</h3>
+            </div>
+            <div class="col-6 col-medium-3">
+              <p>
+                From application confinement and mandatory access control (MAC) to integrity protections or data confidentiality features, the Ubuntu distribution offers a wide selection of ready-to-use security controls to enhance the protection of system deployments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Safe defaults</h2>
+      </div>
+      <div class="col">
+        <p>
+          Security-conscious default settings improve the posture of all Ubuntu users, while reducing the complexity associated with critical installations. These include:
+        </p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="grid-col-4 grid-col-start-large-5 grid-col-medium-2 grid-col-start-medium-3">
+        <hr class="p-rule--muted" />
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">No externally-accessible network services on default installations</li>
+          <li class="p-list__item is-ticked">Automatic security updates</li>
+          <li class="p-list__item is-ticked">Applications</li>
+          <li class="p-list__item is-ticked">Various security-sensitive kernel features</li>
+          <li class="p-list__item is-ticked">Restrictive configurations of software packages</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Software integrity protection</h2>
+      </div>
+      <div class="col">
+        <div class="p-section--shallow u-hide--medium">
+          <div class="p-image-container--3-2 is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/7146285a-software%20integrity%20protection.png",
+                        alt="",
+                        width="1800",
+                        height="1200",
+                        hi_def=True,
+                        loading="lazy") | safe
+            }}
+          </div>
+        </div>
+        <div class="p-section--shallow">
+          <p>
+            Ubuntu distributes software through a network of Canonical services and third-party mirrors. The risk of supply chain attacks that compromise these channels is reduced through strong cryptographic integrity protections.
+          </p>
+          <p>
+            Package management applications automatically verify software signatures, which are generated in confined environments running on Canonical infrastructure.
+          </p>
+          <p>
+            Ubuntu installation media can similarly be verified, a process that is strongly recommended because it offers integrity protection even when the media in question is retrieved over untrusted connections.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="grid-row">
+      <hr class="p-rule" />
+      <div class="grid-col-2">
+        <h2>Resources</h2>
+      </div>
+      <div class="grid-col-6 grid-col-medium-4">
+        <div class="grid-row">
+          <div class="grid-col-2 grid-col-medium-2">
+            <h3 class="p-heading--5">Ubuntu Pro features</h3>
+          </div>
+          <div class="grid-col-4 grid-col-medium-2 grid-col-start-medium-3">
+            <p>
+              <a href="/security/esm">ESM</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/security/livepatch">Livepatch</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/security/compliance-automation">Standards Compliance</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/landscape">Landscape</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="grid-row">
+          <div class="grid-col-2 grid-col-medium-2">
+            <h3 class="p-heading--5">Technical documentation</h3>
+          </div>
+          <div class="grid-col-4 grid-col-medium-2 grid-col-start-medium-3">
+            <p>
+              <a href="https://documentation.ubuntu.com/server/how-to/security/">Ubuntu Server Security documentation</a>
+            </p>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="grid-row">
+          <div class="grid-col-2 grid-col-medium-2">
+            <h3 class="p-heading--5">Security articles</h3>
+          </div>
+          <div class="grid-col-4 grid-col-medium-2 grid-col-start-medium-3">
+            <p>
+              <a href="/blog/a-comprehensive-guide-to-nis2-compliance-part-1-understanding-nis2-and-its-scope">A comprehensive guide to NIS2 Compliance: Part 1 – Understanding NIS2 and its scope</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/blog/canonical-announces-ubuntu-security-research-alliance-program">Canonical announces Ubuntu Security Research Alliance Program</a>
+            </p>
+            <hr class="p-rule--muted" />
+            <p>
+              <a href="/blog/what-is-system-hardening-definition-and-best-practices">What is System Hardening? Essential Checklists from OS to Applications</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
