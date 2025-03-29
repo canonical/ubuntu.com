@@ -1,0 +1,28 @@
+
+name: Percy testing on PRs targeting main
+run-name: Testing Percy on branch ${{ github.head_ref }}
+
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+jobs:
+  snapshot:
+    name: Take Percy snapshots
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SCM
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/percy-snapshot
+        with:
+          branch_name: ${{ github.head_ref }}
+          commitsh: ${{ github.sha }}
+          percy_token_write: ${{ secrets.PERCY_TOKEN_WRITE }}
