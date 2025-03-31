@@ -16,6 +16,7 @@ layout:
   - ubuntu-com
 toc: False
 ---
+
 # 1.32+ck1
 
 ### Mar 28, 2025 - `charmed-kubernetes --channel 1.32/stable`

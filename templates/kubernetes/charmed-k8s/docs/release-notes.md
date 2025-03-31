@@ -12,9 +12,16 @@ permalink: release-notes.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
 # 1.32+ck1
 
 ### Mar 28, 2025 - `charmed-kubernetes --channel 1.32/stable`
+
+### Backports on Mar 31, 2025
+* **1.31+ck2** - `charmed-kubernetes --channel 1.31/stable`
+* **1.30+ck2** - `charmed-kubernetes --channel 1.30/stable`
+* **1.29+ck5** - `charmed-kubernetes --channel 1.29/stable`
+* **1.28+ck3** - `charmed-kubernetes --channel 1.28/stable`
 
 ## Notable Fixes
 

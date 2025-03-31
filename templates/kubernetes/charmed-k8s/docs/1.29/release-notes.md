@@ -13,6 +13,33 @@ layout: [base, ubuntu-com]
 toc: false
 ---
 
+# 1.29+ck5
+
+### Mar 31, 2025 - `charmed-kubernetes --channel 1.29/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker Charm
+* [LP#2104056](https://bugs.launchpad.net/bugs/2104056) Update ingress-nginx to 1.11.5 resolving CVE-2025-1974
+
+# 1.29+ck4
+
+### Jul 31, 2024 - `charmed-kubernetes --channel 1.29/stable`
+
+## Notable Fixes
+
+### Ceph-CSI Charm
+
+* [LP#2073297](https://bugs.launchpad.net/bugs/2073297)
+  Provides charm configuration options for each of the storage-class parameters
+  * `cephfs-storage-class-parameters`
+  * `ceph-xfs-storage-class-parameters`
+  * `ceph-ext4-storage-class-parameters`
+  
+  Provides a charm action which aids in remove storage-classes if they prevent
+    the charm from creating with the existing storage-class parameters.
+  * `delete-storage-class`
+
 # 1.29+ck3
 
 ### Jun 14, 2024 - `charmed-kubernetes --channel 1.29/stable`
