@@ -34,7 +34,7 @@
          class="p-button">Watch our webinar</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
-      <div class="p-image-container--3-2 is-cover is-highlighted">
+      <div class="p-image-container--3-2 is-cover is-highlighted u-hide--small u-hide--medium">
         {{ image(url="https://assets.ubuntu.com/v1/74c5e0ac-hero-img.png",
                 alt="",
                 width="1200",
@@ -65,12 +65,15 @@
 
   <section class="p-section">
     <div class="u-fixed-width">
-      <h2>What are your options?</h2>
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>What does this mean for you?</h2>
+      </div>
 
       <ol class="p-stepped-list--detailed">
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-            Upgrade to an Ubuntu version with active standard support (Ubuntu 22.04 LTS or 24.04 LTS)
+            Upgrade to an Ubuntu version with active standard support <br class="u-hide--small u-hide--large" />(Ubuntu 22.04 LTS or 24.04 LTS)
           </h3>
           <div class="p-stepped-list__content">
             <h4 class="p-heading--5">For Ubuntu 22.04 LTS (coverage through 2027):</h4>
@@ -99,7 +102,7 @@
 
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-            Expand security maintenance with an Ubuntu Pro 20.04 subscription (coverage through 2030)
+            Expand security maintenance with an Ubuntu Pro 20.04 subscription <br class="u-hide--small u-hide--large" />(coverage through 2030)
           </h3>
           <div class="p-stepped-list__content">
             <ul class="p-list--divided">
@@ -160,7 +163,7 @@
   </section>
 
   {% call(slot) vf_quote_wrapper(
-    title_text="What customers say about Ubuntu Pro",
+    title_text="What customers say <br />about Ubuntu Pro",
     quote_size="medium",
     quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
     citation_source_name_text="Zivago Lee",
@@ -170,7 +173,7 @@
     ) -%}
 
     {%- if slot == 'signpost_image' -%}
-      {{ image(url="https://assets.ubuntu.com/v1/8e72bb50-interana.png",
+      {{ image(url="https://assets.ubuntu.com/v1/fe89136b-updated-interana.png",
             alt="",
             width="568",
             height="125",
@@ -194,7 +197,7 @@
     ) -%}
 
     {%- if slot == 'signpost_image' -%}
-      {{ image(url="https://assets.ubuntu.com/v1/6a7de9ba-tim.png",
+      {{ image(url="https://assets.ubuntu.com/v1/6b40fe10-updated-tim.png",
             alt="",
             width="568",
             height="149",
