@@ -7,6 +7,7 @@ import InitiateButton from "../InitiateButton/InitiateButton";
 
 const ChannelOffersList = () => {
   const [selectValue, setSelectValue] = useState("default");
+  const [searchValue, setSearchValue] = useState("");
   const {
     isLoading,
     isError,
@@ -74,10 +75,64 @@ const ChannelOffersList = () => {
     },
   );
 
+  const searchOfferList = sortedOffersList?.filter((offer: OfferType) => {
+    const opId = offer?.external_ids?.[0]?.ids?.[0];
+    const opportunityNumber = offer?.opportunity_number;
+    const creatorName = offer?.channel_deal_creator_name;
+    const resellerName = offer?.reseller_account_name;
+    const customerName = offer?.end_user_account_name;
+
+    return (
+      opId?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      opportunityNumber?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      creatorName?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      resellerName?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      customerName?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  });
+
   return (
     <>
-      <Row style={{ display: "flex", justifyContent: "end" }}>
+      <Row>
         <Col size={3}>
+          <form className="p-search-box">
+            <label className="u-off-screen" htmlFor="search">
+              Search
+            </label>
+            <input
+              type="search"
+              id="search"
+              className="p-search-box__input"
+              name="search"
+              placeholder="Search"
+              autoComplete="on"
+              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
+            />
+            {searchValue != "" && (
+              <button
+                className="p-search-box__reset"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setSearchValue("");
+                }}
+              >
+                <i className="p-icon--close">Close</i>
+              </button>
+            )}
+            <button
+              className="p-search-box__button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              <i className="p-icon--search">Search</i>
+            </button>
+          </form>
+        </Col>
+        <Col emptyMedium={10} emptyLarge={10} size={3}>
           <Select
             defaultValue="default"
             id="offerSelect"
@@ -126,7 +181,7 @@ const ChannelOffersList = () => {
             className: "u-align--right",
           },
         ]}
-        rows={sortedOffersList?.map((offer: OfferType) => {
+        rows={searchOfferList?.map((offer: OfferType) => {
           const status = offer?.actionable ? "Valid" : "Invalid";
           const opId = offer?.external_ids?.[0]?.ids?.[0];
 
