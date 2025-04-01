@@ -1,5 +1,5 @@
 const baseURL = 'http://localhost:8001';
-var timeout = 7000;
+var timeout = 30000;
 const acceptCookies = () => {
   const cookieBanner = document.querySelector(".cookie-policy");
   if (cookieBanner) {

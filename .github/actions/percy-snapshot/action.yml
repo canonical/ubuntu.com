@@ -100,7 +100,7 @@ runs:
         # Start a percy build and capture the stdout and stderr
         percy_output=$(
           {
-            yarn percy 2>&1
+            yarn percy-snapshot 2>&1
           } | tee /dev/stderr
         )
         
