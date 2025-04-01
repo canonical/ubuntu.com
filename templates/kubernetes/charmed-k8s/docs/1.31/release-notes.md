@@ -17,6 +17,15 @@ toc: False
 
 ---
 
+# 1.31+ck2
+
+### Mar 31, 2025 - `charmed-kubernetes --channel 1.31/stable`
+
+## Notable Fixes
+
+### Kubernetes Worker Charm
+* [LP#2104056](https://bugs.launchpad.net/bugs/2104056) Update ingress-nginx to 1.11.5 resolving CVE-2025-1974
+
 # 1.31+ck1
 
 ### Dec 16, 2024 - `charmed-kubernetes --channel 1.31/stable`
