@@ -1,59 +1,50 @@
-<section class="p-strip--suru-topped" style="overflow: visible;">
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      {% if appliance.iso_url.raspberrypi %}
-      <h1>Install the {{ appliance.appliance_name }} Ubuntu Appliance for Raspberry&nbsp;Pi</h1>
-      <p class="u-no-margin--bottom">
-        <a class="p-button--positive is-inline u-no-margin--left" href="{{ appliance.iso_url.raspberrypi }}">Download the {{ appliance.appliance_name }} image</a>
-      </p>
-      {% include "appliance/shared/_verify-checksums.html" %}
-      {% else %}
-      <h1>Setup your Ubuntu {{ appliance.appliance_name }} appliance for Raspberry Pi</h1>
-      {% endif %}
+<section class="p-section--hero">
+  <div class="row--25-75-on-large">
+    <div class="col">
+      <div class="p-section--shallow p-image-wrapper">
+        {{ image(url="https://assets.ubuntu.com/v1/fd190a31-logo-raspberrypi.png",
+                alt="",
+                width="166",
+                height="45",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
-        alt="",
-        height="227",
-        width="350",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+    <div class="col">
+      <div class="p-section--shallow">
+        {% if appliance.iso_url.raspberrypi %}
+          <h1>Install the {{ appliance.appliance_name }} Ubuntu Appliance for Raspberry&nbsp;Pi</h1>
+          <div class="p-cta-block">
+            <a class="p-button--positive" href="{{ appliance.iso_url.raspberrypi }}">Download the {{ appliance.appliance_name }} image</a>
+
+            {% include "appliance/shared/_verify-checksums-pc.html" %}
+          </div>
+        {% else %}
+          <h1>Setup your Ubuntu {{ appliance.appliance_name }} appliance for Raspberry Pi</h1>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>
 
-<hr>
-<section class="p-strip is-bordered">
+<section class="p-section">
   <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
-    <div class="js-tab-container">
-      <nav class="p-tabs">
-        <ul class="p-tabs__list" role="tablist">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntuos" class="p-tabs__link" id="ubuntuos-tab" role="tab" aria-controls="ubuntuos" aria-selected="true">
-              Ubuntu
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" aria-controls="windows">
-              Windows
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" aria-controls="macos">
-              macOS
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>Installation instructions</h2>
+    </div>
 
-      <div id="ubuntuos" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntuos-tab">
+    <div class="js-tab-container">
+      {% include "appliance/shared/_appliance-os-tabs.html" %}
+      <div id="ubuntuos"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="ubuntuos-tab">
         {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with os="Ubuntu" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% with os="Ubuntu" %}
+          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+        {% endwith %}
         <ol class="p-stepped-list--detailed">
           {% include 'appliance/shared/_steps_pi_imager_ubuntu.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
@@ -65,9 +56,14 @@
         </ol>
       </div>
 
-      <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+      <div id="windows"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="windows-tab">
         {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with  os="Windows" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% with os="Windows" %}
+          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+        {% endwith %}
         <ol class="p-stepped-list--detailed">
           {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
@@ -80,9 +76,14 @@
         </ol>
       </div>
 
-      <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+      <div id="macos"
+           class="p-tabs__content"
+           role="tabpanel"
+           aria-labelledby="macos-tab">
         {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with os="macOS" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% with os="macOS" %}
+          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+        {% endwith %}
         <ol class="p-stepped-list--detailed">
           {% include 'appliance/shared/_steps_pi_imager_macos.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
@@ -96,5 +97,15 @@
     </div>
   </div>
 </section>
+
+<style>
+  .p-stepped-list--detailed>.p-stepped-list__item:first-child {
+    &::after {
+      display: none;
+    }
+
+    border: 0;
+  }
+</style>
 
 <script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>

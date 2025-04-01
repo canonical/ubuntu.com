@@ -146,7 +146,6 @@ from webapp.views import (
     BlogSitemapPage,
     account_query,
     appliance_install,
-    appliance_portfolio,
     build_vulnerabilities,
     build_vulnerabilities_list,
     process_active_vulnerabilities,
@@ -475,10 +474,6 @@ app.add_url_rule(
         "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
     ),
     view_func=appliance_install,
-)
-app.add_url_rule(
-    "/appliance/portfolio",
-    view_func=appliance_portfolio,
 )
 
 # blog section

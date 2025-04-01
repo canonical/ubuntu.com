@@ -1,9 +1,26 @@
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-8">
+<section class="p-section--deep">
+  <div class="row--50-50-on-large">
+    <hr class="p-rule" />
+    <div class="col">
       <h2>
-        Start using your Mosquitto Ubuntu Appliance
+        Start using your Mosquitto
+        <br />
+        Ubuntu Appliance
       </h2>
+    </div>
+    <div class="col">
+      <div class="p-section--shallow">
+        <div class="p-image-container is-highlighted">
+          {{ image(url="https://assets.ubuntu.com/v1/f884efa0-bottom-mosquitto.png",
+                    alt="",
+                    width="1800",
+                    height="1013",
+                    hi_def=True,
+                    loading="lazy",
+                    attrs={"class": "p-image-container__image"}) | safe
+          }}
+        </div>
+      </div>
       <p>
         After installing the Mosquitto image, the Mosquitto broker will be running with the default configuration, listening for connections on port 1883. To test the broker, you can use the <code>mosquitto-pub</code> and <code>mosquitto-sub</code> command-line utilities. This is a basic test example to start using your appliance. If you want more information about Mosquitto and what to do next the best place to go is the <a href="https://mosquitto.org/">Mosquitto website</a>.
       </p>
@@ -22,19 +39,21 @@
       <p>
         The <code>-t snap/example</code> option sets the topic to subscribe and can be provided multiple times. The <code>-v</code> option means to print both the topic of the message as well as its payload. Now to publish a message to the same topic you use mosquitto_pub:
       </p>
-      <pre><code>mosquitto_pub -h localhost -t 'snap/example' -m 'Hello from mosquitto_pub'</code></pre>
+      <pre><code>mosquitto_pub -h localhost -t 'snap/example' -m 'Hello from
+mosquitto_pub'</code></pre>
       <p>
         In this case, the <code>-m</code> option provides the message payload to be published. If everything works as planned, you should see <code>mosquitto_sub</code> print
       </p>
 
       <pre><code>snap/example Hello from mosquitto_pub</code></pre>
       <p>
-        This is a very simple example but allows testing of the broker operation. Other things you may wish to try are subscribing to wildcard topics that include <code>#</code> or <code></code>, or subscribing to the <code>$SYS/#</code> topic to see the information the broker is publishing about itself.
+        This is a very simple example but allows testing of the broker operation. Other things you may wish to try are subscribing to wildcard topics that include <code>#</code>, or subscribing to the <code>$SYS/#</code> topic to see the information the broker is publishing about itself.
       </p>
       <div class="p-notification" id="notification">
         <div class="p-notification__content">
           <span class="p-notification__title">Note:</span>
-          <p class="p-notification__message">The command line treats <code>#</code> as a special character, and <code>SSYS</code> will be expanded as an environment variable if you do not surround them with single quotes.
+          <p class="p-notification__message">
+            The command line treats <code>#</code> as a special character, and <code>SSYS</code> will be expanded as an environment variable if you do not surround them with single quotes.
           </p>
         </div>
       </div>
@@ -45,15 +64,5 @@
         This file contains all of the broker configurations, in a similar manner to the <a href="https://mosquitto.org/man/">man page</a>. To create your own configuration, copy the example file to <code>/var/snap/mosquitto/common/mosquitto.conf</code> and edit according to your needs. Any additional files required by the configuration, such as TLS certificates and keys, must also be placed in <code>/var/snap/mosquitto/common/</code> and have their full path provided in the configuration file.
       </p>
     </div>
-    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{  image(
-        url="https://assets.ubuntu.com/v1/0fbfab25-mosquitto-text-side.png",
-        alt="",
-        width="400",
-        height="81",
-        hi_def=True,
-        loading="lazy",
-        ) | safe}}
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
