@@ -20,7 +20,7 @@ meta_copydoc %}
 {% macro accordion(prefix, items, is_first_open=False ) %}
   <aside class="p-accordion">
     <ul class="p-accordion__list">
-      {% for item in items %}
+      {% for title, description in items %}
         {% set unique_id = prefix ~ loop.index0 %}
         <li class="p-accordion__group">
           <strong role="heading" aria-level="4" class="p-accordion__heading">
@@ -28,13 +28,13 @@ meta_copydoc %}
                     class="p-accordion__tab"
                     id="{{ unique_id }}-tab"
                     aria-controls="{{ unique_id }}-tab-section"
-                    aria-expanded="{{ 'true' if loop.first and is_first_open else 'false' }}">{{ item.title }}</button>
+                    aria-expanded="{{ 'true' if loop.first and is_first_open else 'false' }}">{{ title }}</button>
           </strong>
           <section class="p-accordion__panel"
                    id="{{ unique_id }}-tab-section"
                    aria-hidden="{{ 'false' if loop.first and is_first_open else 'true' }}"
                    aria-labelledby="{{ unique_id }}-tab">
-            <p>{{ item.description | safe }}</p>
+            <p>{{ description | safe }}</p>
           </section>
         </li>
       {% endfor %}
@@ -72,7 +72,7 @@ meta_copydoc %}
     <section class="p-section">
       <div class="p-section--shallow">
         <div class="row--50-50">
-          <hr class="p-rule--muted" />
+          <hr class="p-rule" />
           <div class="col">
             <h2>
               What can I expect
@@ -184,7 +184,7 @@ meta_copydoc %}
 
     <section class="p-section">
       <div class="row">
-        <hr class="p-rule--muted" />
+        <hr class="p-rule" />
         <div class="col-6 col-medium-3">
           <h2>How to start your free trial</h2>
         </div>
@@ -211,9 +211,9 @@ meta_copydoc %}
     </section>
 
     <section class="p-section">
-      <hr class="p-rule--muted" />
       <div class="p-section--shallow">
         <div class="u-fixed-width">
+          <hr class="p-rule" />
           <h2>FAQs</h2>
         </div>
       </div>
@@ -225,26 +225,31 @@ meta_copydoc %}
           <div class="p-section--shallow">
             {{ accordion("faq1",
                         [
-                        {
-                        "title": "What is the Ubuntu Pro free trial?",
-                        "description": "Ubuntu Pro's free trial allows you to explore premium security and compliance features for 30 days at no cost"
-                        },
-                        {
-                        "title": "Which features are included in the free trial?",
-                        "description": "The free trial includes everything that is included in your Ubuntu Pro subscription, with the exception of support and Knowledge Base access. You can check what comes with your Pro subscription <a href='/pricing/pro'>here</a>."
-                        },
-                        {
-                        "title": "Which features are not included in the free trial?",
-                        "description": "Support and Knowledge Base access are not included in the free trial. Besides these, everything that comes with a Pro subscription is included in the trial. Visit our <a href='/pricing/pro'>plans and pricing page</a> to learn more."
-                        },
-                        {
-                        "title": "Which packages are covered in the free trial?",
-                        "description": "The trial includes security coverage for all packages in your selected subscription option (infra-only or Pro)."}, {"title": "What operating systems are supported during the trial?", "description": "The trial is compatible with Ubuntu LTS versions starting from Ubuntu 16.04."
-                        }
+                        [
+                        "What is the Ubuntu Pro free trial?",
+                        "Ubuntu Pro's free trial allows you to explore premium security and compliance features for 30 days at no cost"],
+                        [
+                        "Which features are included in the free trial?",
+                        "The free trial includes everything that is included in your Ubuntu Pro subscription, with the exception of support and Knowledge Base access. You can check what comes with your Pro subscription <a href='/pricing/pro'>here</a>."
                         ],
+                        [
+                        "Which features are not included in the free trial?",
+                        "Support and Knowledge Base access are not included in the free trial. Besides these, everything that comes with a Pro subscription is included in the trial. Visit our <a href='/pricing/pro'>plans and pricing page</a> to learn more."
+                        ],
+                        [
+                        "Which packages are covered in the free trial?",
+                        "The trial includes security coverage for all packages in your selected subscription option (infra-only or Pro)."
+                        ],
+                        [
+                        "What operating systems are supported during the trial?",
+                        "The trial is compatible with Ubuntu LTS versions starting from Ubuntu 16.04."
+                        ]],
                         is_first_open=True) }}
           </div>
         </div>
+      </div>
+      <div class="row">
+        <hr class="p-rule--muted" />
       </div>
       <div class="row--50-50">
         <div class="col">
@@ -254,26 +259,28 @@ meta_copydoc %}
           <div class="p-section--shallow">
             {{ accordion("faq2",
                         [
-                        {
-                        "title": "How do I sign up for the Ubuntu Pro free trial?",
-                        "description": "Sign up by visiting our <a href='/pro/subscribe'>online shop</a> and creating an account or logging in with your existing Ubuntu One account. You can claim your free trial once you click on the “Buy now” button and are on the check out page."
-                        },
-                        {
-                        "title": "Who is eligible for the free trial?",
-                        "description": "The free trial is available to both new and existing Ubuntu users who have not previously activated a trial."
-                        },
-                        {
-                        "title": "Is there a limit to the number of machines I can attach during the trial?",
-                        "description": "You can attach up to 50 machines during the trial. We offer trials for more than 50 machines on a case-by-case basis. You can <a href='/contact-us/form?product=pro'>get in touch with us</a> if this is an option you’d like to explore."
-                        },
-                        {
-                        "title": "Do I need to provide a payment method to sign up for the trial?",
-                        "description": "Yes, you need to provide a payment method to sign up for a trial. At the end of your trial, your card will automatically be billed for your subscription, unless you cancel before the end of the 30-day period."
-                        },
-                        ]) 
-            }}
+                        [
+                        "How do I sign up for the Ubuntu Pro free trial?",
+                        "Sign up by visiting our <a href='/pro/subscribe'>online shop</a> and creating an account or logging in with your existing Ubuntu One account. You can claim your free trial once you click on the “Buy now” button and are on the check out page."
+                        ],
+                        [
+                        "Who is eligible for the free trial?",
+                        "The free trial is available to both new and existing Ubuntu users who have not previously activated a trial."
+                        ],
+                        [
+                        "Is there a limit to the number of machines I can attach during the trial?",
+                        "You can attach up to 50 machines during the trial. We offer trials for more than 50 machines on a case-by-case basis. You can <a href='/contact-us/form?product=pro'>get in touch with us</a> if this is an option you’d like to explore."
+                        ],
+                        [
+                        "Do I need to provide a payment method to sign up for the trial?",
+                        "Yes, you need to provide a payment method to sign up for a trial. At the end of your trial, your card will automatically be billed for your subscription, unless you cancel before the end of the 30-day period."
+                        ],
+                        ]) }}
           </div>
         </div>
+      </div>
+      <div class="row">
+        <hr class="p-rule--muted" />
       </div>
       <div class="row--50-50">
         <div class="col">
@@ -283,25 +290,27 @@ meta_copydoc %}
           <div class="p-section--shallow">
             {{ accordion("faq3",
                         [
-                        {
-                        "title": "What happens at the end of the trial period?",
-                        "description": "At the end of your trial, if you have not cancelled your trial, your card will automatically be billed for your subscription."
-                        },
-                        {
-                        "title": "Will I be charged automatically after the trial ends?",
-                        "description": "Yes, there is automatic billing after the trial."
-                        },
-                        {
-                        "title": "Can I extend my trial period?",
-                        "description": "No, we do not offer extensions on your trial period."
-                        },
-                        {
-                        "title": "Is the free trial month included in the 1 year subscription?",
-                        "description": "No, the annual subscription will start from the day the actual purchase is made."
-                        }
+                        [
+                        "What happens at the end of the trial period?",
+                        "At the end of your trial, if you have not cancelled your trial, your card will automatically be billed for your subscription."],
+                        [
+                        "Will I be charged automatically after the trial ends?",
+                        "Yes, there is automatic billing after the trial."
+                        ],
+                        [
+                        "Can I extend my trial period?",
+                        "No, we do not offer extensions on your trial period."
+                        ],
+                        [
+                        "Is the free trial month included in the 1 year subscription?",
+                        "No, the annual subscription will start from the day the actual purchase is made."
+                        ]
                         ]) }}
           </div>
         </div>
+      </div>
+      <div class="row">
+        <hr class="p-rule--muted" />
       </div>
       <div class="row--50-50">
         <div class="col">
@@ -311,25 +320,28 @@ meta_copydoc %}
           <div class="p-section--shallow">
             {{ accordion("faq4",
                         [
-                        {
-                        "title": "Can I cancel my trial before it ends?",
-                        "description": "Yes, you can cancel the trial at any time within 30 days of signing up through your <a href='/pro/dashboard'>account dashboard</a>."
-                        },
-                        {
-                        "title": "How do I check the status of my trial subscription?",
-                        "description": "Visit your <a href='/pro/dashboard'>account dashboard</a> to view your trial status and manage attached machines."
-                        },
-                        {
-                        "title": "How do I attach a machine to my trial subscription?",
-                        "description": "Follow the instructions in <a href='/server/docs/attach-your-ubuntu-pro-subscription'>our guide</a> to attach your Ubuntu machine to the Ubuntu Pro subscription."
-                        },
-                        {
-                        "title": "Will my Ubuntu Pro token remain the same after completing the 30 day trial and switching to the paid version?",
-                        "description": "Yes, your token remains unchanged."
-                        }
+                        [
+                        "Can I cancel my trial before it ends?",
+                        "Yes, you can cancel the trial at any time within 30 days of signing up through your <a href='/pro/dashboard'>account dashboard</a>."
+                        ],
+                        [
+                        "How do I check the status of my trial subscription?",
+                        "Visit your <a href='/pro/dashboard'>account dashboard</a> to view your trial status and manage attached machines."
+                        ],
+                        [
+                        "How do I attach a machine to my trial subscription?",
+                        "Follow the instructions in <a href='/server/docs/attach-your-ubuntu-pro-subscription'>our guide</a> to attach your Ubuntu machine to the Ubuntu Pro subscription."
+                        ],
+                        [
+                        "Will my Ubuntu Pro token remain the same after completing the 30 day trial and switching to the paid version?",
+                        "Yes, your token remains unchanged."
+                        ],
                         ]) }}
           </div>
         </div>
+      </div>
+      <div class="row">
+        <hr class="p-rule--muted" />
       </div>
       <div class="row--50-50">
         <div class="col">
@@ -339,14 +351,14 @@ meta_copydoc %}
           <div class="p-section--shallow">
             {{ accordion("faq5",
                         [
-                        {
-                        "title": "What support options are available during the trial?",
-                        "description": "Support and Knowledge Base access are not included in the free trial for Ubuntu Pro."
-                        },
-                        {
-                        "title": "I didn’t receive a confirmation email after signing up – what should I do?",
-                        "description": "Check your spam/junk folder. If the issue persists, navigate to any page on <a href='/'>ubuntu.com</a> and let the team know via LiveChat that you are having an issue with your free trial. They will put you in touch with our Customer Success Team."
-                        }
+                        [
+                        "What support options are available during the trial?",
+                        "Support and Knowledge Base access are not included in the free trial for Ubuntu Pro."
+                        ],
+                        [
+                        "I didn’t receive a confirmation email after signing up – what should I do?",
+                        "Check your spam/junk folder. If the issue persists, navigate to any page on <a href='/'>ubuntu.com</a> and let the team know via LiveChat that you are having an issue with your free trial. They will put you in touch with our Customer Success Team."
+                        ]
                         ]) }}
           </div>
         </div>
