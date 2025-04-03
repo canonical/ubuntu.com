@@ -1,7 +1,13 @@
 import { useState } from "react";
 import * as Sentry from "@sentry/react";
 import { Offer as OfferType } from "../../../offers/types";
-import { MainTable, Select, Row, Col } from "@canonical/react-components";
+import {
+  MainTable,
+  Select,
+  Row,
+  Col,
+  SearchBox,
+} from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
 import InitiateButton from "../InitiateButton/InitiateButton";
 
@@ -76,18 +82,21 @@ const ChannelOffersList = () => {
   );
 
   const searchOfferList = sortedOffersList?.filter((offer: OfferType) => {
-    const opId = offer?.external_ids?.[0]?.ids?.[0];
-    const opportunityNumber = offer?.opportunity_number;
-    const creatorName = offer?.channel_deal_creator_name;
-    const resellerName = offer?.reseller_account_name;
-    const customerName = offer?.end_user_account_name;
+    const opId = offer?.external_ids?.[0]?.ids?.[0].toLowerCase() || "";
+    const opportunityNumber = offer?.opportunity_number?.toLowerCase() || "";
+    const creatorName = offer?.channel_deal_creator_name?.toLowerCase() || "";
+    const resellerName = offer?.reseller_account_name?.toLowerCase() || "";
+    const customerName = offer?.end_user_account_name?.toLowerCase() || "";
+    const creationDate = offer?.created_at?.toLowerCase() || "";
+    const searchValueLower = searchValue.toLowerCase();
 
     return (
-      opId?.toLowerCase().includes(searchValue.toLowerCase()) ||
-      opportunityNumber?.toLowerCase().includes(searchValue.toLowerCase()) ||
-      creatorName?.toLowerCase().includes(searchValue.toLowerCase()) ||
-      resellerName?.toLowerCase().includes(searchValue.toLowerCase()) ||
-      customerName?.toLowerCase().includes(searchValue.toLowerCase())
+      opId.includes(searchValueLower) ||
+      opportunityNumber.includes(searchValueLower) ||
+      creatorName.includes(searchValueLower) ||
+      resellerName.includes(searchValueLower) ||
+      customerName.includes(searchValueLower) || 
+      creationDate.includes(searchValueLower)
     );
   });
 
@@ -95,42 +104,13 @@ const ChannelOffersList = () => {
     <>
       <Row>
         <Col size={3}>
-          <form className="p-search-box">
-            <label className="u-off-screen" htmlFor="search">
-              Search
-            </label>
-            <input
-              type="search"
-              id="search"
-              className="p-search-box__input"
-              name="search"
-              placeholder="Search"
-              autoComplete="on"
-              onChange={(e) => setSearchValue(e.target.value)}
-              value={searchValue}
-            />
-            {searchValue != "" && (
-              <button
-                className="p-search-box__reset"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setSearchValue("");
-                }}
-              >
-                <i className="p-icon--close">Close</i>
-              </button>
-            )}
-            <button
-              className="p-search-box__button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-            >
-              <i className="p-icon--search">Search</i>
-            </button>
-          </form>
+          <SearchBox
+            externallyControlled
+            onChange={(value) => {
+              setSearchValue(value);
+            }}
+            value={searchValue}
+          />
         </Col>
         <Col emptyMedium={10} emptyLarge={10} size={3}>
           <Select
