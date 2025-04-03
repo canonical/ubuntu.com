@@ -1,12 +1,19 @@
 import { useState } from "react";
 import * as Sentry from "@sentry/react";
 import { Offer as OfferType } from "../../../offers/types";
-import { MainTable, Select, Row, Col } from "@canonical/react-components";
+import {
+  MainTable,
+  Select,
+  Row,
+  Col,
+  SearchBox,
+} from "@canonical/react-components";
 import useGetChannelOffersList from "../../hooks/useGetChannelOffersList";
 import InitiateButton from "../InitiateButton/InitiateButton";
 
 const ChannelOffersList = () => {
   const [selectValue, setSelectValue] = useState("default");
+  const [searchValue, setSearchValue] = useState("");
   const {
     isLoading,
     isError,
@@ -74,10 +81,38 @@ const ChannelOffersList = () => {
     },
   );
 
+  const searchOfferList = sortedOffersList?.filter((offer: OfferType) => {
+    const opId = offer?.external_ids?.[0]?.ids?.[0].toLowerCase() || "";
+    const opportunityNumber = offer?.opportunity_number?.toLowerCase() || "";
+    const creatorName = offer?.channel_deal_creator_name?.toLowerCase() || "";
+    const resellerName = offer?.reseller_account_name?.toLowerCase() || "";
+    const customerName = offer?.end_user_account_name?.toLowerCase() || "";
+    const creationDate = offer?.created_at?.toLowerCase() || "";
+    const searchValueLower = searchValue.toLowerCase();
+
+    return (
+      opId.includes(searchValueLower) ||
+      opportunityNumber.includes(searchValueLower) ||
+      creatorName.includes(searchValueLower) ||
+      resellerName.includes(searchValueLower) ||
+      customerName.includes(searchValueLower) ||
+      creationDate.includes(searchValueLower)
+    );
+  });
+
   return (
     <>
-      <Row style={{ display: "flex", justifyContent: "end" }}>
+      <Row>
         <Col size={3}>
+          <SearchBox
+            externallyControlled
+            onChange={(value) => {
+              setSearchValue(value);
+            }}
+            value={searchValue}
+          />
+        </Col>
+        <Col emptyMedium={10} emptyLarge={10} size={3}>
           <Select
             defaultValue="default"
             id="offerSelect"
@@ -126,7 +161,7 @@ const ChannelOffersList = () => {
             className: "u-align--right",
           },
         ]}
-        rows={sortedOffersList?.map((offer: OfferType) => {
+        rows={searchOfferList?.map((offer: OfferType) => {
           const status = offer?.actionable ? "Valid" : "Invalid";
           const opId = offer?.external_ids?.[0]?.ids?.[0];
 
