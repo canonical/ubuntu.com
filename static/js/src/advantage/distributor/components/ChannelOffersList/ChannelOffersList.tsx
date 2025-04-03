@@ -95,7 +95,7 @@ const ChannelOffersList = () => {
       opportunityNumber.includes(searchValueLower) ||
       creatorName.includes(searchValueLower) ||
       resellerName.includes(searchValueLower) ||
-      customerName.includes(searchValueLower) || 
+      customerName.includes(searchValueLower) ||
       creationDate.includes(searchValueLower)
     );
   });
