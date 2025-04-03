@@ -1322,4 +1322,6 @@ def get_sitemaps_tree():
 
 
 app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
-app.add_url_rule("/sitemap_tree.xml", view_func=serve_sitemap)
+app.add_url_rule(
+    "/sitemap_tree.xml", view_func=serve_sitemap, methods=["GET", "POST"]
+)

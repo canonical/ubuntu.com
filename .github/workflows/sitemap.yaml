@@ -1,0 +1,15 @@
+name: Generate sitemap on merge to main
+on: [push, pull_request]
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Call sitemap generation endpoint
+        env:
+          API_URL: "https://ubuntu-com-14900.demos.haus/sitemap_tree.xml"
+        run: curl -X POST $API_URL
