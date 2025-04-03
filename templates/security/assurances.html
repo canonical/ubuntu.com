@@ -1,6 +1,7 @@
 {% extends 'base_index.html' %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% block meta_copydoc %}
   https://docs.google.com/document/d/1hQ-n0FrjzQGAOUzIAshzxwhu5PpBC2ClBJMNSMO90Zo/edit
@@ -56,123 +57,106 @@
   </section>
 
   <section class="p-section">
-    <div class="p-section--shallow">
-      <div class="row--50-50">
-        <hr class="p-rule" />
-        <div class="col">
-          <h2>Stable security updates</h2>
-        </div>
-        <div class="col">
-          <p>
-            The Ubuntu Security Team fixes vulnerabilities through targeted security updates that maintain backwards compatibility in all LTS releases, with support for up to 12 years.
-          </p>
-          <hr class="p-rule--muted" />
-          <p>
-            <a href="/security/esm">Learn about Expanded Security Maintenance ›</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-6">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
+        <h2>Stable security updates</h2>
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
+        <p>
+          The Ubuntu Security Team fixes vulnerabilities through targeted security updates that maintain backwards compatibility in all LTS releases, with support for up to 12 years.
+        </p>
         <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Vulnerability visibility</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Known vulnerabilities that affect Ubuntu packages are tracked in the public Ubuntu CVE Tracker. The information, including available fixes, is distributed through open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>) that can be integrated with any third-party tool that supports these schemas.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Long-term stability</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Most open source software suppliers only address vulnerabilities in the latest version, but updating to a cutting-edge release carries a risk of introducing incompatible changes or the removal of relied-upon functionality. Instead, Ubuntu users receive bespoke security updates that only address the security flaws and retain compatibility with the software version originally distributed in the Ubuntu release they have installed.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Regression mitigation</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Packages go through comprehensive regression testing before updates are made available, reducing the risk of downtime or the complexities of rolling them back. The unattended-upgrades feature applies updates automatically and is enabled by default on Ubuntu installations.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Rapid fixes</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              The Ubuntu Security Team collaborates with security researchers, open-source projects and other industry groups to prepare fixes for high-impact vulnerabilities within closed embargoes, in order to deliver security updates at the same time the vulnerabilities are publicly disclosed.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Notification</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              All security updates are followed by Ubuntu Security Notices (<a href="/security/notices">USNs</a>), allowing operational teams to triage and apply them in a timely fashion. For custom integrations, the vulnerability data feeds provide the same information in open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>).
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+        <p>
+          <a href="/security/esm">Learn about Expanded Security Maintenance ›</a>
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Vulnerability visibility</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          Known vulnerabilities that affect Ubuntu packages are tracked in the public Ubuntu CVE Tracker. The information, including available fixes, is distributed through open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>) that can be integrated with any third-party tool that supports these schemas.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Long-term stability</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          Most open source software suppliers only address vulnerabilities in the latest version, but updating to a cutting-edge release carries a risk of introducing incompatible changes or the removal of relied-upon functionality. Instead, Ubuntu users receive bespoke security updates that only address the security flaws and retain compatibility with the software version originally distributed in the Ubuntu release they have installed.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Regression mitigation</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          Packages go through comprehensive regression testing before updates are made available, reducing the risk of downtime or the complexities of rolling them back. The unattended-upgrades feature applies updates automatically and is enabled by default on Ubuntu installations.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_4' -%}
+        <h3 class="p-heading--5">Rapid fixes</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_4' -%}
+        <p>
+          The Ubuntu Security Team collaborates with security researchers, open-source projects and other industry groups to prepare fixes for high-impact vulnerabilities within closed embargoes, in order to deliver security updates at the same time the vulnerabilities are publicly disclosed.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_5' -%}
+        <h3 class="p-heading--5">Notification</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_5' -%}
+        <p>
+          All security updates are followed by Ubuntu Security Notices (<a href="/security/notices">USNs</a>), allowing operational teams to triage and apply them in a timely fashion. For custom integrations, the vulnerability data feeds provide the same information in open standard formats (<a href="/security/oval">OVAL</a>, <a href="/security/osv">OSV</a> and <a href="/security/vex">VEX</a>).
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
         <h2>Software assessment</h2>
-      </div>
-      <div class="col">
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
         <p>
           Ubuntu distributes over 36,000 open source software packages. Understanding the risk exposure from such a large catalogue is a daunting task.
         </p>
         <p>The distinction between the Main and Universe repositories is meant to help with this evaluation:</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-9 col-start-large-4 col-medium-6">
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">The Main repository</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              With over 2,300 pieces of software, the Main repository is assembled by hand-picking the most critical packages and evaluating them from a quality, maintainability and security point of view, a process known as a Main Inclusion Review (MIR). This includes security audits, which often reveal vulnerabilities that are subsequently fixed.
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule--muted" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">The Universe repository</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              This repository provides a vast, ready-to-use ecosystem of open source software and consists of over 34,000 packages in the latest Ubuntu LTS (Noble Numbat). In addition to community support, selected security updates are also provided by the Ubuntu Security Team as part of Ubuntu Pro Expanded Security Maintenance for applications (ESM-Apps).
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">The Main repository</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          With over 2,300 pieces of software, the Main repository is assembled by hand-picking the most critical packages and evaluating them from a quality, maintainability and security point of view, a process known as a Main Inclusion Review (MIR). This includes security audits, which often reveal vulnerabilities that are subsequently fixed.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">The Universe repository</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          This repository provides a vast, ready-to-use ecosystem of open source software and consists of over 34,000 packages in the latest Ubuntu LTS (Noble Numbat). In addition to community support, selected security updates are also provided by the Ubuntu Security Team as part of Ubuntu Pro Expanded Security Maintenance for applications (ESM-Apps).
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
   </section>
 
   <section class="p-section">
@@ -268,56 +252,47 @@
   </section>
 
   <section class="p-section">
-    <div class="row--50-50">
-      <hr class="p-rule" />
-      <div class="col">
+    {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+      {%- if slot == 'title' -%}
         <h2>Continuous hardening</h2>
-      </div>
-      <div class="col">
+      {%- endif -%}
+
+      {%- if slot == 'description' -%}
         <p>
           When vulnerabilities are inevitably discovered, security safeguards reduce the likelihood that threats materialize through exploitation – reducing risk. Ubuntu is regularly updated to integrate the latest security features that have a broad impact on all software running on the distribution.
         </p>
-      </div>
-    </div>
-    <div class="p-section">
-      <div class="row">
-        <div class="col-9 col-start-large-4 col-medium-6">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Binary protection</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                The Ubuntu Security Team periodically reviews system-wide software compilation settings to include the newest security features, such as memory exploitation protections.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Linux hardening</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                The Linux kernel fulfils a central role in providing mitigations for a wide-range of vulnerabilities. The Ubuntu-distributed kernel packages have a selection of hand-picked settings enabled that provide a strong balance between usability and security; these are evaluated on a continuous basis.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading--5">Security features</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                From application confinement and mandatory access control (MAC) to integrity protections or data confidentiality features, the Ubuntu distribution offers a wide selection of ready-to-use security controls to enhance the protection of system deployments.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_1' -%}
+        <h3 class="p-heading--5">Binary protection</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_1' -%}
+        <p>
+          The Ubuntu Security Team periodically reviews system-wide software compilation settings to include the newest security features, such as memory exploitation protections.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_2' -%}
+        <h3 class="p-heading--5">Linux hardening</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_2' -%}
+        <p>
+          The Linux kernel fulfills a central role in providing mitigations for a wide-range of vulnerabilities. The Ubuntu-distributed kernel packages have a selection of hand-picked settings enabled that provide a strong balance between usability and security; these are evaluated on a continuous basis.
+        </p>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_title_3' -%}
+        <h3 class="p-heading--5">Security features</h3>
+      {%- endif -%}
+
+      {%- if slot == 'list_item_description_3' -%}
+        <p>
+          From application confinement and mandatory access control (MAC) to integrity protections or data confidentiality features, the Ubuntu distribution offers a wide selection of ready-to-use security controls to enhance the protection of system deployments.
+        </p>
+      {%- endif -%}
+    {%- endcall -%}
   </section>
 
   <section class="p-section">
