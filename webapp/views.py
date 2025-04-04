@@ -4,6 +4,7 @@ import json
 import math
 import os
 import re
+import logging
 from urllib.parse import quote, unquote, urlparse
 from datetime import datetime
 
@@ -1286,17 +1287,25 @@ def serve_sitemap():
 
         directory_path = os.getcwd() + "/templates"
         base_url = "https://ubuntu.com"
-        try:
-            xml_sitemap = generate_sitemap(directory_path, base_url)
-            if xml_sitemap:
-                with open(sitemap_path, "w") as f:
-                    f.write(xml_sitemap)
-                print(f"Sitemap saved to {sitemap_path}")
-            else:
-                print("xml_sitemap empty")
 
-        except Exception as e:
-            return f"Generate_sitemap error: {e}", 500
+        if flask.request.method == "POST":
+            logging.info("Post request")
+            try:
+                xml_sitemap = generate_sitemap(directory_path, base_url)
+                if xml_sitemap:
+                    with open(sitemap_path, "w") as f:
+                        f.write(xml_sitemap)
+                    logging.info(f"Sitemap saved to {sitemap_path}")
+                else:
+                    logging.warning("Sitemap is empty")
+
+            except Exception as e:
+                logging.error(f"Error generating sitemap: {e}")
+                return f"Generate_sitemap error: {e}", 500
+
+            return {
+                "message": f"Sitemap successfully generated at {sitemap_path}"
+            }, 200
 
         with open(sitemap_path, "r") as f:
             xml_sitemap = f.read()
@@ -1306,4 +1315,5 @@ def serve_sitemap():
         return response
 
     except Exception as e:
+        logging.error(f"Error in serving sitemap: {e}")
         return f"Error generating sitemap: {e}", 500
