@@ -1280,21 +1280,6 @@ def build_vulnerabilities(security_vulnerabilities):
     return vulnerability
 
 
-def generate_sitemap(output_path):
-    tree = scan_directory(os.getcwd() + "/templates")
-
-    xml_sitemap = flask.render_template(
-        "/sitemap_template.xml",
-        tree=tree["children"],
-        base_url="https://ubuntu.com",
-    )
-
-    with open(output_path, "w") as f:
-        f.write(xml_sitemap)
-
-    print(f"Sitemap saved to {output_path}")
-
-
 def serve_sitemap():
     try:
         sitemap_path = os.getcwd() + "/static/files/sitemap_tree.xml"
