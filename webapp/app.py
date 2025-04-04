@@ -1312,7 +1312,7 @@ def render_supermicro_blogs():
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
-# TODO: Endpoint for testing and QA purposes only
+# Endpoint for retrieving parsed directory tree
 def get_sitemaps_tree():
     try:
         tree = scan_directory(os.getcwd() + "/templates")
