@@ -56,7 +56,7 @@ type DisplayError = {
 export function getErrorMessage(error: Error): DisplayError {
   const { message } = error;
   if (!message) return { description: "" };
-  
+
   if (
     INSUFFICIENT_FUNDS_CODES.includes(message) ||
     message?.includes("Your card has insufficient funds")
@@ -123,8 +123,9 @@ export function getErrorMessage(error: Error): DisplayError {
     };
   } else if (INCORRECT_EXPIRY_CODES.includes(message)) {
     return {
-      description:
+      description: (
         <>That expiry date is incorrect. Check the date and try again.</>
+      ),
     };
   } else if (message === "tax_id_invalid") {
     return {

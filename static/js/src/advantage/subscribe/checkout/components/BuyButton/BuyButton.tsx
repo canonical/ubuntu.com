@@ -25,9 +25,7 @@ import { confirmNavigateListener } from "../../utils/helpers";
 import type { DisplayError } from "../../utils/types";
 
 type Props = {
-  setError: React.Dispatch<
-    React.SetStateAction<DisplayError | null>
-  >;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
   products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;

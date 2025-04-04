@@ -42,7 +42,9 @@ const UserInfoForm = ({ setError }: Props) => {
   const [isEditing, setIsEditing] = useState(isNewUser);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
-  const [cardFieldError, setCardFieldError] = useState<ValidationError | null>(null);
+  const [cardFieldError, setCardFieldError] = useState<ValidationError | null>(
+    null,
+  );
   const [showCardValidation, setShowCardValidation] = useState<boolean>(false);
   const isChannelUser =
     values.marketplace === UserSubscriptionMarketplace.CanonicalProChannel;
@@ -206,7 +208,10 @@ const UserInfoForm = ({ setError }: Props) => {
     <>
       <FormRow
         label="Payment card:"
-        error={getErrorMessage({message: cardFieldError?.code} as Error).description}
+        error={
+          getErrorMessage({ message: cardFieldError?.code } as Error)
+            .description
+        }
       >
         <div
           id="card-element"
