@@ -19,10 +19,11 @@ import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
 import { CheckoutProducts, FormValues } from "../../utils/types";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import type { DisplayError } from "../../utils/types";
 
 type TaxesProps = {
   products: CheckoutProducts[];
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
 };
 
 const Taxes = ({ products, setError }: TaxesProps) => {
@@ -88,28 +89,33 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                   VATNumber:
                     "That VAT number is invalid. Check the number and try again.",
                 });
-                setError(
-                  <>
-                    That VAT number is invalid. Check the number and try again.
-                  </>,
-                );
+                setError({
+                  description: (
+                    <>
+                      That VAT number is invalid. Check the number and try
+                      again.
+                    </>
+                  ),
+                });
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
                 setFormikErrors({
                   VATNumber:
                     "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
                 });
-                setError(
-                  <>
-                    VAT number could not be validated at this time, please try
-                    again later or contact
-                    <a href="mailto:customersuccess@canonical.com">
-                      customer success
-                    </a>{" "}
-                    if the problem persists.
-                  </>,
-                );
+                setError({
+                  description: (
+                    <>
+                      VAT number could not be validated at this time, please try
+                      again later or contact
+                      <a href="mailto:customersuccess@canonical.com">
+                        customer success
+                      </a>{" "}
+                      if the problem persists.
+                    </>
+                  ),
+                });
               } else {
-                setError(<>VAT could not be applied.</>);
+                setError({ description: <>VAT could not be applied.</> });
               }
           },
         },
