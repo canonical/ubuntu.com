@@ -54,6 +54,7 @@
       <p class="p-heading--4 u-sv3">This is a library of all Canonical whitepapers on OpenStack and private cloud</p>
     </div>
     <div class="row">
+      {{ whitepapers_metadata }}
       {% for item in whitepapers_metadata %}
         {% include "openstack/_resource-card.html" %}
       {% endfor %}
@@ -188,7 +189,7 @@
           Starting with just your workstation, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters using a series of tutorials.
         </p>
         <p>
-          <a href="/openstack/tutorials">Go to the tutorials&nbsp;&rsaquo;</a>
+          <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/">Go to the tutorials&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="col-6 p-divider__block">
