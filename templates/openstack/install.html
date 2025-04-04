@@ -16,7 +16,7 @@
       <div class="col-7">
         <h1>Install OpenStack yourself</h1>
         <p>
-          Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines. Use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">Charmed OpenStack</a> depending on your use case.
+          Try OpenStack in five simple steps. Set up a small-scale cloud or deploy a large cluster across hundreds of physical machines.
         </p>
         <p>
           If you need OpenStack consulting or a fully managed service, <a href="/openstack/contact-us">talk to an expert.</a>
@@ -87,10 +87,10 @@
            aria-labelledby="single-node-mode-tab">
     <div class="p-strip is-shallow u-no-padding--top">
       <div class="row">
-        <h2>Single-node mode</h2>
         <div class="col-6">
+          <h2>Single-node mode</h2>
           <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses MicroStack</li>
+            <li class="p-list__item is-ticked">Uses Sunbeam</li>
             <li class="p-list__item is-ticked">Works on machines with limited hardware resources</li>
             <li class="p-list__item is-ticked">Suitable for testing and development</li>
           </ul>
@@ -98,7 +98,11 @@
       </div>
     </div>
     <div class="p-strip u-no-padding--top">
-      <div class="row">{{ single_node | safe }}</div>
+      <div class="u-fixed-width">
+        <p>
+          In order to install OpenStack in a single-node mode, refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/get-started-with-openstack/">product documentation</a>.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -109,10 +113,10 @@
            aria-labelledby="multi-node-mode-tab">
     <div class="p-strip is-shallow u-no-padding--top">
       <div class="row">
-        <h2>Multi-node mode</h2>
         <div class="col-6">
+          <h2>Multi-node mode</h2>
           <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses MicroStack</li>
+            <li class="p-list__item is-ticked">Uses Sunbeam</li>
             <li class="p-list__item is-ticked">OpenStack clusters with full HA</li>
             <li class="p-list__item is-ticked">Suitable for small-scale production environments</li>
           </ul>
@@ -120,7 +124,11 @@
       </div>
     </div>
     <div class="p-strip u-no-padding--top">
-      <div class="row">{{ multi_node | safe }}</div>
+      <div class="u-fixed-width">
+        <p>
+          In order to install OpenStack in a multi-node mode, refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-the-manual-bare-metal-provider/">product documentation</a>.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -131,10 +139,10 @@
            aria-hidden="hidden">
     <div class="p-strip is-shallow u-no-padding--top">
       <div class="row">
-        <h2>Multi-node mode with bare metal automation</h2>
         <div class="col-6">
+          <h2>Multi-node mode with bare metal automation</h2>
           <ul class="p-list">
-            <li class="p-list__item is-ticked">Uses OpenStack Charms</li>
+            <li class="p-list__item is-ticked">Uses Sunbeam</li>
             <li class="p-list__item is-ticked">
               Uses <a href="https://maas.io">MAAS</a> for bare metal automation
             </li>
@@ -144,9 +152,9 @@
       </div>
     </div>
     <div class="p-strip u-no-padding--top">
-      <div class="row">
+      <div class="u-fixed-width">
         <p>
-          Check the <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a> for detailed instructions on how to set up OpenStack in multi-node mode with bare metal automation using OpenStack Charms.
+          In order to install OpenStack in a multi-node mode with bare metal automation, refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/how-to/install/install-canonical-openstack-using-canonical-maas/">product documentation</a>.
         </p>
       </div>
     </div>
@@ -165,7 +173,7 @@
              alt="" />
         <hr class="p-rule--muted" />
         <p>
-          <a href="/openstack/tutorials">Check our tutorials&nbsp;&rsaquo;</a>
+          <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/tutorial/">Check our tutorials&nbsp;&rsaquo;</a>
         </p>
         <p class="p-card__content">
           Learn OpenStack through a series of tutorials. Starting with just a single machine, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters.
@@ -192,7 +200,7 @@
           <a href="/pro">Get commercial support&nbsp;&rsaquo;</a>
         </p>
         <p class="p-card__content">
-          Canonical provides full commercial support for OpenStack clouds deployed with MicroStack. Simply get any Ubuntu Pro subscription with Support, attach it to all nodes in your cluster and benefit from phone and ticket support.
+          Canonical provides full commercial support for OpenStack clouds deployed with Sunbeam. Simply get any Ubuntu Pro subscription with Support, attach it to all nodes in your cluster and benefit from phone and ticket support.
         </p>
       </div>
       <div class="col-6 p-card">
