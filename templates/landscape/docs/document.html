@@ -29,16 +29,22 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const template = document.querySelector("#notification-template");
-    const notification = template.content.cloneNode(true);
-    const notificationContainer = notification.children[0];
+    // Check if the user previously closed the notification
+    if (sessionStorage.getItem("notificationClosed") !== "true") {
+      const template = document.querySelector("#notification-template");
+      const notification = template.content.cloneNode(true);
+      const notificationContainer = notification.children[0];
 
-    const secondaryNav = document.querySelector("#secondary-navigation");
-    secondaryNav.after(notification);
+      // Place the notification between the navigation and content
+      const secondaryNav = document.querySelector("#secondary-navigation");
+      secondaryNav.after(notification);
 
-    notificationContainer.querySelector(".js-notification-close").addEventListener("click", function(e) {
-      e.preventDefault();
-      notificationContainer.style.display = "none";
-    });
+      notificationContainer.querySelector(".js-notification-close").addEventListener("click", function(e) {
+        e.preventDefault();
+        notificationContainer.style.display = "none";
+        sessionStorage.setItem("notificationClosed", "true");
+      });
+      
+    }
   });
 </script>
