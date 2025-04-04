@@ -54,7 +54,6 @@
       <p class="p-heading--4 u-sv3">This is a library of all Canonical whitepapers on OpenStack and private cloud</p>
     </div>
     <div class="row">
-      {{ whitepapers_metadata }}
       {% for item in whitepapers_metadata %}
         {% include "openstack/_resource-card.html" %}
       {% endfor %}
