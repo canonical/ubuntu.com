@@ -1288,8 +1288,8 @@ def serve_sitemap():
         directory_path = os.getcwd() + "/templates"
         base_url = "https://ubuntu.com"
 
-        if flask.request.method == "POST":
-            logging.info("Post request")
+        # Generate sitemap if update request or if it doesn't exist
+        if flask.request.method == "POST" or not os.path.exists(sitemap_path):
             try:
                 xml_sitemap = generate_sitemap(directory_path, base_url)
                 if xml_sitemap:
@@ -1303,10 +1303,14 @@ def serve_sitemap():
                 logging.error(f"Error generating sitemap: {e}")
                 return f"Generate_sitemap error: {e}", 500
 
-            return {
-                "message": f"Sitemap successfully generated at {sitemap_path}"
-            }, 200
+            if flask.request.method == "POST":
+                return {
+                    "message": (
+                        f"Sitemap successfully generated at {sitemap_path}"
+                    )
+                }, 200
 
+        # Serve the existing sitemap
         with open(sitemap_path, "r") as f:
             xml_sitemap = f.read()
 
