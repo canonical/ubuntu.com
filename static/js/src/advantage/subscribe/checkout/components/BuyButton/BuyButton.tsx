@@ -3,10 +3,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
-import * as Sentry from "@sentry/react";
 import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
-import { getErrorMessage } from "advantage/error-handler";
+import { getNotificationMessage } from "../../utils/translateErrors";
 import postCustomerInfo from "../../hooks/postCustomerInfo";
 import postPurchase from "../../hooks/postPurchase";
 import postPurchaseAccount from "../../hooks/postPurchaseAccount";
@@ -23,9 +22,10 @@ import {
   PRO_SELECTOR_KEYS,
 } from "advantage/distributor/utils/utils";
 import { confirmNavigateListener } from "../../utils/helpers";
+import type { DisplayError } from "../../utils/types";
 
 type Props = {
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
   products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
@@ -97,7 +97,11 @@ const BuyButton = ({
       });
 
       if (!(possibleErrors.length === 0)) {
-        setError(<>Please make sure all fields are filled in correctly.</>);
+        setError({
+          description: (
+            <>Please make sure all fields are filled in correctly.</>
+          ),
+        });
         document.querySelector("h1")?.scrollIntoView();
         setIsLoading(false);
         return;
@@ -180,87 +184,85 @@ const BuyButton = ({
     document.querySelector("h1")?.scrollIntoView();
 
     if (error.message.includes("can only make one purchase at a time")) {
-      setError(
-        <>
-          You already have a pending purchase. Please go to{" "}
-          <a href="/account/payment-methods">payment methods</a> to retry.
-        </>,
-      );
+      setError({
+        description: (
+          <>
+            You already have a pending purchase. Please go to{" "}
+            <a href="/account/payment-methods">payment methods</a> to retry.
+          </>
+        ),
+      });
     } else if (
       error.message.includes("purchase while subscription is in trial")
     ) {
-      setError(
-        <>
-          You cannot make a purchase during the trial period. To make a new
-          purchase, cancel your current trial subscription.
-        </>,
-      );
+      setError({
+        description: (
+          <>
+            You cannot make a purchase during the trial period. To make a new
+            purchase, cancel your current trial subscription.
+          </>
+        ),
+      });
     } else if (error.message.includes("tax_id_invalid")) {
       setFieldError(
         "VATNumber",
         "That VAT number is invalid. Check the number and try again.",
       );
-      setError(
-        <>That VAT number is invalid. Check the number and try again.</>,
-      );
+      setError({
+        description: (
+          <>That VAT number is invalid. Check the number and try again.</>
+        ),
+      });
     } else if (error.message.includes("tax_id_cannot_be_validated")) {
       setFieldError(
         "VATNumber",
         "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
       );
-      setError(
-        <>
-          VAT number could not be validated at this time, please try again later
-          or contact
-          <a href="mailto:customersuccess@canonical.com">customer success</a> if
-          the problem persists.
-        </>,
-      );
+      setError({
+        description: (
+          <>
+            VAT number could not be validated at this time, please try again
+            later or contact
+            <a href="mailto:customersuccess@canonical.com">
+              customer success
+            </a>{" "}
+            if the problem persists.
+          </>
+        ),
+      });
     } else if (
       error.message.includes(
         "We are unable to authenticate your payment method",
       )
     ) {
-      setError(
-        <>
-          We were unable to verify your credit card. Check the details and try
-          again. Contact{" "}
-          <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-          problem persists.
-        </>,
-      );
+      setError({
+        description: (
+          <>
+            We were unable to verify your credit card. Check the details and try
+            again. Contact{" "}
+            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+            problem persists.
+          </>
+        ),
+      });
     } else if (
       error.message.includes(
         "missing one-off product listing for renewal product",
       )
     ) {
-      setError(
-        <>
-          The chosen product cannot be renewed as it has been deprecated.
-          Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
-          to choose a substitute offering.
-        </>,
-      );
-    } else {
-      const knownErrorMessage = getErrorMessage({
-        message: "",
-        code: error.message,
-      });
-
-      // Tries to match the error with a known error code and defaults to a generic error if it fails
-      if (knownErrorMessage) {
-        setError(knownErrorMessage);
-      } else {
-        Sentry.captureException(error);
-        setError(
+      setError({
+        description: (
           <>
-            Sorry, there was an unknown error with your credit card. Check the
-            details and try again. Contact{" "}
-            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-            problem persists.
-          </>,
-        );
-      }
+            The chosen product cannot be renewed as it has been deprecated.
+            Contact <a href="https://ubuntu.com/contact-us">Canonical sales </a>
+            to choose a substitute offering.
+          </>
+        ),
+      });
+    } else {
+      // Try to parse the stripe error message
+      const knownErrorMessage = getNotificationMessage(error);
+      setError(knownErrorMessage);
     }
   };
 
