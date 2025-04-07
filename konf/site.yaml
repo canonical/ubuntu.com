@@ -143,6 +143,19 @@ env:
       key: api-key
       name: trueability
 
+  - name: PROCTOR360_BASE_URL
+    value: https://prod1ext.proctor360.com
+
+  - name: PROCTOR360_APP_SECRET
+    secretKeyRef:
+      key: app-secret
+      name: proctor360
+      
+  - name: PROCTOR360_APP_ID
+    secretKeyRef:
+      key: app-id
+      name: proctor360
+
 memoryLimit: 512Mi
 
 extraHosts:
@@ -278,7 +291,20 @@ production:
           secretKeyRef:
             key: api-key
             name: trueability
+        
+        - name: PROCTOR360_BASE_URL
+          value: https://prod1ext.proctor360.com
 
+        - name: PROCTOR360_APP_SECRET
+          secretKeyRef:
+            key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          secretKeyRef:
+            key: app-id
+            name: proctor360
+            
         - name: MARKETO_API_CLIENT
           secretKeyRef:
             key: api_client
@@ -661,12 +687,25 @@ staging:
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - name: TRUEABILITY_URL
-      value: https://app.trueability.com
+      value: https://app3.trueability.com
 
     - name: TRUEABILITY_API_KEY
       secretKeyRef:
         key: api-key
         name: trueability
+
+    - name: PROCTOR360_BASE_URL
+      value: https://prod1ext.proctor360.com
+
+    - name: PROCTOR360_APP_SECRET
+      secretKeyRef:
+        key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      secretKeyRef:
+        key: app-id
+        name: proctor360
 
     - name: TA_WEBHOOK_API_KEY
       secretKeyRef:
@@ -720,18 +759,8 @@ staging:
       app_name: ubuntu.com-credentials
       image: prod-comms.ps5.docker-registry.canonical.com/ubuntu.com
       replicas: 3
-      useProxy: false
       memoryLimit: 512Mi
       env:
-        - name: HTTPS_PROXY
-          value: http://squid.ps6.internal:3128
-        
-        - name: HTTP_PROXY
-          value: http://squid.ps6.internal:3128
-
-        - name: NO_PROXY
-          value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
-        
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -807,12 +836,25 @@ staging:
             name: confidentiality-webhook
 
         - name: TRUEABILITY_URL
-          value: https://app.trueability.com
+          value: https://app3.trueability.com
 
         - name: TRUEABILITY_API_KEY
           secretKeyRef:
             key: api-key
             name: trueability
+
+        - name: PROCTOR360_BASE_URL
+          value: https://prod1ext.proctor360.com
+
+        - name: PROCTOR360_APP_SECRET
+          secretKeyRef:
+            key: app-secret
+            name: proctor360
+            
+        - name: PROCTOR360_APP_ID
+          secretKeyRef:
+            key: app-id
+            name: proctor360
 
         - name: TA_WEBHOOK_API_KEY
           secretKeyRef:
@@ -1036,17 +1078,7 @@ staging:
     }
 
 demo:
-  useProxy: false
   env:
-    - name: HTTP_PROXY
-      value: http://squid.ps6.internal:3128
-
-    - name: HTTPS_PROXY
-      value: http://squid.ps6.internal:3128
-
-    - name: NO_PROXY
-      value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
-    
     - name: CREDENTIALS_CONFIDENTIALITY_ENABLED
       value: false
 
@@ -1148,12 +1180,25 @@ demo:
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - name: TRUEABILITY_URL
-      value: https://app.trueability.com
+      value: https://app3.trueability.com
 
     - name: TRUEABILITY_API_KEY
       secretKeyRef:
         key: api-key
         name: trueability
+
+    - name: PROCTOR360_BASE_URL
+      value: https://prod1ext.proctor360.com
+
+    - name: PROCTOR360_APP_SECRET
+      secretKeyRef:
+        key: app-secret
+        name: proctor360
+        
+    - name: PROCTOR360_APP_ID
+      secretKeyRef:
+        key: app-id
+        name: proctor360
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
