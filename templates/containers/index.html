@@ -14,9 +14,11 @@
   is-paper
 {% endblock body_class %}
 
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
 {% block content %}
 
-  <div class="p-strip is-shallow u-no-padding--bottom">
+  <section class="p-section--hero">
     <div class="row">
       <div class="col-start-large-4 col-9">
         <div class="p-section--shallow">
@@ -29,29 +31,51 @@
         <p>
           Build enterprise-grade applications on the world's most popular cloud OS. Boost resource efficiency with ultra-small, production-ready containers, or use our open source tooling to create your own.
         </p>
-        <hr class="p-rule" />
-        <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our base image</a>
-        <a href="/containers/contact-us" class="js-invoke-modal" >Get a secure, custom-built container&nbsp;&rsaquo;</a>
+        <div class="p-cta-block">
+          <a class="p-button--positive" href="https://hub.docker.com/_/ubuntu">Deploy our base image</a>
+          <a href="/containers/contact-us" class="js-invoke-modal">Get a secure, custom-built container&nbsp;&rsaquo;</a>
+        </div>
       </div>
     </div>
-    <div class="p-suru"></div>
-  </div>
+  </section>
 
-  <div class="p-section">
+  <section class="p-section">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 class="p-text--small-caps">Containers, your way</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item u-no-padding">
+            <p class="p-heading--2">Maintained and compliant</p>
+          </li>
+          <li class="p-list__item u-no-padding">
+            <p class="p-heading--2">Support for any open source software</p>
+          </li>
+          <li class="p-list__item u-no-padding">
+            <p class="p-heading--2">On any Kubernetes</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
         <h2>
           Familiar for developers,
           <br aria-hidden="true" />
-          secured by Ubuntu
+          as dependable Ubuntu
         </h2>
       </div>
       <div class="col">
         <p>Rely on Ubuntu's demonstrated track record for containers that are:</p>
         <ul class="p-list--divided">
           <li class="p-list__item has-bullet">
-            <strong>Secure.</strong> Timely updates and patches, building on Ubuntu's security track record.
+            <strong>Supported.</strong> Timely updates and patches, building on Ubuntu's security track record.
           </li>
           <li class="p-list__item has-bullet">
             <strong>Stable.</strong> Long-term support with a consistent, predictable lifecycle and support commitment.
@@ -65,111 +89,339 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="p-section">
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>Explore our offering</h2>
+        <h2>Critical CVE fixes in 24 hours</h2>
       </div>
       <div class="col">
         <p>
-          Ubuntu containers are designed for modern software deployments. Our solutions are tailored to diverse needs, from individual developers to large enterprises that need long term supported, secure and compliant containers.
+          Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure. Trusted provenance is key.
+        </p>
+        <p>
+          Canonical's OCI images provide ready-to-use images, free of high and critical CVEs. Images are built on the same trusted infrastructure in Ubuntu, and updated automatically when apps or dependencies are fixed.
+        </p>
+        <div class="p-cta-block">
+          <a href="">Learn about vulnerability management in Ubuntu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>Our commitment</h2>
+      </div>
+    </div>
+    <div class="p-equal-height-row">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/8239d193-our%20commitment-1.png",
+                        alt="",
+                        width="852",
+                        height="1278",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <p class="p-heading--5">Long-term support</p>
+        </div>
+        <p class="p-equal-height-row__item">Up to 12 years of security updates and patching from Canonical</p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/637a62b2-our%20commitment-2.png",
+                        alt="",
+                        width="852",
+                        height="1278",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <p class="p-heading--5">Focus on vulnerability remediation</p>
+        </div>
+        <p class="p-equal-height-row__item">Fixes for high and critical CVEs</p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/893de5dc-our%20commitment-4.png",
+                        alt="",
+                        width="852",
+                        height="1278",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <p class="p-heading--5">Defense in depth</p>
+        </div>
+        <p class="p-equal-height-row__item">Minimal attack surface, coupled with an optimized and consistent structure</p>
+      </div>
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
+            {{ image(url="https://assets.ubuntu.com/v1/8ff9462c-our%20commitment-3.png",
+                        alt="",
+                        width="852",
+                        height="1278",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-image-container__image"},) | safe
+            }}
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+          <p class="p-heading--5">Anywhere, anytime</p>
+        </div>
+        <p class="p-equal-height-row__item">Compatible with all major architectures</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule--highlight" />
+      <h2 class="p-text--small-caps">Supported on all Kubernetes distributions</h2>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/8454a208-canonical-logo.png",
+                        alt="Canonical",
+                        width="345",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/e33122ea-vmware-logo.png",
+                        alt="VMWare",
+                        width="323",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/4fffb329-microsoft-logo-2.png",
+                        alt="Microsoft",
+                        width="342",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/29e6bdf8-amazon-logo 1.png",
+                        alt="Amazon",
+                        width="283",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/9f49383f-google-logo.png",
+                        alt="Google",
+                        width="220",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/f6043cd6-rancher-logo.png",
+                        alt="Rancher",
+                        width="387",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image(url="https://assets.ubuntu.com/v1/e90e05e7-HPE-logo.png",
+                        alt="",
+                        width="310",
+                        height="312",
+                        hi_def=True,
+                        loading="lazy",
+                        attrs={"class": "p-logo-section__logo"}) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Our container portfolio</h2>
+      </div>
+      <div class="col">{% include "containers/shared/_container-portfolio-tabs.html" %}</div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Container Build Service</h2>
+      </div>
+      <div class="col">
+        <p>Need to containerize a specific version of an open source tool?</p>
+        <p>
+          We provide a Container Build Service that creates custom containerization for all kinds of open source software, allowing you to readily deploy them into your existing environment.
         </p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-start-large-4 col-9 col-medium-6">
-        <hr class="p-rule" />
-        <div class="row p-section--shallow">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Container Build Service</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Have Canonical's expert team custom build secure, minimal and optimised containers for your application. This service is ideal for enterprise that need a trusted partner to create and maintain containers that offer:
-            </p>
-            <ul class="p-list--divided">
-              <li class="p-list__item is-ticked">Minimal attack surface, coupled with an optimised and consistent structure</li>
-              <li class="p-list__item is-ticked">12 years of security support</li>
-              <li class="p-list__item is-ticked">
-                Compliance with the most stringent security management, auditing and reporting frameworks
-              </li>
-            </ul>
-            <p>
-              <a href="/containers/contact-us" class="js-invoke-modal">Explore the Container Build Service&nbsp;&rsaquo;</a>
-            </p>
-          </div>
-        </div>
-        <hr class="p-rule" />
-        <div class="row">
-          <div class="col-3 col-medium-3">
-            <h3 class="p-heading--5">Chiseled Ubuntu images</h3>
-          </div>
-          <div class="col-6 col-medium-3">
-            <p>
-              Canonical's variation of “distroless” containers. Chiseled Ubuntu containers take size optimisation to a new level. Developers can keep building with Ubuntu and rely on Chisel to extract an ultra-small, bitwise identical image tailored for production. No more worries about library incompatibilities, just seamless development to deployment.
-            </p>
-            <p>
-              <a href="/blog/combining-distroless-and-ubuntu-chiselled-containers">Learn about Chiselled Ubuntu&nbsp;&rsaquo;</a>
-            </p>
-          </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Custom container benefits</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Modernizing legacy applications</li>
+          <li class="p-list__item is-ticked">Minimal container, includes essentials only</li>
+          <li class="p-list__item is-ticked">Supported on any certified Kubernetes distribution</li>
+        </ul>
+        <div class="p-cta-block">
+          <a href="/containers/container-build-service">Discover our Container Build Service&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Canonical's container toolkit</h2>
+      </div>
+      <div class="col">
+        <p>
+          Rockcraft and Chisel provide the tools and flexibility to build Ubuntu-based containers that perfectly align with your application requirements. Canonical's variation of “distroless” containers called chiseled Ubuntu containers take size optimization to a new level.
+        </p>
+        <p>
+          Developers can keep building with Ubuntu and rely on ultra-small, bitwise identical images tailored for production.
+        </p>
+        <p>No more worries about library incompatibilities, just seamless development to deployment.</p>
+        <div class="p-cta-block">
+          <a href="https://documentation.ubuntu.com/rockcraft/en/latest/index.html#"
+             class="p-button">Learn more about Rockcraft</a>
+          <a href="https://documentation.ubuntu.com/rockcraft/en/latest/explanation/chisel.html"
+             class="p-button">Learn more about Chisel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% call(slot) vf_quote_wrapper(
+    title_text="What industry experts say",
+    quote_size="small",
+    quote_text="There has always been a need for smaller and tighter images. Developers remind us, as a base image provider, of that on a regular basis. Chiseled images leapfrog over approaches we've looked at in the past. We love the idea and implementation of chiseled images and Canonical as a partner. When technical leaders at Canonical shared the first demos of chiseled images with us, we immediately wanted to be a launch partner, and we're thrilled that we're shipping Ubuntu chiseled images for .NET as part of the GA release.",
+    citation_source_name_text="Richard Lander",
+    citation_source_title_text=".NET Product Manager",
+    citation_source_organisation_text="Microsoft"
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+
+      {{ image(url="https://assets.ubuntu.com/v1/111cde21-Microsoft-logo.png",
+            alt="Microsoft",
+            width="113",
+            height="24",
+            hi_def=True,
+            loading="lazy") | safe
+      }}
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="https://www.youtube.com/watch?v=FLGFzlWF4Gs">Watch our interview with Richard Lander&nbsp;&rsaquo;</a>
+    {%- endif -%}
+  {% endcall -%}
 
   <hr class="p-rule is-fixed-width" />
   <div class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2>
-        <a href="/engage/container-security-guide">Read our whitepaper about container security&nbsp;&rsaquo;</a>
+        <a href="/containers/chiseled/dotnet">Discover chiseled Ubuntu for .NET applications&nbsp;&rsaquo;</a>
       </h2>
     </div>
   </div>
 
-  <div class="p-section">
+  <section class="p-section">
     <div class="u-fixed-width">
-      <hr class="p-rule" />
-      <p class="p-text--small-caps">Trusted by industry leaders</p>
+      <hr class="p-rule--highlight" />
+      <h2 class="p-text--small-caps">Trusted by industry leaders</h2>
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/a4c39400-docker-logo-horizontal.png",
+            {{ image(url="https://assets.ubuntu.com/v1/bb387a0d-docker-logo-horizontal.png",
                         alt="Docker",
-                        width="516",
-                        height="558",
+                        width="351",
+                        height="312",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/834d57ab-intel-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/aefa9d69-intel-new-logo.png",
                         alt="Intel",
-                        width="149",
-                        height="288",
+                        width="162",
+                        height="312",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d9d05f49-arm-logo.png",
-                        alt="Arm",
-                        width="183",
-                        height="372",
+            {{ image(url="https://assets.ubuntu.com/v1/905cef9f-arm-logo.png",
+                        alt="ARM",
+                        width="154",
+                        height="312",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/9e636877-microsoft-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/4fffb329-microsoft-logo-2.png",
                         alt="Microsoft",
-                        width="288",
-                        height="288",
+                        width="342",
+                        height="312",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo"}) | safe
@@ -178,20 +430,25 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="p-section">
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/engage/container-security-guide">Access our whitepaper about container security&nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
+
+  <section class="p-section">
     <div class="row--50-50">
       <hr class="p-rule" />
       <div class="col">
-        <h2>
-          Take your container strategy
-          <br aria-hidden="true" />
-          to the next level
-        </h2>
+        <h2>Container resources</h2>
       </div>
       <div class="col">
-        <p>Dive deeper into the world of containers with Ubuntu on our blog.</p>
+        <p class="p-heading--5">Dive deeper into the world of containers with Ubuntu on our blog.</p>
         <hr class="p-rule" />
         <ul class="p-list--divided">
           <li class="p-list__item">
@@ -206,7 +463,16 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
+
+  <hr class="p-rule is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        <a href="/containers/contact-us" class="js-invoke-modal">Get in touch to find or build your ideal container &nbsp;&rsaquo;</a>
+      </h2>
+    </div>
+  </section>
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide"
        id="contact-form-container"
@@ -215,5 +481,7 @@
        data-lp-id=""
        data-return-url="https://ubuntu.com/containers#success"
        data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}
