@@ -1494,6 +1494,30 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         )
 
 
+@shop_decorator(area="cred", permission="user", response="json")
+@credentials_admin()
+def cred_user_ban(ua_contracts_api, **kwargs):
+    method = flask.request.method
+
+    if method == "PUT":
+        data = flask.request.json
+        sanitized_data = {
+            "email": data.get("email", ""),
+            "reason": data.get("reason", ""),
+            "blocked": data.get("blocked", True),
+            "expiresAt": data.get("expiresAt", None),
+        }
+        resp = ua_contracts_api.put_cue_user_ban(sanitized_data)
+        if resp.get("errors", False):
+            return flask.jsonify(resp), 400
+        return flask.jsonify(resp)
+    elif method == "GET":
+        resp = ua_contracts_api.get_cue_user_bans()
+        return flask.jsonify(resp)
+    else:
+        return flask.jsonify({"error": "Method not allowed"}), 405
+
+
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account("canonical-ua")
