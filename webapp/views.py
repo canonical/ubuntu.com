@@ -1274,9 +1274,19 @@ def build_vulnerabilities(security_vulnerabilities):
 def serve_sitemap():
     try:
         sitemap_path = os.getcwd() + "/templates/sitemap_tree.xml"
-
         directory_path = os.getcwd() + "/templates"
         base_url = "https://ubuntu.com"
+
+        # Validate the secret if its a POST request
+        if flask.request.method == "POST":
+            expected_secret = os.getenv("SITEMAP_SECRET")
+            provided_secret = flask.request.headers.get(
+                "Authorization", ""
+            ).replace("Bearer ", "")
+
+            if provided_secret != expected_secret:
+                logging.warning("Invalid secret provided")
+                return {"error": "Unauthorized"}, 401
 
         # Generate sitemap if update request or if it doesn't exist
         if flask.request.method == "POST" or not os.path.exists(sitemap_path):
