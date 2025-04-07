@@ -129,10 +129,15 @@ class Proctor360API:
                 }
             uri = "/api/v2/exams"
             response = self.make_request("GET", uri).json()
-            if response.get("status", 200) == 200:
-                return {"error": False}
+            status = response.get("status", 200)
+            if status == 200:
+                return {
+                    "error": False,
+                    "message": f"Proctor 360 responded with {status}",
+                }
             return {
                 "error": True,
+                "message": f"Proctor 360 responded with {status}",
             }
         except Exception:
             flask.current_app.extensions["sentry"].captureException(
@@ -141,9 +146,7 @@ class Proctor360API:
                     "request_headers": flask.request.headers,
                 }
             )
-            return {
-                "error": True,
-            }
+            return {"error": True, "message": "Something went wrong"}
 
     def list_exams(self):
         uri = "/api/v2/exams"
