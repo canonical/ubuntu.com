@@ -58,20 +58,21 @@
               {{ releases.lts.full_version }} LTS
             </a>
             {% if releases.lts.iso_download_size %}
+              <span class="u-text--muted" style="margin-right: 1rem;">{{ releases.lts.iso_download_size }}</span>
+            {% endif %}
+            <a class="p-button"
+               href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download for ARM
+            </a>
+            {% if releases.lts.iso_download_size %}
               <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
             {% endif %}
+
             <script>
               performance.mark("Download (Desktop) button rendered")
             </script>
           </p>
-          <p>
-            <a href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=arm64&amp;lts=true"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download for ARM
-            </a>
-            {% if releases.lts.iso_download_size %}
-              &nbsp;&rsaquo;&nbsp;<span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
-            {% endif %}
-          </p>
+
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
@@ -200,20 +201,19 @@
               {{ releases.latest.full_version }}
             </a>
             {% if releases.latest.iso_download_size %}
+              <span class="u-text--muted" style="margin-right: 1rem;">{{ releases.latest.iso_download_size }}</span>
+            {% endif %}
+            <a class="p-button"
+               href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=arm64"
+               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
+              {{ releases.latest.full_version }}
+            </a>
+            {% if releases.latest.iso_download_size %}
               <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
             {% endif %}
             <script>
               performance.mark("Download (Desktop) button rendered")
             </script>
-          </p>
-          <p>
-            <a href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=arm64"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
-              {{ releases.latest.full_version }}
-            </a>
-            {% if releases.latest.iso_download_size %}
-              &nbsp;&rsaquo;&nbsp;<span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
-            {% endif %}
           </p>
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
