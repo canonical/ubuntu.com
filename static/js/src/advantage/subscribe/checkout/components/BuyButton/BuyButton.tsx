@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
@@ -29,10 +29,21 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   coupon?: Coupon;
+  errorType: string;
 };
 
-const BuyButton = ({ setError, products, action, coupon }: Props) => {
+const BuyButton = ({
+  setError,
+  products,
+  action,
+  coupon,
+  errorType,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const isBuyButtonDisabled = useMemo(() => {
+    return isLoading || errorType === "cue-banned";
+  }, [isLoading, errorType]);
 
   const {
     values,
@@ -76,6 +87,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
   }, [values.country]);
 
   const onPayClick = async () => {
+    if (errorType === "cue-banned") return;
     setIsLoading(true);
     confirmNavigateListener.set();
     validateForm().then((errors) => {
@@ -398,7 +410,7 @@ const BuyButton = ({ setError, products, action, coupon }: Props) => {
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
       onClick={onPayClick}
       loading={isLoading}
-      disabled={isLoading}
+      disabled={isBuyButtonDisabled}
     >
       Buy now
     </ActionButton>

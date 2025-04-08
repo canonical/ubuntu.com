@@ -34,6 +34,8 @@ type Props = {
 
 const Checkout = ({ products, action, coupon }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
+  const [errorType, setErrorType] = useState<string>("");
+  console.log(errorType);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
   const marketplace = products[0].product.marketplace;
@@ -115,6 +117,7 @@ const Checkout = ({ products, action, coupon }: Props) => {
                           action={action}
                           coupon={coupon}
                           setError={setError}
+                          setErrorType={setErrorType}
                         />
                       ),
                     },
@@ -161,7 +164,8 @@ const Checkout = ({ products, action, coupon }: Props) => {
                                 action={action}
                                 setError={setError}
                                 coupon={coupon}
-                              ></BuyButton>
+                                errorType={errorType}
+                              />
                             </Col>
                           </Row>
                         </>
