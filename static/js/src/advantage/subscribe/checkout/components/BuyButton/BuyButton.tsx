@@ -260,7 +260,6 @@ const BuyButton = ({
         ),
       });
     } else {
-      // Try to parse the stripe error message
       const knownErrorMessage = getNotificationMessage(error);
       setError(knownErrorMessage);
     }

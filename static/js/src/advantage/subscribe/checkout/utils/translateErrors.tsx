@@ -55,8 +55,7 @@ const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
  */
 export function getNotificationMessage(error: Error): DisplayError {
   const { message } = error;
-  if (!message) return { description: "" };
-
+   
   if (
     INSUFFICIENT_FUNDS_CODES.includes(message) ||
     message?.includes("Your card has insufficient funds")
@@ -209,15 +208,9 @@ export function getCardErrorMessage(
 ): string | undefined {
   if (!error) return;
 
-  const { message, code } = error;
-  if (!message) return;
+  const { code } = error;
+  if (!code) return;
 
-  if (
-    INSUFFICIENT_FUNDS_CODES.includes(code) ||
-    message?.includes("Your card has insufficient funds")
-  ) {
-    return "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.";
-  }
   if (INCORRECT_NUMBER_CODES.includes(code)) {
     return "Invalid card number, check and re-enter the number.";
   }
