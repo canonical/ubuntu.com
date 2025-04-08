@@ -22,6 +22,7 @@ from canonicalwebteam.discourse import (
     Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from canonicalwebteam.directory_parser import scan_directory
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
@@ -173,6 +174,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    serve_sitemap,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -1334,3 +1336,18 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+
+# TODO: Endpoint for testing and QA purposes only
+def get_sitemaps_tree():
+    try:
+        tree = scan_directory(os.getcwd() + "/templates")
+    except Exception as e:
+        return {"Error:": str(e)}, 500
+    return tree
+
+
+app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
+app.add_url_rule(
+    "/sitemap_tree.xml", view_func=serve_sitemap, methods=["GET", "POST"]
+)
