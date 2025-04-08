@@ -219,13 +219,13 @@ export function getCardErrorMessage(
     return "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.";
   }
   if (INCORRECT_NUMBER_CODES.includes(code)) {
-    return "That card number is incorrect. Check the number and try again.";
+    return "Invalid card number, check and re-enter the number.";
   }
   if (INCORRECT_CVC_CODES.includes(code)) {
     return "That CVC number is incorrect. Check the number and try again.";
   }
   if (INCORRECT_ZIP_CODES.includes(code)) {
-    return "That ZIP/postal code is incorrect. Check the code and try again.";
+    return "The ZIP/postal code is incorrect, check and re-enter the code.";
   }
   if (INCORRECT_EXPIRY_CODES.includes(code)) {
     return "That expiry date is incorrect. Check the date and try again.";
