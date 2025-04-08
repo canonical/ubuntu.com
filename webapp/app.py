@@ -1307,3 +1307,31 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+
+
+def testip():
+    _forwarded_for = request.headers.get('X-Forwarded-For', '')
+    x_real_ip = request.headers.get('X-Real-IP', '')
+    forwarded = request.headers.get('Forwarded', '')
+    
+    resp = flask.Response(
+        f"""
+        request.headers
+        'X-Forwarded-For': {x_forwarded_for}
+        'X-Real-IP': {x_real_ip}
+        'Forwarded': {forwarded}
+        'Remote Address': {request.remote_addr}
+        ---------------------------------------
+        flask.request
+        remote_addr: {flask.request.remote_addr},
+        forwared-for: {flask.request.environ.get("HTTP_X_FORWARDED_FOR")},
+        remote-ip: {flask.request.environ.get("REMOTE_ADDR")}
+        """
+    )
+    resp.headers["Cache-Control"] = "no-store max_age=0"
+    return resp
+
+
+app.add_url_rule("/_testip", view_func=testip)
+
