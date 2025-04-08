@@ -64,9 +64,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Insufficient funds",
       description: (
         <>
-          <span>
-            Your card doesn’t have enough funds to complete this payment.
-          </span>
+          Your card doesn’t have enough funds to complete this payment.
           <ul className="u-no-margin--bottom">
             <li>Check your available funds and limits</li>
             <li>Contact your bank or card issuer for more information</li>
@@ -85,7 +83,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Incorrect security code",
       description: (
         <>
-          <span>The security code (CVC) doesn’t match the card.</span>
+          The security code (CVC) doesn’t match the card.
           <ul className="u-no-margin--bottom">
             <li>
               Re-enter the CVC number from the back of your card and try again
@@ -103,9 +101,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Postal code doesn’t match",
       description: (
         <>
-          <span>
-            This postal code doesn’t match the one associated with your card.
-          </span>
+          This postal code doesn’t match the one associated with your card.
           <ul className="u-no-margin--bottom">
             <li>Re-enter the billing address postal code and try again</li>
             <li>
@@ -122,9 +118,8 @@ export function getNotificationMessage(error: Error): DisplayError {
     };
   } else if (INCORRECT_EXPIRY_CODES.includes(message)) {
     return {
-      description: (
-        <>That expiry date is incorrect. Check the date and try again.</>
-      ),
+      description:
+        "That expiry date is incorrect. Check the date and try again.",
     };
   } else if (message === "tax_id_invalid") {
     return {
@@ -151,7 +146,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Card expired",
       description: (
         <>
-          <span>Your card is expired.</span>
+          Your card is expired.
           <ul className="u-no-margin--bottom">
             <li>Check card expiration date</li>
             <li>Try a different payment method</li>
@@ -166,7 +161,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Payment declined",
       description: (
         <>
-          <span>We can’t process your payment with your card.</span>
+          We can’t process your payment with your card.
           <ul className="u-no-margin--bottom">
             <li>Check the card number, expiration date, and CVC number</li>
             <li>
@@ -184,7 +179,7 @@ export function getNotificationMessage(error: Error): DisplayError {
       title: "Payment processing error",
       description: (
         <>
-          <span>There was an unexpected error processing your payment.</span>
+          There was an unexpected error processing your payment.
           <ul className="u-no-margin--bottom">
             <li>Check the payment details and try submitting again</li>
             <li>
