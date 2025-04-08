@@ -15,6 +15,7 @@ let entries = {
   appliance: "./static/js/src/appliance.js",
   costCalculator: "./static/js/src/openstack/react/app.jsx",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
+  "account-billing": "./static/js/src/account-billing.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",

@@ -10,9 +10,18 @@
 {% block content %}
 
 <section class="p-strip--suru-topped p-strip-account-page">
-  <div class="row">
-    <div class="col-12">
-      <h1>Invoices</h1>
+  <div class="u-fixed-width">
+    <div id="error-container" class="p-notification--negative u-hide">
+      <div class="p-notification__content">
+        <h5 class="p-notification__title">Error</h5>
+        <p class="p-notification__message">There was an error, please try again later. Contact Contact <a href='/contact-us'>Canonical sales</a> if the problem persists.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <h1>Billing</h1>
+      <button id="edit-billing-btn" class="p-button" aria-controls="modal">
+        Edit billing details
+      </button>
     </div>
   </div>
   <div class="row">
@@ -95,7 +104,7 @@
     </div>
   </div>
 </section>
-
+{% include "account/invoices/_edit_billing_modal.html" %}
 
 <script>
   const prices = document.querySelectorAll('.js-format-price');
@@ -119,5 +128,9 @@
     window.location.replace(href);
   })
 </script>
+<script>
+  window.accountId = "{{ account_id }}";
+</script>
+<script src="{{ versioned_static('js/dist/account-billing.js') }}"></script>
 
 {% endblock content %}

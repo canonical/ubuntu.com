@@ -1,0 +1,21 @@
+<div style="display: none;" class="p-modal" id="edit-billing-modal">
+  <section style="min-width: 38rem"
+           class="p-modal__dialog"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="modal-title">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Edit billing details</h2>
+      <button class="p-modal__close"
+              aria-label="Close active modal"
+              aria-controls="modal">Close</button>
+    </header>
+    {% include 'account/invoices/_edit_billing_form.html' %}
+    <footer class="p-modal__footer">
+      <button id="cancel-modal-btn"
+              class="u-no-margin--bottom"
+              aria-controls="modal">Cancel</button>
+      <button id="save-modal-btn" class="p-button--positive u-no-margin--bottom">Save</button>
+    </footer>
+  </section>
+</div>
