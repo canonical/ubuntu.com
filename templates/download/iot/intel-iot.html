@@ -159,13 +159,35 @@
             aria-label="processors">
           <li>
             <button class="p-tabs__item"
+                    id="atom-x7000"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="atom-x7000-tab">
+              Intel&reg; Atom&reg; Processor X7000 Series
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Amston Lake</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
+                    id="core-ultra-2"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="core-ultra-2-tab">
+              Intel&reg; Core&trade; Ultra (Series 2)
+              <br />
+              <span class="u-text--muted u-no-margin--bottom">Arrow Lake</span>
+            </button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="core-ultra"
                     role="tab"
                     aria-selected="true"
                     aria-controls="core-ultra-tab">
               Intel&reg; Core&trade; Ultra
               <br />
-              <span class="u-text--muted u-no-margin--bottom">Meteor Lake</span>
+              <span class="u-text--muted u-no-margin--bottom">Meteor Lake, Meteor Lake PS</span>
             </button>
           </li>
           <li>
@@ -174,7 +196,7 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="atom-tab">
-              Intel&reg; Atom&reg; X7000E Series
+              Intel&reg; Atom&reg; X7000E Processors Series
               <br />
               <span class="u-text--muted u-no-margin--bottom">Alder Lake N</span>
             </button>
@@ -187,7 +209,7 @@
                     aria-controls="thirteen-gen-tab">
               13th Gen Intel&reg; Core&trade;
               <br />
-              <span class="u-text--muted u-no-margin--bottom">Raptor Lake S, Raptor Lake P, PS</span>
+              <span class="u-text--muted u-no-margin--bottom">Raptor Lake, Raptor Lake PS</span>
             </button>
           </li>
           <li>
@@ -198,7 +220,7 @@
                     aria-controls="twelve-gen-tab">
               12th Gen Intel&reg; Core&trade;
               <br />
-              <span class="u-text--muted u-no-margin--bottom">Alder Lake S, P, PS</span>
+              <span class="u-text--muted u-no-margin--bottom">Alder Lake, Alder Lake PS</span>
             </button>
           </li>
           <li>
@@ -207,9 +229,9 @@
                     role="tab"
                     aria-selected="false"
                     aria-controls="xeon-tab">
-              Intel&reg; Xeon&reg; D
+              Intel&reg; Xeon&reg; D Series
               <br />
-              <span class="u-text--muted u-no-margin--bottom">Ice Lake-D</span>
+              <span class="u-text--muted u-no-margin--bottom">Ice Lake D</span>
             </button>
           </li>
           <li>
@@ -231,19 +253,21 @@
                     aria-controls="eleven-gen-tab">
               11th Gen Intel&reg; Core&trade;
               <br />
-              <span class="u-text--muted u-no-margin--bottom">Tiger Lake-UP3</span>
+              <span class="u-text--muted u-no-margin--bottom">Tiger Lake UP3</span>
             </button>
           </li>
         </ul>
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect">
-            <option value="core-ultra-tab" selected="">Intel&reg; Core&trade; Ultra (Meteor Lake)</option>
+            <option value="atom-x7000-tab" selected="">Intel&reg; Atom&reg; Processor X7000 Series (Amston Lake)</option>
+            <option value="core-ultra-2-tab" selected="">Intel&reg; Core&trade; Ultra (Series 2) (Arrow Lake)</option>
+            <option value="core-ultra-tab" selected="">Intel&reg; Core&trade; Ultra (Meteor Lake, Meteor Lake PS)</option>
             <option value="atom-tab">Intel&reg; Atom&reg; X7000E Series (Alder Lake N)</option>
-            <option value="thirteen-gen-tab">13th Gen Intel&reg; Core&trade; (Raptor Lake S, Raptor Lake P, PS)</option>
-            <option value="twelve-gen-tab">12th Gen Intel&reg; Core&trade; (Alder Lake S, P, PS)</option>
-            <option value="xeon-tab">Intel&reg; Xeon&reg; D (Ice Lake-D)</option>
+            <option value="thirteen-gen-tab">13th Gen Intel&reg; Core&trade; (Raptor Lake, Raptor Lake PS)</option>
+            <option value="twelve-gen-tab">12th Gen Intel&reg; Core&trade; (Alder Lake, Alder Lake PS)</option>
+            <option value="xeon-tab">Intel&reg; Xeon&reg; D Series (Ice Lake D)</option>
             <option value="atom-next-tab">Intel&reg; Atom&reg; X6000E Series (Elkhart Lake)</option>
-            <option value="eleven-gen-tab">11th Gen Intel&reg; Core&trade; (Tiger Lake-UP3)</option>
+            <option value="eleven-gen-tab">11th Gen Intel&reg; Core&trade; (Tiger Lake UP3)</option>
           </select>
         </form>
       </div>
@@ -251,11 +275,224 @@
       <div class="col-9 col-medium-4">
         <div tabindex="0"
              role="tabpanel"
+             id="atom-x7000-tab"
+             aria-labelledby="atom-x7000"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Atom&reg; Processor X7000 Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The Intel Atom&reg; x7000 processor series offers power-efficient, rugged performance with up to eight E-cores, 
+              32 execution units, and built-in AI capabilities. Tuned for deep learning, it's designed for harsh environments 
+              and latency-sensitive Industry 4.0 applications, delivering efficient performance where it's needed most.
+            </p>
+            <a href="https://www.intel.com/content/www/us/en/products/details/embedded-processors/atom/atomx7000re.html">Read
+            about the x7000RE Series&nbsp;&rsaquo;</a>
+            <br />
+            <a href="https://www.intel.com/content/www/us/en/content-details/820013/intel-atom-processors-x7000c-series-for-networking-product-brief.html?DocID=820013">Read
+            about the x7000C Series for Networking&nbsp;&rsaquo;</a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/core"
+                     aria-label="Download Ubuntu Desktop Core 24">Download
+                  Core 24</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core"
+                       href="/core/docs/uc24">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/desktop"
+                     aria-label="Download Ubuntu Desktop 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release notes for 24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/server"
+                     aria-label="Download Ubuntu Server 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release
+                      notes for
+                    24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
+             id="core-ultra-2-tab"
+             aria-labelledby="core-ultra-2"
+             aria-hidden="true">
+          <div class="p-section--shallow">
+            <h3 class="p-heading--2">Intel&reg; Core&trade; Ultra (Series 2)</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              Intel&reg; Core&trade; Ultra desktop processors (series 2) are the ultimate desktop and entry workstation 
+              platform, engineered to unlock new levels of intelligent performance for the most demanding daily tasks.
+            </p>
+            <a
+              href="https://www.intel.com/content/www/us/en/content-details/843357/intel-core-ultra-200u-and-200h-series-processors-for-the-edge.html?DocID=843357"
+              aria-label="Read the platform brief for Core Ultra Edge Series"
+            >
+              Read the platform brief&nbsp;&rsaquo;
+            </a>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="p-equal-height-row">
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Core</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Immutable Linux OS optimized for IoT and edge embedded systems.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/core"
+                     aria-label="Download Ubuntu Desktop Core 24">Download
+                  Core 24</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Core"
+                       href="/core/docs/uc24">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Desktop</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Modern and performant, with a rich ecosystem of applications.</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/desktop"
+                     aria-label="Download Ubuntu Desktop 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Learn more about Ubuntu Desktop"
+                       href="/desktop/developers">Learn
+                    more&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release notes for 24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="p-equal-height-row__col">
+              <div class="p-equal-height-row__item">
+                <h4 class="p-heading--5">Ubuntu Server</h4>
+              </div>
+              <div class="p-equal-height-row__item">
+                <p>Designed and engineered as a backbone for the internet</p>
+                <p>
+                  <a class="p-button--positive"
+                     href="/download/server"
+                     aria-label="Download Ubuntu Server 24.04 LTS">Download
+                  24.04 LTS</a>
+                </p>
+                <hr class="p-rule--muted u-hide--medium u-hide--small" />
+                <ul class="u-responsive-realign p-inline-list">
+                  <li class="p-inline-list__item">
+                    <a aria-label="Docs for Ubuntu Server" href="/server/docs">Docs&nbsp;&rsaquo;</a>
+                  </li>
+                  <li class="p-inline-list__item">
+                    <a href="https://discourse.ubuntu.com/t/ubuntu-24-04-lts-noble-numbat-release-notes/39890">Release
+                      notes for
+                    24.04 LTS&nbsp;&rsaquo;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div tabindex="0"
+             role="tabpanel"
              id="core-ultra-tab"
              aria-labelledby="core-ultra"
              aria-hidden="true">
           <div class="p-section--shallow">
             <h3 class="p-heading--2">Intel&reg; Core&trade; Ultra</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The PS Series Intel&reg; Core&trade; Ultra processors boost edge AI with multiple compute engines, an Intel&reg; 
+              Arc&trade; GPU, and Intel&reg; AI Boost NPU. A versatile LGA socket SoC delivers full performance at 65W, 
+              driving AI and graphics across industries—from generative AI in retail to AI-assisted workflows in healthcare.
+            </p>
+            <a
+              href="https://www.intel.com/content/www/us/en/products/docs/embedded-processors/core-ultra/product-brief.html?wapkw=METEOR%20LAKE%20PRODUCT%20BRIEF"
+              aria-label="Read the product brief for MTL-UH"
+            >
+              Read the product brief&nbsp;&rsaquo;
+            </a>
+            <br />
+            <a
+              href="https://www.intel.com/content/www/us/en/products/docs/embedded-processors/core-ultra/ps-product-brief.html?wapkw=METEOR%20LAKE%20PS%20PRODUCT%20BRIEF"
+              aria-label="Read the PS Series product brief"
+            >
+              Read the PS Series product brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
@@ -325,7 +562,22 @@
              aria-labelledby="atom"
              aria-hidden="true">
           <div class="p-section--shallow">
-            <h3 class="p-heading--2">Intel&reg; Atom&reg; X7000E Series</h3>
+            <h3 class="p-heading--2">Intel&reg; Atom&reg; X7000E Processors Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              Intel's Alder Lake-N series SoCs, based on Tremont architecture, feature up to 8 CPU cores, Wi-Fi 6E, GNA 3.0 
+              noise suppression, and integrated IPU and MIPI camera support. With Wi-Fi 6E (Gig+), they offer fast, reliable 
+              connectivity for smooth streaming and video calls. Designed for low power, they excel in efficiency for budget 
+              notebooks and desktops.
+            </p>
+            <a
+              href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/atomx7000e-product-brief.html"
+              aria-label="Read the product brief for x7000E"
+            >
+              Read the product brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
@@ -419,7 +671,22 @@
              aria-labelledby="thirteen-gen"
              aria-hidden="true">
           <div class="p-section--shallow">
-            <h3 class="p-heading--2">13th Gen Intel&reg; Core&trade; (S-, P-, and PS-Series)</h3>
+            <h3 class="p-heading--2">13th Gen Intel&reg; Core&trade;</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              The 13th Gen Intel&reg; Core&trade; desktop processors offer up to 24 cores (8 P-cores, 16 E-cores) and 32 threads, 
+              reaching 5.8 GHz with Intel&reg; Thermal Velocity Boost. With PCIe 5.0, DDR5 up to 5600 MT/s, and overclocking 
+              support, they deliver faster performance. Backward compatibility with Intel 600/700 series chipsets ensures 
+              flexible upgrades.
+            </p>
+            <a
+              href="https://www.intel.com/content/www/us/en/content-details/843363/intel-core-processors-series-2-product-brief.html?wapkw=raptor%20lake%20PRODUCT%20BRIEF"
+              aria-label="Read the product brief for RPL"
+            >
+              Read the product brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
@@ -487,22 +754,22 @@
              aria-labelledby="twelve-gen"
              aria-hidden="true">
           <div class="p-section--shallow">
-            <h3 class="p-heading--2">12th Gen Intel&reg; Core&trade; (S-, P-, and PS-Series)</h3>
+            <h3 class="p-heading--2">12th Gen Intel&reg; Core&trade;</h3>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="col">
             <p>
-              As the first Intel&reg; Core&trade; processors to feature performance hybrid architecture, the 12th Gen
-              Intel&reg; Core&trade; processors (codename &mdash; Alder Lake) are designed for workload optimization,
-              accelerated AI performance and immersive video experience. The platform offers flexibility and scalability
-              &mdash; with its comprehensive lineup of desktop and mobile processor choices, each with differentiated key
-              features, performance levels and graphical capabilities. One of Intel's latest and most innovative platforms to
-              launch this year for IoT , the 12th Gen Intel&reg; Core&trade; processors are created to enable deployment
-              success and drive more value in many sectors including smart retail, industrial manufacturing, healthcare, video
-              and security.
+              The 12th Gen Intel&reg; Core&trade; processors (Alder Lake) are the first to feature performance hybrid 
+              architecture, optimizing workloads, AI, and video. With a flexible lineup of desktop and mobile options, 
+              they enable deployment success and drive value across IoT sectors like smart retail, manufacturing, 
+              healthcare, and security.
             </p>
-            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/12th-gen-core-iot-product-brief.html?wapkw=12th%20gen%20intel%20core%20processors">Read
-            the platform brief&nbsp;&rsaquo;</a>
+            <a
+              href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/12th-gen-core-iot-product-brief.html?wapkw=12th%20gen%20intel%20core%20processors"
+              aria-label="Read the platform brief for 12th Gen Core"
+            >
+              Read the platform brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
@@ -596,7 +863,21 @@
              aria-labelledby="xeon"
              aria-hidden="true">
           <div class="p-section--shallow">
-            <h3 class="p-heading--2">Intel&reg; Xeon&reg; D (D-Series)</h3>
+            <h3 class="p-heading--2">Intel&reg; Xeon&reg; D Series</h3>
+          </div>
+          <hr class="p-rule--muted u-hide--medium u-hide--small" />
+          <div class="col">
+            <p>
+              As edge computing advances, demand for high-performance, IoT-focused processors grows. Intel&reg; Xeon&reg; 
+              D-1700 and D-2700 deliver server-class computing, security, and high bandwidth. With integrated Ethernet, 
+              AI acceleration, and real-time support, they're built for IoT and edge applications.
+            </p>
+            <a
+              href="https://www.intel.com/content/www/us/en/products/docs/processors/xeon-d/intelligent-iot-edge-product-brief.html?wapkw=icelake-D"
+              aria-label="Read the platform brief for Xeon D"
+            >
+              Read the platform brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
@@ -789,18 +1070,22 @@
              aria-labelledby="eleven-gen"
              aria-hidden="true">
           <div class="p-section--shallow">
-            <h3 class="p-heading--2">11th Gen Intel&reg; Core&trade; (UP3-Series)</h3>
+            <h3 class="p-heading--2">11th Gen Intel&reg; Core&trade;</h3>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="col">
             <p>
               11th Gen Intel&reg; Core&trade; processors deliver a balance of
-              performance and responsiveness in a low-power platform built on our third-generation 10nm process technology.
+              performance and responsiveness in a low-power platform built on Intel's third-generation 10nm process technology.
               Engineered to deliver for IoT markets, these processors can support low-latency and time-sensitive applications,
               and have the power to run multiple workloads including AI and deep learning applications on a single platform.
             </p>
-            <a href="https://www.intel.com/content/www/us/en/products/docs/processors/core/11th-gen-core-enhanced-for-iot-brief.html">Read
-            the platform brief&nbsp;&rsaquo;</a>
+            <a
+              href="https://www.intel.com/content/www/us/en/products/platforms/details/tiger-lake-up3.html?wapkw=tiger%20lake%20up3"
+              aria-label="Read the platform brief for Tiger Lake UP3"
+            >
+              Read the platform brief&nbsp;&rsaquo;
+            </a>
           </div>
           <hr class="p-rule--muted u-hide--medium u-hide--small" />
           <div class="p-equal-height-row">
