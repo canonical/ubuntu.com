@@ -1311,20 +1311,19 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 
 
 def testip():
-    _forwarded_for = request.headers.get('X-Forwarded-For', '')
-    x_real_ip = request.headers.get('X-Real-IP', '')
-    forwarded = request.headers.get('Forwarded', '')
+    x_forwarded_for = flask.request.headers.get('X-Forwarded-For', '')
+    x_real_ip = flask.request.headers.get('X-Real-IP', '')
+    forwarded = flask.request.headers.get('Forwarded', '')
     
     resp = flask.Response(
         f"""
-        request.headers
+        flask.request.headers
         'X-Forwarded-For': {x_forwarded_for}
         'X-Real-IP': {x_real_ip}
         'Forwarded': {forwarded}
-        'Remote Address': {request.remote_addr}
+        'Remote Address': {flask.request.remote_addr}
         ---------------------------------------
-        flask.request
-        remote_addr: {flask.request.remote_addr},
+        flask.request.environ
         forwared-for: {flask.request.environ.get("HTTP_X_FORWARDED_FOR")},
         remote-ip: {flask.request.environ.get("REMOTE_ADDR")}
         """
