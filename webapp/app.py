@@ -1229,33 +1229,6 @@ app.add_url_rule(
 
 landscape_docs.init_app(app)
 
-# Robotics docs
-robotics_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=34683,
-        url_prefix="/robotics/docs",
-    ),
-    document_template="/robotics/docs/document.html",
-    url_prefix="/robotics/docs",
-    blueprint_name="robotics-docs",
-)
-
-# Robotics search
-app.add_url_rule(
-    "/robotics/docs/search",
-    "robotics-docs-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/robotics/docs",
-        template_path="/robotics/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-robotics_docs.init_app(app)
-
 certified_routes(app)
 
 # Override openstack/install
