@@ -17,9 +17,9 @@
               padding-top: 1rem">
     <div class="p-notification--caution u-no-margin--bottom js-notification-type">
       <div class="p-notification__content">
-        <h5 class="p-notification__title js-notification-title">Important</h5>
+        <h5 class="p-notification__title js-notification-title">You're viewing an outdated version of our documentation.</h5>
         <p class="p-notification__message js-notification-message">
-          We have a new documentation website <a href="https://documentation.ubuntu.com/landscape">https://documentation.ubuntu.com/landscape</a>. You're viewing an old version of the documentation. Please use the new documentation site for the most up-to-date content. This site will redirect to our new documentation in June 2025.
+          This version will be archived in June 2025. Please use the new documentation site <a href="https://documentation.ubuntu.com/landscape">https://documentation.ubuntu.com/landscape</a> for the most up-to-date content.
           <a href="#" class="js-notification-close"><i class="p-notification__close">Close notification</i></a>
         </p>
       </div>
@@ -38,6 +38,11 @@
       // Place the notification between the navigation and content
       const secondaryNav = document.querySelector("#secondary-navigation");
       secondaryNav.after(notification);
+
+      // If linking to an anchor tag, scroll it into view
+      if (window.scrollY > 0) {
+        window.scrollBy(0, -notificationContainer.offsetHeight);
+      }
 
       notificationContainer.querySelector(".js-notification-close").addEventListener("click", function(e) {
         e.preventDefault();
