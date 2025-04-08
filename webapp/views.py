@@ -1281,53 +1281,65 @@ def build_vulnerabilities(security_vulnerabilities):
     return vulnerability
 
 
-def serve_sitemap():
-    try:
-        sitemap_path = os.getcwd() + "/templates/sitemap_tree.xml"
-        directory_path = os.getcwd() + "/templates"
-        base_url = "https://ubuntu.com"
+def build_sitemap_tree(exclude_paths=None):
+    def serve_sitemap():
+        """
+        Generate and serve the sitemap_tree.xml file.
+        This sitemap tracks changes in the template files and is generated
+        dynamically on every new push to main.
+        """
+        try:
+            sitemap_path = os.getcwd() + "/templates/sitemap_tree.xml"
+            directory_path = os.getcwd() + "/templates"
+            base_url = "https://ubuntu.com"
 
-        # Validate the secret if its a POST request
-        if flask.request.method == "POST":
-            expected_secret = os.getenv("SITEMAP_SECRET")
-            provided_secret = flask.request.headers.get(
-                "Authorization", ""
-            ).replace("Bearer ", "")
-
-            if provided_secret != expected_secret:
-                logging.warning("Invalid secret provided")
-                return {"error": "Unauthorized"}, 401
-
-        # Generate sitemap if update request or if it doesn't exist
-        if flask.request.method == "POST" or not os.path.exists(sitemap_path):
-            try:
-                xml_sitemap = generate_sitemap(directory_path, base_url)
-                if xml_sitemap:
-                    with open(sitemap_path, "w") as f:
-                        f.write(xml_sitemap)
-                    logging.info(f"Sitemap saved to {sitemap_path}")
-                else:
-                    logging.warning("Sitemap is empty")
-
-            except Exception as e:
-                logging.error(f"Error generating sitemap: {e}")
-                return f"Generate_sitemap error: {e}", 500
-
+            # Validate the secret if its a POST request
             if flask.request.method == "POST":
-                return {
-                    "message": (
-                        f"Sitemap successfully generated at {sitemap_path}"
+                expected_secret = os.getenv("SITEMAP_SECRET")
+                provided_secret = flask.request.headers.get(
+                    "Authorization", ""
+                ).replace("Bearer ", "")
+
+                if provided_secret != expected_secret:
+                    logging.warning("Invalid secret provided")
+                    return {"error": "Unauthorized"}, 401
+
+            # Generate sitemap if update request or if it doesn't exist
+            if flask.request.method == "POST" or not os.path.exists(
+                sitemap_path
+            ):
+                try:
+                    xml_sitemap = generate_sitemap(
+                        directory_path, base_url, exclude_paths=exclude_paths
                     )
-                }, 200
+                    if xml_sitemap:
+                        with open(sitemap_path, "w") as f:
+                            f.write(xml_sitemap)
+                        logging.info(f"Sitemap saved to {sitemap_path}")
+                    else:
+                        logging.warning("Sitemap is empty")
 
-        # Serve the existing sitemap
-        with open(sitemap_path, "r") as f:
-            xml_sitemap = f.read()
+                except Exception as e:
+                    logging.error(f"Error generating sitemap: {e}")
+                    return f"Generate_sitemap error: {e}", 500
 
-        response = flask.make_response(xml_sitemap)
-        response.headers["Content-Type"] = "application/xml"
-        return response
+                if flask.request.method == "POST":
+                    return {
+                        "message": (
+                            f"Sitemap successfully generated at {sitemap_path}"
+                        )
+                    }, 200
 
-    except Exception as e:
-        logging.error(f"Error in serving sitemap: {e}")
-        return f"Error generating sitemap: {e}", 500
+            # Serve the existing sitemap
+            with open(sitemap_path, "r") as f:
+                xml_sitemap = f.read()
+
+            response = flask.make_response(xml_sitemap)
+            response.headers["Content-Type"] = "application/xml"
+            return response
+
+        except Exception as e:
+            logging.error(f"Error in serving sitemap: {e}")
+            return f"Error generating sitemap: {e}", 500
+
+    return serve_sitemap

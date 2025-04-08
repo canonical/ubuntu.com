@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block title %}{{ document.title }}{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% macro create_navigation(nav_items, expandable=False, expanded=False) %}
   <ul class="p-side-navigation__list">

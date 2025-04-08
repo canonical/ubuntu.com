@@ -2,7 +2,6 @@
 <url>
   <loc>{{ base_url }}{{ node["name"] }}</loc>
   {% if node["last_modified"] != None %}<lastmod>{{ node["last_modified"] }}</lastmod>{% endif %}
-  <changefreq>monthly</changefreq>
 </url>
 {%- if node["children"]|length > 0 -%}
   {%- for node in node["children"] %}
