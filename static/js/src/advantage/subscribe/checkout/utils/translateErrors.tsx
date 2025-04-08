@@ -55,7 +55,7 @@ const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
  */
 export function getNotificationMessage(error: Error): DisplayError {
   const { message } = error;
-   
+
   if (
     INSUFFICIENT_FUNDS_CODES.includes(message) ||
     message?.includes("Your card has insufficient funds")
