@@ -1,4 +1,5 @@
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_tiered-list.jinja" import vf_tiered_list %}
 
 {% extends "templates/base.html" %}
 
@@ -55,7 +56,7 @@ meta_copydoc %}
         </p>
       {%- endif -%}
       {%- if slot == 'cta' -%}
-        <a href="#" class="p-button--positive">Discover Ubuntu Pro</a>
+        <a href="/pro" class="p-button--positive">Discover Ubuntu Pro</a>
       {%- endif -%}
       {%- if slot == 'image' -%}
         {{ image(url="https://assets.ubuntu.com/v1/dcae3633-hero-image.jpg",
@@ -70,116 +71,67 @@ meta_copydoc %}
     {% endcall -%}
 
     <section class="p-section">
-      <div class="p-section--shallow">
-        <div class="row--50-50">
-          <hr class="p-rule" />
-          <div class="col">
-            <h2>
-              What can I expect
-              <br class="u-hide--small u-hide--medium" />
-              from my free trial?
-            </h2>
-          </div>
-          <div class="col">
-            <p>
-              The Ubuntu Pro free trial is designed for enterprise and commercial use. If you're an individual using Ubuntu for personal projects, you can get Ubuntu Pro free for up to 5 machines – no trial needed.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Full access to Ubuntu Pro</h3>
-            </div>
-            <div class="col-6">
-              <p aria-describedby="note1">
-                Enjoy the benefits of a paid Ubuntu Pro subscription during your trial.<sup>*</sup>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Expanded Security Maintenance (ESM)</h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Increase the scope of patching and maintenance to 30,000+ packages for high and critical CVEs in the Ubuntu Universe repository.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Kernel Livepatching</h3>
-            </div>
-            <div class="col-6">
-              <p>Apply critical kernel patches without rebooting, keeping your systems running smoothly and minimizing downtime.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Compliance tools</h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Meet industry security standards with automation tools for the most widely used frameworks, including FIPS, FedRAMP, DISA-STIG & CIS.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Landscape for device management</h3>
-            </div>
-            <div class="col-6">
-              <p>
-                Manage and monitor your Ubuntu machines anywhere, at scale, through a unified dashboard. Automate patching, auditing and compliance tasks across your Ubuntu estate. 
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-9 col-start-large-4">
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3">
-              <h3 class="p-heading--5">Try it free for 30 days</h3>
-            </div>
-            <div class="col-6">
-              <p>Cancel your trial within the 30 day period and you won’t be charged.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 col-start-large-7">
+      {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+        {%- if slot == 'title' -%}
+          <h2>
+            What can I expect
+            <br class="u-hide--small u-hide--medium" />
+            from my free trial?
+          </h2>
+        {%- endif -%}
+        {%- if slot == 'description' -%}
+          <p>
+            The Ubuntu Pro free trial is designed for enterprise and commercial use. If you're an individual using Ubuntu for personal projects, you can get Ubuntu Pro free for up to 5 machines – no trial needed.
+          </p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_1' -%}
+          <h3 class="p-heading--5">Full access to Ubuntu Pro</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_1' -%}
+          <p aria-describedby="note1">
+            Enjoy the benefits of a paid Ubuntu Pro subscription during your trial.<sup>*</sup>
+          </p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_2' -%}
+          <h3 class="p-heading--5">Expanded Security Maintenance (ESM)</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_2' -%}
+          <p>
+            Increase the scope of patching and maintenance to 30,000+ packages for high and critical CVEs in the Ubuntu Universe repository.
+          </p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_3' -%}
+          <h3 class="p-heading--5">Kernel Livepatching</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_3' -%}
+          <p>Apply critical kernel patches without rebooting, keeping your systems running smoothly and minimizing downtime.</p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_4' -%}
+          <h3 class="p-heading--5">Compliance tools</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_4' -%}
+          <p>
+            Meet industry security standards with automation tools for the most widely used frameworks, including FIPS, FedRAMP, DISA-STIG & CIS.
+          </p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_5' -%}
+          <h3 class="p-heading--5">Landscape for device management</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_5' -%}
+          <p>
+            Manage and monitor your Ubuntu machines anywhere, at scale, through a unified dashboard. Automate patching, auditing and compliance tasks across your Ubuntu estate. 
+          </p>
+        {%- endif -%}
+        {%- if slot == 'list_item_title_6' -%}
+          <h3 class="p-heading--5">Try it free for 30 days</h3>
+        {%- endif -%}
+        {%- if slot == 'list_item_description_6' -%}
+          <p>Cancel your trial within the 30 day period and you won’t be charged.</p>
           <aside id="note1">
             <p class="u-text--muted">*Support and Knowledge Base access are not included in the trial</p>
           </aside>
-        </div>
-      </div>
+        {%- endif -%}
+      {%- endcall -%}
     </section>
 
     <section class="p-section">
@@ -189,15 +141,12 @@ meta_copydoc %}
           <h2>How to start your free trial</h2>
         </div>
         <div class="col-6 col-medium-3">
-          <p>
-            As vehicles become increasingly software-defined, integrating open source software with industry-recognized quality models becomes not just beneficial but essential.
-          </p>
-          <hr class="p-rule--muted" />
           <ul class="p-list--divided">
             <li class="p-list__item has-bullet">
               <a href="/pro/subscribe">Visit our shop</a>
             </li>
             <li class="p-list__item has-bullet">Select your preferred subscription</li>
+            <li class="p-list__item has-bullet">Select "Buy Now"</li>
             <li class="p-list__item has-bullet">
               On the checkout page, choose the option to activate your trial (if you haven’t used it before or if you’ve selected a plan without support)
             </li>
@@ -356,7 +305,7 @@ meta_copydoc %}
                         "Support and Knowledge Base access are not included in the free trial for Ubuntu Pro."
                         ],
                         [
-                        "I didn’t receive a confirmation email after signing up – what should I do?",
+                        "I didn’t receive a confirmation email after signing up &ndash; what should I do?",
                         "Check your spam/junk folder. If the issue persists, navigate to any page on <a href='/'>ubuntu.com</a> and let the team know via LiveChat that you are having an issue with your free trial. They will put you in touch with our Customer Success Team."
                         ]
                         ]) }}
