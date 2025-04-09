@@ -568,18 +568,19 @@ def cred_schedule(
                 if len(student_session_array) > 0:
                     student_session = student_session_array[0]
 
-                session_data = {
+                uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                student_session_data = {
                     "first_name": first_name,
                     "last_name": last_name,
                     "student_email": user["email"],
                     "exam_date_time": starts_at.isoformat(),
-                    "ext_exam_id": response["assessment_reservation"]["uuid"],
                     "client_exam_id": 1,
+                    "ext_exam_id": uuid,
                     "timezone": timezone,
                     "ai_enabled": "1",
                     "exam_link": base_url
-                    + "credentials/exam?uuid="
-                    + f"{response['assessment_reservation']['uuid']}",
+                    + "credentials/"
+                    + f"exam?uuid={uuid}",
                 }
                 proc_session = None
                 # update the student session if present
@@ -589,12 +590,12 @@ def cred_schedule(
                     )
                     proc_session = proctor_api.update_student_session(
                         student_session_id,
-                        session_data,
+                        student_session_data,
                     )
                 # create a new student session
                 else:
                     proc_session = proctor_api.create_student_session(
-                        session_data
+                        student_session_data
                     )
 
                 session_detail = proctor_api.get_student_session_detail(
