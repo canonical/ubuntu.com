@@ -655,7 +655,11 @@ def cred_schedule(
                         + "credentials/"
                         + f"exam?uuid={uuid}",
                     }
-                proctor_api.create_student_session(student_session_data)
+                proc_session = proctor_api.create_student_session(student_session_data)
+                session_detail = proctor_api.get_student_session_detail(proc_session.get("data", {}).get("id"))
+                meta = {
+                    "proctor360_session_link": session_detail.get("data", {}).get("session_link"),
+                }
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
