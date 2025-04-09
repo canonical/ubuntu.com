@@ -531,6 +531,13 @@ def cred_schedule(
                     starts_at.isoformat(),
                     country_code,
                 )
+                if response and "reservation" not in response:
+                    error = response["message"]
+                    return flask.render_template(
+                        "/credentials/schedule.html",
+                        error=error,
+                        time_delay=time_delay,
+                    )
                 student = proctor_api.get_student(user["email"])
                 student_sessions = proctor_api.get_student_sessions(
                     {
