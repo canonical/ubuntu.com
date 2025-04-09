@@ -1,0 +1,395 @@
+{% extends "containers/base_containers.html" %}
+
+{% block title %}Container Build Service{% endblock %}
+
+{% block meta_description %}
+  Canonical's Container Build Service offers custom, secure Docker images with up to 12 years of support. Tailored for enterprise needs.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/14qW4-vU2Eipd1jwwI55OKIwxzrnpaAC0uo0p7dlFxiQ/edit?tab=t.0
+{% endblock meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    <div class="row--50-50 p-section">
+      <div class="col">
+        <h1>
+          Canonical’s
+          <br />
+          Container Build Service
+        </h1>
+      </div>
+      <div class="col">
+        <h2 class="p-heading--5">Your containers your way</h2>
+        <div class="p-section--shallow">
+          <p>
+            Off-the-shelf Docker images not meeting your enterprise needs?  With Canonical, get custom-built, secure,
+            and compliant images tailored to your requirements with up to 12 years of support.
+          </p>
+        </div>
+        <div class="p-cta-block">
+          <a class="p-button--positive js-invoke-modal"
+             href="/containers/contact-us">Get in touch</a>
+          <a href="https://docs.google.com/document/d/1jRK13lfTidtjQKHwEeFrTxA0AVH-V1Cy1mXDfQVIYyg/edit?tab=t.0">Download the datasheet&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 class="p-text--small-caps">Why choose enterprise-grade Docker images</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item u-no-padding--bottom">
+            <p class="p-heading--2">Secure by design</p>
+          </li>
+          <li class="p-list__item u-no-padding--bottom">
+            <p class="p-heading--2">Minimal, efficient, and fast</p>
+          </li>
+          <li class="p-list__item u-no-padding--bottom">
+            <p class="p-heading--2">12-year LTS support</p>
+          </li>
+          <li class="p-list__item u-no-padding--bottom">
+            <p class="p-heading--2">On any Kubernetes</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>About our Service</h2>
+      </div>
+      <div class="col">
+        <p>
+          What if you want to containerize any open source package in your ecosystem that doesn’t exist as one of our off the shelf containers?
+        </p>
+        <p>
+          Our custom Container Build Service provides long-term support (LTS) for any open source software. Our service ensures your applications
+          remain stable, security maintained, and compatible for a guaranteed 12-year period. There’s no need to worry about outdated dependencies,
+          security vulnerabilities, or compatibility issues affecting your open source software over time.
+        </p>
+        <p>
+          The build service gives you access to a vast open source ecosystem and allows simplified deployment on any CNCF-Kubernetes, public cloud included.
+          It allows enterprises to remain consistent across their environment while reducing maintenance but not forfeiting security.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>What's included</h2>
+      </div>
+      <div class="col">
+        <ul class="p-list--divided">
+          <li class="p-list__item is-ticked">Long term support for a specific version of software</li>
+          <li class="p-list__item is-ticked">Dependency management</li>
+          <li class="p-list__item is-ticked">Image optimization and size reduction</li>
+          <li class="p-list__item is-ticked">Security scanning and hardening</li>
+          <li class="p-list__item is-ticked">Testing and quality assurance</li>
+          <li class="p-list__item is-ticked">Ongoing maintenance and support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50 p-section--shallow">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          Why do enterprises need
+          <br class="u-hide--small" />
+          custom Docker images?
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Standard docker images sometimes don’t work out-of-the-box. Enterprises may require customization to meet compliance,
+          security, and operational needs. Dependency management and manually customizing images is complex and results in security
+          headaches – Canonical makes it simple.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-start-large-4">
+        <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                {{ image(url="https://assets.ubuntu.com/v1/0d4921b6-Security and compliance.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Security and compliance</h3>
+              </div>
+            </div>
+            <p class="p-equal-height-row__item">
+              Meet industry standards like CIS benchmarks and FIPS compliance with signed, trusted images.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                {{ image(url="https://assets.ubuntu.com/v1/1220fee3-Enterprise-wide requirements.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Enterprise-wide requirements</h3>
+              </div>
+            </div>
+            <p class="p-equal-height-row__item">
+              Ensures every image includes packages and libraries that simplifies management and troubleshooting, which may fulfill enterprise -wide requirements.
+            </p>
+          </div>
+          <div class="p-equal-height-row__col">
+            <div class="p-equal-height-row__item">
+              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+                {{ image(url="https://assets.ubuntu.com/v1/882080ce-Application-specific customization.png",
+                                alt="",
+                                width="852",
+                                height="1278",
+                                hi_def=True,
+                                loading="lazy") | safe
+                }}
+              </div>
+              <div class="p-equal-height-row__item">
+                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+                <h3 class="p-heading--5">Application-specific customization:</h3>
+              </div>
+            </div>
+            <p class="p-equal-height-row__item">
+              Customize images with specific dependencies without breaking SLAs or compromising security.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>
+          How Canonical builds
+          <br class="u-hide--small" />
+          your containers
+        </h2>
+      </div>
+      <div class="col">
+        <ol class="p-list--divided">
+          <li class="p-list__item">Choose the open source software you need</li>
+          <li class="p-list__item">Discuss your specific requirements</li>
+          <li class="p-list__item">Our team analyzes the dependencies required</li>
+          <li class="p-list__item">We build the image and test functionality and security</li>
+          <li class="p-list__item">We deliver the container image and provide ongoing support</li>
+        </ol>
+        <div class="p-cta-block">
+          <a href="/containers/contact-us" class="js-invoke-modal">Contact us&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>A smarter way to containerize</h2>
+      </div>
+      <div class="col">
+        <div class="p-media-container p-strip is-shallow u-darker-background col-3 u-align--center u-vertically-center">
+          {{ image(url="https://assets.ubuntu.com/v1/ec69cd89-A smarter way to containerize.png",
+                    alt="",
+                    width="1800",
+                    height="1200",
+                    hi_def=True,
+                    loading="lazy") | safe
+          }}
+        </div>
+        <p>
+          Say goodbye to manual Docker builds and fragile pipelines.
+          Canonical delivers custom images with security and automation baked in.
+        </p>
+      </div>
+    </div>
+    <div class="row--50-50">
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+            <div class="row">
+              <div class="col-3">
+                <h5>Minimal images</h5>
+              </div>
+              <div class="col-6">
+                <p>Lightweight, efficient, and stripped down for performance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+            <div class="row">
+              <div class="col-3">
+                <h5>Security-first</h5>
+              </div>
+              <div class="col-6">
+                <p>Vulnerability remediation with SLA-backed patches.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+            <div class="row">
+              <div class="col-3">
+                <h5>Fully supported</h5>
+              </div>
+              <div class="col-6">
+                <p>Canonical ensures your containers run reliably for years.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9 col-start-large-4">
+            <hr class="p-rule--muted" />
+            <div class="row">
+              <div class="col-3">
+                <h5>Environment agnostic</h5>
+              </div>
+              <div class="col-6">
+                <p>Run on any certified Kubernetes platform whether on prem or on a public cloud.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule--highlight" />
+      <h2 class="p-text--small-caps">Run your custom containers anywhere</h2>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="p-logo-section">
+          <div class="p-logo-section__items">
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/aca37331-charmed-kubernetes-logo.png",
+                            alt="Charmed Kubernetes",
+                            width="666",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/2c336369-vmware-logo.png",
+                            alt="VMWare",
+                            width="323",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/6feb5237-microsoft-azure-logo.png",
+                            alt="Microsoft Azure",
+                            width="272",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/abb3ce08-amazon-logo.png",
+                            alt="Amazon",
+                            width="283",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/561c0255-google-logo.png",
+                            alt="Google",
+                            width="220",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item">
+              {{ image(url="https://assets.ubuntu.com/v1/18930d67-rancher-logo.png",
+                            alt="Rancher",
+                            width="387",
+                            height="312",
+                            hi_def=True,
+                            loading="lazy",
+                            attrs={"class": "p-logo-section__logo"}) | safe
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="u-fixed-width">
+    <hr class="p-rule" />
+    <div class="p-strip is-deep">
+      <p class="p-heading--2">
+        <a href="/containers/contact-us" class="js-invoke-modal">Get in touch to discuss your custom your container build&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide"
+       id="contact-form-container"
+       data-form-location="/shared/forms/interactive/containers"
+       data-form-id="5914"
+       data-lp-id=""
+       data-return-url="https://ubuntu.com/container/container-build-service#success"
+       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+
+{% endblock %}
