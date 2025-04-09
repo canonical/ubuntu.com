@@ -370,7 +370,7 @@ class UAContractsAPI:
         timezone,
         starts_at,
         country_code,
-        meta = {},
+        meta={},
     ) -> dict:
         req = self._request(
             method="post",
