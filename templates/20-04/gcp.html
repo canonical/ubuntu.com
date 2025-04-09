@@ -1,0 +1,218 @@
+{% extends "20-04/base_20-04.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
+
+{% block title %}Ubuntu 20.04 LTS (Focal Fossa) on Google Cloud{% endblock %}
+
+{% block meta_description %}
+  Ubuntu 20.04 LTS (Focal Fossa) is out of standard support on 31 May 2025. This page describes the available options for users. Ubuntu Pro provides continued support and security coverage for Ubuntu 20.04 LTS for an additional 5 years, until 2030.
+{% endblock %}
+
+{% block meta_keywords %}Ubuntu on GCP{% endblock %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1-fuCPmr0dYcHaVz3YMjezNT3LYiO7WG5ErKF-YAeXHI/edit?tab=t.0#heading=h.l3kjw0agnasv
+{% endblock meta_copydoc %}
+
+{% block content %}
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu 20.04 LTS <br class="u-hide--small" />(Focal Fossa) on Google Cloud',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Ubuntu 20.04 LTS (Focal Fossa) is reaching the end of its 5 years of standard support on May 31, 2025, exposing your systems to unpatched vulnerabilities. To stay secure, you must act now. Explore your options below to ensure continued protection.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="https://cloud.google.com/compute/docs/images/premium/ubuntu-pro/upgrade-from-ubuntu"
+         class="p-button--positive">Upgrade now</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}
+      <p class="u-embedded-media">
+        <iframe title="How to perform in-place upgrade on GCP"
+                class="u-embedded-media__element"
+                src="https://www.youtube.com/embed/xprmHNJmrsI"
+                allowfullscreen=""
+                frameborder="0"></iframe>
+      </p>
+    {%- endif -%}
+  {% endcall -%}
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Standard support for Ubuntu 20.04 LTS  ends on May 31, 2025</h2>
+      </div>
+      <div class="col">
+        <p>
+          Transitioning to an Ubuntu version with active standard support (Ubuntu 22.04 LTS or 24.04 LTS) is crucial for performance, hardware compatibility, and access to new technologies, making it ideal for new workloads. However, for existing deployments, the process may be more complex.
+        </p>
+        <div class="p-cta-block">
+          <a href="/about/release-cycle">Learn more about the Ubuntu lifecycle and release&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>What are your options?</h2>
+      </div>
+
+      <ol class="p-stepped-list--detailed">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Upgrade to an Ubuntu version with active standard support (Ubuntu 22.04 LTS or 24.04 LTS)
+          </h3>
+          <div class="p-stepped-list__content">
+            <h4 class="p-heading--5">For Ubuntu 22.04 LTS (support through 2027):</h4>
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet"><a href="/server/docs/upgrade-introduction">Upgrade directly from Ubuntu 20.04 LTS</a></li>
+              <li class="p-list__item has-bullet">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=6817663366014267458&imageProjectId=ubuntu-os-cloud">Launch a new instance of Ubuntu 22.04 LTS on GCP</a>
+              </li>
+            </ul>
+            <hr class="p-rule--muted" />
+            <h4 class="p-heading--5">For Ubuntu 24.04 LTS (support through 2029):</h4>
+            <hr class="p-rule--muted u-no-margin--bottom" />
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet"><a href="/server/docs/upgrade-introduction">Upgrade to Ubuntu 22.04 LTS first and then upgrade to 24.04 LTS</a></li>
+              <li class="p-list__item has-bullet">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=6853716395238630822&imageProjectId=ubuntu-os-cloud">Launch a new instance of Ubuntu 24.04 LTS</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Attach an Ubuntu Pro 20.04 subscription to expand your security maintenance (support through 2030).
+          </h3>
+          <div class="p-stepped-list__content">
+            <ul class="p-list--divided">
+              <li class="p-list__item has-bullet">
+                <a href="https://discourse.ubuntu.com/t/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-google-cloud/36114">In-place upgrade from Ubuntu 20.04 to Ubuntu Pro 20.04</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="https://console.cloud.google.com/compute/instancesAdd?imageId=1066182177857145780&imageProjectId=ubuntu-os-pro-cloud">Fresh installation of Ubuntu Pro 20.04</a>
+              </li>
+              <li class="p-list__item has-bullet">
+                <a href="/gcp#get-in-touch">Contact us to purchase annual subscription tokens</a>
+              </li>
+            </ul>
+
+            <hr class="p-rule--muted" />
+            <p>
+              Ubuntu Pro 20.04 LTS expanded security maintenance (ESM) for your entire software supply chain including the Linux kernel, Ubuntu base OS, key infrastructure components, and over 25,000 open-source applications until 2030, adding 5 years of support. It includes 24-hour critical vulnerability fixes, Landscape, kernel livepatching, hardening scripts based on CIS and DISA-STIG standards, and FIPS 140 compliance, ensuring your infrastructure meets U.S. government security requirements for cryptographic modules.
+            </p>
+            <p>
+              Ubuntu Pro 20.04 is available with pay-as-you-go metered pricing on Google Cloud, with charges automatically billed to your Google Cloud account for easy procurement. Additionally, Ubuntu Pro subscriptions can count towards your Enterprise Discount Program (EDP) spend commitments. Please contact your Google Account Manager to inquire about volume discounts if you have a large fleet of Ubuntu servers.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h3>Ubuntu Pro add-ons</h3>
+      </div>
+      <div class="col">
+        <h4 class="p-heading--5 u-no-margin--bottom">Enterprise-grade phone & ticket support</h4>
+        <p>
+          Build confidently with 24/7/365 phone and ticket support, ensuring fast resolution for issues across 25,000+ Ubuntu packages, backed by 20 years of expertise in building and sustaining open source software. Learn more <a href="/support">here</a>.
+        </p>
+        <hr class="p-rule--muted" />
+        <h4 class="p-heading--5 u-no-margin--bottom">Legacy support</h4>
+        <p>Add on Legacy Support to Ubuntu Pro and expand security maintenance (coverage through 2032). Learn more <a href="https://canonical.com/blog/canonical-expands-long-term-support-to-12-years-starting-with-ubuntu-14-04-lts">here</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      {{ image(url="https://assets.ubuntu.com/v1/c8af1245-server-room.png",
+        alt="",
+        width="2464",
+        height="1028",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </section>
+
+  {% call(slot) vf_quote_wrapper(
+    title_text="What customers say about Ubuntu Pro",
+    quote_size="medium",
+    quote_text="ESM literally saved our lives. It's allowing us to upgrade from 14.04 LTS at our own pace. It's taken the pressure off, and it also means we can tackle the Ubuntu upgrades at the same time as we roll out the new version of our platform.",
+    citation_source_name_text="Zivago Lee",
+    citation_source_title_text="Director of DevOps Engineering",
+    citation_source_organisation_text="Interana",
+    is_shallow=True
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/fe89136b-updated-interana.png",
+            alt="Interana",
+            width="568",
+            height="125",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/interana-casestudy">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  {% call(slot) vf_quote_wrapper(
+    quote_size="medium",
+    quote_text="ESM has given us the space to plan what comes next. It's helping us get into a position where we can have a more sustainable infrastructure.",
+    citation_source_name_text="Andy Parker",
+    citation_source_title_text="Engineering Manager",
+    citation_source_organisation_text="TIM"
+    ) -%}
+
+    {%- if slot == 'signpost_image' -%}
+      {{ image(url="https://assets.ubuntu.com/v1/6b40fe10-updated-tim.png",
+            alt="TIM",
+            width="568",
+            height="149",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"}) | safe
+      }}
+    {%- endif -%}
+
+    {%- if slot == 'cta' -%}
+      <a href="/engage/case-study-acuris">Read the case study&nbsp;&rsaquo;</a>
+    {%- endif -%}
+
+  {% endcall -%}
+
+  <hr class="is-fixed-width" />
+  <section class="p-strip is-deep">
+    <div class="u-fixed-width">
+      <h2>
+        We're here to help – <a href="/gcp#get-in-touch">send a message</a> or <a href="mailto:gcp@canonical.com">email gcp@canonical.com</a>
+      </h2>
+    </div>
+  </section>
+
+  <hr class="is-fixed-width" />
+  {% with section_classes='p-section--deep', heading_topic='Ubuntu on Google Cloud', heading_class='p-heading--2', limit='4', show_image='True', show_excerpt='True', hide_date='True', is_title_link='True', tag_id='4478', tag_name='google-cloud' %}
+    {% include "shared/_latest_news_strip.html" %}
+  {% endwith %}
+
+{% endblock content %}
