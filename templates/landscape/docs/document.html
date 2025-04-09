@@ -40,16 +40,18 @@
       secondaryNav.after(notification);
 
       // If linking to an anchor tag, scroll it into view
-      if (window.scrollY > 0) {
-        window.scrollBy(0, -notificationContainer.offsetHeight);
-      }
+      window.addEventListener('load', function() {
+        if (window.scrollY > 0) {
+          const offset = -notificationContainer.offsetHeight;
+          window.scrollBy(0, offset);
+        }
+      });
 
       notificationContainer.querySelector(".js-notification-close").addEventListener("click", function(e) {
         e.preventDefault();
         notificationContainer.style.display = "none";
         sessionStorage.setItem("notificationClosed", "true");
       });
-      
     }
   });
 </script>
