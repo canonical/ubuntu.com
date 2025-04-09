@@ -1,0 +1,386 @@
+{% extends "ceph/base_ceph.html" %}
+
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
+{% block title %}Pricing Calculator | Ceph{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block meta_copydoc %}
+  https://docs.google.com/spreadsheets/d/1cn5daIlWGpKF5557ERFY4Ok4_0IlJKTDbZjRXcXyhjk/edit?gid=471278338#gid=471278338
+{% endblock meta_copydoc %}
+
+{% block content %}
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <h2>Calculate your storage costs</h2>
+    </div>
+  </section>
+
+  <form>
+
+    <section class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>
+            Self-managed, or <a href="/ceph/managed">managed</a> by Canonical experts?
+          </h3>
+        </div>
+        <div class="col">
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="managed"
+                   aria-labelledby="managed"
+                   value="managed"
+                   checked="" />
+            <span class="p-radio__label" id="managed">Managed</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="managed"
+                   value="self-managed"
+                   aria-labelledby="self-managed" />
+            <span class="p-radio__label" id="self-managed">Self-managed</span>
+          </label>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>How many months do you expect to store this data?</h3>
+        </div>
+        <div class="col">
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="months"
+                   value="12"
+                   aria-labelledby="12months"
+                   checked="" />
+            <span class="p-radio__label" id="12months">12</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="months"
+                   value="24"
+                   aria-labelledby="24months" />
+            <span class="p-radio__label" id="24months">24</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="months"
+                   value="36"
+                   aria-labelledby="36months" />
+            <span class="p-radio__label" id="36months">36</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="months"
+                   value="48"
+                   aria-labelledby="48months" />
+            <span class="p-radio__label" id="48months">48</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="months"
+                   value="60"
+                   aria-labelledby="60months" />
+            <span class="p-radio__label" id="60months">60</span>
+          </label>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="p-section">
+      <div class="row--50-50">
+        <hr class="p-rule" />
+        <div class="col">
+          <h3>Choose the maximum amount of storage you need:</h3>
+        </div>
+        <div class="col">
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   aria-labelledby="2.25pb"
+                   value="2.25"
+                   checked="" />
+            <span class="p-radio__label" id="2.25pb">2.25 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="4.5"
+                   aria-labelledby="4.5pb" />
+            <span class="p-radio__label" id="4.5pb">4.5 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="6.75"
+                   aria-labelledby="6.75pb" />
+            <span class="p-radio__label" id="6.75pb">6.75 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="9"
+                   aria-labelledby="9pb" />
+            <span class="p-radio__label" id="9pb">9 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="11.25"
+                   aria-labelledby="11.25pb" />
+            <span class="p-radio__label" id="11.25pb">11.25 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="13.5"
+                   aria-labelledby="13.5pb" />
+            <span class="p-radio__label" id="13.5pb">13.5 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="15.75"
+                   aria-labelledby="15.75pb" />
+            <span class="p-radio__label" id="15.75pb">15.75 PB</span>
+          </label>
+
+          <label class="p-radio">
+            <input type="radio"
+                   class="p-radio__input"
+                   name="storage"
+                   value="18"
+                   aria-labelledby="18pb" />
+            <span class="p-radio__label" id="18pb">18 PB</span>
+          </label>
+
+        </div>
+      </div>
+    </section>
+  </form>
+
+  <section class="p-section">
+    <div class="u-fixed-width">
+      <hr class="p-rule" />
+      <div class="p-section--shallow">
+        <h2>Compare your costs</h2>
+      </div>
+
+      <div class="p-section--shallow">
+        <div class="row">
+          <div class="col-6">
+            <hr class="p-rule--highlight u-no-margin--bottom" />
+            <div class="u-no-padding--top">
+              <div class="row p-section--shallow">
+                <h4 class="u-no-margin--bottom">Ceph self hosted cost:</h4>
+                <p>
+                  <span id="ceph-cost" class="p-heading--3">$0</span>
+                  <span class="p-heading--3 u-text--muted" style="font-weight: 300">for <span id="ceph-months">0</span> months</span>
+                </p>
+              </div>
+              <p class="u-text--muted">What's included:</p>
+
+              <div class="row">
+                <div class="col-3">
+                  <p>Ceph Deployment</p>
+                  <p>Hardware install and maintenance</p>
+                  <p>Ubuntu Pro (managed or infra-Only)</p>
+                  <p>Ubuntu Pro (additional storage)</p>
+                  <p>Hardware</p>
+                </div>
+                <div class="col-3">
+                  <p id="ceph-deployment-price">$0</p>
+                  <p id="hardware-maintenance-price">$0</p>
+                  <p id="ubuntu-pro-price">$0</p>
+                  <p id="additional-storage-price">$0</p>
+                  <p id="hardware-price">$0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <hr class="p-rule--highlight u-no-margin--bottom" />
+            <div class="u-no-padding--top">
+              <div class="row p-section--shallow">
+                <h4 class="u-no-margin--bottom">Public cloud provider cost:</h4>
+                <p>
+                  <span id="public-cloud-cost" class="p-heading--3">$0</span>
+                  <span class="p-heading--3 u-text--muted" style="font-weight: 300">for <span id="cloud-months">0</span> months</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const managedCephPerNodePerYear = 3485.0;
+    const additionalStoragePerYear = 6050.0;
+    const infraOnlyPerNodePerYear = 1500.0;
+    const storageNodeCost = 86221.94;
+    const managementNodeCost = 9801.89;
+    const switchCost = 11308.0;
+
+    const cephDeploymentCost = 50000;
+    const hardwareMaintenanceCost = 25000;
+
+    const capacityTable = [{
+      capacity: 2.25,
+      nodes: 6,
+      switches: 3
+    }, {
+      capacity: 4.5,
+      nodes: 12,
+      switches: 3
+    }, {
+      capacity: 6.75,
+      nodes: 18,
+      switches: 3
+    }, {
+      capacity: 9,
+      nodes: 24,
+      switches: 3
+    }, {
+      capacity: 11.25,
+      nodes: 30,
+      switches: 6
+    }, {
+      capacity: 13.5,
+      nodes: 36,
+      switches: 6
+    }, {
+      capacity: 15.75,
+      nodes: 42,
+      switches: 6
+    }, {
+      capacity: 18,
+      nodes: 48,
+      switches: 6
+    }, ];
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+      const monthsInput = document.querySelectorAll("input[name='months']");
+      const storageInput = document.querySelectorAll("input[name='storage']");
+      const managedInput = document.querySelectorAll("input[name='managed']");
+
+      let selectedMonths = parseInt(
+        document.querySelector("input[name='months']:checked").value, 10
+      );
+      let selectedStorage = parseFloat(
+        document.querySelector("input[name='storage']:checked").value
+      );
+      let isManaged = document.querySelector("input[name='managed']:checked").value === "managed";
+
+
+      function calculateCosts() {
+        const capacitySpecs = capacityTable.find((row) => row.capacity === selectedStorage) || {};
+
+        const nodes = capacitySpecs.nodes;
+        const switches = capacitySpecs.switches;
+
+        // Ceph self-hosted cost, see the formula in the spreadsheet copydoc
+        const ubuntuProCost = isManaged ?
+          nodes + 3 * managedCephPerNodePerYear * (selectedMonths / 12) :
+          nodes + 3 * infraOnlyPerNodePerYear * (selectedMonths / 12);
+
+        const additionalStorageCost = nodes * additionalStoragePerYear * (selectedMonths / 12);
+
+        const hardwareCost =
+          nodes * storageNodeCost +
+          managementNodeCost * 3 +
+          switches * switchCost;
+
+        const cephTotalCost = cephDeploymentCost + hardwareMaintenanceCost + ubuntuProCost + additionalStorageCost + hardwareCost;
+
+        // Public cloud cost, see the formula in the spreadsheet copydoc
+        const publicCloudCost =
+          ((50 * 1024 * 0.023) +
+            (450 * 1024 * 0.022) +
+            ((selectedStorage * 1024 * 1024 - 500) * 0.021)) *
+          selectedMonths;
+
+        function formatCurrency(value) {
+          return `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+
+        document.getElementById("ceph-cost").textContent = formatCurrency(cephTotalCost);
+        document.getElementById("ceph-months").textContent = selectedMonths;
+        document.getElementById("public-cloud-cost").textContent = formatCurrency(publicCloudCost);
+        document.getElementById("cloud-months").textContent = selectedMonths;
+
+        document.getElementById("ceph-deployment-price").textContent = formatCurrency(cephDeploymentCost);
+        document.getElementById("hardware-maintenance-price").textContent = formatCurrency(hardwareMaintenanceCost);
+        document.getElementById("ubuntu-pro-price").textContent = formatCurrency(ubuntuProCost);
+        document.getElementById("additional-storage-price").textContent = formatCurrency(additionalStorageCost);
+        document.getElementById("hardware-price").textContent = formatCurrency(hardwareCost);
+      }
+
+      monthsInput.forEach((input) => {
+        input.addEventListener("change", function() {
+          selectedMonths = parseInt(this.value, 10);
+          calculateCosts();
+        });
+      });
+
+      storageInput.forEach((input) => {
+        input.addEventListener("change", function() {
+          selectedStorage = parseFloat(this.value);
+          calculateCosts();
+        });
+      });
+
+      managedInput.forEach((input) => {
+        input.addEventListener("change", function(event) {
+          isManaged = this.value === "managed";
+          calculateCosts();
+        });
+      });
+
+      calculateCosts();
+    });
+  </script>
+
+{% endblock content %}
