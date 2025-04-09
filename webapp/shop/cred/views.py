@@ -351,12 +351,12 @@ def cred_thank_you(**_):
     )
 
 
-def check_cred_exam_effectiveness(contract, user_timezone, time_buffer, starts_at) -> str | None:
+def check_cred_exam_effectiveness(
+    contract, user_timezone, time_buffer, starts_at
+) -> str | None:
     tz_info = pytz.timezone(user_timezone)
     now = datetime.now(pytz.UTC)
-    effective_from = now.astimezone(tz_info) + timedelta(
-                hours=time_buffer
-            )
+    effective_from = now.astimezone(tz_info) + timedelta(hours=time_buffer)
     effective_to = (
         datetime.strptime(
             f"{contract['contractInfo']['effectiveTo']}",
@@ -377,11 +377,19 @@ def check_cred_exam_effectiveness(contract, user_timezone, time_buffer, starts_a
 
     return None
 
-def check_cred_maintenance(is_cred_admin, show_cred_maintenance_alert, cred_maintenance_start, cred_maintenance_end, starts_at, user_timezone):
+
+def check_cred_maintenance(
+    is_cred_admin,
+    show_cred_maintenance_alert,
+    cred_maintenance_start,
+    cred_maintenance_end,
+    starts_at,
+    user_timezone,
+):
     tz_info = pytz.timezone(user_timezone)
     cred_maintenance_start = (
-            parse(cred_maintenance_start) if cred_maintenance_start else None
-        )
+        parse(cred_maintenance_start) if cred_maintenance_start else None
+    )
     cred_maintenance_end = (
         parse(cred_maintenance_end) if cred_maintenance_end else None
     )
@@ -395,21 +403,25 @@ def check_cred_maintenance(is_cred_admin, show_cred_maintenance_alert, cred_main
         maintenance_start_tz = cred_maintenance_start.astimezone(tz_info)
         maintenance_end_tz = cred_maintenance_end.astimezone(tz_info)
         return True, maintenance_start_tz, maintenance_end_tz
-    
+
     return False, None, None
 
-def check_cred_exam_start_time(starts_at, user_timezone, time_buffer, time_delay):
+
+def check_cred_exam_start_time(
+    starts_at, user_timezone, time_buffer, time_delay
+):
     tz_info = pytz.timezone(user_timezone)
     if starts_at <= datetime.now(pytz.UTC).astimezone(tz_info) + timedelta(
-            hours=time_buffer
-        ):
+        hours=time_buffer
+    ):
         error = (
             f"Start time should be at least {time_delay}"
             + " from now or later."
         )
         return error
-    
+
     return None
+
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_schedule(
@@ -468,7 +480,9 @@ def cred_schedule(
             assessment_reservation_uuid = flask.request.args.get("uuid")
             is_rescheduling = True
 
-        error_start_time = check_cred_exam_start_time(starts_at, timezone, time_buffer, time_delay)
+        error_start_time = check_cred_exam_start_time(
+            starts_at, timezone, time_buffer, time_delay
+        )
         if error_start_time is not None:
             return flask.render_template(
                 "/credentials/schedule.html",
@@ -476,13 +490,15 @@ def cred_schedule(
                 error=error_start_time,
             )
 
-        maintenance, maintenance_start, maintenance_end = check_cred_maintenance(
-            is_cred_admin,
-            show_cred_maintenance_alert,
-            cred_maintenance_start,
-            cred_maintenance_end,
-            starts_at,
-            timezone
+        maintenance, maintenance_start, maintenance_end = (
+            check_cred_maintenance(
+                is_cred_admin,
+                show_cred_maintenance_alert,
+                cred_maintenance_start,
+                cred_maintenance_end,
+                starts_at,
+                timezone,
+            )
         )
         if maintenance:
             return flask.render_template(
@@ -510,7 +526,7 @@ def cred_schedule(
                     error=" ".join(exam_effectiveness_error),
                     **template_data,
                 )
-            
+
             # ensure rescheduling
             try:
                 # update the assessment reservation
@@ -548,9 +564,7 @@ def cred_schedule(
                     "last_name": last_name,
                     "student_email": user["email"],
                     "exam_date_time": starts_at.isoformat(),
-                    "ext_exam_id": response["assessment_reservation"][
-                        "uuid"
-                    ],
+                    "ext_exam_id": response["assessment_reservation"]["uuid"],
                     "client_exam_id": 1,
                     "timezone": timezone,
                     "ai_enabled": "1",
@@ -564,27 +578,35 @@ def cred_schedule(
                     student_session_id = student_session.get(
                         "session_link", ""
                     )
-                    proc_session= proctor_api.update_student_session(
+                    proc_session = proctor_api.update_student_session(
                         student_session_id,
                         session_data,
                     )
                 # create a new student session
                 else:
-                    proc_session= proctor_api.create_student_session(session_data)
-                
-                session_detail = proctor_api.get_student_session_detail(proc_session.get("data", {}).get("id"))
+                    proc_session = proctor_api.create_student_session(
+                        session_data
+                    )
+
+                session_detail = proctor_api.get_student_session_detail(
+                    proc_session.get("data", {}).get("id")
+                )
                 meta = {
-                    "proctor360_session_link": session_detail.get("data", {}).get("session_link"),
+                    "proctor360_session_link": session_detail.get(
+                        "data", {}
+                    ).get("session_link"),
                 }
                 # update the assessment reservation with proctor session link
-                assessment_reservation = ua_contracts_api.post_assessment_reservation(
-                    contract_item_id,
-                    first_name,
-                    last_name,
-                    timezone,
-                    starts_at.isoformat(),
-                    country_code,
-                    meta
+                assessment_reservation = (
+                    ua_contracts_api.post_assessment_reservation(
+                        contract_item_id,
+                        first_name,
+                        last_name,
+                        timezone,
+                        starts_at.isoformat(),
+                        country_code,
+                        meta,
+                    )
                 )
                 exam = {
                     "name": "CUE.01 Linux",
@@ -599,16 +621,16 @@ def cred_schedule(
                     contract_long_id=contract_long_id,
                 )
             except Exception as error:
-                    flask.current_app.extensions["sentry"].captureException(
-                        extra={
-                            "user_info": user_info(flask.session),
-                            "request_url": error.request.url,
-                            "request_headers": error.request.headers,
-                            "response_headers": error.response.headers,
-                            "response_body": error.response.json(),
-                        }
-                    )
-            
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "user_info": user_info(flask.session),
+                        "request_url": error.request.url,
+                        "request_headers": error.request.headers,
+                        "response_headers": error.response.headers,
+                        "response_body": error.response.json(),
+                    }
+                )
+
         # if the exam is scheduled for the first time
         else:
 
@@ -629,25 +651,31 @@ def cred_schedule(
                         error=error,
                         time_delay=time_delay,
                     )
-                
+
                 uuid = response.get("reservation", {}).get("IDs", [])[-1]
                 student_session_data = {
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "student_email": user["email"],
-                        "exam_date_time": starts_at.isoformat(),
-                        "client_exam_id": 1,
-                        "ext_exam_id": uuid,
-                        "timezone": timezone,
-                        "ai_enabled": "1",
-                        "exam_link": base_url
-                        + "credentials/"
-                        + f"exam?uuid={uuid}",
-                    }
-                proc_session = proctor_api.create_student_session(student_session_data)
-                session_detail = proctor_api.get_student_session_detail(proc_session.get("data", {}).get("id"))
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "student_email": user["email"],
+                    "exam_date_time": starts_at.isoformat(),
+                    "client_exam_id": 1,
+                    "ext_exam_id": uuid,
+                    "timezone": timezone,
+                    "ai_enabled": "1",
+                    "exam_link": base_url
+                    + "credentials/"
+                    + f"exam?uuid={uuid}",
+                }
+                proc_session = proctor_api.create_student_session(
+                    student_session_data
+                )
+                session_detail = proctor_api.get_student_session_detail(
+                    proc_session.get("data", {}).get("id")
+                )
                 meta = {
-                    "proctor360_session_link": session_detail.get("data", {}).get("session_link"),
+                    "proctor360_session_link": session_detail.get(
+                        "data", {}
+                    ).get("session_link"),
                 }
                 exam = {
                     "name": "CUE.01 Linux",
@@ -677,7 +705,7 @@ def cred_schedule(
                     error=error,
                     time_delay=time_delay,
                 )
-                
+
     contract_item_id = flask.request.args.get("contractItemID")
     if contract_item_id is None:
         return flask.redirect("/credentials/your-exams")
