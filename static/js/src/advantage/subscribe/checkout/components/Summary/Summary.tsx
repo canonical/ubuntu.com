@@ -22,10 +22,11 @@ type Props = {
   products: CheckoutProducts[];
   action: Action;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setErrorType: React.Dispatch<React.SetStateAction<string>>;
   coupon: Coupon;
 };
 
-function Summary({ products, action, coupon, setError }: Props) {
+function Summary({ products, action, coupon, setError, setErrorType }: Props) {
   const { values } = useFormikContext<FormValues>();
 
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
@@ -102,6 +103,7 @@ function Summary({ products, action, coupon, setError }: Props) {
   useEffect(() => {
     if (error instanceof Error) {
       let message = <></>;
+      let errorType = "";
       if (error.message.includes("can only make one purchase at a time")) {
         message = (
           <>
@@ -144,11 +146,13 @@ function Summary({ products, action, coupon, setError }: Props) {
             purchasing CUE exams.
           </>
         );
+        errorType = "cue-banned";
       } else {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }
       Sentry.captureException(error);
       setError(message);
+      setErrorType(errorType);
       document.querySelector("h1")?.scrollIntoView();
       return;
     }

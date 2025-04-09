@@ -389,17 +389,17 @@ def cred_schedule(
             f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
         starts_at = tz_info.localize(scheduled_time)
-        contract_item_id = data["contract_item_id"]
+        contract_item_id = flask.request.args.get("contractItemID", "")
         first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
         assessment_reservation_uuid = None
         template_data = {
-            key: data[key]
-            for key in ["date", "time", "timezone", "contract_item_id"]
+            key: data[key] for key in ["date", "time", "timezone"]
         }
         template_data["min_date"] = min_date
         template_data["max_date"] = max_date
         template_data["time_delay"] = time_delay
+        template_data["contract_item_id"] = contract_item_id
 
         if flask.request.args.get("uuid", default=None, type=str):
             assessment_reservation_uuid = flask.request.args.get("uuid")
@@ -469,21 +469,15 @@ def cred_schedule(
                     error=" ".join(error),
                     **template_data,
                 )
-
-            response = trueability_api.patch_assessment_reservation(
-                starts_at=starts_at.isoformat(),
-                timezone=timezone,
-                country_code=country_code,
-                uuid=assessment_reservation_uuid,
-            )
-            if response and "assessment_reservation" not in response:
-                error = response.get("message", "Could not reschedule exam")
-                return flask.render_template(
-                    "/credentials/schedule.html",
-                    error=error,
-                    time_delay=time_delay,
+            try:
+                response = ua_contracts_api.post_assessment_reservation(
+                    contract_item_id,
+                    first_name,
+                    last_name,
+                    timezone,
+                    starts_at.isoformat(),
+                    country_code,
                 )
-            else:
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
@@ -495,6 +489,22 @@ def cred_schedule(
                     "/credentials/schedule-confirm.html",
                     exam=exam,
                     contract_long_id=contract_long_id,
+                )
+            except Exception as error:
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "user_info": user_info(flask.session),
+                        "request_url": error.request.url,
+                        "request_headers": error.request.headers,
+                        "response_headers": error.response.headers,
+                        "response_body": error.response.json(),
+                    }
+                )
+                error = error.response.json()["message"]
+                return flask.render_template(
+                    "/credentials/schedule.html",
+                    error=error,
+                    time_delay=time_delay,
                 )
         else:
             try:
@@ -1350,7 +1360,6 @@ def get_test_taker_stats(trueability_api, **kwargs):
         return addresses
 
     def fetch_assessments(page: int):
-        print(page)
         result = trueability_api.get_assessments(page=page)
         return get_addresses(result["assessments"])
 
