@@ -1,7 +1,5 @@
 {% extends "ceph/base_ceph.html" %}
 
-{% from "_macros/vf_hero.jinja" import vf_hero %}
-
 {% block title %}Pricing Calculator | Ceph{% endblock %}
 
 {% block body_class %}
@@ -198,61 +196,60 @@
     </section>
   </form>
 
-  <section class="p-section">
+  <section class="p-section--deep">
     <div class="u-fixed-width">
       <hr class="p-rule" />
       <div class="p-section--shallow">
         <h2>Compare your costs</h2>
       </div>
-
-      <div class="p-section--shallow">
-        <div class="row">
-          <div class="col-6">
+      <div class="p-pricing-block--50-50">
+        <div class="p-pricing-block__tier">
+          <div class="p-pricing-block__section">
             <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="u-no-padding--top">
-              <div class="row p-section--shallow">
-                <h4 class="u-no-margin--bottom">Ceph self hosted cost:</h4>
-                <p>
-                  <span id="ceph-cost" class="p-heading--3">$0</span>
-                  <span class="p-heading--3 u-text--muted" style="font-weight: 300">for <span id="ceph-months">0</span> months</span>
-                </p>
-              </div>
-              <p class="u-text--muted">What's included:</p>
-
-              <div class="row">
-                <div class="col-3">
-                  <p>Ceph Deployment</p>
-                  <p>Hardware install and maintenance</p>
-                  <p>Ubuntu Pro (managed or infra-Only)</p>
-                  <p>Ubuntu Pro (additional storage)</p>
-                  <p>Hardware</p>
-                </div>
-                <div class="col-3">
-                  <p id="ceph-deployment-price">$0</p>
-                  <p id="hardware-maintenance-price">$0</p>
-                  <p id="ubuntu-pro-price">$0</p>
-                  <p id="additional-storage-price">$0</p>
-                  <p id="hardware-price">$0</p>
-                </div>
-              </div>
+            <div class="p-section--shallow">
+              <h3 class="p-heading--4">
+                Ceph self hosted cost
+                <br />
+                <strong id="ceph-cost">$0</strong>
+                <span class="u-text--muted">for <span id="ceph-months">0</span> months</span>
+              </h3>
             </div>
           </div>
-          <div class="col-6">
-            <hr class="p-rule--highlight u-no-margin--bottom" />
-            <div class="u-no-padding--top">
-              <div class="row p-section--shallow">
-                <h4 class="u-no-margin--bottom">Public cloud provider cost:</h4>
-                <p>
-                  <span id="public-cloud-cost" class="p-heading--3">$0</span>
-                  <span class="p-heading--3 u-text--muted" style="font-weight: 300">for <span id="cloud-months">0</span> months</span>
-                </p>
+          <div class="p-pricing-block__section">
+            <p class="u-text--muted">What's included</p>
+            <div class="row">
+              <div class="col-8">
+                <p>Ceph Deployment</p>
+                <p>Hardware install and maintenance</p>
+                <p>Ubuntu Pro (managed or infra-Only)</p>
+                <p>Ubuntu Pro (additional storage)</p>
+                <p>Hardware</p>
+              </div>
+              <div class="col-3">
+                <p id="ceph-deployment-price">$0</p>
+                <p id="hardware-maintenance-price">$0</p>
+                <p id="ubuntu-pro-price">$0</p>
+                <p id="additional-storage-price">$0</p>
+                <p id="hardware-price">$0</p>
               </div>
             </div>
           </div>
         </div>
+        <div class="p-pricing-block__tier">
+          <div class="p-pricing-block__section">
+            <hr class="p-rule--highlight u-no-margin--bottom" />
+            <div class="p-section--shallow">
+              <h3 class="p-heading--4">
+                Public cloud provider cost
+                <br />
+                <strong id="public-cloud-cost">$0</strong>
+                <span class="u-text--muted">for <span id="cloud-months">0</span> months</span>
+              </h3>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="p-notification--information">
+      <div class="p-notification--information is-light">
         <div class="p-notification__content">
           <h5 class="p-notification__title">The cloud storage pricing calculator is for informational purposes only</h5>
           <p class="p-notification__message">
