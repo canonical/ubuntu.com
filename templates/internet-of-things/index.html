@@ -33,14 +33,13 @@
     {%- endif -%}
     {%- if slot == "image" -%}
       <div class="p-image-container is-highlighted is-cover u-hide--small">
-        {{ image(
-          url="https://assets.ubuntu.com/v1/7b0d858b-hero-img-iot-2.png",
-          alt="",
-          width="3696",
-          height="1541",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "p-image-container__image"},) | safe
+        {{ image(url="https://assets.ubuntu.com/v1/7b0d858b-hero-img-iot-2.png",
+                alt="",
+                width="3696",
+                height="1541",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-image-container__image"},) | safe
         }}
       </div>
     {%- endif -%}
@@ -279,48 +278,48 @@
             <div class="p-logo-section__item">
               <a href="/engage/case-study-rigado">
                 {{ image(url="https://assets.ubuntu.com/v1/abd768d6-Rigado-logo.png",
-                              alt="Rigado",
-                              width="356",
-                              height="313",
-                              hi_def=True,
-                              loading="lazy",
-                              attrs={"class": "p-logo-section__logo"},) | safe
+                                alt="Rigado",
+                                width="356",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
                 }}
               </a>
             </div>
             <div class="p-logo-section__item">
               <a href="https://developer.community.boschrexroth.com/t5/Store-and-How-to/ctrlX-AUTOMATION-Ubuntu-Core/ba-p/16388">
                 {{ image(url="https://assets.ubuntu.com/v1/9f3d47a3-rexroth-logo.png",
-                              alt="Rexroth",
-                              width="214",
-                              height="313",
-                              hi_def=True,
-                              loading="lazy",
-                              attrs={"class": "p-logo-section__logo"},) | safe
+                                alt="Rexroth",
+                                width="214",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
                 }}
               </a>
             </div>
             <div class="p-logo-section__item">
               <a href="/engage/secure-digital-signage-screenly">
                 {{ image(url="https://assets.ubuntu.com/v1/a85bb8d1-Screenly-logo.png",
-                              alt="Screenly",
-                              width="223",
-                              height="313",
-                              hi_def=True,
-                              loading="lazy",
-                              attrs={"class": "p-logo-section__logo"},) | safe
+                                alt="Screenly",
+                                width="223",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
                 }}
               </a>
             </div>
             <div class="p-logo-section__item">
               <a href="/blog/elektrobit-partners-with-canonical">
                 {{ image(url="https://assets.ubuntu.com/v1/f7569195-elektrobit.png",
-                              alt="Elektrobit",
-                              width="293",
-                              height="313",
-                              hi_def=True,
-                              loading="lazy",
-                              attrs={"class": "p-logo-section__logo"},) | safe
+                                alt="Elektrobit",
+                                width="293",
+                                height="313",
+                                hi_def=True,
+                                loading="lazy",
+                                attrs={"class": "p-logo-section__logo"},) | safe
                 }}
               </a>
             </div>
@@ -415,7 +414,9 @@
       <div class="p-equal-height-row__col">
         <div class="p-equal-height-row__item">
           <h3 class="p-heading--5 u-no-margin--bottom">Device Enablement</h3>
-          <p class="u-text--muted u-no-padding--top p-heading--5">Your own production-grade image in our testing infrastructure</p>
+          <p class="u-text--muted u-no-padding--top p-heading--5">
+            Your own production-grade image in our testing infrastructure
+          </p>
         </div>
         <p class="p-equal-height-row__item">
           Our <a href="/core/services">Enablement services</a> allow you to get a production-grade Ubuntu image for your device, while our Maintenance services guarantee that any security update won't break your device.
@@ -635,6 +636,6 @@
     </div>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/internet-of-things") | safe }}
 
 {% endblock content %}

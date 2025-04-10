@@ -157,6 +157,6 @@
       <a href="/kubernetes/contact-us" class="js-invoke-modal p-heading--2">Contact us</a>
     </div>
   </section>
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/kubernetes") | safe }}
 
 {% endblock content %}

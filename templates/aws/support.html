@@ -155,6 +155,6 @@
     </div>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/aws") | safe }}
 
 {% endblock content %}

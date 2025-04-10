@@ -366,5 +366,6 @@
     </div>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/landscape") | safe }}
+
 {% endblock content %}

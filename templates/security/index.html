@@ -690,7 +690,7 @@
     </template>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/security") | safe }}
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   {# djlint:off #}

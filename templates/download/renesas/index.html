@@ -3,7 +3,5 @@
 {% block title %}Contact us | Renesas{% endblock %}
 
 {% block content %}
-  {% with formId=6153 %}
-    {% include "/shared/forms/form-template.html" %}
-  {% endwith %}
+  {{ load_form("/download/renesas") | safe }}
 {% endblock content %}
