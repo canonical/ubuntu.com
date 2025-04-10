@@ -124,54 +124,59 @@
           security, and operational needs. Dependency management and manually customizing images is complex and results in security
           headaches – Canonical makes it simple.
         </p>
-      </div>
     </div>
     <div class="row">
-      <div class="col-9 col-start-large-4">
-        <div class="p-equal-height-row u-no-padding--bottom p-section--shallow">
+      <div class="col-start-large-4 col-9">
+        <div class="p-equal-height-row">
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/0d4921b6-Security and compliance.png",
                                 alt="",
                                 width="852",
                                 height="1278",
                                 hi_def=True,
-                                loading="lazy") | safe
+                                loading="lazy",
+                                attrs={"claas": "p-image-container__image"}) | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <h3 class="p-heading--5">Security and compliance</h3>
-              </div>
             </div>
-            <p class="p-equal-height-row__item">
-              Meet industry standards like CIS benchmarks and FIPS compliance with signed, trusted images.
-            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Security and compliance</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Meet industry standards like CIS benchmarks and FIPS compliance with signed, trusted images.
+              </p>
+            </div>
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/1220fee3-Enterprise-wide requirements.png",
                                 alt="",
                                 width="852",
                                 height="1278",
                                 hi_def=True,
-                                loading="lazy") | safe
+                                loading="lazy",
+                                attrs={"claas": "p-image-container__image"}) | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <h3 class="p-heading--5">Enterprise-wide requirements</h3>
-              </div>
             </div>
-            <p class="p-equal-height-row__item">
-              Ensures every image includes packages and libraries that simplifies management and troubleshooting, which may fulfill enterprise -wide requirements.
-            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Enterprise-wide requirements</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Ensures every image includes packages and libraries that simplifies management and troubleshooting, which may fulfill enterprise -wide requirements.
+              </p>
+            </div>
           </div>
           <div class="p-equal-height-row__col">
             <div class="p-equal-height-row__item">
-              <div class="p-media-container u-darker-background u-hide--small u-hide--medium">
+              <div class="p-image-container--3-2-on-small p-image-container--square-on-medium p-image-container--2-3-on-large is-highlighted">
                 {{ image(url="https://assets.ubuntu.com/v1/882080ce-Application-specific customization.png",
                                 alt="",
                                 width="852",
@@ -180,14 +185,16 @@
                                 loading="lazy") | safe
                 }}
               </div>
-              <div class="p-equal-height-row__item">
-                <hr class="p-rule--highlight u-hide--medium u-hide--small" />
-                <h3 class="p-heading--5">Application-specific customization:</h3>
-              </div>
             </div>
-            <p class="p-equal-height-row__item">
-              Customize images with specific dependencies without breaking SLAs or compromising security.
-            </p>
+            <div class="p-equal-height-row__item">
+              <hr class="p-rule--highlight u-hide--medium u-hide--small" />
+              <h3 class="p-heading--5">Application-specific customization:</h3>
+            </div>
+            <div class="p-equal-height-row__item">
+              <p>
+                Customize images with specific dependencies without breaking SLAs or compromising security.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -247,10 +254,10 @@
           <div class="col-9 col-start-large-4">
             <hr class="p-rule--muted" />
             <div class="row">
-              <div class="col-3">
+              <div class="col-3 col-medium-3">
                 <h5>Minimal images</h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 col-medium-3">
                 <p>Lightweight, efficient, and stripped down for performance.</p>
               </div>
             </div>
@@ -260,10 +267,10 @@
           <div class="col-9 col-start-large-4">
             <hr class="p-rule--muted" />
             <div class="row">
-              <div class="col-3">
+              <div class="col-3 col-medium-3">
                 <h5>Security-first</h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 col-medium-3">
                 <p>Vulnerability remediation with SLA-backed patches.</p>
               </div>
             </div>
@@ -273,10 +280,10 @@
           <div class="col-9 col-start-large-4">
             <hr class="p-rule--muted" />
             <div class="row">
-              <div class="col-3">
+              <div class="col-3 col-medium-3">
                 <h5>Fully supported</h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 col-medium-3">
                 <p>Canonical ensures your containers run reliably for years.</p>
               </div>
             </div>
@@ -286,10 +293,10 @@
           <div class="col-9 col-start-large-4">
             <hr class="p-rule--muted" />
             <div class="row">
-              <div class="col-3">
+              <div class="col-3 col-medium-3">
                 <h5>Environment agnostic</h5>
               </div>
-              <div class="col-6">
+              <div class="col-6 col-medium-3">
                 <p>Run on any certified Kubernetes platform whether on prem or on a public cloud.</p>
               </div>
             </div>
