@@ -359,6 +359,7 @@ def build_engage_index(engage_docs):
             "Event",
         ]
         tags_list = engage_docs.get_engage_pages_tags()
+        tags_list = sorted(set(tags_list), key=str.lower)
         total_pages = math.ceil(current_total / limit)
 
         return flask.render_template(
