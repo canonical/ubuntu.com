@@ -20,7 +20,7 @@
                 class="modal-form">
             <ul class="p-list">
               <li class="p-list__item">
-                <label for="firstName">First name:</label>
+                <label class="is-required" for="firstName">First name:</label>
                 {% if user_info %}
                   {% set first_name = user_info.fullname.split(' ')[0] %}
                   {% set last_name = user_info.fullname | replace(first_name + " ", "") %}
@@ -41,7 +41,7 @@
                 {% endif %}
               </li>
               <li class="p-list__item">
-                <label for="lastName">Last name:</label>
+                <label class="is-required" for="lastName">Last name:</label>
                 {% if user_info %}
                   <input required
                          id="lastName"
@@ -90,7 +90,7 @@
                 <input required id="company" name="company" maxlength="255" type="text" />
               </li>
               <li class="p-list__item u-sv3">
-                <label for="phone">Mobile/cell phone number:</label>
+                <label class="is-required" for="phone">Mobile/cell phone number:</label>
                 <input required
                        id="phone"
                        name="phone"
