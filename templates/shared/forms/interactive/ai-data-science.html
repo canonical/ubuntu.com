@@ -77,10 +77,10 @@
               {% with raw = "true" %}
                 {% include "shared/forms/_country.html" %}
               {% endwith %}
-              <label for="company">Company:</label>
-              <input id="company" name="company" maxlength="255" type="text" />
-              <label for="company">Job Title:</label>
-              <input id="title" name="title" maxlength="255" type="text" />
+              <label class="is-required" for="company">Company:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
+              <label class="is-required" for="title">Job Title:</label>
+              <input required id="title" name="title" maxlength="255" type="text" />
             </div>
             <div class="p-section--shallow">
               <label class="p-checkbox">
