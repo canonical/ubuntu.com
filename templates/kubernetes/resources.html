@@ -817,6 +817,6 @@
     </div>
   </div>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/kubernetes") | safe }}
 
 {% endblock %}

@@ -1061,7 +1061,7 @@
 
   <script src="{{ versioned_static('js/dist/sticky-nav.js') }}"></script>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/embedded") | safe }}
 
 {% endblock content %}
 
