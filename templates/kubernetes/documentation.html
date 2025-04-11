@@ -30,7 +30,8 @@
         </div>
         <div class="p-cta-block">
           <a href="/kubernetes/contact-us"
-             class="js-invoke-modal p-button--positive">Get in touch</a>
+             class="js-invoke-modal p-button--positive"
+             aria-controls="kubernetes-modal">Get in touch</a>
         </div>
       </div>
     </div>
@@ -154,7 +155,9 @@
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
       <h2 class="u-no-margin--bottom u-sv1">Get your K8s questions answered today</h2>
-      <a href="/kubernetes/contact-us" class="js-invoke-modal p-heading--2">Contact us</a>
+      <a href="/kubernetes/contact-us"
+         class="js-invoke-modal p-heading--2"
+         aria-controls="kubernetes-modal">Contact us</a>
     </div>
   </section>
   {{ load_form("/kubernetes") | safe }}

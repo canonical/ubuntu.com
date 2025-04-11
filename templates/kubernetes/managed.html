@@ -30,7 +30,8 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/kubernetes/contact-us?product=kubernetes-managed"
-         class="js-invoke-modal p-button--positive">Talk to an expert</a>
+         class="js-invoke-modal p-button--positive"
+         aria-controls="kubernetes-modal">Talk to an expert</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
       <div class="p-image-container--cinematic is-cover">
@@ -174,7 +175,8 @@
         </ul>
         <div class="p-cta-block">
           <a href="/kubernetes/contact-us?product=kubernetes-managed"
-             class="js-invoke-modal p-button">Let us manage your K8s</a>
+             class="js-invoke-modal p-button"
+             aria-controls="kubernetes-modal">Let us manage your K8s</a>
           <a href="/engage/managed-services-overcoming-cio-challenges-2021">Managed IT services - read the whitepaper&nbsp;&rsaquo;</a>
         </div>
       </div>
@@ -444,7 +446,8 @@
     <div class="u-fixed-width">
       <p class="p-heading--2">
         <a href="/kubernetes/contact-us?product=kubernetes-managed"
-           class="js-invoke-modal">Talk to us about managing your Kubernetes cluster&nbsp;&rsaquo;</a>
+           class="js-invoke-modal"
+           aria-controls="kubernetes-modal">Talk to us about managing your Kubernetes cluster&nbsp;&rsaquo;</a>
       </p>
     </div>
   </section>

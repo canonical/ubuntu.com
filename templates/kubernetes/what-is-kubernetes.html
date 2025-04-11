@@ -36,7 +36,8 @@
     {%- endif -%}
     {%- if slot == "cta" -%}
       <a class="p-button--positive js-invoke-modal"
-         href="/kubernetes/contact-us?product=kubernetes-features">Get in touch</a>
+         href="/kubernetes/contact-us?product=kubernetes-features"
+         aria-controls="kubernetes-modal">Get in touch</a>
       <a href="https://documentation.ubuntu.com/canonical-kubernetes">Try Canonical Kubernetes today&nbsp;&rsaquo;</a>
     {%- endif -%}
     {%- if slot == "image" -%}
@@ -405,7 +406,9 @@
         </div>
         <div class="p-cta-block">
           <a href="/kubernetes/resources" class="p-button">Find more resources</a>
-          <a href="/kubernetes/contact-us" class="js-invoke-modal">Contact us to get your K8s questions answered today&nbsp;&rsaquo;</a>
+          <a href="/kubernetes/contact-us"
+             class="js-invoke-modal"
+             aria-controls="kubernetes-modal">Contact us to get your K8s questions answered today&nbsp;&rsaquo;</a>
         </div>
       </div>
     </div>
@@ -730,7 +733,8 @@
         <p>Let our Kubernetes experts help you take the next step.</p>
         <div class="p-cta-block">
           <a href="/kubernetes/contact-us"
-             class="p-button--positive js-invoke-modal">Contact us</a>
+             class="p-button--positive js-invoke-modal"
+             aria-controls="kubernetes-modal">Contact us</a>
         </div>
       </div>
     </div>
