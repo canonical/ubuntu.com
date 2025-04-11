@@ -1,0 +1,91 @@
+{
+  "form": {
+    "/containers": {
+      "templatePath": "/containers/index.html",
+      "childrenPaths": ["/containers/container-build-service"],
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Get in touch with the container team",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "5914",
+        "returnUrl": "/containers#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company name"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title"
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    "/containers/chiseled": {
+      "templatePath": "/containers/chiseled/index.html",
+      "isModal": true,
+      "modalId": "contact-modal",
+      "formData": {
+        "title": "Get in touch with the container team",
+        "introText": "Fill in this form and a member of our team will be in touch shortly.",
+        "formId": "5914",
+        "returnUrl": "/containers#contact-form-success",
+        "lpUrl": "https://pages.ubuntu.com/things-contact-us.html",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company name"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title"
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Mobile/cell phone number",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
