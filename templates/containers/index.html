@@ -474,7 +474,7 @@
     </div>
   </div>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/containers") | safe }}
 
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
