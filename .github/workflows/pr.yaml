@@ -165,12 +165,15 @@ jobs:
         run: dotrun build
 
       - name: Run tests with coverage
-        run: dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
+        run: |
+          dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
+          dotrun exec coverage xml -o ./tests/coverage.xml
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          flags: python
+      - name: Install diff-cover
+        run: dotrun exec pip3 install diff_cover
+
+      - name: Show diff coverage report
+        run: dotrun exec bash -c "git config --global --add safe.directory /home/ubuntu/ubuntu-com && diff-cover ./tests/coverage.xml --compare-branch=origin/main --fail-under=80"
 
   test-js:
     runs-on: ubuntu-latest
