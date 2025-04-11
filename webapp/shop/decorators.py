@@ -14,6 +14,7 @@ from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.credly.api import CredlyAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
+from webapp.shop.api.proctor360.api import Proctor360API
 from webapp.login import user_info
 from requests import Session
 
@@ -73,6 +74,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
     trueability_session = init_trueability_session(area)
+    proctor_session = init_proctor_session(area)
     credly_session = init_credly_session(area)
 
     def decorator(func):
@@ -176,6 +178,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
+                proctor_api=get_proctor_api_instance(area, proctor_session),
                 credly_api=get_credly_api_instance(area, credly_session),
                 is_in_maintenance=is_in_maintenance,
                 is_community_member=is_community_member,
@@ -281,6 +284,16 @@ def init_trueability_session(area) -> Session:
     return trueability_session
 
 
+def init_proctor_session(area) -> Session:
+    if area != "cred":
+        return None
+
+    proc_session = Session()
+    talisker.requests.configure(proc_session)
+
+    return proc_session
+
+
 def get_redirect_default(area) -> str:
     redirect_path = "/account"
     if area == "advantage":
@@ -325,6 +338,15 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
         os.getenv("TRUEABILITY_URL", "https://app3.trueability.com"),
         os.getenv("TRUEABILITY_API_KEY", ""),
         trueability_session,
+    )
+
+
+def get_proctor_api_instance(area, proctor_session) -> Proctor360API:
+    if area != "cred":
+        return None
+
+    return Proctor360API(
+        proctor_session,
     )
 
 
