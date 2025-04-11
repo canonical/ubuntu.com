@@ -14,8 +14,6 @@ import flask
 import jinja2
 import talisker.requests
 import yaml
-from bs4 import BeautifulSoup
-from canonicalwebteam.discourse import DiscourseAPI, DocParser, Docs
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from geolite2 import geolite2
@@ -527,53 +525,6 @@ def build_engage_pages_sitemap(engage_pages):
         return response
 
     return ep_sitemap
-
-
-def openstack_install():
-    """
-    OpenStack install docs
-    Instructions for OpenStack installation pulled from Discourse
-    """
-    discourse_api = DiscourseAPI(
-        base_url="https://discourse.ubuntu.com/", session=session
-    )
-    openstack_install_parser = DocParser(
-        api=discourse_api,
-        index_topic_id=23346,
-        url_prefix="/openstack/install",
-    )
-    openstack_install_docs = Docs(
-        parser=openstack_install_parser,
-        document_template="/openstack/install.html",
-        url_prefix="/openstack/install",
-        blueprint_name="openstack-install-docs",
-    )
-
-    singlenode_topic = openstack_install_docs.parser.api.get_topic(35230)
-    singlenode_topic_soup = BeautifulSoup(
-        singlenode_topic["post_stream"]["posts"][0]["cooked"],
-        features="html.parser",
-    )
-    singlenode_content = openstack_install_parser._process_topic_soup(
-        singlenode_topic_soup
-    )
-    openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
-
-    multinode_topic = openstack_install_docs.parser.api.get_topic(35727)
-    multinode_topic_soup = BeautifulSoup(
-        multinode_topic["post_stream"]["posts"][0]["cooked"],
-        features="html.parser",
-    )
-    multinode_content = openstack_install_docs.parser._process_topic_soup(
-        multinode_topic_soup
-    )
-    openstack_install_docs.parser._replace_lightbox(multinode_topic_soup)
-
-    return flask.render_template(
-        "openstack/install.html",
-        single_node=str(singlenode_content),
-        multi_node=str(multinode_content),
-    )
 
 
 def openstack_engage(engage_pages):

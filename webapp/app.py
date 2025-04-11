@@ -165,7 +165,6 @@ from webapp.views import (
     mirrors_query,
     navigation_nojs,
     openstack_engage,
-    openstack_install,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -1231,12 +1230,6 @@ app.add_url_rule(
 landscape_docs.init_app(app)
 
 certified_routes(app)
-
-# Override openstack/install
-app.add_url_rule(
-    "/openstack/install",
-    view_func=openstack_install,
-)
 
 # Subscription centre
 app.add_url_rule(
