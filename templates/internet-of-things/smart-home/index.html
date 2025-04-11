@@ -301,6 +301,6 @@
     </div>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/internet-of-things/smart-home") | safe }}
 
 {% endblock content %}

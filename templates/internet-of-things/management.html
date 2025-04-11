@@ -491,8 +491,6 @@
     </div>
   </section>
 
-  {% with formId=4296 %}
-    {% include "/shared/forms/form-template.html" %}
-  {% endwith %}
+  {{ load_form('/internet-of-things', 4296) | safe }}
 
 {% endblock content %}

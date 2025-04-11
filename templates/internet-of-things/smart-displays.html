@@ -542,8 +542,6 @@
     {% include "internet-of-things/shared/_latest-news-iot.html" %}
   {% endwith %}
 
-  {% with formId=1422 %}
-    {% include "/shared/forms/form-template.html" %}
-  {% endwith %}
+  {{ load_form('/internet-of-things', 1422) | safe }}
 
 {% endblock %}
