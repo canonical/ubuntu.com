@@ -1,0 +1,66 @@
+<form id="edit-billing-form" class="p-form p-form--stacked">
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="country" class="p-form__label">Country/Region</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <strong id="country"></strong>
+      </div>
+    </div>
+  </div>
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="vat" class="p-form__label">VAT number</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <input type="text" id="vat" name="vat" />
+      </div>
+    </div>
+  </div>
+  <hr class="p-rule" />
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="name" class="p-form__label">Name</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <input type="text" id="name" name="name" />
+      </div>
+    </div>
+  </div>
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="address" class="p-form__label">Address</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <input type="text" id="address" name="address" />
+      </div>
+    </div>
+  </div>
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="city" class="p-form__label">City</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <input type="text" id="city" name="city" />
+      </div>
+    </div>
+  </div>
+  <div class="p-form__group row u-no-padding--left u-no-padding--right">
+    <div class="col-4">
+      <label for="postal-code" class="p-form__label">Postal code</label>
+    </div>
+    <div class="col-8">
+      <div class="p-form__control">
+        <input type="text" id="postal-code" name="postal-code" />
+      </div>
+    </div>
+  </div>
+  {# Fields that we need to call the API, but are not shown to the user #}
+  <input type="text" id="payment-method-id" name="payment-method-id" hidden />
+  <input type="text" id="country-code" name="country-code" hidden />
+</form>
