@@ -111,7 +111,7 @@
           content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
     {% endif %}
     {% block extra_metatags %}{% endblock %}
-    {%- include "templates/_tag_manager.html" %}
+    <style>#rememberMe {display: none;}</style>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
@@ -154,5 +154,7 @@
         {% block footer_extra %}{% endblock %}
       {% endif %}
     {% endif %}
+
+    {%- include "templates/_tag_manager.html" %}
   </body>
 </html>
