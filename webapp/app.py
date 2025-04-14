@@ -22,7 +22,8 @@ from canonicalwebteam.discourse import (
     Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
-from canonicalwebteam.directory_parser import scan_directory
+from pathlib import Path
+import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
@@ -209,10 +210,13 @@ app = FlaskBase(
 )
 
 # ChoiceLoader attempts loading templates from each path in successive order
+# Add the directory-parser templates to the Jinja2 loader
+directory_parser_templates = Path(directory_parser.__file__).parent / "templates"
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
         FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader(str(directory_parser_templates)),
     ]
 )
 
@@ -1353,7 +1357,7 @@ app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
 # Endpoint for retrieving parsed directory tree
 def get_sitemaps_tree():
     try:
-        tree = scan_directory(
+        tree = directory_parser.scan_directory(
             os.getcwd() + "/templates", exclude_paths=DYNAMIC_SITEMAPS
         )
     except Exception as e:
