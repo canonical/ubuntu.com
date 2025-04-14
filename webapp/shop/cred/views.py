@@ -163,6 +163,10 @@ def cred_sign_up(**_):
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
+    form_fields["enviornment"] = "staging" if is_staging else "production"
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
