@@ -582,42 +582,18 @@ def cred_schedule(
                     + "credentials/"
                     + f"exam?uuid={uuid}",
                 }
-                proc_session = None
                 # update the student session if present
                 if student_session:
                     student_session_id = student_session.get(
                         "session_link", ""
                     )
-                    proc_session = proctor_api.update_student_session(
+                    proctor_api.update_student_session(
                         student_session_id,
                         student_session_data,
                     )
                 # create a new student session
                 else:
-                    proc_session = proctor_api.create_student_session(
-                        student_session_data
-                    )
-
-                session_detail = proctor_api.get_student_session_detail(
-                    proc_session.get("data", {}).get("id")
-                )
-                meta = {
-                    "proctor360_session_link": session_detail.get(
-                        "data", {}
-                    ).get("session_link"),
-                }
-                # update the assessment reservation with proctor session link
-                assessment_reservation = (
-                    ua_contracts_api.post_assessment_reservation(
-                        contract_item_id,
-                        first_name,
-                        last_name,
-                        timezone,
-                        starts_at.isoformat(),
-                        country_code,
-                        meta,
-                    )
-                )
+                    proctor_api.create_student_session(student_session_data)
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
@@ -687,17 +663,7 @@ def cred_schedule(
                     + "credentials/"
                     + f"exam?uuid={uuid}",
                 }
-                proc_session = proctor_api.create_student_session(
-                    student_session_data
-                )
-                session_detail = proctor_api.get_student_session_detail(
-                    proc_session.get("data", {}).get("id")
-                )
-                meta = {
-                    "proctor360_session_link": session_detail.get(
-                        "data", {}
-                    ).get("session_link"),
-                }
+                proctor_api.create_student_session(student_session_data)
                 exam = {
                     "name": "CUE.01 Linux",
                     "date": starts_at.strftime("%d %b %Y"),
