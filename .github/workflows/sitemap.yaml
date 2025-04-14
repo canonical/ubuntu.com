@@ -18,9 +18,8 @@ jobs:
         env:
           SITEMAP_SECRET: ${{ secrets.SITEMAP_SECRET }}
         run: |
-          curl -X POST "https://ubuntu-com-14900.demos.haus/sitemap_tree.xml" \
+          curl -X POST "https://ubuntu.com/sitemap_tree.xml" \
           -H "Authorization: Bearer $SITEMAP_SECRET"
-
 
       - name: Send message on failure
         if: failure()
