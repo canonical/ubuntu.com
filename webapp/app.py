@@ -210,7 +210,9 @@ app = FlaskBase(
 )
 
 # ChoiceLoader attempts loading templates from each path in successive order
-directory_parser_templates = Path(directory_parser.__file__).parent / "templates"
+directory_parser_templates = (
+    Path(directory_parser.__file__).parent / "templates"
+)
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
