@@ -344,10 +344,11 @@ def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
 def get_proctor_api_instance(area, proctor_session) -> Proctor360API:
     if area != "cred":
         return None
-
-    return Proctor360API(
+    instance = Proctor360API(
         proctor_session,
     )
+    instance.set_time_zone_ids()
+    return instance
 
 
 def get_ua_contracts_api_instance(
