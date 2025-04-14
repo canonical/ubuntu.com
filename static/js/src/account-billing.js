@@ -104,8 +104,10 @@ function ErrorNotification() {
 
   return {
     display: (message) => {
+      if (message) {
       errorContainer.querySelector(".p-notification__message").textContent =
         message;
+      };
       errorContainer.classList.remove("u-hide");
     },
     clear: () => {
