@@ -210,7 +210,6 @@ app = FlaskBase(
 )
 
 # ChoiceLoader attempts loading templates from each path in successive order
-# Add the directory-parser templates to the Jinja2 loader
 directory_parser_templates = Path(directory_parser.__file__).parent / "templates"
 loader = ChoiceLoader(
     [
