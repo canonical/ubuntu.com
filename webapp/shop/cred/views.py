@@ -392,6 +392,10 @@ def cred_schedule(
         scheduled_time = datetime.strptime(
             f"{data['date']}T{data['time']}", "%Y-%m-%dT%H:%M"
         )
+        cue_banned_error = "user is banned from using CUE"
+        formatted_cue_banned_error = (
+            "User is banned from Canonical credentialing exams."
+        )
         starts_at = tz_info.localize(scheduled_time)
         contract_item_id = flask.request.args.get("contractItemID", "")
         first_name, last_name = get_user_first_last_name()
@@ -505,10 +509,15 @@ def cred_schedule(
                     }
                 )
                 error = error.response.json()["message"]
+                is_banned = False
+                if cue_banned_error in error:
+                    error = formatted_cue_banned_error
+                    is_banned = True
                 return flask.render_template(
                     "/credentials/schedule.html",
                     error=error,
                     time_delay=time_delay,
+                    is_banned=is_banned,
                 )
         else:
             try:
@@ -531,10 +540,15 @@ def cred_schedule(
                     }
                 )
                 error = error.response.json()["message"]
+                is_banned = False
+                if cue_banned_error in error:
+                    error = formatted_cue_banned_error
+                    is_banned = True
                 return flask.render_template(
                     "/credentials/schedule.html",
                     error=error,
                     time_delay=time_delay,
+                    is_banned=is_banned,
                 )
 
             if response and "reservation" not in response:
