@@ -1075,9 +1075,11 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
     try:
         exam_index = int(flask.request.args.get("exam_index", 0))
     except Exception:
-        pass
+        exam_index = 0
 
-    exam_index = int(exam_index)
+    if exam_index < 0 or exam_index > 1:
+        exam_index = 0
+
     ua_contracts_api.ensure_purchase_account("canonical-cube")
     account = advantage_mapper.get_purchase_account("canonical-cube")
     if (account.hasChannelStoreAccess) is True:
