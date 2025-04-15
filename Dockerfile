@@ -23,6 +23,7 @@ FROM yarn-dependencies AS build-js
 ADD static/js static/js
 ADD build.js build.js
 ADD babel.config.js .
+ADD scripts/build-modules.sh scripts/
 RUN yarn run build-js
 
 
