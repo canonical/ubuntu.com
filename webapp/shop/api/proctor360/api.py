@@ -80,17 +80,9 @@ class Proctor360API:
         Set the time zone IDs for the organisation.
         This method should be called after the class is initialized.
         """
-        try:
-            uri = "/api/v2/timezone"
-            response = self.make_request("GET", uri).json()
-            self.time_zone_ids = response.get("data", [])
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
+        uri = "/api/v2/timezone"
+        response = self.make_request("GET", uri).json()
+        self.time_zone_ids = response.get("data", [])
 
     def __check_keys_exist(self, keys, dictionary):
         """
@@ -119,136 +111,82 @@ class Proctor360API:
         return {key: dictionary[key] for key in keys if key in dictionary}
 
     def authenticate(self):
-        try:
-            uri = f"/api/v2/organisations/{self.organisation_id}/oauth/token"
-            body = {
-                "app_id": self.app_id,
-                "app_secret": self.app_secret,
-            }
-            response = self.make_request(
-                "POST", uri, json=body, retry=False, is_authenticating=True
-            )
-            return response.json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = f"/api/v2/organisations/{self.organisation_id}/oauth/token"
+        body = {
+            "app_id": self.app_id,
+            "app_secret": self.app_secret,
+        }
+        response = self.make_request(
+            "POST", uri, json=body, retry=False, is_authenticating=True
+        )
+        return response.json()
 
     def get_system_status(self):
-        try:
-            if not self.app_id or not self.app_secret:
-                return {
-                    "error": True,
-                    "message": "App ID or App Secret not set",
-                }
-            uri = "/api/v2/exams"
-            response = self.make_request("GET", uri).json()
-            status = response.get("status", 200)
-            if status == 200:
-                return {
-                    "error": False,
-                    "message": f"Proctor 360 responded with {status}",
-                }
+        if not self.app_id or not self.app_secret:
             return {
                 "error": True,
+                "message": "App ID or App Secret not set",
+            }
+        uri = "/api/v2/exams"
+        response = self.make_request("GET", uri).json()
+        status = response.get("status", 200)
+        if status == 200:
+            return {
+                "error": False,
                 "message": f"Proctor 360 responded with {status}",
             }
-        except Exception as e:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return {"error": True, "message": e}
+        return {
+            "error": True,
+            "message": f"Proctor 360 responded with {status}",
+        }
 
     def list_exams(self):
         uri = "/api/v2/exams"
         return self.make_request("GET", uri).json()
 
     def create_student(self, student: dict):
-        try:
-            uri = "/api/v2/student"
-            required_keys = [
-                "first_name",
-                "last_name",
-                "email",
-                "time_zone_id",
-                "timezone",
-            ]
-            optional_keys = ["ext_tenant_id", "ext_student_id"]
-            self.__check_keys_exist(required_keys, student)
-            data = self._filter_dict_by_keys(
-                required_keys + optional_keys, student
-            )
-            return self.make_request("POST", uri, json=data).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = "/api/v2/student"
+        required_keys = [
+            "first_name",
+            "last_name",
+            "email",
+            "time_zone_id",
+            "timezone",
+        ]
+        optional_keys = ["ext_tenant_id", "ext_student_id"]
+        self.__check_keys_exist(required_keys, student)
+        data = self._filter_dict_by_keys(
+            required_keys + optional_keys, student
+        )
+        return self.make_request("POST", uri, json=data).json()
 
     def update_student(self, student_id: int, student: dict):
-        try:
-            uri = f"/api/v2/student/{student_id}"
-            optional_keys = [
-                "first_name",
-                "last_name",
-                "email",
-                "ext_tenant_id",
-                "ext_student_id",
-                "time_zone_id",
-                "timezone",
-            ]
-            data = self._filter_dict_by_keys(optional_keys, student)
-            return self.make_request("PATCH", uri, json=data).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = f"/api/v2/student/{student_id}"
+        optional_keys = [
+            "first_name",
+            "last_name",
+            "email",
+            "ext_tenant_id",
+            "ext_student_id",
+            "time_zone_id",
+            "timezone",
+        ]
+        data = self._filter_dict_by_keys(optional_keys, student)
+        return self.make_request("PATCH", uri, json=data).json()
 
     def upsert_student(self, student: dict):
-        try:
-            time_zone_id = self.get_time_zone_id(student["timezone"])
-            student["time_zone_id"] = time_zone_id
-            data = self.get_student(student["email"])
-            if data.get("data", None) is not None:
-                student_id = data["data"]["student"]["id"]
-                return self.update_student(student_id, student)
-            else:
-                return self.create_student(student)
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        time_zone_id = self.get_time_zone_id(student["timezone"])
+        student["time_zone_id"] = time_zone_id
+        data = self.get_student(student["email"])
+        if data.get("data", None) is not None:
+            student_id = data["data"]["student"]["id"]
+            return self.update_student(student_id, student)
+        else:
+            return self.create_student(student)
 
     def get_student(self, email: str):
-        try:
-            uri = f"/api/v2/student?email={email}"
-            return self.make_request("GET", uri, retry=False).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = f"/api/v2/student?email={email}"
+        return self.make_request("GET", uri, retry=False).json()
 
     def get_or_create_student(self, student: dict):
         response = self.get_student(student["email"])
@@ -260,107 +198,71 @@ class Proctor360API:
             return response["data"]
 
     def get_student_sessions(self, qps: dict):
-        try:
-            uri = "/api/v2/student-sessions"
-            accepted_params = [
-                "exam_id",
-                "student_id",
-                "ext_tenant_id",
-                "ext_student_id",
-                "ext_exam_id",
-            ]
-            qps = self._filter_dict_by_keys(accepted_params, qps)
-            uri = f"{uri}?{urlencode(qps)}"
-            return self.make_request("GET", uri).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = "/api/v2/student-sessions"
+        accepted_params = [
+            "exam_id",
+            "student_id",
+            "ext_tenant_id",
+            "ext_student_id",
+            "ext_exam_id",
+        ]
+        qps = self._filter_dict_by_keys(accepted_params, qps)
+        uri = f"{uri}?{urlencode(qps)}"
+        return self.make_request("GET", uri).json()
 
     def create_student_session(self, student_session: dict):
-        try:
-            student = {
-                "first_name": student_session["first_name"],
-                "last_name": student_session["last_name"],
-                "email": student_session["student_email"],
-                "timezone": student_session["timezone"],
-            }
-            self.upsert_student(student)
-            uri = "/api/v2/student-sessions"
-            required_keys = [
-                "first_name",
-                "student_email",
-                "exam_date_time",
-                "client_exam_id",
-                "ext_exam_id",
-                "exam_link",
-            ]
-            optional_keys = ["last_name", "timezone", "ai_enabled"]
-            self.__check_keys_exist(required_keys, student_session)
-            data = self._filter_dict_by_keys(
-                required_keys + optional_keys, student_session
-            )
-            return self.make_request("POST", uri, json=data).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        student = {
+            "first_name": student_session["first_name"],
+            "last_name": student_session["last_name"],
+            "email": student_session["student_email"],
+            "timezone": student_session["timezone"],
+        }
+        self.upsert_student(student)
+        uri = "/api/v2/student-sessions"
+        required_keys = [
+            "first_name",
+            "student_email",
+            "exam_date_time",
+            "client_exam_id",
+            "ext_exam_id",
+            "exam_link",
+        ]
+        optional_keys = ["last_name", "timezone", "ai_enabled"]
+        self.__check_keys_exist(required_keys, student_session)
+        data = self._filter_dict_by_keys(
+            required_keys + optional_keys, student_session
+        )
+        return self.make_request("POST", uri, json=data).json()
 
     def update_student_session(self, session_id: str, student_session: dict):
-        try:
-            student = {
-                "first_name": student_session["first_name"],
-                "last_name": student_session["last_name"],
-                "email": student_session["student_email"],
-                "timezone": student_session["timezone"],
-            }
-            self.upsert_student(student)
-            uri = f"/api/v2/student-session/{session_id}"
-            optional_keys = [
-                "exam_id",
-                "exam_link",
-                "exam_date_time",
-                "live_proctoring",
-                "mobile_camera",
-                "fullview_camera",
-                "second_id_card",
-                "camspin",
-                "face_verification",
-                "secure_browsing",
-                "secure_browsing_id",
-                "can_upload_attachment",
-            ]
-            data = self._filter_dict_by_keys(optional_keys, student_session)
-            return self.make_request("PATCH", uri, json=data).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        student = {
+            "first_name": student_session["first_name"],
+            "last_name": student_session["last_name"],
+            "email": student_session["student_email"],
+            "timezone": student_session["timezone"],
+        }
+        self.upsert_student(student)
+        uri = f"/api/v2/student-session/{session_id}"
+        optional_keys = [
+            "exam_id",
+            "exam_link",
+            "exam_date_time",
+            "live_proctoring",
+            "mobile_camera",
+            "fullview_camera",
+            "second_id_card",
+            "camspin",
+            "face_verification",
+            "secure_browsing",
+            "secure_browsing_id",
+            "can_upload_attachment",
+        ]
+        data = self._filter_dict_by_keys(optional_keys, student_session)
+        return self.make_request("PATCH", uri, json=data).json()
 
     def get_student_session_detail(self, session_id: int):
-        try:
-            uri = f"/api/v2/student-session/{session_id}"
-            return self.make_request("GET", uri).json()
-        except Exception:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": flask.request.url,
-                    "request_headers": flask.request.headers,
-                }
-            )
-            return None
+        uri = f"/api/v2/student-session/{session_id}"
+        return self.make_request("GET", uri).json()
 
     def get_time_zone_id(self, timezone: str):
         """
