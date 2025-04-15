@@ -1083,7 +1083,6 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
     cue_products = get_cue_products(type="exam").json
-    print(cue_products)
     for product in cue_products:
         for exam in exams:
             if product["id"] == exam["id"]:
