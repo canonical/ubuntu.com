@@ -1,6 +1,6 @@
-# rm -rf static/js/dist
+rm -rf static/js/dist
 
-# mkdir -p static/js/dist
+mkdir -p static/js/dist
 
 cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/
 
