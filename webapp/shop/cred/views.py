@@ -47,6 +47,7 @@ EXAM_NAMES = {
     "cue-test": "CUE Linux Beta",
     "cue-linux-essentials": "CUE.01 Linux",
     "cue-01-linux": "CUE.01 Linux",
+    "cue-02-desktop": "CUE.02 Desktop",
 }
 
 RESERVATION_STATES = {
@@ -1070,6 +1071,15 @@ def cred_submit_form(**_):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
+    exam_index = 0
+    try:
+        exam_index = int(flask.request.args.get("exam_index", 0))
+    except Exception:
+        exam_index = 0
+
+    if exam_index < 0 or exam_index > 1:
+        exam_index = 0
+
     ua_contracts_api.ensure_purchase_account("canonical-cube")
     account = advantage_mapper.get_purchase_account("canonical-cube")
     if (account.hasChannelStoreAccess) is True:
@@ -1097,7 +1107,7 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
     return flask.render_template(
         "credentials/shop/index.html",
         exams=exams,
-        exam_index=0,
+        exam_index=exam_index,
     )
 
 
