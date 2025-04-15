@@ -12,7 +12,7 @@ cp node_modules/intl-tel-input/build/js/utils.js static/js/dist
 
 cp node_modules/flickity/dist/flickity.pkgd.min.js static/js/dist
 
-partytown copylib static/js/dist/~partytown
+# partytown copylib static/js/dist/~partytown
 
 
 # yarn run build-global-nav 
