@@ -1085,6 +1085,9 @@ def cred_submit_form(**_):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
     exam_index = 0
     try:
         exam_index = int(flask.request.args.get("exam_index", 0))
@@ -1103,6 +1106,9 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
 
     exams_file = open("webapp/shop/cred/exams.json", "r")
     exams = json.load(exams_file)
+    if not is_staging:
+        old_metadata = exams[1]["metadata"]
+        exams[1]["metadata"] = [old_metadata[0]]
     cue_products = get_cue_products(type="exam").json
     for product in cue_products:
         for exam in exams:
@@ -1122,6 +1128,7 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
         "credentials/shop/index.html",
         exams=exams,
         exam_index=exam_index,
+        is_staging=is_staging,
     )
 
 
