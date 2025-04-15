@@ -1851,7 +1851,10 @@ def cred_dashboard_system_statuses(
     trueability_api, proctor_api, ua_contracts_api, **_
 ):
     ta_status = trueability_api.get_system_status()
-    proctor_status = proctor_api.get_system_status()
+    try:
+        proctor_status = proctor_api.get_system_status()
+    except Exception:
+        proctor_status = {"error": True}
     contracts_status = {}
     try:
         ua_contracts_api.get_product_listings("canonical-cube")
