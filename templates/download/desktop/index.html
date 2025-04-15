@@ -172,10 +172,11 @@
           <h2>Ubuntu {{ releases.latest.full_version }}</h2>
         </div>
         <div class="p-image-wrapper u-hide--small u-hide--medium">
-          {{ image(url="https://assets.ubuntu.com/v1/ce1666ec-pp-master-orange-hex.svg",
+
+          {{ image(url="https://assets.ubuntu.com/v1/d7d087e4-600x600%20-%20PNG.png",
                     alt="Plucky Puffin",
-                    width="150",
-                    height="150",
+                    width="200",
+                    height="200",
                     hi_def=True,
                     loading="lazy") | safe
           }}
@@ -194,22 +195,13 @@
               {{ releases.latest.full_version }}&nbsp;(AMD64)
             </a>
             {% if releases.latest.iso_download_size %}
-              <span class="u-text--muted" style="margin-right: 2rem;">{{ releases.latest.iso_download_size }}</span>
-            {% endif %}
-            <a class="p-button"
-               href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
-              {{ releases.latest.full_version }}&nbsp;(ARM64)
-            </a>
-            {% if releases.latest.iso_download_size %}
-              <span class="u-text--muted">{{ releases.latest.arm64_iso_download_size }}</span>
+              <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
             {% endif %}
             <script>
               performance.mark("Download (Desktop) button rendered")
             </script>
           </p>
           <p class="p-text--small">
-            <i>AMD64 for Intel or AMD 64-bit architectures, ARM64 for ARM 64-bit.</i><br />
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
         </div>
