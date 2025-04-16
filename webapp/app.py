@@ -1314,4 +1314,5 @@ def test_func():
     """
 
     test_var = 0
+    new_test_var = 2
     return
