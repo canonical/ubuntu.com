@@ -60,7 +60,7 @@
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 title="Download Ubuntu {{ releases.lts.short_version }} LTS amd64"
+                 aria-label="Download Ubuntu {{ releases.lts.short_version }} LTS amd64"
                  >Download
               </a>
               {% if releases.lts.iso_download_size %}
@@ -225,7 +225,7 @@
               <a class="p-button"
                  href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 title="Download Ubuntu 25.04 arm64"
+                 aria-label="Download Ubuntu 25.04 arm64"
                  >Download
               </a>
               {% if releases.lts.iso_download_size %}
