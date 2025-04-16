@@ -61,7 +61,7 @@ def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
         account_id=account.id,
         marketplace=marketplace,
     )
-
+    test_line = True
     active_subscriptions = [
         subscription
         for subscription in subscriptions
