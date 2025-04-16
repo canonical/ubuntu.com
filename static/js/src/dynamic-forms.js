@@ -14,8 +14,12 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     let returnData = window.location.pathname + "#success";
-    const contactModalSelector = "contact-modal";
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
+    // If the modal contains the class "js-modal-ready", it means we are using the form generator
+    // And each form will have a unique ID
+    let contactModalSelector = modalAlreadyExists
+      ? modalAlreadyExists.id
+      : "contact-modal";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -352,7 +356,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
       // Concatinate the options selected into a string
       function createMessage(submit) {
-        const contactModal = document.getElementById("contact-modal");
+        const contactModal = document.getElementById(contactModalSelector);
         let message = "";
         if (contactModal) {
           const formFields = contactModal.querySelectorAll(".js-formfield");
