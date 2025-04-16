@@ -51,20 +51,24 @@
             maintenance updates, extended up to 12 years with <a href="/pro">Ubuntu Pro</a>.
           </p>
           <hr class="p-rule--muted" />
-          <p class="u-responsive-realign">
-            <a class="p-button--positive"
-               href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
-              {{ releases.lts.full_version }} LTS
-            </a>
-            {% if releases.lts.iso_download_size %}
-              <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
-            {% endif %}
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+            </div>
+            <div class="col-3">
+              <a class="p-button--positive"
+                href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
+                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
+              </a>
+              {% if releases.lts.iso_download_size %}
+                <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
+              {% endif %}
 
-            <script>
-              performance.mark("Download (Desktop) button rendered")
-            </script>
-          </p>
+              <script>
+                performance.mark("Download (Desktop) button rendered")
+              </script>
+            </div>
+          </div>
 
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
@@ -187,20 +191,48 @@
           <p>
             The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu 25.04 comes with nine months of security and maintenance updates, until January 2026.
           </p>
-          <hr class="p-rule--muted" />
-          <p class="u-responsive-realign">
-            <a class="p-button--positive"
-               href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-               onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
-              {{ releases.latest.full_version }}&nbsp;(AMD64)
-            </a>
-            {% if releases.latest.iso_download_size %}
-              <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
-            {% endif %}
-            <script>
-              performance.mark("Download (Desktop) button rendered")
-            </script>
-          </p>
+          <hr class="p-rule--muted u-no-margin--bottom" />
+          <ul class="p-list--divided u-no-margin--bottom">
+            <li class="p-list__item">
+              <div class="row">
+                <div class="col-3">
+                  <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+                </div>
+                <div class="col-3">
+                  <a class="p-button--positive u-no-margin--bottom"
+                    href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
+                    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
+                  </a>
+                  {% if releases.latest.iso_download_size %}
+                    <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
+                  {% endif %}
+                  <script>
+                    performance.mark("Download (Desktop) button rendered")
+                  </script>
+                </div>
+              </div>
+            </li>
+            <li class="p-list__item">
+              <div class="row">
+                <div class="col-3">
+                  <p class="p-heading--5">ARM 64-bit architecture</p>
+                </div>
+                <div class="col-3">
+                  <a href="https://cdimages.ubuntu.com/releases/25.04/release/ubuntu-25.04-desktop-arm64.iso"
+                    class="p-button"
+                    onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+                    Download
+                  </a>
+                  {% if releases.lts.iso_download_size %}
+                    <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
+                  {% endif %}
+                  <script>
+                    performance.mark("Download (Desktop) button rendered")
+                  </script>
+                </div>
+              </div>
+            </li>
+          </ul>
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
           </p>
