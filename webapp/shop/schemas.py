@@ -146,7 +146,7 @@ post_payment_methods = {
 }
 
 post_customer_info = {
-    "payment_method_id": String(required=True),
+    "payment_method_id": String(),
     "account_id": String(required=True),
     "name": String(),
     "tax_id": Nested(TaxIdSchema, allow_none=True),

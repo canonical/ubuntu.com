@@ -9,12 +9,13 @@ const accountId = window.accountId;
 // This partially replicates the functionality of the modal.js file.
 // We do it so we can control when the modal opens in a predicatable way,
 // i.e. after the fetch the data and populate the content.
-function Modal({ modalSelector }) {
+function createModal({ modalSelector, triggerButton }) {
+  const modal = document.getElementById(modalSelector);
+
   let currentDialog = null;
   let lastFocus = null;
   let ignoreFocusChanges = false;
   let focusAfterClose = null;
-  const modal = document.getElementById(modalSelector);
 
   function trapFocus(e) {
     if (ignoreFocusChanges) return;
@@ -59,37 +60,27 @@ function Modal({ modalSelector }) {
     return false;
   }
 
-  function toggleModal(sourceEl, open) {
-    if (open) {
-      currentDialog = modal;
-      modal.style.display = "flex";
-      focusFirstDescendant(modal);
-      focusAfterClose = sourceEl;
-      document.addEventListener("focus", trapFocus, true);
-    } else {
-      modal.style.display = "none";
-      if (focusAfterClose && focusAfterClose.focus) {
-        focusAfterClose.focus();
-      }
-      document.removeEventListener("focus", trapFocus, true);
-      currentDialog = null;
-    }
-  }
-
-  function open(sourceEl) {
-    toggleModal(sourceEl, true);
+  function open() {
+    currentDialog = modal;
+    modal.style.display = "flex";
+    focusFirstDescendant(modal);
+    focusAfterClose = triggerButton;
+    document.addEventListener("focus", trapFocus, true);
   }
 
   function close() {
-    toggleModal(false, false);
+    modal.style.display = "none";
+    if (focusAfterClose && focusAfterClose.focus) {
+      focusAfterClose.focus();
+    }
+    document.removeEventListener("focus", trapFocus, true);
+    currentDialog = null;
   }
 
   document.addEventListener("click", (e) => {
     const inDialog = e.target.closest(".p-modal__dialog");
     const isToggle = e.target.matches("[aria-controls]");
-    if ((isToggle && inDialog) || (!inDialog && !isToggle)) {
-      close();
-    }
+    if ((isToggle && inDialog) || (!inDialog && !isToggle)) close();
   });
 
   document.addEventListener("keydown", (e) => {
@@ -99,100 +90,153 @@ function Modal({ modalSelector }) {
   return { open, close };
 }
 
-function ErrorNotification() {
+(function initEditBillingModal() {
+  const triggerButton = document.querySelector("#edit-billing-btn");
+  const saveButton = document.querySelector("#save-modal-btn");
   const errorContainer = document.querySelector("#error-container");
+  const form = document.querySelector("#edit-billing-form");
 
-  return {
-    display: (message) => {
-      if (message) {
-      errorContainer.querySelector(".p-notification__message").textContent =
-        message;
-      };
-      errorContainer.classList.remove("u-hide");
-    },
-    clear: () => {
-      errorContainer.classList.add("u-hide");
-    },
-  };
-}
+  const modal = createModal({
+    modalSelector: "edit-billing-modal",
+    triggerButton: triggerButton,
+  });
 
-const editBillingModal = Modal({
-  modalSelector: "edit-billing-modal",
-});
-const errorNotification = ErrorNotification();
-
-const editBillingDetailsBtn = document.querySelector("#edit-billing-btn");
-editBillingDetailsBtn.addEventListener("click", async (e) => {
-  try {
-    const payload = await getCustomerInfo(accountId);
-    const customerInfo = payload.data.customerInfo;
-    populateForm(customerInfo);
-    editBillingModal.open(e.target);
-  } catch (error) {
-    errorNotification.display();
+  function setVatError(isError) {
+    form
+      .querySelector("#vat-invalid-error")
+      .classList.toggle("u-hide", !isError);
   }
 
-  async function populateForm(data) {
-    const form = document.querySelector("#edit-billing-form");
-    const foundCountry = countries.find(
-      (c) => c.value === data.address.country,
-    );
-    const country = form.querySelector("#country");
-    country.textContent = foundCountry.label ?? "";
-    form.elements["vat"].value = data.taxID.value ?? "";
-    form.elements["name"].value = data.name ?? "";
-    form.elements["address"].value = data.address.line1 ?? "";
-    form.elements["city"].value = data.address.city ?? "";
-    form.elements["postal-code"].value = data.address.postal_code ?? "";
-    form.elements["country-code"].value = data.address.country ?? "";
-    form.elements["payment-method-id"].value =
-      data.defaultPaymentMethod.id ?? "";
+  function setErrorNotification(isError) {
+    errorContainer.classList.toggle("u-hide", !isError);
   }
-});
 
-const saveBtn = document.getElementById("save-modal-btn");
-saveBtn.addEventListener("click", async (e) => {
-  try {
-    const form = document.querySelector("#edit-billing-form");
-    const formData = new FormData(form);
-    const data = await updateBillingDetails(formData);
-    if (data.errors) {
-      errorNotification.display(
-        "The details provided are not valid. Please check and try again.",
-      );
-    } else {
-      errorNotification.clear();
+  function setRequiredError(input, isError) {
+    const group = input.closest(".p-form__group");
+    const errorMessage = input.nextElementSibling;
+    group.classList.toggle("is-error", isError);
+    input.ariaInvalid = isError;
+    input.setAttribute("aria-describedby", isError ? errorMessage.id : "");
+    errorMessage.classList.toggle("u-hide", !isError);
+  }
+
+  function validateForm() {
+    let isValid = true;
+
+    // Do not allow empty values
+    for (const el of form.elements) {
+      const group = el.closest(".p-form__group");
+      // Unless it is hidden
+      if (group.classList.contains("u-hide")) continue;
+      const errorMessage = el.nextElementSibling;
+      
+      const isEmpty = el.value.trim() === "";
+      if (isEmpty) {
+        isValid = false;
+        setRequiredError(el, true);
+      } else {
+        setRequiredError(el, false);
+      }
     }
-  } catch (error) {
-    errorNotification.display();
-  } finally {
-    editBillingModal.close();
+
+    return isValid;
   }
 
-  async function updateBillingDetails(formData) {
-    const vatNumber = formData.get("vat");
-    const name = formData.get("name");
-    const address = formData.get("address");
-    const city = formData.get("city");
-    const postalCode = formData.get("postal-code");
-    const country = formData.get("country-code");
-    const paymentMethodID = formData.get("payment-method-id");
+  function findCountryName(countryCode) {
+    const country = countries.find((c) => c.value === countryCode);
+    return country ? country.label : "";
+  }
 
-    const data = await postCustomerInfoToStripeAccount({
-      paymentMethodID: paymentMethodID,
+  function findCountryCode(countryName) {
+    const country = countries.find((c) => c.label === countryName);
+    return country ? country.value : "";
+  }
+
+  function clearErrors() {
+    setVatError(false);
+    setErrorNotification(false);
+    for (const el of form.elements) {
+      setRequiredError(el, false);
+    }
+  }
+
+  function setSaving(isSaving) {
+    saveButton.classList.toggle("is-processing", isSaving);
+    saveButton.innerHTML = isSaving
+      ? '<i class="p-icon--spinner u-animation--spin is-light"></i>'
+      : "Save";
+  }
+
+  async function load() {
+    const json = await getCustomerInfo(accountId);
+    const info = json.data.customerInfo;
+
+    const vat = info.taxID?.value ?? "";
+    const country = findCountryName(info.address.country);
+    const name = info.name ?? "";
+    const address = info.address?.line1 ?? "";
+    const city = info.address?.city ?? "";
+    const postalCode = info.address?.postal_code ?? "";
+
+    form.querySelector("#country").textContent = country;
+    // Some countries do not have a VAT number, so we hide the field
+    if (!vat) {
+      form.elements["vat"].closest(".p-form__group").classList.add("u-hide");
+    }
+    form.elements["vat"].value = vat;
+    form.elements["name"].value = name;
+    form.elements["address"].value = address;
+    form.elements["city"].value = city;
+    form.elements["postal-code"].value = postalCode;
+  }
+
+  async function submit() {
+    const data = new FormData(form);
+    const country = form.querySelector("#country").textContent;
+
+    const payload = {
       accountID: accountId,
       address: {
-        line1: address,
-        city: city,
-        postal_code: postalCode,
-        country: country,
+        line1: data.get("address"),
+        city: data.get("city"),
+        postal_code: data.get("postal-code"),
+        country: findCountryCode(country),
       },
-      name: name,
+      name: data.get("name"),
       taxID: {
-        value: vatNumber,
+        value: data.get("vat"),
+        type: country === "ZA" ? "za_vat" : "eu_vat",
       },
-    });
+    };
 
-    return data;
+    try {
+      setSaving(true);
+      const result = await postCustomerInfoToStripeAccount(payload);
+      if (result.errors?.includes("tax_id_invalid")) {
+        // VAT number is the only field in this modal that may raise
+        // validation errors. We show the error message in the field.
+        setVatError(true);
+        return;
+      }
+      if (result.errors) throw new Error();
+    } catch (error) {
+      // If there is still an error, show a generic error message
+      setErrorNotification(true);
+    } finally {
+      setSaving(false);
+    }
   }
-});
+
+  triggerButton.addEventListener("click", async (e) => {
+    clearErrors();
+    await load();
+    modal.open();
+  });
+
+  saveButton.addEventListener("click", async (e) => {
+    clearErrors();
+    const isValid = validateForm();
+    if (!isValid) return;
+    await submit();
+  });
+})();
