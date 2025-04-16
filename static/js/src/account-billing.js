@@ -129,7 +129,7 @@ function createModal({ modalSelector, triggerButton }) {
       // Unless it is hidden
       if (group.classList.contains("u-hide")) continue;
       const errorMessage = el.nextElementSibling;
-      
+
       const isEmpty = el.value.trim() === "";
       if (isEmpty) {
         isValid = false;
