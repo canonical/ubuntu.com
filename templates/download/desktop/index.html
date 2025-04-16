@@ -52,15 +52,16 @@
           </p>
           <hr class="p-rule--muted" />
 
-          <div class="u-responsive-realign">
-            <strong style="font-size: 16px;
-                           padding: 6px 0 0;
-                           margin-right: 32px;
-                           width: 284px">Intel or AMD 64-bit architecture</strong>
-            <p class="u-responsive-realign">
+          <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+            </div>
+            <div class="col-3">
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
+                 title="Download Ubuntu {{ releases.lts.short_version }} LTS amd64"
+                 >Download
               </a>
               {% if releases.lts.iso_download_size %}
                 <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
@@ -69,7 +70,7 @@
               <script>
                 performance.mark("Download (Desktop) button rendered")
               </script>
-            </p>
+            </div>
           </div>
 
           <p class="p-text--small">
@@ -194,42 +195,47 @@
             The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu 25.04 comes with nine months of security and maintenance updates, until January 2026.
           </p>
           <hr class="p-rule--muted" />
-          <div class="u-responsive-realign">
-            <strong style="font-size: 16px;
-                           padding: 6px 0 0;
-                           margin-right: 32px;
-                           width: 284px">Intel or AMD 64-bit architecture</strong>
-            <p class="u-responsive-realign">
+
+                    <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
+            </div>
+            <div class="col-3">
               <a class="p-button--positive"
-                 href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
+                 href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64;lts=true"
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
+                 title="Download Ubuntu 25.04 amd64"
+                 >Download
               </a>
-              {% if releases.latest.iso_download_size %}
-                <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
+              {% if releases.lts.iso_download_size %}
+                <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
               {% endif %}
+
               <script>
                 performance.mark("Download (Desktop) button rendered")
               </script>
-            </p>
+            </div>
           </div>
           <hr class="p-rule--muted" />
-          <div class="u-responsive-realign">
-            <strong style="font-size: 16px;
-                           padding: 6px 0 0;
-                           margin-right: 32px;
-                           width: 284px">ARM 64-bit architecture</strong>
-            <p class="u-responsive-realign">
+                    <div class="row">
+            <div class="col-3">
+              <p class="p-heading--5">ARM 64-bit architecture</p>
+            </div>
+            <div class="col-3">
               <a class="p-button"
                  href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
-                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download
+                 onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
+                 title="Download Ubuntu 25.04 arm64"
+                 >Download
               </a>
-              {% if releases.latest.iso_download_size %}
-                <span class="u-text--muted">{{ releases.latest.iso_download_size }}</span>
+              {% if releases.lts.iso_download_size %}
+                <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
               {% endif %}
+
               <script>
                 performance.mark("Download (Desktop) button rendered")
               </script>
-            </p>
+            </div>
           </div>
           <p class="p-text--small">
             For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">check out our alternative downloads</a>.
