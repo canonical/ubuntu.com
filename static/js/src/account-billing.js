@@ -2,7 +2,7 @@ import {
   getCustomerInfo,
   postCustomerInfoToStripeAccount,
 } from "./advantage/api/contracts.js";
-import { countries } from "./advantage/countries-and-states.js";
+import { countries, vatCountries } from "./advantage/countries-and-states.js";
 
 const accountId = window.accountId;
 
@@ -101,23 +101,20 @@ function createModal({ modalSelector, triggerButton }) {
     triggerButton: triggerButton,
   });
 
-  function setVatError(isError) {
-    form
-      .querySelector("#vat-invalid-error")
-      .classList.toggle("u-hide", !isError);
-  }
-
   function setErrorNotification(isError) {
     errorContainer.classList.toggle("u-hide", !isError);
   }
 
-  function setRequiredError(input, isError) {
+  function setFieldError(input, isError, message = "") {
     const group = input.closest(".p-form__group");
     const errorMessage = input.nextElementSibling;
     group.classList.toggle("is-error", isError);
     input.ariaInvalid = isError;
     input.setAttribute("aria-describedby", isError ? errorMessage.id : "");
     errorMessage.classList.toggle("u-hide", !isError);
+    if (message) {
+      errorMessage.innerHTML = message;
+    }
   }
 
   function validateForm() {
@@ -133,9 +130,9 @@ function createModal({ modalSelector, triggerButton }) {
       const isEmpty = el.value.trim() === "";
       if (isEmpty) {
         isValid = false;
-        setRequiredError(el, true);
+        setFieldError(el, true);
       } else {
-        setRequiredError(el, false);
+        setFieldError(el, false);
       }
     }
 
@@ -152,11 +149,14 @@ function createModal({ modalSelector, triggerButton }) {
     return country ? country.value : "";
   }
 
+  function isVatRequired(countryCode) {
+    return vatCountries.some((c) => c === countryCode);
+  }
+
   function clearErrors() {
-    setVatError(false);
     setErrorNotification(false);
     for (const el of form.elements) {
-      setRequiredError(el, false);
+      setFieldError(el, false);
     }
   }
 
@@ -171,19 +171,19 @@ function createModal({ modalSelector, triggerButton }) {
     const json = await getCustomerInfo(accountId);
     const info = json.data.customerInfo;
 
+    const countryCode = info.address?.country;
+    const country = findCountryName(countryCode);
     const vat = info.taxID?.value ?? "";
-    const country = findCountryName(info.address.country);
     const name = info.name ?? "";
     const address = info.address?.line1 ?? "";
     const city = info.address?.city ?? "";
     const postalCode = info.address?.postal_code ?? "";
 
     form.querySelector("#country").textContent = country;
-    // Some countries do not have a VAT number, so we hide the field
-    if (!vat) {
-      form.elements["vat"].closest(".p-form__group").classList.add("u-hide");
+    if (isVatRequired(countryCode)) {
+      form.elements["vat"].value = vat;
+      form.elements["vat"].closest(".p-form__group").classList.remove("u-hide");
     }
-    form.elements["vat"].value = vat;
     form.elements["name"].value = name;
     form.elements["address"].value = address;
     form.elements["city"].value = city;
@@ -215,7 +215,11 @@ function createModal({ modalSelector, triggerButton }) {
       if (result.errors?.includes("tax_id_invalid")) {
         // VAT number is the only field in this modal that may raise
         // validation errors. We show the error message in the field.
-        setVatError(true);
+        setFieldError(
+          form.elements["vat"],
+          true,
+          "The VAT number entered is invalid: check the number<br class='u-hide--medium u-hide--small'/> and try again",
+        );
         return;
       }
       if (result.errors) throw new Error();
