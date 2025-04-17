@@ -603,6 +603,6 @@
     </div>
   </section>
 
-  {% include "/shared/forms/form-template.html" %}
+  {{ load_form("/security") | safe }}
 
 {% endblock content %}
