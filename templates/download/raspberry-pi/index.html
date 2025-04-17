@@ -72,7 +72,7 @@
     <div class="row--50-50 p-section">
       <div class="col u-image-position">
         <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
-        <div class="u-image-position--bottom">
+        <div class="p-image-wrapper u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
                     alt="Noble Numbat",
                     width="182",
@@ -111,19 +111,19 @@
     <div class="row--50-50 p-section">
       <div class="col u-image-position">
         <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-        <div class="u-image-position--bottom">
-          {{ image(url="https://assets.ubuntu.com/v1/0749ce0e-Orange%20O_no%20background-resized.png",
-                    alt="Oracular Oriole",
-                    width="170",
-                    height="182",
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/d7d087e4-600x600%20-%20PNG.png",
+                    alt="Plucky Puffin",
+                    width="180",
+                    height="180",
                     hi_def=True,
-                    loading="auto") | safe
+                    loading="lazy") | safe
           }}
         </div>
       </div>
       <div class="col">
         <p>
-          The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu 24.10 comes with nine months of security and maintenance updates, until July 2025.
+          The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.
         </p>
         <hr />
         <p class="u-responsive-realign">

@@ -66,7 +66,7 @@
         <div class="p-section">
           <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
         </div>
-        <div class="p-image-wrapper u-hide--small u-hide--medium">
+        <div class="p-image-wrapper u-hide--small">
           {{ image(url="https://assets.ubuntu.com/v1/3b5fa561-mascot-numbat@2x.png",
                     alt="Noble Numbat",
                     width="182",
@@ -163,6 +163,10 @@
             <li class="p-list__item is-ticked">5 GB of free hard drive space</li>
             <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
           </ul>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://documentation.ubuntu.com/server/reference/installation/system-requirements/">Detailed system requirements&nbsp;&rsaquo;</a>
+          </p>
         </div>
 
         <div class="p-tabs__content p-section"
@@ -194,9 +198,9 @@
         <div class="p-section">
           <h2>Ubuntu {{ releases.latest.full_version }}</h2>
         </div>
-        <div class="p-image-wrapper u-hide--small u-hide--medium">
-          {{ image(url="https://assets.ubuntu.com/v1/0749ce0e-Orange%20O_no%20background-resized.png",
-                    alt="Oracular Oriole",
+        <div class="p-image-wrapper u-hide--small">
+          {{ image(url="https://assets.ubuntu.com/v1/ce1666ec-pp-master-orange-hex.svg",
+                    alt="Plucky Puffin",
                     width="182",
                     height="192",
                     hi_def=True,
@@ -206,7 +210,7 @@
       </div>
       <div class="col">
         <div class="p-section--shallow">
-          <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates until July 2025.</p>
+          <p>The latest version of Ubuntu Server, including nine months of security and maintenance updates until {{ releases.latest.eol }}.</p>
           <hr />
           <p class="u-responsive-realign">
             <a class="p-button--positive"
@@ -259,20 +263,20 @@
              role="tabpanel"
              aria-labelledby="release-notes-tab-latest">
           <ul class="p-list--divided">
-            <li class="p-list__item is-ticked">Linux 6.11 kernel</li>
-            <li class="p-list__item is-ticked">Addition of kdump-tools for automatic kernel crash dumps</li>
-            <li class="p-list__item is-ticked">Inclusion of Valkey, a high performance key/value data store.</li>
-            <li class="p-list__item is-ticked">
-              Toolchain updates now include versioned Rust packages and TCK certified OpenJDK 21 and 17
-            </li>
+            <li class="p-list__item is-ticked">Linux 6.14 kernel</li>
+            <li class="p-list__item is-ticked">Updates to new Database versions including MySQL 8.4 and Postgresql 17</li>
+            <li class="p-list__item is-ticked">Updated Virtualization stack based on QEMU 9.2 and libvirt 11.0</li>
+            <li class="p-list__item is-ticked">Chrony as NTP client using the secure NTS by default</li>
           </ul>
           <hr class="p-rule" />
           <ul class="u-responsive-realign p-inline-list">
             <li class="p-inline-list__item">
-              <a href="/blog/canonical-releases-ubuntu-24-10-oracular-oriole" aria-label="24.10 Press Release">Press release&nbsp;&rsaquo;</a>
+              <a href="/blog/canonical-releases-ubuntu-25-04-plucky-puffin"
+                 aria-label="{{ releases.latest.short_version }} Press Release">Press release&nbsp;&rsaquo;</a>
             </li>
             <li class="p-inline-list__item">
-              <a href="{{ releases.latest.release_notes_url }}" aria-label="{{ releases.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
+              <a href="{{ releases.latest.release_notes_url }}"
+                 aria-label="{{ releases.latest.short_version }} release notes">Release notes&nbsp;&rsaquo;</a>
             </li>
           </ul>
         </div>
@@ -287,6 +291,10 @@
             <li class="p-list__item is-ticked">2.5 GB of free hard drive space</li>
             <li class="p-list__item is-ticked">Either a USB port or a DVD drive for the installer media</li>
           </ul>
+          <hr class="p-rule" />
+          <p>
+            <a href="https://documentation.ubuntu.com/server/reference/installation/system-requirements/">Detailed system requirements&nbsp;&rsaquo;</a>
+          </p>
         </div>
 
         <div class="p-tabs__content p-section"
