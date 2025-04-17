@@ -163,7 +163,7 @@ jobs:
           coverage run  --source=. -m unittest discover tests
           bash <(curl -s https://codecov.io/bash) -cF python
         env:
-        SEARCH_API_KEY: fake-key
+          SEARCH_API_KEY: fake-key
 
   test-js:
     runs-on: ubuntu-latest
