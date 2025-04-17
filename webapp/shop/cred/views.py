@@ -6,9 +6,9 @@ import flask
 import json
 import os
 import html
-from webapp.shop.api.ua_contracts.api import (
-    UAContractsAPIErrorView,
-    UAContractsUserHasNoAccount,
+from webapp.shop.api.cue_contracts.api import (
+    CUEContractsAPIErrorView,
+    CUEContractsUserHasNoAccount,
 )
 from concurrent.futures import ThreadPoolExecutor
 from dateutil.parser import parse
@@ -86,7 +86,7 @@ def confidentiality_agreement_webhook():
     return flask.jsonify({"message": "Webhook handled."}), 200
 
 
-@shop_decorator(area="cred", response="html")
+@shop_decorator(area="cred", response="html", cue_backend=True)
 def cred_home(
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
@@ -108,7 +108,9 @@ def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def cred_sign_up(**_):
     search_type = flask.request.args.get("type")
     if flask.request.method == "GET":
@@ -348,7 +350,7 @@ def cred_sign_up(**_):
         return flask.redirect(f"/thank-you?type={search_type}")
 
 
-@shop_decorator(area="cred", response="html")
+@shop_decorator(area="cred", response="html", cue_backend=True)
 def cred_thank_you(**_):
     signup_type = flask.request.args.get("type")
     return flask.render_template(
@@ -356,9 +358,11 @@ def cred_thank_you(**_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def cred_schedule(
-    ua_contracts_api,
+    cue_contracts_api,
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
@@ -370,7 +374,7 @@ def cred_schedule(
     error = None
 
     contract_long_id = flask.request.args.get("contractLongID")
-    contract_detail = ua_contracts_api.get_contract(contract_long_id)
+    contract_detail = cue_contracts_api.get_contract(contract_long_id)
 
     now = datetime.utcnow()
     min_date = (now + timedelta(minutes=30)).strftime("%Y-%m-%d")
@@ -479,7 +483,7 @@ def cred_schedule(
                     **template_data,
                 )
             try:
-                response = ua_contracts_api.post_assessment_reservation(
+                response = cue_contracts_api.post_assessment_reservation(
                     contract_item_id,
                     first_name,
                     last_name,
@@ -522,7 +526,7 @@ def cred_schedule(
                 )
         else:
             try:
-                response = ua_contracts_api.post_assessment_reservation(
+                response = cue_contracts_api.post_assessment_reservation(
                     contract_item_id,
                     first_name,
                     last_name,
@@ -614,9 +618,11 @@ def cred_schedule(
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def cred_your_exams(
-    ua_contracts_api,
+    cue_contracts_api,
     trueability_api,
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
@@ -642,7 +648,7 @@ def cred_your_exams(
         agreement_notification = True
 
     try:
-        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+        exam_contracts = cue_contracts_api.get_annotated_contract_items(
             email=email, product_tags=["cue"]
         )
     except Exception as error:
@@ -876,15 +882,19 @@ def cred_your_exams(
     return response
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 @canonical_staff()
-def cred_cancel_exam(ua_contracts_api, **_):
+def cred_cancel_exam(cue_contracts_api, **_):
     contract_item_id = flask.request.args.get("contractItemID")
-    ua_contracts_api.delete_assessment_reservation(contract_item_id)
+    cue_contracts_api.delete_assessment_reservation(contract_item_id)
     return flask.redirect("/credentials/your-exams")
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 @canonical_staff()
 def cred_assessments(trueability_api, **_):
     sso_user_email = user_info(flask.session)["email"]
@@ -926,7 +936,9 @@ def cred_assessments(trueability_api, **_):
     return flask.render_template("credentials/assessments.html", exams=exams)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def cred_exam(trueability_api, **_):
     email = flask.session["openid"]["email"].lower()
 
@@ -958,7 +970,7 @@ def cred_exam(trueability_api, **_):
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cred", response="html")
+@shop_decorator(area="cred", response="html", cue_backend=True)
 def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
@@ -970,7 +982,9 @@ def cred_syllabus_data(**_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def cred_submit_form(**_):
     if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
@@ -1083,10 +1097,12 @@ def cred_submit_form(**_):
     return flask.redirect("/thank-you")
 
 
-@shop_decorator(area="cube", permission="user", response="html")
-def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
+def cred_shop(cue_contracts_api, cue_advantage_mapper, **kwargs):
     is_staging = "staging" in os.getenv(
-        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+        "CUE_CONTRACTS_API_URL", "https://cue-contracts.staging.canonical.com/"
     )
     exam_index = 0
     try:
@@ -1097,8 +1113,8 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
     if exam_index < 0 or exam_index > 1:
         exam_index = 0
 
-    ua_contracts_api.ensure_purchase_account("canonical-cube")
-    account = advantage_mapper.get_purchase_account("canonical-cube")
+    cue_contracts_api.ensure_purchase_account("canonical-cube")
+    account = cue_advantage_mapper.get_purchase_account("canonical-cube")
     if (account.hasChannelStoreAccess) is True:
         return flask.render_template(
             "account/forbidden.html", reason="channel_account"
@@ -1132,7 +1148,9 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
 @canonical_staff()
 def cred_manage_shop(**kwargs):
     return flask.render_template(
@@ -1140,7 +1158,9 @@ def cred_manage_shop(**kwargs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
 def cred_shop_thank_you(**kwargs):
     quantity = flask.request.args.get("quantity", "")
     product = flask.request.args.get("productName", "")
@@ -1149,7 +1169,9 @@ def cred_shop_thank_you(**kwargs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
 @canonical_staff()
 def cred_shop_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = "4190"
@@ -1200,7 +1222,9 @@ def cred_shop_webhook_responses(trueability_api, **kwargs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
 def cred_shop_keys(**kwargs):
     products = get_cue_products(type="keys").json
     for item in products:
@@ -1215,8 +1239,10 @@ def cred_shop_keys(**kwargs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
-def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
+@shop_decorator(
+    area="cube", permission="user", response="html", cue_backend=True
+)
+def cred_redeem_code(cue_contracts_api, **kwargs):
     exam = None
     action = flask.request.args.get("action")
 
@@ -1232,13 +1258,13 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         )
 
     try:
-        activation_response = ua_contracts_api.activate_activation_key(
+        activation_response = cue_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
                 "productID": exam,
             }
         )
-        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+        exam_contracts = cue_contracts_api.get_annotated_contract_items(
             product_tags=["cue"],
         )
         contract_id = get_exam_contract_id(exam_contracts[-1])
@@ -1255,7 +1281,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             notification_title="Success",
             notification_message=message,
         )
-    except UAContractsAPIErrorView as error:
+    except CUEContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text).get("message")
         flask.current_app.extensions["sentry"].captureException(
             extra={
@@ -1273,7 +1299,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             notification_title="Something went wrong",
             notification_message=activation_response,
         )
-    except UAContractsUserHasNoAccount as error:
+    except CUEContractsUserHasNoAccount as error:
         flask.current_app.extensions["sentry"].captureException(
             extra={
                 "request_url": error.request.url,
@@ -1287,16 +1313,18 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         )
 
 
-@shop_decorator(area="cube", permission="user", response="json")
-def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account("canonical-ua")
-    contracts = advantage_mapper.get_activation_key_contracts(account.id)
+@shop_decorator(
+    area="cube", permission="user", response="json", cue_backend=True
+)
+def get_activation_keys(cue_contracts_api, cue_advantage_mapper, **kwargs):
+    account = cue_advantage_mapper.get_purchase_account("canonical-ua")
+    contracts = cue_advantage_mapper.get_activation_key_contracts(account.id)
 
     keys = []
     for contract in contracts:
         contract_id = contract.id
         try:
-            contract_keys = ua_contracts_api.list_activation_keys(contract_id)
+            contract_keys = cue_contracts_api.list_activation_keys(contract_id)
             if contract_keys:
                 keys.extend(contract_keys)
         except Exception as error:
@@ -1313,33 +1341,41 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     return flask.jsonify(keys)
 
 
-@shop_decorator(area="cube", permission="user", response="json")
-def rotate_activation_key(ua_contracts_api, **kwargs):
+@shop_decorator(
+    area="cube", permission="user", response="json", cue_backend=True
+)
+def rotate_activation_key(cue_contracts_api, **kwargs):
     activation_key = kwargs.get("activation_key")
-    new_activation_key = ua_contracts_api.rotate_activation_key(
+    new_activation_key = cue_contracts_api.rotate_activation_key(
         {"activationKey": activation_key}
     )
     return flask.jsonify(new_activation_key)
 
 
-@shop_decorator(area="cube", permission="user", response="json")
-def activate_activation_key(ua_contracts_api, **kwargs):
+@shop_decorator(
+    area="cube", permission="user", response="json", cue_backend=True
+)
+def activate_activation_key(cue_contracts_api, **kwargs):
     data = flask.request.json
     activation_key = data["activationKey"]
-    return ua_contracts_api.activate_activation_key(
+    return cue_contracts_api.activate_activation_key(
         {
             "activationKey": activation_key,
         }
     )
 
 
-@shop_decorator(area="cube", permission="user", response="json")
-def get_activation_key_info(ua_contracts_api, **kwargs):
+@shop_decorator(
+    area="cube", permission="user", response="json", cue_backend=True
+)
+def get_activation_key_info(cue_contracts_api, **kwargs):
     activation_key = kwargs.get("key_id")
-    return ua_contracts_api.get_activation_key_info(activation_key)
+    return cue_contracts_api.get_activation_key_info(activation_key)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 @canonical_staff()
 def cred_beta_activation(**_):
     if flask.request.method == "POST":
@@ -1357,7 +1393,9 @@ def cred_beta_activation(**_):
     return flask.render_template("credentials/beta-activation.html")
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @canonical_staff()
 def get_webhook_response(trueability_api, **kwargs):
     webhook_id = flask.request.args.get("webhook_id", None)
@@ -1367,7 +1405,9 @@ def get_webhook_response(trueability_api, **kwargs):
     return flask.jsonify(webhook_responses)
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_group()
 def get_issued_badges(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
@@ -1377,7 +1417,9 @@ def get_issued_badges(credly_api, **kwargs):
     return flask.jsonify(badges)
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_group()
 def get_issued_badges_bulk(credly_api, **kwargs):
     filter = flask.request.args.get("filter", None)
@@ -1385,7 +1427,9 @@ def get_issued_badges_bulk(credly_api, **kwargs):
     return flask.jsonify(badges)
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_group()
 def get_test_taker_stats(trueability_api, **kwargs):
     def get_addresses(assessments: list):
@@ -1414,7 +1458,9 @@ def get_test_taker_stats(trueability_api, **kwargs):
     return flask.jsonify(addresses)
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_admin()
 def issue_credly_badge(credly_api, **kwargs):
     badge_data = flask.request.json
@@ -1425,7 +1471,9 @@ def issue_credly_badge(credly_api, **kwargs):
         return flask.jsonify({"error": error}), 400
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 def get_cred_user_permissions(credly_api, **kwargs):
     sso_user = user_info(flask.session)
     is_credentials_admin = sso_user.get("is_credentials_admin", False)
@@ -1438,7 +1486,9 @@ def get_cred_user_permissions(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_admin()
 def cancel_scheduled_exam(trueability_api, **kwargs):
     reservation_id = kwargs.get("reservation_id")
@@ -1466,9 +1516,11 @@ def cancel_scheduled_exam(trueability_api, **kwargs):
         return flask.jsonify({"status": "error"}), 500
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_admin()
-def cred_user_ban(ua_contracts_api, **kwargs):
+def cred_user_ban(cue_contracts_api, **kwargs):
     method = flask.request.method
 
     if method == "PUT":
@@ -1479,16 +1531,18 @@ def cred_user_ban(ua_contracts_api, **kwargs):
             "blocked": data.get("blocked", True),
             "expiresAt": data.get("expiresAt", None),
         }
-        resp = ua_contracts_api.put_cue_user_ban(sanitized_data)
+        resp = cue_contracts_api.put_cue_user_ban(sanitized_data)
         if resp.get("errors", False):
             return flask.jsonify(resp), 400
         return flask.jsonify(resp)
     elif method == "GET":
-        resp = ua_contracts_api.get_cue_user_bans()
+        resp = cue_contracts_api.get_cue_user_bans()
         return flask.jsonify(resp)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 def get_my_issued_badges(credly_api, **kwargs):
     sso_user_email = user_info(flask.session)["email"]
     response = credly_api.get_issued_badges(
@@ -1499,8 +1553,8 @@ def get_my_issued_badges(credly_api, **kwargs):
     )
 
 
-@shop_decorator(area="cred", response="json")
-def issue_badges(trueability_api, credly_api, **kwargs):
+@shop_decorator(area="cred", response="json", cue_backend=True)
+def issue_badges(credly_api, **kwargs):
     webhook_response = flask.request.json
     api_key = flask.request.headers.get("X-API-KEY")
     if not api_key or api_key != os.getenv("TA_WEBHOOK_API_KEY"):
@@ -1544,9 +1598,11 @@ def issue_badges(trueability_api, credly_api, **kwargs):
     return flask.jsonify({"status": "badge_not_issued"}), 403
 
 
-@shop_decorator(area="cred", permission="user", response="json")
-def get_cue_products(ua_contracts_api, type, **kwargs):
-    listings = ua_contracts_api.get_product_listings("canonical-cube").get(
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
+def get_cue_products(cue_contracts_api, type, **kwargs):
+    listings = cue_contracts_api.get_product_listings("canonical-cube").get(
         "productListings"
     )
     filtered_products = [
@@ -1566,7 +1622,9 @@ def get_cue_products(ua_contracts_api, type, **kwargs):
     return flask.jsonify(filtered_products)
 
 
-@shop_decorator(area="cred", permission="user", response="html")
+@shop_decorator(
+    area="cred", permission="user", response="html", cue_backend=True
+)
 @credentials_group()
 def cred_dashboard(trueability_api, **_):
     first_reservations = trueability_api.get_assessment_reservations(
@@ -1582,7 +1640,9 @@ def cred_dashboard(trueability_api, **_):
     )
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_group()
 def cred_dashboard_upcoming_exams(trueability_api, **_):
     per_page = 50
@@ -1602,7 +1662,9 @@ def cred_dashboard_upcoming_exams(trueability_api, **_):
     return flask.jsonify(upcoming_exams)
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_admin()
 def cred_dashboard_exam_results(trueability_api, **_):
     try:
@@ -1628,13 +1690,15 @@ def cred_dashboard_exam_results(trueability_api, **_):
         return flask.jsonify({"error": "Error fetching exam results"}), 500
 
 
-@shop_decorator(area="cred", permission="user", response="json")
+@shop_decorator(
+    area="cred", permission="user", response="json", cue_backend=True
+)
 @credentials_group()
-def cred_dashboard_system_statuses(trueability_api, ua_contracts_api, **_):
+def cred_dashboard_system_statuses(trueability_api, cue_contracts_api, **_):
     ta_status = trueability_api.get_system_status()
     contracts_status = {}
     try:
-        ua_contracts_api.get_product_listings("canonical-cube")
+        cue_contracts_api.get_product_listings("canonical-cube")
         contracts_status = {"error": False}
     except Exception:
         contracts_status = {"error": True}

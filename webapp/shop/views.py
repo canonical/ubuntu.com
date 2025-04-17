@@ -18,6 +18,11 @@ from webapp.shop.api.ua_contracts.helpers import (
     extract_last_purchase_ids,
     to_dict,
 )
+from webapp.shop.api.cue_contracts.advantage_mapper import CUEAdvantageMapper
+from webapp.shop.api.cue_contracts.api import (
+    AccessForbiddenError as CUEAccessForbiddenError,
+    CUEContractsUserHasNoAccount,
+)
 
 # Local
 from webapp.shop.decorators import SERVICES, shop_decorator
@@ -100,6 +105,43 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     payments = []
     if account:
         payments = advantage_mapper.get_account_purchases(
+            account_id=account.id,
+            filters={"marketplace": marketplace} if marketplace else None,
+        )
+
+    per_page = 10
+
+    start_page = (page - 1) * per_page
+    end_page = page * per_page
+
+    return flask.render_template(
+        "account/invoices/index.html",
+        invoices=payments[start_page:end_page],
+        marketplace=marketplace,
+        total_pages=(len(payments) // per_page) + 1,
+        current_page=page,
+    )
+
+
+@shop_decorator(
+    area="account", permission="user", response="html", cue_backend=True
+)
+@use_kwargs(invoice_view, location="query")
+def cred_invoices_view(cue_advantage_mapper: CUEAdvantageMapper, **kwargs):
+    marketplace = kwargs.get("marketplace")
+    page = kwargs.get("page", 1)
+    try:
+        account = cue_advantage_mapper.get_purchase_account("canonical-ua")
+    except CUEContractsUserHasNoAccount:
+        account = None
+    except CUEAccessForbiddenError:
+        return flask.render_template(
+            "account/forbidden.html", reason="is_technical"
+        )
+
+    payments = []
+    if account:
+        payments = cue_advantage_mapper.get_account_purchases(
             account_id=account.id,
             filters={"marketplace": marketplace} if marketplace else None,
         )

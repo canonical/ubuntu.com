@@ -10,7 +10,9 @@ import pytz
 import talisker.requests
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.cue_contracts.api import CUEContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from webapp.shop.api.cue_contracts.advantage_mapper import CUEAdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.credly.api import CredlyAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
@@ -65,7 +67,13 @@ MAINTENANCE_URLS = [
 ]
 
 
-def shop_decorator(area=None, permission=None, response="json", redirect=None):
+def shop_decorator(
+    area=None,
+    permission=None,
+    response="json",
+    redirect=None,
+    cue_backend=False,
+):
     permission = permission if permission in PERMISSION_LIST else None
     response = response if response in RESPONSE_LIST else "json"
     area = area if area in AREA_LIST else "account"
@@ -135,7 +143,11 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     title="Credentials Maintenance",
                 )
 
-            user_token = flask.session.get("authentication_token")
+            user_token = (
+                flask.session.get("cue_authentication_token")
+                if cue_backend
+                else flask.session.get("authentication_token")
+            )
 
             if permission == "user" and response == "json":
                 if not user_token:
@@ -146,15 +158,22 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
             if permission == "user" and response == "html":
                 if not user_token:
                     redirect_path = redirect or flask.request.full_path
-
-                    return flask.redirect(f"/login?next={redirect_path}")
+                    login_for = "cue" if cue_backend else "default"
+                    return flask.redirect(
+                        f"/login?login_for={login_for}&next={redirect_path}"
+                    )
 
             ua_contracts_api = get_ua_contracts_api_instance(
                 user_token, response, session, flask.request.remote_addr
             )
+            cue_contracts_api = get_cue_contracts_api_instance(
+                user_token, response, session, flask.request.remote_addr
+            )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
+            cue_advantage_mapper = CUEAdvantageMapper(cue_contracts_api)
             is_community_member = False
             is_cred_admin = False
+
             if user_info(flask.session):
                 is_community_member = user_info(flask.session).get(
                     "is_community_member", False
@@ -162,7 +181,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 is_cred_admin = user_info(flask.session).get(
                     "is_credentials_admin", False
                 )
-
             return func(
                 badgr_issuer=os.getenv(
                     "BADGR_ISSUER", "eTedPNzMTuqy1SMWJ05UbA"
@@ -171,7 +189,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     "CERTIFIED_BADGE", "hs8gVorCRgyO2mNUfeXaLw"
                 ),
                 ua_contracts_api=ua_contracts_api,
+                cue_contracts_api=cue_contracts_api,
                 advantage_mapper=advantage_mapper,
+                cue_advantage_mapper=cue_advantage_mapper,
                 badgr_api=get_badgr_api_instance(area, badgr_session),
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
@@ -184,6 +204,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 is_cred_admin=is_cred_admin,
                 cred_maintenance_start=cred_maintenance_start,
                 cred_maintenance_end=cred_maintenance_end,
+                # is_request_cue_origin=is_request_cue_origin,
                 *args,
                 **kwargs,
             )
@@ -337,6 +358,25 @@ def get_ua_contracts_api_instance(
         token_type="Macaroon",
         api_url=os.getenv(
             "CONTRACTS_API_URL", "https://contracts.canonical.com"
+        ),
+        remote_addr=remote_addr,
+    )
+
+    if response == "html":
+        ua_contracts_api.set_is_for_view(True)
+
+    return ua_contracts_api
+
+
+def get_cue_contracts_api_instance(
+    user_token, response, session, remote_addr
+) -> CUEContractsAPI:
+    ua_contracts_api = CUEContractsAPI(
+        session=session,
+        authentication_token=user_token,
+        token_type="Macaroon",
+        api_url=os.getenv(
+            "CUE_CONTRACTS_API_URL", "https://cue-contracts.canonical.com"
         ),
         remote_addr=remote_addr,
     )

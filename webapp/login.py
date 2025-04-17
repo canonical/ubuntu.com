@@ -27,17 +27,37 @@ open_id = flask_openid.OpenID(
 session = talisker.requests.get_session()
 
 
-def user_info(user_session):
+def user_info(user_session, login_for="default", allow_any_token=False):
     """
     Checks if the user is authenticated from the session
     Returns True if the user is authenticated
     """
 
-    if "openid" in user_session and "authentication_token" in user_session:
+    if "openid" in user_session:
+        token_key = None
+        if allow_any_token:
+            if not (
+                user_session.get("authentication_token", False)
+                or user_session.get("cue_authentication_token", False)
+            ):
+                return None
+
+            if user_session.get("authentication_token", False):
+                token_key = "authentication_token"
+            elif user_session.get("cue_authentication_token", False):
+                token_key = "cue_authentication_token"
+        else:
+            if login_for == "cue":
+                token_key = "cue_authentication_token"
+            else:
+                token_key = "authentication_token"
+            if token_key not in user_session:
+                return None
+
         return {
             "fullname": user_session["openid"]["fullname"],
             "email": user_session["openid"]["email"],
-            "authentication_token": user_session["authentication_token"],
+            "authentication_token": user_session[token_key],
             "is_community_member": (
                 user_session["openid"].get("is_community_member", False)
             ),
@@ -59,6 +79,7 @@ def empty_session(user_session):
 
     user_session.pop("macaroon_root", None)
     user_session.pop("authentication_token", None)
+    user_session.pop("cue_authentication_token", None)
     user_session.pop("openid", None)
     user_session.pop("salesforce-campaign-id", None)
     user_session.pop("ad_source", None)
@@ -70,13 +91,21 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
-    api_url = os.getenv("CONTRACTS_API_URL", "https://contracts.canonical.com")
-
-    if user_info(flask.session):
+    is_cue = flask.request.args.get("login_for", "default") == "cue"
+    flask.session["login_for"] = "cue" if is_cue else "default"
+    api_url = (
+        os.getenv(
+            "CUE_CONTRACTS_API_URL", "https://cue-contracts.canonical.com"
+        )
+        if is_cue
+        else os.getenv("CONTRACTS_API_URL", "https://contracts.canonical.com")
+    )
+    if user_info(flask.session, flask.session["login_for"]):
         return flask.redirect(open_id.get_next_url())
 
     response = session.request(
-        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
+        method="get",
+        url=f"{api_url}/v1/canonical-sso-macaroon",
     )
     flask.session["macaroon_root"] = response.json()["macaroon"]
 
@@ -106,7 +135,7 @@ def login_handler():
 
 
 @open_id.after_login
-def after_login(resp):
+def after_login(resp: flask_openid.OpenIDResponse):
     try:
         root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
     except KeyError:
@@ -120,7 +149,13 @@ def after_login(resp):
     bound = root.prepare_for_request(
         Macaroon.deserialize(resp.extensions["macaroon"].discharge)
     )
-    flask.session["authentication_token"] = binary_serialize_macaroons(
+    login_for = flask.session.pop("login_for", "default")
+    token_key = (
+        "cue_authentication_token"
+        if login_for == "cue"
+        else "authentication_token"
+    )
+    flask.session[token_key] = binary_serialize_macaroons(
         [root, bound]
     ).decode("utf-8")
 
