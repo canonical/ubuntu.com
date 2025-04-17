@@ -1,4 +1,4 @@
-@mixin ubuntu-p-contact-modal { 
+@mixin ubuntu-p-contact-modal {
   .p-modal--generated,
   #contact-modal {
     &.p-modal {
@@ -30,14 +30,17 @@
       }
 
       &.thank-you {
-        .p-modal__title { /* stylelint-disable-line no-descending-specificity */
+        /* stylelint-disable-next-line no-descending-specificity */
+        .p-modal__title {
           opacity: 0;
         }
 
-        .p-modal__header { /* stylelint-disable-line no-descending-specificity */
+        /* stylelint-disable-next-line no-descending-specificity */
+        .p-modal__header {
           border-bottom: 0;
 
-          &::after { /* stylelint-disable-line no-descending-specificity */
+          /* stylelint-disable-next-line no-descending-specificity */
+          &::after {
             // Remove the bottom border from the title.
             display: none;
           }
