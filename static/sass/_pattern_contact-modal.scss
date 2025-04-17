@@ -1,62 +1,58 @@
-@mixin ubuntu-p-contact-modal {
-  .p-modal--generated.p-modal,
-  #contact-modal.p-modal {
-    align-items: start;
-    position: fixed;
-    z-index: 100;
-  }
+@mixin ubuntu-p-contact-modal { 
+  .p-modal--generated,
+  #contact-modal {
+    &.p-modal {
+      align-items: start;
+      position: fixed;
+      z-index: 100;
 
-  .p-modal--generated.p-modal .p-modal__dialog,
-  #contact-modal.p-modal .p-modal__dialog {
-    margin-bottom: 0;
+      .p-modal__dialog {
+        margin-bottom: 0;
 
-    @media (min-width: $breakpoint-medium + 100px) {
-      max-width: $breakpoint-medium;
-      min-width: $breakpoint-medium;
-    }
-  }
-
-  .p-modal--generated.p-modal .p-modal__header,
-  #contact-modal.p-modal .p-modal__header {
-    border-bottom: 1px solid $color-mid-light;
-    margin-bottom: $spv--medium;
-  }
-
-  .p-modal--generated.p-modal .p-modal__header::after,
-  #contact-modal.p-modal .p-modal__header::after {
-    display: none;
-  }
-
-  .p-modal--generated.p-modal .p-modal__title,
-  #contact-modal.p-modal .p-modal__title {
-    margin-bottom: $spv--small;
-  }
-
-  .p-modal--generated.p-modal.thank-you .p-modal__title,
-  #contact-modal.p-modal.thank-you .p-modal__title {
-    opacity: 0;
-  }
-
-  .p-modal--generated.p-modal.thank-you .p-modal__header,
-  #contact-modal.p-modal.thank-you .p-modal__header {
-    border-bottom: 0;
-  }
-
-  .p-modal--generated.p-modal.thank-you .p-modal__header::after,
-  #contact-modal.p-modal.thank-you .p-modal__header::after {
-    display: none;
-  }
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    .p-modal--generated.p-modal,
-    #contact-modal.p-modal {
-      .u-align {
-        padding-bottom: 70px;
+        @media (min-width: $breakpoint-medium + 100px) {
+          max-width: $breakpoint-medium;
+          min-width: $breakpoint-medium;
+        }
       }
 
-      .pagination__link--next,
-      .pagination__link--previous {
-        margin-bottom: 0;
+      .p-modal__header {
+        border-bottom: 1px solid $color-mid-light;
+        margin-bottom: $spv--medium;
+
+        &::after {
+          // Remove the bottom border from the title.
+          display: none;
+        }
+      }
+
+      .p-modal__title {
+        margin-bottom: $spv--small;
+      }
+
+      &.thank-you {
+        .p-modal__title { /* stylelint-disable-line no-descending-specificity */
+          opacity: 0;
+        }
+
+        .p-modal__header { /* stylelint-disable-line no-descending-specificity */
+          border-bottom: 0;
+
+          &::after { /* stylelint-disable-line no-descending-specificity */
+            // Remove the bottom border from the title.
+            display: none;
+          }
+        }
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        .u-align {
+          padding-bottom: 70px;
+        }
+
+        .pagination__link--next,
+        .pagination__link--previous {
+          margin-bottom: 0;
+        }
       }
     }
   }
