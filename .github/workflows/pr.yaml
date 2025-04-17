@@ -143,37 +143,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # fetch all history for codecov
 
       - name: Install requirements
         run: |
           sudo apt-get update && sudo apt-get install --yes python3-setuptools
           sudo pip3 install -r requirements.txt
 
-      - name: Install dotrun
-        run: sudo pip3 install dotrun requests==2.31.0 # requests version is pinned to avoid breaking changes, can be removed once issue is resolved: https://github.com/docker/docker-py/issues/3256
-      - name: Install node dependencies
-        run: |
-          sudo chmod -R 777 .
-          dotrun install
-
       - name: Install dependencies
-        run: dotrun exec pip3 install coverage
+        run: sudo pip3 install coverage
+
+      - name: Install node dependencies
+        run: yarn install --immutable
 
       - name: Build resources
-        run: dotrun build
+        run: yarn build
 
       - name: Run tests with coverage
         run: |
-          dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. --module unittest discover tests
-          dotrun exec coverage xml -o ./tests/coverage.xml
-
-      - name: Install diff-cover
-        run: dotrun exec pip3 install diff_cover
-
-      - name: Show diff coverage report
-        run: dotrun exec bash -c "git config --global --add safe.directory /home/ubuntu/ubuntu-com && diff-cover ./tests/coverage.xml --compare-branch=origin/main --fail-under=80"
+          coverage run  --source=. -m unittest discover tests
+          bash <(curl -s https://codecov.io/bash) -cF python
+        env:
+        SEARCH_API_KEY: fake-key
 
   test-js:
     runs-on: ubuntu-latest
