@@ -24,6 +24,16 @@
   {% include "shared/forms/interactive/qualcomm-iot.html" %}
 {% endwith %}
 
+{% elif product == 'renesas-iot' %}
+
+{% with h1="Contact us",
+  intro_text="To speak about a specific project requirement or certification, please fill in this form and send us a message",
+  formid="6153",
+  lpId="",
+  returnURL="/download/thank-you?product=renesas-iot" %}
+  {% include "shared/forms/interactive/renesas-iot.html" %}
+{% endwith %}
+
 {% else %}
 
 {% with h1="Contact Canonical about downloads",
