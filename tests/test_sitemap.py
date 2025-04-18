@@ -51,7 +51,8 @@ class TestSitemap(unittest.TestCase):
 
             assert "name" in data
             assert "last_modified" in data
-            urls[data["name"]] = data["last_modified"]
+            if "sitemap_exclude" not in data:
+                urls[data["name"]] = data["last_modified"]
 
             if "children" in data:
                 for child in data["children"]:
