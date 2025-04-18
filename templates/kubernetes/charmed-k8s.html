@@ -40,7 +40,8 @@
     {%- endif -%}
     {%- if slot == "cta" -%}
       <a class="p-button--positive js-invoke-modal"
-         href="/kubernetes/contact-us?product=kubernetes-features">Get in touch</a>
+         href="/kubernetes/contact-us?product=kubernetes-features"
+         aria-controls="kubernetes-modal">Get in touch</a>
     {%- endif -%}
     {%- if slot == "image" -%}
       <div class="u-embedded-media">
@@ -337,7 +338,7 @@
         </p>
         <div class="p-cta-block">
           <a href="/kubernetes/contact-us"
-             class="p-button--positive js-invoke-modal">Contact us</a>
+             class="p-button--positive js-invoke-modal" aria-controls="kubernetes-modal">Contact us</a>
         </div>
       </div>
     </div>

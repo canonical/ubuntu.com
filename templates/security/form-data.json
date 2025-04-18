@@ -6,7 +6,7 @@
           "/security/fips"
         ],
         "isModal": true,
-        "modalId": "contact-modal",
+        "modalId": "security-modal",
         "formData": {
           "title": "The Ubuntu experts",
           "introText": "Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.",
@@ -327,13 +327,13 @@
                 "type": "text",
                 "id": "company",
                 "label": "Company",
-                "isRequired": false
+                "isRequired": true
               },
               {
                 "type": "text",
                 "id": "jobTitle",
                 "label": "Job title",
-                "isRequired": false
+                "isRequired": true
               },
               {
                 "type": "tel",

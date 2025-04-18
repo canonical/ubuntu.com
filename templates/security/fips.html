@@ -30,7 +30,8 @@
     {%- endif -%}
     {%- if slot == 'cta' -%}
       <a href="/security/contact-us"
-         class="p-button--positive js-invoke-modal">Contact us</a>
+         class="p-button--positive js-invoke-modal"
+         aria-controls="security-modal">Contact us</a>
       <a href="/pro" class="p-button">Get Ubuntu Pro</a>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -83,7 +84,9 @@
     {%- endif -%}
 
     {%- if slot == 'cta' -%}
-      <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
+      <a class="p-button js-invoke-modal"
+         href="/security/contact-us"
+         aria-controls="security-modal">Contact us</a>
       <a href="/security/certifications/docs/fips">Read more about FIPS&nbsp;&rsaquo;</a>
     {%- endif -%}
   {%- endcall -%}
@@ -143,7 +146,9 @@
           Learn about the US government security standards and the common challenges faced by organizations in their implementation. See how the Ubuntu Security Guide can transform systems compliance in a few minutes. Get to know how Ubuntu is a secure platform for government agencies and complying organizations to build, operate and innovate with open source applications and technologies.
         </p>
         <div class="p-cta-block">
-          <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
+          <a class="p-button js-invoke-modal"
+             href="/security/contact-us"
+             aria-controls="security-modal">Contact us</a>
           <a href="https://www.brighttalk.com/webcast/6793/591276">Watch the <span class="u-off-screen">How Ubuntu enables your compliance with FedRAMP, FISMA, FIPS, and DISA-STIG</span> webinar&nbsp;&rsaquo;</a>
         </div>
       </div>
