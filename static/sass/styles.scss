@@ -81,6 +81,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_heading-icon";
 @import "pattern_icons";
 @import "pattern_inline-list-midline";
+@import "pattern_invoices";
 @import "pattern_lightbox";
 @import "pattern_lists";
 @import "pattern_matrix";
@@ -136,6 +137,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-inline-list-midline;
+@include ubuntu-p-invoices;
 @include ubuntu-p-attention-icon;
 @include ubuntu-p-lightbox;
 @include ubuntu-p-lists;
@@ -775,6 +777,10 @@ td.p-accordion {
 
   @media (max-width: $breakpoint-small) {
     height: auto;
+  }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    min-width: 38rem;
   }
 }
 
