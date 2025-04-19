@@ -1308,3 +1308,12 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+def test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 0
+    new_test_var = 2
+    return
