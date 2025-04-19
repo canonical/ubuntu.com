@@ -168,7 +168,7 @@ def account_query():
 
     return flask.jsonify(
         {
-            "account": user_info(flask.session),
+            "account": user_info(flask.session, allow_any_token=True),
         }
     )
 
