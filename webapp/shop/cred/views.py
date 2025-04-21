@@ -785,6 +785,7 @@ def cred_your_exams(
     ua_contracts_api,
     trueability_api,
     proctor_api,
+    advantage_mapper,
     show_cred_maintenance_alert,
     cred_is_in_maintenance,
     cred_maintenance_start,
@@ -829,6 +830,52 @@ def cred_your_exams(
             return flask.redirect("/logout?return_to=/credentials/your-exams")
         else:
             exam_contracts = []
+
+    is_banned = True
+    account = None
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        flask.render_template(
+            "credentials/your-exams.html",
+            agreement_notification=agreement_notification,
+            exams=[],
+            show_cred_maintenance_alert=show_cred_maintenance_alert,
+            cred_is_in_maintenance=cred_is_in_maintenance,
+            cred_maintenance_start=cred_maintenance_start,
+            cred_maintenance_end=cred_maintenance_end,
+        )
+
+    productListingID = "lAG3hRoBLFZc_sbY7KKmsmGzGVYgkmSHtO_xaN1_D82I"
+    purchase_request = {
+        "accountID": account.id,
+        "purchaseItems": [
+            {
+                "productListingID": productListingID,
+                "metric": "active-machines",
+                "value": 1,
+            }
+        ],
+        "previousPurchaseID": "",
+        "coupon": None,
+    }
+
+    banned_error = (
+        "invalid purchase: user has been banned "
+        + "from purchasing products in the canonical-cube marketplace"
+    )
+    try:
+        response = advantage_mapper.purchase_from_marketplace(
+            marketplace="canonical-cube",
+            purchase_request=purchase_request,
+            preview=True,
+        )
+        is_banned = False
+    except Exception as e:
+        if hasattr(e, "response") and e.response is not None:
+            error = e.response.json().get("message", "Unknown error")
+            if error != banned_error:
+                is_banned = False
 
     exams_in_progress = []
     exams_scheduled = []
@@ -926,14 +973,12 @@ def cred_your_exams(
                     if (
                         state == RESERVATION_STATES["in_progress"]
                         or provisioned_but_not_taken
-                    ):
+                    ) and not is_banned:
                         proctor_link = None
                         if is_staging:
-                            student_session = proctor_api.get_student_sessions(
-                                {
+                            student_session = proctor_api.get_student_sessions({
                                     "ext_exam_id": r["uuid"],
-                                }
-                            )
+                                })
                             if student_session is not None:
                                 student_session_array = student_session.get(
                                     "data", [{}]
@@ -988,7 +1033,10 @@ def cred_your_exams(
 
                 # if at least 30 minutes away allow reschedule
                 elif state == "Scheduled":
-                    if now + timedelta(minutes=30) < starts_at:
+                    if (
+                        now + timedelta(minutes=30) < starts_at
+                        and not is_banned
+                    ):
                         actions.extend(
                             [
                                 {
@@ -1027,16 +1075,17 @@ def cred_your_exams(
 
             # if exam is not used and is not expired
             else:
-                actions = [
-                    {
-                        "text": "Schedule",
-                        "href": "/credentials/schedule?"
-                        f"contractItemID={contract_item_id}"
-                        f"&contractLongID={contract_long_id}"
-                        f"&ta_exam={exam_id}",
-                        "button_class": "p-button",
-                    },
-                ]
+                actions = []
+                if not is_banned:
+                    actions = [
+                        {
+                            "text": "Schedule",
+                            "href": "/credentials/schedule?"
+                            f"contractItemID={contract_item_id}"
+                            f"&contractLongID={contract_long_id}",
+                            "button_class": "p-button",
+                        },
+                    ]
                 exams_not_taken.append(
                     {"name": name, "state": "Not taken", "actions": actions}
                 )
@@ -1059,6 +1108,7 @@ def cred_your_exams(
             cred_is_in_maintenance=cred_is_in_maintenance,
             cred_maintenance_start=cred_maintenance_start,
             cred_maintenance_end=cred_maintenance_end,
+            is_banned=is_banned,
         )
     )
 
