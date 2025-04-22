@@ -129,6 +129,7 @@ from webapp.shop.views import (
     get_purchase_account_status,
     get_shop_status_page,
     invoices_view,
+    cred_invoices_view,
     maintenance_check,
     payment_methods_view,
     post_anonymised_customer_info,
@@ -978,6 +979,7 @@ app.add_url_rule(
     view_func=cred_schedule,
     methods=["GET", "POST"],
 )
+app.add_url_rule("/credentials/invoices", view_func=cred_invoices_view)
 app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
 app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)

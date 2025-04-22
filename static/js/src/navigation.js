@@ -781,8 +781,9 @@ if (accountContainer) {
   fetch("/account.json")
     .then((response) => response.json())
     .then((data) => {
+      const isCue = window.location.pathname.startsWith("/credentials");
       if (data.account === null) {
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign in</a>`;
+        accountContainer.innerHTML = `<a href="${isCue ? "/login?login_for=cue" : "/login"}" class="p-navigation__link" style="padding-right: 1rem;" tabindex="0" onclick="event.stopPropagation()">Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
         accountContainer.innerHTML = `<button href="#" class="p-navigation__link is-signed-in" aria-controls="canonical-login-content-mobile" aria-expanded="false" aria-haspopup="true">Account</button>
@@ -799,7 +800,7 @@ if (accountContainer) {
             </li>
             <li class="p-navigation__dropdown-item"><a class="p-link--inverted" href="/pro/dashboard" onclick="event.stopPropagation()">Ubuntu Pro dashboard</a></li>
             <li class="p-navigation__dropdown-item">
-              <a class="p-link--inverted" href="/account/invoices" onclick="event.stopPropagation()">Invoices & Payments</a>
+              <a class="p-link--inverted" href="${isCue ? "/credentials/invoices" : "/account/invoices"}" onclick="event.stopPropagation()">Invoices & Payments</a>
             </li>
             <li class="p-navigation__dropdown-item">
               <a class="p-link--inverted" href="https://login.ubuntu.com/" onclick="event.stopPropagation()">Account settings</a>
