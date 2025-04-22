@@ -428,14 +428,11 @@ def check_cred_exam_start_time(
     return None
 
 
-def get_taexam_to_procexam_mapping(ta_exam):
-    if ta_exam == "cue-01-linux":
-        return 2
-    else:
-        raise ValueError(
-            f"Invalid ta_exam value: {ta_exam}. "
-            "Valid values are 'cue-01-linux' and 'cue-02-desktop'."
-        )
+def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
+    mappings = {
+        "cue-01-linux": 2,
+    }
+    return mappings.get(ta_exam, None)
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -512,13 +509,12 @@ def cred_schedule(
                 exam_type="cue-01-linux",
             )
 
-        try:
-            proc_exam = get_taexam_to_procexam_mapping(data["ta_exam"])
-        except ValueError as e:
+        proc_exam = get_taexam_to_procexam_mapping(data["ta_exam"])
+        if proc_exam is None:
             return flask.render_template(
                 "/credentials/schedule.html",
                 **template_data,
-                error=str(e),
+                error="Invalid exam type.",
                 exam_type="cue-01-linux",
             )
         template_data["ta_exam"] = data["ta_exam"]
@@ -762,12 +758,8 @@ def cred_schedule(
         time = starts_at.strftime("%H:%M")
 
     ta_exam = flask.request.args.get("ta_exam", "")
-    try:
-        get_taexam_to_procexam_mapping(ta_exam)
-    except ValueError:
+    if get_taexam_to_procexam_mapping(ta_exam) is None:
         ta_exam = "cue-01-linux"
-
-    ta_exam = ta_exam if ta_exam else "cue-01-linux"
 
     return flask.render_template(
         "credentials/schedule.html",
@@ -803,6 +795,9 @@ def cred_your_exams(
     user = user_info(flask.session)
     if not email:
         email = user["email"]
+    is_staging = "staging" in os.getenv(
+        "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
+    )
 
     agreement_notification = False
     confidentiality_agreement_enabled = strtobool(
@@ -932,22 +927,23 @@ def cred_your_exams(
                         state == RESERVATION_STATES["in_progress"]
                         or provisioned_but_not_taken
                     ):
-                        student_session = proctor_api.get_student_sessions(
-                            {
-                                "ext_exam_id": r["uuid"],
-                            }
-                        )
                         proctor_link = None
-                        if student_session is not None:
-                            student_session_array = student_session.get(
-                                "data", [{}]
+                        if is_staging:
+                            student_session = proctor_api.get_student_sessions(
+                                {
+                                    "ext_exam_id": r["uuid"],
+                                }
                             )
-                            student_session = None
-                            if len(student_session_array) > 0:
-                                student_session = student_session_array[0]
-                                proctor_link = student_session.get(
-                                    "display_session_link", None
+                            if student_session is not None:
+                                student_session_array = student_session.get(
+                                    "data", [{}]
                                 )
+                                student_session = None
+                                if len(student_session_array) > 0:
+                                    student_session = student_session_array[0]
+                                    proctor_link = student_session.get(
+                                        "display_session_link", None
+                                    )
                         action = {
                             "text": (
                                 "Continue exam"
@@ -1136,11 +1132,9 @@ def cred_exam(trueability_api, proctor_api, **_):
     ta_exam = flask.request.args.get("ta_exam", "")
     if ta_exam == "":
         return flask.abort(404)
-    proc_exam = None
-    try:
-        proc_exam = get_taexam_to_procexam_mapping(ta_exam)
-    except ValueError:
-        flask.abort(404)
+    proc_exam = get_taexam_to_procexam_mapping(ta_exam)
+    if proc_exam is None:
+        return flask.abort(404)
 
     if (
         confidentiality_agreement_enabled
