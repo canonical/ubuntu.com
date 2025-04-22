@@ -382,6 +382,8 @@ function formatLabel(label, isTooltip = false) {
       return "Expanded Security Maintenance (ESM)";
     case "pro_support":
       return "Ubuntu Pro + Support coverage";
+    case "canonical_kubernetes_legacy_support":
+      return "Canonical Kubernetes Legacy Support";
 
     default:
       return null;
