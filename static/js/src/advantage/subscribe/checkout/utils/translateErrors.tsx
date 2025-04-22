@@ -123,8 +123,9 @@ export function getNotificationMessage(error: Error): DisplayError {
     };
   } else if (message === "tax_id_invalid") {
     return {
+      title: "Invalid VAT number",
       description:
-        "That VAT number is invalid. Check the number and try again.",
+        "The VAT number entered is invalid: check the number and try again.",
     };
   } else if (message === "tax_id_cannot_be_validated") {
     return {

@@ -90,10 +90,10 @@ const Taxes = ({ products, setError }: TaxesProps) => {
                     "That VAT number is invalid. Check the number and try again.",
                 });
                 setError({
+                  title: "Invalid VAT number",
                   description: (
                     <>
-                      That VAT number is invalid. Check the number and try
-                      again.
+                      The VAT number entered is invalid: check the number and try again.
                     </>
                   ),
                 });
