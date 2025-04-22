@@ -57,8 +57,9 @@ describe("getNotificationMessage", () => {
     const error = new Error("tax_id_invalid");
     const result = getNotificationMessage(error);
 
+    expect(result.title).toBe("Invalid VAT number");
     expect(result.description).toBe(
-      "That VAT number is invalid. Check the number and try again.",
+      "The VAT number entered is invalid: check the number and try again.",
     );
   });
 
