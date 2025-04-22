@@ -73,10 +73,8 @@ class TestSitemap(unittest.TestCase):
         parser_response = self.client.get("/sitemap_parser")
         assert parser_response.status_code == 200
 
-        parser_data = parser_response.get_json()["children"]
-        parser_urls = {}
-        for site in parser_data:
-            parser_urls = extract_urls(site, parser_urls)
+        parser_data = parser_response.get_json()
+        parser_urls = extract_urls(parser_data)
 
         assert len(parser_urls) > 0, "No URLs found in sitemap_parser"
         assert len(parser_urls) == len(
