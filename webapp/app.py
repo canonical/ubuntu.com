@@ -22,6 +22,8 @@ from canonicalwebteam.discourse import (
     Category,
 )
 from canonicalwebteam.flask_base.app import FlaskBase
+from pathlib import Path
+import canonicalwebteam.directory_parser as directory_parser
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.form_generator import FormGenerator
@@ -173,6 +175,7 @@ from webapp.views import (
     subscription_centre,
     thank_you,
     unlisted_engage_page,
+    build_sitemap_tree,
 )
 
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
@@ -180,6 +183,19 @@ DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 CHARMHUB_DISCOURSE_API_KEY = os.getenv("CHARMHUB_DISCOURSE_API_KEY")
 CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
+
+# Sitemaps that are already generated and don't need to be updated.
+# Can be seen on sitemap_index.xml
+DYNAMIC_SITEMAPS = [
+    "tutorials",
+    "engage",
+    "ceph/docs",
+    "blog",
+    "security/notices",
+    "security/cves",
+    "security/livepatch/docs",
+    "robotics/docs",
+]
 
 # Set up application
 # ===
@@ -194,10 +210,14 @@ app = FlaskBase(
 )
 
 # ChoiceLoader attempts loading templates from each path in successive order
+directory_parser_templates = (
+    Path(directory_parser.__file__).parent / "templates"
+)
 loader = ChoiceLoader(
     [
         FileSystemLoader("templates"),
         FileSystemLoader("node_modules/vanilla-framework/templates"),
+        FileSystemLoader(str(directory_parser_templates)),
     ]
 )
 
@@ -1308,3 +1328,22 @@ def render_supermicro_blogs():
 
 
 app.add_url_rule("/supermicro", view_func=render_supermicro_blogs)
+
+
+# Endpoint for retrieving parsed directory tree
+def get_sitemaps_tree():
+    try:
+        tree = directory_parser.scan_directory(
+            os.getcwd() + "/templates", exclude_paths=DYNAMIC_SITEMAPS
+        )
+    except Exception as e:
+        return {"Error:": str(e)}, 500
+    return tree
+
+
+app.add_url_rule("/sitemap_parser", view_func=get_sitemaps_tree)
+app.add_url_rule(
+    "/sitemap_tree.xml",
+    view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
+    methods=["GET", "POST"],
+)

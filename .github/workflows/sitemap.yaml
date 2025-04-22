@@ -1,0 +1,26 @@
+name: Generate sitemap for static pages
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "templates/**"
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Call sitemap generation endpoint
+        env:
+          SITEMAP_SECRET: ${{ secrets.SITEMAP_SECRET }}
+        run: |
+          curl -X POST "https://ubuntu.com/sitemap_tree.xml" \
+          -H "Authorization: Bearer $SITEMAP_SECRET"
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
