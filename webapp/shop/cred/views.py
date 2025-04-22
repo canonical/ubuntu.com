@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import math
 import pytz
 import flask
+from flask.wrappers import Response
 import json
 import os
 import html
@@ -845,8 +846,13 @@ def cred_your_exams(
             cred_maintenance_start=cred_maintenance_start,
             cred_maintenance_end=cred_maintenance_end,
         )
+    cue_products = get_cue_products(type="exam").get_json()
+    productListingID = None
+    if cue_products and len(cue_products) > 0:
+        productListingID = cue_products[0]["longId"]
+    else:
+        flask.abort(404)
 
-    productListingID = "lAG3hRoBLFZc_sbY7KKmsmGzGVYgkmSHtO_xaN1_D82I"
     purchase_request = {
         "accountID": account.id,
         "purchaseItems": [
