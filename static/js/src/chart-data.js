@@ -1067,13 +1067,13 @@ export var kubernetesReleasesLTS = [
   {
     startDate: new Date("2024-12-01T00:00:00"),
     endDate: new Date("2034-12-01T00:00:00"),
-    taskName: "Kubernetes 1.32x LTS",
+    taskName: "Kubernetes 1.32.x LTS",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
     startDate: new Date("2034-12-01T00:00:00"),
     endDate: new Date("2036-12-01T00:00:00"),
-    taskName: "Kubernetes 1.32x LTS",
+    taskName: "Kubernetes 1.32.x LTS",
     status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
 ];
