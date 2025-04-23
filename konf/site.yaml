@@ -213,6 +213,15 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
+        - name: HTTPS_PROXY
+          value: http://squid.ps6.internal:3128
+        
+        - name: HTTP_PROXY
+          value: http://squid.ps6.internal:3128
+
+        - name: NO_PROXY
+          value: "10.24.0.132,10.24.0.23,.internal,ubuntu.com,.ubuntu.com,snapcraft.io,.snapcraft.io,jujucharms.com,.jujucharms.com,maas.io,.maas.io,conjure-up.io,.conjure-up.io,netplan.io,.netplan.io,canonical.com,.canonical.com,launchpad.net,.launchpad.net,linuxcontainers.org,.linuxcontainers.org,cloud-init.io,.cloud-init.io,vanillaframework.io,.vanillaframework.io,anbox-cloud.io,.anbox-cloud.io,juju.is,.juju.is,dqlite.io,.dqlite.io,charmhub.io,.charmhub.io,canonical.design,.canonical.design"
+
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
