@@ -18,22 +18,21 @@
 {% block content %}
 
   <div class="is-paper">
-    <section class="p-strip u-no-padding--top">
-      {% call(slot) vf_hero(
-          title_text='Ubuntu for confidential compute',
-          subtitle_text='Protect your data in use, across public and private clouds.',
-          layout='50/50'
-        ) -%}
-        {%- if slot == 'cta' -%}
-          <a href="/contact-us">Contact us to learn more ›</a>
-        {%- endif -%}
-        {%- if slot == 'image' -%}
-          <div class="p-image-container--3-2 is-cover">
-            <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg" alt="">
-          </div>
-        {%- endif -%}
-      {% endcall -%}
-    </section>
+    {% call(slot) vf_hero(
+        title_text='Ubuntu <br/>for confidential compute',
+        subtitle_text='Protect your data in use,<br/> across public and private clouds.',
+        layout='50/50'
+      ) -%}
+      {%- if slot == 'cta' -%}
+        <a href="/contact-us">Contact us to learn more ›</a>
+      {%- endif -%}
+      {%- if slot == 'image' -%}
+        <div class="p-image-container--3-2 is-cover">
+          <img class="p-image-container__image" src="https://assets.ubuntu.com/v1/cf1e2ddb-datacenter-wide-crop.jpeg" alt="">
+        </div>
+      {%- endif -%}
+    {% endcall -%}
+
 
     <section class="p-strip u-no-padding--top">
       <hr class="p-rule--muted is-fixed-width" />
@@ -57,7 +56,7 @@
       <hr class="p-rule--muted is-fixed-width" />
       <div class="row--50-50">
         <div class="col">
-          <h2>Benefits of Ubuntu for confidential computing</h2>
+          <h2>Benefits of Ubuntu<br/> for confidential computing</h2>
         </div>
         <div class="col">
           <ul class="p-list--divided">
@@ -69,31 +68,38 @@
       </div>
     </section>
 
-    <section class="p-section">
+    <section class="p-section is-shallow">
       <hr class="p-rule--muted is-fixed-width" />
-      <div class="row--50-50">
+
+      <div class="row--50-50 u-sv3">
         <div class="col">
           <h2>Intel TDX is available on Ubuntu for both the host and guest</h2>
         </div>
         <div class="col u-sv3">
-          <p>
-            Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution environment enables you to add an extra layer of protection to the code and data running within your confidential virtual machines.
-          </p>
-          <div class="p-image__background--3-2 u-align--center u-vertically-center">
-            {{ image(url="https://assets.ubuntu.com/v1/db3fddbb-intel-tdx-is.png",
-              alt="Diagram showing that Ubuntu builds cater to both the host and guest sides, empowering users to launch a confidential TDX virtual machine seamlessly",
-              width="1200",
-              height="1140",
-              hi_def=True,
-              loading="auto|lazy"
-              ) | safe
-            }}
+          <div class="row p-section--shallow">
+            <p>
+              Ubuntu now supports Intel’s latest confidential computing technology. This hardware-based trusted execution environment enables you to add an extra layer of protection to the code and data running within your confidential virtual machines.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="p-image__background--3-2 u-align--center u-vertically-center">
+              {{ image(url="https://assets.ubuntu.com/v1/db3fddbb-intel-tdx-is.png",
+                alt="Diagram showing that Ubuntu builds cater to both the host and guest sides, empowering users to launch a confidential TDX virtual machine seamlessly",
+                width="1200",
+                height="1140",
+                hi_def=True,
+                loading="auto|lazy"
+                ) | safe
+              }}
+            </div>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-9 col-start-large-4 col-medium-3 col-start-medium-4">
-          <ol class="p-stepped-list--detailed">
+          <ol class="p-stepped-list--detailed u-no-margin--bottom">
             <li class="p-stepped-list__item">
               <div class="row">
                 <div class="col-3 col-medium-3">
@@ -168,25 +174,20 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading-icon__title p-heading--5">1. Isolation</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                Confidential computing capable CPUs are equipped with an AES hardware memory encryption engine, which encrypts data when it is written to system memory, and decrypts it when read. The encryption key itself is stored in the hardware root of trust and is never exposed to the platform’s system software.
-              </p>
-            </div>
-          </div>
-          <hr class="p-rule--muted" />
-          <div class="row">
-            <div class="col-3 col-medium-3">
-              <h3 class="p-heading-icon__title p-heading--5">2. Remote attestation</h3>
-            </div>
-            <div class="col-6 col-medium-3">
-              <p>
-                When a confidential VM is launched, its integrity is verified and its initial code and data are measured by a hardware root of trust. This ensures they have not been tampered with. The measurement is cryptographically signed and can be attested to a remote verifier
-              </p>
-            </div>
+            <ol class="p-list--divided">
+              <li class="p-list__item p-heading-icon__title p-heading--5">Isolation</li>
+              <div class="col-6 col-medium-3 u-sv3">
+                <p>
+                  Confidential computing capable CPUs are equipped with an AES hardware memory encryption engine, which encrypts data when it is written to system memory, and decrypts it when read. The encryption key itself is stored in the hardware root of trust and is never exposed to the platform’s system software.
+                </p>
+              </div>
+              <li class="p-list__item p-heading-icon__title p-heading--5">Remote attestation</li>
+              <div class="col-6 col-medium-3">
+                <p>
+                  When a confidential VM is launched, its integrity is verified and its initial code and data are measured by a hardware root of trust. This ensures they have not been tampered with. The measurement is cryptographically signed and can be attested to a remote verifier
+                </p>
+              </div>
+            </ol>
           </div>
         </div>
       </div>
@@ -198,7 +199,7 @@
         <div class="col-12 u-sv3">
           <h2>Launch enterprise-grade confidential VMs on all major public clouds</h2>
         </div>
-        <div class="col-8 col-start-large-6 col-start-medium-2">
+        <div class="col-10 col-start-large-4 col-start-medium-2">
           <hr class="p-rule--muted" />
           <div class="row">
             <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
@@ -213,7 +214,7 @@
                 }}
               </p>
             </div>
-            <div class="col-6 col-medium-3 col-small-2">
+            <div class="col-8 col-medium-6 col-small-2">
               <ul class="p-list--divided u-no-margin--bottom">
                 <li class="p-list__item">
                   <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview">Ubuntu 24.04 confidential VMs on Azure</a>
@@ -243,7 +244,7 @@
                 }}
               </p>
             </div>
-            <div class="col-6 col-medium-3 col-small-2">
+            <div class="col-6 col-medium-6 col-small-2">
               <p>
                 <a href="https://canonical.com/blog/start-your-ubuntu-confidential-vm-with-intel-tdx-on-google-cloud">AMD SEV SNP with Ubuntu 22.04 LTS on Google Cloud</a>
               </p>
@@ -262,7 +263,7 @@
                 }}
               </p>
             </div>
-            <div class="col-6 col-medium-3 col-small-2">
+            <div class="col-6 col-medium-6 col-small-2">
               <p>
                 <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sev-snp.html">AMD SEV SNP with Ubuntu 23.10 on AWS</a>
               </p>
@@ -279,7 +280,7 @@
           <h2>How to map security primitives to attacker capabilities</h2>
         </div>
         <div class="col">
-          <div class="u-align--center u-vertically-center u-hide--small">
+          <div class="row p-image-container is-highlighted">
           {{ image(url="https://assets.ubuntu.com/v1/d8d1c7c8-how-to-map.png",
             alt="How to map security primitives to attacker capabilities",
             width="1200",
@@ -288,9 +289,11 @@
             loading="auto|lazy") | safe
           }}
           </div>
-          <p>
-            Uncover the details of Ubuntu’s security solutions and learn how to tailor them to your environment. Equip yourself with the tools to protect your data and stay one step ahead of evolving threats.
-          </p>
+          <div class="row">
+            <p>
+              Uncover the details of Ubuntu’s security solutions and learn how to tailor them to your environment. Equip yourself with the tools to protect your data and stay one step ahead of evolving threats.
+            </p>
+          </div>
           <div class="row">
             <hr class="p-rule--muted" />
             <p>
@@ -323,7 +326,7 @@
       <hr class="p-rule--muted is-fixed-width" />
       <div class="row--50-50 u-sv3">
         <div class="col">
-          <h2>A solid foundation of your zero trust strategy</h2>
+          <h2>A solid foundation of your<br/> zero trust strategy</h2>
         </div>
         <div class="col">
           <p>
@@ -376,7 +379,7 @@
     <section class="p-strip is-deep u-no-padding--top">
       <div class="row--50-50">
         <div class="col">
-          <h2>Learn more about confidential computing</h2>
+          <h2>Learn more about<br/> confidential computing</h2>
         </div>
         <div class="col">
           <ul class="p-list--divided u-no-margin--bottom">
@@ -396,6 +399,7 @@
       </div>
     </section>
     <section class="p-strip is-deep">
+      <hr class="p-rule--muted is-fixed-width" />
       <div class="row">
         <div class="col-12">
           <p class="p-heading--2">
