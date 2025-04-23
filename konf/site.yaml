@@ -156,6 +156,12 @@ env:
       key: app-id
       name: proctor360
 
+  - name: SITEMAP_SECRET
+    secretKeyRef:
+      key: secret
+      name: sitemaps
+
+
 memoryLimit: 512Mi
 
 extraHosts:
