@@ -1066,15 +1066,21 @@ export var kubernetesReleases = [
 export var kubernetesReleasesLTS = [
   {
     startDate: new Date("2024-12-01T00:00:00"),
-    endDate: new Date("2034-12-01T00:00:00"),
+    endDate: new Date("2025-12-01T00:00:00"),
     taskName: "Kubernetes 1.32.x LTS",
     status: "CANONICAL_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2025-12-01T00:00:00"),
+    endDate: new Date("2034-12-01T00:00:00"),
+    taskName: "Kubernetes 1.32.x LTS",
+    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
   },
   {
     startDate: new Date("2034-12-01T00:00:00"),
     endDate: new Date("2036-12-01T00:00:00"),
     taskName: "Kubernetes 1.32.x LTS",
-    status: "CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE",
+    status: "CANONICAL_KUBERNETES_LEGACY_SUPPORT",
   },
 ];
 
@@ -1212,6 +1218,12 @@ export var openStackStatus = {
 export var kubernetesStatus = {
   CANONICAL_KUBERNETES_SUPPORT: "chart__bar--black",
   CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
+};
+
+export var kubernetesStatusLTS = {
+  CANONICAL_KUBERNETES_SUPPORT: "chart__bar--black",
+  CANONICAL_KUBERNETES_EXPANDED_SECURITY_MAINTENANCE: "chart__bar--aubergine",
+  CANONICAL_KUBERNETES_LEGACY_SUPPORT: "chart__bar--orange",
 };
 
 export var microStackStatus = {

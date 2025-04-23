@@ -23,6 +23,7 @@ import {
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
+  kubernetesStatusLTS,
   microStackStatus,
   desktopServerReleaseNames,
   kernelReleaseNames,
@@ -160,7 +161,7 @@ function buildCharts() {
     createReleaseChartOld(
       "#kubernetes-lts",
       kubernetesReleaseNamesLTS,
-      kubernetesStatus,
+      kubernetesStatusLTS,
       kubernetesReleasesLTS,
     );
   }
