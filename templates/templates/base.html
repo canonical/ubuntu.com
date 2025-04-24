@@ -10,14 +10,6 @@
     <title>{% block title %}{% endblock %} | Ubuntu</title>
     <link rel="preconnect" href="https://res.cloudinary.com" />
 
-    <script>
-      partytown = {
-        forward: ["dataLayer.push"],
-        lib: "/static/js/dist/~partytown/",
-      };
-    </script>
-    <script type="text/javascript" src="/static/js/dist/~partytown/partytown.js"></script>
-
     <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
     <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}" type="module"></script>
     <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
@@ -120,7 +112,6 @@
           content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
     {% endif %}
     {% block extra_metatags %}{% endblock %}
-
     {%- include "templates/_tag_manager.html" %}
 
     <style>#rememberMe {display: none;}</style>
