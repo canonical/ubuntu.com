@@ -1,10 +1,10 @@
 name: Generate sitemap for static pages
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - "templates/**"
+on: [push, pull_request]
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - "templates/**"
 
 jobs:
   generate-sitemap:
@@ -13,13 +13,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - name: Debug secret
+        run: |
+          if [ -z "${{ secrets.SITEMAP_SECRET }}" ]; then
+            echo "Error: SITEMAP_SECRET is not set."
+            exit 1
+          else
+            echo "SITEMAP_SECRET is set."
+          fi
 
       - name: Call sitemap generation endpoint
-        env:
-          SITEMAP_SECRET: ${{ secrets.SITEMAP_SECRET }}
         run: |
           curl -X POST "https://ubuntu.com/sitemap_tree.xml" \
-          -H "Authorization: Bearer $SITEMAP_SECRET"
+          -H "Authorization: Bearer ${{ secrets.SITEMAP_SECRET }}"
 
       - name: Send message on failure
         if: failure()
