@@ -19,6 +19,10 @@
 
 {% block content %}
 
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    {% include "shared/_20-04-eol-banner.html" %}
+  </section>
+
   {% call(slot) vf_hero(
     title_text="IoT App Store",
     layout="50/50",
