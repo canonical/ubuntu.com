@@ -104,13 +104,6 @@ jobs:
           url: "https://ubuntu.com/tutorials/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-aws-using-aws-license-manager#1-overview"
           threshold: $THRESHOLD
           strategy: desktop
-      - name: Running performance checks on the core docs
-        uses: jakepartusch/psi-action@v1.3
-        with:
-          key: ${{ secrets.PSI_API_KEY }}
-          url: "https://ubuntu.com/core/docs"
-          threshold: $THRESHOLD
-          strategy: desktop
 
       - name: Send message on failure
         if: failure()

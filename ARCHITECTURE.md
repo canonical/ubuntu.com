@@ -66,8 +66,6 @@ There are a large number of documentation areas on ubuntu.com (complete at the t
 
 - [ubuntu.com/server/docs](http://ubuntu.com/server/docs) ([code](webapp/app.py#L642-L651))
 - [ubuntu.com/core/services/guide](https://ubuntu.com/core/services/guide) ([code](webapp/app.py#L606-L616))
-- [ubuntu.com/core/docs](http://ubuntu.com/core/docs) ([code](webapp/app.py#L748-L756))
-  - Also [core sub docs sets](webapp/app.py#L757-L858): bluez, networkmanager, wpa-supplicant, easy-openvpn, wifi-ap, asla-utils
 - [ubuntu.com/openstack/docs](http://ubuntu.com/openstack/docs) ([code](webapp/app.py#L942-L952))
 - [ubuntu.com/security/livepatch/docs](http://ubuntu.com/security/livepatch/docs) ([code](webapp/app.py#L969-L979))
 - [ubuntu.com/security/certifications/docs](http://ubuntu.com/security/certifications/docs) ([code](webapp/app.py#L996-L1006))
