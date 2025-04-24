@@ -180,7 +180,7 @@
     </div>
   </section>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>
         Reliable
@@ -253,7 +253,7 @@
     </div>
   </div>
 
-  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=true) -%}
+  {%- call(slot) vf_tiered_list(is_description_full_width_on_desktop=false, is_list_full_width_on_tablet=false) -%}
     {%- if slot == 'title' -%}
       <h2>Run regulated and high-security workloads on Ubuntu</h2>
     {%- endif -%}
@@ -284,7 +284,7 @@
   {%- endcall -%}
 
   <section class="p-section">
-    <hr class="p-rule--highlight is-fixed-width u-no-margin--bottom" />
+    <hr class="p-rule--highlight is-fixed-width" />
     <div class="p-section--shallow">
       <div class="row--50-50">
         <div class="col">
