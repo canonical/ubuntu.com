@@ -18,6 +18,10 @@
 
 {% block content %}
 
+  <section class="p-strip is-shallow u-no-padding--bottom">
+    {% include "shared/_20-04-eol-banner.html" %}
+  </section>
+
   {% call(slot) vf_hero(
     title_text="Ubuntu for the<br /> Internet of Things",
     layout='50/50-full-width-image',
