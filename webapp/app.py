@@ -1310,6 +1310,44 @@ def render_public_cloud_blogs():
 app.add_url_rule("/cloud/public-cloud", view_func=render_public_cloud_blogs)
 
 
+# Security standards resources blogs tab
+def render_security_standards_blogs():
+    blogs = BlogViews(
+        api=BlogAPI(
+            session=session, thumbnail_width=640, thumbnail_height=340
+        ),
+        tag_ids=[
+            3829,
+            2562,
+            4063,
+            3903,
+            4468,
+            4464,
+            4392,
+            1228,
+            4417,
+            4391,
+            3830,
+            4632,
+            4633,
+            4749,
+        ],
+        per_page=4,
+        blog_title="Security standards blogs",
+    )
+    sorted_articles = sorted(
+        blogs.get_index()["articles"], key=lambda x: x["date"]
+    )
+    return flask.render_template(
+        "/security/security-standards.html", blogs=sorted_articles
+    )
+
+
+app.add_url_rule(
+    "/security/security-standards", view_func=render_security_standards_blogs
+)
+
+
 # Supermicro blog section
 def render_supermicro_blogs():
     blogs = BlogViews(
