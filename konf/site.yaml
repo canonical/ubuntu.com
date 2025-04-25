@@ -1241,12 +1241,12 @@ demo:
     - name: CANONICAL_CLA_API_URL
       value: https://cla.staging.canonical.com
 
-    nginxConfigurationSnippet: |
-      limit_req_zone $binary_remote_addr zone=marketo:50m rate=1r/s;
+  nginxConfigurationSnippet: |
+    limit_req_zone $binary_remote_addr zone=marketo:50m rate=1r/s;
 
-    nginxServerSnippet: |
-      location ^~ /marketo/submit/ {
-        limit_req zone=marketo burst=20;
-        limit_req_status 429;
-        limit_req_log_level warn;
-      }
+  nginxServerSnippet: |
+    location ^~ /marketo/submit/ {
+      limit_req zone=marketo burst=20;
+      limit_req_status 429;
+      limit_req_log_level warn;
+    }
