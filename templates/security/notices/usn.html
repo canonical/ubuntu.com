@@ -213,12 +213,15 @@
             </div>
           </div>
           <div class="p-section">
-            {% if notice.cves_and_references %}
+            {% if notice.total_cves %}
               <div class="u-fixed-width">
                 <h2 class="tab-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
               </div>
-              {% if notice.cves_and_references | length > 29 %}
+              {% if notice.total_cves > 29 %}
                 <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-form js-form">
+                  {% for key, value in request.args.items() %}
+                    {% if key == "usn" %}<input type="hidden" name="usn" value="{{ value }}">{% endif %}
+                  {% endfor %}
                   <div class="row u-equal-height">
                     <div class="col-8">
                       <div class="row">
@@ -292,14 +295,17 @@
             {% endif %}
           </div>
           <div class="p-section">
-            {% if notice.related_notices|length > 0 %}
+            {% if notice.total_notices > 0 %}
               <div class="u-fixed-width">
                 <h2 class="tab-heading"
                     id="related-notices"
                     style="scroll-margin-top: 4rem">Related notices</h2>
               </div>
-              {% if notice.related_notices | length > 30 %}
+              {% if notice.total_notices > 30 %}
                 <form action="/security/notices/{{ notice.id }}#related-notices" method="GET" class="p-form js-form">
+                  {% for key, value in request.args.items() %}
+                    {% if key == "cve" %}<input type="hidden" name="cve" value="{{ value }}">{% endif %}
+                  {% endfor %}
                   <div class="row u-equal-height">
                     <div class="col-8">
                       <div class="row">
