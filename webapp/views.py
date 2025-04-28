@@ -1257,6 +1257,9 @@ def build_vulnerabilities(security_vulnerabilities):
                 if str(item["id"]) == str(document["topic_id"]):
                     document_metadata = item
                     break
+                
+            # TEMP HACK TO DISPLAY TOPICS WHICH AREN'T INDEXED
+            document_metadata = {'name': 'Native BHI (Branch History Injection 2) (CVE-2024-2201)', 'description': 'A new variant of the previously-disclosed BHI (also known as Spectre v2) vulnerabilities was discovered to affected certain Intel CPUs. The new publication shows that attacks are possible using vectors other than eBPF, leading to information disclosure.', 'status': 'Fixed', 'published': '24/04/2024', 'display-until': '01/01/2024', 'id': '53198', 'slug': 'native-bhi', 'year': 2024}
 
             return flask.render_template(
                 "security/vulnerabilities/vulnerability-detailed.html",
