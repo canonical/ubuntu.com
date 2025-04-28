@@ -981,9 +981,11 @@ def cred_your_exams(
                     ) and not is_banned:
                         proctor_link = None
                         if is_staging:
-                            student_session = proctor_api.get_student_sessions({
+                            student_session = proctor_api.get_student_sessions(
+                                {
                                     "ext_exam_id": r["uuid"],
-                                })
+                                }
+                            )
                             if student_session is not None:
                                 student_session_array = student_session.get(
                                     "data", [{}]
