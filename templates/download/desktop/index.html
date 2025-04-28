@@ -60,9 +60,7 @@
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64&amp;lts=true"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu {{ releases.lts.short_version }} LTS amd64"
-                 >Download
-              </a>
+                 aria-label="Download Ubuntu {{ releases.lts.short_version }} LTS amd64">Download</a>
               {% if releases.lts.iso_download_size %}
                 <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
               {% endif %}
@@ -78,40 +76,38 @@
           </p>
         </div>
         <!-- Start tab container -->
-        <div class="js-tab-container">
-          <nav class="p-tabs">
-            <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
-                role="tablist"
-                data-maintain-hash="true">
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="true"
-                   id="release-notes-tab-{{ releases.lts.slug }}"
-                   href="#release-notes-{{ releases.lts.slug }}"
-                   aria-controls="release-notes-{{ releases.lts.slug }}">What's new</a>
-              </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="false"
-                   id="system-requirements-tab-{{ releases.lts.slug }}"
-                   href="#system-requirements-{{ releases.lts.slug }}"
-                   aria-controls="system-requirements-{{ releases.lts.slug }}"
-                   tabindex="-1">System requirements</a>
-              </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="false"
-                   id="how-to-install-tab-{{ releases.lts.slug }}"
-                   href="#how-to-install-{{ releases.lts.slug }}"
-                   aria-controls="how-to-install-{{ releases.lts.slug }}"
-                   tabindex="-1">How to install</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab-{{ releases.lts.slug }}"
+                 href="#release-notes-{{ releases.lts.slug }}"
+                 aria-controls="release-notes-{{ releases.lts.slug }}">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab-{{ releases.lts.slug }}"
+                 href="#system-requirements-{{ releases.lts.slug }}"
+                 aria-controls="system-requirements-{{ releases.lts.slug }}"
+                 tabindex="-1">System requirements</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="how-to-install-tab-{{ releases.lts.slug }}"
+                 href="#how-to-install-{{ releases.lts.slug }}"
+                 aria-controls="how-to-install-{{ releases.lts.slug }}"
+                 tabindex="-1">How to install</a>
+            </li>
+          </ul>
+        </nav>
         <!-- End tab container -->
         <!-- tab 1 -->
         <div id="release-notes-{{ releases.lts.slug }}"
@@ -195,7 +191,7 @@
           </p>
           <hr class="p-rule--muted" />
 
-                    <div class="row">
+          <div class="row">
             <div class="col-3">
               <p class="p-heading--5">Intel or AMD 64-bit architecture</p>
             </div>
@@ -203,9 +199,7 @@
               <a class="p-button--positive"
                  href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu 25.04 amd64"
-                 >Download
-              </a>
+                 aria-label="Download Ubuntu 25.04 amd64">Download</a>
               {% if releases.lts.iso_download_size %}
                 <span class="u-text--muted">{{ releases.lts.iso_download_size }}</span>
               {% endif %}
@@ -216,7 +210,7 @@
             </div>
           </div>
           <hr class="p-rule--muted" />
-                    <div class="row">
+          <div class="row">
             <div class="col-3">
               <p class="p-heading--5">ARM 64-bit architecture</p>
             </div>
@@ -224,9 +218,7 @@
               <a class="p-button"
                  href="https://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/ubuntu-{{ releases.latest.full_version }}-desktop-arm64.iso"
                  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });"
-                 aria-label="Download Ubuntu 25.04 arm64"
-                 >Download
-              </a>
+                 aria-label="Download Ubuntu 25.04 arm64">Download</a>
               {% if releases.latest.arm_iso_download_size %}
                 <span class="u-text--muted">{{ releases.latest.arm_iso_download_size }}</span>
               {% endif %}
@@ -241,41 +233,38 @@
           </p>
         </div>
         <!-- Start tab container -->
-        <div class="js-tab-container">
-          <nav class="p-tabs">
-
-            <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
-                role="tablist"
-                data-maintain-hash="true">
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="true"
-                   id="release-notes-tab-{{ releases.latest.slug }}"
-                   href="#release-notes-{{ releases.latest.slug }}"
-                   aria-controls="release-notes-{{ releases.latest.slug }}">What's new</a>
-              </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="false"
-                   id="system-requirements-tab-{{ releases.latest.slug }}"
-                   href="#system-requirements-{{ releases.latest.slug }}"
-                   aria-controls="system-requirements-{{ releases.latest.slug }}"
-                   tabindex="-1">System requirements</a>
-              </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                   role="tab"
-                   aria-selected="false"
-                   id="how-to-install-tab-{{ releases.latest.slug }}"
-                   href="#how-to-install-{{ releases.latest.slug }}"
-                   aria-controls="how-to-install-{{ releases.latest.slug }}"
-                   tabindex="-1">How to install</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab-{{ releases.latest.slug }}"
+                 href="#release-notes-{{ releases.latest.slug }}"
+                 aria-controls="release-notes-{{ releases.latest.slug }}">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab-{{ releases.latest.slug }}"
+                 href="#system-requirements-{{ releases.latest.slug }}"
+                 aria-controls="system-requirements-{{ releases.latest.slug }}"
+                 tabindex="-1">System requirements</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="how-to-install-tab-{{ releases.latest.slug }}"
+                 href="#how-to-install-{{ releases.latest.slug }}"
+                 aria-controls="how-to-install-{{ releases.latest.slug }}"
+                 tabindex="-1">How to install</a>
+            </li>
+          </ul>
+        </nav>
         <!-- End tab container -->
         <!-- tab 1 -->
         <div id="release-notes-{{ releases.latest.slug }}"
@@ -403,5 +392,7 @@
   {% with title_link="/blog/desktop", group_id="1479" %}
     {% include "download/shared/_latest-blogs_download.html" %}
   {% endwith %}
+
   <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  
 {% endblock content %}

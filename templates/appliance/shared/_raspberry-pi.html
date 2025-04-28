@@ -35,65 +35,63 @@
       <h2>Installation instructions</h2>
     </div>
 
-    <div class="js-tab-container">
-      {% include "appliance/shared/_appliance-os-tabs.html" %}
-      <div id="ubuntuos"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="ubuntuos-tab">
-        {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with os="Ubuntu" %}
-          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
-        {% endwith %}
-        <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_pi_imager_ubuntu.html' %}
-          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
-          {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
-          {% include 'appliance/shared/_steps_sso.html' %}
-          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
-          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
-          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
-        </ol>
-      </div>
+    {% include "appliance/shared/_appliance-os-tabs.html" %}
+    <div id="ubuntuos"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="ubuntuos-tab">
+      {% include "appliance/shared/_what_you_will_need_pi.html" %}
+      {% with os="Ubuntu" %}
+        {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+      {% endwith %}
+      <ol class="p-stepped-list--detailed">
+        {% include 'appliance/shared/_steps_pi_imager_ubuntu.html' %}
+        {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+        {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
+        {% include 'appliance/shared/_steps_sso.html' %}
+        {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
+        {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+        {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+      </ol>
+    </div>
 
-      <div id="windows"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="windows-tab">
-        {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with os="Windows" %}
-          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
-        {% endwith %}
-        <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
-          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
-          {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
-          {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
-          {% include 'appliance/shared/_steps_sso_windows.html' %}
-          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
-          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
-          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
-        </ol>
-      </div>
+    <div id="windows"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="windows-tab">
+      {% include "appliance/shared/_what_you_will_need_pi.html" %}
+      {% with os="Windows" %}
+        {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+      {% endwith %}
+      <ol class="p-stepped-list--detailed">
+        {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
+        {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+        {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
+        {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
+        {% include 'appliance/shared/_steps_sso_windows.html' %}
+        {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
+        {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+        {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+      </ol>
+    </div>
 
-      <div id="macos"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="macos-tab">
-        {% include "appliance/shared/_what_you_will_need_pi.html" %}
-        {% with os="macOS" %}
-          {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
-        {% endwith %}
-        <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_pi_imager_macos.html' %}
-          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
-          {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
-          {% include 'appliance/shared/_steps_sso.html' %}
-          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
-          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
-          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
-        </ol>
-      </div>
+    <div id="macos"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="macos-tab">
+      {% include "appliance/shared/_what_you_will_need_pi.html" %}
+      {% with os="macOS" %}
+        {% include "appliance/shared/_install_instructions_raspberry-pi.html" %}
+      {% endwith %}
+      <ol class="p-stepped-list--detailed">
+        {% include 'appliance/shared/_steps_pi_imager_macos.html' %}
+        {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+        {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
+        {% include 'appliance/shared/_steps_sso.html' %}
+        {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
+        {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+        {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+      </ol>
     </div>
   </div>
 </section>
@@ -107,5 +105,3 @@
     border: 0;
   }
 </style>
-
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>

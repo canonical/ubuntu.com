@@ -1,33 +1,30 @@
 <div class="p-section--shallow">
-  <div class="js-tab-container">
-    <nav class="p-tabs">
-      <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
-          role="tablist">
-        <li class="p-tabs__item" role="presentation">
-          <a href="#base-images"
-             class="p-tabs__link"
-             id="base-images-tab"
-             role="tab"
-             aria-controls="base-images"
-             aria-selected="true">Base images</a>
-        </li>
-        <li class="p-tabs__item" role="presentation">
-          <a href="#ready-to-use-apps"
-             class="p-tabs__link"
-             id="ready-to-use-apps-tab"
-             role="tab"
-             aria-controls="ready-to-use-apps">Ready-to-use apps</a>
-        </li>
-        <li class="p-tabs__item" role="presentation">
-          <a href="#build-your-own"
-             class="p-tabs__link"
-             id="build-your-own-tab"
-             role="tab"
-             aria-controls="build-your-own">Build your own</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <nav class="p-tabs js-tabbed-content">
+    <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a href="#base-images"
+           class="p-tabs__link"
+           id="base-images-tab"
+           role="tab"
+           aria-controls="base-images"
+           aria-selected="true">Base images</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="#ready-to-use-apps"
+           class="p-tabs__link"
+           id="ready-to-use-apps-tab"
+           role="tab"
+           aria-controls="ready-to-use-apps">Ready-to-use apps</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="#build-your-own"
+           class="p-tabs__link"
+           id="build-your-own-tab"
+           role="tab"
+           aria-controls="build-your-own">Build your own</a>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <div class="p-tabs__content"
@@ -172,3 +169,5 @@
     <a href="https://ubuntu.com/blog/how-we-used-flask-and-12-factor-charms-to-simplify-canonical-com-development">Learn more about our 12-factor charms&nbsp;&rsaquo;</a>
   </div>
 </div>
+
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>

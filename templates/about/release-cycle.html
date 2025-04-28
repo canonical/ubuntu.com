@@ -34,50 +34,48 @@
 
   <section class="p-strip u-no-padding">
     <div class="u-fixed-width">
-      <div class="js-tab-container">
-        <nav class="p-tabs">
-          <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
-              data-maintain-hash="true"
-              role="tablist">
-            <li class="p-tabs__item" role="presentation">
-              <a href="#ubuntu"
-                 class="p-tabs__link"
-                 id="ubuntu-tab"
-                 role="tab"
-                 aria-controls="ubuntu-release-cycle"
-                 aria-selected="true">Ubuntu</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#ubuntu-kernel-release-cycle"
-                 class="p-tabs__link"
-                 id="ubuntu-kernel-release-cycle-tab"
-                 role="tab"
-                 aria-controls="ubuntu-kernel-release-cycle">Ubuntu kernel</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#openstack-release-cycle"
-                 class="p-tabs__link"
-                 id="openstack-release-cycle-tab"
-                 role="tab"
-                 aria-controls="openstack-release-cycle">OpenStack</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#canonical-kubernetes-release-cycle"
-                 class="p-tabs__link"
-                 id="canonical-kubernetes-release-cycle-tab"
-                 role="tab"
-                 aria-controls="canonical-kubernetes-release-cycle">Kubernetes</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#canonical-ceph-release-cycle"
-                 class="p-tabs__link"
-                 id="canonical-ceph-release-cycle-tab"
-                 role="tab"
-                 aria-controls="canonical-ceph-release-cycle">Ceph</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <nav class="p-tabs js-tabbed-content">
+        <ul class="p-tabs__list u-no-margin--bottom"
+            data-maintain-hash="true"
+            role="tablist">
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntu"
+               class="p-tabs__link"
+               id="ubuntu-tab"
+               role="tab"
+               aria-controls="ubuntu-release-cycle"
+               aria-selected="true">Ubuntu</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntu-kernel-release-cycle"
+               class="p-tabs__link"
+               id="ubuntu-kernel-release-cycle-tab"
+               role="tab"
+               aria-controls="ubuntu-kernel-release-cycle">Ubuntu kernel</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#openstack-release-cycle"
+               class="p-tabs__link"
+               id="openstack-release-cycle-tab"
+               role="tab"
+               aria-controls="openstack-release-cycle">OpenStack</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#canonical-kubernetes-release-cycle"
+               class="p-tabs__link"
+               id="canonical-kubernetes-release-cycle-tab"
+               role="tab"
+               aria-controls="canonical-kubernetes-release-cycle">Kubernetes</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#canonical-ceph-release-cycle"
+               class="p-tabs__link"
+               id="canonical-ceph-release-cycle-tab"
+               role="tab"
+               aria-controls="canonical-ceph-release-cycle">Ceph</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </section>
 
@@ -105,7 +103,8 @@
         </p>
 
         <p>
-          Add on optional Legacy Support to Ubuntu Pro and expand security maintenance and support for an additional 2 years, resulting in 12 years of coverage overall.</p>
+          Add on optional Legacy Support to Ubuntu Pro and expand security maintenance and support for an additional 2 years, resulting in 12 years of coverage overall.
+        </p>
 
         <p>
           Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.
@@ -277,7 +276,8 @@
     <div class="p-strip is-shallow">
       <div class="u-fixed-width">
         <h2>OpenStack release cycle</h2>
-        <p>For OpenStack release cycle and supported versions refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/reference/release-cycle-and-supported-versions/">product documentation</a>.
+        <p>
+          For OpenStack release cycle and supported versions refer to the <a href="https://canonical-openstack.readthedocs-hosted.com/en/latest/reference/release-cycle-and-supported-versions/">product documentation</a>.
         </p>
       </div>
     </div>
@@ -309,14 +309,12 @@
           The optional Legacy Support add-on on top of Ubuntu Pro extends the security maintenance and support for an additional 2 years, resulting in 12 years coverage overall.
         </p>
 
-        <p>
-          The Canonical Kubernetes support lifecycle can be represented this way:
-        </p>
+        <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
 
         {% include "/about/release_cycles/k8s-lts.html" %}
 
         <p>
-For more information on previous and current releases, please see the <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/releases/">Canonical Kubernetes</a> release notes.
+          For more information on previous and current releases, please see the <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/releases/">Canonical Kubernetes</a> release notes.
         </p>
 
         <h3>Charmed Kubernetes and MicroK8s</h3>
@@ -353,7 +351,8 @@ For more information on previous and current releases, please see the <a href="h
     <div class="p-strip is-shallow">
       <div class="u-fixed-width">
         <h2>Canonical Ceph release cycle</h2>
-        <p>For the Ceph release cycle and supported versions, refer to the <a href="/ceph/docs/supported-ceph-versions">product documentation</a>.
+        <p>
+          For the Ceph release cycle and supported versions, refer to the <a href="/ceph/docs/supported-ceph-versions">product documentation</a>.
         </p>
       </div>
     </div>

@@ -57,53 +57,51 @@ meta_copydoc %}
           </p>
         </div>
         <!-- Start tab container -->
-        <div class="js-tab-container">
-          <nav class="p-tabs">
-            <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom"
-                role="tablist"
-                data-maintain-hash="true">
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                    role="tab"
-                    aria-selected="true"
-                    id="release-notes-tab"
-                    href="#release-notes"
-                    aria-controls="release-notes">What's new</a>
-              </li>
-              <li class="p-tabs__item">
-                <a class="p-tabs__link"
-                    role="tab"
-                    aria-selected="false"
-                    id="system-requirements-tab"
-                    href="#system-requirements"
-                    aria-controls="system-requirements"
-                    tabindex="-1">System requirements</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        <nav class="p-tabs js-tabbed-content">
+          <ul class="p-tabs__list u-no-margin--bottom"
+              role="tablist"
+              data-maintain-hash="true">
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="true"
+                 id="release-notes-tab"
+                 href="#release-notes"
+                 aria-controls="release-notes">What's new</a>
+            </li>
+            <li class="p-tabs__item">
+              <a class="p-tabs__link"
+                 role="tab"
+                 aria-selected="false"
+                 id="system-requirements-tab"
+                 href="#system-requirements"
+                 aria-controls="system-requirements"
+                 tabindex="-1">System requirements</a>
+            </li>
+          </ul>
+        </nav>
         <!-- End tab container -->
         <!-- tab 1 -->
         <div id="release-notes"
-              class="p-tabs__content"
-              role="tabpanel"
-              aria-labelledby="release-notes-tab">
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="release-notes-tab">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">Optimised factory installation</li>
             <li class="p-list__item is-ticked">Improvements to image builds</li>
-            <li class="p-list__item is-ticked">Enhanced GPU operations </li>
+            <li class="p-list__item is-ticked">Enhanced GPU operations</li>
             <li class="p-list__item is-ticked">Open device management</li>
           </ul>
           <hr class="p-rule is-muted" />
           <p>
-            <a href="/core/docs/uc24">Core 24 release notes&nbsp;&rsaquo;</a>          
+            <a href="/core/docs/uc24">Core 24 release notes&nbsp;&rsaquo;</a>
           </p>
         </div>
         <!-- tab 2 -->
         <div class="p-tabs__content"
-              id="system-requirements"
-              role="tabpanel"
-              aria-labelledby="system-requirements-tab">
+             id="system-requirements"
+             role="tabpanel"
+             aria-labelledby="system-requirements-tab">
           <ul class="p-list--divided">
             <li class="p-list__item is-ticked">Minimum 512 MB of RAM</li>
             <li class="p-list__item is-ticked">Minimum 1 GB of storage</li>
@@ -203,14 +201,12 @@ meta_copydoc %}
               }}
             </div>
             <div class="p-logo-section__item">
-              {{ 
-                image(
-                url="https://assets.ubuntu.com/v1/a9ebb31c-dfi-logo.png",
-                alt="DFI",
-                width="38",
-                height="128",
-                hi_def=True,
-                loading="lazy") | safe
+              {{ image(url="https://assets.ubuntu.com/v1/a9ebb31c-dfi-logo.png",
+                            alt="DFI",
+                            width="38",
+                            height="128",
+                            hi_def=True,
+                            loading="lazy") | safe
               }}
             </div>
             <div class="p-logo-section__item">
@@ -240,5 +236,7 @@ meta_copydoc %}
   {% with title_link="/blog/tag/ubuntu-core", tag_id=1626 %}
     {% include "download/shared/_latest-blogs_download.html" %}
   {% endwith %}
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}
