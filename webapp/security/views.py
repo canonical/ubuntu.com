@@ -20,6 +20,7 @@ from webapp.security.helpers import (
     get_formatted_releases,
     get_formatted_release_statuses,
     does_not_include_base_url,
+    get_friendly_pockets,
 )
 
 
@@ -39,6 +40,26 @@ def get_processed_details(notice):
     return re.sub(
         pattern, r'<a href="/security/\1">\1</a>', notice["description"]
     )
+
+
+def get_attention_banner(details):
+    """
+    Extract the "ATTENTION:" section from the details if present and return it.
+    """
+    pattern = r"(<p>ATTENTION:.*?</p>)"
+    match = re.search(pattern, details, re.DOTALL)
+
+    # Format details banner
+    details = re.sub(pattern, "", details, count=1, flags=re.DOTALL).strip()
+    details = re.sub(r"<br\s*/?>", "", details)
+    details = re.sub(r"<p\s*/?>", "", details)
+
+    if match:
+        attention_banner = match.group(1).strip()
+        attention_banner = re.sub(r"<br\s*/?>", "", attention_banner)
+        return attention_banner, details
+
+    return None, details
 
 
 def notice(notice_id):
@@ -71,6 +92,12 @@ def notice(notice_id):
                 name = package["name"]
                 if not package["is_source"]:
                     release_packages[release_version][name] = package
+
+                    pocket_label = package.get("pocket", None)
+                    pocket_info = get_friendly_pockets(pocket_label)
+                    release_packages[release_version][name][
+                        "pocket_info"
+                    ] = pocket_info
                     continue
 
                 if notice["type"] == "LSN":
@@ -104,19 +131,53 @@ def notice(notice_id):
             notice["published"]
         ).strftime("%-d %B %Y")
 
+    processed_instructions = markdown_parser(notice["instructions"])
+    (attention_banner, instructions) = get_attention_banner(
+        processed_instructions
+    )
+    if attention_banner:
+        processed_instructions = instructions
+
+    cve_query = flask.request.args.get("cve", default=None, type=str)
+    cves_and_references = notice["cves"] + notice["references"]
+    if cves_and_references:
+        if cve_query:
+            cves_and_references = [
+                cve for cve in cves_and_references if cve_query in cve["id"]
+            ]
+        cves_and_references = sorted(
+            cves_and_references,
+            key=lambda x: x["id"],
+            reverse=True,
+        )
+
+    usn_query = flask.request.args.get("usn", default=None, type=str)
+    if notice.get("related_notices"):
+        if usn_query:
+            notice["related_notices"] = [
+                usn for usn in notice["related_notices"] if usn_query in usn
+            ]
+        notice["related_notices"] = sorted(
+            notice["related_notices"],
+            key=lambda x: int(x.split("-")[1]),
+            reverse=True,
+        )
+
     notice = {
         "id": notice["id"],
         "title": notice["title"],
         "published": notice["published"],
         "summary": notice["summary"],
         "details": markdown_parser(get_processed_details(notice)),
-        "instructions": markdown_parser(notice["instructions"]),
+        "instructions": processed_instructions,
+        "attention_banner": attention_banner,
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice["releases"],
         "cves": notice["cves"],
         "references": notice["references"],
         "related_notices": notice["related_notices"],
+        "cves_and_references": cves_and_references,
     }
 
     return flask.render_template(template, notice=notice)
@@ -620,6 +681,7 @@ def cve(cve_id):
         "released": {"name": "Fixed", "icon": "success"},
     }
 
+    # TODO: Use get_friendly_names(label) from helpers.py
     friendly_pockets = {
         "esm-infra": {
             "text": (
