@@ -252,3 +252,54 @@ def does_not_include_base_url(link):
         if base_url in link:
             return False
     return True
+
+
+def get_friendly_pockets(label):
+    friendly_pockets = {
+        "esm-infra": {
+            "text": (
+                "Fix available with Ubuntu Pro and "
+                "Ubuntu Pro (Infra-only) via ESM Infra."
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-infra-legacy": {
+            "text": (
+                "Fix available with Ubuntu Pro with " "Legacy support add-on."
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-apps": {
+            "text": (
+                "Fix available with Ubuntu Pro via ESM Apps. "
+                "A fix from the community might become publicly available "
+                "in the future."
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "fips": {
+            "text": "FIPS certified package. Available with Ubuntu Pro.",
+            "label": "FIPS",
+            "href": "/security/fips",
+        },
+        "fips-updates": {
+            "text": (
+                "FIPS compliant package with security fixes. "
+                "Available with Ubuntu Pro."
+            ),
+            "label": "FIPS Updates",
+            "href": "/security/fips",
+        },
+        "ros-esm": {
+            "text": "Security updates for ROS packages available\
+             with Ubuntu Pro.",
+            "label": "ROS ESM",
+            "href": "/security/robotics/ros-esm",
+        },
+    }
+
+    if label in friendly_pockets:
+        return friendly_pockets[label]

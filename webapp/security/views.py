@@ -140,6 +140,7 @@ def notice(notice_id):
 
     cve_query = flask.request.args.get("cve", default=None, type=str)
     cves_and_references = notice["cves"] + notice["references"]
+    total_cves = len(cves_and_references)
     if cves_and_references:
         if cve_query:
             cves_and_references = [
@@ -153,6 +154,7 @@ def notice(notice_id):
 
     usn_query = flask.request.args.get("usn", default=None, type=str)
     if notice.get("related_notices"):
+        total_notices = len(notice["related_notices"])
         if usn_query:
             notice["related_notices"] = [
                 usn for usn in notice["related_notices"] if usn_query in usn
@@ -162,6 +164,10 @@ def notice(notice_id):
             key=lambda x: int(x.split("-")[1]),
             reverse=True,
         )
+
+    # pro_details = markdown_parser(get_processed_details(notice))
+    # details = notice["description"]
+    # print(markdown_parser(details))
 
     notice = {
         "id": notice["id"],
@@ -174,10 +180,10 @@ def notice(notice_id):
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice["releases"],
-        "cves": notice["cves"],
-        "references": notice["references"],
         "related_notices": notice["related_notices"],
         "cves_and_references": cves_and_references,
+        "total_cves": total_cves,
+        "total_notices": total_notices,
     }
 
     return flask.render_template(template, notice=notice)
@@ -190,7 +196,7 @@ def notices():
     offset = flask.request.args.get("offset", default=0, type=int)
     order = flask.request.args.get("order", type=str)
 
-    # call endpopint to get all releases and notices
+    # call endpoint to get all releases and notices
     all_releases = security_api.get_releases()
 
     notices_response = security_api.get_page_notices(
