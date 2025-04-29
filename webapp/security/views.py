@@ -52,11 +52,12 @@ def get_attention_banner(details):
     # Format details banner
     details = re.sub(pattern, "", details, count=1, flags=re.DOTALL).strip()
     details = re.sub(r"<br\s*/?>", "", details)
-    details = re.sub(r"<p\s*/?>", "", details)
+    details = re.sub(r"</?p\s*/?>", "", details)
 
     if match:
         attention_banner = match.group(1).strip()
         attention_banner = re.sub(r"<br\s*/?>", "", attention_banner)
+        attention_banner = re.sub(r"</?p>", "", attention_banner)
         return attention_banner, details
 
     return None, details

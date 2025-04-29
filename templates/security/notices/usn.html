@@ -34,12 +34,14 @@
               <h5 class="u-no-margin--bottom">Releases</h5>
             </div>
             <div class="col-7">
-              {% for release in notice.releases %}
-                <a href="/security/notices?release={{ release.codename }}"
-                   class="p-chip u-no-margin--bottom">
-                  <span class="p-chip__value">{{ release.version }} {{ release.support_tag }}</span>
-                </a>
-              {% endfor %}
+              <div style="display: flex; overflow-x: auto;">
+                {% for release in notice.releases %}
+                  <a href="/security/notices?release={{ release.codename }}"
+                    class="p-chip u-no-margin--bottom">
+                    <span class="p-chip__value">{{ release.version }} {% if release.support_tag == "ESM" %}LTS{% else %}{{ release.support_tag }}{% endif %}</span>
+                  </a>
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>
@@ -51,23 +53,22 @@
   <section>
     <div class="row--25-75">
       <div class="col">
-        <div class="p-side-navigation--raw-html is-sticky"
-             id="drawer"
-             style="top: 4rem">
-          <a href="#drawer"
-             class="p-side-navigation__toggle js-drawer-toggle"
-             aria-controls="drawer">Toggle table of contents</a>
-
+        <button class="p-toggle--sticky js-drawer-toggle"
+                aria-controls="drawer"
+                href="#"
+                aria-expanded="false">Open side navigation</button>
+        <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
+              id="drawer">
           <div class="p-side-navigation__overlay js-drawer-toggle"
-               aria-controls="drawer"></div>
-
-          <nav class="p-side-navigation__drawer" aria-label="Core case studies nav">
+                aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer"
+                aria-label="documentation side navigation">
             <div class="p-side-navigation__drawer-header">
-              <a href="#"
-                 class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                 aria-controls="drawer">Toggle table of contents</a>
+              <button href="#"
+                      class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer"
+                      aria-expanded="false">Close side navigation</button>
             </div>
-
             <ul>
               <li class="p-side-navigation__item">
                 <a class="highlight-link is-active" href="#packages">Packages</a>
@@ -89,15 +90,14 @@
                 </li>
               {% endif %}
             </ul>
-
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
       <div class="col">
         {% if notice.package_descriptions %}
           <div class="p-section">
             <div class="row">
-              <h2 class="tab-heading" id="packages" style="scroll-margin-top: 4rem">Packages</h2>
+              <h2 class="section-heading" id="packages" style="scroll-margin-top: 4rem">Packages</h2>
               <ul class="p-list">
                 {% for package_name, package_title in notice.package_descriptions.items() %}
                   <li class="p-list__item">
@@ -110,7 +110,7 @@
         {% endif %}
         <div class="p-section">
           <div class="row">
-            <h2 class="tab-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
+            <h2 class="section-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
             <div class="js-details-truncated">
               <p>{{ notice.details | truncate(1000) | safe }}</p>
             </div>
@@ -120,12 +120,13 @@
           </div>
           {% if notice.details | length > 1000 %}
             <hr class="p-rule--muted" />
-            <button class="p-button--link js-show-details">Show more</button>
+            <button class="p-button--link js-show-more-details">Show more</button>
+            <button class="p-button--link js-show-less-details u-hide">Show less</button>
           {% endif %}
         </div>
         <div class="p-section">
           <div class="row">
-            <h2 class="tab-heading"
+            <h2 class="section-heading"
                 id="update-instructions"
                 style="scroll-margin-top: 4rem">Update instructions</h2>
             <div class="p-notification--information">
@@ -151,8 +152,8 @@
                 </div>
               </div>
               <div class="row">
-                <div class="p-section">
-                  <table aria-label="Releases and package versions" class="cve-table">
+                <div class="p-section u-cve-table-horizontal-scroll">
+                  <table aria-label="Releases and package versions" class="cve-table u-cve-table-horizontal-scroll__table">
                     <thead>
                       <tr>
                         <th style="width: 12rem;">Ubuntu Release</th>
@@ -172,8 +173,8 @@
                               </th>
                             {% endif %}
                             <td colspan="3"
-                                {% if package_name.pocket_info %}style="overflow: visible;"{% endif %}>
-                              <a href={{ package_name['source_link'] }}>{{ package }}</a>&nbsp;&ndash;&nbsp;
+                              {% if package_name.pocket_info %}style="overflow: visible;"{% endif %}>
+                                <a href={{ package_name['source_link'] }}>{{ package }}</a>&nbsp;&ndash;&nbsp;
                               {% if package_name['version_link'] %}
                                 <a href={{ package_name['version_link'] }}>{{ package_name['version'] }}</a>
                               {% else %}
@@ -181,14 +182,15 @@
                               {% endif %}
                               {% if package_name.pocket_info %}
                                 &nbsp;
-                                <a class="p-chip p-tooltip--top-center u-no-margin--bottom"
+                                <!-- TODO: Update href after getting copy confirmation -->
+                                <div class="p-chip p-tooltip--top-center u-no-margin--bottom"
                                    href="{{ package_name.pocket_info.href }}"
                                    aria-describedby="{{ package_name.pocket }}-tooltip">
                                   <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
                                   <span class="p-tooltip__message cve-chip"
                                         role="tooltip"
                                         id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text }}</span>
-                                </a>
+                                </div>
                               {% endif %}
                             </td>
                           </tr>
@@ -215,35 +217,22 @@
           <div class="p-section">
             {% if notice.total_cves %}
               <div class="u-fixed-width">
-                <h2 class="tab-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
+                <h2 class="section-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
               </div>
               {% if notice.total_cves > 29 %}
-                <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-form js-form">
+                <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-search-box js-cve-form">
                   {% for key, value in request.args.items() %}
                     {% if key == "usn" %}<input type="hidden" name="usn" value="{{ value }}">{% endif %}
                   {% endfor %}
-                  <div class="row u-equal-height">
-                    <div class="col-8">
-                      <div class="row">
-                        <div class="col-7">
-                          <label class="p-form__label" for="cve">CVE ID contains</label>
-                          <input class="p-form__control"
-                                 type="text"
-                                 name="cve"
-                                 id="cve"
-                                 value="{{ request.args.get('cve', '') }}" />
-                        </div>
-                        <div class="col-2 u-align--right"
-                             style="display: flex;
-                                    align-items: flex-end">
-                          <button type="submit" class="p-button--positive js-submit" style="width:100%">
-                            Search
-                            {% if search %}again{% endif %}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <input type="search" 
+                         id="cve" 
+                         class="p-search-box__input" 
+                         name="cve" 
+                         placeholder="Search by CVE ID" 
+                         autocomplete="on" 
+                         value="{{ request.args.get('cve', '') }}" />
+                  <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+                  <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
               <div class="p-section--shallow">
@@ -289,7 +278,8 @@
               <div class="u-fixed-width">
                 {% if notice.cves_and_references | length > 10 %}
                   <hr class="p-rule--muted" />
-                  <button class="p-button--link js-show-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
+                  <button class="p-button--link js-show-more-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
+                  <button class="p-button--link js-show-less-references u-hide">Show less references</button>
                 {% endif %}
               </div>
             {% endif %}
@@ -297,37 +287,24 @@
           <div class="p-section">
             {% if notice.total_notices > 0 %}
               <div class="u-fixed-width">
-                <h2 class="tab-heading"
+                <h2 class="section-heading"
                     id="related-notices"
                     style="scroll-margin-top: 4rem">Related notices</h2>
               </div>
               {% if notice.total_notices > 30 %}
-                <form action="/security/notices/{{ notice.id }}#related-notices" method="GET" class="p-form js-form">
+                <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-search-box js-usn-form">
                   {% for key, value in request.args.items() %}
                     {% if key == "cve" %}<input type="hidden" name="cve" value="{{ value }}">{% endif %}
                   {% endfor %}
-                  <div class="row u-equal-height">
-                    <div class="col-8">
-                      <div class="row">
-                        <div class="col-7">
-                          <label class="p-form__label" for="usn">USN ID contains</label>
-                          <input class="p-form__control"
-                                type="text"
-                                name="usn"
-                                id="usn"
-                                value="{{ request.args.get('usn', '') }}" />
-                        </div>
-                        <div class="col-2 u-align--right"
-                            style="display: flex;
-                                    align-items: flex-end">
-                          <button type="submit" class="p-button--positive js-submit" style="width:100%">
-                            Search
-                            {% if search %}again{% endif %}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <input type="search" 
+                        id="usn" 
+                        class="p-search-box__input" 
+                        name="usn" 
+                        placeholder="Search by USN ID" 
+                        autocomplete="on" 
+                        value="{{ request.args.get('usn', '') }}" />
+                  <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+                  <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
               <div class="p-section--shallow">
@@ -357,7 +334,8 @@
               <div class="u-fixed-width">
                 {% if notice.related_notices | length > 10 %}
                   <hr class="p-rule--muted" />
-                  <button class="p-button--link js-show-notices">Show {{ notice.related_notices | length - 10 }} more references</button>
+                  <button class="p-button--link js-show-more-notices">Show {{ notice.related_notices | length - 10 }} more references</button>
+                  <button class="p-button--link js-show-less-notices u-hide">Show less references</button>
                 {% endif %}
               </div>
             {% endif %}
@@ -378,53 +356,48 @@
   </section>
 
   <script>
-    function setUpDynamicSideNav() {
-      const questions = Array.prototype.slice.call(
-        document.querySelectorAll(".tab-heading")
-      );
-
-      const navigationLinks = Array.prototype.slice.call(
-        document.querySelectorAll(".highlight-link")
-      );
-
-      questions.forEach(function(question) {
-        const observer = new IntersectionObserver(function(entry) {
-          if (entry[0].isIntersecting) {
-            const questionId = entry[0].target.id;
-            navigationLinks.forEach(function(link) {
-              if (link.getAttribute("href") === `#${questionId}`) {
-                link.classList.add("is-active");
-              } else {
-                link.classList.remove("is-active");
-              }
-            });
-          }
-        }, {
-          rootMargin: "-200px 0px -400px",
-          threshold: 0.5,
-        });
-
-        observer.observe(question);
-      });
-    };
-
-    function toggleShowMore(showSection) {
+    function toggleShowBtn(showSection) {
       const truncated = document.querySelector(`.js-${showSection}-truncated`);
       const all = document.querySelector(`.js-${showSection}-all`);
-      const showMoreButton = document.querySelector(`.js-show-${showSection}`);
+      const showMoreButton = document.querySelector(`.js-show-more-${showSection}`);
+      const showLessButton = document.querySelector(`.js-show-less-${showSection}`);
 
-      showMoreButton.addEventListener("click", function() {
+      showMoreButton?.addEventListener("click", function() {
         truncated.classList.add("u-hide");
         all.classList.remove("u-hide");
         showMoreButton.classList.add("u-hide");
+        showLessButton.classList.remove("u-hide");
+      });
+
+      showLessButton?.addEventListener("click", function() {
+        truncated.classList.remove("u-hide");
+        all.classList.add("u-hide");
+        showMoreButton.classList.remove("u-hide");
+        showLessButton.classList.add("u-hide");
+      });
+    }
+
+    function handleSearch(section) {
+      const form = document.querySelector(`.js-${section}-form`);
+      const url = new URL(window.location);
+
+      form.addEventListener("reset", (e) => {
+        e.preventDefault();
+        if (url.searchParams.has(section)) {
+          url.searchParams.delete(section);
+        }
+        window.location = url;
       });
     }
 
     (function() {
-      setUpDynamicSideNav();
-      toggleShowMore("details");
-      toggleShowMore("references");
-      toggleShowMore("notices");
+      toggleShowBtn("details");
+      toggleShowBtn("references");
+      toggleShowBtn("notices");
+
+      handleSearch("cve");
+      handleSearch("usn");
     })();
   </script>
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
 {% endblock content %}
