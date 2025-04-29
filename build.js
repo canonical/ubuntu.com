@@ -11,7 +11,6 @@ let entries = {
   main: "./static/js/src/main.js",
   "release-chart-manager": "./static/js/src/release-chart-manager.js",
   "developer-chart": "./static/js/src/developer-chart.js",
-  tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   costCalculator: "./static/js/src/openstack/react/app.jsx",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
