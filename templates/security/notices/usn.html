@@ -2,6 +2,10 @@
 
 {% block title %}{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
   {% set breadcrumbs = [{"name": "Ubuntu Security Notices", "href": "/security/notices"}, {"name": notice.id }] %}
   {% include '/partial/_breadcrumbs.html' %}
@@ -132,7 +136,7 @@
             <div class="p-notification--information">
               <div class="p-notification__content">
                 <p class="p-notification__message">
-                  {{ notice.instructions | safe }}
+                  {{ notice.instructions | safe }}<br />
                   <a href="/security/cves/about#security">Learn more about how to get the fixes.</a>
                 </p>
               </div>
@@ -162,6 +166,7 @@
                     </thead>
                     <tbody>
                       {% for version in notice.release_packages.__reversed__() %}
+                        {% set outer_loop = loop %}
                         {% for package, package_name in notice.release_packages[version].items() %}
                           <tr>
                             {% if loop.index == 1 %}
@@ -183,14 +188,14 @@
                               {% if package_name.pocket_info %}
                                 &nbsp;
                                 <!-- TODO: Update href after getting copy confirmation -->
-                                <div class="p-chip p-tooltip--top-center u-no-margin--bottom"
-                                   href="{{ package_name.pocket_info.href }}"
-                                   aria-describedby="{{ package_name.pocket }}-tooltip">
-                                  <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
-                                  <span class="p-tooltip__message cve-chip"
-                                        role="tooltip"
-                                        id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text }}</span>
-                                </div>
+                                  <div class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center "
+                                    href="{{ package_name.pocket_info.href }}"
+                                    aria-describedby="{{ package_name.pocket }}-tooltip">
+                                    <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
+                                    <span class="p-tooltip__message cve-chip"
+                                          role="tooltip"
+                                          id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text }}</span>
+                                  </div>
                               {% endif %}
                             </td>
                           </tr>
@@ -235,44 +240,42 @@
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
-              <div class="p-section--shallow">
-                <div class="row">
-                  <div class="col-8">
-                    <ul class="p-list js-references-truncated">
-                      {% set ns = namespace(counter=0) %}
-                      {% if notice.cves_and_references %}
-                        {% for reference in notice.cves_and_references %}
-                          {% if ns.counter < 10 %}
-                            {% if "CVE-" in reference.id %}
-                              <li class="p-list__item">
-                                <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
-                              </li>
-                            {% else %}
-                              <li class="p-list__item">
-                                <a href="{{ reference }}">{{ reference }}</a>
-                              </li>
-                            {% endif %}
-                            {% set ns.counter = ns.counter + 1 %}
-                          {% endif %}
-                        {% endfor %}
-                      {% endif %}
-                    </ul>
-                    <ul class="p-list js-references-all u-hide">
-                      {% if notice.cves_and_references %}
-                        {% for cve in notice.cves_and_references %}
-                          {% if "CVE-" in cve.id %}
+              <div class="row">
+                <div class="col-8">
+                  <ul class="p-list js-references-truncated">
+                    {% set ns = namespace(counter=0) %}
+                    {% if notice.cves_and_references %}
+                      {% for reference in notice.cves_and_references %}
+                        {% if ns.counter < 10 %}
+                          {% if "CVE-" in reference.id %}
                             <li class="p-list__item">
-                              <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+                              <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
                             </li>
                           {% else %}
                             <li class="p-list__item">
                               <a href="{{ reference }}">{{ reference }}</a>
                             </li>
                           {% endif %}
-                        {% endfor %}
-                      {% endif %}
-                    </ul>
-                  </div>
+                          {% set ns.counter = ns.counter + 1 %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+                  <ul class="p-list js-references-all u-hide">
+                    {% if notice.cves_and_references %}
+                      {% for cve in notice.cves_and_references %}
+                        {% if "CVE-" in cve.id %}
+                          <li class="p-list__item">
+                            <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+                          </li>
+                        {% else %}
+                          <li class="p-list__item">
+                            <a href="{{ reference }}">{{ reference }}</a>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
                 </div>
               </div>
               <div class="u-fixed-width">
@@ -307,28 +310,26 @@
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
-              <div class="p-section--shallow">
-                <div class="row">
-                  <div class="col-8">
-                    <ul class="p-list js-notices-truncated">
-                      {% set ns = namespace(counter=0) %}
-                      {% for notice in notice.related_notices %}
-                        {% if ns.counter < 10 %}
-                          <li class="p-list__item">
-                            <a href="/security/notices/{{ notice }}">{{ notice }}</a>
-                          </li>
-                          {% set ns.counter = ns.counter + 1 %}
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                    <ul class="p-list js-notices-all u-hide">
-                      {% for notice in notice.related_notices %}
+              <div class="row">
+                <div class="col-8">
+                  <ul class="p-list js-notices-truncated">
+                    {% set ns = namespace(counter=0) %}
+                    {% for notice in notice.related_notices %}
+                      {% if ns.counter < 10 %}
                         <li class="p-list__item">
                           <a href="/security/notices/{{ notice }}">{{ notice }}</a>
                         </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
+                        {% set ns.counter = ns.counter + 1 %}
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                  <ul class="p-list js-notices-all u-hide">
+                    {% for notice in notice.related_notices %}
+                      <li class="p-list__item">
+                        <a href="/security/notices/{{ notice }}">{{ notice }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </div>
               </div>
               <div class="u-fixed-width">
