@@ -325,9 +325,6 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         // clean up event listeners when the modal is closed
         if (contactModal) {
           contactModal.removeEventListener("submit", submitForm);
-          contactModal.removeEventListener("mousedown", submitForm);
-          contactModal.removeEventListener("mouseup", submitForm);
-
           contactModal.removeEventListener("mousedown", handleModalMouseDown);
           contactModal.removeEventListener("mouseup", handleModalMouseUp);
         }
