@@ -105,7 +105,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
 
     // Open the contact us modal
     function open() {
-      modalTrigger.setAttribute("aria-expanded", "true");
+      if (modalTrigger && modalTrigger !== document.body)
+        modalTrigger.setAttribute("aria-expanded", "true");
       updateHash(triggeringHash);
       dataLayer.push({
         event: "interactive-forms",
@@ -313,7 +314,8 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       function close() {
         setState(1);
         formContainer.classList.add("u-hide");
-        modalTrigger.setAttribute("aria-expanded", "false");
+        if (modalTrigger && modalTrigger !== document.body)
+          modalTrigger.setAttribute("aria-expanded", "false");
         modalTrigger.focus();
         updateHash("");
         dataLayer.push({
