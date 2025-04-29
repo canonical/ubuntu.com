@@ -34,7 +34,15 @@ function sortTasks(tasks) {
  *
  * Add bars to chart using supplied data
  */
-function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
+function addBarsToChart(
+  svg,
+  tasks,
+  taskStatus,
+  x,
+  y,
+  highlightVersion,
+  chartSelector,
+) {
   svg
     .selectAll(".chart")
     .data(tasks, function (d) {
@@ -62,7 +70,8 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
         d.status === "MAIN_UNIVERSE" ||
         d.status === "PRO_SUPPORT" ||
         (d.status === "PRO_LEGACY_SUPPORT" &&
-          d.taskName !== "14.04 LTS (Trusty Tahr)")
+          d.taskName !== "14.04 LTS (Trusty Tahr)" &&
+          chartSelector !== "#kernel-eol")
       ) {
         return (
           "translate(" +
@@ -77,7 +86,8 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     .attr("height", function (d) {
       if (
         d.status === "PRO_LEGACY_SUPPORT" &&
-        d.taskName !== "14.04 LTS (Trusty Tahr)"
+        d.taskName !== "14.04 LTS (Trusty Tahr)" &&
+        chartSelector !== "#kernel-eol"
       ) {
         return y.bandwidth() * 2;
       }
@@ -518,7 +528,7 @@ export function createReleaseChartOld(
   addYAxis(svg, yAxis, taskVersions);
   addYAxisVerticalLines(svg, width);
 
-  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion, chartSelector);
   addTooltipToBars(svg);
 
   emboldenLTSLabels(svg, y);
