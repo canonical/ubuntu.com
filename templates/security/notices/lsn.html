@@ -29,21 +29,21 @@
               <p class="u-no-margin--bottom">{{ notice.summary | safe }}</p>
             </div>
           </div>
-          {% if notice.releases %}
-            <div class="row">
-              <div class="col-2">
-                <h5 class="u-no-margin--bottom">Releases</h5>
-              </div>
-              <div class="col-7">
+          <div class="row">
+            <div class="col-2">
+              <h5 class="u-no-margin--bottom">Releases</h5>
+            </div>
+            <div class="col-7">
+              <div style="display: flex; overflow-x: auto;">
                 {% for release in notice.releases %}
                   <a href="/security/notices?release={{ release.codename }}"
                     class="p-chip u-no-margin--bottom">
-                    <span class="p-chip__value">{{ release.version }} {{ release.support_tag }}</span>
+                    <span class="p-chip__value">{{ release.version }} {% if release.support_tag == "ESM" %}LTS{% else %}{{ release.support_tag }}{% endif %}</span>
                   </a>
                 {% endfor %}
               </div>
             </div>
-          {% endif %}
+          </div>
         </div>
         <hr class="p-rule--muted" />
       </div>
@@ -53,29 +53,26 @@
   <section>
     <div class="row--25-75">
       <div class="col">
-        <div class="p-side-navigation--raw-html is-sticky"
-             id="drawer"
-             style="top: 4rem">
-          <a href="#drawer"
-             class="p-side-navigation__toggle js-drawer-toggle"
-             aria-controls="drawer">Toggle table of contents</a>
-
+        <button class="p-toggle--sticky js-drawer-toggle"
+                aria-controls="drawer"
+                href="#"
+                aria-expanded="false">Open side navigation</button>
+        <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
+              id="drawer">
           <div class="p-side-navigation__overlay js-drawer-toggle"
-               aria-controls="drawer"></div>
-
-          <nav class="p-side-navigation__drawer" aria-label="Core case studies nav">
+                aria-controls="drawer"></div>
+          <div class="p-side-navigation__drawer"
+                aria-label="documentation side navigation">
             <div class="p-side-navigation__drawer-header">
-              <a href="#"
-                 class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
-                 aria-controls="drawer">Toggle table of contents</a>
+              <button href="#"
+                      class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+                      aria-controls="drawer"
+                      aria-expanded="false">Close side navigation</button>
             </div>
-
             <ul>
-              {% if notice.package_descriptions %}
-                <li class="p-side-navigation__item">
-                  <a class="highlight-link is-active" href="#description">Software description</a>
-                </li>
-              {% endif %}
+              <li class="p-side-navigation__item">
+                <a class="highlight-link is-active" href="#description">Software description</a>
+              </li>
               <li class="p-side-navigation__item">
                 <a class="highlight-link" href="#details">Details</a>
               </li>
@@ -88,23 +85,42 @@
                 </li>
               {% endif %}
             </ul>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
 
       <div class="col">
         {% if notice.package_descriptions %}
           <div class="p-section">
             <div class="row">
-              <h2 class="tab-heading" id="description" style="scroll-margin-top: 4rem">Software description</h2>
+              <h2 class="section-heading" id="description" style="scroll-margin-top: 4rem">Software description</h2>
               <div class="col-7">
-                <ul class="p-list">
+                <ul class="p-list js-description-truncated">
+                  {% set ns = namespace(counter=0) %}
                   {% for package_name, package_title in notice.package_descriptions.items() %}
+                    {% set list_length = package_name | length + package_title | length %}
+                    {% set ns.counter = ns.counter + list_length %}
+                    {% if ns.counter < 1000 %}
+                      <li class="p-list__item has-bullet">
+                        <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
+                      </li>
+                    {% else %}
+                      {% set ns.showmore=True %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+                <ul class="p-list js-description-all u-hide">
+                  {% for package_name, package_title in notice.package_descriptions.items() %}                    
                     <li class="p-list__item has-bullet">
-                      <strong>{{ package_name }}</strong> - {{ package_title }}
+                      <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
                     </li>
                   {% endfor %}
                 </ul>
+                {% if ns.showmore %}
+                  <hr class="p-rule--muted" />
+                  <button class="p-button--link js-show-more-description">Show more</button>
+                  <button class="p-button--link js-show-less-description u-hide">Show less</button>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -112,7 +128,7 @@
 
         <div class="p-section">
           <div class="row">
-            <h2 class="tab-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
+            <h2 class="section-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
             <div class="js-details-truncated">
               <p>{{ notice.details | truncate(1000) | safe }}</p>
             </div>
@@ -122,13 +138,14 @@
           </div>
           {% if notice.details | length > 1000 %}
             <hr class="p-rule--muted" />
-            <button class="p-button--link js-show-details">Show more</button>
+            <button class="p-button--link js-show-more-details">Show more</button>
+            <button class="p-button--link js-show-less-details u-hide">Show less</button>
           {% endif %}
         </div>
 
         <div class="p-section">
           <div class="row">
-            <h2 class="tab-heading" id="update-status" style="scroll-margin-top: 4rem">Checking update status</h2>
+            <h2 class="section-heading" id="update-status" style="scroll-margin-top: 4rem">Checking update status</h2>
             <div class="p-notification--information">
               <div class="p-notification__content">
                 <p class="p-notification__message">
@@ -167,7 +184,7 @@
 
         {% if notice.cves_and_references %}
           <div class="u-fixed-width">
-            <h2 class="tab-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
+            <h2 class="section-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
           </div>
           {% if notice.cves_and_references | length > 29 %}
             <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-form js-form">
@@ -238,7 +255,8 @@
           <div class="u-fixed-width">
             {% if notice.cves_and_references | length > 10 %}
               <hr class="p-rule--muted" />
-              <button class="p-button--link js-show-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
+              <button class="p-button--link js-show-more-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
+              <button class="p-button--link js-show-less-references u-hide">Show less references</button>
             {% endif %}
           </div>
         {% endif %}
@@ -283,53 +301,48 @@
   {% endif %}
 </section>
 
-<script>
-    function setUpDynamicSideNav() {
-      const questions = Array.prototype.slice.call(
-        document.querySelectorAll(".tab-heading")
-      );
-
-      const navigationLinks = Array.prototype.slice.call(
-        document.querySelectorAll(".highlight-link")
-      );
-
-      questions.forEach(function(question) {
-        const observer = new IntersectionObserver(function(entry) {
-          if (entry[0].isIntersecting) {
-            const questionId = entry[0].target.id;
-            navigationLinks.forEach(function(link) {
-              if (link.getAttribute("href") === `#${questionId}`) {
-                link.classList.add("is-active");
-              } else {
-                link.classList.remove("is-active");
-              }
-            });
-          }
-        }, {
-          rootMargin: "-200px 0px -400px",
-          threshold: 0.5,
-        });
-
-        observer.observe(question);
-      });
-    };
-
-    function toggleShowMore(showSection) {
+  <script>    
+    function toggleShowBtn(showSection) {
       const truncated = document.querySelector(`.js-${showSection}-truncated`);
       const all = document.querySelector(`.js-${showSection}-all`);
-      const showMoreButton = document.querySelector(`.js-show-${showSection}`);
+      const showMoreButton = document.querySelector(`.js-show-more-${showSection}`);
+      const showLessButton = document.querySelector(`.js-show-less-${showSection}`);
 
-      showMoreButton.addEventListener("click", function() {
+      showMoreButton?.addEventListener("click", function() {
         truncated.classList.add("u-hide");
         all.classList.remove("u-hide");
         showMoreButton.classList.add("u-hide");
+        showLessButton.classList.remove("u-hide");
+      });
+
+      showLessButton?.addEventListener("click", function() {
+        truncated.classList.remove("u-hide");
+        all.classList.add("u-hide");
+        showMoreButton.classList.remove("u-hide");
+        showLessButton.classList.add("u-hide");
+      });
+    }
+
+    function handleSearch(section) {
+      const form = document.querySelector(`.js-${section}-form`);
+      const url = new URL(window.location);
+
+      form?.addEventListener("reset", (e) => {
+        e.preventDefault();
+        if (url.searchParams.has(section)) {
+          url.searchParams.delete(section);
+        }
+        window.location = url;
       });
     }
 
     (function() {
-      setUpDynamicSideNav();
-      toggleShowMore("details");
+      toggleShowBtn("description");
+      toggleShowBtn("details");
+      handleSearch("cve");
     })();
   </script>
+
+  <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
 
 {% endblock %}
