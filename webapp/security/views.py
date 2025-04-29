@@ -37,9 +37,22 @@ def get_processed_details(notice):
         r"(?<![a-zA-Z0-9-_/])((cve|CVE-)\d{4}-\d{4,7})(?!\.html)", re.MULTILINE
     )
 
-    return re.sub(
-        pattern, r'<a href="/security/\1">\1</a>', notice["description"]
+    details = markdown_parser(
+        re.sub(
+            pattern, r'<a href="/security/\1">\1</a>', notice["description"]
+        )
     )
+
+    # Remove redundant list of CVEs
+    all_items = re.findall(r"<li>(.*?)</li>", details, re.DOTALL)
+    if all_items:
+        last_item = all_items[-1]
+        if last_item:
+            cve_pattern = re.compile(r"\(.*?\)", re.DOTALL)
+            cleaned_last_item = re.sub(cve_pattern, "", last_item)
+            details = details.replace(last_item, cleaned_last_item)
+
+    return details
 
 
 def get_attention_banner(details):
@@ -166,16 +179,14 @@ def notice(notice_id):
             reverse=True,
         )
 
-    # pro_details = markdown_parser(get_processed_details(notice))
-    # details = notice["description"]
-    # print(markdown_parser(details))
+    processed_details = get_processed_details(notice)
 
     notice = {
         "id": notice["id"],
         "title": notice["title"],
         "published": notice["published"],
         "summary": notice["summary"],
-        "details": markdown_parser(get_processed_details(notice)),
+        "details": processed_details,
         "instructions": processed_instructions,
         "attention_banner": attention_banner,
         "package_descriptions": package_descriptions,
