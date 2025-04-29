@@ -583,6 +583,14 @@ $meganav-height: 3rem;
       .p-navigation__dropdown--right {
         top: 2rem;
       }
+
+      .p-navigation__link--search-toggle {
+        &::after {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
 
     & ~ .global-nav-dropdown {
