@@ -76,14 +76,17 @@
           </div>
         </div>
         <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
-          {{ image(url="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg",
-                    alt="",
-                    width="197",
-                    height="150",
-                    hi_def=True,
-                    loading="auto",
-                    attrs={"id": "takeover-image"}) | safe
-          }}
+          <picture>
+            <source srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" media="(max-width: 1036px)"> 
+            {{ image(url="https://assets.ubuntu.com/v1/33b5133c-Noble-Numbat-optimised.svg",
+                      alt="",
+                      width="197",
+                      height="150",
+                      hi_def=True,
+                      loading="auto",
+                      attrs={"id": "takeover-image"}) | safe
+            }}
+          </picture>
         </div>
       </div>
     </section>
@@ -208,7 +211,7 @@
                         width="600",
                         height="900",
                         hi_def=True,
-                        loading="auto") | safe
+                        loading="lazy") | safe
             }}
           </div>
         </div>
