@@ -14,6 +14,7 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
     const formContainer = document.getElementById("contact-form-container");
     const contactButtons = document.querySelectorAll(".js-invoke-modal");
     let returnData = window.location.pathname + "#success";
+    let modalTrigger = document.activeElement || document.body;
     const modalAlreadyExists = document.querySelector(".js-modal-ready");
     // If the modal contains the class "js-modal-ready", it means we are using the form generator
     // And each form will have a unique ID
@@ -231,9 +232,10 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
       const otherContainers = document.querySelectorAll(".js-other-container");
       const phoneNumberInput = document.querySelector("#phone");
       const countryInput = document.querySelector("#country");
-      const modalTrigger = document.activeElement || document.body;
+      modalTrigger = document.activeElement || document.body;
       const isMultipage =
         contactModal.querySelector(".js-pagination")?.length > 1;
+      let isClickStartedInside = false;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -242,39 +244,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
         }
       };
 
-      contactModal.addEventListener("submit", function (e) {
-        addLoadingSpinner();
-        setDataLayerConsentInfo();
-        if (!isMultipage) {
-          comment.value = createMessage(true);
-        }
-      });
+      contactModal.addEventListener("submit", submitForm);
 
       if (closeModal) {
-        closeModal.addEventListener("click", function (e) {
-          e.preventDefault();
-          close();
-        });
+        closeModal.addEventListener("click", hideModal);
       }
 
       if (closeModalButton) {
-        closeModalButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          close();
-        });
+        closeModalButton.addEventListener("click", hideModal);
       }
 
       if (contactModal) {
-        let isClickStartedInside = false;
-        contactModal.addEventListener("mousedown", function (e) {
-          isClickStartedInside = e.target.id !== contactModalSelector;
-        });
-        contactModal.addEventListener("mouseup", function (e) {
-          if (!isClickStartedInside && e.target.id === contactModalSelector) {
-            e.preventDefault();
-            close();
-          }
-        });
+        contactModal.addEventListener("mousedown", handleModalMouseDown);
+        contactModal.addEventListener("mouseup", handleModalMouseUp);
       }
 
       modalPaginationButtons.forEach(function (modalPaginationButton) {
@@ -337,6 +319,19 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           action: "close",
           path: window.location.pathname,
         });
+
+        // clean up event listeners when the modal is closed
+        if (contactModal) {
+          contactModal.removeEventListener("submit", submitForm);
+          contactModal.removeEventListener("mousedown", submitForm);
+          contactModal.removeEventListener("mouseup", submitForm);
+
+          contactModal.removeEventListener("mousedown", handleModalMouseDown);
+          contactModal.removeEventListener("mouseup", handleModalMouseUp);
+        }
+        if (closeModal) closeModal.removeEventListener("click", hideModal);
+        if (closeModalButton)
+          closeModalButton.removeEventListener("click", hideModal);
       }
 
       // Update the content of the modal based on the current index
@@ -621,11 +616,35 @@ import { prepareInputFields } from "./prepare-form-inputs.js";
           field.value = lastName;
         });
       }
+
+      function submitForm(e) {
+        addLoadingSpinner();
+        setDataLayerConsentInfo();
+        if (!isMultipage) {
+          comment.value = createMessage(true);
+        }
+      }
+
+      function hideModal(e) {
+        e.preventDefault();
+        close();
+      }
+
+      function handleModalMouseDown(e) {
+        isClickStartedInside = e.target.id !== contactModalSelector;
+      }
+
+      function handleModalMouseUp(e) {
+        if (!isClickStartedInside && e.target.id === contactModalSelector) {
+          e.preventDefault();
+          close();
+        }
+      }
     }
 
     // Sets the focus inside the modal and trap it
     function setFocus() {
-      const modalTrigger = document.activeElement || document.body;
+      modalTrigger = document.activeElement || document.body;
       const modal = document.querySelector(".p-modal");
       const firstFocusableEle = modal.querySelector(
         "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
