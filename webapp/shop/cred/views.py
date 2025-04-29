@@ -17,6 +17,10 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
+from webapp.shop.cred.constants import (
+    TAEXAM_PROC_EXAM_MAPPING,
+    TAEXAM_PROC_STATE,
+)
 from webapp.shop.decorators import (
     credentials_group,
     credentials_admin,
@@ -429,18 +433,11 @@ def check_cred_exam_start_time(
 
 
 def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
-    mappings = {
-        "cue-01-linux": 2,
-        "cue-02-desktop": 3,
-    }
-    return mappings.get(ta_exam)
+    return TAEXAM_PROC_EXAM_MAPPING.get(ta_exam)
 
 
 def is_proctoring_enabled(ta_exam: str) -> int | None:
-    mappings = {
-        "cue-01-linux": True,
-    }
-    return mappings.get(ta_exam, False)
+    return TAEXAM_PROC_STATE.get(ta_exam, False)
 
 
 @shop_decorator(area="cred", permission="user", response="html")
