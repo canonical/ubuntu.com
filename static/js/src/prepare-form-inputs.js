@@ -1,5 +1,7 @@
 import intlTelInput from "intl-tel-input";
 
+let iti;
+
 /**
  * Initializes phone input field with intlTelInput and pre-fills the country input based on the user's timezone.
  *
@@ -41,7 +43,7 @@ function preFormatCountry(countryCode, countryInput) {
  * @param {HTMLElement} phoneInput - The input element for the phone number.
  */
 export function setupIntlTelInput(countryCode, phoneInput) {
-  intlTelInput(phoneInput, {
+  iti = intlTelInput(phoneInput, {
     utilsScript: "/static/js/dist/utils.js",
     separateDialCode: true,
     hiddenInput: (phoneInputName) => ({
@@ -116,6 +118,7 @@ function validateInput(phoneInput, errorElement) {
  * @returns {boolean} - True if the number is valid, otherwise false.
  */
 function isValidNumber(number) {
+  if (iti) return iti.isValidNumber();
   const pattern = /^(?=[^a-zA-Z]*$)[0-9\s.\-()/,]{4,25}$/;
   return pattern.test(number);
 }
