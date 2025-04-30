@@ -17,6 +17,10 @@ from webapp.shop.api.datastore import (
     handle_confidentiality_agreement_submission,
     has_filed_confidentiality_agreement,
 )
+from webapp.shop.cred.constants import (
+    TAEXAM_PROC_EXAM_MAPPING,
+    TAEXAM_PROC_STATE,
+)
 from webapp.shop.decorators import (
     credentials_group,
     credentials_admin,
@@ -429,10 +433,11 @@ def check_cred_exam_start_time(
 
 
 def get_taexam_to_procexam_mapping(ta_exam: str) -> int | None:
-    mappings = {
-        "cue-01-linux": 2,
-    }
-    return mappings.get(ta_exam, None)
+    return TAEXAM_PROC_EXAM_MAPPING.get(ta_exam)
+
+
+def is_proctoring_enabled(ta_exam: str) -> int | None:
+    return TAEXAM_PROC_STATE.get(ta_exam, False)
 
 
 @shop_decorator(area="cred", permission="user", response="html")
@@ -518,6 +523,7 @@ def cred_schedule(
                 exam_type="cue-01-linux",
             )
         template_data["ta_exam"] = data["ta_exam"]
+        ta_exam_name = EXAM_NAMES[data["ta_exam"]]
 
         if error_start_time is not None:
             return flask.render_template(
@@ -582,7 +588,7 @@ def cred_schedule(
                         error=error,
                         time_delay=time_delay,
                     )
-                if is_staging:
+                if is_staging and is_proctoring_enabled(data["ta_exam"]):
                     student = proctor_api.get_student(user["email"])
                     student_sessions = proctor_api.get_student_sessions(
                         {
@@ -628,7 +634,7 @@ def cred_schedule(
                         )
 
                 exam = {
-                    "name": "CUE.01 Linux",
+                    "name": ta_exam_name,
                     "date": starts_at.strftime("%d %b %Y"),
                     "time": starts_at.strftime("%I:%M %p ") + timezone,
                     "uuid": assessment_reservation_uuid,
@@ -682,7 +688,7 @@ def cred_schedule(
                         time_delay=time_delay,
                     )
                 uuid = ""
-                if is_staging:
+                if is_staging and is_proctoring_enabled(data["ta_exam"]):
                     uuid = response.get("reservation", {}).get("IDs", [])[-1]
                     student_session_data = {
                         "first_name": first_name,
@@ -701,7 +707,7 @@ def cred_schedule(
                     proctor_api.create_student_session(student_session_data)
 
                 exam = {
-                    "name": "CUE.01 Linux",
+                    "name": ta_exam_name,
                     "date": starts_at.strftime("%d %b %Y"),
                     "time": starts_at.strftime("%I:%M %p ") + timezone,
                     "uuid": uuid,
@@ -760,7 +766,7 @@ def cred_schedule(
     ta_exam = flask.request.args.get("ta_exam", "")
     if get_taexam_to_procexam_mapping(ta_exam) is None:
         ta_exam = "cue-01-linux"
-
+    ta_exam_name = EXAM_NAMES[ta_exam]
     return flask.render_template(
         "credentials/schedule.html",
         uuid=assessment_reservation_uuid,
@@ -777,6 +783,7 @@ def cred_schedule(
         cred_maintenance_start=cred_maintenance_start,
         cred_maintenance_end=cred_maintenance_end,
         ta_exam=ta_exam,
+        ta_exam_name=ta_exam_name,
     )
 
 
