@@ -160,7 +160,6 @@ def _parse_query_params(all_releases, all_vendors):
 
 def certified_platform_details(platform_id):
     platform = api.certified_platform_details(platform_id)
-        
 
     # Get the set of all releases available for this platform
     releases = set(
