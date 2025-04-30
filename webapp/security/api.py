@@ -153,10 +153,6 @@ class SecurityAPI:
 
         query_string = urlencode(filtered_parameters, doseq=True)
 
-        import pdb
-
-        pdb.set_trace()
-
         try:
             cves_response = self._get(f"cves.json?{query_string}")
         except HTTPError as error:
