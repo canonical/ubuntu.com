@@ -40,8 +40,8 @@
   </section>
 
   <div class="p-section--deep u-fixed-width">
-    <nav class="p-tabs js-tab-container">
-      <ul class="p-tabs__list js-tabbed-content"
+    <nav class="p-tabs js-tabbed-content">
+      <ul class="p-tabs__list"
           role="tablist"
           aria-label="Kubernetes resources"
           data-maintain-hash="true">
@@ -819,5 +819,7 @@
   </div>
 
   {{ load_form("/kubernetes") | safe }}
+
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock %}

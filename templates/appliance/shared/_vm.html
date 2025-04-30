@@ -15,52 +15,48 @@
       <h2>Installation instructions</h2>
     </div>
 
-    <div class="js-tab-container">
-      {% include "appliance/shared/_appliance-os-tabs.html" %}
+    {% include "appliance/shared/_appliance-os-tabs.html" %}
 
-      <div id="ubuntuos"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="ubuntuos-tab">
-        {% include "appliance/shared/_install_instructions_vm_ubuntu.html" %}
-        {% include "appliance/shared/_steps_vm_intro.html" %}
-        <ol class="p-stepped-list--detailed">
-          {% include "appliance/shared/_steps_multipass_ubuntu.html" %}
-          {% include "appliance/shared/_steps-multipass-launch.html" %}
-          {% include "appliance/shared/_steps-multipass-find-ip-ubuntu.html" %}
-          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
-        </ol>
-      </div>
+    <div id="ubuntuos"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="ubuntuos-tab">
+      {% include "appliance/shared/_install_instructions_vm_ubuntu.html" %}
+      {% include "appliance/shared/_steps_vm_intro.html" %}
+      <ol class="p-stepped-list--detailed">
+        {% include "appliance/shared/_steps_multipass_ubuntu.html" %}
+        {% include "appliance/shared/_steps-multipass-launch.html" %}
+        {% include "appliance/shared/_steps-multipass-find-ip-ubuntu.html" %}
+        {% include 'appliance/shared/_steps_vm_thats-it.html' %}
+      </ol>
+    </div>
 
-      <div id="windows"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="windows-tab">
-        {% include "appliance/shared/_install_instructions_vm_windows.html" %}
-        {% include "appliance/shared/_steps_vm_intro.html" %}
-        <ol class="p-stepped-list--detailed">
-          {% include "appliance/shared/_steps_multipass_windows.html" %}
-          {% include "appliance/shared/_steps-multipass-launch.html" %}
-          {% include "appliance/shared/_steps-multipass-find-ip-windows.html" %}
-          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
-        </ol>
-      </div>
+    <div id="windows"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="windows-tab">
+      {% include "appliance/shared/_install_instructions_vm_windows.html" %}
+      {% include "appliance/shared/_steps_vm_intro.html" %}
+      <ol class="p-stepped-list--detailed">
+        {% include "appliance/shared/_steps_multipass_windows.html" %}
+        {% include "appliance/shared/_steps-multipass-launch.html" %}
+        {% include "appliance/shared/_steps-multipass-find-ip-windows.html" %}
+        {% include 'appliance/shared/_steps_vm_thats-it.html' %}
+      </ol>
+    </div>
 
-      <div id="macos"
-           class="p-tabs__content"
-           role="tabpanel"
-           aria-labelledby="macos-tab">
-        {% include "appliance/shared/_install_instructions_vm_macos.html" %}
-        {% include "appliance/shared/_steps_vm_intro.html" %}
-        <ol class="p-stepped-list--detailed">
-          {% include "appliance/shared/_steps_multipass_macos.html" %}
-          {% include "appliance/shared/_steps-multipass-launch.html" %}
-          {% include "appliance/shared/_steps-multipass-find-ip-macos.html" %}
-          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
-        </ol>
-      </div>
+    <div id="macos"
+         class="p-tabs__content"
+         role="tabpanel"
+         aria-labelledby="macos-tab">
+      {% include "appliance/shared/_install_instructions_vm_macos.html" %}
+      {% include "appliance/shared/_steps_vm_intro.html" %}
+      <ol class="p-stepped-list--detailed">
+        {% include "appliance/shared/_steps_multipass_macos.html" %}
+        {% include "appliance/shared/_steps-multipass-launch.html" %}
+        {% include "appliance/shared/_steps-multipass-find-ip-macos.html" %}
+        {% include 'appliance/shared/_steps_vm_thats-it.html' %}
+      </ol>
     </div>
   </div>
 </section>
-
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>

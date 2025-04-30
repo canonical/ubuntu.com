@@ -22,8 +22,7 @@
     <div class="col-8">
       <h2>Installation</h2>
 
-      <div class="js-tab-container">
-        <nav class="p-tabs">
+        <nav class="p-tabs js-tabbed-content">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
               <a href="#installation-22-04" class="p-tabs__link" id="installation-22-04-tab" role="tab" aria-controls="installation-22-04" aria-selected="true">22.04 LTS</a>
@@ -113,6 +112,6 @@
 
 {% include "shared/_kernel-support-schedule.html" %}
 
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock %}

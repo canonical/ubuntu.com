@@ -39,73 +39,69 @@
       <h2>Installation instructions</h2>
     </div>
 
-    <div class="js-tab-container">
-      {% include "appliance/shared/_appliance-os-tabs.html" %}
+    {% include "appliance/shared/_appliance-os-tabs.html" %}
 
-      <section id="ubuntuos"
-               class="p-tabs__content"
-               role="tabpanel"
-               aria-labelledby="ubuntuos-tab">
-        {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
-        {% include 'appliance/shared/_how-to-install.html' %}
-        <div class="u-fixed-width">
-          <ol class="p-stepped-list--detailed">
-            {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
-            {% with command='cat' %}
-              {% include 'appliance/shared/_steps_sso.html' %}
-            {% endwith %}
-            {% with os='ubuntu' %}
-              {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
-            {% endwith %}
-            {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
-            {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
-            {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
-          </ol>
-        </div>
-      </section>
-
-      <section id="windows"
-               class="p-tabs__content"
-               role="tabpanel"
-               aria-labelledby="windows-tab">
-        {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
-        {% include 'appliance/shared/_how-to-install.html' %}
-        <div class="u-fixed-width">
-          <ol class="p-stepped-list--detailed">
-            {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
-            {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
-            {% include 'appliance/shared/_steps_sso_windows.html' %}
-            {% with os='windows' %}
-              {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
-            {% endwith %}
-            {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
-            {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
-            {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
-          </ol>
-        </div>
-      </section>
-
-      <section id="macos"
-               class="p-tabs__content"
-               role="tabpanel"
-               aria-labelledby="macos-tab">
-        {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
-        {% include 'appliance/shared/_how-to-install.html' %}
-        <div class="u-fixed-width">
-          <ol class="p-stepped-list--detailed">
-            {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
+    <section id="ubuntuos"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="ubuntuos-tab">
+      {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
+      {% include 'appliance/shared/_how-to-install.html' %}
+      <div class="u-fixed-width">
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
+          {% with command='cat' %}
             {% include 'appliance/shared/_steps_sso.html' %}
-            {% with os='macos' %}
-              {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
-            {% endwith %}
-            {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
-            {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
-            {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
-          </ol>
-        </div>
-      </section>
-    </div>
+          {% endwith %}
+          {% with os='ubuntu' %}
+            {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
+          {% endwith %}
+          {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
+          {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
+          {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
+        </ol>
+      </div>
+    </section>
+
+    <section id="windows"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="windows-tab">
+      {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
+      {% include 'appliance/shared/_how-to-install.html' %}
+      <div class="u-fixed-width">
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
+          {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
+          {% include 'appliance/shared/_steps_sso_windows.html' %}
+          {% with os='windows' %}
+            {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
+          {% endwith %}
+          {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
+          {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
+          {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
+        </ol>
+      </div>
+    </section>
+
+    <section id="macos"
+             class="p-tabs__content"
+             role="tabpanel"
+             aria-labelledby="macos-tab">
+      {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
+      {% include 'appliance/shared/_how-to-install.html' %}
+      <div class="u-fixed-width">
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
+          {% include 'appliance/shared/_steps_sso.html' %}
+          {% with os='macos' %}
+            {% include 'appliance/shared/_steps_nuc_flash_usb.html' %}
+          {% endwith %}
+          {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
+          {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
+          {% include 'appliance/shared/_steps_nuc_thats-it.html' %}
+        </ol>
+      </div>
+    </section>
   </div>
 </section>
-
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
