@@ -97,8 +97,8 @@ def show_template(filename):
 def download_server_steps():
     templates = {
         "server": "download/server/manual.html",
-        "multipass": "download/server/multipass.html",
-        "choose": "download/server/choose.html",
+        "multipass": "download/server/_multipass.html",
+        "choose": "download/server/_choose.html",
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
