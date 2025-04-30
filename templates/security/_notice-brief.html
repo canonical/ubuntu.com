@@ -26,8 +26,10 @@
             <a href="/security/{{ cve_id }}">{{ cve_id }}</a>{% if loop.index < notice.cves_ids|length or (notice.cves_ids|length > 3 and loop.index == 3) %}, {% endif %}
           {% endif %}
           {% if loop.index == 3 %}
+          <span class="u-text--muted">
             {% if notice.cves_ids|length - 3 == 1 %}&plus; {{ notice.cves_ids|length - 3 }} other{% endif %}
             {% if notice.cves_ids|length - 3 > 1 %}&plus; {{ notice.cves_ids|length - 3 }} others{% endif %}
+          </span>
           {% endif %}
         {% endfor %}
       </p>      

@@ -164,7 +164,7 @@ def notice(notice_id):
 
 def notices():
     details = flask.request.args.get("details", type=str)
-    releases = flask.request.args.getlist("release", type=list)
+    releases = flask.request.args.getlist("release", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     order = flask.request.args.get("order", type=str)
@@ -175,13 +175,10 @@ def notices():
     formatted_releases = get_formatted_releases(security_api, releases)
 
     all_releases = formatted_releases["all_releases"]
-    selected_releases = formatted_releases["selected_releases"]
     lts_releases = formatted_releases["lts_releases"]
     esm_releases = formatted_releases["esm_releases"]
-    interim_releases = formatted_releases["interim_releases"]
     maintained_releases = formatted_releases["maintained_releases"]
     unmaintained_releases = formatted_releases["unmaintained_releases"]
-    lts_and_esm_releases = formatted_releases["lts_and_esm_releases"]
 
     notices_response = security_api.get_page_notices(
         limit=limit,
@@ -274,7 +271,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset="", details="", release="", order=""
+        limit=10, offset="", details="", releases="", order=""
     ).get("notices")
 
     for notice in notices:

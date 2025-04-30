@@ -17,7 +17,7 @@ class SecurityAPI:
     def __init__(
         self,
         session: Session,
-        base_url=SECURITY_API_URL,
+        base_url="https://staging.ubuntu.com/security/",
     ):
         self.session = session
         self.base_url = base_url
@@ -110,7 +110,7 @@ class SecurityAPI:
         # Remove falsey items from dictionary
         parameters = {k: v for k, v in parameters.items() if v}
 
-        filtered_parameters = urlencode(parameters)
+        filtered_parameters = urlencode(parameters, doseq=True)
 
         try:
             notices_response = self._get(
@@ -152,6 +152,10 @@ class SecurityAPI:
                 filtered_parameters[key] = value
 
         query_string = urlencode(filtered_parameters, doseq=True)
+
+        import pdb
+
+        pdb.set_trace()
 
         try:
             cves_response = self._get(f"cves.json?{query_string}")
