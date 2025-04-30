@@ -59,21 +59,15 @@ def get_attention_banner(details):
     """
     Extract the "ATTENTION:" section from the details if present and return it.
     """
-    pattern = r"(<p>ATTENTION:.*?</p>)"
-    match = re.search(pattern, details, re.DOTALL)
+    extract_details = details.split("ATTENTION: ")
+    instructions = extract_details[0]
+    attention_banner = (
+        "ATTENTION: " + extract_details[1]
+        if len(extract_details) > 1
+        else None
+    )
 
-    # Format details banner
-    details = re.sub(pattern, "", details, count=1, flags=re.DOTALL).strip()
-    details = re.sub(r"<br\s*/?>", "", details)
-    details = re.sub(r"</?p\s*/?>", "", details)
-
-    if match:
-        attention_banner = match.group(1).strip()
-        attention_banner = re.sub(r"<br\s*/?>", "", attention_banner)
-        attention_banner = re.sub(r"</?p>", "", attention_banner)
-        return attention_banner, details
-
-    return None, details
+    return attention_banner, instructions
 
 
 def notice(notice_id):
@@ -145,7 +139,7 @@ def notice(notice_id):
             notice["published"]
         ).strftime("%-d %B %Y")
 
-    processed_instructions = markdown_parser(notice["instructions"])
+    processed_instructions = notice["instructions"]
     (attention_banner, instructions) = get_attention_banner(
         processed_instructions
     )

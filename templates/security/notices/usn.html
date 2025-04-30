@@ -382,7 +382,7 @@
       const form = document.querySelector(`.js-${section}-form`);
       const url = new URL(window.location);
 
-      form.addEventListener("reset", (e) => {
+      form?.addEventListener("reset", (e) => {
         e.preventDefault();
         if (url.searchParams.has(section)) {
           url.searchParams.delete(section);
