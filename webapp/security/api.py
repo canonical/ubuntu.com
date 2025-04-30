@@ -90,7 +90,7 @@ class SecurityAPI:
         limit: int,
         offset: int,
         details: str,
-        release: str,
+        releases: list,
         order: str,
     ):
         """
@@ -103,7 +103,7 @@ class SecurityAPI:
             "limit": limit,
             "offset": offset,
             "details": details,
-            "release": release,
+            "release": releases,
             "order": order,
         }
 
