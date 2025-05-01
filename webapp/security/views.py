@@ -48,8 +48,7 @@ def get_processed_details(notice):
     if all_items:
         last_item = all_items[-1]
         if last_item:
-            cve_pattern = re.compile(r"\(.*?\)", re.DOTALL)
-            cleaned_last_item = re.sub(cve_pattern, "", last_item)
+            cleaned_last_item = last_item.split(";")[0]
             details = details.replace(last_item, cleaned_last_item)
 
     return details

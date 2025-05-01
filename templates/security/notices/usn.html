@@ -55,12 +55,12 @@
   </section>
 
   <section>
-    <div class="row--25-75">
+    <div class="row--25-75-on-large">
+      <button class="p-toggle--sticky js-drawer-toggle"
+              aria-controls="drawer"
+              href="#"
+              aria-expanded="false">Open side navigation</button>
       <div class="col">
-        <button class="p-toggle--sticky js-drawer-toggle"
-                aria-controls="drawer"
-                href="#"
-                aria-expanded="false">Open side navigation</button>
         <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
               id="drawer">
           <div class="p-side-navigation__overlay js-drawer-toggle"
@@ -188,7 +188,8 @@
                               {% if package_name.pocket_info %}
                                 &nbsp;
                                 <!-- TODO: Update href after getting copy confirmation -->
-                                <div class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center "
+                                <div class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center" 
+                                  style="vertical-align: unset;"
                                   href="{{ package_name.pocket_info.href }}"
                                   aria-describedby="{{ package_name.pocket }}-tooltip">
                                   <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
@@ -229,14 +230,14 @@
                   {% for key, value in request.args.items() %}
                     {% if key == "usn" %}<input type="hidden" name="usn" value="{{ value }}">{% endif %}
                   {% endfor %}
+                  <label class="u-off-screen" for="search">Search</label>
                   <input type="search" 
                          id="cve" 
                          class="p-search-box__input" 
                          name="cve" 
                          placeholder="Search by CVE ID" 
-                         autocomplete="on" 
-                         value="{{ request.args.get('cve', '') }}" />
-                  <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+                         autocomplete="on" />
+                  <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
@@ -299,14 +300,15 @@
                   {% for key, value in request.args.items() %}
                     {% if key == "cve" %}<input type="hidden" name="cve" value="{{ value }}">{% endif %}
                   {% endfor %}
+                  <label class="u-off-screen" for="search">Search</label>
                   <input type="search" 
                         id="usn" 
                         class="p-search-box__input" 
                         name="usn" 
-                        placeholder="Search by USN ID" 
-                        autocomplete="on" 
-                        value="{{ request.args.get('usn', '') }}" />
-                  <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+                        placeholder="Search by USN ID"
+                        autocomplete="on" />
+                        id="usn" 
+                  <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
@@ -376,18 +378,44 @@
         showMoreButton.classList.remove("u-hide");
         showLessButton.classList.add("u-hide");
       });
+    };
+
+    function resetSearch(input, resetBtn) {
+      if (input.value.trim() !== '') {
+        resetBtn.classList.remove('u-hide');
+      } else {
+        resetBtn.classList.add('u-hide');
+      };
     }
 
     function handleSearch(section) {
       const form = document.querySelector(`.js-${section}-form`);
-      const url = new URL(window.location);
+      const input = form?.querySelector('input[type="search"]');
+      const resetBtn = form?.querySelector('.p-search-box__reset');
 
-      form?.addEventListener("reset", (e) => {
-        e.preventDefault();
-        if (url.searchParams.has(section)) {
-          url.searchParams.delete(section);
-        }
-        window.location = url;
+      const params = new URLSearchParams(window.location.search);
+      const queryValue = params.get(section);
+
+      // Handle input value
+      if (input) {
+        // Populate search box with URL search param
+        if (queryValue) {
+          input.value = queryValue;
+          resetBtn?.classList.remove('u-hide');
+        };
+        if (resetBtn) {
+          resetSearch(input, resetBtn);
+          input.addEventListener('input', function() {
+            resetSearch(input, resetBtn);
+          });
+        };
+      };
+
+      // Add event listener to toggle the reset button visibility
+      resetBtn.addEventListener('click', function() {
+        input.value = '';
+        resetBtn.classList.add('u-hide');
+        input.focus();
       });
     }
 
@@ -396,8 +424,10 @@
       toggleShowBtn("references");
       toggleShowBtn("notices");
 
-      handleSearch("cve");
-      handleSearch("usn");
+      document.addEventListener('DOMContentLoaded', function() {
+        handleSearch("cve");
+        handleSearch("usn");
+      });
     })();
   </script>
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
