@@ -50,13 +50,13 @@
     </div>
   </section>
 
-  <section>
-    <div class="row--25-75">
+  <section class="p-section">
+    <div class="row--25-75-on-large">
+      <button class="p-toggle--sticky js-drawer-toggle"
+              aria-controls="drawer"
+              href="#"
+              aria-expanded="false">Open side navigation</button>
       <div class="col">
-        <button class="p-toggle--sticky js-drawer-toggle"
-                aria-controls="drawer"
-                href="#"
-                aria-expanded="false">Open side navigation</button>
         <nav class="p-side-navigation--raw-html is-single-page js-dynamic-toc"
               id="drawer">
           <div class="p-side-navigation__overlay js-drawer-toggle"
@@ -88,7 +88,6 @@
           </div>
         </nav>
       </div>
-
       <div class="col">
         {% if notice.package_descriptions %}
           <div class="p-section">
@@ -151,34 +150,36 @@
                 <p class="p-notification__message">
                   <p>To check your kernel type and Livepatch version, enter this command:<br /></p>
                   <div class="p-code-snippet u-no-margin--bottom">
-                    <pre class="p-code-snippet__block--icon"><code>canonical-livepatch status</code></pre>
+                    <pre class="p-code-snippet__block--icon" style="white-space: pre-wrap;"><code>canonical-livepatch status</code></pre>
                   </div>
                 </p>
               </div>
             </div>
             <p>The problem can be corrected in these Livepatch versions:</p>
-            <table>
-              <thead>
-                <th>Kernel type</th>
-                {% for version in notice.release_packages.__reversed__() %}
-                  <th>{{ version }}</th>
-                {% endfor %}
-              </thead>
-              <tbody>
-                {% for package_name in notice.package_descriptions.keys() %}
-                  <tr>
-                    <td><strong>{{ package_name }}</strong></td>
-                    {% for version in notice.release_packages.__reversed__() %}
-                      {% if notice.release_packages[version][package_name] %}
-                        <td>{{ notice.release_packages[version][package_name].version }}</td>
-                      {% else %}
-                        <td>&mdash;</td>
-                      {% endif %}
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            <div class="u-cve-table-horizontal-scroll">
+              <table aria-label="Livepatch versions" class="cve-table u-cve-table-horizontal-scroll__table">
+                <thead>
+                  <th style="width: 12rem;">Kernel type</th>
+                  {% for version in notice.release_packages.__reversed__() %}
+                    <th style="width: 6rem;">{{ version }}</th>
+                  {% endfor %}
+                </thead>
+                <tbody>
+                  {% for package_name in notice.package_descriptions.keys() %}
+                    <tr>
+                      <td><strong>{{ package_name }}</strong></td>
+                      {% for version in notice.release_packages.__reversed__() %}
+                        {% if notice.release_packages[version][package_name] %}
+                          <td>{{ notice.release_packages[version][package_name].version }}</td>
+                        {% else %}
+                          <td>&mdash;</td>
+                        {% endif %}
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -212,44 +213,42 @@
               </div>
             </form>
           {% endif %}
-          <div class="p-section">
-            <div class="row">
-              <div class="col-8">
-                <ul class="p-list js-references-truncated">
-                  {% set ns = namespace(counter=0) %}
-                  {% if notice.cves_and_references %}
-                    {% for reference in notice.cves_and_references %}
-                      {% if ns.counter < 10 %}
-                        {% if "CVE-" in reference.id %}
-                          <li class="p-list__item">
-                            <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
-                          </li>
-                        {% else %}
-                          <li class="p-list__item">
-                            <a href="{{ reference }}">{{ reference }}</a>
-                          </li>
-                        {% endif %}
-                        {% set ns.counter = ns.counter + 1 %}
-                      {% endif %}
-                    {% endfor %}
-                  {% endif %}
-                </ul>
-                <ul class="p-list js-references-all u-hide">
-                  {% if notice.cves_and_references %}
-                    {% for cve in notice.cves_and_references %}
-                      {% if "CVE-" in cve.id %}
+          <div class="row">
+            <div class="col-8">
+              <ul class="p-list js-references-truncated">
+                {% set ns = namespace(counter=0) %}
+                {% if notice.cves_and_references %}
+                  {% for reference in notice.cves_and_references %}
+                    {% if ns.counter < 10 %}
+                      {% if "CVE-" in reference.id %}
                         <li class="p-list__item">
-                          <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+                          <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
                         </li>
                       {% else %}
                         <li class="p-list__item">
                           <a href="{{ reference }}">{{ reference }}</a>
                         </li>
                       {% endif %}
-                    {% endfor %}
-                  {% endif %}
-                </ul>
-              </div>
+                      {% set ns.counter = ns.counter + 1 %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </ul>
+              <ul class="p-list js-references-all u-hide">
+                {% if notice.cves_and_references %}
+                  {% for cve in notice.cves_and_references %}
+                    {% if "CVE-" in cve.id %}
+                      <li class="p-list__item">
+                        <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+                      </li>
+                    {% else %}
+                      <li class="p-list__item">
+                        <a href="{{ reference }}">{{ reference }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </ul>
             </div>
           </div>
           <div class="u-fixed-width">
@@ -273,33 +272,6 @@
       </div>
     </div>
   </section>
-
-
-
-
-<section class="p-strip">
-  
-  {% if notice.cves or notice.references %}
-  <div class="row">
-    <div class="col-8">
-      <h2>References</h2>
-      <ul class="p-list">
-        {% if notice.cves %}
-          {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></li>
-          {% endfor %}
-        {% endif %}
-
-        {% if notice.references %}
-          {% for reference in notice.references %}
-            <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
-          {% endfor %}
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-  {% endif %}
-</section>
 
   <script>    
     function toggleShowBtn(showSection) {
@@ -339,6 +311,7 @@
     (function() {
       toggleShowBtn("description");
       toggleShowBtn("details");
+      toggleShowBtn("references");
       handleSearch("cve");
     })();
   </script>
