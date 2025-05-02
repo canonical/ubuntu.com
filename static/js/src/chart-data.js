@@ -488,6 +488,48 @@ export var kernelReleases = [
     taskVersion: "",
     status: "PRO_LEGACY_SUPPORT",
   },
+  {
+    startDate: new Date("2014-07-25T00:00:00"),
+    endDate: new Date("2019-04-30T00:00:00"),
+    taskName: "14.04.1 LTS",
+    taskVersion: "",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2019-04-30T00:00:00"),
+    endDate: new Date("2024-04-30T00:00:00"),
+    taskName: "14.04.1 LTS",
+    taskVersion: "",
+    status: "ESM",
+  },
+  {
+    startDate: new Date("2024-04-30T00:00:00"),
+    endDate: new Date("2026-04-30T00:00:00"),
+    taskName: "14.04.1 LTS",
+    taskVersion: "",
+    status: "PRO_LEGACY_SUPPORT",
+  },
+  {
+    startDate: new Date("2014-04-17T00:00:00"),
+    endDate: new Date("2019-04-30T00:00:00"),
+    taskName: "14.04.0 LTS",
+    taskVersion: "",
+    status: "LTS",
+  },
+  {
+    startDate: new Date("2019-04-30T00:00:00"),
+    endDate: new Date("2024-04-30T00:00:00"),
+    taskName: "14.04.0 LTS",
+    taskVersion: "",
+    status: "ESM",
+  },
+  {
+    startDate: new Date("2024-04-30T00:00:00"),
+    endDate: new Date("2026-04-30T00:00:00"),
+    taskName: "14.04.0 LTS",
+    taskVersion: "",
+    status: "PRO_LEGACY_SUPPORT",
+  },
 ];
 
 export var kernelReleases2204 = [
@@ -1368,6 +1410,8 @@ export var kernelReleaseNames = [
   "14.04.5 LTS (HWE)",
   "16.04.1 LTS",
   "16.04.0 LTS",
+  "14.04.1 LTS",
+  "14.04.0 LTS",
 ];
 
 export var kernelVersionNames = [
@@ -1388,6 +1432,8 @@ export var kernelVersionNames = [
   "",
   "4.4",
   "",
+  "",
+  "3.13",
   "",
 ];
 
