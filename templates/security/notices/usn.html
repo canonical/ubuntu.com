@@ -187,16 +187,14 @@
                               {% endif %}
                               {% if package_name.pocket_info %}
                                 &nbsp;
-                                <!-- TODO: Update href after getting copy confirmation -->
-                                <div class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center" 
-                                  style="vertical-align: unset;"
-                                  href="{{ package_name.pocket_info.href }}"
-                                  aria-describedby="{{ package_name.pocket }}-tooltip">
+                                <button class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center" 
+                                        style="vertical-align: unset;"
+                                        aria-describedby="{{ package_name.pocket }}-tooltip">
                                   <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
                                   <span class="p-tooltip__message cve-chip"
                                         role="tooltip"
-                                        id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text }}</span>
-                                </div>
+                                        id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text | safe }}</span>
+                                </button>
                               {% endif %}
                             </td>
                           </tr>

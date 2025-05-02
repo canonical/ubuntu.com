@@ -258,44 +258,51 @@ def get_friendly_pockets(label):
     friendly_pockets = {
         "esm-infra": {
             "text": (
-                "Fix available with Ubuntu Pro and "
-                "Ubuntu Pro (Infra-only) via ESM Infra."
-            ),
+                "Fix available with <a href='/pro'>Ubuntu Pro</a>."
+                ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "esm-infra-legacy": {
             "text": (
-                "Fix available with Ubuntu Pro with " "Legacy support add-on."
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
+                "Legacy Support add-on."
             ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "esm-apps": {
             "text": (
-                "Fix available with Ubuntu Pro via ESM Apps. "
-                "A fix from the community might become publicly available "
-                "in the future."
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
+                "ESM Apps. A community fix "
+                "might become publicly available "
+                "in the future. "
             ),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
         "fips": {
-            "text": "FIPS certified package. Available with Ubuntu Pro.",
+            "text": (
+                "<a href='/security/fips'>FIPS-140</a> certified package. "
+                "Available with Ubuntu Pro. "
+            ),
             "label": "FIPS",
             "href": "/security/fips",
         },
         "fips-updates": {
             "text": (
-                "FIPS compliant package with security fixes. "
-                "Available with Ubuntu Pro."
+                "<a href='/security/fips'>FIPS-140</a> certified package with "
+                "security fixes. Available with "
+                "Ubuntu Pro."
             ),
             "label": "FIPS Updates",
             "href": "/security/fips",
         },
         "ros-esm": {
-            "text": "Security updates for ROS packages available\
-             with Ubuntu Pro.",
+            "text": (
+                "<a href='/real-time'>Real-time</a> kernel available with "
+                "Ubuntu Pro. "
+            ),
             "label": "ROS ESM",
             "href": "/security/robotics/ros-esm",
         },
