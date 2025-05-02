@@ -120,13 +120,9 @@ function createModal({ modalSelector, triggerButton }) {
   function validateForm() {
     let isValid = true;
 
-    // Do not allow empty values
-    for (const el of form.elements) {
-      const group = el.closest(".p-form__group");
-      // Unless it is hidden
-      if (group.classList.contains("u-hide")) continue;
-      const errorMessage = el.nextElementSibling;
-
+    const requiredFields = ["name", "address", "city", "postal-code"];
+    for (const field of requiredFields) {
+      const el = form.elements[field];
       const isEmpty = el.value.trim() === "";
       if (isEmpty) {
         isValid = false;
