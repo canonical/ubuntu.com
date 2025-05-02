@@ -692,53 +692,6 @@ def cve(cve_id):
         "released": {"name": "Fixed", "icon": "success"},
     }
 
-    # TODO: Use get_friendly_names(label) from helpers.py
-    friendly_pockets = {
-        "esm-infra": {
-            "text": (
-                "Fix available with Ubuntu Pro and "
-                "Ubuntu Pro (Infra-only) via ESM Infra."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "esm-infra-legacy": {
-            "text": (
-                "Fix available with Ubuntu Pro with " "Legacy support add-on."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "esm-apps": {
-            "text": (
-                "Fix available with Ubuntu Pro via ESM Apps. "
-                "A fix from the community might become publicly available "
-                "in the future."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "fips": {
-            "text": "FIPS certified package. Available with Ubuntu Pro.",
-            "label": "FIPS",
-            "href": "/security/fips",
-        },
-        "fips-updates": {
-            "text": (
-                "FIPS compliant package with security fixes. "
-                "Available with Ubuntu Pro."
-            ),
-            "label": "FIPS Updates",
-            "href": "/security/fips",
-        },
-        "ros-esm": {
-            "text": "Security updates for ROS packages available\
-             with Ubuntu Pro.",
-            "label": "ROS ESM",
-            "href": "/security/robotics/ros-esm",
-        },
-    }
-
     maintained_count = 0
     only_upstream = False
     # Account for cves which only include upstream status
@@ -769,8 +722,9 @@ def cve(cve_id):
                     status["maintained"] = False
 
                 # Set pocket descriptions
-                if status["pocket"] in friendly_pockets:
-                    status["pocket_desc"] = friendly_pockets[status["pocket"]]
+                pocket_desc = get_friendly_pockets(status["pocket"])
+                if pocket_desc:
+                    status["pocket_desc"] = pocket_desc
 
             # Sort package statuses by release version
             package["statuses"] = sorted(

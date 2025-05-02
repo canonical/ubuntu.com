@@ -257,9 +257,7 @@ def does_not_include_base_url(link):
 def get_friendly_pockets(label):
     friendly_pockets = {
         "esm-infra": {
-            "text": (
-                "Fix available with <a href='/pro'>Ubuntu Pro</a>."
-                ),
+            "text": ("Fix available with <a href='/pro'>Ubuntu Pro</a>."),
             "label": "Ubuntu Pro",
             "href": "/pro",
         },
