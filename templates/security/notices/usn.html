@@ -187,15 +187,51 @@
                               {% endif %}
                               {% if package_name.pocket_info %}
                                 &nbsp;
-                                <button class="p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center" 
+                                <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
                                         style="vertical-align: unset;"
                                         aria-describedby="{{ package_name.pocket }}-tooltip">
                                   <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
-                                  <span class="p-tooltip__message cve-chip"
+                                  <span class="p-tooltip__message cve-chip u-hide"
                                         role="tooltip"
                                         id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text | safe }}</span>
                                 </button>
                               {% endif %}
+                              <!-- TODO: For UX purposes. Remove when UX+1 -->
+                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                    style="vertical-align: unset;"
+                                    aria-describedby="esm-infra-legacy-tooltip">
+                              <span class="p-chip__value">Ubuntu Pro</span>
+                              <span class="p-tooltip__message cve-chip u-hide"
+                                    role="tooltip"
+                                    id="esm-infra-legacy-tooltip">Fix available with <a href='/pro'>Ubuntu Pro</a>.</span>
+                              </button>
+
+                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                    style="vertical-align: unset;"
+                                    aria-describedby="realtime-tooltip">
+                              <span class="p-chip__value">Real-time</span>
+                              <span class="p-tooltip__message cve-chip u-hide"
+                                    role="tooltip"
+                                    id="realtime-tooltip"><a href='/real-time'>Real-time</a> kernel available with Ubuntu Pro.</span>
+                              </button>
+
+                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                    style="vertical-align: unset;"
+                                    aria-describedby="fips-tooltip">
+                              <span class="p-chip__value">FIPS</span>
+                              <span class="p-tooltip__message cve-chip u-hide"
+                                    role="tooltip"
+                                    id="fips-tooltip"><a href='/security/fips'>FIPS-140</a> certified package. Available with Ubuntu Pro.</span>
+                              </button>
+
+                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                    style="vertical-align: unset;"
+                                    aria-describedby="fips-updates-tooltip">
+                              <span class="p-chip__value">FIPS Updates</span>
+                              <span class="p-tooltip__message cve-chip u-hide"
+                                    role="tooltip"
+                                    id="fips-updates-tooltip"><a href='/security/fips'>FIPS-140</a> certified package with security fixes. Available with Ubuntu Pro.</span>
+                              </button>
                             </td>
                           </tr>
                         {% endfor %}
@@ -349,10 +385,10 @@
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <div class="p-heading--2">
-        <p>Have additional questions?</p>
+      <h2>Have additional questions?</h2>
+      <h2>
         <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ?_ga=2.242131138.1744859116.1742138161-1500419473.1726851136&_gl=1*161muja*_gcl_au*MzUyMTIzNjI1LjE3MzYyNDQ4NTE.#Contact">Talk to a member of the team&nbsp;&rsaquo;</a>
-      </div>
+      </h2>
     </div>
   </section>
 
@@ -394,7 +430,6 @@
       const params = new URLSearchParams(window.location.search);
       const queryValue = params.get(section);
 
-      // Handle input value
       if (input) {
         // Populate search box with URL search param
         if (queryValue) {
@@ -410,22 +445,60 @@
       };
 
       // Add event listener to toggle the reset button visibility
-      resetBtn.addEventListener('click', function() {
+      resetBtn?.addEventListener('click', function() {
         input.value = '';
         resetBtn.classList.add('u-hide');
         input.focus();
       });
     }
 
+    function handleTooltips() {
+      const tooltipElements = document.querySelectorAll('.js-tooltip');
+    
+      tooltipElements.forEach(function(tooltip) {
+        const tooltipMessage = tooltip.querySelector('.p-tooltip__message');
+    
+        tooltip.addEventListener('click', function(e) {
+          e.stopPropagation();
+    
+          // Hide all tooltips when clicked
+          document.querySelectorAll('.p-tooltip__message.u-show').forEach(function(otherMessage) {
+            if (otherMessage !== tooltipMessage) {
+              otherMessage.classList.remove('u-show');
+              otherMessage.classList.add('u-hide');
+            }
+          });
+    
+          // Show the toggled tooltip
+          const isHidden = tooltipMessage.classList.contains('u-hide');
+          if (isHidden) {
+            tooltipMessage.classList.remove('u-hide');
+            tooltipMessage.classList.add('u-show');
+          } else {
+            tooltipMessage.classList.remove('u-show');
+            tooltipMessage.classList.add('u-hide');
+          }
+        });
+      });
+    
+      // Hide all tooltips when clicked elsewhere on screen
+      document.addEventListener('click', function() {
+        document.querySelectorAll('.p-tooltip__message.u-show').forEach(function(msg) {
+          msg.classList.remove('u-show');
+          msg.classList.add('u-hide');
+        });
+      });
+    }
+    
     (function() {
       toggleShowBtn("details");
       toggleShowBtn("references");
       toggleShowBtn("notices");
 
-      document.addEventListener('DOMContentLoaded', function() {
-        handleSearch("cve");
-        handleSearch("usn");
-      });
+      handleSearch("cve");
+      handleSearch("usn");
+
+      handleTooltips();
     })();
   </script>
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>

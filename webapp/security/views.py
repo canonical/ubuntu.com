@@ -160,6 +160,7 @@ def notice(notice_id):
         )
 
     usn_query = flask.request.args.get("usn", default=None, type=str)
+    total_notices = 0
     if notice.get("related_notices"):
         total_notices = len(notice["related_notices"])
         if usn_query:
