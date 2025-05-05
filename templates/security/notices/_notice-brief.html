@@ -1,0 +1,41 @@
+<section class="p-section--shallow">
+  <div class="u-fixed-width">
+    <h3 class="u-no-margin p-heading--4" style="padding-bottom: 8px;">
+      <a href="/security/notices/{{ notice.id }}">{{ notice.id }}: {{ notice.title }}</a>
+    </h3>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p class="u-text--muted">{{ notice.published }}</p>
+      <p>{{ notice.summary | safe }}</p>
+      <div class="p-section--shallow">
+        <ul class="p-inline-list u-no-margin">
+          {% for release in notice.releases %}
+            <li class="p-inline-list__item u-no-margin--right">
+              {% if loop.index == 1 %}Ubuntu {% endif %}{{ release.version }} {% if release.support_tag in ["ESM", "LTS"] %}LTS{% endif %}{% if loop.index < notice.releases|length %},{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% if notice.cves_ids %}
+      <div class="col-3">
+        <p class="u-text--muted p-heading--5">CVE ID</p>
+        <p>
+          {% for cve_id in notice.cves_ids %}
+          {% if loop.index <= 3 %}
+          <a href="/security/{{ cve_id }}">{{ cve_id }}</a>{% if (loop.index < 3 or loop.index == notice.cves_ids|length - 1) and notice.cves_ids|length > 1 %}, {% endif %}
+          {% endif %}
+          {% if loop.index == 3 %}
+          <span class="u-text--muted">
+            {% if notice.cves_ids|length - 3 == 1 %}&plus; {{ notice.cves_ids|length - 3 }} other{% endif %}
+            {% if notice.cves_ids|length - 3 > 1 %}&plus; {{ notice.cves_ids|length - 3 }} others{% endif %}
+          </span>
+          {% endif %}
+          {% endfor %}
+        </p>      
+      </div>
+    {% endif %}
+  </div>
+</section>
+<hr class="p-rule--muted u-fixed-width">

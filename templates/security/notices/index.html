@@ -9,6 +9,12 @@
 {% endblock body_class %}
 
 {% block content %}
+
+{% if search %}
+  {% set breadcrumbs = [{"name": "Ubuntu Security Notices", "href": "/security/notices"}, {"name": "Search results for \"" ~ search ~ "\"" }] %}
+  {% include '/shared/_breadcrumbs.html' %}
+{% endif %}
+
 <!-- hero -->
 <section class="p-section--hero">
   <div class="row">
@@ -25,18 +31,18 @@
       <p>
         The Security Team also produces <a href="/security/oval">OVAL</a> files for each Ubuntu release. These are an industry-standard machine-readable format dataset that contain details of all known security vulnerabilities and fixes relevant to the Ubuntu release, and can be used to determine whether a particular patch is appropriate. OVAL files can also be used to audit a system to check whether the latest security fixes have been applied.
       </p>
-      <div>
-        <p style="display: inline-block;">Subscribe for updates&nbsp;&nbsp;</p>
-        <ul class="p-inline-list" style="display: inline-block;">
-          <li class="p-inline-list__item"><a class="p-button" href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Mailing list</a></li>
-          <li class="p-inline-list__item"><a class="p-button" href="/security/notices/atom.xml">Atom</a></li>
-          <li class="p-inline-list__item"><a class="p-button" href="/security/notices/rss.xml">RSS</a></li>
-        </ul>
+      
+      <div class="p-cta-block is-borderless">
+        <p>Subscribe for updates&nbsp;&nbsp;</p>
+        <a class="p-button" href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Mailing list</a>
+        <a class="p-button" href="/security/notices/atom.xml">Atom</a>
+        <a class="p-button" href="/security/notices/rss.xml">RSS</a>
       </div>
     {% endif %}
     </div>
   </div>
 </section>
+
 <!-- search -->
 <section class="p-section">
   <form class="js-form">
@@ -66,13 +72,13 @@
     <hr class="p-rule--muted is-fixed-width">
     <div class="row">
       <!-- sidenav with filters -->
-      {% include "security/notices/_aside-filters.html" %}
+      {% include "security/notices/_sidenav-filters-container.html" %}
       <!-- usn cards -->
       <div class="col-9 col-medium-6">
         {% if notices %}
         <p class="p-text--small-caps">{{ page_first_result }} - {{ page_last_result }} of {{ total_results }} results</p>
           {% for notice in notices %}
-            {% include "security/_notice-brief.html" %}
+            {% include "security/notices/_notice-brief.html" %}
           {% endfor %}
         {% else %}
           <div class="p-notification--information">
@@ -138,10 +144,6 @@
       </div>
     </div>
   </section>
-
-  <script>
-    
-  </script>
 
 {# djlint:off #}
 <script type="text/javascript">

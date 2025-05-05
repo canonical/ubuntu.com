@@ -14,7 +14,7 @@
         <span class="u-text--muted">{{ release.codename }}</span></span>
       </label>
     {% endfor %}
-    <p class="p-text--small-caps">
+    <p class="p-text--small-caps u-text--muted">
       Still maintained with
       <br />
       Ubuntu Pro
@@ -31,7 +31,7 @@
         <a href="" class="js-show-unmaintained-releases">Show unmaintained releases</a>
       </p>
       <div class="js-unmaintained-releases u-hide">
-        <p class="p-text--small-caps">Unmaintained</p>
+        <p class="p-text--small-caps u-text--muted">Unmaintained</p>
         {% for release in unmaintained_releases %}
           <label class="p-checkbox">
             <input type="checkbox" aria-labelledby={{ release.version }} class="p-checkbox__input" value={{ release.codename }} />

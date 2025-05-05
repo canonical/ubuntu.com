@@ -174,8 +174,8 @@
   }
 
   .cve-filter-buttons {
-    hr {
-      margin-bottom: 1rem;
+    @media screen and (width < $breakpoint-large) {
+      margin-left: 1rem;
     }
 
     background: #f3f3f3;
