@@ -296,13 +296,13 @@ def get_friendly_pockets(label):
             "label": "FIPS Updates",
             "href": "/security/fips",
         },
-        "ros-esm": {
+        "realtime": {
             "text": (
                 "<a href='/real-time'>Real-time</a> kernel available with "
                 "Ubuntu Pro. "
             ),
-            "label": "ROS ESM",
-            "href": "/security/robotics/ros-esm",
+            "label": "Real-time",
+            "href": "/real-time",
         },
     }
 
