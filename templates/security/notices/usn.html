@@ -8,7 +8,7 @@
 
 {% block content %}
   {% set breadcrumbs = [{"name": "Ubuntu Security Notices", "href": "/security/notices"}, {"name": notice.id }] %}
-  {% include '/partial/_breadcrumbs.html' %}
+  {% include '/shared/_breadcrumbs.html' %}
 
   <section class="p-section--hero">
     <div class="row">
@@ -19,7 +19,7 @@
           </div>
           <div class="row">
             <div class="col-2">
-              <h5 class="u-no-margin--bottom">Publication date</h5>
+              <p class="p-heading--5 u-no-margin--bottom">Publication date</p>
             </div>
             <div class="col-7">
               <p class="u-no-margin--bottom">{{ notice.published }}</p>
@@ -27,7 +27,7 @@
           </div>
           <div class="row">
             <div class="col-2">
-              <h5 class="u-no-margin--bottom">Overview</h5>
+              <p class="p-heading--5 u-no-margin--bottom">Overview</p>
             </div>
             <div class="col-7">
               <p class="u-no-margin--bottom">{{ notice.summary | safe }}</p>
@@ -35,7 +35,7 @@
           </div>
           <div class="row">
             <div class="col-2">
-              <h5 class="u-no-margin--bottom">Releases</h5>
+              <p class="p-heading--5 u-no-margin--bottom">Releases</p>
             </div>
             <div class="col-7">
               <div style="display: flex; overflow-x: auto;">
@@ -100,28 +100,25 @@
       <div class="col">
         {% if notice.package_descriptions %}
           <div class="p-section">
-            <div class="row">
-              <h2 class="section-heading" id="packages" style="scroll-margin-top: 4rem">Packages</h2>
-              <ul class="p-list">
-                {% for package_name, package_title in notice.package_descriptions.items() %}
-                  <li class="p-list__item">
-                    <a href="/security/cves?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
+            <h2 class="section-heading" id="packages" style="scroll-margin-top: 4rem">Packages</h2>
+            <ul class="p-list">
+              {% for package_name, package_title in notice.package_descriptions.items() %}
+                <li class="p-list__item">
+                  <a href="/security/cves?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}
+                </li>
+              {% endfor %}
+            </ul>
           </div>
         {% endif %}
         <div class="p-section">
-          <div class="row">
-            <h2 class="section-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
-            <div class="js-details-truncated">
-              <p>{{ notice.details | truncate(1000) | safe }}</p>
-            </div>
-            <div class="js-details-all u-hide">
-              <p>{{ notice.details | safe }}</p>
-            </div>
+          <h2 class="section-heading" id="details" style="scroll-margin-top: 4rem">Details</h2>
+          <div class="js-details-truncated">
+            <p>{{ notice.details | truncate(1000) | safe }}</p>
           </div>
+          <div class="js-details-all u-hide">
+            <p>{{ notice.details | safe }}</p>
+          </div>
+          
           {% if notice.details | length > 1000 %}
             <hr class="p-rule--muted" />
             <button class="p-button--link js-show-more-details">Show more</button>
@@ -129,136 +126,129 @@
           {% endif %}
         </div>
         <div class="p-section">
-          <div class="row">
-            <h2 class="section-heading"
-                id="update-instructions"
-                style="scroll-margin-top: 4rem">Update instructions</h2>
-            <div class="p-notification--information">
-              <div class="p-notification__content">
-                <p class="p-notification__message">
-                  {{ notice.instructions | safe }}<br />
-                  <a href="/security/cves/about#security">Learn more about how to get the fixes.</a>
-                </p>
-              </div>
-            </div>
-
-            {% if notice.attention_banner %}
-              <div class="p-notification--caution">
-                <div class="p-notification__content">
-                  <p class="p-notification__message">{{ notice.attention_banner | safe }}</p>
-                </div>
-              {% endif %}
-            </div>
-            {% if notice.release_packages %}
-              <div class="row">
-                <div class="col-6">
-                  <p>The problem can be corrected by updating your system to the following package versions:</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="p-section u-cve-table-horizontal-scroll">
-                  <table aria-label="Releases and package versions" class="cve-table u-cve-table-horizontal-scroll__table">
-                    <thead>
-                      <tr>
-                        <th style="width: 12rem;">Ubuntu Release</th>
-                        <th style="width: 18rem;">Package Version</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for version in notice.release_packages.__reversed__() %}
-                        {% set outer_loop = loop %}
-                        {% for package, package_name in notice.release_packages[version].items() %}
-                          <tr>
-                            {% if loop.index == 1 %}
-                              <th rowspan={{ notice.release_packages[version].items() | length }}>
-                                {{ version }}
-                                {% for release in notice.releases %}
-                                  {% if release.version == version %}<span class="u-text--muted">{{ release.codename }}</span>{% endif %}
-                                {% endfor %}
-                              </th>
-                            {% endif %}
-                            <td colspan="3"
-                              {% if package_name.pocket_info %}style="overflow: visible;"{% endif %}>
-                                <a href={{ package_name['source_link'] }}>{{ package }}</a>&nbsp;&ndash;&nbsp;
-                              {% if package_name['version_link'] %}
-                                <a href={{ package_name['version_link'] }}>{{ package_name['version'] }}</a>
-                              {% else %}
-                                {{ package_name['version'] }}
-                              {% endif %}
-                              {% if package_name.pocket_info %}
-                                &nbsp;
-                                <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                        style="vertical-align: unset;"
-                                        aria-describedby="{{ package_name.pocket }}-tooltip">
-                                  <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
-                                  <span class="p-tooltip__message cve-chip u-hide"
-                                        role="tooltip"
-                                        id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text | safe }}</span>
-                                </button>
-                              {% endif %}
-                              <!-- TODO: For UX purposes. Remove when UX+1 -->
-                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                    style="vertical-align: unset;"
-                                    aria-describedby="esm-infra-legacy-tooltip">
-                              <span class="p-chip__value">Ubuntu Pro</span>
-                              <span class="p-tooltip__message cve-chip u-hide"
-                                    role="tooltip"
-                                    id="esm-infra-legacy-tooltip">Fix available with <a href='/pro'>Ubuntu Pro</a>.</span>
-                              </button>
-
-                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                    style="vertical-align: unset;"
-                                    aria-describedby="realtime-tooltip">
-                              <span class="p-chip__value">Real-time</span>
-                              <span class="p-tooltip__message cve-chip u-hide"
-                                    role="tooltip"
-                                    id="realtime-tooltip"><a href='/real-time'>Real-time</a> kernel available with Ubuntu Pro.</span>
-                              </button>
-
-                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                    style="vertical-align: unset;"
-                                    aria-describedby="fips-tooltip">
-                              <span class="p-chip__value">FIPS</span>
-                              <span class="p-tooltip__message cve-chip u-hide"
-                                    role="tooltip"
-                                    id="fips-tooltip"><a href='/security/fips'>FIPS-140</a> certified package. Available with Ubuntu Pro.</span>
-                              </button>
-
-                              <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                    style="vertical-align: unset;"
-                                    aria-describedby="fips-updates-tooltip">
-                              <span class="p-chip__value">FIPS Updates</span>
-                              <span class="p-tooltip__message cve-chip u-hide"
-                                    role="tooltip"
-                                    id="fips-updates-tooltip"><a href='/security/fips'>FIPS-140</a> certified package with security fixes. Available with Ubuntu Pro.</span>
-                              </button>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            {% endif %}
-            <div class="row">
-              <div class="p-section">
-                <hr class="p-rule" />
-                <h3>Reduce your security exposure</h3>
-                <p>
-                  Ubuntu Pro provides ten-year security coverage to 25,000+ packages in Main and Universe repositories, and it is free for up to five machines.
-                </p>
-                <div class="p-cta-block">
-                  <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
-                </div>
-              </div>
+          <h2 class="section-heading"
+              id="update-instructions"
+              style="scroll-margin-top: 4rem">Update instructions</h2>
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message">
+                <p class="u-no-margin--bottom">{{ notice.instructions | safe }}</p>
+                <a href="/security/cves/about#security">Learn more about how to get the fixes.</a>
+              </p>
             </div>
           </div>
+
+          {% if notice.attention_banner %}
+            <div class="p-notification--caution">
+              <div class="p-notification__content">
+                <p class="p-notification__message">{{ notice.attention_banner | safe }}</p>
+              </div>
+            {% endif %}
+          </div>
+          {% if notice.release_packages %}
+            <div class="row">
+              <div class="col-6">
+                <p>The problem can be corrected by updating your system to the following package versions:</p>
+              </div>
+            </div>
+            <div class="p-section u-cve-table-horizontal-scroll">
+              <table aria-label="Releases and package versions" class="cve-table u-cve-table-horizontal-scroll__table">
+                <thead>
+                  <tr>
+                    <th style="width: 12rem;">Ubuntu Release</th>
+                    <th style="width: 18rem;">Package Version</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for version in notice.release_packages.__reversed__() %}
+                    {% set outer_loop = loop %}
+                    {% for package, package_name in notice.release_packages[version].items() %}
+                      <tr>
+                        {% if loop.index == 1 %}
+                          <th rowspan={{ notice.release_packages[version].items() | length }}>
+                            {{ version }}
+                            {% for release in notice.releases %}
+                              {% if release.version == version %}<span class="u-text--muted">{{ release.codename }}</span>{% endif %}
+                            {% endfor %}
+                          </th>
+                        {% endif %}
+                        <td colspan="3"
+                          {% if package_name.pocket_info %}style="overflow: visible;"{% endif %}>
+                            <a href={{ package_name['source_link'] }}>{{ package }}</a>&nbsp;&ndash;&nbsp;
+                          {% if package_name['version_link'] %}
+                            <a href={{ package_name['version_link'] }}>{{ package_name['version'] }}</a>
+                          {% else %}
+                            {{ package_name['version'] }}
+                          {% endif %}
+                          {% if package_name.pocket_info %}
+                            &nbsp;
+                            <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                    style="vertical-align: unset;"
+                                    aria-describedby="{{ package_name.pocket }}-tooltip">
+                              <span class="p-chip__value">{{ package_name.pocket_info.label }}</span>
+                              <span class="p-tooltip__message cve-chip u-hide"
+                                    role="tooltip"
+                                    id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text | safe }}</span>
+                            </button>
+                          {% endif %}
+                          <!-- TODO: For UX purposes. Remove when UX+1 -->
+                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                style="vertical-align: unset;"
+                                aria-describedby="esm-infra-legacy-tooltip">
+                          <span class="p-chip__value">Ubuntu Pro</span>
+                          <span class="p-tooltip__message cve-chip u-hide"
+                                role="tooltip"
+                                id="esm-infra-legacy-tooltip">Fix available with <a href='/pro'>Ubuntu Pro</a>.</span>
+                          </button>
+
+                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                style="vertical-align: unset;"
+                                aria-describedby="realtime-tooltip">
+                          <span class="p-chip__value">Real-time</span>
+                          <span class="p-tooltip__message cve-chip u-hide"
+                                role="tooltip"
+                                id="realtime-tooltip"><a href='/real-time'>Real-time</a> kernel available with Ubuntu Pro.</span>
+                          </button>
+
+                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                style="vertical-align: unset;"
+                                aria-describedby="fips-tooltip">
+                          <span class="p-chip__value">FIPS</span>
+                          <span class="p-tooltip__message cve-chip u-hide"
+                                role="tooltip"
+                                id="fips-tooltip"><a href='/security/fips'>FIPS-140</a> certified package. Available with Ubuntu Pro.</span>
+                          </button>
+
+                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
+                                style="vertical-align: unset;"
+                                aria-describedby="fips-updates-tooltip">
+                          <span class="p-chip__value">FIPS Updates</span>
+                          <span class="p-tooltip__message cve-chip u-hide"
+                                role="tooltip"
+                                id="fips-updates-tooltip"><a href='/security/fips'>FIPS-140</a> certified package with security fixes. Available with Ubuntu Pro.</span>
+                          </button>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% endif %}
+          <div class="p-section">
+            <hr class="p-rule" />
+            <h3>Reduce your security exposure</h3>
+            <p>
+              Ubuntu Pro provides ten-year security coverage to 25,000+ packages in Main and Universe repositories, and it is free for up to five machines.
+            </p>
+            <div class="p-cta-block">
+              <a href="/pro" class="p-button--positive">Get Ubuntu Pro</a>
+            </div>
+          </div>
+        
           <div class="p-section">
             {% if notice.total_cves %}
-              <div class="u-fixed-width">
-                <h2 class="section-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
-              </div>
+              <h2 class="section-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
               {% if notice.total_cves > 29 %}
                 <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-search-box js-cve-form">
                   {% for key, value in request.args.items() %}
@@ -269,8 +259,7 @@
                          id="cve" 
                          class="p-search-box__input" 
                          name="cve" 
-                         placeholder="Search by CVE ID" 
-                         autocomplete="on" />
+                         placeholder="Search by CVE ID" />
                   <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
@@ -313,13 +302,11 @@
                   </ul>
                 </div>
               </div>
-              <div class="u-fixed-width">
-                {% if notice.cves_and_references | length > 10 %}
-                  <hr class="p-rule--muted" />
-                  <button class="p-button--link js-show-more-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
-                  <button class="p-button--link js-show-less-references u-hide">Show less references</button>
-                {% endif %}
-              </div>
+              {% if notice.cves_and_references | length > 10 %}
+                <hr class="p-rule--muted" />
+                <button class="p-button--link js-show-more-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
+                <button class="p-button--link js-show-less-references u-hide">Show less references</button>
+              {% endif %}
             {% endif %}
           </div>
           <div class="p-section">
@@ -339,8 +326,7 @@
                         id="usn" 
                         class="p-search-box__input" 
                         name="usn" 
-                        placeholder="Search by USN ID"
-                        autocomplete="on" />
+                        placeholder="Search by USN ID" />
                         id="usn" 
                   <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
@@ -385,10 +371,10 @@
   <hr class="p-rule is-fixed-width" />
   <section class="p-strip is-deep">
     <div class="u-fixed-width">
-      <h2>Have additional questions?</h2>
-      <h2>
+      <p class="p-heading--2">Have additional questions?</p>
+      <p class="p-heading--2">
         <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ?_ga=2.242131138.1744859116.1742138161-1500419473.1726851136&_gl=1*161muja*_gcl_au*MzUyMTIzNjI1LjE3MzYyNDQ4NTE.#Contact">Talk to a member of the team&nbsp;&rsaquo;</a>
-      </h2>
+      </p>
     </div>
   </section>
 

@@ -21,6 +21,7 @@ from webapp.security.helpers import (
     get_formatted_release_statuses,
     does_not_include_base_url,
     get_friendly_pockets,
+    get_processed_details,
 )
 
 
@@ -30,28 +31,6 @@ markdown_parser = Markdown(
 session = talisker.requests.get_session()
 
 security_api = SecurityAPI(session=session)
-
-
-def get_processed_details(notice):
-    pattern = re.compile(
-        r"(?<![a-zA-Z0-9-_/])((cve|CVE-)\d{4}-\d{4,7})(?!\.html)", re.MULTILINE
-    )
-
-    details = markdown_parser(
-        re.sub(
-            pattern, r'<a href="/security/\1">\1</a>', notice["description"]
-        )
-    )
-
-    # Remove redundant list of CVEs
-    all_items = re.findall(r"<li>(.*?)</li>", details, re.DOTALL)
-    if all_items:
-        last_item = all_items[-1]
-        if last_item:
-            cleaned_last_item = last_item.split(";")[0]
-            details = details.replace(last_item, cleaned_last_item)
-
-    return details
 
 
 def get_attention_banner(details):
@@ -151,7 +130,9 @@ def notice(notice_id):
     if cves_and_references:
         if cve_query:
             cves_and_references = [
-                cve for cve in cves_and_references if cve_query in cve["id"]
+                cve
+                for cve in cves_and_references
+                if cve_query.upper() in cve["id"]
             ]
         cves_and_references = sorted(
             cves_and_references,
@@ -173,7 +154,7 @@ def notice(notice_id):
             reverse=True,
         )
 
-    processed_details = get_processed_details(notice)
+    processed_details = get_processed_details(markdown_parser, notice)
 
     notice = {
         "id": notice["id"],
