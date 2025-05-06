@@ -56,7 +56,6 @@ async function processRoutes() {
     // Configure PurgeCSS for this route
     const routeConfig = {
       ...baseConfig,
-      // css: ['static/css/styles.css'],
       content: [...baseConfig.content, ...route.templates],
       output: `${outputDir}/${route.name}.purged.css`
     };
@@ -84,7 +83,6 @@ async function processRoutes() {
   }
 }
 
-// Run the script
 processRoutes().then(() => {
   console.log('CSS optimization complete!');
 }).catch(err => {
