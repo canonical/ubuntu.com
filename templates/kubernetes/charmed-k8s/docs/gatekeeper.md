@@ -181,7 +181,7 @@ ns-must-have-gk                                6
 [gatekeeper-controller-manager]: https://charmhub.io/gatekeeper-controller-manager
 [prometheus-k8s]: https://charmhub.io/prometheus-k8s
 [grafana-agent-k8s]: https://charmhub.io/grafana-agent-k8s
-[storage-pools]: https://juju.is/docs/juju/defining-and-using-persistent-storage
+[storage-pools]: https://documentation.ubuntu.com/juju/3.6/howto/manage-storage/
 [quickstart]: https://ubuntu.com/kubernetes/charmed-k8s/docs/quickstart
 
 <!-- FEEDBACK -->
@@ -194,3 +194,4 @@ ns-must-have-gk                                6
     <p>See the guide to <a href="/kubernetes/charmed-k8s/docs/how-to-contribute"> contributing </a> or discuss these docs in our <a href="https://chat.charmhub.io/charmhub/channels/kubernetes"> public Mattermost channel</a>.</p>
   </div>
 </div>
+

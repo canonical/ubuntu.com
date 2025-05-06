@@ -58,7 +58,7 @@ juju integrate ceph-osd ceph-mon
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">For more on how Juju makes use of storage, please see the relevant
-<a href="https://juju.is/docs/juju/manage-storage">Juju documentation</a></p>
+<a href="https://documentation.ubuntu.com/juju/3.6/howto/manage-storage/">Juju documentation</a></p>
   </div>
 </div>
 

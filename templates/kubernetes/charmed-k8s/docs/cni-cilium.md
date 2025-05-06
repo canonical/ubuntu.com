@@ -318,7 +318,7 @@ For additional troubleshooting pointers, please see the
 [hubble-introduction]: https://docs.cilium.io/en/stable/gettingstarted/hubble_intro/
 [hubble-client]: https://docs.cilium.io/en/stable/gettingstarted/hubble_cli/#hubble-cli
 [hubble-metrics]: https://docs.cilium.io/en/stable/observability/metrics/#hubble-metrics
-[juju-cmi]: https://juju.is/docs/juju/cross-model-integration
+[juju-cmi]: https://documentation.ubuntu.com/juju/3.6/howto/manage-relations/#add-a-cross-model-relation
 [troubleshooting]: /kubernetes/charmed-k8s/docs/troubleshooting
 
 <!-- FEEDBACK -->

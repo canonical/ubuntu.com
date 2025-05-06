@@ -182,8 +182,8 @@ For a more detailed guide, please refer to the [Juju high availability documenta
 
 <!-- LINKS -->
 
-[juju-ha]: https://juju.is/docs/juju/high-availability-juju-controller
-[juju-constraints]: https://juju.is/docs/juju/constraints
+[juju-ha]: https://documentation.ubuntu.com/juju/3.6/reference/high-availability/
+[juju-constraints]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/constraints/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

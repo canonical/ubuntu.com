@@ -261,19 +261,12 @@ is covered in the [proxy documentation][].
 [LXD]: https://ubuntu.com/lxd
 [LXD-image]: https://documentation.ubuntu.com/lxd/en/latest/images/
 [maas-images]: https://maas.io/docs/how-to-use-standard-images
-[simplestreams]: https://juju.is/docs/juju/cloud-image-metadata
+[simplestreams]: https://documentation.ubuntu.com/juju/3.6/howto/manage-metadata/
 [bundles]: /kubernetes/charmed-k8s/docs/supported-versions
 [1.23-components]: /kubernetes/charmed-k8s/docs/1.23/components#snaps
 [cdk-shrinkwrap]: https://github.com/charmed-kubernetes/cdk-shrinkwrap
-[controller-config]: https://juju.is/docs/juju/controllers
-[credentials]: https://juju.is/docs/juju/credentials
-[customize-bundle]: /kubernetes/charmed-k8s/docs/install-manual#customising-the-bundle-install
 [container images]: https://github.com/charmed-kubernetes/bundle/tree/master/container-images
-[juju-bundle]: https://juju.is/docs/sdk/bundles
-[juju-constraints]: https://juju.is/docs/juju/constraints
-[juju-docs]: https://juju.is/docs/juju/installing-juju
-[juju-gui]: https://juju.is/docs/juju/accessing-the-dashboard
-[offline-mode]: https://juju.is/docs/juju/configure-juju-for-offline-usage
+[offline-mode]: https://documentation.ubuntu.com/juju/3.6/howto/manage-your-deployment/take-your-deployment-offline/
 [on-prem-livepatch]: https://ubuntu.com/security/livepatch/docs/on_prem
 [overlays]: /kubernetes/charmed-k8s/docs/install-manual#overlay
 [quickstart]: /kubernetes/charmed-k8s/docs/quickstart

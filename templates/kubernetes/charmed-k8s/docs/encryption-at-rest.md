@@ -112,7 +112,7 @@ storage pool, or even full-disk-encryption on the host machine.
 [HashiCorp's Vault]: https://www.vaultproject.io/
 [VaultLocker]: https://github.com/openstack-charmers/vaultlocker
 [Vault charm]: https://charmhub.io/vault
-[expose]: https://juju.is/docs/juju/expose-a-deployed-application
+[expose]: https://documentation.ubuntu.com/juju/3.6/howto/manage-applications/#manage-an-applications-public-availability-over-the-network
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

@@ -144,7 +144,7 @@ metallb/0*  active    idle   192.168.0.15
 
 To exit the screen with `juju status --watch 1s`, enter `Ctrl+c`.
 If you want to further inspect Juju logs, can watch for logs with `juju debug-log`.
-More info on logging at [juju logs](https://juju.is/docs/juju/juju-logs).
+More info on logging at [juju logs](https://documentation.ubuntu.com/juju/3.6/howto/manage-logs/).
 
 #### Configuration
 
