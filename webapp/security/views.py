@@ -116,13 +116,9 @@ def notice(notice_id):
     if cves_and_references:
         if cve_query:
             cves_and_references = [
-<<<<<<< HEAD
                 cve
                 for cve in cves_and_references
                 if cve_query.upper() in cve["id"]
-=======
-                cve for cve in cves_and_references if cve_query.upper() in cve["id"]
->>>>>>> 54c16c054 (fix: Address code review comments)
             ]
         cves_and_references = sorted(
             cves_and_references,
