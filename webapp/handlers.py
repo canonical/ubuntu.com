@@ -34,9 +34,10 @@ from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.certified.helpers import convert_markdown_to_html
 
 CSP = {
-    "default-src": ["'self'"],
+    "default-src": ["'self'", "*.crazyegg.com", "blob:"],
     "img-src": [
         "data: blob:",
+        "*.crazyegg.com",
         # This is needed to allow images from
         # https://www.google.*/ads/ga-audiences to load.
         "*",
@@ -88,6 +89,7 @@ CSP = {
         "cdn.livechatinc.com",
         "secure.livechatinc.com",
         "fonts.google.com",
+        "fonts.gstatic.com",
     ],
     "script-src": [
         "'self'",
@@ -95,6 +97,7 @@ CSP = {
         "'unsafe-eval'",
         "'unsafe-hashes'",
         "'unsafe-inline'",
+        "*.crazyegg.com",
     ],
     "connect-src": [
         "'self'",
@@ -141,11 +144,13 @@ CSP = {
         "*.cloudfront.net",
         "app3.trueability.com",
         "app.trueability.com",
+        "*.crazyegg.com",
     ],
     "style-src": [
         "*.cloudfront.net",
         "'self'",
         "'unsafe-inline'",
+        "fonts.googleapis.com",
     ],
     "media-src": [
         "'self'",
@@ -161,6 +166,7 @@ CSP = {
         "youtube.com",
         "google.com",
         "fonts.google.com",
+        "blob:",
     ],
 }
 
