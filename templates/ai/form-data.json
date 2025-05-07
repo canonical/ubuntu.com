@@ -8,7 +8,7 @@
       "formData": {
         "title": "Open source AI: a scalable path to production",
         "introText": "Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.",
-        "formId": "6279",
+        "formId": 3231,
         "returnUrl": "/ai#contact-form-success",
         "lpUrl": "https://ubuntu.com/ai/contact-us",
         "product": "AI"
@@ -74,17 +74,6 @@
           "noCommentsFromLead": true,
           "fields": [
             {
-              "type": "tel",
-              "id": "phone",
-              "label": "Phone number",
-              "isRequired": true
-            },
-            {
-              "type": "country",
-              "label": "Country",
-              "isRequired": false
-            },
-            {
               "type": "text",
               "id": "company",
               "label": "Company",
@@ -95,6 +84,17 @@
               "id": "title",
               "label": "Job title",
               "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": false
             }
           ]
         }
