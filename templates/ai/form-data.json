@@ -1,0 +1,104 @@
+{
+  "form": {
+    "/ai": {
+      "templatePath": "/ai/index.html",
+      "childrenPaths": ["/ai/consulting", "/ai/mlflow", "/ai/mlops-workshop"],
+      "isModal": true,
+      "modalId": "ai-modal",
+      "formData": {
+        "title": "Open source AI: a scalable path to production",
+        "introText": "Looking to scale your MLOPs infrastructure or need consulting services to kick start your AI journey? Our experts are here to help you.",
+        "formId": "6279",
+        "returnUrl": "/ai#contact-form-success",
+        "lpUrl": "https://ubuntu.com/ai/contact-us",
+        "product": "AI"
+      },
+      "fieldsets": [
+        {
+          "title": "Do you already have any AI projects rolled out in your enterprise?",
+          "inputType": "radio",
+          "inputName": "do-you-have-ai-product",
+          "fields": [
+            {
+              "type": "radio",
+              "value": "yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "value": "no",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "What are you interested in from our AI offering?",
+          "id": "what-are-you-interested-in",
+          "inputType": "checkbox",
+          "fields": [
+            {
+              "type": "checkbox",
+              "label": "Canonical MLOps solution",
+              "value": "Canonical MLOps solution"
+            },
+            {
+              "type": "checkbox",
+              "label": "AI consultancy services",
+              "value": "AI consultancy services"
+            },
+            {
+              "type": "checkbox",
+              "label": "MLOps Workshop",
+              "value": "MLOps Workshop"
+            },
+            {
+              "type": "checkbox",
+              "label": "Not sure",
+              "value": "Not sure"
+            }
+          ]
+        },
+        {
+          "title": "Add details about your AI or MLOps requirements",
+          "fields": [
+            {
+              "type": "long-text",
+              "label": "",
+              "id": "add-details-about-your-requirements"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "about-you",
+          "noCommentsFromLead": true,
+          "fields": [
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            },
+            {
+              "type": "country",
+              "label": "Country",
+              "isRequired": false
+            },
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
