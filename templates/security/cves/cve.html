@@ -263,15 +263,15 @@
                             {{ status.version }}
                             {% if status.support_tag %}{{ status.support_tag }}{% endif %}
                             <span class="u-text--muted">{{ status.release_codename }}</span>
-                            {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}
-                              <a class="p-chip p-tooltip--top-center"
-                                 href="{{ status.pocket_desc.href }}"
-                                 aria-describedby="{{ status.pocket }}-tooltip">
+                            {% if status.pocket_desc and status.pocket_desc.label != "Ubuntu Pro" %}&nbsp;
+                              <button class="p-chip p-tooltip--top-center"
+                                 aria-describedby="{{ status.pocket }}-tooltip"
+                                 style="vertical-align: unset;">
                                 <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
                                 <span class="p-tooltip__message cve-chip"
                                       role="tooltip"
-                                      id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text }}</span>
-                              </a>
+                                      id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe }}</span>
+                              </button>
                             {% endif %}
                           </td>
                           {# djlint: off #}
