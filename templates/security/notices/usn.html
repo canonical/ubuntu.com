@@ -191,42 +191,6 @@
                                     id="{{ package_name.pocket }}-tooltip">{{ package_name.pocket_info.text | safe }}</span>
                             </button>
                           {% endif %}
-                          <!-- TODO: For UX purposes. Remove when UX+1 -->
-                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                style="vertical-align: unset;"
-                                aria-describedby="esm-infra-legacy-tooltip">
-                          <span class="p-chip__value">Ubuntu Pro</span>
-                          <span class="p-tooltip__message cve-chip u-hide"
-                                role="tooltip"
-                                id="esm-infra-legacy-tooltip">Fix available with <a href='/pro'>Ubuntu Pro</a>.</span>
-                          </button>
-
-                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                style="vertical-align: unset;"
-                                aria-describedby="realtime-tooltip">
-                          <span class="p-chip__value">Real-time</span>
-                          <span class="p-tooltip__message cve-chip u-hide"
-                                role="tooltip"
-                                id="realtime-tooltip"><a href='/real-time'>Real-time</a> kernel available with Ubuntu Pro.</span>
-                          </button>
-
-                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                style="vertical-align: unset;"
-                                aria-describedby="fips-tooltip">
-                          <span class="p-chip__value">FIPS</span>
-                          <span class="p-tooltip__message cve-chip u-hide"
-                                role="tooltip"
-                                id="fips-tooltip"><a href='/security/fips'>FIPS-140</a> certified package. Available with Ubuntu Pro.</span>
-                          </button>
-
-                          <button class="js-tooltip p-chip is-dense u-no-margin--bottom p-tooltip--{% if loop.first and outer_loop.first %}btm{% else %}top{% endif %}-center"
-                                style="vertical-align: unset;"
-                                aria-describedby="fips-updates-tooltip">
-                          <span class="p-chip__value">FIPS Updates</span>
-                          <span class="p-tooltip__message cve-chip u-hide"
-                                role="tooltip"
-                                id="fips-updates-tooltip"><a href='/security/fips'>FIPS-140</a> certified package with security fixes. Available with Ubuntu Pro.</span>
-                          </button>
                         </td>
                       </tr>
                     {% endfor %}
