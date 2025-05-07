@@ -302,7 +302,7 @@
                   {% else %}
                     <div class="p-notification--information">
                       <div class="p-notification__content">
-                        <h5 class="p-notification__title">Your search "{{ request.args.get('cve') }}" did not match any notices.</h5>
+                        <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('cve') }}" did not match any CVEs.</p>
                         <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#references">reset search</a>.</p>
                       </div>
                     </div>
@@ -363,7 +363,7 @@
                   {% else %}
                     <div class="p-notification--information">
                       <div class="p-notification__content">
-                        <h5 class="p-notification__title">Your search "{{ request.args.get('usn') }}" did not match any notices.</h5>
+                        <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('usn') }}" did not match any notices.</p>
                         <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#related-notices">reset search</a>.</p>
                       </div>
                     </div>

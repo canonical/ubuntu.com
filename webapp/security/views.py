@@ -22,6 +22,7 @@ from webapp.security.helpers import (
     does_not_include_base_url,
     get_friendly_pockets,
     get_processed_details,
+    get_attention_banner,
 )
 
 
@@ -31,21 +32,6 @@ markdown_parser = Markdown(
 session = talisker.requests.get_session()
 
 security_api = SecurityAPI(session=session)
-
-
-def get_attention_banner(details):
-    """
-    Extract the "ATTENTION:" section from the details if present and return it.
-    """
-    extract_details = details.split("ATTENTION: ")
-    instructions = extract_details[0]
-    attention_banner = (
-        "ATTENTION: " + extract_details[1]
-        if len(extract_details) > 1
-        else None
-    )
-
-    return attention_banner, instructions
 
 
 def notice(notice_id):

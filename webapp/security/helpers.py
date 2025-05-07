@@ -331,3 +331,18 @@ def get_processed_details(markdown_parser, notice):
             details = details.replace(last_item, cleaned_last_item)
 
     return details
+
+
+def get_attention_banner(details):
+    """
+    Extract the "ATTENTION:" section from the details if present and return it.
+    """
+    extract_details = details.split("ATTENTION: ")
+    instructions = extract_details[0]
+    attention_banner = (
+        "ATTENTION: " + extract_details[1]
+        if len(extract_details) > 1
+        else None
+    )
+
+    return attention_banner, instructions
