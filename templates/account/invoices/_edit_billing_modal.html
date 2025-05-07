@@ -1,0 +1,26 @@
+<div style="display: none;" class="p-modal" id="edit-billing-modal">
+  <section class="p-modal__dialog"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="modal-title">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Edit billing details</h2>
+      <button class="p-modal__close"
+              aria-label="Close active modal"
+              aria-controls="modal">Close</button>
+    </header>
+    {% include 'account/invoices/_edit_billing_form.html' %}
+    <div id="error-container" class="p-notification--negative u-hide">
+      <div class="p-notification__content">
+        <h5 class="p-notification__title">Error saving your details</h5>
+        <p class="p-notification__message">Please try again later. If the issue persists, contact Canonical sales.</p>
+      </div>
+    </div>
+    <footer class="p-modal__footer">
+      <button id="cancel-modal-btn"
+              class="u-no-margin--bottom"
+              aria-controls="modal">Cancel</button>
+      <button id="save-modal-btn" class="p-button--positive u-no-margin--bottom">Save</button>
+    </footer>
+  </section>
+</div>
