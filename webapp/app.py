@@ -38,7 +38,6 @@ from webapp.canonical_cla.views import (
 from webapp.certified.views import certified_routes
 from webapp.handlers import init_handlers
 from webapp.login import login_handler, logout
-from webapp.app_css import init_css_optimization
 from webapp.security.views import (
     cve,
     cve_index,
@@ -463,9 +462,6 @@ app.add_url_rule(
 )
 
 # end of shop
-
-# Initialize CSS optimization
-init_css_optimization(app)
 
 app.add_url_rule(
     (

@@ -9,20 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} | Ubuntu</title>
     <link rel="preconnect" href="https://res.cloudinary.com" />
-    <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
-    <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}" type="module"></script>
+    <link rel="preconnect" href="https://assets.ubuntu.com" crossorigin />
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    
     <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
     <script src="{{ versioned_static('js/src/navigation.js') }}" defer></script>
     <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
     <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}" defer></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ get_optimized_css() }}" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}" /> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static("css/styles.css") }}" />
     <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static("css/print.css") }}" />
     <script>
       performance.mark("Stylesheets finished");
     </script>
-
+    
     <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}" />
 
     <link rel="apple-touch-icon"
@@ -113,6 +117,9 @@
     {% endif %}
     {% block extra_metatags %}{% endblock %}
     <style>#rememberMe {display: none;}</style>
+
+    <script src="{{ versioned_static('js/dist/cookie-policy.js') }}"></script>
+    <script src="{{ versioned_static('js/src/cookie-policy-with-callback.js') }}" type="module"></script>
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
