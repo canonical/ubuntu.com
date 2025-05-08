@@ -1,6 +1,6 @@
 {% extends "templates/one-column.html" %}
 
-{% set search = request.args.get('release') or request.args.get('details') %}
+{% set search = request.args.get('details') %}
 
 {% block title %}Security notices{% endblock %}
 
@@ -53,7 +53,7 @@
     </div>
     <div class="col-9 col-medium-6">
       <p class="u-no-margin--bottom" id="search-label">USN ID, name, description or CVE ID contains</p>
-      <form class="js-form p-search-box" aria-describedby="search-label">
+      <form class="js-notice-form p-search-box" aria-describedby="search-label">
         <label class="u-off-screen" for="details">Search</label>
         <input class="p-search-box__input js-details" type="search" name="details" id="details" placeholder="Search listings" required="" autocomplete="on" value="{{ request.args.get('details', '') }}" >
         <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
@@ -148,6 +148,5 @@
   const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
 </script>
 {# djlint:off #}
-<script src="/static/js/src/notices.js"></script>
-
+<script src="{{ versioned_static('js/dist/noticesLanding.js') }}" defer></script>
 {% endblock %}
