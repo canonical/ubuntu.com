@@ -2,6 +2,10 @@
 
 {% block title %}{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
 
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
 {% block content %}
   {% set breadcrumbs = [{"name": "Ubuntu Security Notices", "href": "/security/notices"}, {"name": notice.id }] %}
   {% include '/shared/_breadcrumbs.html' %}
@@ -10,9 +14,7 @@
     <div class="row">
       <div class="col-start-large-4 col-9">
         <div class="p-section--shallow">
-          <div class="row">
-            <h1>{{ notice.id }}: {{ notice.title }}</h1>
-          </div>
+          <h1>{{ notice.id }}: {{ notice.title }}</h1>
           <div class="row">
             <div class="col-2">
               <p class="p-heading--5 u-no-margin--bottom">Publication date</p>
@@ -92,35 +94,32 @@
         {% if notice.package_descriptions %}
           <div class="p-section">
             <h2 class="section-heading" id="description" style="scroll-margin-top: 4rem">Software description</h2>
-            <div class="col-7">
-              <ul class="p-list js-description-truncated">
-                {% set ns = namespace(counter=0) %}
-                {% for package_name, package_title in notice.package_descriptions.items() %}
-                  {% set list_length = package_name | length + package_title | length %}
-                  {% set ns.counter = ns.counter + list_length %}
-                  {% if ns.counter < 1000 %}
-                    <li class="p-list__item has-bullet">
-                      <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
-                    </li>
-                  {% else %}
-                    {% set ns.showmore=True %}
-                  {% endif %}
-                {% endfor %}
-              </ul>
-              <ul class="p-list js-description-all u-hide">
-                {% for package_name, package_title in notice.package_descriptions.items() %}                    
+            <ul class="p-list js-description-truncated">
+              {% set ns = namespace(counter=0) %}
+              {% for package_name, package_title in notice.package_descriptions.items() %}
+                {% set list_length = package_name | length + package_title | length %}
+                {% set ns.counter = ns.counter + list_length %}
+                {% if ns.counter < 1000 %}
                   <li class="p-list__item has-bullet">
                     <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
                   </li>
-                {% endfor %}
-              </ul>
-              {% if ns.showmore %}
-                <hr class="p-rule--muted" />
-                <button class="p-button--link js-show-more-description">Show more</button>
-                <button class="p-button--link js-show-less-description u-hide">Show less</button>
-              {% endif %}
-            </div>
-          
+                {% else %}
+                  {% set ns.showmore=True %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <ul class="p-list js-description-all u-hide">
+              {% for package_name, package_title in notice.package_descriptions.items() %}                    
+                <li class="p-list__item has-bullet">
+                  <strong>{{ package_name }}</strong>&nbsp;&ndash;&nbsp;{{ package_title }}
+                </li>
+              {% endfor %}
+            </ul>
+            {% if ns.showmore %}
+              <hr class="p-rule--muted" />
+              <button class="p-button--link js-show-more-description">Show more</button>
+              <button class="p-button--link js-show-less-description u-hide">Show less</button>
+            {% endif %}
           </div>
         {% endif %}
 
@@ -181,29 +180,15 @@
         {% if notice.cves_and_references %}
           <h2 class="section-heading" id="references" style="scroll-margin-top: 4rem">References</h2>
           {% if notice.cves_and_references | length > 29 %}
-            <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-form js-form">
-              <div class="row u-equal-height">
-                <div class="col-8">
-                  <div class="row">
-                    <div class="col-7">
-                      <label class="p-form__label" for="cve">CVE ID contains</label>
-                      <input class="p-form__control"
-                              type="text"
-                              name="cve"
-                              id="cve"
-                              value="{{ request.args.get('cve', '') }}" />
-                    </div>
-                    <div class="col-2 u-align--right"
-                          style="display: flex;
-                                align-items: flex-end">
-                      <button type="submit" class="p-button--positive js-submit" style="width:100%">
-                        Search
-                        {% if search %}again{% endif %}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <form action="/security/notices/{{ notice.id }}#references" method="GET" class="p-search-box js-cve-form">
+              <label class="u-off-screen" for="search">Search</label>
+              <input type="search" 
+                    id="cve" 
+                    class="p-search-box__input"
+                    name="cve" 
+                    placeholder="Search by CVE ID" />
+              <button type="reset" class="p-search-box__reset u-hide"><i class="p-icon--close">Close</i></button>
+              <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
             </form>
           {% endif %}
           {% if notice.cves_and_references %}
@@ -267,49 +252,7 @@
     </div>
   </section>
 
-  <script>    
-    function toggleShowBtn(showSection) {
-      const truncated = document.querySelector(`.js-${showSection}-truncated`);
-      const all = document.querySelector(`.js-${showSection}-all`);
-      const showMoreButton = document.querySelector(`.js-show-more-${showSection}`);
-      const showLessButton = document.querySelector(`.js-show-less-${showSection}`);
-
-      showMoreButton?.addEventListener("click", function() {
-        truncated.classList.add("u-hide");
-        all.classList.remove("u-hide");
-        showMoreButton.classList.add("u-hide");
-        showLessButton.classList.remove("u-hide");
-      });
-
-      showLessButton?.addEventListener("click", function() {
-        truncated.classList.remove("u-hide");
-        all.classList.add("u-hide");
-        showMoreButton.classList.remove("u-hide");
-        showLessButton.classList.add("u-hide");
-      });
-    }
-
-    function handleSearch(section) {
-      const form = document.querySelector(`.js-${section}-form`);
-      const url = new URL(window.location);
-
-      form?.addEventListener("reset", (e) => {
-        e.preventDefault();
-        if (url.searchParams.has(section)) {
-          url.searchParams.delete(section);
-        }
-        window.location = url;
-      });
-    }
-
-    (function() {
-      toggleShowBtn("description");
-      toggleShowBtn("details");
-      toggleShowBtn("references");
-      handleSearch("cve");
-    })();
-  </script>
-
+  <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
 
 {% endblock %}
