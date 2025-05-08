@@ -41,7 +41,6 @@
       {%- if slot == 'title' -%}
 
         <div class="row">
-          <hr class="p-rule u-hide--medium u-hide--large" />
           <div class="p-section--shallow">
             <h2>Faster, cheaper, better. Pick any 3.</h2>
           </div>
@@ -1063,8 +1062,6 @@
   {% with section_classes='p-section--deep', title_link="/blog/tag/iot", tag_id='3633', limit='4', hide_date=True, tag_name='iot', link_image=True, show_image=True, show_excerpt=True, excerptLength=200, show_start_rule=True, is_title_link=True, heading_class="p-heading--2" %}
     {% include "/shared/_latest_news_strip.html" %}
   {% endwith %}
-
-  <script src="{{ versioned_static('js/dist/sticky-nav.js') }}"></script>
 
   {{ load_form("/embedded") | safe }}
 
