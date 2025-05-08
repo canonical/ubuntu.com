@@ -45,26 +45,22 @@
 
 <!-- search -->
 <section class="p-section">
-  <form class="js-form">
-    <div class="row">
-      <div class="col-3 col-medium-6">
-        {% if not search %}
-        <h2>Search USNs</h2>
-        {% endif %}
-      </div>
-      <div class="col-9 col-medium-6">
-        <div class="row">
-          <div class="col-7 col-medium-4">
-            <label class="p-form__label" for="details">USN ID, name, description or CVE ID contains:</label>
-            <input class="p-form__control js-details" type="text" name="details" id="details" value="{{ request.args.get('details', '') }}" />
-          </div>
-          <div class="col-2 col-medium-2">
-            <button type="submit"class="p-button--positive js-submit" id="cve-search-button">Search</button>
-          </div>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-3 col-medium-6">
+      {% if not search %}
+      <h2>Search USNs</h2>
+      {% endif %}
     </div>
-  </form>
+    <div class="col-9 col-medium-6">
+      <p class="u-no-margin--bottom" id="search-label">USN ID, name, description or CVE ID contains</p>
+      <form class="js-form p-search-box" aria-describedby="search-label">
+        <label class="u-off-screen" for="details">Search</label>
+        <input class="p-search-box__input js-details" type="search" name="details" id="details" placeholder="Search listings" required="" autocomplete="on" value="{{ request.args.get('details', '') }}" >
+        <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+        <button type="submit" class="p-search-box__button js-submit"><i class="p-icon--search">Search</i></button>
+      </form>
+    </div>
+  </div>
 </section>
 
 <!-- main contnent -->

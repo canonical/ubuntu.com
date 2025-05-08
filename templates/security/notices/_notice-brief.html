@@ -6,8 +6,8 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <p class="u-text--muted">{{ notice.published }}</p>
-      <p>{{ notice.summary | safe }}</p>
+      <p class="u-text--muted u-no-margin--bottom" style="padding-bottom: 8px;">{{ notice.published }}</p>
+      <p class="u-no-margin--bottom" style="padding-bottom: 8px;">{{ notice.summary | safe }}</p>
       <div class="p-section--shallow">
         <ul class="p-inline-list u-no-margin">
           {% for release in notice.releases %}
@@ -20,8 +20,8 @@
     </div>
     {% if notice.cves_ids %}
       <div class="col-3">
-        <p class="u-text--muted p-heading--5">CVE ID</p>
-        <p>
+        <p class="u-text--muted p-heading--5 u-no-margin--bottom" style="padding-bottom: 8px;">CVE ID</p>
+        <p class="u-no-padding--top">
           {% for cve_id in notice.cves_ids %}
           {% if loop.index <= 3 %}
           <a href="/security/{{ cve_id }}">{{ cve_id }}</a>{% if (loop.index < 3 or loop.index == notice.cves_ids|length - 1) and notice.cves_ids|length > 1 %}, {% endif %}
