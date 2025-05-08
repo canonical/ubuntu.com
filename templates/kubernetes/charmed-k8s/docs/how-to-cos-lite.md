@@ -149,11 +149,11 @@ you can head over to the [COS Lite documentation][cos-lite-docs].
 
 [how-to-install]: /kubernetes/charmed-k8s/docs/how-to-install
 [how-to-install-microk8s]: https://microk8s.io/docs/getting-started
-[add-k8s]: https://juju.is/docs/juju/juju-add-k8s
+[add-k8s]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/add-k8s/
 [cos-lite-docs]: https://charmhub.io/topics/canonical-observability-stack
-[juju-models]: https://juju.is/docs/juju/model
-[juju-debug-log]: https://juju.is/docs/juju/juju-debug-log
-[cross-model-integration]: https://juju.is/docs/juju/relation#heading--cross-model
+[juju-models]: https://documentation.ubuntu.com/juju/3.6/reference/model
+[juju-debug-log]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/debug-log/
+[cross-model-integration]: https://documentation.ubuntu.com/juju/3.6/reference/relation
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

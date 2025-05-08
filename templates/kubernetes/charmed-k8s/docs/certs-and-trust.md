@@ -42,7 +42,7 @@ Unfortunately, the **Juju** controller does not provide any mechanisms for
 generating or distributing additional certificates to be used by the
 applications on the machines, so they must be managed by the charms via the
 secure relation data channel. This is done using the [tls-certificates][]
-[interface protocol][interface] and a relation to an application providing a
+interface protocol and a relation to an application providing a
 Certificate Authority.  (This CA could be either a root CA, or an intermediary
 CA authorised by some other root CA to issue certificates.)
 
@@ -71,7 +71,7 @@ identifying and validating it to any clients that wish to connect.
 The primary address at which the service can be reached will be its [common
 name][CN]; ideally, this will be a fully-qualified domain name (FQDN) which
 will not change, but for internal service communication, it is often just the
-[ingress address][network primitives] for the unit. Any additional names or
+ingress address for the unit. Any additional names or
 addresses by which the service can be reached will be its [subject alternative
 names (SANs)][SANs].
 
@@ -120,13 +120,12 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust
 [CA]: https://en.wikipedia.org/wiki/Certificate_authority
-[Juju units]: https://juju.is/docs/juju/quick-reference
-[Juju controller]: https://juju.is/docs/juju/quick-reference
+[Juju units]: https://documentation.ubuntu.com/juju/3.6/reference/unit/
+[Juju controller]: https://documentation.ubuntu.com/juju/3.6/reference/controller/
 [tls-certificates]: https://github.com/juju-solutions/interface-tls-certificates
-[interface]: https://juju.is/docs/juju/quick-reference
 [websockets]: https://en.wikipedia.org/wiki/WebSocket
 [cloud-init]: https://cloud-init.io/
-[relation]: https://juju.is/docs/juju/quick-reference
+[relation]: https://documentation.ubuntu.com/juju/3.6/reference/relation/
 [vault-charm]: https://charmhub.io/vault
 [vault]: https://www.vaultproject.io
 [easyrsa-charm]: https://charmhub.io/containers-easyrsa
@@ -139,7 +138,6 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [client certificate]: https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_client_certificate
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
-[network primitives]: https://juju.is/docs/juju/quick-reference
 [kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane
 [`extra_sans`]:  https://charmhub.io/kubernetes-control-plane/configure
 [HA]: https://en.wikipedia.org/wiki/High_availability

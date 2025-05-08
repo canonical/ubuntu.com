@@ -439,7 +439,7 @@ Hello Kubernetes!
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [install]: /kubernetes/charmed-k8s/docs/install-manual
 [Equinix Cloud Controller Manager]: https://github.com/equinix/cloud-provider-equinix-metal/
-[Juju documentation]: https://juju.is/docs/juju/installing-juju
+[Juju documentation]: https://documentation.ubuntu.com/juju/3.6/tutorial/
 [Equinix Metal]: https://metal.equinix.com/
 
 <!-- FEEDBACK -->

@@ -20,7 +20,7 @@ to directly use native vSphere features such as storage.
 <div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere Cloud Provider assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://juju.is/docs/juju/vmware-vsphere" >Juju documentation</a>.</p>
+    <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere Cloud Provider assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://documentation.ubuntu.com/juju/3.6/reference/cloud/list-of-supported-clouds/the-vmware-vsphere-cloud-and-juju/" >Juju documentation</a>.</p>
   </div>
 </div>
 

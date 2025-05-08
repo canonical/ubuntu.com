@@ -281,7 +281,7 @@ view.
 
 <!--LINKS -->
 
-[juju-logging]: https://juju.is/docs/juju/juju-logs
+[juju-logging]: https://documentation.ubuntu.com/juju/3.6/howto/manage-logs/
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
 [ck8s-audit-logs]: /kubernetes/charmed-k8s/docs/audit-logging
 [logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/logging-egf-overlay.yaml

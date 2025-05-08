@@ -125,7 +125,7 @@ It is recommended that you run a [cluster validation][validation] to ensure that
 [validation]: /kubernetes/charmed-k8s/docs/validation
 [supported-versions]: /kubernetes/charmed-k8s/docs/supported-versions
 [inclusive-naming]: /kubernetes/charmed-k8s/docs/inclusive-naming
-[juju-controller-upgrade]: https://juju.is/docs/juju/upgrade-models
+[juju-controller-upgrade]: https://documentation.ubuntu.com/juju/3.6/howto/manage-models/#upgrade-a-model
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

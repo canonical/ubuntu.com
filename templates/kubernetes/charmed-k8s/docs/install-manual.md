@@ -457,13 +457,12 @@ Now you have a cluster up and running, check out the
 
 [latest-bundle-file]: https://charmhub.io/charmed-kubernetes
 [jaas]: https://jaas.ai/
-[juju-docs]: https://juju.is/docs/juju/installing-juju
-[controller-config]: https://juju.is/docs/juju/create-controllers
-[credentials]: https://juju.is/docs/juju/credentials
+[juju-docs]: https://documentation.ubuntu.com/juju/3.6/tutorial/
+[credentials]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/credentials/
 [quickstart]: /kubernetes/charmed-k8s/docs/quickstart
-[juju-bundle]: https://juju.is/docs/sdk/bundles
+[juju-bundle]: https://documentation.ubuntu.com/juju/3.6/reference/bundle/
 [juju-gui]: https://juju.is/docs/juju/manage-the-juju-dashboard
-[juju-constraints]: https://juju.is/docs/juju/constraints
+[juju-constraints]: https://documentation.ubuntu.com/juju/3.6/reference/juju-cli/list-of-juju-cli-commands/constraints/
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
 [charm-kworker]: https://charmhub.io/containers-kubernetes-worker
 [snaps]: https://docs.snapcraft.io/snap-documentation

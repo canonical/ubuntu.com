@@ -304,7 +304,7 @@ sudo sysctl fs.inotify.max_user_watches=1048576
 If the CNI pods fail to start, see notes on the specific CNI page.
 
 CNIs like [Cilium][cilium] and [Calico][calico] need access to `/sys/fs/bpf`, but that
-mountpoint is not supported by the Juju [validation check][juju-validation-check]
+mountpoint is not supported by the Juju validation check
 for the charm-specific `lxd-profile.yaml`. See [CNI Overview][cni-overview] for more
 details.
 
@@ -326,11 +326,10 @@ juju config calico ignore-loose-rpf=true
 <!-- LINKS -->
 
 [lxd-home]: https://ubuntu.com/lxd
-[lxd-profile]: https://juju.is/docs/sdk/lxd-profile-yaml
+[lxd-profile]: https://canonical-charmcraft.readthedocs-hosted.com/en/stable/reference/files/lxd-profile-yaml-file
 [calico]: /kubernetes/charmed-k8s/docs/cni-calico
 [cilium]: /kubernetes/charmed-k8s/docs/cni-cilium
 [cni-overview]: /kubernetes/charmed-k8s/docs/cni-overview
-[juju-validation-check]: https://juju.is/docs/juju/use-lxd-profiles
 [Juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/charmed-k8s/docs/install-manual
