@@ -899,7 +899,7 @@ def cred_your_exams(
     if exam_contracts:
         reservations_response_pages = []
         next_page = 1
-        # Fetch all reservations in one API call
+        # Fetch all reservations for the user over multiple pages
         try:
             while next_page:
                 reservations_response = (
