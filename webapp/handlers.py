@@ -163,6 +163,8 @@ CSP = {
         "youtube.com",
         "google.com",
         "fonts.google.com",
+        "'self'",
+        "blob:",
     ],
 }
 
