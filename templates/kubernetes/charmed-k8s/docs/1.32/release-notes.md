@@ -17,6 +17,16 @@ layout:
 toc: False
 ---
 
+# 1.32+ck2
+
+### May 8, 2025 - `charmed-kubernetes --channel 1.32/stable`
+
+## Notable Fixes
+
+### Kubernetes Control Plane Charm
+* [LP#2108934](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2108934) The CPU usage Prometheus rule now correctly applies to pods running on any node in the cluster.
+* [LP#2097158](https://bugs.launchpad.net/charm-kubernetes-master/+bug/2097158) The `user-create` action ensures `groups` is treated as a list.
+
 # 1.32+ck1
 
 ### Mar 28, 2025 - `charmed-kubernetes --channel 1.32/stable`
