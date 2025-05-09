@@ -164,7 +164,7 @@ def notice(notice_id):
 
 def notices():
     details = flask.request.args.get("details", type=str)
-    release = flask.request.args.get("release", type=str)
+    releases = flask.request.args.getlist("release", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     order = flask.request.args.get("order", type=str)
@@ -172,11 +172,19 @@ def notices():
     # call endpoint to get all releases and notices
     all_releases = security_api.get_releases()
 
+    formatted_releases = get_formatted_releases(security_api, releases)
+
+    all_releases = formatted_releases["all_releases"]
+    lts_releases = formatted_releases["lts_releases"]
+    esm_releases = formatted_releases["esm_releases"]
+    maintained_releases = formatted_releases["maintained_releases"]
+    unmaintained_releases = formatted_releases["unmaintained_releases"]
+
     notices_response = security_api.get_page_notices(
         limit=limit,
         offset=offset,
         details=details,
-        release=release,
+        releases=releases,
         order=order,
     )
 
@@ -202,7 +210,7 @@ def notices():
             ).strftime("%-d %B %Y")
 
     return flask.render_template(
-        "security/notices.html",
+        "security/notices/index.html",
         notices=notices,
         releases=releases,
         current_page=page_number,
@@ -213,6 +221,10 @@ def notices():
         page_last_result=offset + len(notices),
         offset=offset,
         order=order,
+        maintained_releases=maintained_releases,
+        lts_releases=lts_releases,
+        unmaintained_releases=unmaintained_releases,
+        esm_releases=esm_releases,
     )
 
 
@@ -259,7 +271,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset="", details="", release="", order=""
+        limit=10, offset="", details="", releases="", order=""
     ).get("notices")
 
     for notice in notices:

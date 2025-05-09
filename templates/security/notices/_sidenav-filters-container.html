@@ -1,0 +1,36 @@
+<div class="col-3 p-side-navigation" id="drawer">
+  <a href="#drawer"
+      class="p-side-navigation__toggle js-drawer-toggle p-heading--5"
+      aria-controls="drawer">Filter by Ubuntu release</a>
+  <button class="p-button u-hide" id="js-clear-filters">Clear filters</button>
+  <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+  <nav class="p-side-navigation__drawer" aria-label="CVE results filters">
+    <div class="p-side-navigation__drawer-header">
+      <button
+          class="p-side-navigation__toggle--in-drawer js-drawer-toggle"
+          aria-controls="drawer"
+          id="toggle-filters">Close filters</button>
+    </div>
+    <aside class="p-accordion" data-multiple-expanded="true">
+      <div class="p-accordion__list">
+        <div class="p-accordion__group release-accordion-group">
+          <div role="heading" aria-level="2" class="releases-tab-container">
+              <p class="p-text--small-caps" style="padding-left: 1rem;">Filter by Ubuntu releases</p>
+            </button>
+          </div>
+          <section class="p-accordion__panel is-dense"
+                    id="tab2-section"
+                    aria-hidden="false"
+                    aria-labelledby="tab2">
+            {% include "security/notices/_release-filters.html" %}
+          </section>
+        </div>
+      </div>
+      <div class="cve-filter-buttons p-cta-block">
+        <button class="p-button--positive" id="apply-filters">Apply filters</button>
+        <button class="p-button" id="clear-filters">Clear all filters</button>
+      </div>
+    </aside>
+  </nav>
+</div>
+<script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>

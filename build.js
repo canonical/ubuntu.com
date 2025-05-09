@@ -19,6 +19,7 @@ let entries = {
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   notices: "./static/js/src/cve/notices.js",
+  noticesLanding: "./static/js/src/cve/notices-landing.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
   shopCheckout: "./static/js/src/advantage/subscribe/checkout/app.tsx",
   advantageOffers: "./static/js/src/advantage/offers/app.jsx",

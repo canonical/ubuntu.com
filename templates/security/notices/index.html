@@ -1,0 +1,152 @@
+{% extends "templates/one-column.html" %}
+
+{% set search = request.args.get('details') %}
+
+{% block title %}Security notices{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+
+{% if search %}
+  {% set breadcrumbs = [{"name": "Ubuntu Security Notices", "href": "/security/notices"}, {"name": "Search results for \"" ~ search ~ "\"" }] %}
+  {% include '/shared/_breadcrumbs.html' %}
+{% endif %}
+
+<!-- hero -->
+<section class="p-section--hero">
+  <div class="row">
+    <div class="col-start-large-4 col-9">
+      <h1>Ubuntu Security Notices</h1>
+      {% if not search %}
+      <p>
+        Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="https://packages.ubuntu.com">official Ubuntu package</a>. You can find additional guidance for high-profile vulnerabilities in the <a href="/security/vulnerabilities">Ubuntu Vulnerability Knowledge Base</a> section.
+      </p>
+      <p>
+        To report a security vulnerability in an Ubuntu package, please <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Contact">contact the Security Team</a>.
+      </p>
+
+      <p>
+        The Security Team also produces <a href="/security/oval">OVAL</a> files for each Ubuntu release. These are an industry-standard machine-readable format dataset that contain details of all known security vulnerabilities and fixes relevant to the Ubuntu release, and can be used to determine whether a particular patch is appropriate. OVAL files can also be used to audit a system to check whether the latest security fixes have been applied.
+      </p>
+      
+      <div class="p-cta-block is-borderless">
+        <p>Subscribe for updates&nbsp;&nbsp;</p>
+        <a class="p-button" href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce">Mailing list</a>
+        <a class="p-button" href="/security/notices/atom.xml">Atom</a>
+        <a class="p-button" href="/security/notices/rss.xml">RSS</a>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- search -->
+<section class="p-section">
+  <div class="row">
+    <div class="col-3 col-medium-6">
+      {% if not search %}
+      <h2>Search USNs</h2>
+      {% endif %}
+    </div>
+    <div class="col-9 col-medium-6">
+      <p class="u-no-margin--bottom" id="search-label">USN ID, name, description or CVE ID contains</p>
+      <form class="js-notice-form p-search-box" aria-describedby="search-label">
+        <label class="u-off-screen" for="details">Search</label>
+        <input class="p-search-box__input js-details" type="search" name="details" id="details" placeholder="Search listings" required="" autocomplete="on" value="{{ request.args.get('details', '') }}" >
+        <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+        <button type="submit" class="p-search-box__button js-submit"><i class="p-icon--search">Search</i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- main contnent -->
+  <section class="p-section">
+    <hr class="p-rule--muted is-fixed-width">
+    <div class="row">
+      <!-- sidenav with filters -->
+      {% include "security/notices/_sidenav-filters-container.html" %}
+      <!-- usn cards -->
+      <div class="col-9 col-medium-6" id="notices-list" style="scroll-margin-top: 4rem;">
+        {% if notices %}
+        <p class="p-text--small-caps">{{ page_first_result }} - {{ page_last_result }} of {{ total_results }} results</p>
+          {% for notice in notices %}
+            {% include "security/notices/_notice-brief.html" %}
+          {% endfor %}
+        {% else %}
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <h5 class="p-notification__title">Your search "{{ search }}" did not match any notices.</h5>
+              <p class="p-notification__message">Search for another term or <a href="/security/notices">see a full list of Security Notices</a>.</p>
+            </div>
+          </div>
+        {% endif %}
+        <!-- pagination -->
+        {% with total_pages = total_pages, current_page=current_page, offset=offset, align="u-align--left" %}
+          {% include "shared/_pagination.html" %}
+        {% endwith %}
+      </div>
+    </div>
+  </section>              
+
+  <!-- footer sections -->
+  <section class="p-section">
+    <div class="row--25-75">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2 class="u-no-padding--top">Resources</h2>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Join the discussion</h3>
+          </div>
+          <div class="col-6">
+            <ul class="p-list--divided">
+              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-hardened" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu security updates mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Ubuntu security updates mailing list</a></li>
+              <li class="p-list__item"><a href="https://lists.ubuntu.com/mailman/listinfo/ubuntu-security-announce" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Security announcements mailing list', 'eventLabel' : 'Join the discussion', 'eventValue' : undefined });">Security announcements mailing list</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="p-rule--muted" />
+        <div class="row">
+          <div class="col-3">
+            <h3 class="p-heading--5">Further reading</h3>
+          </div>
+          <div class="col-6">
+            {% with limit="3", tagId="1364" %}
+              {% include "security/notices/_further-reading.html" %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section--deep">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Canonical is offering<br /> Expanded Security Maintenance</h2>
+      </div>
+      <div class="col">
+        <p>Canonical is offering Ubuntu Expanded Security Maintenance (ESM) for security fixes and essential packages.</p>
+        <div class="p-cta-block">
+          <a href="/security/esm">Find out more about ESM&nbsp;&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{# djlint:off #}
+<script type="text/javascript">
+  const maintainedReleasesObj = {{maintained_releases | tojson | safe}};
+  const ltsReleasesObj = {{lts_releases | tojson | safe}};
+  const unmaintainedReleasesObj = {{unmaintained_releases | tojson | safe}};
+</script>
+{# djlint:off #}
+<script src="{{ versioned_static('js/dist/noticesLanding.js') }}" defer></script>
+{% endblock %}
