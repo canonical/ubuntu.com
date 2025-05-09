@@ -70,7 +70,7 @@
       <!-- sidenav with filters -->
       {% include "security/notices/_sidenav-filters-container.html" %}
       <!-- usn cards -->
-      <div class="col-9 col-medium-6">
+      <div class="col-9 col-medium-6" id="notices-list" style="scroll-margin-top: 4rem;">
         {% if notices %}
         <p class="p-text--small-caps">{{ page_first_result }} - {{ page_last_result }} of {{ total_results }} results</p>
           {% for notice in notices %}

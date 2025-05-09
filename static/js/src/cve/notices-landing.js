@@ -19,6 +19,7 @@ const unmaintainedReleasesLink = document.querySelector(
 );
 const searchClose = form.querySelector(".p-icon--close");
 const searchInput = form.querySelector(".p-search-box__input");
+const noticesListSection = document.querySelector("#notices-list");
 
 // External data
 // eslint-disable-next-line no-undef
@@ -56,12 +57,35 @@ function toogleSearch() {
   submit.disabled = !details.value;
 }
 
+function scrollToList() {
+  // if releases exists in the URL scroll to this section
+  if (urlParams.has("release")){
+    noticesListSection.scrollIntoView()
+  }
+}
+
 // Event handlers
+function handleFormSubmit () {
+  submit.addEventListener("click", function (event){
+    event.preventDefault()
+    
+    if (searchInput.value) {
+      urlParams.set("details", searchInput.value)
+      url.search = urlParams.toString();
+      window.location.href = url.href;
+    }
+  })
+}
 
 function handleFormReset() {
   searchClose.addEventListener("click", function (event) {
     event.preventDefault();
+    const preValue = searchInput.value;
     searchInput.value = "";
+    // Remove param from url is search box is cleared
+    if (urlParams.get("details")) {
+      urlParams.delete("details")
+    }
   });
 }
 
@@ -184,6 +208,7 @@ function handleFilterPersist() {
 
 document.addEventListener("DOMContentLoaded", function () {
   handleFormReset();
+  handleFormSubmit();
   toogleSearch();
   showUnmaintainedReleases();
   applyFilters();
@@ -191,4 +216,5 @@ document.addEventListener("DOMContentLoaded", function () {
   handleFilterPersist();
   handleFilters();
   showUnmaintainedReleases();
+  scrollToList();
 });

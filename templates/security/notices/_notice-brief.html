@@ -22,17 +22,15 @@
       <div class="col-3">
         <p class="u-text--muted p-heading--5 u-no-margin--bottom" style="padding-bottom: 8px;">CVE ID</p>
         <p class="u-no-padding--top">
-          {% for cve_id in notice.cves_ids %}
-          {% if loop.index <= 3 %}
-          <a href="/security/{{ cve_id }}">{{ cve_id }}</a>{% if (loop.index < 3 or loop.index == notice.cves_ids|length - 1) and notice.cves_ids|length > 1 %}, {% endif %}
-          {% endif %}
-          {% if loop.index == 3 %}
-          <span class="u-text--muted">
-            {% if notice.cves_ids|length - 3 == 1 %}&plus; {{ notice.cves_ids|length - 3 }} other{% endif %}
-            {% if notice.cves_ids|length - 3 > 1 %}&plus; {{ notice.cves_ids|length - 3 }} others{% endif %}
-          </span>
-          {% endif %}
+          {% set total = notice.cves_ids|length %}
+          {% for cve_id in notice.cves_ids[:3] %}
+            <a href="/security/{{ cve_id }}">{{ cve_id }}</a>{% if not loop.last %}, {% endif %}
           {% endfor %}
+          {% if total > 3 %}
+            <span class="u-text--muted">
+              &plus; {{ total - 3 }} other{{ 's' if total - 3 > 1 else '' }}
+            </span>
+          {% endif %}
         </p>      
       </div>
     {% endif %}
