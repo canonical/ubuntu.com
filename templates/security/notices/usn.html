@@ -228,51 +228,47 @@
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
-              <div class="row">
-                <div class="col-8">
-                  {% if notice.cves_and_references %}
-                    <ul class="p-list js-references-truncated">
-                      {% set ns = namespace(counter=0) %}
-                        {% for reference in notice.cves_and_references %}
-                          {% if ns.counter < 10 %}
-                            {% if "CVE-" in reference.id %}
-                              <li class="p-list__item">
-                                <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
-                              </li>
-                            {% else %}
-                              <li class="p-list__item">
-                                <a href="{{ reference }}">{{ reference }}</a>
-                              </li>
-                            {% endif %}
-                            {% set ns.counter = ns.counter + 1 %}
-                          {% endif %}
-                        {% endfor %}
-                    </ul>
-                    <ul class="p-list js-references-all u-hide">
-                      {% if notice.cves_and_references %}
-                        {% for cve in notice.cves_and_references %}
-                          {% if "CVE-" in cve.id %}
-                            <li class="p-list__item">
-                              <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
-                            </li>
-                          {% else %}
-                            <li class="p-list__item">
-                              <a href="{{ reference }}">{{ reference }}</a>
-                            </li>
-                          {% endif %}
-                        {% endfor %}
+              {% if notice.cves_and_references %}
+                <ul class="p-list js-references-truncated">
+                  {% set ns = namespace(counter=0) %}
+                    {% for reference in notice.cves_and_references %}
+                      {% if ns.counter < 10 %}
+                        {% if "CVE-" in reference.id %}
+                          <li class="p-list__item">
+                            <a href="/security/{{ reference.id }}">{{ reference.id }}</a>
+                          </li>
+                        {% else %}
+                          <li class="p-list__item">
+                            <a href="{{ reference }}">{{ reference }}</a>
+                          </li>
+                        {% endif %}
+                        {% set ns.counter = ns.counter + 1 %}
                       {% endif %}
-                    </ul>
-                  {% else %}
-                    <div class="p-notification--information">
-                      <div class="p-notification__content">
-                        <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('cve') }}" did not match any CVEs.</p>
-                        <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#references">reset search</a>.</p>
-                      </div>
-                    </div>
-                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <ul class="p-list js-references-all u-hide">
+                  {% if notice.cves_and_references %}
+                    {% for cve in notice.cves_and_references %}
+                      {% if "CVE-" in cve.id %}
+                        <li class="p-list__item">
+                          <a href="/security/{{ cve.id }}">{{ cve.id }}</a>
+                        </li>
+                      {% else %}
+                        <li class="p-list__item">
+                          <a href="{{ reference }}">{{ reference }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </ul>
+              {% else %}
+                <div class="p-notification--information">
+                  <div class="p-notification__content">
+                    <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('cve') }}" did not match any CVEs.</p>
+                    <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#references">reset search</a>.</p>
+                  </div>
                 </div>
-              </div>
+                {% endif %}
               {% if notice.cves_and_references | length > 10 %}
                 <hr class="p-rule--muted" />
                 <button class="p-button--link js-show-more-references">Show {{ notice.cves_and_references | length - 10 }} more references</button>
@@ -303,37 +299,33 @@
                   <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
                 </form>
               {% endif %}
-              <div class="row">
-                <div class="col-8">
-                  {% if notice.related_notices %}
-                    <ul class="p-list js-notices-truncated">
-                      {% set ns = namespace(counter=0) %}
-                      {% for notice in notice.related_notices %}
-                        {% if ns.counter < 10 %}
-                          <li class="p-list__item">
-                            <a href="/security/notices/{{ notice }}">{{ notice }}</a>
-                          </li>
-                          {% set ns.counter = ns.counter + 1 %}
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                    <ul class="p-list js-notices-all u-hide">
-                      {% for notice in notice.related_notices %}
-                        <li class="p-list__item">
-                          <a href="/security/notices/{{ notice }}">{{ notice }}</a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  {% else %}
-                    <div class="p-notification--information">
-                      <div class="p-notification__content">
-                        <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('usn') }}" did not match any notices.</p>
-                        <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#related-notices">reset search</a>.</p>
-                      </div>
-                    </div>
-                  {% endif %}
+              {% if notice.related_notices %}
+                <ul class="p-list js-notices-truncated">
+                  {% set ns = namespace(counter=0) %}
+                  {% for notice in notice.related_notices %}
+                    {% if ns.counter < 10 %}
+                      <li class="p-list__item">
+                        <a href="/security/notices/{{ notice }}">{{ notice }}</a>
+                      </li>
+                      {% set ns.counter = ns.counter + 1 %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+                <ul class="p-list js-notices-all u-hide">
+                  {% for notice in notice.related_notices %}
+                    <li class="p-list__item">
+                      <a href="/security/notices/{{ notice }}">{{ notice }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <div class="p-notification--information">
+                  <div class="p-notification__content">
+                    <p class="p-heading--5 p-notification__title">Your search "{{ request.args.get('usn') }}" did not match any notices.</p>
+                    <p class="p-notification__message">Search for another term or <a href="/security/notices/{{ notice.id }}#related-notices">reset search</a>.</p>
+                  </div>
                 </div>
-              </div>
+              {% endif %}
               <div class="u-fixed-width">
                 {% if notice.related_notices | length > 10 %}
                   <hr class="p-rule--muted" />
@@ -358,114 +350,6 @@
     </div>
   </section>
 
-  <script>
-    function toggleShowBtn(showSection) {
-      const truncated = document.querySelector(`.js-${showSection}-truncated`);
-      const all = document.querySelector(`.js-${showSection}-all`);
-      const showMoreButton = document.querySelector(`.js-show-more-${showSection}`);
-      const showLessButton = document.querySelector(`.js-show-less-${showSection}`);
-
-      showMoreButton?.addEventListener("click", function() {
-        truncated.classList.add("u-hide");
-        all.classList.remove("u-hide");
-        showMoreButton.classList.add("u-hide");
-        showLessButton.classList.remove("u-hide");
-      });
-
-      showLessButton?.addEventListener("click", function() {
-        truncated.classList.remove("u-hide");
-        all.classList.add("u-hide");
-        showMoreButton.classList.remove("u-hide");
-        showLessButton.classList.add("u-hide");
-      });
-    };
-
-    function resetSearch(input, resetBtn) {
-      if (input.value.trim() !== '') {
-        resetBtn.classList.remove('u-hide');
-      } else {
-        resetBtn.classList.add('u-hide');
-      };
-    }
-
-    function handleSearch(section) {
-      const form = document.querySelector(`.js-${section}-form`);
-      const input = form?.querySelector('input[type="search"]');
-      const resetBtn = form?.querySelector('.p-search-box__reset');
-
-      const params = new URLSearchParams(window.location.search);
-      const queryValue = params.get(section);
-
-      if (input) {
-        // Populate search box with URL search param
-        if (queryValue) {
-          input.value = queryValue;
-          resetBtn?.classList.remove('u-hide');
-        };
-        if (resetBtn) {
-          resetSearch(input, resetBtn);
-          input.addEventListener('input', function() {
-            resetSearch(input, resetBtn);
-          });
-        };
-      };
-
-      // Add event listener to toggle the reset button visibility
-      resetBtn?.addEventListener('click', function() {
-        input.value = '';
-        resetBtn.classList.add('u-hide');
-        input.focus();
-      });
-    }
-
-    function handleTooltips() {
-      const tooltipElements = document.querySelectorAll('.js-tooltip');
-    
-      tooltipElements.forEach(function(tooltip) {
-        const tooltipMessage = tooltip.querySelector('.p-tooltip__message');
-    
-        tooltip.addEventListener('click', function(e) {
-          e.stopPropagation();
-    
-          // Hide all tooltips when clicked
-          document.querySelectorAll('.p-tooltip__message.u-show').forEach(function(otherMessage) {
-            if (otherMessage !== tooltipMessage) {
-              otherMessage.classList.remove('u-show');
-              otherMessage.classList.add('u-hide');
-            }
-          });
-    
-          // Show the toggled tooltip
-          const isHidden = tooltipMessage.classList.contains('u-hide');
-          if (isHidden) {
-            tooltipMessage.classList.remove('u-hide');
-            tooltipMessage.classList.add('u-show');
-          } else {
-            tooltipMessage.classList.remove('u-show');
-            tooltipMessage.classList.add('u-hide');
-          }
-        });
-      });
-    
-      // Hide all tooltips when clicked elsewhere on screen
-      document.addEventListener('click', function() {
-        document.querySelectorAll('.p-tooltip__message.u-show').forEach(function(msg) {
-          msg.classList.remove('u-show');
-          msg.classList.add('u-hide');
-        });
-      });
-    }
-    
-    (function() {
-      toggleShowBtn("details");
-      toggleShowBtn("references");
-      toggleShowBtn("notices");
-
-      handleSearch("cve");
-      handleSearch("usn");
-
-      handleTooltips();
-    })();
-  </script>
   <script src="{{ versioned_static('js/dist/dynamic-toc.js') }}" defer></script>
+  <script src="{{ versioned_static('js/dist/notices.js') }}" defer></script>
 {% endblock content %}
