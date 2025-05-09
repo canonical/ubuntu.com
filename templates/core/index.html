@@ -16,6 +16,10 @@ meta_copydoc %}
   is-paper
 {% endblock body_class %}
 
+{% block extra_metatags %}
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
 {% block content %}
 
   <section class="p-strip is-shallow u-no-padding--bottom">
@@ -43,15 +47,15 @@ meta_copydoc %}
       </div>
       <div class="col">
         <div class="p-hero-video-container u-embedded-media">
-          <iframe class="u-embedded-media__element"
+          <lite-youtube
             aria-label="What is Ubuntu Core"
-            src="https://www.youtube.com/embed/3C3Y0xVf8zw"
-            title="What is Ubuntu Core"
-            frameborder="0"
-            srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/3C3Y0xVf8zw?autoplay=1&mute=1&rel=0><img src=https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png alt='YT Video'></a>"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-          </div>
+            videoid="3C3Y0xVf8zw"
+            videotitle="What is Ubuntu Core"
+            class="u-embedded-media__element"
+          >
+            <img slot="image" src="https://assets.ubuntu.com/v1/3a0f24b8-video-thumbnail-suru-bg.png" alt="What is Ubuntu Core" />
+          </lite-youtube>
+        </div>
       </div>
     </div>
   </section>
