@@ -12,8 +12,8 @@
           id="toggle-filters">Close filters</button>
     </div>
     <aside class="p-accordion" data-multiple-expanded="true">
-      <ul class="p-accordion__list">
-        <li class="p-accordion__group release-accordion-group">
+      <div class="p-accordion__list">
+        <div class="p-accordion__group release-accordion-group">
           <div role="heading" aria-level="2" class="releases-tab-container">
               <p class="p-text--small-caps" style="padding-left: 1rem;">Filter by Ubuntu releases</p>
             </button>
@@ -24,8 +24,8 @@
                     aria-labelledby="tab2">
             {% include "security/notices/_release-filters.html" %}
           </section>
-        </li>
-      </ul>
+        </div>
+      </div>
       <div class="cve-filter-buttons p-cta-block">
         <button class="p-button--positive" id="apply-filters">Apply filters</button>
         <button class="p-button" id="clear-filters">Clear all filters</button>

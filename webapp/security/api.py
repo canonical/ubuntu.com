@@ -17,7 +17,7 @@ class SecurityAPI:
     def __init__(
         self,
         session: Session,
-        base_url="https://staging.ubuntu.com/security/",
+        base_url=SECURITY_API_URL,
     ):
         self.session = session
         self.base_url = base_url

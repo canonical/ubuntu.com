@@ -54,26 +54,25 @@ let includesFilterSubset = (parentArray, subsetArray) => {
 
 function scrollToList() {
   // if releases exists in the URL scroll to this section
-  if (urlParams.has("release")){
-    noticesListSection.scrollIntoView()
+  if (urlParams.has("release")) {
+    noticesListSection.scrollIntoView();
   }
 }
 
 // Event handlers
-function handleFormSubmit () {
-  submit.addEventListener("click", function (event){
-    event.preventDefault()
-    
-    if (searchInput.value) {
-      urlParams.set("details", searchInput.value)
+function handleFormSubmit() {
+  submit.addEventListener("click", function (event) {
+    event.preventDefault();
 
+    if (searchInput.value) {
+      urlParams.set("details", searchInput.value);
     } else if (urlParams.has("details")) {
-        urlParams.delete("details")
+      urlParams.delete("details");
     }
 
     url.search = urlParams.toString();
     window.location.href = url.href;
-  })
+  });
 }
 
 function handleFormReset() {
