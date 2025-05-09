@@ -1829,3 +1829,19 @@ ol.p-stepped-list.no-full-stop
     scroll-margin-top: 100px;
   }
 }
+
+// Custom styling for the vulnerability details page
+// that allows large complex tables to be scrollable
+.vulnerability-details .p-table--wide-table {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: auto;
+
+    td,
+    th {
+      white-space: nowrap;
+    }
+  }
+}
