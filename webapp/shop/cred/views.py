@@ -897,24 +897,29 @@ def cred_your_exams(
     exams_expired = []
 
     if exam_contracts:
-        # Fetch all reservations in one API call
+        reservations_response_pages = []
+        next_page = 1
+        # Fetch all reservations for the user over multiple pages
         try:
-            reservations_response = (
-                trueability_api.get_assessment_reservations(
-                    per_page=500,
-                    email=email,
+            while next_page:
+                reservations_response = (
+                    trueability_api.get_assessment_reservations(
+                        per_page=100,
+                        page=next_page,
+                        email=email,
+                    )
                 )
-            )
-            reservations = {
-                r["uuid"]: r
-                for r in reservations_response.get(
-                    "assessment_reservations", []
+                reservations_response_pages.extend(
+                    reservations_response.get("assessment_reservations", [])
                 )
-            }
-
+                next_page = reservations_response.get("meta", {}).get(
+                    "next_page", None
+                )
+                if next_page:
+                    next_page = int(next_page)
+            reservations = {r["uuid"]: r for r in reservations_response_pages}
         except Exception:
             reservations = {}
-
         for exam_contract in exam_contracts:
             exam_id = exam_contract["cueContext"]["courseID"]
             name = EXAM_NAMES.get(exam_id, exam_id)
@@ -1096,7 +1101,8 @@ def cred_your_exams(
                             "text": "Schedule",
                             "href": "/credentials/schedule?"
                             f"contractItemID={contract_item_id}"
-                            f"&contractLongID={contract_long_id}",
+                            f"&contractLongID={contract_long_id}"
+                            f"&ta_exam={exam_id}",
                             "button_class": "p-button",
                         },
                     ]
