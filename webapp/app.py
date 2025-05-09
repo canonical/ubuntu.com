@@ -187,6 +187,7 @@ CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("CHARMHUB_DISCOURSE_API_USERNAME")
 # Sitemaps that are already generated and don't need to be updated.
 # Can be seen on sitemap_index.xml
 DYNAMIC_SITEMAPS = [
+    "templates",
     "tutorials",
     "engage",
     "ceph/docs",
