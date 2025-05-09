@@ -14,6 +14,10 @@
   is-paper
 {% endblock body_class %}
 
+{% block extra_metatags %}
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
 {% block content %}
 
   {# 0 -180px #}
@@ -29,14 +33,17 @@
       </div>
       <div class="col">
         <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element"
+          <lite-youtube videoid="q5yM4ZYwB_s"
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/q5yM4ZYwB_s"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+                  posterquality="maxresdefault"
+                  videotitle="Ubuntu 24.04 LTS Noble Numbat | 20 years of Ubuntu"
+                  class="u-embedded-media__element"
+          >
+            <a href="https://youtube.com/watch?v=q5yM4ZYwB_s" title="Play Video">
+              <span class="lyt-visually-hidden">Ubuntu 24.04 LTS Noble Numbat | 20 years of Ubuntu</span>
+            </a>
+          </lite-youtube>
         </div>
       </div>
     </div>

@@ -23,13 +23,15 @@ FROM yarn-dependencies AS build-js
 ADD static/js static/js
 ADD build.js build.js
 ADD babel.config.js .
+ADD scripts scripts
 RUN yarn run build-js
 
 
 # Build stage: Run "yarn run build-css"
 # ===
 FROM yarn-dependencies AS build-css
-ADD static/sass static/sass
+ADD . .
+COPY --from=build-js /srv/static/js /srv/static/js
 RUN yarn run build-css
 
 
