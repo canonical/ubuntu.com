@@ -52,11 +52,6 @@ let includesFilterSubset = (parentArray, subsetArray) => {
   });
 };
 
-// Disable search when form is empty
-function toogleSearch() {
-  submit.disabled = !details.value;
-}
-
 function scrollToList() {
   // if releases exists in the URL scroll to this section
   if (urlParams.has("release")){
@@ -71,9 +66,13 @@ function handleFormSubmit () {
     
     if (searchInput.value) {
       urlParams.set("details", searchInput.value)
-      url.search = urlParams.toString();
-      window.location.href = url.href;
+
+    } else if (urlParams.has("details")) {
+        urlParams.delete("details")
     }
+
+    url.search = urlParams.toString();
+    window.location.href = url.href;
   })
 }
 
@@ -84,7 +83,9 @@ function handleFormReset() {
     searchInput.value = "";
     // Remove param from url is search box is cleared
     if (urlParams.get("details")) {
-      urlParams.delete("details")
+      urlParams.delete("details");
+      url.search = urlParams.toString();
+      window.location.href = url.href;
     }
   });
 }
@@ -97,16 +98,6 @@ function applyFilters() {
     });
   }
 }
-
-// Toggle on form change
-form.onchange = function () {
-  toogleSearch();
-};
-
-// Toggle on details input keyup
-details.onkeyup = function () {
-  toogleSearch();
-};
 
 function handleClearFilters() {
   if (clearFiltersButton) {
@@ -209,7 +200,6 @@ function handleFilterPersist() {
 document.addEventListener("DOMContentLoaded", function () {
   handleFormReset();
   handleFormSubmit();
-  toogleSearch();
   showUnmaintainedReleases();
   applyFilters();
   handleClearFilters();
