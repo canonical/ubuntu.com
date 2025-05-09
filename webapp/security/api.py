@@ -90,7 +90,7 @@ class SecurityAPI:
         limit: int,
         offset: int,
         details: str,
-        release: str,
+        releases: list,
         order: str,
     ):
         """
@@ -103,14 +103,14 @@ class SecurityAPI:
             "limit": limit,
             "offset": offset,
             "details": details,
-            "release": release,
+            "release": releases,
             "order": order,
         }
 
         # Remove falsey items from dictionary
         parameters = {k: v for k, v in parameters.items() if v}
 
-        filtered_parameters = urlencode(parameters)
+        filtered_parameters = urlencode(parameters, doseq=True)
 
         try:
             notices_response = self._get(

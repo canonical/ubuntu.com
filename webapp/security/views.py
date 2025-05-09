@@ -20,6 +20,9 @@ from webapp.security.helpers import (
     get_formatted_releases,
     get_formatted_release_statuses,
     does_not_include_base_url,
+    get_friendly_pockets,
+    get_processed_details,
+    get_attention_banner,
 )
 
 
@@ -29,16 +32,6 @@ markdown_parser = Markdown(
 session = talisker.requests.get_session()
 
 security_api = SecurityAPI(session=session)
-
-
-def get_processed_details(notice):
-    pattern = re.compile(
-        r"(?<![a-zA-Z0-9-_/])((cve|CVE-)\d{4}-\d{4,7})(?!\.html)", re.MULTILINE
-    )
-
-    return re.sub(
-        pattern, r'<a href="/security/\1">\1</a>', notice["description"]
-    )
 
 
 def notice(notice_id):
@@ -71,6 +64,12 @@ def notice(notice_id):
                 name = package["name"]
                 if not package["is_source"]:
                     release_packages[release_version][name] = package
+
+                    pocket_label = package.get("pocket", None)
+                    pocket_info = get_friendly_pockets(pocket_label)
+                    release_packages[release_version][name][
+                        "pocket_info"
+                    ] = pocket_info
                     continue
 
                 if notice["type"] == "LSN":
@@ -104,19 +103,60 @@ def notice(notice_id):
             notice["published"]
         ).strftime("%-d %B %Y")
 
+    processed_instructions = notice["instructions"]
+    (attention_banner, instructions) = get_attention_banner(
+        processed_instructions
+    )
+    if attention_banner:
+        processed_instructions = instructions
+
+    cve_query = flask.request.args.get("cve", default=None, type=str)
+    cves_and_references = notice["cves"] + notice["references"]
+    total_cves = len(cves_and_references)
+    if cves_and_references:
+        if cve_query:
+            cves_and_references = [
+                cve
+                for cve in cves_and_references
+                if cve_query.upper() in cve["id"]
+            ]
+        cves_and_references = sorted(
+            cves_and_references,
+            key=lambda x: x["id"],
+            reverse=True,
+        )
+
+    usn_query = flask.request.args.get("usn", default=None, type=str)
+    total_notices = 0
+    if notice.get("related_notices"):
+        total_notices = len(notice["related_notices"])
+        if usn_query:
+            notice["related_notices"] = [
+                usn for usn in notice["related_notices"] if usn_query in usn
+            ]
+        notice["related_notices"] = sorted(
+            notice["related_notices"],
+            key=lambda x: int(x.split("-")[1]),
+            reverse=True,
+        )
+
+    processed_details = get_processed_details(markdown_parser, notice)
+
     notice = {
         "id": notice["id"],
         "title": notice["title"],
         "published": notice["published"],
         "summary": notice["summary"],
-        "details": markdown_parser(get_processed_details(notice)),
-        "instructions": markdown_parser(notice["instructions"]),
+        "details": processed_details,
+        "instructions": processed_instructions,
+        "attention_banner": attention_banner,
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice["releases"],
-        "cves": notice["cves"],
-        "references": notice["references"],
         "related_notices": notice["related_notices"],
+        "cves_and_references": cves_and_references,
+        "total_cves": total_cves,
+        "total_notices": total_notices,
     }
 
     return flask.render_template(template, notice=notice)
@@ -124,19 +164,27 @@ def notice(notice_id):
 
 def notices():
     details = flask.request.args.get("details", type=str)
-    release = flask.request.args.get("release", type=str)
+    releases = flask.request.args.getlist("release", type=str)
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     order = flask.request.args.get("order", type=str)
 
-    # call endpopint to get all releases and notices
+    # call endpoint to get all releases and notices
     all_releases = security_api.get_releases()
+
+    formatted_releases = get_formatted_releases(security_api, releases)
+
+    all_releases = formatted_releases["all_releases"]
+    lts_releases = formatted_releases["lts_releases"]
+    esm_releases = formatted_releases["esm_releases"]
+    maintained_releases = formatted_releases["maintained_releases"]
+    unmaintained_releases = formatted_releases["unmaintained_releases"]
 
     notices_response = security_api.get_page_notices(
         limit=limit,
         offset=offset,
         details=details,
-        release=release,
+        releases=releases,
         order=order,
     )
 
@@ -162,7 +210,7 @@ def notices():
             ).strftime("%-d %B %Y")
 
     return flask.render_template(
-        "security/notices.html",
+        "security/notices/index.html",
         notices=notices,
         releases=releases,
         current_page=page_number,
@@ -173,6 +221,10 @@ def notices():
         page_last_result=offset + len(notices),
         offset=offset,
         order=order,
+        maintained_releases=maintained_releases,
+        lts_releases=lts_releases,
+        unmaintained_releases=unmaintained_releases,
+        esm_releases=esm_releases,
     )
 
 
@@ -219,7 +271,7 @@ def notices_feed(feed_type):
         return entry
 
     notices = security_api.get_page_notices(
-        limit=10, offset="", details="", release="", order=""
+        limit=10, offset="", details="", releases="", order=""
     ).get("notices")
 
     for notice in notices:
@@ -620,52 +672,6 @@ def cve(cve_id):
         "released": {"name": "Fixed", "icon": "success"},
     }
 
-    friendly_pockets = {
-        "esm-infra": {
-            "text": (
-                "Fix available with Ubuntu Pro and "
-                "Ubuntu Pro (Infra-only) via ESM Infra."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "esm-infra-legacy": {
-            "text": (
-                "Fix available with Ubuntu Pro with " "Legacy support add-on."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "esm-apps": {
-            "text": (
-                "Fix available with Ubuntu Pro via ESM Apps. "
-                "A fix from the community might become publicly available "
-                "in the future."
-            ),
-            "label": "Ubuntu Pro",
-            "href": "/pro",
-        },
-        "fips": {
-            "text": "FIPS certified package. Available with Ubuntu Pro.",
-            "label": "FIPS",
-            "href": "/security/fips",
-        },
-        "fips-updates": {
-            "text": (
-                "FIPS compliant package with security fixes. "
-                "Available with Ubuntu Pro."
-            ),
-            "label": "FIPS Updates",
-            "href": "/security/fips",
-        },
-        "ros-esm": {
-            "text": "Security updates for ROS packages available\
-             with Ubuntu Pro.",
-            "label": "ROS ESM",
-            "href": "/security/robotics/ros-esm",
-        },
-    }
-
     maintained_count = 0
     only_upstream = False
     # Account for cves which only include upstream status
@@ -696,8 +702,9 @@ def cve(cve_id):
                     status["maintained"] = False
 
                 # Set pocket descriptions
-                if status["pocket"] in friendly_pockets:
-                    status["pocket_desc"] = friendly_pockets[status["pocket"]]
+                pocket_desc = get_friendly_pockets(status["pocket"])
+                if pocket_desc:
+                    status["pocket_desc"] = pocket_desc
 
             # Sort package statuses by release version
             package["statuses"] = sorted(

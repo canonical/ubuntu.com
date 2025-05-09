@@ -1,5 +1,6 @@
 # Standard library
 from datetime import datetime
+import re
 
 
 """
@@ -252,3 +253,96 @@ def does_not_include_base_url(link):
         if base_url in link:
             return False
     return True
+
+
+def get_friendly_pockets(label):
+    friendly_pockets = {
+        "esm-infra": {
+            "text": ("Fix available with <a href='/pro'>Ubuntu Pro</a>."),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-infra-legacy": {
+            "text": (
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
+                "Legacy Support add-on."
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "esm-apps": {
+            "text": (
+                "Fix available with <a href='/pro'>Ubuntu Pro</a> via "
+                "ESM Apps. A community fix "
+                "might become publicly available "
+                "in the future. "
+            ),
+            "label": "Ubuntu Pro",
+            "href": "/pro",
+        },
+        "fips": {
+            "text": (
+                "<a href='/security/fips'>FIPS-140</a> certified package. "
+                "Available with Ubuntu Pro. "
+            ),
+            "label": "FIPS",
+            "href": "/security/fips",
+        },
+        "fips-updates": {
+            "text": (
+                "<a href='/security/fips'>FIPS-140</a> certified package with "
+                "security fixes. Available with "
+                "Ubuntu Pro."
+            ),
+            "label": "FIPS Updates",
+            "href": "/security/fips",
+        },
+        "realtime": {
+            "text": (
+                "<a href='/real-time'>Real-time</a> kernel available with "
+                "Ubuntu Pro. "
+            ),
+            "label": "Real-time",
+            "href": "/real-time",
+        },
+    }
+
+    if label in friendly_pockets:
+        return friendly_pockets[label]
+
+
+def get_processed_details(markdown_parser, notice):
+    pattern = re.compile(
+        r"(?<![a-zA-Z0-9-_/])((cve|CVE-)\d{4}-\d{4,7})(?!\.html)", re.MULTILINE
+    )
+
+    details = markdown_parser(
+        re.sub(
+            pattern, r'<a href="/security/\1">\1</a>', notice["description"]
+        )
+    )
+
+    # Remove redundant list of CVEs
+    all_items = re.findall(r"<li>(.*?)</li>", details, re.DOTALL)
+    if all_items:
+        last_item = all_items[-1]
+        if last_item:
+            cleaned_last_item = last_item.split(";")[0]
+            details = details.replace(last_item, cleaned_last_item)
+
+    return details
+
+
+def get_attention_banner(details):
+    """
+    Extract the "ATTENTION:" section from the details if present and return it.
+    """
+    extract_details = details.split("ATTENTION: ")
+    instructions = extract_details[0]
+    attention_banner = (
+        "ATTENTION: " + extract_details[1]
+        if len(extract_details) > 1
+        else None
+    )
+
+    return attention_banner, instructions
