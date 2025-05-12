@@ -186,6 +186,6 @@ jobs:
           echo "Performance checks failed for $FAILURE_COUNT page(s)."
           exit 1
 
-      - name: Send message on failure
-        if: env.FAILURE_COUNT > 0
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+      # - name: Send message on failure
+      #   if: env.FAILURE_COUNT > 0
+      #   run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
