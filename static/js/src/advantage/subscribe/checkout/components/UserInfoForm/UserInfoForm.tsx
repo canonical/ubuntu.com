@@ -8,23 +8,23 @@ import {
   RadioInput,
   Row,
 } from "@canonical/react-components";
-import * as Sentry from "@sentry/react";
 import { CardElement } from "@stripe/react-stripe-js";
-import { getErrorMessage } from "advantage/error-handler";
+import {
+  getNotificationMessage,
+  getCardErrorMessage,
+} from "../../utils/translateErrors";
 import registerPaymentMethod from "../../hooks/postCustomerInfo";
-import { FormValues } from "../../utils/types";
+import type {
+  DisplayError,
+  FormValues,
+  ValidationError,
+} from "../../utils/types";
 import FormRow from "../FormRow";
 import PaymentMethodSummary from "./PaymentMethodSummary";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
-type Error = {
-  type: "validation_error";
-  code: string;
-  message: string;
-};
-
 type Props = {
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
 };
 
 const UserInfoForm = ({ setError }: Props) => {
@@ -43,7 +43,9 @@ const UserInfoForm = ({ setError }: Props) => {
   const [isEditing, setIsEditing] = useState(isNewUser);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
-  const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
+  const [cardFieldError, setCardFieldError] = useState<ValidationError | null>(
+    null,
+  );
   const [showCardValidation, setShowCardValidation] = useState<boolean>(false);
   const isChannelUser =
     values.marketplace === UserSubscriptionMarketplace.CanonicalProChannel;
@@ -100,25 +102,8 @@ const UserInfoForm = ({ setError }: Props) => {
           document.querySelector("h1")?.scrollIntoView();
 
           if (error instanceof Error) {
-            const knownErrorMessage = getErrorMessage({
-              message: "",
-              code: error.message,
-            });
-
-            // Tries to match the error with a known error code and defaults to a generic error if it fails
-            if (knownErrorMessage) {
-              setError(knownErrorMessage);
-            } else {
-              Sentry.captureException(error);
-              setError(
-                <>
-                  Sorry, there was an unknown error with your credit card. Check
-                  the details and try again. Contact{" "}
-                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                  the problem persists.
-                </>,
-              );
-            }
+            const knownErrorMessage = getNotificationMessage(error);
+            setError(knownErrorMessage);
           }
         },
       },
@@ -224,7 +209,7 @@ const UserInfoForm = ({ setError }: Props) => {
     <>
       <FormRow
         label="Payment card:"
-        error={getErrorMessage(cardFieldError ?? {})}
+        error={getCardErrorMessage(cardFieldError)}
       >
         <div
           id="card-element"
