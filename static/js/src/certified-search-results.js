@@ -46,7 +46,7 @@ function loadFilters() {
  * @returns {object} current state of filters in a flat object
  *
  * This function is used as state management
- * It provides the current state of all filters (category, vendor and ralease)
+ * It provides the current state of all filters (category, vendor and release)
  */
 function retrieveSelectedFilters() {
   const url = new URL(window.location.href);
@@ -256,7 +256,7 @@ async function handleCategoryClick(e) {
 }
 
 function handleFilterClick(e) {
-  const { value, name, checked, dataset, id } = e;
+  const { value, name, checked, dataset, id } = e.target;
   let url = new URL(window.location.href);
   let urlParams = url.searchParams;
   const vendorParams = urlParams.getAll("vendor");
@@ -336,6 +336,7 @@ function toggleExpandFilters(e, element) {
   e.preventDefault();
   const { name, value } = element;
   const { category, vendor, release } = retrieveSelectedFilters();
+
   if (name === "vendor") {
     if (value === "true") {
       // Show all
