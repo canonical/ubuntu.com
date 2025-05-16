@@ -1,12 +1,9 @@
 name: Performance checks on ubuntu.com
 
-on:
-  schedule:
-    - cron: "20 7 * * 1"
-  workflow_dispatch:
+on: [push]
 
 env:
-  THRESHOLD: 70
+  THRESHOLD: 90
 
 jobs:
   perf-checks:
@@ -15,6 +12,7 @@ jobs:
 
     steps:
       - name: Running performance checks on the homepage
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -22,6 +20,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the desktop overview page
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -29,6 +28,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the download overview page
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -36,6 +36,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the blog
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -43,6 +44,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the openstack overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -50,6 +52,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the kubernetes overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -57,6 +60,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the managed overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -64,6 +68,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the ai overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -71,6 +76,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the robotics overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -78,6 +84,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the core overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -85,6 +92,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the cloud overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -92,6 +100,7 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on the tutorials overview
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
@@ -99,13 +108,24 @@ jobs:
           threshold: $THRESHOLD
           strategy: desktop
       - name: Running performance checks on a tutorial
+        continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
         with:
           key: ${{ secrets.PSI_API_KEY }}
           url: "https://ubuntu.com/tutorials/how-to-upgrade-ubuntu-lts-to-ubuntu-pro-on-aws-using-aws-license-manager#1-overview"
           threshold: $THRESHOLD
           strategy: desktop
+        id: tutorial
+      - name: Track tutorial failure
+        if: steps.tutorial.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
+      - name: Check for any failures
+        if: env.FAILURE_COUNT > 0
+        run: |
+          echo "Performance checks failed for $FAILURE_COUNT page(s)."
+          exit 1
 
       - name: Send message on failure
-        if: failure()
+        if: env.FAILURE_COUNT > 0
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
