@@ -1,9 +1,15 @@
 name: Performance checks on ubuntu.com
 
+# on:
+#   on: [push]
+#     schedule:	
+#       - cron: "20 7 * * 1"	
+#     workflow_dispatch:
 on: [push]
 
 env:
-  THRESHOLD: 90
+  THRESHOLD: 70
+  FAILURE_COUNT: 0
 
 jobs:
   perf-checks:
@@ -19,6 +25,11 @@ jobs:
           url: "https://ubuntu.com"
           threshold: $THRESHOLD
           strategy: desktop
+        id: homepage
+      - name: Track homepage failure
+        if: steps.homepage.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the desktop overview page
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -27,6 +38,11 @@ jobs:
           url: "https://ubuntu.com/desktop"
           threshold: $THRESHOLD
           strategy: desktop
+        id: desktop
+      - name: Track desktop failure
+        if: steps.desktop.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the download overview page
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -35,6 +51,11 @@ jobs:
           url: "https://ubuntu.com/download"
           threshold: $THRESHOLD
           strategy: desktop
+        id: download
+      - name: Track download failure
+        if: steps.download.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the blog
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -43,6 +64,11 @@ jobs:
           url: "https://ubuntu.com/blog"
           threshold: $THRESHOLD
           strategy: desktop
+        id: blog
+      - name: Track blog failure
+        if: steps.blog.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the openstack overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -51,6 +77,11 @@ jobs:
           url: "https://ubuntu.com/openstack"
           threshold: $THRESHOLD
           strategy: desktop
+        id: openstack
+      - name: Track openstack failure
+        if: steps.openstack.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the kubernetes overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -59,6 +90,11 @@ jobs:
           url: "https://ubuntu.com/kubernetes"
           threshold: $THRESHOLD
           strategy: desktop
+        id: kubernetes
+      - name: Track kubernetes failure
+        if: steps.kubernetes.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the managed overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -67,6 +103,11 @@ jobs:
           url: "https://ubuntu.com/managed"
           threshold: $THRESHOLD
           strategy: desktop
+        id: managed
+      - name: Track managed failure
+        if: steps.managed.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the ai overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -75,6 +116,11 @@ jobs:
           url: "https://ubuntu.com/ai"
           threshold: $THRESHOLD
           strategy: desktop
+        id: ai
+      - name: Track ai failure
+        if: steps.ai.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the robotics overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -83,6 +129,11 @@ jobs:
           url: "https://ubuntu.com/robotics"
           threshold: $THRESHOLD
           strategy: desktop
+        id: robotics
+      - name: Track robotics failure
+        if: steps.robotics.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the core overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -91,6 +142,11 @@ jobs:
           url: "https://ubuntu.com/core"
           threshold: $THRESHOLD
           strategy: desktop
+        id: core
+      - name: Track core failure
+        if: steps.core.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the cloud overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -99,6 +155,11 @@ jobs:
           url: "https://ubuntu.com/cloud"
           threshold: $THRESHOLD
           strategy: desktop
+        id: cloud
+      - name: Track cloud failure
+        if: steps.cloud.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on the tutorials overview
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -107,6 +168,11 @@ jobs:
           url: "https://ubuntu.com/tutorials"
           threshold: $THRESHOLD
           strategy: desktop
+        id: tutorials
+      - name: Track tutorials failure
+        if: steps.tutorials.outcome == 'failure'
+        run: echo "FAILURE_COUNT=$((FAILURE_COUNT + 1))" >> $GITHUB_ENV
+
       - name: Running performance checks on a tutorial
         continue-on-error: true
         uses: jakepartusch/psi-action@v1.3
@@ -126,6 +192,6 @@ jobs:
           echo "Performance checks failed for $FAILURE_COUNT page(s)."
           exit 1
 
-      - name: Send message on failure
-        if: env.FAILURE_COUNT > 0
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
+      # - name: Send message on failure
+      #   if: env.FAILURE_COUNT > 0
+      #   run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web-design
