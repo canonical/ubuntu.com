@@ -29,22 +29,6 @@
         The Linux kernel manages the system's hardware environment so other programs like the operating system's user space programs and application software programs can run well without modification on a variety of different platforms and without needing to know very much about that underlying system.
       </p>
     {%- endif -%}
-    {%- if slot == 'cta' -%}
-      <a href="https://www.brighttalk.com/webcast/6793/398353"
-         class="p-button--positive">Watch the webinar&nbsp;&rsaquo;</a>
-    {%- endif -%}
-    {%- if slot == 'image' -%}
-      <div class="p-image-container is-cover is-highlighted">
-        {{ image(url="https://assets.ubuntu.com/v1/6645c070-Ubuntu 20.04 LTS_ What's new in server_.png",
-                alt="",
-                width="1800",
-                height="1014",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-image-container__image"}) | safe
-        }}
-      </div>
-    {%- endif -%}
   {% endcall -%}
 
   <section class="p-section">
@@ -54,16 +38,14 @@
         <h2>Identifying a kernel</h2>
       </div>
       <div class="col">
-        <p>
-          <div class="p-code-snippet">
-            The easiest way to determine the kernel you're running is to type
-            <pre class="p-code-snippet__block--icon"><code>cat /proc/version_signature</code></pre>
-            on the terminal. For example:
-          </div>
-          <div class="p-code-snippet">
-            <pre class="p-code-snippet__block--icon"><code>cat /proc/version_signature</code><br /><code class="u-text--muted">Ubuntu 5.4.0-12.15-generic 5.4.8</code></pre>
-          </div>
-        </p>
+        <p>The easiest way to determine the kernel you're running is to type</p>
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block--icon is-wrapped"><code>cat /proc/version_signature</code></pre>
+        </div>
+        <p>on the terminal. For example:</p>
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block--icon is-wrapped"><code>cat /proc/version_signature</code><br /><code>Ubuntu 5.4.0-12.15-generic 5.4.8</code></pre>
+        </div>
         <p>This output provides important information about the kernel:</p>
         <hr class="p-rule--muted" />
         <ul class="p-list--divided u-no-margin--bottom">
@@ -182,7 +164,7 @@
       </div>
       <div class="col">
         <p>
-          Canonical advocates for customers to use the GA kernel shipped with Ubuntu as the best and most cost-effective option in their business environment. We also offer the option for customers to customize their own Ubuntu kernels. Several of our enterprise, Telco and cloud provider customers have systems and workload needs, which justify both the time investment to optimizse their kernels and the pay to develop and maintain those optimizsed kernels over time.
+          Canonical advocates for customers to use the GA kernel shipped with Ubuntu as the best and most cost-effective option in their business environment. We also offer the option for customers to customize their own Ubuntu kernels. Several of our enterprise, Telco and cloud provider customers have systems and workload needs, which justify both the time investment to optimize their kernels and the pay to develop and maintain those optimized kernels over time.
         </p>
       </div>
     </div>
