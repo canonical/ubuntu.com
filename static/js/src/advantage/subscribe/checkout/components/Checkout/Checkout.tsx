@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
 import {
   Col,
@@ -25,6 +25,7 @@ import Taxes from "../Taxes";
 import UserInfoForm from "../UserInfoForm";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import AdditionalNotes from "../AdditionalNotes";
+import type { DisplayError } from "../../utils/types";
 
 type Props = {
   products: CheckoutProducts[];
@@ -33,7 +34,7 @@ type Props = {
 };
 
 const Checkout = ({ products, action, coupon }: Props) => {
-  const [error, setError] = useState<React.ReactNode>(null);
+  const [error, setError] = useState<DisplayError | null>(null);
   const [errorType, setErrorType] = useState<string>("");
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const userCanTrial = window.canTrial;
@@ -68,8 +69,8 @@ const Checkout = ({ products, action, coupon }: Props) => {
       <div className="p-strip u-no-padding--top checkout-container">
         <Row>
           {error ? (
-            <Notification severity="negative" title="error">
-              {error}
+            <Notification severity="negative" title={error.title ?? "error"}>
+              {error.description}
             </Notification>
           ) : null}
           {isUserInfoLoading ? (

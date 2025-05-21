@@ -137,3 +137,14 @@ export type LoginSession = {
     fullname: string;
   };
 };
+
+export type DisplayError = {
+  title?: string;
+  description: React.ReactNode;
+};
+
+export type ValidationError = {
+  type: "validation_error";
+  code: string;
+  message: string;
+};

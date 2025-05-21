@@ -15,13 +15,14 @@ import {
 } from "../../utils/types";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import DistributorSummary from "../DistributorSummary.tsx/DistributorSummary";
+import type { DisplayError } from "../../utils/types";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 type Props = {
   products: CheckoutProducts[];
   action: Action;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setError: React.Dispatch<React.SetStateAction<DisplayError | null>>;
   setErrorType: React.Dispatch<React.SetStateAction<string>>;
   coupon: Coupon;
 };
@@ -151,7 +152,7 @@ function Summary({ products, action, coupon, setError, setErrorType }: Props) {
         message = <>Sorry, there was an unknown error with your purchase.</>;
       }
       Sentry.captureException(error);
-      setError(message);
+      setError({ description: message });
       setErrorType(errorType);
       document.querySelector("h1")?.scrollIntoView();
       return;

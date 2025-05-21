@@ -263,12 +263,14 @@ describe("Summary", () => {
       </QueryClientProvider>,
     );
 
-    const message = (
-      <>
-        You cannot make a purchase during the trial period. To make a new
-        purchase, cancel your current trial subscription.
-      </>
-    );
+    const message = {
+      description: (
+        <>
+          You cannot make a purchase during the trial period. To make a new
+          purchase, cancel your current trial subscription.
+        </>
+      ),
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
@@ -312,12 +314,14 @@ describe("Summary", () => {
       </QueryClientProvider>,
     );
 
-    const message = (
-      <>
-        You already have a pending purchase. Please go to{" "}
-        <a href="/account/payment-methods">payment methods</a> to retry.
-      </>
-    );
+    const message = {
+      description: (
+        <>
+          You already have a pending purchase. Please go to{" "}
+          <a href="/account/payment-methods">payment methods</a> to retry.
+        </>
+      ),
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
@@ -363,12 +367,14 @@ describe("Summary", () => {
       </QueryClientProvider>,
     );
 
-    const message = (
-      <>
-        You cannot make this purchase as your account has been banned from
-        purchasing CUE exams.
-      </>
-    );
+    const message = {
+      description: (
+        <>
+          You cannot make this purchase as your account has been banned from
+          purchasing CUE exams.
+        </>
+      ),
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
@@ -412,7 +418,9 @@ describe("Summary", () => {
       </QueryClientProvider>,
     );
 
-    const message = <>Sorry, there was an unknown error with your purchase.</>;
+    const message = {
+      description: <>Sorry, there was an unknown error with your purchase.</>,
+    };
 
     expect(setError).toHaveBeenCalledWith(message);
   });
