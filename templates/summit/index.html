@@ -576,6 +576,15 @@
           navigateAndRestart('previous');
         });
       }
+
+      [previousButton, nextButton].forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          carousel.pausePlayer();
+        });
+        button.addEventListener('mouseleave', () => {
+          carousel.playPlayer();
+        });
+      });
     }
   </script>
 
