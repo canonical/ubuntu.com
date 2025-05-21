@@ -578,10 +578,10 @@
       }
 
       [previousButton, nextButton].forEach(button => {
-        button.addEventListener('mouseenter', () => {
+        button.addEventListener('mouseover', () => {
           carousel.pausePlayer();
         });
-        button.addEventListener('mouseleave', () => {
+        button.addEventListener('mouseout', () => {
           carousel.playPlayer();
         });
       });
