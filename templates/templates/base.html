@@ -114,6 +114,12 @@
           content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
     <meta property="og:image"
           content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
+    {% else %}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image"
+            content="https://assets.ubuntu.com/v1/b4ba06f2-Ubuntu%20logo.svg" />
+      <meta property="og:image"
+            content="https://assets.ubuntu.com/v1/b4ba06f2-Ubuntu%20logo.svg" />
     {% endif %}
     {% block extra_metatags %}{% endblock %}
     <style>#rememberMe {display: none;}</style>
