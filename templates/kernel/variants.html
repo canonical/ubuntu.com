@@ -60,7 +60,7 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_description_1' -%}
-        <h4 class="p-heading--5">Version-specific, where the kernel base version differs</h4>
+        <p class="p-heading--5">Version-specific, where the kernel base version differs</p>
         <p>
           It is not possible to sensibly combine kernels at different upstream versions. For any Ubuntu LTS release  where we carry a General Availability (GA) kernel at one version, and a Hardware Enablement (HWE) kernel at another version, those are delivered as separate kernels. Version-specific kernels provide a consistent operating environment for Application Binary Interface (ABI)-sensitive workloads. It is not possible to combine kernels based on different upstream versions, which means maintaining a version-specific kernel is done through backporting fixes for serious/critical bugs and CVEs, which is the primary differentiator for this kernel variant. Version-specific kernels are just as rigorously maintained by Canonical as our generic kernels but Canonical ensures backport of critical/high CVE mitigation.
         </p>
@@ -74,9 +74,9 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_description_2' -%}
-        <h4 class="p-heading--5">
+        <p class="p-heading--5">
           Configuration-specific, where desired kernel configurations are incompatible and the underlying features are not runtime selectable
-        </h4>
+        </p>
         <p>
           Our primary kernels are targeted to a general-purpose configuration with wide applicability. Where additional configuration combinations are needed, and cannot be runtime selected, we create use-case-specific kernels. For example, some memory management unit (MMU) page table code is build time selectable for performance reasons.
         </p>
@@ -87,9 +87,9 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_description_3' -%}
-        <h4 class="p-heading--5">
+        <p class="p-heading--5">
           Platform-specific, where a specific platform requires patches that are not currently applicable to the primary kernels
-        </h4>
+        </p>
         <p>
           Some platforms exhibit a very large delta to the primary kernel code base. It is common for this delta to change platform-agnostic code in ways which create risk for other platforms and are not yet accepted upstream. In these cases it is desirable to create a separate kernel for this platform to contain the risk.
         </p>
@@ -100,7 +100,7 @@
       {%- endif -%}
 
       {%- if slot == 'list_item_description_4' -%}
-        <h4 class="p-heading--5">Project-specific, where project deadlines require expedited delivery</h4>
+        <p class="p-heading--5">Project-specific, where project deadlines require expedited delivery</p>
         <p>
           For some projects it might be required  to release kernels out of sync with the primary kernels, or to release fixes to those projects quicker than is possible to cycle a full suite of testing. In these cases it is desirable to create a separate kernel to release it from those constraints.
         </p>
