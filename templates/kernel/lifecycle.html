@@ -1,117 +1,252 @@
 {% extends "kernel/base_kernel.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Ubuntu kernel lifecycle and enablement stack{% endblock %}
 
-{% block meta_description %}Canonical provides long-term support (LTS) kernels for Ubuntu LTS releases. Canonical also provides interim operating system releases with updated kernels every 6 months. Learn about the lifecycle of each kernel through the lifespan of support.{% endblock meta_description %}
+{% block meta_description %}
+  Canonical provides long-term support (LTS) kernels for Ubuntu LTS releases. Canonical also provides interim operating system releases with updated kernels every 6 months. Learn about the lifecycle of each kernel through the lifespan of support.
+{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1d01SFs7c56ge2o92g6Rwr3SjG8rtxm3jNwIyL1N8mQg/edit#heading=h.929qtgja1pr8{% endblock %}
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1d01SFs7c56ge2o92g6Rwr3SjG8rtxm3jNwIyL1N8mQg/edit#heading=h.929qtgja1pr8
+{% endblock %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h1>Ubuntu kernel lifecycle and enablement stack</h1>
-      <p>The Ubuntu LTS enablement, or Hardware Enablement (HWE), stack provides the newer kernel and X11 display support for existing Ubuntu LTS releases. That stack can be enabled manually, but may also be pre-enabled with an Ubuntu LTS release.</p>
+
+  {% call(slot) vf_hero(
+    title_text='Ubuntu kernel lifecycle<br /> and enablement stack',
+    layout='50/50',
+    is_split_on_medium=true
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        The Ubuntu LTS enablement, or Hardware Enablement (HWE), stack provides newer kernel and X11 display support for existing Ubuntu LTS releases. That stack can be enabled manually, but may also be pre-enabled with an Ubuntu LTS release.
+      </p>
       <p>The HWE stack can be used by desktop and server systems, as well as cloud or virtual images.</p>
-    </div>
-  </div>
-</section>
+    {%- endif -%}
+  {% endcall -%}
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Installation</h2>
-
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50-on-large">
+      <div class="col">
+        <h2>Installation</h2>
+      </div>
+      <div class="col">
         <nav class="p-tabs js-tabbed-content">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-22-04" class="p-tabs__link" id="installation-22-04-tab" role="tab" aria-controls="installation-22-04" aria-selected="true">22.04 LTS</a>
+              <a href="#installation-24-04"
+                 class="p-tabs__link"
+                 id="installation-24-04-tab"
+                 role="tab"
+                 aria-controls="installation-24-04"
+                 aria-selected="true">24.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-20-04" class="p-tabs__link" id="installation-20-04-tab" role="tab" aria-controls="installation-20-04">20.04 LTS</a>
+              <a href="#installation-22-04"
+                 class="p-tabs__link"
+                 id="installation-22-04-tab"
+                 role="tab"
+                 aria-controls="installation-22-04"
+                 aria-selected="true">22.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-18-04" class="p-tabs__link" id="installation-18-04-tab" role="tab" aria-controls="installation-18-04">18.04 LTS</a>
+              <a href="#installation-20-04"
+                 class="p-tabs__link"
+                 id="installation-20-04-tab"
+                 role="tab"
+                 aria-controls="installation-20-04">20.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-16-04" class="p-tabs__link" id="installation-16-04-tab" role="tab" aria-controls="installation-16-04">16.04 LTS</a>
+              <a href="#installation-18-04"
+                 class="p-tabs__link"
+                 id="installation-18-04-tab"
+                 role="tab"
+                 aria-controls="installation-18-04">18.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-14-04" class="p-tabs__link" id="installation-14-04-tab" role="tab" aria-controls="installation-14-04">14.04 LTS</a>
+              <a href="#installation-16-04"
+                 class="p-tabs__link"
+                 id="installation-16-04-tab"
+                 role="tab"
+                 aria-controls="installation-16-04">16.04 LTS</a>
+            </li>
+            <li class="p-tabs__item" role="presentation">
+              <a href="#installation-14-04"
+                 class="p-tabs__link"
+                 id="installation-14-04-tab"
+                 role="tab"
+                 aria-controls="installation-14-04">14.04 LTS</a>
             </li>
           </ul>
         </nav>
 
-        <div class="p-tabs__content" id="installation-14-04" role="tabpanel" aria-labelledby="installation-14-04-tab">
+        <div class="p-tabs__content"
+             id="installation-14-04"
+             role="tabpanel"
+             aria-labelledby="installation-14-04-tab">
           <p>Ubuntu 14.04 LTS &mdash; Trusty Tahr</p>
           <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial</code></pre>
+          </div>
           <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial</code></pre>
-          <p>The 14.04.2 and newer point releases ship with an updated kernel and X stack by default. If you have installed with older media, you can use these instructions to install the newer HWE kernel derived from 16.04 (Xenial).</p>
-          <p>If you run a multiarch desktop (for example, i386 and amd64 on amd64, for gaming or Wine), you may find you need a slightly more involved command:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial libgl1-mesa-glx-lts-xenial libgl1-mesa-glx-lts-xenial:i386 libglapi-mesa-lts-xenial:i386</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-lts-xenial</code></pre>
+          </div>
+          <p>
+            The 14.04.2 and newer point releases ship with an updated kernel and X stack by default. If you have installed with older media, you can use these instructions to install the newer HWE kernel derived from 16.04 (Xenial).
+          </p>
+          <p>
+            If you run a multiarch desktop (for example, i386 and amd64 on amd64, for gaming or Wine), you may find you need a slightly more involved command:
+          </p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial libgl1-mesa-glx-lts-xenial libgl1-mesa-glx-lts-xenial:i386 libglapi-mesa-lts-xenial:i386</code></pre>
+          </div>
         </div>
 
-        <div class="p-tabs__content" id="installation-16-04" role="tabpanel" aria-labelledby="installation-16-04-tab">
+        <div class="p-tabs__content"
+             id="installation-16-04"
+             role="tabpanel"
+             aria-labelledby="installation-16-04-tab">
           <p>Ubuntu 16.04 LTS &mdash; Xenial Xerus</p>
           <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+          </div>
           <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04</code></pre>
-          <p>The 16.04.2 and newer point releases ship with an updated kernel and X stack by default for the desktop. Server installations default to the GA kernel and provide the enablement kernel as optional.The 16.04 HWE stacks follow <a href="https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack">the Rolling Update Model</a>.</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04</code></pre>
+          </div>
+          <p>
+            The 16.04.2 and newer point releases ship with an updated kernel and X stack by default for the desktop. Server installations default to the GA kernel and provide the enablement kernel as optional.
+          </p>
+          <p>
+            The 16.04 HWE stacks follow <a href="https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack">the Rolling Update Model</a>.
+          </p>
         </div>
 
-        <div class="p-tabs__content" id="installation-18-04" role="tabpanel" aria-labelledby="installation-18-04-tab">
+        <div class="p-tabs__content"
+             id="installation-18-04"
+             role="tabpanel"
+             aria-labelledby="installation-18-04-tab">
           <p>Ubuntu 18.04 LTS &mdash; Bionic Beaver</p>
           <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04</code></pre>
+          </div>
           <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04</code></pre>
-          <p>The 18.04.2 and newer point releases will ship with an updated kernel and X stack by default for the desktop. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
-          <p>The 18.04 HWE stacks follow <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04</code></pre>
+          </div>
+          <p>
+            The 18.04.2 and newer point releases will ship with an updated kernel and X stack by default for the desktop. Server installations will default to the GA kernel and provide the enablement kernel as optional.
+          </p>
+          <p>
+            The 18.04 HWE stacks follow <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.
+          </p>
         </div>
 
-        <div class="p-tabs__content" id="installation-20-04" role="tabpanel" aria-labelledby="installation-20-04-tab">
+        <div class="p-tabs__content"
+             id="installation-20-04"
+             role="tabpanel"
+             aria-labelledby="installation-20-04-tab">
           <p>Ubuntu 20.04 LTS &mdash; Focal Fossa</p>
           <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
+          </div>
           <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
-          <p>Desktop installations of 20.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
-          <p>Note that certain desktop machines may be on a separate "OEM" track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE.</p>
-          <p>The 20.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
+          </div>
+          <p>
+            Desktop installations of 20.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.
+          </p>
+          <p>
+            Note that certain desktop machines may be on a separate "OEM" track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE.
+          </p>
+          <p>
+            The 20.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.
+          </p>
         </div>
 
-        <div class="p-tabs__content" id="installation-22-04" role="tabpanel" aria-labelledby="installation-22-04-tab">
+        <div class="p-tabs__content"
+             id="installation-22-04"
+             role="tabpanel"
+             aria-labelledby="installation-22-04-tab">
           <p>Ubuntu 22.04 LTS &mdash; Jammy Jellyfish</p>
           <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-22.04</code></pre>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-22.04</code></pre>
+          </div>
           <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-22.04</code></pre>
-          <p>Desktop installations of 22.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
-          <p>Note that certain desktop machines may be on a separate “OEM” track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE. </p>
-          <p>The 22.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-22.04</code></pre>
+          </div>
+          <p>
+            Desktop installations of 22.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.
+          </p>
+          <p>
+            Note that certain desktop machines may be on a separate “OEM” track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE.
+          </p>
+          <p>
+            The 22.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.
+          </p>
+        </div>
+
+        <div class="p-tabs__content"
+             id="installation-24-04"
+             role="tabpanel"
+             aria-labelledby="installation-24-04-tab">
+          <p>Ubuntu 24.04 LTS &mdash; Noble Numbat</p>
+          <p>Desktop:</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-24.04</code></pre>
+          </div>
+          <p>Server:</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>sudo apt-get install --install-recommends linux-generic-hwe-24.04</code></pre>
+          </div>
+          <p>
+            Desktop installations of 24.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.
+          </p>
+          <p>
+            Note that certain desktop machines may be on a separate “OEM” track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE.
+          </p>
+          <p>
+            The 24.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.
+          </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Check your support status</h2>
-      <p>To determine if your install is still supported, use this terminal command:</p>
-      <p>
-        <code>hwe-support-status --verbose</code>
-      </p>
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Check your support status</h2>
+      </div>
+      <div class="col">
+        <p>
+          To determine if your install is still supported, use hwe-support-status:
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block is-wrapped"><code>hwe-support-status --verbose</code></pre>
+          </div>
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{% include "shared/_kernel-support-schedule.html" %}
+  {% include "shared/_kernel-support-schedule.html" %}
 
-<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock %}
