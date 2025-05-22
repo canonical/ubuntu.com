@@ -1180,7 +1180,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 "security/index.html",
                 active_vulnerabilities=filtered_vulnerabilities,
             )
-        except HTTPError as e:
+        except (HTTPError, TypeError) as e:
             flask.current_app.extensions["sentry"].captureException(
                 f"Error processing vulnerabilities: {e}"
             )
