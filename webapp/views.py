@@ -156,9 +156,7 @@ def releasenotes_redirect():
         if version == short_version:
             release_slug = release.full_codename.replace(" ", "")
 
-            return flask.redirect(
-                f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes"
-            )
+            return flask.redirect(f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes")
 
     return flask.redirect("https://wiki.ubuntu.com/Releases")
 
@@ -248,11 +246,7 @@ def build_tutorials_index(session, tutorials_docs):
         if not topic:
             tutorials = tutorials_docs.parser.tutorials
         else:
-            tutorials = [
-                doc
-                for doc in tutorials_docs.parser.tutorials
-                if topic in doc["categories"]
-            ]
+            tutorials = [doc for doc in tutorials_docs.parser.tutorials if topic in doc["categories"]]
 
         # Create list of topics
         topics_list = {}
@@ -285,14 +279,10 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials = temp_metadata
 
         if sort == "difficulty-desc":
-            tutorials = sorted(
-                tutorials, key=lambda k: k["difficulty"], reverse=True
-            )
+            tutorials = sorted(tutorials, key=lambda k: k["difficulty"], reverse=True)
 
         if sort == "difficulty-asc" or not sort:
-            tutorials = sorted(
-                tutorials, key=lambda k: k["difficulty"], reverse=False
-            )
+            tutorials = sorted(tutorials, key=lambda k: k["difficulty"], reverse=False)
 
         total_results = len(tutorials)
         total_pages = math.ceil(total_results / posts_per_page)
@@ -303,9 +293,7 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials=tutorials,
             page=page,
             topic=topic,
-            topics_list=dict(
-                sorted(topics_list.items(), key=lambda key: key[0])
-            ),
+            topics_list=dict(sorted(topics_list.items(), key=lambda key: key[0])),
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
@@ -347,9 +335,7 @@ def build_engage_index(engage_docs):
                 count,
                 active_count,
                 current_total,
-            ) = engage_docs.get_index(
-                limit, offset, key="is_static", value=None
-            )
+            ) = engage_docs.get_index(limit, offset, key="is_static", value=None)
 
         # Fixed so that engage page authors don't create random resource types
         resource_types = [
@@ -398,9 +384,7 @@ def build_engage_page(engage_pages):
                     related_urls = metadata["related_urls"].split(",")
                     # Only show maximum of 3 related pages
                     for url in related_urls[:3]:
-                        page_metadata = engage_pages.get_engage_page(
-                            url.strip()
-                        )
+                        page_metadata = engage_pages.get_engage_page(url.strip())
                         if page_metadata is not None:
                             related_pages_metadata.append(page_metadata)
 
@@ -451,11 +435,8 @@ def engage_thank_you(engage_pages):
             flask.abort(404)
 
         # Stop potential spamming of /engage/<engage-page>/thank-you
-        if (
-            "resource_url" not in metadata or metadata["resource_url"] == ""
-        ) and (
-            "contact_form_only" not in metadata
-            or metadata["contact_form_only"] != "true"
+        if ("resource_url" not in metadata or metadata["resource_url"] == "") and (
+            "contact_form_only" not in metadata or metadata["contact_form_only"] != "true"
         ):
             return flask.abort(404)
 
@@ -513,10 +494,8 @@ def build_engage_pages_sitemap(engage_pages):
         for page in metadata:
             links.append(
                 {
-                    "url": f'https://ubuntu.com{page["path"]}',
-                    "last_updated": page["updated"].strftime(
-                        "%Y-%m-%dT%H:%M:%SZ"
-                    ),
+                    "url": f"https://ubuntu.com{page['path']}",
+                    "last_updated": page["updated"].strftime("%Y-%m-%dT%H:%M:%SZ"),
                 }
             )
 
@@ -536,9 +515,7 @@ def openstack_install():
     OpenStack install docs
     Instructions for OpenStack installation pulled from Discourse
     """
-    discourse_api = DiscourseAPI(
-        base_url="https://discourse.ubuntu.com/", session=session
-    )
+    discourse_api = DiscourseAPI(base_url="https://discourse.ubuntu.com/", session=session)
     openstack_install_parser = DocParser(
         api=discourse_api,
         index_topic_id=23346,
@@ -556,9 +533,7 @@ def openstack_install():
         singlenode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
     )
-    singlenode_content = openstack_install_parser._process_topic_soup(
-        singlenode_topic_soup
-    )
+    singlenode_content = openstack_install_parser._process_topic_soup(singlenode_topic_soup)
     openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
 
     multinode_topic = openstack_install_docs.parser.api.get_topic(35727)
@@ -566,9 +541,7 @@ def openstack_install():
         multinode_topic["post_stream"]["posts"][0]["cooked"],
         features="html.parser",
     )
-    multinode_content = openstack_install_docs.parser._process_topic_soup(
-        multinode_topic_soup
-    )
+    multinode_content = openstack_install_docs.parser._process_topic_soup(multinode_topic_soup)
     openstack_install_docs.parser._replace_lightbox(multinode_topic_soup)
 
     return flask.render_template(
@@ -654,15 +627,9 @@ def build_tutorials_query(tutorials_docs):
         tutorials_docs.parser.parse()
         tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
 
-        tutorials = [
-            doc
-            for doc in tutorials_docs.parser.tutorials
-            if topic in doc["categories"]
-        ]
+        tutorials = [doc for doc in tutorials_docs.parser.tutorials if topic in doc["categories"]]
 
-        tutorials = sorted(
-            tutorials, key=lambda k: k["difficulty"], reverse=True
-        )
+        tutorials = sorted(tutorials, key=lambda k: k["difficulty"], reverse=True)
 
         return flask.jsonify(tutorials)
 
@@ -696,27 +663,21 @@ class BlogRedirects(BlogView):
 
         # Set blog notice date
         blog_notice = {}
-        created_at, updated_at = dateutil.parser.parse(
-            context["article"]["date_gmt"]
-        ), dateutil.parser.parse(context["article"]["modified_gmt"])
+        created_at, updated_at = (
+            dateutil.parser.parse(context["article"]["date_gmt"]),
+            dateutil.parser.parse(context["article"]["modified_gmt"]),
+        )
 
         date_now = datetime.now()
 
-        created_at_difference = dateutil.relativedelta.relativedelta(
-            date_now, created_at
-        ).years
+        created_at_difference = dateutil.relativedelta.relativedelta(date_now, created_at).years
 
-        updated_at_difference = dateutil.relativedelta.relativedelta(
-            date_now, updated_at
-        ).years
+        updated_at_difference = dateutil.relativedelta.relativedelta(date_now, updated_at).years
 
         # Check if date was published or updated over a year
         if created_at_difference >= 1 and updated_at_difference >= 1:
             #  Decide whether to show updated or published date difference
-            if (
-                updated_at
-                > dateutil.relativedelta.relativedelta(days=+1) + created_at
-            ):
+            if updated_at > dateutil.relativedelta.relativedelta(days=+1) + created_at:
                 blog_notice["updated"] = True
                 blog_notice["difference_in_years"] = updated_at_difference
             else:
@@ -739,9 +700,7 @@ class BlogCustomTopic(BlogView):
 class BlogCustomGroup(BlogView):
     def dispatch_request(self, slug):
         page_param = flask.request.args.get("page", default=1, type=int)
-        category_param = flask.request.args.get(
-            "category", default="", type=str
-        )
+        category_param = flask.request.args.get("category", default="", type=str)
         context = self.blog_views.get_group(slug, page_param, category_param)
 
         return flask.render_template(f"blog/{slug}.html", **context)
@@ -749,9 +708,7 @@ class BlogCustomGroup(BlogView):
 
 class BlogSitemapIndex(BlogView):
     def dispatch_request(self):
-        response = session.get(
-            "https://admin.insights.ubuntu.com/sitemap_index.xml"
-        )
+        response = session.get("https://admin.insights.ubuntu.com/sitemap_index.xml")
 
         xml = response.text.replace(
             "https://admin.insights.ubuntu.com/",
@@ -771,9 +728,7 @@ class BlogSitemapPage(BlogView):
         if response.status_code == 404:
             return flask.abort(404)
 
-        xml = response.text.replace(
-            "https://admin.insights.ubuntu.com/", "https://ubuntu.com/blog/"
-        )
+        xml = response.text.replace("https://admin.insights.ubuntu.com/", "https://ubuntu.com/blog/")
         xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
 
         response = flask.make_response(xml)
@@ -808,9 +763,7 @@ def shorten_acquisition_url(acquisition_url):
         for param in url_params_to_remove:
             url_params_list.remove(param)
 
-        new_acquisition_url = (
-            url_without_params + "?" + "&".join(url_params_list)
-        )
+        new_acquisition_url = url_without_params + "?" + "&".join(url_params_list)
 
         # If the URL is still too long, remove all parameters
         if len(new_acquisition_url) > 255:
@@ -851,9 +804,7 @@ def marketo_submit():
     form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
-    encode_lead_comments = (
-        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
-    )
+    encode_lead_comments = form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
     if encode_lead_comments and "Comments_from_lead__c" in form_fields:
         encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
         form_fields["Comments_from_lead__c"] = encoded_comment
@@ -861,14 +812,8 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
-    referrer = (
-        flask.request.referrer
-        if flask.request.referrer
-        else "https://ubuntu.com"
-    )
-    client_ip = flask.request.headers.get(
-        "X-Real-IP", flask.request.remote_addr
-    )
+    referrer = flask.request.referrer if flask.request.referrer else "https://ubuntu.com"
+    client_ip = flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
 
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
@@ -890,9 +835,7 @@ def marketo_submit():
         enrichment_fields["acquisition_url"] = shortened_url
 
     if "preferredLanguage" in form_fields:
-        enrichment_fields["preferredLanguage"] = form_fields[
-            "preferredLanguage"
-        ]
+        enrichment_fields["preferredLanguage"] = form_fields["preferredLanguage"]
         form_fields.pop("preferredLanguage")
 
     if "country" in form_fields:
@@ -906,6 +849,9 @@ def marketo_submit():
     consent_info = flask.request.cookies.get("consent_info")
     if consent_info:
         enrichment_fields["Google_Consent_Mode__c"] = consent_info
+
+    original_form_id = form_fields.get("formid")
+    enrichment_fields["original_form_id"] = original_form_id
 
     payload = {
         "formId": form_fields.pop("formid"),
@@ -959,9 +905,7 @@ def marketo_submit():
             )
 
             return (
-                flask.jsonify(
-                    {"error": "There was an issue submitting the form."}
-                ),
+                flask.jsonify({"error": "There was an issue submitting the form."}),
                 400,
             )
 
@@ -972,14 +916,10 @@ def marketo_submit():
             )
 
     except Exception:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": payload}
-        )
+        flask.current_app.extensions["sentry"].captureException(extra={"payload": payload})
 
         return (
-            flask.jsonify(
-                {"error": "There was an issue submitting the form."}
-            ),
+            flask.jsonify({"error": "There was an issue submitting the form."}),
             400,
         )
 
@@ -996,17 +936,12 @@ def marketo_submit():
             "email": flask.request.form.get("email"),
         }
 
-        if return_url.startswith("http://") or return_url.startswith(
-            "https://"
-        ):
+        if return_url.startswith("http://") or return_url.startswith("https://"):
             return flask.redirect(return_url)
 
         if referrer:
             parsed_referer = urlparse(referrer)
-            return flask.redirect(
-                f"{parsed_referer.scheme}://"
-                f"{parsed_referer.netloc}{return_url}"
-            )
+            return flask.redirect(f"{parsed_referer.scheme}://{parsed_referer.netloc}{return_url}")
 
         return flask.redirect(return_url)
 
@@ -1017,9 +952,7 @@ def marketo_submit():
 
 
 def thank_you():
-    return flask.render_template(
-        "thank-you.html", referrer=flask.request.args.get("referrer")
-    )
+    return flask.render_template("thank-you.html", referrer=flask.request.args.get("referrer"))
 
 
 def get_user_country_by_tz():
@@ -1034,14 +967,10 @@ def get_user_country_by_tz():
     APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     timezone = flask.request.args.get("tz")
 
-    with open(
-        os.path.join(APP_ROOT, "static/files/timezones.json"), "r"
-    ) as file:
+    with open(os.path.join(APP_ROOT, "static/files/timezones.json"), "r") as file:
         timezones = json.load(file)
 
-    with open(
-        os.path.join(APP_ROOT, "static/files/countries.json"), "r"
-    ) as file:
+    with open(os.path.join(APP_ROOT, "static/files/countries.json"), "r") as file:
         countries = json.load(file)
 
     # Fallback to GB if timezone is invalid
@@ -1082,9 +1011,7 @@ def subscription_centre():
     if flask.request.method == "POST":
         if not return_url:
             subscription_centre_submit(sfdcLeadId, False)
-            return flask.redirect(
-                f"{flask.request.path}?id={sfdcLeadId}#updated"
-            )
+            return flask.redirect(f"{flask.request.path}?id={sfdcLeadId}#updated")
         else:
             subscription_centre_submit(sfdcLeadId, True)
             return flask.redirect(f"/{return_url}")
@@ -1132,9 +1059,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
     }
 
     try:
-        response = marketo_api.request(
-            "POST", "/rest/v1/leads.json", json=payload
-        )
+        response = marketo_api.request("POST", "/rest/v1/leads.json", json=payload)
         return response
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
@@ -1152,14 +1077,8 @@ def process_active_vulnerabilities(security_vulnerabilities):
 
     def security_index():
         try:
-            vulnerabilities_metadata = (
-                security_vulnerabilities.get_category_index_metadata(
-                    "vulnerabilities"
-                )
-            )
-            vulnerability_topics = (
-                security_vulnerabilities.get_topics_in_category()
-            )
+            vulnerabilities_metadata = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
+            vulnerability_topics = security_vulnerabilities.get_topics_in_category()
             current_date = datetime.now()
 
             # Filter out vulnerabilities that should not be displayed
@@ -1170,10 +1089,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 }
                 for vulnerability in vulnerabilities_metadata
                 if vulnerability.get("display-until")
-                and datetime.strptime(
-                    vulnerability["display-until"], "%d/%m/%Y"
-                )
-                > current_date
+                and datetime.strptime(vulnerability["display-until"], "%d/%m/%Y") > current_date
             ]
 
             return flask.render_template(
@@ -1181,9 +1097,7 @@ def process_active_vulnerabilities(security_vulnerabilities):
                 active_vulnerabilities=filtered_vulnerabilities,
             )
         except (HTTPError, TypeError) as e:
-            flask.current_app.extensions["sentry"].captureException(
-                f"Error processing vulnerabilities: {e}"
-            )
+            flask.current_app.extensions["sentry"].captureException(f"Error processing vulnerabilities: {e}")
             return flask.render_template(
                 "security/index.html",
                 active_vulnerabilities=[],
@@ -1197,11 +1111,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
         try:
             template_path = "security/vulnerabilities/view-all.html"
             topics = security_vulnerabilities.get_topics_in_category()
-            vulnerabilities = (
-                security_vulnerabilities.get_category_index_metadata(
-                    "vulnerabilities"
-                )
-            )
+            vulnerabilities = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
 
             for vuln in vulnerabilities:
                 # Add slug
@@ -1214,9 +1124,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
 
             # Make sure they are in order of published date
             vulnerabilities.sort(
-                key=lambda item: datetime.strptime(
-                    item["published"], "%d/%m/%Y"
-                ),
+                key=lambda item: datetime.strptime(item["published"], "%d/%m/%Y"),
                 reverse=True,
             )
 
@@ -1226,9 +1134,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 unique_years = {v["year"] for v in vulnerabilities}
                 sorted_years = sorted(unique_years, reverse=True)
                 top_years = sorted_years[:3]
-                vulnerabilities = [
-                    v for v in vulnerabilities if v["year"] in top_years
-                ]
+                vulnerabilities = [v for v in vulnerabilities if v["year"] in top_years]
 
             return flask.render_template(
                 template_path,
@@ -1236,9 +1142,7 @@ def build_vulnerabilities_list(security_vulnerabilities, path=None):
                 vulnerabilities=vulnerabilities,
             )
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(
-                f"Error fetching vulnerabilities: {e}"
-            )
+            flask.current_app.extensions["sentry"].captureException(f"Error fetching vulnerabilities: {e}")
 
     return vulnerabilities_list
 
@@ -1247,11 +1151,7 @@ def build_vulnerabilities(security_vulnerabilities):
     def vulnerability(path):
         try:
             document = security_vulnerabilities.get_topic(path)
-            metadata_table = (
-                security_vulnerabilities.get_category_index_metadata(
-                    "vulnerabilities"
-                )
-            )
+            metadata_table = security_vulnerabilities.get_category_index_metadata("vulnerabilities")
 
             for item in metadata_table:
                 if str(item["id"]) == str(document["topic_id"]):
@@ -1264,9 +1164,7 @@ def build_vulnerabilities(security_vulnerabilities):
                 document=document,
             )
         except HTTPError as e:
-            flask.current_app.extensions["sentry"].captureException(
-                f"Error fetching vulnerabilities: {e}"
-            )
+            flask.current_app.extensions["sentry"].captureException(f"Error fetching vulnerabilities: {e}")
 
     return vulnerability
 
@@ -1276,9 +1174,7 @@ def build_sitemap_tree(exclude_paths=None):
         directory_path = os.getcwd() + "/templates"
         base_url = "https://ubuntu.com"
         try:
-            xml_sitemap = generate_sitemap(
-                directory_path, base_url, exclude_paths=exclude_paths
-            )
+            xml_sitemap = generate_sitemap(directory_path, base_url, exclude_paths=exclude_paths)
             if xml_sitemap:
                 with open(sitemap_path, "w") as f:
                     f.write(xml_sitemap)
@@ -1303,20 +1199,14 @@ def build_sitemap_tree(exclude_paths=None):
         # Validate the secret if its a POST request
         if flask.request.method == "POST":
             expected_secret = os.getenv("SITEMAP_SECRET")
-            provided_secret = flask.request.headers.get(
-                "Authorization", ""
-            ).replace("Bearer ", "")
+            provided_secret = flask.request.headers.get("Authorization", "").replace("Bearer ", "")
 
             if provided_secret != expected_secret:
                 logging.warning("Invalid secret provided")
                 return {"error": "Unauthorized"}, 401
 
             xml_sitemap = create_sitemap(sitemap_path)
-            return {
-                "message": (
-                    f"Sitemap successfully generated at {sitemap_path}"
-                )
-            }, 200
+            return {"message": (f"Sitemap successfully generated at {sitemap_path}")}, 200
 
         # Generate sitemap if update request or if it doesn't exist
         if not os.path.exists(sitemap_path):
