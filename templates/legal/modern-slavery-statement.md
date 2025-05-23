@@ -3,8 +3,8 @@ wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Modern Slavery Statement"
   description: "Ubuntu and Canonical Legal - Modern Slavery Statement"
-  update_date: "2024"
-  copydoc: https://assets.ubuntu.com/v1/f88a728b-Executed%20Modern%20Slavery%20Statement%20-%202024.pdf
+  update_date: "2025"
+  copydoc: https://assets.ubuntu.com/v1/be004795-Modern%20Slavery%20Statement%202025.pdf
 ---
 
 # Modern Slavery Statement
@@ -56,7 +56,7 @@ Canonical is committed to the ongoing improvement of its efforts to combat moder
 
 ## Further actions and sign-off
 
-Following our review of our actions this financial year, ending 31st December 2023, to prevent slavery or human trafficking from occurring in our business or supply chains, we intend to take the following further steps to tackle slavery and human trafficking:
+Following our review of our actions this financial year, ending 31st December 2024, to prevent slavery or human trafficking from occurring in our business or supply chains, we intend to take the following further steps to tackle slavery and human trafficking:
 
 - We are committed to enhancing our reporting mechanisms by developing and implementing a whistleblowing tool that allows individuals to anonymously report any concerns or suspicions related to slavery or human trafficking. This tool will facilitate a secure and confidential platform for reporting, ensuring that information is promptly received and appropriately addressed.
 
@@ -64,18 +64,19 @@ Following our review of our actions this financial year, ending 31st December 20
 
 - We will strengthen our internal training programs to ensure that personnel, particularly those involved in procurement and supply chain management, are well-informed about the risks and indicators of slavery and human trafficking. This training will empower our workforce to identify, prevent, and address potential issues effectively.
 
-This statement is made in accordance with section 54(1) of the Modern Slavery Act 2015 and constitutes Canonical’s slavery and human trafficking statement for the financial year ending 31st December 2023.
+This statement is made in accordance with section 54(1) of the Modern Slavery Act 2015 and constitutes Canonical’s slavery and human trafficking statement for the financial year ending 31st December 2024.
 
 This statement was approved by the director of Canonical Group Limited and Canonical UK Limited.
 
 **Neil French**<br />
 **Canonical**<br />
-**21st February 2024**
+**12th May 2025**
 
 ---
 
 ### Download versions
 
+- [Modern Slavery Statement 2025](https://assets.ubuntu.com/v1/be004795-Modern%20Slavery%20Statement%202025.pdf)
 - [Modern Slavery Statement 2024](https://assets.ubuntu.com/v1/f88a728b-Executed%20Modern%20Slavery%20Statement%20-%202024.pdf)
 - [Modern Slavery Statement 2023](https://assets.ubuntu.com/v1/d2df76b3-modern+slavery+statement+2023.pdf)
 - [Modern Slavery Statement 2022](https://assets.ubuntu.com/v1/403799c7-Modern+Slavery+Statement+-+2022.pdf)
