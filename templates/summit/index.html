@@ -543,9 +543,9 @@
     initCarousel('#carousel_target', '#carousel-next', '#carousel-previous');
 
     function initCarousel(carouselSelector, nextSelector, previousSelector) {
-      var nextButton = document.querySelector(nextSelector);
-      var previousButton = document.querySelector(previousSelector);
-      var carousel = new Flickity(carouselSelector, {
+      const nextButton = document.querySelector(nextSelector);
+      const previousButton = document.querySelector(previousSelector);
+      const carousel = new Flickity(carouselSelector, {
         prevNextButtons: false,
         wrapAround: true,
         pageDots: false,
@@ -553,19 +553,38 @@
         pauseAutoPlayOnHover: true
       });
 
+      function navigateAndRestart(direction) {
+        carousel.pausePlayer();
+        if (direction === 'next') {
+          carousel.next();
+        } else {
+          carousel.previous();
+        }
+        carousel.unpausePlayer();
+      }
+
       if (nextButton) {
         nextButton.addEventListener("click", function(e) {
           e.preventDefault();
-          carousel.next();
+          navigateAndRestart('next');
         });
       }
 
       if (previousButton) {
         previousButton.addEventListener("click", function(e) {
           e.preventDefault();
-          carousel.previous();
+          navigateAndRestart('previous');
         });
       }
+
+      [previousButton, nextButton].forEach(button => {
+        button.addEventListener('mouseover', () => {
+          carousel.pausePlayer();
+        });
+        button.addEventListener('mouseout', () => {
+          carousel.playPlayer();
+        });
+      });
     }
   </script>
 
