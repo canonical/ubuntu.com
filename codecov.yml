@@ -23,3 +23,10 @@ coverage:
         threshold: 0%
         flags:
           - python
+    
+    patch:
+      default:
+        target: auto 
+      flags:
+        python:
+          target: 75%

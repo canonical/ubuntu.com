@@ -1274,3 +1274,10 @@ app.add_url_rule(
     view_func=build_sitemap_tree(DYNAMIC_SITEMAPS),
     methods=["GET", "POST"],
 )
+def test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 0
+    return
