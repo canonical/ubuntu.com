@@ -127,6 +127,7 @@ from webapp.shop.views import (
     download_invoice,
     ensure_purchase_account,
     get_customer_info,
+    get_cve_info,
     get_last_purchase_ids,
     get_purchase,
     get_purchase_account_status,
@@ -344,6 +345,12 @@ app.add_url_rule(
 app.add_url_rule(
     "/pro/offers.json",
     view_func=get_account_offers,
+    methods=["GET"],
+)
+
+app.add_url_rule(
+    "/pro/cve-info/<release>",
+    view_func=get_cve_info,
     methods=["GET"],
 )
 
