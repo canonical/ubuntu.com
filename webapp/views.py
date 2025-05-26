@@ -1290,6 +1290,7 @@ def build_sitemap_tree(exclude_paths=None):
                 return xml_sitemap
             else:
                 logging.warning("Sitemap is empty")
+                return {"error:", "Sitemap is empty"}, 500
 
         except Exception as e:
             logging.error(f"Error generating sitemap: {e}")
