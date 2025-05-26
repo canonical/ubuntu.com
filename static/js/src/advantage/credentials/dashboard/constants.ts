@@ -9,9 +9,9 @@ export const CREDLY_BADGE_TEMPLATES = [
     badgeTitle: "[Beta] CUE.01 Linux Quick Certification",
     shortTitle: "[Beta] CUE.01 Linux",
   },
-  // {
-  //   templateId: "a81d475c-e534-45d2-b60c-01eab5e53f42",
-  //   badgeTitle: "CUE.01 Linux Quick Certification (24.10 exam edition)",
-  //   shortTitle: "CUE.01 Linux (24.10)",
-  // },
+  {
+    templateId: "a81d475c-e534-45d2-b60c-01eab5e53f42",
+    badgeTitle: "CUE.01 Linux Quick Certification (24.10 exam edition)",
+    shortTitle: "CUE.01 Linux (24.10)",
+  },
 ];
