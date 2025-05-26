@@ -557,6 +557,9 @@ production:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+    if ($uri = '/index.php') {
+      rewrite ^/index.php$ https://ubuntu.com/? permanent;
+    }
 
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
@@ -1098,6 +1101,9 @@ staging:
     }
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
+    }
+    if ($uri = '/index.php') {
+      rewrite ^/index.php$ https://staging.ubuntu.com/? permanent;
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
