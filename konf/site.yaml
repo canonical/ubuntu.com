@@ -1100,7 +1100,7 @@ staging:
       add_header 'Access-Control-Allow-Origin' '*';
     }
     if ($uri = '/index.php') {
-      rewrite ^ https://staging.ubuntu.com? permanent;
+      rewrite ^ https://staging.ubuntu.com/? permanent;
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
