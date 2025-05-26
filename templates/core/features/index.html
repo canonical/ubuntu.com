@@ -392,12 +392,14 @@
       </div>
       <hr class="is-muted"/>
       <p>
-        <a class="p-button--positive" href="/core/contact-us">Get in touch</a>
+        <a class="p-button--positive js-invoke-modal" href="/core/contact-us">Get in touch</a>
       </p>
     </div>
   </div>
 </section>
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
+{{ load_form("/core/features") | safe }}
 
 {% endblock content %}
