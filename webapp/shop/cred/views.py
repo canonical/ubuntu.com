@@ -928,6 +928,12 @@ def cred_your_exams(
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
+            is_contract_expired = (
+                "effectivenessContext" in exam_contract
+                and "status" in exam_contract["effectivenessContext"]
+                and exam_contract["effectivenessContext"]["status"]
+                == "expired"
+            )
 
             # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
@@ -1056,6 +1062,7 @@ def cred_your_exams(
                     if (
                         now + timedelta(minutes=30) < starts_at
                         and not is_banned
+                        and not is_contract_expired
                     ):
                         actions.extend(
                             [
@@ -1083,12 +1090,7 @@ def cred_your_exams(
                         }
                     )
             # if exam expires
-            elif (
-                "effectivenessContext" in exam_contract
-                and "status" in exam_contract["effectivenessContext"]
-                and exam_contract["effectivenessContext"]["status"]
-                == "expired"
-            ):
+            elif is_contract_expired:
                 exams_expired.append(
                     {"name": name, "state": "Expired", "actions": []}
                 )
@@ -1096,7 +1098,7 @@ def cred_your_exams(
             # if exam is not used and is not expired
             else:
                 actions = []
-                if not is_banned:
+                if not is_banned and not is_contract_expired:
                     actions = [
                         {
                             "text": "Schedule",
