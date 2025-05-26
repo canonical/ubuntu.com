@@ -497,9 +497,6 @@ def cred_schedule(
         template_data["time_delay"] = time_delay
         template_data["contract_item_id"] = contract_item_id
         template_data["ta_exam"] = "cue-01-linux"
-        error_start_time = check_cred_exam_start_time(
-            starts_at, timezone, time_buffer, time_delay
-        )
         proc_exam = None
 
         if flask.request.args.get("uuid", default=None, type=str):
@@ -524,7 +521,11 @@ def cred_schedule(
             )
         template_data["ta_exam"] = data["ta_exam"]
         ta_exam_name = EXAM_NAMES[data["ta_exam"]]
+        template_data["ta_exam_name"] = ta_exam_name
 
+        error_start_time = check_cred_exam_start_time(
+            starts_at, timezone, time_buffer, time_delay
+        )
         if error_start_time is not None:
             return flask.render_template(
                 "/credentials/schedule.html",
