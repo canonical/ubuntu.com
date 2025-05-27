@@ -192,13 +192,6 @@
     </div>
   </section>
 
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide"
-       id="contact-form-container"
-       data-form-location="/shared/forms/interactive/internet-of-things"
-       data-form-id="1266"
-       data-lp-id="2166"
-       data-return-url="https://ubuntu.com/core/thank-you"
-       data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
+  {{ load_form("/core/features") | safe }}
 
 {% endblock content %}
