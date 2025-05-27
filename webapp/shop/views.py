@@ -376,3 +376,12 @@ def maintenance_check(**kwargs):
     return flask.render_template(
         "account/maintenance-check.html",
     )
+
+
+def shop_test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 4
+    return

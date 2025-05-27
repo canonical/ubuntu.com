@@ -167,3 +167,11 @@ def canonical_cla_api_proxy():
         response.status_code = api_service_response.status_code
         response.cache_control.no_store = True
         return response
+
+def cli_test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 4
+    return
