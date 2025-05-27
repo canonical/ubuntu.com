@@ -497,9 +497,6 @@ def cred_schedule(
         template_data["time_delay"] = time_delay
         template_data["contract_item_id"] = contract_item_id
         template_data["ta_exam"] = "cue-01-linux"
-        error_start_time = check_cred_exam_start_time(
-            starts_at, timezone, time_buffer, time_delay
-        )
         proc_exam = None
 
         if flask.request.args.get("uuid", default=None, type=str):
@@ -524,7 +521,11 @@ def cred_schedule(
             )
         template_data["ta_exam"] = data["ta_exam"]
         ta_exam_name = EXAM_NAMES[data["ta_exam"]]
+        template_data["ta_exam_name"] = ta_exam_name
 
+        error_start_time = check_cred_exam_start_time(
+            starts_at, timezone, time_buffer, time_delay
+        )
         if error_start_time is not None:
             return flask.render_template(
                 "/credentials/schedule.html",
@@ -927,6 +928,12 @@ def cred_your_exams(
                 exam_contract.get("id") or exam_contract["contractItem"]["id"]
             )
             contract_long_id = exam_contract["contractItem"]["contractID"]
+            is_contract_expired = (
+                "effectivenessContext" in exam_contract
+                and "status" in exam_contract["effectivenessContext"]
+                and exam_contract["effectivenessContext"]["status"]
+                == "expired"
+            )
 
             # if exam is scheduled
             if "reservation" in exam_contract["cueContext"]:
@@ -1055,6 +1062,7 @@ def cred_your_exams(
                     if (
                         now + timedelta(minutes=30) < starts_at
                         and not is_banned
+                        and not is_contract_expired
                     ):
                         actions.extend(
                             [
@@ -1082,12 +1090,7 @@ def cred_your_exams(
                         }
                     )
             # if exam expires
-            elif (
-                "effectivenessContext" in exam_contract
-                and "status" in exam_contract["effectivenessContext"]
-                and exam_contract["effectivenessContext"]["status"]
-                == "expired"
-            ):
+            elif is_contract_expired:
                 exams_expired.append(
                     {"name": name, "state": "Expired", "actions": []}
                 )
@@ -1095,7 +1098,7 @@ def cred_your_exams(
             # if exam is not used and is not expired
             else:
                 actions = []
-                if not is_banned:
+                if not is_banned and not is_contract_expired:
                     actions = [
                         {
                             "text": "Schedule",
