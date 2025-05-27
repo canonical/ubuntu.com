@@ -1281,3 +1281,12 @@ def test_func():
 
     test_var = 0
     return
+
+
+def another_test_func():
+    """
+    a function to trigger code cov
+    """
+
+    test_var = 0
+    return
