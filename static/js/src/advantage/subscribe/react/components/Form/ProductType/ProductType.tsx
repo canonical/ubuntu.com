@@ -9,7 +9,6 @@ import {
   PublicClouds,
 } from "advantage/subscribe/react/utils/utils";
 import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
-import { link } from "fs";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
@@ -152,7 +151,7 @@ const PublicCloudInfo = {
     CTA: [
       {
         CTAName: "Contact us",
-        link: "/security/esm#get-in-touch",
+        link: "/pro/subscribe#get-in-touch",
         appearance: "positive",
       },
       {
@@ -163,7 +162,7 @@ const PublicCloudInfo = {
     ],
     describe: (
       <>
-        Don’t see your cloud provider listed here? <a href="">Contact us</a> for more information on how we can support your preferred cloud provider. 
+        Don’t see your cloud provider listed here? <a href="/pro/subscribe#get-in-touch">Contact us</a> for more information on how we can support your preferred cloud provider. 
       </>
     ),
   },
