@@ -1,4 +1,4 @@
-name: Generate sitemap for static pages
+name: Generate sitemap for static pages on ubuntu.com
 on:
   push:
     branches:
@@ -16,5 +16,9 @@ jobs:
 
       - name: Call sitemap generation endpoint
         run: |
-          curl -X POST "https://ubuntu.com/sitemap_tree.xml" \
+          curl --fail-with-body -X POST "https://ubuntu.com/sitemap_tree.xml" \
           -H "Authorization: Bearer ${{ secrets.SITEMAP_SECRET }}"
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
