@@ -9,6 +9,7 @@ import {
   PublicClouds,
 } from "advantage/subscribe/react/utils/utils";
 import { PRO_SELECTOR_KEYS } from "advantage/distributor/utils/utils";
+import { link } from "fs";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
@@ -22,7 +23,7 @@ const PublicCloudInfo = {
       },
       {
         CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/aws",
+        link: "/20-04/aws",
         appearance: "",
       },
     ],
@@ -54,7 +55,7 @@ const PublicCloudInfo = {
       },
       {
         CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/azure",
+        link: "/20-04/azure",
         appearance: "",
       },
     ],
@@ -82,7 +83,7 @@ const PublicCloudInfo = {
       },
       {
         CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/gcp",
+        link: "/20-04/gcp",
         appearance: "",
       },
     ],
@@ -134,7 +135,7 @@ const PublicCloudInfo = {
       },
       {
         CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/ibm",
+        link: "/20-04/ibm",
         appearance: "",
       },
     ],
@@ -145,6 +146,28 @@ const PublicCloudInfo = {
       </>
     ),
   },
+  [PublicClouds.other]: {
+    title: "Other",
+    name: "Other public clouds",
+    CTA: [
+      {
+        CTAName: "Contact us",
+        link: "/security/esm#get-in-touch",
+        appearance: "positive",
+      },
+      {
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        Don’t see your cloud provider listed here? <a href="">Contact us</a> for more information on how we can support your preferred cloud provider. 
+      </>
+    ),
+  },
+
 };
 const ProductType = () => {
   const localPublicCloud = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
@@ -258,6 +281,23 @@ const ProductType = () => {
             }}
           >
             {PublicCloudInfo[PublicClouds.ibm].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.other}
+            aria-controls={PublicClouds.other}
+            id={PublicClouds.other}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.other);
+              localStorage.setItem(
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.other),
+              );
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.other].title}
           </button>
         </div>
       </div>
