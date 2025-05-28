@@ -1,9 +1,12 @@
 # Packages
 import unittest
+from unittest.mock import patch
 import logging
 import re
+import os
 import xml.etree.ElementTree as ET
 from webapp.app import app
+from webapp.views import build_sitemap_tree
 
 logging.getLogger("talisker.context").disabled = True
 
@@ -83,6 +86,54 @@ class TestSitemap(unittest.TestCase):
 
         for url in parser_urls:
             assert url in xml_urls, f"URL {url} not found in sitemap_tree.xml"
+
+    def test_sitemap_post_unauthorized(self):
+        """
+        Check that unauthorized access to the sitemap post endpoint returns 401
+        """
+        response = self.client.post(
+            "/sitemap_tree.xml",
+            headers={"Authorization": "Bearer unauthorized-secret"},
+        )
+        assert response.status_code == 401
+        assert b"Unauthorized" in response.data
+
+    def test_sitemap_post_authorized(self):
+        """
+        Check that authorized access to the sitemap post endpoint returns 200
+        """
+        os.environ["SITEMAP_SECRET"] = "test-secret"
+        response = self.client.post(
+            "/sitemap_tree.xml",
+            headers={"Authorization": "Bearer test-secret"},
+        )
+        assert response.status_code == 200
+        assert b"Sitemap successfully generated" in response.data
+
+    @patch("webapp.views.generate_sitemap", return_value="")
+    @patch("builtins.open")
+    @patch("os.getcwd", return_value="/invalid/path")
+    def test_create_sitemap_empty(self, mock_getcwd, mock_open, mock_generate):
+        """
+        Test create_sitemap returns error for empty xml_sitemap
+        """
+        create_sitemap = build_sitemap_tree().__closure__[0].cell_contents
+        result = create_sitemap("/invalid/path/sitemap_tree.xml")
+        self.assertEqual(result, ({"error:", "Sitemap is empty"}, 400))
+
+    @patch("webapp.views.generate_sitemap", side_effect=Exception("fail"))
+    @patch("builtins.open")
+    @patch("os.getcwd", return_value="/invalid/path")
+    def test_create_sitemap_exception(
+        self, mock_getcwd, mock_open, mock_generate
+    ):
+        """
+        Test create_sitemap returns error for Exception in generate_sitemap
+        """
+        create_sitemap = build_sitemap_tree().__closure__[0].cell_contents
+        result = create_sitemap("/invalid/path/sitemap_tree.xml")
+        self.assertIn("Generate_sitemap error", result[0])
+        self.assertEqual(result[1], 500)
 
 
 if __name__ == "__main__":
