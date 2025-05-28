@@ -8,6 +8,7 @@ on:
 
 jobs:
   generate-sitemap:
+    if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-22.04
 
     steps:
