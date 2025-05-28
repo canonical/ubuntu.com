@@ -377,12 +377,3 @@ def maintenance_check(**kwargs):
     return flask.render_template(
         "account/maintenance-check.html",
     )
-
-@shop_decorator(area="account", response="json")
-def get_cve_info(release, **kwargs):
-    uri = f"https://raw.githubusercontent.com/abhigyanghosh30/cve-aggregator/refs/heads/master/{release}.json"
-    response = requests.get(uri)
-    print(response.json())
-    return flask.jsonify(response.json()), response.status_code if response.ok else 500
-
-
