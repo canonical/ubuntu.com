@@ -30,7 +30,10 @@ const ProductUser = () => {
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>
-          <p>Enterprise subscriptions for commercial use. 30-day free trial available on checkout.</p>
+          <p>
+            Enterprise subscriptions for commercial use. 30-day free trial
+            available on checkout.
+          </p>
         </Col>
         <Col size={12}>
           <RadioInput

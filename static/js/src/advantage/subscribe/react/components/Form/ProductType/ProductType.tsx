@@ -162,11 +162,12 @@ const PublicCloudInfo = {
     ],
     describe: (
       <>
-        Don’t see your cloud provider listed here? <a href="/pro/subscribe#get-in-touch">Contact us</a> for more information on how we can support your preferred cloud provider. 
+        Don’t see your cloud provider listed here?{" "}
+        <a href="/pro/subscribe#get-in-touch">Contact us</a> for more
+        information on how we can support your preferred cloud provider.
       </>
     ),
   },
-
 };
 const ProductType = () => {
   const localPublicCloud = localStorage.getItem(PRO_SELECTOR_KEYS.IOT_DEVICE);
