@@ -133,7 +133,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
         link: "/20-04/ibm",
         appearance: "",
       },
