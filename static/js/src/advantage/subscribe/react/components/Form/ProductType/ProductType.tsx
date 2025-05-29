@@ -21,8 +21,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/aws",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/aws",
         appearance: "",
       },
     ],
@@ -53,8 +53,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/azure",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/azure",
         appearance: "",
       },
     ],
@@ -81,8 +81,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
-        link: "/18-04/gcp",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
+        link: "/20-04/gcp",
         appearance: "",
       },
     ],
@@ -110,8 +110,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/oci",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04/oci",
         appearance: "",
       },
     ],
@@ -133,8 +133,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/ibm",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04/ibm",
         appearance: "",
       },
     ],
@@ -142,6 +142,29 @@ const PublicCloudInfo = {
       <>
         Please <a href="/security/esm#get-in-touch">contact us</a> to purchase a
         subscription that you can attach to your IBM Cloud instance.
+      </>
+    ),
+  },
+  [PublicClouds.other]: {
+    title: "Other",
+    name: "Other public clouds",
+    CTA: [
+      {
+        CTAName: "Contact us",
+        link: "/pro/subscribe#get-in-touch",
+        appearance: "positive",
+      },
+      {
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04",
+        appearance: "",
+      },
+    ],
+    describe: (
+      <>
+        Don’t see your cloud provider listed here?{" "}
+        <a href="/pro/subscribe#get-in-touch">Contact us</a> for more
+        information on how we can support your preferred cloud provider.
       </>
     ),
   },
@@ -258,6 +281,23 @@ const ProductType = () => {
             }}
           >
             {PublicCloudInfo[PublicClouds.ibm].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.other}
+            aria-controls={PublicClouds.other}
+            id={PublicClouds.other}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.other);
+              localStorage.setItem(
+                PRO_SELECTOR_KEYS.PUBLIC_CLOUD,
+                JSON.stringify(PublicClouds.other),
+              );
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.other].title}
           </button>
         </div>
       </div>

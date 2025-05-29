@@ -55,4 +55,6 @@ endblock meta_copydoc %} {% block content %}
   window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
 </script>
 
+{{ load_form("/pro/subscribe") | safe }}
+
 {% endblock %}
