@@ -174,8 +174,8 @@ def cred_sign_up(**_):
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    marketo_form_id = "6254" if is_staging else "3801"
-    form_fields.update({"formid": marketo_form_id})
+    marketo_form_id = 6254 if is_staging else 3801
+    form_fields.pop("formid")
     payload = {
         "formId": marketo_form_id,
         "input": [
@@ -203,7 +203,8 @@ def cred_sign_up(**_):
                     ),
                     400,
                 )
-    except Exception:
+    except Exception as e:
+        print(e)
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
         )
