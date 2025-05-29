@@ -1,0 +1,16 @@
+{% extends "aws/base_aws.html" %}
+
+{% block title %}Contact Canonical{% endblock %}
+
+{% block content %}
+
+  {% with h1='Canonical - the "Ubunqwertyuioprtyutu on AWS" experts',
+    intro_text="Already running Ubuntu on AWS, or planning a migration to the public cloud? Canonical has the expertise to assist you in your project, whether it involves application architecture, optimisation or streamlining operations at scale. Share some details about your project with us and let's get started.",
+    formid="3473",
+    lpId="",
+    returnURL="/aws/thank-you",
+    howManyVM=True %}
+    {% include "shared/_default-contact-us-form.html" %}
+  {% endwith %}
+
+{% endblock content %}
