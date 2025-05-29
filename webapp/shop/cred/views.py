@@ -203,8 +203,7 @@ def cred_sign_up(**_):
                     ),
                     400,
                 )
-    except Exception as e:
-        print(e)
+    except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
         )
