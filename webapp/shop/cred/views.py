@@ -175,13 +175,12 @@ def cred_sign_up(**_):
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
     marketo_form_id = "6254" if is_staging else "3801"
+    form_fields.update({"formid": marketo_form_id})
     payload = {
         "formId": marketo_form_id,
         "input": [
             {
-                "leadFormFields": form_fields.update(
-                    {"formid": marketo_form_id}
-                ),
+                "leadFormFields": form_fields,
                 "visitorData": visitor_data,
                 "cookie": flask.request.args.get("mkt"),
             }
