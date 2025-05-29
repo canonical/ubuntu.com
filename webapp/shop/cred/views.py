@@ -457,6 +457,10 @@ def cred_schedule(
     error = None
 
     contract_long_id = flask.request.args.get("contractLongID")
+
+    if not contract_long_id:
+        return flask.redirect("/credentials/your-exams")
+
     contract_detail = ua_contracts_api.get_contract(contract_long_id)
 
     now = datetime.utcnow()
