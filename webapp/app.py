@@ -1237,7 +1237,7 @@ app.add_url_rule(
 )
 
 
-# Security standards resources blogs tab
+# CMMC resources blogs tab
 def render_cmmc_blogs():
     blogs = BlogViews(
         api=BlogAPI(
@@ -1265,14 +1265,10 @@ def render_cmmc_blogs():
     sorted_articles = sorted(
         blogs.get_index()["articles"], key=lambda x: x["date"]
     )
-    return flask.render_template(
-        "/security/cmmc.html", blogs=sorted_articles
-    )
+    return flask.render_template("/security/cmmc.html", blogs=sorted_articles)
 
 
-app.add_url_rule(
-    "/security/cmmc", view_func=render_cmmc_blogs
-)
+app.add_url_rule("/security/cmmc", view_func=render_cmmc_blogs)
 
 
 # Supermicro blog section
