@@ -21,7 +21,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
         link: "/20-04/aws",
         appearance: "",
       },
@@ -53,7 +53,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
         link: "/20-04/azure",
         appearance: "",
       },
@@ -81,7 +81,7 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS users",
+        CTAName: "More info for Ubuntu 20.04 LTS users",
         link: "/20-04/gcp",
         appearance: "",
       },
@@ -110,8 +110,8 @@ const PublicCloudInfo = {
         appearance: "positive",
       },
       {
-        CTAName: "More info for Ubuntu 18.04 LTS instances",
-        link: "/18-04/oci",
+        CTAName: "More info for Ubuntu 20.04 LTS instances",
+        link: "/20-04/oci",
         appearance: "",
       },
     ],
