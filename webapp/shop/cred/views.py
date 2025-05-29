@@ -115,6 +115,9 @@ def cred_self_study(**_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_sign_up(**_):
     search_type = flask.request.args.get("type")
+    if not search_type or (search_type not in ["tester", "sme"]):
+        return flask.redirect("/credentials/sign-up?type=tester")
+
     if flask.request.method == "GET":
         sign_up_open = True
         return flask.render_template(
@@ -171,9 +174,10 @@ def cred_sign_up(**_):
     is_staging = "staging" in os.getenv(
         "CONTRACTS_API_URL", "https://contracts.staging.canonical.com/"
     )
-    form_fields["enviornment"] = "staging" if is_staging else "production"
+    marketo_form_id = 6254 if is_staging else 3801
+    form_fields.pop("formid")
     payload = {
-        "formId": form_fields.pop("formid"),
+        "formId": marketo_form_id,
         "input": [
             {
                 "leadFormFields": form_fields,
