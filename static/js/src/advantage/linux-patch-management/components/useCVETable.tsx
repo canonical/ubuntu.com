@@ -1,0 +1,154 @@
+import { MainTableRow } from "@canonical/react-components/dist/components/MainTable/MainTable";
+import { useMemo } from "react";
+import { UbuntuPackage } from "../types/ubuntu_package";
+import { Button, Col, Icon, Row } from "@canonical/react-components";
+
+export default function useCVETable(
+  cveData: UbuntuPackage[] = [],
+  packageFilter: string = "",
+  selectedPackage: string = "",
+  setSelectedPackage: (pkg: string) => void = () => {},
+  selectedSeverity: string = "",
+  setSelectedSeverity: (severity: string) => void = () => {},
+) {
+  const toggleButton = (pkg: UbuntuPackage, severity: string) => {
+    if (selectedPackage === pkg.package_name && selectedSeverity === severity) {
+      setSelectedPackage("");
+      setSelectedSeverity("");
+      return;
+    }
+    setSelectedPackage(pkg.package_name);
+    setSelectedSeverity(severity);
+  };
+
+  const mapPocketToCoverage = new Map<string, string>();
+  mapPocketToCoverage.set("release", "LTS");
+  mapPocketToCoverage.set("updates", "LTS");
+  mapPocketToCoverage.set("esm-apps", "Ubuntu Pro");
+  mapPocketToCoverage.set("esm-infra", "Ubuntu Pro");
+  mapPocketToCoverage.set("security", "Ubuntu Pro");
+
+  const rows = useMemo<MainTableRow[]>((): MainTableRow[] => {
+    if (!cveData || cveData.length === 0) {
+      return [
+        { columns: [{ content: "No data available" }] },
+      ] as MainTableRow[];
+    }
+    const cveDataFiltered = cveData.filter((pkg: UbuntuPackage) => {
+      return packageFilter === "" || pkg.section === packageFilter;
+    });
+
+    console.log(selectedPackage, selectedSeverity);
+
+    let tableData: MainTableRow[] = cveDataFiltered.map(
+      (pkg: UbuntuPackage) => {
+        let tableRow: MainTableRow = {
+          columns: [
+            {
+              content: pkg.package_name,
+            },
+            {
+              content: (
+                <Button
+                  hasIcon
+                  disabled={pkg.high_cves.length === 0}
+                  onClick={() => {
+                    toggleButton(pkg, "high");
+                  }}
+                >
+                  <Icon
+                    name={
+                      selectedPackage == pkg.package_name &&
+                      selectedSeverity === "high"
+                        ? "chevron-up"
+                        : "chevron-down"
+                    }
+                  />
+                  <span>{pkg.high_cves.length.toString()}</span>
+                </Button>
+              ),
+            },
+            {
+              content: (
+                <Button
+                  hasIcon
+                  onClick={() => {
+                    toggleButton(pkg, "critical");
+                  }}
+                  disabled={pkg.critical_cves.length === 0}
+                >
+                  <Icon
+                    name={
+                      selectedPackage === pkg.package_name &&
+                      selectedSeverity === "critical"
+                        ? "chevron-up"
+                        : "chevron-down"
+                    }
+                  />
+                  <span>{pkg.critical_cves.length.toString()}</span>
+                </Button>
+              ),
+            },
+            {
+              content: <p>{mapPocketToCoverage.get(pkg.pocket) || pkg.pocket}</p>,
+            },
+          ],
+          expanded: selectedPackage === pkg.package_name,
+          expandedContent: (
+            <Row>
+              <Col size={9} emptyMedium={3} emptyLarge={3}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>CVE Name</th>
+                      <th>Related USNs</th>
+                      <th>Fixed At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {selectedSeverity === "high" &&
+                    pkg.high_cves.map((cve) => (
+                      <tr key={cve.name}>
+                        <td>
+                          <p>{cve.name}</p>
+                        </td>
+                        <td>
+                          {cve.related_usns.map((usn: string) => (
+                            <p key={usn}>{usn}</p>
+                          ))}
+                        </td>
+                        <td>
+                          <p>{cve.fixed_at}</p>
+                        </td>
+                      </tr>
+                    ))}
+                  {selectedSeverity === "critical" &&
+                    pkg.critical_cves.map((cve) => (
+                      <tr key={cve.name}>
+                        <td >
+                          <p>{cve.name}</p>
+                        </td>
+                        <td>
+                          {cve.related_usns.map((usn: string) => (
+                            <p key={usn}>{usn}</p>
+                          ))}
+                        </td>
+                        <td>
+                          <p>{cve.fixed_at}</p>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </Col>
+            </Row>
+          ),
+        };
+        return tableRow;
+      },
+    );
+    return tableData;
+  }, [cveData, packageFilter, selectedPackage, selectedSeverity]);
+  console.log("useCVETable rows", rows);
+  return rows;
+}
