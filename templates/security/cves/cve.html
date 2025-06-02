@@ -282,10 +282,10 @@
                                 {{ status.name }} {% if status.name == "Fixed" %}<span class="u-text--muted">{{ status.description }} </span> {% endif %}
                                 {% if status.pocket_desc and status.pocket_desc.label == "Ubuntu Pro" %}
                                   <div>
-                                    <a class="p-chip p-tooltip--top-center u-no-margin--bottom" href="/pro" aria-describedby="{{ status.pocket }}-tooltip">
-                                      <p class="p-chip__value">{{ status.pocket_desc.label }}</p>
-                                      <p class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text }}</p>
-                                    </a>
+                                    <button class="p-chip p-tooltip--top-center u-no-margin--bottom" aria-describedby="{{ status.pocket }}-tooltip">
+                                      <span class="p-chip__value">{{ status.pocket_desc.label }}</span>
+                                      <span class="p-tooltip__message cve-chip" role="tooltip" id="{{ status.pocket }}-tooltip">{{ status.pocket_desc.text | safe}}</span>
+                                    </button>
                                   </div>
                                 {% endif %}
                               </div>
