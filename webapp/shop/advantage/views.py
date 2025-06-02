@@ -791,3 +791,11 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
             "activationKey": kwargs.get("key"),
         }
     )
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
+def pro_get_request_attributes(ua_contracts_api, **kwargs):
+    """
+    Get the request attributes for the pro request form.
+    """
+    return flask.jsonify(ua_contracts_api.get_attributes())
