@@ -152,7 +152,14 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     return flask.redirect(f"/login?next={redirect_path}")
 
             ua_contracts_api = get_ua_contracts_api_instance(
-                user_token, response, session, flask.request.remote_addr
+                user_token,
+                response,
+                session,
+                (
+                    flask.request.headers.getlist("X-Forwarded-For")[0]
+                    if flask.request.headers.getlist("X-Forwarded-For")
+                    else flask.request.remote_addr
+                ),
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
             is_community_member = False
