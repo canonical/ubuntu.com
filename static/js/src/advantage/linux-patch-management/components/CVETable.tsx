@@ -60,7 +60,7 @@ const CVETable = () => {
   return (
     <>
       <Row>
-        <Col size={3} emptyMedium={6} emptyLarge={6}>
+        <Col size={3} emptyMedium={7} emptyLarge={7}>
           <div className="select-group">
             <label htmlFor="statusFilter">Release</label>
             <select
