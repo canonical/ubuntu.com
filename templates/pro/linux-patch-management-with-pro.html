@@ -26,6 +26,54 @@
 </div>
 {%- endif -%}
 {% endcall -%}
-<div id="react-root"></div>
+<section class="p-section">
+  <div class="u-fixed-width">  
+    <hr class="p-rule" />
+  </div>
+
+  <div class="p-section--shallow">
+    <div class="row--50-50">
+      <div class="col">
+        <h2>
+          Full-stack security isn't an afterthought, it's built in
+        </h2>
+      </div>
+      <div class="col">
+        <p>
+          Ubuntu Pro patches are not just automatically pulled from upstream, they're retrieved, evaluated, curated, tested, and backported by Canonical's dedicated security team to ensure production reliability. Each fix is traceable and published in our CVE Tracker.
+        </p>
+        <p>
+          Canonical delivers proactive, production-grade patching across thousands of open source components, so you can focus on building, not backporting.
+        </p>
+        <hr class="p-rule is-muted" />
+        <a href="/security/vulnerability-management">Read more about vulnerability management ›</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-medium-4 col-start-large-4">
+      <hr class="p-rule is-muted" />
+    </div>
+  </div>
+
+  <div class="p-section--shallow">
+    <div class="row">        
+      <div class="col-3 col-start-medium-4 col-start-large-4">
+        <h5>Total number of fixes provided per package per release</h5>
+      </div>
+      <div class="col-6">
+        <p>
+          Select a package category and an Ubuntu LTS release to understand the true scope of vulnerabilities fixed by Canonical. See how many CVEs we have patched over the past year across the open source ecosystem, including packages that are not covered under standard security maintenance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <div id="react-root"></div>
+  </div>
+</section>
+
 <script src="{{ versioned_static('js/dist/linux-patch-management.js') }}" type="module" defer></script>
 {% endblock %}

@@ -2,8 +2,8 @@ import * as Sentry from "@sentry/react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ProValue from "./pages/ProValue";
 import { useLoadWindowData } from "advantage/react/hooks/useLoadWindowData";
+import CVETable from "./components/CVETable";
 
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
@@ -29,7 +29,7 @@ export const App = () => {
   useLoadWindowData(queryClient);
   return (
     <QueryClientProvider client={queryClient}>
-      <ProValue />
+      <CVETable />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
