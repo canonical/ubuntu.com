@@ -79,7 +79,7 @@ class UAContractsAPI:
             "token_type": self.token_type,
             "api_url": self.api_url,
             "is_for_view": self.is_for_view,
-            "remote_addr": self.remote_addr
+            "remote_addr": self.remote_addr,
         }
 
     def get_accounts(self, email: str = None) -> dict:
