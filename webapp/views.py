@@ -911,7 +911,7 @@ def marketo_submit():
     enrichment_fields["original_form_id"] = original_form_id
 
     payload = {
-        "formId": form_fields.pop("formid"),
+        "formId": form_fields.pop("formid", None),
         "input": [
             {
                 "leadFormFields": form_fields,
