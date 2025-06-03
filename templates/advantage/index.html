@@ -49,6 +49,28 @@
     </div>
   </section>
 
+  {% if highlights %}
+  <section class="p-strip--highlighted u-no-padding--bottom">
+    <div class="row">
+      <div class="col-12">
+        <h2>Account Highlights</h2>
+        <ul class="p-list">
+          {% for highlight in highlights %}
+          <li class="p-list__item">
+            {% if highlight.type == 'renewal' %}
+            <i class="p-icon--calendar"></i>
+            {% elif highlight.type == 'plan_change' %}
+            <i class="p-icon--information"></i>
+            {% endif %}
+            {{ highlight.message }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   <div id="react-root">
     <section class="p-strip u-no-padding--top">
       <div class="row">

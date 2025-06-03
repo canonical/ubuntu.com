@@ -1,6 +1,7 @@
 # Packages
 import json
 from typing import List
+from datetime import datetime, timedelta
 
 import flask
 from webargs.fields import String
@@ -19,7 +20,7 @@ from webapp.shop.api.ua_contracts.helpers import (
 )
 
 # Local
-from webapp.shop.api.ua_contracts.primitives import Subscription
+from webapp.shop.api.ua_contracts.primitives import Subscription, AnnotatedContractItem, Contract, ContractItem
 from webapp.shop.decorators import shop_decorator
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.schemas import (
@@ -777,6 +778,81 @@ def get_activate_view(advantage_mapper: AdvantageMapper, **kwargs):
     return flask.render_template(
         "pro/activate.html",
         needs_paid_account_created=False if account else True,
+    )
+
+
+def _prepare_account_highlights(annotated_subscriptions: List[AnnotatedContractItem], contracts: List[Contract]):
+    highlights = []
+    now = datetime.now()
+
+    # Renewal Reminders
+    if annotated_subscriptions:
+        for item in annotated_subscriptions:
+            if item.end_date:
+                try:
+                    end_date_obj = datetime.strptime(item.end_date.split("T")[0], "%Y-%m-%d")
+                    if item.is_expiring or (end_date_obj - now) <= timedelta(days=60):
+                        highlights.append({
+                            "type": "renewal",
+                            "message": f"Your subscription '{item.product_name}' is expiring on {item.end_date.split('T')[0]}.",
+                            "date": item.end_date.split('T')[0]
+                        })
+                except ValueError:
+                    # Handle cases where date parsing might fail, though unlikely with T split
+                    pass  # Or log an error
+
+    # Recent Plan Changes
+    if contracts:
+        for contract in contracts:
+            if contract.items:
+                for contract_item in contract.items:
+                    if contract_item.created_at:
+                        try:
+                            created_at_obj = datetime.strptime(contract_item.created_at.split("T")[0], "%Y-%m-%d")
+                            if (now - created_at_obj) <= timedelta(days=14):
+                                highlights.append({
+                                    "type": "plan_change",
+                                    "message": f"There was an update to your services ({contract_item.reason}) on {contract_item.created_at.split('T')[0]}.",
+                                    "date": contract_item.created_at.split('T')[0]
+                                })
+                        except ValueError:
+                            pass # Or log an error
+
+    # Sort highlights by date, most recent first
+    highlights.sort(key=lambda x: x["date"], reverse=True)
+    return highlights
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
+    is_technical = False
+    account = None
+    highlights = []
+    user = user_info(flask.session)
+
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if account and account.hasChannelStoreAccess:
+            return flask.render_template(
+                "account/forbidden.html", reason="channel_account"
+            )
+
+        if user and account:
+            annotated_subscriptions = advantage_mapper.get_annotated_subscriptions(email=user.email)
+            user_contracts = advantage_mapper.get_account_contracts(account_id=account.id)
+            highlights = _prepare_account_highlights(annotated_subscriptions, user_contracts)
+
+    except UAContractsUserHasNoAccount:
+        pass  # Expected if user has no account yet
+    except AccessForbiddenError:
+        is_technical = True  # User might be a technical user
+
+    return flask.render_template(
+        "advantage/index.html",
+        is_technical=is_technical,
+        is_in_maintenance=is_in_maintenance,
+        highlights=highlights,
+        account=account  # Pass account to template as it might be needed
     )
 
 
