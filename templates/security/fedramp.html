@@ -1,5 +1,7 @@
 {% extends "security/base_security.html" %}
 
+{% from "_macros/vf_hero.jinja" import vf_hero %}
+
 {% block title %}Enable FedRAMP with Ubuntu Pro | Security{% endblock %}
 
 {% block meta_description %}
@@ -14,26 +16,42 @@
   is-paper
 {% endblock body_class %}
 
+{% block extra_metatags %}
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
 {% block content %}
 
-  <div class="p-suru--25-75 p-section">
-    <div class="row--50-50 p-section--shallow">
-      <div class="col">
-        <h1>Enable FedRAMP compliance with Ubuntu Pro</h1>
-      </div>
-      <div class="col">
-        <p>
-          Achieve FedRAMP Authority to Operate and bring your cloud service offerings to the US Federal Government marketplace with the help of Ubuntu Pro. Meet the most demanding security baseline controls within your technology stack.
-        </p>
-        <hr class="p-rule--muted" />
-        <p>
-          <a href="/support/contact-us?product=support-overview"
+  {% call(slot) vf_hero(
+    title_text='Enable FedRAMP compliance with Ubuntu Pro',
+    layout='50/50'
+    ) -%}
+    {%- if slot == 'description' -%}
+      <p>
+        Achieve FedRAMP Authority to Operate and bring your cloud service offerings to the US Federal Government marketplace with the help of Ubuntu Pro. Meet the most demanding security baseline controls within your technology stack.
+      </p>
+    {%- endif -%}
+    {%- if slot == 'cta' -%}
+      <a href="/support/contact-us?product=support-overview"
              class="p-button--positive">Contact us</a>
-          <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
-        </p>
-      </div>
-    </div>
-  </div>
+      <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
+    {%- endif -%}
+    {%- if slot == 'image' -%}`
+      <div class="u-embedded-media">
+          <lite-youtube videoid="vK0bC8jtz3o"
+                  width="560"
+                  height="315"
+                  posterquality="maxresdefault"
+                  videotitle="Bridging DevSecOps and compliance I Snyk's FedRAMP success with Canonical on AWS"
+                  class="u-embedded-media__element"
+          >
+            <a href="https://www.youtube.com/watch?v=vK0bC8jtz3o" title="Play Video">
+              <span class="lyt-visually-hidden">Bridging DevSecOps and compliance | Snyk's FedRAMP success with Canonical on AWS</span>
+            </a>
+          </lite-youtube>
+        </div>
+    {%- endif -%}
+  {% endcall -%}
 
   <div class="p-section">
     <div class="row--25-75 p-section">
