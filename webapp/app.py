@@ -76,6 +76,7 @@ from webapp.shop.advantage.views import (
     post_auto_renewal_settings,
     post_offer,
     pro_activate_activation_key,
+    pro_get_request_attributes,
     pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
@@ -458,6 +459,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/pro/maintenance-check",
     view_func=maintenance_check,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/pro/request/attributes",
+    view_func=pro_get_request_attributes,
     methods=["GET"],
 )
 
