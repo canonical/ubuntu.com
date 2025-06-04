@@ -2,7 +2,6 @@ import { Col, MainTable, Row, Spinner } from "@canonical/react-components";
 import { useFetchCVEData } from "../utils/fetchCVEData";
 import { useState } from "react";
 import useCVETable from "./useCVETable";
-import { MainTableRow } from "@canonical/react-components/dist/components/MainTable/MainTable";
 
 const LTSReleases = [
   { value: "noble", label: "Noble Narwhal (24.04 LTS)" },
@@ -36,22 +35,6 @@ const CVETable = () => {
     },
   ];
 
-  const firstRow: MainTableRow[] = [{
-    columns: [
-      {
-        content: "",
-      },
-      {
-        content: "Critical",
-      },
-      {
-        content: "High",
-      },
-      {
-        content: "",
-      }
-    ],  
-  }];
 
   if ( isLoading ) {
     return <Spinner text="Loading..." />;
@@ -104,7 +87,7 @@ const CVETable = () => {
 
       <MainTable
         headers={headers}
-        rows={[...firstRow, ...tableData]}
+        rows={tableData}
         expanding={true}
         paginate={10}
         emptyStateMsg="No packages found for this release and filter."

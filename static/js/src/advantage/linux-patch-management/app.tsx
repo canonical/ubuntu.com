@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
   },
 });
 
-export const App = () => {
+export const CVETableApp = () => {
   useLoadWindowData(queryClient);
   return (
     <QueryClientProvider client={queryClient}>
@@ -34,7 +34,7 @@ export const App = () => {
     </QueryClientProvider>
   );
 };
-const root = document.getElementById("react-root");
+const root = document.getElementById("cve-table-root");
 if (root) {
-  createRoot(root).render(<App />);
+  createRoot(root).render(<CVETableApp />);
 }
