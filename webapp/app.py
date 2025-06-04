@@ -735,33 +735,6 @@ def takeovers_index():
 
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
-
-core_services_guide_url = "/core/services/guide"
-core_services_guide = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=27473,
-        url_prefix=core_services_guide_url,
-    ),
-    document_template="core/services/guide/document.html",
-    url_prefix=core_services_guide_url,
-    blueprint_name="core-services-guide",
-)
-
-app.add_url_rule(
-    "/core/services/guide/search",
-    "core-services-guide-search",
-    build_search_view(
-        app,
-        session=session,
-        site="ubuntu.com/core/services/guide",
-        template_path="core/services/guide/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-core_services_guide.init_app(app)
-
 app.add_url_rule("/user-country-tz.json", view_func=get_user_country_by_tz)
 
 # All other routes
