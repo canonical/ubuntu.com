@@ -32,7 +32,7 @@ test("Should show Buy now button and full service description link when 'organis
   expect(
     screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
-  expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
+  expect(screen.getAllByText("Continue to checkout")[0]).toBeInTheDocument();
 });
 
 test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => {
@@ -51,7 +51,7 @@ test("Should show Ubuntu Pro Desktop when 'Desktops' is selected ", async () => 
   expect(
     screen.getAllByText("See full service description")[0],
   ).toHaveAttribute("href", "/legal/ubuntu-pro-description");
-  expect(screen.getAllByText("Buy now")[0]).toBeInTheDocument();
+  expect(screen.getAllByText("Continue to checkout")[0]).toBeInTheDocument();
 });
 test("Should show register button and person subscription terms of service when 'myself' is selected ", async () => {
   render(
