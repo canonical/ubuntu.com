@@ -46,11 +46,14 @@ export default function useCVETable(
           columns: [
             {
               content: pkg.package_name,
+              role: "rowheader",
             },
             {
               content: (
                 <Button
                   hasIcon
+                  appearance="base"
+                  element={"a"}
                   disabled={pkg.high_cves.length === 0}
                   onClick={() => {
                     toggleButton(pkg, "high");
@@ -72,6 +75,8 @@ export default function useCVETable(
               content: (
                 <Button
                   hasIcon
+                  appearance="base"
+                  element={"a"}
                   onClick={() => {
                     toggleButton(pkg, "critical");
                   }}
