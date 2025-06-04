@@ -40,7 +40,7 @@ export default function PaymentButton() {
             location.href = "/account/checkout";
           }}
         >
-          Buy now
+          Continue to checkout
         </Button>
       )}
     </>
