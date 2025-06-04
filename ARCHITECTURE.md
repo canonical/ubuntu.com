@@ -62,14 +62,15 @@ The blog pages under https://ubuntu.com/blog make use of [the blog module](https
 
 ### Documentation
 
-There are a large number of documentation areas on ubuntu.com (complete at the time of writing, I think):
+We are migrating documentation from ubuntu.com to documentation.ubuntu.com. These include:
+- [https://documentation.ubuntu.com/server/](https://documentation.ubuntu.com/server/)
+- [https://documentation.ubuntu.com/dedicated-snap-store/](https://documentation.ubuntu.com/dedicated-snap-store/)
+- [http://documentation.ubuntu.com/landscape](http://documentation.ubuntu.com/landscape)
 
-- [ubuntu.com/server/docs](http://ubuntu.com/server/docs) ([code](webapp/app.py#L642-L651))
-- [ubuntu.com/core/services/guide](https://ubuntu.com/core/services/guide) ([code](webapp/app.py#L606-L616))
+There are still a number of documentation areas on ubuntu.com (complete at the time of writing, I think):
 - [ubuntu.com/openstack/docs](http://ubuntu.com/openstack/docs) ([code](webapp/app.py#L942-L952))
 - [ubuntu.com/security/livepatch/docs](http://ubuntu.com/security/livepatch/docs) ([code](webapp/app.py#L969-L979))
 - [ubuntu.com/security/certifications/docs](http://ubuntu.com/security/certifications/docs) ([code](webapp/app.py#L996-L1006))
-- [ubuntu.com/landscape/docs](http://ubuntu.com/landscape/docs) ([code](webapp/app.py#L1023-L1033))
 
 Each of these is served with [our Discourse module](https://github.com/canonical/canonicalwebteam.discourse), and pulls its content from a set of topics in Discourse, as with the takeovers and engage pages.
 
