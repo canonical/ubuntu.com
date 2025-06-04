@@ -38,8 +38,6 @@ export default function useCVETable(
       return packageFilter === "" || pkg.section === packageFilter;
     });
 
-    console.log(selectedPackage, selectedSeverity);
-
     let tableData: MainTableRow[] = cveDataFiltered.map(
       (pkg: UbuntuPackage) => {
         let tableRow: MainTableRow = {
@@ -154,6 +152,5 @@ export default function useCVETable(
     );
     return tableData;
   }, [cveData, packageFilter, selectedPackage, selectedSeverity]);
-  console.log("useCVETable rows", rows);
   return rows;
 }

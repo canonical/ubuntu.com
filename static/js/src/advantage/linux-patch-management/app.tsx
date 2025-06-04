@@ -2,7 +2,6 @@ import * as Sentry from "@sentry/react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useLoadWindowData } from "advantage/react/hooks/useLoadWindowData";
 import CVETable from "./components/CVETable";
 
 Sentry.init({
@@ -26,7 +25,6 @@ const queryClient = new QueryClient({
 });
 
 export const CVETableApp = () => {
-  useLoadWindowData(queryClient);
   return (
     <QueryClientProvider client={queryClient}>
       <CVETable />
@@ -34,7 +32,7 @@ export const CVETableApp = () => {
     </QueryClientProvider>
   );
 };
-const root = document.getElementById("cve-table-root");
-if (root) {
-  createRoot(root).render(<CVETableApp />);
+const cve_table_root = document.getElementById("cve-table-root");
+if (cve_table_root) {
+  createRoot(cve_table_root).render(<CVETableApp />);
 }
