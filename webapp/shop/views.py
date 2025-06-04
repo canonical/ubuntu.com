@@ -6,7 +6,6 @@ from distutils.util import strtobool
 import flask
 import pytz
 from dateutil.parser import parse
-import requests
 from requests.exceptions import HTTPError
 
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
