@@ -4,6 +4,7 @@ import { useState } from "react";
 import useCVETable from "./useCVETable";
 import CVESelector from "./CVESelector";
 import { createPortal } from "react-dom";
+import ProContent from "./ProContent";
 
 const CVETable = () => {
   const [selectedRelease, changeSelectedRelease] = useState("jammy");
@@ -60,7 +61,7 @@ const CVETable = () => {
         emptyStateMsg="No packages found for this release and filter."
       />
 
-      {createPortal(<CVESelector
+      {createPortal(<ProContent
         cveData={cveData}
         packageFilter={packageFilter}
         setPackageFilter={setPackageFilter} 

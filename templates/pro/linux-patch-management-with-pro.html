@@ -5,6 +5,7 @@
 {% block content %}
 
 {% from "_macros/vf_hero.jinja" import vf_hero %}
+{% from "_macros/vf_quote-wrapper.jinja" import vf_quote_wrapper %}
 
 {% call(slot) vf_hero(
   title_text='Linux patch management, solved',
@@ -193,10 +194,18 @@
   <div class="row">
     <div class="col-9 col-start-medium-4 col-start-large-4">
       <div id="cve-selector-root"></div>
-      <hr class="p-rule is-muted" />
     </div>
   </div>
-
+  {% call(slot) vf_quote_wrapper(
+    title_text="",
+    quote_size="small",
+    quote_text="Keeping all software maintained is expensive, and hiring new developers with proficiency in older versions of PHP can be very expensive and difficult. We had considered Ubuntu Pro before. Once it became clear that Ubuntu Pro's per-server cost included hypervisors with unlimited VMs, we did our cost analysis and it ended up being the go-to solution.",
+    citation_source_name_text="A large games publisher",
+  ) -%}
+  {%- if slot == 'cta' -%}
+  <a href="https://canonical.com/case-study/ubuntu-pro-support-for-games-developer">Read the case study</a>
+  {%- endif -%}
+  {% endcall -%}
 </section>
 
 

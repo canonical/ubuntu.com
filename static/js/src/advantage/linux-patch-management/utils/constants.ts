@@ -1,8 +1,8 @@
 export const LTSReleases = [
-  { value: "noble", label: "Noble Narwhal (24.04 LTS)" },
-  { value: "jammy", label: "Jammy Jellyfish (22.04 LTS)" },
-  { value: "focal", label: "Focal Fossa (20.04 LTS)" },
-  { value: "bionic", label: "Bionic Beaver (18.04 LTS)" },
-  { value: "xenial", label: "Xenial Xerus (16.04 LTS)" },
-  { value: "trusty", label: "Trusty Tahr (14.04 LTS)" },
+  { value: "noble", label: "24.04" },
+  { value: "jammy", label: "22.04" },
+  { value: "focal", label: "20.04" },
+  { value: "bionic", label: "18.04" },
+  { value: "xenial", label: "16.04" },
+  { value: "trusty", label: "14.04" },
 ];
