@@ -1,6 +1,7 @@
 import { Chip, Col, List, Row } from "@canonical/react-components";
 import { CVEDataType } from "../types/ubuntu_package";
 import CVESelector from "./CVESelector";
+import CVEMultiSelect from "./CVEMultiSelect";
 
 type Props = {
   cveData: CVEDataType;
@@ -19,6 +20,9 @@ const ProContent = ({
   return (
     <>
       <div className="p-section--shallow">
+        <CVEMultiSelect 
+          cveData={cveData}
+        />
         <CVESelector
           cveData={cveData}
           packageFilter={packageFilter}
