@@ -335,7 +335,7 @@
               For more than a decade, Ubuntu has provided the best development environment for robotics developers. Your team can easily build and securely deploy their devices with Ubuntu Core, an operating system optimised for IoT and edge devices, and Snaps, fully-confined embedded containers. For low-tech device management, the IoT Snap Store enables developers to unlock a reliable and widely-used update infrastructure that’s ideal for robotics applications.
             </p>
             <hr class="p-rule--muted" />
-            <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
+            <a href="/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="robotics-ubuntu"
@@ -357,7 +357,7 @@
               Every aspect of the development process benefits from Ubuntu’s responsiveness, ease of use, regular software updates, lightweight nature, and a high degree of security.
             </p>
             <hr class="p-rule--muted" />
-            <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
+            <a href="/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="robotics-snapcraft"
@@ -378,7 +378,7 @@
               Snapcraft is the command-line tool for packaging your software as a Snap. Snaps are containerised software packages designed for embedded applications, with increased performance compared to other technologies. Snaps give you all the interfaces you need to bundle your dependencies in one package, while providing secure interfaces to access the host disc and privileged resources. 
             </p>
             <hr class="p-rule--muted" />
-            <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
+            <a href="/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="robotics-iot-app-store"
@@ -401,7 +401,7 @@ Companies can create either a public or private marketplace, where applications 
 
             </p>
             <hr class="p-rule--muted" />
-            <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
+            <a href="/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
         </div>
         <div id="robotics-ubuntu-core"
@@ -424,7 +424,7 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
 
             </p>
             <hr class="p-rule--muted" />
-            <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
+            <a href="/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
         </div>
       </div>
@@ -498,7 +498,7 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
       <div class="col">
         <h5 class="p-heading--5">Your own production-grade image in our testing infrastructure</h5>
         <p>
-          Embedded applications depend on the kernel, drivers, libraries, files ystems, and runtime environment. How can you guarantee that your robot will continue working after critical security upgrades to the base kernel and the OS?
+          Embedded applications depend on the kernel, drivers, libraries, file systems, and runtime environment. How can you guarantee that your robot will continue working after critical security upgrades to the base kernel and the OS?
         </p>
         <p>
           Our Enablement services allow you to get a production-grade Ubuntu image for your robot, while our Maintenance services guarantee that any security update won&apos;t break your device.
@@ -517,7 +517,8 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
       <div class="col">
         <h5 class="p-heading--5">Hardened ROS with 10-year security</h5>
         <p>
-          ROS ESM is a service by Canonical that provides security maintenance for ROS Long Term Support (LTS) releases and the underlying Ubuntu distributions, starting with ROS Kinetic on Ubuntu 16.04.
+          <a href="/robotics/ros-esm">ROS ESM</a>
+           is a service by Canonical that provides security maintenance for ROS Long Term Support (LTS) releases and the underlying Ubuntu distributions, starting with ROS Kinetic on Ubuntu 16.04.
         </p>
         <p>
           This includes core ROS libraries, the underlying Ubuntu system and more than 23,000 packages from the Ubuntu Universe repository.
@@ -622,7 +623,7 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
             </div>
             <div class="p-equal-height-row__item">
               <p class="p-heading--5">
-                <a href='#'>Browse all certified hardware&nbsp;&rsaquo;</a>
+                <a href='#'>Raspberry Pi&nbsp;&rsaquo;</a>
               </p>
             </div>
           </div>
@@ -674,7 +675,7 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
     <div class="row">
       <div class="col-start-large-7 col-6">
         <p>
-          Or check the <a href="/certified/iot">full list of Ubuntu certified hardware</a> and find the right one for your application.
+          Or check the <a href="/certified/devices">full list of Ubuntu certified hardware</a> and find the right one for your application.
         </p>
       </div>
     </div>
@@ -741,41 +742,8 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
       }
     }
 
-    function initRoboticsTabs() {
-      const tabs = document.querySelectorAll('.js-robotics-tab');
-
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', (e) => {
-          e.preventDefault();
-          setActiveTab(tab, tabs);
-        });
-      })
-    }
-
-    function setActiveTab(tab, tabs) {
-      tabs.forEach((tabElement) => {
-        let imageID = tabElement.getAttribute('id').replace('tab', 'diagram');
-        let targetContentID = tabElement.getAttribute('aria-controls');
-        let targetImage = document.getElementById(imageID);
-        let tabContent = document.getElementById(targetContentID);
-
-        console.log(targetContentID)
-
-        if (tab === tabElement) {
-          tabElement.setAttribute('aria-selected', true);
-          tabContent.classList.remove('u-hide--large');
-          targetImage.classList.remove('u-hide');
-        } else {
-          tabElement.setAttribute('aria-selected', false);
-          tabContent.classList.add('u-hide--large');
-          targetImage.classList.add('u-hide');
-        }
-      })
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
       rotateRoboticsHeroImage();
-      initRoboticsTabs();
     });
   </script>
 
