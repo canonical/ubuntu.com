@@ -24,7 +24,10 @@
     ) -%}
     {%- if slot == 'description' -%}
       <p>
-        A kernel variant is a kernel that deviates from the General Availability (GA) kernel by changes to its configuration and/or by having modules added and/or removed. In short, a kernel variant is an Ubuntu kernel that reports a kernel version and flavour other than what is reported with an Ubuntu LTS “<code>-generic</code>” kernel when you run the <code>$ uname -a command</code>. It is possible to have kernel variants for multiple releases of a kernel, which is something that will happen naturally over time to a newly-released custom kernel.
+        A kernel variant is a kernel that deviates from the General Availability (GA) kernel by changes to its configuration and/or by having modules added and/or removed. In short, a kernel variant is an Ubuntu kernel that reports a kernel version and flavour other than what is reported with an Ubuntu LTS “<code>-generic</code>” kernel when you run the <code>$ uname -a command</code>. It is possible to have kernel variants for multiple releases of a kernel, which is something that will happen naturally over time to a newly-released
+        <a href="/kernel/real-time/contact-us"
+           class="js-invoke-modal"
+           aria-controls="kernel-modal">custom kernel</a>.
       </p>
     {%- endif -%}
     {%- if slot == 'image' -%}
@@ -226,4 +229,7 @@
       </div>
     </div>
   </section>
+
+  {{ load_form("/kernel") | safe }}
+
 {% endblock %}
