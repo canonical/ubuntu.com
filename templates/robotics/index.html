@@ -22,12 +22,16 @@
 
 {% block content %}
 
+<div class="p-section--shallow">
   {% include "shared/_20-04-eol-banner.html" %}
-  {% call(slot) vf_hero(
-    title_text='Powering robotics <br />in every industry',
-    subtitle_text='Develop, deploy and maintain your fleet of robots with Ubuntu.',
-    layout='50/50'
-    ) -%}
+</div>
+
+{% call(slot) vf_hero(
+  title_text='Powering robotics <br />in every industry',
+  subtitle_text='Develop, deploy and maintain your fleet of robots with Ubuntu.',
+  layout='50/50'
+  ) -%}
+  
 
     {%- if slot == 'cta' -%}
       <a href="/contact-us"
@@ -121,7 +125,7 @@
              class="p-button-positive">See all of our robotics partners&nbsp;&rsaquo;</a>
         </div>
       </div>
-      <div class="p-logo-section">
+      <div class="p-logo-section has-misaligned-images">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{ image(url="https://assets.ubuntu.com/v1/4044372b-ClearpathRobotics-logo.png",
@@ -215,120 +219,6 @@
                         attrs={"class": "p-logo-section__logo"}) | safe
             }}
           </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/8fb5da2e-mercedes-benz-group-logo.png",
-                        alt="Mercedes-Benz",
-                        width="600",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-        </div>
-      </div>
-      <div class="p-logo-section">
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/ba59346b-toyota-logo.png",
-                        alt="Toyota",
-                        width="183",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/878a1b62-vw-logo.png",
-                        alt="Volkswagen",
-                        width="162",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/8fb5da2e-mercedes-benz-group-logo.png",
-                        alt="Mercedes-Benz",
-                        width="600",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d0419dbf-volvo-logo.png",
-                        alt="Volvo",
-                        width="627",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/49625b1d-ford-logo.png",
-                        alt="Ford",
-                        width="216",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/d23b2ab9-general-motors-logo.png",
-                        alt="General Motors",
-                        width="150",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/6d27657e-jaguar-logo.png",
-                        alt="Jaguar",
-                        width="402",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/a739514e-land-rover-logo.png",
-                        alt="Land Rover",
-                        width="258",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/1ee068e3-kassbohrer-logo.png",
-                        alt="Kassbohrer",
-                        width="561",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
-          <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/00d9274f-zoox-logo.png",
-                        alt="Zoox",
-                        width="312",
-                        height="313",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-logo-section__logo"}) | safe }}
-          </div>
-
         </div>
       </div>
     </div>
@@ -536,164 +426,6 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
             <hr class="p-rule--muted" />
             <a href="https://ubuntu.com/robotics/docs">Explore documentation&nbsp;&rsaquo;</a>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip u-no-padding--bottom">
-    <div class="u-fixed-width u-align--center">
-      <h2 class="u-sv3">Bringing Ubuntu&apos;s worldwide infrastructure to your robot</h2>
-
-      <!-- image container -->
-      <div class="u-hide--small u-hide--medium">
-        {{ image(url="https://assets.ubuntu.com/v1/e036ba3e-bring-ubuntus-worldwide.png",
-                alt="",
-                width="1800",
-                height="1014",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-      </div>
-
-      <!-- <div class="u-hide--large">
-        {{ image(url="https://assets.ubuntu.com/v1/00524b9e-Right-OS-Diagram-Mobile.png",
-                alt="",
-                width="1000",
-                height="2013",
-                hi_def=True,
-                loading="lazy") | safe
-        }}
-      </div>
-
-      <div class="u-fixed-width u-hide--small u-hide--medium js-robotics-diagrams">
-        <img src="https://assets.ubuntu.com/v1/6a795f4f-Right-OS-diagram-core-1.png" id="robotics-diagram-1" loading="" lazy alt="" />
-        <img src="https://assets.ubuntu.com/v1/235ca3d0-Right-OS-diagram-core-ubuntu-1.png" id="robotics-diagram-2" loading="" lazy class="u-hide" alt="" />
-        <img src="https://assets.ubuntu.com/v1/bc07ea11-Right-OS-diagram-core-snapcraft-1.png" id="robotics-diagram-3" loading="" lazy class="u-hide" alt="" />
-        <img src="https://assets.ubuntu.com/v1/c037a0a1-Right-OS-diagram-core-iot-app-store-1.png" id="robotics-diagram-4" loading="" lazy class="u-hide" alt="" />
-        <img src="https://assets.ubuntu.com/v1/fcf5c86a-Right-OS-diagram-core-core-1.png" id="robotics-diagram-5" loading="" lazy class="u-hide" alt="" />
-      </div> -->
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-3">
-        <ul class="js-robotics-tabs p-tabs--vertical u-hide--small u-hide--medium"
-            role="tablist"
-            aria-label="Robotics features">
-          <li>
-            <button class="p-tabs__item js-robotics-tab"
-                    id="robotics-tab-1"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="robotics-content-1">Overview</button>
-          </li>
-          <li>
-            <button class="p-tabs__item js-robotics-tab"
-                    id="robotics-tab-2"
-                    role="tab"
-                    aria-selected="false"
-                    tab-index="-1"
-                    aria-controls="robotics-content-2">Ubuntu</button>
-          </li>
-          <li>
-            <button class="p-tabs__item js-robotics-tab"
-                    id="robotics-tab-3"
-                    role="tab"
-                    aria-selected="false"
-                    tab-index="-1"
-                    aria-controls="robotics-content-3">Snapcraft</button>
-          </li>
-          <li>
-            <button class="p-tabs__item js-robotics-tab"
-                    id="robotics-tab-4"
-                    role="tab"
-                    aria-selected="false"
-                    tab-index="-1"
-                    aria-controls="robotics-content-4">IoT App Store</button>
-          </li>
-          <li>
-            <button class="p-tabs__item js-robotics-tab"
-                    id="robotics-tab-5"
-                    role="tab"
-                    aria-selected="false"
-                    tab-index="-1"
-                    aria-controls="robotics-content-5">Ubuntu Core</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-9">
-        <div class="js-robotics-content" id="robotics-content-1">
-          <h3 class="p-heading--2">Deploying a robotics solution?</h3>
-          <p>
-            For more than a decade, Ubuntu has provided the best development environment for robotics developers. Your team can easily build and securely deploy their devices with  <a href="/core">Ubuntu Core</a>, an operating system optimised for IoT and edge devices, and <a href="https://canonical-robotics.readthedocs-hosted.com/en/latest/">Snaps</a>, fully-confined embedded containers. For low-tech device management, the <a href="/internet-of-things/appstore">IoT Snap Store</a> enables developers to unlock a reliable and widely-used update infrastructure that&apos;s ideal for robotics applications.
-          </p>
-          <a class="p-button--positive"
-             href="https://canonical-robotics.readthedocs-hosted.com/en/latest/">Explore documentation</a>
-        </div>
-
-        <div class="u-hide--large js-robotics-content" id="robotics-content-2">
-          <h3 class="p-heading--2">Ubuntu</h3>
-          <p>
-            Ubuntu is an open-source operating system. For more than a decade, Ubuntu has supported key robotics open-source projects, such as <a href="/robotics/what-is-ros">ROS</a>, PX4, Autoware, Open-CV, PCL, and more.
-          </p>
-          <p>
-            Every aspect of the development process benefits from Ubuntu&apos;s responsiveness, ease of use, regular software updates, lightweight nature, and a high degree of security.
-          </p>
-
-          <p>
-            <a class="p-button--positive"
-               href="https://canonical-robotics.readthedocs-hosted.com/en/latest/">Explore documentation</a>
-            <a href="/desktop">Learn more about Ubuntu&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-
-        <div class="u-hide--large js-robotics-content" id="robotics-content-3">
-          <h3 class="p-heading--2">Snapcraft</h3>
-          <p>
-            Snapcraft is the command-line tool for packaging your software as a Snap. Snaps are containerised software packages designed for embedded applications, with increased performance compared to <a href="/engage/dockerandros">other technologies</a>. Snaps give you all the interfaces you need to bundle your dependencies in one package, while providing secure interfaces to access the host disc and privileged resources.
-          </p>
-
-          <p>
-            <a class="p-button--positive"
-               href="https://canonical-robotics.readthedocs-hosted.com/en/latest/how-to-guides/">Explore documentation</a>
-            <a href="https://canonical-robotics.readthedocs-hosted.com/">Learn more about Snapcraft&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-
-        <div class="u-hide--large js-robotics-content" id="robotics-content-4">
-          <h3 class="p-heading--2">IoT App Store</h3>
-          <p>
-            Canonical&apos;s IoT App Store enables developers to host and manage software updates for their devices. It provides a trusted update infrastructure, including reliable over-the-air updates, secure authentication, CI/CD integration, and more.
-          </p>
-          <p>
-            Companies can create either a public or private marketplace, where applications can be managed by developers and contributors.
-          </p>
-
-          <p>
-            <a class="p-button--positive"
-               href="/robotics/docs/explanation#heading--iot-app-store">Explore documentation</a>
-            <a href="/internet-of-things/appstore">Learn more about IoT App Stores&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-
-        <div class="u-hide--large js-robotics-content" id="robotics-content-5">
-          <h3 class="p-heading--2">Ubuntu Core</h3>
-          <p>
-            Ubuntu Core is an optimised version of Ubuntu for edge devices. It brings a reliable software management infrastructure, including independent, transactional, and delta updates for the OS, kernel, and applications. It provides advanced security features, such as secure boot and strict confinement.
-          </p>
-
-          <p>
-            Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production.
-          </p>
-
-          <p>
-            <a class="p-button--positive"
-               href="https://canonical-robotics.readthedocs-hosted.com/en/latest/explanations/ubuntu-core/">Explore documentation</a>
-            <a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a>
-          </p>
         </div>
       </div>
     </div>
@@ -972,7 +704,13 @@ Ubuntu Core uses the same kernel, libraries, and system software as classic Ubun
 
   <script>
     function rotateRoboticsHeroImage() {
-      const roboticsImages = ["https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg", "https://assets.ubuntu.com/v1/1db90ac6-Mobile_Warehouse.svg", "https://assets.ubuntu.com/v1/af935154-Medical.svg", "https://assets.ubuntu.com/v1/d55972c6-HomeRobots.svg", "https://assets.ubuntu.com/v1/22499d49-Turbine.svg"]
+      const roboticsImages = [
+      "https://assets.ubuntu.com/v1/b4316d3f-hero-drone.png",
+      "https://assets.ubuntu.com/v1/7e1ddb87-hero-warehouse.png", 
+      "https://assets.ubuntu.com/v1/32425643-hero-agriculture.png", 
+      "https://assets.ubuntu.com/v1/b8095946-hero-medical.png", 
+      "https://assets.ubuntu.com/v1/53624a9f-hero-home%20robot.png", 
+      ]
       const roboticsImageEl = document.getElementById("robotics-image");
 
       if (window.localStorage && roboticsImageEl) {
