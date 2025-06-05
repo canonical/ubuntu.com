@@ -16,6 +16,11 @@
   is-paper
 {% endblock body_class %}
 
+{% block extra_metatags %}
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+{% endblock extra_metatags %}
+
 {% block content %}
 
   {% call(slot) vf_hero(
@@ -23,13 +28,15 @@
     layout='25/75'
     ) -%}
     {%- if slot == 'signpost_image' -%}
-      {{ image(url="https://assets.ubuntu.com/v1/b2695c5e-ros-signpost.png",
-            alt="",
-            width="852",
-            height="234",
-            hi_def=True,
-            loading="auto") | safe
-      }}
+      <div class="u-hide--medium u-hide--small">
+        {{ image(url="https://assets.ubuntu.com/v1/b2695c5e-ros-signpost.png",
+                alt="",
+                width="852",
+                height="234",
+                hi_def=True,
+                loading="auto") | safe
+        }}
+      </div>
     {%- endif -%}
     {%- if slot == 'description' -%}
       <p>
@@ -61,7 +68,7 @@
     {% endif -%}
   {%- endcall -%}
 
-  {% include "shared/_20-04-eol-banner.html" %}
+  <div class="u-sv4">{% include "shared/_20-04-eol-banner.html" %}</div>
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
@@ -84,17 +91,13 @@
         <h2>What is ROS 2?</h2>
       </div>
       <div class="col">
-        <div class="p-section--shallow">
-          <div class="p-image-container">
-            {{ image(url="https://assets.ubuntu.com/v1/6a1583d0-getting-started-with-ros.png",
-                        alt="",
-                        width="900",
-                        height="507",
-                        hi_def=True,
-                        loading="lazy",
-                        attrs={"class": "p-image-container__image",}) | safe
-            }}
-          </div>
+        <div class="u-embedded-media">
+          <lite-youtube videoid="HqBwPUnwxsM" width="560" height="315" posterquality="maxresdefault" videotitle="Getting Started with ROS Part 1: Nodes, Parameters and Topics" class="u-embedded-media__element">
+          <a href="https://www.youtube.com/embed/HqBwPUnwxsM?rel=0"
+             title="Play Video">
+            <span class="lyt-visually-hidden">Getting Started with ROS Part 1: Nodes, Parameters and Topics</span>
+          </a>
+          </lite-youtube>
         </div>
         <p>
           ROS 2 is a complete re-design of the framework, tackling the shortcomings of the first generation, effectively bringing it to industry needs and standards. ROS 2 contains new sets of packages that can be installed alongside ROS 1 to ease migration to a more secure platform. ROS 2 takes advantage of new technologies and newly updated APIs asked for by the community.
@@ -130,60 +133,60 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/6820b3f1-ABB-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/773be9e7-ABB-logo@3x.png",
                         alt="ABB",
-                        width="73",
-                        height="157",
+                        width="145",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/845527af-otto-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/a2f68c50-otto-logo@3x.png",
                         alt="OTTO Motors",
-                        width="111",
-                        height="157",
+                        width="223",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/7b6ee33c-doosan-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/f7a5bbf4-doosan-logo@3x.png",
                         alt="Doosan",
-                        width="230",
-                        height="157",
+                        width="460",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/833213d4-fetch-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/cb807085-fetch-logo@3x.png",
                         alt="Fetch Robotics",
-                        width="131",
-                        height="157",
+                        width="262",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/c437608f-robot-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/f91ad8e2-robot-logo@3x.png",
                         alt="Robot",
-                        width="134",
-                        height="157",
+                        width="268",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image(url="https://assets.ubuntu.com/v1/b6184cd9-robotis-logo.png",
+            {{ image(url="https://assets.ubuntu.com/v1/95ab3613-robotis-logo@3x.png",
                         alt="Robotis",
-                        width="163",
-                        height="157",
+                        width="325",
+                        height="313",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-logo-section__logo",}) | safe
