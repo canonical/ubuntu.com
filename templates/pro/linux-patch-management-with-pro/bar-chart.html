@@ -1,0 +1,42 @@
+<canvas id="myChart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+  new Chart(ctx, {
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false,
+        },
+        x: {
+          grid: {
+            display: false,
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+      },
+    },
+    type: 'bar',
+    data: {
+      labels: ['16.04', '18.04', '20.04', '22.04', '24.04'],
+      datasets: [
+        {
+          label: 'Packages covered with LTS',
+          data: [6000, 6000, 6000, 6900, 6900],
+          backgroundColor: '#656565',
+        },
+        {
+          label: 'Packages covered with Ubuntu Pro',
+          data: [6900, 7500, 8500, 9100, 9800],
+          backgroundColor: '#e95420',
+        }
+      ]
+    }
+  });
+</script>
