@@ -1,5 +1,5 @@
 import { MainTable, Spinner } from "@canonical/react-components";
-import { useFetchCVEData } from "../utils/fetchCVEData";
+import { useFetchCVEData } from "../utils/helpers";
 import { useState } from "react";
 import useCVETable from "./useCVETable";
 import CVESelector from "./CVESelector";
@@ -53,11 +53,34 @@ const CVETable = () => {
         changeSelectedRelease={changeSelectedRelease}
       />
 
+      <MainTable headers={headers} rows={[
+        {
+          columns: [
+            {
+              content: null,
+              role: "columnheader",
+            },
+            {
+              content: <p>Critical</p>,
+              role: "columnheader",
+            },
+            {
+              content: <p>High</p>,
+              role: "columnheader",
+            },
+            {
+              content: null,
+              role: "columnheader",
+            },
+          ],
+        },
+      ]} className="u-no-margin--bottom" />
+      <hr className="p-rule is-muted" />
       <MainTable
-        headers={headers}
         rows={tableData}
         expanding={true}
         paginate={10}
+        id="cve-table"
         emptyStateMsg="No packages found for this release and filter."
       />
 

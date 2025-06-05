@@ -105,7 +105,6 @@ export default function useCVETable(
                     <tr>
                       <th>CVE Name</th>
                       <th>Related USNs</th>
-                      <th>Fixed At</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -120,9 +119,6 @@ export default function useCVETable(
                             <p key={usn}>{usn}</p>
                           ))}
                         </td>
-                        <td>
-                          <p>{cve.fixed_at}</p>
-                        </td>
                       </tr>
                     ))}
                   {selectedSeverity === "critical" &&
@@ -135,9 +131,6 @@ export default function useCVETable(
                           {cve.related_usns.map((usn: string) => (
                             <p key={usn}>{usn}</p>
                           ))}
-                        </td>
-                        <td>
-                          <p>{cve.fixed_at}</p>
                         </td>
                       </tr>
                     ))}
