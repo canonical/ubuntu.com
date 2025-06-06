@@ -69,12 +69,17 @@
           </li>
           <li>
             <button class="p-tabs__item"
+                    id="deepcomputing-fml13v01"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="deepcomputing-fml13v01-tab">DeepComputing FML13V01</button>
+          </li>
+          <li>
+            <button class="p-tabs__item"
                     id="microchip-curiosity"
                     role="tab"
                     aria-selected="false"
-                    aria-controls="microchip-curiosity-tab">
-              Microchip PIC64GX1000 Curiosity Kit
-            </button>
+                    aria-controls="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</button>
           </li>
           <li>
             <button class="p-tabs__item"
@@ -131,8 +136,9 @@
         <form class="u-hide--large u-hide--medium">
           <select name="boardSelect" id="boardSelect">
             <option value="allwinner-nezha-tab" selected="">AllWinner Nezha</option>
-            <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
+            <option value="deepcomputing-fml13v01-tab">DeepComputing FML13V01</option>
             <option value="microchip-curiosity-tab">Microchip PIC64GX1000 Curiosity Kit</option>
+            <option value="microchip-polarfire-soc-fpga-icicle-kit-tab">Microchip Polarfire SoC FPGA Icicle</option>
             <option value="pine64-star64-tab">Pine64 Star64</option>
             <option value="milk-v-mars-tab">Milk-V Mars</option>
             <option value="qemu-tab">QEMU emulator</option>
@@ -144,6 +150,7 @@
       </div>
       <div class="col-9 col-medium-4">
         {% include "download/risc-v/allwinner-nezha.html" %}
+        {% include "download/risc-v/deepcomputing-fml13v01.html" %}
         {% include "download/risc-v/microchip-curiosity.html" %}
         {% include "download/risc-v/microchip-polarfire.html" %}
         {% include "download/risc-v/pine64-star64.html" %}
