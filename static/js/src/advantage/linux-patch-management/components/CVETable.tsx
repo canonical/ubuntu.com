@@ -37,10 +37,15 @@ const CVETable = () => {
   ];
 
   if (isLoading) {
-    return <>
-      <Spinner text="Loading..." />
-      {createPortal(<Spinner text="Loading..." />, document.getElementById("cve-selector-root") || document.body)}
-    </>;
+    return (
+      <>
+        <Spinner text="Loading..." />
+        {createPortal(
+          <Spinner text="Loading..." />,
+          document.getElementById("cve-selector-root") || document.body,
+        )}
+      </>
+    );
   }
 
   return (
@@ -53,28 +58,32 @@ const CVETable = () => {
         changeSelectedRelease={changeSelectedRelease}
       />
 
-      <MainTable headers={headers} rows={[
-        {
-          columns: [
-            {
-              content: null,
-              role: "columnheader",
-            },
-            {
-              content: <p>Critical</p>,
-              role: "columnheader",
-            },
-            {
-              content: <p>High</p>,
-              role: "columnheader",
-            },
-            {
-              content: null,
-              role: "columnheader",
-            },
-          ],
-        },
-      ]} className="u-no-margin--bottom" />
+      <MainTable
+        headers={headers}
+        rows={[
+          {
+            columns: [
+              {
+                content: null,
+                role: "columnheader",
+              },
+              {
+                content: <p>Critical</p>,
+                role: "columnheader",
+              },
+              {
+                content: <p>High</p>,
+                role: "columnheader",
+              },
+              {
+                content: null,
+                role: "columnheader",
+              },
+            ],
+          },
+        ]}
+        className="u-no-margin--bottom"
+      />
       <hr className="p-rule is-muted" />
       <MainTable
         rows={tableData}
@@ -84,13 +93,15 @@ const CVETable = () => {
         emptyStateMsg="No packages found for this release and filter."
       />
 
-      {createPortal(<ProContent
-        cveData={cveData}
-        packageFilter={packageFilter}
-        setPackageFilter={setPackageFilter} 
-        selectedRelease={selectedRelease}
-        changeSelectedRelease={changeSelectedRelease}
-      />, document.getElementById("cve-selector-root") || document.body)}
+      {createPortal(
+        <ProContent
+          cveData={cveData}
+          packageFilter={packageFilter}
+          selectedRelease={selectedRelease}
+          changeSelectedRelease={changeSelectedRelease}
+        />,
+        document.getElementById("cve-selector-root") || document.body,
+      )}
     </>
   );
 };
