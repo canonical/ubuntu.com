@@ -93,7 +93,9 @@ export default function useCVETable(
               ),
             },
             {
-              content: <p>{mapPocketToCoverage.get(pkg.pocket) || pkg.pocket}</p>,
+              content: (
+                <p>{mapPocketToCoverage.get(pkg.pocket) || pkg.pocket}</p>
+              ),
             },
           ],
           expanded: selectedPackage === pkg.package_name,
@@ -108,32 +110,32 @@ export default function useCVETable(
                     </tr>
                   </thead>
                   <tbody>
-                  {selectedSeverity === "high" &&
-                    pkg.high_cves.map((cve) => (
-                      <tr key={cve.name}>
-                        <td>
-                          <p>{cve.name}</p>
-                        </td>
-                        <td>
-                          {cve.related_usns.map((usn: string) => (
-                            <p key={usn}>{usn}</p>
-                          ))}
-                        </td>
-                      </tr>
-                    ))}
-                  {selectedSeverity === "critical" &&
-                    pkg.critical_cves.map((cve) => (
-                      <tr key={cve.name}>
-                        <td >
-                          <p>{cve.name}</p>
-                        </td>
-                        <td>
-                          {cve.related_usns.map((usn: string) => (
-                            <p key={usn}>{usn}</p>
-                          ))}
-                        </td>
-                      </tr>
-                    ))}
+                    {selectedSeverity === "high" &&
+                      pkg.high_cves.map((cve) => (
+                        <tr key={cve.name}>
+                          <td>
+                            <p>{cve.name}</p>
+                          </td>
+                          <td>
+                            {cve.related_usns.map((usn: string) => (
+                              <p key={usn}>{usn}</p>
+                            ))}
+                          </td>
+                        </tr>
+                      ))}
+                    {selectedSeverity === "critical" &&
+                      pkg.critical_cves.map((cve) => (
+                        <tr key={cve.name}>
+                          <td>
+                            <p>{cve.name}</p>
+                          </td>
+                          <td>
+                            {cve.related_usns.map((usn: string) => (
+                              <p key={usn}>{usn}</p>
+                            ))}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </Col>
