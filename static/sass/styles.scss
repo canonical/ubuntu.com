@@ -1617,7 +1617,7 @@ ol.p-list--divided .p-list__item::before {
   row-gap: 0.5rem;
 }
 
-@media screen and (max-width: $breakpoint-large - 1) {
+@media screen and (max-width: #{ $breakpoint-large - 1 }) {
   .u-table-horizontal-scroll {
     overflow-x: hidden;
     .u-table-horizontal-scroll__table {

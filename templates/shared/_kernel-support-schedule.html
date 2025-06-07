@@ -1,12 +1,14 @@
-<section class="p-strip--light is-bordered">
+<section class="p-section--deep">
   <div class="u-fixed-width">
-    <h2>Kernel release schedule</h2>
+    <hr class="p-rule" />
+    <div class="p-section--shallow">
+      <h2>Kernel release schedule</h2>
+    </div>
   </div>
-  <div class="row">
-    {% include "shared/_kernel-release-diagram.html" %}
-  </div>
+  <div class="row">{% include "shared/_kernel-release-diagram.html" %}</div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
-<script src="{{ versioned_static('js/dist/release-chart-manager.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"
+        defer></script>
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
