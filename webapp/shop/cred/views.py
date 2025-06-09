@@ -7,6 +7,7 @@ import json
 import os
 import html
 from webapp.shop.api.ua_contracts.api import (
+    AccessForbiddenError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
 )
@@ -847,26 +848,38 @@ def cred_your_exams(
         else:
             exam_contracts = []
 
-    is_banned = True
-    account = None
-    try:
-        account = advantage_mapper.get_purchase_account("canonical-ua")
-    except UAContractsUserHasNoAccount:
-        flask.render_template(
-            "credentials/your-exams.html",
-            agreement_notification=agreement_notification,
-            exams=[],
-            show_cred_maintenance_alert=show_cred_maintenance_alert,
-            cred_is_in_maintenance=cred_is_in_maintenance,
-            cred_maintenance_start=cred_maintenance_start,
-            cred_maintenance_end=cred_maintenance_end,
-        )
     cue_products = get_cue_products(type="exam").get_json()
     productListingID = None
     if cue_products and len(cue_products) > 0:
         productListingID = cue_products[0]["longId"]
     else:
         flask.abort(404)
+
+    account = None
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
+        return flask.jsonify({}), 404
+    except AccessForbiddenError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "user_info": user_info(flask.session),
+                "request_url": flask.request.url,
+                "request_headers": flask.request.headers,
+                "response_headers": error.response.headers,
+                "response_body": error.response.json(),
+            }
+        )
+        return flask.jsonify({"error": "access forbidden"}), 403
 
     purchase_request = {
         "accountID": account.id,
@@ -881,6 +894,7 @@ def cred_your_exams(
         "coupon": None,
     }
 
+    is_banned = True
     banned_error = (
         "invalid purchase: user has been banned "
         + "from purchasing products in the canonical-cube marketplace"
