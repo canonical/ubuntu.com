@@ -864,8 +864,6 @@ def cred_your_exams(
                 "user_info": user_info(flask.session),
                 "request_url": flask.request.url,
                 "request_headers": flask.request.headers,
-                "response_headers": error.response.headers,
-                "response_body": error.response.json(),
             }
         )
         return flask.jsonify({}), 404
@@ -875,8 +873,6 @@ def cred_your_exams(
                 "user_info": user_info(flask.session),
                 "request_url": flask.request.url,
                 "request_headers": flask.request.headers,
-                "response_headers": error.response.headers,
-                "response_body": error.response.json(),
             }
         )
         return flask.jsonify({"error": "access forbidden"}), 403
