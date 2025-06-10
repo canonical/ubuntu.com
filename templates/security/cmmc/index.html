@@ -46,8 +46,8 @@
         <div class="p-image-container--3-2 is-cover">
           {{ image(url="https://assets.ubuntu.com/v1/0a4cf754-hero-img.jpg",
                         alt="",
-                        width="568",
-                        height="852",
+                        width="600",
+                        height="400",
                         hi_def=True,
                         loading="lazy",
                         attrs={"class": "p-image-container__image"},) | safe
@@ -116,7 +116,7 @@
           <p>
             Most independent contractors and industry partners will use level 2, and perform an annual self-assessment of their security posture against the program requirements.
           </p>
-          
+
         </div>
       </div>
     </div>
@@ -282,12 +282,12 @@
               <h3 class="p-text--default">
                 <a href="/blog/{{ article.slug }}">{{ article.title.rendered | safe }}</a>
               </h3>
-              <p>{{ article.excerpt.rendered | truncate(200) | safe }}</p>
+              {{ article.excerpt.rendered | truncate(200) | safe }}
             </div>
           {% endfor %}
         </div>
       </div>
-          
+
       <div class="p-tabs__content u-hide"
          tabindex="0"
          role="tabpanel"
