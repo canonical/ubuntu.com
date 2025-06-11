@@ -1,0 +1,168 @@
+{
+  "form": {
+    "/robotics": {
+      "templatePath": "/robotics/index.html",
+      "isModal": true,
+      "modalId": "robotics-modal",
+      "formData": {
+        "title": "Let's get your robot rolling",
+        "introText": "Tell us about your project so we can bring the right team to the conversation.",
+        "formId": "1650",
+        "returnUrl": "/robotics#contact-form-success",
+        "product": ""
+      },
+      "fieldsets": [
+        {
+          "title": "Are you interested in learning more about ROS ESM and our enterprise support for ROS?",
+          "id": "enterprise-support-for-ROS",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "enterprise-support-for-ROS-yes",
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "enterprise-support-for-ROS-no",
+              "value": "No",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "Are you interested in custom Hardware Enablement and Certification?",
+          "id": "Hardware-Enablement-and-Certification",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "Hardware-Enablement-and-Certification-yes",
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "Hardware-Enablement-and-Certification-no",
+              "value": "No",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "Do you want to learn more about Brand Store and our management solution to deploy software?",
+          "id": "Brand-Store-and-our-management-solution",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "Brand-Store-and-our-management-solution-yes",
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "Brand-Store-and-our-management-solution-no",
+              "value": "No",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "Do you need support getting to market?",
+          "id": "support-getting-to-market",
+          "inputType": "radio",
+          "fields": [
+            {
+              "type": "radio",
+              "id": "support-getting-to-market-yes",
+              "value": "Yes",
+              "label": "Yes"
+            },
+            {
+              "type": "radio",
+              "id": "support-getting-to-market-no",
+              "value": "No",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "title": "What can we help you with?",
+          "fields": [
+            {
+              "type": "long-text",
+              "id": "open-question",
+              "name": "open-question"
+            }
+          ]
+        },
+        {
+          "title": "How should we get in touch?",
+          "id": "contact-details",
+          "fields": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "company",
+              "label": "Company",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Job title",
+              "isRequired": true
+            },
+            {
+              "type": "email",
+              "id": "email",
+              "label": "Email address",
+              "isRequired": true
+            },
+            {
+              "type": "tel",
+              "id": "phone",
+              "label": "Phone number",
+              "isRequired": true
+            },
+            {
+              "type": "country",
+              "id": "country",
+              "label": "Country",
+              "isRequired": false
+            }
+          ]
+        }
+      ],
+      "honeypotFields": [
+        {
+          "name": "website",
+          "id": "website",
+          "type": "text",
+          "class": "website",
+          "autocomplete": "off"
+        },
+        {
+          "name": "name",
+          "id": "name",
+          "type": "text",
+          "class": "name",
+          "autocomplete": "off"
+        }
+      ]
+    }
+  }
+}
