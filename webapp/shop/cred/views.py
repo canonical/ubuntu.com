@@ -857,7 +857,7 @@ def cred_your_exams(
 
     account = None
     try:
-        account = advantage_mapper.get_purchase_account("canonical-ua")
+        account = advantage_mapper.ensure_purchase_account("canonical-cube", user["email"])
     except UAContractsUserHasNoAccount:
         flask.current_app.extensions["sentry"].captureException(
             extra={
