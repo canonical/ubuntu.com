@@ -1335,3 +1335,14 @@ def build_sitemap_tree(exclude_paths=None):
         return response
 
     return serve_sitemap
+
+def process_community_calendar(community_calendar):
+    def display_community_calendar():
+        events = community_calendar.get_category_events()
+        print("Community calendar events:", events)
+        return flask.render_template(
+            "community/calendar.html",
+            events=events,
+        )
+
+    return display_community_calendar

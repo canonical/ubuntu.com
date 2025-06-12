@@ -152,6 +152,7 @@ from webapp.views import (
     build_vulnerabilities,
     build_vulnerabilities_list,
     process_active_vulnerabilities,
+    process_community_calendar,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -798,6 +799,21 @@ app.add_url_rule(
 )
 
 community_docs.init_app(app)
+
+# Community Portal
+community_calendar = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=60,
+        url_prefix="/community",
+    ),
+    category_id=11,
+)
+
+app.add_url_rule(
+    "/community/calendar",
+    view_func=process_community_calendar(community_calendar),
+)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
