@@ -1411,3 +1411,14 @@ def build_sitemap_tree(exclude_paths=None):
         return response
 
     return serve_sitemap
+
+
+def process_local_communities(local_communities):
+    def display_local_communities():
+        metadata_table = local_communities.get_category_index_metadata("locos")
+        return flask.render_template(
+            "community/local-communities.html",
+            metadata=metadata_table,
+        )
+
+    return display_local_communities
