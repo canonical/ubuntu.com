@@ -54,7 +54,7 @@
       <div class="p-notification--information is-light">
         <div class="p-notification__content">
           <div class="p-notification__message">
-            FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more <a href="/blog/ubuntu-22-04-fips-140-3-modules-available-for-preview" aria-label="Learn more about FIPS 140-3 for Ubuntu 22.04 LTS">here</a>.
+            FIPS 140-3 is now available for Ubuntu 22.04 LTS. Learn more <a href="/blog/fips-140-3-for-ubuntu-22-04lts" aria-label="Learn more about FIPS 140-3 for Ubuntu 22.04 LTS">here</a>.
           </div>
         </div>
       </div>
@@ -99,6 +99,18 @@
     {%- if slot == 'list_item_8' -%}
       <h3 id="pci-dss" class="p-heading--6 p-heading--bold u-no-padding--top"><a href="/blog/how-canonical-enables-pci-dss-compliance">PCI-DSS</a></h3>
       <p class="u-no-padding--top">Gain extra security and compliance guarantees needed to deploy applications in line with PCI-DSS requirements.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_9' -%}
+      <h3 id="hipaa" class="p-heading--6 p-heading--bold u-no-padding--top">HIPAA</h3>
+      <p class="u-no-padding--top">Canonical supports your path towards HIPAA compliance.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_10' -%}
+      <h3 id="nis2" class="p-heading--6 p-heading--bold u-no-padding--top"><a href="/blog/a-comprehensive-guide-to-nis2-compliance-part-3-setting-the-roadmap-and-demonstrating-nis2-compliance">NIS2</a></h3>
+      <p class="u-no-padding--top">Canonical can help you with your compliance needs related to EU NIS2.</p>
+    {%- endif -%}
+    {%- if slot == 'list_item_11' -%}
+      <h3 id="uk-cyber-essentials" class="p-heading--6 p-heading--bold u-no-padding--top"><a href="/blog/meet-cyber-essentials-requirements-with-ubuntu-pro">UK Cyber Essentials</a></h3>
+      <p class="u-no-padding--top">Achieve Cyber Essentials through our robust security patching and hardening tools.</p>
     {%- endif -%}
   {% endcall -%}
 
