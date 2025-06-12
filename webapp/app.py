@@ -153,6 +153,7 @@ from webapp.views import (
     build_vulnerabilities,
     build_vulnerabilities_list,
     process_active_vulnerabilities,
+    process_local_communities,
     build_engage_index,
     build_engage_page,
     build_engage_pages_sitemap,
@@ -777,7 +778,7 @@ app.add_url_rule(
 server_docs.init_app(app)
 
 # Community docs
-url_prefix = "/community"
+url_prefix = "/community/docs"
 community_docs = Docs(
     parser=DocParser(
         api=discourse_api,
@@ -803,6 +804,21 @@ app.add_url_rule(
 )
 
 community_docs.init_app(app)
+
+# Community Portal
+local_communities = Category(
+    parser=CategoryParser(
+        api=discourse_api,
+        index_topic_id=62344,
+        url_prefix="/community",
+    ),
+    category_id=129,
+)
+
+app.add_url_rule(
+    "/community/local-communities",
+    view_func=process_local_communities(local_communities),
+)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
