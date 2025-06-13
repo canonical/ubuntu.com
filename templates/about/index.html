@@ -1,5 +1,7 @@
 {% extends "about/base_about.html" %}
 
+{% from "macros/_vf-latest-news.jinja" import vf_latest_news with context %}
+
 {% block title %}About the Ubuntu project{% endblock %}
 
 {% block meta_description %}
@@ -49,6 +51,19 @@
 
   <section class="p-section">
     <hr class="p-rule is-fixed-width" />
+    <div class="row--50-50">
+      <div class="col">
+        <h2>Where did it all begin?</h2>
+      </div>
+      <div class="col">
+        <p>Linux was already established in 2004, but it was fragmented into proprietary and unsupported community editions, and free software was not a part of everyday life for most computer users. That's when Mark Shuttleworth gathered a small team of Debian developers who together founded Canonical and set out to create an easy-to-use Linux desktop called Ubuntu.</p>
+        <p>The <a href="/community/mission">mission for Ubuntu</a> is both social and economic. First, we deliver the worlds free software, freely, to everybody on the same terms. Whether you are a student in India or a global bank, you can download and use Ubuntu free of charge. Second, we aim to cut the cost of professional services - support, management, maintenance, operations - for people who use Ubuntu at scale, through a portfolio of services provided by Canonical which ultimately fund the improvement of the platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <hr class="p-rule is-fixed-width" />
     <div class="p-section--shallow">
       <div class="row--50-50">
         <div class="col">
@@ -71,16 +86,13 @@
       </div>
     </div>
     <div class="u-fixed-width">
-
       <!-- Release cycle chart -->
       <div class="u-hide--small"
            id="server-desktop-eol-old"
            style="margin-left:1.25rem;
                   margin-right:1.25rem"></div>
-
       <!-- Release cycle table -->
       {% include "about/release_cycles/releases-table.html" %}
-
     </div>
   </section>
 
@@ -154,7 +166,7 @@
         <p>
           Canonical provides a managed services option for OpenStack. Our experts take responsibility for the design, deployment, and operations.
         </p>
-        <div class="p-cta-block">
+        <div class="p-cta-block u-no-padding--bottom">
           <a href="/openstack/managed" class="p-button--positive">Learn more</a>
         </div>
       </div>
@@ -175,10 +187,9 @@
     </div>
   </div>
 
-  <hr class="p-rule is-fixed-width" />
-  {% with section_classes='p-section', tag_name="ubuntu", tag_id="1564", limit="4", show_excerpt="true", hide_date="true", excerptLength="200", show_image="true", heading_topic="" %}
-    {% include "shared/_latest_news_strip.html" %}
-  {% endwith %}
+  {{ vf_latest_news(title_text='Latest from our blog&nbsp;&rsaquo;',
+    tag_name="ubuntu",
+    tag_id="1564") }}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" defer></script>
   <script src="{{ versioned_static('js/dist/release-chart-manager.js') }}"
