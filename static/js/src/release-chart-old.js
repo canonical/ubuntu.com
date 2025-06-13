@@ -298,7 +298,7 @@ function addXAxisVerticalLines(svg, height) {
  * Adds vertical lines to the x axis
  */
 function addYAxisVerticalLines(svg, width) {
-  svg.selectAll(".y.axis .tick line").attr("x1", width);
+  svg.selectAll(".y.axis .tick line").attr("x1", width + margin.right);
 }
 
 /**
@@ -477,9 +477,9 @@ export function createReleaseChartOld(
     if (closestCol.clientWidth <= 0) {
       return;
     }
-    containerWidth = closestCol.clientWidth - margin.left;
+    containerWidth = closestCol.clientWidth;
   }
-  var width = containerWidth - margin.left;
+  var width = containerWidth - margin.left - margin.right;
   var x = d3
     .scaleTime()
     .domain([timeDomainStart, timeDomainEnd])
@@ -511,11 +511,11 @@ export function createReleaseChartOld(
     .select(chartSelector)
     .append("svg")
     .attr("class", "chart")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", containerWidth)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("class", "gantt-chart")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", containerWidth - margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .attr(
       "transform",

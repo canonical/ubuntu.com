@@ -1,0 +1,95 @@
+{#
+  Params:
+    title_text(string) (required): The title of the section, which also links to the main blog page.
+    tag_name (string) (required): The URL-friendly slug of a tag to filter the articles by.
+    tag_id (string) (required): The ID of a tag to filter the articles by.
+#}
+
+{% macro vf_latest_news(
+  title_text,
+  tag_name="",
+  tag_id=""
+  ) -%}
+
+  {% set heading_url = "/blog" %}
+  {% if tag_name %}
+    {% set heading_url = "/blog/tag/" + tag_name %}
+  {% endif %}
+
+  {% set gtm_event_label = "ubuntu.com" %}
+  {% if tag_name %}
+    {% set gtm_event_label = gtm_event_label + "/" + tag_name %}
+  {% else %}
+    {% set gtm_event_label = gtm_event_label + " homepage" %}
+  {% endif %}
+
+  <noscript>
+    <section class="p-strip">
+      <div class="row">
+        <h3>
+          <a href="{{ heading_url }}">{{ title_text }}</a>
+        </h3>
+      </div>
+    </section>
+  </noscript>
+
+  <section class="u-hide p-section--deep" data-js="latest-news">
+    <hr class="p-rule is-fixed-width" />
+    <div class="row p-section--shallow">
+      <h2>
+        <a href="{{ heading_url }}"
+           onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : '{{ gtm_event_label }}', 'eventValue' : undefined });">{{ title_text }}</a>
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="latest-articles-container" class="p-equal-height-row--wrap">
+          <div style="min-height: 9.1rem">
+            <i class="p-icon--spinner u-animation--spin">Loading...</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# The template used by latest-news.js to render each article #}
+    <template style="display:none" id="latest-articles-template">
+      <div class="p-equal-height-row__col">
+        <div class="p-equal-height-row__item">
+          <div class="u-crop--16-9">
+            <div class="article-image p-image-wrapper"></div>
+          </div>
+        </div>
+        <div class="p-equal-height-row__item">
+          <h3 class="p-heading--5">
+            <a class="article-link article-title"></a>
+          </h3>
+        </div>
+        <div class="p-equal-height-row__item">
+          <p class="article-excerpt"></p>
+        </div>
+      </div>
+    </template>
+
+    {# djlint: off #}
+    <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+    <script>
+      canonicalLatestNews.fetchLatestNews(
+        {
+          articlesContainerSelector: "#latest-articles-container",
+          articleTemplateSelector: "#latest-articles-template",
+          gtmEventLabel: "{{ gtm_event_label }}",
+          {% if tag_id %}
+          tagId: "{{ tag_id }}",
+          {% endif %}
+          {% if tag_name %}
+          tagName: "{{ tag_name }}",
+          {% endif %}
+          excerptLength: "200",
+          limit: "4",
+          linkImage: true,
+        }
+      )
+    </script>
+    {# djlint: on #}
+  </section>
+{%- endmacro %}
