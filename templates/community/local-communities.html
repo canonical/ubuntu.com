@@ -1,0 +1,43 @@
+{% extends "community/_base_community.html" %}
+
+{% block title %}Ubuntu Community{% endblock %}
+
+{% block meta_description %}
+
+{% endblock
+meta_description %}
+
+{% block meta_copydoc %}
+
+{% endblock
+meta_copydoc %}
+
+{% block body_class %}
+  is-paper
+{% endblock body_class %}
+
+{% block content %}
+  <div class="u-fixed-width">
+    <h1>Local communities</h1>
+  </div>
+
+  <div class="u-fixed-width">
+    <ol>
+      {% for loco in metadata %}
+        <li>
+          <div class="row">
+            <div class="col-1 col-medium-1 col-small-1">
+              <img src="{{ loco.image.url }}" alt="" style="max-height:40px;" />
+            </div>
+            <div class="col-10 col-medium-5 col-small-3">
+              <p class="u-no-margin--bottom">
+                {{ loco.name }} - <a href="{{ loco.link.url }}">{{ loco.link.url }}</a>
+              </p>
+              <p>{{ loco.continent }} / {{ loco.coordinates }} / {{ loco.status }}</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endblock content %}
