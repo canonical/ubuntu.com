@@ -1496,11 +1496,7 @@ def cred_shop(ua_contracts_api, advantage_mapper, **kwargs):
         )
         is_internal_user = user.get("email", "").endswith("@canonical.com")
         exam["disabled"] = is_disabled
-        if (
-            exam["id"] == "cue-02-desktop"
-            and not is_internal_user
-            and is_production
-        ):
+        if exam["id"] == "cue-02-desktop" and not is_internal_user:
             exam["disabled"] = True
 
     for product in cue_products:
