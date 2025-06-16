@@ -17,7 +17,11 @@
         "originalPrice": "100.00",
         "currency": "$"
       }
-    ]
+    ],
+    "openTo": {
+      "production": true,
+      "staging": true
+    }
   },
   {
     "id": "cue-02-desktop",
@@ -44,7 +48,11 @@
         "discountPrice": "0.00",
         "currency": "$"
       }
-    ]
+    ],
+    "openTo": {
+      "production": true,
+      "staging": true
+    }
   },
   {
     "id": "cue-03-server",
@@ -55,7 +63,12 @@
         "key": "description",
         "value":
           "Illustrate your knowledge of common Ubuntu Server administrative tasks and troubleshooting. Topics include job control, performance tuning, services management, and Bash scripting."
-      }
-    ]
+      },
+      {}
+    ],
+    "openTo": {
+      "production": false,
+      "staging": false
+    }
   }
 ]
