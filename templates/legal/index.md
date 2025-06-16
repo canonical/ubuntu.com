@@ -12,7 +12,7 @@ context:
 
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule">
   <h3>Terms and policies</h3>
   <p>The main terms governing use of our software and websites, including links to privacy, intellectual property and copyright information.</p>
@@ -20,7 +20,7 @@ context:
   [View our terms and policies&nbsp;&rsaquo;](/legal/terms-and-policies)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Data privacy</h3>
   <p>Information about how we collect and process personal data, including links to privacy notices.</p>
@@ -28,7 +28,7 @@ context:
   [View our data privacy&nbsp;&rsaquo;](/legal/data-privacy)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Trademarks</h3>
   <p>A list of trademarks used by Canonical.</p>
@@ -36,7 +36,7 @@ context:
   [View our trademarks&nbsp;&rsaquo;](/legal/trademarks)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Contributor agreement</h3>
   <p>Details of the agreement you need to send to us before you begin contributing to projects at Canonical.</p>
@@ -44,7 +44,7 @@ context:
   [View our contributors&nbsp;&rsaquo;](/legal/contributors)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Ubuntu Pro terms</h3>
   <p>A legal description of the services included in the Ubuntu Pro support package.</p>
@@ -52,7 +52,7 @@ context:
   [View our Ubuntu Pro terms&nbsp;&rsaquo;](/legal/ubuntu-pro)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Modern slavery statement</h3>
   <p>This is Canonical's modern slavery statement.</p>
@@ -60,7 +60,7 @@ context:
   [View our modern slavery statement&nbsp;&rsaquo;](/legal/modern-slavery-statement)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Service terms</h3>
   <p>This agreement sets out Canonical's standard service terms for both Ubuntu Pro and Managed Services customers.</p>
@@ -68,7 +68,7 @@ context:
   [View our Canonical's standard service terms&nbsp;&rsaquo;](/legal/ubuntu-pro-service-terms)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Solution support</h3>
   <p>A description of benefits and services support customers are entitled to.</p>
@@ -76,7 +76,7 @@ context:
   [View our services support&nbsp;&rsaquo;](/legal/solution-support)
 </section>
 
-<section class="p-section">
+<section class="p-section--shallow">
   <hr class="p-rule--muted">
   <h3>Equal employment opportunity commitment</h3>
   <p>This is Canonical's equal employment opportunity commitment.</p>
