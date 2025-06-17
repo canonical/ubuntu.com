@@ -1,0 +1,312 @@
+{% extends "test-forms/index.html" %}
+
+{% block content %}
+  <section class="p-section--hero">
+    <div class="row--50-50">
+      <div class="col">
+        <h1>Failing payload</h1>
+      </div>
+      <div class="col">
+        <p>This form tests for failing payload banner.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-section">
+    <form action="/marketo/submit" method="post" id="mktoForm_1251">
+      <div class="p-section">
+        <hr class="p-rule is-fixed-width" />
+        <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
+                  aria-labelledby="how-do-you-use-ubuntu-legend">
+          <div class="row--50-50">
+            <div class="col">
+              <legend class="p-heading--2 js-formfield-title is-required"
+                      id="how-do-you-use-ubuntu-legend">How do you currently use Ubuntu?</legend>
+            </div>
+            <div class="col">
+              <label class="p-radio">
+                <input class="p-radio__input"
+                      type="radio"
+                      aria-labelledby="private-only"
+                      name="how-do-you-use-ubuntu"
+                      value="private only" required/>
+                <span class="p-radio__label" id="private-only">Private only</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="commercial-only"
+                      class="p-radio__input"
+                      name="how-do-you-use-ubuntu"
+                      value="commercial only" />
+                <span class="p-radio__label" id="commercial-only">Commercial only</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="privately-and-commercially"
+                      class="p-radio__input"
+                      name="how-do-you-use-ubuntu"
+                      value="Privately and commercially" />
+                <span class="p-radio__label" id="privately-and-commercially">Privately and commercially</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="not-at-all"
+                      class="p-radio__input"
+                      name="how-do-you-use-ubuntu"
+                      value="Not at all" />
+                <span class="p-radio__label" id="not-at-all">Not at all</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="p-section">
+        <hr class="p-rule is-fixed-width" />
+        <fieldset class="p-fieldset-section js-formfield js-remove-radio-names"
+                  aria-labelledby="how-many-employees-legend">
+          <div class="row--50-50">
+            <div class="col">
+              <legend class="p-heading--2 js-formfield-title"
+                      id="how-many-employees-legend">How many employees does your organisation have?</legend>
+            </div>
+            <div class="col">
+              <label class="p-radio">
+                <input class="p-radio__input"
+                      type="radio"
+                      aria-labelledby="none"
+                      name="how-many-employees"
+                      value="none" />
+                <span class="p-radio__label" id="none">None</span>
+
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="500"
+                      class="p-radio__input"
+                      name="how-many-employees"
+                      value="500" />
+                <span class="p-radio__label" id="500">&lt;&nbsp;500</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="501-1000"
+                      class="p-radio__input"
+                      name="how-many-employees"
+                      value="501-1000" />
+                <span class="p-radio__label" id="501-1000">501-1000</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="1001-2000"
+                      class="p-radio__input"
+                      name="how-many-employees"
+                      value="1001-2000" />
+                <span class="p-radio__label" id="1001-2000">1001-2000</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="2001-5000"
+                      class="p-radio__input"
+                      name="how-many-employees"
+                      value="2001-5000" />
+                <span class="p-radio__label" id="2001-5000">2001-5000</span>
+              </label>
+              <label class="p-radio">
+                <input type="radio"
+                      aria-labelledby="5000+"
+                      class="p-radio__input"
+                      name="how-many-employees"
+                      value="5000+" />
+                <span class="p-radio__label" id="5000+">5000&plus;</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="p-section">
+        <hr class="p-rule is-fixed-width" />
+        <fieldset class="p-fieldset-section"
+                  id="about-you"
+                  aria-labelledby="about-you-legend">
+          <div class="row--50-50">
+            <div class="col">
+              <legend class="p-heading--2" id="about-you-legend">How should we get in touch?</legend>
+            </div>
+            <div class="col">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label class="is-required" for="firstName">First name:</label>
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" />
+                </li>
+                <li class="p-list__item">
+                  <label class="is-required" for="lastName">Last name:</label>
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" />
+                </li>
+                <li class="p-list__item">
+                  <label class="is-required" for="email">Email address:</label>
+                  <input required
+                        id="email"
+                        name="email"
+                        maxlength="255"
+                        type="email"
+                        pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+                </li>
+                <li class="p-list__item">
+                  <label class="is-required" for="company">Company name:</label>
+                  <input required id="company" name="company" maxlength="255" type="text" />
+                </li>
+                <li class="p-list__item">
+                  <label class="is-required" for="job-title">Job title:</label>
+                  <input required id="title" name="title" maxlength="255" type="text" />
+                </li>
+                {% include "shared/forms/_industry.html" %}
+                {% include "shared/forms/_country.html" %}
+              </ul>
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input"
+                          value="yes"
+                          aria-labelledby="canonicalUpdatesOptIn"
+                          name="canonicalUpdatesOptIn"
+                          type="checkbox" />
+                    <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                  </label>
+                </li>
+                <li class="p-list__item u-sv3">
+                  By submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+                </li>
+                {# These are honey pot fields to catch bots #}
+                <li class="u-off-screen">
+                  <label class="website" for="website">Website:</label>
+                  <input name="website"
+                        type="text"
+                        class="website"
+                        autocomplete="off"
+                        value=""
+                        id="website"
+                        tabindex="-1" />
+                </li>
+                <li class="u-off-screen">
+                  <label class="name" for="name">Name:</label>
+                  <input name="name"
+                        type="text"
+                        class="name"
+                        autocomplete="off"
+                        value=""
+                        id="name"
+                        tabindex="-1" />
+                </li>
+                {# End of honey pots #}
+                <li class="p-list__item">
+                  <button type="submit" class="p-button--positive">Submit</button>
+                </li>
+              </ul>
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="formid"
+                    value="1251" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="returnURL"
+                    value="/test-forms/failing-payload" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="Consent_to_Processing__c"
+                    value="yes" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="utm_campaign"
+                    id="utm_campaign"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="utm_medium"
+                    id="utm_medium"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="utm_source"
+                    id="utm_source"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="utm_content"
+                    id="utm_content"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="utm_term"
+                    id="utm_term"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="GCLID__c"
+                    id="GCLID__c"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    name="Facebook_Click_ID__c"
+                    id="Facebook_Click_ID__c"
+                    value="" />
+              <input type="hidden"
+                    aria-hidden="true"
+                    aria-label="hidden field"
+                    id="preferredLanguage"
+                    name="preferredLanguage"
+                    maxlength="255"
+                    value="" />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </section>
+
+  <section class="p-section">
+    <div class="row--50-50">
+      <hr class="p-rule" />
+      <div class="col">
+        <h2>Need help with Ubuntu?</h2>
+      </div>
+      <div class="col">
+        <p>If you are just looking for some free support for yourself, you can try:</p>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a href="https://askubuntu.com/">Ask Ubuntu</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://ubuntuforums.org/">The Ubuntu forum</a>
+          </li>
+          <li class="p-list__item">
+            <a href="https://help.ubuntu.com/">Help docs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      dataLayer.push({
+        'event': 'GAEvent',
+        'eventCategory': 'Form',
+        'eventAction': 'cloud contact-us',
+        'eventLabel': '{{ product }}',
+        'eventValue': undefined
+      });
+    });
+  </script>
+{% endblock content %}
