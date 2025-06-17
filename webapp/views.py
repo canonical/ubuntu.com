@@ -1057,7 +1057,7 @@ def marketo_submit():
             )
             flask.flash(
                 "There was an issue submitting the form payload.",
-                "contact-form-fail"
+                "contact-form-fail",
             )
 
         if return_url:
