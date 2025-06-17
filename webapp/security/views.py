@@ -122,7 +122,7 @@ def notice(notice_id):
             ]
         cves_and_references = sorted(
             cves_and_references,
-            key=lambda x: x["id"],
+            key=lambda x: x["id"] if isinstance(x, dict) and "id" in x else x,
             reverse=True,
         )
 
