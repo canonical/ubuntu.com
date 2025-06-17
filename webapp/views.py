@@ -1351,7 +1351,7 @@ def process_community_calendar(community_calendar):
     def display_community_calendar():
         events = community_calendar.get_events()
         return flask.render_template(
-            "community/calendar.html",
+            "community/events.html",
             events=events,
         )
 

@@ -811,9 +811,6 @@ local_communities = Category(
     category_id=129,
 )
 
-app.add_url_rule(
-    "/community/local-communities",
-    view_func=process_local_communities(local_communities),
 community_calendar = Category(
     parser=CategoryParser(
         api=discourse_api,
@@ -824,7 +821,12 @@ community_calendar = Category(
 )
 
 app.add_url_rule(
-    "/community/calendar",
+    "/community/local-communities",
+    view_func=process_local_communities(local_communities),
+)
+
+app.add_url_rule(
+    "/community/events",
     view_func=process_community_calendar(community_calendar),
 )
 
